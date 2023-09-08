@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+
+docker run \
+  -v "$(pwd)"/docs:/home/node/app/docs \
+  -v "$(pwd)"/public/images:/home/node/app/public/images \
+  -p 3000:3000 \
+  -p 5001:5001 \
+  icr.io/quantum-computing/iqp-channel-docs-dev
