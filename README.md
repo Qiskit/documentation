@@ -4,7 +4,9 @@ The documentation content home for https://docs.quantum-computing.ibm.com. Refer
 
 # How tos
 
-## Pre-requisites
+## Pre-requisites to run tools locally
+
+These tools will also run in CI. But, it can be convenient when iterating to run the tools locally.
 
 First, install the below:
 
@@ -18,12 +20,17 @@ Then, install the dependencies with:
 
 ## Spellcheck
 
-We use [cSpell](https://cspell.org) to check for spelling. To check locally:
+We use [cSpell](https://cspell.org) to check for spelling. The `lint` job in CI will fail if there are spelling issues.
+
+There are two ways to check spelling locally, rather than needing CI.
+
+1. 
 
 ```bash
 ❯ npm run spellcheck
 ```
-> There is also a VSCode extension [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker) that can be installed to have misspelled words highlighted without the need to run any commands.
+
+2. Use the VSCode extension [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker).
 
 ### Fixing false positives
 
