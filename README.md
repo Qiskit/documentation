@@ -15,7 +15,7 @@ First, install the below:
 Then, install the dependencies with:
 
 ```bash
-❯ npm install
+npm install
 ```
 
 ## Spellcheck
@@ -27,7 +27,7 @@ There are two ways to check spelling locally, rather than needing CI.
 1. 
 
 ```bash
-❯ npm run spellcheck
+npm run spellcheck
 ```
 
 2. Use the VSCode extension [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker).
