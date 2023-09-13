@@ -33,6 +33,12 @@ npm install
 
 Run `./start` in your terminal, then open http://localhost:3000 in your browser.
 
+## Preview the docs in PRs
+
+Contributors with write access to this repository can use live previews of the docs: GitHub will deploy a website using your changes.
+
+To use live previews, push your branch to `upstream` rather than your fork. GitHub will leave a comment with the link to the site. Please prefix your branch name with your initials, e.g. `EA/fix-build-typo`, for good Git hygiene.
+
 ## Spellcheck
 
 We use [cSpell](https://cspell.org) to check for spelling. The `lint` job in CI will fail if there are spelling issues.
