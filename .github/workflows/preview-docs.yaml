@@ -1,0 +1,37 @@
+# This Action builds the docs in pull requests so that we can view a live preview.
+# It uses IBM Cloud to build the Dockerfile at the root of the repository.
+#
+# Due to security, this can only run on branches of qiskit/docs, i.e. not on forks.
+# We skip the actions if running on a fork.
+
+name: Preview
+
+on:
+  pull_request:
+    types: [opened, reopened, synchronize, closed]
+
+jobs:
+  setup:
+    if: |
+      (github.event.action == 'opened' || github.event.action == 'reopened' || github.event.action == 'synchronize') &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    uses: Qiskit/gh-actions/.github/workflows/code-engine-preview.yml@main
+    with:
+      code_engine_project: qiskit-docs-preview
+      docker_image_name: qiskit-docs-preview
+      docker_image_port: "3000"
+    secrets:
+      ibmcloud_account: ${{ secrets.IBMCLOUD_ACCOUNT }}
+      ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
+
+  teardown:
+    if: |
+      github.event.action == 'closed' &&
+      github.event.pull_request.head.repo.full_name == github.repository
+    uses: Qiskit/gh-actions/.github/workflows/code-engine-cleanup.yml@main
+    with:
+      code_engine_project: qiskit-docs-preview
+      docker_image_name: qiskit-docs-preview
+    secrets:
+      ibmcloud_account: ${{ secrets.IBMCLOUD_ACCOUNT }}
+      ibmcloud_api_key: ${{ secrets.IBMCLOUD_API_KEY }}
