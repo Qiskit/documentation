@@ -18,6 +18,20 @@ Then, install the dependencies with:
 npm install
 ```
 
+## Check file metadata
+
+Every file needs to have a `title` and `description`. The `lint` job in CI will fail with instructions for any bad file.
+
+You can also check for valid metadata locally:
+
+```bash
+# Only check file metadata
+npm run check:metadata
+
+# Or, run all the checks
+npm run check
+```
+
 ## Spellcheck
 
 We use [cSpell](https://cspell.org) to check for spelling. The `lint` job in CI will fail if there are spelling issues.
@@ -27,7 +41,11 @@ There are two ways to check spelling locally, rather than needing CI.
 1. 
 
 ```bash
-npm run spellcheck
+# Only check spelling
+npm run check:spelling
+
+# Or, run all the checks
+npm run check
 ```
 
 2. Use the VSCode extension [Code Spell Checker](https://marketplace.visualstudio.com/items?itemName=streetsidesoftware.code-spell-checker).

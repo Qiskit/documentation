@@ -4,10 +4,15 @@
   "description": "The documentation content home for https://docs.quantum-computing.ibm.com.",
   "author": "Qiskit Development Team",
   "license": "Apache-2.0",
+  "type": "module",
   "scripts": {
-    "spellcheck": "cspell --relative --no-progress docs/**/*.md*"
+    "check": "npm run check:metadata && npm run check:spelling",
+    "check:metadata": "node scripts/checkMetadata.js",
+    "check:spelling": "cspell --relative --no-progress docs/**/*.md*"
   },
   "devDependencies": {
-    "cspell": "^7.3.2"
+    "cspell": "^7.3.2",
+    "globby": "^13.2.2",
+    "gray-matter": "^4.0.3"
   }
 }
