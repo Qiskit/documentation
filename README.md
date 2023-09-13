@@ -8,15 +8,30 @@ The documentation content home for https://docs.quantum-computing.ibm.com. Refer
 
 These tools will also run in CI. But, it can be convenient when iterating to run the tools locally.
 
-First, install the below:
+Currently, this workflow only works for IBM maintainers. We are prioritizing fixing this workflow so that anyone can run the tools locally, tracked by https://github.com/Qiskit/docs/issues/53.
+
+First, install the below software:
 
 1. [Node.js](https://nodejs.org/en). If you expect to use JavaScript in other projects, consider using [NVM](https://github.com/nvm-sh/nvm). Otherwise, consider using [Homebrew](https://formulae.brew.sh/formula/node) or installing [Node.js directly](https://nodejs.org/en).
+2. [IBM Cloud command line](https://cloud.ibm.com/docs/cli?topic=cli-getting-started)
+3. [Docker](https://www.docker.com). You must also ensure that it is running.
+   * You can use [Colima](https://github.com/abiosoft/colima) or [Rancher Desktop](https://rancherdesktop.io). When installing Rancher Desktop, choose Moby/Dockerd as the engine, rather than nerdctl. To ensure it's running, open up the app "Rancher Desktop". 
 
-Then, install the dependencies with:
+Set up IBM Cloud to access the Docker image:
+
+1. `ibmcloud plugin install cr`
+2. `ibmcloud cr region-set global`
+3. Make sure Docker is running, then `ibmcloud cr login`
+
+Finally, install the dependencies with:
 
 ```bash
 npm install
 ```
+
+## Preview the docs locally
+
+Run `./start` in your terminal, then open http://localhost:3000 in your browser.
 
 ## Spellcheck
 
