@@ -2,7 +2,7 @@ import grayMatter from "gray-matter";
 import fs from "fs/promises";
 import { globby } from "globby";
 
-const readMetadata = async (filePath) => {
+const readMetadata = async (filePath: string): Promise<Record<string, any>> => {
   const ext = filePath.split(".").pop();
   if (ext === "md" || ext === "mdx") {
     const content = await fs.readFile(filePath, "utf-8");
@@ -15,9 +15,10 @@ const readMetadata = async (filePath) => {
   }
 };
 
-const isValidMetadata = (metadata) => metadata.title && metadata.description;
+const isValidMetadata = (metadata: Record<string, any>): boolean =>
+  metadata.title && metadata.description;
 
-const main = async () => {
+const main = async (): Promise<void> => {
   const mdErrors = [];
   const mdFiles = await globby("docs/**/*.{md,mdx}");
   for (const file of mdFiles) {
