@@ -6,16 +6,37 @@
   "license": "Apache-2.0",
   "scripts": {
     "check": "npm run check:metadata && npm run check:spelling",
-    "check:metadata": "node -r esbuild-register scripts/checkMetadata.ts",
+    "check:metadata": "node -r esbuild-register scripts/commands/checkMetadata.ts",
     "check:spelling": "cspell --relative --no-progress docs/**/*.md*",
+    "test": "jest",
     "typecheck": "tsc"
   },
   "devDependencies": {
+    "@swc/jest": "^0.2.29",
+    "@types/jest": "^29.5.5",
+    "@types/lodash": "^4.14.198",
     "@types/node": "^20.6.2",
+    "cheerio": "^1.0.0-rc.12",
     "cspell": "^7.3.2",
     "esbuild-register": "^3.5.0",
+    "github-slugger": "^2.0.0",
     "globby": "^13.2.2",
     "gray-matter": "^4.0.3",
-    "typescript": "^5.2.2"
+    "hast-util-to-mdast": "^8.3.0",
+    "hast-util-to-text": "^3.1.0",
+    "is-absolute-url": "^4.0.1",
+    "jest": "^29.7.0",
+    "lodash": "^4.17.21",
+    "mdast": "^3.0.0",
+    "rehype-parse": "^8.0.0",
+    "rehype-remark": "^9.1.2",
+    "remark-gfm": "^3.0.1",
+    "remark-math": "^5.1.1",
+    "remark-mdx": "^2.3.0",
+    "remark-parse": "^10.0.1",
+    "remark-stringify": "^10.0.3",
+    "typescript": "^5.2.2",
+    "unified": "^10.0.0",
+    "unist-util-visit": "^4.0.0"
   }
 }
