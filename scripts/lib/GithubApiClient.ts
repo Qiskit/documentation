@@ -14,11 +14,9 @@ import { merge } from 'lodash';
 
 export class GithubApiClient {
   token: string;
-  baseUrl: string;
 
-  constructor(options: { token: string; domain: 'public' | 'ibm' }) {
+  constructor(options: { token: string}) {
     this.token = options.token;
-    this.baseUrl = options.domain === 'public' ? 'api.github.com' : 'github.ibm.com/api/v3';
   }
 
   getReleases(options: { slug: string }) {
@@ -29,7 +27,7 @@ export class GithubApiClient {
 
   private getUrl(url: string) {
     if (url.startsWith('https:')) return url;
-    return `https://${this.baseUrl}/${url}`;
+    return `https://api.github.com/${url}`;
   }
 
   private async fetch<Response>(url: string, options?: RequestInit) {

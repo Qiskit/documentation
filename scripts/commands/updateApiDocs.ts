@@ -62,9 +62,9 @@ const packages: Pkg[] = [
     title: 'Qiskit Runtime IBM Client',
     name: 'qiskit-ibm-runtime',
     githubSlug: 'qiskit/qiskit-ibm-runtime',
-    baseUrl: `https://qiskit.org/documentation/partners/qiskit_ibm_runtime`,
+    baseUrl: `https://qiskit.org/ecosystem/ibm-runtime`,
     initialUrls: [
-      `https://qiskit.org/documentation/partners/qiskit_ibm_runtime/apidocs/ibm-runtime.html`,
+      `https://qiskit.org/ecosystem/ibm-runtime/apidocs/ibm-runtime.html`,
     ],
     transformLink(url, text) {
       const prefixes = [
@@ -105,7 +105,7 @@ const packages: Pkg[] = [
   {
     title: 'Qiskit',
     name: 'qiskit',
-    githubSlug: 'qiskit/qiskit-terra',
+    githubSlug: 'qiskit/qiskit',
     baseUrl: `https://qiskit.org/documentation`,
     initialUrls: [`https://qiskit.org/documentation/apidoc/index.html`],
     ignore(id: string): boolean {
@@ -158,9 +158,6 @@ zxMain(async () => {
   console.log('Deleting existing markdowns');
   await $`rm -rf ${getRoot()}/docs/api/`;
 
-  //console.log('Deleting existing api images');
-  //await $`rm -rf ${getRoot()}/public/images/api/`;
-
   for (const src of pkgHtmls) {
     console.log(`Convert sphinx html to markdown for ${src.pkg.name}:${src.version}`);
 
@@ -175,7 +172,7 @@ zxMain(async () => {
 
 async function getLatestVersion(githubSlug: string): Promise<string> {
   const githubToken = getRequiredEnv(`PUBLIC_GITHUB_TOKEN`);
-  const github = new GithubApiClient({ domain: 'public', token: githubToken });
+  const github = new GithubApiClient({ token: githubToken });
 
   const releases = await github.getReleases({ slug: githubSlug });
 
@@ -283,7 +280,7 @@ async function convertHtmlToMarkdown(
 
   console.log('Downloading images');
   await downloadImages(
-    allImages.map((img) => ({ src: img.src, dest: `${getRoot()}/packages/web/public${img.dest}` }))
+    allImages.map((img) => ({ src: img.src, dest: `${getRoot()}/public${img.dest}` }))
   );
 }
 
