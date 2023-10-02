@@ -24,7 +24,7 @@ Initialize InverseCancellation pass.
 
 **Raises**
 
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – Initialization raises an error when the input is not a self-inverse gate or a two-tuple of inverse gates.
+[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – Initalization raises an error when the input is not a self-inverse gate or a two-tuple of inverse gates.
 
 ## Attributes
 

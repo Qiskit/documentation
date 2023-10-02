@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.options.TranspilationOptions
 ---
 
-# TranspilationOptions[¶](#transpilationoptions "Link to this heading")
+# TranspilationOptions
 
 <span id="qiskit_ibm_runtime.options.TranspilationOptions" />
 
-`TranspilationOptions(skip_transpilation=False, initial_layout=None, layout_method=None, routing_method=None, approximation_degree=None)¶`
+`TranspilationOptions(skip_transpilation=False, initial_layout=None, layout_method=None, routing_method=None, approximation_degree=None)`
 
 Transpilation options.
 
@@ -72,9 +72,9 @@ Transpilation options.
 
 <span id="qiskit_ibm_runtime.options.TranspilationOptions.validate_transpilation_options" />
 
-`static TranspilationOptions.validate_transpilation_options(transpilation_options)¶`
+`static TranspilationOptions.validate_transpilation_options(transpilation_options)`
 
-Validate that transpilation options are legal. :raises ValueError: if any transpilation option is not supported :raises ValueError: if layout\_method is not in LayoutMethodType or None. :raises ValueError: if routing\_method is not in RoutingMethodType or None. :raises ValueError: if approximation\_degree in not None or in the range 0.0 to 1.0.
+Validate that transpilation options are legal. :raises ValueError: if layout\_method is not in LayoutMethodType or None. :raises ValueError: if routing\_method is not in RoutingMethodType or None. :raises ValueError: if approximation\_degree in not None or in the range 0.0 to 1.0.
 
 **Return type**
 

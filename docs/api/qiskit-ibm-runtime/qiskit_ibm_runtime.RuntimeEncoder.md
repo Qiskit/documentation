@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.RuntimeEncoder
 ---
 
-# RuntimeEncoder[¶](#runtimeencoder "Link to this heading")
+# RuntimeEncoder
 
 <span id="qiskit_ibm_runtime.RuntimeEncoder" />
 
-`RuntimeEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)¶`
+`RuntimeEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)`
 
 JSON Encoder used by runtime service.
 
@@ -58,7 +58,7 @@ If specified, default is a function that gets called for objects that can’t ot
 
 <span id="qiskit_ibm_runtime.RuntimeEncoder.default" />
 
-`RuntimeEncoder.default(obj)¶`
+`RuntimeEncoder.default(obj)`
 
 Implement this method in a subclass such that it returns a serializable object for `o`, or calls the base implementation (to raise a `TypeError`).
 
@@ -86,7 +86,7 @@ def default(self, o):
 
 <span id="qiskit_ibm_runtime.RuntimeEncoder.encode" />
 
-`RuntimeEncoder.encode(o)¶`
+`RuntimeEncoder.encode(o)`
 
 Return a JSON string representation of a Python data structure.
 
@@ -95,14 +95,15 @@ Return a JSON string representation of a Python data structure.
 >>> JSONEncoder().encode({"foo": ["bar", "baz"]})
 '{"foo": ["bar", "baz"]}'
 ```
-
+ {/* cspell:ignore iterencode */}
+ 
 <span id="runtimeencoder-iterencode" />
 
 ### iterencode
 
 <span id="qiskit_ibm_runtime.RuntimeEncoder.iterencode" />
 
-`RuntimeEncoder.iterencode(o, _one_shot=False)¶`
+`RuntimeEncoder.iterencode(o, _one_shot=False)`
 
 Encode the given object and yield each string representation as available.
 

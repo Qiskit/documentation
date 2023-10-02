@@ -49,7 +49,6 @@ logging.getLogger('qiskit_ibm_provider').setLevel(logging.WARNING)
 | [`IBMProvider`](qiskit_ibm_provider.IBMProvider "qiskit_ibm_provider.IBMProvider")(\[token, url, name, instance, ...]) | Provides access to the IBM Quantum services available to an account. |
 | [`IBMBackend`](qiskit_ibm_provider.IBMBackend "qiskit_ibm_provider.IBMBackend")(configuration, provider, api\_client)  | Backend class interfacing with an IBM Quantum device.                |
 | [`IBMBackendService`](qiskit_ibm_provider.IBMBackendService "qiskit_ibm_provider.IBMBackendService")(provider, hgp)    | Backend namespace for an IBM Quantum account.                        |
-| [`Session`](qiskit_ibm_provider.Session "qiskit_ibm_provider.Session")(\[max\_time])                                   | Class for creating a flexible Qiskit Runtime session.                |
 
 ## Exceptions
 

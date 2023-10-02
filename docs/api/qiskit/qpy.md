@@ -199,7 +199,7 @@ There is a circuit payload for each circuit (where the total number is dictated 
 
 ### Version 9
 
-Version 9 adds support for classical [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") nodes and their associated [`Type`](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")s.
+Version 9 addds support for classical [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") nodes and their associated [`Type`](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")s.
 
 #### EXPRESSION
 
@@ -321,7 +321,7 @@ struct {
 
 Where a value of `-1` indicates `None` (as in no register is associated with the bit). Following each `INITIAL_LAYOUT_BIT` struct is `register_size` bytes for a `utf8` encoded string for the register name.
 
-Following the initial layout there is `input_mapping_size` array of `uint32_t` integers representing the positions of the physical bit from the initial layout. This enables constructing a list of virtual bits where the array index is its input mapping position.
+Following the initial layout there is `input_mapping_size` array of `uint32_t` integers representing the positions of the phyiscal bit from the initial layout. This enables constructing a list of virtual bits where the array index is its input mapping position.
 
 Finally, there is an array of `final_layout_size` `uint32_t` integers. Each element is an index in the circuit’s `qubits` attribute which enables building a mapping from qubit starting position to the output position at the end of the circuit.
 
@@ -458,7 +458,7 @@ Then, alignment context of the schedule block starts with `char` representing th
 *   `s`: [`AlignSequential`](qiskit.pulse.transforms.AlignSequential "qiskit.pulse.transforms.AlignSequential")
 *   `e`: [`AlignEquispaced`](qiskit.pulse.transforms.AlignEquispaced "qiskit.pulse.transforms.AlignEquispaced")
 
-Note that [`AlignFunc`](qiskit.pulse.transforms.AlignFunc "qiskit.pulse.transforms.AlignFunc") context is not supported because of the callback function stored in the context parameters.
+Note that [`AlignFunc`](qiskit.pulse.transforms.AlignFunc "qiskit.pulse.transforms.AlignFunc") context is not supported becasue of the callback function stored in the context parameters.
 
 <span id="schedule-block-instructions" />
 
@@ -466,7 +466,7 @@ Note that [`AlignFunc`](qiskit.pulse.transforms.AlignFunc "qiskit.pulse.transfor
 
 #### SCHEDULE\_BLOCK\_INSTRUCTIONS
 
-This alignment block is further followed by `num_element` length of block elements which may consist of nested schedule blocks and schedule instructions. Each schedule instruction starts with `char` representing the instruction type followed by the [SEQUENCE](#qpy-sequence) block representing the instruction `operands`. Note that the data structure of pulse [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.Instruction") is unified so that instance can be uniquely determined by the class and a tuple of operands. The mapping of type char to the instruction subclass is defined as follows:
+This alignment block is further followed by `num_element` length of block elements which may consist of nested schedule blocks and schedule instructions. Each schedule instruction starts with `char` representing the instruction type followed by the [SEQUENCE](#qpy-sequence) block representing the instruction `operands`. Note that the data structure of pulse [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.Instruction") is unified so that instance can be uniquely determied by the class and a tuple of operands. The mapping of type char to the instruction subclass is defined as follows:
 
 *   `a`: [`Acquire`](qiskit.pulse.instructions.Acquire "qiskit.pulse.instructions.Acquire") instruction
 *   `p`: [`Play`](qiskit.pulse.instructions.Play "qiskit.pulse.instructions.Play") instruction
@@ -586,7 +586,7 @@ struct {
 }
 ```
 
-The calibration definition header is then followed by `name_size` utf8 bytes of the gate name, `num_qubits` length of integers representing a sequence of qubits, and `num_params` length of INSTRUCTION\_PARAM payload for parameters associated to the custom instruction. The `type` indicates the class of pulse program which is either, in principle, [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule"). As of QPY Version 5, only [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") payload is supported. Finally, [SCHEDULE\_BLOCK](#qpy-schedule-block) payload is packed for each CALIBRATION\_DEF entry.
+The calibration definition header is then followed by `name_size` utf8 bytes of the gate name, `num_qubits` length of integers representing a sequence of qubits, and `num_params` length of INSTRUCTION\_PARAM payload for parameters associated to the custom instruction. The `type` indicates the class of pulse program which is either, in pricinple, [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule"). As of QPY Version 5, only [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") payload is supported. Finally, [SCHEDULE\_BLOCK](#qpy-schedule-block) payload is packed for each CALIBRATION\_DEF entry.
 
 <span id="qpy-instruction-v5" />
 
@@ -677,7 +677,7 @@ struct {
 
 #### SEQUENCE
 
-A SEQUENCE is a representation of an arbitrary sequence object. As sequence are just fixed length containers of arbitrary python objects their QPY can’t fully represent any sequence, but as long as the contents in a sequence are other QPY serializable types for the INSTRUCTION\_PARAM payload the `sequence` object can be serialized.
+A SEQUENCE is a reprentation of a arbitrary sequence object. As sequence are just fixed length containers of arbitrary python objects their QPY can’t fully represent any sequence, but as long as the contents in a sequence are other QPY serializable types for the INSTRUCTION\_PARAM payload the `sequence` object can be serialized.
 
 A sequence instruction parameter starts with a header defined as:
 

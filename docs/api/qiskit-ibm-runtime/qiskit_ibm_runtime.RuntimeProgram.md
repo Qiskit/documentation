@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.RuntimeProgram
 ---
 
-# RuntimeProgram[¶](#runtimeprogram "Link to this heading")
+# RuntimeProgram
 
 <span id="qiskit_ibm_runtime.RuntimeProgram" />
 
-`RuntimeProgram(program_name, program_id, description, parameters=None, return_values=None, interim_results=None, max_execution_time=0, backend_requirements=None, creation_date='', update_date='', is_public=False, data='', api_client=None)¶`
+`RuntimeProgram(program_name, program_id, description, parameters=None, return_values=None, interim_results=None, max_execution_time=0, backend_requirements=None, creation_date='', update_date='', is_public=False, data='', api_client=None)`
 
 Class representing program metadata.
 
@@ -263,7 +263,7 @@ Program last updated date.
 
 <span id="qiskit_ibm_runtime.RuntimeProgram.parameters" />
 
-`RuntimeProgram.parameters()¶`
+`RuntimeProgram.parameters()`
 
 Program parameter namespace.
 
@@ -285,7 +285,7 @@ Program parameter namespace.
 
 <span id="qiskit_ibm_runtime.RuntimeProgram.to_dict" />
 
-`RuntimeProgram.to_dict()¶`
+`RuntimeProgram.to_dict()`
 
 Convert program metadata to dictionary format.
 

@@ -81,7 +81,7 @@ The destabilizer array for the symplectic representation.
 
 ### destab\_phase
 
-Return phase of destabilizer with boolean representation.
+Return phase of destaibilizer with boolean representation.
 
 <span id="qiskit.quantum_info.Clifford.destab_x" />
 
@@ -151,7 +151,7 @@ The stabilizer array for the symplectic representation.
 
 ### stab\_phase
 
-Return phase of stabilizer with boolean representation.
+Return phase of stablizer with boolean representation.
 
 <span id="qiskit.quantum_info.Clifford.stab_x" />
 
@@ -605,7 +605,7 @@ For large Clifford converting using the `array=True` kwarg will be more efficien
 **Parameters**
 
 *   **array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – return a Numpy array if True, otherwise return a list (Default: False).
-*   **mode** (*Literal\["S", "D", "B"]*) – return both stabilizer and destabilizer if “B”, return only stabilizer if “S” and return only destabilizer if “D”.
+*   **mode** (*Literal\["S", "D", "B"]*) – return both stabilizer and destablizer if “B”, return only stabilizer if “S” and return only destablizer if “D”.
 
 **Returns**
 

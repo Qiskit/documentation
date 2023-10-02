@@ -6,6 +6,8 @@ python_api_type: function
 python_api_name: qiskit.visualization.plot_bloch_multivector
 ---
 
+{/* cspell:ignore dotsb */}
+
 <span id="qiskit-visualization-plot-bloch-multivector" />
 
 # qiskit.visualization.plot\_bloch\_multivector

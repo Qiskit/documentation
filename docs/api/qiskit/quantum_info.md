@@ -513,6 +513,8 @@ $$
 
 where $b$ is the log base and (default 2), and $0 \log_b(0) \equiv 0$.
 
+{/* cspell:ignore pvec */}
+
 **Parameters**
 
 *   **pvec** (*array\_like*) – a probability vector.

@@ -81,7 +81,7 @@ A basic usage of the AQC algorithm should consist of the following steps:
 # Define a target circuit as a unitary matrix
 unitary = ...
 
-# Define a number of qubits for the algorithm, at least 3 qubits
+# Define several qubits for the algorithm, at least 3 qubits
 num_qubits = int(round(np.log2(unitary.shape[0])))
 
 # Choose a layout of the CNOT structure for the approximate circuit, e.g. ``spin`` for

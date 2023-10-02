@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.RuntimeDecoder
 ---
 
-# RuntimeDecoder[¶](#runtimedecoder "Link to this heading")
+# RuntimeDecoder
 
 <span id="qiskit_ibm_runtime.RuntimeDecoder" />
 
-`RuntimeDecoder(*args, **kwargs)¶`
+`RuntimeDecoder(*args, **kwargs)`
 
 JSON Decoder used by runtime service.
 
@@ -34,7 +34,7 @@ If `strict` is false (true is the default), then control characters will be allo
 
 <span id="qiskit_ibm_runtime.RuntimeDecoder.decode" />
 
-`RuntimeDecoder.decode(s, _w=<built-in method match of re.Pattern object>)¶`
+`RuntimeDecoder.decode(s, _w=<built-in method match of re.Pattern object>)`
 
 Return the Python representation of `s` (a `str` instance containing a JSON document).
 
@@ -44,7 +44,7 @@ Return the Python representation of `s` (a `str` instance containing a JSON docu
 
 <span id="qiskit_ibm_runtime.RuntimeDecoder.object_hook" />
 
-`RuntimeDecoder.object_hook(obj)¶`
+`RuntimeDecoder.object_hook(obj)`
 
 Called to decode object.
 
@@ -58,7 +58,7 @@ Called to decode object.
 
 <span id="qiskit_ibm_runtime.RuntimeDecoder.raw_decode" />
 
-`RuntimeDecoder.raw_decode(s, idx=0)¶`
+`RuntimeDecoder.raw_decode(s, idx=0)`
 
 Decode a JSON document from `s` (a `str` beginning with a JSON document) and return a 2-tuple of the Python representation and the index in `s` where the document ended.
 

@@ -47,7 +47,7 @@ FakeBackend initializer.
 
 ### dirname
 
-`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends/casablanca'`
+`= '/home/runner/work/qiskit-terra/qiskit-terra/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends/casablanca'`
 
 <span id="qiskit.providers.fake_provider.FakeCasablanca.options" />
 

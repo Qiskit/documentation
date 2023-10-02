@@ -287,7 +287,7 @@ a circuit implementation of the Clifford.
 
 Decompose a Clifford operator into a QuantumCircuit based on the greedy Clifford compiler that is described in Appendix A of Bravyi, Hu, Maslov and Shaydulin.
 
-This method typically yields better CX cost compared to the Aaronson-Gottesman method.
+This method typically yields better CX cost compared to the Aaronson-Gottesma method.
 
 **Parameters**
 

@@ -6,6 +6,8 @@ python_api_type: module
 python_api_name: qiskit.utils
 ---
 
+{/* cspell:ignore pylatexenc */}
+
 <span id="module-qiskit.utils" />
 
 <span id="qiskit-utils" />
@@ -381,9 +383,9 @@ A QuantumInstance holds the Qiskit backend as well as a number of compile and ru
 
 <span id="module-qiskit.utils.optionals" />
 
-<span id="optional-dependency-checkers-qiskit-utils-optionals" />
+<span id="optional-depedency-checkers-qiskit-utils-optionals" />
 
-## Optional Dependency Checkers
+## Optional Depedency Checkers
 
 <span id="module-qiskit.utils" />
 

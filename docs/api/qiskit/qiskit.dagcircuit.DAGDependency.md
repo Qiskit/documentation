@@ -374,6 +374,7 @@ List
 
 `to_retworkx()`
 
+{/* cspell:ignore retworkx */}
 Returns the DAGDependency in retworkx format.
 
 ### topological\_nodes

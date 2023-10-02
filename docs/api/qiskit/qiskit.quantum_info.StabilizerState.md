@@ -151,7 +151,7 @@ the output stabilizer state.
 
 `expand(other)`
 
-Return the tensor product stabilizer state other ⊗ self.
+Return the tensor product stabilzier state other ⊗ self.
 
 **Parameters**
 
@@ -386,7 +386,7 @@ Set the seed for the quantum state RNG.
 
 `tensor(other)`
 
-Return the tensor product stabilizer state self ⊗ other.
+Return the tensor product stabilzier state self ⊗ other.
 
 **Parameters**
 

@@ -6,6 +6,8 @@ python_api_type: class
 python_api_name: qiskit.dagcircuit.DAGCircuit
 ---
 
+{/* cspell:ignore Opnodes */}
+
 # DAGCircuit
 
 <span id="qiskit.dagcircuit.DAGCircuit" />
@@ -306,7 +308,7 @@ Returns a dictionary of counts keyed on the operation name.
 
 `depth(*, recurse=False)`
 
-Return the circuit depth. If there is control flow present, this count may only be an estimate, as the complete control-flow path cannot be statically known.
+Return the circuit depth. If there is control flow present, this count may only be an estimate, as the complete control-flow path cannot be staticly known.
 
 **Parameters**
 
