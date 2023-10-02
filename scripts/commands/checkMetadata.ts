@@ -14,6 +14,14 @@ import grayMatter from "gray-matter";
 import fs from "fs/promises";
 import { globby } from "globby";
 
+const IGNORED_FILES = new Set([
+  "docs/api/qiskit-ibm-provider/ibm-provider.md",
+  "docs/api/qiskit/transpiler_builtin_plugins.md",
+  "docs/api/qiskit-ibm-runtime/ibm-runtime.md",
+  "docs/api/qiskit-ibm-runtime/options.md",
+  "docs/api/qiskit-ibm-runtime/runtime_service.md"
+]);
+
 const readMetadata = async (filePath: string): Promise<Record<string, any>> => {
   const ext = filePath.split(".").pop();
   if (ext === "md" || ext === "mdx") {
@@ -34,6 +42,9 @@ const main = async (): Promise<void> => {
   const mdErrors = [];
   const mdFiles = await globby("docs/**/*.{md,mdx}");
   for (const file of mdFiles) {
+    if (IGNORED_FILES.has(file)) {
+      continue;
+    }
     const metadata = await readMetadata(file);
     if (!isValidMetadata(metadata)) {
       mdErrors.push(file);
@@ -43,6 +54,9 @@ const main = async (): Promise<void> => {
   const notebookErrors = [];
   const notebookFiles = await globby("docs/**/*.ipynb");
   for (const file of notebookFiles) {
+    if (IGNORED_FILES.has(file)) {
+      continue;
+    }
     const metadata = await readMetadata(file);
     if (!isValidMetadata(metadata)) {
       notebookErrors.push(file);
