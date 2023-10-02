@@ -18,8 +18,6 @@ const IGNORED_FILES = new Set([
   "docs/api/qiskit-ibm-provider/ibm-provider.md",
   "docs/api/qiskit/transpiler_builtin_plugins.md",
   "docs/api/qiskit-ibm-runtime/ibm-runtime.md",
-  "docs/api/qiskit-ibm-runtime/options.md",
-  "docs/api/qiskit-ibm-runtime/runtime_service.md"
 ]);
 
 const readMetadata = async (filePath: string): Promise<Record<string, any>> => {
