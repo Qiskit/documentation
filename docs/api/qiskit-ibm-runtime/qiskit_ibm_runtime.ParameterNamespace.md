@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.ParameterNamespace
 ---
 
-# ParameterNamespace[¶](#parameternamespace "Link to this heading")
+# ParameterNamespace
 
 <span id="qiskit_ibm_runtime.ParameterNamespace" />
 
-`ParameterNamespace(parameters)¶`
+`ParameterNamespace(parameters)`
 
 A namespace for program parameters with validation.
 
@@ -46,7 +46,7 @@ Returns the parameter metadata
 
 <span id="qiskit_ibm_runtime.ParameterNamespace.to_dict" />
 
-`ParameterNamespace.to_dict()¶`
+`ParameterNamespace.to_dict()`
 
 Convert to dictionary.
 
@@ -60,7 +60,7 @@ Convert to dictionary.
 
 <span id="qiskit_ibm_runtime.ParameterNamespace.validate" />
 
-`ParameterNamespace.validate()¶`
+`ParameterNamespace.validate()`
 
 Validate program input values.
 

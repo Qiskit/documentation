@@ -6,6 +6,8 @@ python_api_type: class
 python_api_name: qiskit.visualization.qcstyle.DefaultStyle
 ---
 
+{/* cspell:ignore creglinecolor, creglinestyle, */}
+
 # DefaultStyle
 
 <span id="qiskit.visualization.qcstyle.DefaultStyle" />

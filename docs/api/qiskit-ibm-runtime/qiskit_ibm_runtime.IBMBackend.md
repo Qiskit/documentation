@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.IBMBackend
 ---
 
-# IBMBackend[¶](#ibmbackend "Link to this heading")
+# IBMBackend
 
 <span id="qiskit_ibm_runtime.IBMBackend" />
 
-`IBMBackend(configuration, service, api_client, instance=None)¶`
+`IBMBackend(configuration, service, api_client, instance=None)`
 
 Backend class interfacing with an IBM Quantum backend.
 
@@ -364,7 +364,7 @@ Target
 
 <span id="qiskit_ibm_runtime.IBMBackend.__call__" />
 
-`IBMBackend.__call__()¶`
+`IBMBackend.__call__()`
 
 Call self as a function.
 
@@ -378,7 +378,7 @@ Call self as a function.
 
 <span id="qiskit_ibm_runtime.IBMBackend.acquire_channel" />
 
-`IBMBackend.acquire_channel(qubit)¶`
+`IBMBackend.acquire_channel(qubit)`
 
 Return the acquisition channel for the given qubit.
 
@@ -396,7 +396,7 @@ AcquireChannel
 
 <span id="qiskit_ibm_runtime.IBMBackend.check_faulty" />
 
-`IBMBackend.check_faulty(circuit)¶`
+`IBMBackend.check_faulty(circuit)`
 
 Check if the input circuit uses faulty qubits or edges.
 
@@ -418,7 +418,7 @@ Check if the input circuit uses faulty qubits or edges.
 
 <span id="qiskit_ibm_runtime.IBMBackend.configuration" />
 
-`IBMBackend.configuration()¶`
+`IBMBackend.configuration()`
 
 Return the backend configuration.
 
@@ -440,7 +440,7 @@ The configuration for the backend.
 
 <span id="qiskit_ibm_runtime.IBMBackend.control_channel" />
 
-`IBMBackend.control_channel(qubits)¶`
+`IBMBackend.control_channel(qubits)`
 
 Return the secondary drive channel for the given qubit
 
@@ -464,7 +464,7 @@ List\[ControlChannel]
 
 <span id="qiskit_ibm_runtime.IBMBackend.defaults" />
 
-`IBMBackend.defaults(refresh=False)¶`
+`IBMBackend.defaults(refresh=False)`
 
 Return the pulse defaults for the backend.
 
@@ -488,7 +488,7 @@ The backend pulse defaults or `None` if the backend does not support pulse.
 
 <span id="qiskit_ibm_runtime.IBMBackend.drive_channel" />
 
-`IBMBackend.drive_channel(qubit)¶`
+`IBMBackend.drive_channel(qubit)`
 
 Return the drive channel for the given qubit.
 
@@ -506,7 +506,7 @@ DriveChannel
 
 <span id="qiskit_ibm_runtime.IBMBackend.measure_channel" />
 
-`IBMBackend.measure_channel(qubit)¶`
+`IBMBackend.measure_channel(qubit)`
 
 Return the measure stimulus channel for the given qubit.
 
@@ -524,7 +524,7 @@ MeasureChannel
 
 <span id="qiskit_ibm_runtime.IBMBackend.properties" />
 
-`IBMBackend.properties(refresh=False, datetime=None)¶`
+`IBMBackend.properties(refresh=False, datetime=None)`
 
 Return the backend properties, subject to optional filtering.
 
@@ -548,7 +548,7 @@ The backend properties or `None` if the backend properties are not currently ava
 **Raises**
 
 *   **TypeError** – If an input argument is not of the correct type.
-*   **NotImplementedError** – If datetime is specified when cloud runtime is used.
+*   **NotImplementedError** – If datetime is specified when cloud rutime is used.
 
 <span id="ibmbackend-qubit-properties" />
 
@@ -556,7 +556,7 @@ The backend properties or `None` if the backend properties are not currently ava
 
 <span id="qiskit_ibm_runtime.IBMBackend.qubit_properties" />
 
-`IBMBackend.qubit_properties(qubit)¶`
+`IBMBackend.qubit_properties(qubit)`
 
 Return QubitProperties for a given qubit.
 
@@ -584,7 +584,7 @@ qubit\_properties
 
 <span id="qiskit_ibm_runtime.IBMBackend.run" />
 
-`IBMBackend.run(*args, **kwargs)¶`
+`IBMBackend.run(*args, **kwargs)`
 
 Not supported method
 
@@ -598,7 +598,7 @@ Not supported method
 
 <span id="qiskit_ibm_runtime.IBMBackend.set_options" />
 
-`IBMBackend.set_options(**fields)¶`
+`IBMBackend.set_options(**fields)`
 
 Set the options fields for the backend
 
@@ -618,7 +618,7 @@ This method is used to update the options of a backend. If you need to change an
 
 <span id="qiskit_ibm_runtime.IBMBackend.status" />
 
-`IBMBackend.status()¶`
+`IBMBackend.status()`
 
 Return the backend status.
 
@@ -644,7 +644,7 @@ The status of the backend.
 
 <span id="qiskit_ibm_runtime.IBMBackend.target_history" />
 
-`IBMBackend.target_history(datetime=None)¶`
+`IBMBackend.target_history(datetime=None)`
 
 A `qiskit.transpiler.Target` object for the backend. :rtype: `Target` :returns: Target with properties found on datetime
 

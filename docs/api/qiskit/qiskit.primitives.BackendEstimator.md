@@ -18,7 +18,7 @@ Evaluates expectation value using Pauli rotation gates.
 
 The [`BackendEstimator`](#qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator") class is a generic implementation of the [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") interface that is used to wrap a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") (or [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")) object in the [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") API. It facilitates using backends that do not provide a native [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator") implementation in places that work with [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator"), such as algorithms in [`qiskit.algorithms`](http://qiskit.org/documentation/apidoc/algorithms.html#module-qiskit.algorithms "qiskit.algorithms") including [`VQE`](http://qiskit.org/documentation/stubs/qiskit.algorithms.minimum_eigensolvers.VQE.html#qiskit.algorithms.minimum_eigensolvers.VQE "qiskit.algorithms.minimum_eigensolvers.VQE"). However, if you’re using a provider that has a native implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator"), it is a better choice to leverage that native implementation as it will likely include additional optimizations and be a more efficient implementation. The generic nature of this class precludes doing any provider- or backend-specific optimizations.
 
-Initialize a new BackendEstimator instance
+Initalize a new BackendEstimator instance
 
 **Parameters**
 

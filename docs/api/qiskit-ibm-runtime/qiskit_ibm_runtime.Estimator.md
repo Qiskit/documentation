@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.Estimator
 ---
 
-# Estimator[¶](#estimator "Link to this heading")
+# Estimator
 
 <span id="qiskit_ibm_runtime.Estimator" />
 
-`Estimator(backend=None, session=None, options=None)¶`
+`Estimator(backend=None, session=None, options=None)`
 
 Class for interacting with Qiskit Runtime Estimator primitive service.
 
@@ -79,7 +79,7 @@ Initializes the Estimator primitive.
 
 <span id="qiskit_ibm_runtime.Estimator.circuits" />
 
-`tuple[QuantumCircuit, ...]`
+`tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]`
 
 Quantum circuits that represents quantum states.
 
@@ -97,7 +97,7 @@ The quantum circuits.
 
 <span id="qiskit_ibm_runtime.Estimator.observables" />
 
-`tuple[SparsePauliOp, ...]`
+`tuple[qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp, ...]`
 
 Observables to be estimated.
 
@@ -133,7 +133,7 @@ options
 
 <span id="qiskit_ibm_runtime.Estimator.parameters" />
 
-`tuple[ParameterView, ...]`
+`tuple[qiskit.circuit.parametertable.ParameterView, ...]`
 
 Parameters of the quantum circuits.
 
@@ -171,7 +171,7 @@ Session used by this primitive, or `None` if session is not used.
 
 <span id="qiskit_ibm_runtime.Estimator.run" />
 
-`Estimator.run(circuits, observables, parameter_values=None, **kwargs)¶`
+`Estimator.run(circuits, observables, parameter_values=None, **kwargs)`
 
 Submit a request to the estimator primitive.
 
@@ -200,7 +200,7 @@ Submitted job. The result of the job is an instance of `qiskit.primitives.Estima
 
 <span id="qiskit_ibm_runtime.Estimator.set_options" />
 
-`Estimator.set_options(**fields)¶`
+`Estimator.set_options(**fields)`
 
 Set options values for the sampler.
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.Session
 ---
 
-# Session[¶](#session "Link to this heading")
+# Session
 
 <span id="qiskit_ibm_runtime.Session" />
 
-`Session(service=None, backend=None, max_time=None)¶`
+`Session(service=None, backend=None, max_time=None)`
 
 Class for creating a flexible Qiskit Runtime session.
 
@@ -28,9 +28,9 @@ options = Options(optimization_level=3)
 
 with Session(backend="ibmq_qasm_simulator") as session:
     sampler = Sampler(session=session, options=options)
-    job = sampler.run(ReferenceCircuits.bell())
+    job = sampler.run(circ)
     print(f"Sampler job ID: {job.job_id()}")
-    print(f"Sampler job result: {job.result()}")
+    print(f"Sampler job result:" {job.result()})
     # Close the session only if all jobs are finished and
     # you don't need to run more in the session.
     session.close()
@@ -42,7 +42,7 @@ Session constructor.
 
 *   **service** (`Optional`\[[`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")]) – Optional instance of the `QiskitRuntimeService` class. If `None`, the service associated with the backend, if known, is used. Otherwise `QiskitRuntimeService()` is used to initialize your default saved account.
 *   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Optional instance of [`qiskit_ibm_runtime.IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") class or string name of backend. An instance of `qiskit_ibm_provider.IBMBackend` will not work. If not specified, a backend will be selected automatically (IBM Cloud channel only).
-*   **max\_time** (`Union`\[`int`, `str`, `None`]) – (EXPERIMENTAL setting, can break between releases without warning) Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be less than the [system imposed maximum](https://qiskit.org/documentation/partners/qiskit_ibm_runtime/faqs/max_execution_time.html).
+*   **max\_time** (`Union`\[`int`, `str`, `None`]) – (EXPERIMENTAL setting, can break between releases without warning) Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be in between 300 seconds and the [system imposed maximum](https://qiskit.org/documentation/partners/qiskit_ibm_runtime/faqs/max_execution_time.html).
 
 **Raises**
 
@@ -94,7 +94,7 @@ Session ID. None until a job runs in the session.
 
 <span id="qiskit_ibm_runtime.Session.backend" />
 
-`Session.backend()¶`
+`Session.backend()`
 
 Return backend for this session.
 
@@ -112,7 +112,7 @@ Backend for this session. None if unknown.
 
 <span id="qiskit_ibm_runtime.Session.close" />
 
-`Session.close()¶`
+`Session.close()`
 
 Close the session.
 
@@ -120,27 +120,13 @@ Close the session.
 
 `None`
 
-<span id="session-from-id" />
-
-### from\_id
-
-<span id="qiskit_ibm_runtime.Session.from_id" />
-
-`classmethod Session.from_id(session_id, service=None, backend=None, max_time=None)¶`
-
-Construct a Session object with a given session\_id
-
-**Return type**
-
-[`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.session.Session")
-
 <span id="session-run" />
 
 ### run
 
 <span id="qiskit_ibm_runtime.Session.run" />
 
-`Session.run(program_id, inputs, options=None, callback=None, result_decoder=None)¶`
+`Session.run(program_id, inputs, options=None, callback=None, result_decoder=None)`
 
 Run a program in the session.
 
@@ -148,7 +134,7 @@ Run a program in the session.
 
 *   **program\_id** (`str`) – Program ID.
 *   **inputs** (`Union`\[`Dict`, [`ParameterNamespace`](qiskit_ibm_runtime.ParameterNamespace "qiskit_ibm_runtime.runtime_program.ParameterNamespace")]) – Program input parameters. These input values are passed to the runtime program.
-*   **options** (`Optional`\[`Dict`]) – Runtime options that control the execution environment. See [`qiskit_ibm_runtime.RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions") for all available options.
+*   **options** (`Optional`\[`Dict`]) – Runtime options that control the execution environment. See [`qiskit_ibm_runtime.RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions") for all available options, EXCEPT `backend`, which should be specified during session initialization.
 *   **callback** (`Optional`\[`Callable`]) – Callback function to be invoked for any interim results and final result.
 
 **Return type**
@@ -158,4 +144,8 @@ Run a program in the session.
 **Returns**
 
 Submitted job.
+
+**Raises**
+
+**IBMInputValueError** – If a backend is passed in through options that does not match the current session backend.
 

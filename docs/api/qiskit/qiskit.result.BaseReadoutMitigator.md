@@ -65,5 +65,5 @@ is the key in the dictionaries, which is the length-N bitstring of a measured st
 
 **Return type**
 
-[QuasiDistribution](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")
+QuasiDistibution
 

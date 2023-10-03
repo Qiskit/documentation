@@ -273,7 +273,7 @@ Replace blocks and return new instruction.
 
 **Parameters**
 
-**blocks** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]*) – Iterable of circuits for “if” and “else” condition. If there is no “else” circuit it may be set to None or omitted.
+**blocks** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]*) – Iterable of circuits for “if” and “else” condition. If there is no “else” circuit it may be set to None or ommited.
 
 **Returns**
 

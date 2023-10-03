@@ -6,6 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.MCXVChain
 ---
 
+{/* cspell:ignore MCXV */}
 # MCXVChain
 
 <span id="qiskit.circuit.library.MCXVChain" />

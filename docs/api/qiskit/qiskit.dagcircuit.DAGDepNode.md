@@ -6,6 +6,7 @@ python_api_type: class
 python_api_name: qiskit.dagcircuit.DAGDepNode
 ---
 
+{/* cspell:ignore cindices, qindices, isblocked, successorstovisit */}
 # DAGDepNode
 
 <span id="qiskit.dagcircuit.DAGDepNode" />

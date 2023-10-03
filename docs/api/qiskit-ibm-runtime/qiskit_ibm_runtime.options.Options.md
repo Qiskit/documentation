@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.options.Options
 ---
 
-# Options[¶](#options "Link to this heading")
+# Options
 
 <span id="qiskit_ibm_runtime.options.Options" />
 
-`Options(optimization_level=None, resilience_level=None, max_execution_time=None, transpilation=<factory>, resilience=<factory>, execution=<factory>, environment=<factory>, simulator=<factory>)¶`
+`Options(optimization_level=None, resilience_level=None, max_execution_time=None, transpilation=<factory>, resilience=<factory>, execution=<factory>, environment=<factory>, simulator=<factory>)`
 
 Options for the primitives.
 
@@ -36,11 +36,7 @@ Options for the primitives.
 
     Refer to the [Qiskit Runtime documentation](https://qiskit.org/documentation/partners/qiskit_ibm_runtime). for more information about the error mitigation methods used at each level.
 
-*   **max\_execution\_time** (`Optional`\[`int`]) –
-
-    Maximum execution time in seconds, which is based on system execution time (not wall clock time). System execution time is the amount of time that the system is dedicated to processing your job. If a job exceeds this time limit, it is forcibly cancelled. Simulator jobs continue to use wall clock time.
-
-    Refer to the [Max execution time documentation](https://docs.quantum-computing.ibm.com/run/max-execution-time#maximum-execution-time). for more information.
+*   **max\_execution\_time** (`Optional`\[`int`]) – Maximum execution time in seconds. If a job exceeds this time limit, it is forcibly cancelled. If `None`, the maximum execution time of the primitive is used. This value must be in between 300 seconds and the [system imposed maximum](https://qiskit.org/documentation/partners/qiskit_ibm_runtime/faqs/max_execution_time.html).
 
 *   **transpilation** (`Union`\[[`TranspilationOptions`](qiskit_ibm_runtime.options.TranspilationOptions "qiskit_ibm_runtime.options.transpilation_options.TranspilationOptions"), `Dict`]) – Transpilation options. See [`TranspilationOptions`](qiskit_ibm_runtime.options.TranspilationOptions "qiskit_ibm_runtime.options.TranspilationOptions") for all available options.
 
@@ -126,7 +122,7 @@ Options for the primitives.
 
 <span id="qiskit_ibm_runtime.options.Options.validate_options" />
 
-`static Options.validate_options(options)¶`
+`static Options.validate_options(options)`
 
 Validate that program inputs (options) are valid :raises ValueError: if optimization\_level is outside the allowed range. :raises ValueError: if max\_execution\_time is outside the allowed range.
 
