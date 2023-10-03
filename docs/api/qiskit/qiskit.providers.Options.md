@@ -43,7 +43,7 @@ Options can be updated by name:
 3
 ```
 
-Runtime validators can be registered. See set\_validator. Updates through update\_options and indexing (\_\_setitem\_\_) validate the new value before performing the update and raise ValueError if the new value is invalid.
+Runtime validators can be registered. See set\_validator. Updates through update\_options and indexing (\_\_setitem\_\_) validate the new value before peforming the update and raise ValueError if the new value is invalid.
 
 ```python
 >>> options.set_validator("opt1", (1, 5))
@@ -96,7 +96,7 @@ Setting a validator enables changes to an options values to be validated for cor
 options.set_validator("shots", (1, 4096))
 ```
 
-In this case whenever the `"shots"` option is updated by the user it will enforce that the value is >=1 and \<=4096. A `ValueError` will be raised if it’s outside those bounds. If a validator is already present for the specified field it will be silently overridden.
+In this case whenever the `"shots"` option is updated by the user it will enforce that the value is >=1 and \<=4096. A `ValueError` will be raised if it’s outside those bounds. If a validator is already present for the specified field it will be silently overriden.
 
 **Parameters**
 

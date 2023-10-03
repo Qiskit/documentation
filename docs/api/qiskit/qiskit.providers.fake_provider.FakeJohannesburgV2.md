@@ -58,7 +58,7 @@ Return the [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.Coup
 
 ### dirname
 
-`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends/johannesburg'`
+`= '/home/runner/work/qiskit-terra/qiskit-terra/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends/johannesburg'`
 
 <span id="qiskit.providers.fake_provider.FakeJohannesburgV2.dt" />
 

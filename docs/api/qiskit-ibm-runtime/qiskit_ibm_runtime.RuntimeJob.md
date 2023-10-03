@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.RuntimeJob
 ---
 
-# RuntimeJob[¶](#runtimejob "Link to this heading")
+# RuntimeJob
 
 <span id="qiskit_ibm_runtime.RuntimeJob" />
 
-`RuntimeJob(backend, api_client, client_params, job_id, program_id, service, params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None)¶`
+`RuntimeJob(backend, api_client, client_params, job_id, program_id, service, params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None)`
 
 Representation of a runtime program execution.
 
@@ -176,7 +176,7 @@ Return the usage estimation infromation for this job.
 
 **Returns**
 
-`quantum_seconds` which is the estimated system execution time of the job in seconds. Quantum time represents the time that the system is dedicated to processing your job.
+`quantum_seconds` which is the estimated quantum time of the job in seconds. Quantum time represents the time that the QPU complex is occupied exclusively by the job.
 
 <span id="runtimejob-version" />
 
@@ -194,7 +194,7 @@ Return the usage estimation infromation for this job.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.backend" />
 
-`RuntimeJob.backend(timeout=None)¶`
+`RuntimeJob.backend()`
 
 Return the backend where this job was executed. Retrieve data again if backend is None.
 
@@ -212,7 +212,7 @@ Return the backend where this job was executed. Retrieve data again if backend i
 
 <span id="qiskit_ibm_runtime.RuntimeJob.cancel" />
 
-`RuntimeJob.cancel()¶`
+`RuntimeJob.cancel()`
 
 Cancel the job.
 
@@ -231,7 +231,7 @@ Cancel the job.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.cancel_result_streaming" />
 
-`RuntimeJob.cancel_result_streaming()¶`
+`RuntimeJob.cancel_result_streaming()`
 
 Cancel result streaming.
 
@@ -245,7 +245,7 @@ Cancel result streaming.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.cancelled" />
 
-`RuntimeJob.cancelled()¶`
+`RuntimeJob.cancelled()`
 
 Return whether the job has been cancelled.
 
@@ -259,7 +259,7 @@ Return whether the job has been cancelled.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.done" />
 
-`RuntimeJob.done()¶`
+`RuntimeJob.done()`
 
 Return whether the job has successfully run.
 
@@ -273,7 +273,7 @@ Return whether the job has successfully run.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.error_message" />
 
-`RuntimeJob.error_message()¶`
+`RuntimeJob.error_message()`
 
 Returns the reason if the job failed.
 
@@ -291,7 +291,7 @@ Error message string or `None`.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.in_final_state" />
 
-`RuntimeJob.in_final_state()¶`
+`RuntimeJob.in_final_state()`
 
 Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
@@ -305,7 +305,7 @@ Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.interim_results" />
 
-`RuntimeJob.interim_results(decoder=None)¶`
+`RuntimeJob.interim_results(decoder=None)`
 
 Return the interim results of the job.
 
@@ -331,7 +331,7 @@ Runtime job interim results.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.job_id" />
 
-`RuntimeJob.job_id()¶`
+`RuntimeJob.job_id()`
 
 Return a unique id identifying the job.
 
@@ -345,7 +345,7 @@ Return a unique id identifying the job.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.logs" />
 
-`RuntimeJob.logs()¶`
+`RuntimeJob.logs()`
 
 Return job logs.
 
@@ -371,7 +371,7 @@ Job logs, including standard output and error.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.metrics" />
 
-`RuntimeJob.metrics()¶`
+`RuntimeJob.metrics()`
 
 Return job metrics.
 
@@ -393,7 +393,7 @@ Job metrics, which includes timestamp information.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.result" />
 
-`RuntimeJob.result(timeout=None, decoder=None)¶`
+`RuntimeJob.result(timeout=None, decoder=None)`
 
 Return the results of the job.
 
@@ -422,7 +422,7 @@ Runtime job result.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.running" />
 
-`RuntimeJob.running()¶`
+`RuntimeJob.running()`
 
 Return whether the job is actively running.
 
@@ -436,7 +436,7 @@ Return whether the job is actively running.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.status" />
 
-`RuntimeJob.status()¶`
+`RuntimeJob.status()`
 
 Return the status of the job.
 
@@ -454,7 +454,7 @@ Status of this job.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.stream_results" />
 
-`RuntimeJob.stream_results(callback, decoder=None)¶`
+`RuntimeJob.stream_results(callback, decoder=None)`
 
 Start streaming job results.
 
@@ -483,7 +483,7 @@ Start streaming job results.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.submit" />
 
-`RuntimeJob.submit()¶`
+`RuntimeJob.submit()`
 
 Unsupported method. .. note:
 
@@ -507,7 +507,7 @@ to submit a job.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.update_tags" />
 
-`RuntimeJob.update_tags(new_tags)¶`
+`RuntimeJob.update_tags(new_tags)`
 
 Update the tags associated with this job.
 
@@ -533,7 +533,7 @@ The new tags associated with this job.
 
 <span id="qiskit_ibm_runtime.RuntimeJob.wait_for_final_state" />
 
-`RuntimeJob.wait_for_final_state(timeout=None)¶`
+`RuntimeJob.wait_for_final_state(timeout=None)`
 
 Use the websocket server to wait for the final the state of a job.
 

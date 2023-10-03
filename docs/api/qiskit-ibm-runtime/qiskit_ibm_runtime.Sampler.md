@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.Sampler
 ---
 
-# Sampler[¶](#sampler "Link to this heading")
+# Sampler
 
 <span id="qiskit_ibm_runtime.Sampler" />
 
-`Sampler(backend=None, session=None, options=None)¶`
+`Sampler(backend=None, session=None, options=None)`
 
 Class for interacting with Qiskit Runtime Sampler primitive service.
 
@@ -65,7 +65,7 @@ Initializes the Sampler primitive.
 
 <span id="qiskit_ibm_runtime.Sampler.circuits" />
 
-`tuple[QuantumCircuit, ...]`
+`tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]`
 
 Quantum circuits to be sampled.
 
@@ -101,7 +101,7 @@ options
 
 <span id="qiskit_ibm_runtime.Sampler.parameters" />
 
-`tuple[ParameterView, ...]`
+`tuple[qiskit.circuit.parametertable.ParameterView, ...]`
 
 Parameters of quantum circuits.
 
@@ -139,7 +139,7 @@ Session used by this primitive, or `None` if session is not used.
 
 <span id="qiskit_ibm_runtime.Sampler.run" />
 
-`Sampler.run(circuits, parameter_values=None, **kwargs)¶`
+`Sampler.run(circuits, parameter_values=None, **kwargs)`
 
 Submit a request to the sampler primitive.
 
@@ -167,7 +167,7 @@ Submitted job. The result of the job is an instance of `qiskit.primitives.Sample
 
 <span id="qiskit_ibm_runtime.Sampler.set_options" />
 
-`Sampler.set_options(**fields)¶`
+`Sampler.set_options(**fields)`
 
 Set options values for the sampler.
 

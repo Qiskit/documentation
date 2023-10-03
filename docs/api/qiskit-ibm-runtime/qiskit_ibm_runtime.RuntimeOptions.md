@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.RuntimeOptions
 ---
 
-# RuntimeOptions[¶](#runtimeoptions "Link to this heading")
+# RuntimeOptions
 
 <span id="qiskit_ibm_runtime.RuntimeOptions" />
 
-`RuntimeOptions(backend=None, image=None, log_level=None, instance=None, job_tags=None, max_execution_time=None, session_time=None)¶`
+`RuntimeOptions(backend=None, image=None, log_level=None, instance=None, job_tags=None, max_execution_time=None, session_time=None)`
 
 Class for representing generic runtime execution options.
 
@@ -23,7 +23,7 @@ RuntimeOptions constructor.
 *   **log\_level** (`Optional`\[`str`]) – logging level to set in the execution environment. The valid log levels are: `DEBUG`, `INFO`, `WARNING`, `ERROR`, and `CRITICAL`. The default level is `WARNING`.
 *   **instance** (`Optional`\[`str`]) – The hub/group/project to use, in that format. This is only supported for `ibm_quantum` channel. If `None`, a hub/group/project that provides access to the target backend is randomly selected.
 *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the job. The tags can subsequently be used as a filter in the `jobs()` function call.
-*   **max\_execution\_time** (`Optional`\[`int`]) – Maximum execution time in seconds, which is based on system execution time (not wall clock time). System execution time is the amount of time that the system is dedicated to processing your job. If a job exceeds this time limit, it is forcibly cancelled. Simulator jobs continue to use wall clock time.
+*   **max\_execution\_time** (`Optional`\[`int`]) – Maximum execution time in seconds. If a job exceeds this time limit, it is forcibly cancelled.
 *   **session\_time** (`Optional`\[`int`]) – Length of session in seconds.
 
 ## Attributes
@@ -92,7 +92,7 @@ RuntimeOptions constructor.
 
 <span id="qiskit_ibm_runtime.RuntimeOptions.validate" />
 
-`RuntimeOptions.validate(channel)¶`
+`RuntimeOptions.validate(channel)`
 
 Validate options.
 

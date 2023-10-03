@@ -1,14 +1,26 @@
-<span id="qiskit-runtime-qiskit-ibm-runtime" />
+---
+title: qiskit_ibm_runtime
+description: API reference for qiskit_ibm_runtime
+in_page_toc_min_heading_level: 1
+python_api_type: module
+python_api_name: qiskit_ibm_runtime
+---
 
 <span id="module-qiskit_ibm_runtime" />
 
-# Qiskit Runtime ([`qiskit_ibm_runtime`](#module-qiskit_ibm_runtime "qiskit_ibm_runtime"))[¶](#qiskit-runtime-qiskit-ibm-runtime "Link to this heading")
+<span id="qiskit-runtime-qiskit-ibm-runtime" />
+
+# Qiskit Runtime
+
+<span id="module-qiskit_ibm_runtime" />
+
+`qiskit_ibm_runtime`
 
 Modules related to Qiskit Runtime IBM Client.
 
 Qiskit Runtime is a new architecture that streamlines computations requiring many iterations. These experiments will execute significantly faster within its improved hybrid quantum/classical process.
 
-## Primitives and sessions[¶](#primitives-and-sessions "Link to this heading")
+## Primitives and sessions
 
 Qiskit Runtime has two predefined primitives: `Sampler` and `Estimator`. These primitives provide a simplified interface for performing foundational quantum computing tasks while also accounting for the latest developments in quantum hardware and software.
 
@@ -50,11 +62,11 @@ with Session(service=service, backend="ibmq_qasm_simulator") as session:
     session.close()
 ```
 
-## Backend data[¶](#backend-data "Link to this heading")
+## Backend data
 
 [`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService") also has methods, such as `backend()`, `backends()`, and `least_busy()`, that allow you to query for a target backend to use. These methods return one or more [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") instances that contains methods and attributes describing the backend.
 
-## Supplementary Information[¶](#supplementary-information "Link to this heading")
+## Supplementary Information
 
 ### Account initialization
 
@@ -107,7 +119,7 @@ Authorized users can upload their custom Qiskit Runtime programs. A Qiskit Runti
 
 Files related to writing a runtime program are in the `qiskit_ibm_runtime/program` directory.
 
-### Classes[¶](#classes "Link to this heading")
+### Classes
 
 |                                                                                                                                          |                                                                        |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -122,3 +134,4 @@ Files related to writing a runtime program are in the `qiskit_ibm_runtime/progra
 | [`RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions")(\[backend, image, log\_level, ...])            | Class for representing generic runtime execution options.              |
 | [`RuntimeEncoder`](qiskit_ibm_runtime.RuntimeEncoder "qiskit_ibm_runtime.RuntimeEncoder")(\*\[, skipkeys, ensure\_ascii, ...])           | JSON Encoder used by runtime service.                                  |
 | [`RuntimeDecoder`](qiskit_ibm_runtime.RuntimeDecoder "qiskit_ibm_runtime.RuntimeDecoder")(\*args, \*\*kwargs)                            | JSON Decoder used by runtime service.                                  |
+

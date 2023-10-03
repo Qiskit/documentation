@@ -18,6 +18,8 @@ Creates animation showing transitions between states of a single qubit by applyi
 
 **Parameters**
 
+{/* cspell:ignore tkinter */}
+
 *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Qiskit single-qubit QuantumCircuit. Gates supported are h,x, y, z, rx, ry, rz, s, sdg, t, tdg and u1.
 *   **trace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Controls whether to display tracing vectors - history of 10 past vectors at each step of the animation.
 *   **saveas** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – User can choose to save the animation as a video to their filesystem. This argument is a string of path with filename and extension (e.g. “movie.mp4” to save the video in current working directory).

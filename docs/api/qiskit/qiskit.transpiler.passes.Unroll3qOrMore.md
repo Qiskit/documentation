@@ -20,7 +20,7 @@ Initialize the Unroll3qOrMore pass
 
 **Parameters**
 
-*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The target object representing the compilation target. If specified any multiqubit instructions in the circuit when the pass is run that are supported by the target device will be left in place. If both this and `basis_gates` are specified only the target will be checked.
+*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The target object reprsenting the compilation target. If specified any multiqubit instructions in the circuit when the pass is run that are supported by the target device will be left in place. If both this and `basis_gates` are specified only the target will be checked.
 *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – A list of basis gate names that the target device supports. If specified any gate names in the circuit which are present in this list will not be unrolled. If both this and `target` are specified only the target will be used for checking which gates are supported.
 
 ## Attributes

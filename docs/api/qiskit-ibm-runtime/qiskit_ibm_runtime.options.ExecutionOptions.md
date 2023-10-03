@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.options.ExecutionOptions
 ---
 
-# ExecutionOptions[¶](#executionoptions "Link to this heading")
+# ExecutionOptions
 
 <span id="qiskit_ibm_runtime.options.ExecutionOptions" />
 
-`ExecutionOptions(shots=4000, init_qubits=True)¶`
+`ExecutionOptions(shots=4000, init_qubits=True)`
 
 Execution options.
 
@@ -38,18 +38,4 @@ Execution options.
 `int = 4000`
 
 ## Methods
-
-<span id="executionoptions-validate-execution-options" />
-
-### validate\_execution\_options
-
-<span id="qiskit_ibm_runtime.options.ExecutionOptions.validate_execution_options" />
-
-`static ExecutionOptions.validate_execution_options(execution_options)¶`
-
-Validate that execution options are legal. :raises ValueError: if any execution option is not supported
-
-**Return type**
-
-`None`
 

@@ -299,7 +299,7 @@ the target built from the input configuration
 
 *   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If the input basis gates contain > 2 qubits and `coupling_map` is
 *   **specified.** –
-*   [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.11)") – If no mapping is available for a specified `basis_gate`.
+*   [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.11)") – If no mappign is available for a specified `basis_gate`.
 
 ### get
 
@@ -602,7 +602,7 @@ If the input instruction schedule map contains new instructions not in the targe
 
 *   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – The instruction
 
-*   **inst\_name\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – An optional dictionary that maps any instruction name in `inst_map` to an instruction object. If not provided, instruction is pulled from the standard Qiskit gates, and finally custom gate instance is created with schedule name.
+*   **inst\_name\_map** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – An optional dictionary that maps any instruction name in `inst_map` to an instruction object. If not provided, instruction is pulled from the standard Qiskit gates, and finally custom gate instnace is created with schedule name.
 
 *   **error\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) –
 
@@ -634,7 +634,7 @@ Update the property object for an instruction qarg pair already in the Target
 
 *   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The instruction name to update
 *   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – The qargs to update the properties of
-*   **properties** ([*InstructionProperties*](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties")) – The properties to set for this instruction
+*   **properties** ([*InstructionProperties*](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties")) – The properties to set for this nstruction
 
 **Raises**
 

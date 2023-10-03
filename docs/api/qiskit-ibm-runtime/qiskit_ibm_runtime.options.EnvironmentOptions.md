@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.options.EnvironmentOptions
 ---
 
-# EnvironmentOptions[¶](#environmentoptions "Link to this heading")
+# EnvironmentOptions
 
 <span id="qiskit_ibm_runtime.options.EnvironmentOptions" />
 
-`EnvironmentOptions(log_level='WARNING', callback=None, job_tags=<factory>)¶`
+`EnvironmentOptions(log_level='WARNING', callback=None, job_tags=<factory>)`
 
 Options related to the execution environment.
 
@@ -61,7 +61,7 @@ Options related to the execution environment.
 
 <span id="qiskit_ibm_runtime.options.EnvironmentOptions.validate_environment_options" />
 
-`static EnvironmentOptions.validate_environment_options(environment_options)¶`
+`static EnvironmentOptions.validate_environment_options(environment_options)`
 
 Validate that environment options are legal. :raises ValueError: if log\_level is not in LogLevelType.
 

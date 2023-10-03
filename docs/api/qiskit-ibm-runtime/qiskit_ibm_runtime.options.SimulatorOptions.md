@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_ibm_runtime.options.SimulatorOptions
 ---
 
-# SimulatorOptions[¶](#simulatoroptions "Link to this heading")
+# SimulatorOptions
 
 <span id="qiskit_ibm_runtime.options.SimulatorOptions" />
 
-`SimulatorOptions(noise_model=None, seed_simulator=None, coupling_map=None, basis_gates=None)¶`
+`SimulatorOptions(noise_model=None, seed_simulator=None, coupling_map=None, basis_gates=None)`
 
 Simulator options.
 
@@ -65,27 +65,13 @@ For best practice in simulating a backend make sure to pass the basis gates and 
 
 <span id="qiskit_ibm_runtime.options.SimulatorOptions.set_backend" />
 
-`SimulatorOptions.set_backend(backend)¶`
+`SimulatorOptions.set_backend(backend)`
 
 Set backend for simulation. This method changes noise\_model, coupling\_map, basis\_gates according to given backend.
 
 **Parameters**
 
 **backend** (`Union`\[`BackendV1`, `BackendV2`]) – backend to be set.
-
-**Return type**
-
-`None`
-
-<span id="simulatoroptions-validate-simulator-options" />
-
-### validate\_simulator\_options
-
-<span id="qiskit_ibm_runtime.options.SimulatorOptions.validate_simulator_options" />
-
-`static SimulatorOptions.validate_simulator_options(simulator_options)¶`
-
-Validate that simulator options are legal. :raises ValueError: if any simulator option is not supported
 
 **Return type**
 

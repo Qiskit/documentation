@@ -37,7 +37,7 @@ Parse an OpenQASM 2 program from a file into a [`QuantumCircuit`](qiskit.circuit
 **Parameters**
 
 *   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.11)")) – The OpenQASM 2 program in a string.
-*   **include\_path** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.11)")*]*) – order of directories to search when evaluating `include` statements.
+*   **include\_path** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.11)")*]*) – order of directories to search when evluating `include` statements.
 *   **include\_input\_directory** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal "(in Python v3.11)")*\['append', 'prepend'] | None*) – Whether to add the directory of the input file to the `include_path`, and if so, whether to *append* it to search last, or *prepend* it to search first. Pass `None` to suppress adding this directory entirely.
 *   **custom\_instructions** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*CustomInstruction*](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.parse.CustomInstruction")*]*) – any custom constructors that should be used for specific gates or opaque instructions during circuit construction. See [Specifying custom instructions](#qasm2-custom-instructions) for more.
 *   **custom\_classical** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*CustomClassical*](#qiskit.qasm2.CustomClassical "qiskit.qasm2.CustomClassical")*]*) – any custom classical functions that should be used during the parsing of classical expressions. See [Specifying custom classical functions](#qasm2-custom-classical) for more.
@@ -60,7 +60,7 @@ Parse an OpenQASM 2 program from a string into a [`QuantumCircuit`](qiskit.circu
 **Parameters**
 
 *   **string** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The OpenQASM 2 program in a string.
-*   **include\_path** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.11)")*]*) – order of directories to search when evaluating `include` statements.
+*   **include\_path** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.11)")*]*) – order of directories to search when evluating `include` statements.
 *   **custom\_instructions** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*CustomInstruction*](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.parse.CustomInstruction")*]*) – any custom constructors that should be used for specific gates or opaque instructions during circuit construction. See [Specifying custom instructions](#qasm2-custom-instructions) for more.
 *   **custom\_classical** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*CustomClassical*](#qiskit.qasm2.CustomClassical "qiskit.qasm2.CustomClassical")*]*) – any custom classical functions that should be used during the parsing of classical expressions. See [Specifying custom classical functions](#qasm2-custom-classical) for more.
 *   **strict** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – whether to run in [strict mode](#qasm2-strict-mode).
@@ -306,11 +306,11 @@ In particular, in the legacy importers:
 
     **`rxx(theta) a, b`**
 
-    Two-qubit rotation around the $XX$ axis, corresponding to [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
+    Two-qubit rotation arond the $XX$ axis, corresponding to [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
 
     **`rzz(theta) a, b`**
 
-    Two-qubit rotation around the $ZZ$ axis, corresponding to [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
+    Two-qubit rotation arond the $ZZ$ axis, corresponding to [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
 
     **`rccx a, b, c`**
 

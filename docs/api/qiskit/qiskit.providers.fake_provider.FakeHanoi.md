@@ -47,7 +47,7 @@ FakeBackend initializer.
 
 ### dirname
 
-`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends/hanoi'`
+`= '/home/runner/work/qiskit-terra/qiskit-terra/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends/hanoi'`
 
 <span id="qiskit.providers.fake_provider.FakeHanoi.options" />
 
