@@ -1,0 +1,56 @@
+---
+title: Build your first circuit
+description: Build your first quantum circuit with Qiskit
+
+---
+
+# Build your first circuit
+
+
+The basic element needed for your first program in Qiskit is a `QuantumCircuit`. We begin by creating a `QuantumCircuit` comprised of three qubits.
+
+```python
+# Create a Quantum Circuit acting on a quantum register of three qubits
+circ = QuantumCircuit(3)
+```
+
+After you create the circuit with its registers, you can add _gates_ (“operations”) to manipulate the registers. Following is an example of a quantum circuit that makes a three-qubit GHZ state:
+
+$$|\psi\rangle = \left(|000\rangle+|111\rangle\right)/\sqrt{2}.$$
+
+To create such a state, we start with a three-qubit quantum register. By default, each qubit in the register is initialized to $|0\rangle$. To make the GHZ state, we apply the following gates:
+- A Hadamard gate $H$ on qubit 0, which puts it into the superposition state $\left(|0\rangle+|1\rangle\right)/\sqrt{2}$.
+- A Controlled-NOT operation ($C_{X}$) between qubit 0 and qubit 1.
+- A Controlled-NOT operation between qubit 0 and qubit 2.
+
+On an ideal quantum computer, the state produced by running this circuit would be the GHZ state above.
+
+Operations can be added to the circuit one by one, as shown below.
+
+```python
+# Add a H gate on qubit 0, putting this qubit in superposition.
+circ.h(0)
+# Add a CX (CNOT) gate on control qubit 0 and target qubit 1, putting
+# the qubits in a Bell state.
+circ.cx(0, 1)
+# Add a CX (CNOT) gate on control qubit 0 and target qubit 2, putting
+# the qubits in a GHZ state.
+circ.cx(0, 2)
+```
+## Visualize the circuit
+You can visualize your circuit using Qiskit `QuantumCircuit.draw()`, which plots the circuit in the form found in many textbooks.
+
+```python
+circ.draw('mpl')
+```
+
+(![circ.draw output](/images/build/visualize.png))
+
+<Admonition type="tip" title="Recommendations">
+    - [Install and set up](../start/install)
+    - [Create your first circuit in Lab](/lab/first-circuit)
+    - [Build a circuit with Composer](https://learning.quantum-computing.ibm.com/tutorial/composer-user-guide#build-edit-and-inspect-quantum-circuits)
+    - [Advanced Circuits tutorial](https://qiskit.org/documentation/tutorials/circuits_advanced/01_advanced_circuits.html)
+    - [Test your program](../test/)
+    - [Run on quantum backends](../run/backends)
+</Admonition>
