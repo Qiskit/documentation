@@ -154,3 +154,9 @@ Ayyyyy, this is a fake description.
 2. Add the word to the file `cSpell.json` in the `words` section. The word is not case-sensitive.
 
 If the word appears in multiple files, prefer the second approach to add it to `cSpell.json`.
+
+## Format files
+
+Run `npm run fmt` to automatically format MDX files.
+
+To check that formatting is valid without actually making changes, run `npm run check:fmt` or `npm run check`.
