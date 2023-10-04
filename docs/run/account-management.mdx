@@ -1,0 +1,93 @@
+---
+title: Manage your account
+description: Manage your account
+---
+# Manage your account
+
+Qiskit Runtime is available on both IBM Quantum Platform and IBM Cloud. The former requires an IBM Quantum account and the latter requires an IBM Cloud account. If you don’t have an account, get one at the appropriate link:
+
+*   [IBM Quantum account](https://quantum-computing.ibm.com/account)
+*   [IBM Cloud account](https://cloud.ibm.com/docs/account?topic=account-account-getting-started)
+
+
+The user account performs two essential functions. First, an account is associated with one or more [instances](instances) that give access to  IBM Quantum services. Second, a unique token is assigned to each account, allowing for IBM Quantum access from Qiskit.
+
+## View your account
+
+Follow the instructions in the appropriate section to access your account. 
+
+### View an IBM Quantum Platform account 
+
+You can view your IBM Quantum account information after you log in to [IBM Quantum](https://quantum-computing.ibm.com/) by clicking Manage account in the account menu ( ![account](/images/migration/account-231.png) ). From this page you can view and edit general account information, copy or regenerate your API token, change your notification settings, and find your instances. You will also come here if you ever need to delete your account.
+
+<Admonition type="info" title="Notes">
+  * Your unique API token provides access to your data, so treat it as you would any password and keep it secure.
+  * Account deletion is permanent, and cannot be undone. All data are permanently removed.
+  * IBM Quantum is required to send you email notifications about your account and privacy.
+</Admonition>
+
+### View an IBM Quantum on IBM Cloud account
+
+You can view your IBM Quantum account information after you log in to [IBM Cloud](https://cloud.ibm.com/quantum/) by clicking Profile in the account menu ( ![account](/images/migration/account-231.png) ). The Account settings page lets you view and edit your contact information, view your active sessions, and change your notification preferences.  
+
+## Account management methods
+
+There are several methods for account management. Your account credentials can be saved to disk or used in a session and never saved.
+
+*   save_account(): Save your account to disk for future use and optionally set it as the default.
+*   delete_account(): Delete the saved account from disk.
+*   active_account(): List the account currently in the session.
+*   saved_account(): List the account stored on disk.
+
+## Store credentials
+
+The `save_account()` method can be used to store your account credentials on disk, in the `$HOME/.qiskit/qiskit-ibm.json` file. After the credentials are saved, you will only need to use `QiskitRuntimeService()` to initialize your account in the future.
+
+<Admonition type="note">
+  Account credentials are saved in plain text, so only do so if you are using a trusted device.
+</Admonition>
+
+Following are examples of saving an IBM Quantum  and an IBM Cloud account. The `channel` parameter allows you to distinguish between different account types. If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.  
+
+If you do not set a default account, IBM Cloud is the default. Your default account can be overridden by passing in the account name or by having an account saved in an environment variable.
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+# Save an IBM Quantum account on disk and set it as the default.
+QiskitRuntimeService.save_account(channel="ibm_quantum", token=<IBM Quantum API token>, set_as_default=True)
+
+# Save an IBM Cloud account on disk.
+QiskitRuntimeService.save_account(channel="ibm_cloud", token=<IBM Cloud API key>, instance=<IBM Cloud CRN> or <IBM Cloud service name>)
+
+```
+
+## Initialize your account
+
+You need to initialize your account in a Python session before you can start using Qiskit Runtime. If you have the credentials saved, you can initialize an `QiskitRuntimeService` instance without additional parameters.
+
+```python
+# Read default credentials from disk.
+service = QiskitRuntimeService()
+```
+
+If you want to use your credentials for just the session rather than saving them, you can pass the credentials in when initializing the `QiskitRuntimeService` instance:
+
+```python
+# Initialize an IBM Cloud account without saving it.
+service = QiskitRuntimeService(channel="ibm_cloud", token=<IBM Cloud API key>, instance=<IBM Cloud CRN>)
+```
+
+## Which account is used?
+
+When you initialize your account, the account used depends on what (if any) credentials you previously saved.  The account is chosen in this order:
+
+1. The account specified in the `QiskitRuntimeService()` call  
+1. The account saved in an environment variable
+1. The account set as the default by using `save_account()`
+1. Your IBM Cloud account
+1. Your IBM Quantum Platform account
+
+<Admonition type="note">
+  If you send a job to a backend that the selected account cannot access, an account that can access the backend is used instead.  See the [backends page](backends) for details. 
+</Admonition>
