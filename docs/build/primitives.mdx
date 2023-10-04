@@ -1,0 +1,72 @@
+---
+title: Introduction to primitives
+description: Introduction to primitives in Qiskit and Qiskit Runtime, and an explanation of available primitives
+
+---
+
+# Introduction to primitives
+
+In computing, a primitive is the smallest processing instruction for a given abstraction level. Put simply, they are the simplest building blocks from which a user can create something useful - and since primitives abstract away implementation details, users can accomplish tasks without needing to worry about low-level specifics.  The computational model proposed by primitives moves quantum programming one step closer to where classical programming is today, where the focus is less on the hardware details and more on the results you are trying to achieve. 
+
+## Primitives in Qiskit
+
+The existing Qiskit interface to backends (`backend.run()`) was originally designed to accept a list of circuits and return counts for every job. Over time, it became clear that users have diverse purposes for quantum computing, and therefore the ways in which they define the requirements for their computing jobs are expanding. Therefore, their results also look different.
+
+For example, an algorithm researcher and developer cares about information beyond counts; they are more focused on efficiently calculating quasi-probability distributions and expectation values of observables.
+
+Our primitives provide methods that make it easier to build modular algorithms and other higher-order programs. Rather than simply returning counts, they return more immediately meaningful information. Additionally, they provide a seamless way to access the latest optimizations in IBM Quantum hardware and software.
+
+The basic operations that one can perform with a probability distribution is to sample from it or to estimate quantities on it. Therefore, these operations form the fundamental building blocks of quantum algorithm development. Our first two Qiskit Runtime primitives (Sampler and Estimator) use these sampling and estimating operations as core interfaces to our quantum systems.
+
+The following primitives are available:
+
+ | Primitive | Description                                                                                                                                                                                                                                                                                                                                                | Example output                            |
+ |-----------|------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------|-------------------------------------------|
+| Estimator | Computes expectation values of observables with respect to states prepared by quantum circuits. Users generally specify a list of circuits, observables, and possibly some additional configuration, with which the program can efficiently evaluate expectation values and variances. | ![estimator](/images/build/estimator.svg) |
+| Sampler   | Calculates probabilities or quasi-probability distributions of bitstrings from quantum circuits. Quasi-probability distributions are similar to regular probabilities, except they may include negative values, which can occur when using certain error mitigation techniques.                                                                                                                                                            | ![sampler](/images/build/sampler.svg)     |
+
+Primitives work most effectively when they are supported by both Qiskit and the backend provider. The Qiskit module `qiskit.primitives` provides the required support on the Qiskit side, and providers like IBM Qiskit Runtime enable access to appropriate backends through native implementations of their own primitives.
+
+## Benefits of Qiskit primitives
+
+For Qiskit users, primitives allow you to write quantum code for a specific backend without having to explicitly manage every detail. In addition, because of the additional layer of abstraction, you may be able to more easily access advanced hardware capabilities of a given provider. For example, with Qiskit Runtime primitives, you can leverage the latest advancements in error mitigation and suppression by toggling options such as `optimization_level` and `resilience_level`, rather than building your own implementation of these techniques.
+
+For hardware providers, implementing primitives natively means you can provide your users with a more “out-of-the-box” way to access your hardware features. It is therefore easier for your users to benefit from your hardware's best capabilities.
+
+## Should I use Estimator or Sampler? 
+     
+When choosing which primitive to use, you first need to understand whether the algorithm uses a quasi-probability distribution sampled from a quantum state (a list of quasi-probabilities), or an expectation value of a certain observable with respect to a quantum state (a real number).
+
+A probability distribution is often of interest in optimization problems that return a classical bit string, encoding a certain solution to a problem at hand. In these cases, you might be interested in finding a bit string that corresponds to a ket value with the largest probability of being measured from a quantum state, for example.
+
+An expectation value of an observable could be the target quantity in scenarios where knowing a quantum state is not relevant. This often occurs in optimization problems or chemistry applications. For example, when trying to discover the extremal energy of a system.
+
+## What is the difference between the open-source primitives and primitives available through Qiskit Runtime?
+
+The open-source primitives contain the base classes (to define interfaces) and a reference implementation. The Qiskit Runtime primitives provide a more sophisticated implementation (such as with error mitigation) as a cloud-based service.
+
+## Where should I import the primitive from? 
+
+There are different primitive implementations in the ``qiskit``, ``qiskit_aer``, and ``qiskit_ibm_runtime`` libraries.
+Each implementation serves a specific purpose:
+
+* The primitives in ``qiskit`` can perform local state vector simulations - useful for quickly prototyping algorithms.
+  * The `qiskit.primitives` module enables the development of primitive-style quantum programs and was specifically designed to simplify switching between different types of backends. The module provides three separate classes for each primitive type: 
+
+    1. `Sampler` and `Estimator`
+    These classes are reference implementations of both primitives and use Qiskit’s built-in simulator. They leverage Qiskit’s `quantum_info` module in the background, producing results based on ideal statevector simulations.
+
+    2. `BaseSampler` and `BaseEstimator`
+    These are abstract base classes that define a common interface for implementing primitives. All other classes in the `qiskit.primitives` module inherit from these base classes, and developers should use these if they are interested in developing their own primitives-based execution model for a specific backend provider. These classes may also be useful for those who want to do highly customized processing and find the existing primitives implementations too simple for their needs.
+
+    3. `BackendSampler` and `BackendEstimator`
+    If a provider does not support primitives natively, you can use these classes to “wrap” any backend into a primitive. Users can write primitive-style code for providers that don’t yet have a primitives-based interface. These classes can be used just like the regular Sampler and Estimator, except they should be initialized with an additional backend argument for selecting which backend to run on.
+
+* The primitives in ``qiskit_ibm_runtime`` provide access to cloud simulators and real hardware through the Qiskit Runtime service. They include exclusive features such as built-in circuit optimization and error mitigation support.
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Review detailed [primitives examples.](primitives-examples)
+    - Practice with primitives by working through the [Cost function lesson](https://learning.quantum-computing.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
+</Admonition>
