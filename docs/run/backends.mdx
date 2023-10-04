@@ -1,0 +1,192 @@
+---
+title: Run on quantum backends
+description: Instructions to run on systems and simulators.
+
+---
+{/* do we need this? */}
+
+# Run on quantum backends
+
+A **backend** represents either a simulator or a real quantum computer and are responsible for running quantum circuits, running pulse schedules, and returning results.
+
+In qiskit-ibm-runtime, a backend is represented by an instance of the `IBMBackend` class. Attributes of this class provides information about this backend. For example:
+
+*   `name`: Name of the backend.
+*   `instructions`: A list of instructions the backend supports.
+*   `operation_names`: A list of instruction names the backend supported.
+*   `num_qubits`: The number of qubits the backend has.
+*   `coupling_map`: Coupling map of the backend.
+*   `dt`: System time resolution of input signals.
+*   `dtm`: System time resolution of output signals.
+
+Refer to the [API reference](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.IBMBackend#ibmbackend) for a complete list of attributes and methods.
+
+## Connect to an instance
+
+You can specify an instance when initializing the service or provider, or when choosing a backend. See [Connect to an instance](instances#connect-instance) in the Instances topic for full details.
+
+**Examples**
+
+### qiskit-ibm-runtime
+
+```python
+
+# Optional: List all the instances you can access.
+service = QiskitRuntimeService(channel='ibm_quantum')
+print(service.instances())
+
+# Optional: Specify it at service level. This becomes the default unless overwritten.
+service = QiskitRuntimeService(instance="hub1/group1/project1")
+backend1 = service.backend("ibmq_manila")
+
+# Optional: Specify it at the backend level, which overwrites the service-level specification when this backend is used. 
+backend2 = service.backend("ibmq_manila", instance="hub2/group2/project2")
+
+sampler1 = Sampler(backend=backend1)    # this will use hub1/group1/project1
+sampler2 = Sampler(backend=backend2)    # this will use hub2/group2/project2
+```
+
+### qiskit-ibm-provider
+
+```python
+from qiskit_ibm_provider import IBMProvider
+
+provider = IBMProvider(instance="hub1/group1/project1")
+backend1 = provider.get_backend("ibmq_manila")
+backend2 = provider.get_backend("ibmq_manila", instance="hub2/group2/project2")
+
+job1 = backend1.run(...)    # this will use hub1/group1/project1
+job2 = backend2.run(...)    # this will use hub2/group2/project2
+```
+
+
+## Initialize the service
+
+Before calling `IBMBackend`, initialize the service:
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+# Initialize the account first.
+service = QiskitRuntimeService()
+```
+
+<span id="list-backends"></span>
+## List backends
+
+To view the backends you have access to, you can either view a list on the [Compute resources page](https://quantum-computing.ibm.com/services/resources?tab=yours), or you can use the `backends()` method. This method returns a list of `IBMBackend` instances:
+
+```python
+service.backends()
+```
+
+```
+[<IBMBackend('ibmq_qasm_simulator')>,
+<IBMBackend('simulator_stabilizer')>,
+<IBMBackend('simulator_mps')>,
+<IBMBackend('simulator_extended_stabilizer')>,
+<IBMBackend('simulator_statevector')>]
+```
+
+The `backend()` (note that this is singular: *backend*) method takes the name of the backend as the input parameter and returns an `IBMBackend` instance representing that particular backend:
+
+```python
+service.backend("ibmq_qasm_simulator")
+```
+
+```
+<IBMBackend('ibmq_qasm_simulator')>
+```
+
+## Filter backends
+
+You may also optionally filter the set backends, by passing arguments that query the backend’s configuration, status, or properties. For more general filters, you can make advanced functions using a lambda function. Refer to the API documentation for more details.
+
+Let’s try getting only backends that fit these criteria:
+
+*   Are real quantum devices (`simulator=False`)
+*   Are currently operational (`operational=True`)
+*   Have at least 5 qubits (`min_num_qubits=5`)
+
+```python
+service.backends(simulator=False, operational=True, min_num_qubits=5)
+```
+
+A similar method is `least_busy()`, which takes the same filters as `backends()` but returns the backend that matches the filters and has the least number of jobs pending in the queue:
+
+```python
+service.least_busy(operational=True, min_num_qubits=5)
+```
+
+## Determine backend attributes
+
+As mentioned previously, the `IBMBackend` class attributes provide information about the backend. For example:
+
+```python
+backend = service.backend("ibmq_qasm_simulator")
+backend.name #returns the backend's name
+backend.backend_version #returns the version number
+backend.simulator #returns True or False, depending on whether it is a simulator
+backend.num_qubits #returns the number of qubits the backend has
+```
+
+See the [IBMBackend class documentation](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.IBMBackend#ibmbackend) for the full list of backend attributes.
+
+## Find backend information from other channels
+
+To find your available systems and simulators on **IBM Cloud**, view the [IBM Cloud Compute resources page](https://cloud.ibm.com/quantum/resources/your-resources). You must be logged in to see your available compute resources. You are shown a snapshot of each backend. To see full details, click the backend name. You can also search for backends from this page.
+
+To find your available systems and simulators on **IBM Quantum Platform**, view the [Platform Compute resources page](https://quantum-computing.ibm.com/services/resources). You are shown a snapshot of each backend. To see full details, click the backend name. You can also sort, filter, and search from this page.
+
+## Specify a backend when running a job
+
+If you are using a runtime session, add the `backend` option when starting your session. For details about working with sessions, see [Run jobs in a session](run-sessions).
+
+```python
+from qiskit.circuit.random import random_circuit
+from qiskit.quantum_info import SparsePauliOp
+from qiskit_ibm_runtime import QiskitRuntimeService, Session, Estimator, Options
+
+circuit = random_circuit(2, 2, seed=1).decompose(reps=1)
+observable = SparsePauliOp("IY")
+
+options = Options()
+options.optimization_level = 2
+options.resilience_level = 2
+
+service = QiskitRuntimeService()
+with Session(service=service, backend="ibmq_qasm_simulator") as session:
+     estimator = Estimator(session=session, options=options)
+     job = estimator.run(circuit, observable)
+     result = job.result()
+     # Close the session only if all jobs are finished, and you don't need to run more in the session
+     session.close() # Closes the session
+
+display(circuit.draw("mpl"))
+print(f" > Observable: {observable.paulis}")
+print(f" > Expectation value: {result.values[0]}")
+print(f" > Metadata: {result.metadata[0]}")
+```
+If you are not using a runtime session, you can pass the backend when initializing the primitive class.
+
+``` python
+  from qiskit.circuit.random import random_circuit
+  from qiskit.quantum_info import SparsePauliOp
+  from qiskit_ibm_runtime import QiskitRuntimeService, Session, Estimator, Options
+  
+  circuit = random_circuit(2, 2, seed=1).decompose(reps=1)
+  observable = SparsePauliOp("IY")
+  
+  options = Options()
+  options.optimization_level = 2
+  options.resilience_level = 2
+  
+  service = QiskitRuntimeService()
+  estimator = Estimator(backend="ibmq_qasm_simulator", options=options)
+  job = estimator.run(circuit, observable)
+  result = job.result()
+  
+  display(circuit.draw("mpl"))
+  print(f" > Observable: {observable.paulis}")
+  print(f" > Expectation value: {result.values[0]}")
+  print(f" > Metadata: {result.metadata[0]}")
+  ```
