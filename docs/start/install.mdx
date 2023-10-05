@@ -158,8 +158,8 @@ You need access credentials to use cloud-based IBM Quantum systems.
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
-# Save an IBM Quantum account.
-QiskitRuntimeService.save_account(channel="ibm_quantum", token="<MY_IBM_QUANTUM_TOKEN>")
+# Save an IBM Quantum account and set it as your default account.
+QiskitRuntimeService.save_account(channel="ibm_quantum", token="<MY_IBM_QUANTUM_TOKEN>", set_as_default=True)
 ```
 
 1. Authenticate to the service by calling `QiskitRuntimeService` with your saved credentials or with your IBM Cloud API key and CRN:
