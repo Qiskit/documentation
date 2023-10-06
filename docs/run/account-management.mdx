@@ -34,7 +34,7 @@ You can view your IBM Quantum account information after you log in to [IBM Cloud
 
 There are several methods for account management. Your account credentials can be saved to disk or used in a session and never saved.
 
-*   save_account(): Save your account to disk for future use and optionally set it as the default.
+*   save_account(): Save your account to disk for future use.
 *   delete_account(): Delete the saved account from disk.
 *   active_account(): List the account currently in the session.
 *   saved_account(): List the account stored on disk.
@@ -49,13 +49,15 @@ The `save_account()` method can be used to store your account credentials on dis
 
 Following are examples of saving an IBM Quantum  and an IBM Cloud account. The `channel` parameter allows you to distinguish between different account types. If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them.  
 
-If you do not set a default account, IBM Cloud is the default. Your default account can be overridden by passing in the account name or by having an account saved in an environment variable.
+<Admonition type="note">
+IBM Cloud is the default account used if you don't specify a different channel or account name. 
+</Admonition>
 
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
-# Save an IBM Quantum account on disk and set it as the default.
-QiskitRuntimeService.save_account(channel="ibm_quantum", token=<IBM Quantum API token>, set_as_default=True)
+# Save an IBM Quantum account on disk and give it a name.
+QiskitRuntimeService.save_account(channel="ibm_quantum", token=<IBM Quantum API token>, name="<account-name>")
 
 # Save an IBM Cloud account on disk.
 QiskitRuntimeService.save_account(channel="ibm_cloud", token=<IBM Cloud API key>, instance=<IBM Cloud CRN> or <IBM Cloud service name>)
@@ -78,16 +80,3 @@ If you want to use your credentials for just the session rather than saving them
 service = QiskitRuntimeService(channel="ibm_cloud", token=<IBM Cloud API key>, instance=<IBM Cloud CRN>)
 ```
 
-## Which account is used?
-
-When you initialize your account, the account used depends on what (if any) credentials you previously saved.  The account is chosen in this order:
-
-1. The account specified in the `QiskitRuntimeService()` call  
-1. The account saved in an environment variable
-1. The account set as the default by using `save_account()`
-1. Your IBM Cloud account
-1. Your IBM Quantum Platform account
-
-<Admonition type="note">
-  If you send a job to a backend that the selected account cannot access, an account that can access the backend is used instead.  See the [backends page](backends) for details. 
-</Admonition>
