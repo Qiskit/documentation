@@ -59,7 +59,7 @@ with Session(max_time="1h"):
     ...
 ```    
 
-Additionally, there is a 5-minute *interactive* timeout value. If there are no session jobs queued within that window, the session is temporarily deactivated and normal job selection resumes. During job selection, if the job scheduler gets a new job from the session and its maximum timeout value has not been reached, the session is reactivated until its maximum timeout value is reached.
+Additionally, there is a 1-minute *interactive* timeout value. If there are no session jobs queued within that window, the session is temporarily deactivated and normal job selection resumes. During job selection, if the job scheduler gets a new job from the session and its maximum timeout value has not been reached, the session is reactivated until its maximum timeout value is reached.
 
 <Admonition type="note">
   The timer for the session’s `max_time` timer is not paused during any temporary deactivation periods.
