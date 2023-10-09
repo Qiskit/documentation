@@ -26,12 +26,15 @@ body:
     validations:
       required: true
 
-  - type: radio
+  - type: dropdown
     attributes:
       label: If this new content request is accepted, will you write a draft the content, or help the team draft it?
+      description:
+      multiple: false
       options:
-        one: I will write a draft of the proposed content
-        two: I can help the team by providing enough information to write the material
-        three: I only want to review the material when it's finished
+        - I will write a draft of the proposed content
+        - I can help the team by providing enough information to write the material
+        - I only want to review the material when it's finished
+      default: 0
     validations:
       required: true
