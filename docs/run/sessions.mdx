@@ -99,6 +99,7 @@ session becomes active - that is, when the first job runs, not when it is
 queued. It does not stop if a session becomes inactive. The ITTL timer
 starts each time a session job finishes.
 
+<span id="max-ttl"></span>
 ## Maximum session timeout
 
 When a session is started, it is assigned a *maximum session timeout*
@@ -114,6 +115,8 @@ values:
 
 See [What is the maximum execution time for a Qiskit Runtime job?](max-execution-time) to determine the system limit and
 the `max_execution_time` for primitive programs.
+
+To find the maximum session timeout value for a session, follow the instructions in [Determine session details](#session-details).
 
 <span id="ttl"></span>
 ## Interactive timeout value
@@ -131,6 +134,34 @@ run as a singleton, but it can also start a different session. In other
 words, a deactivated session does not block the creation of other
 sessions. Jobs from this new session would then take priority until it
 is deactivated or closed, at which point normal job selection resumes.
+
+To find the interactive timeout value for a session, follow the instructions in [Determine session details](#session-details).
+
+<span id="active-ttl"></span>
+## Active timeout value
+
+The TTL for the active window in an extended session.
+
+To find the active timeout value for a session, follow the instructions in [Determine session details](#session-details).
+
+
+<span id="session-details"></span>
+## Determine session details
+
+You can find details about a session by using the `session.details()` method, from the [Quantum Platform Jobs page](https://quantum-computing.ibm.com/jobs), or from the IBM Cloud Jobs page, which you access from your [Instances page](https://cloud.ibm.com/quantum/instances). From the session details you can determine the [maximum](#max-ttl), [interactive](#ttl), and active time to live (TTL) values, its status, whether it's currently accepting jobs, and more. 
+
+Example:
+
+``` python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService()
+
+with Session(service=service, backend="ibmq_qasm_simulator") as session:
+  session.details()
+  ...
+```
+
 
 <span id="ends"></span>
 ## What happens when a session ends 
