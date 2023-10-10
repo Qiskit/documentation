@@ -1,10 +1,10 @@
 ---
-title: Fair-share queuing
+title: Fair-share queue
 description: How the IBM Quantum fair-share queue determines order of jobs submitted to quantum systems
 
 ---
 
-# Fair-share queuing
+# Fair-share queue
 
 When you submit a job to a quantum system, it enters the scheduler for the specific system, joining the pool of jobs (from all users) that are waiting to be executed on that system. The order in which these jobs are executed is, by default, determined by a fair-share formula. As discussed below, this algorithm attempts to balance the workload between different [instances](instances) according to the allocated system access amount over a given time window. In practice, this means that jobs from various instances are interweaved in a non-trivial manner, and the order in which jobs complete is not necessarily the order in which they were submitted. Because the queue order is calculated dynamically as new jobs arrive, it is generally impossible to guarantee when a fair-share job will be executed.
 
