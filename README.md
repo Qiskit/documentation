@@ -39,6 +39,12 @@ Contributors with write access to this repository can use live previews of the d
 
 To use live previews, push your branch to `upstream` rather than your fork. GitHub will leave a comment with the link to the site. Please prefix your branch name with your initials, e.g. `EA/fix-build-typo`, for good Git hygiene.
 
+## Staging
+
+We also re-deploy the docs every time we merge into `main` at the site https://qiskit-docs-preview-staging.1799mxdls7qz.us-south.codeengine.appdomain.cloud.
+
+This staging environment can be useful to see how the docs are rendering before we push it live to production.
+
 ## Check file metadata
 
 Every file needs to have a `title` and `description`. The `lint` job in CI will fail with instructions for any bad file.
