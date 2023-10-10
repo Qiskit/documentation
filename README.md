@@ -43,7 +43,7 @@ To use live previews, push your branch to `upstream` rather than your fork. GitH
 
 We also re-deploy the docs every time we merge into `main` at the site https://qiskit-docs-preview-staging.1799mxdls7qz.us-south.codeengine.appdomain.cloud.
 
-This staging environment can be useful to know how docs are rendering before we synchronize them to IBM's closed source repository and push the documentation live to production.
+This staging environment can be useful to see how the docs are rendering before we push it live to production.
 
 ## Check file metadata
 
