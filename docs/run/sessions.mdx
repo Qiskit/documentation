@@ -166,14 +166,29 @@ with Session(service=service, backend="ibmq_qasm_simulator") as session:
 <span id="ends"></span>
 ## What happens when a session ends 
 
-A session ends by reaching its maximum timeout value or when it is
-manually closed by the user. Do not close a session until all jobs
-**complete**. See [Close a session](run-sessions#close) for details. After a session is closed, the following occurs:
+A session ends by reaching its maximum timeout value or by exiting the context manager. See [Close a session](run-sessions#close) for details. What happens when a session closes depends on how the session ended.
 
--   Any jobs that are already running continue to run.
--   Any queued jobs remaining in the session are put into a failed state.
--   No further jobs can be submitted to the session.
--   The session cannot be reopened.
+If the maximum timeout value was reached:
+    -   Any jobs that are already running are canceled.
+    -   Any queued jobs remaining in the session are put into a failed state.
+    -   No further jobs can be submitted to the session.
+    -   The session cannot be reopened.
+
+If the maximum timeout value has not been reached:    
+
+- When using Qiskit 12.3 or later releases:
+    -   The session is put in `Not accepting new jobs` status.
+    -   Any jobs that are already running continue to run.
+    -   Any queued jobs remaining in the session continue to run.
+    -   No further jobs can be submitted to the session.
+    -   The session cannot be reopened.
+    -   After all currently queued jobs are completed, the session is immediately closed and will not run any more jobs.
+
+- When using Qiskit 12.2 or previous releases:
+    -   Any jobs that are already running continue to run.
+    -   Any queued jobs remaining in the session are put into a failed state.
+    -   No further jobs can be submitted to the session.
+    -   The session cannot be reopened.
 
 
 ## Sessions and reservations

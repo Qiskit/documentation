@@ -6,7 +6,7 @@ description: Describes how long a Qiskit Runtime job or session can run.
 
 # Maximum execution time 
 
-To ensure fairness and help control costs, there is a maximum amount of time each Qiskit Runtime job and session can run. If a job exceeds this time limit, it is forcibly canceled and a `RuntimeJobMaxTimeoutError` exception is raised. If a session exceeds its limits, any queued jobs are cancelled but any jobs that are already running are not. 
+To ensure fairness and help control costs, there is a maximum amount of time each Qiskit Runtime job and session can run. If a job exceeds this time limit, it is forcibly canceled and a `RuntimeJobMaxTimeoutError` exception is raised. If a session exceeds its limits, any queued jobs are canceled but any jobs that are already running are not. 
 
 <span id="max-job"></span>
 ## Job maximum execution time
@@ -46,7 +46,7 @@ print(f"Quantum time used by job {job.job_id()} was {job.metrics()['usage']['qua
 
 The system calculates an appropriate job timeout value based on the input circuits and options. This system-calculated timeout is capped at 3 hours to ensure fair device usage. If a `max_execution_time` is also specified for the job, the lesser of the two values is used.
 
-For example, if you specify `max_execution_time=5000` (approximately 83 minutes), but the system determines it should not take more than 5 minutes (300 seconds) to execute the job, then the job is cancelled after 5 minutes.
+For example, if you specify `max_execution_time=5000` (approximately 83 minutes), but the system determines it should not take more than 5 minutes (300 seconds) to execute the job, then the job is canceled after 5 minutes.
 
 <span id="max-session"></span>
 ## Session maximum execution time
