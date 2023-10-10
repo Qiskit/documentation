@@ -13,7 +13,7 @@ in_page_toc_max_heading_level: 2
   This documentation is based on Qiskit Runtime version 0.12.1.
 </Admonition>
 
-Qiskit Runtime is a cloud-based quantum computing service developed by IBM. It offers computational *primitives* to perform foundational quantum computing tasks that use built-in error suppression and mitigation techniques. Primitives can be executed inside of *sessions*, so that collections of circuits can jointly run on a quantum computer without being interrupted by other users’ jobs. The combination of primitives, error suppression / mitigation, and sessions paves the way to efficiently build and execute scalable quantum applications, as shown in the [code examples](../build/primitives-examples).
+Qiskit Runtime is a cloud-based quantum computing service developed by IBM. It offers computational *primitives* to perform foundational quantum computing tasks that use built-in error suppression and mitigation techniques. Primitives can be executed inside of *sessions*, so that collections of circuits can jointly run on a quantum computer without being interrupted by other users’ jobs. The combination of primitives, error suppression / mitigation, and sessions paves the way to efficiently build and execute scalable quantum applications, as shown in the [code examples](../run/primitives-examples).
 
 The following figure illustrates how one can use Qiskit Runtime sessions and primitives. The first session request (job) waits through the regular [fair-share queue](../run/queue). When it starts to run, the session is started. After the first session job is finished processing, the next job in the session is run. This process continues until the session is paused (due to a lack of queued session jobs) or closed.
 
@@ -87,17 +87,17 @@ def _get_evaluate_energy_vqe_primitives(
 
 ## Primitives
 
-Primitives are base level operations that serve as building blocks for many quantum algorithms and applications. Through these primitives, users can obtain high-fidelity results without needing detailed hardware knowledge. This abstraction allows you to write code, using Qiskit algorithms or otherwise, that can run on various quantum hardware or simulators without having to explicitly manage aspects such as compilation, optimization, and error suppression / mitigation. The primitives offered by [qiskit_ibm_runtime](../api/qiskit-ibm-runtime/runtime_service) add additional options specific to IBM services. See [Introduction to primitives](../build/primitives) for further details.
+Primitives are base-level operations that serve as building blocks for many quantum algorithms and applications. Through these primitives, users can obtain high-fidelity results without needing detailed hardware knowledge. This abstraction allows you to write code, using Qiskit algorithms or otherwise, that can run on various quantum hardware or simulators without having to explicitly manage aspects such as compilation, optimization, and error suppression / mitigation. The primitives offered by [qiskit_ibm_runtime](../api/qiskit-ibm-runtime/runtime_service) add additional options specific to IBM services. See [Introduction to primitives](../run/primitives-get-started) for further details.
 There are currently two primitives defined in Qiskit: Estimator and Sampler.
 
 ### Estimator
 
-The Estimator primitive allows you to efficiently calculate and interpret expectation values of quantum operators, which are the values of interest for many near-term quantum algorithms. You specify circuits that prepare quantum states and then Pauli-basis observables to measure on those states. Estimator can use advanced error suppression and mitigation capabilities to improve the accuracy of the returned expectation values. [Get started with the Estimator primitive here.](../build/primitives-get-started#get-started-with-estimator)
+The Estimator primitive allows you to efficiently calculate and interpret expectation values of quantum operators, which are the values of interest for many near-term quantum algorithms. You specify circuits that prepare quantum states and then Pauli-basis observables to measure on those states. Estimator can use advanced error suppression and mitigation capabilities to improve the accuracy of the returned expectation values. [Get started with the Estimator primitive here.](../run/primitives-get-started#get-started-with-estimator)
 
 
 ### Sampler
 
-This primitive takes circuits as input and returns a quasi-probability distribution over the measurement outcomes. This generalizes histograms from quantum circuits, allowing for mitigation of readout errors. [Get started with the Sampler primitive tutorial here.](../build/primitives-get-started#get-started-with-sampler)
+This primitive takes circuits as input and returns a quasi-probability distribution over the measurement outcomes. This generalizes histograms from quantum circuits, allowing for mitigation of readout errors. [Get started with the Sampler primitive tutorial here.](../run/primitives-get-started#get-started-with-sampler)
 
 ## Sessions
 
