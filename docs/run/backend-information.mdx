@@ -1,18 +1,10 @@
 ---
-title: System information
-description: Information about IBM Quantum hardware, features of different processors, and system calibration, properties, and versioning
+title: View backend information
+description: View information about IBM Quantum hardware
 
 ---
 
-# System information
-
-IBM Quantum offers both open and premium access to a wide variety of quantum systems. All quantum systems deployed by IBM Quantum are based on superconducting qubit technology, as the control and scalability of this technology pave a clear path to achieving quantum advantage with these systems. You can see the full details of all IBM Quantum systems on the [Compute resources page](https://quantum-computing.ibm.com/services/resources?tab=systems).
-
-{/* ## Paths
-
-programmatic (Python), API, web -- need to fill out!! */}
-
-## View system properties
+# View backend information
 
 In contrast to the [system configuration](#system-configuration-values) that remains static on the timescale of typical experiments, the **properties** of a system are dynamical quantities that update at system calibration time. Systems are nominally calibrated once over a 24-hour period, and the system properties update once this calibration sequence is complete. The properties play a critical role in quantum circuit execution, as the parameters within the properties are utilized for noise-aware circuit mapping and optimization (transpilation). Additionally, system properties are used for constructing noise models of a system for use in classical simulation methods.
 
@@ -66,57 +58,3 @@ You can most easily obtain a quantum system’s properties with Qiskit, but you 
         ```python
         Gate(gate='cx', name='cx4_3', parameters=[Nduv('2020-06-06T10:03:18Z', gate_error, , 0.009793933588297388), Nduv('2020-06-06T10:03:18Z', gate_length, ns, 362.66666666666663)], qubits=[4, 3])
         ```
-
-
-## System versioning
-
-Each system has a version number in the form X.Y.Z (major.minor.revision). A circuit compiled for a given system version number is guaranteed to run on that system. If the revision number changes, the circuit will continue to run. If the major or minor number changes, the circuit is not guaranteed to run, although it may do so. The conditions under which a version number may change are listed below:
-
-### Major version
-
-The major version will increment for system changes such as:
-
-*   Sample changes.
-*   Major changes to the control electronics.
-*   Moving the system to a new location, if significant behavior changes result.
-
-### Minor version
-
-The minor version will increment for changes such as:
-
-*   Warmup / cool-down cycles.
-*   Swapping out some electronics, if the replacement appreciably affects operation.
-*   Changing the direction of a controlled-NOT gate.
-*   Dropping a gate for some duration of time due to calibration issues, and corrections cannot readily be done in software.
-
-### Revision version
-
-The revision version number will increment for fixes that do not break the existing compiled circuit. These changes include:
-
-*   Manual calibrations to improve fidelities.
-*   Small electronics changes that don’t affect operation.
-*   System software updates.
-
-## Cite a system
-
-
-For research papers, we encourage authors to acknowledge IBM Quantum using:
-
->    We acknowledge the use of IBM Quantum services for this work. The views expressed are those of the authors, and do not reflect the official policy or position of IBM or the IBM Quantum team.
-
-Paper references should be cited as follows:
-
-> IBM Quantum. https://<span>quantum-computing.ibm.com</span>/, 2021
-
-Systems in the paper should be referenced by their unique name (i.e., `ibmq_vigo`) and optionally
-adding the version (i.e., `ibmq_vigo` v1.0.2).  We also encourage referencing the processor.
-For example:
-
-> In this paper we used `ibmq_vigo`, which is one of the IBM Quantum Canary processors.
-
-An example of citing an IBM Quantum program:
-
-> IBM Quantum (2022). Estimator primitive (Version x.y.z) [computer software]. https://<span>quantum-computing.ibm.com</span>/
-
-
-
