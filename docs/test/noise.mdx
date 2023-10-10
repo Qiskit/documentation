@@ -23,7 +23,7 @@ service = QiskitRuntimeService()
 
 ## Prepare the environment
 
-First, we run an example routine. One of the major benefits of using primitives is simplification of binding multiple parameters in parameterized circuits. To illustrate this, we start with is an example circuit with a controlled [P-gate](/api/qiskit/qiskit.circuit.library.PhaseGate) as implemented in the following code. Here, we parameterize the ``P-gate`` with a rotation parameter ``theta``. For instructions to create circuits and bind parameters to them by using Qiskit, see the [Circuit Basics](https://qiskit.org/documentation/tutorials/circuits/01_circuit_basics.html) and [Advanced Circuits](https://qiskit.org/documentation/tutorials/circuits_advanced/01_advanced_circuits.html#Parameterized-circuits) tutorials in Qiskit documentation. {/*Will these tutorials still live at those URLs?*/}
+First, we run an example routine. One of the major benefits of using primitives is simplification of binding multiple parameters in parameterized circuits. To illustrate this, we start with is an example circuit with a controlled [P-gate](/api/qiskit/qiskit.circuit.library.PhaseGate) as implemented in the following code. Here, we parameterize the ``P-gate`` with a rotation parameter ``theta``.
 
 ``` python
 from qiskit.circuit import Parameter
@@ -73,7 +73,7 @@ options.resilience_level = 0 # no error mitigation
 ```
 ### Run the circuits on Sampler
 
-Next, we use the Sampler primitive to sample the circuit and get the resultant quasi-probability distribution. Visit the [Get started with Sampler](../build/primitives-get-started#get-started-with-sampler) section for more information about the Sampler primitive.
+Next, we use the Sampler primitive to sample the circuit and get the resultant quasi-probability distribution. Visit the [Get started with Sampler](../run/primitives-get-started#get-started-with-sampler) section for more information about the Sampler primitive.
 
 ``` python
 sampler = Sampler(options=options, backend=backend)
@@ -105,7 +105,7 @@ plt.legend()
 
 ### Run the circuits on Estimator
 
-Visit the [Get started with Estimator](../build/primitives-get-started#get-started-with-estimator) section for more information on the Estimator primitive.
+Visit the [Get started with Estimator](../run/primitives-get-started#get-started-with-estimator) section for more information on the Estimator primitive.
 
 The Estimator binds single-qubit rotations to get Hamiltonians before it returns expectation values of quantum operators. Therefore, the circuit doesn’t require any measurements. Currently the circuit ``qc`` has measurements, so we will remove these with ``remove_final_measurements``.
 
