@@ -12,9 +12,10 @@
 
 # This Dockerfile is used to preview the docs in pull requests via GitHub Actions.
 #
-# Keep it in sync with ./start. This Dockerfile essentially is the same,
-# only it sets the CLI args directly in the Dockerfile because the
-# GitHub Action expects that.
+# Keep it aligned with ./start. This Dockerfile is similar,
+# but it uses a private Docker image from IBM Cloud Registry rather
+# than a public image from Dockerhub. It also sets the CLI args
+# directly in the Dockerfile because the GitHub Action expects that.
 #
 # To test it out locally:
 #
