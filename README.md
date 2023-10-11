@@ -6,7 +6,7 @@ The documentation content home for https://docs.quantum-computing.ibm.com. Refer
 
 ## Pre-requisites to run tools locally
 
-These tools will also run in CI. But, it can be convenient when iterating to run the tools locally.
+These tools will also run in CI, but it can be convenient when iterating to run the tools locally.
 
 First, install the below software:
 
