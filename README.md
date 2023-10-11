@@ -24,7 +24,7 @@ npm install
 
 Run `./start` in your terminal, then open http://localhost:3000/start in your browser.
 
-The local preview does not include the top nav bar from docs.quantum-computing.ibm.com due to security considerations. So, you must directly navigate in the URL to the folder that you want:
+The local preview does not include the initial index page and the top nav bar from docs.quantum-computing.ibm.com. So, you must directly navigate in the URL to the folder that you want:
 
 * http://localhost:3000/build
 * http://localhost:3000/start
