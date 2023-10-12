@@ -8,13 +8,13 @@ IBM Quantum features a collection of high-performance simulators for prototyping
 
 To view available simulators, on the upper right corner of the screen, click the Application switcher ( ![switcher](/images/migration/switcher-small2.png) ), select **Compute resources** to view the [Compute resources page,](https://quantum-computing.ibm.com/services/resources?services=simulators) then click the Simulators tab.
 
-The default choice of simulator should be the `simulator_statevector` as it is a general-purpose solution method. The following simulation methods are currently available, and support a maximum of 300 circuits and 8192 shots per job.
+The default choice of simulator should be the `simulator_statevector` as it is a general-purpose solution method. The following simulation methods support a maximum of 300 circuits and 8192 shots per job.
 
 <Admonition type="info" title="Simulator timeout limit">
   To prevent the simulators from processing jobs that would otherwise not finish processing in a reasonable amount of time, jobs sent to the simulators are limited to run times under 10,000 seconds (\~2.75 hours).
 </Admonition>
 
-## Statevector
+## Statevector simulator
 
 **Type:** Schrödinger wavefunction
 
@@ -38,7 +38,7 @@ Simulates a quantum circuit by computing the wavefunction of the qubit’s state
 'multiplexer', 'initialize', 'kraus', 'roerror', 'delay']
 ```
 
-## Stabilizer
+## Stabilizer simulator
 
 **Type:** Clifford
 
@@ -57,7 +57,7 @@ An efficient simulator of Clifford circuits. Can simulate noisy evolution if the
 's', 'sdg', 'sx', 'swap', 'delay', 'roerror']
 ```
 
-## Extended stabilizer
+## Extended stabilizer simulator
 
 **Type:** Extended Clifford (e.g., Clifford+T)
 
@@ -77,7 +77,7 @@ Approximates the action of a quantum circuit using a ranked-stabilizer decomposi
 'delay', 'roerror']
 ```
 
-## MPS
+## MPS simulator
 
 **Type:** Matrix Product State
 
@@ -97,7 +97,7 @@ A tensor-network simulator that uses a Matrix Product State (MPS) representation
 'p', 'ccx', 'delay', 'roerror']
 ```
 
-## QASM
+## QASM simulator
 
 **Type:** General, context-aware
 
