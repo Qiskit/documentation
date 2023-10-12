@@ -29,8 +29,8 @@ The local preview does not include the initial index page and the top nav bar fr
 * http://localhost:3000/build
 * http://localhost:3000/start
 * http://localhost:3000/run
-* http://localhost:3000/test
 * http://localhost:3000/transpile
+* http://localhost:3000/verify
 
 ## Preview the docs in PRs
 
