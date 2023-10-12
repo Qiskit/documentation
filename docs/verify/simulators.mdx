@@ -8,7 +8,7 @@ IBM Quantum features a collection of high-performance simulators for prototyping
 
 To view available simulators, on the upper right corner of the screen, click the Application switcher ( ![switcher](/images/migration/switcher-small2.png) ), select **Compute resources** to view the [Compute resources page,](https://quantum-computing.ibm.com/services/resources?services=simulators) then click All simulators.
 
-The following simulation methods support a maximum of 300 circuits and 8192 shots per job. Find more information on each simulator below, including its type, a description, the number of qubits it simulates, whether it includes noise modeling, and a list of supported gates. The `simulator_statevector` is a good default choice since it is a general-purpose solution method. 
+The following simulation methods support a maximum of 300 circuits and 8192 shots per job. Find more information on each simulator below, including its type, a description, the number of qubits it simulates, whether it includes noise modeling, a list of supported gates, and a minimum code example. The `simulator_statevector` is a good default choice since it is a general-purpose solution method. 
 
 <Admonition type="info" title="Simulator timeout limit">
   To prevent the simulators from processing jobs that would otherwise not finish processing in a reasonable amount of time, jobs sent to the simulators are limited to run times under 10,000 seconds (\~2.75 hours).
@@ -38,6 +38,12 @@ Simulates a quantum circuit by computing the wavefunction of the qubit’s state
 'multiplexer', 'initialize', 'kraus', 'roerror', 'delay']
 ```
 
+**Code example**
+
+```python
+backend = service.get_backend("simulator_statevector")
+```
+
 ## Stabilizer simulator
 
 **Type:** Clifford
@@ -55,6 +61,12 @@ An efficient simulator of Clifford circuits. Can simulate noisy evolution if the
 ```python
 ['cx', 'cy', 'cz', 'id', 'x', 'y', 'z', 'h',
 's', 'sdg', 'sx', 'swap', 'delay', 'roerror']
+```
+
+**Code example**
+
+```python
+backend = service.get_backend("simulator_stabilizer")
 ```
 
 ## Extended stabilizer simulator
@@ -77,6 +89,12 @@ Approximates the action of a quantum circuit using a ranked-stabilizer decomposi
 'delay', 'roerror']
 ```
 
+**Code example**
+
+```python
+backend = service.get_backend("simulator_extended_stabilizer")
+```
+
 ## MPS simulator
 
 **Type:** Matrix Product State
@@ -95,6 +113,12 @@ A tensor-network simulator that uses a Matrix Product State (MPS) representation
 ['unitary', 't', 'tdg', 'id', 'cp', 'u1', 'u2', 'u3', 'u',
 'cx', 'cz', 'x', 'y', 'z', 'h', 's', 'sdg', 'sx', 'swap',
 'p', 'ccx', 'delay', 'roerror']
+```
+
+**Code example**
+
+```python
+backend = service.get_backend("simulator_mps")
 ```
 
 ## QASM simulator
@@ -119,4 +143,10 @@ A general-purpose simulator for simulating quantum circuits both ideally and sub
 'mcsx', 'mcp', 'mcu1', 'mcu2', 'mcu3', 'mcrx', 'mcry',
 'mcrz', 'mcr', 'mcswap', 'unitary', 'diagonal',
 'multiplexer', 'initialize', 'kraus', 'roerror', 'delay']
+```
+
+**Code example**
+
+```python
+backend = service.get_backend("ibmq_qasm_simulator")
 ```
