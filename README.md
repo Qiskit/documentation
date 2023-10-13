@@ -21,7 +21,7 @@ This is the quickest, easiest and most helpful way to contribute to this project
 
 If you think there are gaps in our documentation, or sections that could be expanded upon, we invite you to open a new content request issue [here](https://github.com/Qiskit/documentation/issues/new/choose). 
 
-Not every new content suggestion is a good fit for docs, nor are we able to prioritise every request immediately. However, we will do our best to respond to content requests in a timely manner, and we greatly appreicate our community's efforts in generating new ideas.
+Not every new content suggestion is a good fit for docs, nor are we able to prioritize every request immediately. However, we will do our best to respond to content requests in a timely manner, and we greatly appreciate our community's efforts in generating new ideas.
 
 If you are interested in writing the new content yourself, or already have some draft work you think could be integrated, please also mention that in the issue description. If your content suggestion is accepted we will let you know and work with you to get the content written and reviewed.
 
