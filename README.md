@@ -36,12 +36,12 @@ You can help the team prioritize already-open issues by doing the following:
 
 ### 4. Fix an open issue
 
-You can look through the open issues we have in this repo and address them with a PR. We recommend focusing on issues with the "good first issue" or "help wanted" label. 
+You can look through the open issues we have in this repo and address them with a PR. We recommend focusing on issues with the "good first issue" label. 
 
 Before getting started on an issue, remember to do the following:
 
-1. Read the Code of Conduct (TODO add link)
-2. Check for issues with the "good first issue" or "help wanted" label
+1. Read the [Code of Conduct](https://github.com/Qiskit/documentation/blob/main/CODE_OF_CONDUCT.md) 
+2. Check for open, unassigned issues with the "good first issue" label
 3. Select an issue that is not already assigned to someone and leave a comment to request to be assigned
 
 Once you have an issue to work on, see the "How to work with this repo" section below to get going, then open a PR.
