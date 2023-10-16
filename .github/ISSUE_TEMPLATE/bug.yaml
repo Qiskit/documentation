@@ -1,6 +1,6 @@
-name: Documentation
-description: Report typos/bugs or suggest new content.
-labels: ["content 📄"]
+name: 🪲 Content bug or inaccuracy
+description: Report typos, bugs, out-of-date content, broken links, etc.
+labels: ["bug 🐛"]
 assignees:
   - abbycross
   - beckykd
@@ -25,18 +25,20 @@ body:
       options:
         - label: typo
         - label: code bug
-        - label: add new content
         - label: out-of-date content
-        - label: it's just wrong
+        - label: broken link
         - label: other
     validations:
       required: true
 
   - type: textarea
     attributes:
-      label: What is the documentation issue/request?
+      label: Describe the fix.
       description: >
         If reporting a bug, please be as specific as possible (steps to reproduce, screenshot, etc.).
-        If suggesting new content, please give a clear and concise description. What value does the new content bring?
     validations:
       required: true
+
+  - type: markdown
+    attributes:
+      value: Thank you for your feedback! If you are interested in joining the IBM Quantum Feedback Program, <a href="https://www.ibm.com/quantum/feedback-program">sign up here</a>.
