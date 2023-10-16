@@ -11,10 +11,10 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-# Keep this in sync with the Dockerfile at the root of the repository.
+# Keep this aligned with the Dockerfile at the root of the repository.
 docker run \
   -v "$(pwd)"/docs:/home/node/app/docs \
-  -v "$(pwd)"/public/images:/home/node/app/public/images \
+  -v "$(pwd)"/public/images:/home/node/app/packages/preview/public/images \
   -p 3000:3000 \
   -p 5001:5001 \
-  icr.io/quantum-computing/iqp-channel-docs-dev
+  qiskit/documentation
