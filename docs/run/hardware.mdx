@@ -14,7 +14,7 @@ programmatic (Python), API, web -- need to fill out!! */}
 
 ## View system properties
 
-In contrast to the [system configuration](#system-configuration-values) that remains static on the timescale of typical experiments, the **properties** of a system are dynamical quantities that update at system calibration time. Systems are nominally calibrated once over a 24-hour period, and the system properties update once this calibration sequence is complete. The properties play a critical role in quantum circuit execution, as the parameters within the properties are utilized for noise-aware circuit mapping and optimization (transpilation). Additionally, system properties are used for constructing noise models of a system for use in classical simulation methods.
+In contrast to the [system configuration](./processor-types#system-configuration-values) that remains static on the timescale of typical experiments, the **properties** of a system are dynamical quantities that update at system calibration time. Systems are nominally calibrated once over a 24-hour period, and the system properties update once this calibration sequence is complete. The properties play a critical role in quantum circuit execution, as the parameters within the properties are utilized for noise-aware circuit mapping and optimization (transpilation). Additionally, system properties are used for constructing noise models of a system for use in classical simulation methods.
 
 You can most easily obtain a quantum system’s properties with Qiskit, but you can also obtain them by downloading the “calibrations” CSV file for a given system on IBM Quantum (see [View system configuration](#view-system-configuration) for more information).
 
@@ -55,7 +55,7 @@ You can most easily obtain a quantum system’s properties with Qiskit, but you 
 
         containing `Nduv` objects specifying the gate error and gate length.
 
-        The same holds for multi-qubit gates, where there is an entry for each directed edge in the system [coupling map](#coupling-map). For symmetric coupling maps, the directionality of the underlying gate is still important. For example,
+        The same holds for multi-qubit gates, where there is an entry for each directed edge in the system coupling map. For symmetric coupling maps, the directionality of the underlying gate is still important. For example,
 
         ```python
         Gate(gate='cx', name='cx3_4', parameters=[Nduv('2020-06-06T10:03:18Z', gate_error, , 0.009793933588297388), Nduv('2020-06-06T10:03:18Z', gate_length, ns, 327.1111111111111)], qubits=[3, 4])
