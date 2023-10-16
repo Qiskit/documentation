@@ -4,6 +4,10 @@ description: Overview of simulators
 ---
 # Simulators overview
 
+<Admonition type="note">
+This page gives details about the IBM Quantum cloud-based simulators. For information about the Qiskit built-in simulator, see the [Python-based simulators page in the API reference.](https://docs.quantum-computing.ibm.com/api/qiskit/providers_basicaer)
+</Admonition>
+
 IBM Quantum features a collection of high-performance simulators for prototyping quantum circuits and algorithms.
 
 To view available simulators, on the upper right corner of the screen, click the Application switcher ( ![switcher](/images/migration/switcher-small2.png) ), select **Compute resources** to view the [Compute resources page,](https://quantum-computing.ibm.com/services/resources?services=simulators) then click All simulators.
@@ -41,6 +45,8 @@ Simulates a quantum circuit by computing the wavefunction of the qubit’s state
 **Code example**
 
 ```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+service = QiskitRuntimeService()
 backend = service.get_backend("simulator_statevector")
 ```
 
