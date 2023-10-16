@@ -41,15 +41,12 @@ class Link {
     /*
      * Return list of possible paths link could resolve to
      */
-
-    // Handle external and non-text content first
     if ( this.isExternal ) { return [ this.value ] }
     if ( this.value === '' ) { return [ this.origin ] }
     if ( this.value.startsWith("/images") ) {
       return [ path.join("public/", this.value) ]
     }
 
-    // Resolve relative and absolute links
     let baseFilePath
     if (this.value.startsWith('/')) {
       // Path is relative to DOCS_ROOT
@@ -64,9 +61,9 @@ class Link {
     // Remove trailing '/' from path.join
     baseFilePath = baseFilePath.replace(/\/$/gm, '')
 
-    // File have one of many extensions(.md, .ipynb etc.), and/or be directory
-    // with an index file (for example, docs/build should resolve to
-    // docs/build/index.mdx); we return a list of pll ossible filenames.
+    // File may have one of many extensions (.md, .ipynb etc.), and/or be
+    // directory with an index file (e.g. `docs/build` should resolve to
+    // `docs/build/index.mdx`). We return a list of possible filenames.
     let possibleFilePaths = []
     for (let index of ['', '/index']) {
       for (let extension of CONTENT_FILE_EXTENSIONS) {
