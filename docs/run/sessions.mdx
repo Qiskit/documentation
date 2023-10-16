@@ -121,7 +121,7 @@ To find the maximum session timeout value for a session, follow the instructions
 <span id="ttl"></span>
 ## Interactive timeout value
 
-Every session has an *interactive timeout value* (ITTL, or interactive time to live) of one minute for premium accounts and two seconds for open plan accounts. The ITTL cannot be configured. If there are no session jobs queued within the
+Every session has an *interactive timeout value* (ITTL, or interactive time to live). If there are no session jobs queued within the
 ITTL window, the session is temporarily deactivated and normal job
 selection resumes. A deactivated session can be resumed if it has not
 reached its maximum timeout value. The session is resumed when a
@@ -137,18 +137,10 @@ is deactivated or closed, at which point normal job selection resumes.
 
 To find the interactive timeout value for a session, follow the instructions in [Determine session details](#session-details).
 
-<span id="active-ttl"></span>
-## Active timeout value
-
-The TTL for the active window in an extended session.
-
-To find the active timeout value for a session, follow the instructions in [Determine session details](#session-details).
-
-
 <span id="session-details"></span>
 ## Determine session details
 
-You can find details about a session by using the `session.details()` method, from the [Quantum Platform Jobs page](https://quantum-computing.ibm.com/jobs), or from the IBM Cloud Jobs page, which you access from your [Instances page](https://cloud.ibm.com/quantum/instances). From the session details you can determine the [maximum](#max-ttl), [interactive](#ttl), and active time to live (TTL) values, its status, whether it's currently accepting jobs, and more. 
+You can find details about a session by using the `session.details()` method, from the [Quantum Platform Jobs page](https://quantum-computing.ibm.com/jobs), or from the IBM Cloud Jobs page, which you access from your [Instances page](https://cloud.ibm.com/quantum/instances). From the session details you can determine the [maximum](#max-ttl) and [interactive](#ttl) time to live (TTL) values, its status, whether it's currently accepting jobs, and more. 
 
 Example:
 
