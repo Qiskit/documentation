@@ -1,54 +1,51 @@
-#######################
-Opflow Migration Guide
-#######################
+# Opflow Migration Guide
 
-TL;DR
-=====
-The new :mod:`~qiskit.primitives`, in combination with the :mod:`~qiskit.quantum_info` module, have superseded
-functionality of :mod:`~qiskit.opflow`. Thus, the latter is being deprecated.
+## TL;DR
+
+The new {mod}`~qiskit.primitives`, in combination with the {mod}`~qiskit.quantum_info` module, have superseded
+functionality of {mod}`~qiskit.opflow`. Thus, the latter is being deprecated.
 
 In this migration guide, you will find instructions and code examples for how to migrate your code based on
-the :mod:`~qiskit.opflow` module to the :mod:`~qiskit.primitives` and :mod:`~qiskit.quantum_info` modules.
+the {mod}`~qiskit.opflow` module to the {mod}`~qiskit.primitives` and {mod}`~qiskit.quantum_info` modules.
 
-.. note::
+:::{note}
+The use of {mod}`~qiskit.opflow` was tightly coupled to the {class}`~qiskit.utils.QuantumInstance` class, which
+is also being deprecated. For more information on migrating the {class}`~qiskit.utils.QuantumInstance`, please
+read the [quantum instance migration guide](http://qisk.it/qi_migration).
+:::
 
-    The use of :mod:`~qiskit.opflow` was tightly coupled to the :class:`~qiskit.utils.QuantumInstance` class, which
-    is also being deprecated. For more information on migrating the :class:`~qiskit.utils.QuantumInstance`, please
-    read the `quantum instance migration guide <http://qisk.it/qi_migration>`_.
+(attention-primitives)=
 
-.. _attention_primitives:
+:::{attention}
+Most references to the {class}`qiskit.primitives.Sampler` or {class}`qiskit.primitives.Estimator` in this guide
+can be replaced with instances of any primitive implementation. For example Aer primitives ({class}`qiskit_aer.primitives.Sampler`/{class}`qiskit_aer.primitives.Estimator`) or IBM's Qiskit Runtime primitives ({class}`qiskit_ibm_runtime.Sampler`/{class}`qiskit_ibm_runtime.Estimator`).
+Specific backends can be wrapped with ({class}`qiskit.primitives.BackendSampler`, {class}`qiskit.primitives.BackendEstimator`) to also present primitive-compatible interfaces.
 
-..  attention::
+Certain classes, such as the
+{class}`~qiskit.opflow.expectations.AerPauliExpectation`, can only be replaced by a specific primitive instance
+(in this case, {class}`qiskit_aer.primitives.Estimator`), or require a specific option configuration.
+If this is the case, it will be explicitly indicated in the corresponding section.
+:::
 
-    Most references to the :class:`qiskit.primitives.Sampler` or :class:`qiskit.primitives.Estimator` in this guide
-    can be replaced with instances of any primitive implementation. For example Aer primitives (:class:`qiskit_aer.primitives.Sampler`/:class:`qiskit_aer.primitives.Estimator`) or IBM's Qiskit Runtime primitives (:class:`qiskit_ibm_runtime.Sampler`/:class:`qiskit_ibm_runtime.Estimator`).
-    Specific backends can be wrapped with (:class:`qiskit.primitives.BackendSampler`, :class:`qiskit.primitives.BackendEstimator`) to also present primitive-compatible interfaces.
+## Background
 
-    Certain classes, such as the
-    :class:`~qiskit.opflow.expectations.AerPauliExpectation`, can only be replaced by a specific primitive instance
-    (in this case, :class:`qiskit_aer.primitives.Estimator`), or require a specific option configuration.
-    If this is the case, it will be explicitly indicated in the corresponding section.
-
-
-Background
-==========
-
-The :mod:`~qiskit.opflow` module was originally introduced as a layer between circuits and algorithms, a series of building blocks
+The {mod}`~qiskit.opflow` module was originally introduced as a layer between circuits and algorithms, a series of building blocks
 for quantum algorithms research and development.
 
-The recent release of the :mod:`qiskit.primitives` introduced a new paradigm for interacting with backends. Now, instead of
-preparing a circuit to execute with a ``backend.run()`` type of method, the algorithms can leverage the :class:`.Sampler` and
-:class:`.Estimator` primitives, send parametrized circuits and observables, and directly receive quasi-probability distributions or
+The recent release of the {mod}`qiskit.primitives` introduced a new paradigm for interacting with backends. Now, instead of
+preparing a circuit to execute with a `backend.run()` type of method, the algorithms can leverage the {class}`.Sampler` and
+{class}`.Estimator` primitives, send parametrized circuits and observables, and directly receive quasi-probability distributions or
 expectation values (respectively). This workflow simplifies considerably the pre-processing and post-processing steps
-that previously relied on this module; encouraging us to move away from :mod:`~qiskit.opflow`
-and find new paths for developing algorithms based on the :mod:`~qiskit.primitives` interface and
-the :mod:`~qiskit.quantum_info` module.
+that previously relied on this module; encouraging us to move away from {mod}`~qiskit.opflow`
+and find new paths for developing algorithms based on the {mod}`~qiskit.primitives` interface and
+the {mod}`~qiskit.quantum_info` module.
 
 This guide traverses the opflow submodules and provides either a direct alternative
-(i.e., using :mod:`~qiskit.quantum_info`), or an explanation of how to replace their functionality in algorithms.
+(i.e., using {mod}`~qiskit.quantum_info`), or an explanation of how to replace their functionality in algorithms.
 
 The functional equivalency can be roughly summarized as follows:
 
+```{eval-rst}
 .. list-table::
    :header-rows: 1
 
@@ -72,37 +69,37 @@ The functional equivalency can be roughly summarized as follows:
 
    * - :mod:`qiskit.opflow.gradients`
      - :mod:`qiskit.algorithms.gradients`
+```
 
-Contents
-========
+## Contents
 
 This document covers the migration from these opflow submodules:
 
 **Operators**
 
-- `Operator Base Class`_
-- `Operator Globals`_
-- `Primitive and List Ops`_
-- `State Functions`_
+- [Operator Base Class]
+- [Operator Globals]
+- [Primitive and List Ops]
+- [State Functions]
 
 **Converters**
 
-- `Converters`_
-- `Evolutions`_
-- `Expectations`_
+- [Converters]
+- [Evolutions]
+- [Expectations]
 
 **Gradients**
 
-- `Gradients`_
+- [Gradients]
 
+## Operator Base Class
 
-Operator Base Class
-===================
-*Back to* `Contents`_
+*Back to* [Contents]
 
-The :class:`qiskit.opflow.OperatorBase` abstract class can be replaced with :class:`qiskit.quantum_info.BaseOperator` ,
-keeping in mind that :class:`qiskit.quantum_info.BaseOperator` is more generic than its opflow counterpart.
+The {class}`qiskit.opflow.OperatorBase` abstract class can be replaced with {class}`qiskit.quantum_info.BaseOperator` ,
+keeping in mind that {class}`qiskit.quantum_info.BaseOperator` is more generic than its opflow counterpart.
 
+```{eval-rst}
 .. list-table::
    :header-rows: 1
 
@@ -110,47 +107,46 @@ keeping in mind that :class:`qiskit.quantum_info.BaseOperator` is more generic t
      - Alternative
    * - :class:`qiskit.opflow.OperatorBase`
      - :class:`qiskit.quantum_info.BaseOperator`
+```
 
-..  attention::
+:::{attention}
+Despite the similar class names, {class}`qiskit.opflow.OperatorBase` and
+{class}`qiskit.quantum_info.BaseOperator` are not completely equivalent to each other, and the transition
+should be handled with care. Namely:
 
-    Despite the similar class names, :class:`qiskit.opflow.OperatorBase` and
-    :class:`qiskit.quantum_info.BaseOperator` are not completely equivalent to each other, and the transition
-    should be handled with care. Namely:
+1\. {class}`qiskit.opflow.OperatorBase` implements a broader algebra mixin. Some operator overloads that were
+commonly used {mod}`~qiskit.opflow` (for example `~` for `.adjoint()`) are not defined for
+{class}`qiskit.quantum_info.BaseOperator`. You might want to check the specific
+{mod}`~qiskit.quantum_info` subclass instead.
 
-    1. :class:`qiskit.opflow.OperatorBase` implements a broader algebra mixin. Some operator overloads that were
-    commonly used :mod:`~qiskit.opflow` (for example ``~`` for ``.adjoint()``) are not defined for
-    :class:`qiskit.quantum_info.BaseOperator`. You might want to check the specific
-    :mod:`~qiskit.quantum_info` subclass instead.
+2\. {class}`qiskit.opflow.OperatorBase` also implements methods such as `.to_matrix()` or `.to_spmatrix()`,
+which are only found in some of the {class}`qiskit.quantum_info.BaseOperator` subclasses.
 
-    2. :class:`qiskit.opflow.OperatorBase` also implements methods such as ``.to_matrix()`` or ``.to_spmatrix()``,
-    which are only found in some of the :class:`qiskit.quantum_info.BaseOperator` subclasses.
+See {class}`~qiskit.opflow.OperatorBase` and {class}`~qiskit.quantum_info.BaseOperator` API references
+for more information.
+:::
 
-    See :class:`~qiskit.opflow.OperatorBase` and :class:`~qiskit.quantum_info.BaseOperator` API references
-    for more information.
+## Operator Globals
 
-
-Operator Globals
-================
-*Back to* `Contents`_
+*Back to* [Contents]
 
 Opflow provided shortcuts to define common single qubit states, operators, and non-parametrized gates in the
-:ref:`operator_globals` module.
+{ref}`operator_globals` module.
 
 These were mainly used for didactic purposes or quick prototyping, and can easily be replaced by their corresponding
-:mod:`~qiskit.quantum_info` class: :class:`~qiskit.quantum_info.Pauli`, :class:`~qiskit.quantum_info.Clifford` or
-:class:`~qiskit.quantum_info.Statevector`.
+{mod}`~qiskit.quantum_info` class: {class}`~qiskit.quantum_info.Pauli`, {class}`~qiskit.quantum_info.Clifford` or
+{class}`~qiskit.quantum_info.Statevector`.
 
+### 1-Qubit Paulis
 
-1-Qubit Paulis
---------------
-*Back to* `Contents`_
+*Back to* [Contents]
 
 The 1-qubit paulis were commonly used for quick testing of algorithms, as they could be combined to create more complex operators
-(for example, ``0.39 * (I ^ Z) + 0.5 * (X ^ X)``).
-These operations implicitly created operators of type  :class:`~qiskit.opflow.primitive_ops.PauliSumOp`, and can be replaced by
-directly creating a corresponding :class:`~qiskit.quantum_info.SparsePauliOp`, as shown in the examples below.
+(for example, `0.39 * (I ^ Z) + 0.5 * (X ^ X)`).
+These operations implicitly created operators of type  {class}`~qiskit.opflow.primitive_ops.PauliSumOp`, and can be replaced by
+directly creating a corresponding {class}`~qiskit.quantum_info.SparsePauliOp`, as shown in the examples below.
 
-
+```{eval-rst}
 .. list-table::
    :header-rows: 1
 
@@ -163,10 +159,11 @@ directly creating a corresponding :class:`~qiskit.quantum_info.SparsePauliOp`, a
 
            For direct compatibility with classes in :mod:`~qiskit.algorithms`, wrap in :class:`~qiskit.quantum_info.SparsePauliOp`.
 
+```
 
-.. _1_q_pauli:
+(q-pauli)=
 
-
+```{eval-rst}
 .. dropdown:: Example 1: Defining the XX operator
     :animate: fade-in-slide-down
 
@@ -205,7 +202,9 @@ directly creating a corresponding :class:`~qiskit.quantum_info.SparsePauliOp`, a
         As Pauli Op:  Pauli('XX')
         As Sparse Pauli Op:  SparsePauliOp(['XX'],
                       coeffs=[1.+0.j])
+```
 
+```{eval-rst}
 .. dropdown:: Example 2: Defining a more complex operator
     :animate: fade-in-slide-down
 
@@ -247,11 +246,13 @@ directly creating a corresponding :class:`~qiskit.quantum_info.SparsePauliOp`, a
 
         SparsePauliOp(['IZI', 'IXX'],
                       coeffs=[0.39+0.j, 0.5 +0.j])
+```
 
-Common non-parametrized gates (Clifford)
-----------------------------------------
-*Back to* `Contents`_
+### Common non-parametrized gates (Clifford)
 
+*Back to* [Contents]
+
+```{eval-rst}
 .. list-table::
    :header-rows: 1
 
@@ -269,7 +270,9 @@ Common non-parametrized gates (Clifford)
 
             Constructing :mod:`~qiskit.quantum_info` operators from circuits is not efficient, as it is a dense operation and
             scales exponentially with the size of the circuit, use with care.
+```
 
+```{eval-rst}
 .. dropdown:: Example 1: Defining the HH operator
     :animate: fade-in-slide-down
 
@@ -329,11 +332,13 @@ Common non-parametrized gates (Clifford)
                   [ 0.5+0.j, -0.5+0.j, -0.5+0.j,  0.5+0.j]],
                  input_dims=(2, 2), output_dims=(2, 2))
 
+```
 
-1-Qubit States
---------------
-*Back to* `Contents`_
+### 1-Qubit States
 
+*Back to* [Contents]
+
+```{eval-rst}
 .. list-table::
    :header-rows: 1
 
@@ -347,7 +352,9 @@ Common non-parametrized gates (Clifford)
 
            For efficient simulation of stabilizer states, :mod:`~qiskit.quantum_info` includes a
            :class:`~qiskit.quantum_info.StabilizerState` class. See API reference of :class:`~qiskit.quantum_info.StabilizerState` for more info.
+```
 
+```{eval-rst}
 .. dropdown:: Example 1: Working with stabilizer states
     :animate: fade-in-slide-down
 
@@ -400,47 +407,51 @@ Common non-parametrized gates (Clifford)
         State 1:  Statevector([0.+0.j, 1.+0.j, 0.+0.j, 0.+0.j],
                     dims=(2, 2))
         State 2:  StabilizerState(StabilizerTable: ['-IX', '+XI'])
+```
 
-Primitive and List Ops
-======================
-*Back to* `Contents`_
+## Primitive and List Ops
 
-Most of the workflows that previously relied on components from :mod:`~qiskit.opflow.primitive_ops` and
-:mod:`~qiskit.opflow.list_ops` can now leverage elements from :mod:`~qiskit.quantum_info`\'s
+*Back to* [Contents]
+
+Most of the workflows that previously relied on components from {mod}`~qiskit.opflow.primitive_ops` and
+{mod}`~qiskit.opflow.list_ops` can now leverage elements from {mod}`~qiskit.quantum_info`'s
 operators instead.
 Some of these classes do not require a 1-1 replacement because they were created to interface with other
 opflow components.
 
-Primitive Ops
--------------
-*Back to* `Contents`_
+### Primitive Ops
 
-:class:`~qiskit.opflow.primitive_ops.PrimitiveOp` is the :mod:`~qiskit.opflow.primitive_ops` module's base class.
+*Back to* [Contents]
+
+{class}`~qiskit.opflow.primitive_ops.PrimitiveOp` is the {mod}`~qiskit.opflow.primitive_ops` module's base class.
 It also acts as a factory to instantiate a corresponding sub-class depending on the computational primitive used
 to initialize it.
 
-.. tip::
+:::{tip}
+Interpreting {class}`~qiskit.opflow.primitive_ops.PrimitiveOp` as a factory class:
 
-    Interpreting :class:`~qiskit.opflow.primitive_ops.PrimitiveOp` as a factory class:
+```{eval-rst}
+.. list-table::
+   :header-rows: 1
 
-    .. list-table::
-       :header-rows: 1
+   * - Class passed to :class:`~qiskit.opflow.primitive_ops.PrimitiveOp`
+     - Subclass returned
 
-       * - Class passed to :class:`~qiskit.opflow.primitive_ops.PrimitiveOp`
-         - Subclass returned
+   * - :class:`~qiskit.quantum_info.Pauli`
+     - :class:`~qiskit.opflow.primitive_ops.PauliOp`
 
-       * - :class:`~qiskit.quantum_info.Pauli`
-         - :class:`~qiskit.opflow.primitive_ops.PauliOp`
+   * - :class:`~qiskit.circuit.Instruction`, :class:`~qiskit.circuit.QuantumCircuit`
+     - :class:`~qiskit.opflow.primitive_ops.CircuitOp`
 
-       * - :class:`~qiskit.circuit.Instruction`, :class:`~qiskit.circuit.QuantumCircuit`
-         - :class:`~qiskit.opflow.primitive_ops.CircuitOp`
-
-       * - ``list``, ``np.ndarray``, ``scipy.sparse.spmatrix``, :class:`~qiskit.quantum_info.Operator`
-         - :class:`~qiskit.opflow.primitive_ops.MatrixOp`
+   * - ``list``, ``np.ndarray``, ``scipy.sparse.spmatrix``, :class:`~qiskit.quantum_info.Operator`
+     - :class:`~qiskit.opflow.primitive_ops.MatrixOp`
+```
+:::
 
 Thus, when migrating opflow code, it is important to look for alternatives to replace the specific subclasses that
 are used "under the hood" in the original code:
 
+```{eval-rst}
 .. list-table::
    :header-rows: 1
 
@@ -471,9 +482,11 @@ are used "under the hood" in the original code:
 
    * - :class:`qiskit.opflow.primitive_ops.Z2Symmetries`
      - :class:`qiskit.quantum_info.analysis.Z2Symmetries`. See example :ref:`below <example_z2_sym>`.
+```
 
-.. _example_pauli_sum_op:
+(example-pauli-sum-op)=
 
+```{eval-rst}
 .. dropdown:: Example 1: ``PauliSumOp``
     :animate: fade-in-slide-down
 
@@ -506,9 +519,11 @@ are used "under the hood" in the original code:
 
         SparsePauliOp(['XYZY'],
                       coeffs=[0.-6.j])
+```
 
-.. _example_z2_sym:
+(example-z2-sym)=
 
+```{eval-rst}
 .. dropdown:: Example 2: ``Z2Symmetries`` and ``TaperedPauliSumOp``
     :animate: fade-in-slide-down
 
@@ -604,15 +619,17 @@ are used "under the hood" in the original code:
         Tapered Op from Z2 symmetries:  [SparsePauliOp(['I', 'X'],
                       coeffs=[-1.06494419+0.j,  0.18128881+0.j]), SparsePauliOp(['I', 'Z', 'X'],
                       coeffs=[-1.04247102+0.j, -0.78796736+0.j, -0.18128881+0.j])]
+```
 
-ListOps
---------
-*Back to* `Contents`_
+### ListOps
 
-The :mod:`~qiskit.opflow.list_ops` module contained classes for manipulating lists of :mod:`~qiskit.opflow.primitive_ops`
-or :mod:`~qiskit.opflow.state_fns`. The :mod:`~qiskit.quantum_info` alternatives for this functionality are the
-:class:`~qiskit.quantum_info.PauliList` and :class:`~qiskit.quantum_info.SparsePauliOp` (for sums of :class:`~qiskit.quantum_info.Pauli`\s).
+*Back to* [Contents]
 
+The {mod}`~qiskit.opflow.list_ops` module contained classes for manipulating lists of {mod}`~qiskit.opflow.primitive_ops`
+or {mod}`~qiskit.opflow.state_fns`. The {mod}`~qiskit.quantum_info` alternatives for this functionality are the
+{class}`~qiskit.quantum_info.PauliList` and {class}`~qiskit.quantum_info.SparsePauliOp` (for sums of {class}`~qiskit.quantum_info.Pauli`s).
+
+```{eval-rst}
 .. list-table::
    :header-rows: 1
 
@@ -634,42 +651,46 @@ or :mod:`~qiskit.opflow.state_fns`. The :mod:`~qiskit.quantum_info` alternatives
    * - :class:`~qiskit.opflow.list_ops.TensoredOp`
      - No direct replacement. For :class:`~qiskit.quantum_info.Pauli` operators, use :class:`~qiskit.quantum_info.SparsePauliOp`.
 
+```
 
-State Functions
-===============
-*Back to* `Contents`_
+## State Functions
 
-The :mod:`~qiskit.opflow.state_fns` module can be generally replaced by subclasses of :mod:`~qiskit.quantum_info`\'s
-:class:`qiskit.quantum_info.QuantumState`.
+*Back to* [Contents]
 
-Similarly to :class:`~qiskit.opflow.primitive_ops.PrimitiveOp`, :class:`~qiskit.opflow.state_fns.StateFn`
+The {mod}`~qiskit.opflow.state_fns` module can be generally replaced by subclasses of {mod}`~qiskit.quantum_info`'s
+{class}`qiskit.quantum_info.QuantumState`.
+
+Similarly to {class}`~qiskit.opflow.primitive_ops.PrimitiveOp`, {class}`~qiskit.opflow.state_fns.StateFn`
 acts as a factory to create the corresponding subclass depending on the computational primitive used to initialize it.
 
-.. tip::
+:::{tip}
+Interpreting {class}`~qiskit.opflow.state_fns.StateFn` as a factory class:
 
-    Interpreting :class:`~qiskit.opflow.state_fns.StateFn` as a factory class:
+```{eval-rst}
+.. list-table::
+   :header-rows: 1
 
-    .. list-table::
-       :header-rows: 1
+   * - Class passed to :class:`~qiskit.opflow.state_fns.StateFn`
+     - Sub-class returned
 
-       * - Class passed to :class:`~qiskit.opflow.state_fns.StateFn`
-         - Sub-class returned
+   * - ``str``, ``dict``, :class:`~qiskit.result.Result`
+     - :class:`~qiskit.opflow.state_fns.DictStateFn`
 
-       * - ``str``, ``dict``, :class:`~qiskit.result.Result`
-         - :class:`~qiskit.opflow.state_fns.DictStateFn`
+   * - ``list``, ``np.ndarray``, :class:`~qiskit.quantum_info.Statevector`
+     - :class:`~qiskit.opflow.state_fns.VectorStateFn`
 
-       * - ``list``, ``np.ndarray``, :class:`~qiskit.quantum_info.Statevector`
-         - :class:`~qiskit.opflow.state_fns.VectorStateFn`
+   * - :class:`~qiskit.circuit.QuantumCircuit`, :class:`~qiskit.circuit.Instruction`
+     - :class:`~qiskit.opflow.state_fns.CircuitStateFn`
 
-       * - :class:`~qiskit.circuit.QuantumCircuit`, :class:`~qiskit.circuit.Instruction`
-         - :class:`~qiskit.opflow.state_fns.CircuitStateFn`
+   * - :class:`~qiskit.opflow.OperatorBase`
+     - :class:`~qiskit.opflow.state_fns.OperatorStateFn`
+```
+:::
 
-       * - :class:`~qiskit.opflow.OperatorBase`
-         - :class:`~qiskit.opflow.state_fns.OperatorStateFn`
-
-This means that references to :class:`~qiskit.opflow.state_fns.StateFn` in opflow code should be examined to
+This means that references to {class}`~qiskit.opflow.state_fns.StateFn` in opflow code should be examined to
 identify the subclass that is being used, to then look for an alternative.
 
+```{eval-rst}
 .. list-table::
    :header-rows: 1
 
@@ -701,7 +722,9 @@ identify the subclass that is being used, to then look for an alternative.
      - Used in :class:`~qiskit.opflow.expectations.CVaRExpectation`.
        Functionality now covered by :class:`.SamplingVQE`. See example in `Expectations`_.
 
+```
 
+```{eval-rst}
 .. dropdown:: Example 1: Applying an operator to a state
     :animate: fade-in-slide-down
 
@@ -768,21 +791,21 @@ identify the subclass that is being used, to then look for an alternative.
                     dims=(2, 2))
         Statevector([0.+0.j, 0.+0.j, 0.-1.j, 0.+0.j],
                     dims=(2, 2))
+```
 
-See more applied examples in `Expectations`_  and `Converters`_.
+See more applied examples in [Expectations]  and [Converters].
 
+## Converters
 
-Converters
-==========
+*Back to* [Contents]
 
-*Back to* `Contents`_
-
-The role of the :class:`qiskit.opflow.converters` submodule was to convert the operators into other opflow operator classes
-(:class:`~qiskit.opflow.converters.TwoQubitReduction`, :class:`~qiskit.opflow.converters.PauliBasisChange`...).
-In the case of the :class:`~qiskit.opflow.converters.CircuitSampler`, it traversed an operator and outputted
+The role of the {class}`qiskit.opflow.converters` submodule was to convert the operators into other opflow operator classes
+({class}`~qiskit.opflow.converters.TwoQubitReduction`, {class}`~qiskit.opflow.converters.PauliBasisChange`...).
+In the case of the {class}`~qiskit.opflow.converters.CircuitSampler`, it traversed an operator and outputted
 approximations of its state functions using a quantum backend.
-Notably, this functionality has been replaced by the :mod:`~qiskit.primitives`.
+Notably, this functionality has been replaced by the {mod}`~qiskit.primitives`.
 
+```{eval-rst}
 .. list-table::
    :header-rows: 1
 
@@ -808,9 +831,11 @@ Notably, this functionality has been replaced by the :mod:`~qiskit.primitives`.
         The general symmetry logic this mapper depends on has been refactored to other classes in :mod:`~qiskit.quantum_info`,
         so this specific :mod:`~qiskit.opflow` implementation is no longer necessary.
 
+```
 
-.. _example_convert_state:
+(example-convert-state)=
 
+```{eval-rst}
 .. dropdown:: Example 1: ``CircuitSampler`` for sampling parametrized circuits
     :animate: fade-in-slide-down
 
@@ -842,9 +867,9 @@ Notably, this functionality has been replaced by the :mod:`~qiskit.primitives`.
 
     .. testoutput::
 
-        SparseVectorStateFn(  (0, 0)	1.0)
-        SparseVectorStateFn(  (0, 0)	1.0)
-        SparseVectorStateFn(  (0, 0)	1.0)
+        SparseVectorStateFn(  (0, 0)    1.0)
+        SparseVectorStateFn(  (0, 0)    1.0)
+        SparseVectorStateFn(  (0, 0)    1.0)
 
     **Alternative**
 
@@ -877,7 +902,9 @@ Notably, this functionality has been replaced by the :mod:`~qiskit.primitives`.
 
         [{0: 1.0}, {0: 1.0}, {0: 1.0}]
 
+```
 
+```{eval-rst}
 .. dropdown:: Example 2: ``CircuitSampler`` for computing expectation values
     :animate: fade-in-slide-down
 
@@ -926,9 +953,11 @@ Notably, this functionality has been replaced by the :mod:`~qiskit.primitives`.
     .. testoutput::
 
         [1.]
+```
 
-.. _example_commuting:
+(example-commuting)=
 
+```{eval-rst}
 .. dropdown:: Example 3: ``AbelianGrouper`` for grouping operators
     :animate: fade-in-slide-down
 
@@ -974,43 +1003,45 @@ Notably, this functionality has been replaced by the :mod:`~qiskit.primitives`.
                       coeffs=[2.+0.j]), SparsePauliOp(['YY'],
                       coeffs=[1.+0.j]), SparsePauliOp(['IZ', 'ZZ'],
                       coeffs=[0.+2.j, 0.+1.j])]
+```
 
-Evolutions
-==========
-*Back to* `Contents`_
+## Evolutions
 
-The :mod:`qiskit.opflow.evolutions` submodule was created to provide building blocks for Hamiltonian simulation algorithms,
+*Back to* [Contents]
+
+The {mod}`qiskit.opflow.evolutions` submodule was created to provide building blocks for Hamiltonian simulation algorithms,
 including various methods for Trotterization. The original opflow workflow for Hamiltonian simulation did not allow for
 delayed synthesis of the gates or efficient transpilation of the circuits, so this functionality was migrated to the
-``qiskit.synthesis`` :ref:`Evolution <evolution_synthesis>` module.
+`qiskit.synthesis` {ref}`Evolution <evolution_synthesis>` module.
 
-.. note::
+:::{note}
+The {class}`qiskit.opflow.evolutions.PauliTrotterEvolution` class computes evolutions for exponentiated
+sums of Paulis by converting to the Z basis, rotating with an RZ, changing back, and Trotterizing.
+When calling `.convert()`, the class follows a recursive strategy that involves creating
+{class}`~qiskit.opflow.evolutions.EvolvedOp` placeholders for the operators,
+constructing {class}`.PauliEvolutionGate`s out of the operator primitives, and supplying one of
+the desired synthesis methods to perform the Trotterization. The methods can be specified via
+`string`, which is then inputted into a {class}`~qiskit.opflow.evolutions.TrotterizationFactory`,
+or by supplying a method instance of {class}`qiskit.opflow.evolutions.Trotter`,
+{class}`qiskit.opflow.evolutions.Suzuki` or {class}`qiskit.opflow.evolutions.QDrift`.
 
-    The :class:`qiskit.opflow.evolutions.PauliTrotterEvolution` class computes evolutions for exponentiated
-    sums of Paulis by converting to the Z basis, rotating with an RZ, changing back, and Trotterizing.
-    When calling ``.convert()``, the class follows a recursive strategy that involves creating
-    :class:`~qiskit.opflow.evolutions.EvolvedOp` placeholders for the operators,
-    constructing :class:`.PauliEvolutionGate`\s out of the operator primitives, and supplying one of
-    the desired synthesis methods to perform the Trotterization. The methods can be specified via
-    ``string``, which is then inputted into a :class:`~qiskit.opflow.evolutions.TrotterizationFactory`,
-    or by supplying a method instance of :class:`qiskit.opflow.evolutions.Trotter`,
-    :class:`qiskit.opflow.evolutions.Suzuki` or :class:`qiskit.opflow.evolutions.QDrift`.
+The different Trotterization methods that extend {class}`qiskit.opflow.evolutions.TrotterizationBase` were migrated to
+{mod}`qiskit.synthesis`,
+and now extend the {class}`qiskit.synthesis.ProductFormula` base class. They no longer contain a `.convert()` method for
+standalone use, but are now designed to be plugged into the {class}`.PauliEvolutionGate` and called via `.synthesize()`.
+In this context, the job of the {class}`qiskit.opflow.evolutions.PauliTrotterEvolution` class can now be handled directly by the algorithms
+(for example, {class}`~qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE`).
 
-    The different Trotterization methods that extend :class:`qiskit.opflow.evolutions.TrotterizationBase` were migrated to
-    :mod:`qiskit.synthesis`,
-    and now extend the :class:`qiskit.synthesis.ProductFormula` base class. They no longer contain a ``.convert()`` method for
-    standalone use, but are now designed to be plugged into the :class:`.PauliEvolutionGate` and called via ``.synthesize()``.
-    In this context, the job of the :class:`qiskit.opflow.evolutions.PauliTrotterEvolution` class can now be handled directly by the algorithms
-    (for example, :class:`~qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE`\).
+In a similar manner, the {class}`qiskit.opflow.evolutions.MatrixEvolution` class performs evolution by classical matrix exponentiation,
+constructing a circuit with {class}`~.library.UnitaryGate`s or {class}`~.library.HamiltonianGate`s containing the exponentiation of the operator.
+This class is no longer necessary, as the {class}`~.library.HamiltonianGate`s can be directly handled by the algorithms.
+:::
 
-    In a similar manner, the :class:`qiskit.opflow.evolutions.MatrixEvolution` class performs evolution by classical matrix exponentiation,
-    constructing a circuit with :class:`~.library.UnitaryGate`\s or :class:`~.library.HamiltonianGate`\s containing the exponentiation of the operator.
-    This class is no longer necessary, as the :class:`~.library.HamiltonianGate`\s can be directly handled by the algorithms.
+### Trotterizations
 
-Trotterizations
----------------
-*Back to* `Contents`_
+*Back to* [Contents]
 
+```{eval-rst}
 .. list-table::
    :header-rows: 1
 
@@ -1028,11 +1059,13 @@ Trotterizations
 
    * - :class:`~qiskit.opflow.evolutions.QDrift`
      - :class:`qiskit.synthesis.QDrift`
+```
 
-Other Evolution Classes
------------------------
-*Back to* `Contents`_
+### Other Evolution Classes
 
+*Back to* [Contents]
+
+```{eval-rst}
 .. list-table::
    :header-rows: 1
 
@@ -1051,7 +1084,9 @@ Other Evolution Classes
    * - :class:`~qiskit.opflow.evolutions.PauliTrotterEvolution`
      - :class:`.PauliEvolutionGate`
 
+```
 
+```{eval-rst}
 .. dropdown:: Example 1: Trotter evolution
     :animate: fade-in-slide-down
 
@@ -1095,7 +1130,9 @@ Other Evolution Classes
            ┌─────────────────────┐
         q: ┤ exp(-it (X + Z))(1) ├
            └─────────────────────┘
+```
 
+```{eval-rst}
 .. dropdown:: Example 2: Evolution with time-dependent Hamiltonian
     :animate: fade-in-slide-down
 
@@ -1144,7 +1181,9 @@ Other Evolution Classes
         q: ┤ exp(-it (X + Y))(t) ├
            └─────────────────────┘
 
+```
 
+```{eval-rst}
 .. dropdown:: Example 3: Matrix evolution
     :animate: fade-in-slide-down
 
@@ -1188,19 +1227,21 @@ Other Evolution Classes
         q: ┤ U3(2,-π/2,π/2) ├
            └────────────────┘
 
+```
 
-Expectations
-============
-*Back to* `Contents`_
+## Expectations
+
+*Back to* [Contents]
 
 Expectations are converters which enable the computation of the expectation value of an observable with respect to some state function.
-This functionality can now be found in the :class:`~qiskit.primitives.Estimator` primitive. Please remember that there
-are different ``Estimator`` implementations, as noted :ref:`here <attention_primitives>`
+This functionality can now be found in the {class}`~qiskit.primitives.Estimator` primitive. Please remember that there
+are different `Estimator` implementations, as noted {ref}`here <attention_primitives>`
 
-Algorithm-Agnostic Expectations
--------------------------------
-*Back to* `Contents`_
+### Algorithm-Agnostic Expectations
 
+*Back to* [Contents]
+
+```{eval-rst}
 .. list-table::
    :header-rows: 1
 
@@ -1222,9 +1263,11 @@ Algorithm-Agnostic Expectations
      - Use any Estimator primitive (for :class:`qiskit.primitives.Estimator`, set ``shots!=None`` for a shot-based
        simulation, for :class:`qiskit_aer.primitives.Estimator` , this is the default).
 
+```
 
-.. _expect_state:
+(expect-state)=
 
+```{eval-rst}
 .. dropdown:: Example 1: Aer Pauli expectation
     :animate: fade-in-slide-down
 
@@ -1277,9 +1320,11 @@ Algorithm-Agnostic Expectations
 
         [0.-1.j]
 
+```
 
-.. _matrix_state:
+(matrix-state)=
 
+```{eval-rst}
 .. dropdown:: Example 2: Matrix expectation
     :animate: fade-in-slide-down
 
@@ -1334,11 +1379,13 @@ Algorithm-Agnostic Expectations
 
         [1.         0.70710678]
 
+```
 
-CVaRExpectation
----------------
-*Back to* `Contents`_
+### CVaRExpectation
 
+*Back to* [Contents]
+
+```{eval-rst}
 .. list-table::
    :header-rows: 1
 
@@ -1347,9 +1394,11 @@ CVaRExpectation
 
    * - :class:`~qiskit.opflow.expectations.CVaRExpectation`
      - Functionality migrated into new VQE algorithm: :class:`~qiskit.algorithms.minimum_eigensolvers.SamplingVQE`
+```
 
-..  _cvar:
+(cvar)=
 
+```{eval-rst}
 .. dropdown:: Example 1: VQE with CVaR
     :animate: fade-in-slide-down
 
@@ -1403,14 +1452,15 @@ CVaRExpectation
 
         -1.0
 
+```
 
-Gradients
-=========
-*Back to* `Contents`_
+## Gradients
 
-The opflow :mod:`~qiskit.opflow.gradients` framework has been replaced by the new :mod:`qiskit.algorithms.gradients`
+*Back to* [Contents]
+
+The opflow {mod}`~qiskit.opflow.gradients` framework has been replaced by the new {mod}`qiskit.algorithms.gradients`
 module. The new gradients are **primitive-based subroutines** commonly used by algorithms and applications, which
-can also be executed in a standalone manner. For this reason, they now reside under :mod:`qiskit.algorithms`.
+can also be executed in a standalone manner. For this reason, they now reside under {mod}`qiskit.algorithms`.
 
 The former gradient framework contained base classes, converters and derivatives. The "derivatives"
 followed a factory design pattern, where different methods could be provided via string identifiers
@@ -1420,90 +1470,94 @@ to each of these classes. The new gradient framework contains two main families 
 
 This leads to a change in the workflow, where instead of doing:
 
-.. code-block:: python
+```python
+from qiskit.opflow import Gradient
 
-    from qiskit.opflow import Gradient
+grad = Gradient(method="param_shift")
 
-    grad = Gradient(method="param_shift")
-
-    # task based on expectation value computations + gradients
+# task based on expectation value computations + gradients
+```
 
 We now import explicitly the desired class, depending on the target primitive (Sampler/Estimator) and target method:
 
-.. code-block:: python
+```python
+from qiskit.algorithms.gradients import ParamShiftEstimatorGradient
+from qiskit.primitives import Estimator
 
-    from qiskit.algorithms.gradients import ParamShiftEstimatorGradient
-    from qiskit.primitives import Estimator
+grad = ParamShiftEstimatorGradient(Estimator())
 
-    grad = ParamShiftEstimatorGradient(Estimator())
-
-    # task based on expectation value computations + gradients
+# task based on expectation value computations + gradients
+```
 
 This works similarly for the QFI class, where instead of doing:
 
-.. code-block:: python
+```python
+from qiskit.opflow import QFI
 
-    from qiskit.opflow import QFI
+qfi = QFI(method="lin_comb_full")
 
-    qfi = QFI(method="lin_comb_full")
-
-    # task based on expectation value computations + QFI
+# task based on expectation value computations + QFI
+```
 
 You now have a generic QFI implementation that can be initialized with different QGT (Quantum Gradient Tensor)
 implementations:
 
-.. code-block:: python
+```python
+from qiskit.algorithms.gradients import LinCombQGT, QFI
+from qiskit.primitives import Estimator
 
-    from qiskit.algorithms.gradients import LinCombQGT, QFI
-    from qiskit.primitives import Estimator
+qgt = LinCombQGT(Estimator())
+qfi = QFI(qgt)
 
-    qgt = LinCombQGT(Estimator())
-    qfi = QFI(qgt)
+# task based on expectation value computations + QFI
+```
 
-    # task based on expectation value computations + QFI
+:::{note}
+Here is a quick guide for migrating the most common gradient settings. Please note that all new gradient
+imports follow the format:
 
-.. note::
+> ```python
+> from qiskit.algorithms.gradients import MethodPrimitiveGradient, QFI
+> ```
 
-    Here is a quick guide for migrating the most common gradient settings. Please note that all new gradient
-    imports follow the format:
+```{eval-rst}
+.. dropdown:: Gradients
+    :animate: fade-in-slide-down
 
-        .. code-block:: python
+    .. list-table::
+       :header-rows: 1
 
-            from qiskit.algorithms.gradients import MethodPrimitiveGradient, QFI
+       * - Opflow
+         - Alternative
 
-    .. dropdown:: Gradients
-        :animate: fade-in-slide-down
+       * - ``Gradient(method="lin_comb")``
+         - ``LinCombEstimatorGradient(estimator=estimator)`` or ``LinCombSamplerGradient(sampler=sampler)``
+       * - ``Gradient(method="param_shift")``
+         - ``ParamShiftEstimatorGradient(estimator=estimator)`` or ``ParamShiftSamplerGradient(sampler=sampler)``
+       * - ``Gradient(method="fin_diff")``
+         - ``FiniteDiffEstimatorGradient(estimator=estimator)`` or ``ParamShiftSamplerGradient(sampler=sampler)``
+```
 
-        .. list-table::
-           :header-rows: 1
+```{eval-rst}
+.. dropdown:: QFI/QGT
+    :animate: fade-in-slide-down
 
-           * - Opflow
-             - Alternative
+    .. list-table::
+       :header-rows: 1
 
-           * - ``Gradient(method="lin_comb")``
-             - ``LinCombEstimatorGradient(estimator=estimator)`` or ``LinCombSamplerGradient(sampler=sampler)``
-           * - ``Gradient(method="param_shift")``
-             - ``ParamShiftEstimatorGradient(estimator=estimator)`` or ``ParamShiftSamplerGradient(sampler=sampler)``
-           * - ``Gradient(method="fin_diff")``
-             - ``FiniteDiffEstimatorGradient(estimator=estimator)`` or ``ParamShiftSamplerGradient(sampler=sampler)``
+       * - Opflow
+         - Alternative
 
-    .. dropdown:: QFI/QGT
-        :animate: fade-in-slide-down
-
-        .. list-table::
-           :header-rows: 1
-
-           * - Opflow
-             - Alternative
-
-           * - ``QFI(method="lin_comb_full")``
-             - ``qgt=LinCombQGT(Estimator())``
-               ``QFI(qgt=qgt)``
-
+       * - ``QFI(method="lin_comb_full")``
+         - ``qgt=LinCombQGT(Estimator())``
+           ``QFI(qgt=qgt)``
+```
+:::
 
 Other auxiliary classes in the legacy gradient framework have now been deprecated. Here is the complete migration
 list:
 
+```{eval-rst}
 .. list-table::
    :header-rows: 1
 
@@ -1528,7 +1582,9 @@ list:
        :class:`~qiskit.opflow.primitive_ops.PrimitiveOp`, and this functionality is no longer necessary.
    * - :class:`~qiskit.opflow.gradients.NaturalGradient`
      - No replacement. The same functionality can be achieved with the QFI module.
+```
 
+```{eval-rst}
 .. dropdown:: Example 1: Finite Differences Batched Gradient
     :animate: fade-in-slide-down
 
@@ -1607,7 +1663,9 @@ list:
 
         [array([ 3.53553391e-01,  0.00000000e+00, -1.80411242e-16]), array([0.10355339, 0.85355339, 1.10355339])]
 
+```
 
+```{eval-rst}
 .. dropdown:: Example 2: QFI
     :animate: fade-in-slide-down
 
@@ -1672,3 +1730,4 @@ list:
 
         [array([[ 1.00000000e+00, -1.50274614e-16],
                [-1.50274614e-16,  5.00000000e-01]])]
+```
