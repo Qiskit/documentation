@@ -15,8 +15,8 @@ const { existsSync, readFileSync } = require('fs');
 const path = require('node:path')
 const markdownLinkExtractor = require('markdown-link-extractor');
 
-DOCS_ROOT = "./docs"
-CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"]
+const DOCS_ROOT = "./docs"
+const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"]
 
 class Link {
   value: string
@@ -111,7 +111,7 @@ function markdownFromNotebook(source: string): string {
 function checkLinksInFile(filePath: string): boolean {
   const source = readFileSync(filePath, {encoding: 'utf8'})
   const markdown = (path.extname(filePath) === '.ipynb') ? markdownFromNotebook(source) : source
-  const links = markdownLinkExtractor(source).links.map(x => new Link(x, filePath))
+  const links = markdownLinkExtractor(source).links.map((x: string) => new Link(x, filePath))
 
   let allGood = true
   for (let link of links) {
