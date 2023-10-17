@@ -14,7 +14,7 @@ python_api_name: qiskit_ibm_provider.IBMBackend
 
 Backend class interfacing with an IBM Quantum device.
 
-You can run experiments on a backend using the [`run()`](qiskit_ibm_provider.IBMBackend#run "qiskit_ibm_provider.IBMBackend.run") method. The [`run()`](qiskit_ibm_provider.IBMBackend#run "qiskit_ibm_provider.IBMBackend.run") method takes one or more `QuantumCircuit` and returns an `IBMJob` instance that represents the submitted job. Each job has a unique job ID, which can later be used to retrieve the job. An example of this flow:
+You can run experiments on a backend using the [`run()`](qiskit_ibm_provider.IBMBackend#run "qiskit_ibm_provider.IBMBackend.run") method. The [`run()`](qiskit_ibm_provider.IBMBackend#run "qiskit_ibm_provider.IBMBackend.run") method takes one or more [`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit "(in Qiskit v0.44)") and returns an `IBMJob` instance that represents the submitted job. Each job has a unique job ID, which can later be used to retrieve the job. An example of this flow:
 
 ```python
 from qiskit import transpile
@@ -34,7 +34,7 @@ retrieved_job = provider.backend.retrieve_job(job.job_id())
   *   You should not instantiate the `IBMBackend` class directly. Instead, use the methods provided by an [`IBMProvider`](qiskit_ibm_provider.IBMProvider "qiskit_ibm_provider.IBMProvider") instance to retrieve and handle backends.
 </Admonition>
 
-Other methods return information about the backend. For example, the [`status()`](qiskit_ibm_provider.IBMBackend#status "qiskit_ibm_provider.IBMBackend.status") method returns a `BackendStatus` instance. The instance contains the `operational` and `pending_jobs` attributes, which state whether the backend is operational and also the number of jobs in the server queue for the backend, respectively:
+Other methods return information about the backend. For example, the [`status()`](qiskit_ibm_provider.IBMBackend#status "qiskit_ibm_provider.IBMBackend.status") method returns a [`BackendStatus`](/api/qiskit/qiskit.providers.models.BackendStatus.html#qiskit.providers.models.BackendStatus "(in Qiskit v0.44)") instance. The instance contains the `operational` and `pending_jobs` attributes, which state whether the backend is operational and also the number of jobs in the server queue for the backend, respectively:
 
 ```python
 status = backend.status()
@@ -50,7 +50,7 @@ jobs_in_queue = status.pending_jobs
 
 *   num\_qubits: number of qubits.
 
-*   target: A `qiskit.transpiler.Target` object for the backend.
+*   target: A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target.html#qiskit.transpiler.Target "(in Qiskit v0.44)") object for the backend.
 
 *   basis\_gates: list of basis gates names on the backend.
 
@@ -144,7 +144,7 @@ IBMBackend constructor.
 
 **Parameters**
 
-*   **configuration** (`Union`\[`QasmBackendConfiguration`, `PulseBackendConfiguration`]) – Backend configuration.
+*   **configuration** (`Union`\[[`QasmBackendConfiguration`](/api/qiskit/qiskit.providers.models.QasmBackendConfiguration.html#qiskit.providers.models.QasmBackendConfiguration "(in Qiskit v0.44)"), [`PulseBackendConfiguration`](/api/qiskit/qiskit.providers.models.PulseBackendConfiguration.html#qiskit.providers.models.PulseBackendConfiguration "(in Qiskit v0.44)")]) – Backend configuration.
 *   **provider** ([`IBMProvider`](qiskit_ibm_provider.IBMProvider "qiskit_ibm_provider.ibm_provider.IBMProvider")) – IBM Quantum account provider.
 *   **api\_client** (`AccountClient`) – IBM Quantum client used to communicate with the server.
 
@@ -154,7 +154,7 @@ IBMBackend constructor.
 
 ### coupling\_map
 
-Return the `CouplingMap` object
+Return the [`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap.html#qiskit.transpiler.CouplingMap "(in Qiskit v0.44)") object
 
 <span id="ibmbackend-dt" />
 
@@ -198,13 +198,13 @@ Return the system time resolution of output signals :returns: The output signal 
 
 ### instruction\_durations
 
-Return the `InstructionDurations` object.
+Return the [`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations.html#qiskit.transpiler.InstructionDurations "(in Qiskit v0.44)") object.
 
 <span id="ibmbackend-instruction-schedule-map" />
 
 ### instruction\_schedule\_map
 
-Return the `InstructionScheduleMap` for the instructions defined in this backend’s target.
+Return the [`InstructionScheduleMap`](/api/qiskit/qiskit.pulse.InstructionScheduleMap.html#qiskit.pulse.InstructionScheduleMap "(in Qiskit v0.44)") for the instructions defined in this backend’s target.
 
 <span id="ibmbackend-instructions" />
 
@@ -218,7 +218,7 @@ A list of Instruction tuples on the backend of the form `(instruction, (qubits)`
 
 **Return type**
 
-`List`\[`Tuple`\[`Instruction`, `Tuple`\[`int`]]]
+`List`\[`Tuple`\[[`Instruction`](/api/qiskit/qiskit.circuit.Instruction.html#qiskit.circuit.Instruction "(in Qiskit v0.44)"), `Tuple`\[`int`]]]
 
 <span id="ibmbackend-max-circuits" />
 
@@ -280,11 +280,11 @@ A list of instruction names that the backend supports.
 
 `List[Instruction]`
 
-A list of `Instruction` instances that the backend supports.
+A list of [`Instruction`](/api/qiskit/qiskit.circuit.Instruction.html#qiskit.circuit.Instruction "(in Qiskit v0.44)") instances that the backend supports.
 
 **Return type**
 
-`List`\[`Instruction`]
+`List`\[[`Instruction`](/api/qiskit/qiskit.circuit.Instruction.html#qiskit.circuit.Instruction "(in Qiskit v0.44)")]
 
 <span id="ibmbackend-options" />
 
@@ -308,6 +308,20 @@ the Provider responsible for the backend.
 
 Provider
 
+<span id="ibmbackend-session" />
+
+### session
+
+<span id="qiskit_ibm_provider.IBMBackend.session" />
+
+`Session`
+
+Return session
+
+**Return type**
+
+[`Session`](qiskit_ibm_provider.Session "qiskit_ibm_provider.session.Session")
+
 <span id="ibmbackend-target" />
 
 ### target
@@ -316,7 +330,7 @@ Provider
 
 `Target`
 
-A `qiskit.transpiler.Target` object for the backend. :rtype: `Target` :returns: Target
+A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target.html#qiskit.transpiler.Target "(in Qiskit v0.44)") object for the backend. :rtype: [`Target`](/api/qiskit/qiskit.transpiler.Target.html#qiskit.transpiler.Target "(in Qiskit v0.44)") :returns: Target
 
 <span id="ibmbackend-version" />
 
@@ -346,6 +360,20 @@ The Qubit measurement acquisition line.
 
 AcquireChannel
 
+<span id="ibmbackend-cancel-session" />
+
+### cancel\_session
+
+<span id="qiskit_ibm_provider.IBMBackend.cancel_session" />
+
+`IBMBackend.cancel_session()`
+
+Cancel session. All pending jobs will be cancelled.
+
+**Return type**
+
+`None`
+
 <span id="ibmbackend-configuration" />
 
 ### configuration
@@ -362,7 +390,7 @@ The schema for backend configuration can be found in [Qiskit/ibm-quantum-schemas
 
 **Return type**
 
-`Union`\[`QasmBackendConfiguration`, `PulseBackendConfiguration`]
+`Union`\[[`QasmBackendConfiguration`](/api/qiskit/qiskit.providers.models.QasmBackendConfiguration.html#qiskit.providers.models.QasmBackendConfiguration "(in Qiskit v0.44)"), [`PulseBackendConfiguration`](/api/qiskit/qiskit.providers.models.PulseBackendConfiguration.html#qiskit.providers.models.PulseBackendConfiguration "(in Qiskit v0.44)")]
 
 **Returns**
 
@@ -410,7 +438,7 @@ The schema for default pulse configuration can be found in [Qiskit/ibm-quantum-s
 
 **Return type**
 
-`Optional`\[`PulseDefaults`]
+`Optional`\[[`PulseDefaults`](/api/qiskit/qiskit.providers.models.PulseDefaults.html#qiskit.providers.models.PulseDefaults "(in Qiskit v0.44)")]
 
 **Returns**
 
@@ -440,7 +468,7 @@ DriveChannel
 
 <span id="qiskit_ibm_provider.IBMBackend.get_translation_stage_plugin" />
 
-`IBMBackend.get_translation_stage_plugin()`
+`classmethod IBMBackend.get_translation_stage_plugin()`
 
 Return the default translation stage plugin name for IBM backends.
 
@@ -466,6 +494,20 @@ The Qubit measurement stimulus line
 
 MeasureChannel
 
+<span id="ibmbackend-open-session" />
+
+### open\_session
+
+<span id="qiskit_ibm_provider.IBMBackend.open_session" />
+
+`IBMBackend.open_session(max_time=None)`
+
+Open session
+
+**Return type**
+
+[`Session`](qiskit_ibm_provider.Session "qiskit_ibm_provider.session.Session")
+
 <span id="ibmbackend-properties" />
 
 ### properties
@@ -483,11 +525,11 @@ The schema for backend properties can be found in [Qiskit/ibm-quantum-schemas](h
 **Parameters**
 
 *   **refresh** (`bool`) – If `True`, re-query the server for the backend properties. Otherwise, return a cached version.
-*   **datetime** (`Optional`\[`datetime`]) – By specifying datetime, this function returns an instance of the `BackendProperties` whose timestamp is closest to, but older than, the specified datetime.
+*   **datetime** (`Optional`\[`datetime`]) – By specifying datetime, this function returns an instance of the [`BackendProperties`](/api/qiskit/qiskit.providers.models.BackendProperties.html#qiskit.providers.models.BackendProperties "(in Qiskit v0.44)") whose timestamp is closest to, but older than, the specified datetime.
 
 **Return type**
 
-`Optional`\[`BackendProperties`]
+`Optional`\[[`BackendProperties`](/api/qiskit/qiskit.providers.models.BackendProperties.html#qiskit.providers.models.BackendProperties "(in Qiskit v0.44)")]
 
 **Returns**
 
@@ -531,19 +573,19 @@ qubit\_properties
 
 <span id="qiskit_ibm_provider.IBMBackend.run" />
 
-`IBMBackend.run(circuits, dynamic=None, job_tags=None, init_circuit=None, init_num_resets=None, header=None, shots=None, memory=None, qubit_lo_freq=None, meas_lo_freq=None, schedule_los=None, meas_level=None, meas_return=None, rep_delay=None, init_qubits=None, use_measure_esp=None, noise_model=None, seed_simulator=None, **run_config)`
+`IBMBackend.run(circuits, dynamic=None, job_tags=None, init_circuit=None, init_num_resets=None, header=None, shots=None, memory=None, meas_level=None, meas_return=None, rep_delay=None, init_qubits=None, use_measure_esp=None, noise_model=None, seed_simulator=None, **run_config)`
 
 Run on the backend. If a keyword specified here is also present in the `options` attribute/object, the value specified here will be used for this run.
 
 **Parameters**
 
-*   **circuits** (`Union`\[`QuantumCircuit`, `Schedule`, `str`, `List`\[`Union`\[`QuantumCircuit`, `Schedule`, `str`]]]) – An individual or a list of `QuantumCircuit`. `Schedule` is no longer supported. Use `pulse gates` instead. See [tutorial](https://qiskit.org/documentation/tutorials/circuits_advanced/05_pulse_gates.html) on how to use pulse gates.
+*   **circuits** (`Union`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit "(in Qiskit v0.44)"), `str`, `List`\[`Union`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit "(in Qiskit v0.44)"), `str`]]]) – An individual or a list of `QuantumCircuit`.
 
 *   **dynamic** (`Optional`\[`bool`]) – Whether the circuit is dynamic (uses in-circuit conditionals)
 
 *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the job. The tags can subsequently be used as a filter in the `jobs()` function call.
 
-*   **init\_circuit** (`Optional`\[`QuantumCircuit`]) – A quantum circuit to execute for initializing qubits before each circuit. If specified, `init_num_resets` is ignored. Applicable only if `dynamic=True` is specified.
+*   **init\_circuit** (`Optional`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit "(in Qiskit v0.44)")]) – A quantum circuit to execute for initializing qubits before each circuit. If specified, `init_num_resets` is ignored. Applicable only if `dynamic=True` is specified.
 
 *   **init\_num\_resets** (`Optional`\[`int`]) – The number of qubit resets to insert before each circuit execution.
 
@@ -556,12 +598,6 @@ Run on the backend. If a keyword specified here is also present in the `options`
 *   **shots** (`Union`\[`int`, `float`, `None`]) – Number of repetitions of each circuit, for sampling. Default: 4000 or `max_shots` from the backend configuration, whichever is smaller.
 
 *   **memory** (`Optional`\[`bool`]) – If `True`, per-shot measurement bitstrings are returned as well (provided the backend supports it). For OpenPulse jobs, only measurement level 2 supports this option.
-
-*   **qubit\_lo\_freq** (`Optional`\[`List`\[`int`]]) – List of default qubit LO frequencies in Hz. Will be overridden by `schedule_los` if set.
-
-*   **meas\_lo\_freq** (`Optional`\[`List`\[`int`]]) – List of default measurement LO frequencies in Hz. Will be overridden by `schedule_los` if set.
-
-*   **schedule\_los** (`Union`\[`List`\[`Union`\[`Dict`\[`PulseChannel`, `float`], `LoConfig`]], `Dict`\[`PulseChannel`, `float`], `LoConfig`, `None`]) – Experiment LO configurations, frequencies are given in Hz.
 
 *   **meas\_level** (`Union`\[`int`, `MeasLevel`, `None`]) –
 
@@ -639,12 +675,12 @@ This method is used to update the options of a backend. If you need to change an
 Return the backend status.
 
 <Admonition title="Note" type="note">
-  If the returned `BackendStatus` instance has `operational=True` but `status_msg="internal"`, then the backend is accepting jobs but not processing them.
+  If the returned [`BackendStatus`](/api/qiskit/qiskit.providers.models.BackendStatus.html#qiskit.providers.models.BackendStatus "(in Qiskit v0.44)") instance has `operational=True` but `status_msg="internal"`, then the backend is accepting jobs but not processing them.
 </Admonition>
 
 **Return type**
 
-`BackendStatus`
+[`BackendStatus`](/api/qiskit/qiskit.providers.models.BackendStatus.html#qiskit.providers.models.BackendStatus "(in Qiskit v0.44)")
 
 **Returns**
 
@@ -662,5 +698,5 @@ The status of the backend.
 
 `IBMBackend.target_history(datetime=None)`
 
-A `qiskit.transpiler.Target` object for the backend. :rtype: `Target` :returns: Target with properties found on datetime
+A [`qiskit.transpiler.Target`](/api/qiskit/qiskit.transpiler.Target.html#qiskit.transpiler.Target "(in Qiskit v0.44)") object for the backend. :rtype: [`Target`](/api/qiskit/qiskit.transpiler.Target.html#qiskit.transpiler.Target "(in Qiskit v0.44)") :returns: Target with properties found on datetime
 

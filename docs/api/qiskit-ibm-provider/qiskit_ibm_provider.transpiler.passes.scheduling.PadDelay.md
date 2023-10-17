@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.PadDelay" />
 
-`PadDelay(fill_very_end=True)`
+`PadDelay(fill_very_end=True, schedule_idle_qubits=False)`
 
 Padding idle time with Delay instructions.
 
@@ -34,7 +34,8 @@ Create new padding delay pass.
 
 **Parameters**
 
-**fill\_very\_end** (`bool`) – Set `True` to fill the end of circuit with delay.
+*   **fill\_very\_end** (`bool`) – Set `True` to fill the end of circuit with delay.
+*   **schedule\_idle\_qubits** (`bool`) – Set to true if you’d like a delay inserted on idle qubits. This is useful for timeline visualizations, but may cause issues for execution on large backends.
 
 ## Attributes
 
@@ -103,7 +104,7 @@ Run the padding pass on `dag`.
 
 **Parameters**
 
-**dag** (`DAGCircuit`) – DAG to be checked.
+**dag** ([`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit.html#qiskit.dagcircuit.DAGCircuit "(in Qiskit v0.44)")) – DAG to be checked.
 
 **Returns**
 
