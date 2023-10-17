@@ -1,72 +1,12 @@
 ---
 title: System information
-description: Information about IBM Quantum hardware, features of different processors, and system calibration, properties, and versioning
+description: Information about IBM Quantum system calibration, properties, and versioning
 
 ---
 
 # System information
 
-IBM Quantum offers both open and premium access to a wide variety of quantum systems. All quantum systems deployed by IBM Quantum are based on superconducting qubit technology, as the control and scalability of this technology pave a clear path to achieving quantum advantage with these systems. You can see the full details of all IBM Quantum systems on the [Compute resources page](https://quantum-computing.ibm.com/services/resources?tab=systems).
-
-{/* ## Paths
-
-programmatic (Python), API, web -- need to fill out!! */}
-
-## View system properties
-
-In contrast to the [system configuration](#system-configuration-values) that remains static on the timescale of typical experiments, the **properties** of a system are dynamical quantities that update at system calibration time. Systems are nominally calibrated once over a 24-hour period, and the system properties update once this calibration sequence is complete. The properties play a critical role in quantum circuit execution, as the parameters within the properties are utilized for noise-aware circuit mapping and optimization (transpilation). Additionally, system properties are used for constructing noise models of a system for use in classical simulation methods.
-
-You can most easily obtain a quantum system’s properties with Qiskit, but you can also obtain them by downloading the “calibrations” CSV file for a given system on IBM Quantum (see [View system configuration](#view-system-configuration) for more information).
-
-*   **system name** - `system.properties().backend_name` gives the name of the system.
-
-*   **system version** - `system.properties().backend_version` specifies the version of the system, as described [in the system versioning section](#system-versioning).
-
-*   **last update date** - `system.properties().last_update_date` gives the local time at which the properties information was last updated. This is the time at which the full properties file was returned from the system. Individual elements in the properties give the times at which they were computed. Depending on the device calibration schedule, these times can be markedly different than the last update date.
-
-*   **qubits** - `system.properties().qubits` contains information on the physical attributes of the qubits. This includes the qubit frequency in GHz, T1 and T2 times in µs, and readout error. As shown below, the readout\_error is further partitioned into `prob_meas0_prep1` and `prob_meas1_prep0`, indicating the probability of preparing a given computational basis state, but measuring the orthogonal state. The readout error is taken to be the average of these two values. Note that `prob_meas0_prep1` is usually the dominant factor in the readout error due to relaxation during the measurement process. The qubits field is a list indexed by the qubit number.
-
-    ```python
-    [Nduv(datetime.datetime(2020, 12, 7, 9, 5, 37, tzinfo=tzlocal()), T1, us, 134.6122100394965),
-     Nduv(datetime.datetime(2020, 12, 7, 9, 6, 19, tzinfo=tzlocal()), T2, us, 69.51042482642832),
-     Nduv(datetime.datetime(2020, 12, 7, 9, 21, 20, tzinfo=tzlocal()), frequency, GHz, 4.743896496595851),
-     Nduv(datetime.datetime(2020, 12, 7, 9, 21, 20, tzinfo=tzlocal()), anharmonicity, GHz, -0.31386048358781926),
-     Nduv(datetime.datetime(2020, 12, 7, 9, 4, 47, tzinfo=tzlocal()), readout_error, , 0.06969999999999998),
-     Nduv(datetime.datetime(2020, 12, 7, 9, 4, 47, tzinfo=tzlocal()), prob_meas0_prep1, , 0.0796),
-     Nduv(datetime.datetime(2020, 12, 7, 9, 4, 47, tzinfo=tzlocal()), prob_meas1_prep0, , 0.0598),
-     Nduv(datetime.datetime(2020, 12, 7, 9, 4, 47, tzinfo=tzlocal()), readout_length, ns, 5813.333333333333)
-    ]
-    ```
-
-    We see that each qubit parameter is expressed as an `Nduv` (name, date, unit value) object containing the local time at which the parameter was updated, the parameter name, parameter units, and the actual numerical parameter value.
-
-    *   **gates** - `system.properties().gates` gives detailed information on each gate that the system supports executing. For every single-qubit gate listed in the system basis gates, there exists an entry in the properties that gives the details of that gate, for each qubit on which the gate can be applied. Each entry is in the form of a `Gate` object:
-
-        ```python
-        Gate(gate='u2', name='u2_0', parameters=[Nduv('2020-06-06T09:06:46Z', gate_error, , 0.00022436814887248838), Nduv('2020-06-06T10:03:18Z', gate_length, ns, 35.55555555555556)], qubits=[0])
-        ```
-
-        and lists the kind of gate (`u2` in the example), its name, a list specifying the qubits on which the gate acts, and a `parameters` attribute, `gates.parameters`:
-
-        ```python
-        [Nduv('2020-06-06T09:06:46Z', gate_error, , 0.00022436814887248838),
-         Nduv('2020-06-06T10:03:18Z', gate_length, ns, 35.55555555555556)]
-        ```
-
-        containing `Nduv` objects specifying the gate error and gate length.
-
-        The same holds for multi-qubit gates, where there is an entry for each directed edge in the system [coupling map](#coupling-map). For symmetric coupling maps, the directionality of the underlying gate is still important. For example,
-
-        ```python
-        Gate(gate='cx', name='cx3_4', parameters=[Nduv('2020-06-06T10:03:18Z', gate_error, , 0.009793933588297388), Nduv('2020-06-06T10:03:18Z', gate_length, ns, 327.1111111111111)], qubits=[3, 4])
-        ```
-
-        versus
-
-        ```python
-        Gate(gate='cx', name='cx4_3', parameters=[Nduv('2020-06-06T10:03:18Z', gate_error, , 0.009793933588297388), Nduv('2020-06-06T10:03:18Z', gate_length, ns, 362.66666666666663)], qubits=[4, 3])
-        ```
-
+IBM Quantum offers both open and premium access to a wide variety of quantum systems. All quantum systems deployed by IBM Quantum are based on superconducting qubit technology, as the control and scalability of this technology pave a clear path to achieving quantum advantage with these systems. You can see the full details of all IBM Quantum systems on the [Compute resources page.](https://quantum-computing.ibm.com/services/resources?tab=systems)
 
 ## System versioning
 
@@ -97,6 +37,65 @@ The revision version number will increment for fixes that do not break the exist
 *   Small electronics changes that don’t affect operation.
 *   System software updates.
 
+## System configuration values
+
+The following is a subset of system configuration values available in IBM Quantum and from [Qiskit](/api/qiskit/qiskit.providers.models.BackendConfiguration).
+
+These values are shown on both the Systems and Simulators tabs of the [Compute resources page](https://quantum-computing.ibm.com/services/resources?services=systems) and the details page for each system.
+
+*   **Name** - The unique name assigned to a specific quantum system or simulator. Backends hosted on IBM Cloud® have names that begin with `ibmq_*` (older systems) or `ibm_*` (newer systems). All quantum systems are given a city name, e.g., `ibmq_johannesburg`. This name does not indicate where the actual quantum system is hosted. They are named after IBM locations around the world.
+*   **Qubits** - The number of qubits in a system. For physical quantum systems, this is the number of physical qubits in the device. For simulators, this number need not be uniquely defined, and instead can depend on the simulation method and/or the amount of memory available.
+*   **QV** - Quantum volume. This value measures the performance of gate-based quantum computers, regardless of their underlying technology.
+*   **CLOPS** - CLOPS, or circuit layer operations per second, is a measure of how many layers of a QV circuit a QPU (quantum processing unit) can execute per unit of time. Find more information about this metric in the paper called [Quality, Speed, and Scale: three key attributes to measure the performance of near-term quantum computers.](https://arxiv.org/abs/2110.14108)
+*   **Status** - The system status.
+*   **Total pending jobs** - The total number of jobs that you have submitted to this system.
+*   **Processor type** - Reflects the system topology and indicates the approximate qubit count.
+*   **Features** - Additional information about the system, such as whether it can be reserved and whether it supports pulse inputs.
+
+**Additional information available on the details page for each system**
+
+To access the details page, click the name of the system on the **Compute resources** page.
+
+*   **Version** - The version number of a system in the form `major.minor.revision`. See [System versioning](#system-versioning) for details on how this number is assigned.
+
+*   **Calibration data** (Available for systems only) - Download the calibration data as a .csv file or click the arrow to display the Topology diagram, Individual qubit readout graph, or the Calibration data table. You can customize the data that is shown, depending on the view you have open. For example, on the Topology diagram, you can choose the data you want to see for connections and qubits. The colored bars associated with the diagram or graph indicate the range that is shown, with the average value marked. The color maximum and minimum change depending on the system.
+
+    > *   <span id="coupling-map">**Topology diagram** or **coupling map** </span> - A diagram that indicates the pairs of qubits that support two-qubit gate operations between them. This is also called the coupling map or connectivity. Qubits are represented as circles and the supported two-qubit gate operations are displayed as lines connecting the qubits.
+    > *   **Individual qubit properties** - Shows the selected property for each qubit on the system. You can view the frequency, T1, T2, Anharmonicity, probability measurements, error rates, and so on.
+
+*   **Your access instance** - Instances that you can use. Click the arrow on the right to expand or collapse this section. For each instance, you can see the following information:
+
+    *   **Max shots** - The maximum number of times you can execute a single circuit on a system. The number of shots taken determines the precision of the output probability distribution over repeated executions.
+    *   **Max circuits** - The maximum number of quantum circuits that you can submit to this system at one time.
+    *   **Max qubits per pulse gate** - The maximum number of qubit arguments allowed to a gate.
+    *   **Max channels per pulse gate** - The maximum number of channels you can refer to within a pulse schedule. Typically each qubit is associated with a drive channel, a measure channel, an acquisition channel, and then auxiliary control channels for things like cross resonance.
+    *   **Usage** - Click the link to see the jobs that you have run on this system.
+
+## View system configuration
+
+View system configuration values by selecting a system on the [Compute resources page.](https://quantum-computing.ibm.com/services/resources?services=systems) The three tabs in the Calibration data section let you choose how to view the calibration data; the Map view tab is automatically selected.
+
+![An expanded card for a sample system.](/images/migration/exp-card.png)
+
+An expanded card for a sample system.
+
+Click the download icon in the upper right of any tab to download a CSV file of calibration data.
+
+![The graph view tab.](/images/migration/graph-view1.png)
+
+The Graph view tab.
+
+![The table view tab.](/images/migration/table-view.png)
+
+The Table view tab.
+
+
+## Find backend information from other channels
+
+To find your available systems and simulators on **IBM Cloud**, view the [IBM Cloud Compute resources page.](https://cloud.ibm.com/quantum/resources/your-resources) You must be logged in to see your available compute resources. You are shown a snapshot of each backend. To see full details, click the backend name. You can also search for backends from this page.
+
+To find your available systems and simulators on **IBM Quantum Platform**, view the [Platform Compute resources page.](https://quantum-computing.ibm.com/services/resources) You are shown a snapshot of each backend. To see full details, click the backend name. You can also sort, filter, and search from this page.
+
 ## Cite a system
 
 
@@ -117,6 +116,3 @@ For example:
 An example of citing an IBM Quantum program:
 
 > IBM Quantum (2022). Estimator primitive (Version x.y.z) [computer software]. https://<span>quantum-computing.ibm.com</span>/
-
-
-
