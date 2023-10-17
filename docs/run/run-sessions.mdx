@@ -113,7 +113,7 @@ There is also an interactive timeout value (ITTL, or interactive time to live) t
 <span id="close"></span>
 ## Close a session 
 
-### For Qiskit 12.3 or later releases
+### For Qiskit Runtime 13.0 or later releases
 
 When the session context manager is exited, the session is put into `Not accepting new jobs` status.  This means that the session will finish processing all running or queued jobs until the maximum timeout value is reached.  After all jobs are completed, the session is immediately closed. This allows the
 scheduler to run the next job without waiting for the session interactive timeout,
@@ -129,7 +129,7 @@ with Session(service=service, backend=backend) as session:
 result = job.result()
 ```
 
-### For Qiskit 12.2 or previous releases
+### For Qiskit runtime releases before 13.0
 
 When jobs are all done, it is recommended that you use
 `session.close()` to close the session. This allows the
@@ -197,6 +197,37 @@ with Session(backend=backend):
         f">>> Quasi-probability distribution from the sampler job: {sampler_job.result().quasi_dists[0]}"
     )
     print(f">>> Expectation value from the estimator job: {estimator_job.result().values[0]}")
+```
+
+<span id="session-details"></span>
+## Query session status
+
+You can query the status of a session using `session.status()`.  You can also view a session's status on the Jobs page for your channel.
+
+Session status can be one of the following:
+
+- `Pending`: Session has not started or has been deactivated. 
+- `In progress, accepting new jobs`: Session is active and accepting new jobs.
+- `In progress, not accepting new jobs`: Session is active but not accepting new jobs. Job submission to the session will be rejected, but outstanding session jobs will run to completion. The session will be automatically closed once all jobs finish. 
+- `Closed`: Session maximum timeout value has been reached, or session was explicitly closed.
+
+<span id="session-details"></span>
+## Determine session details
+
+You can find details about a session by using the `session.details()` method, from the [Quantum Platform Jobs page](https://quantum-computing.ibm.com/jobs), or from the IBM Cloud Jobs page, which you access from your [Instances page](https://cloud.ibm.com/quantum/instances). From the session details you can determine the [maximum](#max-ttl) and [interactive](#ttl) time to live (TTL) values, its status, whether it's currently accepting jobs, and more. 
+
+Example:
+
+``` python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService()
+
+with Session(service=service, backend="ibmq_qasm_simulator") as session:
+  session.details()
+  ...
+  print(f"The maximum session time is {session_details["max_time"]}.")
+  print(f"The interactive TTL is {session_details["interactive_ttl"]}.")
 ```
 
 ## Full example
