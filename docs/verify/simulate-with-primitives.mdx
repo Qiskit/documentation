@@ -1,478 +1,381 @@
 ---
-title: Simulate using Qiskit reference primitives
+title: Simulate with Qiskit reference primitives
 description: How to compute an expectation value with the Estimator primitive, and how to compute circuit output probabilities with the Sampler primitive
 ---
 
-# Simulate using Qiskit reference primitives
+# Simulate with Qiskit reference primitives
 
-## Compute an expectation value with `Estimator` primitive
+## Compute an expectation value with the `Estimator` primitive
 
-This guide shows how to get the expected value of an observable for a given quantum circuit with the {class}`~qiskit.primitives.Estimator` primitive.
+This guide shows how to get the expected value of an observable for a given quantum circuit with the [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) primitive.
 
-:::{note}
-While this guide uses Qiskit’s reference implementation, the `Estimator` primitive can be run with any provider using {class}`~qiskit.primitives.BackendEstimator` .
+<Admonition type="note" title="Note">
+  While this guide uses Qiskit’s reference implementation, the `Estimator` primitive can be run with any provider using [`qiskit.primitives.BackendEstimator`](../api/qiskit/qiskit.primitives.BackendEstimator).
 
-```
-from qiskit.primitives import BackendEstimator
-from <some_qiskit_provider> import QiskitProvider
+  ```python
+  from qiskit.primitives import BackendEstimator
+  from <some_qiskit_provider> import QiskitProvider
 
-provider = QiskitProvider()
-backend = provider.get_backend('backend_name')
-estimator = BackendEstimator(backend)
-```
+  provider = QiskitProvider()
+  backend = provider.get_backend('backend_name')
+  estimator = BackendEstimator(backend)
+  ```
 
-There are some providers that implement primitives natively (see [this page](http://qiskit.org/providers/#primitives) for more details).
-:::
+  There are some providers that implement primitives natively (see [this page](https://qiskit.org/providers/#primitives) for more details).
+</Admonition>
 
-## Initialize observables
+### Initialize observables
 
-The first step is to define the observables whose expected value you want to compute. Each observable can be any `BaseOperator`, like the operators from {mod}`qiskit.quantum_info`.
-Among them it is preferable to use {class}`~qiskit.quantum_info.SparsePauliOp`.
+The first step is to define the observables whose expected value you want to compute. Each observable can be any `BaseOperator`, like the operators from [`qiskit.quantum_info`](../api/qiskit/quantum_info).
+Among them it is preferable to use [`qiskit.quantum_info.SparsePauliOp`](../api/qiskit/qiskit.quantum_info.SparsePauliOp).
 
-```{eval-rst}
-.. testcode::
+```python
+from qiskit.quantum_info import SparsePauliOp
 
-    from qiskit.quantum_info import SparsePauliOp
-
-    observable = SparsePauliOp(["II", "XX", "YY", "ZZ"], coeffs=[1, 1, -1, 1])
+observable = SparsePauliOp(["II", "XX", "YY", "ZZ"], coeffs=[1, 1, -1, 1])
 ```
 
-## Initialize quantum circuit
+### Initialize quantum circuit
 
-Then you need to create the {class}`~qiskit.circuit.QuantumCircuit`s for which you want to obtain the expected value.
+Then you need to create the [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit)s for which you want to obtain the expected value.
 
-```{eval-rst}
-.. plot::
-    :include-source:
+```python
+from qiskit import QuantumCircuit
 
-    from qiskit import QuantumCircuit
-
-    qc = QuantumCircuit(2)
-    qc.h(0)
-    qc.cx(0,1)
-    qc.draw("mpl")
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.cx(0,1)
+qc.draw("mpl")
 ```
 
-```{eval-rst}
-.. testsetup::
+![Initial QuantumCircuit](/images/verify/use_estimator/initialize.png)
 
-    # This code is repeated (but hidden) because we will need to use the variables with the extension sphinx.ext.doctest (testsetup/testcode/testoutput directives)
-    # and we can't reuse the variables from the plot directive above because they are incompatible.
-    # The plot directive is used to draw the circuit with matplotlib and the code is shown because of the include-source flag.
+<Admonition type="note" title="Note">
+  The [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) you pass to [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) must not include any measurements.
+</Admonition>
 
-    from qiskit import QuantumCircuit
+### Initialize `Estimator`
 
-    qc = QuantumCircuit(2)
-    qc.h(0)
-    qc.cx(0,1)
+Then, you need to instantiate an [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator).
+
+```python
+from qiskit.primitives import Estimator
+
+estimator = Estimator()
 ```
 
-:::{note}
-The {class}`~qiskit.circuit.QuantumCircuit` you pass to {class}`~qiskit.primitives.Estimator` must not include any measurements.
-:::
+### Run and get results
 
-## Initialize the `Estimator`
+Now that you have defined your `estimator`, you can run your estimation by calling the [`qiskit.primitives.Estimator.run`](../api/qiskit/qiskit.primitives.Estimator#run) method,
+which returns an instance of [`qiskit.providers.JobV1`](../api/qiskit/qiskit.providers.JobV1). You can get the results from the job (as a [`qiskit.primitives.EstimatorResult`](../api/qiskit/qiskit.primitives.EstimatorResult) object)
+with the [`qiskit.providers.JobV1.result`](../api/qiskit/qiskit.providers.JobV1#result) method.
 
-Then, you need to instantiate an {class}`~qiskit.primitives.Estimator`.
-
-```{eval-rst}
-.. testcode::
-
-    from qiskit.primitives import Estimator
-
-    estimator = Estimator()
+```python
+job = estimator.run(qc, observable)
+result = job.result()
+print(result)
 ```
 
-## Run and get results
-
-Now that you have defined your `estimator`, you can run your estimation by calling the {meth}`~qiskit.primitives.Estimator.run` method,
-which returns an instance of {class}`~.PrimitiveJob` (subclass of {class}`~qiskit.providers.JobV1`). You can get the results from the job (as a {class}`~qiskit.primitives.EstimatorResult` object)
-with the {meth}`~qiskit.providers.JobV1.result` method.
-
-```{eval-rst}
-.. testcode::
-
-    job = estimator.run(qc, observable)
-    result = job.result()
-    print(result)
+```python
+EstimatorResult(values=array([4.]), metadata=[{}])
 ```
 
-```{eval-rst}
-.. testoutput::
-
-    EstimatorResult(values=array([4.]), metadata=[{}])
-```
-
-While this example only uses one {class}`~qiskit.circuit.QuantumCircuit` and one observable, if you want to get expectation values for multiple circuits and observables you can
-pass a `list` of {class}`~qiskit.circuit.QuantumCircuit`s and a list of `BaseOperator`s to the {meth}`~qiskit.primitives.Estimator.run` method. Both `list`s must have
+While this example only uses one [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) and one observable, if you want to get expectation values for multiple circuits and observables you can
+pass a `list` of [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit)s and a list of `BaseOperator`s to the [`qiskit.primitives.Estimator.run`](../api/qiskit/qiskit.primitives.Estimator#run) method. Both `list`s must have
 the same length.
 
-### Get the expected value
+#### Get the expected value
 
-From these results you can extract the expected values with the attribute {attr}`~qiskit.primitives.EstimatorResult.values`.
+From these results you can extract the expected values with the attribute [`qiskit.primitives.EstimatorResult.values`](../api/qiskit/qiskit.primitives.EstimatorResult#values).
 
-{attr}`~qiskit.primitives.EstimatorResult.values` returns a {class}`numpy.ndarray`
+[`qiskit.primitives.EstimatorResult.values`](../api/qiskit/qiskit.primitives.EstimatorResult#values) returns a `numpy.ndarray`
 whose `i`-th element is the expectation value corresponding to the `i`-th circuit and `i`-th observable.
 
-```{eval-rst}
-.. testcode::
-
-    exp_value = result.values[0]
-    print(exp_value)
+```python
+exp_value = result.values[0]
+print(exp_value)
 ```
 
-```{eval-rst}
-.. testoutput::
-
-    3.999999999999999
+```python
+3.999999999999999
 ```
 
-## Parameterized circuit with `Estimator`
+### Parameterized circuit with `Estimator`
 
-The {class}`~qiskit.primitives.Estimator` primitive can be run with unbound parameterized circuits like the one below.
+The [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) primitive can be run with unbound parameterized circuits like the one below.
 You can also manually bind values to the parameters of the circuit and follow the steps
 of the previous example.
 
-```{eval-rst}
-.. testcode::
+```python
+from qiskit.circuit import Parameter
 
-    from qiskit.circuit import Parameter
-
-    theta = Parameter('θ')
-    param_qc = QuantumCircuit(2)
-    param_qc.ry(theta, 0)
-    param_qc.cx(0,1)
-    print(param_qc.draw())
+theta = Parameter('θ')
+param_qc = QuantumCircuit(2)
+param_qc.ry(theta, 0)
+param_qc.cx(0,1)
+print(param_qc.draw())
 ```
 
-```{eval-rst}
-.. testoutput::
-
-         ┌───────┐
-    q_0: ┤ Ry(θ) ├──■──
-         └───────┘┌─┴─┐
-    q_1: ─────────┤ X ├
-                  └───┘
+```
+    ┌───────┐
+q_0: ┤ Ry(θ) ├──■──
+    └───────┘┌─┴─┐
+q_1: ─────────┤ X ├
+            └───┘
 ```
 
 The main difference with the previous case is that now you need to specify the sets of parameter values
 for which you want to evaluate the expectation value as a `list` of `list`s of `float`s.
-The `i`-th element of the outer\`\`list\`\` is the set of parameter values
+The `i`-th element of the outer `list` is the set of parameter values
 that corresponds to the `i`-th circuit and observable.
 
-```{eval-rst}
-.. testcode::
+```python
+import numpy as np
 
-    import numpy as np
+parameter_values = [[0], [np.pi/6], [np.pi/2]]
 
-    parameter_values = [[0], [np.pi/6], [np.pi/2]]
+job = estimator.run([param_qc]*3, [observable]*3, parameter_values=parameter_values)
+values = job.result().values
 
-    job = estimator.run([param_qc]*3, [observable]*3, parameter_values=parameter_values)
-    values = job.result().values
-
-    for i in range(3):
-        print(f"Parameter: {parameter_values[i][0]:.5f}\t Expectation value: {values[i]}")
+for i in range(3):
+    print(f"Parameter: {parameter_values[i][0]:.5f}\t Expectation value: {values[i]}")
 ```
 
-```{eval-rst}
-.. testoutput::
-
-    Parameter: 0.00000   Expectation value: 2.0
-    Parameter: 0.52360   Expectation value: 3.0
-    Parameter: 1.57080   Expectation value: 4.0
+```
+Parameter: 0.00000   Expectation value: 2.0
+Parameter: 0.52360   Expectation value: 3.0
+Parameter: 1.57080   Expectation value: 4.0
 ```
 
-## Change run options
+### Change run options
 
 Your workflow might require tuning primitive run options, such as the amount of shots.
 
-By default, the reference {class}`~qiskit.primitives.Estimator` class performs an exact statevector
-calculation based on the {class}`~qiskit.quantum_info.Statevector` class. However, this can be
+By default, the reference [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) class performs an exact statevector
+calculation based on the [`qiskit.quantum_info.Statevector`](../api/qiskit/qiskit.quantum_info.Statevector) class. However, this can be
 modified to include shot noise if the number of `shots` is set.
 For reproducibility purposes, a `seed` will also be set in the following examples.
 
-There are two main ways of setting options in the {class}`~qiskit.primitives.Estimator`:
+There are two main ways of setting options in the [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator):
 
-- Set keyword arguments in the {meth}`~qiskit.primitives.Estimator.run` method.
-- Modify {class}`~qiskit.primitives.Estimator` options.
+- Set keyword arguments in the [`qiskit.primitives.Estimator.run`](../api/qiskit/qiskit.primitives.Estimator#run) method.
+- Modify [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) options.
 
-### Set keyword arguments for {meth}`~qiskit.primitives.Estimator.run`
+#### Set keyword arguments for [`qiskit.primitives.Estimator.run`](../api/qiskit/qiskit.primitives.Estimator#run)
 
 If you only want to change the settings for a specific run, it can be more convenient to
-set the options inside the {meth}`~qiskit.primitives.Estimator.run` method. You can do this by
+set the options inside the [`qiskit.primitives.Estimator.run`](../api/qiskit/qiskit.primitives.Estimator#run) method. You can do this by
 passing them as keyword arguments.
 
-```{eval-rst}
-.. testcode::
-
-    job = estimator.run(qc, observable, shots=2048, seed=123)
-    result = job.result()
-    print(result)
+```python
+job = estimator.run(qc, observable, shots=2048, seed=123)
+result = job.result()
+print(result)
 ```
 
-```{eval-rst}
-.. testoutput::
-
-    EstimatorResult(values=array([4.]), metadata=[{'variance': 3.552713678800501e-15, 'shots': 2048}])
+```python
+EstimatorResult(values=array([4.]), metadata=[{'variance': 3.552713678800501e-15, 'shots': 2048}])
 ```
 
-```{eval-rst}
-.. testcode::
-
-    print(result.values[0])
+```python
+print(result.values[0])
 ```
 
-```{eval-rst}
-.. testoutput::
-
-    3.999999998697238
+```python
+3.999999998697238
 ```
 
-### Modify {class}`~qiskit.primitives.Estimator` options
+#### Modify [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) options
 
 If you want to keep some configuration values for several runs, it can be better to
-change the {class}`~qiskit.primitives.Estimator` options. That way you can use the same
-{class}`~qiskit.primitives.Estimator` object as many times as you wish without having to
-rewrite the configuration values every time you use {meth}`~qiskit.primitives.Estimator.run`.
+change the [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) options. That way you can use the same
+[`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) object as many times as you wish without having to
+rewrite the configuration values every time you use [`qiskit.primitives.Estimator.run`](../api/qiskit/qiskit.primitives.Estimator#run).
 
-#### Modify existing {class}`~qiskit.primitives.Estimator`
+#### Modify existing [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator)
 
-If you prefer to change the options of an already-defined {class}`~qiskit.primitives.Estimator`, you can use
-{meth}`~qiskit.primitives.Estimator.set_options` and introduce the new options as keyword arguments.
+If you prefer to change the options of an already-defined [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator), you can use
+the method [`qiskit.primitives.Estimator.set_options`](../api/qiskit/qiskit.primitives.Estimator#set_options) and introduce the new options as keyword arguments.
 
-```{eval-rst}
-.. testcode::
+```python
+estimator.set_options(shots=2048, seed=123)
 
-    estimator.set_options(shots=2048, seed=123)
-
-    job = estimator.run(qc, observable)
-    result = job.result()
-    print(result)
+job = estimator.run(qc, observable)
+result = job.result()
+print(result)
 ```
 
-```{eval-rst}
-.. testoutput::
-
-    EstimatorResult(values=array([4.]), metadata=[{'variance': 3.552713678800501e-15, 'shots': 2048}])
+```python
+EstimatorResult(values=array([4.]), metadata=[{'variance': 3.552713678800501e-15, 'shots': 2048}])
 ```
 
-```{eval-rst}
-.. testcode::
-
-    print(result.values[0])
+```python
+print(result.values[0])
 ```
 
-```{eval-rst}
-.. testoutput::
-
-    3.999999998697238
-
+```python
+3.999999998697238
 ```
 
-#### Define a new {class}`~qiskit.primitives.Estimator` with the options
+#### Define a new [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) with the options
 
-If you prefer to define a new {class}`~qiskit.primitives.Estimator` with new options, you need to
+If you prefer to define a new [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) with new options, you need to
 define a `dict` like this one:
 
-```{eval-rst}
-.. testcode::
-
-    options = {"shots": 2048, "seed": 123}
+```python
+options = {"shots": 2048, "seed": 123}
 ```
 
-And then you can introduce it into your new {class}`~qiskit.primitives.Estimator` with the
+And then you can introduce it into your new [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) with the
 `options` argument.
 
-```{eval-rst}
-.. testcode::
+```python
+estimator = Estimator(options=options)
 
-    estimator = Estimator(options=options)
-
-    job = estimator.run(qc, observable)
-    result = job.result()
-    print(result)
+job = estimator.run(qc, observable)
+result = job.result()
+print(result)
 ```
 
-```{eval-rst}
-.. testoutput::
-
-    EstimatorResult(values=array([4.]), metadata=[{'variance': 3.552713678800501e-15, 'shots': 2048}])
+```python
+EstimatorResult(values=array([4.]), metadata=[{'variance': 3.552713678800501e-15, 'shots': 2048}])
 ```
 
-```{eval-rst}
-.. testcode::
-
-    print(result.values[0])
+```python
+print(result.values[0])
 ```
 
-```{eval-rst}
-.. testoutput::
-
-    3.999999998697238
+```python
+3.999999998697238
 ```
-
 ## Compute circuit output probabilities with `Sampler` primitive
 
-This guide shows how to get the probability distribution of a quantum circuit with the {class}`~qiskit.primitives.Sampler` primitive.
+This guide shows how to get the probability distribution of a quantum circuit with the [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) primitive.
 
-:::{note}
-While this guide uses Qiskit’s reference implementation, the `Sampler` primitive can be run with any provider using {class}`~qiskit.primitives.BackendSampler`.
+<Admonition type="note" title="Note">
+  While this guide uses Qiskit’s reference implementation, the `Sampler` primitive can be run with any provider using [`qiskit.primitives.BackendSampler`](../api/qiskit/qiskit.primitives.BackendSampler).
 
-```
-from qiskit.primitives import BackendSampler
-from <some_qiskit_provider> import QiskitProvider
+  ```python
+  from qiskit.primitives import BackendSampler
+  from <some_qiskit_provider> import QiskitProvider
 
-provider = QiskitProvider()
-backend = provider.get_backend('backend_name')
-sampler = BackendSampler(backend)
-```
+  provider = QiskitProvider()
+  backend = provider.get_backend('backend_name')
+  sampler = BackendSampler(backend)
+  ```
 
-There are some providers that implement primitives natively (see [this page](http://qiskit.org/providers/#primitives) for more details).
-:::
+  There are some providers that implement primitives natively (see [this page](http://qiskit.org/providers/#primitives) for more details).
+</Admonition>
 
-## Initialize quantum circuits
+### Initialize quantum circuits
 
-The first step is to create the {class}`~qiskit.circuit.QuantumCircuit`s from which you want to obtain the probability distribution.
+The first step is to create the [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit)s from which you want to obtain the probability distribution.
 
-```{eval-rst}
-.. plot::
-    :include-source:
+```python
+from qiskit import QuantumCircuit
 
-    from qiskit import QuantumCircuit
-
-    qc = QuantumCircuit(2)
-    qc.h(0)
-    qc.cx(0,1)
-    qc.measure_all()
-    qc.draw("mpl")
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.cx(0,1)
+qc.measure_all()
+qc.draw("mpl")
 ```
 
-```{eval-rst}
-.. testsetup::
+![Initial QuantumCircuit](/images/verify/use_estimator/initialize.png)
 
-    # This code is repeated (but hidden) because we will need to use the variables with the extension sphinx.ext.doctest (testsetup/testcode/testoutput directives)
-    # and we can't reuse the variables from the plot directive above because they are incompatible.
-    # The plot directive is used to draw the circuit with matplotlib and the code is shown because of the include-source flag.
+<Admonition type="note" title="Note">
+The [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) you pass to [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) has to include measurements.
+</Admonition>
 
-    from qiskit import QuantumCircuit
+### Initialize `Sampler`
 
-    qc = QuantumCircuit(2)
-    qc.h(0)
-    qc.cx(0,1)
-    qc.measure_all()
+Then, you need to create a [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) instance.
+
+```python
+from qiskit.primitives import Sampler
+
+sampler = Sampler()
 ```
 
-:::{note}
-The {class}`~qiskit.circuit.QuantumCircuit` you pass to {class}`~qiskit.primitives.Sampler` has to include measurements.
-:::
+### Run and get results
 
-## Initialize the `Sampler`
+Now that you have defined your `sampler`, you can run it by calling the [`qiskit.primitives.Sampler.run`](../api/qiskit/qiskit.primitives.Sampler#run) method,
+which returns an instance of [`qiskit.providers.JobV1`](../api/qiskit/qiskit.providers.JobV1). You can get the results from the job (as a [`qiskit.primitives.SamplerResult`](../api/qiskit/qiskit.primitives.SamplerResult) object)
+with the [`qiskit.providers.JobV1.result`](../api/qiskit/qiskit.providers.JobV1#result) method.
 
-Then, you need to create a {class}`~qiskit.primitives.Sampler` instance.
-
-```{eval-rst}
-.. testcode::
-
-    from qiskit.primitives import Sampler
-
-    sampler = Sampler()
+```python
+job = sampler.run(qc)
+result = job.result()
+print(result)
 ```
 
-## Run and get results
-
-Now that you have defined your `sampler`, you can run it by calling the {meth}`~qiskit.primitives.Sampler.run` method,
-which returns an instance of {class}`~.PrimitiveJob` (subclass of {class}`~qiskit.providers.JobV1`). You can get the results from the job (as a {class}`~qiskit.primitives.SamplerResult` object)
-with the {meth}`~qiskit.providers.JobV1.result` method.
-
-```{eval-rst}
-.. testcode::
-
-    job = sampler.run(qc)
-    result = job.result()
-    print(result)
+```python
+SamplerResult(quasi_dists=[{0: 0.4999999999999999, 3: 0.4999999999999999}], metadata=[{}])
 ```
 
-```{eval-rst}
-.. testoutput::
-
-    SamplerResult(quasi_dists=[{0: 0.4999999999999999, 3: 0.4999999999999999}], metadata=[{}])
-```
-
-While this example only uses one {class}`~qiskit.circuit.QuantumCircuit`, if you want to sample multiple circuits you can
-pass a `list` of {class}`~qiskit.circuit.QuantumCircuit` instances to the {meth}`~qiskit.primitives.Sampler.run` method.
+While this example only uses one [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit), if you want to sample multiple circuits you can
+pass a `list` of [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) instances to the [`qiskit.primitives.Sampler.run`](../api/qiskit/qiskit.primitives.Sampler#run) method.
 
 ### Get the probability distribution
 
-From these results you can extract the quasi-probability distributions with the attribute {attr}`~qiskit.primitives.SamplerResult.quasi_dists`.
+From these results you can extract the quasi-probability distributions with the attribute [`qiskit.primitives.Sampler.quasi_dists`](../api/qiskit/qiskit.primitives.Sampler#quasi_dists).
 
-Even though there is only one circuit in this example, {attr}`~qiskit.primitives.SamplerResult.quasi_dists` returns a list of {class}`~qiskit.result.QuasiDistribution`s.
+Even though there is only one circuit in this example, [`qiskit.primitives.Sampler.quasi_dists`](../api/qiskit/qiskit.primitives.Sampler#quasi_dists) returns a list of [`qiskit.result.QuasiDistribution`](../api/qiskit/qiskit.result.QuasiDistribution)s.
 `result.quasi_dists[i]` is the quasi-probability distribution of the `i`-th circuit.
 
-:::{note}
+<Admonition type="note" title="Note">
 A quasi-probability distribution differs from a probability distribution in that negative values are also allowed.
 However the quasi-probabilities must sum up to 1 like probabilities.
 Negative quasi-probabilities may appear when using error mitigation techniques.
-:::
+</Admonition>
 
-```{eval-rst}
-.. testcode::
-
-    quasi_dist = result.quasi_dists[0]
-    print(quasi_dist)
+```python
+quasi_dist = result.quasi_dists[0]
+print(quasi_dist)
 ```
 
-```{eval-rst}
-.. testoutput::
-
-    {0: 0.4999999999999999, 3: 0.4999999999999999}
+```python
+{0: 0.4999999999999999, 3: 0.4999999999999999}
 ```
 
 #### Probability distribution with binary outputs
 
 If you prefer to see the output keys as binary strings instead of decimal numbers, you can use the
-{meth}`~qiskit.result.QuasiDistribution.binary_probabilities` method.
+[`qiskit.result.QuasiDistribution.binary_probabilities`](../api/qiskit/qiskit.result.QuasiDistribution#binary_probabilities) method.
 
-```{eval-rst}
-.. testcode::
-
-    print(quasi_dist.binary_probabilities())
+```python
+print(quasi_dist.binary_probabilities())
 ```
 
-```{eval-rst}
-.. testoutput::
-
-    {'00': 0.4999999999999999, '11': 0.4999999999999999}
+```python
+{'00': 0.4999999999999999, '11': 0.4999999999999999}
 ```
 
-## Parameterized circuit with `Sampler`
+### Parameterized circuit with `Sampler`
 
-The {class}`~qiskit.primitives.Sampler` primitive can be run with unbound parameterized circuits like the one below.
+The [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) primitive can be run with unbound parameterized circuits like the one below.
 You can also manually bind values to the parameters of the circuit and follow the steps
 of the previous example.
 
-```{eval-rst}
-.. testcode::
+```python
+from qiskit.circuit import Parameter
 
-    from qiskit.circuit import Parameter
-
-    theta = Parameter('θ')
-    param_qc = QuantumCircuit(2)
-    param_qc.ry(theta, 0)
-    param_qc.cx(0,1)
-    param_qc.measure_all()
-    print(param_qc.draw())
+theta = Parameter('θ')
+param_qc = QuantumCircuit(2)
+param_qc.ry(theta, 0)
+param_qc.cx(0,1)
+param_qc.measure_all()
+print(param_qc.draw())
 ```
 
-```{eval-rst}
-.. testoutput::
-
-            ┌───────┐      ░ ┌─┐
-       q_0: ┤ Ry(θ) ├──■───░─┤M├───
-            └───────┘┌─┴─┐ ░ └╥┘┌─┐
-       q_1: ─────────┤ X ├─░──╫─┤M├
-                     └───┘ ░  ║ └╥┘
-    meas: 2/══════════════════╩══╩═
-                              0  1
+```
+        ┌───────┐      ░ ┌─┐
+    q_0: ┤ Ry(θ) ├──■───░─┤M├───
+        └───────┘┌─┴─┐ ░ └╥┘┌─┐
+    q_1: ─────────┤ X ├─░──╫─┤M├
+                    └───┘ ░  ║ └╥┘
+meas: 2/══════════════════╩══╩═
+                            0  1
 ```
 
 The main difference from the previous case is that now you need to specify the sets of parameter values
@@ -480,116 +383,98 @@ for which you want to evaluate the expectation value as a `list` of `list`s of `
 The `i`-th element of the outer `list` is the set of parameter values
 that corresponds to the `i`-th circuit.
 
-```{eval-rst}
-.. testcode::
+```python
+import numpy as np
 
-    import numpy as np
+parameter_values = [[0], [np.pi/6], [np.pi/2]]
 
-    parameter_values = [[0], [np.pi/6], [np.pi/2]]
+job = sampler.run([param_qc]*3, parameter_values=parameter_values)
+dists = job.result().quasi_dists
 
-    job = sampler.run([param_qc]*3, parameter_values=parameter_values)
-    dists = job.result().quasi_dists
-
-    for i in range(3):
-        print(f"Parameter: {parameter_values[i][0]:.5f}\t Probabilities: {dists[i]}")
+for i in range(3):
+    print(f"Parameter: {parameter_values[i][0]:.5f}\t Probabilities: {dists[i]}")
 ```
 
-```{eval-rst}
-.. testoutput::
-
-    Parameter: 0.00000   Probabilities: {0: 1.0}
-    Parameter: 0.52360   Probabilities: {0: 0.9330127018922194, 3: 0.0669872981077807}
-    Parameter: 1.57080   Probabilities: {0: 0.5000000000000001, 3: 0.4999999999999999}
+```
+Parameter: 0.00000   Probabilities: {0: 1.0}
+Parameter: 0.52360   Probabilities: {0: 0.9330127018922194, 3: 0.0669872981077807}
+Parameter: 1.57080   Probabilities: {0: 0.5000000000000001, 3: 0.4999999999999999}
 ```
 
-## Change run options
+### Change run options
 
 Your workflow might require tuning primitive run options, such as the amount of shots.
 
-By default, the reference {class}`~qiskit.primitives.Sampler` class performs an exact statevector
-calculation based on the {class}`~qiskit.quantum_info.Statevector` class. However, this can be
+By default, the reference [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) class performs an exact statevector
+calculation based on the [`qiskit.quantum_info.Statevector`](../api/qiskit/qiskit.quantum_info.Statevector) class. However, this can be
 modified to include shot noise if the number of `shots` is set.
 For reproducibility purposes, a `seed` will also be set in the following examples.
 
-There are two main ways of setting options in the {class}`~qiskit.primitives.Sampler`:
+There are two main ways of setting options in the [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler):
 
-- Set keyword arguments in the {meth}`~qiskit.primitives.Sampler.run` method.
-- Modify {class}`~qiskit.primitives.Sampler` options.
+- Set keyword arguments in the [`qiskit.primitives.Sampler.run`](../api/qiskit/qiskit.primitives.Sampler#run) method.
+- Modify [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) options.
 
-### Set keyword arguments for {meth}`~qiskit.primitives.Sampler.run`
+#### Set keyword arguments for [`qiskit.primitives.Sampler.run`](../api/qiskit/qiskit.primitives.Sampler#run)
 
 If you only want to change the settings for a specific run, it can be more convenient to
-set the options inside the {meth}`~qiskit.primitives.Sampler.run` method. You can do this by
+set the options inside the [`qiskit.primitives.Sampler.run`](../api/qiskit/qiskit.primitives.Sampler#run) method. You can do this by
 passing them as keyword arguments.
 
-```{eval-rst}
-.. testcode::
-
-    job = sampler.run(qc, shots=2048, seed=123)
-    result = job.result()
-    print(result)
+```python
+job = sampler.run(qc, shots=2048, seed=123)
+result = job.result()
+print(result)
 ```
 
-```{eval-rst}
-.. testoutput::
-
-    SamplerResult(quasi_dists=[{0: 0.5205078125, 3: 0.4794921875}], metadata=[{'shots': 2048}])
+```python
+SamplerResult(quasi_dists=[{0: 0.5205078125, 3: 0.4794921875}], metadata=[{'shots': 2048}])
 ```
 
-### Modify {class}`~qiskit.primitives.Sampler` options
+#### Modify [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) options
 
 If you want to keep some configuration values for several runs, it can be better to
-change the {class}`~qiskit.primitives.Sampler` options. That way you can use the same
-{class}`~qiskit.primitives.Sampler` object as many times as you wish without having to
-rewrite the configuration values every time you use {meth}`~qiskit.primitives.Sampler.run`.
+change the [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) options. That way you can use the same
+[`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) object as many times as you wish without having to
+rewrite the configuration values every time you use [`qiskit.primitives.Sampler.run`](../api/qiskit/qiskit.primitives.Sampler#run).
 
-#### Modify existing {class}`~qiskit.primitives.Sampler`
+#### Modify existing [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler)
 
-If you prefer to change the options of an already-defined {class}`~qiskit.primitives.Sampler`, you can use
-{meth}`~qiskit.primitives.Sampler.set_options` and introduce the new options as keyword arguments.
+If you prefer to change the options of an already-defined [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler), you can use
+[`qiskit.primitives.Sampler.set_options`](../api/qiskit/qiskit.primitives.Sampler#set_options) and introduce the new options as keyword arguments.
 
-```{eval-rst}
-.. testcode::
+```python
+sampler.set_options(shots=2048, seed=123)
 
-    sampler.set_options(shots=2048, seed=123)
-
-    job = sampler.run(qc)
-    result = job.result()
-    print(result)
+job = sampler.run(qc)
+result = job.result()
+print(result)
 ```
 
-```{eval-rst}
-.. testoutput::
-
-    SamplerResult(quasi_dists=[{0: 0.5205078125, 3: 0.4794921875}], metadata=[{'shots': 2048}])
+```python
+SamplerResult(quasi_dists=[{0: 0.5205078125, 3: 0.4794921875}], metadata=[{'shots': 2048}])
 ```
 
-#### Define a new {class}`~qiskit.primitives.Sampler` with the options
+#### Define a new [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) with the options
 
-If you prefer to define a new {class}`~qiskit.primitives.Sampler` with new options, you need to
+If you prefer to define a new [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) with new options, you need to
 define a `dict` like this one:
 
-```{eval-rst}
-.. testcode::
-
-    options = {"shots": 2048, "seed": 123}
+```python
+options = {"shots": 2048, "seed": 123}
 ```
 
-And then you can introduce it into your new {class}`~qiskit.primitives.Sampler` with the
+And then you can introduce it into your new [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) with the
 `options` argument.
 
-```{eval-rst}
-.. testcode::
+```python
+sampler = Sampler(options=options)
 
-    sampler = Sampler(options=options)
-
-    job = sampler.run(qc)
-    result = job.result()
-    print(result)
+job = sampler.run(qc)
+result = job.result()
+print(result)
 ```
 
-```{eval-rst}
-.. testoutput::
-
-    SamplerResult(quasi_dists=[{0: 0.5205078125, 3: 0.4794921875}], metadata=[{'shots': 2048}])
+```python
+SamplerResult(quasi_dists=[{0: 0.5205078125, 3: 0.4794921875}], metadata=[{'shots': 2048}])
 ```
