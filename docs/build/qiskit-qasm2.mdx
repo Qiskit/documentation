@@ -118,7 +118,8 @@ program = '''
     qreg q[2];
     my(0.5) q[0], q[1];
     builtin q[0];
-'''
+    '''
+```
 customs = [
     qasm2.CustomInstruction(name="my", num_params=1, num_qubits=2, constructor=MyGate),
     # Setting 'builtin=True' means the instruction doesn't require a declaration to be usable.
@@ -132,7 +133,7 @@ Use `loads()` to import an OpenQASM 2 program as a string into a QuantumCircuit,
 
 ```python
 import math
-from qiskit.qasm2 import loads, CustomClassical
+from qiskit.qasm2 
 
 program = '''
     include "qelib1.inc";
@@ -146,11 +147,11 @@ def add_one(x):
 
 customs = [
     # `atan2` takes two parameters, and `math.atan2` implements it.
-    CustomClassical("atan2", 2, math.atan2),
+    qasm2.CustomClassical("atan2", 2, math.atan2),
     # Our `add_one` takes only one parameter.
-    CustomClassical("add_one", 1, add_one),
+    qasm2.CustomClassical("add_one", 1, add_one),
 ]
-circuit = loads(program, custom_classical=customs)
+circuit = qasm2.loads(program, custom_classical=customs)
 ```
 
 <Admonition type="tip" title="Recommendations">
