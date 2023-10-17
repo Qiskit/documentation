@@ -103,7 +103,7 @@ Use `loads()` to import an OpenQASM 2 program as a string into a QuantumCircuit,
 
 ```python
 from qiskit.circuit import Gate
-from qiskit.qasm2 import loads, CustomInstruction
+from qiskit import qasm2
 
 class MyGate(Gate):
     def __init__(self, theta):
@@ -120,12 +120,11 @@ program = '''
     builtin q[0];
 '''
 customs = [
-    CustomInstruction(name="my", num_params=1, num_qubits=2, constructor=MyGate),
+    qasm2.CustomInstruction(name="my", num_params=1, num_qubits=2, constructor=MyGate),
     # Setting 'builtin=True' means the instruction doesn't require a declaration to be usable.
-    CustomInstruction("builtin", 0, 1, Builtin, builtin=True),
+    qasm2.CustomInstruction("builtin", 0, 1, Builtin, builtin=True),
 ]
-circuit = loads(program, custom_instructions=customs)
-```
+circuit = qasm2.loads(program, custom_instructions=customs)
 
 ### Use custom classical instructions
 
