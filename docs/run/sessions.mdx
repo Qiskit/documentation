@@ -112,6 +112,10 @@ To find the interactive timeout value for a session, follow the instructions in 
 
 A session ends by reaching its maximum timeout value or when it is [closed](run-sessions#close). What happens to unfinished session jobs when the session ends depends on how it ended:
 
+<Admonition type="note" title="Important">
+    Previously, `session.close()` **canceled** the session.  Starting with Qiskit Runtime 0.13, `session.close()` **closes** the session. 
+</Admonition>
+
 If the maximum timeout value was reached:
     -   Any jobs that are already running are canceled.
     -   Any queued jobs remaining in the session are put into a failed state.
@@ -120,15 +124,19 @@ If the maximum timeout value was reached:
 
 If the maximum timeout value has not been reached:    
 
-- When using Qiskit Runtime 13.0 or later releases:
-    -   The session is put in `Not accepting new jobs` status.
-    -   Any jobs that are already running continue to run.
-    -   Any queued jobs remaining in the session continue to run.
-    -   No further jobs can be submitted to the session.
-    -   The session cannot be reopened.
-    -   After all currently queued jobs are completed, the session is immediately closed and will not run any more jobs.
+- When using Qiskit Runtime 0.13 or later releases:
+    - If a session is closed:
+        - Session status becomes "In progress, not accepting new jobs".
+        - New job submissions to the session is rejected.
+        - Queued or running jobs continue to run.
+        - The session cannot be reopened.
+    -If a session is canceled:
+        - Session status becomes "Closed."
+        - Running jobs continue to run.
+        - Queued jobs are put into a failed state.
+        - The session cannot be reopened.
 
-- When using Qiskit Runtime releases before 13.0:
+- When using Qiskit Runtime releases before 0.13:
     -   Any jobs that are already running continue to run.
     -   Any queued jobs remaining in the session are put into a failed state.
     -   No further jobs can be submitted to the session.

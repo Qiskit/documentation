@@ -113,9 +113,9 @@ There is also an interactive timeout value (ITTL, or interactive time to live) t
 <span id="close"></span>
 ## Close a session 
 
-### For Qiskit Runtime 13.0 or later releases
+### For Qiskit Runtime 0.13 or later releases
 
-When the session context manager is exited, the session is put into `Not accepting new jobs` status.  This means that the session will finish processing all running or queued jobs until the maximum timeout value is reached.  After all jobs are completed, the session is immediately closed. This allows the
+When the session context manager is exited, the session is put into `In progress, not accepting new jobs` status.  This means that the session will finish processing all running or queued jobs until the maximum timeout value is reached.  After all jobs are completed, the session is immediately closed. This allows the
 scheduler to run the next job without waiting for the session interactive timeout,
 therefore reducing the average job queueing time. You cannot submit jobs to a
 closed session.
@@ -129,7 +129,11 @@ with Session(service=service, backend=backend) as session:
 result = job.result()
 ```
 
-### For Qiskit runtime releases before 13.0
+<Admonition type="note" title="Important">
+    Previously, `session.close()` **canceled** the session.  Starting with Qiskit Runtime 0.13, `session.close()` **closes** the session. 
+</Admonition>
+
+### For Qiskit runtime releases before 0.13
 
 When jobs are all done, it is recommended that you use
 `session.close()` to close the session. This allows the
@@ -224,10 +228,27 @@ from qiskit_ibm_runtime import QiskitRuntimeService
 service = QiskitRuntimeService()
 
 with Session(service=service, backend="ibmq_qasm_simulator") as session:
-  session.details()
-  ...
-  print(f"The maximum session time is {session_details["max_time"]}.")
-  print(f"The interactive TTL is {session_details["interactive_ttl"]}.")
+    estimator = Estimator()
+    job = estimator.run(circuit, observable)
+    print(session.details())
+```
+
+Output:
+
+``` text
+{
+'id': 'cki5d18m3kt305s4pndg',
+ 'backend_name': 'ibm_algiers',
+ 'interactive_timeout': 300,  # This is the interactive timeout, in seconds
+ 'max_time': 28800,           # This is the maximum session timeout, in seconds
+ 'active_timeout': 28800,
+ 'state': 'closed',
+ 'accepting_jobs': True,
+ 'last_job_started': '2023-10-09T19:37:42.004Z',
+ 'last_job_completed': '2023-10-09T19:38:10.064Z',
+ 'started_at': '2023-10-09T19:37:42.004Z',
+ 'closed_at': '2023-10-09T19:38:39.406Z'
+}
 ```
 
 ## Full example
