@@ -118,11 +118,11 @@ print(param_qc.draw())
 ```
 
 ```
-    ┌───────┐
+     ┌───────┐
 q_0: ┤ Ry(θ) ├──■──
-    └───────┘┌─┴─┐
+     └───────┘┌─┴─┐
 q_1: ─────────┤ X ├
-            └───┘
+              └───┘
 ```
 
 The main difference with the previous case is that now you need to specify the sets of parameter values for which you want to evaluate the expectation value as a `list` of `list`s of `float`s.
@@ -353,13 +353,13 @@ print(param_qc.draw())
 ```
 
 ```
-        ┌───────┐      ░ ┌─┐
-    q_0: ┤ Ry(θ) ├──■───░─┤M├───
-        └───────┘┌─┴─┐ ░ └╥┘┌─┐
-    q_1: ─────────┤ X ├─░──╫─┤M├
-                    └───┘ ░  ║ └╥┘
-meas: 2/══════════════════╩══╩═
-                            0  1
+          ┌───────┐      ░ ┌─┐   
+     q_0: ┤ Ry(θ) ├──■───░─┤M├───
+          └───────┘┌─┴─┐ ░ └╥┘┌─┐
+     q_1: ─────────┤ X ├─░──╫─┤M├
+                   └───┘ ░  ║ └╥┘
+  meas: 2/══════════════════╩══╩═
+                            0  1 
 ```
 
 The main difference from the previous case is that now you need to specify the sets of parameter values for which you want to evaluate the expectation value as a `list` of `list`s of `float`s. The `i`<sup>th</sup> element of the outer `list` is the set of parameter values that corresponds to the `i`<sup>th</sup> circuit.
