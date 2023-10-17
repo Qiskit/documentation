@@ -34,19 +34,19 @@ This different order can also make the circuit corresponding to an algorithm fro
 Let's try this for a 3-qubit Quantum Fourier Transform ([`QFT`](../api/qiskit/qiskit.circuit.library.QFT)).
 
 ```python
-    from qiskit.circuit.library import QFT
+from qiskit.circuit.library import QFT
 
-    qft = QFT(3)
-    qft.decompose().draw('mpl')
+qft = QFT(3)
+qft.decompose().draw('mpl')
 ```
 
 ![normal bit ordering](/images/build/endianness/qft-normal.png)
 
 ```python
-    from qiskit.circuit.library import QFT
+from qiskit.circuit.library import QFT
 
-    qft = QFT(3)
-    qft.decompose().draw('mpl', reverse_bits=True)
+qft = QFT(3)
+qft.decompose().draw('mpl', reverse_bits=True)
 ```
 
 ![reversed bit ordering](/images/build/endianness/qft-reversed.png)
