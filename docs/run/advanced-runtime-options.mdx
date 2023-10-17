@@ -11,8 +11,8 @@ When calling the primitives, you can pass in options by using the `Options` clas
 ![options](/images/build/options.png)
 
 <Admonition type="info" title="Attention">
-    This section focuses on Qiskit Runtime primitive [Options](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options) (imported from ``qiskit_ibm_runtime``). While most of the `primitives` interface is common across implementations, most `Options` are not. Consult the
-    corresponding API references for information about the ``qiskit.primitives`` and ``qiskit_aer.primitives`` options.
+    This section focuses on Qiskit Runtime primitive [Options](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options) (imported from `qiskit_ibm_runtime`). While most of the `primitives` interface is common across implementations, most `Options` are not. Consult the
+    corresponding API references for information about the `qiskit.primitives` and `qiskit_aer.primitives` options.
 </Admonition>
 
 ## Instantiate the Options class
@@ -65,7 +65,7 @@ There are many available options, but the following are the most commonly used:
 ### Shots
 
 
-For some algorithms, setting a specific number of shots is a core part of their routines. Previously, shots could be set during the call to `backend.run()`. For example, ``backend.run(shots=1024)``. Now, that setting is part of the execution
+For some algorithms, setting a specific number of shots is a core part of their routines. Previously, shots could be set during the call to `backend.run()`. For example, `backend.run(shots=1024)`. Now, that setting is part of the execution
 options ("second level option"). This can be done during the primitive setup:
 
 ```python
@@ -78,7 +78,7 @@ estimator = Estimator(session=session, options=options)
 ```
 
 If you need to modify the number of shots set between iterations (primitive calls), you can set the
-shots directly in the ``run()`` method. This overwrites the initial ``shots`` setting.
+shots directly in the `run()` method. This overwrites the initial `shots` setting.
 
 ```python
 from qiskit_ibm_runtime import Estimator
@@ -137,11 +137,11 @@ For more information, and a complete list of advanced transpilation options, see
 [Error suppression topic](../run/error-suppression#transpilation-table).
 
 Finally, you might want to specify settings that are not available through the primitives interface,
-or use custom transpiler passes. In these cases, you can set ``skip_transpilation=True`` to submit
+or use custom transpiler passes. In these cases, you can set `skip_transpilation=True` to submit
 user-transpiled circuits. To learn how this is done, refer to the
 [Submitting user-transpiled circuits using primitives tutorial](https://learning.quantum-computing.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives).
 
-The ``skip_transpilation`` option is an advanced transpilation option, set as follows:
+The `skip_transpilation` option is an advanced transpilation option, set as follows:
 
 ```python
 from qiskit_ibm_runtime import Estimator, Options
@@ -156,8 +156,8 @@ estimator = Estimator(session=session, options=options)
 
 
 You might want to leverage different error mitigation methods and see how these affect the performance of your
-algorithm. These can also be set through the ``resilience_level`` option. The method selected for each level is
-different for ``Sampler`` and ``Estimator``. You can find more information in the
+algorithm. These can also be set through the `resilience_level` option. The method selected for each level is
+different for `Sampler` and `Estimator`. You can find more information in the
 [Configure error mitigation topic](error-mitigation).
 
 The configuration is similar to the other options:
@@ -178,8 +178,8 @@ estimator = Estimator(session=session, options=options)
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    - Find more details about the ``Estimator`` methods in the [Estimator API reference](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator#estimator).
-    - Find more details about the ``Sampler`` methods in the [Sampler API reference](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler#sampler).
+    - Find more details about the `Estimator` methods in the [Estimator API reference](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator#estimator).
+    - Find more details about the `Sampler` methods in the [Sampler API reference](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler#sampler).
     - Find all available options in the [Options API reference](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options).
     - Find details about [error suppression](../run/error-suppression) and [error mitigation](../run/error-mitigation). 
 </Admonition>
