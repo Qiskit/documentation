@@ -4,17 +4,21 @@ description: Overview of simulators
 ---
 # Simulators overview
 
+<Admonition type="note">
+This page gives details about the IBM Quantum cloud-based simulators. For information about the Qiskit built-in simulator, see the [Python-based simulators page in the API reference.](https://docs.quantum-computing.ibm.com/api/qiskit/providers_basicaer)
+</Admonition>
+
 IBM Quantum features a collection of high-performance simulators for prototyping quantum circuits and algorithms.
 
-To view available simulators, on the upper right corner of the screen, click the Application switcher ( ![switcher](/images/migration/switcher-small2.png) ), select **Compute resources** to view the [Compute resources page,](https://quantum-computing.ibm.com/services/resources?services=simulators) then click the Simulators tab.
+To view available simulators, on the upper right corner of the screen, click the Application switcher ( ![switcher](/images/migration/switcher-small2.png) ), select **Compute resources** to view the [Compute resources page,](https://quantum-computing.ibm.com/services/resources?services=simulators) then click All simulators.
 
-The default choice of simulator should be the `simulator_statevector` as it is a general-purpose solution method. The following simulation methods are currently available, and support a maximum of 300 circuits and 8192 shots per job.
+The following simulation methods support a maximum of 300 circuits and 8192 shots per job. Find more information on each simulator below, including its type, a description, the number of qubits it simulates, whether it includes noise modeling, a list of supported gates, and how to call it using Qiskit Runtime. The `simulator_statevector` is a good default choice since it is a general-purpose solution method. 
 
 <Admonition type="info" title="Simulator timeout limit">
   To prevent the simulators from processing jobs that would otherwise not finish processing in a reasonable amount of time, jobs sent to the simulators are limited to run times under 10,000 seconds (\~2.75 hours).
 </Admonition>
 
-## Statevector
+## Statevector simulator
 
 **Type:** Schrödinger wavefunction
 
@@ -38,7 +42,15 @@ Simulates a quantum circuit by computing the wavefunction of the qubit’s state
 'multiplexer', 'initialize', 'kraus', 'roerror', 'delay']
 ```
 
-## Stabilizer
+**Code example**
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+service = QiskitRuntimeService()
+backend = service.get_backend("simulator_statevector")
+```
+
+## Stabilizer simulator
 
 **Type:** Clifford
 
@@ -57,7 +69,15 @@ An efficient simulator of Clifford circuits. Can simulate noisy evolution if the
 's', 'sdg', 'sx', 'swap', 'delay', 'roerror']
 ```
 
-## Extended stabilizer
+**Code example**
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+service = QiskitRuntimeService()
+backend = service.get_backend("simulator_stabilizer")
+```
+
+## Extended stabilizer simulator
 
 **Type:** Extended Clifford (e.g., Clifford+T)
 
@@ -77,7 +97,15 @@ Approximates the action of a quantum circuit using a ranked-stabilizer decomposi
 'delay', 'roerror']
 ```
 
-## MPS
+**Code example**
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+service = QiskitRuntimeService()
+backend = service.get_backend("simulator_extended_stabilizer")
+```
+
+## MPS simulator
 
 **Type:** Matrix Product State
 
@@ -97,7 +125,15 @@ A tensor-network simulator that uses a Matrix Product State (MPS) representation
 'p', 'ccx', 'delay', 'roerror']
 ```
 
-## QASM
+**Code example**
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+service = QiskitRuntimeService()
+backend = service.get_backend("simulator_mps")
+```
+
+## QASM simulator
 
 **Type:** General, context-aware
 
@@ -119,4 +155,12 @@ A general-purpose simulator for simulating quantum circuits both ideally and sub
 'mcsx', 'mcp', 'mcu1', 'mcu2', 'mcu3', 'mcrx', 'mcry',
 'mcrz', 'mcr', 'mcswap', 'unitary', 'diagonal',
 'multiplexer', 'initialize', 'kraus', 'roerror', 'delay']
+```
+
+**Code example**
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+service = QiskitRuntimeService()
+backend = service.get_backend("ibmq_qasm_simulator")
 ```
