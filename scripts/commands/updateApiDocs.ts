@@ -18,6 +18,8 @@
 // Once you have a token generated, run:
 //
 //   PUBLIC_GITHUB_TOKEN=ghp_... node -r esbuild-register scripts/commands/updateApiDocs.ts
+//
+// Pass `--packages {qiskit,qiskit-ibm-provider,qiskit-ibm-runtime} to only generate for certain projects.
 
 import { $ } from 'zx';
 import { zxMain } from '../lib/zx';
@@ -40,6 +42,13 @@ import { updateLinks } from '../lib/sphinx/updateLinks';
 import { addFrontMatter } from '../lib/sphinx/addFrontMatter';
 import { dedupeResultIds } from '../lib/sphinx/dedupeIds';
 import { removePrefix, removeSuffix } from '../lib/stringUtils';
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
+
+interface Arguments {
+  [x: string]: unknown;
+  packages: string[];
+}
 
 type Pkg = {
   name: string;
@@ -136,12 +145,27 @@ const packages: Pkg[] = [
   },
 ];
 
+const readArgs = (): Arguments =>
+  yargs(hideBin(process.argv))
+    .option("packages", {
+      alias: "p",
+      type: "array",
+      default: ["qiskit", "qiskit-ibm-provider", "qiskit-ibm-runtime"],
+      choices: ["qiskit", "qiskit-ibm-provider", "qiskit-ibm-runtime"],
+      description: "What packages to update",
+    })
+    .parseSync();
+
 zxMain(async () => {
+  const args = readArgs();
   const sourcesPath = `${getRoot()}/.out/python/sources`;
 
   const pkgHtmls: PkgHtml[] = [];
 
   for (const pkg of packages) {
+    if (!args.packages.includes(pkg.name)) {
+      continue;
+    }
     const version = await getLatestVersion(pkg.githubSlug);
     const destination = `${sourcesPath}/${pkg.name}/${version}`;
     pkgHtmls.push({ pkg, version, path: destination });
@@ -154,18 +178,18 @@ zxMain(async () => {
     await downloadHtml({ baseUrl: pkg.baseUrl, initialUrls: pkg.initialUrls, destination });
   }
 
-  // Sphinx html to markdown
-  console.log('Deleting existing markdowns');
-  await $`rm -rf ${getRoot()}/docs/api/`;
-
   for (const src of pkgHtmls) {
-    console.log(`Convert sphinx html to markdown for ${src.pkg.name}:${src.version}`);
+    console.log(`Deleting exisiting markdown for ${src.pkg.name}`);
+    await $`rm -rf ${getRoot()}/docs/api/${src.pkg.name}`;
 
     const htmlBase = src.path;
     const output = `${getRoot()}/docs/api/${src.pkg.name}`;
     const baseSourceUrl = `https://github.com/${src.pkg.githubSlug}/tree/${src.version}/`;
 
     // Convert html to markdown
+    console.log(
+      `Convert sphinx html to markdown for ${src.pkg.name}:${src.version}`,
+    );
     await convertHtmlToMarkdown(htmlBase, output, baseSourceUrl, src);
   }
 });
