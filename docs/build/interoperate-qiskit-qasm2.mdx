@@ -40,9 +40,9 @@ Parameters:
 
 You can extend the quantum components of the OpenQASM 2 language by passing an iterable of information on custom instructions as the argument `custom_instructions`. In files that have compatible definitions for these instructions, the given constructor will be used in place of whatever other handling `qiskit.qasm2` would have done.  You cannot provide a custom instruction that has a different number of parameters or qubits from a defined instruction in a parsed program. Each element of the argument iterable should be a particular data class as follows:
 
-```python
-class qiskit.qasm2.CustomInstruction(name, num_params, num_qubits, constructor, builtin=False)
-```
+#### `qiskit.qasm2.CustomInstruction(name, num_params, num_qubits, constructor, builtin=False)`
+
+The CustomInstruction class gives information about a custom instruction that should be defined during the parse.
 
 The `constructor` field should be a callable object with signature `*args -> Instruction`, where each of the `num_params` args is a floating-point value. Most of the built-in Qiskit gate classes have this form.
 
@@ -53,10 +53,11 @@ The `builtin` field is optional. If set to `true`, the instruction will be defin
 
 You can extend the processing done to classical expressions (arguments to gates) by passing an iterable to the argument `custom_classical`. This needs the name (a valid OpenQASM 2 identifier), the number of parameters it takes (num_params), and a Python callable that implements the function. The Python callable must be able to accept `num_params` positional floating-point arguments, and must return a float or integer (which will be converted to a float). Built-in functions cannot be overridden. 
 
-```python
+#### `qiskit.qasm2.CustomClassical`
 
-class qiskit.qasm2.CustomClassical
-```
+The `CustomClassical` class gives information about a custom classical function that should be defined in mathematical expressions.
+
+The given `callable` must be a Python function that takes `num_params` floats, and returns a float. The `name` is the identifier that refers to it in the OpenQASM 2 program. This cannot clash with any defined gates.
 
 <span id="strict"></span>
 ### Strict mode
