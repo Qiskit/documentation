@@ -75,16 +75,24 @@ class Link {
     return possibleFilePaths
   }
 
-  check(): boolean {
+  check(filePathCache: string[] = []): boolean {
     /*
      * True if link points to existing file, otherwise false
+     * filePathCache: array of known existing files (to reduce disk I/O)
      */
     if (this.isExternal) {
       // External link checking not supported yet
       return true
     }
 
-    for (let filePath of this.resolve()) {
+    const possiblePaths = this.resolve()
+    for (let filePath of possiblePaths) {
+      if (filePathCache.includes(filePath)) {
+        return true
+      }
+    }
+    // Check disk for files not in cache (images etc.)
+    for (let filePath of possiblePaths) {
       if (existsSync(filePath)) {
         return true
       }
@@ -105,14 +113,14 @@ function markdownFromNotebook(source: string): string {
   return markdown
 }
 
-function checkLinksInFile(filePath: string): boolean {
+function checkLinksInFile(filePath: string, filePaths: string[]): boolean {
   const source = readFileSync(filePath, {encoding: 'utf8'})
   const markdown = (path.extname(filePath) === '.ipynb') ? markdownFromNotebook(source) : source
   const links = markdownLinkExtractor(source).links.map((x: string) => new Link(x, filePath))
 
   let allGood = true
   for (let link of links) {
-    allGood = link.check() && allGood
+    allGood = link.check(filePaths) && allGood
   }
   return allGood
 }
@@ -121,7 +129,7 @@ async function main() {
   const filePaths = await globby('docs/**/*.{ipynb,md,mdx}')
   let allGood = true
   for (let sourceFile of filePaths) {
-    allGood = checkLinksInFile(sourceFile) && allGood
+    allGood = checkLinksInFile(sourceFile, filePaths) && allGood
   }
   if (!allGood) {
     console.log("\nSome links appear broken 💔\n")
