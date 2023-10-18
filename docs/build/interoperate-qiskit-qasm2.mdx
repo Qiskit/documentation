@@ -119,13 +119,13 @@ program = '''
     my(0.5) q[0], q[1];
     builtin q[0];
     '''
-```
 customs = [
     qasm2.CustomInstruction(name="my", num_params=1, num_qubits=2, constructor=MyGate),
     # Setting 'builtin=True' means the instruction doesn't require a declaration to be usable.
     qasm2.CustomInstruction("builtin", 0, 1, Builtin, builtin=True),
 ]
 circuit = qasm2.loads(program, custom_instructions=customs)
+```
 
 ### Use custom classical instructions
 
