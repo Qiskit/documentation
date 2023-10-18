@@ -66,7 +66,7 @@ type Pkg = {
 
 type PkgHtml = { pkg: Pkg; version: string; path: string };
 
-const packages: Pkg[] = [
+const PACKAGES: Pkg[] = [
   {
     title: 'Qiskit Runtime IBM Client',
     name: 'qiskit-ibm-runtime',
@@ -145,16 +145,18 @@ const packages: Pkg[] = [
   },
 ];
 
-const readArgs = (): Arguments =>
-  yargs(hideBin(process.argv))
+const readArgs = (): Arguments => {
+  const pkgs = PACKAGES.map((p) => p.name);
+  return yargs(hideBin(process.argv))
     .option("packages", {
       alias: "p",
       type: "array",
-      default: ["qiskit", "qiskit-ibm-provider", "qiskit-ibm-runtime"],
-      choices: ["qiskit", "qiskit-ibm-provider", "qiskit-ibm-runtime"],
+      default: pkgs,
+      choices: pkgs,
       description: "What packages to update",
     })
-    .parseSync();
+    .parseSync()
+  };
 
 zxMain(async () => {
   const args = readArgs();
@@ -162,7 +164,7 @@ zxMain(async () => {
 
   const pkgHtmls: PkgHtml[] = [];
 
-  for (const pkg of packages) {
+  for (const pkg of PACKAGES) {
     if (!args.packages.includes(pkg.name)) {
       continue;
     }
