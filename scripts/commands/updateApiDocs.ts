@@ -181,7 +181,7 @@ zxMain(async () => {
   }
 
   for (const src of pkgHtmls) {
-    console.log(`Deleting exisiting markdown for ${src.pkg.name}`);
+    console.log(`Deleting existing markdown for ${src.pkg.name}`);
     await $`rm -rf ${getRoot()}/docs/api/${src.pkg.name}`;
 
     const htmlBase = src.path;
