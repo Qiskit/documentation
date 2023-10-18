@@ -11,18 +11,18 @@
 // that they have been altered from the originals.
 
 import { globby } from "globby";
-const { existsSync, readFileSync } = require('fs');
-const path = require('node:path')
-const markdownLinkExtractor = require('markdown-link-extractor');
+import { existsSync, readFileSync } from 'fs';
+import path from 'node:path';
+import markdownLinkExtractor from 'markdown-link-extractor';
 
 const DOCS_ROOT = "./docs"
 const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"]
 
 class Link {
-  value: string
-  anchor: string
-  origin: string
-  isExternal: boolean
+  readonly value: string
+  readonly anchor: string
+  readonly origin: string
+  readonly isExternal: boolean
 
   constructor(linkString: string, origin: string) {
     /* 
@@ -42,7 +42,7 @@ class Link {
      * Return list of possible paths link could resolve to
      */
     if ( this.isExternal ) { return [ this.value ] }
-    if ( this.value === '' ) { return [ this.origin ] }
+    if ( this.value === '' ) { return [ this.origin ] }  // link is just anchor
     if ( this.value.startsWith("/images") ) {
       return [ path.join("public/", this.value) ]
     }
