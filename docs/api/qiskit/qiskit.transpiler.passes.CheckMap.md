@@ -23,7 +23,7 @@ CheckMap initializer.
 **Parameters**
 
 *   **coupling\_map** (*Union\[*[*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")*,* [*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) – Directed graph representing a coupling map.
-*   **property\_set\_field** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – An optional string to specify the property set field to store the result of the check. If not default the result is stored in `"is_swap_mapped"`.
+*   **property\_set\_field** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – An optional string to specify the property set field to store the result of the check. If not default the result is stored in `"is_swap_mapped"`.
 
 ## Attributes
 

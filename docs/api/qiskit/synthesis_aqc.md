@@ -81,7 +81,7 @@ A basic usage of the AQC algorithm should consist of the following steps:
 # Define a target circuit as a unitary matrix
 unitary = ...
 
-# Define several qubits for the algorithm, at least 3 qubits
+# Define a number of qubits for the algorithm, at least 3 qubits
 num_qubits = int(round(np.log2(unitary.shape[0])))
 
 # Choose a layout of the CNOT structure for the approximate circuit, e.g. ``spin`` for
@@ -134,10 +134,10 @@ Generates a network consisting of building blocks each containing a CNOT gate an
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – number of qubits.
-*   **network\_layout** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – type of network geometry, `{"sequ", "spin", "cart", "cyclic_spin", "cyclic_line"}`.
-*   **connectivity\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – type of inter-qubit connectivity, `{"full", "line", "star"}`.
-*   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – depth of the CNOT-network, i.e. the number of layers, where each layer consists of a single CNOT-block; default value will be selected, if `L <= 0`.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubits.
+*   **network\_layout** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – type of network geometry, `{"sequ", "spin", "cart", "cyclic_spin", "cyclic_line"}`.
+*   **connectivity\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – type of inter-qubit connectivity, `{"full", "line", "star"}`.
+*   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – depth of the CNOT-network, i.e. the number of layers, where each layer consists of a single CNOT-block; default value will be selected, if `L <= 0`.
 
 **Returns**
 
@@ -147,11 +147,11 @@ is either equal `L`, or defined by a concrete type of the network.
 
 **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – if unsupported type of CNOT-network layout or number of qubits or combination of parameters are passed.
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if unsupported type of CNOT-network layout or number of qubits or combination of parameters are passed.
 
 **Return type**
 
-[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")
+[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")
 
 One can take advantage of accelerated version of objective function. It implements the same mathematical algorithm as the default one `DefaultCNOTUnitObjective` but runs several times faster. Instantiation of accelerated objective function class is similar to the default case:
 

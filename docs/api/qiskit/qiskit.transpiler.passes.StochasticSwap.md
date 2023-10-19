@@ -32,9 +32,9 @@ If these are not satisfied, the behavior is undefined.
 **Parameters**
 
 *   **coupling\_map** (*Union\[*[*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")*,* [*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) – Directed graph representing a coupling map.
-*   **trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – maximum number of iterations to attempt
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – seed for random number generator
-*   **fake\_run** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if true, it only pretend to do routing, i.e., no swap is effectively added.
+*   **trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – maximum number of iterations to attempt
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – seed for random number generator
+*   **fake\_run** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if true, it only pretend to do routing, i.e., no swap is effectively added.
 *   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout")) – starting layout at beginning of pass.
 
 ## Attributes

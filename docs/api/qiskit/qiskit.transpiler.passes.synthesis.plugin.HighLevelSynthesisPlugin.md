@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlu
 
 `qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin`
 
-Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.11)")
+Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
 Abstract high-level synthesis plugin class.
 

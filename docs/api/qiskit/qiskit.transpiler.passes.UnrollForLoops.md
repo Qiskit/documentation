@@ -24,7 +24,7 @@ Things like for x in \{0, 3, 4} \{rx(x) qr\[1];} will turn into rx(0) qr\[1]; rx
 
 **Parameters**
 
-**max\_target\_depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Optional. Checks if the unrolled block is over a particular subcircuit depth. To disable the check, use `-1` (Default).
+**max\_target\_depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. Checks if the unrolled block is over a particular subcircuit depth. To disable the check, use `-1` (Default).
 
 ## Attributes
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.PassManager
 
 `qiskit.transpiler.PassManager(passes=None, max_iteration=1000)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Manager for a set of Passes and their scheduling during transpilation.
 
@@ -20,8 +20,8 @@ Initialize an empty PassManager object (with no passes scheduled).
 
 **Parameters**
 
-*   **passes** (*BasePass |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[BasePass] | None*) – A pass set (as defined in [`qiskit.transpiler.PassManager.append()`](#qiskit.transpiler.PassManager.append "qiskit.transpiler.PassManager.append")) to be added to the pass manager schedule.
-*   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The maximum number of iterations the schedule will be looped if the condition is not met.
+*   **passes** (*BasePass |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[BasePass] | None*) – A pass set (as defined in [`qiskit.transpiler.PassManager.append()`](#qiskit.transpiler.PassManager.append "qiskit.transpiler.PassManager.append")) to be added to the pass manager schedule.
+*   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of iterations the schedule will be looped if the condition is not met.
 
 ## Methods
 
@@ -36,7 +36,7 @@ Append a Pass Set to the schedule of passes.
 **Parameters**
 
 *   **passes** (*BasePass | Sequence\[BasePass |* [*FlowController*](qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")*]*) – A set of passes (a pass set) to be added to schedule. A pass set is a list of passes that are controlled by the same flow controller. If a single pass is provided, the pass set will only have that pass a single element. It is also possible to append a [`FlowController`](qiskit.transpiler.FlowController "qiskit.transpiler.runningpassmanager.FlowController") instance and the rest of the parameter will be ignored.
-*   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – max number of iterations of passes.
+*   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max number of iterations of passes.
 *   **flow\_controller\_conditions** (*Any*) – control flow plugins.
 
 **Raises**
@@ -59,9 +59,9 @@ This function needs [pydot](https://github.com/erocarrera/pydot), which in turn 
 
 **Parameters**
 
-*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – file path to save image to.
-*   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – keys are the pass classes and the values are the colors to make them. An example can be seen in the DEFAULT\_STYLE. An ordered dict can be used to ensure a priority coloring when pass falls into multiple categories. Any values not included in the provided dict will be filled in from the default dict.
-*   **raw** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If `True`, save the raw Dot output instead of the image.
+*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – file path to save image to.
+*   **style** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – keys are the pass classes and the values are the colors to make them. An example can be seen in the DEFAULT\_STYLE. An ordered dict can be used to ensure a priority coloring when pass falls into multiple categories. Any values not included in the provided dict will be filled in from the default dict.
+*   **raw** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, save the raw Dot output instead of the image.
 
 **Returns**
 
@@ -73,7 +73,7 @@ Optional\[[PassManager](#qiskit.transpiler.PassManager "qiskit.transpiler.PassMa
 
 **Raises**
 
-[**ImportError**](https://docs.python.org/3/library/exceptions.html#ImportError "(in Python v3.11)") – when nxpd or pydot not installed.
+[**ImportError**](https://docs.python.org/3/library/exceptions.html#ImportError "(in Python v3.12)") – when nxpd or pydot not installed.
 
 ### passes
 
@@ -89,7 +89,7 @@ A list of pass sets, as defined in `append()`.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")\[[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)"), qiskit.transpiler.basepasses.BasePass]]
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), qiskit.transpiler.basepasses.BasePass]]
 
 ### remove
 
@@ -101,7 +101,7 @@ Removes a particular pass in the scheduler.
 
 **Parameters**
 
-**index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Pass index to replace, based on the position in passes().
+**index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Pass index to replace, based on the position in passes().
 
 **Raises**
 
@@ -117,9 +117,9 @@ Replace a particular pass in the scheduler.
 
 **Parameters**
 
-*   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Pass index to replace, based on the position in passes().
-*   **passes** (*BasePass |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[BasePass]*) – A pass set (as defined in [`qiskit.transpiler.PassManager.append()`](#qiskit.transpiler.PassManager.append "qiskit.transpiler.PassManager.append")) to be added to the pass manager schedule.
-*   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – max number of iterations of passes.
+*   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Pass index to replace, based on the position in passes().
+*   **passes** (*BasePass |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[BasePass]*) – A pass set (as defined in [`qiskit.transpiler.PassManager.append()`](#qiskit.transpiler.PassManager.append "qiskit.transpiler.PassManager.append")) to be added to the pass manager schedule.
+*   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max number of iterations of passes.
 *   **flow\_controller\_conditions** (*Any*) – control flow plugins.
 
 **Raises**
@@ -142,7 +142,7 @@ Run all the passes on the specified `circuits`.
 
 *   **circuits** (*\_CircuitsT*) – Circuit(s) to transform via all the registered passes.
 
-*   **output\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – The output circuit name. If `None`, it will be set to the same as the input circuit name.
+*   **output\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The output circuit name. If `None`, it will be set to the same as the input circuit name.
 
 *   **callback** (*Callable | None*) –
 

@@ -16,7 +16,7 @@ Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepa
 
 Duration validation pass for reschedule.
 
-This pass investigates the input quantum circuit and checks if the circuit requres rescheduling for execution. Note that this pass can be triggered without scheduling. This pass only checks the duration of delay instructions and user defined pulse gates, which report duration values without pre-scheduling.
+This pass investigates the input quantum circuit and checks if the circuit requires rescheduling for execution. Note that this pass can be triggered without scheduling. This pass only checks the duration of delay instructions and user defined pulse gates, which report duration values without pre-scheduling.
 
 This pass assumes backend supported instructions, i.e. basis gates, have no violation of the hardware alignment constraints, which is true in general.
 

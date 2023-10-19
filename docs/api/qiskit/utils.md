@@ -6,8 +6,6 @@ python_api_type: module
 python_api_name: qiskit.utils
 ---
 
-{/* cspell:ignore pylatexenc */}
-
 <span id="module-qiskit.utils" />
 
 <span id="qiskit-utils" />
@@ -28,10 +26,10 @@ Dynamically insert the deprecation message into `func`’s docstring.
 
 **Parameters**
 
-*   **func** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.11)")) – The function to modify.
-*   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The full deprecation message.
-*   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – The version the deprecation started at.
-*   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Is the deprecation still pending?
+*   **func** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")) – The function to modify.
+*   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The full deprecation message.
+*   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The version the deprecation started at.
+*   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Is the deprecation still pending?
 
 <span id="qiskit.utils.deprecate_arg" />
 
@@ -43,15 +41,15 @@ This decorator may be used multiple times on the same function, once per depreca
 
 **Parameters**
 
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The name of the deprecated argument.
-*   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The version the deprecation started at. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update since to the new version.
-*   **deprecation\_description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – What is being deprecated? E.g. “Setting my\_func()’s my\_arg argument to None.” If not set, will default to “\{func\_name}’s argument \{name}”.
-*   **additional\_msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Put here any additional information, such as what to use instead (if new\_alias is not set). For example, “Instead, use the argument new\_arg, which is similar but does not impact the circuit’s setup.”
-*   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Set to True if the deprecation is still pending.
-*   **package\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The PyPI package name, e.g. “qiskit-nature”.
-*   **new\_alias** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – If the arg has simply been renamed, set this to the new name. The decorator will dynamically update the kwargs so that when the user sets the old arg, it will be passed in as the new\_alias arg.
-*   **predicate** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.11)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)")*],* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")*] | None*) – Only log the runtime warning if the predicate returns True. This is useful to deprecate certain values or types for an argument, e.g. lambda my\_arg: isinstance(my\_arg, dict). Regardless of if a predicate is set, the runtime warning will only log when the user specifies the argument.
-*   **removal\_timeline** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the deprecated argument.
+*   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The version the deprecation started at. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update since to the new version.
+*   **deprecation\_description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – What is being deprecated? E.g. “Setting my\_func()’s my\_arg argument to None.” If not set, will default to “\{func\_name}’s argument \{name}”.
+*   **additional\_msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Put here any additional information, such as what to use instead (if new\_alias is not set). For example, “Instead, use the argument new\_arg, which is similar but does not impact the circuit’s setup.”
+*   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Set to True if the deprecation is still pending.
+*   **package\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The PyPI package name, e.g. “qiskit-nature”.
+*   **new\_alias** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – If the arg has simply been renamed, set this to the new name. The decorator will dynamically update the kwargs so that when the user sets the old arg, it will be passed in as the new\_alias arg.
+*   **predicate** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*],* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*] | None*) – Only log the runtime warning if the predicate returns True. This is useful to deprecate certain values or types for an argument, e.g. lambda my\_arg: isinstance(my\_arg, dict). Regardless of if a predicate is set, the runtime warning will only log when the user specifies the argument.
+*   **removal\_timeline** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
 
 **Returns**
 
@@ -69,9 +67,9 @@ Deprecated. Instead, use @deprecate\_arg.
 
 **Parameters**
 
-*   **kwarg\_map** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None]*) – A dictionary of the old argument name to the new name.
-*   **category** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.11)")*\[*[*Warning*](https://docs.python.org/3/library/exceptions.html#Warning "(in Python v3.11)")*]*) – Usually either DeprecationWarning or PendingDeprecationWarning.
-*   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – The version the deprecation started at. Only Optional for backwards compatibility - this should always be set. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update since to the new version.
+*   **kwarg\_map** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None]*) – A dictionary of the old argument name to the new name.
+*   **category** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.12)")*\[*[*Warning*](https://docs.python.org/3/library/exceptions.html#Warning "(in Python v3.12)")*]*) – Usually either DeprecationWarning or PendingDeprecationWarning.
+*   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The version the deprecation started at. Only Optional for backwards compatibility - this should always be set. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update since to the new version.
 
 **Returns**
 
@@ -93,12 +91,12 @@ When deprecating a class, set this decorator on its \_\_init\_\_ function.
 
 **Parameters**
 
-*   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The version the deprecation started at. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update `since` to the new version.
-*   **additional\_msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Put here any additional information, such as what to use instead. For example, “Instead, use the function `new_func` from the module `<my_module>.<my_submodule>`, which is similar but uses GPU acceleration.”
-*   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Set to `True` if the deprecation is still pending.
-*   **package\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The PyPI package name, e.g. “qiskit-nature”.
-*   **removal\_timeline** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
-*   **is\_property** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If the deprecated function is a @property, set this to True so that the generated message correctly describes it as such. (This isn’t necessary for property setters, as their docstring is ignored by Python.)
+*   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The version the deprecation started at. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update `since` to the new version.
+*   **additional\_msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Put here any additional information, such as what to use instead. For example, “Instead, use the function `new_func` from the module `<my_module>.<my_submodule>`, which is similar but uses GPU acceleration.”
+*   **pending** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Set to `True` if the deprecation is still pending.
+*   **package\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The PyPI package name, e.g. “qiskit-nature”.
+*   **removal\_timeline** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – How soon can this deprecation be removed? Expects a value like “no sooner than 6 months after the latest release” or “in release 9.99”.
+*   **is\_property** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If the deprecated function is a @property, set this to True so that the generated message correctly describes it as such. (This isn’t necessary for property setters, as their docstring is ignored by Python.)
 
 **Returns**
 
@@ -116,10 +114,10 @@ Deprecated. Instead, use @deprecate\_func.
 
 **Parameters**
 
-*   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Warning message to emit.
-*   **stacklevel** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The warning stacklevel to use, defaults to 2.
-*   **category** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.11)")*\[*[*Warning*](https://docs.python.org/3/library/exceptions.html#Warning "(in Python v3.11)")*]*) – Usually either DeprecationWarning or PendingDeprecationWarning.
-*   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – The version the deprecation started at. Only Optional for backwards compatibility - this should always be set. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update since to the new version.
+*   **msg** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Warning message to emit.
+*   **stacklevel** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The warning stacklevel to use, defaults to 2.
+*   **category** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.12)")*\[*[*Warning*](https://docs.python.org/3/library/exceptions.html#Warning "(in Python v3.12)")*]*) – Usually either DeprecationWarning or PendingDeprecationWarning.
+*   **since** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The version the deprecation started at. Only Optional for backwards compatibility - this should always be set. If the deprecation is pending, set the version to when that started; but later, when switching from pending to deprecated, update since to the new version.
 
 **Returns**
 
@@ -143,7 +141,7 @@ The hardware information.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 <span id="qiskit.utils.is_main_process" />
 
@@ -159,8 +157,8 @@ Given a SI unit prefix and value, apply the prefix to convert to standard SI uni
 
 **Parameters**
 
-*   **value** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The number to apply prefix to.
-*   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – String prefix.
+*   **value** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – The number to apply prefix to.
+*   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – String prefix.
 
 **Returns**
 
@@ -168,7 +166,7 @@ Converted value.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 <Admonition title="Note" type="note">
   This may induce tiny value error due to internal representation of float object. See [https://docs.python.org/3/tutorial/floatingpoint.html](https://docs.python.org/3/tutorial/floatingpoint.html) for details.
@@ -176,11 +174,11 @@ Converted value.
 
 **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – If the `units` aren’t recognized.
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the `units` aren’t recognized.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 <span id="qiskit.utils.detach_prefix" />
 
@@ -200,8 +198,8 @@ For example, the `value = 1.3e8` will be converted into a tuple of `(130.0, "M")
 
 **Parameters**
 
-*   **value** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – The number to find prefix.
-*   **decimal** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – Optional. An arbitrary integer number to represent a precision of the value. If specified, it tries to round the mantissa and adjust the prefix to rounded value. For example, 999\_999.91 will become 999.9999 k with `decimal=4`, while 1.0 M with `decimal=3` or less.
+*   **value** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The number to find prefix.
+*   **decimal** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Optional. An arbitrary integer number to represent a precision of the value. If specified, it tries to round the mantissa and adjust the prefix to rounded value. For example, 999\_999.91 will become 999.9999 k with `decimal=4`, while 1.0 M with `decimal=3` or less.
 
 **Returns**
 
@@ -209,7 +207,7 @@ A tuple of scaled value and prefix.
 
 **Return type**
 
-[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.11)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)"), [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")]
+[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")]
 
 <Admonition title="Note" type="note">
   This may induce tiny value error due to internal representation of float object. See [https://docs.python.org/3/tutorial/floatingpoint.html](https://docs.python.org/3/tutorial/floatingpoint.html) for details.
@@ -217,12 +215,12 @@ A tuple of scaled value and prefix.
 
 **Raises**
 
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – If the `value` is out of range.
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – If the `value` is not real number.
+*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the `value` is out of range.
+*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the `value` is not real number.
 
 **Return type**
 
-[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.11)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)"), [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")]
+[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")]
 
 <span id="qiskit.utils.wrap_method" />
 
@@ -236,14 +234,14 @@ If either `before` or `after` are given, they should be callables with a compati
 
 **Parameters**
 
-*   **cls** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.11)")) – the class to modify.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – the name of the method on the class to wrap.
-*   **before** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.11)") *| None*) – a callable that should be called before the method that is being wrapped.
-*   **after** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.11)") *| None*) – a callable that should be called after the method that is being wrapped.
+*   **cls** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.12)")) – the class to modify.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the name of the method on the class to wrap.
+*   **before** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)") *| None*) – a callable that should be called before the method that is being wrapped.
+*   **after** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)") *| None*) – a callable that should be called after the method that is being wrapped.
 
 **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – if the named method is not defined on the class or any parent class.
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if the named method is not defined on the class or any parent class.
 
 ## Algorithm Utilities
 
@@ -271,7 +269,7 @@ a formatted string records the summary
 
 **Return type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 <span id="qiskit.utils.get_entangler_map" />
 
@@ -281,9 +279,9 @@ Utility method to get an entangler map among qubits.
 
 **Parameters**
 
-*   **map\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – ‘full’ entangles each qubit with all the subsequent ones ‘linear’ entangles each qubit with the next ‘sca’ (shifted circular alternating entanglement) is a circular entanglement where the ‘long’ entanglement is shifted by one position every block and every block the role or control/target qubits alternate
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Number of qubits for which the map is needed
-*   **offset** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Some map\_types (e.g. ‘sca’) can shift the gates in the entangler map by the specified integer offset.
+*   **map\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – ‘full’ entangles each qubit with all the subsequent ones ‘linear’ entangles each qubit with the next ‘sca’ (shifted circular alternating entanglement) is a circular entanglement where the ‘long’ entanglement is shifted by one position every block and every block the role or control/target qubits alternate
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of qubits for which the map is needed
+*   **offset** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Some map\_types (e.g. ‘sca’) can shift the gates in the entangler map by the specified integer offset.
 
 **Returns**
 
@@ -291,11 +289,11 @@ A map of qubit index to an array of indexes to which this should be entangled
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 
 **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – if map\_type is not valid.
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if map\_type is not valid.
 
 <span id="qiskit.utils.validate_entangler_map" />
 
@@ -305,9 +303,9 @@ Validate a user supplied entangler map and converts entries to ints.
 
 **Parameters**
 
-*   **entangler\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*]*) – An entangler map, keys are source qubit index (int), value is array of target qubit index(es) (int)
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Number of qubits
-*   **allow\_double\_entanglement** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If we allow in two qubits can be entangled each other
+*   **entangler\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*]*) – An entangler map, keys are source qubit index (int), value is array of target qubit index(es) (int)
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of qubits
+*   **allow\_double\_entanglement** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If we allow in two qubits can be entangled each other
 
 **Returns**
 
@@ -315,13 +313,13 @@ Validated/converted map
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 
 **Raises**
 
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.11)") – entangler map is not list type or list of list
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – the index of entangler map is out of range
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – the qubits are cross-entangled.
+*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – entangler map is not list type or list of list
+*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – the index of entangler map is out of range
+*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – the qubits are cross-entangled.
 
 <span id="qiskit.utils.has_ibmq" />
 
@@ -383,9 +381,9 @@ A QuantumInstance holds the Qiskit backend as well as a number of compile and ru
 
 <span id="module-qiskit.utils.optionals" />
 
-<span id="optional-depedency-checkers-qiskit-utils-optionals" />
+<span id="optional-dependency-checkers-qiskit-utils-optionals" />
 
-## Optional Depedency Checkers
+## Optional Dependency Checkers
 
 <span id="module-qiskit.utils" />
 
@@ -501,7 +499,7 @@ Subclasses of [`LazyDependencyManager`](#qiskit.utils.LazyDependencyManager "qis
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### disable\_locally
 
@@ -527,7 +525,7 @@ Create a decorator for callables that requires that the dependency is available 
 
 **Parameters**
 
-**feature\_or\_callable** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *or Callable*) – the name of the feature that requires these dependencies. If this function is called directly as a decorator (for example `@HAS_X.require_in_call` as opposed to `@HAS_X.require_in_call("my feature")`), then the feature name will be taken to be the function name, or class and method name as appropriate.
+**feature\_or\_callable** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or Callable*) – the name of the feature that requires these dependencies. If this function is called directly as a decorator (for example `@HAS_X.require_in_call` as opposed to `@HAS_X.require_in_call("my feature")`), then the feature name will be taken to be the function name, or class and method name as appropriate.
 
 **Returns**
 
@@ -553,7 +551,7 @@ A class decorator that requires the dependency is available when the class is in
 
 **Parameters**
 
-**feature\_or\_class** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *or*[*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")) – the name of the feature that requires these dependencies. If this function is called directly as a decorator (for example `@HAS_X.require_in_instance` as opposed to `@HAS_X.require_in_instance("my feature")`), then the feature name will be taken as the name of the class.
+**feature\_or\_class** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")) – the name of the feature that requires these dependencies. If this function is called directly as a decorator (for example `@HAS_X.require_in_instance` as opposed to `@HAS_X.require_in_instance("my feature")`), then the feature name will be taken as the name of the class.
 
 **Returns**
 
@@ -573,7 +571,7 @@ Eagerly attempt to import the dependencies in this object, and raise an exceptio
 
 **Parameters**
 
-**feature** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – the name of the feature that is requiring these dependencies.
+**feature** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the name of the feature that is requiring these dependencies.
 
 **Raises**
 
@@ -587,11 +585,11 @@ A lazy dependency tester for importable Python modules. Any required objects wil
 
 **Parameters**
 
-**name\_map\_or\_modules** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*,* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*]] |* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*]*) – if a name map, then a dictionary where the keys are modules or packages, and the values are iterables of names to try and import from that module. It should be valid to write `from <module> import <name1>, <name2>, ...`. If simply a string or iterable of strings, then it should be valid to write `import <module>` for each of them.
+**name\_map\_or\_modules** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]] |* [*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – if a name map, then a dictionary where the keys are modules or packages, and the values are iterables of names to try and import from that module. It should be valid to write `from <module> import <name1>, <name2>, ...`. If simply a string or iterable of strings, then it should be valid to write `import <module>` for each of them.
 
 **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – if no modules are given.
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if no modules are given.
 
 <span id="qiskit.utils.LazySubprocessTester" />
 
@@ -601,9 +599,9 @@ A lazy checker that a command-line tool is available. The command will only be r
 
 **Parameters**
 
-**command** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*]*) – the strings that make up the command to be run. For example, `["pdflatex", "-version"]`.
+**command** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the strings that make up the command to be run. For example, `["pdflatex", "-version"]`.
 
 **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – if an empty command is given.
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if an empty command is given.
 

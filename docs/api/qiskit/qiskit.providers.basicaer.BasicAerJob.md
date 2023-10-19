@@ -60,7 +60,7 @@ Return whether the job has been cancelled.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### done
 
@@ -72,7 +72,7 @@ Return whether the job has successfully run.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### in\_final\_state
 
@@ -84,7 +84,7 @@ Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### job\_id
 
@@ -96,7 +96,7 @@ Return a unique id identifying the job.
 
 **Return type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### result
 
@@ -124,7 +124,7 @@ Return whether the job is actively running.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### status
 
@@ -164,11 +164,11 @@ Poll the job status until it progresses to a final state such as `DONE` or `ERRO
 
 **Parameters**
 
-*   **timeout** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)") *| None*) – Seconds to wait for the job. If `None`, wait indefinitely.
+*   **timeout** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – Seconds to wait for the job. If `None`, wait indefinitely.
 
-*   **wait** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Seconds between queries.
+*   **wait** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Seconds between queries.
 
-*   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.11)") *| None*) –
+*   **callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)") *| None*) –
 
     Callback function invoked after each query. The following positional arguments are provided to the callback function:
 

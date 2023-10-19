@@ -21,7 +21,7 @@ Creates a qubit.
 **Parameters**
 
 *   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – Optional. A quantum register containing the bit.
-*   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Optional. The index of the bit in its containing register.
+*   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The index of the bit in its containing register.
 
 **Raises**
 

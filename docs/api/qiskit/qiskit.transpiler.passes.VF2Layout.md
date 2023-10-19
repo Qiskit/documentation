@@ -40,17 +40,17 @@ Initialize a `VF2Layout` pass instance
 **Parameters**
 
 *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph representing a coupling map.
-*   **strict\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True, considers the direction of the coupling map. Default is False.
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Sets the seed of the PRNG. -1 Means no node shuffling.
-*   **call\_limit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The number of state visits to attempt in each execution of VF2.
-*   **time\_limit** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – The total time limit in seconds to run `VF2Layout`
+*   **strict\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, considers the direction of the coupling map. Default is False.
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Sets the seed of the PRNG. -1 Means no node shuffling.
+*   **call\_limit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of state visits to attempt in each execution of VF2.
+*   **time\_limit** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The total time limit in seconds to run `VF2Layout`
 *   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – The backend properties for the backend. If [`readout_error()`](qiskit.providers.models.BackendProperties#readout_error "qiskit.providers.models.BackendProperties.readout_error") is available it is used to score the layout.
-*   **max\_trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The maximum number of trials to run VF2 to find a layout. If this is not specified the number of trials will be limited based on the number of edges in the interaction graph or the coupling graph (whichever is larger) if no other limits are set. If set to a value \<= 0 no limit on the number of trials will be set.
+*   **max\_trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of trials to run VF2 to find a layout. If this is not specified the number of trials will be limited based on the number of edges in the interaction graph or the coupling graph (whichever is larger) if no other limits are set. If set to a value \<= 0 no limit on the number of trials will be set.
 *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the backend device to run `VF2Layout` on. If specified it will supersede a set value for `properties` and `coupling_map`.
 
 **Raises**
 
-[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.11)") – At runtime, if neither `coupling_map` or `target` are provided.
+[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – At runtime, if neither `coupling_map` or `target` are provided.
 
 ## Attributes
 

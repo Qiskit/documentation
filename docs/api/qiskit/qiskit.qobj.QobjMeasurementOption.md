@@ -12,7 +12,7 @@ python_api_name: qiskit.qobj.QobjMeasurementOption
 
 `qiskit.qobj.QobjMeasurementOption(name, params=None)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 An individual measurement option.
 
@@ -20,8 +20,8 @@ Instantiate a new QobjMeasurementOption object.
 
 **Parameters**
 
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The name of the measurement option
-*   **params** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – The parameters of the measurement option.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the measurement option
+*   **params** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The parameters of the measurement option.
 
 ## Methods
 
@@ -35,7 +35,7 @@ Create a new QobjMeasurementOption object from a dictionary.
 
 **Parameters**
 
-**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – A dictionary for the experiment config
+**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary for the experiment config
 
 **Returns**
 
@@ -59,5 +59,5 @@ The dictionary form of the QasmMeasurementOption.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 

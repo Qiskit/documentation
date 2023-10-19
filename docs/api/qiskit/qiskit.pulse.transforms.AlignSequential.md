@@ -64,5 +64,5 @@ Returns dictionary to represent this alignment.
 
 **Return type**
 
-[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.11)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)"), [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)")]
+[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")]
 
