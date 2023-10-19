@@ -108,7 +108,7 @@ with Session(service=service, backend=backend, max_time="25m"):
   ...   
 ```
 
-There is also an interactive timeout value (ITTL, or interactive time to live) that cannot be configured.  If no session jobs are queued within that window, the session is temporarily deactivated. For more details about session length and timeout, see [How long a session stays active](sessions#active). To determine a session's ITTL, follow the instructions in [Determine session details](session-details) and look for the `interactive_timeout` value.
+There is also an interactive timeout value (ITTL, or interactive time to live) that cannot be configured.  If no session jobs are queued within that window, the session is temporarily deactivated. For more details about session length and timeout, see [How long a session stays active](sessions#active). To determine a session's ITTL, follow the instructions in [Determine session details](#session-details) and look for the `interactive_timeout` value.
 
 <span id="close"></span>
 ## Close a session 
@@ -242,7 +242,7 @@ with Session(backend=backend):
     print(f">>> Expectation value from the estimator job: {estimator_job.result().values[0]}")
 ```
 
-<span id="session-details"></span>
+<span id="session-status"></span>
 ## Query session status
 
 You can query the status of a session using `session.status()`.  You can also view a session's status on the Jobs page for your channel.
