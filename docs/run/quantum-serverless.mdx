@@ -11,13 +11,11 @@ Premium users can run remotely their workloads on classical compute made availab
 
 Here is an example of computing the quasiprobability distribution of a quantum circuit using the Qiskit Runtime Sampler Primitive. This python script should be saved in your working directory (Warning! All contents of the working directory will be shipped to the cluster for execution).
 
-TODO: modify this example to set up the QiskitRuntimeService (no need to pass token again since it’s retrieved automatically for user when they’ve authenticated to the IBMServerlessProvider) using the Sampler Primitive inside a Session.
-
 ```python
 # source_files/program.py
 
 from qiskit import QuantumCircuit
-from qiskit.primitives import Sampler
+from qiskit_ibm_runtime import Session, Sampler
 
 from quantum_serverless import save_result
 
@@ -30,13 +28,19 @@ circuit.h(0)
 circuit.cx(0, 1)
 circuit.measure_all()
 
-# running Sampler primitive
-sampler = Sampler()
-quasi_dists = sampler.run(circuit).result().quasi_dists
+# sessions allow grouping a collection of iterative
+# calls to the quantum computer
+with Session(backend="ibmq_qasm_simulator") as session:
+    # running Sampler primitive
+    sampler = Sampler(session=session)
+    job = sampler.run(circuit)
+    quasi_dists = job.result().quasi_dists
 
-# save results of program execution,
-# which will be accessible by calling `.result()`
-save_result(quasi_dists)
+    # save results of program execution,
+    # which will be accessible by calling `.result()`
+    save_result(quasi_dists)
+    session.close()
+
 print("Completed running program 1.")
 ```
 
