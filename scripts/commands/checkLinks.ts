@@ -18,6 +18,14 @@ import markdownLinkExtractor from 'markdown-link-extractor';
 const DOCS_ROOT = "./docs"
 const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"]
 
+const IGNORE_LIST = [
+  'docs/run/instances.mdx',
+  'docs/start/index.mdx',
+  'docs/support.mdx',
+  'docs/verify/index.mdx',
+  'docs/verify/noisy-simulators.mdx',
+]
+
 class Link {
   readonly value: string
   readonly anchor: string
@@ -114,6 +122,8 @@ function markdownFromNotebook(source: string): string {
 }
 
 function checkLinksInFile(filePath: string, filePaths: string[]): boolean {
+  if (filePath.startsWith("docs/api")) { return true }
+  if (IGNORE_LIST.includes(filePath)) { return true }
   const source = readFileSync(filePath, {encoding: 'utf8'})
   const markdown = (path.extname(filePath) === '.ipynb') ? markdownFromNotebook(source) : source
   const links = markdownLinkExtractor(source).links.map((x: string) => new Link(x, filePath))

@@ -93,6 +93,18 @@ We also re-deploy the docs every time we merge into `main` at the site https://q
 
 This staging environment can be useful to see how the docs are rendering before we push it live to production.
 
+## Check for broken links
+
+CI will check for broken links. You can also check locally:
+
+```bash
+# Only check for broken links
+npm run check:links
+
+# Or, run all the checks
+npm run check
+```
+
 ## Check file metadata
 
 Every file needs to have a `title` and `description`. The `lint` job in CI will fail with instructions for any bad file.
