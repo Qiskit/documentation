@@ -210,7 +210,7 @@ You can query the status of a session using `session.status()`.  You can also vi
 
 Session status can be one of the following:
 
-- `Pending`: Session has not started or has been deactivated. 
+- `Pending`: Session has not started or has been deactivated. The next session job needs to wait in the queue like other jobs. 
 - `In progress, accepting new jobs`: Session is active and accepting new jobs.
 - `In progress, not accepting new jobs`: Session is active but not accepting new jobs. Job submission to the session will be rejected, but outstanding session jobs will run to completion. The session will be automatically closed once all jobs finish. 
 - `Closed`: Session maximum timeout value has been reached, or session was explicitly closed.
