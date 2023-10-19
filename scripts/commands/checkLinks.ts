@@ -21,9 +21,6 @@ const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"]
 const IGNORE_LIST = [
   'docs/run/instances.mdx',
   'docs/start/index.mdx',
-  'docs/support.mdx',
-  'docs/verify/index.mdx',
-  'docs/verify/noisy-simulators.mdx',
 ]
 
 class Link {
