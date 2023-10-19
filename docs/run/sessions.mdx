@@ -59,15 +59,14 @@ A quantum processor still executes one job at a time. Therefore, jobs
 that belong to a session still need to wait for their turn if one is
 already running.
 
+<Admonition type="note">
+    Internal systems jobs such as calibration have priority over session jobs.
+</Admonition>
+
 The length of time a session is active is controlled by the *maximum session timeout* (`max_time`) value and the *interactive timeout value* (ITTL, or interactive time to live). The `max_time` timer starts when the
 session becomes active - that is, when the first job runs, not when it is
 queued. It does not stop if a session becomes inactive. The ITTL timer
 starts each time a session job finishes.
-
-
-<Admonition type="note">
-    Internal systems jobs such as calibration have priority over session jobs.
-</Admonition>
 
 <span id="max-ttl"></span>
 ## Maximum session timeout
@@ -75,16 +74,9 @@ starts each time a session job finishes.
 When a session is started, it is assigned a *maximum session timeout*
 value. You can set this value by using the `max_time` parameter, which
 can be greater than the program's `max_execution_time`. For
-instructions, see [Run a primitive in a session](run-jobs-in-session).
+instructions, see [Run jobs in a session](run-jobs-in-session).
 
-If you do not specify a timeout value, it is the smaller of these
-values:
-
--   The system limit
--   The `max_execution_time` defined by the program
-
-See [What is the maximum execution time for a Qiskit Runtime job?](max-execution-time) to determine the system limit and
-the `max_execution_time` for primitive programs.
+If you do not specify a timeout value, it is set to the system limit.
 
 To find the maximum session timeout value for a session, follow the instructions in [Determine session details](run-jobs-in-session#session-details).
 
@@ -113,7 +105,7 @@ To find the interactive timeout value for a session, follow the instructions in 
 A session ends by reaching its maximum timeout value,  when it is [closed](run-jobs-in-session#close), or when it is canceled by using the `session.cancel()` method. What happens to unfinished session jobs when the session ends depends on how it ended:
 
 <Admonition type="note" title="Important">
-    Previously, `session.close()` **canceled** the session.  Starting with Qiskit Runtime 0.13, `session.close()` **closes** the session. The `session.cancel()` method was added in Qiskit Runtime 0.13.
+    Previously, `session.close()` **canceled** the session.  Starting with `qiskit-ibm-runtime` 0.13, `session.close()` **closes** the session. The `session.cancel()` method was added in `qiskit-ibm-runtime` 0.13.
 </Admonition>
 
 If the maximum timeout value was reached:
@@ -124,7 +116,7 @@ If the maximum timeout value was reached:
 
 If the maximum timeout value has not been reached:    
 
-- When using Qiskit Runtime 0.13 or later releases:
+- When using `qiskit-ibm-runtime` 0.13 or later releases:
     - If a session is closed:
         - Session status becomes "In progress, not accepting new jobs".
         - New job submissions to the session is rejected.

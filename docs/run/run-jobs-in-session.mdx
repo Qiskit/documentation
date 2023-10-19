@@ -46,7 +46,7 @@ sampler = Sampler(session=session)
 
 **Context manager**
 
-The context manager automatically opens a session for you. A session is
+The context manager automatically opens and closes session for you. A session is
 started when the first primitive job in this context manager starts (not when it is queued). Primitives created in the context automatically use
 that session. Example:
 
@@ -108,12 +108,12 @@ with Session(service=service, backend=backend, max_time="25m"):
   ...   
 ```
 
-There is also an interactive timeout value (ITTL, or interactive time to live) that cannot be configured. For premium accounts, the ITTL is 1 min, and for open plan accounts, the ITTL is 2 sec. If no session jobs are queued within that window, the session is temporarily deactivated. For more details about session length and timeout, see [How long a session stays active](sessions#active).
+There is also an interactive timeout value (ITTL, or interactive time to live) that cannot be configured.  If no session jobs are queued within that window, the session is temporarily deactivated. For more details about session length and timeout, see [How long a session stays active](sessions#active). To determine a session's ITTL, follow the instructions in [Determine session details](session-details) and look for the `interactive_timeout` value.
 
 <span id="close"></span>
 ## Close a session 
 
-### For Qiskit Runtime 0.13 or later releases
+### For `qiskit-ibm-runtime` 0.13 or later releases
 
 When the session context manager is exited, the session is put into `In progress, not accepting new jobs` status.  This means that the session will finish processing all running or queued jobs until the maximum timeout value is reached.  After all jobs are completed, the session is immediately closed. This allows the
 scheduler to run the next job without waiting for the session interactive timeout,
@@ -130,7 +130,7 @@ result = job.result()
 ```
 
 <Admonition type="note" title="Important">
-    Previously, `session.close()` **canceled** the session.  Starting with Qiskit Runtime 0.13, `session.close()` **closes** the session. 
+    Previously, `session.close()` **canceled** the session.  Starting with `qiskit-ibm-runtime` 0.13, `session.close()` **closes** the session. 
 </Admonition>
 
 ### For Qiskit runtime releases before 0.13
@@ -155,6 +155,45 @@ with Session(service=service, backend=backend) as session:
     # Reaching this line means that the job is finished.
     session.close()
 ```
+
+<span id="cancel"></span>
+## Cancel a session 
+
+If a session is canceled, the session is put into `Closed` status.  Any jobs that are already running continue to run but queued jobs are put into a failed state and no further jobs can be submitted to the session. Therefore it is recommended that you cancel a session only after all session jobs **complete**, rather than immediately after they have all been submitted. 
+
+### For Qiskit runtime releases 0.13 or later
+
+Use the `session.cancel()` method to cancel a session.  
+
+``` python
+with Session(service=service, backend=backend) as session:
+    estimator = Estimator()
+    job = estimator.run(...)
+    # Do not cancel the session here, the job might not be completed!
+    result = job.result()
+    # Reaching this line means that the job is finished.
+    session.cancel()
+```
+
+### For Qiskit runtime releases before 0.13
+
+Use the `session.close()` method to cancel a session.  This allows the
+scheduler to run the next job without waiting for the session timeout,
+therefore making it easier for everyone. You cannot submit jobs to a
+closed session.
+
+
+``` python
+with Session(service=service, backend=backend) as session:
+    estimator = Estimator()
+    job = estimator.run(...)
+    # Do not close here, the job might not be completed!
+    result = job.result()
+    # Reaching this line means that the job is finished.
+    # This close() method would fail all pending jobs.
+    session.close()
+```
+
 
 ## Invoke multiple primitives in a session
 
@@ -273,8 +312,6 @@ with Session(service=service, backend="ibmq_qasm_simulator") as session:
     estimator = Estimator(options=options)
     job = estimator.run(circuit, observable)
     result = job.result()
-    # Close the session only if all jobs are finished, and you don't need to run more in the session
-    session.close()
 
 display(circuit.draw("mpl"))
 print(f" > Observable: {observable.paulis}")
