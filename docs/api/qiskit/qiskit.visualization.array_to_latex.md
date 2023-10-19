@@ -20,13 +20,13 @@ Latex representation of a complex numpy array (with dimension 1 or 2)
 
 *   **array** (*ndarray*) – The array to be converted to latex, must have dimension 1 or 2 and contain only numerical data.
 
-*   **precision** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – For numbers not close to integers or common terms, the number of decimal places to round to.
+*   **precision** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – For numbers not close to integers or common terms, the number of decimal places to round to.
 
-*   **prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Latex string to be prepended to the latex, intended for labels.
+*   **prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Latex string to be prepended to the latex, intended for labels.
 
-*   **source** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If `False`, will return IPython.display.Latex object. If display is `True`, will instead return the LaTeX source string.
+*   **source** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `False`, will return IPython.display.Latex object. If display is `True`, will instead return the LaTeX source string.
 
-*   **max\_size** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*(*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*) or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) –
+*   **max\_size** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*) or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) –
 
     The maximum size of the output Latex array.
 
@@ -41,11 +41,11 @@ representation of the array, else an `IPython.display.Latex` representation of t
 
 **Return type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") or IPython.display.Latex
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") or IPython.display.Latex
 
 **Raises**
 
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.11)") – If array can not be interpreted as a numerical numpy array.
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – If the dimension of array is not 1 or 2.
+*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If array can not be interpreted as a numerical numpy array.
+*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the dimension of array is not 1 or 2.
 *   [**MissingOptionalLibraryError**](exceptions#qiskit.exceptions.MissingOptionalLibraryError "qiskit.exceptions.MissingOptionalLibraryError") – If `source` is `False` and `IPython.display.Latex` cannot be imported.
 

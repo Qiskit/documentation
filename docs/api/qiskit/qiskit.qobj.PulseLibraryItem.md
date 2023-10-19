@@ -12,7 +12,7 @@ python_api_name: qiskit.qobj.PulseLibraryItem
 
 `qiskit.qobj.PulseLibraryItem(name, samples)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 An item in a pulse library.
 
@@ -20,8 +20,8 @@ Instantiate a pulse library item.
 
 **Parameters**
 
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – A name for the pulse.
-*   **samples** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")*]*) – A list of complex values defining pulse shape.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – A name for the pulse.
+*   **samples** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*]*) – A list of complex values defining pulse shape.
 
 ## Methods
 
@@ -35,7 +35,7 @@ Create a new PulseLibraryItem object from a dictionary.
 
 **Parameters**
 
-**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – A dictionary for the experiment config
+**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary for the experiment config
 
 **Returns**
 
@@ -59,5 +59,5 @@ The dictionary form of the PulseLibraryItem.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 

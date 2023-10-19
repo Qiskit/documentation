@@ -12,13 +12,13 @@ python_api_name: qiskit.transpiler.synthesis.aqc.CNOTUnitObjective
 
 `qiskit.transpiler.synthesis.aqc.CNOTUnitObjective(num_qubits, cnots)`
 
-Bases: [`ApproximatingObjective`](qiskit.transpiler.synthesis.aqc.ApproximatingObjective "qiskit.transpiler.synthesis.aqc.approximate.ApproximatingObjective"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.11)")
+Bases: [`ApproximatingObjective`](qiskit.transpiler.synthesis.aqc.ApproximatingObjective "qiskit.transpiler.synthesis.aqc.approximate.ApproximatingObjective"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
 A base class for a problem definition based on CNOT unit. This class may have different subclasses for objective and gradient computations.
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – number of qubits.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubits.
 *   **cnots** (*np.ndarray*) – a CNOT structure to be used in the optimization procedure.
 
 ## Attributes

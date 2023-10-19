@@ -12,7 +12,7 @@ python_api_name: qiskit.primitives.BaseSampler
 
 `qiskit.primitives.BaseSampler(*, options=None)`
 
-Bases: `BasePrimitive`, [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.11)")\[`T`]
+Bases: `BasePrimitive`, [`Generic`](https://docs.python.org/3/library/typing.html#typing.Generic "(in Python v3.12)")\[`T`]
 
 Sampler base class
 
@@ -20,7 +20,7 @@ Base class of Sampler that calculates quasi-probabilities of bitstrings from qua
 
 **Parameters**
 
-**options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)") *| None*) – Default options.
+**options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – Default options.
 
 ## Attributes
 
@@ -67,7 +67,7 @@ Run the job of the sampling of bitstrings.
 **Parameters**
 
 *   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – One of more circuit objects.
-*   **parameter\_values** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*] | Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*]] | None*) – Parameters to be bound to the circuit.
+*   **parameter\_values** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Parameters to be bound to the circuit.
 *   **run\_options** – Backend runtime options used for circuit execution.
 
 **Returns**
@@ -76,7 +76,7 @@ The job object of the result of the sampler. The i-th result corresponds to `cir
 
 **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – Invalid arguments are given.
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid arguments are given.
 
 **Return type**
 

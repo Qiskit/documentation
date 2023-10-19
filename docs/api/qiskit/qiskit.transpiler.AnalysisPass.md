@@ -58,5 +58,5 @@ Run a pass on the DAGCircuit. This is implemented by the pass developer.
 
 **Raises**
 
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.11)") – when this is left unimplemented for a pass.
+[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – when this is left unimplemented for a pass.
 

@@ -18,7 +18,7 @@ This is a transpiler pass using Hoare logic circuit optimization. The inner work
 
 **Parameters**
 
-**size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – size of gate cache, in number of gates
+**size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – size of gate cache, in number of gates
 
 **Raises**
 

@@ -71,7 +71,7 @@ q_2: ─────────────────────────
 
 **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – If neither of `supported_gates` and `target` are passed.
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If neither of `supported_gates` and `target` are passed.
 
 ## Attributes
 

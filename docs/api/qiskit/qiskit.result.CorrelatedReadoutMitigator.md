@@ -22,8 +22,8 @@ Initialize a CorrelatedReadoutMitigator
 
 **Parameters**
 
-*   **assignment\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – readout error assignment matrix.
-*   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] | None*) – Optional, the measured physical qubits for mitigation.
+*   **assignment\_matrix** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – readout error assignment matrix.
+*   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, the measured physical qubits for mitigation.
 
 **Raises**
 
@@ -57,7 +57,7 @@ The assignment matrix is the stochastic matrix $A$ which assigns a noisy readout
 
 **Parameters**
 
-**qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] | None*) – Optional, qubits being measured.
+**qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, qubits being measured.
 
 **Returns**
 
@@ -80,10 +80,10 @@ This computes the mitigated estimator of $\langle O \rangle = \mbox{Tr}[\rho. O]
 **Parameters**
 
 *   **data** ([*Counts*](qiskit.result.Counts "qiskit.result.counts.Counts")) – Counts object
-*   **diagonal** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.11)")  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)") *| None*) – Optional, the vector of diagonal values for summing the expectation value. If `None` the default value is $[1, -1]^\otimes n$.
-*   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] | None*) – Optional, the measured physical qubits the count bitstrings correspond to. If None qubits are assumed to be $[0, ..., n-1]$.
-*   **clbits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] | None*) – Optional, if not None marginalize counts to the specified bits.
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – the number of shots.
+*   **diagonal** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")  *|*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")  *|*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)") *| None*) – Optional, the vector of diagonal values for summing the expectation value. If `None` the default value is $[1, -1]^\otimes n$.
+*   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, the measured physical qubits the count bitstrings correspond to. If None qubits are assumed to be $[0, ..., n-1]$.
+*   **clbits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, if not None marginalize counts to the specified bits.
+*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – the number of shots.
 
 **Returns**
 
@@ -91,7 +91,7 @@ the expectation value and an upper bound of the standard deviation.
 
 **Return type**
 
-([float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)"))
+([float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)"))
 
 **Additional Information:**
 
@@ -109,7 +109,7 @@ The mitigation matrix $A^{-1}$ is defined as the inverse of the [`assignment_mat
 
 **Parameters**
 
-**qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] | None*) – Optional, qubits being measured.
+**qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, qubits being measured.
 
 **Returns**
 
@@ -130,9 +130,9 @@ Compute mitigated quasi probabilities value.
 **Parameters**
 
 *   **data** ([*Counts*](qiskit.result.Counts "qiskit.result.counts.Counts")) – counts object
-*   **qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] | None*) – qubits the count bitstrings correspond to.
-*   **clbits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] | None*) – Optional, marginalize counts to just these bits.
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – Optional, the total number of shots, if None shots will be calculated as the sum of all counts.
+*   **qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – qubits the count bitstrings correspond to.
+*   **clbits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Optional, marginalize counts to just these bits.
+*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Optional, the total number of shots, if None shots will be calculated as the sum of all counts.
 
 **Returns**
 
@@ -142,7 +142,7 @@ is the key in the dictionaries, which is the length-N bitstring of a measured st
 
 **Return type**
 
-QuasiDistibution
+[QuasiDistribution](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")
 
 ### stddev\_upper\_bound
 
@@ -154,7 +154,7 @@ Return an upper bound on standard deviation of expval estimator.
 
 **Parameters**
 
-**shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Number of shots used for expectation value measurement.
+**shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of shots used for expectation value measurement.
 
 **Returns**
 
@@ -162,5 +162,5 @@ the standard deviation upper bound.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 

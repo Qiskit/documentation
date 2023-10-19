@@ -36,10 +36,10 @@ Create quantum volume model circuit of size num\_qubits x depth.
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – number of active qubits in model circuit.
-*   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – layers of SU(4) operations in model circuit.
-*   **seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v1.25)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – Random number generator or generator seed.
-*   **classical\_permutation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – use classical permutations at every layer, rather than quantum.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of active qubits in model circuit.
+*   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – layers of SU(4) operations in model circuit.
+*   **seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v1.26)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Random number generator or generator seed.
+*   **classical\_permutation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – use classical permutations at every layer, rather than quantum.
 
 ## Attributes
 
@@ -105,7 +105,7 @@ Return the global phase of the circuit in radians.
 
 ### layout
 
-Return any associated layout information anout the circuit
+Return any associated layout information about the circuit
 
 This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
@@ -157,7 +157,7 @@ List of integers representing instruction start times. The index corresponds to 
 
 **Raises**
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.11)") – When circuit is not scheduled.
+[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
 
 <span id="qiskit.circuit.library.QuantumVolume.parameters" />
 
@@ -182,7 +182,7 @@ The snippet below shows that insertion order of parameters does not matter.
 ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
 ```
 
-Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
+Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter

@@ -16,14 +16,14 @@ python_api_name: qiskit.visualization.dag_drawer
 
 Plot the directed acyclic graph (dag) to represent operation dependencies in a quantum circuit.
 
-This function calls the [`graphviz_draw()`](https://qiskit.org/ecosystem/rustworkx/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw "(in rustworkx v0.13.1)") function from the `rustworkx` package to draw the DAG.
+This function calls the [`graphviz_draw()`](https://qiskit.org/ecosystem/rustworkx/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw "(in rustworkx v0.13.2)") function from the `rustworkx` package to draw the DAG.
 
 **Parameters**
 
 *   **dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – The dag to draw.
-*   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – scaling factor
-*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – file path to save image to (format inferred from name)
-*   **style** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – ‘plain’: B\&W graph ‘color’ (default): color input/output/op nodes
+*   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – scaling factor
+*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – file path to save image to (format inferred from name)
+*   **style** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – ‘plain’: B\&W graph ‘color’ (default): color input/output/op nodes
 
 **Returns**
 
