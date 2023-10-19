@@ -117,7 +117,7 @@ A session ends by reaching its maximum timeout value or when it is [closed](run-
 </Admonition>
 
 If the maximum timeout value was reached:
-    -   Any jobs that are already running are canceled.
+    -   Any jobs that are already running continue to run.
     -   Any queued jobs remaining in the session are put into a failed state.
     -   No further jobs can be submitted to the session.
     -   The session cannot be reopened.
@@ -154,6 +154,10 @@ Any session job submitted within the interactive timeout, also known as interact
 -   Post-processing could be done anywhere, such as a personal computer, cloud service, or an HPC environment.
 
 ![Iterative session execution diagram.](/images/run/iterative.png 'Figure 2: Iterative session execution')
+
+<Admonition type="note">
+    There might be a limit imposed on the ITTL value depending on whether your hub is Premium, Open, and so on. 
+</Admonition>
 
 ### Batch
 
