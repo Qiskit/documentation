@@ -5,8 +5,9 @@
   "author": "Qiskit Development Team",
   "license": "Apache-2.0",
   "scripts": {
-    "check": "npm run check:metadata && npm run check:spelling",
+    "check": "npm run check:metadata && npm run check:spelling && npm run check:links",
     "check:metadata": "node -r esbuild-register scripts/commands/checkMetadata.ts",
+    "check:links": "node -r esbuild-register scripts/commands/checkLinks.ts",
     "check:spelling": "cspell --relative --no-progress docs/**/*.md*",
     "test": "jest",
     "typecheck": "tsc"
@@ -16,6 +17,7 @@
     "@types/jest": "^29.5.5",
     "@types/lodash": "^4.14.198",
     "@types/node": "^20.6.2",
+    "@types/yargs": "^17.0.28",
     "cheerio": "^1.0.0-rc.12",
     "cspell": "^7.3.2",
     "esbuild-register": "^3.5.0",
@@ -41,6 +43,10 @@
     "typescript": "^5.2.2",
     "unified": "^10.0.0",
     "unist-util-visit": "^4.0.0",
+    "yargs": "^17.7.2",
     "zx": "^7.2.3"
+  },
+  "dependencies": {
+    "markdown-link-extractor": "^3.1.0"
   }
 }

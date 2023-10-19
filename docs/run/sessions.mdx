@@ -13,7 +13,7 @@ A session allows a collection of jobs to be grouped and jointly scheduled by the
     <figcaption>Figure 1: Qiskit Runtime session flow diagram</figcaption>
 </figure>
 
-Compared with jobs that use the [fair-share scheduler](../run/queue),
+Compared with jobs that use the [fair-share scheduler](../run/fair-share-queue),
 sessions become particularly beneficial when running programs that
 require iterative calls between classical and quantum resources, where a
 large number of jobs are submitted sequentially. This is the case, for
@@ -75,7 +75,7 @@ starts each time a session job finishes.
 When a session is started, it is assigned a *maximum session timeout*
 value. You can set this value by using the `max_time` parameter, which
 can be greater than the program's `max_execution_time`. For
-instructions, see [Run a primitive in a session](run-sessions).
+instructions, see [Run a primitive in a session](run-jobs-in-session).
 
 If you do not specify a timeout value, it is the smaller of these
 values:
