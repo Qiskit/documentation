@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.InstructionScheduleMap
 
 `qiskit.pulse.InstructionScheduleMap`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Mapping from [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") [`qiskit.circuit.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and qubits to [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") s. In particular, the mapping is formatted as type:
 
@@ -52,10 +52,10 @@ Add a new known instruction for the given qubits and its mapping to a pulse sche
 
 **Parameters**
 
-*   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – The name of the instruction to add.
-*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – The qubits which the instruction applies to.
-*   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.11)")*\[\[...],* [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")*]*) – The Schedule that implements the given instruction.
-*   **arguments** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*] | None*) – List of parameter names to create a parameter-bound schedule from the associated gate instruction. If [`get()`](#qiskit.pulse.InstructionScheduleMap.get "qiskit.pulse.InstructionScheduleMap.get") is called with arguments rather than keyword arguments, this parameter list is used to map the input arguments to parameter objects stored in the target schedule.
+*   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – The name of the instruction to add.
+*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits which the instruction applies to.
+*   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[...],* [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")*]*) – The Schedule that implements the given instruction.
+*   **arguments** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] | None*) – List of parameter names to create a parameter-bound schedule from the associated gate instruction. If [`get()`](#qiskit.pulse.InstructionScheduleMap.get "qiskit.pulse.InstructionScheduleMap.get") is called with arguments rather than keyword arguments, this parameter list is used to map the input arguments to parameter objects stored in the target schedule.
 
 **Raises**
 
@@ -71,8 +71,8 @@ Error if the given instruction is not defined.
 
 **Parameters**
 
-*   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – The instruction for which to look.
-*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – The specific qubits for the instruction.
+*   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – The instruction for which to look.
+*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The specific qubits for the instruction.
 
 **Raises**
 
@@ -90,10 +90,10 @@ If all keys are not specified this method returns schedule with unbound paramete
 
 **Parameters**
 
-*   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Name of the instruction or the instruction itself.
-*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – The qubits for the instruction.
-*   **\*params** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Command parameters for generating the output schedule.
-*   **\*\*kwparams** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Keyworded command parameters for generating the schedule.
+*   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Name of the instruction or the instruction itself.
+*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits for the instruction.
+*   **\*params** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Command parameters for generating the output schedule.
+*   **\*\*kwparams** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Keyworded command parameters for generating the schedule.
 
 **Returns**
 
@@ -113,8 +113,8 @@ Return the list of parameters taken by the given instruction on the given qubits
 
 **Parameters**
 
-*   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Name of the instruction.
-*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – The qubits for the instruction.
+*   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Name of the instruction.
+*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits for the instruction.
 
 **Returns**
 
@@ -122,7 +122,7 @@ The names of the parameters required by the instruction.
 
 **Return type**
 
-[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.11)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")]
+[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")]
 
 ### has
 
@@ -134,8 +134,8 @@ Is the instruction defined for the given qubits?
 
 **Parameters**
 
-*   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – The instruction for which to look.
-*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – The specific qubits for the instruction.
+*   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – The instruction for which to look.
+*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The specific qubits for the instruction.
 
 **Returns**
 
@@ -143,7 +143,7 @@ True iff the instruction is defined.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### has\_custom\_gate
 
@@ -155,7 +155,7 @@ Return `True` if the map has user provided instruction.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### pop
 
@@ -167,10 +167,10 @@ Remove and return the defined schedule for the given instruction on the given qu
 
 **Parameters**
 
-*   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Name of the instruction.
-*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – The qubits for the instruction.
-*   **\*params** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Command parameters for generating the output schedule.
-*   **\*\*kwparams** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Keyworded command parameters for generating the schedule.
+*   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Name of the instruction.
+*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits for the instruction.
+*   **\*params** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Command parameters for generating the output schedule.
+*   **\*\*kwparams** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Keyworded command parameters for generating the schedule.
 
 **Returns**
 
@@ -190,7 +190,7 @@ Return a list of the instruction names that are defined by the backend for the g
 
 **Parameters**
 
-**qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – A qubit index, or a list or tuple of indices.
+**qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – A qubit index, or a list or tuple of indices.
 
 **Returns**
 
@@ -200,7 +200,7 @@ For 1 qubit, all the 1Q instructions defined. For multiple qubits, all the instr
 
 **Return type**
 
-[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")]
+[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")]
 
 ### qubits\_with\_instruction
 
@@ -212,7 +212,7 @@ Return a list of the qubits for which the given instruction is defined. Single q
 
 **Parameters**
 
-**instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – The name of the circuit instruction.
+**instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – The name of the circuit instruction.
 
 **Returns**
 
@@ -224,7 +224,7 @@ Qubit indices which have the given instruction defined. This is a list of tuples
 
 **Return type**
 
-[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") | [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.11)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")]]
+[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") | [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]]
 
 ### remove
 
@@ -236,6 +236,6 @@ Remove the given instruction from the listing of instructions defined in self.
 
 **Parameters**
 
-*   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – The name of the instruction to add.
-*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – The qubits which the instruction applies to.
+*   **instruction** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – The name of the instruction to add.
+*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubits which the instruction applies to.
 

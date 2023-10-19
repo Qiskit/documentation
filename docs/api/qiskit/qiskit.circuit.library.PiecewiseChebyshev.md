@@ -49,11 +49,11 @@ Enhancing the Quantum Linear Systems Algorithm Using Richardson Extrapolation. [
 
 **Parameters**
 
-*   **f\_x** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)") *| Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*]*) – the function to be approximated. Constant functions should be specified as f\_x = constant.
-*   **degree** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – the degree of the polynomials. Defaults to `1`.
-*   **breakpoints** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] | None*) – the breakpoints to define the piecewise-linear function. Defaults to the full interval.
-*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – number of qubits representing the state.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The name of the circuit object.
+*   **f\_x** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| Callable\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – the function to be approximated. Constant functions should be specified as f\_x = constant.
+*   **degree** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – the degree of the polynomials. Defaults to `1`.
+*   **breakpoints** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – the breakpoints to define the piecewise-linear function. Defaults to the full interval.
+*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – number of qubits representing the state.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit object.
 
 ## Attributes
 
@@ -139,7 +139,7 @@ Return the global phase of the circuit in radians.
 
 ### layout
 
-Return any associated layout information anout the circuit
+Return any associated layout information about the circuit
 
 This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
@@ -199,7 +199,7 @@ List of integers representing instruction start times. The index corresponds to 
 
 **Raises**
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.11)") – When circuit is not scheduled.
+[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev.parameters" />
 
@@ -217,7 +217,7 @@ The polynomials for the piecewise approximation.
 
 **Raises**
 
-[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.11)") – If the input function is not in the correct format.
+[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If the input function is not in the correct format.
 
 <span id="qiskit.circuit.library.PiecewiseChebyshev.prefix" />
 

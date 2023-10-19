@@ -29,7 +29,7 @@ Initialize a BackendV2 based backend
 
 **Raises**
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.11)") – If a field is specified that’s outside the backend’s options
+[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If a field is specified that’s outside the backend’s options
 
 ## Attributes
 
@@ -71,7 +71,7 @@ dtm
 
 **Raises**
 
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.11)") – if the backend doesn’t support querying the output signal timestep
+[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the output signal timestep
 
 <span id="qiskit.providers.fake_provider.FakeBackend5QV2.instruction_durations" />
 
@@ -113,7 +113,7 @@ meas\_map
 
 **Raises**
 
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.11)") – if the backend doesn’t support querying the measurement mapping
+[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
 
 <span id="qiskit.providers.fake_provider.FakeBackend5QV2.num_qubits" />
 
@@ -187,7 +187,7 @@ The Qubit measurement acquisition line.
 
 **Raises**
 
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.11)") – if the backend doesn’t support querying the measurement mapping
+[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
 
 ### control\_channel
 
@@ -203,7 +203,7 @@ This is required to be implemented if the backend supports Pulse scheduling.
 
 **Parameters**
 
-**qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
+**qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
 
 **Returns**
 
@@ -215,7 +215,7 @@ List\[[ControlChannel](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channe
 
 **Raises**
 
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.11)") – if the backend doesn’t support querying the measurement mapping
+[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
 
 ### drive\_channel
 
@@ -237,7 +237,7 @@ The Qubit drive channel
 
 **Raises**
 
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.11)") – if the backend doesn’t support querying the measurement mapping
+[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
 
 ### measure\_channel
 
@@ -259,7 +259,7 @@ The Qubit measurement stimulus line
 
 **Raises**
 
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.11)") – if the backend doesn’t support querying the measurement mapping
+[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
 
 ### qubit\_properties
 
@@ -273,7 +273,7 @@ If there are no defined or the backend doesn’t support querying these details 
 
 **Parameters**
 
-**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – The qubit to get the `QubitProperties` object for. This can be a single integer for 1 qubit or a list of qubits and a list of `QubitProperties` objects will be returned in the same order
+**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit to get the `QubitProperties` object for. This can be a single integer for 1 qubit or a list of qubits and a list of `QubitProperties` objects will be returned in the same order
 
 **Returns**
 
@@ -285,7 +285,7 @@ qubit\_properties
 
 **Raises**
 
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.11)") – if the backend doesn’t support querying the qubit properties
+[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the qubit properties
 
 ### run
 
@@ -299,7 +299,7 @@ This method returns a [`Job`](qiskit.providers.Job "qiskit.providers.Job") objec
 
 **Parameters**
 
-*   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – An individual or a list of `ScheduleBlock`, or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend.
+*   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An individual or a list of `ScheduleBlock`, or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend.
 *   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
 
 **Returns**
@@ -326,5 +326,5 @@ This method is used to update the options of a backend. If you need to change an
 
 **Raises**
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.11)") – If the field passed in is not part of the options
+[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
 

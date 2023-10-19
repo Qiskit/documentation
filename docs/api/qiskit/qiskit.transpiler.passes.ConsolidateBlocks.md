@@ -29,9 +29,9 @@ If kak\_basis\_gate is not None it will be used as the basis gate for KAK decomp
 **Parameters**
 
 *   **kak\_basis\_gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – Basis gate for KAK decomposition.
-*   **force\_consolidate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Force block consolidation.
-*   **basis\_gates** (*List(*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*)*) – Basis gates from which to choose a KAK gate.
-*   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – a float between \[0.0, 1.0]. Lower approximates more.
+*   **force\_consolidate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Force block consolidation.
+*   **basis\_gates** (*List(*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*)*) – Basis gates from which to choose a KAK gate.
+*   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – a float between \[0.0, 1.0]. Lower approximates more.
 *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The target object for the compilation target backend.
 
 ## Attributes

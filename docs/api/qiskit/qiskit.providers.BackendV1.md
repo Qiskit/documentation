@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.BackendV1
 
 `qiskit.providers.BackendV1(configuration, provider=None, **fields)`
 
-Bases: [`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.11)")
+Bases: [`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
 Abstract class for Backends
 
@@ -30,7 +30,7 @@ Initialize a backend class
 
 **Raises**
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.11)") – if input field not a valid options
+[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – if input field not a valid options
 
 In addition to the public abstract methods, subclasses should also implement the following private methods:
 
@@ -100,7 +100,7 @@ the name of the backend.
 
 **Return type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### properties
 
@@ -146,7 +146,7 @@ This method returns a [`Job`](qiskit.providers.Job "qiskit.providers.Job") objec
 
 **Parameters**
 
-*   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – An individual or a list of `QuantumCircuit` or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend. For legacy providers migrating to the new versioned providers, provider interface a [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") or [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") objects should probably be supported too (but deprecated) for backwards compatibility. Be sure to update the docstrings of subclasses implementing this method to document that. New provider implementations should not do this though as [`qiskit.qobj`](qobj#module-qiskit.qobj "qiskit.qobj") will be deprecated and removed along with the legacy providers interface.
+*   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An individual or a list of `QuantumCircuit` or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend. For legacy providers migrating to the new versioned providers, provider interface a [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") or [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") objects should probably be supported too (but deprecated) for backwards compatibility. Be sure to update the docstrings of subclasses implementing this method to document that. New provider implementations should not do this though as [`qiskit.qobj`](qobj#module-qiskit.qobj "qiskit.qobj") will be deprecated and removed along with the legacy providers interface.
 *   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
 
 **Returns**
@@ -173,7 +173,7 @@ This method is used to update the options of a backend. If you need to change an
 
 **Raises**
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.11)") – If the field passed in is not part of the options
+[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
 
 ### status
 

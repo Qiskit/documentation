@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.library.GaussianSquare
 
 `qiskit.pulse.library.GaussianSquare(duration, amp, sigma, width=None, angle=None, risefall_sigma_ratio=None, name=None, limit_amplitude=None)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 A square pulse with a Gaussian shaped risefall on both sides lifted such that its first sample is zero.
 

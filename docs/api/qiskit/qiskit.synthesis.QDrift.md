@@ -22,10 +22,10 @@ The QDrift Trotterization method, which selects each each term in the Trotteriza
 
 **Parameters**
 
-*   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The number of times to repeat the Trotterization circuit.
-*   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Whether to insert barriers between the atomic evolutions.
-*   **cx\_structure** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – How to arrange the CX gates for the Pauli evolutions, can be “chain”, where next neighbor connections are used, or “fountain”, where all qubits are connected to one.
-*   **atomic\_evolution** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.11)")*\[\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] | None*) – A function to construct the circuit for the evolution of single Pauli string. Per default, a single Pauli evolution is decomopsed in a CX chain and a single qubit Z rotation.
+*   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of times to repeat the Trotterization circuit.
+*   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to insert barriers between the atomic evolutions.
+*   **cx\_structure** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – How to arrange the CX gates for the Pauli evolutions, can be “chain”, where next neighbor connections are used, or “fountain”, where all qubits are connected to one.
+*   **atomic\_evolution** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] | None*) – A function to construct the circuit for the evolution of single Pauli string. Per default, a single Pauli evolution is decomposed in a CX chain and a single qubit Z rotation.
 
 ## Attributes
 
@@ -41,7 +41,7 @@ A dictionary containing the settings of this product formula.
 
 **Raises**
 
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.11)") – If a custom atomic evolution is set, which cannot be serialized.
+[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – If a custom atomic evolution is set, which cannot be serialized.
 
 ## Methods
 

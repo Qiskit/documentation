@@ -35,10 +35,10 @@ SabreSwap initializer.
 **Parameters**
 
 *   **coupling\_map** (*Union\[*[*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")*,* [*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) – CouplingMap of the target backend.
-*   **heuristic** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The type of heuristic to use when deciding best swap strategy (‘basic’ or ‘lookahead’ or ‘decay’).
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – random seed used to tie-break among candidate swaps.
-*   **fake\_run** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if true, it only pretend to do routing, i.e., no swap is effectively added.
-*   **trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The number of seed trials to run sabre with. These will be run in parallel (unless the PassManager is already running in parallel). If not specified this defaults to the number of physical CPUs on the local system. For reproducible results it is recommended that you set this explicitly, as the output will be deterministic for a fixed number of trials.
+*   **heuristic** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The type of heuristic to use when deciding best swap strategy (‘basic’ or ‘lookahead’ or ‘decay’).
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – random seed used to tie-break among candidate swaps.
+*   **fake\_run** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if true, it only pretend to do routing, i.e., no swap is effectively added.
+*   **trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of seed trials to run sabre with. These will be run in parallel (unless the PassManager is already running in parallel). If not specified this defaults to the number of physical CPUs on the local system. For reproducible results it is recommended that you set this explicitly, as the output will be deterministic for a fixed number of trials.
 
 **Raises**
 

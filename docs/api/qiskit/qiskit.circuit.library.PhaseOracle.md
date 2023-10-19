@@ -26,9 +26,9 @@ Creates a PhaseOracle object
 
 **Parameters**
 
-*   **expression** (*Union\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*, ClassicalElement]*) – A Python-like boolean expression.
+*   **expression** (*Union\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, ClassicalElement]*) – A Python-like boolean expression.
 *   **synthesizer** (*Optional\[Callable\[\[*[*BooleanExpression*](qiskit.circuit.classicalfunction.BooleanExpression "qiskit.circuit.classicalfunction.BooleanExpression")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]]*) – Optional. A function to convert a BooleanExpression into a QuantumCircuit If None is provided, Tweedledum’s pkrm\_synth with phase\_esop will be used.
-*   **var\_order** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – A list with the order in which variables will be created. (default: by appearance)
+*   **var\_order** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list with the order in which variables will be created. (default: by appearance)
 
 ## Attributes
 
@@ -94,7 +94,7 @@ Return the global phase of the circuit in radians.
 
 ### layout
 
-Return any associated layout information anout the circuit
+Return any associated layout information about the circuit
 
 This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
@@ -146,7 +146,7 @@ List of integers representing instruction start times. The index corresponds to 
 
 **Raises**
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.11)") – When circuit is not scheduled.
+[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
 
 <span id="qiskit.circuit.library.PhaseOracle.parameters" />
 
@@ -171,7 +171,7 @@ The snippet below shows that insertion order of parameters does not matter.
 ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
 ```
 
-Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
+Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter
@@ -233,7 +233,7 @@ Evaluate the oracle on a bitstring. This evaluation is done classically without 
 
 **Parameters**
 
-**bitstring** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The bitstring for which to evaluate. The input bitstring is expected to be in little-endian order.
+**bitstring** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The bitstring for which to evaluate. The input bitstring is expected to be in little-endian order.
 
 **Returns**
 
@@ -241,7 +241,7 @@ True if the bitstring is a good state, False otherwise.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### from\_dimacs\_file
 
@@ -271,7 +271,7 @@ $(\lnot x_1 \lor \lnot x_2 \lor \lnot x_3) \land (x_1 \lor \lnot x_2 \lor x_3) \
 
 **Parameters**
 
-**filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – A file in DIMACS format.
+**filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – A file in DIMACS format.
 
 **Returns**
 

@@ -150,10 +150,10 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 *   **oracle** (*Union\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")*]*) – The phase oracle implementing a reflection about the bad state. Note that this is not a bitflip oracle, see the docstring for more information.
 *   **state\_preparation** (*Optional\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – The operator preparing the good and bad state. For Grover’s algorithm, this is a n-qubit Hadamard gate and for amplitude amplification or estimation the operator $\mathcal{A}$.
 *   **zero\_reflection** (*Optional\[Union\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*,* [*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")*,* [*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")*]]*) – The reflection about the zero state, $\mathcal{S}_0$.
-*   **reflection\_qubits** (*Optional\[List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]]*) – Qubits on which the zero reflection acts on.
-*   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Whether barriers should be inserted between the reflections and A.
-*   **mcx\_mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The mode to use for building the default zero reflection.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The name of the circuit.
+*   **reflection\_qubits** (*Optional\[List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – Qubits on which the zero reflection acts on.
+*   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether barriers should be inserted between the reflections and A.
+*   **mcx\_mode** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The mode to use for building the default zero reflection.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit.
 
 ## Attributes
 
@@ -219,7 +219,7 @@ Return the global phase of the circuit in radians.
 
 ### layout
 
-Return any associated layout information anout the circuit
+Return any associated layout information about the circuit
 
 This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
@@ -271,7 +271,7 @@ List of integers representing instruction start times. The index corresponds to 
 
 **Raises**
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.11)") – When circuit is not scheduled.
+[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
 
 <span id="qiskit.circuit.library.GroverOperator.oracle" />
 
@@ -302,7 +302,7 @@ The snippet below shows that insertion order of parameters does not matter.
 ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
 ```
 
-Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
+Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter

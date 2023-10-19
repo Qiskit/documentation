@@ -24,8 +24,8 @@ Optimizes 1Q gate strings interrupted by 2Q gates by commuting the components an
 
 **Parameters**
 
-*   **basis** (*List\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*]*) – See also Optimize1qGatesDecomposition.
-*   **run\_to\_completion** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True, this pass retries until it is unable to do any more work. If False, it finds and performs one optimization, and for full optimization the user is obligated to re-call the pass until the output stabilizes.
+*   **basis** (*List\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – See also Optimize1qGatesDecomposition.
+*   **run\_to\_completion** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, this pass retries until it is unable to do any more work. If False, it finds and performs one optimization, and for full optimization the user is obligated to re-call the pass until the output stabilizes.
 *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `basis` and this are specified then this argument will take precedence and `basis` will be ignored.
 
 ## Attributes

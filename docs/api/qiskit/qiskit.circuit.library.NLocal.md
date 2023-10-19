@@ -44,24 +44,24 @@ If specified, barriers can be inserted in between every block. If an initial sta
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – The number of qubits of the circuit.
-*   **rotation\_blocks** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] |* [*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*] | None*) – The blocks used in the rotation layers. If multiple are passed, these will be applied one after another (like new sub-layers).
-*   **entanglement\_blocks** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] |* [*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*] | None*) – The blocks used in the entanglement layers. If multiple are passed, these will be applied one after another. To use different entanglements for the sub-layers, see [`get_entangler_map()`](#qiskit.circuit.library.NLocal.get_entangler_map "qiskit.circuit.library.NLocal.get_entangler_map").
-*   **entanglement** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]] | None*) – The indices specifying on which qubits the input blocks act. If `None`, the entanglement blocks are applied at the top of the circuit.
-*   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Specifies how often the rotation blocks and entanglement blocks are repeated.
-*   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If `True`, barriers are inserted in between each layer. If `False`, no barriers are inserted.
-*   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The prefix used if default parameters are generated.
-*   **overwrite\_block\_parameters** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]*) – If the parameters in the added blocks should be overwritten. If `False`, the parameters in the blocks are not changed.
-*   **skip\_final\_rotation\_layer** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Whether a final rotation layer is added to the circuit.
-*   **skip\_unentangled\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If `True`, the rotation gates act only on qubits that are entangled. If `False`, the rotation gates act on all qubits.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits of the circuit.
+*   **rotation\_blocks** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] |* [*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*] | None*) – The blocks used in the rotation layers. If multiple are passed, these will be applied one after another (like new sub-layers).
+*   **entanglement\_blocks** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] |* [*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*] | None*) – The blocks used in the entanglement layers. If multiple are passed, these will be applied one after another. To use different entanglements for the sub-layers, see [`get_entangler_map()`](#qiskit.circuit.library.NLocal.get_entangler_map "qiskit.circuit.library.NLocal.get_entangler_map").
+*   **entanglement** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]] | None*) – The indices specifying on which qubits the input blocks act. If `None`, the entanglement blocks are applied at the top of the circuit.
+*   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Specifies how often the rotation blocks and entanglement blocks are repeated.
+*   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, barriers are inserted in between each layer. If `False`, no barriers are inserted.
+*   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The prefix used if default parameters are generated.
+*   **overwrite\_block\_parameters** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]*) – If the parameters in the added blocks should be overwritten. If `False`, the parameters in the blocks are not changed.
+*   **skip\_final\_rotation\_layer** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether a final rotation layer is added to the circuit.
+*   **skip\_unentangled\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, the rotation gates act only on qubits that are entangled. If `False`, the rotation gates act on all qubits.
 *   **initial\_state** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| None*) – A [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object which can be used to describe an initial state prepended to the NLocal circuit.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – The name of the circuit.
-*   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)") *| None*) – Set this to `True` to output a flat circuit instead of nesting it inside multiple layers of gate objects. By default currently the contents of the output circuit will be wrapped in nested objects for cleaner visualization. However, if you’re using this circuit for anything besides visualization its **strongly** recommended to set this flag to `True` to avoid a large performance overhead for parameter binding.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The name of the circuit.
+*   **flatten** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – Set this to `True` to output a flat circuit instead of nesting it inside multiple layers of gate objects. By default currently the contents of the output circuit will be wrapped in nested objects for cleaner visualization. However, if you’re using this circuit for anything besides visualization its **strongly** recommended to set this flag to `True` to avoid a large performance overhead for parameter binding.
 
 **Raises**
 
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – If `reps` parameter is less than or equal to 0.
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.11)") – If `reps` parameter is not an int value.
+*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `reps` parameter is less than or equal to 0.
+*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If `reps` parameter is not an int value.
 
 ## Attributes
 
@@ -163,7 +163,7 @@ If barriers are inserted in between the layers or not.
 
 ### layout
 
-Return any associated layout information anout the circuit
+Return any associated layout information about the circuit
 
 This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
@@ -243,7 +243,7 @@ List of integers representing instruction start times. The index corresponds to 
 
 **Raises**
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.11)") – When circuit is not scheduled.
+[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
 
 <span id="qiskit.circuit.library.NLocal.ordered_parameters" />
 
@@ -348,8 +348,8 @@ Append another layer to the NLocal.
 **Parameters**
 
 *   **other** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – The layer to compose, can be another NLocal, an Instruction or Gate, or a QuantumCircuit.
-*   **entanglement** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]] | None*) – The entanglement or qubit indices.
-*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True, `other` is appended to the front, else to the back.
+*   **entanglement** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]] | None*) – The entanglement or qubit indices.
+*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, `other` is appended to the front, else to the back.
 
 **Returns**
 
@@ -357,7 +357,7 @@ self, such that chained composes are possible.
 
 **Raises**
 
-[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.11)") – If other is not compatible, i.e. is no Instruction and does not have a to\_instruction method.
+[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If other is not compatible, i.e. is no Instruction and does not have a to\_instruction method.
 
 **Return type**
 
@@ -379,7 +379,7 @@ A copy of the NLocal circuit with the specified parameters.
 
 **Raises**
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.11)") – If the parameters are given as list and do not match the number of parameters.
+[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the parameters are given as list and do not match the number of parameters.
 
 **Return type**
 
@@ -412,9 +412,9 @@ Note that all indices are to be taken modulo the length of the array they act on
 
 **Parameters**
 
-*   **rep\_num** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The current repetition we are in.
-*   **block\_num** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The block number within the entanglement layers.
-*   **num\_block\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The number of qubits in the block.
+*   **rep\_num** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The current repetition we are in.
+*   **block\_num** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The block number within the entanglement layers.
+*   **num\_block\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits in the block.
 
 **Returns**
 
@@ -422,11 +422,11 @@ The entangler map for the current block in the current repetition.
 
 **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – If the value of `entanglement` could not be cast to a corresponding entangler map.
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the value of `entanglement` could not be cast to a corresponding entangler map.
 
 **Return type**
 
-[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.11)")\[[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.11)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")]]
+[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[*Sequence*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Sequence "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]]
 
 ### get\_unentangled\_qubits
 
@@ -442,7 +442,7 @@ The unentangled qubits.
 
 **Return type**
 
-[set](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.11)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")]
+[set](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
 
 ### print\_settings
 
@@ -458,5 +458,5 @@ The class name and the attributes/parameters of the instance as `str`.
 
 **Return type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 

@@ -28,10 +28,10 @@ If not possible, does not set the layout property. In all the cases, the propert
 **Parameters**
 
 *   **coupling\_map** (*Union\[*[*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")*,* [*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) – Directed graph representing a coupling map.
-*   **strict\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True, considers the direction of the coupling map. Default is False.
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Sets the seed of the PRNG.
-*   **call\_limit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Amount of times that `constraint.RecursiveBacktrackingSolver.recursiveBacktracking` will be called. None means no call limit. Default: 1000.
-*   **time\_limit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Amount of seconds that the pass will try to find a solution. None means no time limit. Default: 10 seconds.
+*   **strict\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, considers the direction of the coupling map. Default is False.
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Sets the seed of the PRNG.
+*   **call\_limit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Amount of times that `constraint.RecursiveBacktrackingSolver.recursiveBacktracking` will be called. None means no call limit. Default: 1000.
+*   **time\_limit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Amount of seconds that the pass will try to find a solution. None means no time limit. Default: 10 seconds.
 
 ## Attributes
 

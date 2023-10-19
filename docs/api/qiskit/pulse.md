@@ -85,8 +85,8 @@ Instruction initializer.
 
 **Parameters**
 
-*   **operands** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.11)")) – The argument list.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Optional display name for this instruction.
+*   **operands** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")) – The argument list.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Optional display name for this instruction.
 
 <span id="module-qiskit.pulse.library" />
 
@@ -137,9 +137,9 @@ $$
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Duration of pulse. Must be greater than zero.
-*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")) – Complex pulse amplitude.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of pulse.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration of pulse. Must be greater than zero.
+*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")) – Complex pulse amplitude.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of pulse.
 
 **Return type**
 
@@ -163,8 +163,8 @@ $$
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Duration of pulse. Must be greater than zero.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of pulse.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration of pulse. Must be greater than zero.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of pulse.
 
 **Return type**
 
@@ -190,11 +190,11 @@ with the convention $\text{sign}(0) = 1$.
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Duration of pulse. Must be greater than zero.
-*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")) – Pulse amplitude. Wave range is $[-$ `amp` $,$ `amp` $]$.
-*   **freq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Pulse frequency, units of 1./dt. If `None` defaults to 1./duration.
-*   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Pulse phase.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of pulse.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration of pulse. Must be greater than zero.
+*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")) – Pulse amplitude. Wave range is $[-$ `amp` $,$ `amp` $]$.
+*   **freq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Pulse frequency, units of 1./dt. If `None` defaults to 1./duration.
+*   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Pulse phase.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of pulse.
 
 **Return type**
 
@@ -220,11 +220,11 @@ where $g(x) = x/T + \phi/\pi$.
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Duration of pulse. Must be greater than zero.
-*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")) – Pulse amplitude. Wave range is $[-$ `amp` $,$ `amp` $]$.
-*   **freq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Pulse frequency, units of 1./dt. If `None` defaults to 1./duration.
-*   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Pulse phase.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of pulse.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration of pulse. Must be greater than zero.
+*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")) – Pulse amplitude. Wave range is $[-$ `amp` $,$ `amp` $]$.
+*   **freq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Pulse frequency, units of 1./dt. If `None` defaults to 1./duration.
+*   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Pulse phase.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of pulse.
 
 **Return type**
 
@@ -267,11 +267,11 @@ This a non-sinusoidal wave with linear ramping.
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Duration of pulse. Must be greater than zero.
-*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")) – Pulse amplitude. Wave range is $[-$ `amp` $,$ `amp` $]$.
-*   **freq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Pulse frequency, units of 1./dt. If `None` defaults to 1./duration.
-*   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Pulse phase.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of pulse.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration of pulse. Must be greater than zero.
+*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")) – Pulse amplitude. Wave range is $[-$ `amp` $,$ `amp` $]$.
+*   **freq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Pulse frequency, units of 1./dt. If `None` defaults to 1./duration.
+*   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Pulse phase.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of pulse.
 
 **Return type**
 
@@ -312,11 +312,11 @@ $$
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Duration of pulse. Must be greater than zero.
-*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")) – Pulse amplitude.
-*   **freq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Pulse frequency, units of 1/dt. If `None` defaults to single cycle.
-*   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Pulse phase.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of pulse.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration of pulse. Must be greater than zero.
+*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")) – Pulse amplitude.
+*   **freq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Pulse frequency, units of 1/dt. If `None` defaults to single cycle.
+*   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Pulse phase.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of pulse.
 
 **Return type**
 
@@ -340,11 +340,11 @@ $$
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Duration of pulse. Must be greater than zero.
-*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")) – Pulse amplitude.
-*   **freq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Pulse frequency, units of 1/dt. If `None` defaults to single cycle.
-*   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Pulse phase.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of pulse.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration of pulse. Must be greater than zero.
+*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")) – Pulse amplitude.
+*   **freq** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Pulse frequency, units of 1/dt. If `None` defaults to single cycle.
+*   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Pulse phase.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of pulse.
 
 **Return type**
 
@@ -380,11 +380,11 @@ Integrated area under the full curve is `amp * np.sqrt(2*np.pi*sigma**2)`
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Duration of pulse. Must be greater than zero.
-*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")) – Pulse amplitude at `duration/2`.
-*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Width (standard deviation) of pulse.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of pulse.
-*   **zero\_ends** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration of pulse. Must be greater than zero.
+*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")) – Pulse amplitude at `duration/2`.
+*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Width (standard deviation) of pulse.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of pulse.
+*   **zero\_ends** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
 
 **Return type**
 
@@ -411,10 +411,10 @@ i.e. the derivative of the Gaussian function, with center $\mu=$ `duration/2`.
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Duration of pulse. Must be greater than zero.
-*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")) – Pulse amplitude of corresponding Gaussian at the pulse center (`duration/2`).
-*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Width (standard deviation) of pulse.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of pulse.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration of pulse. Must be greater than zero.
+*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")) – Pulse amplitude of corresponding Gaussian at the pulse center (`duration/2`).
+*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Width (standard deviation) of pulse.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of pulse.
 
 **Return type**
 
@@ -448,11 +448,11 @@ where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Duration of pulse. Must be greater than zero.
-*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")) – Pulse amplitude at duration/2.
-*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Width (standard deviation) of pulse.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Name of pulse.
-*   **zero\_ends** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration of pulse. Must be greater than zero.
+*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")) – Pulse amplitude at duration/2.
+*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Width (standard deviation) of pulse.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Name of pulse.
+*   **zero\_ends** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
 
 **Return type**
 
@@ -478,10 +478,10 @@ i.e. the derivative of $\text{sech}$.
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Duration of pulse. Must be greater than zero.
-*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")) – Pulse amplitude at center.
-*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Width (standard deviation) of pulse.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Name of pulse.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration of pulse. Must be greater than zero.
+*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")) – Pulse amplitude at center.
+*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Width (standard deviation) of pulse.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Name of pulse.
 
 **Return type**
 
@@ -513,13 +513,13 @@ If `zero_ends == True`, the samples for the Gaussian ramps are remapped as in [`
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Duration of pulse. Must be greater than zero.
-*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")) – Pulse amplitude.
-*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Width (standard deviation) of Gaussian rise/fall portion of the pulse.
-*   **risefall** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)") *| None*) – Number of samples over which pulse rise and fall happen. Width of square portion of pulse will be `duration-2*risefall`.
-*   **width** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)") *| None*) – The duration of the embedded square pulse. Only one of `width` or `risefall` should be specified as the functional form requires `width = duration - 2 * risefall`.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of pulse.
-*   **zero\_ends** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration of pulse. Must be greater than zero.
+*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")) – Pulse amplitude.
+*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Width (standard deviation) of Gaussian rise/fall portion of the pulse.
+*   **risefall** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – Number of samples over which pulse rise and fall happen. Width of square portion of pulse will be `duration-2*risefall`.
+*   **width** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The duration of the embedded square pulse. Only one of `width` or `risefall` should be specified as the functional form requires `width = duration - 2 * risefall`.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of pulse.
+*   **zero\_ends** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
 
 **Raises**
 
@@ -555,12 +555,12 @@ If `zero_ends == True`, the samples from $g(x)$ are remapped as in [`gaussian()`
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Duration of pulse. Must be greater than zero.
-*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")) – Pulse amplitude at center `duration/2`.
-*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Width (standard deviation) of pulse.
-*   **beta** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Y correction amplitude. For the SNO this is $\beta=-\frac{\lambda_1^2}{4\Delta_2}$. Where $\lambda_1$ is the relative coupling strength between the first excited and second excited states and $\Delta_2$ is the detuning between the respective excited states.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of pulse.
-*   **zero\_ends** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration of pulse. Must be greater than zero.
+*   **amp** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")) – Pulse amplitude at center `duration/2`.
+*   **sigma** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Width (standard deviation) of pulse.
+*   **beta** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Y correction amplitude. For the SNO this is $\beta=-\frac{\lambda_1^2}{4\Delta_2}$. Where $\lambda_1$ is the relative coupling strength between the first excited and second excited states and $\Delta_2$ is the detuning between the respective excited states.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of pulse.
+*   **zero\_ends** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
 
 **Return type**
 
@@ -703,7 +703,7 @@ Return a new schedule with implicit acquires from the measurement mapping replac
 **Parameters**
 
 *   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")) – Schedule to be aligned.
-*   **meas\_map** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]]*) – List of lists of qubits that are measured together.
+*   **meas\_map** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – List of lists of qubits that are measured together.
 
 **Returns**
 
@@ -761,12 +761,12 @@ assert aligned_sched != aligned_sched_shifted
 
 **Parameters**
 
-*   **schedules** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*]*) – Collection of schedules to be aligned together
+*   **schedules** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*]*) – Collection of schedules to be aligned together
 *   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap") *| None*) – Mapping of circuit operations to pulse schedules
-*   **cal\_gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The name of the gate to inspect for the calibration time
-*   **max\_calibration\_duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – If provided, inst\_map and cal\_gate will be ignored
-*   **align\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – If provided, this will be used as final align time.
-*   **align\_all** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)") *| None*) – Shift all instructions in the schedule such that they maintain their relative alignment with the shifted acquisition instruction. If `False` only the acquisition and measurement pulse instructions will be shifted.
+*   **cal\_gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the gate to inspect for the calibration time
+*   **max\_calibration\_duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – If provided, inst\_map and cal\_gate will be ignored
+*   **align\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – If provided, this will be used as final align time.
+*   **align\_all** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – Shift all instructions in the schedule such that they maintain their relative alignment with the shifted acquisition instruction. If `False` only the acquisition and measurement pulse instructions will be shifted.
 
 **Returns**
 
@@ -778,7 +778,7 @@ The input list of schedules transformed to have their measurements aligned.
 
 **Return type**
 
-[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")\[[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]
+[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]
 
 <span id="qiskit.pulse.transforms.block_to_schedule" />
 
@@ -815,7 +815,7 @@ Optimization pass to replace identical pulses.
 
 **Parameters**
 
-**schedules** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")*]*) – Schedules to compress.
+**schedules** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")*]*) – Schedules to compress.
 
 **Returns**
 
@@ -823,7 +823,7 @@ Compressed schedules.
 
 **Return type**
 
-[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")\[[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]
+[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]
 
 <span id="qiskit.pulse.transforms.flatten" />
 
@@ -880,10 +880,10 @@ Pad the input Schedule with `Delay``s on all unoccupied timeslots until ``schedu
 **Parameters**
 
 *   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to pad.
-*   **channels** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*Channel*](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – Channels to pad. Defaults to all channels in `schedule` if not provided. If the supplied channel is not a member of `schedule` it will be added.
-*   **until** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – Time to pad until. Defaults to `schedule.duration` if not provided.
-*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Pad this schedule by mutating rather than returning a new schedule.
-*   **pad\_with** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.11)")*\[*[*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*] | None*) – Pulse `Instruction` subclass to be used for padding. Default to [`Delay`](qiskit.pulse.instructions.Delay "qiskit.pulse.instructions.Delay") instruction.
+*   **channels** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*Channel*](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – Channels to pad. Defaults to all channels in `schedule` if not provided. If the supplied channel is not a member of `schedule` it will be added.
+*   **until** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Time to pad until. Defaults to `schedule.duration` if not provided.
+*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Pad this schedule by mutating rather than returning a new schedule.
+*   **pad\_with** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.12)")*\[*[*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*] | None*) – Pulse `Instruction` subclass to be used for padding. Default to [`Delay`](qiskit.pulse.instructions.Delay "qiskit.pulse.instructions.Delay") instruction.
 
 **Returns**
 
@@ -989,7 +989,7 @@ Instructions in DAG representation.
 
 **Return type**
 
-[*PyDAG*](https://qiskit.org/ecosystem/rustworkx/apiref/rustworkx.PyDAG.html#rustworkx.PyDAG "(in rustworkx v0.13.1)")
+[*PyDAG*](https://qiskit.org/ecosystem/rustworkx/apiref/rustworkx.PyDAG.html#rustworkx.PyDAG "(in rustworkx v0.13.2)")
 
 <span id="pulse-transform-chain" />
 
@@ -1005,8 +1005,8 @@ A basic pulse program transformation for OpenPulse API execution.
 
 **Parameters**
 
-*   **sched** ([*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*,* [*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*] |* [*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*,* [*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*] |* [*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*]*) – Input program to transform.
-*   **remove\_directives** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Set True to remove compiler directives.
+*   **sched** ([*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*] |* [*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*] |* [*Instruction*](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*]*) – Input program to transform.
+*   **remove\_directives** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Set True to remove compiler directives.
 
 **Returns**
 
@@ -1238,10 +1238,10 @@ qiskit.execute(pulse_prog, backend)
 
 *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – A Qiskit backend. If not supplied certain builder functionality will be unavailable.
 *   **schedule** ([*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") *| None*) – A pulse `ScheduleBlock` in which your pulse program will be built.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of pulse program to be built.
-*   **default\_alignment** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*AlignmentKind*](#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind") *| None*) – Default scheduling alignment for builder. One of `left`, `right`, `sequential` or an alignment context.
-*   **default\_transpiler\_settings** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)")*] | None*) – Default settings for the transpiler.
-*   **default\_circuit\_scheduler\_settings** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)")*] | None*) – Default settings for the circuit to pulse scheduler.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of pulse program to be built.
+*   **default\_alignment** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*AlignmentKind*](#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind") *| None*) – Default scheduling alignment for builder. One of `left`, `right`, `sequential` or an alignment context.
+*   **default\_transpiler\_settings** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – Default settings for the transpiler.
+*   **default\_circuit\_scheduler\_settings** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – Default settings for the circuit to pulse scheduler.
 
 **Returns**
 
@@ -1249,7 +1249,7 @@ A new builder context which has the active builder initialized.
 
 **Return type**
 
-[*ContextManager*](https://docs.python.org/3/library/typing.html#typing.ContextManager "(in Python v3.11)")\[[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
+[*ContextManager*](https://docs.python.org/3/library/typing.html#typing.ContextManager "(in Python v3.12)")\[[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
 
 ### Channels
 
@@ -1321,7 +1321,7 @@ with pulse.build(backend):
 
 **Parameters**
 
-**qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – Tuple or list of ordered qubits of the form (control\_qubit, target\_qubit).
+**qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of ordered qubits of the form (control\_qubit, target\_qubit).
 
 **Returns**
 
@@ -1329,7 +1329,7 @@ List of control channels associated with the supplied ordered list of qubits.
 
 **Return type**
 
-[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")\[[*ControlChannel*](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
+[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*ControlChannel*](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
 
 <span id="qiskit.pulse.builder.drive_channel" />
 
@@ -1444,8 +1444,8 @@ with pulse.build() as pulse_prog:
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Duration to acquire data for
-*   **qubit\_or\_channel** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*AcquireChannel*](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")) – Either the qubit to acquire data for or the specific [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel") to acquire on.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration to acquire data for
+*   **qubit\_or\_channel** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*AcquireChannel*](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")) – Either the qubit to acquire data for or the specific [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel") to acquire on.
 *   **register** (*StorageLocation*) – Location to store measured result.
 *   **metadata** (*Kernel | Discriminator*) – Additional metadata for measurement. See [`Acquire`](qiskit.pulse.instructions.Acquire "qiskit.pulse.instructions.Acquire") for more information.
 
@@ -1517,8 +1517,8 @@ with pulse.build(backend) as pulse_prog:
 
 **Parameters**
 
-*   **channels\_or\_qubits** ([*Channel*](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Channels or qubits to barrier.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name for the barrier
+*   **channels\_or\_qubits** ([*Channel*](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Channels or qubits to barrier.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name for the barrier
 
 <span id="qiskit.pulse.builder.call" />
 
@@ -1730,9 +1730,9 @@ ScheduleBlock(
 **Parameters**
 
 *   **target** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *|*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock") *| None*) – Target circuit or pulse schedule to call.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Optional. A unique name of subroutine if defined. When the name is explicitly provided, one cannot call different schedule blocks with the same name.
-*   **value\_dict** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.11)")*\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*] | None*) – Optional. Parameters assigned to the `target` program. If this dictionary is provided, the `target` program is copied and then stored in the main built schedule and its parameters are assigned to the given values. This dictionary is keyed on [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects, allowing parameter name collision to be avoided.
-*   **kw\_params** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Alternative way to provide parameters. Since this is keyed on the string parameter name, the parameters having the same name are all updated together. If you want to avoid name collision, use `value_dict` with [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects instead.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Optional. A unique name of subroutine if defined. When the name is explicitly provided, one cannot call different schedule blocks with the same name.
+*   **value\_dict** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – Optional. Parameters assigned to the `target` program. If this dictionary is provided, the `target` program is copied and then stored in the main built schedule and its parameters are assigned to the given values. This dictionary is keyed on [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects, allowing parameter name collision to be avoided.
+*   **kw\_params** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Alternative way to provide parameters. Since this is keyed on the string parameter name, the parameters having the same name are all updated together. If you want to avoid name collision, use `value_dict` with [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects instead.
 
 <span id="qiskit.pulse.builder.delay" />
 
@@ -1753,9 +1753,9 @@ with pulse.build() as pulse_prog:
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Number of cycles to delay for on `channel`.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of cycles to delay for on `channel`.
 *   **channel** ([*Channel*](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – Channel to delay on.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of the instruction.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction.
 
 <span id="qiskit.pulse.builder.play" />
 
@@ -1776,9 +1776,9 @@ with pulse.build() as pulse_prog:
 
 **Parameters**
 
-*   **pulse** (*Pulse |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – Pulse to play.
+*   **pulse** (*Pulse |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – Pulse to play.
 *   **channel** (*PulseChannel*) – Channel to play pulse on.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of the pulse.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the pulse.
 
 <span id="qiskit.pulse.builder.reference" />
 
@@ -1802,8 +1802,8 @@ main_prog.assign_references(subroutine_dict={("x_gate", "q0"): subroutine})
 
 **Parameters**
 
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Name of subroutine.
-*   **extra\_keys** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Helper keys to uniquely specify the subroutine.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Name of subroutine.
+*   **extra\_keys** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Helper keys to uniquely specify the subroutine.
 
 <span id="qiskit.pulse.builder.set_frequency" />
 
@@ -1824,9 +1824,9 @@ with pulse.build() as pulse_prog:
 
 **Parameters**
 
-*   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Frequency in Hz to set channel to.
+*   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Frequency in Hz to set channel to.
 *   **channel** (*PulseChannel*) – Channel to set frequency of.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of the instruction.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction.
 
 <span id="qiskit.pulse.builder.set_phase" />
 
@@ -1849,9 +1849,9 @@ with pulse.build() as pulse_prog:
 
 **Parameters**
 
-*   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Phase in radians to set channel carrier signal to.
+*   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Phase in radians to set channel carrier signal to.
 *   **channel** (*PulseChannel*) – Channel to set phase of.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of the instruction.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction.
 
 <span id="qiskit.pulse.builder.shift_frequency" />
 
@@ -1872,9 +1872,9 @@ with pulse.build() as pulse_prog:
 
 **Parameters**
 
-*   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Frequency in Hz to shift channel frequency by.
+*   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Frequency in Hz to shift channel frequency by.
 *   **channel** (*PulseChannel*) – Channel to shift frequency of.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of the instruction.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction.
 
 <span id="qiskit.pulse.builder.shift_phase" />
 
@@ -1897,9 +1897,9 @@ with pulse.build() as pulse_prog:
 
 **Parameters**
 
-*   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Phase in radians to shift channel carrier signal by.
+*   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Phase in radians to shift channel carrier signal by.
 *   **channel** (*PulseChannel*) – Channel to shift phase of.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of the instruction.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the instruction.
 
 <span id="qiskit.pulse.builder.snapshot" />
 
@@ -1918,8 +1918,8 @@ with pulse.build() as pulse_prog:
 
 **Parameters**
 
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Label for snapshot.
-*   **snapshot\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Type of snapshot.
+*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Label for snapshot.
+*   **snapshot\_type** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Type of snapshot.
 
 ### Contexts
 
@@ -1975,7 +1975,7 @@ hahn_echo.draw()
 
 **Parameters**
 
-**duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration.
+**duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Duration of this context. This should be larger than the schedule duration.
 
 **Yields**
 
@@ -2026,8 +2026,8 @@ udd_sched.draw()
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Duration of context. This should be larger than the schedule duration.
-*   **func** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.11)")*\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*]*) – A function that takes an index of sub-schedule and returns the fractional coordinate of of that sub-schedule. The returned value should be defined within \[0, 1]. The pulse index starts from 1.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")) – Duration of context. This should be larger than the schedule duration.
+*   **func** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*],* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – A function that takes an index of sub-schedule and returns the fractional coordinate of of that sub-schedule. The returned value should be defined within \[0, 1]. The pulse index starts from 1.
 
 **Yields**
 
@@ -2074,7 +2074,7 @@ None
 
 **Return type**
 
-[*ContextManager*](https://docs.python.org/3/library/typing.html#typing.ContextManager "(in Python v3.11)")\[None]
+[*ContextManager*](https://docs.python.org/3/library/typing.html#typing.ContextManager "(in Python v3.12)")\[None]
 
 <span id="qiskit.pulse.builder.align_right" />
 
@@ -2173,7 +2173,7 @@ with pulse.build(backend):
 
 **Return type**
 
-[*ContextManager*](https://docs.python.org/3/library/typing.html#typing.ContextManager "(in Python v3.11)")\[None]
+[*ContextManager*](https://docs.python.org/3/library/typing.html#typing.ContextManager "(in Python v3.12)")\[None]
 
 <span id="qiskit.pulse.builder.frequency_offset" />
 
@@ -2207,9 +2207,9 @@ assert len(pulse_prog.instructions) == 4
 
 **Parameters**
 
-*   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Amount of frequency offset in Hz.
+*   **frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Amount of frequency offset in Hz.
 *   **channels** (*PulseChannel*) – Channels to offset frequency of.
-*   **compensate\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Compensate for accumulated phase accumulated with respect to the channels’ frame at its initial frequency.
+*   **compensate\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Compensate for accumulated phase accumulated with respect to the channels’ frame at its initial frequency.
 
 **Yields**
 
@@ -2217,7 +2217,7 @@ None
 
 **Return type**
 
-[*ContextManager*](https://docs.python.org/3/library/typing.html#typing.ContextManager "(in Python v3.11)")\[None]
+[*ContextManager*](https://docs.python.org/3/library/typing.html#typing.ContextManager "(in Python v3.12)")\[None]
 
 <span id="qiskit.pulse.builder.phase_offset" />
 
@@ -2243,7 +2243,7 @@ assert len(pulse_prog.instructions) == 3
 
 **Parameters**
 
-*   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Amount of phase offset in radians.
+*   **phase** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Amount of phase offset in radians.
 *   **channels** (*PulseChannel*) – Channels to offset phase of.
 
 **Yields**
@@ -2252,7 +2252,7 @@ None
 
 **Return type**
 
-[*ContextManager*](https://docs.python.org/3/library/typing.html#typing.ContextManager "(in Python v3.11)")\[None]
+[*ContextManager*](https://docs.python.org/3/library/typing.html#typing.ContextManager "(in Python v3.12)")\[None]
 
 <span id="qiskit.pulse.builder.transpiler_settings" />
 
@@ -2281,7 +2281,7 @@ with pulse.build(backend):
 
 **Return type**
 
-[*ContextManager*](https://docs.python.org/3/library/typing.html#typing.ContextManager "(in Python v3.11)")\[None]
+[*ContextManager*](https://docs.python.org/3/library/typing.html#typing.ContextManager "(in Python v3.12)")\[None]
 
 ### Macros
 
@@ -2346,8 +2346,8 @@ assert reg == mem0
 
 **Parameters**
 
-*   **qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] |* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Physical qubit to measure.
-*   **registers** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[StorageLocation] | StorageLocation | None*) – Register to store result in. If not selected the current behavior is to return the `MemorySlot` with the same index as `qubit`. This register will be returned.
+*   **qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Physical qubit to measure.
+*   **registers** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[StorageLocation] | StorageLocation | None*) – Register to store result in. If not selected the current behavior is to return the `MemorySlot` with the same index as `qubit`. This register will be returned.
 
 **Returns**
 
@@ -2355,7 +2355,7 @@ The `register` the qubit measurement result will be stored in.
 
 **Return type**
 
-[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")\[StorageLocation] | StorageLocation
+[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[StorageLocation] | StorageLocation
 
 <span id="qiskit.pulse.builder.measure_all" />
 
@@ -2388,7 +2388,7 @@ The `register`s the qubit measurement results will be stored in.
 
 **Return type**
 
-[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")\[[*MemorySlot*](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")]
+[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*MemorySlot*](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")]
 
 <span id="qiskit.pulse.builder.delay_qubits" />
 
@@ -2415,8 +2415,8 @@ with pulse.build(backend) as pulse_prog:
 
 **Parameters**
 
-*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Duration to delay for.
-*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – Physical qubits to delay on. Delays will be inserted based on the channels returned by `pulse.qubit_channels()`.
+*   **duration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Duration to delay for.
+*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Physical qubits to delay on. Delays will be inserted based on the channels returned by `pulse.qubit_channels()`.
 
 ### Circuit Gates
 
@@ -2630,7 +2630,7 @@ with pulse.build(backend,
 
 **Return type**
 
-[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.11)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)"), [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)")]
+[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")]
 
 <span id="qiskit.pulse.builder.active_circuit_scheduler_settings" />
 
@@ -2660,7 +2660,7 @@ with pulse.build(
 
 **Return type**
 
-[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.11)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)"), [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)")]
+[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")]
 
 <span id="qiskit.pulse.builder.num_qubits" />
 
@@ -2690,7 +2690,7 @@ with pulse.build(backend):
 
 **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")
+[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 
 <span id="qiskit.pulse.builder.qubit_channels" />
 
@@ -2724,7 +2724,7 @@ with pulse.build(backend):
 
 **Return type**
 
-[*Set*](https://docs.python.org/3/library/typing.html#typing.Set "(in Python v3.11)")\[[*Channel*](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+[*Set*](https://docs.python.org/3/library/typing.html#typing.Set "(in Python v3.12)")\[[*Channel*](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
 
 <span id="qiskit.pulse.builder.samples_to_seconds" />
 
@@ -2734,7 +2734,7 @@ Obtain the time in seconds that will elapse for the input number of samples on t
 
 **Parameters**
 
-**samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – Number of samples to convert to time in seconds.
+**samples** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – Number of samples to convert to time in seconds.
 
 **Returns**
 
@@ -2742,7 +2742,7 @@ The time that elapses in `samples`.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)") | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")
 
 <span id="qiskit.pulse.builder.seconds_to_samples" />
 
@@ -2754,7 +2754,7 @@ Rounds down.
 
 **Parameters**
 
-**seconds** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – Time in seconds to convert to samples.
+**seconds** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – Time in seconds to convert to samples.
 
 **Returns**
 
@@ -2762,7 +2762,7 @@ The number of samples for the time to elapse
 
 **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")
+[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") | [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")
 
 ## Configuration
 

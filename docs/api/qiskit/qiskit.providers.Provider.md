@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.Provider
 
 `qiskit.providers.Provider`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Base common type for all versioned Provider abstract classes.
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.OneQubitEulerDecomposer
 
 `qiskit.quantum_info.OneQubitEulerDecomposer(basis='U3', use_dag=False)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 A class for decomposing 1-qubit unitaries into Euler angle rotations.
 
@@ -39,8 +39,8 @@ Supported bases are: ‘U’, ‘PSX’, ‘ZSXX’, ‘ZSX’, ‘U321’, ‘U
 
 **Parameters**
 
-*   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – the decomposition basis \[Default: ‘U3’]
-*   **use\_dag** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If true the output from calls to the decomposer will be a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object instead of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
+*   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the decomposition basis \[Default: ‘U3’]
+*   **use\_dag** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If true the output from calls to the decomposer will be a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object instead of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 
 **Raises**
 
@@ -74,7 +74,7 @@ Return the Euler angles for input array.
 
 **Return type**
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")
 
 ### angles\_and\_phase
 
@@ -94,7 +94,7 @@ Return the Euler angles and phase for input array.
 
 **Return type**
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")
 
 ### build\_circuit
 

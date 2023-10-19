@@ -26,7 +26,7 @@ CommutativeCancellation initializer.
 
 **Parameters**
 
-*   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*]*) – Basis gates to consider, e.g. `['u3', 'cx']`. For the effects of this pass, the basis is the set intersection between the `basis_gates` parameter and the gates in the dag.
+*   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – Basis gates to consider, e.g. `['u3', 'cx']`. For the effects of this pass, the basis is the set intersection between the `basis_gates` parameter and the gates in the dag.
 *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `basis_gates` and this are specified then this argument will take precedence and `basis_gates` will be ignored.
 
 ## Attributes
