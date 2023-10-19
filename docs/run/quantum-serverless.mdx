@@ -1,0 +1,73 @@
+---
+Title: Run workloads using quantum serverless
+Description: Run workloads using quantum serverless
+---
+
+# Run workloads using quantum serverless
+
+Premium users can run remotely their workloads on classical compute made available through IQP.
+
+## Build a workflow
+
+Here is an example of computing the quasiprobability distribution of a quantum circuit using the Qiskit Runtime Sampler Primitive. This python script should be saved in your working directory (Warning! All contents of the working directory will be shipped to the cluster for execution).
+
+TODO: modify this example to set up the QiskitRuntimeService (no need to pass token again since it’s retrieved automatically for user when they’ve authenticated to the IBMServerlessProvider) using the Sampler Primitive inside a Session.
+
+```python
+# source_files/program.py
+
+from qiskit import QuantumCircuit
+from qiskit.primitives import Sampler
+
+from quantum_serverless import save_result
+
+# all print statement will be available in job logs
+print("Running program 1...")
+
+# creating circuit
+circuit = QuantumCircuit(2)
+circuit.h(0)
+circuit.cx(0, 1)
+circuit.measure_all()
+
+# running Sampler primitive
+sampler = Sampler()
+quasi_dists = sampler.run(circuit).result().quasi_dists
+
+# save results of program execution,
+# which will be accessible by calling `.result()`
+save_result(quasi_dists)
+print("Completed running program 1.")
+```
+
+## Remotely execute workflow on quantum serverless
+
+After creating a workflow, authenticate to the IBMServerlessProvider with your IBM Quantum token (TODO: link to to where this is explained already). Finally, the workflow is ready to run remotely.
+
+```python
+# Authenticate to the IBM serverless provider
+from quantum_serverless import IBMServerlessProvider
+provider = IBMServerlessProvider("YOUR_IBM_QUANTUM_TOKEN")
+
+# Set up the quantum serverless client
+from quantum_serverless import QuantumServerless
+serverless = QuantumServerless(provider)
+
+# Specify workflow
+from quantum_serverless import Program
+program = Program(
+    title="My program", entrypoint="program.py", working_dir="./source_files/"
+)
+
+# Run workflow remotely
+job = serverless.run(program)
+
+# Retrieve workflow status, logs, results
+# job.status()
+# job.logs()
+# job.result()
+```
+
+## Migration guide
+
+Qiskit Runtime custom programs can be easily migrated to quantum serverless via this [migration guide](https://qiskit-extensions.github.io/quantum-serverless/migration/migration_from_qiskit_runtime_programs.html).
