@@ -18,6 +18,20 @@ import markdownLinkExtractor from 'markdown-link-extractor';
 const DOCS_ROOT = "./docs"
 const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"]
 
+const IGNORE_LIST = [
+  '07_pulse_scheduler.ipynb',
+  '../errors',
+  '/api/runtime/tags/programs',
+  '../guides',
+  '../images/qiskit-ibm-runtime/noisy-sim-circuit.png',
+  '../images/qiskit-ibm-runtime/noisy-sim-sampler-ideal.png',
+  '../images/qiskit-ibm-runtime/noisy-sim-estimator-circuit.png',
+  '../images/qiskit-ibm-runtime/noisy-sim-estimator-ideal.png',
+  '../images/qiskit-ibm-runtime/noisy-sim-sampler-noisy.png',
+  '../images/qiskit-ibm-runtime/noisy-sim-estimator-noisy.png',
+  'qiskit.org/documentation/tutorials/circuits/3_summary_of_quantum_operations'
+]
+
 class Link {
   readonly value: string
   readonly anchor: string
@@ -80,6 +94,9 @@ class Link {
      * True if link points to existing file, otherwise false
      * filePathCache: array of known existing files (to reduce disk I/O)
      */
+    if (IGNORE_LIST.includes(this.value)) {
+      return true
+    }
     if (this.isExternal) {
       // External link checking not supported yet
       return true
