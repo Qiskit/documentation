@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadde
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.BlockBasePadder" />
 
-`BlockBasePadder`
+`BlockBasePadder(schedule_idle_qubits=False)`
 
 The base class of padding pass.
 
@@ -92,7 +92,7 @@ Run the padding pass on `dag`.
 
 **Parameters**
 
-**dag** (`DAGCircuit`) – DAG to be checked.
+**dag** ([`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit.html#qiskit.dagcircuit.DAGCircuit "(in Qiskit v0.44)")) – DAG to be checked.
 
 **Returns**
 
