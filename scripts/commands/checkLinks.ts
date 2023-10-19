@@ -18,13 +18,7 @@ import markdownLinkExtractor from 'markdown-link-extractor';
 const DOCS_ROOT = "./docs"
 const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"]
 
-const IGNORE_LIST = [
-  'docs/run/instances.mdx',
-  'docs/start/index.mdx',
-  'docs/support.mdx',
-  'docs/verify/index.mdx',
-  'docs/verify/noisy-simulators.mdx',
-]
+const IGNORE_LIST = []
 
 class Link {
   readonly value: string
