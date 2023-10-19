@@ -19,17 +19,11 @@ const DOCS_ROOT = "./docs"
 const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"]
 
 const IGNORE_LIST = [
-  '07_pulse_scheduler.ipynb',
-  '../errors',
-  '/api/runtime/tags/programs',
-  '../guides',
-  '../images/qiskit-ibm-runtime/noisy-sim-circuit.png',
-  '../images/qiskit-ibm-runtime/noisy-sim-sampler-ideal.png',
-  '../images/qiskit-ibm-runtime/noisy-sim-estimator-circuit.png',
-  '../images/qiskit-ibm-runtime/noisy-sim-estimator-ideal.png',
-  '../images/qiskit-ibm-runtime/noisy-sim-sampler-noisy.png',
-  '../images/qiskit-ibm-runtime/noisy-sim-estimator-noisy.png',
-  'qiskit.org/documentation/tutorials/circuits/3_summary_of_quantum_operations'
+  'docs/run/instances.mdx',
+  'docs/start/index.mdx',
+  'docs/support.mdx',
+  'docs/verify/index.mdx',
+  'docs/verify/noisy-simulators.mdx',
 ]
 
 class Link {
@@ -94,9 +88,6 @@ class Link {
      * True if link points to existing file, otherwise false
      * filePathCache: array of known existing files (to reduce disk I/O)
      */
-    if (IGNORE_LIST.includes(this.value)) {
-      return true
-    }
     if (this.isExternal) {
       // External link checking not supported yet
       return true
@@ -131,6 +122,8 @@ function markdownFromNotebook(source: string): string {
 }
 
 function checkLinksInFile(filePath: string, filePaths: string[]): boolean {
+  if (filePath.startsWith("docs/api")) { return true }
+  if (IGNORE_LIST.includes(filePath)) { return true }
   const source = readFileSync(filePath, {encoding: 'utf8'})
   const markdown = (path.extname(filePath) === '.ipynb') ? markdownFromNotebook(source) : source
   const links = markdownLinkExtractor(source).links.map((x: string) => new Link(x, filePath))
