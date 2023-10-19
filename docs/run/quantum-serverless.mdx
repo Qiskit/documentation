@@ -39,6 +39,9 @@ with Session(backend="ibmq_qasm_simulator") as session:
     # save results of program execution,
     # which will be accessible by calling `.result()`
     save_result(quasi_dists)
+
+    # Close the session only if all jobs are finished
+    # and you don't need to run more in the session.
     session.close()
 
 print("Completed running program 1.")
