@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { last, split } from 'lodash';
+import { last, split } from "lodash";
 
 export function removePart(text: string, separator: string, matcher: string[]) {
   return text
@@ -34,5 +34,5 @@ export function removeSuffix(text: string, suffix: string) {
 }
 
 export function getLastPartFromFullIdentifier(fullIdentifierName: string) {
-  return last(split(fullIdentifierName, '.'))!;
+  return last(split(fullIdentifierName, "."))!;
 }
