@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { ProcessOutput } from 'zx';
+import { ProcessOutput } from "zx";
 
 export function zxMain(mainFn: () => Promise<void>) {
   enableCliColors();
@@ -23,9 +23,9 @@ export function zxMain(mainFn: () => Promise<void>) {
 }
 
 export function enableCliColors() {
-  process.env.FORCE_COLOR = '3';
+  process.env.FORCE_COLOR = "3";
 }
 
 export function disableCliColors() {
-  process.env.FORCE_COLOR = '0';
+  process.env.FORCE_COLOR = "0";
 }

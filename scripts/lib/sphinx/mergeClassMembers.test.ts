@@ -10,11 +10,11 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { describe, expect, test } from '@jest/globals';
-import { mergeClassMembers } from './mergeClassMembers';
+import { describe, expect, test } from "@jest/globals";
+import { mergeClassMembers } from "./mergeClassMembers";
 
-describe('mergeClassMembers', () => {
-  test('merge class members', async () => {
+describe("mergeClassMembers", () => {
+  test("merge class members", async () => {
     const results: Parameters<typeof mergeClassMembers>[0] = [
       {
         markdown: `## Attributes
@@ -29,10 +29,10 @@ describe('mergeClassMembers', () => {
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
 | [\`RuntimeOptions.validate\`](qiskit_ibm_runtime.RuntimeOptions.validate#qiskit_ibm_runtime.RuntimeOptions.validate "qiskit_ibm_runtime.RuntimeOptions.validate")(channel) | Validate options. |`,
         meta: {
-          python_api_type: 'class',
-          python_api_name: 'RuntimeOptions',
+          python_api_type: "class",
+          python_api_name: "RuntimeOptions",
         },
-        url: '/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions',
+        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions",
         images: [],
       },
       {
@@ -41,10 +41,10 @@ describe('mergeClassMembers', () => {
 \`Optional[str] = None\`
 `,
         meta: {
-          python_api_type: 'attribute',
-          python_api_name: 'RuntimeOptions.backend',
+          python_api_type: "attribute",
+          python_api_name: "RuntimeOptions.backend",
         },
-        url: '/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.backend',
+        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.backend",
         images: [],
       },
       {
@@ -53,10 +53,10 @@ describe('mergeClassMembers', () => {
 \`Optional[str] = None\`
 `,
         meta: {
-          python_api_type: 'property',
-          python_api_name: 'RuntimeOptions.circuits',
+          python_api_type: "property",
+          python_api_name: "RuntimeOptions.circuits",
         },
-        url: '/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.circuits',
+        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.circuits",
         images: [],
       },
       {
@@ -80,16 +80,17 @@ Validate options.
     \`None\`
           `,
         meta: {
-          python_api_type: 'method',
-          python_api_name: 'RuntimeOptions.backend',
+          python_api_type: "method",
+          python_api_name: "RuntimeOptions.backend",
         },
-        url: '/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.validate',
+        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.validate",
         images: [],
       },
     ];
     const merged = await mergeClassMembers(results);
-    expect(merged.find((item) => item.meta.python_api_type === 'class')?.markdown)
-      .toMatchInlineSnapshot(`
+    expect(
+      merged.find((item) => item.meta.python_api_type === "class")?.markdown,
+    ).toMatchInlineSnapshot(`
         "## Attributes
 
         ### RuntimeOptions.backend

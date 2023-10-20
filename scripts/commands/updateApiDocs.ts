@@ -21,27 +21,27 @@
 //
 // Pass `--packages {qiskit,qiskit-ibm-provider,qiskit-ibm-runtime} to only generate for certain projects.
 
-import { $ } from 'zx';
-import { zxMain } from '../lib/zx';
-import { getRequiredEnv } from '../lib/env';
-import { GithubApiClient } from '../lib/GithubApiClient';
-import { pathExists, getRoot } from '../lib/fs';
-import { readFile, writeFile } from 'fs/promises';
-import { globby } from 'globby';
-import { join, parse, relative } from 'path';
-import { sphinxHtmlToMarkdown } from '../lib/sphinx/sphinxHtmlToMarkdown';
-import { first, last, uniq, uniqBy } from 'lodash';
-import { mkdirp } from 'mkdirp';
-import { WebCrawler } from '../lib/WebCrawler';
-import { downloadImages } from '../lib/downloadImages';
-import { generateToc } from '../lib/sphinx/generateToc';
-import { SphinxToMdResult } from '../lib/sphinx/SphinxToMdResult';
-import { mergeClassMembers } from '../lib/sphinx/mergeClassMembers';
-import { flatFolders } from '../lib/sphinx/flatFolders';
-import { updateLinks } from '../lib/sphinx/updateLinks';
-import { addFrontMatter } from '../lib/sphinx/addFrontMatter';
-import { dedupeResultIds } from '../lib/sphinx/dedupeIds';
-import { removePrefix, removeSuffix } from '../lib/stringUtils';
+import { $ } from "zx";
+import { zxMain } from "../lib/zx";
+import { getRequiredEnv } from "../lib/env";
+import { GithubApiClient } from "../lib/GithubApiClient";
+import { pathExists, getRoot } from "../lib/fs";
+import { readFile, writeFile } from "fs/promises";
+import { globby } from "globby";
+import { join, parse, relative } from "path";
+import { sphinxHtmlToMarkdown } from "../lib/sphinx/sphinxHtmlToMarkdown";
+import { first, last, uniq, uniqBy } from "lodash";
+import { mkdirp } from "mkdirp";
+import { WebCrawler } from "../lib/WebCrawler";
+import { downloadImages } from "../lib/downloadImages";
+import { generateToc } from "../lib/sphinx/generateToc";
+import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
+import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
+import { flatFolders } from "../lib/sphinx/flatFolders";
+import { updateLinks } from "../lib/sphinx/updateLinks";
+import { addFrontMatter } from "../lib/sphinx/addFrontMatter";
+import { dedupeResultIds } from "../lib/sphinx/dedupeIds";
+import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
@@ -61,84 +61,94 @@ type Pkg = {
     collapsed?: boolean;
     nestModule?(id: string): boolean;
   };
-  transformLink?: (url: string, text?: string) => { url: string; text?: string } | undefined;
+  transformLink?: (
+    url: string,
+    text?: string,
+  ) => { url: string; text?: string } | undefined;
 };
 
 type PkgHtml = { pkg: Pkg; version: string; path: string };
 
 const PACKAGES: Pkg[] = [
   {
-    title: 'Qiskit Runtime IBM Client',
-    name: 'qiskit-ibm-runtime',
-    githubSlug: 'qiskit/qiskit-ibm-runtime',
+    title: "Qiskit Runtime IBM Client",
+    name: "qiskit-ibm-runtime",
+    githubSlug: "qiskit/qiskit-ibm-runtime",
     baseUrl: `https://qiskit.org/ecosystem/ibm-runtime`,
     initialUrls: [
       `https://qiskit.org/ecosystem/ibm-runtime/apidocs/ibm-runtime.html`,
     ],
     transformLink(url, text) {
       const prefixes = [
-        'https://qiskit.org/documentation/apidoc/',
-        'https://qiskit.org/documentation/stubs/',
+        "https://qiskit.org/documentation/apidoc/",
+        "https://qiskit.org/documentation/stubs/",
       ];
       let updateText = url === text;
       const prefix = prefixes.find((prefix) => url.startsWith(prefix));
       if (prefix) {
         url = removePrefix(url, prefix);
-        url = removeSuffix(url, '.html');
+        url = removeSuffix(url, ".html");
         const newText = updateText ? url : undefined;
         return { url: `/api/qiskit/${url}`, text: newText };
       }
     },
   },
   {
-    title: 'Qiskit IBM Provider',
-    name: 'qiskit-ibm-provider',
-    githubSlug: 'qiskit/qiskit-ibm-provider',
+    title: "Qiskit IBM Provider",
+    name: "qiskit-ibm-provider",
+    githubSlug: "qiskit/qiskit-ibm-provider",
     baseUrl: `https://qiskit.org/ecosystem/ibm-provider`,
-    initialUrls: [`https://qiskit.org/ecosystem/ibm-provider/apidocs/ibm-provider.html`],
+    initialUrls: [
+      `https://qiskit.org/ecosystem/ibm-provider/apidocs/ibm-provider.html`,
+    ],
     transformLink(url, text) {
       const prefixes = [
-        'https://qiskit.org/documentation/apidoc/',
-        'https://qiskit.org/documentation/stubs/',
+        "https://qiskit.org/documentation/apidoc/",
+        "https://qiskit.org/documentation/stubs/",
       ];
       let updateText = url === text;
       const prefix = prefixes.find((prefix) => url.startsWith(prefix));
       if (prefix) {
         url = removePrefix(url, prefix);
-        url = removeSuffix(url, '.html');
+        url = removeSuffix(url, ".html");
         const newText = updateText ? url : undefined;
         return { url: `/api/qiskit/${url}`, text: newText };
       }
     },
   },
   {
-    title: 'Qiskit',
-    name: 'qiskit',
-    githubSlug: 'qiskit/qiskit',
+    title: "Qiskit",
+    name: "qiskit",
+    githubSlug: "qiskit/qiskit",
     baseUrl: `https://qiskit.org/documentation`,
     initialUrls: [`https://qiskit.org/documentation/apidoc/index.html`],
     ignore(id: string): boolean {
-      return id.startsWith('qiskit.opflow') || id.startsWith('qiskit.algorithms');
+      return (
+        id.startsWith("qiskit.opflow") || id.startsWith("qiskit.algorithms")
+      );
     },
     tocOptions: {
       collapsed: true,
       nestModule(id: string) {
-        return id.split('.').length > 2;
+        return id.split(".").length > 2;
       },
     },
     transformLink(url) {
       // Transform links from ignored modules
-      let path = last(url.split('/'))!;
-      if (path.includes('#')) {
-        path = path.split('#').join('.html#');
+      let path = last(url.split("/"))!;
+      if (path.includes("#")) {
+        path = path.split("#").join(".html#");
       } else {
-        path += '.html';
+        path += ".html";
       }
 
-      if (path?.startsWith('algorithms') || path?.startsWith('opflow')) {
+      if (path?.startsWith("algorithms") || path?.startsWith("opflow")) {
         return { url: `http://qiskit.org/documentation/apidoc/${path}` };
       }
-      if (path?.startsWith('qiskit.algorithms.') || path?.startsWith('qiskit.opflow.')) {
+      if (
+        path?.startsWith("qiskit.algorithms.") ||
+        path?.startsWith("qiskit.opflow.")
+      ) {
         return { url: `http://qiskit.org/documentation/stubs/${path}` };
       }
     },
@@ -155,8 +165,8 @@ const readArgs = (): Arguments => {
       choices: pkgs,
       description: "What packages to update",
     })
-    .parseSync()
-  };
+    .parseSync();
+};
 
 zxMain(async () => {
   const args = readArgs();
@@ -177,7 +187,11 @@ zxMain(async () => {
       continue;
     }
 
-    await downloadHtml({ baseUrl: pkg.baseUrl, initialUrls: pkg.initialUrls, destination });
+    await downloadHtml({
+      baseUrl: pkg.baseUrl,
+      initialUrls: pkg.initialUrls,
+      destination,
+    });
   }
 
   for (const src of pkgHtmls) {
@@ -203,7 +217,7 @@ async function getLatestVersion(githubSlug: string): Promise<string> {
   const releases = await github.getReleases({ slug: githubSlug });
 
   const latestVersion = first(releases)?.tag_name;
-  if (!latestVersion) throw new Error('Cannot fetch latest version');
+  if (!latestVersion) throw new Error("Cannot fetch latest version");
 
   return latestVersion;
 }
@@ -239,24 +253,30 @@ async function downloadHtml(options: {
     },
   });
   await crawler.run();
-  console.log(`Download summary from ${baseUrl}`, { success: successCount, error: errorCount });
+  console.log(`Download summary from ${baseUrl}`, {
+    success: successCount,
+    error: errorCount,
+  });
 }
 
 async function convertHtmlToMarkdown(
   htmlPath: string,
   markdownPath: string,
   baseSourceUrl: string,
-  pkg: PkgHtml
+  pkg: PkgHtml,
 ) {
-  const files = await globby(['apidocs/**.html', 'apidoc/**.html', 'stubs/**.html'], {
-    cwd: htmlPath,
-  });
+  const files = await globby(
+    ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"],
+    {
+      cwd: htmlPath,
+    },
+  );
 
   const ignore = pkg.pkg.ignore ?? (() => false);
 
   let results: Array<SphinxToMdResult & { url: string }> = [];
   for (const file of files) {
-    const html = await readFile(join(htmlPath, file), 'utf-8');
+    const html = await readFile(join(htmlPath, file), "utf-8");
     const result = await sphinxHtmlToMarkdown({
       html,
       url: `${pkg.pkg.baseUrl}/${file}`,
@@ -273,10 +293,12 @@ async function convertHtmlToMarkdown(
 
   const allImages = uniqBy(
     results.flatMap((result) => result.images),
-    (image) => image.src
+    (image) => image.src,
   );
 
-  const dirsNeeded = uniq(results.map((result) => parse(urlToPath(result.url)).dir));
+  const dirsNeeded = uniq(
+    results.map((result) => parse(urlToPath(result.url)).dir),
+  );
   for (const dir of dirsNeeded) {
     await mkdirp(dir);
   }
@@ -291,7 +313,7 @@ async function convertHtmlToMarkdown(
     await writeFile(urlToPath(result.url), result.markdown);
   }
 
-  console.log('Generating toc');
+  console.log("Generating toc");
   const toc = generateToc({
     pkg: {
       title: pkg.pkg.title,
@@ -302,11 +324,17 @@ async function convertHtmlToMarkdown(
     },
     results,
   });
-  await writeFile(`${markdownPath}/_toc.json`, JSON.stringify(toc, null, 2) + '\n');
+  await writeFile(
+    `${markdownPath}/_toc.json`,
+    JSON.stringify(toc, null, 2) + "\n",
+  );
 
-  console.log('Downloading images');
+  console.log("Downloading images");
   await downloadImages(
-    allImages.map((img) => ({ src: img.src, dest: `${getRoot()}/public${img.dest}` }))
+    allImages.map((img) => ({
+      src: img.src,
+      dest: `${getRoot()}/public${img.dest}`,
+    })),
   );
 }
 
