@@ -10,13 +10,13 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { describe, expect, test } from '@jest/globals';
-import { updateLinks } from './updateLinks';
-import { SphinxToMdResultWithUrl } from './SphinxToMdResult';
-import { last } from 'lodash';
+import { describe, expect, test } from "@jest/globals";
+import { updateLinks } from "./updateLinks";
+import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
+import { last } from "lodash";
 
-describe('updateLinks', () => {
-  test('update links', async () => {
+describe("updateLinks", () => {
+  test("update links", async () => {
     const input: SphinxToMdResultWithUrl[] = [
       {
         markdown: `
@@ -29,10 +29,10 @@ describe('updateLinks', () => {
 [link7](#qiskit_ibm_runtime.RuntimeJob.job)
           `,
         meta: {
-          python_api_type: 'class',
-          python_api_name: 'qiskit_ibm_runtime.RuntimeJob',
+          python_api_type: "class",
+          python_api_name: "qiskit_ibm_runtime.RuntimeJob",
         },
-        url: '/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob',
+        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         images: [],
       },
       {
@@ -40,10 +40,10 @@ describe('updateLinks', () => {
 [run](qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.run)
           `,
         meta: {
-          python_api_type: 'class',
-          python_api_name: 'qiskit_ibm_runtime.Sampler',
+          python_api_type: "class",
+          python_api_name: "qiskit_ibm_runtime.Sampler",
         },
-        url: '/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob',
+        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         images: [],
       },
     ];
@@ -81,7 +81,7 @@ describe('updateLinks', () => {
     `);
   });
 
-  test('update links using a transform function', async () => {
+  test("update links using a transform function", async () => {
     const input: SphinxToMdResultWithUrl[] = [
       {
         markdown: `
@@ -92,25 +92,25 @@ describe('updateLinks', () => {
 [link7](#qiskit_ibm_runtime.RuntimeJob.job)
           `,
         meta: {
-          python_api_type: 'class',
-          python_api_name: 'qiskit_ibm_runtime.RuntimeJob',
+          python_api_type: "class",
+          python_api_name: "qiskit_ibm_runtime.RuntimeJob",
         },
-        url: '/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob',
+        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         images: [],
       },
     ];
 
     const results = await updateLinks(input, (url) => {
-      let path = last(url.split('/'))!;
-      if (path.includes('#')) {
-        path = path.split('#').join('.html#');
+      let path = last(url.split("/"))!;
+      if (path.includes("#")) {
+        path = path.split("#").join(".html#");
       } else {
-        path += '.html';
+        path += ".html";
       }
 
-      if (path?.startsWith('algorithms'))
+      if (path?.startsWith("algorithms"))
         return { url: `http://qiskit.org/documentation/apidoc/${path}` };
-      if (path?.startsWith('qiskit.algorithms.'))
+      if (path?.startsWith("qiskit.algorithms."))
         return { url: `http://qiskit.org/documentation/stubs/${path}` };
     });
     expect(results).toMatchInlineSnapshot(`
