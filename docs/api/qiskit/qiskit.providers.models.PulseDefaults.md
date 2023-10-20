@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.models.PulseDefaults
 
 `qiskit.providers.models.PulseDefaults(qubit_freq_est, meas_freq_est, buffer, pulse_library, cmd_def, meas_kernel=None, discriminator=None, **kwargs)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Description of default settings for Pulse systems. These are instructions or settings that may be good starting points for the Pulse user. The user may modify these defaults for custom scheduling.
 
@@ -44,7 +44,7 @@ Create a new PulseDefaults object from a dictionary.
 
 **Parameters**
 
-**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – A dictionary representing the PulseDefaults to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.PulseDefaults.to_dict "qiskit.providers.models.PulseDefaults.to_dict").
+**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary representing the PulseDefaults to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.PulseDefaults.to_dict "qiskit.providers.models.PulseDefaults.to_dict").
 
 **Returns**
 

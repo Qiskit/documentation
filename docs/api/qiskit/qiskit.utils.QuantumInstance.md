@@ -12,7 +12,7 @@ python_api_name: qiskit.utils.QuantumInstance
 
 `qiskit.utils.QuantumInstance(backend, shots=None, seed_simulator=None, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, bound_pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None, mit_pattern=None, max_job_retries=50)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Deprecated: Quantum Backend including execution setting.
 
@@ -25,26 +25,26 @@ Quantum Instance holds a Qiskit Terra backend as well as configuration for circu
 **Parameters**
 
 *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Instance of selected backend
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – Number of repetitions of each circuit, for sampling. If None, the shots are extracted from the backend. If the backend has none set, the default is 1024.
-*   **seed\_simulator** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – Random seed for simulators
-*   **basis\_gates** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*] | None*) – List of basis gate names supported by the target. Defaults to basis gates of the backend.
+*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Number of repetitions of each circuit, for sampling. If None, the shots are extracted from the backend. If the backend has none set, the default is 1024.
+*   **seed\_simulator** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Random seed for simulators
+*   **basis\_gates** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] | None*) – List of basis gate names supported by the target. Defaults to basis gates of the backend.
 *   **coupling\_map** (*Optional\[Union\['CouplingMap', List\[List]]]*) – Coupling map (perhaps custom) to target in mapping
 *   **initial\_layout** (*Optional\[Union\['Layout', Dict, List]]*) – Initial layout of qubits in mapping
 *   **pass\_manager** (*Optional\['PassManager']*) – Pass manager to handle how to compile the circuits. To run only this pass manager and not the `bound_pass_manager`, call the [`transpile()`](#qiskit.utils.QuantumInstance.transpile "qiskit.utils.QuantumInstance.transpile") method with the argument `pass_manager=quantum_instance.unbound_pass_manager`.
 *   **bound\_pass\_manager** (*Optional\['PassManager']*) – A second pass manager to apply on bound circuits only, that is, circuits without any free parameters. To only run this pass manager and not `pass_manager` call the [`transpile()`](#qiskit.utils.QuantumInstance.transpile "qiskit.utils.QuantumInstance.transpile") method with the argument `pass_manager=quantum_instance.bound_pass_manager`. manager should also be run.
-*   **seed\_transpiler** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – The random seed for circuit mapper
-*   **optimization\_level** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – How much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer transpilation time.
-*   **backend\_options** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.11)") *| None*) – All running options for backend, please refer to the provider of the backend for information as to what options it supports.
+*   **seed\_transpiler** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The random seed for circuit mapper
+*   **optimization\_level** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – How much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer transpilation time.
+*   **backend\_options** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)") *| None*) – All running options for backend, please refer to the provider of the backend for information as to what options it supports.
 *   **noise\_model** (*Optional\['NoiseModel']*) – noise model for simulator
-*   **timeout** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)") *| None*) – Seconds to wait for job. If None, wait indefinitely.
-*   **wait** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Seconds between queries for job result
-*   **skip\_qobj\_validation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Bypass Qobj validation to decrease circuit processing time during submission to backend.
-*   **measurement\_error\_mitigation\_cls** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.11)") *| None*) – The approach to mitigate measurement errors. The classes [`CompleteMeasFitter`](qiskit.utils.mitigation.CompleteMeasFitter "qiskit.utils.mitigation.CompleteMeasFitter") or [`TensoredMeasFitter`](qiskit.utils.mitigation.TensoredMeasFitter "qiskit.utils.mitigation.TensoredMeasFitter") from the [`qiskit.utils.mitigation`](utils_mitigation#module-qiskit.utils.mitigation "qiskit.utils.mitigation") module can be used here as exact values, not instances. `TensoredMeasFitter` doesn’t support the `subset_fitter` method.
-*   **cals\_matrix\_refresh\_period** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – How often to refresh the calibration matrix in measurement mitigation. in minutes
-*   **measurement\_error\_mitigation\_shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – The number of shots number for building calibration matrix. If None, the main shots parameter value is used.
-*   **job\_callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.11)") *| None*) – Optional user supplied callback which can be used to monitor job progress as jobs are submitted for processing by an Aqua algorithm. The callback is provided the following arguments: job\_id, job\_status, queue\_position, job
-*   **mit\_pattern** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]] | None*) – Qubits on which to perform the TensoredMeasFitter measurement correction, divided to groups according to tensors. If None and qr is given then assumed to be performed over the entire qr as one group (default None).
-*   **max\_job\_retries** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – positive non-zero number of trials for the job set (-1 for infinite trials) (default: 50)
+*   **timeout** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – Seconds to wait for job. If None, wait indefinitely.
+*   **wait** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Seconds between queries for job result
+*   **skip\_qobj\_validation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Bypass Qobj validation to decrease circuit processing time during submission to backend.
+*   **measurement\_error\_mitigation\_cls** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)") *| None*) – The approach to mitigate measurement errors. The classes [`CompleteMeasFitter`](qiskit.utils.mitigation.CompleteMeasFitter "qiskit.utils.mitigation.CompleteMeasFitter") or [`TensoredMeasFitter`](qiskit.utils.mitigation.TensoredMeasFitter "qiskit.utils.mitigation.TensoredMeasFitter") from the [`qiskit.utils.mitigation`](utils_mitigation#module-qiskit.utils.mitigation "qiskit.utils.mitigation") module can be used here as exact values, not instances. `TensoredMeasFitter` doesn’t support the `subset_fitter` method.
+*   **cals\_matrix\_refresh\_period** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – How often to refresh the calibration matrix in measurement mitigation. in minutes
+*   **measurement\_error\_mitigation\_shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of shots number for building calibration matrix. If None, the main shots parameter value is used.
+*   **job\_callback** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)") *| None*) – Optional user supplied callback which can be used to monitor job progress as jobs are submitted for processing by an Aqua algorithm. The callback is provided the following arguments: job\_id, job\_status, queue\_position, job
+*   **mit\_pattern** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]] | None*) – Qubits on which to perform the TensoredMeasFitter measurement correction, divided to groups according to tensors. If None and qr is given then assumed to be performed over the entire qr as one group (default None).
+*   **max\_job\_retries** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – positive non-zero number of trials for the job set (-1 for infinite trials) (default: 50)
 
 **Raises**
 
@@ -214,7 +214,7 @@ Get the stored calibration matrices and its timestamp.
 
 **Parameters**
 
-**qubit\_index** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] | None*) – the qubit index of corresponding calibration matrix. If None, return all stored calibration matrices.
+**qubit\_index** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – the qubit index of corresponding calibration matrix. If None, return all stored calibration matrices.
 
 **Returns**
 
@@ -222,7 +222,7 @@ The calibration matrix and the creation timestamp if qubit\_index is not None ot
 
 **Return type**
 
-[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.11)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")] | [*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.11)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)"), [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.11)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")]] | None
+[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")] | [*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)"), [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")]] | None
 
 ### execute
 
@@ -235,7 +235,7 @@ A wrapper to interface with quantum backend.
 **Parameters**
 
 *   **circuits** (*Union\['QuantumCircuit', List\['QuantumCircuit']]*) – circuits to execute
-*   **had\_transpiled** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – whether or not circuits had been transpiled
+*   **had\_transpiled** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – whether or not circuits had been transpiled
 
 **Raises**
 
@@ -265,7 +265,7 @@ Calculate the time difference from the query of last time.
 
 **Parameters**
 
-**timestamp** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)") *| None*) – timestamp
+**timestamp** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – timestamp
 
 **Returns**
 
@@ -273,7 +273,7 @@ Whether or not refresh the cals\_matrix
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### reset\_execution\_results
 

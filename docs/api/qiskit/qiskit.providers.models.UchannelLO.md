@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.models.UchannelLO
 
 `qiskit.providers.models.UchannelLO(q, scale)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Class representing a U Channel LO
 
@@ -32,8 +32,8 @@ Initialize a UchannelLOSchema object
 
 **Parameters**
 
-*   **q** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Qubit that scale corresponds too. Must be >= 0.
-*   **scale** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")) – Scale factor for qubit frequency.
+*   **q** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Qubit that scale corresponds too. Must be >= 0.
+*   **scale** ([*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")) – Scale factor for qubit frequency.
 
 **Raises**
 
@@ -51,7 +51,7 @@ Create a new UchannelLO object from a dictionary.
 
 **Parameters**
 
-**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – A dictionary representing the UChannelLO to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.UchannelLO.to_dict "qiskit.providers.models.UchannelLO.to_dict").
+**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary representing the UChannelLO to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.UchannelLO.to_dict "qiskit.providers.models.UchannelLO.to_dict").
 
 **Returns**
 
@@ -75,5 +75,5 @@ The dictionary form of the UChannelLO.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 

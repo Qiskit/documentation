@@ -20,11 +20,11 @@ CollectCliffords initializer.
 
 **Parameters**
 
-*   **do\_commutative\_analysis** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if True, exploits commutativity relations between nodes.
-*   **split\_blocks** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if True, splits collected blocks into sub-blocks over disjoint qubit subsets.
-*   **min\_block\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – specifies the minimum number of gates in the block for the block to be collected.
-*   **split\_layers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if True, splits collected blocks into sub-blocks over disjoint qubit subsets.
-*   **collect\_from\_back** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – specifies if blocks should be collected started from the end of the circuit.
+*   **do\_commutative\_analysis** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, exploits commutativity relations between nodes.
+*   **split\_blocks** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, splits collected blocks into sub-blocks over disjoint qubit subsets.
+*   **min\_block\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – specifies the minimum number of gates in the block for the block to be collected.
+*   **split\_layers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, splits collected blocks into sub-blocks over disjoint qubit subsets.
+*   **collect\_from\_back** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – specifies if blocks should be collected started from the end of the circuit.
 
 ## Attributes
 

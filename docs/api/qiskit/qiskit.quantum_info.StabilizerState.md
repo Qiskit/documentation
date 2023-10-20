@@ -117,7 +117,7 @@ True if other has a generating set that generates the same StabilizerState.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### evolve
 
@@ -130,7 +130,7 @@ Evolve a stabilizer state by a Clifford operator.
 **Parameters**
 
 *   **other** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – The Clifford operator to evolve by.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – a list of stabilizer subsystem positions to apply the operator on.
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – a list of stabilizer subsystem positions to apply the operator on.
 
 **Returns**
 
@@ -151,7 +151,7 @@ the output stabilizer state.
 
 `expand(other)`
 
-Return the tensor product stabilzier state other ⊗ self.
+Return the tensor product stabilizer state other ⊗ self.
 
 **Parameters**
 
@@ -180,7 +180,7 @@ Compute the expectation value of a Pauli operator.
 **Parameters**
 
 *   **oper** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) – a Pauli operator to evaluate expval.
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – subsystems to apply the operator on.
+*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to apply the operator on.
 
 **Returns**
 
@@ -188,7 +188,7 @@ the expectation value (only 0 or 1 or -1 or i or -i).
 
 **Return type**
 
-[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")
+[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")
 
 **Raises**
 
@@ -214,7 +214,7 @@ Note that this function uses the QuantumStates internal random number generator 
 
 **Parameters**
 
-**qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)") *or None*) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+**qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
 **Returns**
 
@@ -224,7 +224,7 @@ measurement outcome string label, and `state` is the collapsed post-measurement 
 
 **Return type**
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")
 
 ### probabilities
 
@@ -238,8 +238,8 @@ Measurement probabilities are with respect to measurement in the computation (di
 
 **Parameters**
 
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
-*   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
+*   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
 
 **Returns**
 
@@ -263,8 +263,8 @@ This dictionary representation uses a Ket-like notation where the dictionary key
 
 **Parameters**
 
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
-*   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
+*   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
 
 **Returns**
 
@@ -272,7 +272,7 @@ The measurement probabilities in dict (ket) form.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 ### purity
 
@@ -288,7 +288,7 @@ the purity (should equal 1).
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 **Raises**
 
@@ -304,7 +304,7 @@ Reset state or subsystems to the 0-state.
 
 **Parameters**
 
-**qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)") *or None*) – subsystems to reset, if None all subsystems will be reset to their 0-state (Default: None).
+**qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – subsystems to reset, if None all subsystems will be reset to their 0-state (Default: None).
 
 **Returns**
 
@@ -328,8 +328,8 @@ Sample a dict of qubit measurement outcomes in the computational basis.
 
 **Parameters**
 
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – number of samples to generate.
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of samples to generate.
+*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
 **Returns**
 
@@ -355,8 +355,8 @@ Sample a list of qubit measurement outcomes in the computational basis.
 
 **Parameters**
 
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – number of samples to generate.
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of samples to generate.
+*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
 **Returns**
 
@@ -386,7 +386,7 @@ Set the seed for the quantum state RNG.
 
 `tensor(other)`
 
-Return the tensor product stabilzier state self ⊗ other.
+Return the tensor product stabilizer state self ⊗ other.
 
 **Parameters**
 
@@ -430,7 +430,7 @@ the trace (should equal 1).
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 **Raises**
 

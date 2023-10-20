@@ -20,7 +20,7 @@ Return a permutation gate.
 
 **Parameters**
 
-**pattern** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation, that is `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to the position `1`, etc.
+**pattern** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation, that is `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to the position `1`, etc.
 
 **Raises**
 

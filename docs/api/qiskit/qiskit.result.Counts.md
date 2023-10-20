@@ -12,7 +12,7 @@ python_api_name: qiskit.result.Counts
 
 `qiskit.result.Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)`
 
-Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 A class to store a counts result from a circuit execution.
 
@@ -20,7 +20,7 @@ Build a counts object
 
 **Parameters**
 
-*   **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) –
+*   **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) –
 
     The dictionary input for the counts. Where the keys represent a measured classical value and the value is an integer the number of shots with that result. The keys can be one of several formats:
 
@@ -29,15 +29,15 @@ Build a counts object
     > *   A bit string formatted across register and memory slots. For example, `'00 10'`.
     > *   A dit string, for example `'02'`. Note for objects created with dit strings the `creg_sizes` and `memory_slots` kwargs don’t work and [`hex_outcomes()`](#qiskit.result.Counts.hex_outcomes "qiskit.result.Counts.hex_outcomes") and [`int_outcomes()`](#qiskit.result.Counts.int_outcomes "qiskit.result.Counts.int_outcomes") also do not work.
 
-*   **time\_taken** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – The duration of the experiment that generated the counts in seconds.
+*   **time\_taken** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The duration of the experiment that generated the counts in seconds.
 
-*   **creg\_sizes** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – a nested list where the inner element is a list of tuples containing both the classical register name and classical register size. For example, `[('c_reg', 2), ('my_creg', 4)]`.
+*   **creg\_sizes** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – a nested list where the inner element is a list of tuples containing both the classical register name and classical register size. For example, `[('c_reg', 2), ('my_creg', 4)]`.
 
-*   **memory\_slots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The number of total `memory_slots` in the experiment.
+*   **memory\_slots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of total `memory_slots` in the experiment.
 
 **Raises**
 
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.11)") – If the input key type is not an `int` or `str`.
+*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If the input key type is not an `int` or `str`.
 *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If a dit string key is input with `creg_sizes` and/or `memory_slots`.
 
 ## Attributes
@@ -94,7 +94,7 @@ bitstrings
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 **Raises**
 
@@ -114,7 +114,7 @@ A dictionary with the keys as integers instead of bitstrings
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 **Raises**
 
@@ -146,7 +146,7 @@ The bit string for the most frequent result
 
 **Return type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 **Raises**
 

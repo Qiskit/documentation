@@ -18,8 +18,8 @@ Implementation of objective function and gradient calculator, which is similar t
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – number of qubits.
-*   **cnots** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – a CNOT structure to be used in the optimization procedure.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubits.
+*   **cnots** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a CNOT structure to be used in the optimization procedure.
 
 ## Attributes
 
@@ -53,7 +53,7 @@ Computes the gradient of objective function. See description of the base class m
 
 **Return type**
 
-[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")
+[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")
 
 ### objective
 
@@ -65,5 +65,5 @@ Computes the objective function and some intermediate data for the subsequent gr
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 

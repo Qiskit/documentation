@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.Z2Symmetries
 
 `qiskit.quantum_info.Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None, *, tol=1e-14)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 The \$Z\_2\$ symmetry converter identifies symmetries from the problem hamiltonian and uses them to provide a tapered - more efficient - representation of operators as Paulis for this problem. For each identified symmetry, one qubit can be eliminated in the Pauli representation at the cost of having to test two symmetry sectors (for the two possible eigenvalues - tapering values - of the symmetry). In certain problems such as the finding of the main operator’s ground state, one can a priori identify the symmetry sector of the solution and thus effectively reduce the computational overhead.
 
@@ -26,7 +26,7 @@ Values determining the sector.
 
 **Type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")] or None
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")] or None
 
 <span id="qiskit.quantum_info.Z2Symmetries.tol" />
 
@@ -36,7 +36,7 @@ The tolerance threshold for ignoring real and complex parts of a coefficient.
 
 **Type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 ## References
 
@@ -48,9 +48,9 @@ The tolerance threshold for ignoring real and complex parts of a coefficient.
 
 *   **symmetries** (*Iterable\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – Object representing the list of \$Z\_2\$ symmetries. These correspond to the generators of the symmetry group \$langle tau\_1, tau\_2dots rangle>\$.
 *   **sq\_paulis** (*Iterable\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*]*) – Object representing the list of single-qubit Pauli \$sigma^x\_\{q(i)}\$ anti-commuting with the symmetry \$tau\_i\$ and commuting with all the other symmetries \$tau\_\{jneq i}\$. These operators are used to construct the unitary Clifford operators.
-*   **sq\_list** (*Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – The list of indices \$q(i)\$ of the single-qubit Pauli operators used to build the Clifford operators.
-*   **tapering\_values** (*Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] | None*) – List of eigenvalues determining the symmetry sector for each symmetry.
-*   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Tolerance threshold for ignoring real and complex parts of a coefficient.
+*   **sq\_list** (*Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The list of indices \$q(i)\$ of the single-qubit Pauli operators used to build the Clifford operators.
+*   **tapering\_values** (*Iterable\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – List of eigenvalues determining the symmetry sector for each symmetry.
+*   **tol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Tolerance threshold for ignoring real and complex parts of a coefficient.
 
 **Raises**
 
@@ -144,7 +144,7 @@ Empty or not.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### taper
 

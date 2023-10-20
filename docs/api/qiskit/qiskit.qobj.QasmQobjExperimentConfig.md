@@ -14,13 +14,13 @@ python_api_name: qiskit.qobj.QasmQobjExperimentConfig
 
 Bases: `QobjDictField`
 
-Configuration for a single QASM experiment in the qobj.
+Configuration for a single OpenQASM 2 experiment in the qobj.
 
 **Parameters**
 
 *   **calibrations** ([*QasmExperimentCalibrations*](qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")) – Information required for Pulse gates.
-*   **qubit\_lo\_freq** (*List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*]*) – List of qubit LO frequencies in GHz.
-*   **meas\_lo\_freq** (*List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*]*) – List of meas readout LO frequencies in GHz.
+*   **qubit\_lo\_freq** (*List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – List of qubit LO frequencies in GHz.
+*   **meas\_lo\_freq** (*List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – List of meas readout LO frequencies in GHz.
 *   **kwargs** – Additional free form key value fields to add to the configuration
 
 ## Methods
@@ -35,7 +35,7 @@ Create a new QobjHeader object from a dictionary.
 
 **Parameters**
 
-**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – A dictionary representing the QobjHeader to create. It will be in the same format as output by [`to_dict()`](#qiskit.qobj.QasmQobjExperimentConfig.to_dict "qiskit.qobj.QasmQobjExperimentConfig.to_dict").
+**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary representing the QobjHeader to create. It will be in the same format as output by [`to_dict()`](#qiskit.qobj.QasmQobjExperimentConfig.to_dict "qiskit.qobj.QasmQobjExperimentConfig.to_dict").
 
 **Returns**
 
@@ -51,7 +51,7 @@ QobjDictFieldr
 
 `to_dict()`
 
-Return a dictionary format representation of the QASM Qobj.
+Return a dictionary format representation of the OpenQASM 2 Qobj.
 
 **Returns**
 
@@ -59,5 +59,5 @@ The dictionary form of the QobjHeader.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
