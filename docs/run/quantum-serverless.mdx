@@ -15,7 +15,7 @@ Here is an example of computing the quasiprobability distribution of a quantum c
 # source_files/program.py
 
 from qiskit import QuantumCircuit
-from qiskit_ibm_runtime import Session, Sampler
+from qiskit_ibm_runtime import QiskitRuntimeService, Session, Options, Estimator
 
 from quantum_serverless import save_result
 
@@ -28,12 +28,16 @@ circuit.h(0)
 circuit.cx(0, 1)
 circuit.measure_all()
 
+service = QiskitRuntimeService()
+options = Options(optimization_level=1)
+options.execution.shots = 1024
+
 # sessions allow grouping a collection of iterative
 # calls to the quantum computer
-with Session(backend="ibmq_qasm_simulator") as session:
-    # running Sampler primitive
-    sampler = Sampler(session=session)
-    job = sampler.run(circuit)
+with Session(service=service, backend="ibmq_qasm_simulator") as session:
+    # running Estimator primitive
+    estimator = Estimator(session=session, options=options)
+    job = estimator.run(circuit)
     quasi_dists = job.result().quasi_dists
 
     # save results of program execution,
