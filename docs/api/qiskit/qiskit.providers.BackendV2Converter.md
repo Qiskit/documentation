@@ -34,9 +34,9 @@ Initialize a BackendV2 converter instance based on a BackendV1 instance.
 **Parameters**
 
 *   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")) – The input [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") based backend to wrap in a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") interface
-*   **name\_mapping** (*Optional\[Dict\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*, Any]]*) – An optional dictionary that maps custom gate/operation names in `backend` to an [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") object representing that gate/operation. By default most standard gates names are mapped to the standard gate object from [`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library") this only needs to be specified if the input `backend` defines gates in names outside that set.
-*   **add\_delay** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If set to true a [`Delay`](qiskit.circuit.Delay "qiskit.circuit.Delay") operation will be added to the target as a supported operation for all qubits
-*   **filter\_faulty** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If the [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") object (if present) for `backend` has any qubits or gates flagged as non-operational filter those from the output target.
+*   **name\_mapping** (*Optional\[Dict\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any]]*) – An optional dictionary that maps custom gate/operation names in `backend` to an [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") object representing that gate/operation. By default most standard gates names are mapped to the standard gate object from [`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library") this only needs to be specified if the input `backend` defines gates in names outside that set.
+*   **add\_delay** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to true a [`Delay`](qiskit.circuit.Delay "qiskit.circuit.Delay") operation will be added to the target as a supported operation for all qubits
+*   **filter\_faulty** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If the [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") object (if present) for `backend` has any qubits or gates flagged as non-operational filter those from the output target.
 
 ## Attributes
 
@@ -170,7 +170,7 @@ The Qubit measurement acquisition line.
 
 **Raises**
 
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.11)") – if the backend doesn’t support querying the measurement mapping
+[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
 
 ### control\_channel
 
@@ -186,7 +186,7 @@ This is required to be implemented if the backend supports Pulse scheduling.
 
 **Parameters**
 
-**qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
+**qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of qubits of the form `(control_qubit, target_qubit)`.
 
 **Returns**
 
@@ -198,7 +198,7 @@ List\[[ControlChannel](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channe
 
 **Raises**
 
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.11)") – if the backend doesn’t support querying the measurement mapping
+[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
 
 ### drive\_channel
 
@@ -220,7 +220,7 @@ The Qubit drive channel
 
 **Raises**
 
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.11)") – if the backend doesn’t support querying the measurement mapping
+[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
 
 ### measure\_channel
 
@@ -242,7 +242,7 @@ The Qubit measurement stimulus line
 
 **Raises**
 
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.11)") – if the backend doesn’t support querying the measurement mapping
+[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the measurement mapping
 
 ### qubit\_properties
 
@@ -256,7 +256,7 @@ If there are no defined or the backend doesn’t support querying these details 
 
 **Parameters**
 
-**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – The qubit to get the `QubitProperties` object for. This can be a single integer for 1 qubit or a list of qubits and a list of `QubitProperties` objects will be returned in the same order
+**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit to get the `QubitProperties` object for. This can be a single integer for 1 qubit or a list of qubits and a list of `QubitProperties` objects will be returned in the same order
 
 **Returns**
 
@@ -268,7 +268,7 @@ qubit\_properties
 
 **Raises**
 
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.11)") – if the backend doesn’t support querying the qubit properties
+[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the qubit properties
 
 ### run
 
@@ -282,7 +282,7 @@ This method returns a [`Job`](qiskit.providers.Job "qiskit.providers.Job") objec
 
 **Parameters**
 
-*   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – An individual or a list of `ScheduleBlock`, or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend.
+*   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An individual or a list of `ScheduleBlock`, or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend.
 *   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
 
 **Returns**
@@ -309,5 +309,5 @@ This method is used to update the options of a backend. If you need to change an
 
 **Raises**
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.11)") – If the field passed in is not part of the options
+[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
 

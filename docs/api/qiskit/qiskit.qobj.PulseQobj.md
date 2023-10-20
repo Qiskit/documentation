@@ -12,7 +12,7 @@ python_api_name: qiskit.qobj.PulseQobj
 
 `qiskit.qobj.PulseQobj(qobj_id, config, experiments, header=None)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 A Pulse Qobj.
 
@@ -22,10 +22,10 @@ Each Pulse Qobj object is used to represent a single payload that will be passed
 
 **Parameters**
 
-*   **qobj\_id** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – An identifier for the qobj
+*   **qobj\_id** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – An identifier for the qobj
 *   **config** ([*PulseQobjConfig*](qiskit.qobj.PulseQobjConfig "qiskit.qobj.PulseQobjConfig")) – A config for the entire run
 *   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
-*   **experiments** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – A list of lists of [`PulseQobjExperiment`](qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment") objects representing an experiment
+*   **experiments** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of lists of [`PulseQobjExperiment`](qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment") objects representing an experiment
 
 ## Methods
 
@@ -39,7 +39,7 @@ Create a new PulseQobj object from a dictionary.
 
 **Parameters**
 
-**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – A dictionary representing the PulseQobj to create. It will be in the same format as output by [`to_dict()`](#qiskit.qobj.PulseQobj.to_dict "qiskit.qobj.PulseQobj.to_dict").
+**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary representing the PulseQobj to create. It will be in the same format as output by [`to_dict()`](#qiskit.qobj.PulseQobj.to_dict "qiskit.qobj.PulseQobj.to_dict").
 
 **Returns**
 
@@ -80,5 +80,5 @@ A dictionary representation of the PulseQobj object
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 

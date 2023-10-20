@@ -18,7 +18,7 @@ A naive implementation of the objective function based on CNOT units.
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – number of qubits.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubits.
 *   **cnots** (*np.ndarray*) – a CNOT structure to be used in the optimization procedure.
 
 ## Attributes
@@ -53,7 +53,7 @@ Computes a gradient with respect to parameters given a vector of parameter value
 
 **Parameters**
 
-**param\_values** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – a vector of parameter values for the optimization problem.
+**param\_values** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a vector of parameter values for the optimization problem.
 
 **Returns**
 
@@ -61,7 +61,7 @@ an array of gradient values.
 
 **Return type**
 
-[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")
+[*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")
 
 ### objective
 
@@ -73,7 +73,7 @@ Computes a value of the objective function given a vector of parameter values.
 
 **Parameters**
 
-**param\_values** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – a vector of parameter values for the optimization problem.
+**param\_values** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a vector of parameter values for the optimization problem.
 
 **Returns**
 
@@ -81,5 +81,5 @@ a float value of the objective function.
 
 **Return type**
 
-[*SupportsFloat*](https://docs.python.org/3/library/typing.html#typing.SupportsFloat "(in Python v3.11)")
+[*SupportsFloat*](https://docs.python.org/3/library/typing.html#typing.SupportsFloat "(in Python v3.12)")
 

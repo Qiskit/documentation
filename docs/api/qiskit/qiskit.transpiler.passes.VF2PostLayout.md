@@ -44,15 +44,15 @@ Initialize a `VF2PostLayout` pass instance
 *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the backend device to run `VF2PostLayout` on. If specified it will supersede a set value for `properties` and `coupling_map`.
 *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph representing a coupling map.
 *   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – The backend properties for the backend. If [`readout_error()`](qiskit.providers.models.BackendProperties#readout_error "qiskit.providers.models.BackendProperties.readout_error") is available it is used to score the layout.
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Sets the seed of the PRNG. -1 Means no node shuffling.
-*   **call\_limit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The number of state visits to attempt in each execution of VF2.
-*   **time\_limit** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – The total time limit in seconds to run `VF2PostLayout`
-*   **strict\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Whether the pass is configured to follow the strict direction in the coupling graph. If this is set to false, the pass will treat any edge in the coupling graph as a weak edge and the interaction graph will be undirected. For the purposes of evaluating layouts the avg error rate for each qubit and 2q link will be used. This enables the pass to be run prior to basis translation and work with any 1q and 2q operations. However, if `strict_direction=True` the pass expects the input [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object to [`run()`](#qiskit.transpiler.passes.VF2PostLayout.run "qiskit.transpiler.passes.VF2PostLayout.run") to be in the target set of instructions.
-*   **max\_trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The maximum number of trials to run VF2 to find a layout. A value of `0` (the default) means ‘unlimited’.
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Sets the seed of the PRNG. -1 Means no node shuffling.
+*   **call\_limit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of state visits to attempt in each execution of VF2.
+*   **time\_limit** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The total time limit in seconds to run `VF2PostLayout`
+*   **strict\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether the pass is configured to follow the strict direction in the coupling graph. If this is set to false, the pass will treat any edge in the coupling graph as a weak edge and the interaction graph will be undirected. For the purposes of evaluating layouts the avg error rate for each qubit and 2q link will be used. This enables the pass to be run prior to basis translation and work with any 1q and 2q operations. However, if `strict_direction=True` the pass expects the input [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object to [`run()`](#qiskit.transpiler.passes.VF2PostLayout.run "qiskit.transpiler.passes.VF2PostLayout.run") to be in the target set of instructions.
+*   **max\_trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of trials to run VF2 to find a layout. A value of `0` (the default) means ‘unlimited’.
 
 **Raises**
 
-[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.11)") – At runtime, if neither `coupling_map` or `target` are provided.
+[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – At runtime, if neither `coupling_map` or `target` are provided.
 
 ## Attributes
 

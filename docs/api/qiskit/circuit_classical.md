@@ -394,6 +394,27 @@ Binary(Binary.Op.BIT_OR, Var(ClassicalRegister(3, 'c'), Uint(3)), Value(5, Uint(
 
 [*Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
 
+<span id="qiskit.circuit.classical.expr.bit_xor" />
+
+`qiskit.circuit.classical.expr.bit_xor(left, right, /)`
+
+Create a bitwise ‘exclusive or’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
+
+## Examples
+
+Bitwise ‘exclusive or’ of a classical register and an integer literal:
+
+```python
+>>> from qiskit.circuit import ClassicalRegister
+>>> from qiskit.circuit.classical import expr
+>>> expr.bit_xor(ClassicalRegister(3, "c"), 0b101)
+Binary(Binary.Op.BIT_XOR, Var(ClassicalRegister(3, 'c'), Uint(3)), Value(5, Uint(3)), Uint(3))
+```
+
+**Return type**
+
+[*Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")
+
 <span id="qiskit.circuit.classical.expr.logic_and" />
 
 `qiskit.circuit.classical.expr.logic_and(left, right, /)`
@@ -687,7 +708,7 @@ for node in expr.iter_vars(expr.bit_and(expr.bit_not(cr1), cr2)):
 
 **Return type**
 
-[*Iterator*](https://docs.python.org/3/library/typing.html#typing.Iterator "(in Python v3.11)")\[[*Var*](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
+[*Iterator*](https://docs.python.org/3/library/typing.html#typing.Iterator "(in Python v3.12)")\[[*Var*](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var")]
 
 Two expressions can be compared for direct structural equality by using the built-in Python `==` operator. In general, though, one might want to compare two expressions slightly more semantically, allowing that the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.Var") nodes inside them are bound to different memory-location descriptions between two different circuits. In this case, one can use [`structurally_equivalent()`](#qiskit.circuit.classical.expr.structurally_equivalent "qiskit.circuit.classical.expr.structurally_equivalent") with two suitable “key” functions to do the comparison.
 
@@ -705,12 +726,12 @@ There’s no requirements on the key functions, except that their outputs should
 
 *   **left** ([*expr.Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")) – one of the [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr") nodes.
 *   **right** ([*expr.Expr*](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr")) – the other [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr") node.
-*   **left\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.11)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)")*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)")*] | None*) – a callable whose output should be used when comparing `Var.var` attributes. If this argument is `None` or its output is `None` for a given variable in `left`, the variable will be used verbatim.
-*   **right\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.11)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)")*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)")*] | None*) – same as `left_var_key`, but used on the variables in `right` instead.
+*   **left\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – a callable whose output should be used when comparing `Var.var` attributes. If this argument is `None` or its output is `None` for a given variable in `left`, the variable will be used verbatim.
+*   **right\_var\_key** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*],* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – same as `left_var_key`, but used on the variables in `right` instead.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ## Examples
 
@@ -848,7 +869,7 @@ False
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 <span id="qiskit.circuit.classical.types.is_supertype" />
 
@@ -877,7 +898,7 @@ False
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 <span id="qiskit.circuit.classical.types.greater" />
 
@@ -891,7 +912,7 @@ The greater of the two types.
 
 **Raises**
 
-[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.11)") – if there is no ordering relation between the two types.
+[**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – if there is no ordering relation between the two types.
 
 **Return type**
 

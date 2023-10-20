@@ -12,7 +12,7 @@ python_api_name: qiskit.result.ProbDistribution
 
 `qiskit.result.ProbDistribution(data, shots=None)`
 
-Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 A generic dict-like class for probability distributions.
 
@@ -20,7 +20,7 @@ Builds a probability distribution object.
 
 **Parameters**
 
-*   **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) –
+*   **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) –
 
     Input probability data. Where the keys represent a measured classical value and the value is a float for the probability of that result. The keys can be one of several formats:
 
@@ -28,12 +28,12 @@ Builds a probability distribution object.
     > *   A bit string e.g. `'0b1011'` or `"01011"`
     > *   An integer
 
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Number of shots the distribution was derived from.
+*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of shots the distribution was derived from.
 
 **Raises**
 
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.11)") – If the input keys are not a string or int
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – If the string format of the keys is incorrect
+*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If the input keys are not a string or int
+*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the string format of the keys is incorrect
 
 ## Methods
 
@@ -47,7 +47,7 @@ Build a probabilities dictionary with binary string keys
 
 **Parameters**
 
-**num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – number of bits in the binary bitstrings (leading zeros will be padded). If None, a default value will be used. If keys are given as integers or strings with binary or hex prefix, the default value will be derived from the largest key present. If keys are given as bitstrings without prefix, the default value will be derived from the largest key length.
+**num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of bits in the binary bitstrings (leading zeros will be padded). If None, a default value will be used. If keys are given as integers or strings with binary or hex prefix, the default value will be derived from the largest key present. If keys are given as bitstrings without prefix, the default value will be derived from the largest key length.
 
 **Returns**
 
@@ -57,7 +57,7 @@ Build a probabilities dictionary with binary string keys
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 ### clear
 
@@ -103,7 +103,7 @@ format `"0x1a"`
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 ### items
 

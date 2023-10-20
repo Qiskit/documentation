@@ -22,8 +22,8 @@ ContainsInstruction initializer.
 
 **Parameters**
 
-*   **instruction\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*]*) – The instruction or instructions to check are in the DAG. The output in the property set is set to `contains_` prefixed on each value for this parameter.
-*   **recurse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if `True` (default), then recurse into control-flow operations.
+*   **instruction\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – The instruction or instructions to check are in the DAG. The output in the property set is set to `contains_` prefixed on each value for this parameter.
+*   **recurse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True` (default), then recurse into control-flow operations.
 
 ## Attributes
 

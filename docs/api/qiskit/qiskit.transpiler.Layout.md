@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.Layout
 
 `qiskit.transpiler.Layout(input_dict=None)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Two-ways dict to represent a Layout.
 
@@ -30,8 +30,8 @@ Adds a map element between bit and physical\_bit. If physical\_bit is not define
 
 **Parameters**
 
-*   **virtual\_bit** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – A (qu)bit. For example, (QuantumRegister(3, ‘qr’), 2).
-*   **physical\_bit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – A physical bit. For example, 3.
+*   **virtual\_bit** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – A (qu)bit. For example, (QuantumRegister(3, ‘qr’), 2).
+*   **physical\_bit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – A physical bit. For example, 3.
 
 ### add\_register
 
@@ -74,7 +74,7 @@ A “edge map”.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 **Raises**
 
@@ -100,7 +100,7 @@ The dictionary must be a bijective mapping between virtual qubits (tuple) and ph
 
 **Parameters**
 
-**input\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) –
+**input\_dict** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) –
 
 e.g.:
 
@@ -134,7 +134,7 @@ Converts a list of integers to a Layout mapping virtual qubits (index of the lis
 
 **Parameters**
 
-*   **int\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – A list of integers.
+*   **int\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of integers.
 *   **\*qregs** (*QuantumRegisters*) – The quantum registers to apply the layout to.
 
 **Returns**
@@ -159,7 +159,7 @@ Populates a Layout from a list containing virtual qubits, Qubit or None.
 
 **Parameters**
 
-*   **qubit\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – e.g.: \[qr\[0], None, qr\[2], qr\[3]]
+*   **qubit\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – e.g.: \[qr\[0], None, qr\[2], qr\[3]]
 *   **\*qregs** (*QuantumRegisters*) – The quantum registers to apply the layout to.
 
 **Returns**
@@ -238,7 +238,7 @@ The list of bits must exactly match the virtual bits in this layout.
 
 **Parameters**
 
-**bits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – the bits to reorder.
+**bits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – the bits to reorder.
 
 **Returns**
 
@@ -258,8 +258,8 @@ Swaps the map between left and right.
 
 **Parameters**
 
-*   **left** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Item to swap with right.
-*   **right** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Item to swap with left.
+*   **left** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Item to swap with right.
+*   **right** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")  *or*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Item to swap with left.
 
 **Raises**
 

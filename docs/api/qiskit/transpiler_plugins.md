@@ -105,7 +105,7 @@ Get a list of installed plugins for a stage.
 
 **Parameters**
 
-**stage\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The stage name to get the plugin names for
+**stage\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The stage name to get the plugin names for
 
 **Returns**
 
@@ -150,7 +150,7 @@ class BasicSwapPassManager(...preset_passmanagers.plugin.PassManagerStagePlugin)
 
 **Parameters**
 
-**stage** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The stage name to get
+**stage** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The stage name to get
 
 **Returns**
 
@@ -158,7 +158,7 @@ the key is the name of the plugin and the value is the class type for each.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 **Raises**
 

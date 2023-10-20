@@ -28,19 +28,19 @@ The high-level functions are simply [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.
 
 `qiskit.qasm3.dump(circuit, stream, **kwargs)`
 
-Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object as a OpenQASM3 stream to file-like object.
+Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object as an OpenQASM 3 stream to file-like object.
 
 **Parameters**
 
 *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Circuit to serialize.
-*   **stream** (*TextIOBase*) – stream-like object to dump the OpenQASM3 serialization
+*   **stream** (*TextIOBase*) – stream-like object to dump the OpenQASM 3 serialization
 *   **\*\*kwargs** – Arguments for the [`Exporter`](#qiskit.qasm3.Exporter "qiskit.qasm3.Exporter") constructor.
 
 <span id="qiskit.qasm3.dumps" />
 
 `qiskit.qasm3.dumps(circuit, **kwargs)`
 
-Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object in an OpenQASM3 string.
+Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object in an OpenQASM 3 string.
 
 **Parameters**
 
@@ -49,11 +49,11 @@ Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.Qua
 
 **Returns**
 
-The OpenQASM3 serialization
+The OpenQASM 3 serialization
 
 **Return type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 Both of these exporter functions are single-use wrappers around the main [`Exporter`](#qiskit.qasm3.Exporter "qiskit.qasm3.Exporter") class. For more complex exporting needs, including dumping multiple circuits in a single session, it may be more convenient or faster to use the complete interface.
 
@@ -65,13 +65,13 @@ QASM3 exporter main class.
 
 **Parameters**
 
-*   **includes** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*]*) – the filenames that should be emitted as includes. These files will be parsed for gates, and any objects dumped from this exporter will use those definitions where possible.
+*   **includes** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the filenames that should be emitted as includes. These files will be parsed for gates, and any objects dumped from this exporter will use those definitions where possible.
 
-*   **basis\_gates** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*]*) – the basic defined gate set of the backend.
+*   **basis\_gates** ([*Sequence*](https://docs.python.org/3/library/typing.html#typing.Sequence "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – the basic defined gate set of the backend.
 
-*   **disable\_constants** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if `True`, always emit floating-point constants for numeric parameter values. If `False` (the default), then values close to multiples of QASM 3 constants (`pi`, `euler`, and `tau`) will be emitted in terms of those constants instead, potentially improving accuracy in the output.
+*   **disable\_constants** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True`, always emit floating-point constants for numeric parameter values. If `False` (the default), then values close to multiples of OpenQASM 3 constants (`pi`, `euler`, and `tau`) will be emitted in terms of those constants instead, potentially improving accuracy in the output.
 
-*   **alias\_classical\_registers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) –
+*   **alias\_classical\_registers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) –
 
     If `True`, then bits may be contained in more than one register. If so, the registers will be emitted using “alias” definitions, which might not be well supported by consumers of OpenQASM 3.
 
@@ -81,13 +81,13 @@ QASM3 exporter main class.
       A value for `allow_aliasing` overrides any value given here, and supersedes this parameter.
     </Admonition>
 
-*   **allow\_aliasing** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) –
+*   **allow\_aliasing** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) –
 
     If `True`, then bits may be contained in more than one register. If so, the registers will be emitted using “alias” definitions, which might not be well supported by consumers of OpenQASM 3. Defaults to `False` or the value of `alias_classical_registers`.
 
     New in version 0.25.0.
 
-*   **indent** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – the indentation string to use for each level within an indented block. Can be set to the empty string to disable indentation.
+*   **indent** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the indentation string to use for each level within an indented block. Can be set to the empty string to disable indentation.
 
 *   **experimental** ([*ExperimentalFeatures*](#qiskit.qasm3.ExperimentalFeatures "qiskit.qasm3.experimental.ExperimentalFeatures")) – any experimental features to enable during the export. See [`ExperimentalFeatures`](#qiskit.qasm3.ExperimentalFeatures "qiskit.qasm3.ExperimentalFeatures") for more details.
 
@@ -97,7 +97,7 @@ QASM3 exporter main class.
 
 `dump(circuit, stream)`
 
-Convert the circuit to QASM 3, dumping the result to a file or text stream.
+Convert the circuit to OpenQASM 3, dumping the result to a file or text stream.
 
 ### dumps
 
@@ -105,7 +105,7 @@ Convert the circuit to QASM 3, dumping the result to a file or text stream.
 
 `dumps(circuit)`
 
-Convert the circuit to QASM 3, returning the result as a string.
+Convert the circuit to OpenQASM 3, returning the result as a string.
 
 All of these interfaces will raise [`QASM3ExporterError`](#qiskit.qasm3.QASM3ExporterError "qiskit.qasm3.QASM3ExporterError") on failure.
 
@@ -188,7 +188,7 @@ Load an OpenQASM 3 program from the file `filename`.
 
 **Parameters**
 
-**filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – the filename to load the program from.
+**filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the filename to load the program from.
 
 **Returns**
 
@@ -210,7 +210,7 @@ Load an OpenQASM 3 program from the given string.
 
 **Parameters**
 
-**program** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – the OpenQASM 3 program.
+**program** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – the OpenQASM 3 program.
 
 **Returns**
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.CircuitInstruction
 
 `qiskit.circuit.CircuitInstruction(operation, qubits=(), clbits=())`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 A single instruction in a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), comprised of the [`operation`](#qiskit.circuit.CircuitInstruction.operation "qiskit.circuit.CircuitInstruction.operation") and various operands.
 

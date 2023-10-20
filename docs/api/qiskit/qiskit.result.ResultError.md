@@ -20,7 +20,7 @@ It may be better for the Qiskit API to raise this exception.
 
 **Parameters**
 
-**error** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) –
+**error** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) –
 
 This is the error record as it comes back from the API. The format is like:
 

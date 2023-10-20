@@ -26,8 +26,8 @@ Create a new 3-qubit controlled sqrt-X gate.
 
 **Parameters**
 
-*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+*   **label** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – An optional label for the gate \[Default: None]
+*   **ctrl\_state** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
 
 ## Attributes
 
@@ -95,7 +95,7 @@ The number of control qubits for the gate.
 
 **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")
+[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 
 <span id="qiskit.circuit.library.C3SXGate.num_qubits" />
 
@@ -115,7 +115,7 @@ List of gate parameters.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 
 **Raises**
 

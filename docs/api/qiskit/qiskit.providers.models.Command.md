@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.models.Command
 
 `qiskit.providers.models.Command(name, qubits=None, sequence=None, **kwargs)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Class representing a Command.
 
@@ -26,7 +26,7 @@ Initialize a Command object
 
 **Parameters**
 
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The name of the command
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the command
 *   **qubits** – The qubits for the command
 *   **sequence** ([*PulseQobjInstruction*](qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction")) – The sequence for the Command
 *   **kwargs** – Optional additional fields
@@ -43,7 +43,7 @@ Create a new Command object from a dictionary.
 
 **Parameters**
 
-**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – A dictionary representing the `Command` to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.Command.to_dict "qiskit.providers.models.Command.to_dict").
+**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary representing the `Command` to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.Command.to_dict "qiskit.providers.models.Command.to_dict").
 
 **Returns**
 
@@ -69,5 +69,5 @@ The dictionary form of the Command.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
