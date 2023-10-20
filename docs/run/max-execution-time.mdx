@@ -48,6 +48,10 @@ The system calculates an appropriate job timeout value based on the input circui
 
 For example, if you specify `max_execution_time=5000` (approximately 83 minutes), but the system determines it should not take more than 5 minutes (300 seconds) to execute the job, then the job is canceled after 5 minutes.
 
+## Session maximum execution time
+
+When a session is started, it is assigned a maximum session timeout value. After this timeout is reached, the session is terminated, any jobs that are already running continue running, and any queued jobs that remain in the session are put into a failed state.  For instructions to set the sessision maximum time, see [Specify the session length](run-jobs-in-session#specify-length).
+
 ## Other limitations
 
 *   Programs cannot exceed 750KB in size.
