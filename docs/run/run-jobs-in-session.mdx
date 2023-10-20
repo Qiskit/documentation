@@ -113,12 +113,12 @@ There is also an interactive timeout value (ITTL, or interactive time to live) t
 <span id="close"></span>
 ## Close a session 
 
-### For `qiskit-ibm-runtime` 0.13 or later releases
-
-When the session context manager is exited, the session is put into `In progress, not accepting new jobs` status.  This means that the session will finish processing all running or queued jobs until the maximum timeout value is reached.  After all jobs are completed, the session is immediately closed. This allows the
+With `qiskit-ibm-runtime` 0.13 or later releases, when the session context manager is exited, the session is put into `In progress, not accepting new jobs` status.  This means that the session will finish processing all running or queued jobs until the maximum timeout value is reached.  After all jobs are completed, the session is immediately closed. This allows the
 scheduler to run the next job without waiting for the session interactive timeout,
 therefore reducing the average job queueing time. You cannot submit jobs to a
 closed session.
+
+This behavior exists in `qiskit-ibm-runtime` 0.13 or later releases only. Previously, `session.close()` **canceled** the session.  
 
 ``` python
 with Session(service=service, backend=backend) as session:
@@ -127,33 +127,6 @@ with Session(service=service, backend=backend) as session:
     
 # The session is no longer accepting jobs but the submitted job will run to completion    
 result = job.result()
-```
-
-<Admonition type="note" title="Important">
-    Previously, `session.close()` **canceled** the session.  Starting with `qiskit-ibm-runtime` 0.13, `session.close()` **closes** the session. 
-</Admonition>
-
-### For Qiskit runtime releases before 0.13
-
-When jobs are all done, it is recommended that you use
-`session.close()` to close the session. This allows the
-scheduler to run the next job without waiting for the session timeout,
-therefore making it easier for everyone. You cannot submit jobs to a
-closed session.
-
-<Admonition type="note" title="Important">
-    Close a session only after all session jobs **complete**, rather than immediately after they have all been submitted. Session jobs that are not completed will fail.
-</Admonition>
-
-
-``` python
-with Session(service=service, backend=backend) as session:
-    estimator = Estimator()
-    job = estimator.run(...)
-    # Do not close here, the job might not be completed!
-    result = job.result()
-    # Reaching this line means that the job is finished.
-    session.close()
 ```
 
 <span id="cancel"></span>
