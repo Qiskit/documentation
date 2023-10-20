@@ -132,7 +132,7 @@ result = job.result()
 <span id="cancel"></span>
 ## Cancel a session 
 
-If a session is canceled, the session is put into `Closed` status.  Any jobs that are already running continue to run but queued jobs are put into a failed state and no further jobs can be submitted to the session. This is a convenient way to quickly fail all jobs within a session. 
+If a session is canceled, the session is put into `Closed` status.  Any jobs that are already running continue to run but queued jobs are put into a failed state and no further jobs can be submitted to the session. This is a convenient way to quickly fail all queued jobs within a session. 
 
 ### For Qiskit runtime releases 0.13 or later
 
@@ -141,10 +141,10 @@ Use the `session.cancel()` method to cancel a session.
 ``` python
 with Session(service=service, backend=backend) as session:
     estimator = Estimator()
-    job = estimator.run(...)
-    # Do not cancel the session here, the job might not be completed!
-    result = job.result()
-    # Reaching this line means that the job is finished.
+    job1 = estimator.run(...)
+    job2 = estimator.run(...)
+    # You can use session.cancel() to fail all pending jobs, for example, 
+    # if you realize you made a mistake.
     session.cancel()
 ```
 
