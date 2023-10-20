@@ -10,18 +10,18 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { describe, expect, test } from '@jest/globals';
-import { dedupeIds } from './dedupeIds';
+import { describe, expect, test } from "@jest/globals";
+import { dedupeIds } from "./dedupeIds";
 
-describe('dedupeIds', () => {
-  test('dedupeIds', async () => {
+describe("dedupeIds", () => {
+  test("dedupeIds", async () => {
     expect(
       await dedupeIds(`
     <span id="foo" />
     <span id="bar" />
     # foo
     <span id="foo" />
-    `)
+    `),
     ).toMatchInlineSnapshot(`
       "<span id="bar" />
 

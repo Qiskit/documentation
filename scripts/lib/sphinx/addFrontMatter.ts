@@ -10,8 +10,8 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { getLastPartFromFullIdentifier } from '../stringUtils';
-import { SphinxToMdResult } from './SphinxToMdResult';
+import { getLastPartFromFullIdentifier } from "../stringUtils";
+import { SphinxToMdResult } from "./SphinxToMdResult";
 
 export function addFrontMatter<T extends SphinxToMdResult>(results: T[]): T[] {
   for (let result of results) {
