@@ -122,35 +122,11 @@ const PACKAGES: Pkg[] = [
     githubSlug: "qiskit/qiskit",
     baseUrl: `https://qiskit.org/documentation`,
     initialUrls: [`https://qiskit.org/documentation/apidoc/index.html`],
-    ignore(id: string): boolean {
-      return (
-        id.startsWith("qiskit.opflow") || id.startsWith("qiskit.algorithms")
-      );
-    },
     tocOptions: {
       collapsed: true,
       nestModule(id: string) {
         return id.split(".").length > 2;
       },
-    },
-    transformLink(url) {
-      // Transform links from ignored modules
-      let path = last(url.split("/"))!;
-      if (path.includes("#")) {
-        path = path.split("#").join(".html#");
-      } else {
-        path += ".html";
-      }
-
-      if (path?.startsWith("algorithms") || path?.startsWith("opflow")) {
-        return { url: `http://qiskit.org/documentation/apidoc/${path}` };
-      }
-      if (
-        path?.startsWith("qiskit.algorithms.") ||
-        path?.startsWith("qiskit.opflow.")
-      ) {
-        return { url: `http://qiskit.org/documentation/stubs/${path}` };
-      }
     },
   },
 ];
