@@ -68,46 +68,17 @@ describe('sphinxHtmlToMarkdown', () => {
 
   test('remove permalink', async () => {
     expect(
-      await toMd(`<div
-  role='main'
-  class='main-content'
-  itemscope='itemscope'
-  itemtype='http://schema.org/Article'
->
-  <article itemprop='articleBody' id='pytorch-article' class='pytorch-article'>
-    <section id='qiskit-ibm-runtime-api-reference'>
-      <h1>
-        qiskit-ibm-runtime API reference<a
-        class='headerlink'
-        href='#qiskit-ibm-runtime-api-reference'
-        title='Permalink to this heading'
-      >¶</a
-      >
-      </h1>
-      <div class='toctree-wrapper compound'>
-        <ul>
-          <li class='toctree-l1'>
-            <a class='reference internal' href='runtime_service.html'
-            >Qiskit Runtime (<code
-              class='xref py py-mod docutils literal notranslate'
-            ><span class='pre'>qiskit_ibm_runtime</span></code
-            >)</a
-            >
-          </li>
-          <li class='toctree-l1'>
-            <a class='reference internal' href='options.html'
-            >Primitive options (<code
-              class='xref py py-mod docutils literal notranslate'
-            ><span class='pre'>qiskit_ibm_runtime.options</span></code
-            >)</a
-            >
-          </li>
-        </ul>
-      </div>
-    </section>
-  </article>
-</div>
-`)
+      await toMd(`<article role="main">
+        <section id="qiskit-ibm-runtime-api-reference">
+          <h1>qiskit-ibm-runtime API reference<a class="headerlink" href="#qiskit-ibm-runtime-api-reference" title="Link to this heading">#</a></h1>
+         <div class="toctree-wrapper compound">
+           <ul>
+             <li class="toctree-l1"><a class="reference internal" href="runtime_service.html">Qiskit Runtime (<code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit_ibm_runtime</span></code>)</a></li>
+             <li class="toctree-l1"><a class="reference internal" href="options.html">Primitive options (<code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit_ibm_runtime.options</span></code>)</a></li>
+           </ul>
+         </div>
+       </section>
+    </article>`)
     ).toMatchInlineSnapshot(`
       "<span id="qiskit-ibm-runtime-api-reference" />
 
