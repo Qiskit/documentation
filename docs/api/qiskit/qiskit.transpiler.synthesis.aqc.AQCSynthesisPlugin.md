@@ -34,7 +34,7 @@ type of inter-qubit connectivity, \{`"full"`, `"line"`, `"star"`}. Default value
 
 depth of the CNOT-network, i.e. the number of layers, where each layer consists of a single CNOT-block.
 
-**optimizer ([`Optimizer`](http://qiskit.org/documentation/stubs/qiskit.algorithms.optimizers.Optimizer.html#qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer"))**
+**optimizer ([`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer"))**
 
 An instance of optimizer to be used in the optimization process.
 

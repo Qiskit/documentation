@@ -721,7 +721,7 @@ This is immediately followed by `operator_count` elements defined by the [SPARSE
 
 #### SPARSE\_PAULI\_OP\_LIST\_ELEM
 
-This represents an instance of [`PauliSumOp`](http://qiskit.org/documentation/stubs/qiskit.opflow.primitive_ops.PauliSumOp.html#qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp").
+This represents an instance of [`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp").
 
 ```python
 struct {
