@@ -107,7 +107,7 @@ Return usage estimation information for this job.
 
 **Returns**
 
-`quantum_seconds` which is the estimated quantum time of the job in seconds. Quantum time is the duration a quantum system is committed to fulfilling a user request.
+`quantum_seconds` which is the estimated quantum time of the job in seconds. Quantum time represents the time that the QPU complex is occupied exclusively by the job.
 
 <span id="ibmcircuitjob-version" />
 
