@@ -23,7 +23,7 @@ The barrier directive blocks instructions within the same schedule as the barrie
 **Parameters**
 
 *   **channels** ([*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – The channel that the barrier applies to.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of the directive for display purposes.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the directive for display purposes.
 
 ## Attributes
 
@@ -94,7 +94,7 @@ Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `s
 **Parameters**
 
 *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to be appended
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of the new schedule. Defaults to name of self
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
 
 **Returns**
 
@@ -114,11 +114,11 @@ Return duration of the supplied channels in this Instruction.
 
 **Parameters**
 
-**\*channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
+**\*channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
 
 **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")
+[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 
 ### ch\_start\_time
 
@@ -130,11 +130,11 @@ Return minimum start time for supplied channels.
 
 **Parameters**
 
-**\*channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
+**\*channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
 
 **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")
+[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 
 ### ch\_stop\_time
 
@@ -146,11 +146,11 @@ Return maximum start time for supplied channels.
 
 **Parameters**
 
-**\*channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
+**\*channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*]*) – Supplied channels
 
 **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")
+[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 
 ### draw
 
@@ -166,18 +166,18 @@ Plot the instruction.
 
 **Parameters**
 
-*   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Time interval of samples
+*   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Time interval of samples
 *   **style** (*Optional\[SchedStyle]*) – A style sheet to configure plot appearance
-*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name required to save pulse image
-*   **interp\_method** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.11)") *| None*) – A function for interpolation
-*   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Relative visual scaling of waveform amplitudes
-*   **plot\_all** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Plot empty channels
-*   **plot\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.11)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*] | None*) – A tuple of time range to plot
-*   **interactive** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
-*   **table** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Draw event table for supported instructions
-*   **label** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Label individual instructions
-*   **framechange** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Add framechange indicators
-*   **channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – A list of channel names to plot
+*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name required to save pulse image
+*   **interp\_method** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)") *| None*) – A function for interpolation
+*   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Relative visual scaling of waveform amplitudes
+*   **plot\_all** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Plot empty channels
+*   **plot\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – A tuple of time range to plot
+*   **interactive** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
+*   **table** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Draw event table for supported instructions
+*   **label** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Label individual instructions
+*   **framechange** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Add framechange indicators
+*   **channels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")*] | None*) – A list of channel names to plot
 
 **Returns**
 
@@ -197,9 +197,9 @@ Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `s
 
 **Parameters**
 
-*   **start\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Time to insert the schedule schedule
+*   **start\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time to insert the schedule schedule
 *   **schedule** (*Union\['Schedule', 'Instruction']*) – Schedule or instruction to insert
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of the new schedule. Defaults to name of self
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
 
 **Returns**
 
@@ -219,7 +219,7 @@ Return True iff the instruction is parameterized.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### shift
 
@@ -231,8 +231,8 @@ Return a new schedule shifted forward by time.
 
 **Parameters**
 
-*   **time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Time to shift by
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Name of the new schedule. Defaults to name of self
+*   **time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time to shift by
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Name of the new schedule. Defaults to name of self
 
 **Returns**
 

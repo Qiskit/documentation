@@ -23,7 +23,7 @@ Layout2qDistance initializer.
 **Parameters**
 
 *   **coupling\_map** (*Union\[*[*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")*,* [*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) – Directed graph represented a coupling map.
-*   **property\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The property name to save the score. Default: layout\_score
+*   **property\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The property name to save the score. Default: layout\_score
 
 ## Attributes
 

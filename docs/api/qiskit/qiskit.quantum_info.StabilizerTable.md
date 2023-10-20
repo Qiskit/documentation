@@ -87,8 +87,8 @@ Initialize the StabilizerTable.
 
 **Parameters**
 
-*   **data** (*array or* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *or*[*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – input PauliTable data.
-*   **phase** (*array or* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)") *or None*) – optional phase vector for input data (Default: None).
+*   **data** (*array or* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*PauliTable*](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")) – input PauliTable data.
+*   **phase** (*array or* [*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *or None*) – optional phase vector for input data (Default: None).
 
 **Raises**
 
@@ -216,7 +216,7 @@ This does not sort based on phase values. It will preserve the original order of
 
 **Parameters**
 
-**weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – optionally sort by weight if True (Default: False).
+**weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – optionally sort by weight if True (Default: False).
 
 **Returns**
 
@@ -312,8 +312,8 @@ StabilizerTable: ['+X', '-Z', '-I', '-Y']
 **Parameters**
 
 *   **other** ([*StabilizerTable*](#qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")) – another StabilizerTable.
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – qubits to apply compose product on (Default: None).
-*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True use dot composition method (default: False).
+*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to apply compose product on (Default: None).
+*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True use dot composition method (default: False).
 
 **Returns**
 
@@ -355,8 +355,8 @@ When deleting qubit columns, qubit-0 is the right-most (largest index) column, a
 
 **Parameters**
 
-*   **ind** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – index(es) to delete.
-*   **qubit** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if True delete qubit columns, otherwise delete Stabilizer rows (Default: False).
+*   **ind** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – index(es) to delete.
+*   **qubit** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True delete qubit columns, otherwise delete Stabilizer rows (Default: False).
 
 **Returns**
 
@@ -406,7 +406,7 @@ StabilizerTable: ['+X', '-Z', '-I', '+Y']
 **Parameters**
 
 *   **other** ([*StabilizerTable*](#qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")) – another StabilizerTable.
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – qubits to apply dot product on (Default: None).
+*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to apply dot product on (Default: None).
 
 **Returns**
 
@@ -483,7 +483,7 @@ Pauli Stabilizer string labels are Pauli strings with an optional `"+"` or `"-"`
 
 **Parameters**
 
-**labels** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – Pauli stabilizer string label(es).
+**labels** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Pauli stabilizer string label(es).
 
 **Returns**
 
@@ -517,9 +517,9 @@ When inserting qubit columns, qubit-0 is the right-most (largest index) column, 
 
 **Parameters**
 
-*   **ind** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – index to insert at.
+*   **ind** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – index to insert at.
 *   **value** ([*StabilizerTable*](#qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")) – values to insert.
-*   **qubit** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if True delete qubit columns, otherwise delete Pauli rows (Default: False).
+*   **qubit** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True delete qubit columns, otherwise delete Pauli rows (Default: False).
 
 **Returns**
 
@@ -563,7 +563,7 @@ This is a lazy iterator that converts each row into the Pauli matrix representat
 
 **Parameters**
 
-**sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – optionally return sparse CSR matrices if True, otherwise return Numpy array matrices (Default: False)
+**sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – optionally return sparse CSR matrices if True, otherwise return Numpy array matrices (Default: False)
 
 **Returns**
 
@@ -591,7 +591,7 @@ Return the compose of a operator with itself n times.
 
 **Parameters**
 
-**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of times to compose with self (n>0).
+**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of times to compose with self (n>0).
 
 **Returns**
 
@@ -615,9 +615,9 @@ Return a shallow copy with reshaped input and output subsystem dimensions.
 
 **Parameters**
 
-*   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-*   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-*   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – reshape to an N-qubit operator \[Default: None].
+*   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+*   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+*   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – reshape to an N-qubit operator \[Default: None].
 
 **Returns**
 
@@ -694,7 +694,7 @@ StabilizerTable: [
 
 **Parameters**
 
-**weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – optionally sort by weight if True (Default: False).
+**weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – optionally sort by weight if True (Default: False).
 
 **Returns**
 
@@ -767,7 +767,7 @@ For large StabilizerTables converting using the `array=True` kwarg will be more 
 
 **Parameters**
 
-**array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – return a Numpy array if True, otherwise return a list (Default: False).
+**array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – return a Numpy array if True, otherwise return a list (Default: False).
 
 **Returns**
 
@@ -775,7 +775,7 @@ The rows of the StabilizerTable in label form.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)") or array
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") or array
 
 ### to\_matrix
 
@@ -800,8 +800,8 @@ For large StabilizerTables converting using the `array=True` kwarg will be more 
 
 **Parameters**
 
-*   **sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if True return sparse CSR matrices, otherwise return dense Numpy arrays (Default: False).
-*   **array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – return as rank-3 numpy array if True, otherwise return a list of Numpy arrays (Default: False).
+*   **sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True return sparse CSR matrices, otherwise return dense Numpy arrays (Default: False).
+*   **array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – return as rank-3 numpy array if True, otherwise return a list of Numpy arrays (Default: False).
 
 **Returns**
 
@@ -809,7 +809,7 @@ A list of dense Pauli matrices if array=False and sparse=False. list: A list of 
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 
 ### transpose
 
@@ -843,8 +843,8 @@ StabilizerTable: ['+X', '+I', '-I', '-X']
 
 **Parameters**
 
-*   **return\_index** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True, also return the indices that result in the unique array. (Default: False)
-*   **return\_counts** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True, also return the number of times each unique item appears in the table.
+*   **return\_index** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, also return the indices that result in the unique array. (Default: False)
+*   **return\_counts** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, also return the number of times each unique item appears in the table.
 
 **Returns**
 

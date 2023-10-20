@@ -10,20 +10,22 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { unified } from 'unified';
-import remarkParse from 'remark-parse';
-import remarkMath from 'remark-math';
-import remarkGfm from 'remark-gfm';
-import remarkMdx from 'remark-mdx';
-import { Root } from 'mdast';
-import { visit } from 'unist-util-visit';
-import remarkStringify from 'remark-stringify';
-import { remarkStringifyOptions } from './unifiedParser';
-import { toText } from 'hast-util-to-text';
-import Slugger from 'github-slugger';
-import { SphinxToMdResult } from './SphinxToMdResult';
+import { unified } from "unified";
+import remarkParse from "remark-parse";
+import remarkMath from "remark-math";
+import remarkGfm from "remark-gfm";
+import remarkMdx from "remark-mdx";
+import { Root } from "mdast";
+import { visit } from "unist-util-visit";
+import remarkStringify from "remark-stringify";
+import { remarkStringifyOptions } from "./unifiedParser";
+import { toText } from "hast-util-to-text";
+import Slugger from "github-slugger";
+import { SphinxToMdResult } from "./SphinxToMdResult";
 
-export async function dedupeResultIds<T extends SphinxToMdResult>(results: T[]): Promise<T[]> {
+export async function dedupeResultIds<T extends SphinxToMdResult>(
+  results: T[],
+): Promise<T[]> {
   for (let result of results) {
     result.markdown = await dedupeIds(result.markdown);
   }
@@ -41,14 +43,16 @@ export async function dedupeIds(md: string): Promise<string> {
         const existingIds = new Set();
 
         const slugger = new Slugger();
-        visit(tree, 'heading', (node) => {
+        visit(tree, "heading", (node) => {
           const headingText = toText(node as any);
           existingIds.add(slugger.slug(headingText));
         });
 
-        visit(tree, 'mdxJsxFlowElement', (node, index, parent) => {
-          if (node.name === 'span') {
-            const id = node.attributes?.find((attr) => 'name' in attr && attr.name === 'id')?.value;
+        visit(tree, "mdxJsxFlowElement", (node, index, parent) => {
+          if (node.name === "span") {
+            const id = node.attributes?.find(
+              (attr) => "name" in attr && attr.name === "id",
+            )?.value;
             if (id) {
               if (existingIds.has(id) && parent !== null && index !== null) {
                 parent.children.splice(index, 1);

@@ -10,15 +10,17 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { pathExists } from './fs';
-import { mkdirp } from 'mkdirp';
-import { dirname } from 'path';
-import { createWriteStream } from 'node:fs';
-import { finished } from 'stream/promises';
-import { Readable } from 'stream';
-import pMap from 'p-map';
+import { pathExists } from "./fs";
+import { mkdirp } from "mkdirp";
+import { dirname } from "path";
+import { createWriteStream } from "node:fs";
+import { finished } from "stream/promises";
+import { Readable } from "stream";
+import pMap from "p-map";
 
-export async function downloadImages(images: Array<{ src: string; dest: string }>) {
+export async function downloadImages(
+  images: Array<{ src: string; dest: string }>,
+) {
   await pMap(
     images,
     async (img) => {
@@ -32,6 +34,6 @@ export async function downloadImages(images: Array<{ src: string; dest: string }
         console.log(`Error downloading ${img.src} to ${img.dest}`);
       }
     },
-    { concurrency: 4 }
+    { concurrency: 4 },
   );
 }

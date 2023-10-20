@@ -37,9 +37,9 @@ LookaheadSwap initializer.
 **Parameters**
 
 *   **coupling\_map** (*Union\[*[*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")*,* [*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) – CouplingMap of the target backend.
-*   **search\_depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – lookahead tree depth when ranking best SWAP options.
-*   **search\_width** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – lookahead tree width when ranking best SWAP options.
-*   **fake\_run** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if true, it only pretend to do routing, i.e., no swap is effectively added.
+*   **search\_depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – lookahead tree depth when ranking best SWAP options.
+*   **search\_width** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – lookahead tree width when ranking best SWAP options.
+*   **fake\_run** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if true, it only pretend to do routing, i.e., no swap is effectively added.
 
 ## Attributes
 

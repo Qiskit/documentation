@@ -22,9 +22,9 @@ Either the `size` or the `bits` argument must be provided. If `size` is not None
 
 **Parameters**
 
-*   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Optional. The number of bits to include in the register.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Optional. The name of the register. If not provided, a unique name will be auto-generated from the register type.
-*   **bits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – Optional. A list of Bit() instances to be used to populate the register.
+*   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The number of bits to include in the register.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optional. The name of the register. If not provided, a unique name will be auto-generated from the register type.
+*   **bits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – Optional. A list of Bit() instances to be used to populate the register.
 
 **Raises**
 

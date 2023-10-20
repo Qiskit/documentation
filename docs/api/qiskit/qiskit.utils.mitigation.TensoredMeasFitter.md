@@ -12,7 +12,7 @@ python_api_name: qiskit.utils.mitigation.TensoredMeasFitter
 
 `qiskit.utils.mitigation.TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Deprecated: Measurement correction fitter for a tensored calibration.
 
@@ -29,13 +29,13 @@ Initialize a measurement calibration matrix from the results of running the circ
 **Parameters**
 
 *   **results** – the results of running the measurement calibration circuits. If this is None, the user will set calibration matrices later.
-*   **mit\_pattern** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]]*) – qubits to perform the measurement correction on, divided to groups according to tensors
-*   **substate\_labels\_list** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*]]*) – for each calibration matrix, the labels of its rows and columns. If None, the labels are ordered lexicographically
-*   **circlabel** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – if the qubits were labeled
+*   **mit\_pattern** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – qubits to perform the measurement correction on, divided to groups according to tensors
+*   **substate\_labels\_list** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]]*) – for each calibration matrix, the labels of its rows and columns. If None, the labels are ordered lexicographically
+*   **circlabel** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – if the qubits were labeled
 
 **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – if the mit\_pattern doesn’t match the substate\_labels\_list
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if the mit\_pattern doesn’t match the substate\_labels\_list
 
 ## Attributes
 
@@ -75,8 +75,8 @@ Add measurement calibration data
 
 **Parameters**
 
-*   **new\_results** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")  *or*[*qiskit.result.Result*](qiskit.result.Result "qiskit.result.Result")) – a single result or list of Result objects.
-*   **rebuild\_cal\_matrix** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – rebuild the calibration matrix
+*   **new\_results** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")  *or*[*qiskit.result.Result*](qiskit.result.Result "qiskit.result.Result")) – a single result or list of Result objects.
+*   **rebuild\_cal\_matrix** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – rebuild the calibration matrix
 
 ### readout\_fidelity
 
@@ -89,7 +89,7 @@ Based on the results, output the readout fidelity, which is the average of the d
 **Parameters**
 
 *   **cal\_index** (*integer*) – readout fidelity for this index in \_cal\_matrices
-*   **label\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – Returns the average fidelity over of the groups f states. In the form of a list of lists of states. If None, then each state used in the construction of the calibration matrices forms a group of size 1
+*   **label\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Returns the average fidelity over of the groups f states. In the form of a list of lists of states. If None, then each state used in the construction of the calibration matrices forms a group of size 1
 
 **Returns**
 
@@ -119,7 +119,7 @@ This is only a partial implementation of the `subset_fitter` method since only m
 
 **Parameters**
 
-**qubit\_sublist** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – must be a subset of qubit\_list
+**qubit\_sublist** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – must be a subset of qubit\_list
 
 **Returns**
 

@@ -6,14 +6,13 @@ python_api_type: class
 python_api_name: qiskit.dagcircuit.DAGDepNode
 ---
 
-{/* cspell:ignore cindices, qindices, isblocked, successorstovisit */}
 # DAGDepNode
 
 <span id="qiskit.dagcircuit.DAGDepNode" />
 
 `qiskit.dagcircuit.DAGDepNode(type=None, op=None, name=None, qargs=(), cargs=(), successors=None, predecessors=None, reachable=None, matchedwith=None, successorstovisit=None, isblocked=None, qindices=None, cindices=None, nid=-1)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Object to represent the information at a node in the DAGDependency().
 

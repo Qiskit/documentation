@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.models.BackendProperties
 
 `qiskit.providers.models.BackendProperties(backend_name, backend_version, last_update_date, qubits, gates, general, **kwargs)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Class representing backend properties
 
@@ -22,12 +22,12 @@ Initialize a BackendProperties instance.
 
 **Parameters**
 
-*   **backend\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Backend name.
-*   **backend\_version** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Backend version in the form X.Y.Z.
-*   **last\_update\_date** (*datetime or* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Last date/time that a property was updated. If specified as a `str`, it must be in ISO format.
-*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – System qubit parameters as a list of lists of `Nduv` objects
-*   **gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – System gate parameters as a list of `Gate` objects
-*   **general** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – General parameters as a list of `Nduv` objects
+*   **backend\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Backend name.
+*   **backend\_version** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Backend version in the form X.Y.Z.
+*   **last\_update\_date** (*datetime or* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Last date/time that a property was updated. If specified as a `str`, it must be in ISO format.
+*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – System qubit parameters as a list of lists of `Nduv` objects
+*   **gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – System gate parameters as a list of `Gate` objects
+*   **general** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – General parameters as a list of `Nduv` objects
 *   **kwargs** – optional additional fields
 
 ## Methods
@@ -58,7 +58,7 @@ Return the frequency of the given qubit.
 
 **Parameters**
 
-**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Qubit for which to return frequency of.
+**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Qubit for which to return frequency of.
 
 **Returns**
 
@@ -66,7 +66,7 @@ Frequency of the given qubit.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 ### from\_dict
 
@@ -78,7 +78,7 @@ Create a new BackendProperties object from a dictionary.
 
 **Parameters**
 
-**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – A dictionary representing the BackendProperties to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.BackendProperties.to_dict "qiskit.providers.models.BackendProperties.to_dict").
+**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary representing the BackendProperties to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.BackendProperties.to_dict "qiskit.providers.models.BackendProperties.to_dict").
 
 **Returns**
 
@@ -100,8 +100,8 @@ Return gate error estimates from backend properties.
 
 **Parameters**
 
-*   **gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The gate for which to get the error.
-*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – The specific qubits for the gate.
+*   **gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The gate for which to get the error.
+*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The specific qubits for the gate.
 
 **Returns**
 
@@ -109,7 +109,7 @@ Gate error of the given gate and qubit(s).
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 ### gate\_length
 
@@ -121,8 +121,8 @@ Return the duration of the gate in units of seconds.
 
 **Parameters**
 
-*   **gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The gate for which to get the duration.
-*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – The specific qubits for the gate.
+*   **gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The gate for which to get the duration.
+*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The specific qubits for the gate.
 
 **Returns**
 
@@ -130,7 +130,7 @@ Gate length of the given gate and qubit(s).
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 ### gate\_property
 
@@ -142,9 +142,9 @@ Return the property of the given gate.
 
 **Parameters**
 
-*   **gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Name of the gate.
-*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] | None*) – The qubit to find the property for.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Optionally used to specify which gate property to return.
+*   **gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Name of the gate.
+*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – The qubit to find the property for.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Optionally used to specify which gate property to return.
 
 **Returns**
 
@@ -156,7 +156,7 @@ Gate property as a tuple of the value and the time it was measured.
 
 **Return type**
 
-[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.11)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)"), [*datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.11)")]
+[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [*datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.12)")]
 
 ### is\_gate\_operational
 
@@ -168,8 +168,8 @@ Return the operational status of the given gate.
 
 **Parameters**
 
-*   **gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Name of the gate.
-*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] | None*) – The qubit to find the operational status for.
+*   **gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Name of the gate.
+*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – The qubit to find the operational status for.
 
 **Returns**
 
@@ -177,7 +177,7 @@ Operational status of the given gate. True if the gate is operational, False oth
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### is\_qubit\_operational
 
@@ -189,7 +189,7 @@ Return the operational status of the given qubit.
 
 **Parameters**
 
-**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Qubit for which to return operational status of.
+**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Qubit for which to return operational status of.
 
 **Returns**
 
@@ -197,7 +197,7 @@ Operational status of the given qubit.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### qubit\_property
 
@@ -209,8 +209,8 @@ Return the property of the given qubit.
 
 **Parameters**
 
-*   **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The property to look for.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Optionally used to specify within the hierarchy which property to return.
+*   **qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The property to look for.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Optionally used to specify within the hierarchy which property to return.
 
 **Returns**
 
@@ -222,7 +222,7 @@ Qubit property as a tuple of the value and the time it was measured.
 
 **Return type**
 
-[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.11)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)"), [*datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.11)")]
+[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [*datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.12)")]
 
 ### readout\_error
 
@@ -234,7 +234,7 @@ Return the readout error of the given qubit.
 
 **Parameters**
 
-**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Qubit for which to return the readout error of.
+**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Qubit for which to return the readout error of.
 
 **Returns**
 
@@ -242,7 +242,7 @@ Readout error of the given qubit.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 ### readout\_length
 
@@ -254,7 +254,7 @@ Return the readout length \[sec] of the given qubit.
 
 **Parameters**
 
-**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Qubit for which to return the readout length of.
+**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Qubit for which to return the readout length of.
 
 **Returns**
 
@@ -262,7 +262,7 @@ Readout length of the given qubit.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 ### t1
 
@@ -274,7 +274,7 @@ Return the T1 time of the given qubit.
 
 **Parameters**
 
-**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Qubit for which to return the T1 time of.
+**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Qubit for which to return the T1 time of.
 
 **Returns**
 
@@ -282,7 +282,7 @@ T1 time of the given qubit.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 ### t2
 
@@ -294,7 +294,7 @@ Return the T2 time of the given qubit.
 
 **Parameters**
 
-**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Qubit for which to return the T2 time of.
+**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Qubit for which to return the T2 time of.
 
 **Returns**
 
@@ -302,7 +302,7 @@ T2 time of the given qubit.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 ### to\_dict
 
@@ -318,5 +318,5 @@ The dictionary form of the BackendProperties.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 

@@ -64,7 +64,7 @@ Builds the calibration schedule for the RZXGate(theta) with echos.
 **Parameters**
 
 *   **node\_op** (*CircuitInst*) – Instruction of the RZXGate(theta). I.e. params\[0] is theta.
-*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – List of qubits for which to get the schedules. The first qubit is the control and the second is the target.
+*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of qubits for which to get the schedules. The first qubit is the control and the second is the target.
 
 **Returns**
 
@@ -99,8 +99,8 @@ A builder macro to play stretched pulse.
 **Parameters**
 
 *   **instruction** ([*Play*](qiskit.pulse.instructions.Play "qiskit.pulse.instructions.play.Play")) – The instruction from which to create a new shortened or lengthened pulse.
-*   **theta** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – desired angle, pi/2 is assumed to be the angle that the pulse in the given play instruction implements.
-*   **sample\_mult** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – All pulses must be a multiple of sample\_mult.
+*   **theta** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – desired angle, pi/2 is assumed to be the angle that the pulse in the given play instruction implements.
+*   **sample\_mult** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – All pulses must be a multiple of sample\_mult.
 
 **Returns**
 
@@ -112,7 +112,7 @@ Duration of stretched pulse.
 
 **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")
+[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 
 ### run
 
@@ -145,7 +145,7 @@ Determine if a given node supports the calibration.
 **Parameters**
 
 *   **node\_op** ([*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Target instruction object.
-*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – Integer qubit indices to check.
+*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Integer qubit indices to check.
 
 **Returns**
 
@@ -153,5 +153,5 @@ Return `True` is calibration can be provided.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 

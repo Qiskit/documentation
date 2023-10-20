@@ -20,7 +20,7 @@ Plot the layout of a circuit transpiled for a given target backend.
 
 *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Input quantum circuit.
 *   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Target backend.
-*   **view** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Layout view: either ‘virtual’ or ‘physical’.
+*   **view** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Layout view: either ‘virtual’ or ‘physical’.
 *   **qubit\_coordinates** (*Sequence*) – An optional sequence input (list or array being the most common) of 2d coordinates for each qubit. The length of the sequence must match the number of qubits on the backend. The sequence should be the planar coordinates in a 0-based square grid where each qubit is located.
 
 **Returns**
