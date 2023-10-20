@@ -815,26 +815,42 @@ By default this is sys.stdout.</p></li>
     `);
   });
 
-  test("extract module meta for .target", async () => {
+  test("extract module metadata", async () => {
+    // Sphinx <= 7.1 uses this style.
     expect(
       (
         await toMdWithMeta(
-          `<div role='main'>
-              <article itemprop="articleBody" id="pytorch-article" class="pytorch-article">
-                <span class="target" id="module-qiskit_ibm_runtime"></span>
-              </article>
-             </div>`,
+          `<article role='main'>
+             <span class="target" id="module-qiskit.circuit">
+               <span id="qiskit-circuit"></span>
+             </span>
+            </article>`,
         )
       ).meta,
     ).toMatchInlineSnapshot(`
         {
-          "python_api_name": "qiskit_ibm_runtime",
+          "python_api_name": "qiskit.circuit",
           "python_api_type": "module",
         }
       `);
+    // Sphinx 7.2+ uses this style.
+    expect(
+      (
+        await toMdWithMeta(
+          `<article role='main'>
+               <span id="module-qiskit_ibm_runtime.options"></span>
+            </article>`,
+        )
+      ).meta,
+    ).toMatchInlineSnapshot(`
+          {
+            "python_api_name": "qiskit_ibm_runtime.options",
+            "python_api_type": "module",
+          }
+        `);
   });
 
-  test("extract module meta for section", async () => {
+  test("extract module metadata for section", async () => {
     expect(
       await toMdWithMeta(`<div role="main"><section id="module-qiskit_ibm_provider.transpiler.passes.basis">
 <span id="basis"></span><h1>basis<a class="headerlink" href="#module-qiskit_ibm_provider.transpiler.passes.basis" title="Permalink to this heading">¶</a></h1>
