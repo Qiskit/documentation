@@ -106,7 +106,7 @@ See the Optimization level table in the
 [Error suppression topic](configure-error-suppression#setting-the-optimization-level) for further details.
 
 <Admonition>
-    When using Qiskit Runtime primitives, optimization levels 2 and 3 behave like level 1. If you want to use more advanced optimization, use the Qiskit transpiler locally, set `skip_transpilation=True`, and then pass the transpiled circuits to the primitives.  For instructions see the [Submitting user-transpiled circuits using primitives](https://learning.quantum-computing.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
+    When using Qiskit Runtime primitives, optimization levels 2 and 3 behave like level 1. If you want to use more advanced optimization, use the Qiskit transpiler locally, set [`skip_transpilation=True`](#skip-transpilation), and then pass the transpiled circuits to the primitives.  For instructions see the [Submitting user-transpiled circuits using primitives](https://learning.quantum-computing.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>
 
 The optimization level option is a "first level option", and can be set as follows:
@@ -139,6 +139,7 @@ estimator = Estimator(session=session, options=options)
 For more information, and a complete list of advanced transpilation options, see the Advanced transpilation options table in the
 [Error suppression topic](configure-error-suppression#transpilation-table).
 
+<span ID="skip-transpilation"></span>
 To specify settings that are not available through the primitives interface or use custom transpiler passes,  set `skip_transpilation=True` to submit
 user-transpiled circuits as described in the 
 [Submitting user-transpiled circuits using primitives](https://learning.quantum-computing.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
