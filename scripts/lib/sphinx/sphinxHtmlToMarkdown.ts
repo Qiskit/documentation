@@ -302,17 +302,16 @@ export async function sphinxHtmlToMarkdown(options: {
       $el.replaceWith(`<pre class="math">${$el.html()}</pre>`);
     });
 
-  // extract module meta
+  // extract module metadata
   const modulePrefix = "module-";
   const moduleIdWithPrefix = $main
-    .find(`.target, section`)
+    .find("span, section")
     .toArray()
     .map((el) => $page(el).attr("id"))
     .find((id) => id?.startsWith(modulePrefix));
   if (moduleIdWithPrefix) {
-    const moduleId = moduleIdWithPrefix.slice(modulePrefix.length);
     meta.python_api_type = "module";
-    meta.python_api_name = moduleId;
+    meta.python_api_name = moduleIdWithPrefix.slice(modulePrefix.length);
   }
 
   // Update headings of modules
