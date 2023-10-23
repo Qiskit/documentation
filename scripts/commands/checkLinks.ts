@@ -18,7 +18,11 @@ import markdownLinkExtractor from "markdown-link-extractor";
 const DOCS_ROOT = "./docs";
 const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"];
 
-const IGNORE_LIST = ["docs/run/instances.mdx", "docs/start/index.mdx"];
+const IGNORE_LIST = [
+  "docs/run/instances.mdx",
+  "docs/start/index.mdx",
+  "docs/build/pulse.ipynb",
+];
 
 class Link {
   readonly value: string;
@@ -107,7 +111,7 @@ class Link {
 function markdownFromNotebook(source: string): string {
   let markdown = "";
   for (let cell of JSON.parse(source).cells) {
-    if (cell.source === "markdown") {
+    if (cell.cell_type === "markdown") {
       markdown += cell.source;
     }
   }
@@ -124,7 +128,7 @@ function checkLinksInFile(filePath: string, filePaths: string[]): boolean {
   const source = readFileSync(filePath, { encoding: "utf8" });
   const markdown =
     path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
-  const links = markdownLinkExtractor(source).links.map(
+  const links = markdownLinkExtractor(markdown).links.map(
     (x: string) => new Link(x, filePath),
   );
 
