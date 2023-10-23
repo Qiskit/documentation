@@ -12,11 +12,11 @@ python_api_name: qiskit.qobj.QasmQobjExperiment
 
 `qiskit.qobj.QasmQobjExperiment(config=None, header=None, instructions=None)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-A QASM Qobj Experiment.
+An OpenQASM 2 Qobj Experiment.
 
-Each instance of this class is used to represent a QASM experiment as part of a larger QASM qobj.
+Each instance of this class is used to represent an OpenQASM 2 experiment as part of a larger OpenQASM 2 qobj.
 
 Instantiate a QasmQobjExperiment.
 
@@ -24,7 +24,7 @@ Instantiate a QasmQobjExperiment.
 
 *   **config** ([*QasmQobjExperimentConfig*](qiskit.qobj.QasmQobjExperimentConfig "qiskit.qobj.QasmQobjExperimentConfig")) – A config object for the experiment
 *   **header** (*QasmQobjExperimentHeader*) – A header object for the experiment
-*   **instructions** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – A list of [`QasmQobjInstruction`](qiskit.qobj.QasmQobjInstruction "qiskit.qobj.QasmQobjInstruction") objects
+*   **instructions** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of [`QasmQobjInstruction`](qiskit.qobj.QasmQobjInstruction "qiskit.qobj.QasmQobjInstruction") objects
 
 ## Methods
 
@@ -38,7 +38,7 @@ Create a new QasmQobjExperiment object from a dictionary.
 
 **Parameters**
 
-**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – A dictionary for the experiment config
+**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary for the experiment config
 
 **Returns**
 
@@ -62,5 +62,5 @@ The dictionary form of the QasmQObjExperiment.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 

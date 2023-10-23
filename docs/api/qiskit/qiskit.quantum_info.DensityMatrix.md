@@ -20,8 +20,8 @@ Initialize a density matrix object.
 
 **Parameters**
 
-*   **or** (*data (np.ndarray or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")  *or matrix\_like or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – qiskit.circuit.Instruction): A statevector, quantum instruction or an object with a `to_operator` or `to_matrix` method from which the density matrix can be constructed. If a vector the density matrix is constructed as the projector of that vector. If a quantum instruction, the density matrix is constructed by assuming all qubits are initialized in the zero state.
-*   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – Optional. The subsystem dimension of the state (See additional information).
+*   **or** (*data (np.ndarray or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")  *or matrix\_like or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – qiskit.circuit.Instruction): A statevector, quantum instruction or an object with a `to_operator` or `to_matrix` method from which the density matrix can be constructed. If a vector the density matrix is constructed as the projector of that vector. If a quantum instruction, the density matrix is constructed by assuming all qubits are initialized in the zero state.
+*   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Optional. The subsystem dimension of the state (See additional information).
 
 **Raises**
 
@@ -122,16 +122,16 @@ Return a visualization of the Statevector.
 
 **Parameters**
 
-*   **output** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Select the output method to use for drawing the state. Valid choices are repr, text, latex, latex\_source, qsphere, hinton, or bloch. Default is repr. Default can be changed by adding the line `state_drawer = <default>` to `~/.qiskit/settings.conf` under `[default]`.
+*   **output** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Select the output method to use for drawing the state. Valid choices are repr, text, latex, latex\_source, qsphere, hinton, or bloch. Default is repr. Default can be changed by adding the line `state_drawer = <default>` to `~/.qiskit/settings.conf` under `[default]`.
 *   **drawer\_args** – Arguments to be passed directly to the relevant drawing function or constructor (TextMatrix(), array\_to\_latex(), plot\_state\_qsphere(), plot\_state\_hinton() or plot\_bloch\_multivector()). See the relevant function under qiskit.visualization for that function’s documentation.
 
 **Returns**
 
-`matplotlib.Figure` or [`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") or `TextMatrix` or `IPython.display.Latex`: Drawing of the Statevector.
+`matplotlib.Figure` or [`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") or `TextMatrix` or `IPython.display.Latex`: Drawing of the Statevector.
 
 **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – when an invalid output method is selected.
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – when an invalid output method is selected.
 
 ### evolve
 
@@ -144,7 +144,7 @@ Evolve a quantum state by an operator.
 **Parameters**
 
 *   **QuantumChannel** (*other (Operator or*) – or Instruction or Circuit): The operator to evolve by.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – a list of QuantumState subsystem positions to apply the operator on.
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – a list of QuantumState subsystem positions to apply the operator on.
 
 **Returns**
 
@@ -193,7 +193,7 @@ Compute the expectation value of an operator.
 **Parameters**
 
 *   **oper** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator to evaluate expval.
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – subsystems to apply the operator on.
+*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to apply the operator on.
 
 **Returns**
 
@@ -201,7 +201,7 @@ the expectation value.
 
 **Return type**
 
-[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")
+[complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")
 
 ### from\_instruction
 
@@ -239,8 +239,8 @@ Return a computational basis state density matrix.
 
 **Parameters**
 
-*   **i** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the basis state element.
-*   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – The subsystem dimensions of the statevector (See additional information).
+*   **i** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the basis state element.
+*   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The subsystem dimensions of the statevector (See additional information).
 
 **Returns**
 
@@ -310,7 +310,7 @@ Note that this function uses the QuantumStates internal random number generator 
 
 **Parameters**
 
-**qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)") *or None*) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+**qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
 **Returns**
 
@@ -320,7 +320,7 @@ measurement outcome string label, and `state` is the collapsed post-measurement 
 
 **Return type**
 
-[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")
 
 ### partial\_transpose
 
@@ -332,7 +332,7 @@ Return partially transposed density matrix.
 
 **Parameters**
 
-**qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – The subsystems to be transposed.
+**qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The subsystems to be transposed.
 
 **Returns**
 
@@ -354,8 +354,8 @@ Measurement probabilities are with respect to measurement in the computation (di
 
 **Parameters**
 
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
-*   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
+*   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
 
 **Returns**
 
@@ -429,8 +429,8 @@ This dictionary representation uses a Ket-like notation where the dictionary key
 
 **Parameters**
 
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
-*   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to return probabilities for, if None return for all subsystems (Default: None).
+*   **decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
 
 **Returns**
 
@@ -438,7 +438,7 @@ The measurement probabilities in dict (ket) form.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 ### purity
 
@@ -458,7 +458,7 @@ Reset state or subsystems to the 0-state.
 
 **Parameters**
 
-**qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)") *or None*) – subsystems to reset, if None all subsystems will be reset to their 0-state (Default: None).
+**qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – subsystems to reset, if None all subsystems will be reset to their 0-state (Default: None).
 
 **Returns**
 
@@ -500,8 +500,8 @@ Sample a dict of qubit measurement outcomes in the computational basis.
 
 **Parameters**
 
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – number of samples to generate.
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of samples to generate.
+*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
 **Returns**
 
@@ -527,8 +527,8 @@ Sample a list of qubit measurement outcomes in the computational basis.
 
 **Parameters**
 
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – number of samples to generate.
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
+*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of samples to generate.
+*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – subsystems to sample measurements for, if None sample measurement of all subsystems (Default: None).
 
 **Returns**
 
@@ -588,7 +588,7 @@ This dictionary representation uses a Ket-like notation where the dictionary key
 
 **Parameters**
 
-**decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
+**decimals** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of decimal places to round values. If None no rounding is done (Default: None).
 
 **Returns**
 
@@ -596,7 +596,7 @@ the dictionary form of the DensityMatrix.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 ## Examples
 
@@ -676,8 +676,8 @@ Return a statevector from a pure density matrix.
 
 **Parameters**
 
-*   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Absolute tolerance for checking operation validity.
-*   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Relative tolerance for checking operation validity.
+*   **atol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Absolute tolerance for checking operation validity.
+*   **rtol** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Relative tolerance for checking operation validity.
 
 **Returns**
 

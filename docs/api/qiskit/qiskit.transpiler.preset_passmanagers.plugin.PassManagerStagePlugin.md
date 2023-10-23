@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePl
 
 `qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePlugin`
 
-Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.11)")
+Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
 A `PassManagerStagePlugin` is a plugin interface object for using custom stages in [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile").
 
@@ -31,7 +31,7 @@ This method is designed to return a [`PassManager`](qiskit.transpiler.PassManage
 **Parameters**
 
 *   **pass\_manager\_config** ([*PassManagerConfig*](qiskit.transpiler.PassManagerConfig "qiskit.transpiler.passmanager_config.PassManagerConfig")) – A configuration object that defines all the target device specifications and any user specified options to [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`generate_preset_pass_manager()`](transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager")
-*   **optimization\_level** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – The optimization level of the transpilation, if set this should be used to set values for any tunable parameters to trade off runtime for potential optimization. Valid values should be `0`, `1`, `2`, or `3` and the higher the number the more optimization is expected.
+*   **optimization\_level** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The optimization level of the transpilation, if set this should be used to set values for any tunable parameters to trade off runtime for potential optimization. Valid values should be `0`, `1`, `2`, or `3` and the higher the number the more optimization is expected.
 
 **Return type**
 

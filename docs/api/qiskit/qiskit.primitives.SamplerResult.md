@@ -24,8 +24,8 @@ where the i-th elements of `result` correspond to the circuit given by `circuits
 
 **Parameters**
 
-*   **quasi\_dists** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*QuasiDistribution*](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")*]*) – List of the quasi-probabilities.
-*   **metadata** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")*]*) – List of the metadata.
+*   **quasi\_dists** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*QuasiDistribution*](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")*]*) – List of the quasi-probabilities.
+*   **metadata** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*]*) – List of the metadata.
 
 ## Attributes
 
@@ -65,5 +65,5 @@ Generate single experiment result objects from self.
 
 **Return type**
 
-[*Iterator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator "(in Python v3.11)")\[*BasePrimitiveResult*]
+[*Iterator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator "(in Python v3.12)")\[*BasePrimitiveResult*]
 

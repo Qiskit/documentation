@@ -43,8 +43,8 @@ This function is an implementation of the Patel, Markov and Hayes algorithm from
 
 **Parameters**
 
-*   **state** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*] or ndarray*) – n x n boolean invertible matrix, describing the state of the input circuit
-*   **section\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the size of each section, used in the Patel–Markov–Hayes algorithm \[1]. section\_size must be a factor of num\_qubits.
+*   **state** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*] or ndarray*) – n x n boolean invertible matrix, describing the state of the input circuit
+*   **section\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the size of each section, used in the Patel–Markov–Hayes algorithm \[1]. section\_size must be a factor of num\_qubits.
 
 **Returns**
 
@@ -102,7 +102,7 @@ Note that this method *reverts* the order of qubits in the circuit, and returns 
 
 **Parameters**
 
-**mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – an upper-diagonal matrix representing the CZ circuit. mat\[i]\[j]=1 for i\<j represents a CZ(i,j) gate
+**mat** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – an upper-diagonal matrix representing the CZ circuit. mat\[i]\[j]=1 for i\<j represents a CZ(i,j) gate
 
 **Returns**
 
@@ -124,8 +124,8 @@ Joint synthesis of a -CZ-CX- circuit for linear nearest neighbour (LNN) connecti
 
 **Parameters**
 
-*   **mat\_z** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – a boolean symmetric matrix representing a CZ circuit. Mz\[i]\[j]=1 represents a CZ(i,j) gate
-*   **mat\_x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – a boolean invertible matrix representing a CX circuit.
+*   **mat\_z** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a boolean symmetric matrix representing a CZ circuit. Mz\[i]\[j]=1 represents a CZ(i,j) gate
+*   **mat\_x** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a boolean invertible matrix representing a CX circuit.
 
 **Returns**
 
@@ -152,7 +152,7 @@ This is the permutation synthesis algorithm from [https://arxiv.org/abs/quant-ph
 
 **Parameters**
 
-**pattern** (*Union\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*], np.ndarray]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
+**pattern** (*Union\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*], np.ndarray]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
 
 **Returns**
 
@@ -172,7 +172,7 @@ More precisely, if the input permutation is a cycle of length `m`, then this cre
 
 **Parameters**
 
-**pattern** (*Union\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*], np.ndarray]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
+**pattern** (*Union\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*], np.ndarray]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
 
 **Returns**
 
@@ -194,7 +194,7 @@ This implementation is based on the Theorem 2 in the paper “Routing Permutatio
 
 **Parameters**
 
-**pattern** (*Union\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*], np.ndarray]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
+**pattern** (*Union\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*], np.ndarray]*) – permutation pattern, describing which qubits occupy the positions 0, 1, 2, etc. after applying the permutation. That is, `pattern[k] = m` when the permutation maps qubit `m` to position `k`. As an example, the pattern `[2, 4, 3, 0, 1]` means that qubit `2` goes to position `0`, qubit `4` goes to position `1`, etc.
 
 **Returns**
 
@@ -217,7 +217,7 @@ For N \<= 3 qubits this is based on optimal CX cost decomposition from reference
 **Parameters**
 
 *   **clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
-*   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Optional, a synthesis method (‘AG’ or ‘greedy’). If set this overrides optimal decomposition for N \<=3 qubits.
+*   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optional, a synthesis method (‘AG’ or ‘greedy’). If set this overrides optimal decomposition for N \<=3 qubits.
 
 **Returns**
 
@@ -287,7 +287,7 @@ a circuit implementation of the Clifford.
 
 Decompose a Clifford operator into a QuantumCircuit based on the greedy Clifford compiler that is described in Appendix A of Bravyi, Hu, Maslov and Shaydulin.
 
-This method typically yields better CX cost compared to the Aaronson-Gottesma method.
+This method typically yields better CX cost compared to the Aaronson-Gottesman method.
 
 **Parameters**
 
@@ -545,9 +545,9 @@ Generates a list of `GateSequence``s with the gates in ``basic_gates`.
 
 **Parameters**
 
-*   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – The gates from which to create the sequences of gates.
-*   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The maximum depth of the approximations.
-*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – If provided, the basic approximations are stored in this file.
+*   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – The gates from which to create the sequences of gates.
+*   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum depth of the approximations.
+*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – If provided, the basic approximations are stored in this file.
 
 **Returns**
 
@@ -555,9 +555,9 @@ List of `GateSequences` using the gates in `basic_gates`.
 
 **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – If `basis_gates` contains an invalid gate identifier.
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `basis_gates` contains an invalid gate identifier.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")\[GateSequence]
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[GateSequence]
 

@@ -10,9 +10,9 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { isEmpty, keyBy, keys, orderBy } from 'lodash';
-import { getLastPartFromFullIdentifier } from '../stringUtils';
-import { PythonObjectMeta } from './PythonObjectMeta';
+import { isEmpty, keyBy, keys, orderBy } from "lodash";
+import { getLastPartFromFullIdentifier } from "../stringUtils";
+import { PythonObjectMeta } from "./PythonObjectMeta";
 
 type TocEntry = {
   title: string;
@@ -42,24 +42,28 @@ export function generateToc(options: {
 }) {
   const { pkg, results } = options;
   const nestModule = options.pkg.tocOptions?.nestModule ?? (() => true);
-  const resultsWithName = results.filter((result) => !isEmpty(result.meta.python_api_name));
-
-  const modules = resultsWithName.filter((result) => result.meta.python_api_type === 'module');
-  const items = resultsWithName.filter(
-    (result) =>
-      result.meta.python_api_type === 'class' ||
-      result.meta.python_api_type === 'function' ||
-      result.meta.python_api_type === 'exception'
+  const resultsWithName = results.filter(
+    (result) => !isEmpty(result.meta.python_api_name),
   );
 
-  const tocChildren: Toc['children'] = [];
+  const modules = resultsWithName.filter(
+    (result) => result.meta.python_api_type === "module",
+  );
+  const items = resultsWithName.filter(
+    (result) =>
+      result.meta.python_api_type === "class" ||
+      result.meta.python_api_type === "function" ||
+      result.meta.python_api_type === "exception",
+  );
+
+  const tocChildren: Toc["children"] = [];
 
   if (modules.length > 0) {
     const tocModules = modules.map(
       (module): TocEntry => ({
         title: module.meta.python_api_name!,
         url: module.url,
-      })
+      }),
     );
     const tocModulesByTitle = keyBy(tocModules, (toc) => toc.title);
     const tocModuleTitles = keys(tocModulesByTitle);
@@ -67,8 +71,13 @@ export function generateToc(options: {
     // Add items to modules
     for (const item of items) {
       if (!item.meta.python_api_name) continue;
-      const itemModuleTitle = findClosestParentModules(item.meta.python_api_name, tocModuleTitles);
-      const itemModule = itemModuleTitle ? tocModulesByTitle[itemModuleTitle] : undefined;
+      const itemModuleTitle = findClosestParentModules(
+        item.meta.python_api_name,
+        tocModuleTitles,
+      );
+      const itemModule = itemModuleTitle
+        ? tocModulesByTitle[itemModuleTitle]
+        : undefined;
       if (itemModule) {
         if (!itemModule.children) itemModule.children = [];
         const itemTocEntry: TocEntry = {
@@ -87,8 +96,13 @@ export function generateToc(options: {
         continue;
       }
 
-      const parentModuleTitle = findClosestParentModules(tocModule.title, tocModuleTitles);
-      const parentModule = parentModuleTitle ? tocModulesByTitle[parentModuleTitle] : undefined;
+      const parentModuleTitle = findClosestParentModules(
+        tocModule.title,
+        tocModuleTitles,
+      );
+      const parentModule = parentModuleTitle
+        ? tocModulesByTitle[parentModuleTitle]
+        : undefined;
       if (parentModule) {
         if (!parentModule.children) parentModule.children = [];
         parentModule.children.push(tocModule);
@@ -101,7 +115,7 @@ export function generateToc(options: {
     for (const tocModule of tocModules) {
       if (tocModule.children && tocModule.children.length > 0) {
         tocModule.children = [
-          { title: 'Overview', url: tocModule.url },
+          { title: "Overview", url: tocModule.url },
           ...orderEntriesByChildrenAndTitle(tocModule.children),
         ];
         delete tocModule.url;
@@ -112,11 +126,15 @@ export function generateToc(options: {
   }
 
   tocChildren.push({
-    title: 'Changelog',
+    title: "Changelog",
     url: pkg.changelogUrl,
   });
 
-  const toc: Toc = { title: pkg.title, subtitle: `v${pkg.version}`, children: tocChildren };
+  const toc: Toc = {
+    title: pkg.title,
+    subtitle: `v${pkg.version}`,
+    children: tocChildren,
+  };
   if (pkg.tocOptions?.collapsed) {
     toc.collapsed = true;
   }
@@ -124,9 +142,9 @@ export function generateToc(options: {
 }
 
 function findClosestParentModules(id: string, possibleParents: string[]) {
-  const idParts = id.split('.');
+  const idParts = id.split(".");
   for (let i = idParts.length - 1; i > 0; i--) {
-    const testId = idParts.slice(0, i).join('.');
+    const testId = idParts.slice(0, i).join(".");
     if (possibleParents.includes(testId)) {
       return testId;
     }

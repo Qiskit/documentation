@@ -66,7 +66,7 @@ Gets the calibrated schedule for the given instruction and qubits.
 **Parameters**
 
 *   **node\_op** ([*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Target instruction object.
-*   **qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")) – Integer qubit indices to check.
+*   **qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")) – Integer qubit indices to check.
 
 **Returns**
 
@@ -119,7 +119,7 @@ Determine if a given node supports the calibration.
 **Parameters**
 
 *   **node\_op** ([*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Target instruction object.
-*   **qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")) – Integer qubit indices to check.
+*   **qubits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")) – Integer qubit indices to check.
 
 **Returns**
 
@@ -127,5 +127,5 @@ Return `True` is calibration can be provided.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 

@@ -38,7 +38,7 @@ Return a list of backends matching the specified filtering.
 
 **Parameters**
 
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – name of the backend.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name of the backend.
 *   **\*\*kwargs** – dict used for filtering.
 
 **Returns**
@@ -49,7 +49,7 @@ criteria.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")\[[Backend](qiskit.providers.Backend "qiskit.providers.Backend")]
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[Backend](qiskit.providers.Backend "qiskit.providers.Backend")]
 
 ### get\_backend
 
@@ -61,7 +61,7 @@ Return a single backend matching the specified filtering.
 
 **Parameters**
 
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – name of the backend.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name of the backend.
 *   **\*\*kwargs** – dict used for filtering.
 
 **Returns**
