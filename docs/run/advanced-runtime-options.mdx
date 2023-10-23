@@ -99,8 +99,7 @@ For more information about the primitive options, refer to the
 ### Transpilation
 
 
-By default, the Qiskit Runtime primitives perform circuit transpilation. There are several optimization
-levels you can choose from. These levels affect the transpilation strategy and might include additional error
+By default, the Qiskit Runtime primitives perform circuit transpilation. The optimization level you choose affects the transpilation strategy and might include additional error
 suppression mechanisms. Level 0 only involves basic transpilation.
 See the Optimization level table in the
 [Error suppression topic](configure-error-suppression#setting-the-optimization-level) for further details.
@@ -136,15 +135,15 @@ options.transpilation.routing_method = ...
 estimator = Estimator(session=session, options=options)
 ```
 
-For more information, and a complete list of advanced transpilation options, see the Advanced transpilation options table in the
+For more information and a complete list of advanced transpilation options, see the Advanced transpilation options table in the
 [Error suppression topic](configure-error-suppression#transpilation-table).
 
 <span ID="skip-transpilation"></span>
 To specify settings that are not available through the primitives interface or use custom transpiler passes,  set `skip_transpilation=True` to submit
-user-transpiled circuits as described in the 
+user-transpiled circuits.  This is described in the 
 [Submitting user-transpiled circuits using primitives](https://learning.quantum-computing.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 
-The `skip_transpilation` option is an advanced transpilation option, set as follows:
+The `skip_transpilation` option is an advanced transpilation option and is set as follows:
 
 ```python
 from qiskit_ibm_runtime import Estimator, Options
