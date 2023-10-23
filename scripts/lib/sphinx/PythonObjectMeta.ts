@@ -13,11 +13,11 @@
 export type PythonObjectMeta = {
   python_api_name?: string;
   python_api_type?:
-    | 'class'
-    | 'method'
-    | 'property'
-    | 'attribute'
-    | 'module'
-    | 'function'
-    | 'exception';
+    | "class"
+    | "method"
+    | "property"
+    | "attribute"
+    | "module"
+    | "function"
+    | "exception";
 };

@@ -94,7 +94,7 @@ Initialize the PauliList.
 
 **Parameters**
 
-**data** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – input data for Paulis. If input is a list each item in the list must be a Pauli object or Pauli str.
+**data** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – input data for Paulis. If input is a list each item in the list must be a Pauli object or Pauli str.
 
 **Raises**
 
@@ -181,7 +181,7 @@ Return `True` if other Pauli that anticommutes with other.
 **Parameters**
 
 *   **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another PauliList operator.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – qubits to apply dot product on (default: `None`).
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to apply dot product on (default: `None`).
 
 **Returns**
 
@@ -189,7 +189,7 @@ Return `True` if other Pauli that anticommutes with other.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### anticommutes\_with\_all
 
@@ -225,8 +225,8 @@ The default sort method is lexicographic sorting by qubit number. By using the w
 
 **Parameters**
 
-*   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Optionally sort by weight if `True` (Default: `False`).
-*   **phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Optionally sort by phase before weight or order (Default: `False`).
+*   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optionally sort by weight if `True` (Default: `False`).
+*   **phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optionally sort by phase before weight or order (Default: `False`).
 
 **Returns**
 
@@ -247,7 +247,7 @@ Return True for each Pauli that commutes with other.
 **Parameters**
 
 *   **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another PauliList operator.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – qubits to apply dot product on (default: `None`).
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to apply dot product on (default: `None`).
 
 **Returns**
 
@@ -255,7 +255,7 @@ Return True for each Pauli that commutes with other.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### commutes\_with\_all
 
@@ -290,9 +290,9 @@ Return the composition self∘other for each Pauli in the list.
 **Parameters**
 
 *   **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another PauliList.
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – qubits to apply dot product on (Default: `None`).
-*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True use dot composition method \[default: `False`].
-*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If `True` update in-place (default: `False`).
+*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to apply dot product on (Default: `None`).
+*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True use dot composition method \[default: `False`].
+*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` update in-place (default: `False`).
 
 **Returns**
 
@@ -334,8 +334,8 @@ When deleting qubits the qubit index is the same as the column index of the unde
 
 **Parameters**
 
-*   **ind** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – index(es) to delete.
-*   **qubit** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if `True` delete qubit columns, otherwise delete Pauli rows (Default: `False`).
+*   **ind** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – index(es) to delete.
+*   **qubit** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True` delete qubit columns, otherwise delete Pauli rows (Default: `False`).
 
 **Returns**
 
@@ -360,8 +360,8 @@ Return the composition other∘self for each Pauli in the list.
 **Parameters**
 
 *   **other** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another PauliList.
-*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – qubits to apply dot product on (Default: `None`).
-*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True update in-place (default: `False`).
+*   **qargs** (*None or* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to apply dot product on (Default: `None`).
+*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True update in-place (default: `False`).
 
 **Returns**
 
@@ -414,7 +414,7 @@ Schrödinger picture evolves the Pauli as $P^\prime = C.P.C^\dagger$.
 **Parameters**
 
 *   **other** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The Clifford operator to evolve by.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – a list of qubits to apply the Clifford to.
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – a list of qubits to apply the Clifford to.
 *   **frame** (*string*) – `'h'` for Heisenberg (default) or `'s'` for Schrödinger framework.
 
 **Returns**
@@ -485,7 +485,7 @@ Partition a PauliList into sets of commuting Pauli strings.
 
 **Parameters**
 
-**qubit\_wise** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) –
+**qubit\_wise** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) –
 
 whether the commutation rule is applied to the whole operator, or on a per-qubit basis. For example:
 
@@ -504,7 +504,7 @@ List of PauliLists where each PauliList contains commuting Pauli operators.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")\[[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")]
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")]
 
 ### group\_qubit\_wise\_commuting
 
@@ -520,7 +520,7 @@ List of PauliLists where each PauliList contains commutable Pauli operators.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")\[[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")]
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[PauliList](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")]
 
 ### input\_dims
 
@@ -542,9 +542,9 @@ When inserting qubits the qubit index is the same as the column index of the und
 
 **Parameters**
 
-*   **ind** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – index to insert at.
+*   **ind** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – index to insert at.
 *   **value** ([*PauliList*](#qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – values to insert.
-*   **qubit** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if `True` insert qubit columns, otherwise insert Pauli rows (Default: `False`).
+*   **qubit** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True` insert qubit columns, otherwise insert Pauli rows (Default: `False`).
 
 **Returns**
 
@@ -596,7 +596,7 @@ This is a lazy iterator that converts each row into the Pauli matrix representat
 
 **Parameters**
 
-**sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – optionally return sparse CSR matrices if `True`, otherwise return Numpy array matrices (Default: `False`)
+**sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – optionally return sparse CSR matrices if `True`, otherwise return Numpy array matrices (Default: `False`)
 
 **Returns**
 
@@ -624,7 +624,7 @@ Return the compose of a operator with itself n times.
 
 **Parameters**
 
-**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of times to compose with self (n>0).
+**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of times to compose with self (n>0).
 
 **Returns**
 
@@ -648,9 +648,9 @@ Return a shallow copy with reshaped input and output subsystem dimensions.
 
 **Parameters**
 
-*   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-*   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-*   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – reshape to an N-qubit operator \[Default: None].
+*   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+*   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+*   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – reshape to an N-qubit operator \[Default: None].
 
 **Returns**
 
@@ -716,8 +716,8 @@ Weight sorted
 
 **Parameters**
 
-*   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – optionally sort by weight if `True` (Default: `False`).
-*   **phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Optionally sort by phase before weight or order (Default: `False`).
+*   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – optionally sort by weight if `True` (Default: `False`).
+*   **phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optionally sort by phase before weight or order (Default: `False`).
 
 **Returns**
 
@@ -770,7 +770,7 @@ For large PauliLists converting using the `array=True` kwarg will be more effici
 
 **Parameters**
 
-**array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – return a Numpy array if `True`, otherwise return a list (Default: `False`).
+**array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – return a Numpy array if `True`, otherwise return a list (Default: `False`).
 
 **Returns**
 
@@ -778,7 +778,7 @@ The rows of the PauliList in label form.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)") or array
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") or array
 
 ### to\_matrix
 
@@ -799,8 +799,8 @@ For large PauliLists converting using the `array=True` kwarg will be more effici
 
 **Parameters**
 
-*   **sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if `True` return sparse CSR matrices, otherwise return dense Numpy arrays (Default: `False`).
-*   **array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – return as rank-3 numpy array if `True`, otherwise return a list of Numpy arrays (Default: `False`).
+*   **sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True` return sparse CSR matrices, otherwise return dense Numpy arrays (Default: `False`).
+*   **array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – return as rank-3 numpy array if `True`, otherwise return a list of Numpy arrays (Default: `False`).
 
 **Returns**
 
@@ -808,7 +808,7 @@ A list of dense Pauli matrices if ```array=False` and ``sparse=False`. list: A l
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 
 ### transpose
 
@@ -842,8 +842,8 @@ print(unique)
 
 **Parameters**
 
-*   **return\_index** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If `True`, also return the indices that result in the unique array. (Default: `False`)
-*   **return\_counts** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If `True`, also return the number of times each unique item appears in the table.
+*   **return\_index** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, also return the indices that result in the unique array. (Default: `False`)
+*   **return\_counts** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True`, also return the number of times each unique item appears in the table.
 
 **Returns**
 

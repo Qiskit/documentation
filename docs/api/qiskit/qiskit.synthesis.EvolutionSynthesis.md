@@ -12,7 +12,7 @@ python_api_name: qiskit.synthesis.EvolutionSynthesis
 
 `qiskit.synthesis.EvolutionSynthesis`
 
-Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.11)")
+Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 
 Interface for evolution synthesis algorithms.
 
@@ -30,7 +30,7 @@ A dictionary containing the settings of this product formula.
 
 **Raises**
 
-[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.11)") – The interface does not implement this method.
+[**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – The interface does not implement this method.
 
 ## Methods
 

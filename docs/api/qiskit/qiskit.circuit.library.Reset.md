@@ -141,7 +141,7 @@ Copy of the instruction.
 
 **Parameters**
 
-**name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – name to be given to the copied circuit, if `None` then the name stays the same.
+**name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name to be given to the copied circuit, if `None` then the name stays the same.
 
 **Returns**
 
@@ -191,7 +191,7 @@ Return True .IFF. instruction is parameterized else False
 
 Return a default OpenQASM string for the instruction.
 
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+Derived instructions may override this to print in a different format (e.g. `measure q[0] -> c[0];`).
 
 <Admonition title="Deprecated since version 0.25.0" type="danger">
   The method `qiskit.circuit.instruction.Instruction.qasm()` is deprecated as of qiskit-terra 0.25.0. It will be removed no earlier than 3 months after the release date. Correct exporting to OpenQASM 2 is the responsibility of a larger exporter; it cannot safely be done on an object-by-object basis without context. No replacement will be provided, because the premise is wrong.
@@ -207,7 +207,7 @@ Creates an instruction with gate repeated n amount of times.
 
 **Parameters**
 
-**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Number of times to repeat the instruction
+**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of times to repeat the instruction
 
 **Returns**
 
@@ -259,7 +259,7 @@ are self and other equal up to parameter expressions.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### validate\_parameter
 

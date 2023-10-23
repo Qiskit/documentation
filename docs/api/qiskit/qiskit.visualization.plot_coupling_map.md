@@ -18,21 +18,21 @@ Plots an arbitrary coupling map of qubits (embedded in a plane).
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The number of qubits defined and plotted.
-*   **qubit\_coordinates** (*List\[List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]]*) – A list of two-element lists, with entries of each nested list being the planar coordinates in a 0-based square grid where each qubit is located.
-*   **coupling\_map** (*List\[List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]]*) – A list of two-element lists, with entries of each nested list being the qubit numbers of the bonds to be plotted.
-*   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – Output figure size (wxh) in inches.
-*   **plot\_directed** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Plot directed coupling map.
-*   **label\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Label the qubits.
-*   **qubit\_size** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Size of qubit marker.
-*   **line\_width** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Width of lines.
-*   **font\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Font size of qubit labels.
-*   **qubit\_color** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – A list of colors for the qubits
-*   **qubit\_labels** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – A list of qubit labels
-*   **line\_color** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – A list of colors for each line from coupling\_map.
-*   **font\_color** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The font color for the qubit labels.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits defined and plotted.
+*   **qubit\_coordinates** (*List\[List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – A list of two-element lists, with entries of each nested list being the planar coordinates in a 0-based square grid where each qubit is located.
+*   **coupling\_map** (*List\[List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – A list of two-element lists, with entries of each nested list being the qubit numbers of the bonds to be plotted.
+*   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – Output figure size (wxh) in inches.
+*   **plot\_directed** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Plot directed coupling map.
+*   **label\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Label the qubits.
+*   **qubit\_size** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Size of qubit marker.
+*   **line\_width** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Width of lines.
+*   **font\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Font size of qubit labels.
+*   **qubit\_color** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of colors for the qubits
+*   **qubit\_labels** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of qubit labels
+*   **line\_color** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of colors for each line from coupling\_map.
+*   **font\_color** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The font color for the qubit labels.
 *   **ax** (*Axes*) – A Matplotlib axes instance.
-*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – file path to save image to.
+*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – file path to save image to.
 
 **Returns**
 

@@ -20,7 +20,7 @@ Initialize the GatesInBasis pass.
 
 **Parameters**
 
-*   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – The list of strings representing the set of basis gates.
+*   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The list of strings representing the set of basis gates.
 *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The target representing the backend. If specified this will be used instead of the `basis_gates` parameter
 
 ## Attributes

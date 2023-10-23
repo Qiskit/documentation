@@ -10,12 +10,12 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { merge } from 'lodash';
+import { merge } from "lodash";
 
 export class GithubApiClient {
   token: string;
 
-  constructor(options: { token: string}) {
+  constructor(options: { token: string }) {
     this.token = options.token;
   }
 
@@ -24,9 +24,8 @@ export class GithubApiClient {
     return this.fetch<GithubRelease[]>(`repos/${slug}/releases`);
   }
 
-
   private getUrl(url: string) {
-    if (url.startsWith('https:')) return url;
+    if (url.startsWith("https:")) return url;
     return `https://api.github.com/${url}`;
   }
 
@@ -37,11 +36,11 @@ export class GithubApiClient {
         {
           headers: {
             Authorization: `token ${this.token}`,
-            Accept: 'application/vnd.github.v3+json',
+            Accept: "application/vnd.github.v3+json",
           },
         },
-        options
-      )
+        options,
+      ),
     );
     if (!response.ok) {
       console.error(response);

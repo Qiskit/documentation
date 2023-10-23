@@ -12,7 +12,7 @@ python_api_name: qiskit.dagcircuit.BlockSplitter
 
 `qiskit.dagcircuit.BlockSplitter`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Splits a block of nodes into sub-blocks over disjoint qubits. The implementation is based on the Disjoint Set Union data structure.
 

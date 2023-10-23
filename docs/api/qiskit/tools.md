@@ -36,9 +36,9 @@ On Windows this function defaults to a serial implementation to avoid the overhe
 
 *   **task** (*func*) – Function that is to be called for each value in `values`.
 *   **values** (*array\_like*) – List or array of values for which the `task` function is to be evaluated.
-*   **task\_args** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – Optional additional arguments to the `task` function.
-*   **task\_kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – Optional additional keyword argument to the `task` function.
-*   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Number of processes to spawn.
+*   **task\_args** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Optional additional arguments to the `task` function.
+*   **task\_kwargs** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Optional additional keyword argument to the `task` function.
+*   **num\_processes** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of processes to spawn.
 
 **Returns**
 
@@ -84,8 +84,8 @@ Monitor the status of a IBMQJob instance.
 **Parameters**
 
 *   **job** (*BaseJob*) – Job to monitor.
-*   **interval** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Time interval between status queries.
-*   **quiet** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True, do not print status messages.
+*   **interval** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time interval between status queries.
+*   **quiet** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, do not print status messages.
 *   **output** (*file*) – The file like object to write status messages to.
 *   **sys.stdout.** (*By default this is*) –
 *   **line\_discipline** (*string*) – character emitted at start of a line of job monitor output,

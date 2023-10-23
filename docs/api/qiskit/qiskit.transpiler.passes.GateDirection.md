@@ -38,6 +38,8 @@ q_1: ┤1     ├     q_1: ┤ H ├┤0     ├┤ H ├
      └──────┘          └───┘└──────┘└───┘
 ```
 
+This pass assumes that the positions of the qubits in the `DAGCircuit.qubits` attribute are the physical qubit indicies. For example if `dag.qubits[0]` is qubit 0 in the [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") or [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target").
+
 GateDirection pass.
 
 **Parameters**

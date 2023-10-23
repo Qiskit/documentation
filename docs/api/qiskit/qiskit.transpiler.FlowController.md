@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.FlowController
 
 `qiskit.transpiler.FlowController(passes, options, **partial_controller)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Base class for multiple types of working list.
 
@@ -41,7 +41,7 @@ Adds a flow controller.
 **Parameters**
 
 *   **name** (*string*) – Name of the controller to add.
-*   **controller** ([*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.11)")*(*[*FlowController*](#qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")*)*) – The class implementing a flow controller.
+*   **controller** ([*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")*(*[*FlowController*](#qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")*)*) – The class implementing a flow controller.
 
 ### controller\_factory
 
@@ -53,9 +53,9 @@ Constructs a flow controller based on the partially evaluated controller argumen
 
 **Parameters**
 
-*   **passes** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[TBasePass]*) – passes to add to the flow controller.
-*   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – PassManager options.
-*   **\*\*partial\_controller** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – Partially evaluated controller arguments in the form \{name:partial}
+*   **passes** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[TBasePass]*) – passes to add to the flow controller.
+*   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – PassManager options.
+*   **\*\*partial\_controller** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Partially evaluated controller arguments in the form \{name:partial}
 
 **Raises**
 
@@ -83,7 +83,7 @@ Fetches the passes added to this flow controller.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 ### remove\_flow\_controller
 
@@ -99,5 +99,5 @@ Removes a flow controller.
 
 **Raises**
 
-[**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.11)") – If the controller to remove was not registered.
+[**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.12)") – If the controller to remove was not registered.
 

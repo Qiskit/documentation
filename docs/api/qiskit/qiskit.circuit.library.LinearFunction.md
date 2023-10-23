@@ -50,7 +50,7 @@ Create a new linear function.
 
 **Parameters**
 
-*   **LinearFunction** (*linear (*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*] or ndarray\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")*] or QuantumCircuit or*) – or PermutationGate or Clifford): data from which a linear function can be constructed. It can be either a nxn matrix (describing the linear transformation), a permutation (which is a special case of a linear function), another linear function, a clifford (when it corresponds to a linear function), or a quantum circuit composed of linear gates (CX and SWAP) and other objects described above, including nested subcircuits.
+*   **LinearFunction** (*linear (*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*] or ndarray\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*] or QuantumCircuit or*) – or PermutationGate or Clifford): data from which a linear function can be constructed. It can be either a nxn matrix (describing the linear transformation), a permutation (which is a special case of a linear function), another linear function, a clifford (when it corresponds to a linear function), or a quantum circuit composed of linear gates (CX and SWAP) and other objects described above, including nested subcircuits.
 *   **validate\_input** – if True, performs more expensive input validation checks, such as checking that a given n x n matrix is invertible.
 
 **Raises**
@@ -143,8 +143,8 @@ Extend linear function to a linear function over nq qubits, with identities on o
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – number of qubits of the extended function.
-*   **positions** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – describes the positions of original qubits in the extended function’s qubits.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubits of the extended function.
+*   **positions** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – describes the positions of original qubits in the extended function’s qubits.
 
 **Returns**
 
@@ -172,7 +172,7 @@ Returns whether this linear function is a permutation, that is whether every row
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### mat\_str
 

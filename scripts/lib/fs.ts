@@ -10,8 +10,8 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { stat } from 'fs/promises';
-import { normalize } from 'path';
+import { stat } from "fs/promises";
+import { normalize } from "path";
 
 export function getRoot() {
   return normalize(`${__dirname}/../../`);
@@ -22,7 +22,7 @@ export async function pathExists(path: string) {
     await stat(path);
     return true;
   } catch (err: any) {
-    if (err && err.code === 'ENOENT') return false;
+    if (err && err.code === "ENOENT") return false;
     throw err;
   }
 }

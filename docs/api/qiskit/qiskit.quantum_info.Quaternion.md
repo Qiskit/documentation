@@ -12,7 +12,7 @@ python_api_name: qiskit.quantum_info.Quaternion
 
 `qiskit.quantum_info.Quaternion(data)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 A class representing a Quaternion.
 
@@ -28,8 +28,8 @@ Return quaternion for rotation about given axis.
 
 **Parameters**
 
-*   **angle** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Angle in radians.
-*   **axis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Axis for rotation
+*   **angle** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Angle in radians.
+*   **axis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Axis for rotation
 
 **Returns**
 
@@ -41,7 +41,7 @@ Quaternion for axis rotation.
 
 **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – Invalid input axis.
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid input axis.
 
 ### from\_euler
 
@@ -54,7 +54,7 @@ Generate a quaternion from a set of Euler angles.
 **Parameters**
 
 *   **angles** (*array\_like*) – Array of Euler angles.
-*   **order** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Order of Euler rotations. ‘yzy’ is default.
+*   **order** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Order of Euler rotations. ‘yzy’ is default.
 
 **Returns**
 
@@ -82,7 +82,7 @@ Normalizes a Quaternion to unit length so that it represents a valid rotation.
 
 **Parameters**
 
-**inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Do an inplace normalization.
+**inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Do an inplace normalization.
 
 **Returns**
 

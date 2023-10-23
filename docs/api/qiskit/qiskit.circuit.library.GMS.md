@@ -51,8 +51,8 @@ Create a new Global Mølmer–Sørensen (GMS) gate.
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – width of gate.
-*   **theta** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*]] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")) – a num\_qubits x num\_qubits symmetric matrix of interaction angles for each qubit pair. The upper triangle is considered.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – width of gate.
+*   **theta** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] |* [*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")) – a num\_qubits x num\_qubits symmetric matrix of interaction angles for each qubit pair. The upper triangle is considered.
 
 ## Attributes
 
@@ -118,7 +118,7 @@ Return the global phase of the circuit in radians.
 
 ### layout
 
-Return any associated layout information anout the circuit
+Return any associated layout information about the circuit
 
 This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
@@ -170,7 +170,7 @@ List of integers representing instruction start times. The index corresponds to 
 
 **Raises**
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.11)") – When circuit is not scheduled.
+[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
 
 <span id="qiskit.circuit.library.GMS.parameters" />
 
@@ -195,7 +195,7 @@ The snippet below shows that insertion order of parameters does not matter.
 ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
 ```
 
-Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
+Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter

@@ -46,7 +46,7 @@ sampler = Sampler(session=session)
 
 **Context manager**
 
-The context manager automatically opens a session for you. A session is
+The context manager automatically opens and closes session for you. A session is
 started when the first primitive job in this context manager starts (not when it is queued). Primitives created in the context automatically use
 that session. Example:
 
@@ -83,6 +83,7 @@ with Session(backend=backend):
   ...
 ```
 
+<span id="specify-length"></span>
 ## Specify the session length
 
 When a session is started, it is assigned a maximum session timeout
@@ -95,7 +96,7 @@ You can configure the maximum session timeout value through the
 (int) or a string, like "2h 30m 40s". This value has to be greater
 than the `max_execution_time` of the job and less than the
 system's `max_time`. The default value is the system's
-`max_time`. See [What is the maximum execution time for a Qiskit Runtime job?](max-execution-time) to determine the
+`max_time`. See [Determine session details](#session-details) to determine the
 system limit.
 
 When setting the session length, consider how long each job within the
@@ -108,20 +109,52 @@ with Session(service=service, backend=backend, max_time="25m"):
   ...   
 ```
 
-There is also an interactive timeout value (ITTL, or interactive time to live) that cannot be configured. For premium accounts, the ITTL is 5 min, and for open plan accounts, the ITTL is 2 sec. If no session jobs are queued within that window, the session is temporarily deactivated. For more details about session length and timeout, see [How long a session stays active](sessions#active).
+There is also an interactive timeout value (ITTL, or interactive time to live) that cannot be configured.  If no session jobs are queued within that window, the session is temporarily deactivated. For more details about session length and timeout, see [How long a session stays active](sessions#active). To determine a session's ITTL, follow the instructions in [Determine session details](#session-details) and look for the `interactive_timeout` value.
 
 <span id="close"></span>
 ## Close a session 
 
-When jobs are all done, it is recommended that you use
-`session.close()` to close the session. This allows the
+With `qiskit-ibm-runtime` 0.13 or later releases, when the session context manager is exited, the session is put into `In progress, not accepting new jobs` status.  This means that the session will finish processing all running or queued jobs until the maximum timeout value is reached.  After all jobs are completed, the session is immediately closed. This allows the
+scheduler to run the next job without waiting for the session interactive timeout,
+therefore reducing the average job queueing time. You cannot submit jobs to a
+closed session.
+
+This behavior exists in `qiskit-ibm-runtime` 0.13 or later releases only. Previously, `session.close()` **canceled** the session.  
+
+``` python
+with Session(service=service, backend=backend) as session:
+    estimator = Estimator()
+    job = estimator.run(...)
+    
+# The session is no longer accepting jobs but the submitted job will run to completion    
+result = job.result()
+```
+
+<span id="cancel"></span>
+## Cancel a session 
+
+If a session is canceled, the session is put into `Closed` status.  Any jobs that are already running continue to run but queued jobs are put into a failed state and no further jobs can be submitted to the session. This is a convenient way to quickly fail all queued jobs within a session. 
+
+### For Qiskit runtime releases 0.13 or later
+
+Use the `session.cancel()` method to cancel a session.  
+
+``` python
+with Session(service=service, backend=backend) as session:
+    estimator = Estimator()
+    job1 = estimator.run(...)
+    job2 = estimator.run(...)
+    # You can use session.cancel() to fail all pending jobs, for example, 
+    # if you realize you made a mistake.
+    session.cancel()
+```
+
+### For Qiskit runtime releases before 0.13
+
+Use the `session.close()` method to cancel a session.  This allows the
 scheduler to run the next job without waiting for the session timeout,
 therefore making it easier for everyone. You cannot submit jobs to a
 closed session.
-
-<Admonition type="note" title="Important">
-    Close a session only after all session jobs **complete**, rather than immediately after they have all been submitted. Session jobs that are not completed will fail.
-</Admonition>
 
 
 ``` python
@@ -131,8 +164,10 @@ with Session(service=service, backend=backend) as session:
     # Do not close here, the job might not be completed!
     result = job.result()
     # Reaching this line means that the job is finished.
+    # This close() method would fail all pending jobs.
     session.close()
 ```
+
 
 ## Invoke multiple primitives in a session
 
@@ -181,6 +216,54 @@ with Session(backend=backend):
     print(f">>> Expectation value from the estimator job: {estimator_job.result().values[0]}")
 ```
 
+<span id="session-status"></span>
+## Query session status
+
+You can query the status of a session using `session.status()`.  You can also view a session's status on the Jobs page for your channel.
+
+Session status can be one of the following:
+
+- `Pending`: Session has not started or has been deactivated. The next session job needs to wait in the queue like other jobs. 
+- `In progress, accepting new jobs`: Session is active and accepting new jobs.
+- `In progress, not accepting new jobs`: Session is active but not accepting new jobs. Job submission to the session will be rejected, but outstanding session jobs will run to completion. The session will be automatically closed once all jobs finish. 
+- `Closed`: Session maximum timeout value has been reached, or session was explicitly closed.
+
+<span id="session-details"></span>
+## Determine session details
+
+You can find details about a session by using the `session.details()` method, from the [Quantum Platform Jobs page](https://quantum-computing.ibm.com/jobs), or from the IBM Cloud Jobs page, which you access from your [Instances page](https://cloud.ibm.com/quantum/instances). From the session details you can determine the [maximum](#max-ttl) and [interactive](#ttl) time to live (TTL) values, its status, whether it's currently accepting jobs, and more. 
+
+Example:
+
+``` python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService()
+
+with Session(service=service, backend="ibmq_qasm_simulator") as session:
+    estimator = Estimator()
+    job = estimator.run(circuit, observable)
+    print(session.details())
+```
+
+Output:
+
+``` text
+{
+'id': 'cki5d18m3kt305s4pndg',
+ 'backend_name': 'ibm_algiers',
+ 'interactive_timeout': 300,  # This is the interactive timeout, in seconds
+ 'max_time': 28800,           # This is the maximum session timeout, in seconds
+ 'active_timeout': 28800,
+ 'state': 'closed',
+ 'accepting_jobs': True,
+ 'last_job_started': '2023-10-09T19:37:42.004Z',
+ 'last_job_completed': '2023-10-09T19:38:10.064Z',
+ 'started_at': '2023-10-09T19:37:42.004Z',
+ 'closed_at': '2023-10-09T19:38:39.406Z'
+}
+```
+
 ## Full example
 
 In this example, we start a session, run an Estimator job, and output
@@ -203,8 +286,6 @@ with Session(service=service, backend="ibmq_qasm_simulator") as session:
     estimator = Estimator(options=options)
     job = estimator.run(circuit, observable)
     result = job.result()
-    # Close the session only if all jobs are finished, and you don't need to run more in the session
-    session.close()
 
 display(circuit.draw("mpl"))
 print(f" > Observable: {observable.paulis}")
