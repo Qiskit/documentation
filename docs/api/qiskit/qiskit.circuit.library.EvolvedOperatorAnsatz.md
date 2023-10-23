@@ -18,9 +18,9 @@ The evolved operator ansatz.
 
 **Parameters**
 
-*   **operators** (*BaseOperator |* [*OperatorBase*](http://qiskit.org/documentation/stubs/qiskit.opflow.OperatorBase.html#qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *| None*) – The operators to evolve. If a circuit is passed, we assume it implements an already evolved operator and thus the circuit is not evolved again. Can be a single operator (circuit) or a list of operators (and circuits).
+*   **operators** (*BaseOperator |* [*OperatorBase*](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")  *|*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *| None*) – The operators to evolve. If a circuit is passed, we assume it implements an already evolved operator and thus the circuit is not evolved again. Can be a single operator (circuit) or a list of operators (and circuits).
 *   **reps** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of times to repeat the evolved operators.
-*   **evolution** ([*EvolutionBase*](http://qiskit.org/documentation/stubs/qiskit.opflow.evolutions.EvolutionBase.html#qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase")  *|*[*EvolutionSynthesis*](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis") *| None*) – A specification of which evolution synthesis to use for the [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"), if the operator is from [`qiskit.quantum_info`](quantum_info#module-qiskit.quantum_info "qiskit.quantum_info") or an opflow converter object if the operator is from [`qiskit.opflow`](http://qiskit.org/documentation/apidoc/opflow.html#module-qiskit.opflow "qiskit.opflow"). Defaults to first order Trotterization.
+*   **evolution** ([*EvolutionBase*](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase")  *|*[*EvolutionSynthesis*](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis") *| None*) – A specification of which evolution synthesis to use for the [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"), if the operator is from [`qiskit.quantum_info`](quantum_info#module-qiskit.quantum_info "qiskit.quantum_info") or an opflow converter object if the operator is from [`qiskit.opflow`](opflow#module-qiskit.opflow "qiskit.opflow"). Defaults to first order Trotterization.
 *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to insert barriers in between each evolution.
 *   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit.
 *   **parameter\_prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| Sequence\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – Set the names of the circuit parameters. If a string, the same prefix will be used for each parameters. Can also be a list to specify a prefix per operator.
@@ -85,7 +85,7 @@ The evolution converter used to compute the evolution.
 
 **Return type**
 
-[EvolutionBase](http://qiskit.org/documentation/stubs/qiskit.opflow.evolutions.EvolutionBase.html#qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase") or [EvolutionSynthesis](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis")
+[EvolutionBase](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase") or [EvolutionSynthesis](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.EvolutionSynthesis")
 
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz.extension_lib" />
 
