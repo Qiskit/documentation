@@ -10,7 +10,7 @@ Qiskit provides some tools for converting between OpenQASM representations of qu
 
 ## Import an OpenQASM 2 program into Qiskit
 
-Currently two high-level functions are available for importing from OpenQASM 2 into Qiskit. These functions are `load()`, which takes a file name, and `loads()`, which takes the program itself as a string. 
+Currently two high-level functions are available for importing from OpenQASM 2 into Qiskit. These functions are `qasm2.load()`, which takes a file name, and `qasm2.loads()`, which takes the program itself as a string. 
 
 ```python
 qiskit.qasm2.load(filename, *, include_path=('.',), include_input_directory='append', custom_instructions=(), custom_classical=(), strict=False)
@@ -68,7 +68,7 @@ By default, this parser is a little bit more relaxed than the official specifica
 
 ### Import an OpenQASM 2 program as a string
 
-Use `loads()` to import an OpenQASM 2 program as a string into a QuantumCircuit:
+Use `qasm2.loads()` to import an OpenQASM 2 program as a string into a QuantumCircuit:
 
 ```python
 import qiskit.qasm2
@@ -100,7 +100,7 @@ circuit = qiskit.qasm2.load("myfile.qasm")
 
 ### Use custom quantum instructions
 
-Use `loads()` to import an OpenQASM 2 program as a string into a QuantumCircuit, but use a custom quantum instruction.  Sometimes you might  want to influence the gate objects that the importer emits for given named instructions. Gates that are defined by the statement `include "qelib1.inc"` are automatically associated with a suitable Qiskit circuit-library gate, but you can extend this:
+Use `qasm2.loads()` to import an OpenQASM 2 program as a string into a QuantumCircuit, but use a custom quantum instruction.  Sometimes you might  want to influence the gate objects that the importer emits for given named instructions. Gates that are defined by the statement `include "qelib1.inc"` are automatically associated with a suitable Qiskit circuit-library gate, but you can extend this:
 
 ```python
 from qiskit.circuit import Gate
@@ -130,7 +130,7 @@ circuit = qasm2.loads(program, custom_instructions=customs)
 
 ### Use custom classical instructions
 
-Use `loads()` to import an OpenQASM 2 program as a string into a QuantumCircuit, but use a custom classical instruction.  You can add new classical functions used during the description of arguments to gates, both in the main body of the program (which come out constant-folded) and within the bodies of defined gates (which are computed on demand). Here we provide a Python version of `atan2(y, x)`, which mathematically is $\atan(y/x)$, but correctly handles angle quadrants and infinities, and a custom `add_one` function:
+Use `qasm2.loads()` to import an OpenQASM 2 program as a string into a QuantumCircuit, but use a custom classical instruction.  You can add new classical functions used during the description of arguments to gates, both in the main body of the program (which come out constant-folded) and within the bodies of defined gates (which are computed on demand). Here we provide a Python version of `atan2(y, x)`, which mathematically is $\atan(y/x)$, but correctly handles angle quadrants and infinities, and a custom `add_one` function:
 
 ```python
 import math
