@@ -41,32 +41,32 @@ The remainder of this guide will focus on the [`qiskit.utils.QuantumInstance.exe
 - [Choosing the right primitive for your settings]
 - [Code examples]
 
-:::{attention}
-**Background on the Qiskit Primitives**
+<Admonition type="warning">
+  **Background on the Qiskit Primitives**
 
-The Qiskit Primitives are algorithmic abstractions that encapsulate the access to backends or simulators
-for an easy integration into algorithm workflows.
+  The Qiskit Primitives are algorithmic abstractions that encapsulate the access to backends or simulators
+  for an easy integration into algorithm workflows.
 
-The current pool of primitives includes **two** different types of primitives: Sampler and
-Estimator.
+  The current pool of primitives includes **two** different types of primitives: Sampler and
+  Estimator.
 
-Qiskit provides reference implementations in [`qiskit.primitives.Sampler`](../qiskit/qiskit.primitives.Sampler) and [`qiskit.primitives.Estimator`](../qiskit/qiskit.primitives.Estimator). Additionally,
-[`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) and a [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator) are
-wrappers for `backend.run()` that follow the primitives interface.
+  Qiskit provides reference implementations in [`qiskit.primitives.Sampler`](../qiskit/qiskit.primitives.Sampler) and [`qiskit.primitives.Estimator`](../qiskit/qiskit.primitives.Estimator). Additionally,
+  [`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) and a [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator) are
+  wrappers for `backend.run()` that follow the primitives interface.
 
-Providers can implement these primitives as subclasses of [`qiskit.primitives.BaseSampler`](../qiskit/qiskit.primitives.BaseSampler) and [`qiskit.primitives.BaseEstimator`](../qiskit/qiskit.primitives.BaseEstimator) respectively.
-IBM's Qiskit Runtime ([`qiskit_ibm_runtime`](../qiskit-ibm-runtime/runtime_service)) and Aer ([`qiskit_aer.primitives`](https://qiskit.org/ecosystem/aer/apidocs/aer_primitives.html)) are examples of native implementations of primitives.
+  Providers can implement these primitives as subclasses of [`qiskit.primitives.BaseSampler`](../qiskit/qiskit.primitives.BaseSampler) and [`qiskit.primitives.BaseEstimator`](../qiskit/qiskit.primitives.BaseEstimator) respectively.
+  IBM's Qiskit Runtime ([`qiskit_ibm_runtime`](../qiskit-ibm-runtime/runtime_service)) and Aer ([`qiskit_aer.primitives`](https://qiskit.org/ecosystem/aer/apidocs/aer_primitives.html)) are examples of native implementations of primitives.
 
-This guide uses the following naming convention:
+  This guide uses the following naming convention:
 
-- *Primitives* - Any Sampler/Estimator implementation using base classes [`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) and a [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator).
-- *Reference Primitives* -  [`qiskit.primitives.Sampler`](../qiskit/qiskit.primitives.Sampler) and [`qiskit.primitives.Estimator`](../qiskit/qiskit.primitives.Estimator) are reference implementations that come with Qiskit.
-- *Aer Primitives* - The [Aer](https://qiskit.org/ecosystem/aer) primitive implementations [`qiskit_aer.primitives.Sampler`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Sampler.html) and [`qiskit_aer.primitives.Estimator`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Estimator.html).
-- *Qiskit Runtime Primitives* - IBM's Qiskit Runtime primitive implementations [`qiskit_ibm_runtime.Sampler`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler) and [`qiskit_ibm_runtime.Estimator`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator).
-- *Backend Primitives* - Instances of [`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator). These allow any backend to implement primitive interfaces
+  - *Primitives* - Any Sampler/Estimator implementation using base classes [`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) and a [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator).
+  - *Reference Primitives* -  [`qiskit.primitives.Sampler`](../qiskit/qiskit.primitives.Sampler) and [`qiskit.primitives.Estimator`](../qiskit/qiskit.primitives.Estimator) are reference implementations that come with Qiskit.
+  - *Aer Primitives* - The [Aer](https://qiskit.org/ecosystem/aer) primitive implementations [`qiskit_aer.primitives.Sampler`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Sampler.html) and [`qiskit_aer.primitives.Estimator`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Estimator.html).
+  - *Qiskit Runtime Primitives* - IBM's Qiskit Runtime primitive implementations [`qiskit_ibm_runtime.Sampler`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler) and [`qiskit_ibm_runtime.Estimator`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator).
+  - *Backend Primitives* - Instances of [`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator). These allow any backend to implement primitive interfaces
 
-For guidelines on which primitives to choose for your task, please continue reading.
-:::
+  For guidelines on which primitives to choose for your task, please continue reading.
+</Admonition>
 
 ## Choosing the right primitive for your task
 
@@ -79,13 +79,12 @@ there are multiple primitive classes, and each is optimized for a specific
 purpose. Selecting the right primitive (`Sampler` or `Estimator`) requires some knowledge about
 **what** it is expected to do and **where/how** it is expected to run.
 
-:::{note}
-The role of the primitives is two-fold. On one hand, they act as access points to backends and simulators.
-On the other hand, they are **algorithmic** abstractions with defined tasks:
+<Admonition type="note">
+  On the other hand, they are **algorithmic** abstractions with defined tasks:
 
-- The `Estimator` takes in circuits and observables and returns **expectation values**.
-- The `Sampler` takes in circuits, measures them, and returns their  **quasi-probability distributions**.
-:::
+  - The `Estimator` takes in circuits and observables and returns **expectation values**.
+  - The `Sampler` takes in circuits, measures them, and returns their  **quasi-probability distributions**.
+</Admonition>
 
 In order to know which primitive to use instead of [`qiskit.utils.QuantumInstance`](../qiskit/qiskit.utils.QuantumInstance), you should ask
 yourself two questions:
@@ -122,12 +121,12 @@ Certain [`qiskit.utils.QuantumInstance`](../qiskit/qiskit.utils.QuantumInstance)
 The following table summarizes the most common [`qiskit.utils.QuantumInstance`](../qiskit/qiskit.utils.QuantumInstance) settings and which
 primitives **expose a similar setting through their interface**:
 
-:::{attention}
-In some cases, a setting might not be exposed through the interface, but there might an alternative path to make
-it work. This is the case for custom transpiler passes, which cannot be set through the primitives interface,
-but pre-transpiled circuits can be sent if setting the option `skip_transpilation=True`. For more information,
-please refer to the API reference or source code of the desired primitive implementation.
-:::
+<Admonition type="warning">
+  In some cases, a setting might not be exposed through the interface, but there might an alternative path to make
+  it work. This is the case for custom transpiler passes, which cannot be set through the primitives interface,
+  but pre-transpiled circuits can be sent if setting the option `skip_transpilation=True`. For more information,
+  please refer to the API reference or source code of the desired primitive implementation.
+</Admonition>
 
 ```{eval-rst}
 .. list-table::
