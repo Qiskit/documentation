@@ -23,76 +23,74 @@ RuntimeOptions constructor.
 *   **log\_level** (`Optional`\[`str`]) – logging level to set in the execution environment. The valid log levels are: `DEBUG`, `INFO`, `WARNING`, `ERROR`, and `CRITICAL`. The default level is `WARNING`.
 *   **instance** (`Optional`\[`str`]) – The hub/group/project to use, in that format. This is only supported for `ibm_quantum` channel. If `None`, a hub/group/project that provides access to the target backend is randomly selected.
 *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the job. The tags can subsequently be used as a filter in the `jobs()` function call.
-*   **max\_execution\_time** (`Optional`\[`int`]) – Maximum execution time in seconds. If a job exceeds this time limit, it is forcibly cancelled.
+*   **max\_execution\_time** (`Optional`\[`int`]) – Maximum execution time in seconds, which is based on system execution time (not wall clock time). System execution time is the amount of time that the system is dedicated to processing your job. If a job exceeds this time limit, it is forcibly cancelled. Simulator jobs continue to use wall clock time.
 *   **session\_time** (`Optional`\[`int`]) – Length of session in seconds.
 
 ## Attributes
 
-<span id="runtimeoptions-backend" />
+<span id="qiskit_ibm_runtime.RuntimeOptions.backend" />
 
 ### backend
 
-<span id="qiskit_ibm_runtime.RuntimeOptions.backend" />
+`str | None`
 
-`str | None = None`
-
-<span id="runtimeoptions-image" />
-
-### image
+`= None`
 
 <span id="qiskit_ibm_runtime.RuntimeOptions.image" />
 
-`str | None = None`
+### image
 
-<span id="runtimeoptions-instance" />
+`str | None`
 
-### instance
+`= None`
 
 <span id="qiskit_ibm_runtime.RuntimeOptions.instance" />
 
-`str | None = None`
+### instance
 
-<span id="runtimeoptions-job-tags" />
+`str | None`
 
-### job\_tags
+`= None`
 
 <span id="qiskit_ibm_runtime.RuntimeOptions.job_tags" />
 
-`List[str] | None = None`
+### job\_tags
 
-<span id="runtimeoptions-log-level" />
+`List[str] | None`
 
-### log\_level
+`= None`
 
 <span id="qiskit_ibm_runtime.RuntimeOptions.log_level" />
 
-`str | None = None`
+### log\_level
 
-<span id="runtimeoptions-max-execution-time" />
+`str | None`
 
-### max\_execution\_time
+`= None`
 
 <span id="qiskit_ibm_runtime.RuntimeOptions.max_execution_time" />
 
-`int | None = None`
+### max\_execution\_time
 
-<span id="runtimeoptions-session-time" />
+`int | None`
 
-### session\_time
+`= None`
 
 <span id="qiskit_ibm_runtime.RuntimeOptions.session_time" />
 
-`int | None = None`
+### session\_time
+
+`int | None`
+
+`= None`
 
 ## Methods
-
-<span id="runtimeoptions-validate" />
 
 ### validate
 
 <span id="qiskit_ibm_runtime.RuntimeOptions.validate" />
 
-`RuntimeOptions.validate(channel)`
+`validate(channel)`
 
 Validate options.
 

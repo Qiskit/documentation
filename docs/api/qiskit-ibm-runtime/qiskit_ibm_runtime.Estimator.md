@@ -16,7 +16,7 @@ Class for interacting with Qiskit Runtime Estimator primitive service.
 
 Qiskit Runtime Estimator primitive service estimates expectation values of quantum circuits and observables.
 
-The [`run()`](qiskit_ibm_runtime.Estimator#run "qiskit_ibm_runtime.Estimator.run") can be used to submit circuits, observables, and parameters to the Estimator primitive.
+The [`run()`](#qiskit_ibm_runtime.Estimator.run "qiskit_ibm_runtime.Estimator.run") can be used to submit circuits, observables, and parameters to the Estimator primitive.
 
 You are encouraged to use [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") to open a session, during which you can invoke one or more primitives. Jobs submitted within a session are prioritized by the scheduler, and data is cached for efficiency.
 
@@ -52,9 +52,6 @@ with Session(service=service, backend="ibmq_qasm_simulator") as session:
         parameter_values=[theta1]*2
     )
     print(psi1_H23.result())
-    # Close the session only if all jobs are finished
-    # and you don't need to run more in the session
-    session.close()
 ```
 
 Initializes the Estimator primitive.
@@ -73,13 +70,9 @@ Initializes the Estimator primitive.
 
 ## Attributes
 
-<span id="estimator-circuits" />
-
-### circuits
-
 <span id="qiskit_ibm_runtime.Estimator.circuits" />
 
-`tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]`
+### circuits
 
 Quantum circuits that represents quantum states.
 
@@ -91,13 +84,9 @@ Quantum circuits that represents quantum states.
 
 The quantum circuits.
 
-<span id="estimator-observables" />
-
-### observables
-
 <span id="qiskit_ibm_runtime.Estimator.observables" />
 
-`tuple[qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp, ...]`
+### observables
 
 Observables to be estimated.
 
@@ -109,13 +98,9 @@ Observables to be estimated.
 
 The observables.
 
-<span id="estimator-options" />
-
-### options
-
 <span id="qiskit_ibm_runtime.Estimator.options" />
 
-`Options`
+### options
 
 Return options values for the sampler.
 
@@ -127,13 +112,9 @@ Return options values for the sampler.
 
 options
 
-<span id="estimator-parameters" />
-
-### parameters
-
 <span id="qiskit_ibm_runtime.Estimator.parameters" />
 
-`tuple[qiskit.circuit.parametertable.ParameterView, ...]`
+### parameters
 
 Parameters of the quantum circuits.
 
@@ -145,13 +126,9 @@ Parameters of the quantum circuits.
 
 Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
 
-<span id="estimator-session" />
-
-### session
-
 <span id="qiskit_ibm_runtime.Estimator.session" />
 
-`Session | None`
+### session
 
 Return session used by this primitive.
 
@@ -165,13 +142,11 @@ Session used by this primitive, or `None` if session is not used.
 
 ## Methods
 
-<span id="estimator-run" />
-
 ### run
 
 <span id="qiskit_ibm_runtime.Estimator.run" />
 
-`Estimator.run(circuits, observables, parameter_values=None, **kwargs)`
+`run(circuits, observables, parameter_values=None, **kwargs)`
 
 Submit a request to the estimator primitive.
 
@@ -194,13 +169,11 @@ Submitted job. The result of the job is an instance of `qiskit.primitives.Estima
 
 **ValueError** – Invalid arguments are given.
 
-<span id="estimator-set-options" />
-
 ### set\_options
 
 <span id="qiskit_ibm_runtime.Estimator.set_options" />
 
-`Estimator.set_options(**fields)`
+`set_options(**fields)`
 
 Set options values for the sampler.
 
