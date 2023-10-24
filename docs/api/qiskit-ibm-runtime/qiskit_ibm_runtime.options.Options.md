@@ -36,7 +36,11 @@ Options for the primitives.
 
     Refer to the [Qiskit Runtime documentation](https://qiskit.org/documentation/partners/qiskit_ibm_runtime). for more information about the error mitigation methods used at each level.
 
-*   **max\_execution\_time** (`Optional`\[`int`]) – Maximum execution time in seconds. If a job exceeds this time limit, it is forcibly cancelled. If `None`, the maximum execution time of the primitive is used. This value must be in between 300 seconds and the [system imposed maximum](https://qiskit.org/documentation/partners/qiskit_ibm_runtime/faqs/max_execution_time.html).
+*   **max\_execution\_time** (`Optional`\[`int`]) –
+
+    Maximum execution time in seconds, which is based on system execution time (not wall clock time). System execution time is the amount of time that the system is dedicated to processing your job. If a job exceeds this time limit, it is forcibly cancelled. Simulator jobs continue to use wall clock time.
+
+    Refer to the [Max execution time documentation](https://docs.quantum-computing.ibm.com/run/max-execution-time#maximum-execution-time). for more information.
 
 *   **transpilation** (`Union`\[[`TranspilationOptions`](qiskit_ibm_runtime.options.TranspilationOptions "qiskit_ibm_runtime.options.transpilation_options.TranspilationOptions"), `Dict`]) – Transpilation options. See [`TranspilationOptions`](qiskit_ibm_runtime.options.TranspilationOptions "qiskit_ibm_runtime.options.TranspilationOptions") for all available options.
 
@@ -50,79 +54,67 @@ Options for the primitives.
 
 ## Attributes
 
-<span id="options-environment" />
-
-### environment
-
-<span id="qiskit_ibm_runtime.options.Options.environment" />
-
-`EnvironmentOptions | Dict`
-
-<span id="options-execution" />
-
-### execution
-
-<span id="qiskit_ibm_runtime.options.Options.execution" />
-
-`ExecutionOptions | Dict`
-
-<span id="options-max-execution-time" />
+<span id="qiskit_ibm_runtime.options.Options.max_execution_time" />
 
 ### max\_execution\_time
 
-<span id="qiskit_ibm_runtime.options.Options.max_execution_time" />
+`int | None`
 
-`int | None = None`
-
-<span id="options-optimization-level" />
-
-### optimization\_level
+`= None`
 
 <span id="qiskit_ibm_runtime.options.Options.optimization_level" />
 
-`int | None = None`
+### optimization\_level
 
-<span id="options-resilience" />
+`int | None`
 
-### resilience
-
-<span id="qiskit_ibm_runtime.options.Options.resilience" />
-
-`ResilienceOptions | Dict`
-
-<span id="options-resilience-level" />
-
-### resilience\_level
+`= None`
 
 <span id="qiskit_ibm_runtime.options.Options.resilience_level" />
 
-`int | None = None`
+### resilience\_level
 
-<span id="options-simulator" />
+`int | None`
 
-### simulator
-
-<span id="qiskit_ibm_runtime.options.Options.simulator" />
-
-`SimulatorOptions | Dict`
-
-<span id="options-transpilation" />
-
-### transpilation
+`= None`
 
 <span id="qiskit_ibm_runtime.options.Options.transpilation" />
 
+### transpilation
+
 `TranspilationOptions | Dict`
 
-## Methods
+<span id="qiskit_ibm_runtime.options.Options.resilience" />
 
-<span id="options-validate-options" />
+### resilience
+
+`ResilienceOptions | Dict`
+
+<span id="qiskit_ibm_runtime.options.Options.execution" />
+
+### execution
+
+`ExecutionOptions | Dict`
+
+<span id="qiskit_ibm_runtime.options.Options.environment" />
+
+### environment
+
+`EnvironmentOptions | Dict`
+
+<span id="qiskit_ibm_runtime.options.Options.simulator" />
+
+### simulator
+
+`SimulatorOptions | Dict`
+
+## Methods
 
 ### validate\_options
 
 <span id="qiskit_ibm_runtime.options.Options.validate_options" />
 
-`static Options.validate_options(options)`
+`static validate_options(options)`
 
 Validate that program inputs (options) are valid :raises ValueError: if optimization\_level is outside the allowed range. :raises ValueError: if max\_execution\_time is outside the allowed range.
 
