@@ -6,9 +6,9 @@ python_api_type: module
 python_api_name: qiskit_ibm_runtime
 ---
 
-<span id="module-qiskit_ibm_runtime" />
-
 <span id="qiskit-runtime-qiskit-ibm-runtime" />
+
+<span id="module-qiskit_ibm_runtime" />
 
 # Qiskit Runtime
 
@@ -58,8 +58,6 @@ with Session(service=service, backend="ibmq_qasm_simulator") as session:
         circuits=[psi], observables=[H1], parameter_values=[theta]
     )
     print(f"Estimator results: {job.result()}")
-    # Close the session only if all jobs are finished and you don't need to run more in the session.
-    session.close()
 ```
 
 ## Backend data
@@ -123,15 +121,15 @@ Files related to writing a runtime program are in the `qiskit_ibm_runtime/progra
 
 |                                                                                                                                          |                                                                        |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService")(\[channel, token, url, ...]) | Class for interacting with the Qiskit Runtime service.                 |
-| [`Estimator`](qiskit_ibm_runtime.Estimator "qiskit_ibm_runtime.Estimator")(\[backend, session, options])                                 | Class for interacting with Qiskit Runtime Estimator primitive service. |
-| [`Sampler`](qiskit_ibm_runtime.Sampler "qiskit_ibm_runtime.Sampler")(\[backend, session, options])                                       | Class for interacting with Qiskit Runtime Sampler primitive service.   |
-| [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session")(\[service, backend, max\_time])                                     | Class for creating a flexible Qiskit Runtime session.                  |
-| [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend")(configuration, service, api\_client)                       | Backend class interfacing with an IBM Quantum backend.                 |
-| [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob")(backend, api\_client, ...\[, ...])                         | Representation of a runtime program execution.                         |
-| [`RuntimeProgram`](qiskit_ibm_runtime.RuntimeProgram "qiskit_ibm_runtime.RuntimeProgram")(program\_name, program\_id, ...)               | Class representing program metadata.                                   |
+| [`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService")(\[channel, token, url, ...]) | Class for interacting with the Qiskit Runtime service.                 |
+| [`Estimator`](qiskit_ibm_runtime.Estimator "qiskit_ibm_runtime.Estimator")(\[backend, session, options])                                 | Class for interacting with Qiskit Runtime Estimator primitive service. |
+| [`Sampler`](qiskit_ibm_runtime.Sampler "qiskit_ibm_runtime.Sampler")(\[backend, session, options])                                       | Class for interacting with Qiskit Runtime Sampler primitive service.   |
+| [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session")(\[service, backend, max\_time])                                     | Class for creating a flexible Qiskit Runtime session.                  |
+| [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend")(configuration, service, api\_client)                       | Backend class interfacing with an IBM Quantum backend.                 |
+| [`RuntimeJob`](qiskit_ibm_runtime.RuntimeJob "qiskit_ibm_runtime.RuntimeJob")(backend, api\_client, ...\[, ...])                         | Representation of a runtime program execution.                         |
+| [`RuntimeProgram`](qiskit_ibm_runtime.RuntimeProgram "qiskit_ibm_runtime.RuntimeProgram")(program\_name, program\_id, ...)               | Class representing program metadata.                                   |
 | [`ParameterNamespace`](qiskit_ibm_runtime.ParameterNamespace "qiskit_ibm_runtime.ParameterNamespace")(parameters)                        | A namespace for program parameters with validation.                    |
-| [`RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions")(\[backend, image, log\_level, ...])            | Class for representing generic runtime execution options.              |
-| [`RuntimeEncoder`](qiskit_ibm_runtime.RuntimeEncoder "qiskit_ibm_runtime.RuntimeEncoder")(\*\[, skipkeys, ensure\_ascii, ...])           | JSON Encoder used by runtime service.                                  |
-| [`RuntimeDecoder`](qiskit_ibm_runtime.RuntimeDecoder "qiskit_ibm_runtime.RuntimeDecoder")(\*args, \*\*kwargs)                            | JSON Decoder used by runtime service.                                  |
+| [`RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions")(\[backend, image, log\_level, ...])            | Class for representing generic runtime execution options.              |
+| [`RuntimeEncoder`](qiskit_ibm_runtime.RuntimeEncoder "qiskit_ibm_runtime.RuntimeEncoder")(\*\[, skipkeys, ensure\_ascii, ...])           | JSON Encoder used by runtime service.                                  |
+| [`RuntimeDecoder`](qiskit_ibm_runtime.RuntimeDecoder "qiskit_ibm_runtime.RuntimeDecoder")(\*args, \*\*kwargs)                            | JSON Decoder used by runtime service.                                  |
 
