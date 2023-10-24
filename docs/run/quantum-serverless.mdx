@@ -58,11 +58,11 @@ After creating a workflow, authenticate to the `IBMServerlessProvider` with your
 ```python
 # Authenticate to the IBM serverless provider
 from quantum_serverless import IBMServerlessProvider
-provider = IBMServerlessProvider("YOUR_IBM_QUANTUM_TOKEN")
+serverless = IBMServerlessProvider("YOUR_IBM_QUANTUM_TOKEN")
 
 # Deploy the workflow
 from quantum_serverless import Program
-provider.upload(
+serverless.upload(
     Program(
         title="My-Program",
         entrypoint="program.py",
@@ -71,7 +71,7 @@ provider.upload(
 )
 
 # Run workflow remotely
-job = provider.run("My-Program")
+job = serverless.run("My-Program")
 
 # Retrieve workflow status, logs, results
 job.status()
