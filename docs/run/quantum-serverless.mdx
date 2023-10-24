@@ -61,17 +61,17 @@ from quantum_serverless import IBMServerlessProvider
 serverless = IBMServerlessProvider("YOUR_IBM_QUANTUM_TOKEN")
 
 # Deploy the workflow
-from quantum_serverless import Program
+from quantum_serverless import QiskitPattern
 serverless.upload(
-    Program(
-        title="My-Program",
-        entrypoint="program.py",
+    QiskitPattern(
+        title="My-Qiskit-Pattern",
+        entrypoint="my_qiskit_pattern.py",
         working_dir="./source_files/"
     )
 )
 
 # Run workflow remotely
-job = serverless.run("My-Program")
+job = serverless.run("My-Qiskit-Pattern")
 
 # Retrieve workflow status, logs, results
 job.status()
