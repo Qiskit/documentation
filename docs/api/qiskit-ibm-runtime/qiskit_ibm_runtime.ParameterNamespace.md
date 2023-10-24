@@ -24,13 +24,9 @@ ParameterNamespace constructor.
 
 ## Attributes
 
-<span id="parameternamespace-metadata" />
-
-### metadata
-
 <span id="qiskit_ibm_runtime.ParameterNamespace.metadata" />
 
-`Dict`
+### metadata
 
 Returns the parameter metadata
 
@@ -40,13 +36,11 @@ Returns the parameter metadata
 
 ## Methods
 
-<span id="parameternamespace-to-dict" />
-
 ### to\_dict
 
 <span id="qiskit_ibm_runtime.ParameterNamespace.to_dict" />
 
-`ParameterNamespace.to_dict()`
+`to_dict()`
 
 Convert to dictionary.
 
@@ -54,13 +48,11 @@ Convert to dictionary.
 
 `Dict`
 
-<span id="parameternamespace-validate" />
-
 ### validate
 
 <span id="qiskit_ibm_runtime.ParameterNamespace.validate" />
 
-`ParameterNamespace.validate()`
+`validate()`
 
 Validate program input values.
 
