@@ -134,7 +134,7 @@ The number of control qubits for the gate.
 
 **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")
+[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 
 <span id="qiskit.circuit.library.CUGate.num_qubits" />
 
@@ -154,7 +154,7 @@ List of gate parameters.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 
 **Raises**
 

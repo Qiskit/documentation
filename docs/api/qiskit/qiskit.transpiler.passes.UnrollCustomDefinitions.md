@@ -21,7 +21,7 @@ Unrolls instructions with custom definitions.
 **Parameters**
 
 *   **equivalence\_library** ([*EquivalenceLibrary*](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – The equivalence library which will be used by the BasisTranslator pass. (Instructions in this library will not be unrolled by this pass.)
-*   **basis\_gates** (*Optional\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*]]*) – Target basis names to unroll to, e.g. \[‘u3’, ‘cx’]. Ignored if `target` is also specified.
+*   **basis\_gates** (*Optional\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]]*) – Target basis names to unroll to, e.g. \[‘u3’, ‘cx’]. Ignored if `target` is also specified.
 *   **target** (*Optional\[*[*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object corresponding to the compilation target. When specified, any argument specified for `basis_gates` is ignored.
 
 ## Attributes

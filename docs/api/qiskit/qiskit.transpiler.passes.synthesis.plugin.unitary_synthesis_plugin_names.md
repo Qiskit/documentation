@@ -22,5 +22,5 @@ A list of the installed unitary synthesis plugin names. The plugin names are val
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 

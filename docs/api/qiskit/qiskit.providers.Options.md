@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.Options
 
 `qiskit.providers.Options(**kwargs)`
 
-Bases: [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping "(in Python v3.11)")
+Bases: [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping "(in Python v3.12)")
 
 Base options object
 
@@ -43,7 +43,7 @@ Options can be updated by name:
 3
 ```
 
-Runtime validators can be registered. See set\_validator. Updates through update\_options and indexing (\_\_setitem\_\_) validate the new value before peforming the update and raise ValueError if the new value is invalid.
+Runtime validators can be registered. See set\_validator. Updates through update\_options and indexing (\_\_setitem\_\_) validate the new value before performing the update and raise ValueError if the new value is invalid.
 
 ```python
 >>> options.set_validator("opt1", (1, 5))
@@ -96,18 +96,18 @@ Setting a validator enables changes to an options values to be validated for cor
 options.set_validator("shots", (1, 4096))
 ```
 
-In this case whenever the `"shots"` option is updated by the user it will enforce that the value is >=1 and \<=4096. A `ValueError` will be raised if it’s outside those bounds. If a validator is already present for the specified field it will be silently overriden.
+In this case whenever the `"shots"` option is updated by the user it will enforce that the value is >=1 and \<=4096. A `ValueError` will be raised if it’s outside those bounds. If a validator is already present for the specified field it will be silently overridden.
 
 **Parameters**
 
-*   **field** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The field name to set the validator on
-*   **validator\_value** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")  *or*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.11)")) – The value to use for the validator depending on the type indicates on how the value for a field is enforced. If a tuple is passed in it must have a length of two and will enforce the min and max value (inclusive) for an integer or float value option. If it’s a list it will list the valid values for a field. If it’s a `type` the validator will just enforce the value is of a certain type.
+*   **field** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The field name to set the validator on
+*   **validator\_value** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")  *or*[*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")) – The value to use for the validator depending on the type indicates on how the value for a field is enforced. If a tuple is passed in it must have a length of two and will enforce the min and max value (inclusive) for an integer or float value option. If it’s a list it will list the valid values for a field. If it’s a `type` the validator will just enforce the value is of a certain type.
 
 **Raises**
 
-*   [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.11)") – If field is not present in the options object
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – If the `validator_value` has an invalid value for a given type
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.11)") – If `validator_value` is not a valid type
+*   [**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.12)") – If field is not present in the options object
+*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the `validator_value` has an invalid value for a given type
+*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If `validator_value` is not a valid type
 
 ### update\_options
 

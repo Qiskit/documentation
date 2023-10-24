@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.Bit
 
 `qiskit.circuit.Bit(register=None, index=None)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Implement a generic bit.
 

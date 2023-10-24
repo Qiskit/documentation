@@ -104,7 +104,7 @@ Dynamical decoupling initializer.
 
 *   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When invalid DD sequence is specified.
 *   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When pulse gate with the duration which is non-multiple of the alignment constraint value is found.
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.11)") – If `dd_sequence` is not specified
+*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If `dd_sequence` is not specified
 
 ## Attributes
 

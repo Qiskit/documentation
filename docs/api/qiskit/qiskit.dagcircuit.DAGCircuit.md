@@ -6,15 +6,13 @@ python_api_type: class
 python_api_name: qiskit.dagcircuit.DAGCircuit
 ---
 
-{/* cspell:ignore Opnodes */}
-
 # DAGCircuit
 
 <span id="qiskit.dagcircuit.DAGCircuit" />
 
 `qiskit.dagcircuit.DAGCircuit`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Quantum circuit as a directed acyclic graph.
 
@@ -64,14 +62,14 @@ Register a low-level, custom pulse definition for the given gate.
 
 **Parameters**
 
-*   **gate** (*Union\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*]*) – Gate information.
-*   **qubits** (*Union\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*, Tuple\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]]*) – List of qubits to be measured.
+*   **gate** (*Union\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*,* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – Gate information.
+*   **qubits** (*Union\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*, Tuple\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – List of qubits to be measured.
 *   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule information.
-*   **params** (*Optional\[List\[Union\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*,* [*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
+*   **params** (*Optional\[List\[Union\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
 
 **Raises**
 
-[**Exception**](https://docs.python.org/3/library/exceptions.html#Exception "(in Python v3.11)") – if the gate is of type string and params is None.
+[**Exception**](https://docs.python.org/3/library/exceptions.html#Exception "(in Python v3.12)") – if the gate is of type string and params is None.
 
 ### add\_clbits
 
@@ -124,8 +122,8 @@ Apply an operation to the output of the circuit.
 **Parameters**
 
 *   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – the operation associated with the DAG node
-*   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
-*   **cargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
+*   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
+*   **cargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
 
 **Returns**
 
@@ -150,8 +148,8 @@ Apply an operation to the input of the circuit.
 **Parameters**
 
 *   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – the operation associated with the DAG node
-*   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
-*   **cargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
+*   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
+*   **cargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
 
 **Returns**
 
@@ -232,10 +230,10 @@ A subset of input wires of `other` are mapped to a subset of output wires of thi
 **Parameters**
 
 *   **other** ([*DAGCircuit*](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit to compose with self
-*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – qubits of self to compose onto.
-*   **clbits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – clbits of self to compose onto.
-*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True, front composition will be performed (not implemented yet)
-*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True, modify the object. Otherwise return composed circuit.
+*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – qubits of self to compose onto.
+*   **clbits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – clbits of self to compose onto.
+*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, front composition will be performed (not implemented yet)
+*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, modify the object. Otherwise return composed circuit.
 
 **Returns**
 
@@ -282,7 +280,7 @@ Count the occurrences of operation names.
 
 **Parameters**
 
-**recurse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if `True` (default), then recurse into control-flow operations. In all cases, this counts only the number of times the operation appears in any possible block; both branches of if-elses are counted, and for- and while-loop blocks are only counted once.
+**recurse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True` (default), then recurse into control-flow operations. In all cases, this counts only the number of times the operation appears in any possible block; both branches of if-elses are counted, and for- and while-loop blocks are only counted once.
 
 **Returns**
 
@@ -290,7 +288,7 @@ a mapping of operation names to the number of times it appears.
 
 **Return type**
 
-Mapping\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")]
+Mapping\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
 
 ### count\_ops\_longest\_path
 
@@ -308,11 +306,11 @@ Returns a dictionary of counts keyed on the operation name.
 
 `depth(*, recurse=False)`
 
-Return the circuit depth. If there is control flow present, this count may only be an estimate, as the complete control-flow path cannot be staticly known.
+Return the circuit depth. If there is control flow present, this count may only be an estimate, as the complete control-flow path cannot be statically known.
 
 **Parameters**
 
-**recurse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if `True`, then recurse into control-flow operations. For loops with known-length iterators are counted as if the loop had been manually unrolled (*i.e.* with each iteration of the loop body written out explicitly). If-else blocks take the longer case of the two branches. While loops are counted as if the loop body runs once only. Defaults to `False` and raises [`DAGCircuitError`](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") if any control flow is present, to avoid silently returning a nonsensical number.
+**recurse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True`, then recurse into control-flow operations. For loops with known-length iterators are counted as if the loop had been manually unrolled (*i.e.* with each iteration of the loop body written out explicitly). If-else blocks take the longer case of the two branches. While loops are counted as if the loop body runs once only. Defaults to `False` and raises [`DAGCircuitError`](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") if any control flow is present, to avoid silently returning a nonsensical number.
 
 **Returns**
 
@@ -320,7 +318,7 @@ the circuit depth
 
 **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")
+[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 
 **Raises**
 
@@ -347,9 +345,9 @@ This function needs [pydot](https://github.com/erocarrera/pydot), which in turn 
 
 **Parameters**
 
-*   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – scaling factor
-*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – file path to save image to (format inferred from name)
-*   **style** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – ‘plain’: B\&W graph; ‘color’ (default): color input/output/op nodes
+*   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – scaling factor
+*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – file path to save image to (format inferred from name)
+*   **style** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – ‘plain’: B\&W graph; ‘color’ (default): color input/output/op nodes
 
 **Returns**
 
@@ -371,7 +369,7 @@ This works by returning the output edges from the specified nodes. If no nodes a
 
 **Parameters**
 
-**nodes** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*, or* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")*|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*(*[*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*, or* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – Either a list of nodes or a single input node. If none is specified, all edges are returned from the graph.
+**nodes** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*, or* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")*|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")*,* [*DAGInNode*](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")*, or* [*DAGOutNode*](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")) – Either a list of nodes or a single input node. If none is specified, all edges are returned from the graph.
 
 **Yields**
 
@@ -429,7 +427,7 @@ the list of DAGOpNodes that represent gates.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")]
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")]
 
 ### has\_calibration\_for
 
@@ -449,7 +447,7 @@ Return idle wires.
 
 **Parameters**
 
-**ignore** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*(*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*)*) – List of node names to ignore. Default: \[]
+**ignore** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*(*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*)*) – List of node names to ignore. Default: \[]
 
 **Yields**
 
@@ -531,7 +529,7 @@ Get the node in the dag.
 
 **Parameters**
 
-**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Node identifier.
+**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Node identifier.
 
 **Returns**
 
@@ -564,7 +562,7 @@ Iterator for nodes that affect a given wire.
 **Parameters**
 
 *   **wire** ([*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")) – the wire to be looked at.
-*   **only\_ops** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – True if only the ops nodes are wanted; otherwise, all nodes are returned.
+*   **only\_ops** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if only the ops nodes are wanted; otherwise, all nodes are returned.
 
 **Yields**
 
@@ -609,7 +607,7 @@ Get the list of “op” nodes in the dag.
 **Parameters**
 
 *   **op** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")) – [`qiskit.circuit.Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") subclass op nodes to return. If None, return all op nodes.
-*   **include\_directives** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – include barrier, snapshot etc.
+*   **include\_directives** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – include barrier, snapshot etc.
 
 **Returns**
 
@@ -617,7 +615,7 @@ the list of node ids containing the given op.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")]
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[DAGOpNode](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")]
 
 ### predecessors
 
@@ -797,8 +795,8 @@ This is used to consolidate a block of DAGOpNodes into a single operation. A typ
 
 *   **node\_block** (*List\[*[*DAGNode*](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")*]*) – A list of dag nodes that represents the node block to be replaced
 *   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The operation to replace the block with
-*   **wire\_pos\_map** (*Dict\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – The dictionary mapping the bits to their positions in the output `qargs` or `cargs`. This is necessary to reconstruct the arg order over multiple gates in the combined single op node. If a [`Bit`](qiskit.circuit.Bit "qiskit.circuit.Bit") is not in the dictionary, it will not be added to the args; this can be useful when dealing with control-flow operations that have inherent bits in their `condition` or `target` fields.
-*   **cycle\_check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – When set to True this method will check that replacing the provided `node_block` with a single node would introduce a cycle (which would invalidate the `DAGCircuit`) and will raise a `DAGCircuitError` if a cycle would be introduced. This checking comes with a run time penalty. If you can guarantee that your input `node_block` is a contiguous block and won’t introduce a cycle when it’s contracted to a single node, this can be set to `False` to improve the runtime performance of this method.
+*   **wire\_pos\_map** (*Dict\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The dictionary mapping the bits to their positions in the output `qargs` or `cargs`. This is necessary to reconstruct the arg order over multiple gates in the combined single op node. If a [`Bit`](qiskit.circuit.Bit "qiskit.circuit.Bit") is not in the dictionary, it will not be added to the args; this can be useful when dealing with control-flow operations that have inherent bits in their `condition` or `target` fields.
+*   **cycle\_check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set to True this method will check that replacing the provided `node_block` with a single node would introduce a cycle (which would invalidate the `DAGCircuit`) and will raise a `DAGCircuitError` if a cycle would be introduced. This checking comes with a run time penalty. If you can guarantee that your input `node_block` is a contiguous block and won’t introduce a cycle when it’s contracted to a single node, this can be set to `False` to improve the runtime performance of this method.
 
 **Raises**
 
@@ -838,7 +836,7 @@ Decompose the circuit into sets of qubits with no gates connecting them.
 
 **Parameters**
 
-**remove\_idle\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Flag denoting whether to remove idle qubits from the separated circuits. If `False`, each output circuit will contain the same number of qubits as `self`.
+**remove\_idle\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Flag denoting whether to remove idle qubits from the separated circuits. If `False`, each output circuit will contain the same number of qubits as `self`.
 
 **Returns**
 
@@ -872,7 +870,7 @@ Return the number of operations. If there is control flow present, this count ma
 
 **Parameters**
 
-**recurse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if `True`, then recurse into control-flow operations. For loops with known-length iterators are counted unrolled. If-else blocks sum both of the two branches. While loops are counted as if the loop body runs once only. Defaults to `False` and raises [`DAGCircuitError`](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") if any control flow is present, to avoid silently returning a mostly meaningless number.
+**recurse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if `True`, then recurse into control-flow operations. For loops with known-length iterators are counted unrolled. If-else blocks sum both of the two branches. While loops are counted as if the loop body runs once only. Defaults to `False` and raises [`DAGCircuitError`](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") if any control flow is present, to avoid silently returning a mostly meaningless number.
 
 **Returns**
 
@@ -880,7 +878,7 @@ the circuit size
 
 **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")
+[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 
 **Raises**
 
@@ -898,8 +896,8 @@ Replace an DAGOpNode with a single operation. qargs, cargs and conditions for th
 
 *   **node** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")) – Node to be replaced
 *   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The [`qiskit.circuit.Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") instance to be added to the DAG
-*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Optional, default False. If True, existing DAG node will be modified to include op. Otherwise, a new DAG node will be used.
-*   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Optional, default True. If True, a condition on the `node` to be replaced will be applied to the new `op`. This is the legacy behaviour. If either node is a control-flow operation, this will be ignored. If the `op` already has a condition, [`DAGCircuitError`](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") is raised.
+*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optional, default False. If True, existing DAG node will be modified to include op. Otherwise, a new DAG node will be used.
+*   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optional, default True. If True, a condition on the `node` to be replaced will be applied to the new `op`. This is the legacy behaviour. If either node is a control-flow operation, this will be ignored. If the `op` already has a condition, [`DAGCircuitError`](dagcircuit#qiskit.dagcircuit.DAGCircuitError "qiskit.dagcircuit.DAGCircuitError") is raised.
 
 **Returns**
 
@@ -926,8 +924,8 @@ Replace one node with dag.
 
 *   **node** ([*DAGOpNode*](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")) – node to substitute
 *   **input\_dag** ([*DAGCircuit*](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – circuit that will substitute the node
-*   **wires** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*] | Dict\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*,* [*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – gives an order for (qu)bits in the input circuit. If a list, then the bits refer to those in the `input_dag`, and the order gets matched to the node wires by qargs first, then cargs, then conditions. If a dictionary, then a mapping of bits in the `input_dag` to those that the `node` acts on.
-*   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If `True` (default), then any `condition` attribute on the operation within `node` is propagated to each node in the `input_dag`. If `False`, then the `input_dag` is assumed to faithfully implement suitable conditional logic already. This is ignored for [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")s (i.e. treated as if it is `False`); replacements of those must already fulfil the same conditional logic or this function would be close to useless for them.
+*   **wires** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*] | Dict\[*[*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*,* [*Bit*](qiskit.circuit.Bit "qiskit.circuit.Bit")*]*) – gives an order for (qu)bits in the input circuit. If a list, then the bits refer to those in the `input_dag`, and the order gets matched to the node wires by qargs first, then cargs, then conditions. If a dictionary, then a mapping of bits in the `input_dag` to those that the `node` acts on.
+*   **propagate\_condition** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), then any `condition` attribute on the operation within `node` is propagated to each node in the `input_dag`. If `False`, then the `input_dag` is assumed to faithfully implement suitable conditional logic already. This is ignored for [`ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.ControlFlowOp")s (i.e. treated as if it is `False`); replacements of those must already fulfil the same conditional logic or this function would be close to useless for them.
 
 **Returns**
 
@@ -935,7 +933,7 @@ maps node IDs from input\_dag to their new node incarnations in self.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 **Raises**
 

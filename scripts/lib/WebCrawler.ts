@@ -10,8 +10,8 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { load } from 'cheerio';
-import PQueue from 'p-queue';
+import { load } from "cheerio";
+import PQueue from "p-queue";
 
 export class WebCrawler {
   private initialUrls: string[];
@@ -43,12 +43,12 @@ export class WebCrawler {
     this.onError = options.onError;
     this.onSkip = options.onSkip;
     this.queue = new PQueue({ concurrency: 4 });
-    this.linkSelector = options.linkSelector ?? 'a';
+    this.linkSelector = options.linkSelector ?? "a";
   }
 
   async run() {
     return new Promise((resolve) => {
-      this.queue.once('idle', resolve);
+      this.queue.once("idle", resolve);
       this.queueUrls(this.initialUrls);
     });
   }
@@ -78,8 +78,8 @@ export class WebCrawler {
       }
 
       if (response.ok) {
-        if (!response.headers.get('content-type')?.includes('text/html')) {
-          this.onSkip?.(url, 'Not html');
+        if (!response.headers.get("content-type")?.includes("text/html")) {
+          this.onSkip?.(url, "Not html");
           return;
         }
 
@@ -105,11 +105,11 @@ export class WebCrawler {
       .toArray()
       .flatMap((el) => {
         const $el = $(el);
-        const href = $el.attr('href');
+        const href = $el.attr("href");
         if (!href) return [];
 
         const parsedUrl = new URL(href, url);
-        parsedUrl.hash = '';
+        parsedUrl.hash = "";
         return [parsedUrl.toString()];
       });
     return links;

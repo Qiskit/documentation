@@ -10,24 +10,28 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { load } from 'cheerio';
-import { unified } from 'unified';
-import rehypeParse from 'rehype-parse';
-import rehypeRemark from 'rehype-remark';
-import remarkStringify from 'remark-stringify';
-import remarkGfm from 'remark-gfm';
-import { last, first, without, initial, tail } from 'lodash';
-import { defaultHandlers, Handle, toMdast, all } from 'hast-util-to-mdast';
-import { toText } from 'hast-util-to-text';
-import remarkMath from 'remark-math';
-import remarkMdx from 'remark-mdx';
-import { SphinxToMdResult } from './SphinxToMdResult';
-import { PythonObjectMeta } from './PythonObjectMeta';
-import { getLastPartFromFullIdentifier, removePrefix, removeSuffix } from '../stringUtils';
-import { remarkStringifyOptions } from './unifiedParser';
-import { MdxJsxFlowElement } from 'mdast-util-mdx-jsx';
-import { visit } from 'unist-util-visit';
-import { Root } from 'mdast';
+import { load } from "cheerio";
+import { unified } from "unified";
+import rehypeParse from "rehype-parse";
+import rehypeRemark from "rehype-remark";
+import remarkStringify from "remark-stringify";
+import remarkGfm from "remark-gfm";
+import { last, first, without, initial, tail } from "lodash";
+import { defaultHandlers, Handle, toMdast, all } from "hast-util-to-mdast";
+import { toText } from "hast-util-to-text";
+import remarkMath from "remark-math";
+import remarkMdx from "remark-mdx";
+import { SphinxToMdResult } from "./SphinxToMdResult";
+import { PythonObjectMeta } from "./PythonObjectMeta";
+import {
+  getLastPartFromFullIdentifier,
+  removePrefix,
+  removeSuffix,
+} from "../stringUtils";
+import { remarkStringifyOptions } from "./unifiedParser";
+import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
+import { visit } from "unist-util-visit";
+import { Root } from "mdast";
 
 export async function sphinxHtmlToMarkdown(options: {
   html: string;
@@ -38,7 +42,12 @@ export async function sphinxHtmlToMarkdown(options: {
   baseSourceUrl?: string;
 }): Promise<SphinxToMdResult> {
   const images: Array<{ src: string; dest: string }> = [];
-  const { html, url, imageDestination = '/images/api/', baseSourceUrl } = options;
+  const {
+    html,
+    url,
+    imageDestination = "/images/api/",
+    baseSourceUrl,
+  } = options;
   const meta: PythonObjectMeta = {};
 
   const $page = load(html);
@@ -46,91 +55,97 @@ export async function sphinxHtmlToMarkdown(options: {
   const $main = $page(main);
 
   // remove html extensions in relative links
-  $main.find('a').each((_, link) => {
+  $main.find("a").each((_, link) => {
     const $link = $page(link);
-    const href = $link.attr('href');
-    if (href && !href.startsWith('http')) {
-      $link.attr('href', href.replaceAll('.html', ''));
+    const href = $link.attr("href");
+    if (href && !href.startsWith("http")) {
+      $link.attr("href", href.replaceAll(".html", ""));
     }
   });
 
   $main
-    .find('img')
+    .find("img")
     .toArray()
     .forEach((el) => {
       const $img = $page(el);
 
-      const imageUrl = new URL($img.attr('src')!, url);
+      const imageUrl = new URL($img.attr("src")!, url);
       const src = imageUrl.toString();
 
-      const filename = last(src.split('/'));
+      const filename = last(src.split("/"));
       const dest = `${imageDestination}/${filename}`;
 
-      $img.attr('src', dest);
+      $img.attr("src", dest);
       images.push({ src, dest: dest });
     });
 
   // remove permalink links
   $main.find('a[title="Permalink to this heading"]').remove();
   $main.find('a[title="Permalink to this definition"]').remove();
+  $main.find('a[title="Link to this heading"]').remove();
+  $main.find('a[title="Link to this definition"]').remove();
 
   // remove download source code
-  $main.find('p > a.reference.download.internal').closest('p').remove();
+  $main.find("p > a.reference.download.internal").closest("p").remove();
 
   // handle tabs, use heading for the summary and remove the blockquote
-  $main.find('.sd-summary-title').each((_, quote) => {
+  $main.find(".sd-summary-title").each((_, quote) => {
     const $quote = $page(quote);
     $quote.replaceWith(`<h3>${$quote.html()}</h3>`);
   });
 
-  $main.find('.sd-card-body blockquote').each((_, quote) => {
+  $main.find(".sd-card-body blockquote").each((_, quote) => {
     const $quote = $page(quote);
     $quote.replaceWith($quote.children());
   });
 
   // add language class to code blocks
-  $main.find('pre').each((_, pre) => {
+  $main.find("pre").each((_, pre) => {
     const $pre = $page(pre);
-    $pre.replaceWith(`<pre><code class="language-python">${$pre.html()}</code></pre>`);
+    $pre.replaceWith(
+      `<pre><code class="language-python">${$pre.html()}</code></pre>`,
+    );
   });
 
   // replace source links
-  $main.find('a').each((_, a) => {
+  $main.find("a").each((_, a) => {
     const $a = $page(a);
-    const href = $a.attr('href');
-    if (href?.startsWith('http:')) return;
+    const href = $a.attr("href");
+    if (href?.startsWith("http:")) return;
     if (href?.includes(`/_modules/`)) {
       //_modules/qiskit_ibm_runtime/ibm_backend
       const match = href?.match(/_modules\/(.*?)(#|$)/);
       if (match) {
-        const newHref = `${baseSourceUrl ?? ''}${match[1]}.py`;
-        $a.attr('href', newHref);
+        const newHref = `${baseSourceUrl ?? ""}${match[1]}.py`;
+        $a.attr("href", newHref);
       }
     }
   });
 
   // use titles for method and attribute headers
-  $main.find('.rubric').each((_, el) => {
+  $main.find(".rubric").each((_, el) => {
     const $el = $page(el);
     $el.replaceWith(`<h2>${$el.html()}</h2>`);
   });
 
   // delete colons
-  $main.find('.colon').remove();
+  $main.find(".colon").remove();
 
   // translate type headings to titles
   function findByText(selector: string, text: string) {
-    return $main.find(selector).filter((i, el) => $page(el).text().trim() === text);
+    return $main
+      .find(selector)
+      .filter((i, el) => $page(el).text().trim() === text);
   }
 
   $main
-    .find('dl.field-list.simple')
+    .find("dl.field-list.simple")
     .toArray()
     .map((dl) => {
       const $dl = $page(dl);
 
       $dl
-        .find('dt')
+        .find("dt")
         .toArray()
         .forEach((dt) => {
           const $dt = $page(dt);
@@ -138,7 +153,7 @@ export async function sphinxHtmlToMarkdown(options: {
         });
 
       $dl
-        .find('dd')
+        .find("dd")
         .toArray()
         .forEach((dd) => {
           const $dd = $page(dd);
@@ -153,7 +168,7 @@ export async function sphinxHtmlToMarkdown(options: {
     // members can be recursive, so we need to pick elements one by one
     const dl = $main
       .find(
-        'dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception'
+        "dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception",
       )
       .get(0);
 
@@ -168,65 +183,67 @@ export async function sphinxHtmlToMarkdown(options: {
       .toArray()
       .map((child) => {
         const $child = $page(child);
-        $child.find('.viewcode-link').closest('a').remove();
-        const id = $dl.find('dt.sig-object').attr('id');
+        $child.find(".viewcode-link").closest("a").remove();
+        const id = $dl.find("dt.sig-object").attr("id");
 
-        if (child.name === 'dt' && $dl.hasClass('class')) {
+        if (child.name === "dt" && $dl.hasClass("class")) {
           if (!meta.python_api_type) {
-            meta.python_api_type = 'class';
+            meta.python_api_type = "class";
             meta.python_api_name = id;
           }
 
-          findByText('em.property', 'class').remove();
+          findByText("em.property", "class").remove();
           return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
-        } else if (child.name === 'dt' && $dl.hasClass('property')) {
+        } else if (child.name === "dt" && $dl.hasClass("property")) {
           if (!meta.python_api_type) {
-            meta.python_api_type = 'property';
+            meta.python_api_type = "property";
             meta.python_api_name = id;
 
             if (id) {
-              $dl.siblings('h1').text(getLastPartFromFullIdentifier(id));
+              $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
             }
           }
 
-          findByText('em.property', 'property').remove();
-          const signature = $child.find('em').text()?.replace(/^:\s+/, '');
+          findByText("em.property", "property").remove();
+          const signature = $child.find("em").text()?.replace(/^:\s+/, "");
           if (signature.trim().length === 0) return;
           return `<span class="target" id='${id}'/><p><code>${signature}</code></p>`;
-        } else if (child.name === 'dt' && $dl.hasClass('method')) {
+        } else if (child.name === "dt" && $dl.hasClass("method")) {
           if (!meta.python_api_type) {
-            meta.python_api_type = 'method';
+            meta.python_api_type = "method";
             meta.python_api_name = id;
             if (id) {
-              $dl.siblings('h1').text(getLastPartFromFullIdentifier(id));
+              $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
             }
           } else {
             // Inline methods
             if (id) {
-              $page(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore($dl);
+              $page(
+                `<h3>${getLastPartFromFullIdentifier(id)}</h3>`,
+              ).insertBefore($dl);
             }
           }
 
-          findByText('em.property', 'method').remove();
+          findByText("em.property", "method").remove();
           return `<span class="target" id='${id}'/><p><code>${$child.html()}</code></p>`;
-        } else if (child.name === 'dt' && $dl.hasClass('attribute')) {
+        } else if (child.name === "dt" && $dl.hasClass("attribute")) {
           if (!meta.python_api_type) {
-            meta.python_api_type = 'attribute';
+            meta.python_api_type = "attribute";
             meta.python_api_name = id;
 
             if (id) {
-              $dl.siblings('h1').text(getLastPartFromFullIdentifier(id));
+              $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
             }
 
-            findByText('em.property', 'attribute').remove();
-            const signature = $child.find('em').text()?.replace(/^:\s+/, '');
+            findByText("em.property", "attribute").remove();
+            const signature = $child.find("em").text()?.replace(/^:\s+/, "");
             if (signature.trim().length === 0) return;
             return `<span class="target" id='${id}'/><p><code>${signature}</code></p>`;
           } else {
             // The attribute is embedded on the class
             const text = $child.text();
-            const equalIndex = text.indexOf('=');
-            const colonIndex = text.indexOf(':');
+            const equalIndex = text.indexOf("=");
+            const colonIndex = text.indexOf(":");
             let name = text;
             let type: string | undefined;
             let value: string | undefined;
@@ -241,74 +258,75 @@ export async function sphinxHtmlToMarkdown(options: {
               name = text.substring(0, equalIndex);
               value = text.substring(equalIndex);
             }
-            const output = [`<span class="target" id='${id}'/><h3>${name}</h3>`];
+            const output = [
+              `<span class="target" id='${id}'/><h3>${name}</h3>`,
+            ];
             if (type) {
               output.push(`<p><code>${type}</code></p>`);
             }
             if (value) {
               output.push(`<p><code>${value}</code></p>`);
             }
-            return output.join('\n');
+            return output.join("\n");
           }
-        } else if (child.name === 'dt' && $dl.hasClass('function')) {
+        } else if (child.name === "dt" && $dl.hasClass("function")) {
           if (!meta.python_api_type) {
-            meta.python_api_type = 'function';
+            meta.python_api_type = "function";
             meta.python_api_name = id;
           }
-          findByText('em.property', 'function').remove();
+          findByText("em.property", "function").remove();
           return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
-        } else if (child.name === 'dt' && $dl.hasClass('exception')) {
+        } else if (child.name === "dt" && $dl.hasClass("exception")) {
           if (!meta.python_api_type) {
-            meta.python_api_type = 'exception';
+            meta.python_api_type = "exception";
             meta.python_api_name = id;
           }
 
-          findByText('em.property', 'exception').remove();
+          findByText("em.property", "exception").remove();
           return `<span class="target" id='${id}'/><p><code>${$child.html()}</code></p>`;
         }
 
         return `<div>${$child.html()}</div>`;
       })
-      .join('\n');
+      .join("\n");
 
     $dl.replaceWith(`<div>${replacement}</div>`);
   }
 
   // preserve math block whitespace
   $main
-    .find('div.math')
+    .find("div.math")
     .toArray()
     .map((el) => {
       const $el = $page(el);
       $el.replaceWith(`<pre class="math">${$el.html()}</pre>`);
     });
 
-  // extract module meta
-  const modulePrefix = 'module-';
+  // extract module metadata
+  const modulePrefix = "module-";
   const moduleIdWithPrefix = $main
-    .find(`.target, section`)
+    .find("span, section")
     .toArray()
-    .map((el) => $page(el).attr('id'))
+    .map((el) => $page(el).attr("id"))
     .find((id) => id?.startsWith(modulePrefix));
   if (moduleIdWithPrefix) {
-    const moduleId = moduleIdWithPrefix.slice(modulePrefix.length);
-    meta.python_api_type = 'module';
-    meta.python_api_name = moduleId;
+    meta.python_api_type = "module";
+    meta.python_api_name = moduleIdWithPrefix.slice(modulePrefix.length);
   }
 
   // Update headings of modules
-  if (meta.python_api_type === 'module') {
+  if (meta.python_api_type === "module") {
     $main
-      .find('h1,h2')
+      .find("h1,h2")
       .toArray()
       .forEach((el) => {
         const $el = $page(el);
-        const $a = $page($el.find('a'));
+        const $a = $page($el.find("a"));
         const signature = $a.text();
         $a.remove();
 
         let title = $el.text();
-        title = title.replace('()', '');
+        title = title.replace("()", "");
         let replacement = `<${el.tagName}>${title}</${el.tagName}>`;
         if (signature.trim().length > 0) {
           replacement += `<span class="target" id="module-${meta.python_api_name}" /><p><code>${signature}</code></p>`;
@@ -331,17 +349,17 @@ export async function sphinxHtmlToMarkdown(options: {
       return all(h, node);
     },
     span(h, node: any) {
-      if (node.properties.className?.includes('math')) {
+      if (node.properties.className?.includes("math")) {
         let value = node.children[0].value;
-        const prefix = '\\(';
-        const sufix = '\\)';
+        const prefix = "\\(";
+        const sufix = "\\)";
         if (value.startsWith(prefix) && value.endsWith(sufix)) {
           value = value.substring(prefix.length, value.length - sufix.length);
         }
-        return { type: 'inlineMath', value };
+        return { type: "inlineMath", value };
       }
 
-      if (node.properties.id && node.properties.className?.includes('target')) {
+      if (node.properties.id && node.properties.className?.includes("target")) {
         return [buildSpanId(node.properties.id), ...all(h, node)];
       }
 
@@ -352,14 +370,14 @@ export async function sphinxHtmlToMarkdown(options: {
       return all(h, node);
     },
     pre(h, node: any) {
-      if (node.properties.className?.includes('math')) {
+      if (node.properties.className?.includes("math")) {
         let value = node.children[0].value;
-        const prefix = '\\[';
-        const sufix = '\\]';
+        const prefix = "\\[";
+        const sufix = "\\]";
         if (value.startsWith(prefix) && value.endsWith(sufix)) {
           value = value.substring(prefix.length, value.length - sufix.length);
         }
-        return { type: 'math', value };
+        return { type: "math", value };
       }
       return defaultHandlers.pre(h, node);
     },
@@ -370,17 +388,20 @@ export async function sphinxHtmlToMarkdown(options: {
       return defaultHandlers.div(h, node);
     },
     dt(h, node: any) {
-      if (meta.python_api_type === 'class' || meta.python_api_type === 'module') {
+      if (
+        meta.python_api_type === "class" ||
+        meta.python_api_type === "module"
+      ) {
         return [
-          h(node, 'strong', {
-            type: 'strong',
+          h(node, "strong", {
+            type: "strong",
             children: all(h, node),
           }),
-          { type: 'text', value: ' ' },
+          { type: "text", value: " " },
         ];
       }
-      return h(node, 'heading', {
-        type: 'heading',
+      return h(node, "heading", {
+        type: "heading",
         depth: 2,
         children: all(h, node),
       });
@@ -388,41 +409,47 @@ export async function sphinxHtmlToMarkdown(options: {
     div(h, node: any): any {
       const nodeClasses = node.properties.className ?? [];
 
-      if (nodeClasses.includes('admonition')) {
-        const titleNode = node.children.find((child: any) =>
-          child.properties.className?.includes('admonition-title')
+      if (nodeClasses.includes("admonition")) {
+        const titleNode = node.children.find(
+          (child: any) =>
+            child.properties.className?.includes("admonition-title"),
         );
 
-        let type = 'note';
-        if (nodeClasses.includes('warning')) {
-          type = 'caution';
-        } else if (nodeClasses.includes('important')) {
-          type = 'danger';
+        let type = "note";
+        if (nodeClasses.includes("warning")) {
+          type = "caution";
+        } else if (nodeClasses.includes("important")) {
+          type = "danger";
         }
 
         const otherChildren = without(node.children, titleNode);
         return buildAdmonition({
           title: toText(titleNode),
           type,
-          children: otherChildren.map((node: any) => toMdast(node, { handlers })),
+          children: otherChildren.map((node: any) =>
+            toMdast(node, { handlers }),
+          ),
         });
-      } else if (nodeClasses.includes('deprecated')) {
+      } else if (nodeClasses.includes("deprecated")) {
         const root = node.children[0];
-        const titleNode = root.children.find((child: any) =>
-          child.properties.className?.includes('versionmodified')
+        const titleNode = root.children.find(
+          (child: any) =>
+            child.properties.className?.includes("versionmodified"),
         );
         let title = toText(titleNode).trim();
-        if (title.endsWith(':')) {
+        if (title.endsWith(":")) {
           title = title.slice(0, -1);
         }
         const otherChildren = without(root.children, titleNode);
         return buildAdmonition({
           title,
-          type: 'danger',
+          type: "danger",
           children: [
             {
-              type: 'paragraph',
-              children: otherChildren.map((node: any) => toMdast(node, { handlers })),
+              type: "paragraph",
+              children: otherChildren.map((node: any) =>
+                toMdast(node, { handlers }),
+              ),
             },
           ],
         });
@@ -444,21 +471,23 @@ export async function sphinxHtmlToMarkdown(options: {
     .use(() => {
       return (root: Root) => {
         // merge contiguous emphasis
-        visit(root, 'emphasis', (node, index, parent) => {
+        visit(root, "emphasis", (node, index, parent) => {
           if (index === null || parent === null) return;
           let nextIndex = index + 1;
-          while (parent.children[nextIndex]?.type === 'emphasis') {
-            node.children.push(...((parent.children[nextIndex] as any).children ?? []));
+          while (parent.children[nextIndex]?.type === "emphasis") {
+            node.children.push(
+              ...((parent.children[nextIndex] as any).children ?? []),
+            );
             nextIndex++;
           }
           parent.children.splice(index + 1, nextIndex - (index + 1));
         });
 
         // remove initial and trailing spaces from emphasis
-        visit(root, 'emphasis', (node, index, parent) => {
+        visit(root, "emphasis", (node, index, parent) => {
           if (index === null || parent === null) return;
           const firstChild = first(node.children);
-          if (firstChild?.type === 'text') {
+          if (firstChild?.type === "text") {
             const match = firstChild.value.match(/^\s+/);
             if (match) {
               if (match[0] === firstChild.value) {
@@ -466,11 +495,14 @@ export async function sphinxHtmlToMarkdown(options: {
               } else {
                 firstChild.value = removePrefix(firstChild.value, match[0]);
               }
-              parent.children.splice(index, 0, { type: 'text', value: match[0] });
+              parent.children.splice(index, 0, {
+                type: "text",
+                value: match[0],
+              });
             }
           }
           const lastChild = last(node.children);
-          if (lastChild?.type === 'text') {
+          if (lastChild?.type === "text") {
             const match = lastChild.value.match(/\s+$/);
             if (match) {
               if (match[0] === lastChild.value) {
@@ -478,7 +510,10 @@ export async function sphinxHtmlToMarkdown(options: {
               } else {
                 lastChild.value = removeSuffix(lastChild.value, match[0]);
               }
-              parent.children.splice(index + 1, 0, { type: 'text', value: match[0] });
+              parent.children.splice(index + 1, 0, {
+                type: "text",
+                value: match[0],
+              });
             }
           }
         });
@@ -487,7 +522,7 @@ export async function sphinxHtmlToMarkdown(options: {
     .process(mainHtml);
 
   let markdown = mdFile.toString();
-  markdown = markdown.replaceAll(`<!---->`, '');
+  markdown = markdown.replaceAll(`<!---->`, "");
 
   return { markdown, meta, images };
 }
@@ -499,17 +534,17 @@ function buildAdmonition(options: {
 }): MdxJsxFlowElement {
   const { title, type, children } = options;
   return {
-    type: 'mdxJsxFlowElement',
-    name: 'Admonition',
+    type: "mdxJsxFlowElement",
+    name: "Admonition",
     attributes: [
       {
-        type: 'mdxJsxAttribute',
-        name: 'title',
+        type: "mdxJsxAttribute",
+        name: "title",
         value: title,
       },
       {
-        type: 'mdxJsxAttribute',
-        name: 'type',
+        type: "mdxJsxAttribute",
+        name: "type",
         value: type,
       },
     ],
@@ -519,12 +554,12 @@ function buildAdmonition(options: {
 
 function buildSpanId(id: string): MdxJsxFlowElement {
   return {
-    type: 'mdxJsxFlowElement',
-    name: 'span',
+    type: "mdxJsxFlowElement",
+    name: "span",
     attributes: [
       {
-        type: 'mdxJsxAttribute',
-        name: 'id',
+        type: "mdxJsxAttribute",
+        name: "id",
         value: id,
       },
     ],
