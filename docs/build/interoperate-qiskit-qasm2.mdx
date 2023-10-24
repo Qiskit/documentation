@@ -16,24 +16,7 @@ Currently two high-level functions are available for importing from OpenQASM 2 i
 qiskit.qasm2.load(filename, *, include_path=('.',), include_input_directory='append', custom_instructions=(), custom_classical=(), strict=False)
 ```
 
-Parameters:
-  - `filename` (str | PathLike) – The path to the OpenQASM 2 program in an ASCII or UTF-8 string.
-  - `include_path` (Iterable[str | PathLike]) – Order of directories to search when evluating include statements. The directories are tried from index 0 onwards and the first match is used. The import `qelib1.inc` is special; it is always found before looking in the include path, and contains exactly the content of the [paper describing the OpenQASM 2 language](https://arxiv.org/abs/1707.03429). The gates in this include file are mapped to circuit-library gate objects defined by Qiskit.
-  - `include_input_directory` (Literal[`append`, `prepend`] | None) – Whether to add the directory of the input file to the include_path, and if so, whether to append it to search last, or prepend it to search first. Pass `None` to suppress adding this directory entirely.
-  - `custom_instructions` (Iterable[CustomInstruction]) – Any custom constructors that should be used for specific gates or opaque instructions during circuit construction. See [Specifying custom instructions](#custom-instructions) for details.
-  - `custom_classical` (Iterable[CustomClassical]) – Any custom classical functions that should be used during the parsing of classical expressions. See [Specifying custom classical functions](#custom-classical) for details.
-  - `strict` (bool) – whether to run in [strict mode](#strict). 
-
-```python
-qiskit.qasm2.loads(string, *, include_path=('.',), custom_instructions=(), custom_classical=(), strict=False)
-```
-
-Parameters:
-  - `filename` (str | PathLike) – The OpenQASM 2 program in a string.
-  - `include_path` (Iterable[str | PathLike]) – Order of directories to search when evluating include statements. The directories are tried from index 0 onwards and the first match is used. The import `qelib1.inc` is treated special; it is always found before looking in the include path, and contains exactly the content of the [paper describing the OpenQASM 2 language](https://arxiv.org/abs/1707.03429). The gates in this include file are mapped to circuit-library gate objects defined by Qiskit.
-  - `custom_instructions` (Iterable[CustomInstruction]) – Any custom constructors that should be used for specific gates or opaque instructions during circuit construction. See [Specifying custom instructions](#custom-instructions) for details.
-  - `custom_classical` (Iterable[CustomClassical]) – Any custom classical functions that should be used during the parsing of classical expressions. See [Specifying custom classical functions](#custom-classical) for details.
-  - `strict` (bool) – whether to run in [strict mode](#strict). 
+See the [OpenQASM 2 Qiskit API](/api/qiskit/qasm2) for more information. 
 
 <span id="custom-instructions"></span>
 ### Custom quantum instructions
