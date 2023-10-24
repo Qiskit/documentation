@@ -51,13 +51,9 @@ RuntimeProgram constructor.
 
 ## Attributes
 
-<span id="runtimeprogram-backend-requirements" />
-
-### backend\_requirements
-
 <span id="qiskit_ibm_runtime.RuntimeProgram.backend_requirements" />
 
-`Dict`
+### backend\_requirements
 
 Backend requirements.
 
@@ -69,13 +65,9 @@ Backend requirements.
 
 Backend requirements for this program.
 
-<span id="runtimeprogram-creation-date" />
-
-### creation\_date
-
 <span id="qiskit_ibm_runtime.RuntimeProgram.creation_date" />
 
-`str`
+### creation\_date
 
 Program creation date.
 
@@ -87,13 +79,9 @@ Program creation date.
 
 Program creation date.
 
-<span id="runtimeprogram-data" />
-
-### data
-
 <span id="qiskit_ibm_runtime.RuntimeProgram.data" />
 
-`str`
+### data
 
 Program data.
 
@@ -109,13 +97,9 @@ Program data.
 
 **IBMNotAuthorizedError** – if user is not the program author.
 
-<span id="runtimeprogram-description" />
-
-### description
-
 <span id="qiskit_ibm_runtime.RuntimeProgram.description" />
 
-`str`
+### description
 
 Program description.
 
@@ -127,13 +111,9 @@ Program description.
 
 Program description.
 
-<span id="runtimeprogram-interim-results" />
-
-### interim\_results
-
 <span id="qiskit_ibm_runtime.RuntimeProgram.interim_results" />
 
-`Dict`
+### interim\_results
 
 Program interim result definitions.
 
@@ -145,13 +125,9 @@ Program interim result definitions.
 
 Interim result definitions for this program.
 
-<span id="runtimeprogram-is-public" />
-
-### is\_public
-
 <span id="qiskit_ibm_runtime.RuntimeProgram.is_public" />
 
-`bool`
+### is\_public
 
 Whether the program is visible to all.
 
@@ -163,13 +139,9 @@ Whether the program is visible to all.
 
 Whether the program is public.
 
-<span id="runtimeprogram-max-execution-time" />
-
-### max\_execution\_time
-
 <span id="qiskit_ibm_runtime.RuntimeProgram.max_execution_time" />
 
-`int`
+### max\_execution\_time
 
 Maximum execution time in seconds.
 
@@ -183,14 +155,10 @@ A program execution exceeding this time will be forcibly terminated.
 
 Maximum execution time.
 
-<span id="runtimeprogram-name" />
+<span id="qiskit_ibm_runtime.RuntimeProgram.name" />
 
 ### name
 
-<span id="qiskit_ibm_runtime.RuntimeProgram.name" />
-
-`str`
-
 Program name.
 
 **Return type**
@@ -200,14 +168,10 @@ Program name.
 **Returns**
 
 Program name.
-
-<span id="runtimeprogram-program-id" />
-
-### program\_id
 
 <span id="qiskit_ibm_runtime.RuntimeProgram.program_id" />
 
-`str`
+### program\_id
 
 Program ID.
 
@@ -219,13 +183,9 @@ Program ID.
 
 Program ID.
 
-<span id="runtimeprogram-return-values" />
-
-### return\_values
-
 <span id="qiskit_ibm_runtime.RuntimeProgram.return_values" />
 
-`Dict`
+### return\_values
 
 Program return value definitions.
 
@@ -237,13 +197,9 @@ Program return value definitions.
 
 Return value definitions for this program.
 
-<span id="runtimeprogram-update-date" />
-
-### update\_date
-
 <span id="qiskit_ibm_runtime.RuntimeProgram.update_date" />
 
-`str`
+### update\_date
 
 Program last updated date.
 
@@ -257,13 +213,11 @@ Program last updated date.
 
 ## Methods
 
-<span id="runtimeprogram-parameters" />
-
 ### parameters
 
 <span id="qiskit_ibm_runtime.RuntimeProgram.parameters" />
 
-`RuntimeProgram.parameters()`
+`parameters()`
 
 Program parameter namespace.
 
@@ -279,13 +233,11 @@ Note that each call to this method returns a new namespace instance and does not
 
 Program parameter namespace.
 
-<span id="runtimeprogram-to-dict" />
-
 ### to\_dict
 
 <span id="qiskit_ibm_runtime.RuntimeProgram.to_dict" />
 
-`RuntimeProgram.to_dict()`
+`to_dict()`
 
 Convert program metadata to dictionary format.
 

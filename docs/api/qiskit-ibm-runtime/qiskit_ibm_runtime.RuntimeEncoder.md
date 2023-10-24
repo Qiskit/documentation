@@ -34,31 +34,27 @@ If specified, default is a function that gets called for objects that can’t ot
 
 ## Attributes
 
-<span id="runtimeencoder-item-separator" />
+<span id="qiskit_ibm_runtime.RuntimeEncoder.item_separator" />
 
 ### item\_separator
 
-<span id="qiskit_ibm_runtime.RuntimeEncoder.item_separator" />
-
 `= ', '`
 
-<span id="runtimeencoder-key-separator" />
-
-### key\_separator
-
 <span id="qiskit_ibm_runtime.RuntimeEncoder.key_separator" />
+
+### key\_separator = '
+
+`= ':`
 
 `= ': '`
 
 ## Methods
 
-<span id="runtimeencoder-default" />
-
 ### default
 
 <span id="qiskit_ibm_runtime.RuntimeEncoder.default" />
 
-`RuntimeEncoder.default(obj)`
+`default(obj)`
 
 Implement this method in a subclass such that it returns a serializable object for `o`, or calls the base implementation (to raise a `TypeError`).
 
@@ -80,13 +76,11 @@ def default(self, o):
 
 `Any`
 
-<span id="runtimeencoder-encode" />
-
 ### encode
 
 <span id="qiskit_ibm_runtime.RuntimeEncoder.encode" />
 
-`RuntimeEncoder.encode(o)`
+`encode(o)`
 
 Return a JSON string representation of a Python data structure.
 
@@ -95,15 +89,12 @@ Return a JSON string representation of a Python data structure.
 >>> JSONEncoder().encode({"foo": ["bar", "baz"]})
 '{"foo": ["bar", "baz"]}'
 ```
- {/* cspell:ignore iterencode */}
- 
-<span id="runtimeencoder-iterencode" />
 
 ### iterencode
 
 <span id="qiskit_ibm_runtime.RuntimeEncoder.iterencode" />
 
-`RuntimeEncoder.iterencode(o, _one_shot=False)`
+`iterencode(o, _one_shot=False)`
 
 Encode the given object and yield each string representation as available.
 
