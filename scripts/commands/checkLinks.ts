@@ -129,7 +129,7 @@ function markdownFromNotebook(source: string): string {
 async function checkLinksInFile(
   filePath: string,
   filePaths: string[],
-): boolean {
+): Promise<boolean> {
   if (
     filePath.startsWith("docs/api/qiskit") ||
     filePath.startsWith("docs/api/qiskit-ibm-provider") ||
