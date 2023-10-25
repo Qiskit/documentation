@@ -11,8 +11,8 @@
 // that they have been altered from the originals.
 
 import { globby } from "globby";
-import { existsSync } from 'fs';
-import { readFile } from 'fs/promises';
+import { existsSync } from "fs";
+import { readFile } from "fs/promises";
 import path from "node:path";
 import markdownLinkExtractor from "markdown-link-extractor";
 
@@ -126,16 +126,21 @@ function markdownFromNotebook(source: string): string {
   return markdown;
 }
 
-async function checkLinksInFile(filePath: string, filePaths: string[]): boolean {
+async function checkLinksInFile(
+  filePath: string,
+  filePaths: string[],
+): boolean {
   if (
     filePath.startsWith("docs/api/qiskit") ||
     filePath.startsWith("docs/api/qiskit-ibm-provider") ||
     filePath.startsWith("docs/api/qiskit-ibm-runtime")
-  ) { return true }
+  ) {
+    return true;
+  }
   if (IGNORED_FILES.includes(filePath)) {
     return true;
   }
-  const source = await readFile(filePath, {encoding: 'utf8'})
+  const source = await readFile(filePath, { encoding: "utf8" });
   const markdown =
     path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
   const links = markdownLinkExtractor(markdown).links.map(
@@ -151,11 +156,13 @@ async function checkLinksInFile(filePath: string, filePaths: string[]): boolean 
 
 async function main() {
   const filePaths = await globby("docs/**/*.{ipynb,md,mdx}");
-  const results = await Promise.all(filePaths.map(fp => checkLinksInFile(fp, filePaths)))
+  const results = await Promise.all(
+    filePaths.map((fp) => checkLinksInFile(fp, filePaths)),
+  );
 
-  if (results.some(x => !x)) {
-    console.log("\nSome links appear broken 💔\n")
-    process.exit(1)
+  if (results.some((x) => !x)) {
+    console.log("\nSome links appear broken 💔\n");
+    process.exit(1);
   }
 }
 
