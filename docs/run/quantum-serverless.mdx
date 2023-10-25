@@ -7,9 +7,11 @@ description: Run workloads using quantum serverless
 
 Premium users can run their workloads remotely on classical compute made available through IBM Quantum Platform.
 
+For more information, see the [quantum serverless docs](https://qiskit-extensions.github.io/quantum-serverless/).
+
 ## Build a workflow
 
-Here is an example of computing the quasi-probability distribution of a quantum circuit using the Qiskit Runtime Sampler primitive. This Python script should be saved in your working directory. (Warning! All contents of the working directory will be shipped to the cluster for execution.)
+Here is an example of computing the quasi-probability distribution of a quantum circuit using the Qiskit Runtime Estimator primitive. This Python script should be saved in your working directory. (Warning! All contents of the working directory will be shipped to the cluster for execution.)
 
 ```python
 # source_files/my_qiskit_pattern.py
@@ -38,15 +40,12 @@ with Session(service=service, backend="ibmq_qasm_simulator") as session:
     # running Estimator primitive
     estimator = Estimator(session=session, options=options)
     job = estimator.run(circuit)
-    quasi_dists = job.result().quasi_dists
+    result = job.result()
 
     # save results of program execution,
     # which will be accessible by calling `.result()`
-    save_result(quasi_dists)
+    save_result(result)
 
-    # Close the session only if all jobs are finished
-    # and you don't need to run more in the session.
-    session.close()
 
 print("Completed running program 1.")
 ```
