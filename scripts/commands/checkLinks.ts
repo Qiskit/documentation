@@ -18,7 +18,15 @@ import markdownLinkExtractor from "markdown-link-extractor";
 const DOCS_ROOT = "./docs";
 const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"];
 
-const IGNORE_LIST = ["docs/run/instances.mdx", "docs/start/index.mdx"];
+// These files are not searched to see if their own links are valid.
+const IGNORED_FILES: string[] = [];
+
+// While these files don't exist in this repository, the link
+// checker should assume that they exist in production.
+const SYNTHETIC_FILES: string[] = [
+  "docs/errors.mdx",
+  "docs/api/runtime/tags/programs.mdx",
+];
 
 class Link {
   readonly value: string;
@@ -76,7 +84,7 @@ class Link {
     return possibleFilePaths;
   }
 
-  check(filePathCache: string[] = []): boolean {
+  check(filePathCache: string[]): boolean {
     /*
      * True if link points to existing file, otherwise false
      * filePathCache: array of known existing files (to reduce disk I/O)
@@ -88,7 +96,10 @@ class Link {
 
     const possiblePaths = this.resolve();
     for (let filePath of possiblePaths) {
-      if (filePathCache.includes(filePath)) {
+      if (
+        filePathCache.includes(filePath) ||
+        SYNTHETIC_FILES.includes(filePath)
+      ) {
         return true;
       }
     }
@@ -107,7 +118,7 @@ class Link {
 function markdownFromNotebook(source: string): string {
   let markdown = "";
   for (let cell of JSON.parse(source).cells) {
-    if (cell.source === "markdown") {
+    if (cell.cell_type === "markdown") {
       markdown += cell.source;
     }
   }
@@ -115,16 +126,20 @@ function markdownFromNotebook(source: string): string {
 }
 
 function checkLinksInFile(filePath: string, filePaths: string[]): boolean {
-  if (filePath.startsWith("docs/api")) {
+  if (
+    filePath.startsWith("docs/api/qiskit") ||
+    filePath.startsWith("docs/api/qiskit-ibm-provider") ||
+    filePath.startsWith("docs/api/qiskit-ibm-runtime")
+  ) {
     return true;
   }
-  if (IGNORE_LIST.includes(filePath)) {
+  if (IGNORED_FILES.includes(filePath)) {
     return true;
   }
   const source = readFileSync(filePath, { encoding: "utf8" });
   const markdown =
     path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
-  const links = markdownLinkExtractor(source).links.map(
+  const links = markdownLinkExtractor(markdown).links.map(
     (x: string) => new Link(x, filePath),
   );
 
