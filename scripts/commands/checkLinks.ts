@@ -11,7 +11,6 @@
 // that they have been altered from the originals.
 
 import { globby } from "globby";
-import { existsSync } from "fs";
 import { readFile } from "fs/promises";
 import path from "node:path";
 import markdownLinkExtractor from "markdown-link-extractor";
@@ -85,10 +84,9 @@ class Link {
     return possibleFilePaths;
   }
 
-  check(filePathCache: string[]): boolean {
+  check(existingPaths: string[]): boolean {
     /*
-     * True if link points to existing file, otherwise false
-     * filePathCache: array of known existing files (to reduce disk I/O)
+     * True if link is in `existingPaths`, otherwise false
      */
     if (this.isExternal) {
       // External link checking not supported yet
@@ -98,15 +96,8 @@ class Link {
     const possiblePaths = this.resolve();
     for (let filePath of possiblePaths) {
       if (
-        filePathCache.includes(filePath) ||
-        SYNTHETIC_FILES.includes(filePath)
+        existingPaths.includes(filePath)
       ) {
-        return true;
-      }
-    }
-    // Check disk for files not in cache (images etc.)
-    for (let filePath of possiblePaths) {
-      if (existsSync(filePath)) {
         return true;
       }
     }
@@ -128,7 +119,7 @@ function markdownFromNotebook(source: string): string {
 
 async function checkLinksInFile(
   filePath: string,
-  filePaths: string[],
+  existingPaths: string[],
 ): Promise<boolean> {
   if (
     filePath.startsWith("docs/api/qiskit") ||
@@ -149,15 +140,20 @@ async function checkLinksInFile(
 
   let allGood = true;
   for (let link of links) {
-    allGood = link.check(filePaths) && allGood;
+    allGood = link.check(existingPaths) && allGood;
   }
   return allGood;
 }
 
 async function main() {
   const filePaths = await globby("docs/**/*.{ipynb,md,mdx}");
+  const existingPaths = [
+    ...filePaths,
+    ...await globby("{public,docs}/**/*.{png,jpg,gif,svg}"),
+    ...SYNTHETIC_FILES
+  ]
   const results = await Promise.all(
-    filePaths.map((fp) => checkLinksInFile(fp, filePaths)),
+    filePaths.map((fp) => checkLinksInFile(fp, existingPaths)),
   );
 
   if (results.some((x) => !x)) {
