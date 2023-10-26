@@ -95,9 +95,7 @@ class Link {
 
     const possiblePaths = this.resolve();
     for (let filePath of possiblePaths) {
-      if (
-        existingPaths.includes(filePath)
-      ) {
+      if (existingPaths.includes(filePath)) {
         return true;
       }
     }
@@ -149,9 +147,9 @@ async function main() {
   const filePaths = await globby("docs/**/*.{ipynb,md,mdx}");
   const existingPaths = [
     ...filePaths,
-    ...await globby("{public,docs}/**/*.{png,jpg,gif,svg}"),
-    ...SYNTHETIC_FILES
-  ]
+    ...(await globby("{public,docs}/**/*.{png,jpg,gif,svg}")),
+    ...SYNTHETIC_FILES,
+  ];
   const results = await Promise.all(
     filePaths.map((fp) => checkLinksInFile(fp, existingPaths)),
   );
