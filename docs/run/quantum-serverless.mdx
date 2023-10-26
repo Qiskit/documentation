@@ -9,6 +9,10 @@ Premium users can run their workloads remotely on classical compute made availab
 
 For more information, see the [quantum serverless docs](https://qiskit-extensions.github.io/quantum-serverless/).
 
+<Admonition type="note">
+    This is an experimental feature, subject to change.
+</Admonition>
+
 ## Build a workflow
 
 Here is an example of computing the quasi-probability distribution of a quantum circuit using the Qiskit Runtime Estimator primitive. This Python script should be saved in your working directory. (Warning! All contents of the working directory will be shipped to the cluster for execution.)
@@ -16,38 +20,27 @@ Here is an example of computing the quasi-probability distribution of a quantum 
 ```python
 # source_files/my_qiskit_pattern.py
 
-from qiskit import QuantumCircuit
-from qiskit_ibm_runtime import QiskitRuntimeService, Session, Options, Estimator
-
+from qiskit.circuit.random import random_circuit
+from qiskit.quantum_info import SparsePauliOp
+from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 from quantum_serverless import save_result
 
-# all print statement will be available in job logs
-print("Running program 1...")
-
-# creating circuit
-circuit = QuantumCircuit(2)
-circuit.h(0)
-circuit.cx(0, 1)
-circuit.measure_all()
-
 service = QiskitRuntimeService()
-options = Options(optimization_level=1)
-options.execution.shots = 1024
 
-# sessions allow grouping a collection of iterative
-# calls to the quantum computer
-with Session(service=service, backend="ibmq_qasm_simulator") as session:
-    # running Estimator primitive
-    estimator = Estimator(session=session, options=options)
-    job = estimator.run(circuit)
-    result = job.result()
+# Run on a simulator
+backend = service.get_backend("ibmq_qasm_simulator")
+# Use the next line if you want to run on a system
+# backend = service.least_busy(simulator=False)
 
-    # save results of program execution,
-    # which will be accessible by calling `.result()`
-    save_result(result)
+circuit = random_circuit(2, 2, seed=1234)
+observable = SparsePauliOp("IY")
 
+estimator = Estimator(backend)
+job = estimator.run(circuit, observable)
+result = job.result()
 
-print("Completed running program 1.")
+# save results of program execution
+save_result(result)
 ```
 
 ## Remotely execute workflow on quantum serverless
