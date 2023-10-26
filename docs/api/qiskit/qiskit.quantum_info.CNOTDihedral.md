@@ -65,8 +65,8 @@ Initialize a CNOTDihedral operator object.
 **Parameters**
 
 *   **data** ([*CNOTDihedral*](#qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – Optional, operator to initialize.
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Optional, initialize an empty CNOTDihedral operator.
-*   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if True, validates the CNOTDihedral element.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional, initialize an empty CNOTDihedral operator.
+*   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, validates the CNOTDihedral element.
 
 **Raises**
 
@@ -126,8 +126,8 @@ Return the operator composition with another CNOTDihedral.
 **Parameters**
 
 *   **other** ([*CNOTDihedral*](#qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral")) – a CNOTDihedral object.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
-*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
 
 **Returns**
 
@@ -174,7 +174,7 @@ Return the right multiplied operator self \* other.
 **Parameters**
 
 *   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
 
 **Returns**
 
@@ -236,7 +236,7 @@ Return the compose of a operator with itself n times.
 
 **Parameters**
 
-**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of times to compose with self (n>0).
+**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of times to compose with self (n>0).
 
 **Returns**
 
@@ -260,9 +260,9 @@ Return a shallow copy with reshaped input and output subsystem dimensions.
 
 **Parameters**
 
-*   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-*   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-*   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – reshape to an N-qubit operator \[Default: None].
+*   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+*   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+*   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – reshape to an N-qubit operator \[Default: None].
 
 **Returns**
 

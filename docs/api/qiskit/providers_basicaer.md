@@ -28,11 +28,11 @@ backend = BasicAer.get_backend('qasm_simulator')
 
 ## Simulators
 
-|                                                                                                                                                             |                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| [`QasmSimulatorPy`](qiskit.providers.basicaer.QasmSimulatorPy "qiskit.providers.basicaer.QasmSimulatorPy")(\[configuration, provider])                      | Python implementation of a qasm simulator.    |
-| [`StatevectorSimulatorPy`](qiskit.providers.basicaer.StatevectorSimulatorPy "qiskit.providers.basicaer.StatevectorSimulatorPy")(\[configuration, provider]) | Python statevector simulator.                 |
-| [`UnitarySimulatorPy`](qiskit.providers.basicaer.UnitarySimulatorPy "qiskit.providers.basicaer.UnitarySimulatorPy")(\[configuration, provider])             | Python implementation of a unitary simulator. |
+|                                                                                                                                                             |                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
+| [`QasmSimulatorPy`](qiskit.providers.basicaer.QasmSimulatorPy "qiskit.providers.basicaer.QasmSimulatorPy")(\[configuration, provider])                      | Python implementation of an OpenQASM 2 simulator. |
+| [`StatevectorSimulatorPy`](qiskit.providers.basicaer.StatevectorSimulatorPy "qiskit.providers.basicaer.StatevectorSimulatorPy")(\[configuration, provider]) | Python statevector simulator.                     |
+| [`UnitarySimulatorPy`](qiskit.providers.basicaer.UnitarySimulatorPy "qiskit.providers.basicaer.UnitarySimulatorPy")(\[configuration, provider])             | Python implementation of a unitary simulator.     |
 
 ## Provider
 

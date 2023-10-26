@@ -22,9 +22,9 @@ Return the ordered PauliTable or PauliList for the n-qubit Pauli basis.
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – number of qubits
-*   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if True optionally return the basis sorted by Pauli weight rather than lexicographic order (Default: False)
-*   **pauli\_list** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – \[Deprecated] This argument is deprecated and remains for backwards compatability. It has no effect.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubits
+*   **weight** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True optionally return the basis sorted by Pauli weight rather than lexicographic order (Default: False)
+*   **pauli\_list** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – \[Deprecated] This argument is deprecated and remains for backwards compatability. It has no effect.
 
 **Returns**
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.dagcircuit.BlockCollapser
 
 `qiskit.dagcircuit.BlockCollapser(dag)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 This class implements various strategies of consolidating blocks of nodes in a DAG (direct acyclic graph). It works both with the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") and [`DAGDependency`](qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.DAGDependency") DAG representations.
 

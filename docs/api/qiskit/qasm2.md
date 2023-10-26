@@ -36,12 +36,12 @@ Parse an OpenQASM 2 program from a file into a [`QuantumCircuit`](qiskit.circuit
 
 **Parameters**
 
-*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.11)")) – The OpenQASM 2 program in a string.
-*   **include\_path** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.11)")*]*) – order of directories to search when evluating `include` statements.
-*   **include\_input\_directory** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal "(in Python v3.11)")*\['append', 'prepend'] | None*) – Whether to add the directory of the input file to the `include_path`, and if so, whether to *append* it to search last, or *prepend* it to search first. Pass `None` to suppress adding this directory entirely.
-*   **custom\_instructions** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*CustomInstruction*](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.parse.CustomInstruction")*]*) – any custom constructors that should be used for specific gates or opaque instructions during circuit construction. See [Specifying custom instructions](#qasm2-custom-instructions) for more.
-*   **custom\_classical** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*CustomClassical*](#qiskit.qasm2.CustomClassical "qiskit.qasm2.CustomClassical")*]*) – any custom classical functions that should be used during the parsing of classical expressions. See [Specifying custom classical functions](#qasm2-custom-classical) for more.
-*   **strict** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – whether to run in [strict mode](#qasm2-strict-mode).
+*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.12)")) – The OpenQASM 2 program in a string.
+*   **include\_path** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.12)")*]*) – order of directories to search when evaluating `include` statements.
+*   **include\_input\_directory** ([*Literal*](https://docs.python.org/3/library/typing.html#typing.Literal "(in Python v3.12)")*\['append', 'prepend'] | None*) – Whether to add the directory of the input file to the `include_path`, and if so, whether to *append* it to search last, or *prepend* it to search first. Pass `None` to suppress adding this directory entirely.
+*   **custom\_instructions** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*CustomInstruction*](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.parse.CustomInstruction")*]*) – any custom constructors that should be used for specific gates or opaque instructions during circuit construction. See [Specifying custom instructions](#qasm2-custom-instructions) for more.
+*   **custom\_classical** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*CustomClassical*](#qiskit.qasm2.CustomClassical "qiskit.qasm2.CustomClassical")*]*) – any custom classical functions that should be used during the parsing of classical expressions. See [Specifying custom classical functions](#qasm2-custom-classical) for more.
+*   **strict** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – whether to run in [strict mode](#qasm2-strict-mode).
 
 **Returns**
 
@@ -59,11 +59,11 @@ Parse an OpenQASM 2 program from a string into a [`QuantumCircuit`](qiskit.circu
 
 **Parameters**
 
-*   **string** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The OpenQASM 2 program in a string.
-*   **include\_path** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.11)")*]*) – order of directories to search when evluating `include` statements.
-*   **custom\_instructions** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*CustomInstruction*](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.parse.CustomInstruction")*]*) – any custom constructors that should be used for specific gates or opaque instructions during circuit construction. See [Specifying custom instructions](#qasm2-custom-instructions) for more.
-*   **custom\_classical** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*CustomClassical*](#qiskit.qasm2.CustomClassical "qiskit.qasm2.CustomClassical")*]*) – any custom classical functions that should be used during the parsing of classical expressions. See [Specifying custom classical functions](#qasm2-custom-classical) for more.
-*   **strict** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – whether to run in [strict mode](#qasm2-strict-mode).
+*   **string** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The OpenQASM 2 program in a string.
+*   **include\_path** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.12)")*]*) – order of directories to search when evaluating `include` statements.
+*   **custom\_instructions** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*CustomInstruction*](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.parse.CustomInstruction")*]*) – any custom constructors that should be used for specific gates or opaque instructions during circuit construction. See [Specifying custom instructions](#qasm2-custom-instructions) for more.
+*   **custom\_classical** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*CustomClassical*](#qiskit.qasm2.CustomClassical "qiskit.qasm2.CustomClassical")*]*) – any custom classical functions that should be used during the parsing of classical expressions. See [Specifying custom classical functions](#qasm2-custom-classical) for more.
+*   **strict** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – whether to run in [strict mode](#qasm2-strict-mode).
 
 **Returns**
 
@@ -90,6 +90,8 @@ Information about a custom instruction that should be defined during the parse.
 The `name`, `num_params` and `num_qubits` fields are self-explanatory. The `constructor` field should be a callable object with signature `*args -> Instruction`, where each of the `num_params` `args` is a floating-point value. Most of the built-in Qiskit gate classes have this form.
 
 There is a final `builtin` field. This is optional, and if set true will cause the instruction to be defined and available within the parsing, even if there is no definition in any included OpenQASM 2 file.
+
+This can be particularly useful when trying to resolve ambiguities in the global-phase conventions of an OpenQASM 2 program. See [OpenQASM 2 Phase Conventions](#qasm2-phase-conventions) for more details.
 
 <span id="qasm2-custom-classical" />
 
@@ -151,7 +153,7 @@ Use [`loads()`](#qiskit.qasm2.loads "qiskit.qasm2.loads") to import an OpenQASM 
 
 ```python
 import qiskit.qasm2
-program = '''
+program = """
     OPENQASM 2.0;
     include "qelib1.inc";
     qreg q[2];
@@ -161,7 +163,7 @@ program = '''
     cx q[0], q[1];
 
     measure q -> c;
-'''
+"""
 circuit = qiskit.qasm2.loads(program)
 circuit.draw()
 ```
@@ -187,10 +189,10 @@ OpenQASM 2 files can include other OpenQASM 2 files via the `include` statement.
 
 ```python
 import qiskit.qasm2
-program = '''
+program = """
     include "other.qasm";
     // ... and so on
-'''
+"""
 circuit = qiskit.qasm2.loads(program, include_path=("/path/to/a", "/path/to/b", "."))
 ```
 
@@ -229,12 +231,12 @@ class Builtin(Gate):
     def __init__(self):
         super().__init__("builtin", 1, [])
 
-program = '''
+program = """
     opaque my(theta) q1, q2;
     qreg q[2];
     my(0.5) q[0], q[1];
     builtin q[0];
-'''
+"""
 customs = [
     CustomInstruction(name="my", num_params=1, num_qubits=2, constructor=MyGate),
     # Setting 'builtin=True' means the instruction doesn't require a declaration to be usable.
@@ -243,18 +245,18 @@ customs = [
 circuit = loads(program, custom_instructions=customs)
 ```
 
-Similarly, you can add new classical functions used during the description of arguments to gates, both in the main body of the program (which come out constant-folded) and within the bodies of defined gates (which are computed on demand). Here we provide a Python version of `atan2(y, x)`, which mathematically is $\atan(y/x)$ but correctly handling angle quadrants and infinities, and a custom `add_one` function:
+Similarly, you can add new classical functions used during the description of arguments to gates, both in the main body of the program (which come out constant-folded) and within the bodies of defined gates (which are computed on demand). Here we provide a Python version of `atan2(y, x)`, which mathematically is $\arctan(y/x)$ but correctly handling angle quadrants and infinities, and a custom `add_one` function:
 
 ```python
 import math
 from qiskit.qasm2 import loads, CustomClassical
 
-program = '''
+program = """
     include "qelib1.inc";
     qreg q[2];
     rx(atan2(pi, 3 + add_one(0.2))) q[0];
     cx q[0], q[1];
-'''
+"""
 
 def add_one(x):
     return x + 1
@@ -266,6 +268,63 @@ customs = [
     CustomClassical("add_one", 1, add_one),
 ]
 circuit = loads(program, custom_classical=customs)
+```
+
+<span id="qasm2-phase-conventions" />
+
+## OpenQASM 2 Phase Conventions
+
+As a language, OpenQASM 2 does not have a way to specify the global phase of a complete program, nor of particular gate definitions. This means that parsers of the language may interpret particular gates with a different global phase than what you might expect. For example, the *de facto* standard library of OpenQASM 2 `qelib1.inc` contains definitions of `u1` and `rz` as follows:
+
+```python
+gate u1(lambda) q {
+    U(0, 0, lambda) q;
+}
+
+gate rz(phi) a {
+    u1(phi) a;
+}
+```
+
+In other words, `rz` appears to be a direct alias for `u1`. However, the interpretation of `u1` is specified in [equation (3) of the paper describing the language](https://arxiv.org/abs/1707.03429) as
+
+$$
+u_1(\lambda) = \operatorname{diag}\bigl(1, e^{i\lambda}\bigr) \sim R_z(\lambda)
+$$
+
+where the $\sim$ symbol denotes equivalence only up to a global phase. When parsing OpenQASM 2, we need to choose how to handle a distinction between such gates; `u1` is defined in the prose to be different by a phase to `rz`, but the language is not designed to represent this.
+
+Qiskit’s default position is to interpret a usage of the standard-library `rz` using [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate"), and a usage of `u1` as using the phase-distinct [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate"). If you wish to use the phase conventions more implied by a direct interpretation of the `gate` statements in the header file, you can use [`CustomInstruction`](#qiskit.qasm2.CustomInstruction "qiskit.qasm2.CustomInstruction") to override how Qiskit builds the circuit.
+
+For the standard `qelib1.inc` include there is only one point of difference, and so the override needed to switch its phase convention is:
+
+```python
+from qiskit import qasm2
+from qiskit.circuit.library import PhaseGate
+from qiskit.quantum_info import Operator
+
+program = """
+    OPENQASM 2.0;
+    include "qelib1.inc";
+    qreg q[1];
+    rz(pi / 2) q[0];
+"""
+
+custom = [
+    qasm2.CustomInstruction("rz", 1, 1, PhaseGate),
+]
+```
+
+This will use Qiskit’s [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate") class to represent the `rz` instruction, which is equal (including the phase) to [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate"):
+
+```python
+Operator(qasm2.loads(program, custom_instructions=custom))
+```
+
+```python
+Operator([[1.000000e+00+0.j, 0.000000e+00+0.j],
+          [0.000000e+00+0.j, 6.123234e-17+1.j]],
+         input_dims=(2,), output_dims=(2,))
 ```
 
 <span id="qasm2-legacy-compatibility" />
@@ -306,11 +365,11 @@ In particular, in the legacy importers:
 
     **`rxx(theta) a, b`**
 
-    Two-qubit rotation arond the $XX$ axis, corresponding to [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
+    Two-qubit rotation around the $XX$ axis, corresponding to [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
 
     **`rzz(theta) a, b`**
 
-    Two-qubit rotation arond the $ZZ$ axis, corresponding to [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
+    Two-qubit rotation around the $ZZ$ axis, corresponding to [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
 
     **`rccx a, b, c`**
 
@@ -355,7 +414,7 @@ A tuple containing the exact include\_path used by the legacy Qiskit converter.
 On *all* the gates defined in Qiskit’s legacy version of `qelib1.inc` and the `delay` instruction, it does not matter how the gates are actually defined and used, the legacy importer will always attempt to output its custom objects for them. This can result in errors during the circuit construction, even after a successful parse. There is no way to emulate this buggy behaviour with [`qiskit.qasm2`](#module-qiskit.qasm2 "qiskit.qasm2"); only an `include "qelib1.inc";` statement or the custom\_instructions argument can cause built-in Qiskit instructions to be used, and the signatures of these match each other.
 
 <Admonition title="Note" type="note">
-  Circuits imported with [`load()`](#qiskit.qasm2.load "qiskit.qasm2.load") and [`loads()`](#qiskit.qasm2.loads "qiskit.qasm2.loads") with the above legacy-compability settings should compare equal to those created by Qiskit’s legacy importer, provided no non-`qelib1.inc` user gates are defined. User-defined gates are handled slightly differently in the new importer, and while they should have equivalent [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") fields on inspection, this module uses a custom class to lazily load the definition when it is requested (like most Qiskit objects), rather than eagerly creating it during the parse. Qiskit’s comparison rules for gates will see these two objects as unequal, although any pass through [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") for a particular backend should produce the same output circuits.
+  Circuits imported with [`load()`](#qiskit.qasm2.load "qiskit.qasm2.load") and [`loads()`](#qiskit.qasm2.loads "qiskit.qasm2.loads") with the above legacy-compatibility settings should compare equal to those created by Qiskit’s legacy importer, provided no non-`qelib1.inc` user gates are defined. User-defined gates are handled slightly differently in the new importer, and while they should have equivalent [`definition`](qiskit.circuit.Instruction#definition "qiskit.circuit.Instruction.definition") fields on inspection, this module uses a custom class to lazily load the definition when it is requested (like most Qiskit objects), rather than eagerly creating it during the parse. Qiskit’s comparison rules for gates will see these two objects as unequal, although any pass through [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") for a particular backend should produce the same output circuits.
 </Admonition>
 
 <span id="qasm2-alternatives" />

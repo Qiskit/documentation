@@ -28,9 +28,9 @@ Assembles a list of circuits into a qobj that can be run on the backend.
 
 **Parameters**
 
-*   **circuits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]*) – circuit(s) to assemble
+*   **circuits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*]*) – circuit(s) to assemble
 *   **run\_config** ([*RunConfig*](qiskit.assembler.RunConfig "qiskit.assembler.run_config.RunConfig")) – configuration of the runtime environment
-*   **qobj\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – identifier for the generated qobj
+*   **qobj\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – identifier for the generated qobj
 *   **qobj\_header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.common.QobjHeader")) – header to pass to the results
 
 **Returns**
@@ -71,8 +71,8 @@ Assembles a list of schedules into a qobj that can be run on the backend.
 
 **Parameters**
 
-*   **schedules** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")  *|*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*,* [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*]]*) – Schedules to assemble.
-*   **qobj\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Identifier for the generated qobj.
+*   **schedules** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")  *|*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")  *|*[*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")  *|*[*Instruction*](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")*]]*) – Schedules to assemble.
+*   **qobj\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Identifier for the generated qobj.
 *   **qobj\_header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.common.QobjHeader")) – Header to pass to the results.
 *   **run\_config** ([*RunConfig*](qiskit.assembler.RunConfig "qiskit.assembler.run_config.RunConfig")) – Configuration of the runtime environment.
 

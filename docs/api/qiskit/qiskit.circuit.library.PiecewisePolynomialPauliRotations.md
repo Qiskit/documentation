@@ -74,13 +74,13 @@ Enhancing the Quantum Linear Systems Algorithm using Richardson Extrapolation. [
 
 **Parameters**
 
-*   **num\_state\_qubits** (*Optional\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – The number of qubits representing the state.
-*   **breakpoints** (*Optional\[List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]]*) – The breakpoints to define the piecewise-linear function. Defaults to `[0]`.
-*   **coeffs** (*Optional\[List\[List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*]]]*) – The coefficients of the polynomials for different segments of the
+*   **num\_state\_qubits** (*Optional\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The number of qubits representing the state.
+*   **breakpoints** (*Optional\[List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]]*) – The breakpoints to define the piecewise-linear function. Defaults to `[0]`.
+*   **coeffs** (*Optional\[List\[List\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]]*) – The coefficients of the polynomials for different segments of the
 *   **x** (*piecewise-linear function. coeffs\[j]\[i] is the coefficient of the i-th power of*) –
 *   **polynomial.** (*for the j-th*) – Defaults to linear: `[[1]]`.
-*   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The type of Pauli rotation (`'X'`, `'Y'`, `'Z'`).
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The name of the circuit.
+*   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The type of Pauli rotation (`'X'`, `'Y'`, `'Z'`).
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The name of the circuit.
 
 ## Attributes
 
@@ -180,7 +180,7 @@ Return the global phase of the circuit in radians.
 
 ### layout
 
-Return any associated layout information anout the circuit
+Return any associated layout information about the circuit
 
 This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
@@ -260,7 +260,7 @@ List of integers representing instruction start times. The index corresponds to 
 
 **Raises**
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.11)") – When circuit is not scheduled.
+[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
 
 <span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.parameters" />
 
@@ -298,7 +298,7 @@ Classically evaluate the piecewise polynomial rotation.
 
 **Parameters**
 
-**x** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Value to be evaluated at.
+**x** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Value to be evaluated at.
 
 **Returns**
 
@@ -306,5 +306,5 @@ Value of piecewise polynomial function at x.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 

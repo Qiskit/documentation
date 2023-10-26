@@ -6,15 +6,13 @@ python_api_type: class
 python_api_name: qiskit.visualization.qcstyle.DefaultStyle
 ---
 
-{/* cspell:ignore creglinecolor, creglinestyle, */}
-
 # DefaultStyle
 
 <span id="qiskit.visualization.qcstyle.DefaultStyle" />
 
 `qiskit.visualization.qcstyle.DefaultStyle`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Creates a Default Style dictionary
 

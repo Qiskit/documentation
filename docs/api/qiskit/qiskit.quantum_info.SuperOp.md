@@ -35,8 +35,8 @@ Initialize a quantum channel Superoperator operator.
 **Parameters**
 
 *   **or** (*data (*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Instruction or BaseOperator or matrix): data to initialize superoperator.
-*   **input\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – the input subsystem dimensions. \[Default: None]
-*   **output\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – the output subsystem dimensions. \[Default: None]
+*   **input\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the input subsystem dimensions. \[Default: None]
+*   **output\_dims** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the output subsystem dimensions. \[Default: None]
 
 **Raises**
 
@@ -115,8 +115,8 @@ Return the operator composition with another SuperOp.
 **Parameters**
 
 *   **other** ([*SuperOp*](#qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp")) – a SuperOp object.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
-*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
 
 **Returns**
 
@@ -167,7 +167,7 @@ Return the right multiplied operator self \* other.
 **Parameters**
 
 *   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
 
 **Returns**
 
@@ -221,7 +221,7 @@ Test if Choi-matrix is completely-positive (CP)
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### is\_cptp
 
@@ -233,7 +233,7 @@ Return True if completely-positive trace-preserving (CPTP).
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### is\_tp
 
@@ -245,7 +245,7 @@ Test if a channel is trace-preserving (TP)
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### is\_unitary
 
@@ -257,7 +257,7 @@ Return True if QuantumChannel is a unitary channel.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### output\_dims
 
@@ -277,7 +277,7 @@ Return the power of the quantum channel.
 
 **Parameters**
 
-**n** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – the power exponent.
+**n** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – the power exponent.
 
 **Returns**
 
@@ -305,9 +305,9 @@ Return a shallow copy with reshaped input and output subsystem dimensions.
 
 **Parameters**
 
-*   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-*   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-*   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – reshape to an N-qubit operator \[Default: None].
+*   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+*   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+*   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – reshape to an N-qubit operator \[Default: None].
 
 **Returns**
 

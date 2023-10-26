@@ -12,7 +12,7 @@ python_api_name: qiskit.qobj.PulseQobjExperiment
 
 `qiskit.qobj.PulseQobjExperiment(instructions, config=None, header=None)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 A Pulse Qobj Experiment.
 
@@ -24,7 +24,7 @@ Instantiate a PulseQobjExperiment.
 
 *   **config** ([*PulseQobjExperimentConfig*](qiskit.qobj.PulseQobjExperimentConfig "qiskit.qobj.PulseQobjExperimentConfig")) – A config object for the experiment
 *   **header** (*PulseQobjExperimentHeader*) – A header object for the experiment
-*   **instructions** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – A list of [`PulseQobjInstruction`](qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction") objects
+*   **instructions** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of [`PulseQobjInstruction`](qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction") objects
 
 ## Methods
 
@@ -38,7 +38,7 @@ Create a new PulseQobjExperiment object from a dictionary.
 
 **Parameters**
 
-**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – A dictionary for the experiment config
+**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary for the experiment config
 
 **Returns**
 
@@ -62,5 +62,5 @@ The dictionary form of the PulseQobjExperiment.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 

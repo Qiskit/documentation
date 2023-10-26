@@ -12,7 +12,7 @@ python_api_name: qiskit.dagcircuit.BlockCollector
 
 `qiskit.dagcircuit.BlockCollector(dag)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 This class implements various strategies of dividing a DAG (direct acyclic graph) into blocks of nodes that satisfy certain criteria. It works both with the [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") and [`DAGDependency`](qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.DAGDependency") representations of a DAG, where DagDependency takes into account commutativity between nodes.
 
