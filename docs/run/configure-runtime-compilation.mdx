@@ -6,18 +6,16 @@ description: How to use runtime compilation techniques
 
 # Configure runtime compilation for Qiskit Runtime
 
-Runtime compilation techniques optimize and transform your circuit at the point of compilation to minimize errors. This is the most basic error handling technique.
+Runtime compilation techniques optimize and transform your circuit to minimize errors. Runtime compilation adds some classical pre-processing overhead to your overall runtime. Therefore, it is important to achieve a balance between perfecting your results and ensuring that your job completes in a reasonable amount of time.
 
-Runtime compilation typically results in some classical pre-processing overhead added to your overall runtime. Therefore, it is important to achieve a balance between perfecting your results and ensuring that your job completes in a reasonable amount of time.
-
-Primitives let you employ runtime compilation by setting the optimization level (`optimization_level` option) and by choosing advanced transpilation options.
+Primitives let you employ runtime compilation by setting the optimization level (`optimization_level` option) and by choosing advanced runtime compilation options.
 
 ## Setting the optimization level
 
 The `optimization_level` setting specifies how much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer compile times.
 
 <Admonition>
-  When using primitives, optimization levels 2 and 3 behave identically to level 1.
+  In current primitive versions, optimization levels 2 and 3 behave identically to level 1.
 </Admonition>
 
 <Table>
@@ -31,7 +29,7 @@ The `optimization_level` setting specifies how much optimization to perform on t
     <Tr>
       <Td>0</Td>
       <Td>
-        No optimization: typically used for hardware characterization
+        No optimization: typically used for hardware characterization or debugging
 
         - Basis translation
         - Layout (as specified)
