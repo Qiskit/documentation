@@ -53,7 +53,9 @@ The `optimization_level` setting specifies how much optimization to perform on t
 </Table>
 
 <Admonition>
-  The primitives expect circuits in a form suitable to execute on the target system. You may use the Qiskit transpiler locally to translate abstract circuits into this target circuit form. For now, the primitives will attempt low-cost transformations if given a circuit that is not already in target form. In the future, primitives will error on such circuits.
+  The primitives expect circuits in a form suitable to execute on the target system. You may use the Qiskit transpiler locally to translate abstract circuits into this target circuit form. 
+  
+At present, the primitives will attempt low-cost transformations if given a circuit that is not already in target form, but in future primitives will error on such circuits. So it is recommended that users take advantage of the local compilation capabilities of the Qiskit transpiler wherever possible.
   
   For instructions on preparing circuits for primitive queries, see the [Submitting user-transpiled circuits using primitives](https://learning.quantum-computing.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
 </Admonition>
