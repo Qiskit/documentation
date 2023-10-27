@@ -1,24 +1,25 @@
 ---
-title: Introduction
+title: Introduction to the transpiler
 description: Introduction to the transpiler
 
 ---
 
 
-# Introduction to the Transpiler
+# Introduction to the transpiler
 
-Transpilation is the process of rewriting a given input circuit to match the topology of a specific quantum device and optimize the circuit instructions for execution on present day noisy quantum systems.  A central component of Qiskit, the transpiler is designed for modularity and extensibility. The goal is to be able to easily write new circuit transformations (known as transpiler **passes**), and combine them with other existing passes.  Which passes are chained together and in which order has a major effect on the final outcome. This pipeline is determined by a **pass manager**, which schedules the passes and also allows passes to communicate with each other by providing a shared space. In this way, the transpiler opens up the door for research into aggressive optimization of quantum circuits.
+Transpilation is the process of rewriting a given input circuit to match the topology of a specific quantum device and optimize the circuit instructions for execution on present-day noisy quantum systems.  
+
+A central component of Qiskit, the transpiler is designed for modularity and extensibility. The goal is to be able to easily write new circuit transformations (known as transpiler **passes**), and combine them with other existing passes.  Which passes are chained together and in which order has a major effect on the final outcome. This pipeline is determined by a **pass manager**, which schedules the passes and also allows passes to communicate with each other by providing a shared space. In this way, the transpiler opens up the door for research into aggressive optimization of quantum circuits.
+
+This documentation covers the tooling and workflows available to Qiskit users.  If you're using primitives and are only interested in st using the default transpilation options, look to the section [Configure error suppression for Qiskit Runtime.](../run/configure-error-suppression)
 
 
-This documentation covers the tooling and workflows available to Qiskit users.  If you're using Primitives and interested in just using the default transpilation options, look to the section "Configuring Runtime Error Suppression" (*add link to file*).
+## Transformation passes
+For more advanced users, it is important to understand the various representations of quantum circuits that are used for the transpilation step along with the transformations (i.e., *passes*) that affect the efficiency of the final circuit that is sent to the backend.  This involves rewriting quantum circuits to match hardware constraints and suppressing the effects of noise.  The flow of logic for this tool chain is quite customizable and need not be linear.  One can prepare iterative loops, conditional branches, and other complex behaviors.  A good starting place when developing your own set of passes is by looking to the default sequence of transformations:
 
-
-## Transformation Passes
-For more advanced users, it is important to understand the various representations of quantum circuits that are used for the transpilation step along with the transformations (i.e. *passes*) that affect the efficiency of the final circuit that is sent to the backend.  This involves rewriting quantum circuits to match hardware constraints and suppressing the effects of noise.  The flow of logic for this tool chain is quite customizable and need not be linear.  One can prepare iterative loops, conditional branches, and other complex behaviors.  A good starting place when developing your own set of passes is by looking to the default sequence of transformations:
-
-1. `init` - This pass runs any initial passes that are required before we start embedding the circuit to the backend.  This typically involves unrolling custom instructions and converting the circuit to all 1 and 2 qubit gates.
+1. `init` - This pass runs any initial passes that are required before we start embedding the circuit to the backend.  This typically involves unrolling custom instructions and converting the circuit to all single- and two-qubit gates.
 1. `layout` - This pass applies a *layout*, mapping/assigning the virtual qubits in your circuit to the physical qubits of a backend.
-1. `routing` - This pass runs after a layout has been applied and will inject gates (i.e. SWAPs) in the original circuit in order to make it compatible with the backend's connectivity/coupling map.
+1. `routing` - This pass runs after a layout has been applied and will inject gates (i.e., SWAPs) in the original circuit in order to make it compatible with the backend's connectivity/coupling map.
 1. `translation` - This pass translates the gates in the circuit to the backend's basis set of instructions.
 1. `optimization` - This pass runs an optimization loop to find more efficient decompositions of your quantum circuit until a condition is met (such as a fixed depth).
-1. `scheduling` - This pass is for any hardware-aware optimizations which improve the efficiency of the executed microwave pulse instructions.
+1. `scheduling` - This pass is for any hardware-aware optimizations that improve the efficiency of the executed microwave pulse instructions.
