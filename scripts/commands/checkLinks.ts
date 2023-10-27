@@ -136,7 +136,9 @@ function checkLinksInFile(filePath: string, filePaths: string[]): boolean {
   if (IGNORED_FILES.includes(filePath)) {
     return true;
   }
-  const source = readFileSync(filePath, { encoding: "utf8" });
+  const source_raw = readFileSync(filePath, { encoding: "utf8" });
+  const source = source_raw.replace(/[\r\n]<Admonition/g,'\n"<Admonition')
+                        .replace(/Admonition>[\r\n]*$/g,'Admonition>"');
   const markdown =
     path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
   const links = markdownLinkExtractor(markdown).links.map(
