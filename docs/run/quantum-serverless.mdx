@@ -43,9 +43,9 @@ result = job.result()
 save_result(result)
 ```
 
-## Remotely execute workflow on quantum serverless
+## Deploy workflow on Quantum Serverless
 
-After creating a workflow, authenticate to the `IBMServerlessProvider` with your [IBM Quantum token](account-management). Finally, the workflow is ready to run remotely.
+After creating a workflow, authenticate to the `IBMServerlessProvider` with your [IBM Quantum token](account-management), and upload the script.
 
 ```python
 # Authenticate to the IBM serverless provider
@@ -61,11 +61,17 @@ serverless.upload(
         working_dir="./source_files/"
     )
 )
+```
 
+## Run workflow remotely on Quantum Serverless
+
+Finally, the workflow is ready to run remotely.
+
+```python
 # Run workflow remotely
 job = serverless.run("My-Qiskit-Pattern")
 
-# Retrieve workflow status, logs, results
+# Retrieve status, logs, results
 job.status()
 job.logs()
 job.result()
