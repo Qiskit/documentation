@@ -12,9 +12,9 @@ python_api_name: qiskit.dagcircuit.DAGDependency
 
 `qiskit.dagcircuit.DAGDependency`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
-Object to represent a quantum circuit as a directed acyclic graph via operation dependencies (i.e. lack of commutation).
+Object to represent a quantum circuit as a Directed Acyclic Graph (DAG) via operation dependencies (i.e. lack of commutation).
 
 The nodes in the graph are operations represented by quantum gates. The edges correspond to non-commutation between two operations (i.e. a dependency). A directed edge from node A to node B means that operation A does not commute with operation B. The object’s methods allow circuits to be constructed.
 
@@ -48,9 +48,7 @@ Create an empty DAGDependency.
 
 Return calibration dictionary.
 
-**The custom pulse definition of a given gate is of the form**
-
-\{‘gate\_name’: \{(qubits, params): schedule}}
+The custom pulse definition of a given gate is of the form `{'gate_name': {(qubits, params): schedule}}`.
 
 <span id="qiskit.dagcircuit.DAGDependency.global_phase" />
 
@@ -87,8 +85,8 @@ Add a DAGDepNode to the graph and update the edges.
 **Parameters**
 
 *   **operation** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – operation as a quantum gate
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of qubits on which the operation acts
-*   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – list of classical wires to attach to
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of qubits on which the operation acts
+*   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – list of classical wires to attach to
 
 ### add\_qreg
 
@@ -132,7 +130,7 @@ Direct predecessors id of a given node as sorted list.
 
 **Parameters**
 
-**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – label of considered node.
+**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
 
 **Returns**
 
@@ -152,7 +150,7 @@ Direct successors id of a given node as sorted list.
 
 **Parameters**
 
-**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – label of considered node.
+**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
 
 **Returns**
 
@@ -174,15 +172,13 @@ This function needs pydot \<[https://github.com/erocarrera/pydot](https://github
 
 **Parameters**
 
-*   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – scaling factor
-*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – file path to save image to (format inferred from name)
-*   **style** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – ‘plain’: B\&W graph ‘color’ (default): color input/output/op nodes
+*   **scale** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – scaling factor
+*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – file path to save image to (format inferred from name)
+*   **style** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – ‘plain’: B\&W graph ‘color’ (default): color input/output/op nodes
 
 **Returns**
 
-**if in Jupyter notebook and not saving to file,**
-
-otherwise None.
+if in Jupyter notebook and not saving to file, otherwise None.
 
 **Return type**
 
@@ -214,8 +210,8 @@ Edge enumeration between two nodes through method get\_all\_edge\_data.
 
 **Parameters**
 
-*   **src\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – label of the first node.
-*   **dest\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – label of the second node.
+*   **src\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of the first node.
+*   **dest\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of the second node.
 
 **Returns**
 
@@ -235,7 +231,7 @@ Enumeration of all incoming edges for a given node.
 
 **Parameters**
 
-**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – label of considered node.
+**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
 
 **Returns**
 
@@ -253,7 +249,7 @@ List
 
 **Parameters**
 
-**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – label of considered node.
+**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
 
 **Returns**
 
@@ -275,7 +271,7 @@ iterator over all the nodes.
 
 **Return type**
 
-generator([dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)"))
+generator([dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)"))
 
 ### get\_out\_edges
 
@@ -287,7 +283,7 @@ Enumeration of all outgoing edges for a given node.
 
 **Parameters**
 
-**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – label of considered node.
+**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
 
 **Returns**
 
@@ -307,7 +303,7 @@ Predecessors id of a given node as sorted list.
 
 **Parameters**
 
-**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – label of considered node.
+**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
 
 **Returns**
 
@@ -333,8 +329,8 @@ It is important that such consolidation preserves commutativity assumptions pres
 
 *   **node\_block** (*List\[*[*DAGDepNode*](qiskit.dagcircuit.DAGDepNode "qiskit.dagcircuit.DAGDepNode")*]*) – A list of dag nodes that represents the node block to be replaced
 *   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – The operation to replace the block with
-*   **wire\_pos\_map** (*Dict\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – The dictionary mapping the qarg to the position. This is necessary to reconstruct the qarg order over multiple gates in the combined single op node.
-*   **cycle\_check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – When set to True this method will check that replacing the provided `node_block` with a single node would introduce a cycle (which would invalidate the `DAGDependency`) and will raise a `DAGDependencyError` if a cycle would be introduced. This checking comes with a run time penalty. If you can guarantee that your input `node_block` is a contiguous block and won’t introduce a cycle when it’s contracted to a single node, this can be set to `False` to improve the runtime performance of this method.
+*   **wire\_pos\_map** (*Dict\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The dictionary mapping the qarg to the position. This is necessary to reconstruct the qarg order over multiple gates in the combined single op node.
+*   **cycle\_check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – When set to True this method will check that replacing the provided `node_block` with a single node would introduce a cycle (which would invalidate the `DAGDependency`) and will raise a `DAGDependencyError` if a cycle would be introduced. This checking comes with a run time penalty. If you can guarantee that your input `node_block` is a contiguous block and won’t introduce a cycle when it’s contracted to a single node, this can be set to `False` to improve the runtime performance of this method.
 
 **Raises**
 
@@ -358,7 +354,7 @@ Successors id of a given node as sorted list.
 
 **Parameters**
 
-**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – label of considered node.
+**node\_id** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – label of considered node.
 
 **Returns**
 
@@ -374,7 +370,6 @@ List
 
 `to_retworkx()`
 
-{/* cspell:ignore retworkx */}
 Returns the DAGDependency in retworkx format.
 
 ### topological\_nodes

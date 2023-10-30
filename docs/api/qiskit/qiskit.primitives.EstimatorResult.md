@@ -25,7 +25,7 @@ where the i-th elements of `result` correspond to the circuit and observable giv
 **Parameters**
 
 *   **values** (*np.ndarray*) – The array of the expectation values.
-*   **metadata** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")*]*) – List of the metadata.
+*   **metadata** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*]*) – List of the metadata.
 
 ## Attributes
 
@@ -65,5 +65,5 @@ Generate single experiment result objects from self.
 
 **Return type**
 
-[*Iterator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator "(in Python v3.11)")\[*BasePrimitiveResult*]
+[*Iterator*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Iterator "(in Python v3.12)")\[*BasePrimitiveResult*]
 

@@ -16,20 +16,20 @@ Bases: [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.base.bas
 
 A [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") implementation that provides an interface for leveraging the sampler interface from any backend.
 
-This class provides a sampler interface from any backend and doesn’t do any measurement mitigation, it just computes the probability distribution from the counts. It facilitates using backends that do not provide a native [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") implementation in places that work with [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler"), such as algorithms in [`qiskit.algorithms`](http://qiskit.org/documentation/apidoc/algorithms.html#module-qiskit.algorithms "qiskit.algorithms") including [`SamplingVQE`](http://qiskit.org/documentation/stubs/qiskit.algorithms.minimum_eigensolvers.SamplingVQE.html#qiskit.algorithms.minimum_eigensolvers.SamplingVQE "qiskit.algorithms.minimum_eigensolvers.SamplingVQE"). However, if you’re using a provider that has a native implementation of [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler"), it is a better choice to leverage that native implementation as it will likely include additional optimizations and be a more efficient implementation. The generic nature of this class precludes doing any provider- or backend-specific optimizations.
+This class provides a sampler interface from any backend and doesn’t do any measurement mitigation, it just computes the probability distribution from the counts. It facilitates using backends that do not provide a native [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") implementation in places that work with [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler"), such as algorithms in [`qiskit.algorithms`](algorithms#module-qiskit.algorithms "qiskit.algorithms") including [`SamplingVQE`](qiskit.algorithms.minimum_eigensolvers.SamplingVQE "qiskit.algorithms.minimum_eigensolvers.SamplingVQE"). However, if you’re using a provider that has a native implementation of [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler"), it is a better choice to leverage that native implementation as it will likely include additional optimizations and be a more efficient implementation. The generic nature of this class precludes doing any provider- or backend-specific optimizations.
 
 Initialize a new BackendSampler
 
 **Parameters**
 
 *   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")) – Required: the backend to run the sampler primitive on
-*   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)") *| None*) – Default options.
+*   **options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)") *| None*) – Default options.
 *   **bound\_pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") *| None*) – An optional pass manager to run after parameter binding.
-*   **skip\_transpilation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If this is set to True the internal compilation of the input circuits is skipped and the circuit objects will be directly executed when this objected is called.
+*   **skip\_transpilation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If this is set to True the internal compilation of the input circuits is skipped and the circuit objects will be directly executed when this objected is called.
 
 **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – If backend is not provided
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If backend is not provided
 
 ## Attributes
 
@@ -108,7 +108,7 @@ Run the job of the sampling of bitstrings.
 **Parameters**
 
 *   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *| Sequence\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – One of more circuit objects.
-*   **parameter\_values** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*] | Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*]] | None*) – Parameters to be bound to the circuit.
+*   **parameter\_values** (*Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | Sequence\[Sequence\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]] | None*) – Parameters to be bound to the circuit.
 *   **run\_options** – Backend runtime options used for circuit execution.
 
 **Returns**
@@ -117,7 +117,7 @@ The job object of the result of the sampler. The i-th result corresponds to `cir
 
 **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – Invalid arguments are given.
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – Invalid arguments are given.
 
 **Return type**
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlu
 
 `qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Class tracking the installed high-level-synthesis plugins.
 

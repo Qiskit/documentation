@@ -24,7 +24,7 @@ python_api_name: qiskit.extensions
 | ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | [`UnitaryGate`](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")(data\[, label])                                     | Class quantum gates specified by a unitary matrix.                    |
 | [`HamiltonianGate`](qiskit.extensions.HamiltonianGate "qiskit.extensions.HamiltonianGate")(data, time\[, label])                   | Class for representing evolution by a Hamiltonian operator as a gate. |
-| [`SingleQubitUnitary`](qiskit.extensions.SingleQubitUnitary "qiskit.extensions.SingleQubitUnitary")(unitary\_matrix\[, mode, ...]) | u = 2\*2 unitary (given as a (complex) numpy.ndarray)                 |
+| [`SingleQubitUnitary`](qiskit.extensions.SingleQubitUnitary "qiskit.extensions.SingleQubitUnitary")(unitary\_matrix\[, mode, ...]) | Single-qubit unitary.                                                 |
 
 ## Simulator Extensions
 

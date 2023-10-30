@@ -104,7 +104,7 @@ When using the symplectic array input data both z and x arguments must be provid
 
 **Parameters**
 
-**data** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")  *or*[*Pauli*](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*ScalarOp*](qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")) – input data for Pauli. If input is a tuple it must be of the form `(z, x)` or (z, x, phase)\`\` where `z` and `x` are boolean Numpy arrays, and phase is an integer from Z\_4. If input is a string, it must be a concatenation of a phase and a Pauli string (e.g. ‘XYZ’, ‘-iZIZ’) where a phase string is a combination of at most three characters from \[‘+’, ‘-’, ‘’], \[‘1’, ‘’], and \[‘i’, ‘j’, ‘’] in this order, e.g. ‘’, ‘-1j’ while a Pauli string is 1 or more characters of ‘I’, ‘X’, ‘Y’ or ‘Z’, e.g. ‘Z’, ‘XIYY’.
+**data** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")  *or*[*Pauli*](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*ScalarOp*](qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")) – input data for Pauli. If input is a tuple it must be of the form `(z, x)` or (z, x, phase)\`\` where `z` and `x` are boolean Numpy arrays, and phase is an integer from Z\_4. If input is a string, it must be a concatenation of a phase and a Pauli string (e.g. ‘XYZ’, ‘-iZIZ’) where a phase string is a combination of at most three characters from \[‘+’, ‘-’, ‘’], \[‘1’, ‘’], and \[‘i’, ‘j’, ‘’] in this order, e.g. ‘’, ‘-1j’ while a Pauli string is 1 or more characters of ‘I’, ‘X’, ‘Y’ or ‘Z’, e.g. ‘Z’, ‘XIYY’.
 
 **Raises**
 
@@ -187,7 +187,7 @@ Return True if other Pauli anticommutes with self.
 **Parameters**
 
 *   **other** ([*Pauli*](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) – another Pauli operator.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – qubits to apply dot product on (default: None).
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to apply dot product on (default: None).
 
 **Returns**
 
@@ -195,7 +195,7 @@ True if Pauli’s anticommute, False if they commute.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### commutes
 
@@ -208,7 +208,7 @@ Return True if the Pauli commutes with other.
 **Parameters**
 
 *   **other** ([*Pauli*](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*PauliList*](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")) – another Pauli operator.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – qubits to apply dot product on (default: None).
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to apply dot product on (default: None).
 
 **Returns**
 
@@ -216,7 +216,7 @@ True if Pauli’s commute, False if they anti-commute.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### compose
 
@@ -229,9 +229,9 @@ Return the operator composition with another Pauli.
 **Parameters**
 
 *   **other** ([*Pauli*](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) – a Pauli object.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)") *or None*) – Optional, qubits to apply dot product on (default: None).
-*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
-*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True update in-place (default: False).
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, qubits to apply dot product on (default: None).
+*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
+*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True update in-place (default: False).
 
 **Returns**
 
@@ -277,7 +277,7 @@ Return a Pauli with qubits deleted.
 
 **Parameters**
 
-**qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – qubits to delete from Pauli.
+**qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits to delete from Pauli.
 
 **Returns**
 
@@ -302,8 +302,8 @@ Return the right multiplied operator self \* other.
 **Parameters**
 
 *   **other** ([*Pauli*](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) – an operator object.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)") *or None*) – Optional, qubits to apply dot product on (default: None).
-*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True update in-place (default: False).
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, qubits to apply dot product on (default: None).
+*   **inplace** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True update in-place (default: False).
 
 **Returns**
 
@@ -331,7 +331,7 @@ True if the Pauli’s are equivalent up to group phase.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
 ### evolve
 
@@ -350,7 +350,7 @@ Schrödinger picture evolves the Pauli as $P^\prime = C.P.C^\dagger$.
 **Parameters**
 
 *   **other** ([*Pauli*](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The Clifford operator to evolve by.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – a list of qubits to apply the Clifford to.
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – a list of qubits to apply the Clifford to.
 *   **frame** (*string*) – `'h'` for Heisenberg (default) or `'s'` for
 *   **framework.** (*Schrödinger*) –
 
@@ -406,7 +406,7 @@ Insert a Pauli at specific qubit value.
 
 **Parameters**
 
-*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – qubits index to insert at.
+*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – qubits index to insert at.
 *   **value** ([*Pauli*](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")) – value to insert.
 
 **Returns**
@@ -447,7 +447,7 @@ Return the compose of a operator with itself n times.
 
 **Parameters**
 
-**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of times to compose with self (n>0).
+**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of times to compose with self (n>0).
 
 **Returns**
 
@@ -471,9 +471,9 @@ Return a shallow copy with reshaped input and output subsystem dimensions.
 
 **Parameters**
 
-*   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-*   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-*   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – reshape to an N-qubit operator \[Default: None].
+*   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+*   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+*   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – reshape to an N-qubit operator \[Default: None].
 
 **Returns**
 
@@ -497,7 +497,7 @@ Set the max number of Pauli characters to display before truncation/
 
 **Parameters**
 
-**val** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of characters.
+**val** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of characters.
 
 <Admonition title="Note" type="note">
   Truncation will be disabled if the truncation value is set to 0.
@@ -555,7 +555,7 @@ the Pauli string label.
 
 **Return type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### to\_matrix
 
@@ -567,7 +567,7 @@ Convert to a Numpy array or sparse CSR matrix.
 
 **Parameters**
 
-**sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if True return sparse CSR matrices, otherwise return dense Numpy arrays (default: False).
+**sparse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True return sparse CSR matrices, otherwise return dense Numpy arrays (default: False).
 
 **Returns**
 

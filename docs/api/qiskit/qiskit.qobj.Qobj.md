@@ -34,7 +34,7 @@ Create a new QASMQobj object from a dictionary.
 
 **Parameters**
 
-**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – A dictionary representing the QasmQobj to create. It will be in the same format as output by [`to_dict()`](#qiskit.qobj.Qobj.to_dict "qiskit.qobj.Qobj.to_dict").
+**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary representing the QasmQobj to create. It will be in the same format as output by [`to_dict()`](#qiskit.qobj.Qobj.to_dict "qiskit.qobj.Qobj.to_dict").
 
 **Returns**
 
@@ -50,9 +50,9 @@ The QasmQobj from the input dictionary.
 
 `to_dict()`
 
-Return a dictionary format representation of the QASM Qobj.
+Return a dictionary format representation of the OpenQASM 2 Qobj.
 
-Note this dict is not in the json wire format expected by IBMQ and qobj specification because complex numbers are still of type complex. Also this may contain native numpy arrays. When serializing this output for use with IBMQ you can leverage a json encoder that converts these as expected. For example:
+Note this dict is not in the json wire format expected by IBM and Qobj specification because complex numbers are still of type complex. Also, this may contain native numpy arrays. When serializing this output for use with IBM systems, you can leverage a json encoder that converts these as expected. For example:
 
 ```python
 import json
@@ -75,5 +75,5 @@ A dictionary representation of the QasmQobj object
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 

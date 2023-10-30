@@ -12,7 +12,7 @@ python_api_name: qiskit.utils.mitigation.CompleteMeasFitter
 
 `qiskit.utils.mitigation.CompleteMeasFitter(results, state_labels, qubit_list=None, circlabel='')`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Deprecated: Measurement correction fitter for a full calibration
 
@@ -31,9 +31,9 @@ A wrapper for the tensored fitter
 **Parameters**
 
 *   **results** – the results of running the measurement calibration circuits. If this is None the user will set a calibration matrix later.
-*   **state\_labels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*]*) – list of calibration state labels returned from measurement\_calibration\_circuits. The output matrix will obey this ordering.
-*   **qubit\_list** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – List of the qubits (for reference and if the subset is needed). If None, the qubit\_list will be created according to the length of state\_labels\[0].
-*   **circlabel** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – if the qubits were labeled.
+*   **state\_labels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – list of calibration state labels returned from measurement\_calibration\_circuits. The output matrix will obey this ordering.
+*   **qubit\_list** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – List of the qubits (for reference and if the subset is needed). If None, the qubit\_list will be created according to the length of state\_labels\[0].
+*   **circlabel** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – if the qubits were labeled.
 
 ## Attributes
 
@@ -73,8 +73,8 @@ Add measurement calibration data
 
 **Parameters**
 
-*   **new\_results** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")  *or*[*qiskit.result.Result*](qiskit.result.Result "qiskit.result.Result")) – a single result or list of result objects.
-*   **rebuild\_cal\_matrix** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – rebuild the calibration matrix
+*   **new\_results** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")  *or*[*qiskit.result.Result*](qiskit.result.Result "qiskit.result.Result")) – a single result or list of result objects.
+*   **rebuild\_cal\_matrix** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – rebuild the calibration matrix
 
 ### readout\_fidelity
 
@@ -86,7 +86,7 @@ Based on the results, output the readout fidelity which is the normalized trace 
 
 **Parameters**
 
-**label\_list** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If None, returns the average assignment fidelity of a single state. Otherwise it returns the assignment fidelity to be in any one of these states averaged over the second index.
+**label\_list** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If None, returns the average assignment fidelity of a single state. Otherwise it returns the assignment fidelity to be in any one of these states averaged over the second index.
 
 **Returns**
 
@@ -110,7 +110,7 @@ Return a fitter object that is a subset of the qubits in the original list.
 
 **Parameters**
 
-**qubit\_sublist** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – must be a subset of qubit\_list
+**qubit\_sublist** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – must be a subset of qubit\_list
 
 **Returns**
 

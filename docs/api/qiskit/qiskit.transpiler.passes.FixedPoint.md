@@ -22,7 +22,7 @@ FixedPoint initializer.
 
 **Parameters**
 
-**property\_to\_check** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The property to check if a fixed point was reached.
+**property\_to\_check** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The property to check if a fixed point was reached.
 
 ## Attributes
 

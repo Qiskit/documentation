@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePl
 
 `qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePluginManager`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Manager class for preset pass manager stage plugins.
 

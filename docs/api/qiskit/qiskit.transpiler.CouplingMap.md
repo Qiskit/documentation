@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.CouplingMap
 
 `qiskit.transpiler.CouplingMap(couplinglist=None, description=None)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Directed graph specifying fixed coupling.
 
@@ -22,8 +22,8 @@ Create coupling graph. By default, the generated coupling has no nodes.
 
 **Parameters**
 
-*   **couplinglist** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)") *or None*) – An initial coupling graph, specified as an adjacency list containing couplings, e.g. \[\[0,1], \[0,2], \[1,2]]. It is required that nodes are contiguously indexed starting at 0. Missed nodes will be added as isolated nodes in the coupling map.
-*   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – A string to describe the coupling map.
+*   **couplinglist** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – An initial coupling graph, specified as an adjacency list containing couplings, e.g. \[\[0,1], \[0,2], \[1,2]]. It is required that nodes are contiguously indexed starting at 0. Missed nodes will be added as isolated nodes in the coupling map.
+*   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – A string to describe the coupling map.
 
 ## Attributes
 
@@ -149,7 +149,7 @@ components. The order of this list is deterministic but implementation specific 
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 
 ### distance
 
@@ -161,8 +161,8 @@ Returns the undirected distance between physical\_qubit1 and physical\_qubit2.
 
 **Parameters**
 
-*   **physical\_qubit1** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – A physical qubit
-*   **physical\_qubit2** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Another physical qubit
+*   **physical\_qubit1** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – A physical qubit
+*   **physical\_qubit2** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Another physical qubit
 
 **Returns**
 
@@ -170,7 +170,7 @@ The undirected distance
 
 **Return type**
 
-[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")
+[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 
 **Raises**
 
@@ -184,7 +184,7 @@ The undirected distance
 
 Draws the coupling map.
 
-This function calls the [`graphviz_draw()`](https://qiskit.org/ecosystem/rustworkx/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw "(in rustworkx v0.13.1)") function from the `rustworkx` package to draw the [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object.
+This function calls the [`graphviz_draw()`](https://qiskit.org/ecosystem/rustworkx/apiref/rustworkx.visualization.graphviz_draw.html#rustworkx.visualization.graphviz_draw "(in rustworkx v0.13.2)") function from the `rustworkx` package to draw the [`CouplingMap`](#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object.
 
 **Returns**
 
@@ -232,8 +232,8 @@ A heavy hexagon graph is described in:
 
 **Parameters**
 
-*   **distance** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The code distance for the generated heavy hex graph. The value for distance can be any odd positive integer. The distance relates to the number of qubits by: $n = \frac{5d^2 - 2d - 1}{2}$ where $n$ is the number of qubits and $d$ is the `distance` parameter.
-*   **bidirectional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Whether the edges in the output coupling graph are bidirectional or not. By default this is set to `True`
+*   **distance** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The code distance for the generated heavy hex graph. The value for distance can be any odd positive integer. The distance relates to the number of qubits by: $n = \frac{5d^2 - 2d - 1}{2}$ where $n$ is the number of qubits and $d$ is the `distance` parameter.
+*   **bidirectional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether the edges in the output coupling graph are bidirectional or not. By default this is set to `True`
 
 **Returns**
 
@@ -257,8 +257,8 @@ A heavy square graph is described in:
 
 **Parameters**
 
-*   **distance** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The code distance for the generated heavy square graph. The value for distance can be any odd positive integer. The distance relates to the number of qubits by: $n = 3d^2 - 2d$ where $n$ is the number of qubits and $d$ is the `distance` parameter.
-*   **bidirectional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Whether the edges in the output coupling graph are bidirectional or not. By default this is set to `True`
+*   **distance** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The code distance for the generated heavy square graph. The value for distance can be any odd positive integer. The distance relates to the number of qubits by: $n = 3d^2 - 2d$ where $n$ is the number of qubits and $d$ is the `distance` parameter.
+*   **bidirectional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether the edges in the output coupling graph are bidirectional or not. By default this is set to `True`
 
 **Returns**
 
@@ -278,9 +278,9 @@ Return a hexagonal lattice graph coupling map.
 
 **Parameters**
 
-*   **rows** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The number of rows to generate the graph with.
-*   **cols** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The number of columns to generate the graph with.
-*   **bidirectional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Whether the edges in the output coupling graph are bidirectional or not. By default this is set to `True`
+*   **rows** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of rows to generate the graph with.
+*   **cols** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of columns to generate the graph with.
+*   **bidirectional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether the edges in the output coupling graph are bidirectional or not. By default this is set to `True`
 
 **Returns**
 
@@ -328,7 +328,7 @@ Each edge is a pair of physical qubits.
 
 **Return type**
 
-Tuple([int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)"),[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)"))
+Tuple([int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"),[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)"))
 
 ### is\_connected
 
@@ -376,7 +376,7 @@ Returns a reduced coupling map that corresponds to the subgraph of qubits select
 
 **Parameters**
 
-**mapping** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – A mapping of reduced qubits to device qubits.
+**mapping** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A mapping of reduced qubits to device qubits.
 
 **Returns**
 
@@ -400,8 +400,8 @@ Returns the shortest undirected path between physical\_qubit1 and physical\_qubi
 
 **Parameters**
 
-*   **physical\_qubit1** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – A physical qubit
-*   **physical\_qubit2** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Another physical qubit
+*   **physical\_qubit1** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – A physical qubit
+*   **physical\_qubit2** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Another physical qubit
 
 **Returns**
 
