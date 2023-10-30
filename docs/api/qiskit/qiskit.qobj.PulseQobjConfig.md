@@ -20,17 +20,17 @@ Instantiate a PulseQobjConfig object.
 
 **Parameters**
 
-*   **meas\_level** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The measurement level to use.
-*   **meas\_return** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The level of measurement information to return.
-*   **pulse\_library** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – A list of [`PulseLibraryItem`](qiskit.qobj.PulseLibraryItem "qiskit.qobj.PulseLibraryItem") objects which define the set of primitive pulses
-*   **qubit\_lo\_freq** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – List of frequencies (as floats) for the qubit driver LO’s in GHz.
-*   **meas\_lo\_freq** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – List of frequencies (as floats) for the’ measurement driver LO’s in GHz.
-*   **memory\_slot\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Size of each memory slot if the output is Level 0.
-*   **rep\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Time per program execution in sec. Must be from the list provided by the backend (`backend.configuration().rep_times`). Defaults to the first entry in `backend.configuration().rep_times`.
-*   **rep\_delay** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Delay between programs in sec. Only supported on certain backends (`backend.configuration().dynamic_reprate_enabled` ). If supported, `rep_delay` will be used instead of `rep_time` and must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is `backend.configuration().default_rep_delay`.
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The number of shots
-*   **seed\_simulator** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the seed to use in the simulator
-*   **memory\_slots** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – The number of memory slots on the device
+*   **meas\_level** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The measurement level to use.
+*   **meas\_return** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The level of measurement information to return.
+*   **pulse\_library** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of [`PulseLibraryItem`](qiskit.qobj.PulseLibraryItem "qiskit.qobj.PulseLibraryItem") objects which define the set of primitive pulses
+*   **qubit\_lo\_freq** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of frequencies (as floats) for the qubit driver LO’s in GHz.
+*   **meas\_lo\_freq** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of frequencies (as floats) for the’ measurement driver LO’s in GHz.
+*   **memory\_slot\_size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Size of each memory slot if the output is Level 0.
+*   **rep\_time** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Time per program execution in sec. Must be from the list provided by the backend (`backend.configuration().rep_times`). Defaults to the first entry in `backend.configuration().rep_times`.
+*   **rep\_delay** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Delay between programs in sec. Only supported on certain backends (`backend.configuration().dynamic_reprate_enabled` ). If supported, `rep_delay` will be used instead of `rep_time` and must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is `backend.configuration().default_rep_delay`.
+*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of shots
+*   **seed\_simulator** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the seed to use in the simulator
+*   **memory\_slots** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The number of memory slots on the device
 *   **kwargs** – Additional free form key value fields to add to the configuration
 
 ## Methods
@@ -45,7 +45,7 @@ Create a new PulseQobjConfig object from a dictionary.
 
 **Parameters**
 
-**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – A dictionary for the config
+**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary for the config
 
 **Returns**
 
@@ -69,5 +69,5 @@ The dictionary form of the PulseQobjConfig.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 

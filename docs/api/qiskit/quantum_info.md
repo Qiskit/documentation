@@ -79,8 +79,8 @@ where $F_{\text{pro}}(\mathcal{E}, U)$ is the [`process_fidelity()`](#qiskit.qua
 
 *   **channel** (*QuantumChannel or* [*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – noisy quantum channel.
 *   **target** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or None*) – target unitary operator. If None target is the identity operator \[Default: None].
-*   **require\_cp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – check if input and target channels are completely-positive and if non-CP log warning containing negative eigenvalues of Choi-matrix \[Default: True].
-*   **require\_tp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – check if input and target channels are trace-preserving and if non-TP log warning containing negative eigenvalues of partial Choi-matrix $Tr_{\mbox{out}}[\mathcal{E}] - I$ \[Default: True].
+*   **require\_cp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – check if input and target channels are completely-positive and if non-CP log warning containing negative eigenvalues of Choi-matrix \[Default: True].
+*   **require\_tp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – check if input and target channels are trace-preserving and if non-TP log warning containing negative eigenvalues of partial Choi-matrix $Tr_{\mbox{out}}[\mathcal{E}] - I$ \[Default: True].
 
 **Returns**
 
@@ -88,7 +88,7 @@ The average gate fidelity $F_{\text{ave}}$.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 **Raises**
 
@@ -122,8 +122,8 @@ where $S_{\mathcal{E}}, S_{U}$ are the [`SuperOp`](qiskit.quantum_info.SuperOp "
 
 *   **channel** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or QuantumChannel*) – input quantum channel.
 *   **target** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or QuantumChannel or None*) – target quantum channel. If None target is the identity operator \[Default: None].
-*   **require\_cp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – check if input and target channels are completely-positive and if non-CP log warning containing negative eigenvalues of Choi-matrix \[Default: True].
-*   **require\_tp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – check if input and target channels are trace-preserving and if non-TP log warning containing negative eigenvalues of partial Choi-matrix $Tr_{\mbox{out}}[\mathcal{E}] - I$ \[Default: True].
+*   **require\_cp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – check if input and target channels are completely-positive and if non-CP log warning containing negative eigenvalues of Choi-matrix \[Default: True].
+*   **require\_tp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – check if input and target channels are trace-preserving and if non-TP log warning containing negative eigenvalues of partial Choi-matrix $Tr_{\mbox{out}}[\mathcal{E}] - I$ \[Default: True].
 
 **Returns**
 
@@ -131,7 +131,7 @@ The process fidelity $F_{\text{pro}}$.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 **Raises**
 
@@ -155,8 +155,8 @@ where $F_{\text{ave}}(\mathcal{E}, U)$ is the [`average_gate_fidelity()`](#qiski
 
 *   **channel** (*QuantumChannel*) – noisy quantum channel.
 *   **target** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or None*) – target unitary operator. If None target is the identity operator \[Default: None].
-*   **require\_cp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – check if input and target channels are completely-positive and if non-CP log warning containing negative eigenvalues of Choi-matrix \[Default: True].
-*   **require\_tp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – check if input and target channels are trace-preserving and if non-TP log warning containing negative eigenvalues of partial Choi-matrix $Tr_{\mbox{out}}[\mathcal{E}] - I$ \[Default: True].
+*   **require\_cp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – check if input and target channels are completely-positive and if non-CP log warning containing negative eigenvalues of Choi-matrix \[Default: True].
+*   **require\_tp** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – check if input and target channels are trace-preserving and if non-TP log warning containing negative eigenvalues of partial Choi-matrix $Tr_{\mbox{out}}[\mathcal{E}] - I$ \[Default: True].
 
 **Returns**
 
@@ -164,7 +164,7 @@ The average gate error $E$.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 **Raises**
 
@@ -172,7 +172,7 @@ The average gate error $E$.
 
 <span id="qiskit.quantum_info.diamond_norm" />
 
-`qiskit.quantum_info.diamond_norm(choi, **kwargs)`
+`qiskit.quantum_info.diamond_norm(choi, solver='SCS', **kwargs)`
 
 Return the diamond norm of the input quantum channel object.
 
@@ -181,17 +181,16 @@ This function computes the completely-bounded trace-norm (often referred to as t
 **Parameters**
 
 *   **choi** ([*Choi*](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi") *or QuantumChannel*) – a quantum channel object or Choi-matrix array.
+*   **solver** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The solver to use.
 *   **kwargs** – optional arguments to pass to CVXPY solver.
 
 **Returns**
 
-**The completely-bounded trace norm**
-
-$\|\mathcal{E}\|_{\diamond}$.
+The completely-bounded trace norm $\|\mathcal{E}\|_{\diamond}$.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 **Raises**
 
@@ -227,7 +226,7 @@ If one of the states is a pure state this simplifies to $F(\rho_1, \rho_2) = \la
 
 *   **state1** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – the first quantum state.
 *   **state2** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – the second quantum state.
-*   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – check if the inputs are valid quantum states \[Default: True]
+*   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – check if the inputs are valid quantum states \[Default: True]
 
 **Returns**
 
@@ -235,7 +234,7 @@ The state fidelity $F(\rho_1, \rho_2)$.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 **Raises**
 
@@ -256,7 +255,7 @@ $$
 **Parameters**
 
 *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a quantum state.
-*   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – check if input state is valid \[Default: True]
+*   **validate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – check if input state is valid \[Default: True]
 
 **Returns**
 
@@ -264,7 +263,7 @@ the purity $Tr[\rho^2]$.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 **Raises**
 
@@ -302,7 +301,7 @@ The concurrence.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 **Raises**
 
@@ -325,7 +324,7 @@ $$
 **Parameters**
 
 *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a quantum state.
-*   **base** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the base of the logarithm \[Default: 2].
+*   **base** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the base of the logarithm \[Default: 2].
 
 **Returns**
 
@@ -333,7 +332,7 @@ The von-Neumann entropy S(rho).
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 **Raises**
 
@@ -357,7 +356,7 @@ The entanglement of formation.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 **Raises**
 
@@ -382,7 +381,7 @@ where $\rho_A=Tr_B[\rho_{AB}], \rho_B=Tr_A[\rho_{AB}]$, are the reduced density 
 **Parameters**
 
 *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a bipartite state.
-*   **base** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the base of the logarithm \[Default: 2].
+*   **base** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the base of the logarithm \[Default: 2].
 
 **Returns**
 
@@ -390,7 +389,7 @@ The mutual information $I(\rho_{AB})$.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 **Raises**
 
@@ -414,7 +413,7 @@ $$
 **Parameters**
 
 *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a quantum state.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – The subsystems to be transposed.
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The subsystems to be transposed.
 
 **Returns**
 
@@ -422,7 +421,7 @@ Negativity value of the quantum state
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 **Raises**
 
@@ -439,7 +438,7 @@ If all subsystems are traced over this returns the [`trace()`](qiskit.quantum_in
 **Parameters**
 
 *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – the input state.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – The subsystems to trace over.
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The subsystems to trace over.
 
 **Returns**
 
@@ -478,26 +477,24 @@ where $|u_k\rangle_A$ and $|v_k\rangle_B$ are an orthonormal set of vectors in t
 **Parameters**
 
 *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – the input state.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – the list of Input state positions corresponding to subsystem $B$.
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – the list of Input state positions corresponding to subsystem $B$.
 
 **Returns**
 
-**list of tuples `(s, u, v)`, where `s` (float) are the**
-
-Schmidt coefficients $\lambda_k$, and `u` (Statevector), `v` (Statevector) are the Schmidt vectors $|u_k\rangle_A$, $|u_k\rangle_B$, respectively.
+list of tuples `(s, u, v)`, where `s` (float) are the Schmidt coefficients $\lambda_k$, and `u` (Statevector), `v` (Statevector) are the Schmidt vectors $|u_k\rangle_A$, $|u_k\rangle_B$, respectively.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")
 
 **Raises**
 
 *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if Input qargs is not a list of positions of the Input state.
 *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if Input qargs is not a proper subset of Input state.
 
-**..note ::**
-
-In Qiskit, qubits are ordered using little endian notation, with the least significant qubits having smaller indices. For example, a four-qubit system is represented as $|q_3q_2q_1q_0\rangle$. Using this convention, setting qargs = \[0] will partition the state as $|q_3q_2q_1\rangle_A\otimes|q_0\rangle_B$. Furthermore, qubits will be organized in this notation regardless of the order they are passed. For instance, passing either qargs = \[1,2] or qargs = \[2,1] will result in partitioning the state as $|q_3q_0\rangle_A\otimes|q_2q_1\rangle_B$.
+<Admonition title="Note" type="note">
+  In Qiskit, qubits are ordered using little-endian notation, with the least significant qubits having smaller indices. For example, a four-qubit system is represented as $|q_3q_2q_1q_0\rangle$. Using this convention, setting `qargs=[0]` will partition the state as $|q_3q_2q_1\rangle_A\otimes|q_0\rangle_B$. Furthermore, qubits will be organized in this notation regardless of the order they are passed. For instance, passing either `qargs=[1,2]` or `qargs=[2,1]` will result in partitioning the state as $|q_3q_0\rangle_A\otimes|q_2q_1\rangle_B$.
+</Admonition>
 
 <span id="qiskit.quantum_info.shannon_entropy" />
 
@@ -513,12 +510,10 @@ $$
 
 where $b$ is the log base and (default 2), and $0 \log_b(0) \equiv 0$.
 
-{/* cspell:ignore pvec */}
-
 **Parameters**
 
 *   **pvec** (*array\_like*) – a probability vector.
-*   **base** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the base of the logarithm \[Default: 2].
+*   **base** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the base of the logarithm \[Default: 2].
 
 **Returns**
 
@@ -526,7 +521,7 @@ The Shannon entropy H(pvec).
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 <span id="qiskit.quantum_info.commutator" />
 
@@ -601,7 +596,7 @@ $$
 *   **a** (*OperatorTypeT*) – Operator a.
 *   **b** (*OperatorTypeT*) – Operator b.
 *   **c** (*OperatorTypeT*) – Operator c.
-*   **commutator** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If `True` compute the double commutator, if `False` the double anti-commutator.
+*   **commutator** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` compute the double commutator, if `False` the double anti-commutator.
 
 **Returns**
 
@@ -629,8 +624,8 @@ The statevector is sampled from the uniform (Haar) measure.
 
 **Parameters**
 
-*   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – the dimensions of the state.
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+*   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the dimensions of the state.
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
 
 **Returns**
 
@@ -648,10 +643,10 @@ Generator a random DensityMatrix.
 
 **Parameters**
 
-*   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – the dimensions of the DensityMatrix.
-*   **rank** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *or None*) – Optional, the rank of the density matrix. The default value is full-rank.
+*   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the dimensions of the DensityMatrix.
+*   **rank** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or None*) – Optional, the rank of the density matrix. The default value is full-rank.
 *   **method** (*string*) – Optional. The method to use. ‘Hilbert-Schmidt’: (Default) sample from the Hilbert-Schmidt metric. ‘Bures’: sample from the Bures metric.
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
 
 **Returns**
 
@@ -675,8 +670,8 @@ The operator is sampled from the unitary Haar measure.
 
 **Parameters**
 
-*   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – the input dimensions of the Operator.
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+*   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the input dimensions of the Operator.
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
 
 **Returns**
 
@@ -696,9 +691,9 @@ The operator is sampled from Gaussian Unitary Ensemble.
 
 **Parameters**
 
-*   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – the input dimension of the Operator.
-*   **traceless** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Optional. If True subtract diagonal entries to return a traceless hermitian operator (Default: False).
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+*   **dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the input dimension of the Operator.
+*   **traceless** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optional. If True subtract diagonal entries to return a traceless hermitian operator (Default: False).
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
 
 **Returns**
 
@@ -716,9 +711,9 @@ Return a random Pauli.
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of qubits.
-*   **group\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Optional. If True generate random phase. Otherwise the phase will be set so that the Pauli coefficient is +1 (default: False).
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of qubits.
+*   **group\_phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optional. If True generate random phase. Otherwise the phase will be set so that the Pauli coefficient is +1 (default: False).
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
 
 **Returns**
 
@@ -738,8 +733,8 @@ The Clifford is sampled using the method of Reference \[1].
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of qubits for the Clifford
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of qubits for the Clifford
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
 
 **Returns**
 
@@ -763,10 +758,10 @@ This constructs the Stinespring operator for the quantum channel by sampling a r
 
 **Parameters**
 
-*   **input\_dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – the input dimension of the channel.
-*   **output\_dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – the input dimension of the channel.
-*   **rank** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Optional. The rank of the quantum channel Choi-matrix.
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+*   **input\_dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the input dimension of the channel.
+*   **output\_dims** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *or*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – the input dimension of the channel.
+*   **rank** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The rank of the quantum channel Choi-matrix.
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
 
 **Returns**
 
@@ -788,8 +783,8 @@ Return a random CNOTDihedral element.
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of qubits for the CNOTDihedral object.
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *or RandomState*) – Optional. Set a fixed seed or generator for RNG.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of qubits for the CNOTDihedral object.
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or RandomState*) – Optional. Set a fixed seed or generator for RNG.
 
 **Returns**
 
@@ -807,9 +802,9 @@ Return a random PauliTable.
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of qubits.
-*   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Optional. The number of rows of the table (Default: 1).
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of qubits.
+*   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The number of rows of the table (Default: 1).
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
 
 **Returns**
 
@@ -827,10 +822,10 @@ Return a random PauliList.
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of qubits.
-*   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Optional. The length of the Pauli list (Default: 1).
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
-*   **phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True the Pauli phases are randomized, otherwise the phases are fixed to 0. \[Default: True]
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of qubits.
+*   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The length of the Pauli list (Default: 1).
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+*   **phase** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True the Pauli phases are randomized, otherwise the phases are fixed to 0. \[Default: True]
 
 **Returns**
 
@@ -852,9 +847,9 @@ DEPRECATED: Return a random StabilizerTable.
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of qubits.
-*   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Optional. The number of rows of the table (Default: 1).
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of qubits.
+*   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The number of rows of the table (Default: 1).
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
 
 **Returns**
 
@@ -874,8 +869,8 @@ Computes the Hellinger distance between two counts distributions.
 
 **Parameters**
 
-*   **dist\_p** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – First dict of counts.
-*   **dist\_q** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – Second dict of counts.
+*   **dist\_p** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – First dict of counts.
+*   **dist\_q** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Second dict of counts.
 
 **Returns**
 
@@ -883,7 +878,7 @@ Distance
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 ## References
 
@@ -901,8 +896,8 @@ This is equivalent to the standard classical fidelity $F(Q,P)=\left(\sum_{i}\sqr
 
 **Parameters**
 
-*   **dist\_p** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – First dict of counts.
-*   **dist\_q** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – Second dict of counts.
+*   **dist\_p** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – First dict of counts.
+*   **dist\_q** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – Second dict of counts.
 
 **Returns**
 
@@ -910,7 +905,7 @@ Fidelity
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
 ## Example
 
@@ -973,7 +968,7 @@ For N \<= 3 qubits this is based on optimal CX cost decomposition from reference
 **Parameters**
 
 *   **clifford** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a clifford operator.
-*   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Optional, a synthesis method (‘AG’ or ‘greedy’). If set this overrides optimal decomposition for N \<=3 qubits.
+*   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Optional, a synthesis method (‘AG’ or ‘greedy’). If set this overrides optimal decomposition for N \<=3 qubits.
 
 **Returns**
 

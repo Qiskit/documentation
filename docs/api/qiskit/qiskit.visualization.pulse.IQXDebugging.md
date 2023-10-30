@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.pulse.IQXDebugging
 
 `qiskit.visualization.pulse.IQXDebugging(**kwargs)`
 
-Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 Pulse stylesheet for pulse programmers. Show details of instructions.
 

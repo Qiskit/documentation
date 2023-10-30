@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.models.JobStatus
 
 `qiskit.providers.models.JobStatus(job_id, status, status_msg, **kwargs)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Model for JobStatus.
 
@@ -24,7 +24,7 @@ backend job\_id.
 
 **Type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 <span id="qiskit.providers.models.JobStatus.status" />
 
@@ -34,7 +34,7 @@ status of the job.
 
 **Type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 <span id="qiskit.providers.models.JobStatus.status_msg" />
 
@@ -44,7 +44,7 @@ status message.
 
 **Type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ## Methods
 
@@ -58,7 +58,7 @@ Create a new JobStatus object from a dictionary.
 
 **Parameters**
 
-**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – A dictionary representing the JobStatus to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.JobStatus.to_dict "qiskit.providers.models.JobStatus.to_dict").
+**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary representing the JobStatus to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.JobStatus.to_dict "qiskit.providers.models.JobStatus.to_dict").
 
 **Returns**
 
@@ -84,5 +84,5 @@ The dictionary form of the JobStatus.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 

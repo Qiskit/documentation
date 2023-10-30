@@ -42,9 +42,9 @@ BIPMapping initializer.
 
 *   **coupling\_map** (*Union\[*[*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")*,* [*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) – Directed graph represented a coupling map.
 
-*   **qubit\_subset** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – Sublist of physical qubits to be used in the mapping. If None, all qubits in the coupling\_map will be considered.
+*   **qubit\_subset** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Sublist of physical qubits to be used in the mapping. If None, all qubits in the coupling\_map will be considered.
 
-*   **objective** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) –
+*   **objective** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) –
 
     Type of objective function to be minimized:
 
@@ -58,15 +58,15 @@ BIPMapping initializer.
 
 *   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Backend properties object containing 2q-gate gate errors, which are required in computing certain types of objective function such as `'gate_error'` or `'balanced'`. If this is not available, default\_cx\_error\_rate is used instead.
 
-*   **time\_limit** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Time limit for solving BIP in seconds
+*   **time\_limit** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Time limit for solving BIP in seconds
 
-*   **threads** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Number of threads to be allowed for CPLEX to solve BIP
+*   **threads** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of threads to be allowed for CPLEX to solve BIP
 
-*   **max\_swaps\_inbetween\_layers** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Number of swaps allowed in between layers. If None, automatically set. Large value could decrease the probability to build infeasible BIP problem but also could reduce the chance of finding a feasible solution within the `time_limit`.
+*   **max\_swaps\_inbetween\_layers** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of swaps allowed in between layers. If None, automatically set. Large value could decrease the probability to build infeasible BIP problem but also could reduce the chance of finding a feasible solution within the `time_limit`.
 
-*   **depth\_obj\_weight** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Weight of depth objective in `'balanced'` objective. The balanced objective is the sum of error\_rate + depth\_obj\_weight \* depth.
+*   **depth\_obj\_weight** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Weight of depth objective in `'balanced'` objective. The balanced objective is the sum of error\_rate + depth\_obj\_weight \* depth.
 
-*   **default\_cx\_error\_rate** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Default CX error rate to be used if backend\_prop is not available.
+*   **default\_cx\_error\_rate** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Default CX error rate to be used if backend\_prop is not available.
 
 **Raises**
 
@@ -126,5 +126,5 @@ returns the original dag.
 **Raises**
 
 *   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the number of virtual and physical qubits are not the same.
-*   [**AssertionError**](https://docs.python.org/3/library/exceptions.html#AssertionError "(in Python v3.11)") – if the final layout is not valid.
+*   [**AssertionError**](https://docs.python.org/3/library/exceptions.html#AssertionError "(in Python v3.12)") – if the final layout is not valid.
 

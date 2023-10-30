@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.InstructionDurations
 
 `qiskit.transpiler.InstructionDurations(instruction_durations=None, dt=None)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Helper class to provide durations of instructions for scheduling.
 
@@ -60,10 +60,10 @@ Some instructions may have a parameter dependent duration.
 
 **Parameters**
 
-*   **inst** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – An instruction or its name to be queried.
-*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] |* [*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")  *|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – Qubits or its indices that the instruction acts on.
-*   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The unit of duration to be returned. It must be ‘s’ or ‘dt’.
-*   **parameters** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*] | None*) – The value of the parameters of the desired instruction.
+*   **inst** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")  *|*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – An instruction or its name to be queried.
+*   **qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] |* [*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*] |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – Qubits or its indices that the instruction acts on.
+*   **unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The unit of duration to be returned. It must be ‘s’ or ‘dt’.
+*   **parameters** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – The value of the parameters of the desired instruction.
 
 **Returns**
 
@@ -71,7 +71,7 @@ The duration of the instruction on the qubits.
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")|[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")|[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")
 
 **Raises**
 
@@ -91,7 +91,7 @@ Set of units used in this instruction durations.
 
 **Return type**
 
-[set](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.11)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")]
+[set](https://docs.python.org/3/library/stdtypes.html#set "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")]
 
 ### update
 
@@ -104,7 +104,7 @@ Update self with inst\_durations (inst\_durations overwrite self).
 **Parameters**
 
 *   **inst\_durations** (*'InstructionDurationsType' | None*) – Instruction durations to be merged into self (overwriting self).
-*   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Sampling duration in seconds of the target backend.
+*   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Sampling duration in seconds of the target backend.
 
 **Returns**
 

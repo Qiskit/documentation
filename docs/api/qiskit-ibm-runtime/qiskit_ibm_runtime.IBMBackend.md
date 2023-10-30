@@ -18,7 +18,7 @@ Backend class interfacing with an IBM Quantum backend.
   *   You should not instantiate the `IBMBackend` class directly. Instead, use the methods provided by an [`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.QiskitRuntimeService") instance to retrieve and handle backends.
 </Admonition>
 
-This class represents an IBM Quantum backend. Its attributes and methods provide information about the backend. For example, the [`status()`](qiskit_ibm_runtime.IBMBackend#status "qiskit_ibm_runtime.IBMBackend.status") method returns a `BackendStatus` instance. The instance contains the `operational` and `pending_jobs` attributes, which state whether the backend is operational and also the number of jobs in the server queue for the backend, respectively:
+This class represents an IBM Quantum backend. Its attributes and methods provide information about the backend. For example, the [`status()`](#qiskit_ibm_runtime.IBMBackend.status "qiskit_ibm_runtime.IBMBackend.status") method returns a `BackendStatus` instance. The instance contains the `operational` and `pending_jobs` attributes, which state whether the backend is operational and also the number of jobs in the server queue for the backend, respectively:
 
 ```python
 status = backend.status()
@@ -134,19 +134,15 @@ IBMBackend constructor.
 
 ## Attributes
 
-<span id="ibmbackend-coupling-map" />
+<span id="qiskit_ibm_runtime.IBMBackend.coupling_map" />
 
 ### coupling\_map
 
 Return the `CouplingMap` object
 
-<span id="ibmbackend-dt" />
-
-### dt
-
 <span id="qiskit_ibm_runtime.IBMBackend.dt" />
 
-`float | None`
+### dt
 
 Return the system time resolution of input signals
 
@@ -160,13 +156,9 @@ The input signal timestep in seconds. If the backend doesn’t define `dt` `None
 
 dt
 
-<span id="ibmbackend-dtm" />
-
-### dtm
-
 <span id="qiskit_ibm_runtime.IBMBackend.dtm" />
 
-`float`
+### dtm
 
 Return the system time resolution of output signals
 
@@ -178,33 +170,27 @@ The output signal timestep in seconds.
 
 dtm
 
-<span id="ibmbackend-id-warning-issued" />
+<span id="qiskit_ibm_runtime.IBMBackend.id_warning_issued" />
 
 ### id\_warning\_issued
 
-<span id="qiskit_ibm_runtime.IBMBackend.id_warning_issued" />
-
 `= False`
 
-<span id="ibmbackend-instruction-durations" />
+<span id="qiskit_ibm_runtime.IBMBackend.instruction_durations" />
 
 ### instruction\_durations
 
 Return the `InstructionDurations` object.
 
-<span id="ibmbackend-instruction-schedule-map" />
+<span id="qiskit_ibm_runtime.IBMBackend.instruction_schedule_map" />
 
 ### instruction\_schedule\_map
 
 Return the `InstructionScheduleMap` for the instructions defined in this backend’s target.
 
-<span id="ibmbackend-instructions" />
-
-### instructions
-
 <span id="qiskit_ibm_runtime.IBMBackend.instructions" />
 
-`List[Tuple[Instruction, Tuple[int]]]`
+### instructions
 
 A list of Instruction tuples on the backend of the form `(instruction, (qubits)`
 
@@ -212,13 +198,9 @@ A list of Instruction tuples on the backend of the form `(instruction, (qubits)`
 
 `List`\[`Tuple`\[`Instruction`, `Tuple`\[`int`]]]
 
-<span id="ibmbackend-max-circuits" />
-
-### max\_circuits
-
 <span id="qiskit_ibm_runtime.IBMBackend.max_circuits" />
 
-`int`
+### max\_circuits
 
 The maximum number of circuits
 
@@ -228,13 +210,9 @@ The maximum number of circuits (or Pulse schedules) that can be run in a single 
 
 `int`
 
-<span id="ibmbackend-meas-map" />
-
-### meas\_map
-
 <span id="qiskit_ibm_runtime.IBMBackend.meas_map" />
 
-`List[List[int]]`
+### meas\_map
 
 Return the grouping of measurements which are multiplexed
 
@@ -248,13 +226,9 @@ The grouping of measurements which are multiplexed
 
 meas\_map
 
-<span id="ibmbackend-num-qubits" />
-
-### num\_qubits
-
 <span id="qiskit_ibm_runtime.IBMBackend.num_qubits" />
 
-`int`
+### num\_qubits
 
 Return the number of qubits the backend has.
 
@@ -262,13 +236,9 @@ Return the number of qubits the backend has.
 
 `int`
 
-<span id="ibmbackend-operation-names" />
-
-### operation\_names
-
 <span id="qiskit_ibm_runtime.IBMBackend.operation_names" />
 
-`List[str]`
+### operation\_names
 
 A list of instruction names that the backend supports.
 
@@ -276,13 +246,9 @@ A list of instruction names that the backend supports.
 
 `List`\[`str`]
 
-<span id="ibmbackend-operations" />
-
-### operations
-
 <span id="qiskit_ibm_runtime.IBMBackend.operations" />
 
-`List[Instruction]`
+### operations
 
 A list of `Instruction` instances that the backend supports.
 
@@ -290,15 +256,15 @@ A list of `Instruction` instances that the backend supports.
 
 `List`\[`Instruction`]
 
-<span id="ibmbackend-options" />
+<span id="qiskit_ibm_runtime.IBMBackend.options" />
 
 ### options
 
 Return the options for the backend
 
-The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit_ibm_runtime.IBMBackend#run "qiskit_ibm_runtime.IBMBackend.run") method.
+The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit_ibm_runtime.IBMBackend.run "qiskit_ibm_runtime.IBMBackend.run") method.
 
-<span id="ibmbackend-provider" />
+<span id="qiskit_ibm_runtime.IBMBackend.provider" />
 
 ### provider
 
@@ -312,13 +278,9 @@ the Provider responsible for the backend.
 
 Provider
 
-<span id="ibmbackend-service" />
-
-### service
-
 <span id="qiskit_ibm_runtime.IBMBackend.service" />
 
-`QiskitRuntimeService`
+### service
 
 Return the `service` object
 
@@ -330,13 +292,9 @@ instance of QiskitRuntimeService
 
 service
 
-<span id="ibmbackend-target" />
-
-### target
-
 <span id="qiskit_ibm_runtime.IBMBackend.target" />
 
-`Target`
+### target
 
 A `qiskit.transpiler.Target` object for the backend.
 
@@ -348,37 +306,31 @@ A `qiskit.transpiler.Target` object for the backend.
 
 Target
 
-<span id="ibmbackend-version" />
+<span id="qiskit_ibm_runtime.IBMBackend.version" />
 
 ### version
-
-<span id="qiskit_ibm_runtime.IBMBackend.version" />
 
 `= 2`
 
 ## Methods
 
-<span id="ibmbackend-call" />
-
 ### \_\_call\_\_
 
 <span id="qiskit_ibm_runtime.IBMBackend.__call__" />
 
-`IBMBackend.__call__()`
+`__call__()`
 
 Call self as a function.
 
 **Return type**
 
-[`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")
-
-<span id="ibmbackend-acquire-channel" />
+[`IBMBackend`](#qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend")
 
 ### acquire\_channel
 
 <span id="qiskit_ibm_runtime.IBMBackend.acquire_channel" />
 
-`IBMBackend.acquire_channel(qubit)`
+`acquire_channel(qubit)`
 
 Return the acquisition channel for the given qubit.
 
@@ -390,13 +342,11 @@ The Qubit measurement acquisition line.
 
 AcquireChannel
 
-<span id="ibmbackend-check-faulty" />
-
 ### check\_faulty
 
 <span id="qiskit_ibm_runtime.IBMBackend.check_faulty" />
 
-`IBMBackend.check_faulty(circuit)`
+`check_faulty(circuit)`
 
 Check if the input circuit uses faulty qubits or edges.
 
@@ -412,19 +362,17 @@ Check if the input circuit uses faulty qubits or edges.
 
 `None`
 
-<span id="ibmbackend-configuration" />
-
 ### configuration
 
 <span id="qiskit_ibm_runtime.IBMBackend.configuration" />
 
-`IBMBackend.configuration()`
+`configuration()`
 
 Return the backend configuration.
 
 Backend configuration contains fixed information about the backend, such as its name, number of qubits, basis gates, coupling map, quantum volume, etc.
 
-The schema for backend configuration can be found in [Qiskit/ibm-quantum-schemas](https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_configuration_schema.json).
+The schema for backend configuration can be found in [Qiskit/ibm-quantum-schemas/backend\_configuration](https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_configuration_schema.json).
 
 **Return type**
 
@@ -434,13 +382,11 @@ The schema for backend configuration can be found in [Qiskit/ibm-quantum-schemas
 
 The configuration for the backend.
 
-<span id="ibmbackend-control-channel" />
-
 ### control\_channel
 
 <span id="qiskit_ibm_runtime.IBMBackend.control_channel" />
 
-`IBMBackend.control_channel(qubits)`
+`control_channel(qubits)`
 
 Return the secondary drive channel for the given qubit
 
@@ -458,17 +404,15 @@ The Qubit measurement acquisition line.
 
 List\[ControlChannel]
 
-<span id="ibmbackend-defaults" />
-
 ### defaults
 
 <span id="qiskit_ibm_runtime.IBMBackend.defaults" />
 
-`IBMBackend.defaults(refresh=False)`
+`defaults(refresh=False)`
 
 Return the pulse defaults for the backend.
 
-The schema for default pulse configuration can be found in [Qiskit/ibm-quantum-schemas](https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/default_pulse_configuration_schema.json).
+The schema for default pulse configuration can be found in [Qiskit/ibm-quantum-schemas/default\_pulse\_configuration](https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/default_pulse_configuration_schema.json).
 
 **Parameters**
 
@@ -482,13 +426,11 @@ The schema for default pulse configuration can be found in [Qiskit/ibm-quantum-s
 
 The backend pulse defaults or `None` if the backend does not support pulse.
 
-<span id="ibmbackend-drive-channel" />
-
 ### drive\_channel
 
 <span id="qiskit_ibm_runtime.IBMBackend.drive_channel" />
 
-`IBMBackend.drive_channel(qubit)`
+`drive_channel(qubit)`
 
 Return the drive channel for the given qubit.
 
@@ -500,13 +442,11 @@ The Qubit drive channel
 
 DriveChannel
 
-<span id="ibmbackend-measure-channel" />
-
 ### measure\_channel
 
 <span id="qiskit_ibm_runtime.IBMBackend.measure_channel" />
 
-`IBMBackend.measure_channel(qubit)`
+`measure_channel(qubit)`
 
 Return the measure stimulus channel for the given qubit.
 
@@ -518,19 +458,17 @@ The Qubit measurement stimulus line
 
 MeasureChannel
 
-<span id="ibmbackend-properties" />
-
 ### properties
 
 <span id="qiskit_ibm_runtime.IBMBackend.properties" />
 
-`IBMBackend.properties(refresh=False, datetime=None)`
+`properties(refresh=False, datetime=None)`
 
 Return the backend properties, subject to optional filtering.
 
 This data describes qubits properties (such as T1 and T2), gates properties (such as gate length and error), and other general properties of the backend.
 
-The schema for backend properties can be found in [Qiskit/ibm-quantum-schemas](https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json).
+The schema for backend properties can be found in [Qiskit/ibm-quantum-schemas/backend\_properties](https://github.com/Qiskit/ibm-quantum-schemas/blob/main/schemas/backend_properties_schema.json).
 
 **Parameters**
 
@@ -548,15 +486,13 @@ The backend properties or `None` if the backend properties are not currently ava
 **Raises**
 
 *   **TypeError** – If an input argument is not of the correct type.
-*   **NotImplementedError** – If datetime is specified when cloud rutime is used.
-
-<span id="ibmbackend-qubit-properties" />
+*   **NotImplementedError** – If datetime is specified when cloud runtime is used.
 
 ### qubit\_properties
 
 <span id="qiskit_ibm_runtime.IBMBackend.qubit_properties" />
 
-`IBMBackend.qubit_properties(qubit)`
+`qubit_properties(qubit)`
 
 Return QubitProperties for a given qubit.
 
@@ -578,13 +514,11 @@ qubit\_properties
 
 **NotImplementedError** – if the backend doesn’t support querying the qubit properties
 
-<span id="ibmbackend-run" />
-
 ### run
 
 <span id="qiskit_ibm_runtime.IBMBackend.run" />
 
-`IBMBackend.run(*args, **kwargs)`
+`run(*args, **kwargs)`
 
 Not supported method
 
@@ -592,13 +526,11 @@ Not supported method
 
 `None`
 
-<span id="ibmbackend-set-options" />
-
 ### set\_options
 
 <span id="qiskit_ibm_runtime.IBMBackend.set_options" />
 
-`IBMBackend.set_options(**fields)`
+`set_options(**fields)`
 
 Set the options fields for the backend
 
@@ -612,13 +544,11 @@ This method is used to update the options of a backend. If you need to change an
 
 **AttributeError** – If the field passed in is not part of the options
 
-<span id="ibmbackend-status" />
-
 ### status
 
 <span id="qiskit_ibm_runtime.IBMBackend.status" />
 
-`IBMBackend.status()`
+`status()`
 
 Return the backend status.
 
@@ -638,13 +568,11 @@ The status of the backend.
 
 **IBMBackendApiProtocolError** – If the status for the backend cannot be formatted properly.
 
-<span id="ibmbackend-target-history" />
-
 ### target\_history
 
 <span id="qiskit_ibm_runtime.IBMBackend.target_history" />
 
-`IBMBackend.target_history(datetime=None)`
+`target_history(datetime=None)`
 
 A `qiskit.transpiler.Target` object for the backend. :rtype: `Target` :returns: Target with properties found on datetime
 

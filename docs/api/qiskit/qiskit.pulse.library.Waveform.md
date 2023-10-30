@@ -20,10 +20,10 @@ Create new sample pulse command.
 
 **Parameters**
 
-*   **samples** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.25)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")*]*) – Complex array of the samples in the pulse envelope.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Unique name to identify the pulse.
-*   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Pulse sample norm tolerance for clipping. If any sample’s norm exceeds unity by less than or equal to epsilon it will be clipped to unit norm. If the sample norm is greater than 1+epsilon an error will be raised.
-*   **limit\_amplitude** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)") *| None*) – Passed to parent Pulse
+*   **samples** ([*ndarray*](https://numpy.org/doc/stable/reference/generated/numpy.ndarray.html#numpy.ndarray "(in NumPy v1.26)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*]*) – Complex array of the samples in the pulse envelope.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Unique name to identify the pulse.
+*   **epsilon** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Pulse sample norm tolerance for clipping. If any sample’s norm exceeds unity by less than or equal to epsilon it will be clipped to unit norm. If the sample norm is greater than 1+epsilon an error will be raised.
+*   **limit\_amplitude** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – Passed to parent Pulse
 
 ## Attributes
 
@@ -71,17 +71,17 @@ Plot the interpolated envelope of pulse.
 
 **Parameters**
 
-*   **style** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)")*] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
+*   **style** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
 
 *   **backend** (*Optional\[BaseBackend]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
-*   **time\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] | None*) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
+*   **time\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
 
-*   **time\_unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
+*   **time\_unit** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The unit of specified time range either `dt` or `ns`. The unit of `ns` is available only when `backend` object is provided.
 
-*   **show\_waveform\_info** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
+*   **show\_waveform\_info** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Show waveform annotations, i.e. name, of waveforms. Set `True` to show additional information about waveforms.
 
-*   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) –
+*   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) –
 
     Name of plotter API to generate an output image. One of following APIs should be specified:
 
@@ -93,7 +93,7 @@ Plot the interpolated envelope of pulse.
 
     axis and style kwargs may depend on the plotter.
 
-*   **axis** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)") *| None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
+*   **axis** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)") *| None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
 
 **Returns**
 
@@ -109,5 +109,5 @@ Return True iff the instruction is parameterized.
 
 **Return type**
 
-[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")
+[bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
