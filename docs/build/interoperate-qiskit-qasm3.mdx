@@ -83,7 +83,40 @@ circuit.draw("mpl")
 
 ## Export to OpenQASM 3
 
-You can export Qiskit code to OpenQASM 3. See more information in the [Exporting to OpenQASM 3](/api/qiskit/qasm3#exporting-to-openqasm-3) section of the API reference.
+You can export Qiskit code to OpenQASM 3 with `dumps()`, which exports to a string, or `dump()`, which exports to a file. 
+
+### Example with `dumps()`
+
+```python
+from qiskit import QuantumCircuit
+from qiskit.qasm3 import dumps
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.cx(0,1)
+qc.measure_all()
+dumps(qc)
+```
+Output:
+
+`'OPENQASM 3;\ninclude "stdgates.inc";\nbit[2] meas;\nqubit[2] q;\nh q[0];\ncx q[0], q[1];\nbarrier q[0], q[1];\nmeas[0] = measure q[0];\nmeas[1] = measure q[1];\n'`
+
+### Example with `dump()`
+
+```python
+from qiskit import QuantumCircuit
+from qiskit.qasm3 import dump
+
+qc = QuantumCircuit(2)
+qc.h(0)
+qc.cx(0,1)
+qc.measure_all()
+
+f = open("my_file.txt", 'w')
+dump(qc, f)
+f.close()
+```
+
+See more information in the [Exporting to OpenQASM 3](/api/qiskit/qasm3#exporting-to-openqasm-3) section of the API reference.
 
 <Admonition type="tip" title="Recommendations">
     - [OpenQASM 3 Qiskit API](/api/qiskit/qasm3)
