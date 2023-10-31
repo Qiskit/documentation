@@ -25,7 +25,7 @@ Follow the steps in the [Install and set up topic](../start/install) if you don'
 from qiskit_ibm_runtime import QiskitRuntimeService
 
 service = QiskitRuntimeService()
-backend = service.backend("ibmq_qasm_simulator")
+backend = service.backend("ibm_brisbane")
 ```
 
 ### 2. Create a circuit and an observable
@@ -33,13 +33,15 @@ backend = service.backend("ibmq_qasm_simulator")
 Just like the section before, you will need at least one circuit and one observable as inputs to the `Estimator` primitive.
 
 ```python
-from qiskit.circuit.random import random_circuit
-from qiskit.quantum_info import SparsePauliOp
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.quantum_info import SparsePauliOp, random_hermitian
 
-circuit = random_circuit(2, 2, seed=0).decompose(reps=1)
-display(circuit.draw("mpl"))
+n_qubits = 127
 
-observable = SparsePauliOp("XZ")
+mat = np.real(random_hermitian(n_qubits, seed=1234))
+circuit = IQP(mat)
+observable = SparsePauliOp("Z" * n_qubits)
 print(f">>> Observable: {observable.paulis}")
 ```
 
@@ -84,9 +86,8 @@ Follow the steps in the [Install and set up topic](../start/install) if you don'
 ```python
 from qiskit_ibm_runtime import QiskitRuntimeService
 
-# Initialize the service and set the channel to ibm_quantum or ibm_cloud if you didn't set a default channel.
-service = QiskitRuntimeService(channel="ibm_quantum")
-backend = service.backend("ibmq_qasm_simulator")
+service = QiskitRuntimeService()
+backend = service.backend("ibm_brisbane")
 ```
 
 ### 2. Create a circuit
@@ -94,10 +95,15 @@ backend = service.backend("ibmq_qasm_simulator")
 Just like the section before, you will need at least one circuit as the input to the `Sampler` primitive.
 
 ```python
-from qiskit.circuit.random import random_circuit
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.quantum_info import random_hermitian
 
-circuit = random_circuit(2, 2, seed=0, measure=True).decompose(reps=1)
-display(circuit.draw("mpl"))
+n_qubits = 127
+
+mat = np.real(random_hermitian(n_qubits, seed=1234))
+circuit = IQP(mat)
+circuit.measure_all()
 ```
 
 ### 3. Initialize the Qiskit Runtime Sampler
@@ -114,7 +120,7 @@ sampler = Sampler(backend=backend)
 
 ### 4. Invoke the Sampler and get results
 
-You can then invoke the `run()` method generate a quasi-probability distribution for the input circuits and quantum states.
+You can then invoke the `run()` method to generate a quasi-probability distribution for the input circuits and quantum states.
 
 ```python
 job = sampler.run(circuit)
