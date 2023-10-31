@@ -34,7 +34,7 @@ retrieved_job = provider.backend.retrieve_job(job.job_id())
   *   You should not instantiate the `IBMBackend` class directly. Instead, use the methods provided by an [`IBMProvider`](qiskit_ibm_provider.IBMProvider "qiskit_ibm_provider.IBMProvider") instance to retrieve and handle backends.
 </Admonition>
 
-Other methods return information about the backend. For example, the [`status()`](qiskit_ibm_provider.IBMBackend#status "qiskit_ibm_provider.IBMBackend.status") method returns a [`BackendStatus`](/api/qiskit/qiskit.providers.models.BackendStatus.html#qiskit.providers.models.BackendStatus "(in Qiskit v0.44)") instance. The instance contains the `operational` and `pending_jobs` attributes, which state whether the backend is operational and also the number of jobs in the server queue for the backend, respectively:
+Other methods return information about the backend. For example, the [`status()`](qiskit_ibm_provider.IBMBackend#status "qiskit_ibm_provider.IBMBackend.status") method returns a [`BackendStatus`](/api/qiskit/qiskit.providers.models.BackendStatus "(in Qiskit v0.44)") instance. The instance contains the `operational` and `pending_jobs` attributes, which state whether the backend is operational and also the number of jobs in the server queue for the backend, respectively:
 
 ```python
 status = backend.status()
