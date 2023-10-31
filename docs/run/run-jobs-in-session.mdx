@@ -30,7 +30,7 @@ backend to run on. This topic describes the most commonly used options.
 For the full list, see the [Sessions API documentation](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.Session#session).
 
 <Admonition type="note" title="Important">
-    Data from the first session job is cached and used by subsequent jobs. Therefore, if the first job is canceled, subsequent session jobs will all fail.
+    If the first session job is canceled, subsequent session jobs will all fail.
 </Admonition>
 
 
@@ -70,8 +70,8 @@ There are two ways to specify a backend in a session:
 **Directly specify a string with the backend name.** Example:
 
 ``` python
-backend = "ibmq_qasm_simulator"
-with Session(backend=backend):
+service = QiskitRuntimeService()
+with Session(service=service, backend="ibmq_qasm_simulator"):
     ...
 ```
 
@@ -121,13 +121,31 @@ closed session.
 
 This behavior exists in `qiskit-ibm-runtime` 0.13 or later releases only. Previously, `session.close()` **canceled** the session.  
 
+Example:  The session is automatically closed when the context manager is exited.
+
 ``` python
 with Session(service=service, backend=backend) as session:
     estimator = Estimator()
-    job = estimator.run(...)
+    job1 = estimator.run(...)
+    job2 = estimator.run(...)
     
-# The session is no longer accepting jobs but the submitted job will run to completion    
-result = job.result()
+# The session is no longer accepting jobs but the submitted job will run to completion.    
+result = job1.result()
+result2 = job2.result()
+```
+
+Example:  The session is manually closed because we didn't use a context manager.
+
+``` python
+session = Session(backend=backend)
+estimator = Estimator(session=session)
+job1 = estimator.run(...)
+job2 = estimator.run(...)
+print(f"Result1: {job1.result()}")
+print(f"Result2: {job2.result()}")
+
+# Manually close the session. Running and queued jobs will run to completion.
+session.close()
 ```
 
 <span id="cancel"></span>
