@@ -118,7 +118,7 @@ Retrieve jobs that match the given filters and paginate the results if desired. 
 *   **limit** (`Optional`\[`int`]) – Number of jobs to retrieve. `None` means no limit. Note that the number of sub-jobs within a composite job count towards the limit.
 *   **skip** (`int`) – Starting index for the job retrieval.
 *   **backend\_name** (`Optional`\[`str`]) – Name of the backend to retrieve jobs from.
-*   **status** (`Union`\[`Literal`\[‘pending’, ‘completed’], `List`\[`Union`\[[`JobStatus`](/api/qiskit/qiskit.providers.JobStatus.html#qiskit.providers.JobStatus "(in Qiskit v0.44)"), `str`]], [`JobStatus`](/api/qiskit/qiskit.providers.JobStatus.html#qiskit.providers.JobStatus "(in Qiskit v0.44)"), `str`, `None`]) – Filter jobs with either “pending” or “completed” status. You can also specify by
+*   **status** (`Union`\[`Literal`\[‘pending’, ‘completed’], `List`\[`Union`\[[`JobStatus`](/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v0.44)"), `str`]], [`JobStatus`](/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v0.44)"), `str`, `None`]) – Filter jobs with either “pending” or “completed” status. You can also specify by
 *   **example** (*exact status. For*) – or status=\[“RUNNING”, “ERROR”].
 *   **status="RUNNING"** (*status=JobStatus.RUNNING or*) – or status=\[“RUNNING”, “ERROR”].
 *   **start\_datetime** (`Optional`\[`datetime`]) – Filter by the given start date, in local time. This is used to find jobs whose creation dates are after (greater than or equal to) this local date/time.
