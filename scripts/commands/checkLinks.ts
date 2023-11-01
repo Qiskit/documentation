@@ -14,6 +14,13 @@ import { globby } from "globby";
 import { existsSync, readFileSync } from "fs";
 import path from "node:path";
 import markdownLinkExtractor from "markdown-link-extractor";
+import { visit } from "unist-util-visit";
+import { unified } from "unified";
+import remarkStringify from "remark-stringify";
+import remarkMdx, { Root } from 'remark-mdx';
+import rehypeRemark from "rehype-remark";
+import rehypeParse from "rehype-parse";
+import remarkGfm from 'remark-gfm'
 
 const DOCS_ROOT = "./docs";
 const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"];
@@ -40,7 +47,7 @@ class Link {
      *     origin: Path to source file containing link
      */
 
-    const splitLink = linkString.split("#", 1);
+    const splitLink = linkString.split("#");
     this.value = splitLink[0];
     this.anchor = splitLink.length > 1 ? `#${splitLink[1]}` : "";
     this.origin = origin;
@@ -139,14 +146,29 @@ function checkLinksInFile(filePath: string, filePaths: string[]): boolean {
   const source = readFileSync(filePath, { encoding: "utf8" });
   let markdown =
     path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
-
-  markdown = markdown.replace(/(?<=<Admonition.*?>.*\n)    (?=.*<\/Admonition>)/gms,'')
-                     .replace(/<Admonition[^>]*>/gm,'')
-                     .replace(/<\/Admonition>\n/gm,'')
-
-  const links = markdownLinkExtractor(markdown).links.map(
-    (x: string) => new Link(x, filePath),
-  );
+  
+  const links: Link[] = [];
+  const file = unified()
+  .use(rehypeParse)
+  .use(remarkGfm)
+  .use(rehypeRemark)
+  .use(() => {
+    return function transform(tree: Root){
+      visit(tree, 'text', (TreeNode) => {
+        markdownLinkExtractor(String(TreeNode.value)).links.map(
+          (s: string) => links.push(new Link(s, filePath))
+        );
+      });
+      visit(tree, 'link', (TreeNode) => {
+        links.push(new Link(TreeNode.url, filePath))
+      });
+      visit(tree, 'image', (TreeNode) => {
+        links.push(new Link(TreeNode.url, filePath))
+      });
+    };
+  })
+  .use(remarkStringify)
+  .process(markdown);
 
   let allGood = true;
   for (let link of links) {
