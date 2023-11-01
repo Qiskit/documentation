@@ -10,28 +10,32 @@ Transpilation is the process of rewriting a given input circuit to match the top
 
 ## All available parameters:
 
-Following are all of the available parameters for the `transpile()` method.  There are two classes of arguments: those that describe the target of compilation, these are things like backend and target (along with the legacy BackendV1 formats like basis_gates, inst_map). By default most users just use backend and provide a backend object, only if you have a more advanced use case do you specify any of the other arguments to describe a backend. 
-
-The other options are things that purely influence how the transpiler does its job, these are things like optimization_level and the *_method arguments which are more commonly used to try and get better, different, or specific output from the transpiler.
+Following are all of the available parameters for the `transpile()` method.  There are two classes of arguments: those that describe the target of compilation, and those that influence how the transpiler works.
 
 
 All parameters except `circuits` are optional.  For full details, see the (Transpiler API documentation)[https://docs.quantum-computing.ibm.com/api/qiskit/transpiler#transpiler-api].
 
 Do we want this whole list?  If so, I'll add descriptions from (https://docs.quantum-computing.ibm.com/api/qiskit/compiler#compilation-routines)
 
+Parameters used to describe the compilation target:
+
 - `circuits` (`_CircuitT`) - One or more circuits to transpile. This is the only required parameter.
-- approximation_degree (float | None) - Heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation). The default value is 1.0.  Specifying `None` sets the approximation degree to the reported error rate.
 - backend (Backend)
 - backend_properties (BackendProperties)
 - basis_gates (List[str])
-- callback (Callable[[BasePass, DAGCircuit, float, PropertySet, int], Any])
 - coupling_map (CouplingMap | List[List[int]])
 - dt (float) 
-- hls_config (HLSConfig)
 - ignore_backend_supplied_default_methods (bool)
+- inst_map (List[InstructionScheduleMap])
+- target (Target)
+
+Parameters used to influence how the transpiler works:
+
+- approximation_degree (float | None) - Heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation). The default value is 1.0.  Specifying `None` sets the approximation degree to the reported error rate.
+- callback (Callable[[BasePass, DAGCircuit, float, PropertySet, int], Any])
+- hls_config (HLSConfig)
 - init_method (str)
 - initial_layout (Layout | Dict | List)
-- inst_map (List[InstructionScheduleMap])
 - instruction_durations (List[Tuple[str, Iterable[int], float, Iterable[float], str]] | List[Tuple[str, Iterable[int], float, Iterable[float]]] | List[Tuple[str, Iterable[int], float, str]] | List[Tuple[str, Iterable[int], float]] | InstructionDurations)
 - layout_method (str)
 - optimization_level (int)
@@ -40,8 +44,7 @@ Do we want this whole list?  If so, I'll add descriptions from (https://docs.qua
 - routing_method (str)
 - scheduling_method (str)
 - seed_transpiler (int)
-- target (Target)
-- timing_constraints (Dict[str, int]) –
+- timing_constraints (Dict[str, int]) 
 - translation_method (str) 
 - unitary_synthesis_method (str)
 - unitary_synthesis_plugin_config (dict)
