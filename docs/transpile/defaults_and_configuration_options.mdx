@@ -59,67 +59,10 @@ Decomposing quantum circuits into the basis gate set of the target device and th
 
 Different gate optimizations are turned on with different `optimization_level` values. In general, the higher the number, the more optimized it is, at the expense of longer processing time. Choosing the best optimization level might take trial and error, as it depends heavily on the circuit being transpiled and the backend being targeted. By default, `optimization_level=1` is used.
 
-Levels: 
-
-
-The `optimization_level` setting specifies how much optimization to perform on the circuits. Higher levels generate more optimized circuits by increasing the heuristic effort spent trying to optimize, at the expense of longer compile times. 
+The `optimization_level` setting specifies how much optimization to perform on the circuits. Higher levels generate more optimized circuits by increasing the heuristic effort spent trying to optimize, at the expense of longer compile times.  The default level is 1. 
 
 - `optimization_level=0`: Trivial optimization, which maps the circuit to the backend with no explicit optimization.
-- `optimization_level=1`: Light optimization, which includes a noise-adaptive layout, maps the circuit, collapses adjacent gates, and uses heuristic algorithms to find a layout and insert swaps, with the goal to improving the overall performance of the circuit. This is the default value. 
-- `optimization_level=2`: Medium optimization, includes the processes for level 1 and a gate-cancellation procedure based on gate commutation relationships. Additionally, the same heuristic layout and swap insertion technique is used, but with an increased number of iterations.
-- `optimization_level=3`: Heavy optimization, which performs the optimization included in levels 1 - 2 and resynthesizes two-qubit gate blocks in the circuit. It uses the same heuristic layout and swap insertion technique but with a further increased number of iterations.
-
-<Table>
-  <thead>
-    <Tr>
-      <Th>Optimization Level</Th>
-      <Th>Description</Th>
-    </Tr>
-  </thead>
-  <tbody>
-    <Tr>
-      <Td>0</Td>
-      <Td>
-        No optimization: typically used for hardware characterization
-        - Basic translation
-        - Layout (as specified)
-        - Routing (stochastic swaps)
-      </Td>
-    </Tr>
-    <Tr>
-      <Td>1</Td>
-      <Td>
-        Light optimization (default):
-
-        -   Layout (trivial → vf2 → SabreLayout if routing is required)
-        -   Routing (SabreSWAPs if needed)
-        -   1Q gate optimization
-        -   Error suppression: VF2PostLayout
-      </Td>
-    </Tr>
-    <Tr>
-      <Td>2</Td>
-      <Td>
-        Medium optimization:
-          - Layout/Routing: Optimization level 1 (without trivial) + heuristic optimized with greater
-        search depth and trials of optimization function
-        -   Commutative cancelation
-        -   1q gate optimization
-        -   Error suppression: VF2PostLayout
-      </Td>
-    </Tr>
-    <Tr>
-      <Td>3 (default)</Td>
-      <Td>
-        High Optimization:
-
-        - Optimization level 2 + heuristic optimized on layout/routing further with greater effort/trials
-        - Two qubit KAK optimization
-        - Error suppression: VF2PostLayout
-      </Td>
-    </Tr>
-  </tbody>
-</Table>
+- `optimization_level=1-3`: Increasinly complex optimization, with heuristic algorithms thta are used to find a layout and insert swaps, with the goal of improving the overall performance of the circuit.  The number of iterations that these algorithms run increases with higher optimization levels. 
 
 Example, specifying `optimization_level=0`: 
 
