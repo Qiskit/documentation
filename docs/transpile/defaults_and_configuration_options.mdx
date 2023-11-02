@@ -6,7 +6,7 @@ description: Default settings and configuration options including optimization a
 
 # Transpilation default settings and configuration options
 
-Transpilation is the process of rewriting a given input circuit to match the topology of a specific quantum device, to optimize the circuit for execution on present day noisy quantum systems, or both. You can pass circuits to the `transpile()` method and use all default settings, or you can fine-tune the transpilation by using the available parameters. 
+You can pass circuits to the `transpile()` method and use all default settings, or you can use parameters to fine tune the transpilation. 
 
 ## All available parameters:
 
@@ -53,11 +53,7 @@ Parameters used to influence how the transpiler works:
  
 ### Optimization level
 
-Set the optimization level
-
-Decomposing quantum circuits into the basis gate set of the target device and the addition of swap gates needed to match hardware topology cause an increase the depth and gate count of quantum circuits. To mitigate this increased complexity, you can set the `optimization_level`.  Setting this value calls an optmization routine that optimizes circuits by combining or eliminating gates. In some cases these methods are so effective the output circuits have lower depth than the inputs. In other cases, not much can be done, and the computation may be difficult to perform on noisy devices. 
-
-Different gate optimizations are turned on with different `optimization_level` values. In general, the higher the number, the more optimized it is, at the expense of longer processing time. Choosing the best optimization level might take trial and error, as it depends heavily on the circuit being transpiled and the backend being targeted. By default, `optimization_level=1` is used.
+Decomposing quantum circuits into the basis gate set of the target device and the addition of swap gates needed to match hardware topology cause an increase the depth and gate count of quantum circuits. To mitigate this increased complexity, you can set the `optimization_level`.  Setting this value calls an optmization routine that optimizes circuits by combining or eliminating gates. In some cases these methods are so effective the output circuits have lower depth than the inputs. In other cases, not much can be done, and the computation may be difficult to perform on noisy devices. Choosing the best optimization level might take trial and error, as it depends heavily on the circuit being transpiled and the backend being targeted. By default, `optimization_level=1` is used.
 
 The `optimization_level` setting specifies how much optimization to perform on the circuits. Higher levels generate more optimized circuits by increasing the heuristic effort spent trying to optimize, at the expense of longer compile times.  The default level is 1. 
 
@@ -109,11 +105,75 @@ Heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal
 
 In two qubit unitary synthesis, it is used to specify the target fidelity of the output decomposition. That is, how much error is introduced when a matrix representation of a circuit is converted to discrete gates. If the approximation degree is a lower value (more approximation), the output circuit from synthesis will differ more from the input matrix, but will also likely have fewer gates and is easier to run. 
 
+**I can't find any examples of this actually being used.  Maybe it's not actually that commonly used?**
+
 ### seed_transpiler
+
+Sets random seed for the stochastic parts of the transpiler
+
+**When / Why use this?**
+
+**All of the examples just set the value seed_transpiler=11, with no explanation.  That's probably not particularly helpful**
 
 ### initial_layout
 
+Specifies the initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the `coupling_map` constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler might permute qubits through swaps or other means. Multiple formats are supported.  The accepted formats are listed below, with examples of their use:
+
+**Do we need in-context examples?**
+
+* `Layout` instance
+
+* Dict * 
+
+  - Virtual to physical:
+
+```python
+    {qr[0]: 0,
+    qr[1]: 3,
+    qr[2]: 5}
+```
+
+  - Physical to virtual:
+
+```python
+    {0: qr[0],
+    3: qr[1],
+    5: qr[2]}
+```
+
+* List
+
+  - Virtual to physical:
+
+    `[0, 3, 5]  # Virtual qubits are ordered (in addition to named)`
+
+  - Physical to virtual:
+
+    `[qr[0], None, None, qr[1], None, qr[2]]`
+
 ### *_method 
+
+These options influence how the transpiler works and are used to try and get better, different, or specific output from the transpiler.
+ 
+**Do we need some examples?**
+
+**Do we need more details? If we add descriptions of all of the parameters above, this would just be dup content.**
+
+* `init_method` (str) - The plugin to use for the initialization stage. To see a list of installed plugins, run [list_stage_plugins(init).](https://docs.quantum-computing.ibm.com/api/qiskit/transpiler_plugins#plugin-api)
+
+* `layout_method` (str) - The layout selection pass (`trivial`, `dense`, `noise_adaptive`, `sabre`). This can also be the external plugin name to use for the layout stage. To see a list of installed plugins, run [list_stage_plugins(layout).](https://docs.quantum-computing.ibm.com/api/qiskit/transpiler_plugins#plugin-api)
+
+* `optimization_method` (str) - The plugin to use for the optimization stage. To see a list of installed plugins, run [list_stage_plugins(optimization).](https://docs.quantum-computing.ibm.com/api/qiskit/transpiler_plugins#plugin-api)
+
+* `routing_method` (str) - Name of routing pass (`basic`, `lookahead`, `stochastic`, `sabre`, `none`). This can also be the external plugin name to use for the routing stage. To see a list of installed plugins, run [list_stage_plugins(routing).](https://docs.quantum-computing.ibm.com/api/qiskit/transpiler_plugins#plugin-api)
+
+* `scheduling_method` (str) - Name of scheduling pass. This can also be the external plugin name to use for the scheduling stage. To see a list of installed plugins, run [list_stage_plugins(scheduling).](https://docs.quantum-computing.ibm.com/api/qiskit/transpiler_plugins#plugin-api)
+  * `as_soon_as_possible`: Schedule instructions greedily: as early as possible on a qubit resource (alias: `asap`).
+  * `as_late_as_possible`: Schedule instructions late.  That is, keep qubits in the ground state when possible (alias: `alap`).
+
+* `translation_method` (str) - Name of translation pass (`unroller`, `translator`, `synthesis`). This can also be the external plugin name to use for the translation stage. To see a list of installed plugins, run [list_stage_plugins(translation).](https://docs.quantum-computing.ibm.com/api/qiskit/transpiler_plugins#plugin-api)
+
+* `unitary_synthesis_method` (str) - The name of the unitary synthesis method to use. By default `default` is used. To see a list of installed plugins, run [unitary_synthesis_plugin_names().](https://docs.quantum-computing.ibm.com/api/qiskit/qiskit.transpiler.passes.synthesis.plugin.unitary_synthesis_plugin_names#qiskittranspilerpassessynthesispluginunitary_synthesis_plugin_names)
 
 
 ## Next steps
