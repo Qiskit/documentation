@@ -1,0 +1,83 @@
+---
+title: Run workloads with Quantum Serverless
+description: Run workloads with Quantum Serverless
+---
+
+# Run workloads with Quantum Serverless
+
+Premium users can run their workloads remotely on classical compute made available through IBM Quantum Platform.
+
+For more information, see the [Quantum Serverless docs](https://qiskit-extensions.github.io/quantum-serverless/).
+
+<Admonition type="note">
+    This is an experimental feature, subject to change.
+</Admonition>
+
+## Build a workflow
+
+Here is an example of computing the expectation value using the Qiskit Runtime Estimator primitive. This Python script should be saved in your working directory. (Warning! All contents of the working directory will be shipped to the cluster for execution.)
+
+```python
+# source_files/my_qiskit_pattern.py
+
+from qiskit.circuit.random import random_circuit
+from qiskit.quantum_info import SparsePauliOp
+from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
+from quantum_serverless import save_result
+
+service = QiskitRuntimeService()
+
+# Run on a simulator
+backend = service.get_backend("ibmq_qasm_simulator")
+# Use the next line if you want to run on a system
+# backend = service.least_busy(simulator=False)
+
+circuit = random_circuit(2, 2, seed=1234)
+observable = SparsePauliOp("IY")
+
+estimator = Estimator(backend)
+job = estimator.run(circuit, observable)
+result = job.result()
+
+# save results of program execution
+# note: saved items must be serializable
+save_result(result.values)
+```
+
+## Deploy workflow on Quantum Serverless
+
+After creating a workflow, authenticate to the `IBMServerlessProvider` with your [IBM Quantum token](account-management), which can be obtained from your [IBM Quantum account](https://quantum-computing.ibm.com/account), and upload the script.
+
+```python
+# Authenticate to the IBM serverless provider
+from quantum_serverless import IBMServerlessProvider
+serverless = IBMServerlessProvider("YOUR_IBM_QUANTUM_TOKEN")
+
+# Deploy the workflow
+from quantum_serverless import QiskitPattern
+serverless.upload(
+    QiskitPattern(
+        title="My-Qiskit-Pattern",
+        entrypoint="my_qiskit_pattern.py",
+        working_dir="./source_files/"
+    )
+)
+```
+
+## Run workflow remotely on Quantum Serverless
+
+Finally, the workflow is ready to run remotely.
+
+```python
+# Run workflow remotely
+job = serverless.run("My-Qiskit-Pattern")
+
+# Retrieve status, logs, results
+job.status()
+job.logs()
+job.result()
+```
+
+## Migration guide
+
+Qiskit Runtime custom programs can be easily migrated to Quantum Serverless via this [migration guide](https://qiskit-extensions.github.io/quantum-serverless/migration/migration_from_qiskit_runtime_programs.html).
