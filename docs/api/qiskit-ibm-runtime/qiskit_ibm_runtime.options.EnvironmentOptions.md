@@ -29,39 +29,35 @@ Options related to the execution environment.
 
 ## Attributes
 
-<span id="environmentoptions-callback" />
+<span id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" />
 
 ### callback
 
-<span id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" />
+`Callable | None`
 
-`Callable | None = None`
-
-<span id="environmentoptions-job-tags" />
-
-### job\_tags
-
-<span id="qiskit_ibm_runtime.options.EnvironmentOptions.job_tags" />
-
-`List | None`
-
-<span id="environmentoptions-log-level" />
-
-### log\_level
+`= None`
 
 <span id="qiskit_ibm_runtime.options.EnvironmentOptions.log_level" />
 
-`str = 'WARNING'`
+### log\_level
+
+`str`
+
+`= 'WARNING'`
+
+<span id="qiskit_ibm_runtime.options.EnvironmentOptions.job_tags" />
+
+### job\_tags
+
+`List | None`
 
 ## Methods
-
-<span id="environmentoptions-validate-environment-options" />
 
 ### validate\_environment\_options
 
 <span id="qiskit_ibm_runtime.options.EnvironmentOptions.validate_environment_options" />
 
-`static EnvironmentOptions.validate_environment_options(environment_options)`
+`static validate_environment_options(environment_options)`
 
 Validate that environment options are legal. :raises ValueError: if log\_level is not in LogLevelType.
 

@@ -48,7 +48,7 @@ python_api_name: qiskit
 *   [Built-in Transpiler Synthesis Plugins](transpiler_builtin_plugins)
 *   [Utilities (`qiskit.utils`)](utils)
 *   [Measurement Mitigation Utils (`qiskit.utils.mitigation`)](utils_mitigation)
-*   [Operators (`qiskit.opflow`)](http://qiskit.org/documentation/apidoc/opflow.html)
-*   [Algorithms (`qiskit.algorithms`)](http://qiskit.org/documentation/apidoc/algorithms.html)
+*   [Operators (`qiskit.opflow`)](opflow)
+*   [Algorithms (`qiskit.algorithms`)](algorithms)
 *   [Top-level exceptions (`qiskit.exceptions`)](exceptions)
 

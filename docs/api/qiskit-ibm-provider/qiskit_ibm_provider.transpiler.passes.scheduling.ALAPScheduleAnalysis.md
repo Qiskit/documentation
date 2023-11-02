@@ -32,7 +32,7 @@ Scheduler for dynamic circuit backends.
 
 **Parameters**
 
-**durations** (`InstructionDurations`) – Durations of instructions to be used in scheduling.
+**durations** ([`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v0.44)")) – Durations of instructions to be used in scheduling.
 
 ## Attributes
 
@@ -97,7 +97,7 @@ Return the name of the pass.
 
 `ALAPScheduleAnalysis.run(dag)`
 
-Run the ASAPSchedule pass on dag. :type dag: `DAGCircuit` :param dag: DAG to schedule. :type dag: DAGCircuit
+Run the ASAPSchedule pass on dag. :type dag: [`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v0.44)") :param dag: DAG to schedule. :type dag: DAGCircuit
 
 **Raises**
 

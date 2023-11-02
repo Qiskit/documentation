@@ -22,7 +22,7 @@ CrosstalkAdaptiveSchedule initializer.
 
 *   **backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – backend properties object
 
-*   **crosstalk\_prop** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) –
+*   **crosstalk\_prop** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) –
 
     crosstalk properties object crosstalk\_prop\[g1]\[g2] specifies the conditional error rate of g1 when g1 and g2 are executed simultaneously. g1 should be a two-qubit tuple of the form (x,y) where x and y are physical qubit ids. g2 can be either two-qubit tuple (x,y) or single-qubit tuple (x). We currently ignore crosstalk between pairs of single-qubit gates. Gate pairs which are not specified are assumed to be crosstalk free.
 
@@ -36,15 +36,15 @@ CrosstalkAdaptiveSchedule initializer.
 
     The keys of the crosstalk\_prop are tuples for ordered tuples for CX gates e.g., (0, 1) corresponding to CX 0, 1 in the hardware. Each key has an associated value dict which specifies the conditional error rates with nearby gates e.g., `(0, 1) : {(2, 3) : 0.2, (2) : 0.15}` means that CNOT 0, 1 has an error rate of 0.2 when it is executed in parallel with CNOT 2,3 and an error rate of 0.15 when it is executed in parallel with a single qubit gate on qubit 2.
 
-*   **weight\_factor** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – weight of gate error/crosstalk terms in the objective $weight_factor*fidelities + (1-weight_factor)*decoherence errors$. Weight can be varied from 0 to 1, with 0 meaning that only decoherence errors are optimized and 1 meaning that only crosstalk errors are optimized. weight\_factor should be tuned per application to get the best results.
+*   **weight\_factor** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – weight of gate error/crosstalk terms in the objective $weight_factor*fidelities + (1-weight_factor)*decoherence errors$. Weight can be varied from 0 to 1, with 0 meaning that only decoherence errors are optimized and 1 meaning that only crosstalk errors are optimized. weight\_factor should be tuned per application to get the best results.
 
-*   **measured\_qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – a list of qubits that will be measured in a particular circuit. This arg need not be specified for circuits which already include measure gates. The arg is useful when a subsequent module such as state\_tomography\_circuits inserts the measure gates. If CrosstalkAdaptiveSchedule is made aware of those measurements, it is included in the optimization.
+*   **measured\_qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – a list of qubits that will be measured in a particular circuit. This arg need not be specified for circuits which already include measure gates. The arg is useful when a subsequent module such as state\_tomography\_circuits inserts the measure gates. If CrosstalkAdaptiveSchedule is made aware of those measurements, it is included in the optimization.
 
 *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the target backend, if both `backend_prop` and this are specified then this argument will take precedence and `coupling_map` will be ignored.
 
 **Raises**
 
-[**ImportError**](https://docs.python.org/3/library/exceptions.html#ImportError "(in Python v3.11)") – if unable to import z3 solver
+[**ImportError**](https://docs.python.org/3/library/exceptions.html#ImportError "(in Python v3.12)") – if unable to import z3 solver
 
 ## Attributes
 
@@ -152,7 +152,7 @@ Extract the set of program gates which potentially have crosstalk noise
 
 `extract_dag_overlap_sets(dag)`
 
-Gate A, B are overlapping if A is neither a descendant nor an ancestor of B. Currenty overlaps (A,B) are considered when A is a 2q gate and B is either 2q or 1q gate.
+Gate A, B are overlapping if A is neither a descendant nor an ancestor of B. Currently overlaps (A,B) are considered when A is a 2q gate and B is either 2q or 1q gate.
 
 ### extract\_solution
 

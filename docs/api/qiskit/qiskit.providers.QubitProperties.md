@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.QubitProperties
 
 `qiskit.providers.QubitProperties(t1=None, t2=None, frequency=None)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 A representation of the properties of a qubit on a backend.
 

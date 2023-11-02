@@ -10,10 +10,12 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { SphinxToMdResultWithUrl } from './SphinxToMdResult';
-import { removePart } from '../stringUtils';
+import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
+import { removePart } from "../stringUtils";
 
-export function flatFolders<T extends SphinxToMdResultWithUrl>(results: T[]): T[] {
+export function flatFolders<T extends SphinxToMdResultWithUrl>(
+  results: T[],
+): T[] {
   for (const result of results) {
     result.url = omitRootFolders(result.url);
   }
@@ -21,5 +23,5 @@ export function flatFolders<T extends SphinxToMdResultWithUrl>(results: T[]): T[
 }
 
 function omitRootFolders(path: string): string {
-  return removePart(path, '/', ['stubs', 'apidocs', 'apidoc']);
+  return removePart(path, "/", ["stubs", "apidocs", "apidoc"]);
 }

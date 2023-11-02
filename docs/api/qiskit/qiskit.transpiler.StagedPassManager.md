@@ -37,13 +37,13 @@ Initialize a new StagedPassManager object
 
 **Parameters**
 
-*   **stages** (*Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*]*) – An optional list of stages to use for this instance. If this is not specified the default stages list `['init', 'layout', 'routing', 'translation', 'optimization', 'scheduling']` is used. After instantiation, the final list will be immutable and stored as tuple. If a stage is provided multiple times (i.e. at diferent relative positions), the associated passes, including pre and post, will run once per declaration.
+*   **stages** (*Iterable\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – An optional list of stages to use for this instance. If this is not specified the default stages list `['init', 'layout', 'routing', 'translation', 'optimization', 'scheduling']` is used. After instantiation, the final list will be immutable and stored as tuple. If a stage is provided multiple times (i.e. at diferent relative positions), the associated passes, including pre and post, will run once per declaration.
 *   **kwargs** – The initial [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") values for any stages defined in `stages`. If a argument is not defined the stages will default to `None` indicating an empty/undefined stage.
 
 **Raises**
 
-*   [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.11)") – If a stage in the input keyword arguments is not defined.
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – If an invalid stage name is specified.
+*   [**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If a stage in the input keyword arguments is not defined.
+*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If an invalid stage name is specified.
 
 ## Attributes
 
@@ -80,7 +80,7 @@ Append a Pass Set to the schedule of passes.
 **Parameters**
 
 *   **passes** (*BasePass | Sequence\[BasePass |* [*FlowController*](qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")*]*) – A set of passes (a pass set) to be added to schedule. A pass set is a list of passes that are controlled by the same flow controller. If a single pass is provided, the pass set will only have that pass a single element. It is also possible to append a [`FlowController`](qiskit.transpiler.FlowController "qiskit.transpiler.runningpassmanager.FlowController") instance and the rest of the parameter will be ignored.
-*   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – max number of iterations of passes.
+*   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max number of iterations of passes.
 *   **flow\_controller\_conditions** (*Any*) – control flow plugins.
 
 **Raises**
@@ -113,7 +113,7 @@ A list of pass sets, as defined in `append()`.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")\[[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)"), qiskit.transpiler.basepasses.BasePass]]
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")\[[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), qiskit.transpiler.basepasses.BasePass]]
 
 ### remove
 
@@ -125,7 +125,7 @@ Removes a particular pass in the scheduler.
 
 **Parameters**
 
-**index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Pass index to replace, based on the position in passes().
+**index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Pass index to replace, based on the position in passes().
 
 **Raises**
 
@@ -141,9 +141,9 @@ Replace a particular pass in the scheduler.
 
 **Parameters**
 
-*   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Pass index to replace, based on the position in passes().
-*   **passes** (*BasePass |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[BasePass]*) – A pass set (as defined in [`qiskit.transpiler.PassManager.append()`](qiskit.transpiler.PassManager#append "qiskit.transpiler.PassManager.append")) to be added to the pass manager schedule.
-*   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – max number of iterations of passes.
+*   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Pass index to replace, based on the position in passes().
+*   **passes** (*BasePass |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[BasePass]*) – A pass set (as defined in [`qiskit.transpiler.PassManager.append()`](qiskit.transpiler.PassManager#append "qiskit.transpiler.PassManager.append")) to be added to the pass manager schedule.
+*   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max number of iterations of passes.
 *   **flow\_controller\_conditions** (*Any*) – control flow plugins.
 
 **Raises**
@@ -166,7 +166,7 @@ Run all the passes on the specified `circuits`.
 
 *   **circuits** (*\_CircuitsT*) – Circuit(s) to transform via all the registered passes.
 
-*   **output\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – The output circuit name. If `None`, it will be set to the same as the input circuit name.
+*   **output\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The output circuit name. If `None`, it will be set to the same as the input circuit name.
 
 *   **callback** (*Callable | None*) –
 

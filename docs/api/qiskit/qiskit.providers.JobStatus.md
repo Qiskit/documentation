@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.JobStatus
 
 `qiskit.providers.JobStatus(value)`
 
-Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum "(in Python v3.11)")
+Bases: [`Enum`](https://docs.python.org/3/library/enum.html#enum.Enum "(in Python v3.12)")
 
 Class for job status enumerated type.
 

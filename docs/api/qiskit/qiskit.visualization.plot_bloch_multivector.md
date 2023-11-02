@@ -6,8 +6,6 @@ python_api_type: function
 python_api_name: qiskit.visualization.plot_bloch_multivector
 ---
 
-{/* cspell:ignore dotsb */}
-
 <span id="qiskit-visualization-plot-bloch-multivector" />
 
 # qiskit.visualization.plot\_bloch\_multivector
@@ -27,12 +25,12 @@ Each component $(x,y,z)$ of the Bloch sphere labeled as ‘qubit i’ represents
 **Parameters**
 
 *   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
-*   **title** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – a string that represents the plot title
-*   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – size of each individual Bloch sphere figure, in inches.
-*   **reverse\_bits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True, plots qubits following Qiskit’s convention \[Default:False].
-*   **font\_size** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Font size for the Bloch ball figures.
-*   **title\_font\_size** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Font size for the title.
-*   **title\_pad** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Padding for the title (suptitle y position is y=1+title\_pad/100).
+*   **title** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – a string that represents the plot title
+*   **figsize** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – size of each individual Bloch sphere figure, in inches.
+*   **reverse\_bits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, plots qubits following Qiskit’s convention \[Default:False].
+*   **font\_size** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Font size for the Bloch ball figures.
+*   **title\_font\_size** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Font size for the title.
+*   **title\_pad** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Padding for the title (suptitle y position is y=1+title\_pad/100).
 
 **Returns**
 
@@ -40,7 +38,7 @@ A matplotlib figure instance.
 
 **Return type**
 
-[`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure "(in Matplotlib v3.7.2)")
+[`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure "(in Matplotlib v3.8.0)")
 
 **Raises**
 

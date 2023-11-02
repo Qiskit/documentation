@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.EquivalenceLibrary
 
 `qiskit.circuit.EquivalenceLibrary(*, base=None)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 A library providing a one-way mapping of Gates to their equivalent implementations as QuantumCircuits.
 
@@ -67,7 +67,7 @@ Draws the equivalence relations available in the library.
 
 **Parameters**
 
-**filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – An optional path to write the output image to if specified this method will return None.
+**filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – An optional path to write the output image to if specified this method will return None.
 
 **Returns**
 

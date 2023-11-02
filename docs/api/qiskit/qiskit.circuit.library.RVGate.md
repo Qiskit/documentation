@@ -44,10 +44,10 @@ Create new rv single-qubit gate.
 
 **Parameters**
 
-*   **v\_x** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – x-component
-*   **v\_y** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – y-component
-*   **v\_z** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – z-component
-*   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*, optional*) – basis (see [`OneQubitEulerDecomposer`](qiskit.quantum_info.OneQubitEulerDecomposer "qiskit.quantum_info.synthesis.one_qubit_decompose.OneQubitEulerDecomposer"))
+*   **v\_x** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – x-component
+*   **v\_y** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – y-component
+*   **v\_z** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – z-component
+*   **basis** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, optional*) – basis (see [`OneQubitEulerDecomposer`](qiskit.quantum_info.OneQubitEulerDecomposer "qiskit.quantum_info.synthesis.one_qubit_decompose.OneQubitEulerDecomposer"))
 
 ## Attributes
 

@@ -303,13 +303,13 @@ circ.draw(output='mpl')
 
 **Parameters**
 
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – number of quantum wires
-*   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – layers of operations (i.e. critical path length)
-*   **max\_operands** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – maximum qubit operands of each gate (between 1 and 4)
-*   **measure** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if True, measure all qubits at the end
-*   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if True, insert middle measurements and conditionals
-*   **reset** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – if True, insert middle resets
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – sets random seed (optional)
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of quantum wires
+*   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – layers of operations (i.e. critical path length)
+*   **max\_operands** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – maximum qubit operands of each gate (between 1 and 4)
+*   **measure** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, measure all qubits at the end
+*   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, insert middle measurements and conditionals
+*   **reset** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, insert middle resets
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – sets random seed (optional)
 
 **Returns**
 

@@ -59,14 +59,14 @@ Quantum-Enhanced Simulation-Based Optimization. [arXiv:2005.10780](http://arxiv.
 
 **Parameters**
 
-*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The number of qubits used to encode the variable $x$.
-*   **slope** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*]*) – The slope of the linear function. Can be a list of slopes if it is a piecewise linear function.
-*   **offset** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*]*) – The offset of the linear function. Can be a list of offsets if it is a piecewise linear function.
-*   **domain** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*]*) – The domain of the function as tuple $(x_\min{}, x_\max{})$.
-*   **image** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*]*) – The image of the function as tuple $(f_\min{}, f_\max{})$.
-*   **rescaling\_factor** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – The rescaling factor to adjust the accuracy in the Taylor approximation.
-*   **breakpoints** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*] | None*) – The breakpoints if the function is piecewise linear. If None, the function is not piecewise.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Name of the circuit.
+*   **num\_state\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits used to encode the variable $x$.
+*   **slope** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The slope of the linear function. Can be a list of slopes if it is a piecewise linear function.
+*   **offset** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The offset of the linear function. Can be a list of offsets if it is a piecewise linear function.
+*   **domain** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The domain of the function as tuple $(x_\min{}, x_\max{})$.
+*   **image** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – The image of the function as tuple $(f_\min{}, f_\max{})$.
+*   **rescaling\_factor** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The rescaling factor to adjust the accuracy in the Taylor approximation.
+*   **breakpoints** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – The breakpoints if the function is piecewise linear. If None, the function is not piecewise.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Name of the circuit.
 
 ## Attributes
 
@@ -132,7 +132,7 @@ Return the global phase of the circuit in radians.
 
 ### layout
 
-Return any associated layout information anout the circuit
+Return any associated layout information about the circuit
 
 This attribute contains an optional [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object. This is typically set on the output from [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`PassManager.run()`](qiskit.transpiler.PassManager#run "qiskit.transpiler.PassManager.run") to retain information about the permutations caused on the input circuit by transpilation.
 
@@ -184,7 +184,7 @@ List of integers representing instruction start times. The index corresponds to 
 
 **Raises**
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.11)") – When circuit is not scheduled.
+[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – When circuit is not scheduled.
 
 <span id="qiskit.circuit.library.LinearAmplitudeFunction.parameters" />
 
@@ -209,7 +209,7 @@ The snippet below shows that insertion order of parameters does not matter.
 ParameterView([Parameter(a), Parameter(b), Parameter(elephant)])
 ```
 
-Bear in mind that alphabetical sorting might be unituitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
+Bear in mind that alphabetical sorting might be unintuitive when it comes to numbers. The literal “10” comes before “2” in strict alphabetical sorting.
 
 ```python
 >>> from qiskit.circuit import QuantumCircuit, Parameter
@@ -271,7 +271,7 @@ Map the function value of the approximated $\hat{f}$ to $f$.
 
 **Parameters**
 
-**scaled\_value** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – A function value from the Taylor expansion of $\hat{f}(x)$.
+**scaled\_value** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – A function value from the Taylor expansion of $\hat{f}(x)$.
 
 **Returns**
 
@@ -279,5 +279,5 @@ The `scaled_value` mapped back to the domain of $f$, by first inverting the tran
 
 **Return type**
 
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")
+[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 

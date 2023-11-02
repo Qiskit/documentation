@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.InstructionProperties
 
 `qiskit.transpiler.InstructionProperties(duration=None, error=None, calibration=None)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 A representation of the properties of a gate implementation.
 
@@ -22,8 +22,8 @@ Create a new `InstructionProperties` object
 
 **Parameters**
 
-*   **duration** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)") *| None*) – The duration, in seconds, of the instruction on the specified set of qubits
-*   **error** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)") *| None*) – The average error rate for the instruction on the specified set of qubits.
+*   **duration** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The duration, in seconds, of the instruction on the specified set of qubits
+*   **error** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The average error rate for the instruction on the specified set of qubits.
 *   **calibration** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") *| CalibrationEntry | None*) – The pulse representation of the instruction.
 
 ## Attributes

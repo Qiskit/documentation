@@ -16,7 +16,7 @@ Class for interacting with Qiskit Runtime Sampler primitive service.
 
 Qiskit Runtime Sampler primitive service calculates quasi-probability distribution of bitstrings from quantum circuits.
 
-The [`run()`](qiskit_ibm_runtime.Sampler#run "qiskit_ibm_runtime.Sampler.run") method can be used to submit circuits and parameters to the Sampler primitive.
+The [`run()`](#qiskit_ibm_runtime.Sampler.run "qiskit_ibm_runtime.Sampler.run") method can be used to submit circuits and parameters to the Sampler primitive.
 
 You are encouraged to use [`Session`](qiskit_ibm_runtime.Session "qiskit_ibm_runtime.Session") to open a session, during which you can invoke one or more primitives. Jobs submitted within a session are prioritized by the scheduler, and data is cached for efficiency.
 
@@ -37,10 +37,6 @@ with Session(service, backend="ibmq_qasm_simulator") as session:
     print(f"Job result: {job.result()}")
 
     # You can run more jobs inside the session
-
-    # Close the session only if all jobs are finished
-    # and you don't need to run more in the session.
-    session.close()
 ```
 
 Initializes the Sampler primitive.
@@ -59,13 +55,9 @@ Initializes the Sampler primitive.
 
 ## Attributes
 
-<span id="sampler-circuits" />
-
-### circuits
-
 <span id="qiskit_ibm_runtime.Sampler.circuits" />
 
-`tuple[qiskit.circuit.quantumcircuit.QuantumCircuit, ...]`
+### circuits
 
 Quantum circuits to be sampled.
 
@@ -77,13 +69,9 @@ Quantum circuits to be sampled.
 
 The quantum circuits to be sampled.
 
-<span id="sampler-options" />
-
-### options
-
 <span id="qiskit_ibm_runtime.Sampler.options" />
 
-`Options`
+### options
 
 Return options values for the sampler.
 
@@ -95,13 +83,9 @@ Return options values for the sampler.
 
 options
 
-<span id="sampler-parameters" />
-
-### parameters
-
 <span id="qiskit_ibm_runtime.Sampler.parameters" />
 
-`tuple[qiskit.circuit.parametertable.ParameterView, ...]`
+### parameters
 
 Parameters of quantum circuits.
 
@@ -113,13 +97,9 @@ Parameters of quantum circuits.
 
 List of the parameters in each quantum circuit.
 
-<span id="sampler-session" />
-
-### session
-
 <span id="qiskit_ibm_runtime.Sampler.session" />
 
-`Session | None`
+### session
 
 Return session used by this primitive.
 
@@ -133,13 +113,11 @@ Session used by this primitive, or `None` if session is not used.
 
 ## Methods
 
-<span id="sampler-run" />
-
 ### run
 
 <span id="qiskit_ibm_runtime.Sampler.run" />
 
-`Sampler.run(circuits, parameter_values=None, **kwargs)`
+`run(circuits, parameter_values=None, **kwargs)`
 
 Submit a request to the sampler primitive.
 
@@ -161,13 +139,11 @@ Submitted job. The result of the job is an instance of `qiskit.primitives.Sample
 
 **ValueError** – Invalid arguments are given.
 
-<span id="sampler-set-options" />
-
 ### set\_options
 
 <span id="qiskit_ibm_runtime.Sampler.set_options" />
 
-`Sampler.set_options(**fields)`
+`set_options(**fields)`
 
 Set options values for the sampler.
 

@@ -81,7 +81,7 @@ The destabilizer array for the symplectic representation.
 
 ### destab\_phase
 
-Return phase of destaibilizer with boolean representation.
+Return phase of destabilizer with boolean representation.
 
 <span id="qiskit.quantum_info.Clifford.destab_x" />
 
@@ -151,7 +151,7 @@ The stabilizer array for the symplectic representation.
 
 ### stab\_phase
 
-Return phase of stablizer with boolean representation.
+Return phase of stabilizer with boolean representation.
 
 <span id="qiskit.quantum_info.Clifford.stab_x" />
 
@@ -224,8 +224,8 @@ Return the operator composition with another Clifford.
 **Parameters**
 
 *   **other** ([*Clifford*](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – a Clifford object.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
-*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+*   **front** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
 
 **Returns**
 
@@ -272,7 +272,7 @@ Return the right multiplied operator self \* other.
 **Parameters**
 
 *   **other** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator object.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") *or None*) – Optional, a list of subsystem positions to apply other on. If None apply on all subsystems (default: None).
 
 **Returns**
 
@@ -476,7 +476,7 @@ Return the compose of a operator with itself n times.
 
 **Parameters**
 
-**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the number of times to compose with self (n>0).
+**n** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of times to compose with self (n>0).
 
 **Returns**
 
@@ -500,9 +500,9 @@ Return a shallow copy with reshaped input and output subsystem dimensions.
 
 **Parameters**
 
-*   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
-*   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.11)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
-*   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – reshape to an N-qubit operator \[Default: None].
+*   **input\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem input dimensions. If None the original input dims will be preserved \[Default: None].
+*   **output\_dims** (*None or* [*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – new subsystem output dimensions. If None the original output dims will be preserved \[Default: None].
+*   **num\_qubits** (*None or* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – reshape to an N-qubit operator \[Default: None].
 
 **Returns**
 
@@ -604,8 +604,8 @@ For large Clifford converting using the `array=True` kwarg will be more efficien
 
 **Parameters**
 
-*   **array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – return a Numpy array if True, otherwise return a list (Default: False).
-*   **mode** (*Literal\["S", "D", "B"]*) – return both stabilizer and destablizer if “B”, return only stabilizer if “S” and return only destablizer if “D”.
+*   **array** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – return a Numpy array if True, otherwise return a list (Default: False).
+*   **mode** (*Literal\["S", "D", "B"]*) – return both stabilizer and destabilizer if “B”, return only stabilizer if “S” and return only destabilizer if “D”.
 
 **Returns**
 
@@ -613,7 +613,7 @@ The rows of the StabilizerTable in label form.
 
 **Return type**
 
-[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)") or array
+[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)") or array
 
 **Raises**
 

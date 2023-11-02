@@ -20,23 +20,23 @@ Generate visualization data for scheduled circuit programs.
 
 *   **program** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – Program to visualize. This program should be a QuantumCircuit which is transpiled with a scheduling\_method, thus containing gate time information.
 
-*   **style** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)")*] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets. See also the stylesheet section for details of configuration keys.
+*   **style** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*] | None*) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets. See also the stylesheet section for details of configuration keys.
 
-*   **time\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*] | None*) – Set horizontal axis limit.
+*   **time\_range** ([*Tuple*](https://docs.python.org/3/library/typing.html#typing.Tuple "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*,* [*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*] | None*) – Set horizontal axis limit.
 
-*   **disable\_bits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[Bits] | None*) – List of qubits of classical bits not shown in the output image.
+*   **disable\_bits** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[Bits] | None*) – List of qubits of classical bits not shown in the output image.
 
-*   **show\_clbits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)") *| None*) – A control property to show classical bits. Set True to show classical bits.
+*   **show\_clbits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – A control property to show classical bits. Set True to show classical bits.
 
-*   **show\_idle** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)") *| None*) – A control property to show idle timeline. Set True to show timeline without gates.
+*   **show\_idle** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – A control property to show idle timeline. Set True to show timeline without gates.
 
-*   **show\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)") *| None*) – A control property to show barrier instructions. Set True to show barrier instructions.
+*   **show\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – A control property to show barrier instructions. Set True to show barrier instructions.
 
-*   **show\_delays** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)") *| None*) – A control property to show delay instructions. Set True to show delay instructions.
+*   **show\_delays** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)") *| None*) – A control property to show delay instructions. Set True to show delay instructions.
 
-*   **show\_labels** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – A control property to show annotations, i.e. name, of gates. Set True to show annotations.
+*   **show\_labels** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – A control property to show annotations, i.e. name, of gates. Set True to show annotations.
 
-*   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) –
+*   **plotter** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) –
 
     Name of plotter API to generate an output image. One of following APIs should be specified:
 
@@ -48,9 +48,9 @@ Generate visualization data for scheduled circuit programs.
 
     axis and style kwargs may depend on the plotter.
 
-*   **axis** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)") *| None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters uses given axis instead of internally initializing a figure object. This object format depends on the plotter. See plotters section for details.
+*   **axis** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)") *| None*) – Arbitrary object passed to the plotter. If this object is provided, the plotters uses given axis instead of internally initializing a figure object. This object format depends on the plotter. See plotters section for details.
 
-*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – If provided the output image is dumped into a file under the filename.
+*   **filename** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – If provided the output image is dumped into a file under the filename.
 
 **Returns**
 

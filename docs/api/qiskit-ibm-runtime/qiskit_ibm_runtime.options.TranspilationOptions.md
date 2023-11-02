@@ -24,57 +24,55 @@ Transpilation options.
 
 ## Attributes
 
-<span id="transpilationoptions-approximation-degree" />
+<span id="qiskit_ibm_runtime.options.TranspilationOptions.approximation_degree" />
 
 ### approximation\_degree
 
-<span id="qiskit_ibm_runtime.options.TranspilationOptions.approximation_degree" />
+`float | None`
 
-`float | None = None`
-
-<span id="transpilationoptions-initial-layout" />
-
-### initial\_layout
+`= None`
 
 <span id="qiskit_ibm_runtime.options.TranspilationOptions.initial_layout" />
 
-`dict | List | None = None`
+### initial\_layout
 
-<span id="transpilationoptions-layout-method" />
+`dict | List | None`
 
-### layout\_method
+`= None`
 
 <span id="qiskit_ibm_runtime.options.TranspilationOptions.layout_method" />
 
-`str | None = None`
+### layout\_method
 
-<span id="transpilationoptions-routing-method" />
+`str | None`
 
-### routing\_method
+`= None`
 
 <span id="qiskit_ibm_runtime.options.TranspilationOptions.routing_method" />
 
-`str | None = None`
+### routing\_method
 
-<span id="transpilationoptions-skip-transpilation" />
+`str | None`
 
-### skip\_transpilation
+`= None`
 
 <span id="qiskit_ibm_runtime.options.TranspilationOptions.skip_transpilation" />
 
-`bool = False`
+### skip\_transpilation
+
+`bool`
+
+`= False`
 
 ## Methods
-
-<span id="transpilationoptions-validate-transpilation-options" />
 
 ### validate\_transpilation\_options
 
 <span id="qiskit_ibm_runtime.options.TranspilationOptions.validate_transpilation_options" />
 
-`static TranspilationOptions.validate_transpilation_options(transpilation_options)`
+`static validate_transpilation_options(transpilation_options)`
 
-Validate that transpilation options are legal. :raises ValueError: if layout\_method is not in LayoutMethodType or None. :raises ValueError: if routing\_method is not in RoutingMethodType or None. :raises ValueError: if approximation\_degree in not None or in the range 0.0 to 1.0.
+Validate that transpilation options are legal. :raises ValueError: if any transpilation option is not supported :raises ValueError: if layout\_method is not in LayoutMethodType or None. :raises ValueError: if routing\_method is not in RoutingMethodType or None. :raises ValueError: if approximation\_degree in not None or in the range 0.0 to 1.0.
 
 **Return type**
 
