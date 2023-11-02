@@ -1,16 +1,16 @@
 ---
 title: DefaultStyle
-description: API reference for qiskit.visualization.qcstyle.DefaultStyle
+description: API reference for qiskit.visualization.circuit.qcstyle.DefaultStyle
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit.visualization.qcstyle.DefaultStyle
+python_api_name: qiskit.visualization.circuit.qcstyle.DefaultStyle
 ---
 
 # DefaultStyle
 
-<span id="qiskit.visualization.qcstyle.DefaultStyle" />
+<span id="qiskit.visualization.circuit.qcstyle.DefaultStyle" />
 
-`qiskit.visualization.qcstyle.DefaultStyle`
+`qiskit.visualization.circuit.qcstyle.DefaultStyle`
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
