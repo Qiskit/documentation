@@ -3,120 +3,133 @@ title: Bit-ordering in Qiskit
 description: Learn about Qiskit's ordering conventions and why we chose them
 ---
 
-# Order of bits and qubits in Qiskit
+# Bit-ordering in Qiskit
 
 If you have a set of $n$ bits (or qubits), you'll usually label each bit $0
 \rightarrow n-1$. Different softwares and resources must choose how they order
 these bits both in computer memory and when displayed on screen.
 
-Here's how Qiskit orders bits in different scenarios:
+## Qiskit conventions
 
-- The `QuantumCircuit` class stores its qubits in a list
-  (`QuantumCircuit.qubits`). The index of a qubit in this list defines the
-  qubit's label.
+Here's how Qiskit orders bits in different scenarios.
 
-  ```python
-  from qiskit import QuantumCircuit
-  qc = QuantumCircuit(2)
-  qc.qubits[0]  # qubit "0"
-  ```
+### Quantum circuits
 
-  ```
-  Qubit(QuantumRegister(2, 'q'), 0)
-  ```
+The `QuantumCircuit` class stores its qubits in a list
+(`QuantumCircuit.qubits`). The index of a qubit in this list defines the
+qubit's label.
 
-- On a circuit diagram, qubit $0$ is the topmost qubit, and qubit $n$ the
-  bottommost qubit (you can change this default with the `reverse_bits=True`
-  argument to `QuantumCircuit.draw`; see [Changing
-  ordering](#changing-ordering)).
+```python
+from qiskit import QuantumCircuit
+qc = QuantumCircuit(2)
+qc.qubits[0]  # qubit "0"
+```
 
-  ```python
-  qc.x(1)
-  qc.draw()
-  ```
+```
+Qubit(QuantumRegister(2, 'q'), 0)
+```
 
-  ```
-  q_0: ─────
-       ┌───┐
-  q_1: ┤ X ├
-       └───┘
-  ```
+### Circuit diagrams
 
-- When interpreting bits as a number, bit $0$ is the least significant bit, and
-  bit $n$ the most significant. This is helpful when coding because each bit
-  has the value $2^\text{label}$. For example, the following circuit execution
-  ends with bit $0$ being `0`, and bit $1$ being `1`. This is interpreted as
-  the decimal integer `2` (measured with probability `1.0`).
-  
-  ```python
-  from qiskit.primitives import Sampler
-  qc.measure_all()
-  Sampler().run(qc).result().quasi_dists[0]
-  ```
+On a circuit diagram, qubit $0$ is the topmost qubit, and qubit $n$ the
+bottommost qubit (you can change this default with the `reverse_bits=True`
+argument to `QuantumCircuit.draw`; see [Changing
+ordering](#changing-ordering)).
 
-  ```
-  {2: 1.0}
-  ```
+```python
+qc.x(1)
+qc.draw()
+```
 
-- When displaying or interpreting a list of bits (or qubits) as a string, bit
-  $n$ is the leftmost bit, and bit $0$ is the rightmost bit. This is because we
-  usually write numbers with the most significant digit on the left, and in
-  Qiskit, bit $n$ is interpreted as the most significant bit.
+```
+q_0: ─────
+     ┌───┐
+q_1: ┤ X ├
+     └───┘
+```
 
-  For example, the following cell defines a `Statevector` from a string of
-  single-qubit states. In this case, qubit $0$ is in state $|0\rangle$, and
-  qubit $1$ in state $|{+}\rangle$.
+### Integers
 
-  ```python
-  from qiskit.quantum_info import Statevector
-  sv = Statevector.from_label("0+")
-  sv.probabilities_dict()
-  ```
+When interpreting bits as a number, bit $0$ is the least significant bit, and
+bit $n$ the most significant. This is helpful when coding because each bit
+has the value $2^\text{label}$. For example, the following circuit execution
+ends with bit $0$ being `0`, and bit $1$ being `1`. This is interpreted as
+the decimal integer `2` (measured with probability `1.0`).
 
-  ```
-  {'00': 0.4999999999999999, '01': 0.4999999999999999}
-  ```
+```python
+from qiskit.primitives import Sampler
+qc.measure_all()
+Sampler().run(qc).result().quasi_dists[0]
+```
 
-  This occasionally causes confusion when interpreting a string of bits, as you
-  might expect the leftmost bit to be bit $0$, whereas it usually represents bit
-  $n$.
+```
+{2: 1.0}
+```
 
-- When representing a state vector as a list of complex numbers (amplitudes),
-  Qiskit orders these amplitudes such that the amplitude at index $x$ represents
-  the computational basis state $|x\rangle$.
+### Strings
 
-  ```python
-  print(sv[1])  # amplitude of state |01>
-  print(sv[2])  # amplitude of state |10>
-  ```
+When displaying or interpreting a list of bits (or qubits) as a string, bit
+$n$ is the leftmost bit, and bit $0$ is the rightmost bit. This is because we
+usually write numbers with the most significant digit on the left, and in
+Qiskit, bit $n$ is interpreted as the most significant bit.
 
-  ```
-  (0.7071067811865475+0j)
-  0j
-  ```
+For example, the following cell defines a `Statevector` from a string of
+single-qubit states. In this case, qubit $0$ is in state $|0\rangle$, and
+qubit $1$ in state $|{+}\rangle$.
 
-- Each gate in Qiskit can interpret a list of qubits in its own way, but
-  controlled gates usually follow the convention `(control, target)`.
+```python
+from qiskit.quantum_info import Statevector
+sv = Statevector.from_label("0+")
+sv.probabilities_dict()
+```
 
-  For example, the following cell adds a controlled-X gate where qubit $0$ is
-  the control and qubit $1$ is the target.
+```
+{'00': 0.4999999999999999, '01': 0.4999999999999999}
+```
 
-  ```python
-  from qiskit import QuantumCircuit
-  qc = QuantumCircuit(2)
-  qc.cx(0, 1)
-  qc.draw()
-  ```
+This occasionally causes confusion when interpreting a string of bits, as you
+might expect the leftmost bit to be bit $0$, whereas it usually represents bit
+$n$.
 
-  ```
-  q_0: ──■──
-       ┌─┴─┐
-  q_1: ┤ X ├
-       └───┘
-  ```
+### State vector matrices
 
+When representing a state vector as a list of complex numbers (amplitudes),
+Qiskit orders these amplitudes such that the amplitude at index $x$ represents
+the computational basis state $|x\rangle$.
 
-### Changing ordering in Qiskit
+```python
+print(sv[1])  # amplitude of state |01>
+print(sv[2])  # amplitude of state |10>
+```
+
+```
+(0.7071067811865475+0j)
+0j
+```
+
+### Gates
+
+Each gate in Qiskit can interpret a list of qubits in its own way, but
+controlled gates usually follow the convention `(control, target)`.
+
+For example, the following cell adds a controlled-X gate where qubit $0$ is
+the control and qubit $1$ is the target.
+
+```python
+from qiskit import QuantumCircuit
+qc = QuantumCircuit(2)
+qc.cx(0, 1)
+qc.draw()
+```
+
+```
+q_0: ──■──
+     ┌─┴─┐
+q_1: ┤ X ├
+     └───┘
+```
+
+## Changing ordering in Qiskit
 
 To draw a circuit with qubits in reversed order (that is, qubit $0$ at the
 bottom), use the `reverse_bits` argument. This only affects the generated
