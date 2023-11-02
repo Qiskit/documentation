@@ -1,55 +1,153 @@
 ---
-title: Order of qubits in Qiskit
-description: How endianness works in Qiskit
+title: Bit-ordering in Qiskit
+description: Learn about Qiskit's ordering conventions and why we chose them
 ---
 
-# Order of qubits in Qiskit
+# Order of bits and qubits in Qiskit
 
-While most physics textbooks represent an $n$-qubit system as the tensor product $Q_0\otimes Q_1 \otimes ... \otimes Q_{n-1}$, where $Q_j$ is the $j^{\mathrm{th}}$ qubit, Qiskit uses the inverse order, that is, $Q_{n-1}\otimes ... \otimes Q_1 \otimes Q_{0}$. 
+If you have a set of $n$ bits (or qubits), you'll usually label each bit $0
+\rightarrow n-1$. Different softwares and resources must choose how they order
+these bits both in computer memory and when displayed on screen.
+
+Here's how Qiskit orders bits in different scenarios:
+
+- The `QuantumCircuit` class stores its qubits in a list
+  (`QuantumCircuit.qubits`). The index of a qubit in this list defines the
+  qubit's label.
+
+  ```python
+  from qiskit import QuantumCircuit
+  qc = QuantumCircuit(2)
+  qc.qubits[0]  # qubit "0"
+  ```
+
+  ```
+  Qubit(QuantumRegister(2, 'q'), 0)
+  ```
+
+- On a circuit diagram, qubit $0$ is the topmost qubit, and qubit $n$ the
+  bottommost qubit (you can change this default with the `reverse_bits=True`
+  argument to `QuantumCircuit.draw`; see [Changing
+  ordering](#changing-ordering)).
+
+  ```python
+  qc.x(1)
+  qc.draw()
+  ```
+
+  ```
+  q_0: ─────
+       ┌───┐
+  q_1: ┤ X ├
+       └───┘
+  ```
+
+- When interpreting bits as a number, bit $0$ is the least significant bit, and
+  bit $n$ the most significant. This is helpful when coding because each bit
+  has the value $2^\text{label}$. For example, the following circuit execution
+  ends with bit $0$ being `0`, and bit $1$ being `1`. This is interpreted as
+  the decimal integer `2` (measured with probability `1.0`).
+  
+  ```python
+  from qiskit.primitives import Sampler
+  qc.measure_all()
+  Sampler().run(qc).result().quasi_dists[0]
+  ```
+
+  ```
+  {2: 1.0}
+  ```
+
+- When displaying or interpreting a list of bits (or qubits) as a string, bit
+  $n$ is the leftmost bit, and bit $0$ is the rightmost bit. This is because we
+  usually write numbers with the most significant digit on the left, and in
+  Qiskit, bit $n$ is interpreted as the most significant bit.
+
+  For example, the following cell defines a `Statevector` from a string of
+  single-qubit states. In this case, qubit $0$ is in state $|0\rangle$, and
+  qubit $1$ in state $|{+}\rangle$.
+
+  ```python
+  from qiskit.quantum_info import Statevector
+  sv = Statevector.from_label("0+")
+  sv.probabilities_dict()
+  ```
+
+  ```
+  {'00': 0.4999999999999999, '01': 0.4999999999999999}
+  ```
+
+  This occasionally causes confusion when interpreting a string of bits, as you
+  might expect the leftmost bit to be bit $0$, whereas it usually represents bit
+  $n$.
+
+- When representing a state vector as a list of complex numbers (amplitudes),
+  Qiskit orders these amplitudes such that the amplitude at index $x$ represents
+  the computational basis state $|x\rangle$.
+
+  ```python
+  print(sv[1])  # amplitude of state |01>
+  print(sv[2])  # amplitude of state |10>
+  ```
+
+  ```
+  (0.7071067811865475+0j)
+  0j
+  ```
+
+- Each gate in Qiskit can interpret a list of qubits in its own way, but
+  controlled gates usually follow the convention `(control, target)`.
+
+  For example, the following cell adds a controlled-X gate where qubit $0$ is
+  the control and qubit $1$ is the target.
+
+  ```python
+  from qiskit import QuantumCircuit
+  qc = QuantumCircuit(2)
+  qc.cx(0, 1)
+  qc.draw()
+  ```
+
+  ```
+  q_0: ──■──
+       ┌─┴─┐
+  q_1: ┤ X ├
+       └───┘
+  ```
 
 
-This means that if we have, for example, a three-qubit system with qubit 0 in state $|1\rangle$ and qubits 1 and 2 in state $|0\rangle$, Qiskit represents this state as $|001\rangle$, while most physics textbooks would represent this state as $|100\rangle$.
+### Changing ordering in Qiskit
 
-The matrix representation of any multi-qubit gate is also affected by this different qubit ordering. For example, if we consider the single-qubit gate
-
-$$
-U = \begin{pmatrix} u_{00} & u_{01} \\ u_{10} & u_{11} \end{pmatrix},
-$$
-
-and we want a controlled version $C_U$ whose control qubit is qubit 0 and whose target is qubit 1, following Qiskit's ordering, its matrix representation would be
-
-$$
-C_U = \begin{pmatrix} 1 & 0 & 0 & 0 \\0 & u_{00} & 0 & u_{01} \\ 0 & 0 & 1 & 0 \\ 0 & u_{10} & 0& u_{11} \end{pmatrix},
-$$
-
-while in a physics textbook it would be written as
-
-$$
-C_U = \begin{pmatrix} 1 & 0 & 0 & 0 \\0 & 1 & 0 & 0 \\ 0 & 0 & u_{00} & u_{01} \\ 0 & 0 & u_{00} & u_{01} \end{pmatrix}.
-$$
-
-For more details about how this ordering of MSB and LSB affects the matrix representation of any particular gate, check its entry in the [Circuit library](../api/qiskit/circuit_library).
-
-This different order can also make the circuit corresponding to an algorithm from a textbook a bit more complicated to visualize. Fortunately, Qiskit provides a way to represent a [`QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) with the most significant qubits on top, just like in textbooks. This can be done by setting the `reverse_bits` argument of the [`QuantumCircuit.draw`](../api/qiskit/qiskit.circuit.QuantumCircuit#draw) method to `True`.
-
-Try this example for a three-qubit Quantum Fourier Transform ([`QFT`](../api/qiskit/qiskit.circuit.library.QFT)).
+To draw a circuit with qubits in reversed order (that is, qubit $0$ at the
+bottom), use the `reverse_bits` argument. This only affects the generated
+diagram and does not affect the circuit; the X-gate still acts on qubit $0$.
 
 ```python
-# without reverse_bits=True
-from qiskit.circuit.library import QFT
-
-qft = QFT(3)
-qft.decompose().draw('mpl')
+from qiskit import QuantumCircuit
+qc = QuantumCircuit(2)
+qc.x(0)
+qc.draw(reverse_bits=True)
 ```
 
-![normal bit ordering](/images/build/endianness/qft-normal.png)
+```
+q_1: ─────
+     ┌───┐
+q_0: ┤ X ├
+     └───┘
+```
+
+You can use the `reverse_bits` method to return a new circuit with the
+qubits' labels reversed (this does not mutate the original circuit).
 
 ```python
-# with reverse_bits=True
-from qiskit.circuit.library import QFT
-
-qft = QFT(3)
-qft.decompose().draw('mpl', reverse_bits=True)
+qc.reverse_bits().draw()
 ```
 
-![reversed bit ordering](/images/build/endianness/qft-reversed.png)
+```
+q_0: ─────
+     ┌───┐
+q_1: ┤ X ├
+     └───┘
+```
+
+Note that in this new circuit, the X-gate acts on qubit $1$.
