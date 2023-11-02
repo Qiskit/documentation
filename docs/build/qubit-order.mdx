@@ -51,10 +51,11 @@ q_1: ┤ X ├
 ### Integers
 
 When interpreting bits as a number, bit $0$ is the least significant bit, and
-bit $n$ the most significant. This is helpful when coding because each bit
-has the value $2^\text{label}$. For example, the following circuit execution
-ends with bit $0$ being `0`, and bit $1$ being `1`. This is interpreted as
-the decimal integer `2` (measured with probability `1.0`).
+bit $n$ the most significant. This is helpful when coding because each bit has
+the value $2^\text{label}$ (label being the qubit's index in
+`QuantumCircuit.qubits`). For example, the following circuit execution ends
+with bit $0$ being `0`, and bit $1$ being `1`. This is interpreted as the
+decimal integer `2` (measured with probability `1.0`).
 
 ```python
 from qiskit.primitives import Sampler
