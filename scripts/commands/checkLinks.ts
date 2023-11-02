@@ -47,7 +47,7 @@ class Link {
      *     origin: Path to source file containing link
      */
 
-    const splitLink = linkString.split("#");
+    const splitLink = linkString.split("#", 1);
     this.value = splitLink[0];
     this.anchor = splitLink.length > 1 ? `#${splitLink[1]}` : "";
     this.origin = origin;
@@ -144,11 +144,11 @@ function checkLinksInFile(filePath: string, filePaths: string[]): boolean {
     return true;
   }
   const source = readFileSync(filePath, { encoding: "utf8" });
-  let markdown =
+  const markdown =
     path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
   
   const links: Link[] = [];
-  const file = unified()
+  unified()
   .use(rehypeParse)
   .use(remarkGfm)
   .use(rehypeRemark)
