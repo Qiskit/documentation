@@ -7,7 +7,7 @@ description: Learn about Qiskit's ordering conventions and why we chose them
 
 If you have a set of $n$ bits (or qubits), you'll usually label each bit $0
 \rightarrow n-1$. Different softwares and resources must choose how they order
-these bits both in computer memory and when displayed on screen.
+these bits both in computer memory and when displayed on-screen.
 
 ## Qiskit conventions
 
@@ -33,8 +33,8 @@ Qubit(QuantumRegister(2, 'q'), 0)
 
 On a circuit diagram, qubit $0$ is the topmost qubit, and qubit $n$ the
 bottommost qubit (you can change this default with the `reverse_bits=True`
-argument to `QuantumCircuit.draw`; see [Changing
-ordering](#changing-ordering)).
+argument to `QuantumCircuit.draw`; see [Change
+ordering in Qiskit](#change-ordering-in-qiskit)).
 
 ```python
 qc.x(1)
@@ -91,9 +91,9 @@ This occasionally causes confusion when interpreting a string of bits, as you
 might expect the leftmost bit to be bit $0$, whereas it usually represents bit
 $n$.
 
-### State vector matrices
+### Statevector matrices
 
-When representing a state vector as a list of complex numbers (amplitudes),
+When representing a statevector as a list of complex numbers (amplitudes),
 Qiskit orders these amplitudes such that the amplitude at index $x$ represents
 the computational basis state $|x\rangle$.
 
@@ -142,7 +142,7 @@ $$
 \end{pmatrix}
 $$
 
-## Changing ordering in Qiskit
+## Change ordering in Qiskit
 
 To draw a circuit with qubits in reversed order (that is, qubit $0$ at the
 bottom), use the `reverse_bits` argument. This only affects the generated
