@@ -27,27 +27,27 @@ Parameters used to describe the compilation target:
 - dt (float) 
 - ignore_backend_supplied_default_methods (bool)
 - inst_map (List[InstructionScheduleMap])
+- instruction_durations (List[Tuple[str, Iterable[int], float, Iterable[float], str]] | List[Tuple[str, Iterable[int], float, Iterable[float]]] | List[Tuple[str, Iterable[int], float, str]] | List[Tuple[str, Iterable[int], float]] | InstructionDurations)
 - target (Target)
+- timing_constraints (Dict[str, int]) 
 
 Parameters used to influence how the transpiler works:
 
-- approximation_degree (float | None) - Heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation). The default value is 1.0.  Specifying `None` sets the approximation degree to the reported error rate.
+- approximation_degree (float | None) - Heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation). The default value is 1.0.  Specifying `None` sets the approximation degree to the reported error rate. (optimization stage)
 - callback (Callable[[BasePass, DAGCircuit, float, PropertySet, int], Any])
-- hls_config (HLSConfig)
-- init_method (str)
-- initial_layout (Layout | Dict | List)
-- instruction_durations (List[Tuple[str, Iterable[int], float, Iterable[float], str]] | List[Tuple[str, Iterable[int], float, Iterable[float]]] | List[Tuple[str, Iterable[int], float, str]] | List[Tuple[str, Iterable[int], float]] | InstructionDurations)
-- layout_method (str)
-- optimization_level (int)
-- optimization_method (str)
+- hls_config (HLSConfig) (init stage)
+- init_method (str) (init stage)
+- initial_layout (Layout | Dict | List) (layout stage)
+- layout_method (str) (layout stage)
+- optimization_level (int) (0 or 1: optimization stage)
+- optimization_method (str) (optimization stage)
 - output_name (str | List[str])
-- routing_method (str)
-- scheduling_method (str)
-- seed_transpiler (int)
-- timing_constraints (Dict[str, int]) 
-- translation_method (str) 
-- unitary_synthesis_method (str)
-- unitary_synthesis_plugin_config (dict)
+- routing_method (str) (routing stage)
+- scheduling_method (str) (scheduling stage)
+- seed_transpiler (int) (layout/routing stages?)
+- translation_method (str) (translation state)
+- unitary_synthesis_method (str) (init stage, could check with re-synthesis in optimization stage)
+- unitary_synthesis_plugin_config (dict) (init stage, could check with re-synthesis in optimization stage)
 
 ## Commonly used parameters 
  
@@ -105,7 +105,7 @@ Heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal
 
 In two qubit unitary synthesis, it is used to specify the target fidelity of the output decomposition. That is, how much error is introduced when a matrix representation of a circuit is converted to discrete gates. If the approximation degree is a lower value (more approximation), the output circuit from synthesis will differ more from the input matrix, but will also likely have fewer gates and is easier to run. 
 
-**I can't find any examples of this actually being used.  Maybe it's not actually that commonly used?**
+The approximation degree is a heuristic that corresponds to fidelity of the two-qubit KAK synthesis used in optimization levels 2 and 3. Since CX is the most expensive gate in terms of error, it may be beneficial to decrease the number of them at the cost of fidelity in synthesis (this technique was used to increase quantum volume on IBM devices: https://arxiv.org/abs/1811.12926). Approximation degree 1.0 (the default) corresponds to no approximation, and it is well known that any arbitrary two-qubit operation can be decomposed perfectly with a maximum of three CX’s through the KAK decomposition. When degrees less than 1.0, circuits with one or two CX’s may be synthesized, leading to less error from the hardware, but more from the approximation.
 
 ### seed_transpiler
 
