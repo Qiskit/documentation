@@ -35,7 +35,7 @@ IBMCompositeJob constructor.
 *   **job\_id** (`Optional`\[`str`]) – Job ID.
 *   **creation\_date** (`Optional`\[`datetime`]) – Job creation date.
 *   **jobs** (`Optional`\[`List`\[[`IBMCircuitJob`](qiskit_ibm_provider.job.IBMCircuitJob "qiskit_ibm_provider.job.ibm_circuit_job.IBMCircuitJob")]]) – A list of sub-jobs.
-*   **circuits\_list** (`Optional`\[`List`\[`Union`\[`List`\[`QuantumCircuit`], `List`\[`Schedule`]]]]) – Circuits for this job.
+*   **circuits\_list** (`Optional`\[`List`\[`List`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v0.44)")]]]) – Circuits for this job.
 *   **run\_config** (`Optional`\[`Dict`]) – Runtime configuration for this job.
 *   **name** (`Optional`\[`str`]) – Job name.
 *   **tags** (`Optional`\[`List`\[`str`]]) – Job tags.
@@ -89,7 +89,7 @@ Return the backend where this job was executed.
 
 **Return type**
 
-`Backend`
+[`Backend`](/api/qiskit/qiskit.providers.Backend "(in Qiskit v0.44)")
 
 <span id="ibmcompositejob-backend-options" />
 
@@ -173,15 +173,15 @@ Return whether the job has been cancelled.
 
 `IBMCompositeJob.circuits()`
 
-Return the circuits or pulse schedules for this job.
+Return the circuits for this job.
 
 **Return type**
 
-`List`\[`Union`\[`QuantumCircuit`, `Schedule`]]
+`List`\[[`QuantumCircuit`](/api/qiskit/qiskit.circuit.QuantumCircuit "(in Qiskit v0.44)")]
 
 **Returns**
 
-The circuits or pulse schedules for this job.
+The circuits for this job.
 
 <span id="ibmcompositejob-creation-date" />
 
@@ -333,9 +333,15 @@ Job name or `None` if no name was assigned to this job.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.properties" />
 
-`IBMCompositeJob.properties()`
+`IBMCompositeJob.properties(refresh=False)`
 
 Return the backend properties for this job.
+
+> #### Args:
+>
+> #### refresh: If `True`, re-query the server for the backend properties.
+>
+> Otherwise, return a cached version.
 
 <Admonition title="Note" type="note">
   This method blocks until all sub-jobs are submitted.
@@ -343,7 +349,7 @@ Return the backend properties for this job.
 
 **Return type**
 
-`Union`\[`List`\[`BackendProperties`], `BackendProperties`, `None`]
+`Union`\[`List`\[[`BackendProperties`](/api/qiskit/qiskit.providers.models.BackendProperties "(in Qiskit v0.44)")], [`BackendProperties`](/api/qiskit/qiskit.providers.models.BackendProperties "(in Qiskit v0.44)"), `None`]
 
 **Returns**
 
@@ -488,7 +494,7 @@ Return the result of the job.
 </Admonition>
 
 <Admonition title="Note" type="note">
-  When partial=True, this method will attempt to retrieve partial results of failed jobs. In this case, precaution should be taken when accessing individual experiments, as doing so might cause an exception. The `success` attribute of the returned `Result` instance can be used to verify whether it contains partial results.
+  When partial=True, this method will attempt to retrieve partial results of failed jobs. In this case, precaution should be taken when accessing individual experiments, as doing so might cause an exception. The `success` attribute of the returned [`Result`](/api/qiskit/qiskit.result.Result "(in Qiskit v0.44)") instance can be used to verify whether it contains partial results.
 
   For example, if one of the circuits in the job failed, trying to get the counts of the unsuccessful circuit would raise an exception since there are no counts to return:
 
@@ -511,7 +517,7 @@ If the job failed, you can use [`error_message()`](qiskit_ibm_provider.job.IBMCo
 
 **Return type**
 
-`Result`
+[`Result`](/api/qiskit/qiskit.result.Result "(in Qiskit v0.44)")
 
 **Returns**
 
@@ -593,7 +599,7 @@ Query the server for the latest job status.
 
 **Return type**
 
-`JobStatus`
+[`JobStatus`](/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v0.44)")
 
 **Returns**
 

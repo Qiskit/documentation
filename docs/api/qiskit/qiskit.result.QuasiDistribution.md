@@ -12,7 +12,7 @@ python_api_name: qiskit.result.QuasiDistribution
 
 `qiskit.result.QuasiDistribution(data, shots=None, stddev_upper_bound=None)`
 
-Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 A dict-like class for representing quasi-probabilities.
 
@@ -20,7 +20,7 @@ Builds a quasiprobability distribution object.
 
 **Parameters**
 
-*   **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) –
+*   **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) –
 
     Input quasiprobability data. Where the keys represent a measured classical value and the value is a float for the quasiprobability of that result. The keys can be one of several formats:
 
@@ -28,14 +28,14 @@ Builds a quasiprobability distribution object.
     > *   A bit string e.g. `'0b1011'` or `"01011"`
     > *   An integer
 
-*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Number of shots the distribution was derived from.
+*   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of shots the distribution was derived from.
 
-*   **stddev\_upper\_bound** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – An upper bound for the standard deviation
+*   **stddev\_upper\_bound** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – An upper bound for the standard deviation
 
 **Raises**
 
-*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.11)") – If the input keys are not a string or int
-*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.11)") – If the string format of the keys is incorrect
+*   [**TypeError**](https://docs.python.org/3/library/exceptions.html#TypeError "(in Python v3.12)") – If the input keys are not a string or int
+*   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If the string format of the keys is incorrect
 
 ## Attributes
 
@@ -57,7 +57,7 @@ Build a quasi-probabilities dictionary with binary string keys
 
 **Parameters**
 
-**num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – number of bits in the binary bitstrings (leading zeros will be padded). If None, a default value will be used. If keys are given as integers or strings with binary or hex prefix, the default value will be derived from the largest key present. If keys are given as bitstrings without prefix, the default value will be derived from the largest key length.
+**num\_bits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of bits in the binary bitstrings (leading zeros will be padded). If None, a default value will be used. If keys are given as integers or strings with binary or hex prefix, the default value will be derived from the largest key present. If keys are given as bitstrings without prefix, the default value will be derived from the largest key length.
 
 **Returns**
 
@@ -67,7 +67,7 @@ Build a quasi-probabilities dictionary with binary string keys
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 ### clear
 
@@ -113,7 +113,7 @@ format `"0x1a"`
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
 ### items
 
@@ -137,7 +137,7 @@ Takes a quasiprobability distribution and maps it to the closest probability dis
 
 **Parameters**
 
-**return\_distance** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – Return the L2 distance between distributions.
+**return\_distance** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Return the L2 distance between distributions.
 
 **Returns**
 

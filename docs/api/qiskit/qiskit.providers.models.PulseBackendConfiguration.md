@@ -20,44 +20,44 @@ Initialize a backend configuration that contains all the extra configuration tha
 
 **Parameters**
 
-*   **backend\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – backend name.
-*   **backend\_version** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – backend version in the form X.Y.Z.
-*   **n\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – number of qubits.
-*   **basis\_gates** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*]*) – list of basis gates names on the backend.
+*   **backend\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – backend name.
+*   **backend\_version** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – backend version in the form X.Y.Z.
+*   **n\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of qubits.
+*   **basis\_gates** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – list of basis gates names on the backend.
 *   **gates** ([*GateConfig*](qiskit.providers.models.GateConfig "qiskit.providers.models.backendconfiguration.GateConfig")) – list of basis gates on the backend.
-*   **local** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – backend is local or remote.
-*   **simulator** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – backend is a simulator.
-*   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – backend supports conditional operations.
-*   **open\_pulse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – backend supports open pulse.
-*   **memory** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – backend supports memory.
-*   **max\_shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – maximum number of shots supported.
-*   **coupling\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – The coupling map for the device
-*   **n\_uchannels** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Number of u-channels.
-*   **u\_channel\_lo** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*UchannelLO*](qiskit.providers.models.UchannelLO "qiskit.providers.models.backendconfiguration.UchannelLO")*]]*) – U-channel relationship on device los.
-*   **meas\_levels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – Supported measurement levels.
-*   **qubit\_lo\_range** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*]]*) – Qubit lo ranges for each qubit with form (min, max) in GHz.
-*   **meas\_lo\_range** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*]]*) – Measurement lo ranges for each qubit with form (min, max) in GHz.
-*   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Qubit drive channel timestep in nanoseconds.
-*   **dtm** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")) – Measurement drive channel timestep in nanoseconds.
-*   **rep\_times** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*]*) – Supported repetition times (program execution time) for backend in μs.
-*   **meas\_kernels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*]*) – Supported measurement kernels.
-*   **discriminators** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*]*) – Supported discriminators.
-*   **hamiltonian** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)")*]*) – An optional dictionary with fields characterizing the system hamiltonian.
-*   **channel\_bandwidth** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – Bandwidth of all channels (qubit, measurement, and U)
-*   **acquisition\_latency** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – Array of dimension n\_qubits x n\_registers. Latency (in units of dt) to write a measurement result from qubit n into register slot m.
-*   **conditional\_latency** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – Array of dimension n\_channels \[d->u->m] x n\_registers. Latency (in units of dt) to do a conditional operation on channel n from register slot m
-*   **meas\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – Grouping of measurement which are multiplexed
-*   **max\_experiments** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The maximum number of experiments per job
-*   **sample\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Sample name for the backend
-*   **n\_registers** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Number of register slots available for feedback (if conditional is True)
-*   **register\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – An array of dimension n\_qubits X n\_registers that specifies whether a qubit can store a measurement in a certain register slot.
-*   **configurable** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – True if the backend is configurable, if the backend is a simulator
-*   **credits\_required** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.11)")) – True if backend requires credits to run a job.
+*   **local** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – backend is local or remote.
+*   **simulator** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – backend is a simulator.
+*   **conditional** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – backend supports conditional operations.
+*   **open\_pulse** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – backend supports open pulse.
+*   **memory** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – backend supports memory.
+*   **max\_shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – maximum number of shots supported.
+*   **coupling\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The coupling map for the device
+*   **n\_uchannels** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of u-channels.
+*   **u\_channel\_lo** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*UchannelLO*](qiskit.providers.models.UchannelLO "qiskit.providers.models.backendconfiguration.UchannelLO")*]]*) – U-channel relationship on device los.
+*   **meas\_levels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Supported measurement levels.
+*   **qubit\_lo\_range** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – Qubit lo ranges for each qubit with form (min, max) in GHz.
+*   **meas\_lo\_range** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]]*) – Measurement lo ranges for each qubit with form (min, max) in GHz.
+*   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Qubit drive channel timestep in nanoseconds.
+*   **dtm** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Measurement drive channel timestep in nanoseconds.
+*   **rep\_times** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*]*) – Supported repetition times (program execution time) for backend in μs.
+*   **meas\_kernels** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – Supported measurement kernels.
+*   **discriminators** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – Supported discriminators.
+*   **hamiltonian** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*]*) – An optional dictionary with fields characterizing the system hamiltonian.
+*   **channel\_bandwidth** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Bandwidth of all channels (qubit, measurement, and U)
+*   **acquisition\_latency** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Array of dimension n\_qubits x n\_registers. Latency (in units of dt) to write a measurement result from qubit n into register slot m.
+*   **conditional\_latency** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Array of dimension n\_channels \[d->u->m] x n\_registers. Latency (in units of dt) to do a conditional operation on channel n from register slot m
+*   **meas\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Grouping of measurement which are multiplexed
+*   **max\_experiments** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of experiments per job
+*   **sample\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Sample name for the backend
+*   **n\_registers** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of register slots available for feedback (if conditional is True)
+*   **register\_map** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An array of dimension n\_qubits X n\_registers that specifies whether a qubit can store a measurement in a certain register slot.
+*   **configurable** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if the backend is configurable, if the backend is a simulator
+*   **credits\_required** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if backend requires credits to run a job.
 *   **online\_date** (*datetime*) – The date that the device went online
-*   **display\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Alternate name field for the backend
-*   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – A description for the backend
-*   **tags** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – A list of string tags to describe the backend
-*   **channels** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.11)")*]*) – An optional dictionary containing information of each channel – their purpose, type, and qubits operated on.
+*   **display\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Alternate name field for the backend
+*   **description** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – A description for the backend
+*   **tags** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of string tags to describe the backend
+*   **channels** ([*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")*]*) – An optional dictionary containing information of each channel – their purpose, type, and qubits operated on.
 *   **\*\*kwargs** – Optional fields.
 
 ## Attributes
@@ -118,8 +118,8 @@ Return the secondary drive channel for the given qubit – typically utilized fo
 
 **Parameters**
 
-*   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) – Tuple or list of qubits of the form (control\_qubit, target\_qubit).
-*   **channel** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Deprecated.
+*   **qubits** ([*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Tuple or list of qubits of the form (control\_qubit, target\_qubit).
+*   **channel** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Deprecated.
 
 **Raises**
 
@@ -131,7 +131,7 @@ List of control channels.
 
 **Return type**
 
-[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")\[[*ControlChannel*](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
+[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*ControlChannel*](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
 
 ### describe
 
@@ -169,7 +169,7 @@ Control channel derivations.
 
 **Return type**
 
-[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.11)")\[[*DriveChannel*](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel"), [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.11)")]
+[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")\[[*DriveChannel*](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel"), [complex](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")]
 
 ### drive
 
@@ -201,7 +201,7 @@ Create a new GateConfig object from a dictionary.
 
 **Parameters**
 
-**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")) – A dictionary representing the GateConfig to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.PulseBackendConfiguration.to_dict "qiskit.providers.models.PulseBackendConfiguration.to_dict").
+**data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary representing the GateConfig to create. It will be in the same format as output by [`to_dict()`](#qiskit.providers.models.PulseBackendConfiguration.to_dict "qiskit.providers.models.PulseBackendConfiguration.to_dict").
 
 **Returns**
 
@@ -229,7 +229,7 @@ List of qubits operated on my the given `channel`.
 
 **Return type**
 
-[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")]
+[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[int](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")]
 
 ### get\_qubit\_channels
 
@@ -249,7 +249,7 @@ List of `Channel`s operated on my the given `qubit`.
 
 **Return type**
 
-[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")\[[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*Channel*](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
 
 ### measure
 
@@ -285,5 +285,5 @@ The dictionary form of the GateConfig.
 
 **Return type**
 
-[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.11)")
+[dict](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 

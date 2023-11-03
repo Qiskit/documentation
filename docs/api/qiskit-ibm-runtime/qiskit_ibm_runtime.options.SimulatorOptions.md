@@ -25,53 +25,63 @@ For best practice in simulating a backend make sure to pass the basis gates and 
 
 ## Attributes
 
-<span id="simulatoroptions-basis-gates" />
+<span id="qiskit_ibm_runtime.options.SimulatorOptions.basis_gates" />
 
 ### basis\_gates
 
-<span id="qiskit_ibm_runtime.options.SimulatorOptions.basis_gates" />
+`List[str] | None`
 
-`List[str] | None = None`
-
-<span id="simulatoroptions-coupling-map" />
-
-### coupling\_map
+`= None`
 
 <span id="qiskit_ibm_runtime.options.SimulatorOptions.coupling_map" />
 
-`List[List[int]] | CouplingMap | None = None`
+### coupling\_map
 
-<span id="simulatoroptions-noise-model" />
+`List[List[int]] | CouplingMap | None`
 
-### noise\_model
+`= None`
 
 <span id="qiskit_ibm_runtime.options.SimulatorOptions.noise_model" />
 
-`dict | NoiseModel | None = None`
+### noise\_model
 
-<span id="simulatoroptions-seed-simulator" />
+`dict | NoiseModel | None`
 
-### seed\_simulator
+`= None`
 
 <span id="qiskit_ibm_runtime.options.SimulatorOptions.seed_simulator" />
 
-`int | None = None`
+### seed\_simulator
+
+`int | None`
+
+`= None`
 
 ## Methods
-
-<span id="simulatoroptions-set-backend" />
 
 ### set\_backend
 
 <span id="qiskit_ibm_runtime.options.SimulatorOptions.set_backend" />
 
-`SimulatorOptions.set_backend(backend)`
+`set_backend(backend)`
 
 Set backend for simulation. This method changes noise\_model, coupling\_map, basis\_gates according to given backend.
 
 **Parameters**
 
 **backend** (`Union`\[`BackendV1`, `BackendV2`]) – backend to be set.
+
+**Return type**
+
+`None`
+
+### validate\_simulator\_options
+
+<span id="qiskit_ibm_runtime.options.SimulatorOptions.validate_simulator_options" />
+
+`static validate_simulator_options(simulator_options)`
+
+Validate that simulator options are legal. :raises ValueError: if any simulator option is not supported
 
 **Return type**
 

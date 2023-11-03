@@ -12,7 +12,7 @@ python_api_name: qiskit.circuit.InstructionSet
 
 `qiskit.circuit.InstructionSet(*, resource_requester=None)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Instruction collection, and their contexts.
 
@@ -74,8 +74,8 @@ Set a classical equality condition on all the instructions in this set between t
 
 **Parameters**
 
-*   **classical** ([*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")  *|*[*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the classical resource the equality condition should be on. If this is given as an integer, it will be resolved into a [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") using the same conventions as the circuit these instructions are attached to.
-*   **val** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – the value the classical resource should be equal to.
+*   **classical** ([*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")  *|*[*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the classical resource the equality condition should be on. If this is given as an integer, it will be resolved into a [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") using the same conventions as the circuit these instructions are attached to.
+*   **val** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the value the classical resource should be equal to.
 
 **Returns**
 

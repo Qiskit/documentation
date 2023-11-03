@@ -21,21 +21,33 @@ Execution options.
 
 ## Attributes
 
-<span id="executionoptions-init-qubits" />
+<span id="qiskit_ibm_runtime.options.ExecutionOptions.init_qubits" />
 
 ### init\_qubits
 
-<span id="qiskit_ibm_runtime.options.ExecutionOptions.init_qubits" />
+`bool`
 
-`bool = True`
-
-<span id="executionoptions-shots" />
-
-### shots
+`= True`
 
 <span id="qiskit_ibm_runtime.options.ExecutionOptions.shots" />
 
-`int = 4000`
+### shots
+
+`int`
+
+`= 4000`
 
 ## Methods
+
+### validate\_execution\_options
+
+<span id="qiskit_ibm_runtime.options.ExecutionOptions.validate_execution_options" />
+
+`static validate_execution_options(execution_options)`
+
+Validate that execution options are legal. :raises ValueError: if any execution option is not supported
+
+**Return type**
+
+`None`
 

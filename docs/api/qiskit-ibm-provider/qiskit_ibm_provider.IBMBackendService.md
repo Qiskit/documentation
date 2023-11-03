@@ -118,7 +118,7 @@ Retrieve jobs that match the given filters and paginate the results if desired. 
 *   **limit** (`Optional`\[`int`]) – Number of jobs to retrieve. `None` means no limit. Note that the number of sub-jobs within a composite job count towards the limit.
 *   **skip** (`int`) – Starting index for the job retrieval.
 *   **backend\_name** (`Optional`\[`str`]) – Name of the backend to retrieve jobs from.
-*   **status** (`Union`\[`Literal`\[‘pending’, ‘completed’], `List`\[`Union`\[`JobStatus`, `str`]], `JobStatus`, `str`, `None`]) – Filter jobs with either “pending” or “completed” status. You can also specify by
+*   **status** (`Union`\[`Literal`\[‘pending’, ‘completed’], `List`\[`Union`\[[`JobStatus`](/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v0.44)"), `str`]], [`JobStatus`](/api/qiskit/qiskit.providers.JobStatus "(in Qiskit v0.44)"), `str`, `None`]) – Filter jobs with either “pending” or “completed” status. You can also specify by
 *   **example** (*exact status. For*) – or status=\[“RUNNING”, “ERROR”].
 *   **status="RUNNING"** (*status=JobStatus.RUNNING or*) – or status=\[“RUNNING”, “ERROR”].
 *   **start\_datetime** (`Optional`\[`datetime`]) – Filter by the given start date, in local time. This is used to find jobs whose creation dates are after (greater than or equal to) this local date/time.
@@ -126,7 +126,7 @@ Retrieve jobs that match the given filters and paginate the results if desired. 
 *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Filter by tags assigned to jobs. Matched jobs are associated with all tags.
 *   **descending** (`bool`) – If `True`, return the jobs in descending order of the job creation date (i.e. newest first) until the limit is reached.
 *   **instance** (`Optional`\[`str`]) – The provider in the hub/group/project format.
-*   **legacy** (`bool`) – If `True`, only retrieve jobs run from the deprecated `qiskit-ibmq-provider`.
+*   **legacy** (`bool`) – If `True`, only retrieve jobs run from the archived `qiskit-ibmq-provider`.
 *   **Otherwise** –
 *   **qiskit-ibm-provider.** (*only retrieve jobs run from*) –
 

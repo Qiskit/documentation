@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.TranspileLayout
 
 `qiskit.transpiler.TranspileLayout(initial_layout, input_qubit_mapping, final_layout=None)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Layout attributes from output circuit from transpiler.
 

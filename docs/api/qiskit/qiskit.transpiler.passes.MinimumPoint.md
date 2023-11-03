@@ -32,9 +32,9 @@ Initialize an instance of this pass
 
 **Parameters**
 
-*   **property\_set\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.11)")) – A list of property set keys that will be used to evaluate the local minimum. The values of these property set keys will be used as a tuple for comparison
-*   **prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – The prefix to use for the property set key that is used for tracking previous evaluations
-*   **backtrack\_depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – The maximum number of entries to store. If this number is reached and the next iteration doesn’t have a decrease in the number of values the minimum of the previous n will be set as the output dag and `minimum_point` will be set to `True` in the property set
+*   **property\_set\_list** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of property set keys that will be used to evaluate the local minimum. The values of these property set keys will be used as a tuple for comparison
+*   **prefix** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – The prefix to use for the property set key that is used for tracking previous evaluations
+*   **backtrack\_depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of entries to store. If this number is reached and the next iteration doesn’t have a decrease in the number of values the minimum of the previous n will be set as the output dag and `minimum_point` will be set to `True` in the property set
 
 ## Attributes
 

@@ -6,9 +6,9 @@ python_api_type: module
 python_api_name: qiskit_ibm_runtime.options
 ---
 
-<span id="module-qiskit_ibm_runtime.options" />
-
 <span id="primitive-options-qiskit-ibm-runtime-options" />
+
+<span id="module-qiskit_ibm_runtime.options" />
 
 # Primitive options
 
@@ -18,7 +18,7 @@ python_api_name: qiskit_ibm_runtime.options
 
 Options that can be passed to the primitives.
 
-The [`Options`](qiskit_ibm_runtime.options.Options "qiskit_ibm_runtime.options.Options") class encapsulates all the options you can specify when invoking a primitive. It includes frequestly used options, such as `optimization_level` and `resilience_level` as well as sub-categories, such as `transpilation` and `execution`. You can use auto-complete to easily find the options inside each sub-category, for example:
+The [`Options`](qiskit_ibm_runtime.options.Options "qiskit_ibm_runtime.options.Options") class encapsulates all the options you can specify when invoking a primitive. It includes frequently used options, such as `optimization_level` and `resilience_level` as well as sub-categories, such as `transpilation` and `execution`. You can use auto-complete to easily find the options inside each sub-category, for example:
 
 ```python
 from qiskit_ibm_runtime.options import Options
@@ -39,10 +39,10 @@ options = Options(transpilation={"initial_layout": [0, 1, 2, 3]})
 
 |                                                                                                                                                          |                                               |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| [`Options`](qiskit_ibm_runtime.options.Options "qiskit_ibm_runtime.options.Options")(\[optimization\_level, ...])                                        | Options for the primitives.                   |
-| [`TranspilationOptions`](qiskit_ibm_runtime.options.TranspilationOptions "qiskit_ibm_runtime.options.TranspilationOptions")(\[skip\_transpilation, ...]) | Transpilation options.                        |
-| [`ResilienceOptions`](qiskit_ibm_runtime.options.ResilienceOptions "qiskit_ibm_runtime.options.ResilienceOptions")(\[noise\_amplifier, ...])             | Resilience options.                           |
-| [`ExecutionOptions`](qiskit_ibm_runtime.options.ExecutionOptions "qiskit_ibm_runtime.options.ExecutionOptions")(\[shots, init\_qubits])                  | Execution options.                            |
-| [`EnvironmentOptions`](qiskit_ibm_runtime.options.EnvironmentOptions "qiskit_ibm_runtime.options.EnvironmentOptions")(\[log\_level, callback, ...])      | Options related to the execution environment. |
-| [`SimulatorOptions`](qiskit_ibm_runtime.options.SimulatorOptions "qiskit_ibm_runtime.options.SimulatorOptions")(\[noise\_model, ...])                    | Simulator options.                            |
+| [`Options`](qiskit_ibm_runtime.options.Options "qiskit_ibm_runtime.options.Options")(\[optimization\_level, ...])                                        | Options for the primitives.                   |
+| [`TranspilationOptions`](qiskit_ibm_runtime.options.TranspilationOptions "qiskit_ibm_runtime.options.TranspilationOptions")(\[skip\_transpilation, ...]) | Transpilation options.                        |
+| [`ResilienceOptions`](qiskit_ibm_runtime.options.ResilienceOptions "qiskit_ibm_runtime.options.ResilienceOptions")(\[noise\_amplifier, ...])             | Resilience options.                           |
+| [`ExecutionOptions`](qiskit_ibm_runtime.options.ExecutionOptions "qiskit_ibm_runtime.options.ExecutionOptions")(\[shots, init\_qubits])                  | Execution options.                            |
+| [`EnvironmentOptions`](qiskit_ibm_runtime.options.EnvironmentOptions "qiskit_ibm_runtime.options.EnvironmentOptions")(\[log\_level, callback, ...])      | Options related to the execution environment. |
+| [`SimulatorOptions`](qiskit_ibm_runtime.options.SimulatorOptions "qiskit_ibm_runtime.options.SimulatorOptions")(\[noise\_model, ...])                    | Simulator options.                            |
 

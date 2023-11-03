@@ -12,7 +12,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugi
 
 `qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPluginManager`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.11)")
+Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 Unitary Synthesis plugin manager class
 

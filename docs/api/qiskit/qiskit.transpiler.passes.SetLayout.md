@@ -22,7 +22,7 @@ SetLayout initializer.
 
 **Parameters**
 
-**layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout") *or List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]*) –
+**layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout") *or List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) –
 
 the layout to set. It can be:
 

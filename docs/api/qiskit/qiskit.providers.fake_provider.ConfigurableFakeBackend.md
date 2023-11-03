@@ -20,19 +20,19 @@ Creates backend based on provided configuration.
 
 **Parameters**
 
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")) – Name of the backend.
-*   **n\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")) – Number of qubits in the backend.
-*   **version** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)") *| None*) – Version of the fake backend.
-*   **coupling\_map** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)")*]] | None*) – Coupling map.
-*   **basis\_gates** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*] | None*) – Basis gates of the backend.
-*   **qubit\_t1** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*] | None*) – Longitudinal coherence times.
-*   **qubit\_t2** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*] | None*) – Transverse coherence times.
-*   **qubit\_frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*] | None*) – Frequency of qubits.
-*   **qubit\_readout\_error** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)")*] | None*) – Readout error of qubits.
-*   **single\_qubit\_gates** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.11)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")*] | None*) – List of single qubit gates for backend properties.
-*   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)") *| None*) – Discretization of the input time sequences.
-*   **std** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.11)") *| None*) – Standard deviation of the generated distributions.
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.11)") *| None*) – Random seed.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Name of the backend.
+*   **n\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of qubits in the backend.
+*   **version** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – Version of the fake backend.
+*   **coupling\_map** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]] | None*) – Coupling map.
+*   **basis\_gates** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] | None*) – Basis gates of the backend.
+*   **qubit\_t1** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – Longitudinal coherence times.
+*   **qubit\_t2** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – Transverse coherence times.
+*   **qubit\_frequency** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – Frequency of qubits.
+*   **qubit\_readout\_error** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*] | None*) – Readout error of qubits.
+*   **single\_qubit\_gates** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*] | None*) – List of single qubit gates for backend properties.
+*   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – Discretization of the input time sequences.
+*   **std** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – Standard deviation of the generated distributions.
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Random seed.
 
 ## Attributes
 
@@ -90,7 +90,7 @@ the name of the backend.
 
 **Return type**
 
-[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.11)")
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### properties
 
@@ -140,7 +140,7 @@ This method is used to update the options of a backend. If you need to change an
 
 **Raises**
 
-[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.11)") – If the field passed in is not part of the options
+[**AttributeError**](https://docs.python.org/3/library/exceptions.html#AttributeError "(in Python v3.12)") – If the field passed in is not part of the options
 
 ### status
 
