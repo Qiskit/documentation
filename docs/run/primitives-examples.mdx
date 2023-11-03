@@ -21,27 +21,27 @@ Efficiently calculate and interpret expectation values of the quantum operators 
 Use Estimator to determine the expectation value of a single circuit-observable pair.
 
 ```python 
-from qiskit.circuit.random import random_circuit 
-from qiskit.quantum_info import SparsePauliOp 
-from qiskit_ibm_runtime import QiskitRuntimeService, Estimator 
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.quantum_info import SparsePauliOp, random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 
-service = QiskitRuntimeService() 
+service = QiskitRuntimeService()
 
-# Run on a simulator
-backend = service.get_backend("ibmq_qasm_simulator")
-# Use the next line if you want to run on a system
-# backend = service.least_busy(simulator=False)
+backend = service.get_backend("ibm_brisbane")
 
-circuit = random_circuit(2, 2, seed=1234) 
-observable = SparsePauliOp("IY") 
+n_qubits = 127
 
-estimator = Estimator(backend) 
-job = estimator.run(circuit, observable) 
-result = job.result() 
+mat = np.real(random_hermitian(n_qubits, seed=1234))
+circuit = IQP(mat)
+observable = SparsePauliOp("Z" * n_qubits)
 
-print(circuit) 
-print(f" > Observable: {observable.paulis}") 
-print(f" > Expectation value: {result.values}") 
+estimator = Estimator(backend)
+job = estimator.run(circuit, observable)
+result = job.result()
+
+print(f" > Observable: {observable.paulis}")
+print(f" > Expectation value: {result.values}")
 print(f" > Metadata: {result.metadata}")
 ```
 
@@ -50,28 +50,30 @@ print(f" > Metadata: {result.metadata}")
 Use Estimator to determine the expectation values of multiple circuit-observable pairs.
 
 ```python 
-from qiskit.circuit.random import random_circuit 
-from qiskit.quantum_info import SparsePauliOp 
-from qiskit_ibm_runtime import QiskitRuntimeService, Estimator 
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.quantum_info import SparsePauliOp, random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 
-service = QiskitRuntimeService() 
 
-# Run on a simulator
-backend = service.get_backend("ibmq_qasm_simulator")
-# Use the following line if you want to run on a system
-# backend = service.least_busy(simulator=False)
+service = QiskitRuntimeService()
 
-circuits = [random_circuit(2, 2, seed=i) for i in range(4)] 
-observables = [ 
-    SparsePauliOp("IY"), 
-    SparsePauliOp("XY"), 
-    SparsePauliOp("ZI"), 
-    SparsePauliOp("ZX"), 
-] 
+backend = service.get_backend("ibm_brisbane")
 
-estimator = Estimator(backend) 
-job = estimator.run(circuits, observables) 
-result = job.result() 
+n_qubits = 127
+
+rng = np.random.default_rng()
+mats = [np.real(random_hermitian(n_qubits, seed=rng)) for _ in range(3)]
+circuits = [IQP(mat) for mat in mats]
+observables = [
+    SparsePauliOp("X" * n_qubits),
+    SparsePauliOp("Y" * n_qubits),
+    SparsePauliOp("Z" * n_qubits),
+]
+
+estimator = Estimator(backend)
+job = estimator.run(circuits, observables)
+result = job.result()
 
 print(f" > Expectation values: {result.values}")
 ```
@@ -81,25 +83,22 @@ print(f" > Expectation values: {result.values}")
 Use Estimator to run three experiments in a single job, leveraging parameter values to increase circuit reusability.
 
 ```python 
+import numpy as np
 from qiskit.circuit.library import RealAmplitudes
 from qiskit.quantum_info import SparsePauliOp
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 
 service = QiskitRuntimeService()
 
-# Run on a simulator
-backend = service.get_backend("ibmq_qasm_simulator")
-# Use the following line if you want to run on a system instead of a simulator:
-# backend = service.least_busy(simulator=False)
+backend = service.get_backend("ibm_brisbane")
 
-circuit = RealAmplitudes(num_qubits=2, reps=2)
+circuit = RealAmplitudes(num_qubits=127, reps=2)
 # Define three sets of parameters for the circuit
+rng = np.random.default_rng(1234)
 parameter_values = [
-    [0, 1, 2, 3, 4, 5],
-    [1, 1, 2, 3, 5, 8],
-    [0, 0.1, 0.2, 0.3, 0.4, 0.5],
+    rng.uniform(-np.pi, np.pi, size=circuit.num_parameters) for _ in range(3)
 ]
-observable = SparsePauliOp("ZI")
+observable = SparsePauliOp("Z" * 127)
 
 estimator = Estimator(backend)
 job = estimator.run([circuit] * 3, [observable] * 3, parameter_values)
@@ -107,42 +106,45 @@ result = job.result()
 
 print(f" > Expectation values: {result.values}")
 ```
-### Leverage sessions and advanced options
+### Use sessions and advanced options
 
 Explore sessions and advanced options to optimize circuit performance on quantum systems.
 
 ```python 
-from qiskit.circuit.random import random_circuit 
-from qiskit.quantum_info import SparsePauliOp 
-from qiskit_ibm_runtime import QiskitRuntimeService, Session, Estimator, Options 
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.quantum_info import SparsePauliOp, random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, Session, Estimator, Options
 
-circuit = random_circuit(2, 2, seed=1) 
-another_circuit = random_circuit(3, 3, seed=1) 
-observable = SparsePauliOp("IY") 
-another_observable = SparsePauliOp("XYZ") 
+n_qubits = 127
 
-options = Options() 
-options.optimization_level = 2 
-options.resilience_level = 2 
+rng = np.random.default_rng(1234)
+mat = np.real(random_hermitian(n_qubits, seed=rng))
+circuit = IQP(mat)
+mat = np.real(random_hermitian(n_qubits, seed=rng))
+another_circuit = IQP(mat)
+observable = SparsePauliOp("X" * n_qubits)
+another_observable = SparsePauliOp("Y" * n_qubits)
 
-service = QiskitRuntimeService() 
+options = Options()
+options.optimization_level = 2
+options.resilience_level = 2
 
-# Run on a simulator
-backend = service.get_backend("ibmq_qasm_simulator")
-# Use the following line if you want to run on a system instead of a simulator:
-# backend = service.least_busy(simulator=False)
+service = QiskitRuntimeService()
 
-with Session(service=service, backend=backend) as session: 
-    estimator = Estimator(session=session, options=options) 
-    job = estimator.run(circuit, observable) 
-    another_job = estimator.run(another_circuit, another_observable) 
-    result = job.result() 
-    another_result = another_job.result() 
+backend = service.get_backend("ibm_brisbane")
 
-# first job 
-print(f" > Expectation values job 1: {result.values}") 
+with Session(service=service, backend=backend) as session:
+    estimator = Estimator(session=session, options=options)
+    job = estimator.run(circuit, observable)
+    another_job = estimator.run(another_circuit, another_observable)
+    result = job.result()
+    another_result = another_job.result()
 
-# second job 
+# first job
+print(f" > Expectation values job 1: {result.values}")
+
+# second job
 print(f" > Expectation values job 2: {another_result.values}")
 ```
 
@@ -155,26 +157,27 @@ Generate entire error-mitigated quasi-probability distributions sampled from qua
 Use Sampler to determine the quasi-probability distribution of a single circuit.
 
 ```python
-from qiskit.circuit.random import random_circuit 
-from qiskit_ibm_runtime import QiskitRuntimeService, Sampler 
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.quantum_info import random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
 
-service = QiskitRuntimeService() 
+service = QiskitRuntimeService()
 
-# Run on a simulator
-backend = service.get_backend("ibmq_qasm_simulator")
-# Use the following line if you want to run on a system instead of a simulator:
-# backend = service.least_busy(simulator=False)
+backend = service.get_backend("ibm_brisbane")
 
-circuit = random_circuit(2, 2, seed=1234) 
-circuit.measure_all() 
+n_qubits = 127
 
-sampler = Sampler(backend) 
-job = sampler.run(circuit) 
-result = job.result() 
+mat = np.real(random_hermitian(n_qubits, seed=1234))
+circuit = IQP(mat)
+circuit.measure_all()
 
-print(circuit) 
-print(f" > Quasi-probability distribution: {result.quasi_dists}") 
-print(f" > Metadata: {result.metadata}") 
+sampler = Sampler(backend)
+job = sampler.run(circuit)
+result = job.result()
+
+print(f" > Quasi-probability distribution: {result.quasi_dists}")
+print(f" > Metadata: {result.metadata}")
 ```
 
 ### Run multiple experiments in a single job
@@ -182,17 +185,22 @@ print(f" > Metadata: {result.metadata}")
 Use Sampler to determine the quasi-probability distributions of multiple circuits in one job.
 
 ```python
-from qiskit.circuit.random import random_circuit 
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.quantum_info import random_hermitian
 from qiskit_ibm_runtime import QiskitRuntimeService, Sampler 
 
 service = QiskitRuntimeService()
 
-# Run on a simulator
-backend = service.get_backend("ibmq_qasm_simulator")
-# Use the following line if you want to run on a system instead of a simulator:
-# backend = service.least_busy(simulator=False)
+backend = service.get_backend("ibm_brisbane")
 
-circuits = [random_circuit(2, 2, measure=True, seed=i) for i in range(4)] 
+n_qubits = 127
+
+rng = np.random.default_rng()
+mats = [np.real(random_hermitian(n_qubits, seed=rng)) for _ in range(3)]
+circuits = [IQP(mat) for mat in mats]
+for circuit in circuits:
+    circuit.measure_all()
 
 sampler = Sampler(backend) 
 job = sampler.run(circuits) 
@@ -201,29 +209,26 @@ result = job.result()
 print(f" > Quasi-probability distribution: {result.quasi_dists}")
 ```
 
-### Run paramaterized circuits
+### Run parameterized circuits
 
 Run three experiments in a single job, leveraging parameter values to increase circuit reusability.
 
 ```python
-from qiskit.circuit.library import RealAmplitudes 
-from qiskit_ibm_runtime import QiskitRuntimeService, Sampler 
+import numpy as np
+from qiskit.circuit.library import RealAmplitudes
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
 
-service = QiskitRuntimeService() 
+service = QiskitRuntimeService()
 
-# Run on a simulator
-backend = service.get_backend("ibmq_qasm_simulator")
-# Use the following line if you want to run on a system instead of a simulator:
-# backend = service.least_busy(simulator=False)
+backend = service.get_backend("ibm_brisbane")
 
-circuit = RealAmplitudes(num_qubits=2, reps=2) 
-circuit.measure_all() 
-# Define three sets of parameters for the circuit 
-parameter_values = [ 
-    [0, 1, 2, 3, 4, 5], 
-    [1, 1, 2, 3, 5, 8], 
-    [0, 0.1, 0.2, 0.3, 0.4, 0.5], 
-] 
+circuit = RealAmplitudes(num_qubits=127, reps=2)
+circuit.measure_all()
+# Define three sets of parameters for the circuit
+rng = np.random.default_rng(1234)
+parameter_values = [
+    rng.uniform(-np.pi, np.pi, size=circuit.num_parameters) for _ in range(3)
+]
 
 sampler = Sampler(backend) 
 job = sampler.run([circuit] * 3, parameter_values) 
@@ -237,23 +242,28 @@ print(f" > Quasi-probability distribution: {result.quasi_dists}")
 Explore sessions and advanced options to optimize circuit performance on quantum systems.
 
 ```python
-from qiskit.circuit.random import random_circuit 
-from qiskit.quantum_info import SparsePauliOp 
-from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler, Options 
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.quantum_info import random_hermitian
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler, Session, Options
 
-circuit = random_circuit(2, 2, measure=True, seed=1) 
-another_circuit = random_circuit(3, 3, measure=True, seed=1) 
+n_qubits = 127
+
+rng = np.random.default_rng(1234)
+mat = np.real(random_hermitian(n_qubits, seed=rng))
+circuit = IQP(mat)
+circuit.measure_all()
+mat = np.real(random_hermitian(n_qubits, seed=rng))
+another_circuit = IQP(mat)
+another_circuit.measure_all()
 
 options = Options() 
 options.optimization_level = 2 
 options.resilience_level = 0 
 
-service = QiskitRuntimeService() 
+service = QiskitRuntimeService()
 
-# Run on a simulator
-backend = service.get_backend("ibmq_qasm_simulator")
-# Use the following line if you want to run on a system instead of a simulator:
-# backend = service.least_busy(simulator=False)
+backend = service.get_backend("ibm_brisbane")
 
 with Session(service=service, backend=backend) as session: 
     sampler = Sampler(session=session, options=options) 
