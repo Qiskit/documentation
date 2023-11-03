@@ -14,6 +14,13 @@ import { globby } from "globby";
 import { readFile } from "fs/promises";
 import path from "node:path";
 import markdownLinkExtractor from "markdown-link-extractor";
+import { visit } from "unist-util-visit";
+import { unified } from "unified";
+import remarkStringify from "remark-stringify";
+import remarkMdx, { Root } from "remark-mdx";
+import rehypeRemark from "rehype-remark";
+import rehypeParse from "rehype-parse";
+import remarkGfm from "remark-gfm";
 
 const DOCS_ROOT = "./docs";
 const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"];
@@ -132,9 +139,29 @@ async function checkLinksInFile(
   const source = await readFile(filePath, { encoding: "utf8" });
   const markdown =
     path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
-  const links = markdownLinkExtractor(markdown).links.map(
-    (x: string) => new Link(x, filePath),
-  );
+
+  const links: Link[] = [];
+  unified()
+    .use(rehypeParse)
+    .use(remarkGfm)
+    .use(rehypeRemark)
+    .use(() => {
+      return function transform(tree: Root) {
+        visit(tree, "text", (TreeNode) => {
+          markdownLinkExtractor(String(TreeNode.value)).links.map((s: string) =>
+            links.push(new Link(s, filePath)),
+          );
+        });
+        visit(tree, "link", (TreeNode) => {
+          links.push(new Link(TreeNode.url, filePath));
+        });
+        visit(tree, "image", (TreeNode) => {
+          links.push(new Link(TreeNode.url, filePath));
+        });
+      };
+    })
+    .use(remarkStringify)
+    .process(markdown);
 
   let allGood = true;
   for (let link of links) {
