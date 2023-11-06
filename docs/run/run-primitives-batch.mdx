@@ -6,8 +6,7 @@ description: How to run primitives in batch mode.
 
 # Run primitives in a batch
 
-Batch mode is ideal for running experiments closely together to avoid device drifts,
-that is, to maintain device characterization.
+Batch mode is ideal for running experiments closely together to avoid device drifts, that is, to maintain device characterization.  All jobs must be provided at the outset. 
 
 -   Suitable for batching many jobs together.
 -   The classical computation, such as compilation, of the jobs is run in parallel. This means running multiple jobs in a batch would be significantly faster than running them serially. 
@@ -21,15 +20,11 @@ that is, to maintain device characterization.
 The following example shows how you can divide up a long list of circuits into multiple jobs and run them as a batch to take advantage of the parallel processing.
 
 ```python
-backend = service.backend("ibm_sherbrooke")
-
-with Session(backend=backend):
-    estimator = Estimator()
-    start_idx = 0
-    jobs = []
-    while start_idx < len(circuits):
-        end_idx = start_idx + backend.max_circuits
-        jobs.append(estimator.run(circuits[start_idx:end_idx], obs[start_idx:end_idx], params[start_idx:end_idx]))
-        start_idx = end_idx
+jobs = []
+with Batch(backend) as batch:
+    estimator = Estimator(batch)
+    # calls within this context are part of the batch.
+    for obs_set in observable_sets:
+        jobs.append(estimator.run(circuits, observables=obs_set))
 ```
 
