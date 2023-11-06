@@ -15,7 +15,7 @@ A central component of Qiskit, the transpiler is designed for modularity and ext
 ## Transpiler Stages
 Qiskit utilizes a set of six fundamental stages in the prebuilt transpiler pipeline:
 
-1. `init` - This pass runs any initial passes that are required before we start embedding the circuit to the backend.  This typically involves unrolling custom instructions and converting the circuit to all single- and two-qubit gates.
+1. `init` - This pass runs any initial passes that are required before we start embedding the circuit to the backend.  This typically involves unrolling custom instructions and converting the circuit to all single- and two-qubit gates. (By default this does nothing)
 1. `layout` - This pass applies a *layout*, mapping/assigning the virtual qubits in your circuit to the physical qubits of a backend.
 1. `routing` - This pass runs after a layout has been applied and will inject gates (i.e., SWAPs) in the original circuit in order to make it compatible with the backend's connectivity/coupling map.
 1. `translation` - This pass translates the gates in the circuit to the backend's basis set of instructions.
