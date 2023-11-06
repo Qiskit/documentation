@@ -12,24 +12,24 @@ Transpilation is the process of rewriting a given input circuit to match the top
 A central component of Qiskit, the transpiler is designed for modularity and extensibility. Its central goal is to be able to easily write new circuit transformations (known as transpiler **passes**), and combine them with other existing passes, allowing you to greatly reduce the depth and complexity of your quantum circuits.  Which passes are chained together and in which order has a major effect on the final outcome. This pipeline is determined by `PassManager` and `StagedPassManager` objects.  The `StagedPassManager` will orchestrate the execution one or more `PassMangers` and determine the order in which they are executed, while the `PassManger` object is merely a collection of one or more passes.  Think of the `StagedPassManager` as the conductor in an orchestra, the `PassManagers` as the different instrument sections, and the `Passes` as the individual musicians.  In this way, you have the power to compose hardware efficient quantum circuits and allow you to execute utility scale work while keeping noise manageable.
 
 
-## Transpiler Stages
+## Transpiler stages
 Qiskit utilizes a set of six fundamental stages in the prebuilt transpiler pipeline:
 
-1. `init` - This pass runs any initial passes that are required before we start embedding the circuit to the backend.  This typically involves unrolling custom instructions and converting the circuit to all single- and two-qubit gates. (By default this does nothing)
+1. `init` - This pass runs any initial passes that are required before we start embedding the circuit to the backend.  This typically involves unrolling custom instructions and converting the circuit to all single- and two-qubit gates. (By default this will just validate the circuit instructions and translate multi-qubit gates into 1 and 2 qubit gates)
 1. `layout` - This pass applies a *layout*, mapping/assigning the virtual qubits in your circuit to the physical qubits of a backend.
 1. `routing` - This pass runs after a layout has been applied and will inject gates (i.e., SWAPs) in the original circuit in order to make it compatible with the backend's connectivity/coupling map.
 1. `translation` - This pass translates the gates in the circuit to the backend's basis set of instructions.
 1. `optimization` - This pass runs an optimization loop to find more efficient decompositions of your quantum circuit until a condition is met (such as a fixed depth).
-1. `scheduling` - This pass is for any hardware-aware optimizations that improves the efficiency of the executed microwave pulse instructions.
+1. `scheduling` - This pass is for any hardware-aware optimizations that improve the efficiency of the executed microwave pulse instructions.
 
  If you decide to customize your own transpilation workflow, we suggest using these stages as a guideline during development.
 
 
 
-## Default Transpilation
+## Default transpilation
 The basic usage of the transpiler is to call the [`qiskit.compiler.transpile()`](../api/qiskit/compiler#compilation-routines) function.  This will generate and run one of the preset `StagedPassManager`s based on, among other options, an `optimization_level` flag which can be set to either 0, 1, 2, or 3.  Higher levels generate more optimized circuits, at the expense of longer transpilation times.
 
-- `optimization_level=0`: Just maps the circuit to the backend, with no explicit optimization.
+- `optimization_level=0`: Maps the circuit to the backend, with no explicit optimization.
 - `optimization_level=1`: Maps the circuit, but also does some lightweight optimizations by collapsing adjacent gates.
 - `optimization_level=2`: Medium-weight optimization, including a noise-adaptive layout and a gate-cancellation procedure based on gate commutation relationships.
 - `optimization_level=3`: Heavy-weight optimization, which in addition to previous steps, resynthesizes two-qubit blocks of gates in the circuit.
@@ -37,6 +37,6 @@ The basic usage of the transpiler is to call the [`qiskit.compiler.transpile()`]
 If you'd like to read more about the preset pass managers or the transpiler stages, look to the section on [Transpiler stages and preset PassManagers](passmanagers.ipynb).
 
 
-## Customizing Passes
+## Customizing passes
 For more advanced users, you can customize your own set of `PassManager` and `StagedPassManager` objects and determine the ordering in which each stage is run.  This can dramatically change the final circuit which is output. If fact, oftentimes a bespoke approach to transpiling a quantum algorithm produces more efficient error suppression than the default approach.  This involves rewriting quantum circuits to match hardware constraints and suppressing the effects of noise.  The flow of logic for this tool chain is quite customizable and need not be linear.  The transpilation process can even prepare iterative loops, conditional branches, and other complex behaviors.  A good starting place when developing a set of custom passes is by looking to the default sequence of transformations:
 
