@@ -23,19 +23,11 @@ user level through the [`qiskit.transpiler`](../qiskit/transpiler) module (see t
 
 The following table summarizes the migration alternatives for the [`qiskit.utils.QuantumInstance`](../qiskit/qiskit.utils.QuantumInstance) class:
 
-```{eval-rst}
-.. list-table::
-   :header-rows: 1
-
-   * - QuantumInstance method
-     - Alternative
-   * - [`qiskit.utils.QuantumInstance.execute`](../qiskit/qiskit.utils.QuantumInstance#execute)
-     - [`qiskit.primitives.Sampler.run`](../qiskit/qiskit.primitives.Sampler#run) or [`qiskit.primitives.Estimator.run`](../qiskit/qiskit.primitives.Estimator#run)
-   * - [`qiskit.utils.QuantumInstance.transpile`](../qiskit/qiskit.utils.QuantumInstance#transpile)
-     - [`qiskit.compiler.transpile`](../qiskit/compiler#qiskit.compiler.transpile)
-   * - [`qiskit.utils.QuantumInstance.assemble`](../qiskit/qiskit.utils.QuantumInstance#assemble)
-     - [`qiskit.compiler.assemble`](../qiskit/compiler#qiskit.compiler.assemble)
-```
+| QuantumInstance method | Alternative |
+| --- | --- |
+| [`qiskit.utils.QuantumInstance.execute`](../qiskit/qiskit.utils.QuantumInstance#execute) | [`qiskit.primitives.Sampler.run`](../qiskit/qiskit.primitives.Sampler#run) or [`qiskit.primitives.Estimator.run`](../qiskit/qiskit.primitives.Estimator#run) |
+| [`qiskit.utils.QuantumInstance.transpile`](../qiskit/qiskit.utils.QuantumInstance#transpile) | [`qiskit.compiler.transpile`](../qiskit/compiler#qiskit.compiler.transpile) |
+| [`qiskit.utils.QuantumInstance.assemble`](../qiskit/qiskit.utils.QuantumInstance#assemble) | [`qiskit.compiler.assemble`](../qiskit/compiler#qiskit.compiler.assemble) |
 
 The remainder of this guide will focus on the [`qiskit.utils.QuantumInstance.execute`](../qiskit/qiskit.utils.QuantumInstance#execute) to
 [`qiskit.primitives`](../qiskit/primitives) migration path.
@@ -133,63 +125,17 @@ primitives **expose a similar setting through their interface**:
   please refer to the API reference or source code of the desired primitive implementation.
 </Admonition>
 
-```{eval-rst}
-.. list-table::
-   :header-rows: 1
-
-   * - QuantumInstance
-     - Reference Primitives
-     - Aer Primitives
-     - Qiskit Runtime Primitives
-     - Backend Primitives
-   * - Select ``backend``
-     - No
-     - No
-     - Yes
-     - Yes
-   * - Set ``shots``
-     - Yes
-     - Yes
-     - Yes
-     - Yes
-   * - Simulator settings: ``basis_gates``, ``coupling_map``, ``initial_layout``, ``noise_model``, ``backend_options``
-     - No
-     - Yes
-     - Yes
-     - No (inferred from internal ``backend``)
-   * - Transpiler settings: ``seed_transpiler``, ``optimization_level``
-     - No
-     - No
-     - Yes (via ``options``) (*)
-     - Yes (via ``.set_transpile_options()``)
-   * - Set unbound ``pass_manager``
-     - No
-     - No
-     - No (but can ``skip_transpilation``)
-     - No (but can ``skip_transpilation``)
-   * - Set ``bound_pass_manager``
-     - No
-     - No
-     - No
-     - Yes
-   * - Set ``backend_options``: common ones were ``memory`` and ``meas_level``
-     - No
-     - No
-     - No (only ``qubit_layout``)
-     - No
-   * - Measurement error mitigation: ``measurement_error_mitigation_cls``, ``cals_matrix_refresh_period``,
-       ``measurement_error_mitigation_shots``, ``mit_pattern``
-     - No
-     - No
-     - Sampler default -> M3 (*)
-     - No
-   * - Job management: ``job_callback``, ``max_job_retries``, ``timeout``, ``wait``
-     - Does not apply
-     - Does not apply
-     - Sessions, callback (**)
-     - No
-
-```
+| QuantumInstance | Reference Primitives | Aer Primitives | Qiskit Runtime Primitives | Backend Primitives |
+| --- | --- | --- | --- | --- |
+| Select `backend` | No | No | Yes | Yes |
+| Set `shots` | Yes | Yes | Yes | Yes |
+| Simulator settings: `basis_gates`, `coupling_map`, `initial_layout`, `noise_model`, `backend_options` | No | Yes | Yes | No (inferred from internal `backend`) |
+| Transpiler settings: `seed_transpiler`, `optimization_level` | No | No | Yes (via `options`) (*) | Yes (via `.set_transpile_options()`) |
+| Set unbound `pass_manager` | No | No | No (but can `skip_transpilation`) | No (but can `skip_transpilation`) |
+| Set `bound_pass_manager` | No | No | No | Yes |
+| Set `backend_options`: common ones were `memory` and `meas_level` | No | No | No (only `qubit_layout`) | No |
+| Measurement error mitigation: `measurement_error_mitigation_cls`, `cals_matrix_refresh_period`, | No | No | Sampler default > M3 (*) | No |
+| Job management: `job_callback`, `max_job_retries`, `timeout`, `wait` | Does not apply | Does not apply | Sessions, callback (**) | No |
 
 (\*) For more information on error mitigation and setting options on Qiskit Runtime Primitives, visit
 [this link](https://qiskit.org/documentation/partners/qiskit_ibm_runtime/stubs/qiskit_ibm_runtime.options.Options.html#qiskit_ibm_runtime.options.Options).
