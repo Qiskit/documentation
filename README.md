@@ -82,6 +82,10 @@ The local preview does not include the initial index page and the top nav bar fr
 - http://localhost:3000/run
 - http://localhost:3000/transpile
 - http://localhost:3000/verify
+- http://localhost:3000/api/qiskit
+- http://localhost:3000/api/qiskit-ibm-runtime/runtime_service
+- http://localhost:3000/api/qiskit-ibm-provider/ibm_provider
+- http://localhost:3000/api/migration-guides
 
 ## Preview the docs in PRs
 
