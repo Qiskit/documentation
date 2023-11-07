@@ -163,6 +163,76 @@ Example, specifying `optimization_level=3`:
 ```
 ![Layout with optimization level 3](/images/transpile/optimization-level-3.png)
 
+Since CX's are currently the noisiest gate, we can quantify the "hardware efficiency" of the transpilation by counting the number of CX's in the resulting circuit. Let's compare the default transpilation levels given the same circuit. We begin by importing the necessary libraries.
+
+```python
+    from qiskit import transpile, QuantumCircuit
+    from qiskit.circuit.library import UnitaryGate
+    from qiskit.providers.fake_provider import FakeTokyo
+    from qiskit.quantum_info import Operator, random_unitary
+    from qiskit.quantum_info.synthesis.two_qubit_decompose import trace_to_fid
+
+    import numpy as np
+```
+
+Next we build a quantum circuit consisting of a random unitary followed by a SWAP gate. We seed the `random_unitary` method to ensure reproducible results.
+
+```python
+    UU = random_unitary(4, seed=12345)
+    rand_U = UnitaryGate(UU)
+
+    qc = QuantumCircuit(2)
+    qc.append(rand_U, range(2))
+    qc.swap(0, 1)
+    qc.draw('mpl')
+```
+![Original abstract circuit](/images/transpile/abstract-circ.png)
+
+We use `FakeTokyo` as our backend and transpile using `optimization_level=1` (the default). We will override the coupling map of `FakeTokyo` so that the transpiled circuit will again be a two-qubit circuit because we do not want to consider the effect of idle qubits.
+
+```python
+    backend = FakeTokyo()
+    qc_t1_exact = transpile(qc, backend, optimization_level=1, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
+    qc_t1_exact.draw('mpl', style='iqp')
+```
+![Circuit transpiled with optimization level 1](/images/transpile/circ-opt-level-1.png)
+
+We see a transpiled circuit with 6 CX's and a number of `U3` gates (which have much lower error than CX's, so no need to count them). Let's try optimization level 2.
+
+```python
+    qc_t2_exact = transpile(qc, backend, optimization_level=2, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
+    qc_t2_exact.draw('mpl', style='iqp')
+```
+![Circuit transpiled with optimization level 2](/images/transpile/circ-opt-level-2.png)
+
+This yields the same results as optimization level 1. Note that increasing the level of optimization does not always make a difference. Let's move on to optimization level 3.
+
+```python
+    qc_t3_exact = transpile(qc, backend, optimization_level=3, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
+    qc_t3_exact.draw('mpl', style='iqp')
+```
+![Circuit transpiled with optimization level 3](/images/transpile/circ-opt-level-3.png)
+
+Now we see a big difference, only 3 CX's. This is because with optimization level 3, Qiskit will attempt to re-synthesis two qubit blocks of gates. Since any two-qubit gate requires at most 3 CX's, this explains the result. We can get even fewer CX's if we sacrifice the fidelity of this synthese by setting `approximation_degree` to a value less than 1.
+
+```python
+    qc_t3_approx = transpile(qc, backend, optimization_level=3, approximation_degree=0.99, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
+    qc_t3_approx.draw('mpl', style='iqp')
+```
+
+Here we obtain a circuit with only 2 CX's. However, this is an approximate circuit, so one must weigh the difference in fidelity to the desired circuit with the incurred error from executing on noisy qubits. We can calculate the fidelity of the approximate circuit.
+
+```python
+    exact_fid = trace_to_fid(np.trace(np.dot(Operator(qc_t3_exact).adjoint().data, UU)))
+    approx_fid = trace_to_fid(np.trace(np.dot(Operator(qc_t3_approx).adjoint().data, UU)))
+    print(f'Synthesis fidelity\nExact: {exact_fid:.3f}\nApproximate: {approx_fid:.3f}')
+```
+gives
+```
+Synthesis fidelity
+Exact: 1.000
+Approximate: 0.992
+```
 
 ### Approximation degree
 
@@ -170,7 +240,7 @@ Heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal
 
 In two qubit unitary synthesis, it is used to specify the target fidelity of the output decomposition. That is, how much error is introduced when a matrix representation of a circuit is converted to discrete gates. If the approximation degree is a lower value (more approximation), the output circuit from synthesis will differ more from the input matrix, but will also likely have fewer gates and is easier to run. 
 
-The approximation degree is a heuristic that corresponds to fidelity of the two-qubit KAK synthesis used in optimization levels 2 and 3. Since CX is the most expensive gate in terms of error, it may be beneficial to decrease the number of them at the cost of fidelity in synthesis (this technique was used to increase quantum volume on IBM devices: https://arxiv.org/abs/1811.12926). Approximation degree 1.0 (the default) corresponds to no approximation, and it is well known that any arbitrary two-qubit operation can be decomposed perfectly with a maximum of three CX’s through the KAK decomposition. When degrees less than 1.0, circuits with one or two CX’s may be synthesized, leading to less error from the hardware, but more from the approximation.
+The approximation degree is a heuristic that corresponds to fidelity of the two-qubit KAK synthesis used in optimization levels 3. Since CX is the most expensive gate in terms of error, it may be beneficial to decrease the number of them at the cost of fidelity in synthesis (this technique was used to increase quantum volume on IBM devices: https://arxiv.org/abs/1811.12926). Approximation degree 1.0 (the default) corresponds to no approximation, and it is well known that any arbitrary two-qubit operation can be decomposed perfectly with a maximum of three CX’s through the KAK decomposition. When degrees less than 1.0, circuits with one or two CX’s may be synthesized, leading to less error from the hardware, but more from the approximation.
 
 ### seed_transpiler
 
