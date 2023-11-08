@@ -45,23 +45,24 @@ function markdownFromNotebook(source: string): string {
 
 async function loadFilesAndLinks(
   filePaths: string[],
-): Promise<[File[],Map<string,Link>]> {
+): Promise<[File[], Map<string, Link>]> {
   /*
-  * Return a list of File objects with all the files
-  * in `filePaths` and a Map with all the links found
-  * in those files.
-  */
+   * Return a list of File objects with all the files
+   * in `filePaths` and a Map with all the links found
+   * in those files.
+   */
 
-  const fileList: File[]= [];
-  const linkMap = new Map<string,Link>();
+  const fileList: File[] = [];
+  const linkMap = new Map<string, Link>();
 
-  for(let filePath of filePaths){
+  for (let filePath of filePaths) {
     const source = await readFile(filePath, { encoding: "utf8" });
     const markdown =
-      path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
+      path.extname(filePath) === ".ipynb"
+        ? markdownFromNotebook(source)
+        : source;
 
-
-    fileList.push(new File(filePath))
+    fileList.push(new File(filePath));
 
     if (
       filePath.startsWith("docs/api/qiskit") ||
@@ -76,53 +77,55 @@ async function loadFilesAndLinks(
     }
 
     unified()
-    .use(rehypeParse)
-    .use(remarkGfm)
-    .use(rehypeRemark)
-    .use(() => {
-      return function transform(tree: Root) {
-        visit(tree, "text", (TreeNode) => {
-          markdownLinkExtractor(String(TreeNode.value)).links.map((url: string) =>{
-            let link =  linkMap.get(url);
-            if(link != null){
-              link.addOrigin(filePath)
-            }else{
-              linkMap.set(url,new Link(url,filePath))
+      .use(rehypeParse)
+      .use(remarkGfm)
+      .use(rehypeRemark)
+      .use(() => {
+        return function transform(tree: Root) {
+          visit(tree, "text", (TreeNode) => {
+            markdownLinkExtractor(String(TreeNode.value)).links.map(
+              (url: string) => {
+                let link = linkMap.get(url);
+                if (link != null) {
+                  link.addOrigin(filePath);
+                } else {
+                  linkMap.set(url, new Link(url, filePath));
+                }
+              },
+            );
+          });
+          visit(tree, "link", (TreeNode) => {
+            let link = linkMap.get(TreeNode.url);
+            if (link != null) {
+              link.addOrigin(filePath);
+            } else {
+              linkMap.set(TreeNode.url, new Link(TreeNode.url, filePath));
             }
-        });
-        });
-        visit(tree, "link", (TreeNode) => {
-          let link =  linkMap.get(TreeNode.url);
-          if(link != null){
-            link.addOrigin(filePath)
-          }else{
-            linkMap.set(TreeNode.url,new Link(TreeNode.url, filePath))
-          }
-        });
-        visit(tree, "image", (TreeNode) => {
-          let link =  linkMap.get(TreeNode.url);
-          if(link != null){
-            link.addOrigin(filePath)
-          }else{
-            linkMap.set(TreeNode.url,new Link(TreeNode.url, filePath))
-          }
-        });
-      };
-    })
-    .use(remarkStringify)
-    .process(markdown);
+          });
+          visit(tree, "image", (TreeNode) => {
+            let link = linkMap.get(TreeNode.url);
+            if (link != null) {
+              link.addOrigin(filePath);
+            } else {
+              linkMap.set(TreeNode.url, new Link(TreeNode.url, filePath));
+            }
+          });
+        };
+      })
+      .use(remarkStringify)
+      .process(markdown);
   }
   return [fileList, linkMap];
 }
 
-function loadFiles(existingPaths: string[]): File[]{
+function loadFiles(existingPaths: string[]): File[] {
   /*
-  * Return a list of File objects with all the files
-  * in `existingPaths`
-  */
+   * Return a list of File objects with all the files
+   * in `existingPaths`
+   */
   const fileList: File[] = [];
-  for(let path of existingPaths){
-    fileList.push(new File(path))
+  for (let path of existingPaths) {
+    fileList.push(new File(path));
   }
 
   return fileList;
@@ -154,8 +157,10 @@ async function main() {
   let allGood = true;
   for (let [_, link] of linkMap) {
     for (let i = 0; i < link.status.length; i++) {
-      if(!link.status[i]){
-        console.log(`❌ ${link.origin[i]}: Could not find link '${link.value}'`);
+      if (!link.status[i]) {
+        console.log(
+          `❌ ${link.origin[i]}: Could not find link '${link.value}'`,
+        );
         allGood = false;
       }
     }
