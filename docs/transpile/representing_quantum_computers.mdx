@@ -36,7 +36,7 @@ Constuct a 12-qubit circuit with circular entanglement:
     qc.cx(11, 0)
     qc.draw('mpl')
 ```
-![The 12-qubit test circuit](/images/transpile/qc-circular.png)
+![The 12-qubit test circuit](/images/transpile/representing_quantum_computers/qc-circular.png)
 
 Transpile the circuit with the simplest options. This example uses `optimization_level=2` to highlight a feature:
 
@@ -44,7 +44,7 @@ Transpile the circuit with the simplest options. This example uses `optimization
     qc_t_target = transpile(qc, target=target, optimization_level=2, seed_transpiler=12345)
     qc_t_target.draw('mpl', style='iqp', idle_wires=False)
 ```
-![The transpiled 12-qubit test circuit using Target information](/images/transpile/qc_t_target.png)
+![The transpiled 12-qubit test circuit using Target information](/images/transpile/representing_quantum_computers/qc_t_target.png)
 
 This example is used in later sections of this topic to illustrate that the coupling map and basis gates are the essential pieces of information to pass to the transpiler for optimal circuit construction. The backend can usually select default settings for other information that is not passed in, such as timing and scheduling. (TODO: check!) 
 
@@ -69,7 +69,7 @@ Pass the `coupling_map` keyword argument to see its effect on the transpiler:
     qc_t_cm_lv0 = transpile(qc, coupling_map=coupling_map, optimization_level=0, seed_transpiler=12345)
     qc_t_cm_lv0.draw('mpl', style='iqp', idle_wires=False)
 ```
-![Test circuit transpiled to coupling map](/images/transpile/qc_t_cm_lv0.png)
+![Test circuit transpiled to coupling map](/images/transpile/representing_quantum_computers/qc_t_cm_lv0.png)
 
 Several SWAP gates were inserted (each consisting of three CX gates), which will cause a lot of errors on current devices. To see which qubits are selected on the actual qubit topology, use `plot_circuit_layout` from Qiskit Visualizations:
 
@@ -78,7 +78,7 @@ Several SWAP gates were inserted (each consisting of three CX gates), which will
 
     plot_circuit_layout(qc_t_cm_lv0, backend, view='physical')
 ```
-![Circuit Layout for optimiation level 0](/images/transpile/circ_layout_lv0.png)
+![Circuit Layout for optimiation level 0](/images/transpile/representing_quantum_computers/circ_layout_lv0.png)
 
 Now we do not have any SWAPs inserted, and the physical qubits selected are the same when using the Target class (TODO: actually they should probably be different).
 
@@ -88,7 +88,7 @@ Now we do not have any SWAPs inserted, and the physical qubits selected are the 
     qc_t_cm_lv2 = transpile(qc, coupling_map=coupling_map, optimization_level=2, seed_transpiler=12345)
     qc_t_cm_lv2.draw('mpl', style='iqp', idle_wires=False)
 ```
-![Test circuit transpiled to coupling map](/images/transpile/qc_t_cm_lv2.png)
+![Test circuit transpiled to coupling map](/images/transpile/representing_quantum_computers/qc_t_cm_lv2.png)
 
 Now the layout is in a ring, which respects the connectivity of the circuit, hence there are no extra SWAP gatess and we have a much better circuit for execution.
 
