@@ -9,16 +9,12 @@ description: How to manage costs of running jobs on systems when using the Stand
 The IBM Cloud Quantum Standard plan is not free, except when running jobs on simulators. Use the information in this topic to help you understand how much you’re paying and how to limit your costs.
 
 <Admonition type="note">
-  The information in this topic only applies to those who are using the Standard plan for IBM Quantum on IBM Cloud.  There are no costs associated with IBM Quantum Platform open plan.
+  The information in this topic only applies to those who are using the Standard plan for IBM Quantum on IBM Cloud.  There are no costs associated with IBM Quantum Platform Open plan.
 </Admonition>
 
-## How to limit your cost
+## Set a cost limit
 
-There are several factors that can help you limit your cost:
-
-- Run only as many iterations and shots as you need:  The time your job takes (and therefore, its cost) depends on how many iterations you make in a session and how many shots are run in each iteration. Therefore, you can manage your cost by running only as many iterations and shots as you need.
-- Set limits on execution time:  You can limit how long each job or session runs.  For details, see [Maximum execution time for a Qiskit Runtime job or session](max-execution-time).
-- An instance administrator can limit how much is spent. To set cost limits, navigate to the [IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances), then click the instance and set the **Cost limit**. The cost limit refers to the total cost of all jobs run with this instance since it was created, and it will always be greater than or equal to the Total cost. After the instance reaches the specified number of total seconds, no further jobs can be run and no more cost is incurred.
+An instance administrator can limit how much is spent. To set cost limits, navigate to the [IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances), then click the instance and set the **Cost limit**. The cost limit refers to the total cost of all jobs run with this instance since it was created, and it will always be greater than or equal to the Total cost. After the instance reaches the specified number of total seconds, no further jobs can be run and no more cost is incurred.
 
     <Admonition type="note">
       The cost limit is always specified in US dollars (USD), then converted to runtime seconds. However, for monthly billing purposes, you are charged in your local currency, specified on your IBM Cloud account. Because currency exchange rates can fluctuate, the cost for X runtime seconds might be different when initially calculated in USD than when you’re actually charged in your local currency. As a result, if your local currency is not USD, the total amount charged for the number of seconds specified in this field could vary from the dollar amount you specify.
@@ -46,9 +42,9 @@ To determine how much has been billed to an instance during the current billing 
 
 These are the fields relevant to cost:
 
-- **Billing cycle usage**: Qiskit Runtime usage by this instance during the current billing cycle. This usage is the time counted by Qiskit Runtime to process a job, and is determined by the use of internal resources.
+- **Billing cycle usage**: The amount of _quantum time_ used by this instance during the current billing cycle. Quantum time is the duration a quantum system is committed to fulfilling a user request.
 - **Billing cycle cost**: The total cost of running jobs during the current billing cycle.
-- **Total usage**: Qiskit Runtime usage by this instance since it was created. 
+- **Total usage**: The amount of quantum time used by this instance since it was created. 
 - **Total cost**: The total cost of running jobs on this instance since it was created. Only administrators can set this value.
 
 You can view your billing cycle on the [Billing and usage page](https://cloud.ibm.com/billing).
@@ -59,7 +55,7 @@ To determine how much has been billed to each job associated with an instance, f
 
 These are the columns relevant to cost:
 
-- **Usage**: Qiskit Runtime used by this job. This usage is the time counted by Qiskit Runtime to process a job, and is determined by the use of internal resources.
+- **Usage**: The amount of quantum time used by this job. Quantum time is the duration a quantum system is committed to fulfilling a user request.
 - **Cost**: The total cost of running this job.
 
 ## Estimate the cost
@@ -77,5 +73,6 @@ You can set up spending notifications to get notified when your account or a par
 ## Next steps
 
 <Admonition type="tip" title="Recommendations">
-    Review the [Qiskit Runtime plans](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-plans) available on IBM Cloud.
+    - Review the [Qiskit Runtime plans](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-plans) available on IBM Cloud.
+    - Review suggestions to [minimize job quantum time.](minimize-time)
 </Admonition>

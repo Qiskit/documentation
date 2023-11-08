@@ -15,7 +15,7 @@ For import instructions, see the topic [Where should I import the primitive from
 
 Follow these instructions to get the expected value of an observable for a given quantum circuit with the [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) primitive.
 
-<Admonition type="note" title="Note">
+<Admonition type="note">
   While this guide uses Qiskit’s reference implementation, the `Estimator` primitive can be run with any provider using [`qiskit.primitives.BackendEstimator`](../api/qiskit/qiskit.primitives.BackendEstimator).
 
   ```python
@@ -27,7 +27,7 @@ Follow these instructions to get the expected value of an observable for a given
   estimator = BackendEstimator(backend)
   ```
 
-  There are some providers that implement primitives natively (see [this page](https://qiskit.org/providers/#primitives) for more details).
+  There are some providers that implement primitives natively (see [the Qiskit Ecosystem page](https://qiskit.github.io/ecosystem/#primitives) for more details).
 </Admonition>
 
 ### Initialize observables
@@ -56,7 +56,7 @@ qc.draw("mpl")
 
 ![Initial QuantumCircuit](/images/verify/simulate-with-qiskit-primitives/estimator-initialize.png)
 
-<Admonition type="note" title="Note">
+<Admonition type="note">
   The [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) you pass to [`qiskit.primitives.Estimator`](../api/qiskit/qiskit.primitives.Estimator) must not include any measurements.
 </Admonition>
 
@@ -243,7 +243,7 @@ print(result.values[0])
 
 Follow these instructions to get the probability distribution of a quantum circuit with the [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) primitive.
 
-<Admonition type="note" title="Note">
+<Admonition type="note">
   While this guide uses Qiskit’s reference implementation, the `Sampler` primitive can be run with any provider using [`qiskit.primitives.BackendSampler`](../api/qiskit/qiskit.primitives.BackendSampler).
 
   ```python
@@ -255,7 +255,7 @@ Follow these instructions to get the probability distribution of a quantum circu
   sampler = BackendSampler(backend)
   ```
 
-  There are some providers that implement primitives natively (see [this page](http://qiskit.org/providers/#primitives) for more details).
+  There are some providers that implement primitives natively (see [the Qiskit Ecosystem page](https://qiskit.github.io/ecosystem#providers) for more details).
 </Admonition>
 
 ### Initialize QuantumCircuit
@@ -274,7 +274,7 @@ qc.draw("mpl")
 
 ![Initial QuantumCircuit](/images/verify/simulate-with-qiskit-primitives/sampler-initialize.png)
 
-<Admonition type="note" title="Note">
+<Admonition type="note">
 The [`qiskit.circuit.QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) you pass to [`qiskit.primitives.Sampler`](../api/qiskit/qiskit.primitives.Sampler) must include measurements.
 </Admonition>
 
@@ -311,7 +311,7 @@ From these results you can extract the quasi-probability distributions with the 
 Even though there is only one circuit in this example, [`qiskit.primitives.Sampler.quasi_dists`](../api/qiskit/qiskit.primitives.Sampler#quasi_dists) returns a list of [`qiskit.result.QuasiDistribution`](../api/qiskit/qiskit.result.QuasiDistribution)s.
 `result.quasi_dists[i]` is the quasi-probability distribution of the `i`<sup>th</sup> circuit.
 
-<Admonition type="note" title="Note">
+<Admonition type="note">
 A quasi-probability distribution differs from a probability distribution in that negative values are also allowed.
 However, the quasi-probabilities must sum up to 1 like probabilities.
 Negative quasi-probabilities may appear when using error mitigation techniques.
