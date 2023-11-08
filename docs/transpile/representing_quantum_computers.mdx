@@ -27,7 +27,7 @@ Import the necessary libraries and instantiate the backend:
     target = backend.target
 ```
 
-Constuct a 12-qubit circuit with circular entanglement:
+Construct a 12-qubit circuit with circular entanglement:
 
 ```python
     qc = QuantumCircuit(12)
@@ -57,7 +57,7 @@ The coupling map is a graph that specifies which qubits are connected and hence 
 The qubits from our abstract circuits are called _virtual qubits_ and those on the coupling map are _physical qubits_. The transpiler provides a mapping between virtual and physical qubits. One of the first steps in transpilation, the _routing_ stage, performs this mapping.
 
 <Admonition>
-Although the routing stage it intertwined with the _layout_ stage, which selects the actual qubits, we will comsider them as separate stages for simplicity. The combination of routing and layout is called _qubit mapping_. (TODO: insert link) 
+Although the routing stage it intertwined with the _layout_ stage, which selects the actual qubits, we will consider them as separate stages for simplicity. The combination of routing and layout is called _qubit mapping_. (TODO: insert link) 
 </Admonition>
 
 Pass the `coupling_map` keyword argument to see its effect on the transpiler:
@@ -78,7 +78,7 @@ Several SWAP gates were inserted (each consisting of three CX gates), which will
 
     plot_circuit_layout(qc_t_cm_lv0, backend, view='physical')
 ```
-![Circuit Layout for optimiation level 0](/images/transpile/representing_quantum_computers/circ_layout_lv0.png)
+![Circuit Layout for optimization level 0](/images/transpile/representing_quantum_computers/circ_layout_lv0.png)
 
 Now we do not have any SWAPs inserted, and the physical qubits selected are the same when using the Target class (TODO: actually they should probably be different).
 
