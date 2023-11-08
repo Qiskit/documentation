@@ -1,0 +1,79 @@
+---
+title: Representing Quantum Computers
+description: The necessary backend information for successfully transpiling quantum circuits
+
+---
+
+# Representing Quantum Computers
+
+The transpiler must know certain details of the quantum backend in order to construct an equivalent circuit that is capabable of execution on it given its constraints. For most users, this information is contained within the `backend` or `target = backend.target` classes (TODO: check with Matthew about how this is moving, seems there is no `target` attribute for older `Backend` classes), and you will only need to specify this at the transpilation step. However, it is instructive to see how the transpiler utilizes more information as we provide more backend details, in order to attempt to produce the best circuit for hardware execution (however, since many of the underlying transpiling algorithms are stochastic, there is no guarantee this will be the case).
+
+## "Default Configuration"
+
+The simplest use of the transpiler is to provide all the backend infomation by providing the `backend` or `target` (TODO: only available on newer backends?). We can consider what happens by constructing a circuit and transpiling it with different information avaiable.
+
+First, import the necessary libraries and instantiate our backend
+```python
+    from qiskit import QuantumCircuit, transpile
+    from qiskit.providers.fake_provider import FakeSherbrooke
+
+    backend = FakeSherbrooke()
+    target = backend.target
+```
+
+Then we constuct a 12-qubit circuit with circular entanglement
+
+```python
+    qc = QuantumCircuit(12)
+    qc.h(0)
+    _ = [qc.cx(idx, idx+1) for idx in range(11)]
+    qc.cx(11, 0)
+    qc.draw('mpl')
+```
+![The 12-qubit test circuit](/images/transpile/qc-circular.png)
+
+Now transpile with the simplest option (we will use `optimization_level=2` to highlight a feature).
+
+```python
+    qc_t_target = transpile(qc, target=target, optimization_level=2, seed_transpiler=12345)
+    qc_t_target.draw('mpl', style='iqp', idle_wires=False)
+```
+![The transpiled 12-qubit test circuit using Target information](/images/transpile/qc_t_target.png)
+
+In the following we will refer back to this circuit as we add more information about the backend. We show that the coupling map and basis gates are the essential pieces of information. The backend can usually select default settings to make up for the lack of infomation (i.e., timing, scheduling, etc. TODO: check!). Providing the backend properties, which includes error rates of the gates, allows the transpiler to select the best set of qubits on the backend.
+
+## Coupling Map
+
+The coupling map is a graph that specifies which qubits are connected, and hence have 2-qubit gates between them. Sometimes this graph is directional, meaning the 2-qubit gates can only go in one direction, however, the transpiler can always flip the direction of gates by adding additional 1-qubit gates. An abstract quantum circuit can always be represented on this graph, even if its connectivity is limited, by introducting SWAP gates to move the quantum information around. The qubits from our "abstract" circuits are called virtual qubits and those on the coupling map are physical qubits, and the transpiler will provide a mapping between virtual and physical qubits. One of the first steps in transpilation is to do this `routing` stage (although it is intricatedly involved with the `layout` stage that selects the actual qubits, we will think of these as being separate for pedagogical reasons. The combination of routing and layout is called qubit mapping. The interested reader should look at some link). We can see the effect of the couping map on the transpiler by just passing the `coupling_map` keyword argument.
+
+```python
+    coupling_map = target.build_coupling_map()
+    # coupling_map = backend.configuration().coupling_map
+
+    qc_t_cm_lv0 = transpile(qc, coupling_map=coupling_map, optimization_level=0, seed_transpiler=12345)
+    qc_t_cm_lv0.draw('mpl', style='iqp', idle_wires=False)
+```
+![Test circuit transpiled to coupling map](/images/transpile/qc_t_cm_lv0.png)
+
+We see that many SWAP gates were inserted (each consisting of 3 CX's), which will lead to lots of error on current devices. If we want to see what qubits are selected on the actual qubit topology, we can use `plot_circuit_layout` from Qiskit Visualizations.
+
+```python
+    from qiskit.visualization import plot_circuit_layout
+
+    plot_circuit_layout(qc_t_cm_lv0, backend, view='physical')
+```
+![Circuit Layout for optimiation level 0](/images/transpile/circ_layout_lv0.png)
+
+Now we do not have any SWAPs inserted, and the physical qubits selected are the same when using the Target class (TODO: actually they should probably be different).
+
+```python
+    qc_t_cm_lv2 = transpile(qc, coupling_map=coupling_map, optimization_level=2, seed_transpiler=12345)
+    qc_t_cm_lv2.draw('mpl', style='iqp', idle_wires=False)
+```
+![Test circuit transpiled to coupling map](/images/transpile/qc_t_cm_lv2.png)
+
+Now the layout is in a ring, which respects the connectivity of the circuit, hence no extra SWAPs and we have a much better circuit for execution.
+
+## Basis gates
+
+## Backend Properties
