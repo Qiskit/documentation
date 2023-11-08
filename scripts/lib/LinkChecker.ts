@@ -118,16 +118,12 @@ export class Link {
     if (this.isExternal) {
       // External link
       const result = this.checkExternalLink();
-      for (let i = 0; i < this.origin.length; i++) {
-        this.status.push(result);
-      }
+      this.origin.forEach(() => this.status.push(result));
     } else {
       if (this.value.startsWith("/")) {
         // Internal link (Absolute Path)
         const result = this.checkInternalLink(existingFiles, "");
-        for (let i = 0; i < this.origin.length; i++) {
-          this.status.push(result);
-        }
+        this.origin.forEach(() => this.status.push(result));
       } else {
         // Internal link (Relative Path)
         for (let origin of this.origin) {
