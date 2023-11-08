@@ -108,12 +108,18 @@ const PACKAGES: Pkg[] = [
       ];
       let updateText = url === text;
       const prefix = prefixes.find((prefix) => url.startsWith(prefix));
-      if (prefix) {
-        url = removePrefix(url, prefix);
-        url = removeSuffix(url, ".html");
-        const newText = updateText ? url : undefined;
-        return { url: `/api/qiskit/${url}`, text: newText };
+      if (!prefix) {
+        return
       }
+      let anchor;
+      [url, anchor] = url.split("#");
+      url = removePrefix(url, prefix);
+      url = removeSuffix(url, ".html");
+      if (anchor && anchor !== url) {
+        url = `${url}#${anchor}`
+      }
+      const newText = updateText ? url : undefined;
+      return { url: `/api/qiskit/${url}`, text: newText };
     },
   },
   {
