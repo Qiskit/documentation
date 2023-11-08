@@ -5,6 +5,22 @@ description: Use the new interface for `qiskit.algorithms`
 
 # Algorithms Migration Guide
 
+<Admonition type="caution">
+  The `qiskit.algorithms` module has been superseded by a new standalone library, `qiskit_algorithms`,
+  available on [GitHub](https://github.com/qiskit-community/qiskit-algorithms) and 
+  [PyPi](https://pypi.org/project/qiskit-algorithms).
+
+  As of Qiskit's 0.44 release, active development of algorithm features has migrated to this new package.
+  If your code used `qiskit.algorithms`, you should:
+   1. Check that you are not using any legacy algorithm implementation. If you are, follow this guide to
+      migrate to the primitives-based implementation.
+   2. Once your code is updated, run `pip install qiskit-algorithms` and update your imports from 
+      `qiskit.algorithms` to `qiskit_algorithms`.
+
+  The decision to migrate the `qiskit.algorithms` module to a
+  separate package was made to clarify the purpose of Qiskit and make a distinction between the tools and libraries built on top of it.
+</Admonition>
+
 ## TL;DR
 
 The [`qiskit.algorithms`](../qiskit/algorithms) module has been fully refactored to use the [`qiskit.primitives`](../qiskit/primitives), for circuit execution, instead of the [`qiskit.utils.QuantumInstance`](../qiskit/qiskit.utils.QuantumInstance), which is now deprecated.
@@ -21,23 +37,22 @@ There have been **3 types of refactoring**:
    >   **specify the full import path** (e.g., `from qiskit.algorithms.eigensolvers import VQD`)
    > </Admonition>
    >
-   > - [Minimum Eigensolvers]
-   > - [Eigensolvers]
-   > - [Time Evolvers]
+   > - [Minimum Eigensolvers](#minimum-eigensolvers)
+   > - [Eigensolvers](#eigensolvers)
+   > - [Time Evolvers](#time-evolvers)
 
 2. Algorithms refactored in-place (same namespace) to support both [`qiskit.utils.QuantumInstance`](../qiskit/qiskit.utils.QuantumInstance) and
    [`qiskit.primitives`](../qiskit/primitives). In the future, the use of [`qiskit.utils.QuantumInstance`](../qiskit/qiskit.utils.QuantumInstance) will be removed.
 
-   > - [Amplitude Amplifiers]
-   > - [Amplitude Estimators]
-   > - [Phase Estimators]
+   > - [Amplitude Amplifiers](#amplitude-amplifiers)
+   > - [Amplitude Estimators](#amplitude-estimators)
+   > - [Phase Estimators](#phase-estimators)
 
 3. Algorithms that were deprecated and are now removed entirely from [`qiskit.algorithms`](../qiskit/algorithms). These are algorithms that do not currently serve
-   as building blocks for applications. Their main value is educational, and as such, will be kept as tutorials
-   in the qiskit textbook. You can consult the tutorials in the following links:
+   as building blocks for applications. Their main value is educational. You can consult the below tutorials:
 
-   > - [Linear Solvers (HHL)](https://learn.qiskit.org/course/ch-applications/solving-linear-systems-of-equations-using-hhl-and-its-qiskit-implementation) ,
-   > - [Factorizers (Shor)](https://learn.qiskit.org/course/ch-algorithms/shors-algorithm)
+   > - [Linear Solvers (HHL)](https://github.com/Qiskit/textbook/blob/main/notebooks/ch-applications/hhl_tutorial.ipynb) ,
+   > - [Factorizers (Shor)](https://github.com/Qiskit/textbook/blob/main/notebooks/ch-algorithms/shor.ipynb)
 
 The remainder of this migration guide will focus on the algorithms with migration alternatives within
 [`qiskit.algorithms`](../qiskit/algorithms), that is, those under refactoring types 1 and 2.
@@ -59,13 +74,13 @@ distributions. These tools allowed to refactor the [`qiskit.algorithms`](../qisk
   replacement. One common example is the class [`qiskit.opflow.primitive_ops.PauliSumOp`](../qiskit/qiskit.opflow.primitive_ops.PauliSumOp), used to define Hamiltonians
   (for example, to plug into VQE), that can be replaced by [`qiskit.quantum_info.SparsePauliOp`](../qiskit/qiskit.quantum_info.SparsePauliOp).
   For information on how to migrate other [`qiskit.opflow`](../qiskit/opflow) objects, you can refer to the
-  [Opflow migration guide](https://qisk.it/opflow_migration).
+  [Opflow migration guide](./qiskit-opflow-module).
 </Admonition>
 
 For further background and detailed migration steps, see the:
 
-- [Opflow migration guide](https://qisk.it/opflow_migration)
-- [Quantum Instance migration guide](https://qisk.it/qi_migration)
+- [Opflow migration guide](./qiskit-opflow-module)
+- [Quantum Instance migration guide](./qiskit-quantum-instance)
 
 ## How to choose a primitive configuration for your algorithm
 
@@ -86,7 +101,7 @@ Once the kind of primitive is known, you can choose between the primitive implem
 >    - Wrap any backend with **Backend Primitives** ([`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator)). These wrappers implement a primitive interface on top of a backend that only supports `Backend.run()`.
 
 For more detailed information and examples, particularly on the use of the **Backend Primitives**, please refer to
-the [Quantum Instance migration guide](https://qisk.it/qi_migration).
+the [Quantum Instance migration guide](./qiskit-quantum-instance).
 
 In this guide, we will cover 3 different common configurations for algorithms that determine
 **which primitive import** you should be selecting:
@@ -94,13 +109,13 @@ In this guide, we will cover 3 different common configurations for algorithms th
 1. Running an algorithm with a statevector simulator (i.e., using [`qiskit.opflow`](../qiskit/opflow)'s legacy
    [`qiskit.opflow.expectations.MatrixExpectation`](../qiskit/qiskit.opflow.expectations.MatrixExpectation)), when you want the ideal outcome without shot noise:
 
-   > - Reference Primitives with default configuration (see [QAOA] example):
+   > - Reference Primitives with default configuration (see [QAOA](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/05_qaoa.ipynb) example):
    >
    > ```python
    > from qiskit.primitives import Sampler, Estimator
    > ```
    >
-   > - Aer Primitives **with statevector simulator** (see [QAOA] example):
+   > - Aer Primitives **with statevector simulator** (see [QAOA](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/05_qaoa.ipynb) example):
    >
    > ```python
    > from qiskit_aer.primitives import Sampler, Estimator
@@ -112,7 +127,7 @@ In this guide, we will cover 3 different common configurations for algorithms th
 2. Running an algorithm using a simulator/device with shot noise
    (i.e., using [`qiskit.opflow`](../qiskit/opflow)'s legacy [`qiskit.opflow.expectations.PauliExpectation`](../qiskit/qiskit.opflow.expectations.PauliExpectation)):
 
-   > - Reference Primitives **with shots** (see [VQE] examples):
+   > - Reference Primitives **with shots** (see [VQE](#vqe) examples):
    >
    > ```python
    > from qiskit.primitives import Sampler, Estimator
@@ -128,22 +143,22 @@ In this guide, we will cover 3 different common configurations for algorithms th
    > job = estimator.run(circuits, observables, shots=100)
    > ```
    >
-   > - Aer Primitives with default configuration (see [VQE] examples):
+   > - Aer Primitives with default configuration (see [VQE](#vqe) examples):
    >
    > ```python
    > from qiskit_aer.primitives import Sampler, Estimator
    > ```
    >
-   > - IBM's Qiskit Runtime Primitives with default configuration (see [VQD] example):
+   > - IBM's Qiskit Runtime Primitives with default configuration (see [VQD](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/04_vqd.ipynb) example):
    >
    > ```python
    > from qiskit_ibm_runtime import Sampler, Estimator
    > ```
 
-3\. Running an algorithm on an Aer simulator using a custom instruction (i.e., using [`qiskit.opflow`](../qiskit/opflow)'s legacy
+3. Running an algorithm on an Aer simulator using a custom instruction (i.e., using [`qiskit.opflow`](../qiskit/opflow)'s legacy
 [`qiskit.opflow.expectations.AerPauliExpectation`](../qiskit/qiskit.opflow.expectations.AerPauliExpectation)):
 
-> - Aer Primitives with `shots=None`, `approximation=True` (see [TrotterQRTE] example):
+> - Aer Primitives with `shots=None`, `approximation=True` (see [TrotterQRTE](#trotterqrte) example):
 >
 > ```python
 > from qiskit_aer.primitives import Sampler, Estimator
@@ -328,9 +343,9 @@ print(result.eigenvalue.real)
 
 For complete code examples, see the following updated tutorials:
 
-- [VQE Introduction](https://qiskit.org/documentation/tutorials/algorithms/01_algorithms_introduction.html)
-- [VQE, Callback, Gradients, Initial Point](https://qiskit.org/documentation/tutorials/algorithms/02_vqe_advanced_options.html)
-- [VQE with Aer Primitives](https://qiskit.org/documentation/tutorials/algorithms/03_vqe_simulation_with_noise.html)
+- [VQE Introduction](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/01_algorithms_introduction.ipynb)
+- [VQE, Callback, Gradients, Initial Point](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/02_vqe_advanced_options.ipynb)
+- [VQE with Aer Primitives](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/03_vqe_simulation_with_noise.ipynb)
 
 ### QAOA
 
@@ -423,7 +438,7 @@ print(result.eigenvalue)
 
 For complete code examples, see the following updated tutorials:
 
-- [QAOA](https://qiskit.org/documentation/tutorials/algorithms/05_qaoa.html)
+- [QAOA](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/05_qaoa.ipynb)
 
 ### NumPyMinimumEigensolver
 
@@ -473,7 +488,7 @@ print(result.eigenvalue)
 
 For complete code examples, see the following updated tutorials:
 
-- [VQE, Callback, Gradients, Initial Point](https://qiskit.org/documentation/tutorials/algorithms/02_vqe_advanced_options.html)
+- [VQE, Callback, Gradients, Initial Point](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/02_vqe_advanced_options.ipynb)
 
 ## Eigensolvers
 
@@ -588,7 +603,7 @@ print(result.eigenvalues)
 
 For complete code examples, see the following updated tutorial:
 
-- [VQD](https://qiskit.org/documentation/tutorials/algorithms/04_vqd.html)
+- [VQD](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/04_vqd.ipynb)
 
 ### NumPyEigensolver
 
@@ -772,8 +787,8 @@ grover = Grover(sampler=Sampler())
 
 For complete code examples, see the following updated tutorials:
 
-- [Amplitude Amplification and Grover](https://qiskit.org/documentation/tutorials/algorithms/06_grover.html)
-- [Grover Examples](https://qiskit.org/documentation/tutorials/algorithms/07_grover_examples.html)
+- [Amplitude Amplification and Grover](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/06_grover.ipynb)
+- [Grover Examples](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/07_grover_examples.ipynb)
 
 ## Amplitude Estimators
 
@@ -820,7 +835,7 @@ iae = IterativeAmplitudeEstimation(
 
 For complete code examples, see the following updated tutorials:
 
-- [Amplitude Estimation](https://qiskit.org/documentation/finance/tutorials/00_amplitude_estimation.html)
+- [Amplitude Estimation](https://qiskit.org/ecosystem/finance/tutorials/00_amplitude_estimation.html)
 
 ## Phase Estimators
 
@@ -865,4 +880,4 @@ ipe = IterativePhaseEstimation(
 
 For complete code examples, see the following updated tutorials:
 
-- [Iterative Phase Estimation](https://qiskit.org/documentation/tutorials/algorithms/09_IQPE.html)
+- [Iterative Phase Estimation](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/09_IQPE.ipynb)
