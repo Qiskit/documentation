@@ -1,18 +1,24 @@
 ---
-title: Representing Quantum Computers
+title: Representing quantum computers
 description: The necessary backend information for successfully transpiling quantum circuits
 
 ---
 
-# Representing Quantum Computers
+# Representing quantum computers
 
-The transpiler must know certain details of the quantum backend in order to construct an equivalent circuit that is capabable of execution on it given its constraints. For most users, this information is contained within the `backend` or `target = backend.target` classes (TODO: check with Matthew about how this is moving, seems there is no `target` attribute for older `Backend` classes), and you will only need to specify this at the transpilation step. However, it is instructive to see how the transpiler utilizes more information as we provide more backend details, in order to attempt to produce the best circuit for hardware execution (however, since many of the underlying transpiling algorithms are stochastic, there is no guarantee this will be the case).
+To construct an equivalent circuit that can run on a specific backend, the transpiler needs certain details about the backend.  Typically, this information is found in the `backend` or `target = backend.target` class, so you don't need to pass anything further to the transpiler. (TODO: check with Matthew about how this is moving, seems there is no `target` attribute for older `Backend` classes). However, if more infomation is provided, the transpiler can use it to try to produce the best circuit to run on that hardware.  
 
-## "Default Configuration"
+<Admonition>
+Because many of the underlying transpilation algorithms are stochastic, there is no guarantee that a better circuit will be found. 
+</Admonition>
 
-The simplest use of the transpiler is to provide all the backend infomation by providing the `backend` or `target` (TODO: only available on newer backends?). We can consider what happens by constructing a circuit and transpiling it with different information avaiable.
+<span id="default-config"></span>
+## Default configuration
 
-First, import the necessary libraries and instantiate our backend
+The simplest use of the transpiler is to provide all the backend infomation by providing the `backend` or `target` (TODO: only available on newer backends?). To better understand how the transpiler works, construct a circuit and transpile it with different information:
+
+Import the necessary libraries and instantiate the backend:
+
 ```python
     from qiskit import QuantumCircuit, transpile
     from qiskit.providers.fake_provider import FakeSherbrooke
@@ -21,7 +27,7 @@ First, import the necessary libraries and instantiate our backend
     target = backend.target
 ```
 
-Then we constuct a 12-qubit circuit with circular entanglement
+Constuct a 12-qubit circuit with circular entanglement:
 
 ```python
     qc = QuantumCircuit(12)
@@ -32,7 +38,7 @@ Then we constuct a 12-qubit circuit with circular entanglement
 ```
 ![The 12-qubit test circuit](/images/transpile/qc-circular.png)
 
-Now transpile with the simplest option (we will use `optimization_level=2` to highlight a feature).
+Transpile the circuit with the simplest options. This example uses `optimization_level=2` to highlight a feature:
 
 ```python
     qc_t_target = transpile(qc, target=target, optimization_level=2, seed_transpiler=12345)
@@ -40,11 +46,21 @@ Now transpile with the simplest option (we will use `optimization_level=2` to hi
 ```
 ![The transpiled 12-qubit test circuit using Target information](/images/transpile/qc_t_target.png)
 
-In the following we will refer back to this circuit as we add more information about the backend. We show that the coupling map and basis gates are the essential pieces of information. The backend can usually select default settings to make up for the lack of infomation (i.e., timing, scheduling, etc. TODO: check!). Providing the backend properties, which includes error rates of the gates, allows the transpiler to select the best set of qubits on the backend.
+This example is used in later sections of this topic to illustrate that the coupling map and basis gates are the essential pieces of information to pass to the transpiler for optimal circuit construction. The backend can usually select default settings for other information that is not passed in, such as timing and scheduling. (TODO: check!) 
+
+Providing the backend properties, including the gates' error rates, allows the transpiler to select the best set of qubits on the backend.
 
 ## Coupling Map
 
-The coupling map is a graph that specifies which qubits are connected, and hence have 2-qubit gates between them. Sometimes this graph is directional, meaning the 2-qubit gates can only go in one direction, however, the transpiler can always flip the direction of gates by adding additional 1-qubit gates. An abstract quantum circuit can always be represented on this graph, even if its connectivity is limited, by introducting SWAP gates to move the quantum information around. The qubits from our "abstract" circuits are called virtual qubits and those on the coupling map are physical qubits, and the transpiler will provide a mapping between virtual and physical qubits. One of the first steps in transpilation is to do this `routing` stage (although it is intricatedly involved with the `layout` stage that selects the actual qubits, we will think of these as being separate for pedagogical reasons. The combination of routing and layout is called qubit mapping. The interested reader should look at some link). We can see the effect of the couping map on the transpiler by just passing the `coupling_map` keyword argument.
+The coupling map is a graph that specifies which qubits are connected and hence have 2-qubit gates between them. Sometimes this graph is directional, meaning that the 2-qubit gates can only go in one direction. However, the transpiler can always flip a gate's direction by adding additional 1-qubit gates. An abstract quantum circuit can always be represented on this graph, even if its connectivity is limited, by introducting SWAP gates to move the quantum information. 
+
+The qubits from our abstract circuits are called _virtual qubits_ and those on the coupling map are _physical qubits_. The transpiler provides a mapping between virtual and physical qubits. One of the first steps in transpilation, the _routing_ stage, performs this mapping.
+
+<Admonition>
+Although the routing stage it intertwined with the _layout_ stage, which selects the actual qubits, we will comsider them as separate stages for simplicity. The combination of routing and layout is called _qubit mapping_. (TODO: insert link) 
+</Admonition>
+
+Pass the `coupling_map` keyword argument to see its effect on the transpiler:
 
 ```python
     coupling_map = target.build_coupling_map()
@@ -55,7 +71,7 @@ The coupling map is a graph that specifies which qubits are connected, and hence
 ```
 ![Test circuit transpiled to coupling map](/images/transpile/qc_t_cm_lv0.png)
 
-We see that many SWAP gates were inserted (each consisting of 3 CX's), which will lead to lots of error on current devices. If we want to see what qubits are selected on the actual qubit topology, we can use `plot_circuit_layout` from Qiskit Visualizations.
+Several SWAP gates were inserted (each consisting of three CX gates), which will cause a lot of errors on current devices. To see which qubits are selected on the actual qubit topology, use `plot_circuit_layout` from Qiskit Visualizations:
 
 ```python
     from qiskit.visualization import plot_circuit_layout
@@ -66,13 +82,15 @@ We see that many SWAP gates were inserted (each consisting of 3 CX's), which wil
 
 Now we do not have any SWAPs inserted, and the physical qubits selected are the same when using the Target class (TODO: actually they should probably be different).
 
+** Question: why aren't there any SWAPs instarted?  It looks like it still uses the coupling_map that's specified in qc_t_cm_lv0. **
+
 ```python
     qc_t_cm_lv2 = transpile(qc, coupling_map=coupling_map, optimization_level=2, seed_transpiler=12345)
     qc_t_cm_lv2.draw('mpl', style='iqp', idle_wires=False)
 ```
 ![Test circuit transpiled to coupling map](/images/transpile/qc_t_cm_lv2.png)
 
-Now the layout is in a ring, which respects the connectivity of the circuit, hence no extra SWAPs and we have a much better circuit for execution.
+Now the layout is in a ring, which respects the connectivity of the circuit, hence there are no extra SWAP gatess and we have a much better circuit for execution.
 
 ## Basis gates
 
