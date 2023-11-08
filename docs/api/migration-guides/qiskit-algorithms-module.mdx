@@ -5,6 +5,22 @@ description: Use the new interface for `qiskit.algorithms`
 
 # Algorithms Migration Guide
 
+<Admonition type="caution">
+  The `qiskit.algorithms` module has been superseded by a new standalone library, `qiskit_algorithms`,
+  available on [GitHub](https://github.com/qiskit-community/qiskit-algorithms) and 
+  [PyPi](https://pypi.org/project/qiskit-algorithms).
+
+  As of Qiskit's 0.44 release, active development of algorithm features has migrated to this new package.
+  If your code used `qiskit.algorithms`, you should:
+   1. Check that you are not using any legacy algorithm implementation. If you are, follow this guide to
+      migrate to the primitives-based implementation.
+   2. Once your code is updated, run `pip install qiskit-algorithms` and update your imports from 
+      `qiskit.algorithms` to `qiskit_algorithms`.
+
+  The decision to migrate the `qiskit.algorithms` module to a
+  separate package was made to clarify the purpose of Qiskit and make a distinction between the tools and libraries built on top of it.
+</Admonition>
+
 ## TL;DR
 
 The [`qiskit.algorithms`](../qiskit/algorithms) module has been fully refactored to use the [`qiskit.primitives`](../qiskit/primitives), for circuit execution, instead of the [`qiskit.utils.QuantumInstance`](../qiskit/qiskit.utils.QuantumInstance), which is now deprecated.
