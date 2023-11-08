@@ -11,9 +11,16 @@
 // that they have been altered from the originals.
 
 import { globby } from "globby";
-import { existsSync, readFileSync } from "fs";
+import { readFile } from "fs/promises";
 import path from "node:path";
 import markdownLinkExtractor from "markdown-link-extractor";
+import { visit } from "unist-util-visit";
+import { unified } from "unified";
+import remarkStringify from "remark-stringify";
+import remarkMdx, { Root } from "remark-mdx";
+import rehypeRemark from "rehype-remark";
+import rehypeParse from "rehype-parse";
+import remarkGfm from "remark-gfm";
 
 const DOCS_ROOT = "./docs";
 const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"];
@@ -84,10 +91,9 @@ class Link {
     return possibleFilePaths;
   }
 
-  check(filePathCache: string[]): boolean {
+  check(existingPaths: string[]): boolean {
     /*
-     * True if link points to existing file, otherwise false
-     * filePathCache: array of known existing files (to reduce disk I/O)
+     * True if link is in `existingPaths`, otherwise false
      */
     if (this.isExternal) {
       // External link checking not supported yet
@@ -96,16 +102,7 @@ class Link {
 
     const possiblePaths = this.resolve();
     for (let filePath of possiblePaths) {
-      if (
-        filePathCache.includes(filePath) ||
-        SYNTHETIC_FILES.includes(filePath)
-      ) {
-        return true;
-      }
-    }
-    // Check disk for files not in cache (images etc.)
-    for (let filePath of possiblePaths) {
-      if (existsSync(filePath)) {
+      if (existingPaths.includes(filePath)) {
         return true;
       }
     }
@@ -125,7 +122,10 @@ function markdownFromNotebook(source: string): string {
   return markdown;
 }
 
-function checkLinksInFile(filePath: string, filePaths: string[]): boolean {
+async function checkLinksInFile(
+  filePath: string,
+  existingPaths: string[],
+): Promise<boolean> {
   if (
     filePath.startsWith("docs/api/qiskit") ||
     filePath.startsWith("docs/api/qiskit-ibm-provider") ||
@@ -136,27 +136,52 @@ function checkLinksInFile(filePath: string, filePaths: string[]): boolean {
   if (IGNORED_FILES.includes(filePath)) {
     return true;
   }
-  const source = readFileSync(filePath, { encoding: "utf8" });
+  const source = await readFile(filePath, { encoding: "utf8" });
   const markdown =
     path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
-  const links = markdownLinkExtractor(markdown).links.map(
-    (x: string) => new Link(x, filePath),
-  );
+
+  const links: Link[] = [];
+  unified()
+    .use(rehypeParse)
+    .use(remarkGfm)
+    .use(rehypeRemark)
+    .use(() => {
+      return function transform(tree: Root) {
+        visit(tree, "text", (TreeNode) => {
+          markdownLinkExtractor(String(TreeNode.value)).links.map((s: string) =>
+            links.push(new Link(s, filePath)),
+          );
+        });
+        visit(tree, "link", (TreeNode) => {
+          links.push(new Link(TreeNode.url, filePath));
+        });
+        visit(tree, "image", (TreeNode) => {
+          links.push(new Link(TreeNode.url, filePath));
+        });
+      };
+    })
+    .use(remarkStringify)
+    .process(markdown);
 
   let allGood = true;
   for (let link of links) {
-    allGood = link.check(filePaths) && allGood;
+    allGood = link.check(existingPaths) && allGood;
   }
   return allGood;
 }
 
 async function main() {
   const filePaths = await globby("docs/**/*.{ipynb,md,mdx}");
-  let allGood = true;
-  for (let sourceFile of filePaths) {
-    allGood = checkLinksInFile(sourceFile, filePaths) && allGood;
-  }
-  if (!allGood) {
+  const existingPaths = [
+    ...filePaths,
+    ...(await globby("{public,docs}/**/*.{png,jpg,gif,svg}")),
+    ...SYNTHETIC_FILES,
+  ];
+  const results = await Promise.all(
+    filePaths.map((fp) => checkLinksInFile(fp, existingPaths)),
+  );
+
+  if (results.some((x) => !x)) {
     console.log("\nSome links appear broken 💔\n");
     process.exit(1);
   }
