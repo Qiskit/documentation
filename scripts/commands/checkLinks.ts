@@ -43,15 +43,14 @@ function markdownFromNotebook(source: string): string {
   return markdown;
 }
 
+/**
+ * Return a list of File objects with all the files
+ * in `filePaths` and a list of Link objects with all
+ * the links found in those files.
+ */
 async function loadFilesAndLinks(
   filePaths: string[],
 ): Promise<[File[], Link[]]> {
-  /*
-   * Return a list of File objects with all the files
-   * in `filePaths` and a list of Link objects with all
-   * the links found in those files.
-   */
-
   const fileList: File[] = [];
   const linkList: Link[] = [];
 
@@ -65,7 +64,7 @@ async function loadFilesAndLinks(
         ? markdownFromNotebook(source)
         : source;
 
-    fileList.push(new File(filePath));
+    fileList.push(new File(filePath, []));
 
     if (
       filePath.startsWith("docs/api/qiskit") ||
@@ -119,21 +118,21 @@ async function loadFilesAndLinks(
       .process(markdown);
   }
 
-  for (let [link, origins] of linkMap) {
-    linkList.push(new Link(link, origins));
+  for (let [link, originFiles] of linkMap) {
+    linkList.push(new Link(link, originFiles));
   }
 
   return [fileList, linkList];
 }
 
+/**
+ * Return a list of File objects with all the files
+ * in `existingPaths`
+ */
 function loadFiles(existingPaths: string[]): File[] {
-  /*
-   * Return a list of File objects with all the files
-   * in `existingPaths`
-   */
   const fileList: File[] = [];
   for (let path of existingPaths) {
-    fileList.push(new File(path));
+    fileList.push(new File(path, []));
   }
 
   return fileList;
@@ -159,15 +158,9 @@ async function main() {
   // Validate the links and print the results
   let allGood = true;
   linkList.forEach((link) => {
-    const results = link.checkLink(existingFiles);
-    results.forEach((status, origin) => {
-      if (!status) {
-        console.log(
-          `❌ ${link.origins[origin]}: Could not find link '${link.value}'`,
-        );
-        allGood = false;
-      }
-    });
+    const errorMessages = link.checkLink(existingFiles);
+    errorMessages.forEach((errorMessage) => console.log(errorMessage));
+    allGood &&= errorMessages.length == 0;
   });
 
   if (!allGood) {

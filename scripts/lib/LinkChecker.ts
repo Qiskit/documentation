@@ -17,14 +17,14 @@ const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"];
 
 export class File {
   readonly path: string;
-  anchors: string[];
+  readonly anchors: string[];
 
-  constructor(path: string) {
+  /**
+   *    path: Path to the file
+   * anchors: Anchors available in the file
+   */
+  constructor(path: string, anchors: string[]) {
     this.path = path;
-    this.anchors = [];
-  }
-
-  setAnchors(anchors: string[]) {
     this.anchors = anchors;
   }
 }
@@ -32,31 +32,30 @@ export class File {
 export class Link {
   readonly value: string;
   readonly anchor: string;
-  readonly origins: string[];
+  readonly originFiles: string[];
   readonly isExternal: boolean;
 
-  constructor(linkString: string, origins: string[]) {
-    /*
-     * linkString: Link as it appears in source file
-     *    origins: Paths to source file containing link
-     */
-
+  /**
+   *  linkString: Link as it appears in source file
+   * originFiles: Paths to source file containing link
+   */
+  constructor(linkString: string, originFiles: string[]) {
     const splitLink = linkString.split("#", 2);
     this.value = splitLink[0];
     this.anchor = splitLink.length > 1 ? `#${splitLink[1]}` : "";
-    this.origins = origins;
+    this.originFiles = originFiles;
     this.isExternal = linkString.startsWith("http");
   }
 
-  resolve(origin: string): string[] {
-    /*
-     * Return list of possible paths link could resolve to
-     */
+  /*
+   * Return list of possible paths link could resolve to
+   */
+  resolve(originFile: string): string[] {
     if (this.isExternal) {
       return [this.value];
     }
     if (this.value === "") {
-      return [origin];
+      return [originFile];
     } // link is just anchor
     if (this.value.startsWith("/images")) {
       return [path.join("public/", this.value)];
@@ -67,8 +66,8 @@ export class Link {
       // Path is relative to DOCS_ROOT
       baseFilePath = path.join(DOCS_ROOT, this.value);
     } else {
-      // Path is relative to origin file
-      baseFilePath = path.join(path.dirname(origin), this.value);
+      // Path is relative to originFile file
+      baseFilePath = path.join(path.dirname(originFile), this.value);
     }
     // Remove trailing '/' from path.join
     baseFilePath = baseFilePath.replace(/\/$/gm, "");
@@ -85,44 +84,41 @@ export class Link {
     return possibleFilePaths;
   }
 
-  checkExternalLink() {
+  candidateCheckExternalLink() {
     // External link checking not supported yet
-    return true;
   }
 
-  checkInternalLink(existingFiles: File[], origin: string) {
-    /*
-     * True if link is in `existingFiles`, otherwise false
-     */
-    const possiblePaths = this.resolve(origin);
-    for (let filePath of possiblePaths) {
-      if (existingFiles.some((file) => file.path == filePath)) {
-        return true;
-      }
-    }
-    return false;
+  /**
+   * True if link is in `existingFiles`, otherwise false
+   */
+  checkInternalLink(existingFiles: File[], originFile: string) {
+    const possiblePaths = this.resolve(originFile);
+    return possiblePaths.some((filePath) =>
+      existingFiles.some((existingFile) => existingFile.path == filePath),
+    );
   }
 
-  checkLink(existingFiles: File[]) {
-    /*
-     * Returns a boolean for each origin of the link,
-     * true if the link is in `existingFiles`
-     * or is a valid external link, otherwise false
-     */
-    const results = [];
+  /**
+   * Returns an error message for each origin of
+   * the link, true if the link is in `existingFiles`
+   * or is a valid external link, otherwise false
+   */
+  checkLink(existingFiles: File[]): string[] {
+    const errorMessages: string[] = [];
 
     if (this.isExternal) {
-      // External link
-      const result = this.checkExternalLink();
-      this.origins.forEach(() => results.push(result));
+      // External link checking not supported yet
     } else {
       // Internal link
-      for (let origin of this.origins) {
-        const result = this.checkInternalLink(existingFiles, origin);
-        results.push(result);
-      }
+      this.originFiles.forEach((originFile) => {
+        if (!this.checkInternalLink(existingFiles, originFile)) {
+          errorMessages.push(
+            `❌ ${originFile}: Could not find link '${this.value}'`,
+          );
+        }
+      });
     }
 
-    return results;
+    return errorMessages;
   }
 }

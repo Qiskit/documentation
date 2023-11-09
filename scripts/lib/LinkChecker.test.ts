@@ -19,18 +19,19 @@ describe("Test the constructor of Link", () => {
     const attributes = [
       testLink.value,
       testLink.anchor,
-      testLink.origins,
+      testLink.originFiles,
       testLink.isExternal,
     ];
     const correct_values = ["/testpath", "", ["/testorigin.mdx"], false];
     expect(attributes).toEqual(correct_values);
   });
+
   test("Initialize internal link with anchors", () => {
     let testLink = new Link("/testpath#testanchor", ["/testorigin.mdx"]);
     const attributes = [
       testLink.value,
       testLink.anchor,
-      testLink.origins,
+      testLink.originFiles,
       testLink.isExternal,
     ];
     const correct_values = [
@@ -41,12 +42,13 @@ describe("Test the constructor of Link", () => {
     ];
     expect(attributes).toEqual(correct_values);
   });
+
   test("Initialize external link", () => {
     let testLink = new Link("https://test.link.com", ["/testorigin.mdx"]);
     const attributes = [
       testLink.value,
       testLink.anchor,
-      testLink.origins,
+      testLink.originFiles,
       testLink.isExternal,
     ];
     const correct_values = [
@@ -62,32 +64,36 @@ describe("Test the constructor of Link", () => {
 describe("Validate links", () => {
   test("Validate existing internal links with absolute path", () => {
     let testLink = new Link("/testpath", ["/testorigin.mdx"]);
-    let testFile = new File("docs/testpath.mdx");
-    let allFiles: File[] = [testFile];
-    const results = testLink.checkLink(allFiles);
-    expect(results).toEqual([true]);
+    let testFile = new File("docs/testpath.mdx", []);
+    const results = testLink.checkLink([testFile]);
+    expect(results).toEqual([]);
   });
+
   test("Validate non-existing internal links with absolute path", () => {
     let testLink = new Link("/test-alternative-path", ["/testorigin.mdx"]);
-    let testFile = new File("docs/testpath.mdx");
-    let allFiles: File[] = [testFile];
-    const results = testLink.checkLink(allFiles);
-    expect(results).toEqual([false]);
+    let testFile = new File("docs/testpath.mdx", []);
+    const results = testLink.checkLink([testFile]);
+    expect(results).toEqual([
+      "❌ /testorigin.mdx: Could not find link '/test-alternative-path'",
+    ]);
   });
+
   test("Validate existing internal links with relative path", () => {
     let testLink = new Link("../testpath", ["docs/test/testorigin.mdx"]);
-    let testFile = new File("docs/testpath.mdx");
-    let allFiles: File[] = [testFile];
-    const results = testLink.checkLink(allFiles);
-    expect(results).toEqual([true]);
+    let testFile = new File("docs/testpath.mdx", []);
+    const results = testLink.checkLink([testFile]);
+    expect(results).toEqual([]);
   });
+
   test("Validate non-existing internal links with relative path", () => {
     let testLink = new Link("../testpath", ["docs/testorigin.mdx"]);
-    let testFile = new File("docs/testpath.mdx");
-    let allFiles: File[] = [testFile];
-    const results = testLink.checkLink(allFiles);
-    expect(results).toEqual([false]);
+    let testFile = new File("docs/testpath.mdx", []);
+    const results = testLink.checkLink([testFile]);
+    expect(results).toEqual([
+      "❌ docs/testorigin.mdx: Could not find link '../testpath'",
+    ]);
   });
+
   test("Validate existing internal links with absolute path and multiple origin files", () => {
     let testLink = new Link("/testpath", [
       "docs/test/testorigin.mdx",
@@ -95,12 +101,12 @@ describe("Validate links", () => {
       "docs/test/test3/testorigin.mdx",
       "docs/test/test2/test4/testorigin.mdx",
     ]);
-    let testFile1 = new File("docs/testpath.mdx");
-    let testFile2 = new File("docs/test/test2/testpath.mdx");
-    let allFiles: File[] = [testFile1, testFile2];
-    const results = testLink.checkLink(allFiles);
-    expect(results).toEqual([true, true, true, true]);
+    let testFile1 = new File("docs/testpath.mdx", []);
+    let testFile2 = new File("docs/test/test2/testpath.mdx", []);
+    const results = testLink.checkLink([testFile1, testFile2]);
+    expect(results).toEqual([]);
   });
+
   test("Validate non-existing internal links with absolute path and multiple origin files", () => {
     let testLink = new Link("/testpath", [
       "docs/test/testorigin.mdx",
@@ -108,12 +114,17 @@ describe("Validate links", () => {
       "docs/test/test3/testorigin.mdx",
       "docs/test/test2/test4/testorigin.mdx",
     ]);
-    let testFile1 = new File("docs/test/testpath.mdx");
-    let testFile2 = new File("docs/test2/test3/testpath.mdx");
-    let allFiles: File[] = [testFile1, testFile2];
-    const results = testLink.checkLink(allFiles);
-    expect(results).toEqual([false, false, false, false]);
+    let testFile1 = new File("docs/test/testpath.mdx", []);
+    let testFile2 = new File("docs/test2/test3/testpath.mdx", []);
+    const results = testLink.checkLink([testFile1, testFile2]);
+    expect(results).toEqual([
+      "❌ docs/test/testorigin.mdx: Could not find link '/testpath'",
+      "❌ docs/test/test2/testorigin.mdx: Could not find link '/testpath'",
+      "❌ docs/test/test3/testorigin.mdx: Could not find link '/testpath'",
+      "❌ docs/test/test2/test4/testorigin.mdx: Could not find link '/testpath'",
+    ]);
   });
+
   test("Validate internal links with relative path and multiple origin files", () => {
     let testLink = new Link("../testpath", [
       "docs/test/testorigin.mdx",
@@ -121,11 +132,13 @@ describe("Validate links", () => {
       "docs/test/test3/testorigin.mdx",
       "docs/test/test2/test4/testorigin.mdx",
     ]);
-    let testFile1 = new File("docs/testpath.mdx");
-    let testFile2 = new File("docs/test/test2/testpath.mdx");
-    let allFiles: File[] = [testFile1, testFile2];
-    const results = testLink.checkLink(allFiles);
-    expect(results).toEqual([true, false, false, true]);
+    let testFile1 = new File("docs/testpath.mdx", []);
+    let testFile2 = new File("docs/test/test2/testpath.mdx", []);
+    const results = testLink.checkLink([testFile1, testFile2]);
+    expect(results).toEqual([
+      "❌ docs/test/test2/testorigin.mdx: Could not find link '../testpath'",
+      "❌ docs/test/test3/testorigin.mdx: Could not find link '../testpath'",
+    ]);
   });
 });
 
@@ -133,7 +146,7 @@ describe("Generate the possible paths of a given link", () => {
   test("Possible links for an internal link with a relative path", () => {
     let testLink = new Link("../testFile", ["docs/test/test2/testorigin.mdx"]);
     let possiblePaths = testLink.resolve("docs/test/test2/testorigin.mdx");
-    let extectedPaths = [
+    let expectedPaths = [
       "docs/test/testFile.md",
       "docs/test/testFile.mdx",
       "docs/test/testFile.ipynb",
@@ -141,12 +154,13 @@ describe("Generate the possible paths of a given link", () => {
       "docs/test/testFile/index.mdx",
       "docs/test/testFile/index.ipynb",
     ];
-    expect(possiblePaths).toEqual(extectedPaths);
+    expect(possiblePaths).toEqual(expectedPaths);
   });
+
   test("Possible links for an internal link with an absolute path", () => {
     let testLink = new Link("/testFile", ["docs/test/test2/testorigin.mdx"]);
     let possiblePaths = testLink.resolve("docs/test/test2/testorigin.mdx");
-    let extectedPaths = [
+    let expectedPaths = [
       "docs/testFile.md",
       "docs/testFile.mdx",
       "docs/testFile.ipynb",
@@ -154,6 +168,6 @@ describe("Generate the possible paths of a given link", () => {
       "docs/testFile/index.mdx",
       "docs/testFile/index.ipynb",
     ];
-    expect(possiblePaths).toEqual(extectedPaths);
+    expect(possiblePaths).toEqual(expectedPaths);
   });
 });
