@@ -13,17 +13,15 @@
 import { globby } from "globby";
 import { readFile } from "fs/promises";
 import path from "node:path";
+import { Link, File } from "../lib/LinkChecker";
 import markdownLinkExtractor from "markdown-link-extractor";
 import { visit } from "unist-util-visit";
 import { unified } from "unified";
 import remarkStringify from "remark-stringify";
-import remarkMdx, { Root } from "remark-mdx";
+import { Root } from "remark-mdx";
 import rehypeRemark from "rehype-remark";
 import rehypeParse from "rehype-parse";
 import remarkGfm from "remark-gfm";
-
-const DOCS_ROOT = "./docs";
-const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"];
 
 // These files are not searched to see if their own links are valid.
 const IGNORED_FILES: string[] = [];
@@ -35,83 +33,6 @@ const SYNTHETIC_FILES: string[] = [
   "docs/api/runtime/tags/programs.mdx",
 ];
 
-class Link {
-  readonly value: string;
-  readonly anchor: string;
-  readonly origin: string;
-  readonly isExternal: boolean;
-
-  constructor(linkString: string, origin: string) {
-    /*
-     * linkString: Link as it appears in source file
-     *     origin: Path to source file containing link
-     */
-
-    const splitLink = linkString.split("#", 1);
-    this.value = splitLink[0];
-    this.anchor = splitLink.length > 1 ? `#${splitLink[1]}` : "";
-    this.origin = origin;
-    this.isExternal = linkString.startsWith("http");
-  }
-
-  resolve(): string[] {
-    /*
-     * Return list of possible paths link could resolve to
-     */
-    if (this.isExternal) {
-      return [this.value];
-    }
-    if (this.value === "") {
-      return [this.origin];
-    } // link is just anchor
-    if (this.value.startsWith("/images")) {
-      return [path.join("public/", this.value)];
-    }
-
-    let baseFilePath;
-    if (this.value.startsWith("/")) {
-      // Path is relative to DOCS_ROOT
-      baseFilePath = path.join(DOCS_ROOT, this.value);
-    } else {
-      // Path is relative to origin file
-      baseFilePath = path.join(path.dirname(this.origin), this.value);
-    }
-    // Remove trailing '/' from path.join
-    baseFilePath = baseFilePath.replace(/\/$/gm, "");
-
-    // File may have one of many extensions (.md, .ipynb etc.), and/or be
-    // directory with an index file (e.g. `docs/build` should resolve to
-    // `docs/build/index.mdx`). We return a list of possible filenames.
-    let possibleFilePaths = [];
-    for (let index of ["", "/index"]) {
-      for (let extension of CONTENT_FILE_EXTENSIONS) {
-        possibleFilePaths.push(baseFilePath + index + extension);
-      }
-    }
-    return possibleFilePaths;
-  }
-
-  check(existingPaths: string[]): boolean {
-    /*
-     * True if link is in `existingPaths`, otherwise false
-     */
-    if (this.isExternal) {
-      // External link checking not supported yet
-      return true;
-    }
-
-    const possiblePaths = this.resolve();
-    for (let filePath of possiblePaths) {
-      if (existingPaths.includes(filePath)) {
-        return true;
-      }
-    }
-
-    console.log(`❌ ${this.origin}: Could not find link '${this.value}'`);
-    return false;
-  }
-}
-
 function markdownFromNotebook(source: string): string {
   let markdown = "";
   for (let cell of JSON.parse(source).cells) {
@@ -122,69 +43,131 @@ function markdownFromNotebook(source: string): string {
   return markdown;
 }
 
-async function checkLinksInFile(
-  filePath: string,
-  existingPaths: string[],
-): Promise<boolean> {
-  if (
-    filePath.startsWith("docs/api/qiskit") ||
-    filePath.startsWith("docs/api/qiskit-ibm-provider") ||
-    filePath.startsWith("docs/api/qiskit-ibm-runtime")
-  ) {
-    return true;
-  }
-  if (IGNORED_FILES.includes(filePath)) {
-    return true;
-  }
-  const source = await readFile(filePath, { encoding: "utf8" });
-  const markdown =
-    path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
+/**
+ * Return a list of File objects with all the files
+ * in `filePaths` and a list of Link objects with all
+ * the links found in those files.
+ */
+async function loadFilesAndLinks(
+  filePaths: string[],
+): Promise<[File[], Link[]]> {
+  const fileList: File[] = [];
+  const linkList: Link[] = [];
 
-  const links: Link[] = [];
-  unified()
-    .use(rehypeParse)
-    .use(remarkGfm)
-    .use(rehypeRemark)
-    .use(() => {
-      return function transform(tree: Root) {
-        visit(tree, "text", (TreeNode) => {
-          markdownLinkExtractor(String(TreeNode.value)).links.map((s: string) =>
-            links.push(new Link(s, filePath)),
-          );
-        });
-        visit(tree, "link", (TreeNode) => {
-          links.push(new Link(TreeNode.url, filePath));
-        });
-        visit(tree, "image", (TreeNode) => {
-          links.push(new Link(TreeNode.url, filePath));
-        });
-      };
-    })
-    .use(remarkStringify)
-    .process(markdown);
+  // Auxiliary Map to avoid link duplications
+  const linkMap = new Map<string, string[]>();
 
-  let allGood = true;
-  for (let link of links) {
-    allGood = link.check(existingPaths) && allGood;
+  for (let filePath of filePaths) {
+    const source = await readFile(filePath, { encoding: "utf8" });
+    const markdown =
+      path.extname(filePath) === ".ipynb"
+        ? markdownFromNotebook(source)
+        : source;
+
+    fileList.push(new File(filePath, []));
+
+    if (
+      filePath.startsWith("docs/api/qiskit") ||
+      filePath.startsWith("docs/api/qiskit-ibm-provider") ||
+      filePath.startsWith("docs/api/qiskit-ibm-runtime")
+    ) {
+      continue;
+    }
+
+    if (IGNORED_FILES.includes(filePath)) {
+      continue;
+    }
+
+    unified()
+      .use(rehypeParse)
+      .use(remarkGfm)
+      .use(rehypeRemark)
+      .use(() => {
+        return function transform(tree: Root) {
+          visit(tree, "text", (TreeNode) => {
+            markdownLinkExtractor(String(TreeNode.value)).links.map(
+              (url: string) => {
+                let link = linkMap.get(url);
+                if (link != null) {
+                  link.push(filePath);
+                } else {
+                  linkMap.set(url, [filePath]);
+                }
+              },
+            );
+          });
+          visit(tree, "link", (TreeNode) => {
+            let link = linkMap.get(TreeNode.url);
+            if (link != null) {
+              link.push(filePath);
+            } else {
+              linkMap.set(TreeNode.url, [filePath]);
+            }
+          });
+          visit(tree, "image", (TreeNode) => {
+            let link = linkMap.get(TreeNode.url);
+            if (link != null) {
+              link.push(filePath);
+            } else {
+              linkMap.set(TreeNode.url, [filePath]);
+            }
+          });
+        };
+      })
+      .use(remarkStringify)
+      .process(markdown);
   }
-  return allGood;
+
+  for (let [link, originFiles] of linkMap) {
+    linkList.push(new Link(link, originFiles));
+  }
+
+  return [fileList, linkList];
+}
+
+/**
+ * Return a list of File objects with all the files
+ * in `existingPaths`
+ */
+function loadFiles(existingPaths: string[]): File[] {
+  const fileList: File[] = [];
+  for (let path of existingPaths) {
+    fileList.push(new File(path, []));
+  }
+
+  return fileList;
 }
 
 async function main() {
-  const filePaths = await globby("docs/**/*.{ipynb,md,mdx}");
-  const existingPaths = [
-    ...filePaths,
+  // Determine what files we have and separate them into files with links
+  // to read and files we don't need to parse.
+  const pathsWithLinks = await globby("docs/**/*.{ipynb,md,mdx}");
+  const pathsWithoutLinks = [
     ...(await globby("{public,docs}/**/*.{png,jpg,gif,svg}")),
     ...SYNTHETIC_FILES,
   ];
-  const results = await Promise.all(
-    filePaths.map((fp) => checkLinksInFile(fp, existingPaths)),
-  );
 
-  if (results.some((x) => !x)) {
-    console.log("\nSome links appear broken 💔\n");
+  // Parse the files with links and get a list with all the links
+  // in all the files without duplications.
+  const [docsFiles, linkList] = await loadFilesAndLinks(pathsWithLinks);
+
+  // Create an array with all the valid destinations for a link
+  const otherFiles = loadFiles(pathsWithoutLinks);
+  const existingFiles = docsFiles.concat(otherFiles);
+
+  // Validate the links and print the results
+  let allGood = true;
+  linkList.forEach((link) => {
+    const errorMessages = link.checkLink(existingFiles);
+    errorMessages.forEach((errorMessage) => console.error(errorMessage));
+    allGood &&= errorMessages.length == 0;
+  });
+
+  if (!allGood) {
+    console.error("\nSome links appear broken 💔\n");
     process.exit(1);
   }
+  console.log("\nNo links appear broken ✅\n");
 }
 
 main();
