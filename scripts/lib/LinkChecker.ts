@@ -50,10 +50,7 @@ export class Link {
   /*
    * Return list of possible paths link could resolve to
    */
-  resolve(originFile: string): string[] {
-    if (this.isExternal) {
-      return [this.value];
-    }
+  possibleFilePaths(originFile: string): string[] {
     if (this.value === "") {
       return [originFile];
     } // link is just anchor
@@ -84,15 +81,16 @@ export class Link {
     return possibleFilePaths;
   }
 
-  candidateCheckExternalLink() {
+  checkExternalLink() {
     // External link checking not supported yet
+    return true;
   }
 
   /**
    * True if link is in `existingFiles`, otherwise false
    */
   checkInternalLink(existingFiles: File[], originFile: string) {
-    const possiblePaths = this.resolve(originFile);
+    const possiblePaths = this.possibleFilePaths(originFile);
     return possiblePaths.some((filePath) =>
       existingFiles.some((existingFile) => existingFile.path == filePath),
     );

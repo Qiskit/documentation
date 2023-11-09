@@ -145,7 +145,9 @@ describe("Validate links", () => {
 describe("Generate the possible paths of a given link", () => {
   test("Possible links for an internal link with a relative path", () => {
     let testLink = new Link("../testFile", ["docs/test/test2/testorigin.mdx"]);
-    let possiblePaths = testLink.resolve("docs/test/test2/testorigin.mdx");
+    let possiblePaths = testLink.possibleFilePaths(
+      "docs/test/test2/testorigin.mdx",
+    );
     let expectedPaths = [
       "docs/test/testFile.md",
       "docs/test/testFile.mdx",
@@ -159,7 +161,9 @@ describe("Generate the possible paths of a given link", () => {
 
   test("Possible links for an internal link with an absolute path", () => {
     let testLink = new Link("/testFile", ["docs/test/test2/testorigin.mdx"]);
-    let possiblePaths = testLink.resolve("docs/test/test2/testorigin.mdx");
+    let possiblePaths = testLink.possibleFilePaths(
+      "docs/test/test2/testorigin.mdx",
+    );
     let expectedPaths = [
       "docs/testFile.md",
       "docs/testFile.mdx",
