@@ -106,16 +106,17 @@ export class Link {
 
     if (this.isExternal) {
       // External link checking not supported yet
-    } else {
-      // Internal link
-      this.originFiles.forEach((originFile) => {
-        if (!this.checkInternalLink(existingFiles, originFile)) {
-          errorMessages.push(
-            `❌ ${originFile}: Could not find link '${this.value}'`,
-          );
-        }
-      });
+      return errorMessages;
     }
+
+    // Internal link
+    this.originFiles.forEach((originFile) => {
+      if (!this.checkInternalLink(existingFiles, originFile)) {
+        errorMessages.push(
+          `❌ ${originFile}: Could not find link '${this.value}'`,
+        );
+      }
+    });
 
     return errorMessages;
   }
