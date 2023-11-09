@@ -32,7 +32,7 @@ export function generateToc(options: {
     title: string;
     name: string;
     version: string;
-    releaseNotesUrl: string;
+    releaseNotesUrl?: string;
     tocOptions?: {
       collapsed?: boolean;
       nestModule?(id: string): boolean;
@@ -125,10 +125,12 @@ export function generateToc(options: {
     tocChildren.push(...orderEntriesByTitle(nestedTocModules));
   }
 
-  tocChildren.push({
-    title: "Release notes",
-    url: pkg.releaseNotesUrl,
-  });
+  if (pkg.releaseNotesUrl) {
+    tocChildren.push({
+      title: "Release notes",
+      url: pkg.releaseNotesUrl,
+    });
+  }
 
   const toc: Toc = {
     title: pkg.title,

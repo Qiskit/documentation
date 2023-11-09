@@ -301,7 +301,7 @@ async function convertHtmlToMarkdown(
       title: pkg.pkg.title,
       name: pkg.pkg.name,
       version: pkg.version,
-      releaseNotesUrl: `/api/${pkg.pkg.name}/release_notes`,
+      releaseNotesUrl: pkg.pkg.name === 'qiskit' ? `/api/${pkg.pkg.name}/release_notes` : undefined,
       tocOptions: pkg.pkg.tocOptions,
     },
     results,
