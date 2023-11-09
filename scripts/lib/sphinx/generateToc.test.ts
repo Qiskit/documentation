@@ -314,4 +314,5 @@ const pkg = {
   name: "qiskit_ibm_runtime",
   version: "1.0.0",
   changelogUrl: `https://github.com/qiskit_ibm_runtime/releases`,
+  releaseNotesUrl: `/api/qiskit_ibm_runtime/release_notes`,
 };

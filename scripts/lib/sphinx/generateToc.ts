@@ -33,6 +33,7 @@ export function generateToc(options: {
     name: string;
     version: string;
     changelogUrl: string;
+    releaseNotesUrl: string;
     tocOptions?: {
       collapsed?: boolean;
       nestModule?(id: string): boolean;
@@ -124,6 +125,11 @@ export function generateToc(options: {
 
     tocChildren.push(...orderEntriesByTitle(nestedTocModules));
   }
+
+  tocChildren.push({
+    title: "Release notes",
+    url: pkg.releaseNotesUrl,
+  });
 
   tocChildren.push({
     title: "Changelog",

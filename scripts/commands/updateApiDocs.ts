@@ -212,7 +212,8 @@ async function downloadHtml(options: {
       return (
         url.startsWith(`${baseUrl}/apidocs`) ||
         url.startsWith(`${baseUrl}/apidoc`) ||
-        url.startsWith(`${baseUrl}/stubs`)
+        url.startsWith(`${baseUrl}/stubs`) ||
+        url.startsWith(`${baseUrl}/release_notes`)
       );
     },
     async onSuccess(url: string, content: string) {
@@ -242,7 +243,12 @@ async function convertHtmlToMarkdown(
   pkg: PkgHtml,
 ) {
   const files = await globby(
-    ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"],
+    [
+      "apidocs/**.html",
+      "apidoc/**.html",
+      "stubs/**.html",
+      "release_notes.html",
+    ],
     {
       cwd: htmlPath,
     },
@@ -296,6 +302,7 @@ async function convertHtmlToMarkdown(
       name: pkg.pkg.name,
       version: pkg.version,
       changelogUrl: `https://github.com/${pkg.pkg.githubSlug}/releases`,
+      releaseNotesUrl: `/api/${pkg.pkg.name}/release_notes`,
       tocOptions: pkg.pkg.tocOptions,
     },
     results,
