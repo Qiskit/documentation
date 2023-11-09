@@ -32,7 +32,6 @@ export function generateToc(options: {
     title: string;
     name: string;
     version: string;
-    changelogUrl: string;
     releaseNotesUrl: string;
     tocOptions?: {
       collapsed?: boolean;
@@ -129,11 +128,6 @@ export function generateToc(options: {
   tocChildren.push({
     title: "Release notes",
     url: pkg.releaseNotesUrl,
-  });
-
-  tocChildren.push({
-    title: "Changelog",
-    url: pkg.changelogUrl,
   });
 
   const toc: Toc = {

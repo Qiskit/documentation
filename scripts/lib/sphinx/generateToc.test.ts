@@ -94,10 +94,6 @@ describe("generateTocFromPythonApiFiles", () => {
             "title": "Release notes",
             "url": "/api/qiskit_ibm_runtime/release_notes",
           },
-          {
-            "title": "Changelog",
-            "url": "https://github.com/qiskit_ibm_runtime/releases",
-          },
         ],
         "subtitle": "v1.0.0",
         "title": "Qiskit Runtime IBM Client",
@@ -183,10 +179,6 @@ describe("generateTocFromPythonApiFiles", () => {
           {
             "title": "Release notes",
             "url": "/api/qiskit_ibm_runtime/release_notes",
-          },
-          {
-            "title": "Changelog",
-            "url": "https://github.com/qiskit_ibm_runtime/releases",
           },
         ],
         "subtitle": "v1.0.0",
@@ -309,10 +301,6 @@ describe("generateTocFromPythonApiFiles", () => {
             "title": "Release notes",
             "url": "/api/qiskit_ibm_runtime/release_notes",
           },
-          {
-            "title": "Changelog",
-            "url": "https://github.com/qiskit_ibm_runtime/releases",
-          },
         ],
         "subtitle": "v1.0.0",
         "title": "Qiskit Runtime IBM Client",
@@ -325,6 +313,5 @@ const pkg = {
   title: "Qiskit Runtime IBM Client",
   name: "qiskit_ibm_runtime",
   version: "1.0.0",
-  changelogUrl: `https://github.com/qiskit_ibm_runtime/releases`,
   releaseNotesUrl: `/api/qiskit_ibm_runtime/release_notes`,
 };

@@ -301,7 +301,6 @@ async function convertHtmlToMarkdown(
       title: pkg.pkg.title,
       name: pkg.pkg.name,
       version: pkg.version,
-      changelogUrl: `https://github.com/${pkg.pkg.githubSlug}/releases`,
       releaseNotesUrl: `/api/${pkg.pkg.name}/release_notes`,
       tocOptions: pkg.pkg.tocOptions,
     },
