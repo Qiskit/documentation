@@ -51,23 +51,21 @@ export class Link {
    * Return list of possible paths link could resolve to
    */
   possibleFilePaths(originFile: string): string[] {
+    // link is just anchor
     if (this.value === "") {
       return [originFile];
-    } // link is just anchor
+    }
     if (this.value.startsWith("/images")) {
       return [path.join("public/", this.value)];
     }
 
-    let baseFilePath;
-    if (this.value.startsWith("/")) {
-      // Path is relative to DOCS_ROOT
-      baseFilePath = path.join(DOCS_ROOT, this.value);
-    } else {
-      // Path is relative to originFile file
-      baseFilePath = path.join(path.dirname(originFile), this.value);
-    }
-    // Remove trailing '/' from path.join
-    baseFilePath = baseFilePath.replace(/\/$/gm, "");
+    const relativeToFolder = this.value.startsWith("/")
+      ? DOCS_ROOT
+      : path.dirname(originFile);
+    // Also remove trailing '/' from path.join
+    const baseFilePath = path
+      .join(relativeToFolder, this.value)
+      .replace(/\/$/gm, "");
 
     // File may have one of many extensions (.md, .ipynb etc.), and/or be
     // directory with an index file (e.g. `docs/build` should resolve to
@@ -81,7 +79,7 @@ export class Link {
     return possibleFilePaths;
   }
 
-  checkExternalLink() {
+  checkExternalLink(): boolean {
     // External link checking not supported yet
     return true;
   }
@@ -89,7 +87,7 @@ export class Link {
   /**
    * True if link is in `existingFiles`, otherwise false
    */
-  checkInternalLink(existingFiles: File[], originFile: string) {
+  checkInternalLink(existingFiles: File[], originFile: string): boolean {
     const possiblePaths = this.possibleFilePaths(originFile);
     return possiblePaths.some((filePath) =>
       existingFiles.some((existingFile) => existingFile.path == filePath),

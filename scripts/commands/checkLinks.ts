@@ -159,12 +159,12 @@ async function main() {
   let allGood = true;
   linkList.forEach((link) => {
     const errorMessages = link.checkLink(existingFiles);
-    errorMessages.forEach((errorMessage) => console.log(errorMessage));
+    errorMessages.forEach((errorMessage) => console.error(errorMessage));
     allGood &&= errorMessages.length == 0;
   });
 
   if (!allGood) {
-    console.log("\nSome links appear broken 💔\n");
+    console.error("\nSome links appear broken 💔\n");
     process.exit(1);
   }
   console.log("\nNo links appear broken ✅\n");
