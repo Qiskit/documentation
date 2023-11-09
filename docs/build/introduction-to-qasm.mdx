@@ -31,11 +31,11 @@ qubit[n] q;
 bit[n] c;
 
 h q[0]; // Hadamard
-for k in [1:n-1] { // implicitly cast val to int
+for k in [0:n-1] { 
   cnot q[k], q[k+1]; // Controlled-NOT 
 }
 
-c = measure q;
+c = measure q; // measure quantum register
 ```
 
 [^1]: Andrew W. Cross et al. "OpenQASM 3: A broader and deeper quantum assembly language," *ACM Transactions on Quantum Computing*, Volume 3, Issue 3 (2022). https://doi.org/10.48550/arXiv.2104.14722
