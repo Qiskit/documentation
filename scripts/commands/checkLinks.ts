@@ -45,15 +45,18 @@ function markdownFromNotebook(source: string): string {
 
 async function loadFilesAndLinks(
   filePaths: string[],
-): Promise<[File[], Map<string, Link>]> {
+): Promise<[File[], Link[]]> {
   /*
    * Return a list of File objects with all the files
-   * in `filePaths` and a Map with all the links found
-   * in those files.
+   * in `filePaths` and a list of Link objects with all
+   * the links found in those files.
    */
 
   const fileList: File[] = [];
-  const linkMap = new Map<string, Link>();
+  const linkList: Link[] = [];
+
+  // Auxiliary Map to avoid link duplications
+  const linkMap = new Map<string, string[]>();
 
   for (let filePath of filePaths) {
     const source = await readFile(filePath, { encoding: "utf8" });
@@ -87,9 +90,9 @@ async function loadFilesAndLinks(
               (url: string) => {
                 let link = linkMap.get(url);
                 if (link != null) {
-                  link.addOrigin(filePath);
+                  link.push(filePath);
                 } else {
-                  linkMap.set(url, new Link(url, filePath));
+                  linkMap.set(url, [filePath]);
                 }
               },
             );
@@ -97,17 +100,17 @@ async function loadFilesAndLinks(
           visit(tree, "link", (TreeNode) => {
             let link = linkMap.get(TreeNode.url);
             if (link != null) {
-              link.addOrigin(filePath);
+              link.push(filePath);
             } else {
-              linkMap.set(TreeNode.url, new Link(TreeNode.url, filePath));
+              linkMap.set(TreeNode.url, [filePath]);
             }
           });
           visit(tree, "image", (TreeNode) => {
             let link = linkMap.get(TreeNode.url);
             if (link != null) {
-              link.addOrigin(filePath);
+              link.push(filePath);
             } else {
-              linkMap.set(TreeNode.url, new Link(TreeNode.url, filePath));
+              linkMap.set(TreeNode.url, [filePath]);
             }
           });
         };
@@ -115,7 +118,12 @@ async function loadFilesAndLinks(
       .use(remarkStringify)
       .process(markdown);
   }
-  return [fileList, linkMap];
+
+  for (let [link, origins] of linkMap) {
+    linkList.push(new Link(link, origins));
+  }
+
+  return [fileList, linkList];
 }
 
 function loadFiles(existingPaths: string[]): File[] {
@@ -140,31 +148,27 @@ async function main() {
     ...SYNTHETIC_FILES,
   ];
 
-  // Parse the files with links and get a Map with all the links
+  // Parse the files with links and get a list with all the links
   // in all the files without duplications.
-  const [docsFiles, linkMap] = await loadFilesAndLinks(pathsWithLinks);
+  const [docsFiles, linkList] = await loadFilesAndLinks(pathsWithLinks);
 
   // Create an array with all the valid destinations for a link
   const otherFiles = loadFiles(pathsWithoutLinks);
   const existingFiles = docsFiles.concat(otherFiles);
 
-  // Validate the links
-  for (let [_, link] of linkMap) {
-    link.checkLink(existingFiles);
-  }
-
-  // Print the results of the validation.
+  // Validate the links and print the results
   let allGood = true;
-  for (let [_, link] of linkMap) {
-    for (let i = 0; i < link.status.length; i++) {
-      if (!link.status[i]) {
+  linkList.forEach((link) => {
+    const results = link.checkLink(existingFiles);
+    results.forEach((status, origin) => {
+      if (!status) {
         console.log(
-          `❌ ${link.origin[i]}: Could not find link '${link.value}'`,
+          `❌ ${link.origins[origin]}: Could not find link '${link.value}'`,
         );
         allGood = false;
       }
-    }
-  }
+    });
+  });
 
   if (!allGood) {
     console.log("\nSome links appear broken 💔\n");

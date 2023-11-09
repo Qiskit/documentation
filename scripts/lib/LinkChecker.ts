@@ -32,26 +32,20 @@ export class File {
 export class Link {
   readonly value: string;
   readonly anchor: string;
-  readonly origin: string[];
-  readonly status: boolean[];
+  readonly origins: string[];
   readonly isExternal: boolean;
 
-  constructor(linkString: string, origin: string) {
+  constructor(linkString: string, origins: string[]) {
     /*
      * linkString: Link as it appears in source file
-     *     origin: Path to source file containing link
+     *    origins: Paths to source file containing link
      */
 
     const splitLink = linkString.split("#", 2);
     this.value = splitLink[0];
     this.anchor = splitLink.length > 1 ? `#${splitLink[1]}` : "";
-    this.origin = [origin];
-    this.status = [];
+    this.origins = origins;
     this.isExternal = linkString.startsWith("http");
-  }
-
-  addOrigin(origin: string) {
-    this.origin.push(origin);
   }
 
   resolve(origin: string): string[] {
@@ -111,26 +105,24 @@ export class Link {
 
   checkLink(existingFiles: File[]) {
     /*
-     * Adds a boolean in the `status` attribute for every
-     * origin of the link, true if the link is in `existingFiles`
+     * Returns a boolean for each origin of the link,
+     * true if the link is in `existingFiles`
      * or is a valid external link, otherwise false
      */
+    const results = [];
+
     if (this.isExternal) {
       // External link
       const result = this.checkExternalLink();
-      this.origin.forEach(() => this.status.push(result));
+      this.origins.forEach(() => results.push(result));
     } else {
-      if (this.value.startsWith("/")) {
-        // Internal link (Absolute Path)
-        const result = this.checkInternalLink(existingFiles, "");
-        this.origin.forEach(() => this.status.push(result));
-      } else {
-        // Internal link (Relative Path)
-        for (let origin of this.origin) {
-          const result = this.checkInternalLink(existingFiles, origin);
-          this.status.push(result);
-        }
+      // Internal link
+      for (let origin of this.origins) {
+        const result = this.checkInternalLink(existingFiles, origin);
+        results.push(result);
       }
     }
+
+    return results;
   }
 }
