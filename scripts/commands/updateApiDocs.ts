@@ -301,7 +301,10 @@ async function convertHtmlToMarkdown(
       title: pkg.pkg.title,
       name: pkg.pkg.name,
       version: pkg.version,
-      releaseNotesUrl: pkg.pkg.name !== 'qiskit' ? `/api/${pkg.pkg.name}/release_notes` : undefined,
+      releaseNotesUrl:
+        pkg.pkg.name !== "qiskit"
+          ? `/api/${pkg.pkg.name}/release_notes`
+          : "https://github.com/qiskit/qiskit/releases",
       tocOptions: pkg.pkg.tocOptions,
     },
     results,
