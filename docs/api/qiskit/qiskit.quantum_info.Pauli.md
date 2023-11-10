@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Pauli
 
 <span id="qiskit.quantum_info.Pauli" />
 
-`qiskit.quantum_info.Pauli(data=None, x=None, *, z=None, label=None)`
+`qiskit.quantum_info.Pauli(data=None)`
 
 Bases: `BasePauli`
 
@@ -56,7 +56,7 @@ In the string representation qubit-0 corresponds to the right-most Pauli charact
 The string representation can be converted to a `Pauli` using the class initialization (`Pauli('-iXYZ')`). A `Pauli` object can be converted back to the string representation using the [`to_label()`](#qiskit.quantum_info.Pauli.to_label "qiskit.quantum_info.Pauli.to_label") method or `str(pauli)`.
 
 <Admonition title="Note" type="note">
-  Using `str` to convert a `Pauli` to a string will truncate the returned string for large numbers of qubits while [`to_label()`](#qiskit.quantum_info.Pauli.to_label "qiskit.quantum_info.Pauli.to_label") will return the full string with no truncation. The default truncation length is 50 characters. The default value can be changed by setting the class \_\_truncate\_\_ attribute to an integer value. If set to `0` no truncation will be performed.
+  Using `str` to convert a `Pauli` to a string will truncate the returned string for large numbers of qubits while [`to_label()`](#qiskit.quantum_info.Pauli.to_label "qiskit.quantum_info.Pauli.to_label") will return the full string with no truncation. The default truncation length is 50 characters. The default value can be changed by setting the class `__truncate__` attribute to an integer value. If set to `0` no truncation will be performed.
 </Admonition>
 
 **Array Representation**
@@ -455,7 +455,7 @@ the n-times composed operator.
 
 **Return type**
 
-[Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
+[Clifford](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
 
 **Raises**
 

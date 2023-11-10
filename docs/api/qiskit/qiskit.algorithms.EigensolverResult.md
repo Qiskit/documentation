@@ -19,7 +19,7 @@ Deprecated: Eigensolver Result.
 The EigensolverResult class has been superseded by the [`qiskit.algorithms.eigensolvers.EigensolverResult`](qiskit.algorithms.eigensolvers.EigensolverResult "qiskit.algorithms.eigensolvers.EigensolverResult") class. This class will be deprecated in a future release and subsequently removed after that.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.algorithms.eigen_solvers.eigen_solver.EigensolverResult` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the class `qiskit.algorithms.eigensolvers.EigensolverResult`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+  The class `qiskit.algorithms.eigen_solvers.eigen_solver.EigensolverResult` is deprecated as of qiskit 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the class `qiskit.algorithms.eigensolvers.EigensolverResult`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
 </Admonition>
 
 ## Attributes

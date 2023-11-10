@@ -183,6 +183,14 @@ Return whether the expression is real
 
 Logarithm of a ParameterExpression
 
+### sign
+
+<span id="qiskit.circuit.ParameterExpression.sign" />
+
+`sign()`
+
+Sign of a ParameterExpression
+
 ### sin
 
 <span id="qiskit.circuit.ParameterExpression.sin" />

@@ -66,5 +66,5 @@ Number of jacobian evaluations so far in the opimization.
 
 `int | None`
 
-Number of optmization steps performed so far in the optimization.
+Number of optimization steps performed so far in the optimization.
 
