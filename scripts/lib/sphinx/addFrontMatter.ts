@@ -17,7 +17,7 @@ import { Pkg } from "../../commands/updateApiDocs";
 export function addFrontMatter<T extends SphinxToMdResult>(
   results: T[],
   pkg: Pkg,
-  packageVersion: string
+  packageVersion: string,
 ): T[] {
   for (let result of results) {
     let markdown = result.markdown;
