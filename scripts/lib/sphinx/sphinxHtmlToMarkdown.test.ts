@@ -1430,6 +1430,7 @@ test("identify release notes", async () => {
   expect(
     await sphinxHtmlToMarkdown({
       html: `
+          <div role="main">
           <h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h1>
           <section id="release-notes-0-14-0">
           <span id="id1"></span><h2>0.14.0<a class="headerlink" href="#release-notes-0-14-0" title="Link to this heading">#</a></h2>
@@ -1445,13 +1446,28 @@ test("identify release notes", async () => {
       imageDestination: "/images/qiskit",
     }),
   ).toMatchInlineSnapshot(`
-        {
-          "images": [],
-          "isReleaseNotes": true,
-          "markdown": "",
-          "meta": {},
-        }
-      `);
+{
+  "images": [],
+  "isReleaseNotes": true,
+  "markdown": "# Release Notes
+
+<span id="release-notes-0-14-0" />
+
+<span id="id1" />
+
+## 0.14.0
+
+<span id="new-features" />
+
+<span id="release-notes-0-14-0-new-features" />
+
+### New Features
+
+*   There is a new class, \`qiskit_ibm_runtime.Batch\` that currently works the same way as [\`qiskit_ibm_runtime.Session\`](stubs/qiskit_ibm_runtime.Session#qiskit_ibm_runtime.Session \"qiskit_ibm_runtime.Session\") but will later be updated to better support submitting multiple jobs at once.
+",
+  "meta": {},
+}
+`);
 });
 
 async function toMd(html: string) {
