@@ -71,6 +71,10 @@ Set backend for simulation. This method changes noise\_model, coupling\_map, bas
 
 **backend** (`Union`\[`BackendV1`, `BackendV2`]) – backend to be set.
 
+**Raises**
+
+**MissingOptionalLibraryError if qiskit-aer is not found.** –
+
 **Return type**
 
 `None`
