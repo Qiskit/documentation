@@ -22,18 +22,16 @@ python_api_name: qiskit.quantum_info
 
 ## Operators
 
-|                                                                                                                         |                                                                         |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")(data\[, input\_dims, output\_dims])           | Matrix operator class                                                   |
-| [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")(\[data, x, z, label])                                  | N-qubit Pauli operator.                                                 |
-| [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")(data\[, validate, copy])                      | An N-qubit unitary operator from the Clifford group.                    |
-| [`ScalarOp`](qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")(\[dims, coeff])                               | Scalar identity operator class.                                         |
-| [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")(data\[, coeffs, ...])          | Sparse N-qubit operator in a Pauli basis representation.                |
-| [`CNOTDihedral`](qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral")(\[data, num\_qubits, validate])   | An N-qubit operator from the CNOT-Dihedral group.                       |
-| [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")(data)                                      | List of N-qubit Pauli operators.                                        |
-| [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")(data)                                   | DEPRECATED: Symplectic representation of a list Pauli matrices.         |
-| [`StabilizerTable`](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")(data\[, phase])          | DEPRECATED: Symplectic representation of a list Stabilizer matrices.    |
-| [`pauli_basis`](qiskit.quantum_info.pauli_basis "qiskit.quantum_info.pauli_basis")(num\_qubits\[, weight, pauli\_list]) | Return the ordered PauliTable or PauliList for the n-qubit Pauli basis. |
+|                                                                                                                       |                                                           |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")(data\[, input\_dims, output\_dims])         | Matrix operator class                                     |
+| [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")(\[data])                                             | N-qubit Pauli operator.                                   |
+| [`Clifford`](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")(data\[, validate, copy])                    | An N-qubit unitary operator from the Clifford group.      |
+| [`ScalarOp`](qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")(\[dims, coeff])                             | Scalar identity operator class.                           |
+| [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")(data\[, coeffs, ...])        | Sparse N-qubit operator in a Pauli basis representation.  |
+| [`CNOTDihedral`](qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral")(\[data, num\_qubits, validate]) | An N-qubit operator from the CNOT-Dihedral group.         |
+| [`PauliList`](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")(data)                                    | List of N-qubit Pauli operators.                          |
+| [`pauli_basis`](qiskit.quantum_info.pauli_basis "qiskit.quantum_info.pauli_basis")(num\_qubits\[, weight])            | Return the ordered PauliList for the n-qubit Pauli basis. |
 
 <span id="quantum-info-states" />
 
@@ -398,35 +396,6 @@ The mutual information $I(\rho_{AB})$.
 
 ## Utility Functions
 
-<span id="qiskit.quantum_info.negativity" />
-
-`qiskit.quantum_info.negativity(state, qargs)`
-
-Calculates the negativity.
-
-The mathematical expression for negativity is given by:
-
-$$
-{\cal{N}}(\rho) = \frac{|| \rho^{T_A}|| - 1 }{2}
-$$
-
-**Parameters**
-
-*   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a quantum state.
-*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – The subsystems to be transposed.
-
-**Returns**
-
-Negativity value of the quantum state
-
-**Return type**
-
-[float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
-
-**Raises**
-
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the input state is not a valid QuantumState.
-
 <span id="qiskit.quantum_info.partial_trace" />
 
 `qiskit.quantum_info.partial_trace(state, qargs)`
@@ -620,7 +589,7 @@ Methods of Molecular Quantum Mechanics. 2nd Edition, Academic Press, 1992. ISBN 
 
 Generator a random Statevector.
 
-The statevector is sampled from the uniform (Haar) measure.
+The statevector is sampled from the uniform distribution. This is the measure induced by the Haar measure on unitary matrices.
 
 **Parameters**
 
@@ -634,6 +603,10 @@ the random statevector.
 **Return type**
 
 [Statevector](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
+
+**Reference:**
+
+K. Zyczkowski and H. Sommers (2001), “Induced measures in the space of mixed quantum states”, [J. Phys. A: Math. Gen. 34 7111](https://arxiv.org/abs/quant-ph/0012101).
 
 <span id="qiskit.quantum_info.random_density_matrix" />
 
@@ -794,26 +767,6 @@ a random CNOTDihedral element.
 
 [CNOTDihedral](qiskit.quantum_info.CNOTDihedral "qiskit.quantum_info.CNOTDihedral")
 
-<span id="qiskit.quantum_info.random_pauli_table" />
-
-`qiskit.quantum_info.random_pauli_table(num_qubits, size=1, seed=None)`
-
-Return a random PauliTable.
-
-**Parameters**
-
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of qubits.
-*   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The number of rows of the table (Default: 1).
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
-
-**Returns**
-
-a random PauliTable.
-
-**Return type**
-
-[PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
-
 <span id="qiskit.quantum_info.random_pauli_list" />
 
 `qiskit.quantum_info.random_pauli_list(num_qubits, size=1, seed=None, phase=True)`
@@ -834,30 +787,6 @@ a random PauliList.
 **Return type**
 
 [PauliList](qiskit.quantum_info.PauliList "qiskit.quantum_info.PauliList")
-
-<span id="qiskit.quantum_info.random_stabilizer_table" />
-
-`qiskit.quantum_info.random_stabilizer_table(num_qubits, size=1, seed=None)`
-
-DEPRECATED: Return a random StabilizerTable.
-
-<Admonition title="Deprecated since version 0.22.0" type="danger">
-  The function `qiskit.quantum_info.operators.symplectic.random.random_stabilizer_table()` is deprecated as of qiskit-terra 0.22.0. It will be removed no earlier than 3 months after the release date. Instead, use the function `random_pauli_list`.
-</Admonition>
-
-**Parameters**
-
-*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – the number of qubits.
-*   **size** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Optional. The number of rows of the table (Default: 1).
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *or np.random.Generator*) – Optional. Set a fixed seed or generator for RNG.
-
-**Returns**
-
-a random StabilizerTable.
-
-**Return type**
-
-[PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
 
 ## Analysis
 

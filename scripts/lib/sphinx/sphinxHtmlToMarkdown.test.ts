@@ -128,6 +128,7 @@ describe("sphinxHtmlToMarkdown", () => {
               "src": "http://google.com/bar.png",
             },
           ],
+          "isReleaseNotes": false,
           "markdown": "![](/images/qiskit/foo.png) ![](/images/qiskit/bar.png)
         ",
           "meta": {},
@@ -576,6 +577,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
     ).toMatchInlineSnapshot(`
       {
         "images": [],
+        "isReleaseNotes": false,
         "markdown": "# Estimator
 
       <span id="qiskit_ibm_runtime.Sampler" />
@@ -626,6 +628,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
     ).toMatchInlineSnapshot(`
       {
         "images": [],
+        "isReleaseNotes": false,
         "markdown": "# circuits
 
       <span id="qiskit_ibm_runtime.Estimator.circuits" />
@@ -655,6 +658,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
     ).toMatchInlineSnapshot(`
       {
         "images": [],
+        "isReleaseNotes": false,
         "markdown": "# run
 
       <span id="qiskit_ibm_runtime.Estimator.run" />
@@ -684,6 +688,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
     ).toMatchInlineSnapshot(`
       {
         "images": [],
+        "isReleaseNotes": false,
         "markdown": "# callback
 
       <span id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" />
@@ -744,6 +749,7 @@ By default this is sys.stdout.</p></li>
     ).toMatchInlineSnapshot(`
       {
         "images": [],
+        "isReleaseNotes": false,
         "markdown": "<span id="job-monitor" />
 
       # job\\_monitor
@@ -795,6 +801,7 @@ By default this is sys.stdout.</p></li>
     ).toMatchInlineSnapshot(`
       {
         "images": [],
+        "isReleaseNotes": false,
         "markdown": "<span id="ibmjoberror" />
 
       # IBMJobError
@@ -862,6 +869,7 @@ By default this is sys.stdout.</p></li>
     ).toMatchInlineSnapshot(`
       {
         "images": [],
+        "isReleaseNotes": false,
         "markdown": "<span id="module-qiskit_ibm_provider.transpiler.passes.basis" />
 
       <span id="basis" />
@@ -938,6 +946,7 @@ By default this is sys.stdout.</p></li>
     ).toMatchInlineSnapshot(`
       {
         "images": [],
+        "isReleaseNotes": false,
         "markdown": "# wait\\_for\\_final\\_state
 
       <span id="qiskit_ibm_provider.job.IBMCircuitJob.wait_for_final_state" />
@@ -1415,6 +1424,50 @@ compilation flow follows the structure given below:</p>
       "
     `);
   });
+});
+
+test("identify release notes", async () => {
+  expect(
+    await sphinxHtmlToMarkdown({
+      html: `
+          <div role="main">
+          <h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h1>
+          <section id="release-notes-0-14-0">
+          <span id="id1"></span><h2>0.14.0<a class="headerlink" href="#release-notes-0-14-0" title="Link to this heading">#</a></h2>
+          <section id="new-features">
+          <span id="release-notes-0-14-0-new-features"></span><h3>New Features<a class="headerlink" href="#new-features" title="Link to this heading">#</a></h3>
+          <ul class="simple">
+          <li><p>There is a new class, <code class="xref py py-class docutils literal notranslate"><span class="pre">qiskit_ibm_runtime.Batch</span></code> that currently works
+          the same way as <a class="reference internal" href="stubs/qiskit_ibm_runtime.Session.html#qiskit_ibm_runtime.Session" title="qiskit_ibm_runtime.Session"><code class="xref py py-class docutils literal notranslate"><span class="pre">qiskit_ibm_runtime.Session</span></code></a> but will later be updated 
+          to better support submitting multiple jobs at once.</p></li>
+          </ul>
+          `,
+      url: "http://qiskit.org/docs/release_notes.html",
+      imageDestination: "/images/qiskit",
+    }),
+  ).toMatchInlineSnapshot(`
+{
+  "images": [],
+  "isReleaseNotes": true,
+  "markdown": "# Release Notes
+
+<span id="release-notes-0-14-0" />
+
+<span id="id1" />
+
+## 0.14.0
+
+<span id="new-features" />
+
+<span id="release-notes-0-14-0-new-features" />
+
+### New Features
+
+*   There is a new class, \`qiskit_ibm_runtime.Batch\` that currently works the same way as [\`qiskit_ibm_runtime.Session\`](stubs/qiskit_ibm_runtime.Session#qiskit_ibm_runtime.Session \"qiskit_ibm_runtime.Session\") but will later be updated to better support submitting multiple jobs at once.
+",
+  "meta": {},
+}
+`);
 });
 
 async function toMd(html: string) {

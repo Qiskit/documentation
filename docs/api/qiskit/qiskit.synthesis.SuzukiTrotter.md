@@ -34,10 +34,6 @@ $$
 
 \[1]: D. Berry, G. Ahokas, R. Cleve and B. Sanders, “Efficient quantum algorithms for simulating sparse Hamiltonians” (2006). [arXiv:quant-ph/0508139](https://arxiv.org/abs/quant-ph/0508139) \[2]: N. Hatano and M. Suzuki, “Finding Exponential Product Formulas of Higher Orders” (2005). [arXiv:math-ph/0506007](https://arxiv.org/pdf/math-ph/0506007.pdf)
 
-<Admonition title="Deprecated since version 0.20.0" type="danger">
-  Setting order to an odd number in the constructor of SuzukiTrotter is deprecated as of qiskit-terra 0.20.0. It will be removed no earlier than 3 months after the release date. Suzuki product formulae are symmetric and therefore only defined for even orders.
-</Admonition>
-
 **Parameters**
 
 *   **order** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The order of the product formula.
@@ -45,6 +41,10 @@ $$
 *   **insert\_barriers** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Whether to insert barriers between the atomic evolutions.
 *   **cx\_structure** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – How to arrange the CX gates for the Pauli evolutions, can be “chain”, where next neighbor connections are used, or “fountain”, where all qubits are connected to one.
 *   **atomic\_evolution** ([*Callable*](https://docs.python.org/3/library/typing.html#typing.Callable "(in Python v3.12)")*\[\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli")  *|*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp")*,* [*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")*],* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")*] | None*) – A function to construct the circuit for the evolution of single Pauli string. Per default, a single Pauli evolution is decomposed in a CX chain and a single qubit Z rotation.
+
+**Raises**
+
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If order is not even
 
 ## Attributes
 
