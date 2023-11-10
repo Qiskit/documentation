@@ -162,7 +162,7 @@ Run qobj asynchronously.
 
 **Parameters**
 
-*   **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
+*   **qobj** (*Qobj*) – payload of the experiment
 *   **backend\_options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – backend options
 
 **Returns**
@@ -210,7 +210,7 @@ Run an experiment (circuit) and return a single experiment result.
 
 **Parameters**
 
-**experiment** (*QobjExperiment*) – experiment from qobj experiments list
+**experiment** ([*QasmQobjExperiment*](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment")) – experiment from qobj experiments list
 
 **Returns**
 
@@ -238,8 +238,7 @@ A result dictionary which looks something like:
 
 **Raises**
 
-*   [**BasicAerError**](qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if the number of qubits in the circuit is greater than 24.
-*   **Note that the practical qubit limit is much lower than 24.** –
+[**BasicAerError**](qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if the number of qubits in the circuit is greater than 24. Note that the practical qubit limit is much lower than 24.
 
 ### set\_options
 

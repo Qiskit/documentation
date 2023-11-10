@@ -38,7 +38,7 @@ Create quantum volume model circuit of size num\_qubits x depth.
 
 *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of active qubits in model circuit.
 *   **depth** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – layers of SU(4) operations in model circuit.
-*   **seed** ([*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v1.26)")  *|*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – Random number generator or generator seed.
+*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*Generator*](https://numpy.org/doc/stable/reference/random/generator.html#numpy.random.Generator "(in NumPy v1.26)") *| None*) – Random number generator or generator seed.
 *   **classical\_permutation** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – use classical permutations at every layer, rather than quantum.
 
 ## Attributes
@@ -87,7 +87,7 @@ QuantumCircuitData
 
 ### global\_phase
 
-Return the global phase of the circuit in radians.
+Return the global phase of the current circuit scope in radians.
 
 <span id="qiskit.circuit.library.QuantumVolume.header" />
 
@@ -99,7 +99,7 @@ Return the global phase of the circuit in radians.
 
 ### instances
 
-`= 425`
+`= 162`
 
 <span id="qiskit.circuit.library.QuantumVolume.layout" />
 

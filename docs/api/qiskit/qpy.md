@@ -102,7 +102,7 @@ The list of Qiskit programs contained in the QPY data. A list is always returned
 
 <span id="qiskit.qpy.dump" />
 
-`qiskit.qpy.dump(programs, file_obj, metadata_serializer=None)`
+`qiskit.qpy.dump(programs, file_obj, metadata_serializer=None, use_symengine=False)`
 
 Write QPY binary data to a file
 
@@ -138,15 +138,12 @@ with gzip.open('bell.qpy.gz', 'wb') as fd:
 
 Which will save the qpy serialized circuit to the provided file.
 
-<Admonition title="Deprecated since version 0.21.0" type="danger">
-  `qiskit.qpy.interface.dump()`’s argument `circuits` is deprecated as of qiskit-terra 0.21.0. It will be removed no earlier than 3 months after the release date. Instead, use the argument `programs`, which behaves identically.
-</Admonition>
-
 **Parameters**
 
 *   **programs** ([*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")  *|*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")) – QPY supported object(s) to store in the specified file like object. QPY supports [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"). Different data types must be separately serialized.
 *   **file\_obj** ([*BinaryIO*](https://docs.python.org/3/library/typing.html#typing.BinaryIO "(in Python v3.12)")) – The file like object to write the QPY data too
 *   **metadata\_serializer** ([*Type*](https://docs.python.org/3/library/typing.html#typing.Type "(in Python v3.12)")*\[JSONEncoder] | None*) – An optional JSONEncoder class that will be passed the `.metadata` attribute for each program in `programs` and will be used as the `cls` kwarg on the json.dump()\` call to JSON serialize that dictionary.
+*   **use\_symengine** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If True, all objects containing symbolic expressions will be serialized using symengine’s native mechanism. This is a faster serialization alternative, but not supported in all platforms. Please check that your target platform is supported by the symengine library before setting this option, as it will be required by qpy to deserialize the payload. For this reason, the option defaults to False.
 
 **Raises**
 
@@ -175,7 +172,7 @@ For example, if you generated a QPY file using qiskit-terra 0.18.1 you could loa
 
 The QPY serialization format is a portable cross-platform binary serialization format for [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects in Qiskit. The basic file format is as follows:
 
-A QPY file (or memory object) always starts with the following 7 byte UTF8 string: `QISKIT` which is immediately followed by the overall file header. The contents of the file header as defined as a C struct are:
+A QPY file (or memory object) always starts with the following 6 byte UTF8 string: `QISKIT` which is immediately followed by the overall file header. The contents of the file header as defined as a C struct are:
 
 ```python
 struct {
@@ -187,6 +184,19 @@ struct {
 }
 ```
 
+From V10 on, a new field is added to the file header struct to represent the encoding scheme used for symbolic expressions:
+
+```python
+struct {
+    uint8_t qpy_version;
+    uint8_t qiskit_major_version;
+    uint8_t qiskit_minor_version;
+    uint8_t qiskit_patch_version;
+    uint64_t num_circuits;
+    char symbolic_encoding;
+}
+```
+
 All values use network byte order [\[1\]](#f1) (big endian) for cross platform compatibility.
 
 The file header is immediately followed by the circuit payloads. Each individual circuit is composed of the following parts:
@@ -194,6 +204,48 @@ The file header is immediately followed by the circuit payloads. Each individual
 `HEADER | METADATA | REGISTERS | CUSTOM_DEFINITIONS | INSTRUCTIONS`
 
 There is a circuit payload for each circuit (where the total number is dictated by `num_circuits` in the file header). There is no padding between the circuits in the data.
+
+<span id="qpy-version-10" />
+
+### Version 10
+
+Version 10 adds support for symengine-native serialization for objects of type [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") as well as symbolic expressions in Pulse schedule blocks. Version 10 also adds support for new fields in the [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") class added in the Qiskit 0.45.0 release.
+
+The symbolic\_encoding field is added to the file header, and a new encoding type char is introduced, mapped to each symbolic library as follows: `p` refers to sympy encoding and `e` refers to symengine encoding.
+
+<span id="file-header" />
+
+#### FILE\_HEADER
+
+The contents of FILE\_HEADER after V10 are defined as a C struct as:
+
+```python
+struct {
+    uint8_t qpy_version;
+    uint8_t qiskit_major_version;
+    uint8_t qiskit_minor_version;
+    uint8_t qiskit_patch_version;
+    uint64_t num_circuits;
+    char symbolic_encoding;
+}
+```
+
+#### LAYOUT
+
+The `LAYOUT` struct is updated to have an additional `input_qubit_count` field. With version 10 the `LAYOUT` struct is now:
+
+```python
+struct {
+    char exists;
+    int32_t initial_layout_size;
+    int32_t input_mapping_size;
+    int32_t final_layout_size;
+    uint32_t extra_registers;
+    int32_t input_qubit_count;
+}
+```
+
+The rest of the layout data after the `LAYOUT` struct is represented as in previous versions. If `input qubit_count` is \< 0 that indicates that both `_input_qubit_count` and `_output_qubit_list` in the [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") object are `None`.
 
 <span id="qpy-version-9" />
 
@@ -255,7 +307,7 @@ This represents a literal object in the classical type system, such as an intege
 
 #### Changes to INSTRUCTION
 
-To support the use of [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") nodes in the fields `IfElseOp.condition`, `WhileLoopOp.condition` and `SwitchCaseOp.target`, the INSTRUCTION struct is changed in an ABI compatible-manner to [its previous definition](#qpy-instruction-v5). The new struct is the C struct:
+To support the use of [`Expr`](circuit_classical#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") nodes in the fields [`IfElseOp.condition`](qiskit.circuit.IfElseOp#condition "qiskit.circuit.IfElseOp.condition"), [`WhileLoopOp.condition`](qiskit.circuit.WhileLoopOp#condition "qiskit.circuit.WhileLoopOp.condition") and `SwitchCaseOp.target`, the INSTRUCTION struct is changed in an ABI compatible-manner to [its previous definition](#qpy-instruction-v5). The new struct is the C struct:
 
 ```python
 struct {
@@ -291,6 +343,8 @@ A new type code `x` is added that defines an EXPRESSION parameter.
 ### Version 8
 
 Version 8 adds support for handling a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") stored in the [`QuantumCircuit.layout`](qiskit.circuit.QuantumCircuit#layout "qiskit.circuit.QuantumCircuit.layout") attribute. In version 8 immediately following the calibrations block at the end of the circuit payload there is now the `LAYOUT` struct. This struct outlines the size of the three attributes of a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") class.
+
+<span id="id3" />
 
 #### LAYOUT
 
@@ -811,7 +865,7 @@ This is immediately followed by `name_size` bytes of utf8 data for the name of t
 
 ### Version 1
 
-<span id="id4" />
+<span id="id5" />
 
 #### HEADER
 
@@ -973,7 +1027,7 @@ which is immediately followed by `name_size` utf8 bytes representing the paramet
 
 <span id="qpy-param-expr" />
 
-<span id="id6" />
+<span id="id7" />
 
 #### PARAMETER\_EXPR
 
@@ -1018,11 +1072,11 @@ this matches the internal C representation of Python’s complex type. [\[3\]](#
 
 [https://tools.ietf.org/html/rfc1700](https://tools.ietf.org/html/rfc1700)
 
-\[2] ([1](#id3),[2](#id5))
+\[2] ([1](#id4),[2](#id6))
 
 [https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html](https://numpy.org/doc/stable/reference/generated/numpy.lib.format.html)
 
-\[[3](#id7)]
+\[[3](#id8)]
 
 [https://docs.python.org/3/c-api/complex.html#c.Py\_complex](https://docs.python.org/3/c-api/complex.html#c.Py_complex)
 

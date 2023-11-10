@@ -20,9 +20,31 @@ This abstract class is to be used for all Backend objects created by a provider.
 
 The `options` attribute of the backend is used to contain the dynamic user configurable options of the backend. It should be used more for runtime options that configure how the backend is used. For example, something like a `shots` field for a backend that runs experiments which would contain an int for how many shots to execute.
 
-If migrating a provider from [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") or `BaseBackend` one thing to keep in mind is for backwards compatibility you might need to add a configuration method that will build a [`BackendConfiguration`](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration") object and [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") from the attributes defined in this class for backwards compatibility.
+If migrating a provider from [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1") one thing to keep in mind is for backwards compatibility you might need to add a configuration method that will build a [`BackendConfiguration`](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration") object and [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") from the attributes defined in this class for backwards compatibility.
 
 A backend object can optionally contain methods named `get_translation_stage_plugin` and `get_scheduling_stage_plugin`. If these methods are present on a backend object and this object is used for [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") or [`generate_preset_pass_manager()`](transpiler_preset#qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager "qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager") the transpilation process will default to using the output from those methods as the scheduling stage and the translation compilation stage. This enables a backend which has custom requirements for compilation to specify a stage plugin for these stages to enable custom transformation of the circuit to ensure it is runnable on the backend. These hooks are enabled by default and should only be used to enable extra compilation steps if they are **required** to ensure a circuit is executable on the backend or have the expected level of performance. These methods are passed no input arguments and are expected to return a `str` representing the method name which should be a stage plugin (see: [`qiskit.transpiler.preset_passmanagers.plugin`](transpiler_plugins#module-qiskit.transpiler.preset_passmanagers.plugin "qiskit.transpiler.preset_passmanagers.plugin") for more details on plugins). The typical expected use case is for a backend provider to implement a stage plugin for `translation` or `scheduling` that contains the custom compilation passes and then for the hook methods on the backend object to return the plugin name so that [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") will use it by default when targetting the backend.
+
+Subclasses of this should override the public method [`run()`](#qiskit.providers.BackendV2.run "qiskit.providers.BackendV2.run") and the internal [`_default_options()`](#qiskit.providers.BackendV2._default_options "qiskit.providers.BackendV2._default_options"):
+
+### \_default\_options
+
+<span id="qiskit.providers.BackendV2._default_options" />
+
+`abstract classmethod _default_options()`
+
+Return the default options
+
+This method will return a [`qiskit.providers.Options`](qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
+
+**Returns**
+
+**A options object with**
+
+default values set
+
+**Return type**
+
+[qiskit.providers.Options](qiskit.providers.Options "qiskit.providers.Options")
 
 Initialize a BackendV2 based backend
 
@@ -57,11 +79,7 @@ This is required to be implemented if the backend supports Pulse scheduling.
 
 **Returns**
 
-The input signal timestep in seconds. If the backend doesn’t define `dt` `None` will be returned
-
-**Return type**
-
-dt
+The input signal timestep in seconds. If the backend doesn’t define `dt`, `None` will be returned.
 
 <span id="qiskit.providers.BackendV2.dtm" />
 
@@ -72,10 +90,6 @@ Return the system time resolution of output signals
 **Returns**
 
 The output signal timestep in seconds.
-
-**Return type**
-
-dtm
 
 **Raises**
 
@@ -118,10 +132,6 @@ This is required to be implemented if the backend supports Pulse scheduling.
 **Returns**
 
 The grouping of measurements which are multiplexed
-
-**Return type**
-
-meas\_map
 
 **Raises**
 
@@ -182,6 +192,30 @@ A [`qiskit.transpiler.Target`](qiskit.transpiler.Target "qiskit.transpiler.Targe
 ### version
 
 `= 2`
+
+<span id="qiskit.providers.BackendV2.name" />
+
+### name
+
+Name of the backend.
+
+<span id="qiskit.providers.BackendV2.description" />
+
+### description
+
+Optional human-readable description.
+
+<span id="qiskit.providers.BackendV2.online_date" />
+
+### online\_date
+
+Date that the backend came online.
+
+<span id="qiskit.providers.BackendV2.backend_version" />
+
+### backend\_version
+
+Version of the backend being provided. This is not the same as [`BackendV2.version`](#qiskit.providers.BackendV2.version "qiskit.providers.BackendV2.version"), which is the version of the [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") abstract interface.
 
 ## Methods
 
@@ -291,19 +325,19 @@ If there are no defined or the backend doesn’t support querying these details 
 
 **Parameters**
 
-**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit to get the `QubitProperties` object for. This can be a single integer for 1 qubit or a list of qubits and a list of `QubitProperties` objects will be returned in the same order
+**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit to get the [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object for. This can be a single integer for 1 qubit or a list of qubits and a list of [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") objects will be returned in the same order
 
 **Returns**
 
 The [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object for the specified qubit. If a list of qubits is provided a list will be returned. If properties are missing for a qubit this can be `None`.
 
-**Return type**
-
-qubit\_properties
-
 **Raises**
 
 [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the qubit properties
+
+**Return type**
+
+[*QubitProperties*](qiskit.providers.QubitProperties "qiskit.providers.backend.QubitProperties") | [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*QubitProperties*](qiskit.providers.QubitProperties "qiskit.providers.backend.QubitProperties")]
 
 ### run
 
@@ -317,7 +351,7 @@ This method returns a [`Job`](qiskit.providers.Job "qiskit.providers.Job") objec
 
 **Parameters**
 
-*   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An individual or a list of `ScheduleBlock`, or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend.
+*   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An individual or a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"), or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend.
 *   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
 
 **Returns**
