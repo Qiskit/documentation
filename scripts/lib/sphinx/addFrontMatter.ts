@@ -17,7 +17,6 @@ import { Pkg } from "../sharedTypes";
 export function addFrontMatter<T extends SphinxToMdResult>(
   results: T[],
   pkg: Pkg,
-  packageVersion: string,
 ): T[] {
   for (let result of results) {
     let markdown = result.markdown;
@@ -36,6 +35,7 @@ ${markdown}
       result.markdown = `---
 title: ${pkg.title} release notes
 description: Changes made to ${pkg.title}
+in_page_toc_max_heading_level: 2
 ---
 
 ${markdown}
