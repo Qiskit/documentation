@@ -264,7 +264,7 @@ async function convertHtmlToMarkdown(
       version,
       releaseNotesUrl:
         pkg.name !== "qiskit"
-          ? `/api/${pkg.name}/release_notes`
+          ? `/api/${pkg.name}/release-notes`
           : "https://github.com/qiskit/qiskit/releases",
       tocOptions: pkg.tocOptions,
     },
@@ -285,5 +285,6 @@ async function convertHtmlToMarkdown(
 }
 
 function urlToPath(url: string) {
+  url = url.replaceAll("release_notes", "release-notes")
   return `${getRoot()}/docs${url}.md`;
 }
