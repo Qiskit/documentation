@@ -128,6 +128,7 @@ describe("sphinxHtmlToMarkdown", () => {
               "src": "http://google.com/bar.png",
             },
           ],
+          "isReleaseNotes": false,
           "markdown": "![](/images/qiskit/foo.png) ![](/images/qiskit/bar.png)
         ",
           "meta": {},
@@ -576,6 +577,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
     ).toMatchInlineSnapshot(`
       {
         "images": [],
+        "isReleaseNotes": false,
         "markdown": "# Estimator
 
       <span id="qiskit_ibm_runtime.Sampler" />
@@ -626,6 +628,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
     ).toMatchInlineSnapshot(`
       {
         "images": [],
+        "isReleaseNotes": false,
         "markdown": "# circuits
 
       <span id="qiskit_ibm_runtime.Estimator.circuits" />
@@ -655,6 +658,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
     ).toMatchInlineSnapshot(`
       {
         "images": [],
+        "isReleaseNotes": false,
         "markdown": "# run
 
       <span id="qiskit_ibm_runtime.Estimator.run" />
@@ -684,6 +688,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
     ).toMatchInlineSnapshot(`
       {
         "images": [],
+        "isReleaseNotes": false,
         "markdown": "# callback
 
       <span id="qiskit_ibm_runtime.options.EnvironmentOptions.callback" />
@@ -744,6 +749,7 @@ By default this is sys.stdout.</p></li>
     ).toMatchInlineSnapshot(`
       {
         "images": [],
+        "isReleaseNotes": false,
         "markdown": "<span id="job-monitor" />
 
       # job\\_monitor
@@ -795,6 +801,7 @@ By default this is sys.stdout.</p></li>
     ).toMatchInlineSnapshot(`
       {
         "images": [],
+        "isReleaseNotes": false,
         "markdown": "<span id="ibmjoberror" />
 
       # IBMJobError
@@ -862,6 +869,7 @@ By default this is sys.stdout.</p></li>
     ).toMatchInlineSnapshot(`
       {
         "images": [],
+        "isReleaseNotes": false,
         "markdown": "<span id="module-qiskit_ibm_provider.transpiler.passes.basis" />
 
       <span id="basis" />
@@ -938,6 +946,7 @@ By default this is sys.stdout.</p></li>
     ).toMatchInlineSnapshot(`
       {
         "images": [],
+        "isReleaseNotes": false,
         "markdown": "# wait\\_for\\_final\\_state
 
       <span id="qiskit_ibm_provider.job.IBMCircuitJob.wait_for_final_state" />
