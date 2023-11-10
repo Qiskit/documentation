@@ -6,10 +6,27 @@ description: Introduction to primitives in Qiskit and Qiskit Runtime, and an exp
 
 # Introduction to primitives
 
-In computing, a primitive is the smallest processing instruction for a given abstraction level. Put simply, they are the simplest building blocks from which a user can create something useful - and since primitives abstract away implementation details, users can accomplish tasks without needing to worry about low-level specifics.  The computational model proposed by primitives moves quantum programming one step closer to where classical programming is today, where the focus is less on the hardware details and more on the results you are trying to achieve. 
+Computing systems are built upon multiples layers of **abstraction**. We generate abstractions by generalizing certain
+details of *how* the technology works, to allow us to focus our attention on the details that are relevant for a
+specific task. The level of abstraction we choose to work with will depend on how we want to interact with the computer.
+The closer we get to the hardware, the lower-level we would need the abstractions to be (for example, we could
+want to manipulate electrical signals), and vice-versa, the more complex the task we want to perform,
+the higher-level abstractions we would need (for example, we could be using a programming library to perform
+algebraic calculations).
 
-Fundamental to quantum computation is the need to sample and estimate data. With this in mind, Qiskit has introduced its first two primitives: Estimator and Sampler.
+In this context, a **primitive** is the smallest processing instruction for a given **abstraction** level. Primitives
+represent the simplest building block from which one can create something **useful**.
 
+In quantum computing, we are used to working at lower levels of abstraction, where we manually intervene on what
+gate is applied to what qubit. As we move towards larger systems and more complex workflows, we can get greater
+benefits from working at higher levels of abstraction. We have identified two fundamental
+operations we commonly apply on quantum states: we either sample from them, or use them to compute expectation values
+of observables. These two operations have motivated the design of *the first two Qiskit Primitives: Sampler and
+Estimator*. The computational model introduced by the Qiskit Primitives moves quantum programming one step closer to where classical
+programming is today, where the focus is less on the hardware details and more on the results you are trying to achieve.
+
+
+[//]: # (Fundamental to quantum computation is the need to sample and estimate data. With this in mind, Qiskit has introduced its first two primitives: Estimator and Sampler.)
 
 <Admonition type="note" title="What is the difference between the open-source and Qiskit Runtime primitives?">
 
@@ -21,7 +38,7 @@ Fundamental to quantum computation is the need to sample and estimate data. With
 
 The Estimator primitive computes expectation values of observables with respect to states prepared by quantum circuits. Users generally specify a list of circuits, observables, and possibly some additional configuration, with which the program can efficiently evaluate expectation values and variances.
 
-## Sampler 
+## Sampler
 
 The Sampler primitive calculates probabilities or quasi-probability distributions of bitstrings from quantum circuits. Quasi-probability distributions are similar to regular probabilities, except they may include negative values, which can occur when using certain error mitigation techniques.
 
@@ -35,7 +52,7 @@ For hardware providers, implementing primitives natively means you can provide y
 
 ## How to use Qiskit primitives
 
-The `qiskit.primitives` module enables the development of primitive-style quantum programs and was specifically designed to simplify switching between different types of backends. The module provides three separate classes for each primitive type: 
+The `qiskit.primitives` module enables the development of primitive-style quantum programs and was specifically designed to simplify switching between different types of backends. The module provides three separate classes for each primitive type:
 
 1. `Sampler` and `Estimator`
 
