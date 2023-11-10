@@ -127,7 +127,7 @@ export function generateToc(options: {
 
   if (pkg.releaseNotesUrl) {
     tocChildren.push({
-      title: "Release notes",
+      title: pkg.name === "qiskit" ? "Changelog" : "Release notes",
       url: pkg.releaseNotesUrl,
     });
   }
