@@ -101,7 +101,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 ### global\_phase
 
-Return the global phase of the circuit in radians.
+Return the global phase of the current circuit scope in radians.
 
 <span id="qiskit.circuit.library.WeightedAdder.header" />
 
@@ -113,7 +113,7 @@ Return the global phase of the circuit in radians.
 
 ### instances
 
-`= 127`
+`= 293`
 
 <span id="qiskit.circuit.library.WeightedAdder.layout" />
 

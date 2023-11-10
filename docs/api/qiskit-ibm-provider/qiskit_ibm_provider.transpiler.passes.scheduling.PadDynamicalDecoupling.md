@@ -137,9 +137,9 @@ Dynamical decoupling initializer.
 
 **Parameters**
 
-*   **durations** ([`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations "(in Qiskit v0.44)")) – Durations of instructions to be used in scheduling.
+*   **durations** ([`InstructionDurations`](/api/qiskit/qiskit.transpiler.InstructionDurations.html#qiskit.transpiler.InstructionDurations "(in Qiskit v0.44)")) – Durations of instructions to be used in scheduling.
 
-*   **dd\_sequences** (`Union`\[`List`\[[`Gate`](/api/qiskit/qiskit.circuit.Gate "(in Qiskit v0.44)")], `List`\[`List`\[[`Gate`](/api/qiskit/qiskit.circuit.Gate "(in Qiskit v0.44)")]]]) – Sequence of gates to apply in idle spots. Alternatively a list of gate sequences may be supplied that will preferentially be inserted if there is a delay of sufficient duration. This may be tuned by the optionally supplied `sequence_min_length_ratios`.
+*   **dd\_sequences** (`Union`\[`List`\[[`Gate`](/api/qiskit/qiskit.circuit.Gate.html#qiskit.circuit.Gate "(in Qiskit v0.44)")], `List`\[`List`\[[`Gate`](/api/qiskit/qiskit.circuit.Gate.html#qiskit.circuit.Gate "(in Qiskit v0.44)")]]]) – Sequence of gates to apply in idle spots. Alternatively a list of gate sequences may be supplied that will preferentially be inserted if there is a delay of sufficient duration. This may be tuned by the optionally supplied `sequence_min_length_ratios`.
 
 *   **qubits** (`Optional`\[`List`\[`int`]]) – Physical qubits on which to apply DD. If None, all qubits will undergo DD (when possible).
 
@@ -160,7 +160,7 @@ Dynamical decoupling initializer.
 
 *   **insert\_multiple\_cycles** (`bool`) – If the available duration exceeds 2\*sequence\_min\_length\_ratio\*duration(dd\_sequence) enable the insertion of multiple rounds of the dynamical decoupling sequence in that delay.
 
-*   **coupling\_map** (`Optional`\[[`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap "(in Qiskit v0.44)")]) – directed graph representing the coupling map for the device. Specifying a coupling map partitions the device into subcircuits, in order to apply DD sequences with different pulse spacings within each. Currently support 2 subcircuits.
+*   **coupling\_map** (`Optional`\[[`CouplingMap`](/api/qiskit/qiskit.transpiler.CouplingMap.html#qiskit.transpiler.CouplingMap "(in Qiskit v0.44)")]) – directed graph representing the coupling map for the device. Specifying a coupling map partitions the device into subcircuits, in order to apply DD sequences with different pulse spacings within each. Currently support 2 subcircuits.
 
 *   **alt\_spacings** (`Union`\[`List`\[`List`\[`float`]], `List`\[`float`], `None`]) – A list of lists of spacings between the DD gates, for the second subcircuit, as determined by the coupling map. If None, a balanced spacing that is staggered with respect to the first subcircuit will be used \[d, d, d, …, d, d, 0].
 
@@ -239,7 +239,7 @@ Run the padding pass on `dag`.
 
 **Parameters**
 
-**dag** ([`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit "(in Qiskit v0.44)")) – DAG to be checked.
+**dag** ([`DAGCircuit`](/api/qiskit/qiskit.dagcircuit.DAGCircuit.html#qiskit.dagcircuit.DAGCircuit "(in Qiskit v0.44)")) – DAG to be checked.
 
 **Returns**
 

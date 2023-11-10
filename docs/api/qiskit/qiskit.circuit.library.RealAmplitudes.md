@@ -178,7 +178,7 @@ Returns whether the circuit is wrapped in nested gates/instructions or flattened
 
 ### global\_phase
 
-Return the global phase of the circuit in radians.
+Return the global phase of the current circuit scope in radians.
 
 <span id="qiskit.circuit.library.RealAmplitudes.header" />
 
@@ -210,7 +210,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 127`
+`= 293`
 
 <span id="qiskit.circuit.library.RealAmplitudes.layout" />
 
