@@ -34,4 +34,6 @@ Qiskit schema-conformant objects used by the backends and providers.
 | [`PulseDefaults`](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")(qubit\_freq\_est, meas\_freq\_est, ...)                 | Description of default settings for Pulse systems.                    |
 | [`Command`](qiskit.providers.models.Command "qiskit.providers.models.Command")(name\[, qubits, sequence])                                                | Class representing a Command.                                         |
 | [`JobStatus`](qiskit.providers.models.JobStatus "qiskit.providers.models.JobStatus")(job\_id, status, status\_msg, \*\*kwargs)                           | Model for JobStatus.                                                  |
+| [`GateProperties`](qiskit.providers.models.GateProperties "qiskit.providers.models.GateProperties")(qubits, gate, parameters, ...)                       | Class representing a gate's properties                                |
+| [`Nduv`](qiskit.providers.models.Nduv "qiskit.providers.models.Nduv")(date, name, unit, value)                                                           | Class representing name-date-unit-value                               |
 

@@ -18,11 +18,13 @@ python_api_name: qiskit.qasm2
 
 `qiskit.qasm2`
 
-Qiskit has support for interoperation with OpenQASM 2.0 programs, both parsing into Qiskit formats and exporting back to OpenQASM 2. The parsing components live in this module, while currently the export capabilities are limited to being the [`QuantumCircuit.qasm()`](qiskit.circuit.QuantumCircuit#qasm "qiskit.circuit.QuantumCircuit.qasm") method.
+Qiskit has support for interoperation with OpenQASM 2.0 programs, both [parsing into Qiskit formats](#qasm2-parse) and [exporting back to OpenQASM 2](#qasm2-export).
 
 <Admonition title="Note" type="note">
   OpenQASM 2 is a simple language, and not suitable for general serialisation of Qiskit objects. See [some discussion of alternatives below](#qasm2-alternatives), if that is what you are looking for.
 </Admonition>
+
+<span id="qasm2-parse" />
 
 ## Parsing API
 
@@ -113,6 +115,49 @@ The given callable must be a Python function that takes num\_params floats, and 
 
 Both of the loader functions have an optional “strict” mode. By default, this parser is a little bit more relaxed than the official specification: it allows trailing commas in parameter lists; unnecessary (empty-statement) semicolons; the `OPENQASM 2.0;` version statement to be omitted; and a couple of other quality-of-life improvements without emitting any errors. You can use the letter-of-the-spec mode with `strict=True`.
 
+<span id="qasm2-export" />
+
+## Exporting API
+
+Similar to other serialisation modules in Python, this module offers two public functions: [`dump()`](#qiskit.qasm2.dump "qiskit.qasm2.dump") and [`dumps()`](#qiskit.qasm2.dumps "qiskit.qasm2.dumps"), which take a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and write out a representative OpenQASM 2 program to a file-like object or return a string, respectively.
+
+<span id="qiskit.qasm2.dump" />
+
+`qiskit.qasm2.dump(circuit, filename_or_stream, /)`
+
+Dump a circuit as an OpenQASM 2 program to a file or stream.
+
+**Parameters**
+
+*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") to be exported.
+*   **filename\_or\_stream** ([*os.PathLike*](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.12)")  *|*[*io.TextIOBase*](https://docs.python.org/3/library/io.html#io.TextIOBase "(in Python v3.12)")) – either a path-like object (likely a [`str`](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") or [`pathlib.Path`](https://docs.python.org/3/library/pathlib.html#pathlib.Path "(in Python v3.12)")), or an already opened text-mode stream.
+
+**Raises**
+
+[**QASM2ExportError**](#qiskit.qasm2.QASM2ExportError "qiskit.qasm2.QASM2ExportError") – if the circuit cannot be represented by OpenQASM 2.
+
+<span id="qiskit.qasm2.dumps" />
+
+`qiskit.qasm2.dumps(circuit, /)`
+
+Export a circuit to an OpenQASM 2 program in a string.
+
+**Parameters**
+
+**circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") to be exported.
+
+**Returns**
+
+An OpenQASM 2 string representing the circuit.
+
+**Raises**
+
+[**QASM2ExportError**](#qiskit.qasm2.QASM2ExportError "qiskit.qasm2.QASM2ExportError") – if the circuit cannot be represented by OpenQASM 2.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
+
 ## Errors
 
 This module defines a generic error type that derives from [`QiskitError`](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") that can be used as a catch when you care about failures emitted by the interoperation layer specifically.
@@ -135,7 +180,7 @@ An error raised because of a failure to parse an OpenQASM 2 file.
 
 Set the error message.
 
-Similarly, a failure during the export of an OpenQASM 2 program will raise its own subclass of [`QASM2Error`](#qiskit.qasm2.QASM2Error "qiskit.qasm2.QASM2Error"):
+When the exporters fail to export a circuit, likely because it has structure that cannot be represented by OpenQASM 2.0, they will also emit a custom error.
 
 <span id="qiskit.qasm2.QASM2ExportError" />
 
@@ -148,6 +193,57 @@ Set the error message.
 <span id="qasm2-examples" />
 
 ## Examples
+
+### Exporting examples
+
+Export a simple [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") to an OpenQASM 2 string:
+
+```python
+import qiskit.qasm2
+from qiskit.circuit import QuantumCircuit
+
+qc = QuantumCircuit(2, 2)
+qc.h(0)
+qc.cx(0, 1)
+qc.measure([0, 1], [0, 1])
+print(qiskit.qasm2.dumps(qc))
+```
+
+```python
+OPENQASM 2.0;
+include "qelib1.inc";
+qreg q[2];
+creg c[2];
+h q[0];
+cx q[0],q[1];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
+```
+
+Write out the same [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") to a given filename:
+
+```python
+qiskit.qasm2.dump(qc, "myfile.qasm")
+```
+
+Similarly, one can use general [`os.PathLike`](https://docs.python.org/3/library/os.html#os.PathLike "(in Python v3.12)") instances as the filename:
+
+```python
+import pathlib
+
+qiskit.qasm2.dump(qc, pathlib.Path.home() / "myfile.qasm")
+```
+
+One can also dump the text to an already-open stream:
+
+```python
+import io
+
+with io.StringIO() as stream:
+    qiskit.qasm2.dump(qc, stream)
+```
+
+### Parsing examples
 
 Use [`loads()`](#qiskit.qasm2.loads "qiskit.qasm2.loads") to import an OpenQASM 2 program in a string into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"):
 

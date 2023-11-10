@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.fake_provider.FakeGuadalupe
 
 `qiskit.providers.fake_provider.FakeGuadalupe`
 
-Bases: `FakePulseBackend`
+Bases: [`FakePulseBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakePulseBackend "qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend")
 
 A fake 16 qubit backend.
 
