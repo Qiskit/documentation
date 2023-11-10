@@ -26,7 +26,7 @@ EDAs are stochastic search algorithms and belong to the family of the evolutiona
 
 UMDA has been compared to some of the already implemented algorithms in Qiskit library to optimize the parameters of variational algorithms such as QAOA or VQE and competitive results have been obtained \[1]. UMDA seems to provide very good solutions for those circuits in which the number of layers is not big.
 
-The optimization process can be personalized depending on the paremeters chosen in the initialization. The main parameter is the population size. The bigger it is, the final result will be better. However, this increases the complexity of the algorithm and the runtime will be much heavier. In the work \[1] different experiments have been performed where population size has been set to 20 - 30.
+The optimization process can be personalized depending on the parameters chosen in the initialization. The main parameter is the population size. The bigger it is, the final result will be better. However, this increases the complexity of the algorithm and the runtime will be much heavier. In the work \[1] different experiments have been performed where population size has been set to 20 - 30.
 
 <Admonition title="Note" type="note">
   The UMDA implementation has more parameters but these have default values for the initialization for better understanding of the user. For example, `lpha` parameter has been set to 0.5 and is the percentage of the population which is selected in each iteration to update the probabilistic model.

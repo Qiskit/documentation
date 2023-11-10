@@ -1,38 +1,38 @@
 ---
 title: PropertySet
-description: API reference for qiskit.transpiler.PropertySet
+description: API reference for qiskit.passmanager.PropertySet
 in_page_toc_min_heading_level: 1
 python_api_type: class
-python_api_name: qiskit.transpiler.PropertySet
+python_api_name: qiskit.passmanager.PropertySet
 ---
 
 # PropertySet
 
-<span id="qiskit.transpiler.PropertySet" />
+<span id="qiskit.passmanager.PropertySet" />
 
-`qiskit.transpiler.PropertySet`
+`qiskit.passmanager.PropertySet`
 
 Bases: [`dict`](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")
 
-A default dictionary-like object
+A default dictionary-like object.
 
 ## Methods
 
 ### clear
 
-<span id="qiskit.transpiler.PropertySet.clear" />
+<span id="qiskit.passmanager.PropertySet.clear" />
 
 `clear() → None.  Remove all items from D.`
 
 ### copy
 
-<span id="qiskit.transpiler.PropertySet.copy" />
+<span id="qiskit.passmanager.PropertySet.copy" />
 
 `copy() → a shallow copy of D`
 
 ### fromkeys
 
-<span id="qiskit.transpiler.PropertySet.fromkeys" />
+<span id="qiskit.passmanager.PropertySet.fromkeys" />
 
 `fromkeys(value=None, /)`
 
@@ -40,7 +40,7 @@ Create a new dictionary with keys from iterable and values set to value.
 
 ### get
 
-<span id="qiskit.transpiler.PropertySet.get" />
+<span id="qiskit.passmanager.PropertySet.get" />
 
 `get(key, default=None, /)`
 
@@ -48,19 +48,19 @@ Return the value for key if key is in the dictionary, else default.
 
 ### items
 
-<span id="qiskit.transpiler.PropertySet.items" />
+<span id="qiskit.passmanager.PropertySet.items" />
 
 `items() → a set-like object providing a view on D's items`
 
 ### keys
 
-<span id="qiskit.transpiler.PropertySet.keys" />
+<span id="qiskit.passmanager.PropertySet.keys" />
 
 `keys() → a set-like object providing a view on D's keys`
 
 ### pop
 
-<span id="qiskit.transpiler.PropertySet.pop" />
+<span id="qiskit.passmanager.PropertySet.pop" />
 
 `pop(k[, d]) → v, remove specified key and return the corresponding value.`
 
@@ -68,7 +68,7 @@ If key is not found, default is returned if given, otherwise KeyError is raised
 
 ### popitem
 
-<span id="qiskit.transpiler.PropertySet.popitem" />
+<span id="qiskit.passmanager.PropertySet.popitem" />
 
 `popitem()`
 
@@ -78,7 +78,7 @@ Pairs are returned in LIFO (last-in, first-out) order. Raises KeyError if the di
 
 ### setdefault
 
-<span id="qiskit.transpiler.PropertySet.setdefault" />
+<span id="qiskit.passmanager.PropertySet.setdefault" />
 
 `setdefault(key, default=None, /)`
 
@@ -88,7 +88,7 @@ Return the value for key if key is in the dictionary, else default.
 
 ### update
 
-<span id="qiskit.transpiler.PropertySet.update" />
+<span id="qiskit.passmanager.PropertySet.update" />
 
 `update([E, ]**F) → None.  Update D from dict/iterable E and F.`
 
@@ -96,7 +96,7 @@ If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] I
 
 ### values
 
-<span id="qiskit.transpiler.PropertySet.values" />
+<span id="qiskit.passmanager.PropertySet.values" />
 
 `values() → an object providing a view on D's values`
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.fake_provider.FakeAlmaden
 
 `qiskit.providers.fake_provider.FakeAlmaden`
 
-Bases: `FakeQasmBackend`
+Bases: [`FakeQasmBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeQasmBackend "qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend")
 
 A fake Almaden backend.
 

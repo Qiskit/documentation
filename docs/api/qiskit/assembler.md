@@ -139,7 +139,7 @@ Disassemble a qobj and return the circuits or pulse schedules, run\_config, and 
 
 **Parameters**
 
-**qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – The input qobj object to disassemble
+**qobj** (*Qobj*) – The input qobj object to disassemble
 
 **Returns**
 
