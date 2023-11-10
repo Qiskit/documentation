@@ -21,7 +21,7 @@ The Eigensolver interface has been superseded by the [`qiskit.algorithms.eigenso
 Algorithms that can compute eigenvalues for an operator may implement this interface to allow different algorithms to be used interchangeably.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.algorithms.eigen_solvers.eigen_solver.Eigensolver` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the interface `qiskit.algorithms.eigensolvers.Eigensolver`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+  The class `qiskit.algorithms.eigen_solvers.eigen_solver.Eigensolver` is deprecated as of qiskit 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the interface `qiskit.algorithms.eigensolvers.Eigensolver`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
 </Admonition>
 
 ## Methods
