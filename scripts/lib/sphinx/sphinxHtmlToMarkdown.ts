@@ -54,6 +54,12 @@ export async function sphinxHtmlToMarkdown(options: {
   const main = $page(`[role='main']`);
   const $main = $page(main);
 
+  // Check if page looks like release notes
+  let isReleaseNotes = false;
+  if ($page("h1").text().toLowerCase().includes("release notes")) {
+    isReleaseNotes = true;
+  }
+
   // remove html extensions in relative links
   $main.find("a").each((_, link) => {
     const $link = $page(link);
@@ -524,7 +530,7 @@ export async function sphinxHtmlToMarkdown(options: {
   let markdown = mdFile.toString();
   markdown = markdown.replaceAll(`<!---->`, "");
 
-  return { markdown, meta, images };
+  return { markdown, meta, images, isReleaseNotes };
 }
 
 function buildAdmonition(options: {

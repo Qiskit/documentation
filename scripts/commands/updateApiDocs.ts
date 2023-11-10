@@ -67,7 +67,7 @@ type Pkg = {
   ) => { url: string; text?: string } | undefined;
 };
 
-type PkgHtml = { pkg: Pkg; version: string; path: string };
+export type PkgHtml = { pkg: Pkg; version: string; path: string };
 
 const PACKAGES: Pkg[] = [
   {
@@ -289,7 +289,7 @@ async function convertHtmlToMarkdown(
   results = flatFolders(results);
   results = await updateLinks(results, pkg.pkg.transformLink);
   results = await dedupeResultIds(results);
-  results = addFrontMatter(results);
+  results = addFrontMatter(results, pkg);
 
   for (const result of results) {
     await writeFile(urlToPath(result.url), result.markdown);
