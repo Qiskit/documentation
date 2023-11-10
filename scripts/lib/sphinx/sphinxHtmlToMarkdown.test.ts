@@ -1426,6 +1426,34 @@ compilation flow follows the structure given below:</p>
   });
 });
 
+test("identify release notes", async () => {
+  expect(
+    await sphinxHtmlToMarkdown({
+      html: `
+          <h1>Release Notes<a class="headerlink" href="#release-notes" title="Link to this heading">#</a></h1>
+          <section id="release-notes-0-14-0">
+          <span id="id1"></span><h2>0.14.0<a class="headerlink" href="#release-notes-0-14-0" title="Link to this heading">#</a></h2>
+          <section id="new-features">
+          <span id="release-notes-0-14-0-new-features"></span><h3>New Features<a class="headerlink" href="#new-features" title="Link to this heading">#</a></h3>
+          <ul class="simple">
+          <li><p>There is a new class, <code class="xref py py-class docutils literal notranslate"><span class="pre">qiskit_ibm_runtime.Batch</span></code> that currently works
+          the same way as <a class="reference internal" href="stubs/qiskit_ibm_runtime.Session.html#qiskit_ibm_runtime.Session" title="qiskit_ibm_runtime.Session"><code class="xref py py-class docutils literal notranslate"><span class="pre">qiskit_ibm_runtime.Session</span></code></a> but will later be updated 
+          to better support submitting multiple jobs at once.</p></li>
+          </ul>
+          `,
+      url: "http://qiskit.org/docs/release_notes.html",
+      imageDestination: "/images/qiskit",
+    }),
+  ).toMatchInlineSnapshot(`
+        {
+          "images": [],
+          "isReleaseNotes": true,
+          "markdown": "",
+          "meta": {},
+        }
+      `);
+});
+
 async function toMd(html: string) {
   return (
     await sphinxHtmlToMarkdown({
