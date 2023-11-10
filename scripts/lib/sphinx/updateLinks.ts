@@ -23,13 +23,11 @@ import remarkMath from "remark-math";
 import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
+import { Link } from "../../commands/updateApiDocs"
 
 export async function updateLinks<T extends SphinxToMdResultWithUrl>(
   results: T[],
-  transformLink?: (
-    url: string,
-    text?: string,
-  ) => { url: string; text?: string } | undefined,
+  transformLink?: (link: Link) => Link | undefined,
 ): Promise<T[]> {
   const resultsByName = keyBy(
     results,
@@ -51,7 +49,7 @@ export async function updateLinks<T extends SphinxToMdResultWithUrl>(
                 node.children?.[0]?.type === "text"
                   ? node.children?.[0]
                   : undefined;
-              const transformedLink = transformLink(node.url, textNode?.value);
+              const transformedLink = transformLink({ url: node.url, text: textNode?.value });
               if (transformedLink) {
                 node.url = transformedLink.url;
                 if (textNode && transformedLink.text) {

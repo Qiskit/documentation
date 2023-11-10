@@ -50,9 +50,9 @@ interface Arguments {
   packages: string[];
 }
 
-interface Link {
-  url: string;
-  text?: string;
+export interface Link {
+  url: string;    // Where the link goes
+  text?: string;  // What the user sees
 }
 
 type Pkg = {
@@ -66,26 +66,22 @@ type Pkg = {
     collapsed?: boolean;
     nestModule?(id: string): boolean;
   };
-  transformLink?: (url: string, text?: string) => Link | undefined;
+  transformLink?: (link: Link) => Link | undefined;
 };
 
 type PkgHtml = { pkg: Pkg; version: string; path: string };
 
-function transformLink(
-  url: string,
-  text: string | undefined,
-): Link | undefined {
-  const updateText = url === text;
+function transformLink(link: Link): Link | undefined {
+  const updateText = link.url === link.text;
   const prefixes = [
     "https://qiskit.org/documentation/apidoc/",
     "https://qiskit.org/documentation/stubs/",
   ];
-  const prefix = prefixes.find((prefix) => url.startsWith(prefix));
+  const prefix = prefixes.find((prefix) => link.url.startsWith(prefix));
   if (!prefix) {
     return;
   }
-  let anchor;
-  [url, anchor] = url.split("#");
+  let [url, anchor] = link.url.split("#");
   url = removePrefix(url, prefix);
   url = removeSuffix(url, ".html");
   if (anchor && anchor !== url) {
