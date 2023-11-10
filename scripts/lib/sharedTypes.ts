@@ -10,6 +10,12 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+export interface Link {
+  // Simple interface for scripts/command/updateApiDocs.ts
+  url: string; // Where the link goes
+  text?: string; // What the user sees
+}
+
 export type Pkg = {
   // Python package (e.g. qiskit, qiskit-ibm-runtime)
   name: string;
@@ -22,8 +28,5 @@ export type Pkg = {
     collapsed?: boolean;
     nestModule?(id: string): boolean;
   };
-  transformLink?: (
-    url: string,
-    text?: string,
-  ) => { url: string; text?: string } | undefined;
+  transformLink?: (link: Link) => Link | undefined;
 };

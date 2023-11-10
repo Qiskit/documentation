@@ -105,8 +105,8 @@ describe("updateLinks", () => {
       },
     ];
 
-    const results = await updateLinks(input, (url) => {
-      let path = last(url.split("/"))!;
+    const results = await updateLinks(input, (link) => {
+      let path = last(link.url.split("/"))!;
       if (path.includes("#")) {
         path = path.split("#").join(".html#");
       } else {

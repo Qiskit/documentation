@@ -31,12 +31,32 @@ import { dedupeResultIds } from "../lib/sphinx/dedupeIds";
 import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
-import { Pkg } from "../lib/sharedTypes";
+import { Pkg, Link } from "../lib/sharedTypes";
 
 interface Arguments {
   [x: string]: unknown;
   package: string;
   version: string;
+}
+
+function transformLink(link: Link): Link | undefined {
+  const updateText = link.url === link.text;
+  const prefixes = [
+    "https://qiskit.org/documentation/apidoc/",
+    "https://qiskit.org/documentation/stubs/",
+  ];
+  const prefix = prefixes.find((prefix) => link.url.startsWith(prefix));
+  if (!prefix) {
+    return;
+  }
+  let [url, anchor] = link.url.split("#");
+  url = removePrefix(url, prefix);
+  url = removeSuffix(url, ".html");
+  if (anchor && anchor !== url) {
+    url = `${url}#${anchor}`;
+  }
+  const newText = updateText ? url : undefined;
+  return { url: `/api/qiskit/${url}`, text: newText };
 }
 
 const PACKAGES: Pkg[] = [
@@ -48,20 +68,7 @@ const PACKAGES: Pkg[] = [
     initialUrls: [
       `https://qiskit.org/ecosystem/ibm-runtime/apidocs/ibm-runtime.html`,
     ],
-    transformLink(url, text) {
-      const prefixes = [
-        "https://qiskit.org/documentation/apidoc/",
-        "https://qiskit.org/documentation/stubs/",
-      ];
-      let updateText = url === text;
-      const prefix = prefixes.find((prefix) => url.startsWith(prefix));
-      if (prefix) {
-        url = removePrefix(url, prefix);
-        url = removeSuffix(url, ".html");
-        const newText = updateText ? url : undefined;
-        return { url: `/api/qiskit/${url}`, text: newText };
-      }
-    },
+    transformLink,
   },
   {
     title: "Qiskit IBM Provider",
@@ -71,20 +78,7 @@ const PACKAGES: Pkg[] = [
     initialUrls: [
       `https://qiskit.org/ecosystem/ibm-provider/apidocs/ibm-provider.html`,
     ],
-    transformLink(url, text) {
-      const prefixes = [
-        "https://qiskit.org/documentation/apidoc/",
-        "https://qiskit.org/documentation/stubs/",
-      ];
-      let updateText = url === text;
-      const prefix = prefixes.find((prefix) => url.startsWith(prefix));
-      if (prefix) {
-        url = removePrefix(url, prefix);
-        url = removeSuffix(url, ".html");
-        const newText = updateText ? url : undefined;
-        return { url: `/api/qiskit/${url}`, text: newText };
-      }
-    },
+    transformLink,
   },
   {
     title: "Qiskit",
@@ -250,7 +244,7 @@ async function convertHtmlToMarkdown(
   results = flatFolders(results);
   results = await updateLinks(results, pkg.transformLink);
   results = await dedupeResultIds(results);
-  results = addFrontMatter(results, pkg, version);
+  results = addFrontMatter(results, pkg);
 
   for (const result of results) {
     await writeFile(urlToPath(result.url), result.markdown);
@@ -273,6 +267,13 @@ async function convertHtmlToMarkdown(
   await writeFile(
     `${markdownPath}/_toc.json`,
     JSON.stringify(toc, null, 2) + "\n",
+  );
+
+  console.log("Generating version file");
+  const pkg_json = { name: pkg.name, version: version };
+  await writeFile(
+    `${markdownPath}/_package.json`,
+    JSON.stringify(pkg_json, null, 2) + "\n",
   );
 
   console.log("Downloading images");
