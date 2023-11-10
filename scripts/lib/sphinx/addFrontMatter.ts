@@ -34,8 +34,8 @@ ${markdown}
 `;
     } else if (result.isReleaseNotes) {
       result.markdown = `---
-title: Release notes
-description: ${pkg.title} v${packageVersion} release notes
+title: ${pkg.title} release notes
+description: Changes made to ${pkg.title}
 ---
 
 ${markdown}
