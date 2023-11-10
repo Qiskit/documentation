@@ -23,7 +23,7 @@ import remarkMath from "remark-math";
 import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
-import { Link } from "../../commands/updateApiDocs"
+import { Link } from "../../commands/updateApiDocs";
 
 export async function updateLinks<T extends SphinxToMdResultWithUrl>(
   results: T[],
@@ -49,7 +49,10 @@ export async function updateLinks<T extends SphinxToMdResultWithUrl>(
                 node.children?.[0]?.type === "text"
                   ? node.children?.[0]
                   : undefined;
-              const transformedLink = transformLink({ url: node.url, text: textNode?.value });
+              const transformedLink = transformLink({
+                url: node.url,
+                text: textNode?.value,
+              });
               if (transformedLink) {
                 node.url = transformedLink.url;
                 if (textNode && transformedLink.text) {

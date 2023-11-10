@@ -51,8 +51,8 @@ interface Arguments {
 }
 
 export interface Link {
-  url: string;    // Where the link goes
-  text?: string;  // What the user sees
+  url: string; // Where the link goes
+  text?: string; // What the user sees
 }
 
 type Pkg = {
@@ -100,7 +100,7 @@ const PACKAGES: Pkg[] = [
     initialUrls: [
       `https://qiskit.org/ecosystem/ibm-runtime/apidocs/ibm-runtime.html`,
     ],
-    transformLink: transformLink,
+    transformLink,
   },
   {
     title: "Qiskit IBM Provider",
@@ -110,7 +110,7 @@ const PACKAGES: Pkg[] = [
     initialUrls: [
       `https://qiskit.org/ecosystem/ibm-provider/apidocs/ibm-provider.html`,
     ],
-    transformLink: transformLink,
+    transformLink,
   },
   {
     title: "Qiskit",
