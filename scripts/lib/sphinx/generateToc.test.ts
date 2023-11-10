@@ -95,7 +95,6 @@ describe("generateTocFromPythonApiFiles", () => {
             "url": "https://github.com/qiskit_ibm_runtime/releases",
           },
         ],
-        "subtitle": "v1.0.0",
         "title": "Qiskit Runtime IBM Client",
       }
     `);
@@ -181,7 +180,6 @@ describe("generateTocFromPythonApiFiles", () => {
             "url": "https://github.com/qiskit_ibm_runtime/releases",
           },
         ],
-        "subtitle": "v1.0.0",
         "title": "Qiskit Runtime IBM Client",
       }
     `);
@@ -302,7 +300,6 @@ describe("generateTocFromPythonApiFiles", () => {
             "url": "https://github.com/qiskit_ibm_runtime/releases",
           },
         ],
-        "subtitle": "v1.0.0",
         "title": "Qiskit Runtime IBM Client",
       }
     `);
