@@ -31,31 +31,13 @@ import { dedupeResultIds } from "../lib/sphinx/dedupeIds";
 import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
+import { Pkg, Link } from "../lib/sharedTypes";
 
 interface Arguments {
   [x: string]: unknown;
   package: string;
   version: string;
 }
-
-export interface Link {
-  url: string; // Where the link goes
-  text?: string; // What the user sees
-}
-
-type Pkg = {
-  name: string;
-  githubSlug: string;
-  baseUrl: string;
-  initialUrls: string[];
-  title: string;
-  ignore?(id: string): boolean;
-  tocOptions?: {
-    collapsed?: boolean;
-    nestModule?(id: string): boolean;
-  };
-  transformLink?: (link: Link) => Link | undefined;
-};
 
 function transformLink(link: Link): Link | undefined {
   const updateText = link.url === link.text;
@@ -184,7 +166,8 @@ async function downloadHtml(options: {
       return (
         url.startsWith(`${baseUrl}/apidocs`) ||
         url.startsWith(`${baseUrl}/apidoc`) ||
-        url.startsWith(`${baseUrl}/stubs`)
+        url.startsWith(`${baseUrl}/stubs`) ||
+        url.startsWith(`${baseUrl}/release_notes`)
       );
     },
     async onSuccess(url: string, content: string) {
@@ -215,7 +198,12 @@ async function convertHtmlToMarkdown(
   version: string,
 ) {
   const files = await globby(
-    ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"],
+    [
+      "apidocs/**.html",
+      "apidoc/**.html",
+      "stubs/**.html",
+      "release_notes.html",
+    ],
     {
       cwd: htmlPath,
     },
@@ -256,7 +244,7 @@ async function convertHtmlToMarkdown(
   results = flatFolders(results);
   results = await updateLinks(results, pkg.transformLink);
   results = await dedupeResultIds(results);
-  results = addFrontMatter(results);
+  results = addFrontMatter(results, pkg);
 
   for (const result of results) {
     await writeFile(urlToPath(result.url), result.markdown);
@@ -267,7 +255,11 @@ async function convertHtmlToMarkdown(
     pkg: {
       title: pkg.title,
       name: pkg.name,
-      changelogUrl: `https://github.com/${pkg.githubSlug}/releases`,
+      version,
+      releaseNotesUrl:
+        pkg.name !== "qiskit"
+          ? `/api/${pkg.name}/release-notes`
+          : "https://github.com/qiskit/qiskit/releases",
       tocOptions: pkg.tocOptions,
     },
     results,
@@ -294,5 +286,6 @@ async function convertHtmlToMarkdown(
 }
 
 function urlToPath(url: string) {
+  url = url.replaceAll("release_notes", "release-notes");
   return `${getRoot()}/docs${url}.md`;
 }
