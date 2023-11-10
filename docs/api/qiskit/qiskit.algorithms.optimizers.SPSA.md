@@ -51,7 +51,7 @@ observable = Z ^ Z
 initial_point = np.random.random(ansatz.num_parameters)
 
 def loss(x):
-    bound = ansatz.bind_parameters(x)
+    bound = ansatz.assign_parameters(x)
     return np.real((StateFn(observable, is_measurement=True) @ StateFn(bound)).eval())
 
 spsa = SPSA(maxiter=300)

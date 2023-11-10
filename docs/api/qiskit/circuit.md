@@ -216,7 +216,7 @@ qc.depth()
 
 |                                                                                                                      |                                                                                                        |
 | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------ |
-| [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate")(name, num\_qubits, params\[, label])                             | Unitary gate.                                                                                          |
+| [`Gate`](qiskit.circuit.Gate "qiskit.circuit.Gate")(name, num\_qubits, params\[, label, ...])                        | Unitary gate.                                                                                          |
 | [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")(name, num\_qubits, params\[, ...]) | Controlled unitary gate.                                                                               |
 | [`Delay`](qiskit.circuit.Delay "qiskit.circuit.Delay")(duration\[, unit])                                            | Do nothing and just delay/wait/idle for a specified duration.                                          |
 | [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction")(name, num\_qubits, num\_clbits, params)     | Generic quantum instruction.                                                                           |
@@ -278,7 +278,7 @@ with qc.switch(cr) as case:
 
 |                                                                                                                     |                                                                         |
 | ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")(name\[, uuid])                                   | Parameter Class for variable parameters.                                |
+| [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")(name, \*\[, uuid])                               | Parameter Class for variable parameters.                                |
 | [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")(name\[, length])               | ParameterVector class to quickly generate lists of parameters.          |
 | [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")(symbol\_map, expr) | ParameterExpression class to enable creating expressions of Parameters. |
 
@@ -322,6 +322,21 @@ constructed circuit
 **Raises**
 
 [**CircuitError**](#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – when invalid options given
+
+### Circuit Analysis
+
+|                                                                                                 |                                                                     |
+| ----------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [`CommutationChecker`](qiskit.circuit.CommutationChecker "qiskit.circuit.CommutationChecker")() | This code is essentially copy-pasted from commutative\_analysis.py. |
+
+### Annotated Operations
+
+|                                                                                                                         |                                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| [`AnnotatedOperation`](qiskit.circuit.AnnotatedOperation "qiskit.circuit.AnnotatedOperation")(base\_op, modifiers)      | Annotated operation.                                                                                                  |
+| [`ControlModifier`](qiskit.circuit.ControlModifier "qiskit.circuit.ControlModifier")(\[num\_ctrl\_qubits, ctrl\_state]) | Control modifier: specifies that the operation is controlled by `num_ctrl_qubits` and has control state `ctrl_state`. |
+| [`PowerModifier`](qiskit.circuit.PowerModifier "qiskit.circuit.PowerModifier")(power)                                   | Power modifier: specifies that the operation is raised to the power `power`.                                          |
+| [`InverseModifier`](qiskit.circuit.InverseModifier "qiskit.circuit.InverseModifier")()                                  | Inverse modifier: specifies that the operation is inverted.                                                           |
 
 ### Exceptions
 

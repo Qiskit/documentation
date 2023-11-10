@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.fake_provider.FakeOurense
 
 `qiskit.providers.fake_provider.FakeOurense`
 
-Bases: `FakeQasmBackend`
+Bases: [`FakeQasmBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeQasmBackend "qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend")
 
 A fake 5 qubit backend.
 
