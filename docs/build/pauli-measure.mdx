@@ -1,0 +1,50 @@
+# Measuring in Pauli bases
+
+In quantum mechanics, observables correspond to physical properties that can be measured.
+To measure an $n$-qubit observable $O$ on a quantum computer, we first decompose it into a sum of tensor products of Pauli operators, as
+
+$$
+O = \sum_{k=1}^K \alpha_k P_k,~~ P_k \in \{I, X, Y, Z\}^{\otimes n},~~ \alpha_k \in \mathbb{C},
+$$
+
+and then compute the expectation value of each individual Pauli term. 
+However, per default, many quantum computing systems only support measuring Paulis consisting of Z and I terms, 
+since they are diagonal in the computational basis $\{|0\rangle, |1\rangle\}$.
+
+Measuring arbitrary Pauli terms therefore requires a change of basis to diagonalize them. To do this, we perform the following transformations,
+
+$$
+\begin{aligned}
+    X &\rightarrow Z = H X H \\
+    Y &\rightarrow Z = H S^\dagger Y S H,
+\end{aligned}
+$$
+
+where $H$ is the Hadmard gate and $S = \sqrt{Z}$ is sometimes referred to as the phase gate. 
+If you are using an `Estimator` to compute expectation values, the basis transformations are automatically performed.
+
+Below is an example demonstrating how to prepare a quantum circuit and manually measure the qubits it in the X, Y, and Z bases:
+
+```python
+from qiskit.circuit import QuantumCircuit
+
+# create a circuit, where we would like to measure
+# q0 in the X basis, q1 in the Y basis and q2 in the Z basis
+circuit = QuantumCircuit(3)
+circuit.ry(0.8, 0)
+circuit.cx(0, 1)
+circuit.cx(1, 2)
+
+# diagonalize X with the Hadamard gate 
+circuit.h(0)
+
+# diagonalize Y with Hadamard as S^\dagger
+circuit.h(1)
+circuit.sdg(1)
+
+# the Z basis is the default, no action required here
+
+# measure all qubits
+circuit.measure_all()
+```
+
