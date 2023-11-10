@@ -16,7 +16,7 @@ Bases: [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.o
 
 Base class for a steppable optimizer.
 
-This family of optimizers uses the [ask and tell interface](https://optuna.readthedocs.io/en/stable/tutorial/20_recipes/009_ask_and_tell.html). When using this interface the user has to call [`ask()`](#qiskit.algorithms.optimizers.SteppableOptimizer.ask "qiskit.algorithms.optimizers.SteppableOptimizer.ask") to get information about how to evaluate the fucntion (we are asking the optimizer about how to do the evaluation). This information is typically the next points at which the function is evaluated, but depending on the optimizer it can also determine whether to evaluate the function or its gradient. Once the function has been evaluated, the user calls the method `tell()` to tell the optimizer what the result of the function evaluation(s) is. The optimizer then updates its state accordingly and the user can decide whether to stop the optimization process or to repeat a step.
+This family of optimizers uses the [ask and tell interface](https://optuna.readthedocs.io/en/stable/tutorial/20_recipes/009_ask_and_tell.html). When using this interface the user has to call [`ask()`](#qiskit.algorithms.optimizers.SteppableOptimizer.ask "qiskit.algorithms.optimizers.SteppableOptimizer.ask") to get information about how to evaluate the function (we are asking the optimizer about how to do the evaluation). This information is typically the next points at which the function is evaluated, but depending on the optimizer it can also determine whether to evaluate the function or its gradient. Once the function has been evaluated, the user calls the method `tell()` to tell the optimizer what the result of the function evaluation(s) is. The optimizer then updates its state accordingly and the user can decide whether to stop the optimization process or to repeat a step.
 
 This interface is more customizable, and allows the user to have full control over the evaluation of the function.
 
@@ -185,7 +185,7 @@ This method asks the optimizer which are the next points to evaluate. These poin
 
 **Returns**
 
-An object containing the data needed to make the funciton evaluation to advance the optimization process.
+An object containing the data needed to make the function evaluation to advance the optimization process.
 
 **Return type**
 

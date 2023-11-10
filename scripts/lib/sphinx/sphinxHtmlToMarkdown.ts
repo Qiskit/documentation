@@ -49,6 +49,7 @@ export async function sphinxHtmlToMarkdown(options: {
     baseSourceUrl,
   } = options;
   const meta: PythonObjectMeta = {};
+  const isReleaseNotes = url.endsWith("release_notes.html") ? true : false;
 
   const $page = load(html);
   const main = $page(`[role='main']`);
@@ -524,7 +525,7 @@ export async function sphinxHtmlToMarkdown(options: {
   let markdown = mdFile.toString();
   markdown = markdown.replaceAll(`<!---->`, "");
 
-  return { markdown, meta, images };
+  return { markdown, meta, images, isReleaseNotes };
 }
 
 function buildAdmonition(options: {
