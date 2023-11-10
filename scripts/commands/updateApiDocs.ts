@@ -38,6 +38,11 @@ interface Arguments {
   version: string;
 }
 
+export interface Link {
+  url: string; // Where the link goes
+  text?: string; // What the user sees
+}
+
 type Pkg = {
   name: string;
   githubSlug: string;
@@ -49,11 +54,28 @@ type Pkg = {
     collapsed?: boolean;
     nestModule?(id: string): boolean;
   };
-  transformLink?: (
-    url: string,
-    text?: string,
-  ) => { url: string; text?: string } | undefined;
+  transformLink?: (link: Link) => Link | undefined;
 };
+
+function transformLink(link: Link): Link | undefined {
+  const updateText = link.url === link.text;
+  const prefixes = [
+    "https://qiskit.org/documentation/apidoc/",
+    "https://qiskit.org/documentation/stubs/",
+  ];
+  const prefix = prefixes.find((prefix) => link.url.startsWith(prefix));
+  if (!prefix) {
+    return;
+  }
+  let [url, anchor] = link.url.split("#");
+  url = removePrefix(url, prefix);
+  url = removeSuffix(url, ".html");
+  if (anchor && anchor !== url) {
+    url = `${url}#${anchor}`;
+  }
+  const newText = updateText ? url : undefined;
+  return { url: `/api/qiskit/${url}`, text: newText };
+}
 
 const PACKAGES: Pkg[] = [
   {
@@ -64,20 +86,7 @@ const PACKAGES: Pkg[] = [
     initialUrls: [
       `https://qiskit.org/ecosystem/ibm-runtime/apidocs/ibm-runtime.html`,
     ],
-    transformLink(url, text) {
-      const prefixes = [
-        "https://qiskit.org/documentation/apidoc/",
-        "https://qiskit.org/documentation/stubs/",
-      ];
-      let updateText = url === text;
-      const prefix = prefixes.find((prefix) => url.startsWith(prefix));
-      if (prefix) {
-        url = removePrefix(url, prefix);
-        url = removeSuffix(url, ".html");
-        const newText = updateText ? url : undefined;
-        return { url: `/api/qiskit/${url}`, text: newText };
-      }
-    },
+    transformLink,
   },
   {
     title: "Qiskit IBM Provider",
@@ -87,20 +96,7 @@ const PACKAGES: Pkg[] = [
     initialUrls: [
       `https://qiskit.org/ecosystem/ibm-provider/apidocs/ibm-provider.html`,
     ],
-    transformLink(url, text) {
-      const prefixes = [
-        "https://qiskit.org/documentation/apidoc/",
-        "https://qiskit.org/documentation/stubs/",
-      ];
-      let updateText = url === text;
-      const prefix = prefixes.find((prefix) => url.startsWith(prefix));
-      if (prefix) {
-        url = removePrefix(url, prefix);
-        url = removeSuffix(url, ".html");
-        const newText = updateText ? url : undefined;
-        return { url: `/api/qiskit/${url}`, text: newText };
-      }
-    },
+    transformLink,
   },
   {
     title: "Qiskit",
