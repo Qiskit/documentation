@@ -49,16 +49,11 @@ export async function sphinxHtmlToMarkdown(options: {
     baseSourceUrl,
   } = options;
   const meta: PythonObjectMeta = {};
+  const isReleaseNotes = url.endsWith("release_notes.html") ? true : false;
 
   const $page = load(html);
   const main = $page(`[role='main']`);
   const $main = $page(main);
-
-  // Check if page looks like release notes
-  let isReleaseNotes = false;
-  if ($page("h1").text().toLowerCase().includes("release notes")) {
-    isReleaseNotes = true;
-  }
 
   // remove html extensions in relative links
   $main.find("a").each((_, link) => {
