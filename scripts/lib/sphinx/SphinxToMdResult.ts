@@ -16,6 +16,7 @@ export type SphinxToMdResult = {
   markdown: string;
   meta: PythonObjectMeta;
   images: Array<{ src: string; dest: string }>;
+  isReleaseNotes: boolean;
 };
 
 export type SphinxToMdResultWithUrl = SphinxToMdResult & {
