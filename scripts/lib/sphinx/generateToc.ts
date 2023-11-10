@@ -31,7 +31,6 @@ export function generateToc(options: {
   pkg: {
     title: string;
     name: string;
-    version: string;
     changelogUrl: string;
     tocOptions?: {
       collapsed?: boolean;
@@ -132,7 +131,6 @@ export function generateToc(options: {
 
   const toc: Toc = {
     title: pkg.title,
-    subtitle: `v${pkg.version}`,
     children: tocChildren,
   };
   if (pkg.tocOptions?.collapsed) {
