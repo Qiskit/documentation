@@ -31,7 +31,8 @@ export function generateToc(options: {
   pkg: {
     title: string;
     name: string;
-    changelogUrl: string;
+    version: string;
+    releaseNotesUrl: string;
     tocOptions?: {
       collapsed?: boolean;
       nestModule?(id: string): boolean;
@@ -125,8 +126,8 @@ export function generateToc(options: {
   }
 
   tocChildren.push({
-    title: "Changelog",
-    url: pkg.changelogUrl,
+    title: pkg.name === "qiskit" ? "Changelog" : "Release notes",
+    url: pkg.releaseNotesUrl,
   });
 
   const toc: Toc = {
