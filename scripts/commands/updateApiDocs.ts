@@ -31,29 +31,13 @@ import { dedupeResultIds } from "../lib/sphinx/dedupeIds";
 import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
+import { Pkg } from "../lib/sharedTypes";
 
 interface Arguments {
   [x: string]: unknown;
   package: string;
   version: string;
 }
-
-export type Pkg = {
-  name: string;
-  githubSlug: string;
-  baseUrl: string;
-  initialUrls: string[];
-  title: string;
-  ignore?(id: string): boolean;
-  tocOptions?: {
-    collapsed?: boolean;
-    nestModule?(id: string): boolean;
-  };
-  transformLink?: (
-    url: string,
-    text?: string,
-  ) => { url: string; text?: string } | undefined;
-};
 
 const PACKAGES: Pkg[] = [
   {

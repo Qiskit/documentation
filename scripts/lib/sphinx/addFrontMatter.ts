@@ -12,7 +12,7 @@
 
 import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { SphinxToMdResult } from "./SphinxToMdResult";
-import { Pkg } from "../../commands/updateApiDocs";
+import { Pkg } from "../sharedTypes";
 
 export function addFrontMatter<T extends SphinxToMdResult>(
   results: T[],
