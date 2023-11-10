@@ -267,7 +267,6 @@ async function convertHtmlToMarkdown(
     pkg: {
       title: pkg.title,
       name: pkg.name,
-      version,
       changelogUrl: `https://github.com/${pkg.githubSlug}/releases`,
       tocOptions: pkg.tocOptions,
     },
@@ -276,6 +275,13 @@ async function convertHtmlToMarkdown(
   await writeFile(
     `${markdownPath}/_toc.json`,
     JSON.stringify(toc, null, 2) + "\n",
+  );
+
+  console.log("Generating version file");
+  const pkg_json = { name: pkg.name, version: version };
+  await writeFile(
+    `${markdownPath}/_package.json`,
+    JSON.stringify(pkg_json, null, 2) + "\n",
   );
 
   console.log("Downloading images");
