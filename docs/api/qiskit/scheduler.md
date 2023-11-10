@@ -36,7 +36,7 @@ Container for information needed to schedule a QuantumCircuit into a pulse Sched
 
 <span id="qiskit.scheduler.schedule_circuit.schedule_circuit" />
 
-`qiskit.scheduler.schedule_circuit.schedule_circuit(circuit, schedule_config, method=None)`
+`qiskit.scheduler.schedule_circuit.schedule_circuit(circuit, schedule_config, method=None, backend=None)`
 
 Basic scheduling pass from a circuit to a pulse Schedule, using the backend. If no method is specified, then a basic, as late as possible scheduling pass is performed, i.e. pulses are scheduled to occur as late as possible.
 
@@ -50,6 +50,7 @@ Supported methods:
 *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The quantum circuit to translate.
 *   **schedule\_config** ([*ScheduleConfig*](#qiskit.scheduler.ScheduleConfig "qiskit.scheduler.config.ScheduleConfig")) – Backend specific parameters used for building the Schedule.
 *   **method** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The scheduling pass method to use.
+*   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2") *| None*) – A backend used to build the Schedule, the backend could be BackendV1 or BackendV2.
 
 **Returns**
 
@@ -69,7 +70,7 @@ Pulse scheduling methods.
 
 <span id="qiskit.scheduler.methods.as_soon_as_possible" />
 
-`qiskit.scheduler.methods.as_soon_as_possible(circuit, schedule_config)`
+`qiskit.scheduler.methods.as_soon_as_possible(circuit, schedule_config, backend=None)`
 
 Return the pulse Schedule which implements the input circuit using an “as soon as possible” (asap) scheduling policy.
 
@@ -79,6 +80,7 @@ Circuit instructions are first each mapped to equivalent pulse Schedules accordi
 
 *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The quantum circuit to translate.
 *   **schedule\_config** ([*ScheduleConfig*](#qiskit.scheduler.ScheduleConfig "qiskit.scheduler.config.ScheduleConfig")) – Backend specific parameters used for building the Schedule.
+*   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2") *| None*) – A backend used to build the Schedule, the backend could be BackendV1 or BackendV2.
 
 **Returns**
 
@@ -90,7 +92,7 @@ A schedule corresponding to the input `circuit` with pulses occurring as early a
 
 <span id="qiskit.scheduler.methods.as_late_as_possible" />
 
-`qiskit.scheduler.methods.as_late_as_possible(circuit, schedule_config)`
+`qiskit.scheduler.methods.as_late_as_possible(circuit, schedule_config, backend=None)`
 
 Return the pulse Schedule which implements the input circuit using an “as late as possible” (alap) scheduling policy.
 
@@ -102,6 +104,7 @@ This method should improves the outcome fidelity over ASAP scheduling, because w
 
 *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The quantum circuit to translate.
 *   **schedule\_config** ([*ScheduleConfig*](#qiskit.scheduler.ScheduleConfig "qiskit.scheduler.config.ScheduleConfig")) – Backend specific parameters used for building the Schedule.
+*   **backend** ([*BackendV1*](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1")  *|*[*BackendV2*](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2") *| None*) – A backend used to build the Schedule, the backend could be BackendV1 or BackendV2.
 
 **Returns**
 
