@@ -5,6 +5,22 @@ description: Use the new interface for `qiskit.algorithms`
 
 # Algorithms Migration Guide
 
+<Admonition type="caution">
+  The `qiskit.algorithms` module has been superseded by a new standalone library, `qiskit_algorithms`,
+  available on [GitHub](https://github.com/qiskit-community/qiskit-algorithms) and 
+  [PyPi](https://pypi.org/project/qiskit-algorithms).
+
+  As of Qiskit's 0.44 release, active development of algorithm features has migrated to this new package.
+  If your code used `qiskit.algorithms`, you should:
+   1. Check that you are not using any legacy algorithm implementation. If you are, follow this guide to
+      migrate to the primitives-based implementation.
+   2. Once your code is updated, run `pip install qiskit-algorithms` and update your imports from 
+      `qiskit.algorithms` to `qiskit_algorithms`.
+
+  The decision to migrate the `qiskit.algorithms` module to a
+  separate package was made to clarify the purpose of Qiskit and make a distinction between the tools and libraries built on top of it.
+</Admonition>
+
 ## TL;DR
 
 The [`qiskit.algorithms`](../qiskit/algorithms) module has been fully refactored to use the [`qiskit.primitives`](../qiskit/primitives), for circuit execution, instead of the [`qiskit.utils.QuantumInstance`](../qiskit/qiskit.utils.QuantumInstance), which is now deprecated.
@@ -21,16 +37,16 @@ There have been **3 types of refactoring**:
    >   **specify the full import path** (e.g., `from qiskit.algorithms.eigensolvers import VQD`)
    > </Admonition>
    >
-   > - [Minimum Eigensolvers]
-   > - [Eigensolvers]
-   > - [Time Evolvers]
+   > - [Minimum Eigensolvers](#minimum-eigensolvers)
+   > - [Eigensolvers](#eigensolvers)
+   > - [Time Evolvers](#time-evolvers)
 
 2. Algorithms refactored in-place (same namespace) to support both [`qiskit.utils.QuantumInstance`](../qiskit/qiskit.utils.QuantumInstance) and
    [`qiskit.primitives`](../qiskit/primitives). In the future, the use of [`qiskit.utils.QuantumInstance`](../qiskit/qiskit.utils.QuantumInstance) will be removed.
 
-   > - [Amplitude Amplifiers]
-   > - [Amplitude Estimators]
-   > - [Phase Estimators]
+   > - [Amplitude Amplifiers](#amplitude-amplifiers)
+   > - [Amplitude Estimators](#amplitude-estimators)
+   > - [Phase Estimators](#phase-estimators)
 
 3. Algorithms that were deprecated and are now removed entirely from [`qiskit.algorithms`](../qiskit/algorithms). These are algorithms that do not currently serve
    as building blocks for applications. Their main value is educational. You can consult the below tutorials:
@@ -42,8 +58,6 @@ The remainder of this migration guide will focus on the algorithms with migratio
 [`qiskit.algorithms`](../qiskit/algorithms), that is, those under refactoring types 1 and 2.
 
 ## Background
-
-*Back to* [TL;DR](#tldr)
 
 The [`qiskit.algorithms`](../qiskit/algorithms) module was originally built on top of the [`qiskit.opflow`](../qiskit/opflow) library and the
 [`qiskit.utils.QuantumInstance`](../qiskit/qiskit.utils.QuantumInstance) utility. The development of the [`qiskit.primitives`](../qiskit/primitives)
@@ -68,8 +82,6 @@ For further background and detailed migration steps, see the:
 
 ## How to choose a primitive configuration for your algorithm
 
-*Back to* [TL;DR](#tldr)
-
 The classes in
 [`qiskit.algorithms`](../qiskit/algorithms) are initialized with any implementation of [`qiskit.primitives.BaseSampler`](../qiskit/qiskit.primitives.BaseSampler) or [`qiskit.primitives.BaseEstimator`](../qiskit/qiskit.primitives.BaseEstimator).
 
@@ -93,13 +105,13 @@ In this guide, we will cover 3 different common configurations for algorithms th
 1. Running an algorithm with a statevector simulator (i.e., using [`qiskit.opflow`](../qiskit/opflow)'s legacy
    [`qiskit.opflow.expectations.MatrixExpectation`](../qiskit/qiskit.opflow.expectations.MatrixExpectation)), when you want the ideal outcome without shot noise:
 
-   > - Reference Primitives with default configuration (see [QAOA] example):
+   > - Reference Primitives with default configuration (see [QAOA](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/05_qaoa.ipynb) example):
    >
    > ```python
    > from qiskit.primitives import Sampler, Estimator
    > ```
    >
-   > - Aer Primitives **with statevector simulator** (see [QAOA] example):
+   > - Aer Primitives **with statevector simulator** (see [QAOA](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/05_qaoa.ipynb) example):
    >
    > ```python
    > from qiskit_aer.primitives import Sampler, Estimator
@@ -111,7 +123,7 @@ In this guide, we will cover 3 different common configurations for algorithms th
 2. Running an algorithm using a simulator/device with shot noise
    (i.e., using [`qiskit.opflow`](../qiskit/opflow)'s legacy [`qiskit.opflow.expectations.PauliExpectation`](../qiskit/qiskit.opflow.expectations.PauliExpectation)):
 
-   > - Reference Primitives **with shots** (see [VQE] examples):
+   > - Reference Primitives **with shots** (see [VQE](#vqe) examples):
    >
    > ```python
    > from qiskit.primitives import Sampler, Estimator
@@ -127,22 +139,22 @@ In this guide, we will cover 3 different common configurations for algorithms th
    > job = estimator.run(circuits, observables, shots=100)
    > ```
    >
-   > - Aer Primitives with default configuration (see [VQE] examples):
+   > - Aer Primitives with default configuration (see [VQE](#vqe) examples):
    >
    > ```python
    > from qiskit_aer.primitives import Sampler, Estimator
    > ```
    >
-   > - IBM's Qiskit Runtime Primitives with default configuration (see [VQD] example):
+   > - IBM's Qiskit Runtime Primitives with default configuration (see [VQD](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/04_vqd.ipynb) example):
    >
    > ```python
    > from qiskit_ibm_runtime import Sampler, Estimator
    > ```
 
-3\. Running an algorithm on an Aer simulator using a custom instruction (i.e., using [`qiskit.opflow`](../qiskit/opflow)'s legacy
+3. Running an algorithm on an Aer simulator using a custom instruction (i.e., using [`qiskit.opflow`](../qiskit/opflow)'s legacy
 [`qiskit.opflow.expectations.AerPauliExpectation`](../qiskit/qiskit.opflow.expectations.AerPauliExpectation)):
 
-> - Aer Primitives with `shots=None`, `approximation=True` (see [TrotterQRTE] example):
+> - Aer Primitives with `shots=None`, `approximation=True` (see [TrotterQRTE](#trotterqrte) example):
 >
 > ```python
 > from qiskit_aer.primitives import Sampler, Estimator
@@ -152,8 +164,6 @@ In this guide, we will cover 3 different common configurations for algorithms th
 > ```
 
 ## Minimum Eigensolvers
-
-*Back to* [TL;DR](#tldr)
 
 The minimum eigensolver algorithms belong to the first type of refactoring listed above
 (Algorithms refactored in a new location to support [`qiskit.primitives`](../qiskit/primitives)).
@@ -476,8 +486,6 @@ For complete code examples, see the following updated tutorials:
 
 ## Eigensolvers
 
-*Back to* [TL;DR](#tldr)
-
 The eigensolver algorithms also belong to the first type of refactoring
 (Algorithms refactored in a new location to support [`qiskit.primitives`](../qiskit/primitives)). Instead of a
 [`qiskit.utils.QuantumInstance`](../qiskit/qiskit.utils.QuantumInstance), [`qiskit.algorithms.eigensolvers`](../qiskit/qiskit.algorithms.eigensolvers) are now initialized
@@ -637,8 +645,6 @@ print(result.eigenvalues)
 
 ## Time Evolvers
 
-*Back to* [TL;DR](#tldr)
-
 The time evolvers are the last group of algorithms to undergo the first type of refactoring
 (Algorithms refactored in a new location to support [`qiskit.primitives`](../qiskit/primitives)).
 Instead of a [`qiskit.utils.QuantumInstance`](../qiskit/qiskit.utils.QuantumInstance), `qiskit.algorithms.time_evolvers` are now initialized
@@ -736,8 +742,6 @@ q:  ┤ exp(it X) ├┤ exp(it Z) ├
 
 ## Amplitude Amplifiers
 
-*Back to* [TL;DR](#tldr)
-
 The amplitude amplifier algorithms belong to the second type of refactoring (Algorithms refactored in-place).
 Instead of a [`qiskit.utils.QuantumInstance`](../qiskit/qiskit.utils.QuantumInstance), `qiskit.algorithms.amplitude_amplifiers` are now initialized
 using an instance of any "Sampler" primitive e.g. [`qiskit.primitives.Sampler`](../qiskit/qiskit.primitives.Sampler).
@@ -775,8 +779,6 @@ For complete code examples, see the following updated tutorials:
 - [Grover Examples](https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/algorithms/07_grover_examples.ipynb)
 
 ## Amplitude Estimators
-
-*Back to* [TL;DR](#tldr)
 
 Similarly to the amplitude amplifiers, the amplitude estimators also belong to the second type of refactoring
 (Algorithms refactored in-place).
@@ -822,8 +824,6 @@ For complete code examples, see the following updated tutorials:
 - [Amplitude Estimation](https://qiskit.org/ecosystem/finance/tutorials/00_amplitude_estimation.html)
 
 ## Phase Estimators
-
-*Back to* [TL;DR](#tldr)
 
 Finally, the phase estimators are the last group of algorithms to undergo the first type of refactoring
 (Algorithms refactored in-place).
