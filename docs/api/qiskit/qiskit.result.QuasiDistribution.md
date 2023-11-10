@@ -18,6 +18,10 @@ A dict-like class for representing quasi-probabilities.
 
 Builds a quasiprobability distribution object.
 
+<Admonition title="Note" type="note">
+  The quasiprobability values might include floating-point errors. `QuasiDistribution.__repr__` rounds using `numpy.round()` and the parameter `ndigits` can be manipulated with the class attribute `__ndigits__`. The default is `15`.
+</Admonition>
+
 **Parameters**
 
 *   **data** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) –

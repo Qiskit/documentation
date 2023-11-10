@@ -62,13 +62,11 @@ Create a new JobStatus object from a dictionary.
 
 **Returns**
 
-**The `JobStatus` from the input**
-
-dictionary.
+The `JobStatus` from the input dictionary.
 
 **Return type**
 
-qiskit.providers.model.JobStatus
+[JobStatus](#qiskit.providers.models.JobStatus "qiskit.providers.models.JobStatus")
 
 ### to\_dict
 

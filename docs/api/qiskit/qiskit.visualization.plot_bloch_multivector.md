@@ -12,15 +12,11 @@ python_api_name: qiskit.visualization.plot_bloch_multivector
 
 <span id="qiskit.visualization.plot_bloch_multivector" />
 
-`qiskit.visualization.plot_bloch_multivector(state, title='', figsize=None, *, rho=None, reverse_bits=False, filename=None, font_size=None, title_font_size=None, title_pad=1)`
+`qiskit.visualization.plot_bloch_multivector(state, title='', figsize=None, *, reverse_bits=False, filename=None, font_size=None, title_font_size=None, title_pad=1)`
 
 Plot a Bloch sphere for each qubit.
 
 Each component $(x,y,z)$ of the Bloch sphere labeled as ‘qubit i’ represents the expected value of the corresponding Pauli operator acting only on that qubit, that is, the expected value of $I_{N-1} \otimes\dotsb\otimes I_{i+1}\otimes P_i \otimes I_{i-1}\otimes\dotsb\otimes I_0$, where $N$ is the number of qubits, $P\in \{X,Y,Z\}$ and $I$ is the identity operator.
-
-<Admonition title="Deprecated since version 0.15.1" type="danger">
-  `qiskit.visualization.state_visualization.plot_bloch_multivector()`’s argument `rho` is deprecated as of qiskit-terra 0.15.1. It will be removed no earlier than 3 months after the release date. Instead, use the argument `state`, which behaves identically.
-</Admonition>
 
 **Parameters**
 
@@ -38,7 +34,7 @@ A matplotlib figure instance.
 
 **Return type**
 
-[`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure "(in Matplotlib v3.8.0)")
+[`matplotlib.figure.Figure`](https://matplotlib.org/stable/api/figure_api.html#matplotlib.figure.Figure "(in Matplotlib v3.8.1)")
 
 **Raises**
 
