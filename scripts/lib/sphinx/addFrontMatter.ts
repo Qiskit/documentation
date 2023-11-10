@@ -12,8 +12,12 @@
 
 import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { SphinxToMdResult } from "./SphinxToMdResult";
+import { Pkg } from "../sharedTypes";
 
-export function addFrontMatter<T extends SphinxToMdResult>(results: T[]): T[] {
+export function addFrontMatter<T extends SphinxToMdResult>(
+  results: T[],
+  pkg: Pkg,
+): T[] {
   for (let result of results) {
     let markdown = result.markdown;
     if (result.meta.python_api_name) {
@@ -23,6 +27,15 @@ description: API reference for ${result.meta.python_api_name}
 in_page_toc_min_heading_level: 1
 python_api_type: ${result.meta.python_api_type}
 python_api_name: ${result.meta.python_api_name}
+---
+
+${markdown}
+`;
+    } else if (result.isReleaseNotes) {
+      result.markdown = `---
+title: ${pkg.title} release notes
+description: Changes made to ${pkg.title}
+in_page_toc_max_heading_level: 2
 ---
 
 ${markdown}

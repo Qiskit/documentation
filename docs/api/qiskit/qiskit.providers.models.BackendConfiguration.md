@@ -64,7 +64,7 @@ Initialize a QasmBackendConfiguration Object
 
 *   **credits\_required** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – True if backend requires credits to run a job.
 
-*   **online\_date** (*datetime*) – The date that the device went online
+*   **online\_date** ([*datetime.datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.12)")) – The date that the device went online
 
 *   **display\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Alternate name field for the backend
 

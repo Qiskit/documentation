@@ -122,7 +122,7 @@ The degree of the polynomial. If the coefficients have not been set, return 0.
 
 ### global\_phase
 
-Return the global phase of the circuit in radians.
+Return the global phase of the current circuit scope in radians.
 
 <span id="qiskit.circuit.library.PolynomialPauliRotations.header" />
 
@@ -134,7 +134,7 @@ Return the global phase of the circuit in radians.
 
 ### instances
 
-`= 324`
+`= 309`
 
 <span id="qiskit.circuit.library.PolynomialPauliRotations.layout" />
 
@@ -158,11 +158,11 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 ### num\_ancilla\_qubits
 
-Deprecated. Use num\_ancillas instead.
+The minimum number of ancilla qubits in the circuit.
 
-<Admonition title="Deprecated since version 0.16.0" type="danger">
-  The property `qiskit.circuit.library.arithmetic.polynomial_pauli_rotations.PolynomialPauliRotations.num_ancilla_qubits` is deprecated as of qiskit-terra 0.16.0. It will be removed no earlier than 3 months after the release date. Instead, use the property [`num_ancillas`](#qiskit.circuit.library.PolynomialPauliRotations.num_ancillas "qiskit.circuit.library.PolynomialPauliRotations.num_ancillas").
-</Admonition>
+**Returns**
+
+The minimal number of ancillas required.
 
 <span id="qiskit.circuit.library.PolynomialPauliRotations.num_ancillas" />
 
