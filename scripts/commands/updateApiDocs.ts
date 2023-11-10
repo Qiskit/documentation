@@ -37,6 +37,7 @@ interface Arguments {
   [x: string]: unknown;
   package: string;
   version: string;
+  historical: boolean;
 }
 
 function transformLink(link: Link): Link | undefined {
@@ -111,6 +112,11 @@ const readArgs = (): Arguments => {
       demandOption: true,
       description: "The full version string of the --package, e.g. 0.44.0",
     })
+    .option("historical", {
+      type: "boolean",
+      default: false,
+      description: "Is this a prior release? Only works with `-p qiskit`.",
+    })
     .parseSync();
 };
 
@@ -131,6 +137,14 @@ zxMain(async () => {
     throw new Error(`Unrecognized package: ${args.package}`);
   }
 
+  if (args.historical) {
+    if (pkg.name !== "qiskit") {
+      throw new Error("`--historical` can only be used with `-p qiskit`");
+    }
+    pkg.baseUrl = `https://qiskit.org/documentation/stable/${versionWithoutPatch}`;
+    pkg.initialUrls = [`${pkg.baseUrl}/apidoc/index.html`];
+  }
+
   const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
     args.version
   }`;
@@ -144,11 +158,13 @@ zxMain(async () => {
     });
   }
 
-  const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${versionWithoutPatch}/`;
-  const outputDir = `${getRoot()}/docs/api/${pkg.name}`;
 
-  console.log(`Deleting existing markdown for ${pkg.name}`);
-  await $`rm -rf ${outputDir}`;
+  const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${versionWithoutPatch}/`;
+  const outputDir = args.historical
+    ? `${getRoot()}/docs/api/${pkg.name}/${versionWithoutPatch}`
+    : `${getRoot()}/docs/api/${pkg.name}`;
+
+  await rmFilesInFolder(outputDir, `${pkg.name}:${versionWithoutPatch}`);
 
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${versionWithoutPatch}`,
@@ -161,6 +177,21 @@ zxMain(async () => {
     args.version,
   );
 });
+
+/**
+ * Deletes all the files in the folder, but preserves subfolders. That's important
+ * to avoid accidentally deleting other historical versions of the API.
+ *
+ * We delete files when regenerating API docs to capture when APIs have been deleted.
+ */
+async function rmFilesInFolder(
+  dir: string,
+  description: string,
+): Promise<void> {
+  console.log(`Deleting existing markdown for ${description}`);
+  // TODO: implement
+  // await $`rm -rf ${getRoot()}/docs/api/${pkg.name}`;
+}
 
 async function downloadHtml(options: {
   baseUrl: string;
@@ -286,6 +317,7 @@ async function convertHtmlToMarkdown(
   await downloadImages(
     allImages.map((img) => ({
       src: img.src,
+      // TODO: probably figure out, including the links used
       dest: `${getRoot()}/public${img.dest}`,
     })),
   );

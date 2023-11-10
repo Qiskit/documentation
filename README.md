@@ -172,3 +172,5 @@ To check that formatting is valid without actually making changes, run `npm run 
 1. Choose which documentation you want to regenerate: `qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`
 2. Determine the current version of the published stable documentation, e.g. at https://qiskit.org/documentation/
 3. Run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
+
+For `qiskit`, you can also regenerate historical versions by adding `--historical` to the arguments. This is useful when we improve our generation script.
