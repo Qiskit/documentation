@@ -286,6 +286,6 @@ async function convertHtmlToMarkdown(
 }
 
 function urlToPath(url: string) {
-  url = url.replaceAll("release_notes", "release-notes")
+  url = url.replaceAll("release_notes", "release-notes");
   return `${getRoot()}/docs${url}.md`;
 }
