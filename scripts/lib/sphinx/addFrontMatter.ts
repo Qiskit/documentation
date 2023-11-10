@@ -12,11 +12,12 @@
 
 import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { SphinxToMdResult } from "./SphinxToMdResult";
-import { PkgHtml } from "../../commands/updateApiDocs";
+import { Pkg } from "../../commands/updateApiDocs";
 
 export function addFrontMatter<T extends SphinxToMdResult>(
   results: T[],
-  pkg: PkgHtml,
+  pkg: Pkg,
+  packageVersion: string
 ): T[] {
   for (let result of results) {
     let markdown = result.markdown;
@@ -34,7 +35,7 @@ ${markdown}
     } else if (result.isReleaseNotes) {
       result.markdown = `---
 title: Release notes
-description: ${pkg.pkg.title} v${pkg.version} release notes
+description: ${pkg.title} v${packageVersion} release notes
 ---
 
 ${markdown}
