@@ -79,8 +79,18 @@ export class Link {
     return possibleFilePaths;
   }
 
-  checkExternalLink(): boolean {
-    // External link checking not supported yet
+  /**
+   * True if link is valid, otherwise false
+   */
+  async checkExternalLink(): Promise<boolean> {
+    const response = await fetch(this.value, {
+      headers: { "User-Agent": "prn-broken-links-finder" },
+    });
+
+    if (response.status >= 300) {
+      return false;
+    }
+
     return true;
   }
 
@@ -99,11 +109,26 @@ export class Link {
    * the link, true if the link is in `existingFiles`
    * or is a valid external link, otherwise false
    */
-  checkLink(existingFiles: File[]): string[] {
+  async checkLink(existingFiles: File[]): Promise<string[]> {
     const errorMessages: string[] = [];
 
     if (this.isExternal) {
-      // External link checking not supported yet
+      // External link
+      try {
+        if (!(await this.checkExternalLink())) {
+          this.originFiles.map((originFile: string) => {
+            errorMessages.push(
+              `❌ ${originFile}: Could not find link '${this.value}'`,
+            );
+          });
+        }
+      } catch (_) {
+        this.originFiles.map((originFile: string) => {
+          errorMessages.push(
+            `❌ ${originFile}: Failed to fetch '${this.value}'`,
+          );
+        });
+      }
       return errorMessages;
     }
 

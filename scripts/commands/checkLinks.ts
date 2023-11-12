@@ -22,6 +22,7 @@ import { Root } from "remark-mdx";
 import rehypeRemark from "rehype-remark";
 import rehypeParse from "rehype-parse";
 import remarkGfm from "remark-gfm";
+import yargs from "yargs/yargs";
 
 // These files are not searched to see if their own links are valid.
 const IGNORED_FILES: string[] = [];
@@ -139,6 +140,11 @@ function loadFiles(existingPaths: string[]): File[] {
 }
 
 async function main() {
+  const args = yargs(process.argv.slice(2)).options({
+    external: { type: "boolean", default: false },
+  });
+  const argv = await args.argv;
+
   // Determine what files we have and separate them into files with links
   // to read and files we don't need to parse.
   const pathsWithLinks = await globby("docs/**/*.{ipynb,md,mdx}");
@@ -149,18 +155,25 @@ async function main() {
 
   // Parse the files with links and get a list with all the links
   // in all the files without duplications.
-  const [docsFiles, linkList] = await loadFilesAndLinks(pathsWithLinks);
+  let [docsFiles, linkList] = await loadFilesAndLinks(pathsWithLinks);
 
   // Create an array with all the valid destinations for a link
   const otherFiles = loadFiles(pathsWithoutLinks);
   const existingFiles = docsFiles.concat(otherFiles);
 
-  // Validate the links and print the results
+  // Validate the links
+  linkList = linkList.filter((link) => argv.external || !link.isExternal);
+  const results = await Promise.all(
+    linkList.map((link) => link.checkLink(existingFiles)),
+  );
+
+  // Print the results
   let allGood = true;
-  linkList.forEach((link) => {
-    const errorMessages = link.checkLink(existingFiles);
-    errorMessages.forEach((errorMessage) => console.error(errorMessage));
-    allGood &&= errorMessages.length == 0;
+  results.forEach((linkErrors) => {
+    linkErrors.forEach((errorMessage) => {
+      console.error(errorMessage);
+      allGood = false;
+    });
   });
 
   if (!allGood) {
@@ -170,4 +183,4 @@ async function main() {
   console.log("\nNo links appear broken ✅\n");
 }
 
-main();
+main().then(() => process.exit());
