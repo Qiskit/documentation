@@ -37,7 +37,7 @@ function markdownFromNotebook(source: string): string {
   let markdown = "";
   for (let cell of JSON.parse(source).cells) {
     if (cell.cell_type === "markdown") {
-      markdown += cell.source;
+      cell.source.map((s: string) => (markdown += s + "\n"));
     }
   }
   return markdown;
@@ -63,8 +63,15 @@ async function loadFilesAndLinks(
       path.extname(filePath) === ".ipynb"
         ? markdownFromNotebook(source)
         : source;
+    const anchors = markdownLinkExtractor(markdown).anchors;
 
-    fileList.push(new File(filePath, []));
+    // Get the anchors from HTML ids.
+    const id_anchors = markdown.match(/(?<=id=")(.*)(?=")/gm);
+    if (id_anchors != null) {
+      id_anchors.map((id) => anchors.push("#" + id));
+    }
+
+    fileList.push(new File(filePath, anchors, false));
 
     if (
       filePath.startsWith("docs/api/qiskit") ||
@@ -132,7 +139,8 @@ async function loadFilesAndLinks(
 function loadFiles(existingPaths: string[]): File[] {
   const fileList: File[] = [];
   for (let path of existingPaths) {
-    fileList.push(new File(path, []));
+    const synthetic = SYNTHETIC_FILES.includes(path) ? true : false;
+    fileList.push(new File(path, [], synthetic));
   }
 
   return fileList;
