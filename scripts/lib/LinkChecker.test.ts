@@ -75,6 +75,7 @@ describe("Validate links", () => {
     const results = testLink.checkLink([testFile]);
     expect(results).toEqual([
       "❌ /testorigin.mdx: Could not find link '/test-alternative-path'",
+      "❓ Did you mean 'docs/testpath'?",
     ]);
   });
 
@@ -91,6 +92,7 @@ describe("Validate links", () => {
     const results = testLink.checkLink([testFile]);
     expect(results).toEqual([
       "❌ docs/testorigin.mdx: Could not find link '../testpath'",
+      "❓ Did you mean 'docs/testpath'?",
     ]);
   });
 
@@ -119,9 +121,13 @@ describe("Validate links", () => {
     const results = testLink.checkLink([testFile1, testFile2]);
     expect(results).toEqual([
       "❌ docs/test/testorigin.mdx: Could not find link '/testpath'",
+      "❓ Did you mean 'docs/test/testpath'?",
       "❌ docs/test/test2/testorigin.mdx: Could not find link '/testpath'",
+      "❓ Did you mean 'docs/test/testpath'?",
       "❌ docs/test/test3/testorigin.mdx: Could not find link '/testpath'",
+      "❓ Did you mean 'docs/test/testpath'?",
       "❌ docs/test/test2/test4/testorigin.mdx: Could not find link '/testpath'",
+      "❓ Did you mean 'docs/test/testpath'?",
     ]);
   });
 
@@ -137,7 +143,9 @@ describe("Validate links", () => {
     const results = testLink.checkLink([testFile1, testFile2]);
     expect(results).toEqual([
       "❌ docs/test/test2/testorigin.mdx: Could not find link '../testpath'",
+      "❓ Did you mean 'docs/testpath'?",
       "❌ docs/test/test3/testorigin.mdx: Could not find link '../testpath'",
+      "❓ Did you mean 'docs/testpath'?",
     ]);
   });
 });

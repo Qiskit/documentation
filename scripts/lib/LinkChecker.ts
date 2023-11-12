@@ -94,6 +94,49 @@ export class Link {
     );
   }
 
+  didYouMean(existingFiles: File[], originFile: string): string {
+    const levenshtein = require("fast-levenshtein");
+    let min_score = Number.MAX_SAFE_INTEGER;
+    let suggestion_path = "";
+    let suggestion_path_anchors: String[] = [];
+
+    const possiblePaths = this.possibleFilePaths(originFile);
+    const pathNoExtension = possiblePaths[0].replace(/\.[^\/.]+$/, "");
+
+    for (let file of existingFiles) {
+      let score = levenshtein.get(pathNoExtension, file.path);
+      if (score < min_score) {
+        min_score = score;
+        suggestion_path = file.path;
+        suggestion_path_anchors = file.anchors;
+      }
+    }
+
+    if (this.anchor == "") {
+      return (
+        "❓ Did you mean '" + suggestion_path.replace(/\.[^\/.]+$/, "") + "'?"
+      );
+    }
+
+    min_score = Number.MAX_SAFE_INTEGER;
+    let suggestion_anchor: String = "";
+
+    for (let anchor of suggestion_path_anchors) {
+      let score = levenshtein.get(this.anchor, anchor);
+      if (score < min_score) {
+        min_score = score;
+        suggestion_anchor = anchor;
+      }
+    }
+
+    return (
+      "❓ Did you mean '" +
+      suggestion_path.replace(/\.[^\/.]+$/, "") +
+      suggestion_anchor +
+      "'?"
+    );
+  }
+
   /**
    * Returns an error message for each origin of
    * the link, true if the link is in `existingFiles`
@@ -113,6 +156,7 @@ export class Link {
         errorMessages.push(
           `❌ ${originFile}: Could not find link '${this.value}'`,
         );
+        errorMessages.push(this.didYouMean(existingFiles, originFile));
       }
     });
 
