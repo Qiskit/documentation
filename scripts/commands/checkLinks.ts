@@ -25,8 +25,10 @@ import remarkGfm from "remark-gfm";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
-// These files are not searched to see if their own links are valid.
-const IGNORED_FILES: string[] = [];
+// The links in the files are not searched to see if they are valid.
+// The files need a list of links to be ignored, and when an asterisk
+// (*) is used as a link, all the links in the file will be ignored.
+const FILES_TO_IGNORES: { [id: string]: string[] } = {};
 
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
@@ -94,7 +96,10 @@ async function loadFilesAndLinks(
       continue;
     }
 
-    if (IGNORED_FILES.includes(filePath)) {
+    if (
+      filePath in FILES_TO_IGNORES &&
+      FILES_TO_IGNORES[filePath].includes("*")
+    ) {
       continue;
     }
 
@@ -139,7 +144,15 @@ async function loadFilesAndLinks(
   }
 
   for (let [link, originFiles] of linkMap) {
-    linkList.push(new Link(link, originFiles));
+    originFiles = originFiles.filter(
+      (originFile) =>
+        FILES_TO_IGNORES[originFile] == null ||
+        !FILES_TO_IGNORES[originFile].includes(link),
+    );
+
+    if (originFiles.length > 0) {
+      linkList.push(new Link(link, originFiles));
+    }
   }
 
   return [fileList, linkList];
