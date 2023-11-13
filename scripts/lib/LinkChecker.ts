@@ -80,9 +80,10 @@ export class Link {
   }
 
   /**
-   * Returns a string with the error found.
+   * Returns a string with the error found, or null
+   * if there are no errors.
    */
-  async checkExternalLink(): Promise<string> {
+  async checkExternalLink(): Promise<string | null> {
     try {
       const response = await fetch(this.value, {
         headers: { "User-Agent": "prn-broken-links-finder" },
@@ -97,7 +98,7 @@ export class Link {
       );
     }
 
-    return "";
+    return null;
   }
 
   /**
@@ -133,7 +134,7 @@ export class Link {
 
     // External link
     const errorMessage = await this.checkExternalLink();
-    if (errorMessage != "") {
+    if (errorMessage) {
       this.originFiles.forEach((originFile: string) => {
         errorMessages.push(`❌ ${originFile}: ` + errorMessage);
       });
