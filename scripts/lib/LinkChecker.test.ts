@@ -74,8 +74,7 @@ describe("Validate links", () => {
     let testFile = new File("docs/testpath.mdx", []);
     const results = testLink.checkLink([testFile]);
     expect(results).toEqual([
-      "❌ /testorigin.mdx: Could not find link '/test-alternative-path'",
-      "❓ Did you mean 'docs/testpath'?",
+      "❌ /testorigin.mdx: Could not find link '/test-alternative-path'. ❓ Did you mean '/testpath'?",
     ]);
   });
 
@@ -91,8 +90,7 @@ describe("Validate links", () => {
     let testFile = new File("docs/testpath.mdx", []);
     const results = testLink.checkLink([testFile]);
     expect(results).toEqual([
-      "❌ docs/testorigin.mdx: Could not find link '../testpath'",
-      "❓ Did you mean 'docs/testpath'?",
+      "❌ docs/testorigin.mdx: Could not find link '../testpath'. ❓ Did you mean '/testpath'?",
     ]);
   });
 
@@ -120,14 +118,10 @@ describe("Validate links", () => {
     let testFile2 = new File("docs/test2/test3/testpath.mdx", []);
     const results = testLink.checkLink([testFile1, testFile2]);
     expect(results).toEqual([
-      "❌ docs/test/testorigin.mdx: Could not find link '/testpath'",
-      "❓ Did you mean 'docs/test/testpath'?",
-      "❌ docs/test/test2/testorigin.mdx: Could not find link '/testpath'",
-      "❓ Did you mean 'docs/test/testpath'?",
-      "❌ docs/test/test3/testorigin.mdx: Could not find link '/testpath'",
-      "❓ Did you mean 'docs/test/testpath'?",
-      "❌ docs/test/test2/test4/testorigin.mdx: Could not find link '/testpath'",
-      "❓ Did you mean 'docs/test/testpath'?",
+      "❌ docs/test/testorigin.mdx: Could not find link '/testpath'. ❓ Did you mean '/test/testpath'?",
+      "❌ docs/test/test2/testorigin.mdx: Could not find link '/testpath'. ❓ Did you mean '/test/testpath'?",
+      "❌ docs/test/test3/testorigin.mdx: Could not find link '/testpath'. ❓ Did you mean '/test/testpath'?",
+      "❌ docs/test/test2/test4/testorigin.mdx: Could not find link '/testpath'. ❓ Did you mean '/test/testpath'?",
     ]);
   });
 
@@ -142,10 +136,8 @@ describe("Validate links", () => {
     let testFile2 = new File("docs/test/test2/testpath.mdx", []);
     const results = testLink.checkLink([testFile1, testFile2]);
     expect(results).toEqual([
-      "❌ docs/test/test2/testorigin.mdx: Could not find link '../testpath'",
-      "❓ Did you mean 'docs/testpath'?",
-      "❌ docs/test/test3/testorigin.mdx: Could not find link '../testpath'",
-      "❓ Did you mean 'docs/testpath'?",
+      "❌ docs/test/test2/testorigin.mdx: Could not find link '../testpath'. ❓ Did you mean '/testpath'?",
+      "❌ docs/test/test3/testorigin.mdx: Could not find link '../testpath'. ❓ Did you mean '/testpath'?",
     ]);
   });
 });

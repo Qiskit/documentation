@@ -114,7 +114,9 @@ export class Link {
 
     if (this.anchor == "") {
       return (
-        "❓ Did you mean '" + suggestion_path.replace(/\.[^\/.]+$/, "") + "'?"
+        "❓ Did you mean '" +
+        suggestion_path.replace(/\.[^\/.]+$/, "").replace(/^docs/, "") +
+        "'?"
       );
     }
 
@@ -131,7 +133,7 @@ export class Link {
 
     return (
       "❓ Did you mean '" +
-      suggestion_path.replace(/\.[^\/.]+$/, "") +
+      suggestion_path.replace(/\.[^\/.]+$/, "").replace(/^docs/, "") +
       suggestion_anchor +
       "'?"
     );
@@ -153,10 +155,11 @@ export class Link {
     // Internal link
     this.originFiles.forEach((originFile) => {
       if (!this.checkInternalLink(existingFiles, originFile)) {
+        const suggestionPath = this.didYouMean(existingFiles, originFile);
         errorMessages.push(
-          `❌ ${originFile}: Could not find link '${this.value}'`,
+          `❌ ${originFile}: Could not find link '${this.value}'. ` +
+            suggestionPath,
         );
-        errorMessages.push(this.didYouMean(existingFiles, originFile));
       }
     });
 
