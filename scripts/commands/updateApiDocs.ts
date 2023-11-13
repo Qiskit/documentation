@@ -109,13 +109,23 @@ const readArgs = (): Arguments => {
       alias: "v",
       type: "string",
       demandOption: true,
-      description: "The version string of the --package, e.g. 0.44.0",
+      description: "The full version string of the --package, e.g. 0.44.0",
     })
     .parseSync();
 };
 
 zxMain(async () => {
   const args = readArgs();
+
+  // Determine the minor version, e.g. 0.44.0 -> 0.44
+  const versionMatch = args.version.match(/^(\d+\.\d+)/);
+  if (versionMatch === null) {
+    throw new Error(
+      `Invalid --version. Expected the format 0.44.0, but received ${args.version}`,
+    );
+  }
+  const versionWithoutPatch = versionMatch[0];
+
   const pkg = PACKAGES.find((pkg) => pkg.name === args.package);
   if (pkg === undefined) {
     throw new Error(`Unrecognized package: ${args.package}`);
@@ -134,18 +144,18 @@ zxMain(async () => {
     });
   }
 
-  console.log(`Deleting existing markdown for ${pkg.name}`);
-  await $`rm -rf ${getRoot()}/docs/api/${pkg.name}`;
+  const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${versionWithoutPatch}/`;
+  const outputDir = `${getRoot()}/docs/api/${pkg.name}`;
 
-  const output = `${getRoot()}/docs/api/${pkg.name}`;
-  const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${args.version}/`;
+  console.log(`Deleting existing markdown for ${pkg.name}`);
+  await $`rm -rf ${outputDir}`;
 
   console.log(
-    `Convert sphinx html to markdown for ${pkg.name}:${args.version}`,
+    `Convert sphinx html to markdown for ${pkg.name}:${versionWithoutPatch}`,
   );
   await convertHtmlToMarkdown(
     destination,
-    output,
+    outputDir,
     baseSourceUrl,
     pkg,
     args.version,
@@ -197,17 +207,13 @@ async function convertHtmlToMarkdown(
   pkg: Pkg,
   version: string,
 ) {
-  const files = await globby(
-    [
-      "apidocs/**.html",
-      "apidoc/**.html",
-      "stubs/**.html",
-      "release_notes.html",
-    ],
-    {
-      cwd: htmlPath,
-    },
-  );
+  const globs = ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"];
+  if (pkg.name !== "qiskit") {
+    globs.push("release_notes.html");
+  }
+  const files = await globby(globs, {
+    cwd: htmlPath,
+  });
 
   const ignore = pkg.ignore ?? (() => false);
 

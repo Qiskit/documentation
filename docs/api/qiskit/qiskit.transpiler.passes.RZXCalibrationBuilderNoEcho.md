@@ -20,14 +20,9 @@ The `RZXCalibrationBuilderNoEcho` is a variation of the [`RZXCalibrationBuilder`
 
 Initializes a RZXGate calibration builder.
 
-<Admonition title="Deprecated since version 0.22.0" type="danger">
-  `qiskit.transpiler.passes.calibration.rzx_builder.RZXCalibrationBuilder.__init__()`’s argument `qubit_channel_mapping` is deprecated as of qiskit-terra 0.22.0. It will be removed no earlier than 3 months after the release date.
-</Admonition>
-
 **Parameters**
 
 *   **instruction\_schedule\_map** – The `InstructionScheduleMap` object representing the default pulse calibrations for the target backend
-*   **qubit\_channel\_mapping** – The list mapping qubit indices to the list of channel names that apply on that qubit.
 *   **verbose** – Set True to raise a user warning when RZX schedule cannot be built.
 *   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `instruction_schedule_map` and this are specified then this argument will take precedence and `instruction_schedule_map` will be ignored.
 
@@ -54,6 +49,28 @@ Check if the pass is a transformation pass.
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
 ## Methods
+
+### execute
+
+<span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
 
 ### get\_calibration
 
@@ -88,7 +105,11 @@ schedule
 
 `name()`
 
-Return the name of the pass.
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### rescale\_cr\_inst
 
@@ -156,4 +177,25 @@ Return `True` is calibration can be provided.
 **Return type**
 
 [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
 
