@@ -68,7 +68,7 @@ async function loadFilesAndLinks(
     // Get the anchors from HTML ids.
     const id_anchors = markdown.match(/(?<=id=")(.*)(?=")/gm);
     if (id_anchors != null) {
-      id_anchors.map((id) => anchors.push("#" + id));
+      id_anchors.forEach((id) => anchors.push("#" + id));
     }
 
     fileList.push(new File(filePath, anchors, false));
@@ -132,35 +132,23 @@ async function loadFilesAndLinks(
   return [fileList, linkList];
 }
 
-/**
- * Return a list of File objects with all the files
- * in `existingPaths`
- */
-function loadFiles(existingPaths: string[]): File[] {
-  const fileList: File[] = [];
-  for (let path of existingPaths) {
-    const synthetic = SYNTHETIC_FILES.includes(path) ? true : false;
-    fileList.push(new File(path, [], synthetic));
-  }
-
-  return fileList;
-}
-
 async function main() {
-  // Determine what files we have and separate them into files with links
-  // to read and files we don't need to parse.
+  // Determine what files with links we want to parse
   const pathsWithLinks = await globby("docs/**/*.{ipynb,md,mdx}");
-  const pathsWithoutLinks = [
-    ...(await globby("{public,docs}/**/*.{png,jpg,gif,svg}")),
-    ...SYNTHETIC_FILES,
-  ];
 
   // Parse the files with links and get a list with all the links
-  // in all the files without duplications.
+  // in all the files without duplications
   const [docsFiles, linkList] = await loadFilesAndLinks(pathsWithLinks);
 
+  // Define extra files that we don't want to parse
+  const otherFiles = [
+    ...(await globby("{public,docs}/**/*.{png,jpg,gif,svg}")).map(
+      (fp) => new File(fp, [], false),
+    ),
+    ...SYNTHETIC_FILES.map((fp) => new File(fp, [], true)),
+  ];
+
   // Create an array with all the valid destinations for a link
-  const otherFiles = loadFiles(pathsWithoutLinks);
   const existingFiles = docsFiles.concat(otherFiles);
 
   // Validate the links and print the results
