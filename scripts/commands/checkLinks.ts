@@ -40,15 +40,16 @@ interface Arguments {
   external: boolean | undefined;
 }
 
-const readArgs = (): Arguments => { 
-  return yargs(hideBin(process.argv)) 
-    .version(false) 
-    .option("external", { 
-      type: "boolean", 
-      demandOption: false, 
-      description: "Boolean to decide whether to check external links or skip them", 
-    }) 
-    .parseSync(); 
+const readArgs = (): Arguments => {
+  return yargs(hideBin(process.argv))
+    .version(false)
+    .option("external", {
+      type: "boolean",
+      demandOption: false,
+      description:
+        "Boolean to decide whether to check external links or skip them",
+    })
+    .parseSync();
 };
 
 function markdownFromNotebook(source: string): string {

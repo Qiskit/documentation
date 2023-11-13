@@ -125,7 +125,9 @@ export class Link {
       } catch (error) {
         this.originFiles.map((originFile: string) => {
           errorMessages.push(
-            `❌ ${originFile}: Failed to fetch '${this.value}': ${(error as Error).message}`,
+            `❌ ${originFile}: Failed to fetch '${this.value}': ${
+              (error as Error).message
+            }`,
           );
         });
       }
