@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.fake_provider.FakeOpenPulse2Q
 
 `qiskit.providers.fake_provider.FakeOpenPulse2Q`
 
-Bases: `FakeBackend`
+Bases: [`FakeBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeBackend "qiskit.providers.fake_provider.fake_backend.FakeBackend")
 
 A fake 2 qubit backend for pulse test.
 

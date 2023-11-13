@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.fake_provider.FakeJohannesburg
 
 `qiskit.providers.fake_provider.FakeJohannesburg`
 
-Bases: `FakeQasmBackend`
+Bases: [`FakeQasmBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeQasmBackend "qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend")
 
 A fake Johannesburg backend.
 
