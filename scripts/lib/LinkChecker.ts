@@ -118,26 +118,26 @@ export class Link {
   async checkLink(existingFiles: File[]): Promise<string[]> {
     const errorMessages: string[] = [];
 
-    if (this.isExternal) {
-      // External link
-      const errorMessage = await this.checkExternalLink();
-      if (errorMessage != "") {
-        this.originFiles.forEach((originFile: string) => {
-          errorMessages.push(`❌ ${originFile}: ` + errorMessage);
-        });
-      }
+    if (!this.isExternal) {
+      // Internal link
+      this.originFiles.forEach((originFile) => {
+        if (!this.checkInternalLink(existingFiles, originFile)) {
+          errorMessages.push(
+            `❌ ${originFile}: Could not find link '${this.value}'`,
+          );
+        }
+      });
+
       return errorMessages;
     }
 
-    // Internal link
-    this.originFiles.forEach((originFile) => {
-      if (!this.checkInternalLink(existingFiles, originFile)) {
-        errorMessages.push(
-          `❌ ${originFile}: Could not find link '${this.value}'`,
-        );
-      }
-    });
-
+    // External link
+    const errorMessage = await this.checkExternalLink();
+    if (errorMessage != "") {
+      this.originFiles.forEach((originFile: string) => {
+        errorMessages.push(`❌ ${originFile}: ` + errorMessage);
+      });
+    }
     return errorMessages;
   }
 }
