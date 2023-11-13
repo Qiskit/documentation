@@ -23,8 +23,10 @@ import rehypeRemark from "rehype-remark";
 import rehypeParse from "rehype-parse";
 import remarkGfm from "remark-gfm";
 
-// The links in a file are not searched to see if they are valid.
-const IGNORED_FILES: { [id: string]: string[] } = {};
+// The links in the files are not searched to see if they are valid.
+// The files need a list of links to be ignored, and when an asterisk
+// (*) is used as a link, all the links in the file will be ignored.
+const FILES_TO_IGNORES: { [id: string]: string[] } = {};
 
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
@@ -74,7 +76,10 @@ async function loadFilesAndLinks(
       continue;
     }
 
-    if (filePath in IGNORED_FILES && IGNORED_FILES[filePath].includes("*")) {
+    if (
+      filePath in FILES_TO_IGNORES &&
+      FILES_TO_IGNORES[filePath].includes("*")
+    ) {
       continue;
     }
 
@@ -121,8 +126,8 @@ async function loadFilesAndLinks(
   for (let [link, originFiles] of linkMap) {
     originFiles = originFiles.filter(
       (originFile) =>
-        IGNORED_FILES[originFile] == null ||
-        !IGNORED_FILES[originFile].includes(link),
+        FILES_TO_IGNORES[originFile] == null ||
+        !FILES_TO_IGNORES[originFile].includes(link),
     );
 
     if (originFiles.length > 0) {
