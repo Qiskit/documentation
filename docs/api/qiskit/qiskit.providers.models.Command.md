@@ -47,13 +47,11 @@ Create a new Command object from a dictionary.
 
 **Returns**
 
-**The `Command` from the input**
-
-dictionary.
+The `Command` from the input dictionary.
 
 **Return type**
 
-qiskit.providers.model.Command
+[Command](#qiskit.providers.models.Command "qiskit.providers.models.Command")
 
 ### to\_dict
 

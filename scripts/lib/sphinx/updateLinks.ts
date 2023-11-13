@@ -23,7 +23,7 @@ import remarkMath from "remark-math";
 import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
-import { Link } from "../../commands/updateApiDocs";
+import { Link } from "../sharedTypes";
 
 export async function updateLinks<T extends SphinxToMdResultWithUrl>(
   results: T[],

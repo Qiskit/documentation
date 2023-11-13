@@ -22,7 +22,6 @@ python_api_name: qiskit.qobj
 
 |                                                                                                           |                                                                 |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| [`Qobj`](qiskit.qobj.Qobj "qiskit.qobj.Qobj")(\[qobj\_id, config, experiments, header])                   | A backwards compat alias for QasmQobj.                          |
 | [`QobjExperimentHeader`](qiskit.qobj.QobjExperimentHeader "qiskit.qobj.QobjExperimentHeader")(\*\*kwargs) | A class representing a header dictionary for a Qobj Experiment. |
 | [`QobjHeader`](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")(\*\*kwargs)                               | A class used to represent a dictionary header in Qobj objects.  |
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Parameter
 
 <span id="qiskit.circuit.Parameter" />
 
-`qiskit.circuit.Parameter(name, uuid=None)`
+`qiskit.circuit.Parameter(name, *, uuid=None)`
 
 Bases: [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
 
@@ -34,7 +34,7 @@ qc.rx(phi, 0)
 qc.draw('mpl')
 
 # bind the parameters after circuit to create a bound circuit
-bc = qc.bind_parameters({phi: 3.14})
+bc = qc.assign_parameters({phi: 3.14})
 bc.measure_all()
 bc.draw('mpl')
 ```
@@ -47,7 +47,8 @@ Create a new named [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Param
 
 **Parameters**
 
-**name** – name of the `Parameter`, used for visual representation. This can be any unicode string, e.g. “ϕ”.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – name of the `Parameter`, used for visual representation. This can be any unicode string, e.g. “ϕ”.
+*   **uuid** (*UUID | None*) – For advanced usage only. Override the UUID of this parameter, in order to make it compare equal to some other parameter object. By default, two parameters with the same name do not compare equal to help catch shadowing bugs when two circuits containing the same named parameters are spurious combined. Setting the `uuid` field when creating two parameters to the same thing (along with the same name) allows them to be equal. This is useful during serialization and deserialization.
 
 ## Attributes
 
@@ -108,15 +109,11 @@ Assign one parameter to a value, which can either be numeric or another paramete
 **Parameters**
 
 *   **parameter** ([*Parameter*](#qiskit.circuit.Parameter "qiskit.circuit.Parameter")) – A parameter in this expression whose value will be updated.
-*   **value** ([*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")  *|*[*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – The new value to bind to.
+*   **value** – The new value to bind to.
 
 **Returns**
 
 A new expression parameterized by any parameters which were not bound by assignment.
-
-**Return type**
-
-[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
 
 ### bind
 
@@ -212,6 +209,14 @@ Return whether the expression is real
 `log()`
 
 Logarithm of a ParameterExpression
+
+### sign
+
+<span id="qiskit.circuit.Parameter.sign" />
+
+`sign()`
+
+Sign of a ParameterExpression
 
 ### sin
 

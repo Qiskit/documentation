@@ -20,19 +20,11 @@ python_api_name: qiskit.execute_function
 
 <span id="qiskit.execute_function.execute" />
 
-`qiskit.execute_function.execute(experiments, backend, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, seed_transpiler=None, optimization_level=None, pass_manager=None, qobj_id=None, qobj_header=None, shots=None, memory=None, seed_simulator=None, default_qubit_los=None, default_meas_los=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=None, meas_return=None, memory_slots=None, memory_slot_size=None, rep_time=None, rep_delay=None, parameter_binds=None, schedule_circuit=False, inst_map=None, meas_map=None, scheduling_method=None, init_qubits=None, **run_config)`
+`qiskit.execute_function.execute(experiments, backend, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, seed_transpiler=None, optimization_level=None, pass_manager=None, shots=None, memory=None, seed_simulator=None, default_qubit_los=None, default_meas_los=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=None, meas_return=None, memory_slots=None, memory_slot_size=None, rep_time=None, rep_delay=None, parameter_binds=None, schedule_circuit=False, inst_map=None, meas_map=None, scheduling_method=None, init_qubits=None, **run_config)`
 
 Execute a list of [`qiskit.circuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`qiskit.pulse.Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") on a backend.
 
 The execution is asynchronous, and a handle to a job instance is returned.
-
-<Admonition title="Deprecated since version 0.21.0" type="danger">
-  `qiskit.execute_function.execute()`’s argument `qobj_header` is deprecated as of qiskit-terra 0.21.0. It will be removed no earlier than 3 months after the release date. This argument has no effect anymore.
-</Admonition>
-
-<Admonition title="Deprecated since version 0.21.0" type="danger">
-  `qiskit.execute_function.execute()`’s argument `qobj_id` is deprecated as of qiskit-terra 0.21.0. It will be removed no earlier than 3 months after the release date. This argument has no effect anymore.
-</Admonition>
 
 **Parameters**
 
@@ -105,10 +97,6 @@ The execution is asynchronous, and a handle to a job instance is returned.
     If None, level 1 will be chosen as default.
 
 *   **pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")) – The pass manager to use during transpilation. If this arg is present, auto-selection of pass manager based on the transpile options will be turned off and this pass manager will be used directly.
-
-*   **qobj\_id** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – DEPRECATED: String identifier to annotate the Qobj. This has no effect and the `name` attribute of the input circuit(s) should be used instead.
-
-*   **qobj\_header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")  *or*[*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – DEPRECATED: User input that will be inserted in Qobj header, and will also be copied to the corresponding [`qiskit.result.Result`](qiskit.result.Result "qiskit.result.Result") header. Headers do not affect the run. Headers do not affect the run. This kwarg has no effect anymore and the [`metadata`](qiskit.circuit.QuantumCircuit#metadata "qiskit.circuit.QuantumCircuit.metadata") attribute of the input circuit(s) should be used instead.
 
 *   **shots** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Number of repetitions of each circuit, for sampling. Default: 1024
 

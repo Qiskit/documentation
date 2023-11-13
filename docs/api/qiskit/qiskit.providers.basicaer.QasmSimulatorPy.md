@@ -56,7 +56,7 @@ default values set
 
 `= {'backend_name':`
 
-`= {'backend_name': 'qasm_simulator', 'backend_version': '2.1.0', 'basis_gates': ['u1', 'u2', 'u3', 'rz', 'sx', 'x', 'cx', 'id', 'unitary'], 'conditional': True, 'coupling_map': None, 'description': 'A python simulator for qasm experiments', 'gates': [{'name': 'u1', 'parameters': ['lambda'], 'qasm_def': 'gate u1(lambda) q { U(0,0,lambda) q; }'}, {'name': 'u2', 'parameters': ['phi', 'lambda'], 'qasm_def': 'gate u2(phi,lambda) q { U(pi/2,phi,lambda) q; }'}, {'name': 'u3', 'parameters': ['theta', 'phi', 'lambda'], 'qasm_def': 'gate u3(theta,phi,lambda) q { U(theta,phi,lambda) q; }'}, {'name': 'rz', 'parameters': ['phi'], 'qasm_def': 'gate rz(phi) q { U(0,0,phi) q; }'}, {'name': 'sx', 'parameters': [], 'qasm_def': 'gate sx(phi) q { U(pi/2,7*pi/2,pi/2) q; }'}, {'name': 'x', 'parameters': [], 'qasm_def': 'gate x q { U(pi,7*pi/2,pi/2) q; }'}, {'name': 'cx', 'parameters': [], 'qasm_def': 'gate cx c,t { CX c,t; }'}, {'name': 'id', 'parameters': [], 'qasm_def': 'gate id a { U(0,0,0) a; }'}, {'name': 'unitary', 'parameters': ['matrix'], 'qasm_def': 'unitary(matrix) q1, q2,...'}], 'local': True, 'max_shots': 0, 'memory': True, 'n_qubits': 24, 'open_pulse': False, 'simulator': True, 'url': 'https://github.com/Qiskit/qiskit-terra'}`
+`= {'backend_name': 'qasm_simulator', 'backend_version': '2.1.0', 'basis_gates': ['h', 'u', 'p', 'u1', 'u2', 'u3', 'rz', 'sx', 'x', 'cx', 'id', 'unitary'], 'conditional': True, 'coupling_map': None, 'description': 'A python simulator for qasm experiments', 'gates': [{'name': 'h', 'parameters': [], 'qasm_def': 'gate h q { U(pi/2,0,pi) q; }'}, {'name': 'p', 'parameters': ['lambda'], 'qasm_def': 'gate p(lambda) q { U(0,0,lambda) q; }'}, {'name': 'u', 'parameters': ['theta', 'phi', 'lambda'], 'qasm_def': 'gate u(theta,phi,lambda) q { U(theta,phi,lambda) q; }'}, {'name': 'u1', 'parameters': ['lambda'], 'qasm_def': 'gate u1(lambda) q { U(0,0,lambda) q; }'}, {'name': 'u2', 'parameters': ['phi', 'lambda'], 'qasm_def': 'gate u2(phi,lambda) q { U(pi/2,phi,lambda) q; }'}, {'name': 'u3', 'parameters': ['theta', 'phi', 'lambda'], 'qasm_def': 'gate u3(theta,phi,lambda) q { U(theta,phi,lambda) q; }'}, {'name': 'rz', 'parameters': ['phi'], 'qasm_def': 'gate rz(phi) q { U(0,0,phi) q; }'}, {'name': 'sx', 'parameters': [], 'qasm_def': 'gate sx(phi) q { U(pi/2,7*pi/2,pi/2) q; }'}, {'name': 'x', 'parameters': [], 'qasm_def': 'gate x q { U(pi,7*pi/2,pi/2) q; }'}, {'name': 'cx', 'parameters': [], 'qasm_def': 'gate cx c,t { CX c,t; }'}, {'name': 'id', 'parameters': [], 'qasm_def': 'gate id a { U(0,0,0) a; }'}, {'name': 'unitary', 'parameters': ['matrix'], 'qasm_def': 'unitary(matrix) q1, q2,...'}], 'local': True, 'max_shots': 0, 'memory': True, 'n_qubits': 24, 'open_pulse': False, 'simulator': True, 'url': 'https://github.com/Qiskit/qiskit-terra'}`
 
 <span id="qiskit.providers.basicaer.QasmSimulatorPy.DEFAULT_OPTIONS" />
 
@@ -162,17 +162,13 @@ the Provider responsible for the backend.
 
 <span id="qiskit.providers.basicaer.QasmSimulatorPy.run" />
 
-`run(qobj, **backend_options)`
+`run(run_input, **backend_options)`
 
-Run qobj asynchronously.
-
-<Admonition title="Deprecated since version 0.22.0_pending" type="danger">
-  Using a qobj for the first argument to QasmSimulatorPy.run() is pending deprecation as of qiskit-terra 0.22.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date.
-</Admonition>
+Run on the backend.
 
 **Parameters**
 
-*   **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
+*   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – payload of the experiment
 *   **backend\_options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – backend options
 
 **Returns**
@@ -189,7 +185,7 @@ derived from BaseJob
 
 *   “initial\_statevector”: vector\_like
 
-The “initial\_statevector” option specifies a custom initial initial statevector for the simulator to be used instead of the all zero state. This size of this vector must be correct for the number of qubits in all experiments in the qobj.
+The “initial\_statevector” option specifies a custom initial initial statevector for the simulator to be used instead of the all zero state. This size of this vector must be correct for the number of qubits in `run_input` parameter.
 
 Example:
 
@@ -209,7 +205,7 @@ Run an experiment (circuit) and return a single experiment result.
 
 **Parameters**
 
-**experiment** (*QobjExperiment*) – experiment from qobj experiments list
+**experiment** ([*QasmQobjExperiment*](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment")) – experiment from qobj experiments list
 
 **Returns**
 
