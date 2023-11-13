@@ -37,7 +37,7 @@ const SYNTHETIC_FILES: string[] = [
 
 interface Arguments {
   [x: string]: unknown;
-  external: boolean | undefined;
+  external: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -46,6 +46,7 @@ const readArgs = (): Arguments => {
     .option("external", {
       type: "boolean",
       demandOption: false,
+      default: false,
       description:
         "Boolean to decide whether to check external links or skip them",
     })
