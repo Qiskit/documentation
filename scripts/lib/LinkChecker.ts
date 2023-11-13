@@ -122,10 +122,10 @@ export class Link {
             );
           });
         }
-      } catch (_) {
+      } catch (error) {
         this.originFiles.map((originFile: string) => {
           errorMessages.push(
-            `❌ ${originFile}: Failed to fetch '${this.value}'`,
+            `❌ ${originFile}: Failed to fetch '${this.value}': ${(error as Error).message}`,
           );
         });
       }

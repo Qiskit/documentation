@@ -23,6 +23,7 @@ import rehypeRemark from "rehype-remark";
 import rehypeParse from "rehype-parse";
 import remarkGfm from "remark-gfm";
 import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
 
 // These files are not searched to see if their own links are valid.
 const IGNORED_FILES: string[] = [];
@@ -33,6 +34,22 @@ const SYNTHETIC_FILES: string[] = [
   "docs/errors.mdx",
   "docs/api/runtime/tags/programs.mdx",
 ];
+
+interface Arguments {
+  [x: string]: unknown;
+  external: boolean | undefined;
+}
+
+const readArgs = (): Arguments => { 
+  return yargs(hideBin(process.argv)) 
+    .version(false) 
+    .option("external", { 
+      type: "boolean", 
+      demandOption: false, 
+      description: "Boolean to decide whether to check external links or skip them", 
+    }) 
+    .parseSync(); 
+};
 
 function markdownFromNotebook(source: string): string {
   let markdown = "";
@@ -140,10 +157,7 @@ function loadFiles(existingPaths: string[]): File[] {
 }
 
 async function main() {
-  const args = yargs(process.argv.slice(2)).options({
-    external: { type: "boolean", default: false },
-  });
-  const argv = await args.argv;
+  const args = readArgs();
 
   // Determine what files we have and separate them into files with links
   // to read and files we don't need to parse.
@@ -155,16 +169,17 @@ async function main() {
 
   // Parse the files with links and get a list with all the links
   // in all the files without duplications.
-  let [docsFiles, linkList] = await loadFilesAndLinks(pathsWithLinks);
+  const [docsFiles, linkList] = await loadFilesAndLinks(pathsWithLinks);
 
   // Create an array with all the valid destinations for a link
   const otherFiles = loadFiles(pathsWithoutLinks);
   const existingFiles = docsFiles.concat(otherFiles);
 
   // Validate the links
-  linkList = linkList.filter((link) => argv.external || !link.isExternal);
   const results = await Promise.all(
-    linkList.map((link) => link.checkLink(existingFiles)),
+    linkList
+      .filter((link) => args.external || !link.isExternal)
+      .map((link) => link.checkLink(existingFiles)),
   );
 
   // Print the results
