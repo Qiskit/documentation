@@ -48,7 +48,7 @@ const readArgs = (): Arguments => {
       demandOption: false,
       default: false,
       description:
-        "Boolean to decide whether to check external links or skip them",
+        "Should external links be checked? This slows down the script, but is useful to check.",
     })
     .parseSync();
 };
