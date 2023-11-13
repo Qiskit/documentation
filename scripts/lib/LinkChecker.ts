@@ -80,18 +80,24 @@ export class Link {
   }
 
   /**
-   * True if link is valid, otherwise false
+   * Returns a string with the error found.
    */
-  async checkExternalLink(): Promise<boolean> {
-    const response = await fetch(this.value, {
-      headers: { "User-Agent": "prn-broken-links-finder" },
-    });
+  async checkExternalLink(): Promise<string> {
+    try {
+      const response = await fetch(this.value, {
+        headers: { "User-Agent": "prn-broken-links-finder" },
+      });
 
-    if (response.status >= 300) {
-      return false;
+      if (response.status >= 300) {
+        return "Could not find link '" + this.value + "'";
+      }
+    } catch (error) {
+      return (
+        "Failed to fetch '" + this.value + "': " + (error as Error).message
+      );
     }
 
-    return true;
+    return "";
   }
 
   /**
@@ -114,21 +120,10 @@ export class Link {
 
     if (this.isExternal) {
       // External link
-      try {
-        if (!(await this.checkExternalLink())) {
-          this.originFiles.map((originFile: string) => {
-            errorMessages.push(
-              `❌ ${originFile}: Could not find link '${this.value}'`,
-            );
-          });
-        }
-      } catch (error) {
-        this.originFiles.map((originFile: string) => {
-          errorMessages.push(
-            `❌ ${originFile}: Failed to fetch '${this.value}': ${
-              (error as Error).message
-            }`,
-          );
+      const errorMessage = await this.checkExternalLink();
+      if (errorMessage != "") {
+        this.originFiles.forEach((originFile: string) => {
+          errorMessages.push(`❌ ${originFile}: ` + errorMessage);
         });
       }
       return errorMessages;
