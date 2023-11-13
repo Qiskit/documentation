@@ -90,12 +90,10 @@ export class Link {
       });
 
       if (response.status >= 300) {
-        return "Could not find link '" + this.value + "'";
+        return `Could not find link '${this.value}'`;
       }
     } catch (error) {
-      return (
-        "Failed to fetch '" + this.value + "': " + (error as Error).message
-      );
+      return `Failed to fetch '${this.value}': ${(error as Error).message}`;
     }
 
     return null;
