@@ -133,7 +133,7 @@ To see other libraries that use this interface one can visit: [https://optuna.re
 
 **Raises**
 
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `learning_rate` is an array and its lenght is less than `maxiter`.
+[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If `learning_rate` is an array and its length is less than `maxiter`.
 
 ## Attributes
 
@@ -432,7 +432,7 @@ This method composes [`ask()`](#qiskit.algorithms.optimizers.GradientDescent.ask
 
 `tell(ask_data, tell_data)`
 
-Updates `x` by an ammount proportional to the learning rate and value of the gradient at that point.
+Updates `x` by an amount proportional to the learning rate and value of the gradient at that point.
 
 **Parameters**
 

@@ -24,10 +24,10 @@ Initialize a BackendProperties instance.
 
 *   **backend\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Backend name.
 *   **backend\_version** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Backend version in the form X.Y.Z.
-*   **last\_update\_date** (*datetime or* [*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Last date/time that a property was updated. If specified as a `str`, it must be in ISO format.
-*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – System qubit parameters as a list of lists of `Nduv` objects
-*   **gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – System gate parameters as a list of `Gate` objects
-*   **general** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – General parameters as a list of `Nduv` objects
+*   **last\_update\_date** ([*datetime.datetime*](https://docs.python.org/3/library/datetime.html#datetime.datetime "(in Python v3.12)")  *or*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – Last date/time that a property was updated. If specified as a `str`, it must be in ISO format.
+*   **qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – System qubit parameters as a list of lists of [`Nduv`](qiskit.providers.models.Nduv "qiskit.providers.models.Nduv") objects
+*   **gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – System gate parameters as a list of [`GateProperties`](qiskit.providers.models.GateProperties "qiskit.providers.models.GateProperties") objects
+*   **general** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – General parameters as a list of [`Nduv`](qiskit.providers.models.Nduv "qiskit.providers.models.Nduv") objects
 *   **kwargs** – optional additional fields
 
 ## Methods
@@ -82,9 +82,7 @@ Create a new BackendProperties object from a dictionary.
 
 **Returns**
 
-**The BackendProperties from the input**
-
-dictionary.
+The BackendProperties from the input dictionary.
 
 **Return type**
 

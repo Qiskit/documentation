@@ -26,10 +26,6 @@ The input is given as arbitrary, time-ordered signals (see: [Instructions](#puls
 
 This is sufficient to allow the quantum physicist to explore and correct for noise in a quantum system.
 
-<span id="module-qiskit.pulse.configuration" />
-
-Configurations for pulse experiments.
-
 <span id="module-qiskit.pulse.instructions" />
 
 <span id="instructions-qiskit-pulse-instructions" />
@@ -108,12 +104,11 @@ In contrast, the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pu
 
 ### Pulse Models
 
-|                                                                                                                                                |                                                                                                                                           |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------- |
-| [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform")(samples\[, name, epsilon, ...])                                    | A pulse specified completely by complex-valued samples; each sample is played for the duration of the backend cycle-time, dt.             |
-| [`ScalableSymbolicPulse`](qiskit.pulse.library.ScalableSymbolicPulse "qiskit.pulse.library.ScalableSymbolicPulse")(pulse\_type, duration, ...) | Subclass of [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.SymbolicPulse") for pulses with scalable envelope. |
-| [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.SymbolicPulse")(pulse\_type, duration\[, ...])                      | The pulse representation model with parameters and symbolic expressions.                                                                  |
-| [`ParametricPulse`](qiskit.pulse.library.ParametricPulse "qiskit.pulse.library.ParametricPulse")(duration\[, name, ...])                       | The abstract superclass for parametric pulses.                                                                                            |
+|                                                                                                                           |                                                                                                                               |
+| ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------- |
+| [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform")(samples\[, name, epsilon, ...])               | A pulse specified completely by complex-valued samples; each sample is played for the duration of the backend cycle-time, dt. |
+| [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.SymbolicPulse")(pulse\_type, duration\[, ...]) | The pulse representation model with parameters and symbolic expressions.                                                      |
+| [`ParametricPulse`](qiskit.pulse.library.ParametricPulse "qiskit.pulse.library.ParametricPulse")(duration\[, name, ...])  | The abstract superclass for parametric pulses.                                                                                |
 
 <span id="waveforms" />
 
@@ -132,7 +127,7 @@ f(x) = A
 $$
 
 <Admonition title="Deprecated since version 0.25.0_pending" type="danger">
-  The function `qiskit.pulse.library.discrete.constant()` is pending deprecation as of qiskit-terra 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including constant() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Constant(…).get\_waveform(). Note that complex value support for the amp parameter is pending deprecation in the SymbolicPulse library. It is therefore recommended to use two float values for (amp, angle) instead of complex amp
+  The function `qiskit.pulse.library.discrete.constant()` is pending deprecation as of qiskit 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including constant() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Constant(…).get\_waveform(). Note that complex value support for the amp parameter is pending deprecation in the SymbolicPulse library. It is therefore recommended to use two float values for (amp, angle) instead of complex amp
 </Admonition>
 
 **Parameters**
@@ -158,7 +153,7 @@ f(x) = 0
 $$
 
 <Admonition title="Deprecated since version 0.25.0_pending" type="danger">
-  The function `qiskit.pulse.library.discrete.zero()` is pending deprecation as of qiskit-terra 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including zero() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Constant(amp=0,…).get\_waveform().
+  The function `qiskit.pulse.library.discrete.zero()` is pending deprecation as of qiskit 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including zero() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Constant(amp=0,…).get\_waveform().
 </Admonition>
 
 **Parameters**
@@ -185,7 +180,7 @@ $$
 with the convention $\text{sign}(0) = 1$.
 
 <Admonition title="Deprecated since version 0.25.0_pending" type="danger">
-  The function `qiskit.pulse.library.discrete.square()` is pending deprecation as of qiskit-terra 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including square() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Square(…).get\_waveform(). Note that pulse.Square() does not support complex values for amp, and that the phase is defined differently. See documentation.
+  The function `qiskit.pulse.library.discrete.square()` is pending deprecation as of qiskit 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including square() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Square(…).get\_waveform(). Note that pulse.Square() does not support complex values for amp, and that the phase is defined differently. See documentation.
 </Admonition>
 
 **Parameters**
@@ -215,7 +210,7 @@ $$
 where $g(x) = x/T + \phi/\pi$.
 
 <Admonition title="Deprecated since version 0.25.0_pending" type="danger">
-  The function `qiskit.pulse.library.discrete.sawtooth()` is pending deprecation as of qiskit-terra 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including sawtooth() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Sawtooth(…).get\_waveform(). Note that pulse.Sawtooth() does not support complex values for amp. Instead, use two float values for (amp, angle). Also note that the phase is defined differently, such that 2\*pi phase shifts by a full cycle.
+  The function `qiskit.pulse.library.discrete.sawtooth()` is pending deprecation as of qiskit 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including sawtooth() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Sawtooth(…).get\_waveform(). Note that pulse.Sawtooth() does not support complex values for amp. Instead, use two float values for (amp, angle). Also note that the phase is defined differently, such that 2\*pi phase shifts by a full cycle.
 </Admonition>
 
 **Parameters**
@@ -262,7 +257,7 @@ $$
 This a non-sinusoidal wave with linear ramping.
 
 <Admonition title="Deprecated since version 0.25.0_pending" type="danger">
-  The function `qiskit.pulse.library.discrete.triangle()` is pending deprecation as of qiskit-terra 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including triangle() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Triangle(…).get\_waveform(). Note that pulse.Triangle() does not support complex values for amp. Instead, use two float values for (amp, angle).
+  The function `qiskit.pulse.library.discrete.triangle()` is pending deprecation as of qiskit 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including triangle() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Triangle(…).get\_waveform(). Note that pulse.Triangle() does not support complex values for amp. Instead, use two float values for (amp, angle).
 </Admonition>
 
 **Parameters**
@@ -307,7 +302,7 @@ f(x) = A \cos(2 \pi \omega x + \phi)
 $$
 
 <Admonition title="Deprecated since version 0.25.0_pending" type="danger">
-  The function `qiskit.pulse.library.discrete.cos()` is pending deprecation as of qiskit-terra 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including cos() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Cos(…).get\_waveform(). Note that pulse.Cos() does not support complex values for amp. Instead, use two float values for (amp, angle).
+  The function `qiskit.pulse.library.discrete.cos()` is pending deprecation as of qiskit 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including cos() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Cos(…).get\_waveform(). Note that pulse.Cos() does not support complex values for amp. Instead, use two float values for (amp, angle).
 </Admonition>
 
 **Parameters**
@@ -335,7 +330,7 @@ f(x) = A \sin(2 \pi \omega x + \phi)
 $$
 
 <Admonition title="Deprecated since version 0.25.0_pending" type="danger">
-  The function `qiskit.pulse.library.discrete.sin()` is pending deprecation as of qiskit-terra 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including sin() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Sin(…).get\_waveform(). Note that pulse.Sin() does not support complex values for amp. Instead, use two float values for (amp, angle).
+  The function `qiskit.pulse.library.discrete.sin()` is pending deprecation as of qiskit 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including sin() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Sin(…).get\_waveform(). Note that pulse.Sin() does not support complex values for amp. Instead, use two float values for (amp, angle).
 </Admonition>
 
 **Parameters**
@@ -375,7 +370,7 @@ where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$
 Integrated area under the full curve is `amp * np.sqrt(2*np.pi*sigma**2)`
 
 <Admonition title="Deprecated since version 0.25.0_pending" type="danger">
-  The function `qiskit.pulse.library.discrete.gaussian()` is pending deprecation as of qiskit-terra 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including gaussian() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Gaussian(…).get\_waveform(). Note that complex value support for the amp parameter is pending deprecation in the SymbolicPulse library. It is therefore recommended to use two float values for (amp, angle) instead of complex amp
+  The function `qiskit.pulse.library.discrete.gaussian()` is pending deprecation as of qiskit 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including gaussian() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Gaussian(…).get\_waveform(). Note that complex value support for the amp parameter is pending deprecation in the SymbolicPulse library. It is therefore recommended to use two float values for (amp, angle) instead of complex amp
 </Admonition>
 
 **Parameters**
@@ -406,7 +401,7 @@ $$
 i.e. the derivative of the Gaussian function, with center $\mu=$ `duration/2`.
 
 <Admonition title="Deprecated since version 0.25.0_pending" type="danger">
-  The function `qiskit.pulse.library.discrete.gaussian_deriv()` is pending deprecation as of qiskit-terra 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including gaussian\_deriv() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.GaussianDeriv(…).get\_waveform(). Note that pulse.GaussianDeriv() does not support complex values for amp. Instead, use two float values for (amp, angle).
+  The function `qiskit.pulse.library.discrete.gaussian_deriv()` is pending deprecation as of qiskit 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including gaussian\_deriv() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.GaussianDeriv(…).get\_waveform(). Note that pulse.GaussianDeriv() does not support complex values for amp. Instead, use two float values for (amp, angle).
 </Admonition>
 
 **Parameters**
@@ -443,7 +438,7 @@ $$
 where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$ while preserving the amplitude at the center. If $A=y^*$, $y$ is set to $1$. By default, the endpoints are at `x = -1, x = duration + 1`.
 
 <Admonition title="Deprecated since version 0.25.0_pending" type="danger">
-  The function `qiskit.pulse.library.discrete.sech()` is pending deprecation as of qiskit-terra 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including sech() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Sech(…).get\_waveform(). Note that pulse.Sech() does not support complex values for amp. Instead, use two float values for (amp, angle).
+  The function `qiskit.pulse.library.discrete.sech()` is pending deprecation as of qiskit 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including sech() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Sech(…).get\_waveform(). Note that pulse.Sech() does not support complex values for amp. Instead, use two float values for (amp, angle).
 </Admonition>
 
 **Parameters**
@@ -473,7 +468,7 @@ $$
 i.e. the derivative of $\text{sech}$.
 
 <Admonition title="Deprecated since version 0.25.0_pending" type="danger">
-  The function `qiskit.pulse.library.discrete.sech_deriv()` is pending deprecation as of qiskit-terra 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including sech\_deriv() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.SechDeriv(…).get\_waveform(). Note that pulse.SechDeriv() does not support complex values for amp. Instead, use two float values for (amp, angle).
+  The function `qiskit.pulse.library.discrete.sech_deriv()` is pending deprecation as of qiskit 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including sech\_deriv() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.SechDeriv(…).get\_waveform(). Note that pulse.SechDeriv() does not support complex values for amp. Instead, use two float values for (amp, angle).
 </Admonition>
 
 **Parameters**
@@ -508,7 +503,7 @@ where $g(x)$ is the Gaussian function sampled from in [`gaussian()`](#qiskit.pul
 If `zero_ends == True`, the samples for the Gaussian ramps are remapped as in [`gaussian()`](#qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian").
 
 <Admonition title="Deprecated since version 0.25.0_pending" type="danger">
-  The function `qiskit.pulse.library.discrete.gaussian_square()` is pending deprecation as of qiskit-terra 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including gaussian\_square() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.GaussianSquare(…).get\_waveform(). Note that complex value support for the amp parameter is pending deprecation in the SymbolicPulse library. It is therefore recommended to use two float values for (amp, angle) instead of complex amp
+  The function `qiskit.pulse.library.discrete.gaussian_square()` is pending deprecation as of qiskit 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including gaussian\_square() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.GaussianSquare(…).get\_waveform(). Note that complex value support for the amp parameter is pending deprecation in the SymbolicPulse library. It is therefore recommended to use two float values for (amp, angle) instead of complex amp
 </Admonition>
 
 **Parameters**
@@ -546,7 +541,7 @@ where $g(x)$ is the function sampled in [`gaussian()`](#qiskit.pulse.library.gau
 If `zero_ends == True`, the samples from $g(x)$ are remapped as in [`gaussian()`](#qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian").
 
 <Admonition title="Deprecated since version 0.25.0_pending" type="danger">
-  The function `qiskit.pulse.library.discrete.drag()` is pending deprecation as of qiskit-terra 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including drag() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Drag(…).get\_waveform(). Note that complex value support for the amp parameter is pending deprecation in the SymbolicPulse library. It is therefore recommended to use two float values for (amp, angle) instead of complex amp
+  The function `qiskit.pulse.library.discrete.drag()` is pending deprecation as of qiskit 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including drag() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Drag(…).get\_waveform(). Note that complex value support for the amp parameter is pending deprecation in the SymbolicPulse library. It is therefore recommended to use two float values for (amp, angle) instead of complex amp
 </Admonition>
 
 ## References

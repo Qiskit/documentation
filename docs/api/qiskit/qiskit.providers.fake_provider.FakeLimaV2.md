@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.fake_provider.FakeLimaV2
 
 `qiskit.providers.fake_provider.FakeLimaV2`
 
-Bases: `FakeBackendV2`
+Bases: [`FakeBackendV2`](providers_fake_provider#qiskit.providers.fake_provider.fake_backend.FakeBackendV2 "qiskit.providers.fake_provider.fake_backend.FakeBackendV2")
 
 A fake 5 qubit backend.
 
@@ -60,11 +60,7 @@ This is required to be implemented if the backend supports Pulse scheduling.
 
 **Returns**
 
-The input signal timestep in seconds. If the backend doesn’t define `dt` `None` will be returned
-
-**Return type**
-
-dt
+The input signal timestep in seconds. If the backend doesn’t define `dt`, `None` will be returned.
 
 <span id="qiskit.providers.fake_provider.FakeLimaV2.dtm" />
 
@@ -75,10 +71,6 @@ Return the system time resolution of output signals
 **Returns**
 
 The output signal timestep in seconds.
-
-**Return type**
-
-dtm
 
 <span id="qiskit.providers.fake_provider.FakeLimaV2.instruction_durations" />
 
@@ -111,10 +103,6 @@ Return the grouping of measurements which are multiplexed This is required to be
 **Returns**
 
 The grouping of measurements which are multiplexed
-
-**Return type**
-
-meas\_map
 
 <span id="qiskit.providers.fake_provider.FakeLimaV2.num_qubits" />
 
@@ -177,6 +165,30 @@ A [`qiskit.transpiler.Target`](qiskit.transpiler.Target "qiskit.transpiler.Targe
 ### version
 
 `= 2`
+
+<span id="qiskit.providers.fake_provider.FakeLimaV2.name" />
+
+### name
+
+Name of the backend.
+
+<span id="qiskit.providers.fake_provider.FakeLimaV2.description" />
+
+### description
+
+Optional human-readable description.
+
+<span id="qiskit.providers.fake_provider.FakeLimaV2.online_date" />
+
+### online\_date
+
+Date that the backend came online.
+
+<span id="qiskit.providers.fake_provider.FakeLimaV2.backend_version" />
+
+### backend\_version
+
+Version of the backend being provided. This is not the same as [`BackendV2.version`](qiskit.providers.BackendV2#version "qiskit.providers.BackendV2.version"), which is the version of the [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") abstract interface.
 
 ## Methods
 
@@ -270,19 +282,19 @@ If there are no defined or the backend doesn’t support querying these details 
 
 **Parameters**
 
-**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit to get the `QubitProperties` object for. This can be a single integer for 1 qubit or a list of qubits and a list of `QubitProperties` objects will be returned in the same order
+**qubit** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")  *|*[*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – The qubit to get the [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object for. This can be a single integer for 1 qubit or a list of qubits and a list of [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") objects will be returned in the same order
 
 **Returns**
 
 The [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") object for the specified qubit. If a list of qubits is provided a list will be returned. If properties are missing for a qubit this can be `None`.
 
-**Return type**
-
-qubit\_properties
-
 **Raises**
 
 [**NotImplementedError**](https://docs.python.org/3/library/exceptions.html#NotImplementedError "(in Python v3.12)") – if the backend doesn’t support querying the qubit properties
+
+**Return type**
+
+[*QubitProperties*](qiskit.providers.QubitProperties "qiskit.providers.backend.QubitProperties") | [*List*](https://docs.python.org/3/library/typing.html#typing.List "(in Python v3.12)")\[[*QubitProperties*](qiskit.providers.QubitProperties "qiskit.providers.backend.QubitProperties")]
 
 ### run
 
@@ -300,7 +312,7 @@ Currently noisy simulation of a pulse job is not supported yet in FakeBackendV2.
 
 **Parameters**
 
-*   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An individual or a list of `ScheduleBlock`, or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend.
+*   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")  *or*[*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – An individual or a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"), or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend.
 *   **options** – Any kwarg options to pass to the backend for running the config. If a key is also present in the options attribute/object then the expectation is that the value specified will be used instead of what’s set in the options object.
 
 **Returns**
@@ -313,8 +325,7 @@ The job object for the run
 
 **Raises**
 
-*   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If a pulse job is supplied and qiskit-aer is not
-*   **installed.** –
+[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If a pulse job is supplied and qiskit-aer is not installed.
 
 ### set\_options
 
