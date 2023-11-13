@@ -37,7 +37,7 @@ function markdownFromNotebook(source: string): string {
   let markdown = "";
   for (let cell of JSON.parse(source).cells) {
     if (cell.cell_type === "markdown") {
-      cell.source.map((s: string) => (markdown += s + "\n"));
+      cell.source.forEach((s: string) => (markdown += s + "\n"));
     }
   }
   return markdown;
