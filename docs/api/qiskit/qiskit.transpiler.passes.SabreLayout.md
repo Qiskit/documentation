@@ -24,26 +24,91 @@ By default this pass will run both layout and routing and will transform the cir
 
 You can use the `routing_pass` argument to have this pass operate as a typical layout pass. When specified this will use the specified routing pass to select an initial layout only and will not run multiple seed trials.
 
+In addition to starting with a random initial Layout the pass can also take in an additional list of starting layouts which will be used for additional trials. If the `sabre_starting_layouts` is present in the property set when this pass is run, that will be used for additional trials. There will still be `layout_trials` of full random starting layouts run and the contents of `sabre_starting_layouts` will be run in addition to those. The output which results in the lowest amount of swap gates (whether from the random trials or the property set starting point) will be used. The value for this property set field should be a list of [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") objects representing the starting layouts to use. If a virtual qubit is missing from an [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") object in the list a random qubit will be selected.
+
+## Property Set Fields Read
+
+**`sabre_starting_layouts` (`list[Layout]`)**
+
+An optional list of [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") objects to use for additional layout trials. This is in addition to the full random trials specified with the `layout_trials` argument.
+
+## Property Set Values Written
+
+**`layout` ([`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout"))**
+
+The chosen initial mapping of virtual to physical qubits, including the ancilla allocation.
+
+**`final_layout` ([`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout"))**
+
+A permutation of how swaps have been applied to the input qubits at the end of the circuit.
+
 **References:**
 
 \[1] Li, Gushu, Yufei Ding, and Yuan Xie. “Tackling the qubit mapping problem for NISQ-era quantum devices.” ASPLOS 2019. [arXiv:1809.02573](https://arxiv.org/pdf/1809.02573.pdf)
 
 SabreLayout initializer.
 
-**Parameters**
+**param coupling\_map**
 
-*   **coupling\_map** (*Union\[*[*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")*,* [*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) – directed graph representing a coupling map.
-*   **routing\_pass** (*BasePass*) – the routing pass to use while iterating. If specified this pass operates as an [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.AnalysisPass") and will only populate the `layout` field in the property set and the input dag is returned unmodified. This argument is mutually exclusive with the `swap_trials` and the `layout_trials` arguments and if this is specified at the same time as either argument an error will be raised.
-*   **seed** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – seed for setting a random first trial layout.
-*   **max\_iterations** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – number of forward-backward iterations.
-*   **swap\_trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of trials to run of [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") for each iteration. This is equivalent to the `trials` argument on [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap"). If this is not specified (and `routing_pass` isn’t set) by default the number of physical CPUs on your local system will be used. For reproducibility between environments it is best to set this to an explicit number because the output will potentially depend on the number of trials run. This option is mutually exclusive with the `routing_pass` argument and an error will be raised if both are used.
-*   **layout\_trials** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of random seed trials to run layout with. When > 1 the trial that resuls in the output with the fewest swap gates will be selected. If this is not specified (and `routing_pass` is not set) then the number of local physical CPUs will be used as the default value. This option is mutually exclusive with the `routing_pass` argument and an error will be raised if both are used.
-*   **skip\_routing** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If this is set `True` and `routing_pass` is not used then routing will not be applied to the output circuit. Only the layout will be returned in the property set. This is a tradeoff to run custom routing with multiple layout trials, as using this option will cause SabreLayout to run the routing stage internally but not use that result.
+directed graph representing a coupling map.
 
-**Raises**
+**type coupling\_map**
 
-*   [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If both `routing_pass` and `swap_trials` or
-*   **both routing\_pass and layout\_trials are specified** –
+Union\[CouplingMap, Target]
+
+**param routing\_pass**
+
+the routing pass to use while iterating. If specified this pass operates as an [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.AnalysisPass") and will only populate the `layout` field in the property set and the input dag is returned unmodified. This argument is mutually exclusive with the `swap_trials` and the `layout_trials` arguments and if this is specified at the same time as either argument an error will be raised.
+
+**type routing\_pass**
+
+BasePass
+
+**param seed**
+
+seed for setting a random first trial layout.
+
+**type seed**
+
+int
+
+**param max\_iterations**
+
+number of forward-backward iterations.
+
+**type max\_iterations**
+
+int
+
+**param swap\_trials**
+
+The number of trials to run of [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap") for each iteration. This is equivalent to the `trials` argument on [`SabreSwap`](qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap"). If this is not specified (and `routing_pass` isn’t set) by default the number of physical CPUs on your local system will be used. For reproducibility between environments it is best to set this to an explicit number because the output will potentially depend on the number of trials run. This option is mutually exclusive with the `routing_pass` argument and an error will be raised if both are used.
+
+**type swap\_trials**
+
+int
+
+**param layout\_trials**
+
+The number of random seed trials to run layout with. When > 1 the trial that resuls in the output with the fewest swap gates will be selected. If this is not specified (and `routing_pass` is not set) then the number of local physical CPUs will be used as the default value. This option is mutually exclusive with the `routing_pass` argument and an error will be raised if both are used.
+
+**type layout\_trials**
+
+int
+
+**param skip\_routing**
+
+If this is set `True` and `routing_pass` is not used then routing will not be applied to the output circuit. Only the layout will be returned in the property set. This is a tradeoff to run custom routing with multiple layout trials, as using this option will cause SabreLayout to run the routing stage internally but not use that result.
+
+**type skip\_routing**
+
+bool
+
+**raises TranspilerError**
+
+If both `routing_pass` and `swap_trials` or
+
+**raises both `routing_pass` and `layout_trials` are specified**
 
 ## Attributes
 
@@ -65,13 +130,39 @@ If the pass is a TransformationPass, that means that the pass can manipulate the
 
 ## Methods
 
+### execute
+
+<span id="qiskit.transpiler.passes.SabreLayout.execute" />
+
+`execute(passmanager_ir, state, callback=None)`
+
+Execute optimization task for input Qiskit IR.
+
+**Parameters**
+
+*   **passmanager\_ir** ([*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")) – Qiskit IR to optimize.
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – State associated with workflow execution by the pass manager itself.
+*   **callback** ([*Callable*](https://docs.python.org/3/library/collections.abc.html#collections.abc.Callable "(in Python v3.12)") *| None*) – A callback function which is caller per execution of optimization task.
+
+**Returns**
+
+Optimized Qiskit IR and state of the workflow.
+
+**Return type**
+
+[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)"), [qiskit.passmanager.compilation\_status.PassManagerState](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")]
+
 ### name
 
 <span id="qiskit.transpiler.passes.SabreLayout.name" />
 
 `name()`
 
-Return the name of the pass.
+Name of the pass.
+
+**Return type**
+
+[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")
 
 ### run
 
@@ -98,4 +189,25 @@ Run the SabreLayout pass on dag.
 **Raises**
 
 [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if dag wider than self.coupling\_map
+
+### update\_status
+
+<span id="qiskit.transpiler.passes.SabreLayout.update_status" />
+
+`update_status(state, run_state)`
+
+Update workflow status.
+
+**Parameters**
+
+*   **state** ([*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")) – Pass manager state to update.
+*   **run\_state** (*RunState*) – Completion status of current task.
+
+**Returns**
+
+Updated pass manager state.
+
+**Return type**
+
+[*PassManagerState*](qiskit.passmanager.PassManagerState "qiskit.passmanager.compilation_status.PassManagerState")
 

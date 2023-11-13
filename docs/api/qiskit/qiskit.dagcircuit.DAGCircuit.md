@@ -115,7 +115,7 @@ Returns set of the ancestors of a node as DAGOpNodes and DAGInNodes.
 
 <span id="qiskit.dagcircuit.DAGCircuit.apply_operation_back" />
 
-`apply_operation_back(op, qargs=(), cargs=())`
+`apply_operation_back(op, qargs=(), cargs=(), *, check=True)`
 
 Apply an operation to the output of the circuit.
 
@@ -124,6 +124,7 @@ Apply an operation to the output of the circuit.
 *   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – the operation associated with the DAG node
 *   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
 *   **cargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
+*   **check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), this function will enforce that the [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") data-structure invariants are maintained (all `qargs` are [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit")s, all are in the DAG, etc). If `False`, the caller *must* uphold these invariants itself, but the cost of several checks will be skipped. This is most useful when building a new DAG from a source of known-good nodes.
 
 **Returns**
 
@@ -141,7 +142,7 @@ the node for the op that was added to the dag
 
 <span id="qiskit.dagcircuit.DAGCircuit.apply_operation_front" />
 
-`apply_operation_front(op, qargs=(), cargs=())`
+`apply_operation_front(op, qargs=(), cargs=(), *, check=True)`
 
 Apply an operation to the input of the circuit.
 
@@ -150,6 +151,7 @@ Apply an operation to the input of the circuit.
 *   **op** ([*qiskit.circuit.Operation*](qiskit.circuit.Operation "qiskit.circuit.Operation")) – the operation associated with the DAG node
 *   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – qubits that op will be applied to
 *   **cargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – cbits that op will be applied to
+*   **check** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If `True` (default), this function will enforce that the [`DAGCircuit`](#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") data-structure invariants are maintained (all `qargs` are [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit")s, all are in the DAG, etc). If `False`, the caller *must* uphold these invariants itself, but the cost of several checks will be skipped. This is most useful when building a new DAG from a source of known-good nodes.
 
 **Returns**
 

@@ -61,62 +61,62 @@ print(gate.control(1).to_matrix())  # CX (controlled X) gate
  [0.+0.j 1.+0.j 0.+0.j 0.+0.j]]
 ```
 
-|                                                                                                                       |                                                                     |
-| --------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [`C3XGate`](qiskit.circuit.library.C3XGate "qiskit.circuit.library.C3XGate")(\[label, ctrl\_state])                   | The X gate controlled on 3 qubits.                                  |
-| [`C3SXGate`](qiskit.circuit.library.C3SXGate "qiskit.circuit.library.C3SXGate")(\[label, ctrl\_state])                | The 3-qubit controlled sqrt-X gate.                                 |
-| [`C4XGate`](qiskit.circuit.library.C4XGate "qiskit.circuit.library.C4XGate")(\[label, ctrl\_state])                   | The 4-qubit controlled X gate.                                      |
-| [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate")(\[label, ctrl\_state])                   | CCX gate, also known as Toffoli gate.                               |
-| [`DCXGate`](qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate")()                                        | Double-CNOT gate.                                                   |
-| [`CHGate`](qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate")(\[label, ctrl\_state])                      | Controlled-Hadamard gate.                                           |
-| [`CPhaseGate`](qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate")(theta\[, label, ctrl\_state])   | Controlled-Phase gate.                                              |
-| [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate")(theta\[, label, ctrl\_state])            | Controlled-RX gate.                                                 |
-| [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate")(theta\[, label, ctrl\_state])            | Controlled-RY gate.                                                 |
-| [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate")(theta\[, label, ctrl\_state])            | Controlled-RZ gate.                                                 |
-| [`CSGate`](qiskit.circuit.library.CSGate "qiskit.circuit.library.CSGate")(\[label, ctrl\_state])                      | Controlled-S gate.                                                  |
-| [`CSdgGate`](qiskit.circuit.library.CSdgGate "qiskit.circuit.library.CSdgGate")(\[label, ctrl\_state])                | Controlled-S^dagger gate.                                           |
-| [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate")(\[label, ctrl\_state])             | Controlled-SWAP gate, also known as the Fredkin gate.               |
-| [`CSXGate`](qiskit.circuit.library.CSXGate "qiskit.circuit.library.CSXGate")(\[label, ctrl\_state])                   | Controlled-√X gate.                                                 |
-| [`CUGate`](qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate")(theta, phi, lam, gamma\[, label, ...])      | Controlled-U gate (4-parameter two-qubit gate).                     |
-| [`CU1Gate`](qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate")(theta\[, label, ctrl\_state])            | Controlled-U1 gate.                                                 |
-| [`CU3Gate`](qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate")(theta, phi, lam\[, label, ctrl\_state])  | Controlled-U3 gate (3-parameter two-qubit gate).                    |
-| [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate")(\[label, ctrl\_state])                      | Controlled-X gate.                                                  |
-| [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate")(\[label, ctrl\_state])                      | Controlled-Y gate.                                                  |
-| [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate")(\[label, ctrl\_state])                      | Controlled-Z gate.                                                  |
-| [`CCZGate`](qiskit.circuit.library.CCZGate "qiskit.circuit.library.CCZGate")(\[label, ctrl\_state])                   | CCZ gate.                                                           |
-| [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate")()                                        | An echoed cross-resonance gate.                                     |
-| [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate")(\[label])                                      | Single-qubit Hadamard gate.                                         |
-| [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate")(\[label])                                      | Identity gate.                                                      |
-| [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate")(num\_qubits, theta\[, label])               | MSGate has been deprecated.                                         |
-| [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate")(theta\[, label])                   | Single-qubit rotation about the Z axis.                             |
-| [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate")(\[label])                             | The simplified Toffoli gate, also referred to as Margolus gate.     |
-| [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate")(\[label])                             | The simplified 3-controlled Toffoli gate.                           |
-| [`RGate`](qiskit.circuit.library.RGate "qiskit.circuit.library.RGate")(theta, phi\[, label])                          | Rotation θ around the cos(φ)x + sin(φ)y axis.                       |
-| [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate")(theta\[, label])                            | Single-qubit rotation about the X axis.                             |
-| [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate")(theta\[, label])                         | A parametric 2-qubit $X \otimes X$ interaction (rotation about XX). |
-| [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate")(theta\[, label])                            | Single-qubit rotation about the Y axis.                             |
-| [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate")(theta\[, label])                         | A parametric 2-qubit $Y \otimes Y$ interaction (rotation about YY). |
-| [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate")(phi\[, label])                              | Single-qubit rotation about the Z axis.                             |
-| [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate")(theta\[, label])                         | A parametric 2-qubit $Z \otimes Z$ interaction (rotation about ZZ). |
-| [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate")(theta\[, label])                         | A parametric 2-qubit $Z \otimes X$ interaction (rotation about ZX). |
-| [`XXMinusYYGate`](qiskit.circuit.library.XXMinusYYGate "qiskit.circuit.library.XXMinusYYGate")(theta\[, beta, label]) | XX-YY interaction gate.                                             |
-| [`XXPlusYYGate`](qiskit.circuit.library.XXPlusYYGate "qiskit.circuit.library.XXPlusYYGate")(theta\[, beta, label])    | XX+YY interaction gate.                                             |
-| [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate")(\[label])                                      | Single qubit S gate (Z\*\*0.5).                                     |
-| [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate")(\[label])                                | Single qubit S-adjoint gate (\~Z\*\*0.5).                           |
-| [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")(\[label])                             | The SWAP gate.                                                      |
-| [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate")(\[label])                          | iSWAP gate.                                                         |
-| [`SXGate`](qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate")(\[label])                                   | The single-qubit Sqrt(X) gate ($\sqrt{X}$).                         |
-| [`SXdgGate`](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate")(\[label])                             | The inverse single-qubit Sqrt(X) gate.                              |
-| [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate")(\[label])                                      | Single qubit T gate (Z\*\*0.25).                                    |
-| [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate")(\[label])                                | Single qubit T-adjoint gate (\~Z\*\*0.25).                          |
-| [`UGate`](qiskit.circuit.library.UGate "qiskit.circuit.library.UGate")(theta, phi, lam\[, label])                     | Generic single-qubit rotation gate with 3 Euler angles.             |
-| [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate")(theta\[, label])                            | Single-qubit rotation about the Z axis.                             |
-| [`U2Gate`](qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate")(phi, lam\[, label])                         | Single-qubit rotation about the X+Z axis.                           |
-| [`U3Gate`](qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate")(theta, phi, lam\[, label])                  | Generic single-qubit rotation gate with 3 Euler angles.             |
-| [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate")(\[label])                                      | The single-qubit Pauli-X gate ($\sigma_x$).                         |
-| [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate")(\[label])                                      | The single-qubit Pauli-Y gate ($\sigma_y$).                         |
-| [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate")(\[label])                                      | The single-qubit Pauli-Z gate ($\sigma_z$).                         |
-| [`GlobalPhaseGate`](qiskit.circuit.library.GlobalPhaseGate "qiskit.circuit.library.GlobalPhaseGate")(phase\[, label]) | The global phase gate ($e^{i\theta}$).                              |
+|                                                                                                                                       |                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [`C3XGate`](qiskit.circuit.library.C3XGate "qiskit.circuit.library.C3XGate")(\*args\[, \_force\_mutable])                             | The X gate controlled on 3 qubits.                                  |
+| [`C3SXGate`](qiskit.circuit.library.C3SXGate "qiskit.circuit.library.C3SXGate")(\*args\[, \_force\_mutable])                          | The 3-qubit controlled sqrt-X gate.                                 |
+| [`C4XGate`](qiskit.circuit.library.C4XGate "qiskit.circuit.library.C4XGate")(\*args\[, \_force\_mutable])                             | The 4-qubit controlled X gate.                                      |
+| [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate")(\*args\[, \_force\_mutable])                             | CCX gate, also known as Toffoli gate.                               |
+| [`DCXGate`](qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate")(\*args\[, \_force\_mutable])                             | Double-CNOT gate.                                                   |
+| [`CHGate`](qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate")(\*args\[, \_force\_mutable])                                | Controlled-Hadamard gate.                                           |
+| [`CPhaseGate`](qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate")(theta\[, label, ctrl\_state, ...])              | Controlled-Phase gate.                                              |
+| [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate")(theta\[, label, ctrl\_state, ...])                       | Controlled-RX gate.                                                 |
+| [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate")(theta\[, label, ctrl\_state, ...])                       | Controlled-RY gate.                                                 |
+| [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate")(theta\[, label, ctrl\_state, ...])                       | Controlled-RZ gate.                                                 |
+| [`CSGate`](qiskit.circuit.library.CSGate "qiskit.circuit.library.CSGate")(\*args\[, \_force\_mutable])                                | Controlled-S gate.                                                  |
+| [`CSdgGate`](qiskit.circuit.library.CSdgGate "qiskit.circuit.library.CSdgGate")(\*args\[, \_force\_mutable])                          | Controlled-S^dagger gate.                                           |
+| [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate")(\*args\[, \_force\_mutable])                       | Controlled-SWAP gate, also known as the Fredkin gate.               |
+| [`CSXGate`](qiskit.circuit.library.CSXGate "qiskit.circuit.library.CSXGate")(\*args\[, \_force\_mutable])                             | Controlled-√X gate.                                                 |
+| [`CUGate`](qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate")(theta, phi, lam, gamma\[, label, ...])                      | Controlled-U gate (4-parameter two-qubit gate).                     |
+| [`CU1Gate`](qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate")(theta\[, label, ctrl\_state, ...])                       | Controlled-U1 gate.                                                 |
+| [`CU3Gate`](qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate")(theta, phi, lam\[, label, ...])                          | Controlled-U3 gate (3-parameter two-qubit gate).                    |
+| [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate")(\*args\[, \_force\_mutable])                                | Controlled-X gate.                                                  |
+| [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate")(\*args\[, \_force\_mutable])                                | Controlled-Y gate.                                                  |
+| [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate")(\*args\[, \_force\_mutable])                                | Controlled-Z gate.                                                  |
+| [`CCZGate`](qiskit.circuit.library.CCZGate "qiskit.circuit.library.CCZGate")(\*args\[, \_force\_mutable])                             | CCZ gate.                                                           |
+| [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate")(\*args\[, \_force\_mutable])                             | An echoed cross-resonance gate.                                     |
+| [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate")(\*args\[, \_force\_mutable])                                   | Single-qubit Hadamard gate.                                         |
+| [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate")(\*args\[, \_force\_mutable])                                   | Identity gate.                                                      |
+| [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate")(num\_qubits, theta\[, label])                               | MSGate has been deprecated.                                         |
+| [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate")(theta\[, label, duration, unit])                   | Single-qubit rotation about the Z axis.                             |
+| [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate")(\*args\[, \_force\_mutable])                          | The simplified Toffoli gate, also referred to as Margolus gate.     |
+| [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate")(\*args\[, \_force\_mutable])                          | The simplified 3-controlled Toffoli gate.                           |
+| [`RGate`](qiskit.circuit.library.RGate "qiskit.circuit.library.RGate")(theta, phi\[, label, duration, unit])                          | Rotation θ around the cos(φ)x + sin(φ)y axis.                       |
+| [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate")(theta\[, label, duration, unit])                            | Single-qubit rotation about the X axis.                             |
+| [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate")(theta\[, label, duration, unit])                         | A parametric 2-qubit $X \otimes X$ interaction (rotation about XX). |
+| [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate")(theta\[, label, duration, unit])                            | Single-qubit rotation about the Y axis.                             |
+| [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate")(theta\[, label, duration, unit])                         | A parametric 2-qubit $Y \otimes Y$ interaction (rotation about YY). |
+| [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate")(phi\[, label, duration, unit])                              | Single-qubit rotation about the Z axis.                             |
+| [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate")(theta\[, label, duration, unit])                         | A parametric 2-qubit $Z \otimes Z$ interaction (rotation about ZZ). |
+| [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate")(theta\[, label, duration, unit])                         | A parametric 2-qubit $Z \otimes X$ interaction (rotation about ZX). |
+| [`XXMinusYYGate`](qiskit.circuit.library.XXMinusYYGate "qiskit.circuit.library.XXMinusYYGate")(theta\[, beta, label, ...])            | XX-YY interaction gate.                                             |
+| [`XXPlusYYGate`](qiskit.circuit.library.XXPlusYYGate "qiskit.circuit.library.XXPlusYYGate")(theta\[, beta, label, duration, ...])     | XX+YY interaction gate.                                             |
+| [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate")(\*args\[, \_force\_mutable])                                   | Single qubit S gate (Z\*\*0.5).                                     |
+| [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate")(\*args\[, \_force\_mutable])                             | Single qubit S-adjoint gate (\~Z\*\*0.5).                           |
+| [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate")(\*args\[, \_force\_mutable])                          | The SWAP gate.                                                      |
+| [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate")(\*args\[, \_force\_mutable])                       | iSWAP gate.                                                         |
+| [`SXGate`](qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate")(\*args\[, \_force\_mutable])                                | The single-qubit Sqrt(X) gate ($\sqrt{X}$).                         |
+| [`SXdgGate`](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate")(\*args\[, \_force\_mutable])                          | The inverse single-qubit Sqrt(X) gate.                              |
+| [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate")(\*args\[, \_force\_mutable])                                   | Single qubit T gate (Z\*\*0.25).                                    |
+| [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate")(\*args\[, \_force\_mutable])                             | Single qubit T-adjoint gate (\~Z\*\*0.25).                          |
+| [`UGate`](qiskit.circuit.library.UGate "qiskit.circuit.library.UGate")(theta, phi, lam\[, label, duration, unit])                     | Generic single-qubit rotation gate with 3 Euler angles.             |
+| [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate")(theta\[, label, duration, unit])                            | Single-qubit rotation about the Z axis.                             |
+| [`U2Gate`](qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate")(phi, lam\[, label, duration, unit])                         | Single-qubit rotation about the X+Z axis.                           |
+| [`U3Gate`](qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate")(theta, phi, lam\[, label, duration, unit])                  | Generic single-qubit rotation gate with 3 Euler angles.             |
+| [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate")(\*args\[, \_force\_mutable])                                   | The single-qubit Pauli-X gate ($\sigma_x$).                         |
+| [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate")(\*args\[, \_force\_mutable])                                   | The single-qubit Pauli-Y gate ($\sigma_y$).                         |
+| [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate")(\*args\[, \_force\_mutable])                                   | The single-qubit Pauli-Z gate ($\sigma_z$).                         |
+| [`GlobalPhaseGate`](qiskit.circuit.library.GlobalPhaseGate "qiskit.circuit.library.GlobalPhaseGate")(phase\[, label, duration, unit]) | The global phase gate ($e^{i\theta}$).                              |
 
 ## Standard Directives
 
@@ -130,10 +130,10 @@ Directives are operations to the quantum stack that are meant to be interpreted 
 
 Operations are non-reversible changes in the quantum state of the circuit.
 
-|                                                                                |                                                 |
-| ------------------------------------------------------------------------------ | ----------------------------------------------- |
-| [`Measure`](qiskit.circuit.library.Measure "qiskit.circuit.library.Measure")() | Quantum measurement in the computational basis. |
-| [`Reset`](qiskit.circuit.library.Reset "qiskit.circuit.library.Reset")()       | Qubit reset.                                    |
+|                                                                                                        |                                                 |
+| ------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
+| [`Measure`](qiskit.circuit.library.Measure "qiskit.circuit.library.Measure")(\[label, duration, unit]) | Quantum measurement in the computational basis. |
+| [`Reset`](qiskit.circuit.library.Reset "qiskit.circuit.library.Reset")(\[label, duration, unit])       | Qubit reset.                                    |
 
 ## Generalized Gates
 
@@ -154,26 +154,34 @@ print(diagonal.num_qubits)
 2
 ```
 
-|                                                                                                                                    |                                                                                         |   |                                     |
-| ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | - | ----------------------------------- |
-| [`Diagonal`](qiskit.circuit.library.Diagonal "qiskit.circuit.library.Diagonal")(diag)                                              | Diagonal circuit.                                                                       |   |                                     |
-| [`MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT")(gate, num\_ctrl\_qubits, num\_target\_qubits)                  | The multi-controlled multi-target gate, for an arbitrary singly controlled target gate. |   |                                     |
-| [`MCMTVChain`](qiskit.circuit.library.MCMTVChain "qiskit.circuit.library.MCMTVChain")(gate, num\_ctrl\_qubits, ...)                | The MCMT implementation using the CCX V-chain.                                          |   |                                     |
-| [`Permutation`](qiskit.circuit.library.Permutation "qiskit.circuit.library.Permutation")(num\_qubits\[, pattern, seed])            | An n\_qubit circuit that permutes qubits.                                               |   |                                     |
-| [`PermutationGate`](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate")(pattern)                      | A gate that permutes qubits.                                                            |   |                                     |
-| [`GMS`](qiskit.circuit.library.GMS "qiskit.circuit.library.GMS")(num\_qubits, theta)                                               | Global Mølmer–Sørensen gate.                                                            |   |                                     |
-| [`GR`](qiskit.circuit.library.GR "qiskit.circuit.library.GR")(num\_qubits, theta, phi)                                             | Global R gate.                                                                          |   |                                     |
-| [`GRX`](qiskit.circuit.library.GRX "qiskit.circuit.library.GRX")(num\_qubits, theta)                                               | Global RX gate.                                                                         |   |                                     |
-| [`GRY`](qiskit.circuit.library.GRY "qiskit.circuit.library.GRY")(num\_qubits, theta)                                               | Global RY gate.                                                                         |   |                                     |
-| [`GRZ`](qiskit.circuit.library.GRZ "qiskit.circuit.library.GRZ")(num\_qubits, phi)                                                 | Global RZ gate.                                                                         |   |                                     |
-| [`MCPhaseGate`](qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate")(lam, num\_ctrl\_qubits\[, label])         | Multi-controlled-Phase gate.                                                            |   |                                     |
-| [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate")(\[num\_ctrl\_qubits, label, ctrl\_state])             | The general, multi-controlled X gate.                                                   |   |                                     |
-| [`MCXGrayCode`](qiskit.circuit.library.MCXGrayCode "qiskit.circuit.library.MCXGrayCode")(\[num\_ctrl\_qubits, label, ctrl\_state]) | Implement the multi-controlled X gate using the Gray code.                              |   |                                     |
-| [`MCXRecursive`](qiskit.circuit.library.MCXRecursive "qiskit.circuit.library.MCXRecursive")(\[num\_ctrl\_qubits, label, ...])      | Implement the multi-controlled X gate using recursion.                                  |   |                                     |
-| [`MCXVChain`](qiskit.circuit.library.MCXVChain "qiskit.circuit.library.MCXVChain")(\[num\_ctrl\_qubits, dirty\_ancillas, ...])     | Implement the multi-controlled X gate using a V-chain of CX gates.                      |   |                                     |
-| [`RVGate`](qiskit.circuit.library.RVGate "qiskit.circuit.library.RVGate")(v\_x, v\_y, v\_z\[, basis])                              | Rotation around arbitrary rotation axis $v$ where \$                                    | v | \$ is angle of rotation in radians. |
-| [`PauliGate`](qiskit.circuit.library.PauliGate "qiskit.circuit.library.PauliGate")(label)                                          | A multi-qubit Pauli gate.                                                               |   |                                     |
-| [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")(linear\[, validate\_input])      | A linear reversible circuit on n qubits.                                                |   |                                     |
+|                                                                                                                                 |                                                                                         |   |                                     |
+| ------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- | - | ----------------------------------- |
+| [`Diagonal`](qiskit.circuit.library.Diagonal "qiskit.circuit.library.Diagonal")(diag)                                           | Diagonal circuit.                                                                       |   |                                     |
+| [`DiagonalGate`](qiskit.circuit.library.DiagonalGate "qiskit.circuit.library.DiagonalGate")(diag)                               | Gate implementing a diagonal transformation.                                            |   |                                     |
+| [`MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT")(gate, num\_ctrl\_qubits, num\_target\_qubits)               | The multi-controlled multi-target gate, for an arbitrary singly controlled target gate. |   |                                     |
+| [`MCMTVChain`](qiskit.circuit.library.MCMTVChain "qiskit.circuit.library.MCMTVChain")(gate, num\_ctrl\_qubits, ...)             | The MCMT implementation using the CCX V-chain.                                          |   |                                     |
+| [`Permutation`](qiskit.circuit.library.Permutation "qiskit.circuit.library.Permutation")(num\_qubits\[, pattern, seed])         | An n\_qubit circuit that permutes qubits.                                               |   |                                     |
+| [`PermutationGate`](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate")(pattern)                   | A gate that permutes qubits.                                                            |   |                                     |
+| [`GMS`](qiskit.circuit.library.GMS "qiskit.circuit.library.GMS")(num\_qubits, theta)                                            | Global Mølmer–Sørensen gate.                                                            |   |                                     |
+| [`GR`](qiskit.circuit.library.GR "qiskit.circuit.library.GR")(num\_qubits, theta, phi)                                          | Global R gate.                                                                          |   |                                     |
+| [`GRX`](qiskit.circuit.library.GRX "qiskit.circuit.library.GRX")(num\_qubits, theta)                                            | Global RX gate.                                                                         |   |                                     |
+| [`GRY`](qiskit.circuit.library.GRY "qiskit.circuit.library.GRY")(num\_qubits, theta)                                            | Global RY gate.                                                                         |   |                                     |
+| [`GRZ`](qiskit.circuit.library.GRZ "qiskit.circuit.library.GRZ")(num\_qubits, phi)                                              | Global RZ gate.                                                                         |   |                                     |
+| [`MCPhaseGate`](qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate")(lam, num\_ctrl\_qubits\[, label, ...]) | Multi-controlled-Phase gate.                                                            |   |                                     |
+| [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate")(\[num\_ctrl\_qubits, label, ...])                  | The general, multi-controlled X gate.                                                   |   |                                     |
+| [`MCXGrayCode`](qiskit.circuit.library.MCXGrayCode "qiskit.circuit.library.MCXGrayCode")(\[num\_ctrl\_qubits, label, ...])      | Implement the multi-controlled X gate using the Gray code.                              |   |                                     |
+| [`MCXRecursive`](qiskit.circuit.library.MCXRecursive "qiskit.circuit.library.MCXRecursive")(\[num\_ctrl\_qubits, label, ...])   | Implement the multi-controlled X gate using recursion.                                  |   |                                     |
+| [`MCXVChain`](qiskit.circuit.library.MCXVChain "qiskit.circuit.library.MCXVChain")(\[num\_ctrl\_qubits, dirty\_ancillas, ...])  | Implement the multi-controlled X gate using a V-chain of CX gates.                      |   |                                     |
+| [`RVGate`](qiskit.circuit.library.RVGate "qiskit.circuit.library.RVGate")(v\_x, v\_y, v\_z\[, basis])                           | Rotation around arbitrary rotation axis $v$ where \$                                    | v | \$ is angle of rotation in radians. |
+| [`PauliGate`](qiskit.circuit.library.PauliGate "qiskit.circuit.library.PauliGate")(label)                                       | A multi-qubit Pauli gate.                                                               |   |                                     |
+| [`LinearFunction`](qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")(linear\[, validate\_input])   | A linear reversible circuit on n qubits.                                                |   |                                     |
+| [`Isometry`](qiskit.circuit.library.Isometry "qiskit.circuit.library.Isometry")(isometry, num\_ancillas\_zero, ...\[, ...])     | Decomposition of arbitrary isometries from $m$ to $n$ qubits.                           |   |                                     |
+| [`UnitaryGate`](qiskit.circuit.library.UnitaryGate "qiskit.circuit.library.UnitaryGate")(data\[, label, check\_input])          | Class quantum gates specified by a unitary matrix.                                      |   |                                     |
+| [`UCGate`](qiskit.circuit.library.UCGate "qiskit.circuit.library.UCGate")(gate\_list\[, up\_to\_diagonal])                      | Uniformly controlled gate (also called multiplexed gate).                               |   |                                     |
+| [`UCPauliRotGate`](qiskit.circuit.library.UCPauliRotGate "qiskit.circuit.library.UCPauliRotGate")(angle\_list, rot\_axis)       | Uniformly controlled Pauli rotations.                                                   |   |                                     |
+| [`UCRXGate`](qiskit.circuit.library.UCRXGate "qiskit.circuit.library.UCRXGate")(angle\_list)                                    | Uniformly controlled Pauli-X rotations.                                                 |   |                                     |
+| [`UCRYGate`](qiskit.circuit.library.UCRYGate "qiskit.circuit.library.UCRYGate")(angle\_list)                                    | Uniformly controlled Pauli-Y rotations.                                                 |   |                                     |
+| [`UCRZGate`](qiskit.circuit.library.UCRZGate "qiskit.circuit.library.UCRZGate")(angle\_list)                                    | Uniformly controlled Pauli-Z rotations.                                                 |   |                                     |
 
 ## Boolean Logic Circuits
 
@@ -251,18 +259,20 @@ These [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCi
 
 ## Particular Quantum Circuits
 
-|                                                                                                                                                 |                                                      |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [`FourierChecking`](qiskit.circuit.library.FourierChecking "qiskit.circuit.library.FourierChecking")(f, g)                                      | Fourier checking circuit.                            |
-| [`GraphState`](qiskit.circuit.library.GraphState "qiskit.circuit.library.GraphState")(adjacency\_matrix)                                        | Circuit to prepare a graph state.                    |
-| [`HiddenLinearFunction`](qiskit.circuit.library.HiddenLinearFunction "qiskit.circuit.library.HiddenLinearFunction")(adjacency\_matrix)          | Circuit to solve the hidden linear function problem. |
-| [`IQP`](qiskit.circuit.library.IQP "qiskit.circuit.library.IQP")(interactions)                                                                  | Instantaneous quantum polynomial (IQP) circuit.      |
-| [`QuantumVolume`](qiskit.circuit.library.QuantumVolume "qiskit.circuit.library.QuantumVolume")(num\_qubits\[, depth, seed, ...])                | A quantum volume model circuit.                      |
-| [`PhaseEstimation`](qiskit.circuit.library.PhaseEstimation "qiskit.circuit.library.PhaseEstimation")(num\_evaluation\_qubits, unitary)          | Phase Estimation circuit.                            |
-| [`GroverOperator`](qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator")(oracle\[, state\_preparation, ...])           | The Grover operator.                                 |
-| [`PhaseOracle`](qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle")(expression\[, synthesizer, var\_order])                | Phase Oracle.                                        |
-| [`EvolvedOperatorAnsatz`](qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.EvolvedOperatorAnsatz")(\[operators, reps, ...]) | The evolved operator ansatz.                         |
-| [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")(operator\[, time, label, ...])    | Time-evolution of an operator consisting of Paulis.  |
+|                                                                                                                                                 |                                                                          |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| [`FourierChecking`](qiskit.circuit.library.FourierChecking "qiskit.circuit.library.FourierChecking")(f, g)                                      | Fourier checking circuit.                                                |
+| [`GraphState`](qiskit.circuit.library.GraphState "qiskit.circuit.library.GraphState")(adjacency\_matrix)                                        | Circuit to prepare a graph state.                                        |
+| [`HiddenLinearFunction`](qiskit.circuit.library.HiddenLinearFunction "qiskit.circuit.library.HiddenLinearFunction")(adjacency\_matrix)          | Circuit to solve the hidden linear function problem.                     |
+| [`IQP`](qiskit.circuit.library.IQP "qiskit.circuit.library.IQP")(interactions)                                                                  | Instantaneous quantum polynomial (IQP) circuit.                          |
+| [`QuantumVolume`](qiskit.circuit.library.QuantumVolume "qiskit.circuit.library.QuantumVolume")(num\_qubits\[, depth, seed, ...])                | A quantum volume model circuit.                                          |
+| [`PhaseEstimation`](qiskit.circuit.library.PhaseEstimation "qiskit.circuit.library.PhaseEstimation")(num\_evaluation\_qubits, unitary)          | Phase Estimation circuit.                                                |
+| [`GroverOperator`](qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator")(oracle\[, state\_preparation, ...])           | The Grover operator.                                                     |
+| [`PhaseOracle`](qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle")(expression\[, synthesizer, var\_order])                | Phase Oracle.                                                            |
+| [`EvolvedOperatorAnsatz`](qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.EvolvedOperatorAnsatz")(\[operators, reps, ...]) | The evolved operator ansatz.                                             |
+| [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")(operator\[, time, label, ...])    | Time-evolution of an operator consisting of Paulis.                      |
+| [`HamiltonianGate`](qiskit.circuit.library.HamiltonianGate "qiskit.circuit.library.HamiltonianGate")(data, time\[, label])                      | Class for representing evolution by a Hamiltonian operator as a gate.    |
+| [`UnitaryOverlap`](qiskit.circuit.library.UnitaryOverlap "qiskit.circuit.library.UnitaryOverlap")(unitary1, unitary2\[, ...])                   | Circuit that returns the overlap between two unitaries $U_2^{\dag} U_1$. |
 
 ## N-local circuits
 
@@ -288,6 +298,7 @@ These `BlueprintCircuit` encode classical data in quantum states and are used as
 | [`ZFeatureMap`](qiskit.circuit.library.ZFeatureMap "qiskit.circuit.library.ZFeatureMap")(feature\_dimension\[, reps, ...])             | The first order Pauli Z-evolution circuit. |
 | [`ZZFeatureMap`](qiskit.circuit.library.ZZFeatureMap "qiskit.circuit.library.ZZFeatureMap")(feature\_dimension\[, reps, ...])          | Second-order Pauli-Z evolution circuit.    |
 | [`StatePreparation`](qiskit.circuit.library.StatePreparation "qiskit.circuit.library.StatePreparation")(params\[, num\_qubits, ...])   | Complex amplitude state preparation.       |
+| [`Initialize`](qiskit.circuit.library.Initialize "qiskit.circuit.library.Initialize")(params\[, num\_qubits, normalize])               | Complex amplitude initialization.          |
 
 ## Template circuits
 

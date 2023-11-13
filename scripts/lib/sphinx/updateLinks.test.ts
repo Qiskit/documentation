@@ -34,6 +34,7 @@ describe("updateLinks", () => {
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         images: [],
+        isReleaseNotes: false,
       },
       {
         markdown: `
@@ -45,6 +46,7 @@ describe("updateLinks", () => {
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         images: [],
+        isReleaseNotes: false,
       },
     ];
 
@@ -53,6 +55,7 @@ describe("updateLinks", () => {
       [
         {
           "images": [],
+          "isReleaseNotes": false,
           "markdown": "[link1](qiskit_ibm_runtime.RuntimeJob)
       [link2](qiskit_ibm_runtime.RuntimeJob)
       [link3](qiskit_ibm_runtime.RuntimeJob#job)
@@ -69,6 +72,7 @@ describe("updateLinks", () => {
         },
         {
           "images": [],
+          "isReleaseNotes": false,
           "markdown": "[run](qiskit_ibm_runtime.RuntimeJob#run)
       ",
           "meta": {
@@ -97,11 +101,12 @@ describe("updateLinks", () => {
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         images: [],
+        isReleaseNotes: false,
       },
     ];
 
-    const results = await updateLinks(input, (url) => {
-      let path = last(url.split("/"))!;
+    const results = await updateLinks(input, (link) => {
+      let path = last(link.url.split("/"))!;
       if (path.includes("#")) {
         path = path.split("#").join(".html#");
       } else {
@@ -117,6 +122,7 @@ describe("updateLinks", () => {
       [
         {
           "images": [],
+          "isReleaseNotes": false,
           "markdown": "[link1](http://qiskit.org/documentation/apidoc/algorithms.html)
       [link2](http://qiskit.org/documentation/apidoc/algorithms.html)
       [link3](http://qiskit.org/documentation/stubs/qiskit.algorithms.minimum_eigensolvers.VQE.html#qiskit.algorithms.minimum_eigensolvers.VQE)
