@@ -22,6 +22,8 @@ import { Root } from "remark-mdx";
 import rehypeRemark from "rehype-remark";
 import rehypeParse from "rehype-parse";
 import remarkGfm from "remark-gfm";
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
 
 // The links in the files are not searched to see if they are valid.
 // The files need a list of links to be ignored, and when an asterisk
@@ -34,6 +36,24 @@ const SYNTHETIC_FILES: string[] = [
   "docs/errors.mdx",
   "docs/api/runtime/tags/programs.mdx",
 ];
+
+interface Arguments {
+  [x: string]: unknown;
+  external: boolean;
+}
+
+const readArgs = (): Arguments => {
+  return yargs(hideBin(process.argv))
+    .version(false)
+    .option("external", {
+      type: "boolean",
+      demandOption: false,
+      default: false,
+      description:
+        "Should external links be checked? This slows down the script, but is useful to check.",
+    })
+    .parseSync();
+};
 
 function markdownFromNotebook(source: string): string {
   let markdown = "";
@@ -152,6 +172,8 @@ function loadFiles(existingPaths: string[]): File[] {
 }
 
 async function main() {
+  const args = readArgs();
+
   // Determine what files we have and separate them into files with links
   // to read and files we don't need to parse.
   const pathsWithLinks = await globby("docs/**/*.{ipynb,md,mdx}");
@@ -168,12 +190,20 @@ async function main() {
   const otherFiles = loadFiles(pathsWithoutLinks);
   const existingFiles = docsFiles.concat(otherFiles);
 
-  // Validate the links and print the results
+  // Validate the links
+  const results = await Promise.all(
+    linkList
+      .filter((link) => args.external || !link.isExternal)
+      .map((link) => link.checkLink(existingFiles)),
+  );
+
+  // Print the results
   let allGood = true;
-  linkList.forEach((link) => {
-    const errorMessages = link.checkLink(existingFiles);
-    errorMessages.forEach((errorMessage) => console.error(errorMessage));
-    allGood &&= errorMessages.length == 0;
+  results.forEach((linkErrors) => {
+    linkErrors.forEach((errorMessage) => {
+      console.error(errorMessage);
+      allGood = false;
+    });
   });
 
   if (!allGood) {
@@ -183,4 +213,4 @@ async function main() {
   console.log("\nNo links appear broken ✅\n");
 }
 
-main();
+main().then(() => process.exit());
