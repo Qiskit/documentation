@@ -126,13 +126,15 @@ export function generateToc(options: {
     tocChildren.push(...orderEntriesByTitle(nestedTocModules));
   }
 
-  tocChildren.unshift({
-    title: "Release notes",
-    url: pkg.releaseNoteEntries.length ? undefined : pkg.releaseNotesUrl,
-    children: pkg.releaseNoteEntries.length
-      ? pkg.releaseNoteEntries
-      : undefined,
-  });
+  const releaseNotesEntry: TocEntry = {
+    title: "Release notes"
+  }
+  if (pkg.releaseNoteEntries.length) {
+    releaseNotesEntry.children = pkg.releaseNoteEntries
+  } else {
+    releaseNotesEntry.url = pkg.releaseNotesUrl
+  }
+  tocChildren.unshift(releaseNotesEntry);
 
   const toc: Toc = {
     title: pkg.title,
