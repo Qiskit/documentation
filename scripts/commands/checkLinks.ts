@@ -196,7 +196,7 @@ zxMain(async () => {
   // Validate external links
   // A for loop is used to reduce the risk of rate-limiting
   if (args.external) {
-    for(let link of externalLinkList){
+    for (let link of externalLinkList) {
       results.push(await link.checkLink(existingFiles));
     }
   }
