@@ -134,7 +134,7 @@ export class Link {
     const errorMessage = await this.checkExternalLink();
     if (errorMessage) {
       this.originFiles.forEach((originFile: string) => {
-        errorMessages.push(`❌ ${originFile}: ` + errorMessage);
+        errorMessages.push(`❌ ${originFile}: ${errorMessage}`);
       });
     }
     return errorMessages;
