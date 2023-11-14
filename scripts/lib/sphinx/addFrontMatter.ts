@@ -14,10 +14,7 @@ import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { SphinxToMdResult } from "./SphinxToMdResult";
 import { Pkg } from "../sharedTypes";
 
-export function addFrontMatter<T extends SphinxToMdResult>(
-  results: T[],
-  pkg: Pkg,
-): T[] {
+export function addFrontMatter(results: SphinxToMdResult[], pkg: Pkg): void {
   for (let result of results) {
     let markdown = result.markdown;
     if (result.meta.python_api_name) {
@@ -42,6 +39,4 @@ ${markdown}
 `;
     }
   }
-
-  return results;
 }
