@@ -12,13 +12,16 @@ You can pass circuits to the `transpile()` method and use all default settings, 
 
 ## Basic usage without parameters
 
-You can pass a circuit to the transpiler without specifying any further parameters:
+You can pass a circuit and target backend to the transpiler without specifying any further parameters. 
+
+Create a circuit and view the result: 
 
 ```python
 from qiskit import transpile
 from qiskit import QuantumCircuit
 from qiskit.circuit.library import GroverOperator, Diagonal
 from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit.providers.fake_provider import FakeVigo
 
 # Create circuit to test transpiler on
 oracle = Diagonal([1] * 7 + [-1])
@@ -29,8 +32,28 @@ qc = qc.compose(GroverOperator(oracle))
 # Add measurements to the circuit
 qc.measure_all()
 
-transpiled_circ = transpile(qc)
+# View the circuit
+qc.draw(output='mpl')
 ```
+
+![Original circuit](/images/transpile/defaults_and_configuration_options/original_circuit.png)
+
+
+Transpile the circuit and view the result:
+
+```python
+# Specify the backend to target
+backend = FakeVigo()
+
+# Transpile the circuit
+transpiled_circ = transpile(qc, backend)
+
+# View the transpiled circuit
+transpiled_circ.draw(output='mpl')
+```
+
+![Transpiled circuit](/images/transpile/defaults_and_configuration_options/transpiled_circuit.png)
+
 
 ## All available parameters
 
@@ -143,10 +166,6 @@ Because finding the best layout is an NP-hard problem, it is the most time-consu
   </tbody>
 </Table>
 
-**Put back in the table and include things like synthesis of 2-circuit blocks (levels 2+).  Note that approx degree only works on circuits that have been synthesized this way.**
-
-**New examples that show circuits with a bunch of CNOTs being reduced -- then carry through to approx. degree section**
-
 Example, specifying `optimization_level=0`: 
 
 ```python
@@ -164,7 +183,7 @@ Example, specifying `optimization_level=0`:
     new_circ_lv0 = transpile(ghz, backend=backend, optimization_level=0)
     plot_circuit_layout(new_circ_lv0, backend)
 ```
-![Layout with optimization level 0](/images/transpile/optimization-level-0.png)
+![Layout with optimization level 0](/images/transpile/defaults_and_configuration_options/optimization-level-0.png)
 
 Example, specifying `optimization_level=3`: 
 
@@ -183,7 +202,7 @@ Example, specifying `optimization_level=3`:
     new_circ_lv3 = transpile(ghz, backend=backend, optimization_level=3)
     plot_circuit_layout(new_circ_lv3, backend)
 ```
-![Layout with optimization level 3](/images/transpile/optimization-level-3.png)
+![Layout with optimization level 3](/images/transpile/defaults_and_configuration_options/optimization-level-3.png)
 
 Since CX's are the noisiest gate, we can quantify the transpilation's "hardware efficiency" by counting the CX's in the resulting circuit. We will compare the default transpilation levels given the same circuit. 
 
@@ -210,7 +229,7 @@ Next we build a quantum circuit consisting of a random unitary followed by a SWA
     qc.swap(0, 1)
     qc.draw('mpl')
 ```
-![Original abstract circuit](/images/transpile/abstract-circ.png)
+![Original abstract circuit](/images/transpile/defaults_and_configuration_options/abstract-circ.png)
 
 We use `FakeTokyo` as the backend and transpile using `optimization_level=1` (the default). To avoid considering the effect of idle qubits, We override the backend's coupling map so that the transpiled circuit returns to a two-qubit circuit.
 
@@ -219,7 +238,7 @@ We use `FakeTokyo` as the backend and transpile using `optimization_level=1` (th
     qc_t1_exact = transpile(qc, backend, optimization_level=1, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
     qc_t1_exact.draw('mpl', style='iqp')
 ```
-![Circuit transpiled with optimization level 1](/images/transpile/circ-opt-level-1.png)
+![Circuit transpiled with optimization level 1](/images/transpile/defaults_and_configuration_options/circ-opt-level-1.png)
 
 The transpiled circuit has six CX gates and several `U3` gates, which have much lower error than CX's, so we don't need to count them. 
 
@@ -229,7 +248,7 @@ Repeat for optimization level 2:
     qc_t2_exact = transpile(qc, backend, optimization_level=2, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
     qc_t2_exact.draw('mpl', style='iqp')
 ```
-![Circuit transpiled with optimization level 2](/images/transpile/circ-opt-level-2.png)
+![Circuit transpiled with optimization level 2](/images/transpile/defaults_and_configuration_options/circ-opt-level-2.png)
 
 This yields the same results as optimization level 1. Note that increasing the level of optimization does not always make a difference. 
 
@@ -239,7 +258,7 @@ Repeat again, with optimization level 3:
     qc_t3_exact = transpile(qc, backend, optimization_level=3, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
     qc_t3_exact.draw('mpl', style='iqp')
 ```
-![Circuit transpiled with optimization level 3](/images/transpile/circ-opt-level-3.png)
+![Circuit transpiled with optimization level 3](/images/transpile/defaults_and_configuration_options/circ-opt-level-3.png)
 
 Now there are only three CX gates. This is because with optimization level 3, Qiskit tries to re-synthesize two-qubit blocks of gates. Since any two-qubit gate requires at most three CX gates, we get the above result. We can get even fewer CX gates if we sacrifice the fidelity of this synthese by setting `approximation_degree` to a value less than 1:
 
