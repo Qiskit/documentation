@@ -94,23 +94,28 @@ export class Link {
     );
   }
 
+  /**
+   * Returns a string with a suggested replacement for a broken link
+   */
   didYouMean(existingFiles: File[], originFile: string): string {
     const levenshtein = require("fast-levenshtein");
+
+    // Find a new valid link
     let min_score = Number.MAX_SAFE_INTEGER;
-    let suggestion_path = "";
+    let suggestion_path: String = "";
     let suggestion_path_anchors: String[] = [];
 
     const possiblePaths = this.possibleFilePaths(originFile);
     const pathNoExtension = possiblePaths[0].replace(/\.[^\/.]+$/, "");
 
-    for (let file of existingFiles) {
+    existingFiles.forEach((file) => {
       let score = levenshtein.get(pathNoExtension, file.path);
       if (score < min_score) {
         min_score = score;
         suggestion_path = file.path;
         suggestion_path_anchors = file.anchors;
       }
-    }
+    });
 
     if (this.anchor == "") {
       return (
@@ -120,16 +125,17 @@ export class Link {
       );
     }
 
+    // Find a new valid anchor
     min_score = Number.MAX_SAFE_INTEGER;
     let suggestion_anchor: String = "";
 
-    for (let anchor of suggestion_path_anchors) {
+    suggestion_path_anchors.forEach((anchor) => {
       let score = levenshtein.get(this.anchor, anchor);
       if (score < min_score) {
         min_score = score;
         suggestion_anchor = anchor;
       }
-    }
+    });
 
     return (
       "❓ Did you mean '" +
@@ -157,8 +163,7 @@ export class Link {
       if (!this.checkInternalLink(existingFiles, originFile)) {
         const suggestionPath = this.didYouMean(existingFiles, originFile);
         errorMessages.push(
-          `❌ ${originFile}: Could not find link '${this.value}'. ` +
-            suggestionPath,
+          `❌ ${originFile}: Could not find link '${this.value}'. ${suggestionPath}`,
         );
       }
     });
