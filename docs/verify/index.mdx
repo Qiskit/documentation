@@ -11,11 +11,10 @@ Because the cost of classically simulating quantum circuits scales exponentially
 - Test smaller versions of the circuits that can be simulated classically.
 - Modify the circuits so that they become classically simulable and test these modified circuits.
 
-Stabilizer circuits are a useful tool for accomplishing this latter goal. See [Efficient simulation of stabilizer circuits with Qiskit Aer primitives](stabilizer-circuit-simulation) for an overview of stabilizer circuits and how to simulate them efficiently.
+Stabilizer circuits are a useful tool for accomplishing this latter goal. These are a restricted class of quantum circuits that can be efficiently simulated classically. Specialized simulators can easily simulate stabilizer circuits with thousands of qubits. See [Efficient simulation of stabilizer circuits with Qiskit Aer primitives](stabilizer-circuit-simulation) for an overview of stabilizer circuits and how to simulate them efficiently.
 
-The following tools are available for you to verify your quantum programs:
+For general quantum circuits, the following tools are available for you to verify your quantum programs:
 
 - For exact simulation of small quantum circuits, you can use the reference primitives included with Qiskit. See [Exact simulation with Qiskit primitives](simulate-with-qiskit-primitives).
 - For higher-performance simulation that can handle larger circuits, or to incorporate noise models into your simulation, use [Qiskit Aer](https://qiskit.org/ecosystem/aer/), a project that is part of the [Qiskit Ecosystem](https://qiskit.github.io/ecosystem/). See [Exact and noisy simulation with Qiskit Aer primitives](simulate-with-qiskit-aer).
 - To build your own custom noise models, use the [`noise`](https://qiskit.org/ecosystem/aer/apidocs/aer_noise.html) module of Qiskit Aer. See [Building noise models](building_noise_models).
-- As mentioned before, Qiskit Aer can be used to efficiently simulate stabilizer circuits, a special restricted class of quantum circuits. For example, using Qiskit Aer, you can simulate stabilizer circuits with thousands of qubits. See [Efficient simulation of stabilizer circuits with Qiskit Aer primitives](stabilizer-circuit-simulation).
