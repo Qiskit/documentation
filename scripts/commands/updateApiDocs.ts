@@ -297,11 +297,10 @@ async function convertHtmlToMarkdown(
   results = flatFolders(results);
   results = await updateLinks(results, pkg.transformLink);
   results = await dedupeResultIds(results);
-  results = addFrontMatter(results, pkg);
+  results = addFrontMatter(results, pkg, versionWithoutPatch);
 
   for (const result of results) {
     let path = urlToPath(result.url);
-    console.log(path);
     if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
       path = `${getRoot()}/docs/api/${
         pkg.name
