@@ -126,17 +126,11 @@ export function generateToc(options: {
     tocChildren.push(...orderEntriesByTitle(nestedTocModules));
   }
 
-  if (pkg.name === "qiskit") {
-    tocChildren.push({
-      title: "Release notes",
-      children: pkg.releaseNoteEntries,
-    });
-  } else {
-    tocChildren.push({
-      title: "Release notes",
-      url: pkg.releaseNotesUrl,
-    });
-  }
+  tocChildren.unshift({
+    title: "Release notes",
+    url: pkg.name === "qiskit" ? undefined : pkg.releaseNotesUrl,
+    children: pkg.name === "qiskit" ? pkg.releaseNoteEntries : undefined,
+  });
 
   const toc: Toc = {
     title: pkg.title,
