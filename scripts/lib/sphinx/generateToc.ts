@@ -130,7 +130,7 @@ export function generateToc(options: {
     tocChildren.push({
       title: "Release notes",
       children: pkg.releaseNoteEntries,
-    })
+    });
   } else {
     tocChildren.push({
       title: "Release notes",

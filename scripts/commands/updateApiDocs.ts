@@ -151,29 +151,33 @@ zxMain(async () => {
   console.log(`Deleting existing markdown for ${pkg.name}`);
   await $`find ${outputDir}/* -not -path "*release-notes*" | xargs rm -rf {}`;
 
-  const legacyReleaseNoteVersions = 
-    (await $`ls ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet())
-    .stdout
+  const legacyReleaseNoteVersions = (
+    await $`ls ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet()
+  ).stdout
     .split("\n")
-    .filter(x => x)
-    .map(x => path.parse(x).name)
-    .sort((a: string, b :string) => {
-      const aParts = a.split(".").map(x => Number(x))
-      const bParts = b.split(".").map(x => Number(x))
-      for (let i=0; i<2; i++) {
-        if (aParts[i] > bParts[i]) { return 1 }
-        if (aParts[i] < bParts[i]) { return -1 }
+    .filter((x) => x)
+    .map((x) => path.parse(x).name)
+    .sort((a: string, b: string) => {
+      const aParts = a.split(".").map((x) => Number(x));
+      const bParts = b.split(".").map((x) => Number(x));
+      for (let i = 0; i < 2; i++) {
+        if (aParts[i] > bParts[i]) {
+          return 1;
+        }
+        if (aParts[i] < bParts[i]) {
+          return -1;
+        }
       }
-      return 0
+      return 0;
     })
-    .reverse()
+    .reverse();
 
-  const legacyReleaseNoteEntries = []
+  const legacyReleaseNoteEntries = [];
   for (let version of legacyReleaseNoteVersions) {
     legacyReleaseNoteEntries.push({
       title: version,
-      url: `/api/${pkg.name}/release-notes/${version}`
-    })
+      url: `/api/${pkg.name}/release-notes/${version}`,
+    });
   }
 
   console.log(
@@ -233,7 +237,7 @@ async function convertHtmlToMarkdown(
   baseSourceUrl: string,
   pkg: Pkg,
   version: string,
-  legacyReleaseNoteEntries: { title: string, url: string }[],
+  legacyReleaseNoteEntries: { title: string; url: string }[],
 ) {
   const files = await globby(
     [
