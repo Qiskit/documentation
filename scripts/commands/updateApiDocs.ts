@@ -32,7 +32,6 @@ import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { Pkg, Link } from "../lib/sharedTypes";
-import path from "path";
 
 interface Arguments {
   [x: string]: unknown;
@@ -156,7 +155,7 @@ zxMain(async () => {
   ).stdout
     .split("\n")
     .filter((x) => x)
-    .map((x) => path.parse(x).name)
+    .map((x) => parse(x).name)
     .sort((a: string, b: string) => {
       const aParts = a.split(".").map((x) => Number(x));
       const bParts = b.split(".").map((x) => Number(x));
