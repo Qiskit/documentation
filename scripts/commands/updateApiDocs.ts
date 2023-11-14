@@ -31,6 +31,7 @@ import { dedupeResultIds } from "../lib/sphinx/dedupeIds";
 import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
+import { Pkg, Link } from "../lib/sharedTypes";
 import path from "path";
 
 interface Arguments {
@@ -39,22 +40,25 @@ interface Arguments {
   version: string;
 }
 
-export type Pkg = {
-  name: string;
-  githubSlug: string;
-  baseUrl: string;
-  initialUrls: string[];
-  title: string;
-  ignore?(id: string): boolean;
-  tocOptions?: {
-    collapsed?: boolean;
-    nestModule?(id: string): boolean;
-  };
-  transformLink?: (
-    url: string,
-    text?: string,
-  ) => { url: string; text?: string } | undefined;
-};
+function transformLink(link: Link): Link | undefined {
+  const updateText = link.url === link.text;
+  const prefixes = [
+    "https://qiskit.org/documentation/apidoc/",
+    "https://qiskit.org/documentation/stubs/",
+  ];
+  const prefix = prefixes.find((prefix) => link.url.startsWith(prefix));
+  if (!prefix) {
+    return;
+  }
+  let [url, anchor] = link.url.split("#");
+  url = removePrefix(url, prefix);
+  url = removeSuffix(url, ".html");
+  if (anchor && anchor !== url) {
+    url = `${url}#${anchor}`;
+  }
+  const newText = updateText ? url : undefined;
+  return { url: `/api/qiskit/${url}`, text: newText };
+}
 
 const PACKAGES: Pkg[] = [
   {
@@ -65,20 +69,7 @@ const PACKAGES: Pkg[] = [
     initialUrls: [
       `https://qiskit.org/ecosystem/ibm-runtime/apidocs/ibm-runtime.html`,
     ],
-    transformLink(url, text) {
-      const prefixes = [
-        "https://qiskit.org/documentation/apidoc/",
-        "https://qiskit.org/documentation/stubs/",
-      ];
-      let updateText = url === text;
-      const prefix = prefixes.find((prefix) => url.startsWith(prefix));
-      if (prefix) {
-        url = removePrefix(url, prefix);
-        url = removeSuffix(url, ".html");
-        const newText = updateText ? url : undefined;
-        return { url: `/api/qiskit/${url}`, text: newText };
-      }
-    },
+    transformLink,
   },
   {
     title: "Qiskit IBM Provider",
@@ -88,20 +79,7 @@ const PACKAGES: Pkg[] = [
     initialUrls: [
       `https://qiskit.org/ecosystem/ibm-provider/apidocs/ibm-provider.html`,
     ],
-    transformLink(url, text) {
-      const prefixes = [
-        "https://qiskit.org/documentation/apidoc/",
-        "https://qiskit.org/documentation/stubs/",
-      ];
-      let updateText = url === text;
-      const prefix = prefixes.find((prefix) => url.startsWith(prefix));
-      if (prefix) {
-        url = removePrefix(url, prefix);
-        url = removeSuffix(url, ".html");
-        const newText = updateText ? url : undefined;
-        return { url: `/api/qiskit/${url}`, text: newText };
-      }
-    },
+    transformLink,
   },
   {
     title: "Qiskit",
@@ -132,13 +110,23 @@ const readArgs = (): Arguments => {
       alias: "v",
       type: "string",
       demandOption: true,
-      description: "The version string of the --package, e.g. 0.44.0",
+      description: "The full version string of the --package, e.g. 0.44.0",
     })
     .parseSync();
 };
 
 zxMain(async () => {
   const args = readArgs();
+
+  // Determine the minor version, e.g. 0.44.0 -> 0.44
+  const versionMatch = args.version.match(/^(\d+\.\d+)/);
+  if (versionMatch === null) {
+    throw new Error(
+      `Invalid --version. Expected the format 0.44.0, but received ${args.version}`,
+    );
+  }
+  const versionWithoutPatch = versionMatch[0];
+
   const pkg = PACKAGES.find((pkg) => pkg.name === args.package);
   if (pkg === undefined) {
     throw new Error(`Unrecognized package: ${args.package}`);
@@ -157,11 +145,11 @@ zxMain(async () => {
     });
   }
 
-  console.log(`Deleting existing markdown for ${pkg.name}`);
-  await $`find ${getRoot()}/docs/api/${pkg.name}/* -not -path "*release-notes*" | xargs rm -rf {}`;
+  const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${versionWithoutPatch}/`;
+  const outputDir = `${getRoot()}/docs/api/${pkg.name}`;
 
-  const output = `${getRoot()}/docs/api/${pkg.name}`;
-  const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${args.version}/`;
+  console.log(`Deleting existing markdown for ${pkg.name}`);
+  await $`find ${outputDir}/* -not -path "*release-notes*" | xargs rm -rf {}`;
 
   const legacyReleaseNoteVersions = 
     (await $`ls ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet())
@@ -189,14 +177,15 @@ zxMain(async () => {
   }
 
   console.log(
-    `Convert sphinx html to markdown for ${pkg.name}:${args.version}`,
+    `Convert sphinx html to markdown for ${pkg.name}:${versionWithoutPatch}`,
   );
   await convertHtmlToMarkdown(
     destination,
-    output,
+    outputDir,
     baseSourceUrl,
     pkg,
     args.version,
+    legacyReleaseNoteEntries,
   );
 });
 
@@ -293,7 +282,7 @@ async function convertHtmlToMarkdown(
   results = flatFolders(results);
   results = await updateLinks(results, pkg.transformLink);
   results = await dedupeResultIds(results);
-  results = addFrontMatter(results, pkg, version);
+  results = addFrontMatter(results, pkg);
 
   for (const result of results) {
     await writeFile(urlToPath(result.url), result.markdown);
@@ -308,7 +297,7 @@ async function convertHtmlToMarkdown(
       releaseNoteEntries: legacyReleaseNoteEntries,
       releaseNotesUrl:
         pkg.name !== "qiskit"
-          ? `/api/${pkg.name}/release_notes`
+          ? `/api/${pkg.name}/release-notes`
           : "https://github.com/qiskit/qiskit/releases",
       tocOptions: pkg.tocOptions,
     },
@@ -317,6 +306,13 @@ async function convertHtmlToMarkdown(
   await writeFile(
     `${markdownPath}/_toc.json`,
     JSON.stringify(toc, null, 2) + "\n",
+  );
+
+  console.log("Generating version file");
+  const pkg_json = { name: pkg.name, version: version };
+  await writeFile(
+    `${markdownPath}/_package.json`,
+    JSON.stringify(pkg_json, null, 2) + "\n",
   );
 
   console.log("Downloading images");
@@ -329,5 +325,6 @@ async function convertHtmlToMarkdown(
 }
 
 function urlToPath(url: string) {
+  url = url.replaceAll("release_notes", "release-notes");
   return `${getRoot()}/docs${url}.md`;
 }
