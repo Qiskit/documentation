@@ -31,6 +31,7 @@ import { dedupeResultIds } from "../lib/sphinx/dedupeIds";
 import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
+import path from "path";
 
 interface Arguments {
   [x: string]: unknown;
@@ -162,6 +163,31 @@ zxMain(async () => {
   const output = `${getRoot()}/docs/api/${pkg.name}`;
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${args.version}/`;
 
+  const legacyReleaseNoteVersions = 
+    (await $`ls ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet())
+    .stdout
+    .split("\n")
+    .filter(x => x)
+    .map(x => path.parse(x).name)
+    .sort((a: string, b :string) => {
+      const aParts = a.split(".").map(x => Number(x))
+      const bParts = b.split(".").map(x => Number(x))
+      for (let i=0; i<2; i++) {
+        if (aParts[i] > bParts[i]) { return 1 }
+        if (aParts[i] < bParts[i]) { return -1 }
+      }
+      return 0
+    })
+    .reverse()
+
+  const legacyReleaseNoteEntries = []
+  for (let version of legacyReleaseNoteVersions) {
+    legacyReleaseNoteEntries.push({
+      title: version,
+      url: `/api/${pkg.name}/release-notes/${version}`
+    })
+  }
+
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${args.version}`,
   );
@@ -218,6 +244,7 @@ async function convertHtmlToMarkdown(
   baseSourceUrl: string,
   pkg: Pkg,
   version: string,
+  legacyReleaseNoteEntries: { title: string, url: string }[],
 ) {
   const files = await globby(
     [
@@ -278,6 +305,7 @@ async function convertHtmlToMarkdown(
       title: pkg.title,
       name: pkg.name,
       version,
+      releaseNoteEntries: legacyReleaseNoteEntries,
       releaseNotesUrl:
         pkg.name !== "qiskit"
           ? `/api/${pkg.name}/release_notes`
