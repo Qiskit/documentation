@@ -74,6 +74,10 @@ describe("generateTocFromPythonApiFiles", () => {
       {
         "children": [
           {
+            "title": "Release notes",
+            "url": "/api/qiskit_ibm_runtime/release-notes",
+          },
+          {
             "children": [
               {
                 "title": "Overview",
@@ -89,10 +93,6 @@ describe("generateTocFromPythonApiFiles", () => {
               },
             ],
             "title": "qiskit_ibm_runtime",
-          },
-          {
-            "title": "Release notes",
-            "url": "/api/qiskit_ibm_runtime/release-notes",
           },
         ],
         "title": "Qiskit Runtime IBM Client",
@@ -146,6 +146,10 @@ describe("generateTocFromPythonApiFiles", () => {
       {
         "children": [
           {
+            "title": "Release notes",
+            "url": "/api/qiskit_ibm_runtime/release-notes",
+          },
+          {
             "children": [
               {
                 "title": "Overview",
@@ -174,10 +178,6 @@ describe("generateTocFromPythonApiFiles", () => {
               },
             ],
             "title": "qiskit_ibm_runtime",
-          },
-          {
-            "title": "Release notes",
-            "url": "/api/qiskit_ibm_runtime/release-notes",
           },
         ],
         "title": "Qiskit Runtime IBM Client",
@@ -253,6 +253,10 @@ describe("generateTocFromPythonApiFiles", () => {
       {
         "children": [
           {
+            "title": "Release notes",
+            "url": "/api/qiskit_ibm_runtime/release-notes",
+          },
+          {
             "children": [
               {
                 "title": "Overview",
@@ -294,10 +298,6 @@ describe("generateTocFromPythonApiFiles", () => {
               },
             ],
             "title": "qiskit_ibm_runtime.options",
-          },
-          {
-            "title": "Release notes",
-            "url": "/api/qiskit_ibm_runtime/release-notes",
           },
         ],
         "title": "Qiskit Runtime IBM Client",
