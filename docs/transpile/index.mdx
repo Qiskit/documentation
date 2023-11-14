@@ -22,7 +22,7 @@ Qiskit utilizes a set of six fundamental stages in the prebuilt transpiler pipel
 1. `routing` - This pass runs after a layout has been applied and will inject gates (i.e., SWAPs) in the original circuit in order to make it compatible with the backend's connectivity/coupling map.
 1. `translation` - This pass translates the gates in the circuit to the backend's basis set of instructions.
 1. `optimization` - This pass runs an optimization loop to find more efficient decompositions of your quantum circuit until a condition is met (such as a fixed depth).
-1. `scheduling` - This pass is for any hardware-aware optimizations that improve the efficiency of the executed microwave pulse instructions.
+1. `scheduling` - This stage is for any hardware-aware scheduling passes. If the user specifies a scheduling method, this stage accounts for all idle time in the circuit.
 
  If you decide to customize your own transpilation workflow, we suggest using these stages as a guideline during development.
 
