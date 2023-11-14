@@ -128,8 +128,10 @@ export function generateToc(options: {
 
   tocChildren.unshift({
     title: "Release notes",
-    url: pkg.name === "qiskit" ? undefined : pkg.releaseNotesUrl,
-    children: pkg.name === "qiskit" ? pkg.releaseNoteEntries : undefined,
+    url: pkg.releaseNoteEntries.length ? undefined : pkg.releaseNotesUrl,
+    children: pkg.releaseNoteEntries.length
+      ? pkg.releaseNoteEntries
+      : undefined,
   });
 
   const toc: Toc = {

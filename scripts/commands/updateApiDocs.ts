@@ -86,6 +86,7 @@ const PACKAGES: Pkg[] = [
     githubSlug: "qiskit/qiskit",
     baseUrl: `https://qiskit.org/documentation`,
     initialUrls: [`https://qiskit.org/documentation/apidoc/index.html`],
+    hasSeparateReleaseNotes: true,
     tocOptions: {
       collapsed: true,
       nestModule(id: string) {
@@ -188,6 +189,7 @@ zxMain(async () => {
     baseSourceUrl,
     pkg,
     args.version,
+    versionWithoutPatch,
     legacyReleaseNoteEntries,
   );
 });
@@ -236,7 +238,8 @@ async function convertHtmlToMarkdown(
   baseSourceUrl: string,
   pkg: Pkg,
   version: string,
-  legacyReleaseNoteEntries: { title: string; url: string }[],
+  versionWithoutPatch: string,
+  releaseNoteEntries: { title: string; url: string }[],
 ) {
   const files = await globby(
     [
@@ -260,12 +263,21 @@ async function convertHtmlToMarkdown(
       url: `${pkg.baseUrl}/${file}`,
       baseSourceUrl,
       imageDestination: `/images/api/${pkg.name}`,
+      releaseNotesTitle: `${pkg.title} ${versionWithoutPatch} release notes`,
     });
     const { dir, name } = parse(`${markdownPath}/${file}`);
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
 
     if (!result.meta.python_api_name || !ignore(result.meta.python_api_name)) {
       results.push({ ...result, url });
+    }
+    if (pkg.hasSeparateReleaseNotes && file.endsWith("release_notes.html")) {
+      if (releaseNoteEntries[0].title !== versionWithoutPatch) {
+        releaseNoteEntries.unshift({
+          title: versionWithoutPatch,
+          url: `/api/${pkg.name}/release-notes/${versionWithoutPatch}`,
+        });
+      }
     }
   }
 
@@ -288,7 +300,14 @@ async function convertHtmlToMarkdown(
   results = addFrontMatter(results, pkg);
 
   for (const result of results) {
-    await writeFile(urlToPath(result.url), result.markdown);
+    let path = urlToPath(result.url);
+    console.log(path);
+    if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
+      path = `${getRoot()}/docs/api/${
+        pkg.name
+      }/release-notes/${versionWithoutPatch}.md`;
+    }
+    await writeFile(path, result.markdown);
   }
 
   console.log("Generating toc");
@@ -297,11 +316,8 @@ async function convertHtmlToMarkdown(
       title: pkg.title,
       name: pkg.name,
       version,
-      releaseNoteEntries: legacyReleaseNoteEntries,
-      releaseNotesUrl:
-        pkg.name !== "qiskit"
-          ? `/api/${pkg.name}/release-notes`
-          : "https://github.com/qiskit/qiskit/releases",
+      releaseNoteEntries,
+      releaseNotesUrl: `/api/${pkg.name}/release-notes`,
       tocOptions: pkg.tocOptions,
     },
     results,
