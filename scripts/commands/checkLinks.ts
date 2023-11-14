@@ -89,14 +89,6 @@ async function loadFilesAndLinks(
     fileList.push(new File(filePath, []));
 
     if (
-      filePath.startsWith("docs/api/qiskit") ||
-      filePath.startsWith("docs/api/qiskit-ibm-provider") ||
-      filePath.startsWith("docs/api/qiskit-ibm-runtime")
-    ) {
-      continue;
-    }
-
-    if (
       filePath in FILES_TO_IGNORES &&
       FILES_TO_IGNORES[filePath].includes("*")
     ) {
