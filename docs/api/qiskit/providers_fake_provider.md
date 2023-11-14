@@ -89,7 +89,7 @@ Fake providers provide access to a list of fake backends.
 
 ### Fake V2 Backends
 
-Fake V2 backends are fake backends with IBM Quantum systems snapshots implemented with [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2") interface.
+Fake V2 backends are fake backends with IBM Quantum systems snapshots implemented with [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2") interface. They are all subclasses of [`FakeBackendV2`](qiskit.providers.fake_provider.FakeBackendV2 "qiskit.providers.fake_provider.FakeBackendV2").
 
 |                                                                                                                                 |                                 |
 | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
@@ -204,4 +204,57 @@ Special fake backends are fake backends that were created for special testing pu
 | [`FakeBackend5QV2`](qiskit.providers.fake_provider.FakeBackend5QV2 "qiskit.providers.fake_provider.FakeBackend5QV2")(\[bidirectional])                                | A mock backend that doesn't implement run() to test compatibility with Terra internals. |
 | [`FakeMumbaiFractionalCX`](qiskit.providers.fake_provider.FakeMumbaiFractionalCX "qiskit.providers.fake_provider.FakeMumbaiFractionalCX")()                           | A fake mumbai backend.                                                                  |
 | [`ConfigurableFakeBackend`](qiskit.providers.fake_provider.ConfigurableFakeBackend "qiskit.providers.fake_provider.ConfigurableFakeBackend")(name, n\_qubits\[, ...]) | Configurable backend.                                                                   |
+
+## Fake Backend Base Classes
+
+The fake backends based on IBM hardware are based on a set of base classes:
+
+<span id="qiskit.providers.fake_provider.fake_backend.FakeBackendV2" />
+
+`qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
+
+A fake backend class for testing and noisy simulation using real backend snapshots.
+
+The class inherits [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") class. This version differs from earlier [`FakeBackend`](#qiskit.providers.fake_provider.FakeBackend "qiskit.providers.fake_provider.FakeBackend") (V1) class in a few aspects. Firstly, configuration attribute no longer exsists. Instead, attributes exposing equivalent required immutable properties of the backend device are added. For example `fake_backend.configuration().n_qubits` is accessible from `fake_backend.num_qubits` now. Secondly, this version removes extra abstractions [`FakeQasmBackend`](#qiskit.providers.fake_provider.FakeQasmBackend "qiskit.providers.fake_provider.FakeQasmBackend") and [`FakePulseBackend`](#qiskit.providers.fake_provider.FakePulseBackend "qiskit.providers.fake_provider.FakePulseBackend") that were present in V1.
+
+FakeBackendV2 initializer.
+
+<span id="qiskit.providers.fake_provider.FakeBackend" />
+
+`qiskit.providers.fake_provider.FakeBackend(configuration, time_alive=10)`
+
+This is a dummy backend just for testing purposes.
+
+FakeBackend initializer.
+
+**Parameters**
+
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+*   **time\_alive** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – time to wait before returning result
+
+<span id="qiskit.providers.fake_provider.FakeQasmBackend" />
+
+`qiskit.providers.fake_provider.FakeQasmBackend`
+
+A fake OpenQASM backend.
+
+FakeBackend initializer.
+
+**Parameters**
+
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+*   **time\_alive** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – time to wait before returning result
+
+<span id="qiskit.providers.fake_provider.FakePulseBackend" />
+
+`qiskit.providers.fake_provider.FakePulseBackend`
+
+A fake pulse backend.
+
+FakeBackend initializer.
+
+**Parameters**
+
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+*   **time\_alive** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – time to wait before returning result
 

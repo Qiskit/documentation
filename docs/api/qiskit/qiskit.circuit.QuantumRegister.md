@@ -40,7 +40,7 @@ Either the `size` or the `bits` argument must be provided. If `size` is not None
 
 ### instances\_counter
 
-`= count(3)`
+`= count(6)`
 
 <span id="qiskit.circuit.QuantumRegister.name" />
 

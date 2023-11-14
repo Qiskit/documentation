@@ -60,19 +60,3 @@ Schedule with reallocated instructions.
 
 [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
 
-### to\_dict
-
-<span id="qiskit.pulse.transforms.AlignEquispaced.to_dict" />
-
-`to_dict()`
-
-Returns dictionary to represent this alignment.
-
-<Admonition title="Deprecated since version 0.21" type="danger">
-  The method `qiskit.pulse.transforms.alignments.AlignEquispaced.to_dict()` is deprecated as of qiskit-terra 0.21. It will be removed no earlier than 3 months after the release date.
-</Admonition>
-
-**Return type**
-
-[*Dict*](https://docs.python.org/3/library/typing.html#typing.Dict "(in Python v3.12)")\[[str](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)"), [*Any*](https://docs.python.org/3/library/typing.html#typing.Any "(in Python v3.12)")]
-

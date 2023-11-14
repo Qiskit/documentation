@@ -22,9 +22,13 @@ import { Root } from "remark-mdx";
 import rehypeRemark from "rehype-remark";
 import rehypeParse from "rehype-parse";
 import remarkGfm from "remark-gfm";
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
 
-// These files are not searched to see if their own links are valid.
-const IGNORED_FILES: string[] = [];
+// The links in the files are not searched to see if they are valid.
+// The files need a list of links to be ignored, and when an asterisk
+// (*) is used as a link, all the links in the file will be ignored.
+const FILES_TO_IGNORES: { [id: string]: string[] } = {};
 
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
@@ -32,6 +36,24 @@ const SYNTHETIC_FILES: string[] = [
   "docs/errors.mdx",
   "docs/api/runtime/tags/programs.mdx",
 ];
+
+interface Arguments {
+  [x: string]: unknown;
+  external: boolean;
+}
+
+const readArgs = (): Arguments => {
+  return yargs(hideBin(process.argv))
+    .version(false)
+    .option("external", {
+      type: "boolean",
+      demandOption: false,
+      default: false,
+      description:
+        "Should external links be checked? This slows down the script, but is useful to check.",
+    })
+    .parseSync();
+};
 
 function markdownFromNotebook(source: string): string {
   let markdown = "";
@@ -74,7 +96,10 @@ async function loadFilesAndLinks(
       continue;
     }
 
-    if (IGNORED_FILES.includes(filePath)) {
+    if (
+      filePath in FILES_TO_IGNORES &&
+      FILES_TO_IGNORES[filePath].includes("*")
+    ) {
       continue;
     }
 
@@ -119,7 +144,15 @@ async function loadFilesAndLinks(
   }
 
   for (let [link, originFiles] of linkMap) {
-    linkList.push(new Link(link, originFiles));
+    originFiles = originFiles.filter(
+      (originFile) =>
+        FILES_TO_IGNORES[originFile] == null ||
+        !FILES_TO_IGNORES[originFile].includes(link),
+    );
+
+    if (originFiles.length > 0) {
+      linkList.push(new Link(link, originFiles));
+    }
   }
 
   return [fileList, linkList];
@@ -139,6 +172,8 @@ function loadFiles(existingPaths: string[]): File[] {
 }
 
 async function main() {
+  const args = readArgs();
+
   // Determine what files we have and separate them into files with links
   // to read and files we don't need to parse.
   const pathsWithLinks = await globby("docs/**/*.{ipynb,md,mdx}");
@@ -155,12 +190,20 @@ async function main() {
   const otherFiles = loadFiles(pathsWithoutLinks);
   const existingFiles = docsFiles.concat(otherFiles);
 
-  // Validate the links and print the results
+  // Validate the links
+  const results = await Promise.all(
+    linkList
+      .filter((link) => args.external || !link.isExternal)
+      .map((link) => link.checkLink(existingFiles)),
+  );
+
+  // Print the results
   let allGood = true;
-  linkList.forEach((link) => {
-    const errorMessages = link.checkLink(existingFiles);
-    errorMessages.forEach((errorMessage) => console.error(errorMessage));
-    allGood &&= errorMessages.length == 0;
+  results.forEach((linkErrors) => {
+    linkErrors.forEach((errorMessage) => {
+      console.error(errorMessage);
+      allGood = false;
+    });
   });
 
   if (!allGood) {
@@ -170,4 +213,4 @@ async function main() {
   console.log("\nNo links appear broken ✅\n");
 }
 
-main();
+main().then(() => process.exit());

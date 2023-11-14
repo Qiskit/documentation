@@ -40,11 +40,11 @@ $$
     \end{pmatrix}\end{split}
 $$
 
-Diagonal gates are useful as representations of Boolean functions, as they can map from \{0,1}^2\*\*n to \{0,1}^2\*\*n space. For example a phase oracle can be seen as a diagonal gate with \{+1, -1} on the diagonals. Such an oracle will induce a +1 or -1 phase on the amplitude of any corresponding basis state.
+Diagonal gates are useful as representations of Boolean functions, as they can map from $\{0,1\}^{2^n}$ to $\{0,1\}^{2^n}$ space. For example a phase oracle can be seen as a diagonal gate with $\{1, -1\}$ on the diagonals. Such an oracle will induce a $+1$ or :math\`-1\` phase on the amplitude of any corresponding basis state.
 
 Diagonal gates appear in many classically hard oracular problems such as Forrelation or Hidden Shift circuits.
 
-Diagonal gates are represented and simulated more efficiently than a dense 2\*\*n x 2\*\*n unitary matrix.
+Diagonal gates are represented and simulated more efficiently than a dense $2^n \times 2^n$ unitary matrix.
 
 The reference implementation is via the method described in Theorem 7 of \[1]. The code is based on Emanuel Malvetti’s semester thesis at ETH in 2018, supervised by Raban Iten and Prof. Renato Renner.
 
@@ -52,15 +52,13 @@ The reference implementation is via the method described in Theorem 7 of \[1]. T
 
 \[1] Shende et al., Synthesis of Quantum Logic Circuits, 2009 [arXiv:0406176](https://arxiv.org/pdf/quant-ph/0406176.pdf)
 
-Create a new Diagonal circuit.
-
 **Parameters**
 
-**diag** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*] | np.ndarray*) – list of the 2^k diagonal entries (for a diagonal gate on k qubits).
+**diag** (*Sequence\[*[*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*]*) – List of the $2^k$ diagonal entries (for a diagonal gate on $k$ qubits).
 
 **Raises**
 
-[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the list of the diagonal entries or the qubit list is in bad format; if the number of diagonal entries is not 2^k, where k denotes the number of qubits
+[**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the list of the diagonal entries or the qubit list is in bad format; if the number of diagonal entries is not $2^k$, where $k$ denotes the number of qubits.
 
 ## Attributes
 
@@ -108,7 +106,7 @@ QuantumCircuitData
 
 ### global\_phase
 
-Return the global phase of the circuit in radians.
+Return the global phase of the current circuit scope in radians.
 
 <span id="qiskit.circuit.library.Diagonal.header" />
 
@@ -120,7 +118,7 @@ Return the global phase of the circuit in radians.
 
 ### instances
 
-`= 168`
+`= 159`
 
 <span id="qiskit.circuit.library.Diagonal.layout" />
 
