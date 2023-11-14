@@ -127,12 +127,12 @@ export function generateToc(options: {
   }
 
   const releaseNotesEntry: TocEntry = {
-    title: "Release notes"
-  }
+    title: "Release notes",
+  };
   if (pkg.releaseNoteEntries.length) {
-    releaseNotesEntry.children = pkg.releaseNoteEntries
+    releaseNotesEntry.children = pkg.releaseNoteEntries;
   } else {
-    releaseNotesEntry.url = pkg.releaseNotesUrl
+    releaseNotesEntry.url = pkg.releaseNotesUrl;
   }
   tocChildren.unshift(releaseNotesEntry);
 
