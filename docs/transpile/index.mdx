@@ -29,12 +29,7 @@ Qiskit utilizes a set of six fundamental stages in the prebuilt transpiler pipel
 ## Default transpilation
 The basic usage of the transpiler is to call the [`qiskit.compiler.transpile()`](../api/qiskit/compiler#compilation-routines) function.  This will generate and run one of the preset `StagedPassManager`s based on, among other options, an `optimization_level` flag which can be set to either 0, 1, 2, or 3.  Higher levels generate more optimized circuits, at the expense of longer transpilation times.
 
-- `optimization_level=0`: Maps the circuit to the backend, with no explicit optimization.
-- `optimization_level=1`: Maps the circuit, but also does some lightweight optimizations by collapsing adjacent gates.
-- `optimization_level=2`: Medium-weight optimization, including a noise-adaptive layout and a gate-cancellation procedure based on gate commutation relationships.
-- `optimization_level=3`: Heavy-weight optimization, which in addition to previous steps, resynthesizes two-qubit blocks of gates in the circuit.
-
-If you'd like to read more about the preset pass managers or the transpiler stages, look to the section on [Transpiler stages and preset PassManagers](passmanagers.ipynb).
+If you'd like to read more about the preset pass managers or the transpiler stages, look to the section on [Transpiler stages and preset PassManagers](passmanagers.ipynb). To learn how to use the `.transpile()` function, see the [Transpilation default settings and configuration options](defaults_and_configuration_options) topic.
 
 
 ## Customizing passes
