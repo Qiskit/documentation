@@ -118,11 +118,9 @@ export class Link {
     });
 
     if (this.anchor == "") {
-      return (
-        "❓ Did you mean '" +
-        suggestion_path.replace(/\.[^\/.]+$/, "").replace(/^docs/, "") +
-        "'?"
-      );
+      return `❓ Did you mean '${suggestion_path
+        .replace(/\.[^\/.]+$/, "")
+        .replace(/^docs/, "")}'?`;
     }
 
     // Find a new valid anchor
@@ -137,12 +135,9 @@ export class Link {
       }
     });
 
-    return (
-      "❓ Did you mean '" +
-      suggestion_path.replace(/\.[^\/.]+$/, "").replace(/^docs/, "") +
-      suggestion_anchor +
-      "'?"
-    );
+    return `❓ Did you mean '${suggestion_path
+      .replace(/\.[^\/.]+$/, "")
+      .replace(/^docs/, "")}${suggestion_anchor}'?`;
   }
 
   /**
