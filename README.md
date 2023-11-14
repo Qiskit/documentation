@@ -104,8 +104,11 @@ This staging environment can be useful to see how the docs are rendering before 
 CI will check for broken links. You can also check locally:
 
 ```bash
-# Only check for broken links
+# Only check for internal broken links
 npm run check:links
+
+# Only check for internal and external broken links
+npm run check:links -- --external
 
 # Or, run all the checks
 npm run check
