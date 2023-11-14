@@ -67,14 +67,15 @@ function markdownFromNotebook(source: string): string {
 
 /**
  * Return a list of File objects with all the files
- * in `filePaths` and a list of Link objects with all
- * the links found in those files.
+ * in `filePaths` and two lists of Link objects with all
+ * the internal and external links found in those files.
  */
 async function loadFilesAndLinks(
   filePaths: string[],
-): Promise<[File[], Link[]]> {
+): Promise<[File[], Link[], Link[]]> {
   const fileList: File[] = [];
-  const linkList: Link[] = [];
+  const internalLinkList: Link[] = [];
+  const externalLinkList: Link[] = [];
 
   // Auxiliary Map to avoid link duplications
   const linkMap = new Map<string, string[]>();
@@ -135,19 +136,22 @@ async function loadFilesAndLinks(
       .process(markdown);
   }
 
-  for (let [link, originFiles] of linkMap) {
+  for (let [linkPath, originFiles] of linkMap) {
     originFiles = originFiles.filter(
       (originFile) =>
         FILES_TO_IGNORES[originFile] == null ||
-        !FILES_TO_IGNORES[originFile].includes(link),
+        !FILES_TO_IGNORES[originFile].includes(linkPath),
     );
 
     if (originFiles.length > 0) {
-      linkList.push(new Link(link, originFiles));
+      const link = new Link(linkPath, originFiles);
+      link.isExternal
+        ? externalLinkList.push(link)
+        : internalLinkList.push(link);
     }
   }
 
-  return [fileList, linkList];
+  return [fileList, internalLinkList, externalLinkList];
 }
 
 /**
@@ -176,18 +180,25 @@ async function main() {
 
   // Parse the files with links and get a list with all the links
   // in all the files without duplications.
-  const [docsFiles, linkList] = await loadFilesAndLinks(pathsWithLinks);
+  const [docsFiles, internalLinkList, externalLinkList] =
+    await loadFilesAndLinks(pathsWithLinks);
 
   // Create an array with all the valid destinations for a link
   const otherFiles = loadFiles(pathsWithoutLinks);
   const existingFiles = docsFiles.concat(otherFiles);
 
-  // Validate the links
+  // Validate internal links
   const results = await Promise.all(
-    linkList
-      .filter((link) => args.external || !link.isExternal)
-      .map((link) => link.checkLink(existingFiles)),
+    internalLinkList.map((link) => link.checkLink(existingFiles)),
   );
+
+  // Validate external links
+  // A for loop is used to reduce the risk of rate-limiting
+  if (args.external) {
+    for(let link of externalLinkList){
+      results.push(await link.checkLink(existingFiles));
+    }
+  }
 
   // Print the results
   let allGood = true;
@@ -205,4 +216,4 @@ async function main() {
   console.log("\nNo links appear broken ✅\n");
 }
 
-main().then(() => process.exit());
+main();
