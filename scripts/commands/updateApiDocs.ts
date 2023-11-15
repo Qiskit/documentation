@@ -114,15 +114,16 @@ const readArgs = (): Arguments => {
     .parseSync();
 };
 
-const getLegacyReleaseNotes = async (pkg: Pkg): Promise<{ title: string, url: string }[]> =>  {
+const getLegacyReleaseNotes = async (
+  pkg: Pkg,
+): Promise<{ title: string; url: string }[]> => {
   if (!(pkg.name === "qiskit")) {
-    return []
+    return [];
   }
-  await $`mkdir -p ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet()
+  await $`mkdir -p ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet();
   const legacyReleaseNoteVersions = (
     await $`ls ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet()
-  )
-    .stdout
+  ).stdout
     .split("\n")
     .filter((x) => x)
     .map((x) => parse(x).name)
@@ -149,7 +150,7 @@ const getLegacyReleaseNotes = async (pkg: Pkg): Promise<{ title: string, url: st
     });
   }
   return legacyReleaseNoteEntries;
-}
+};
 
 zxMain(async () => {
   const args = readArgs();
@@ -188,7 +189,6 @@ zxMain(async () => {
 
   console.log(`Deleting existing markdown for ${pkg.name}`);
   await $`find ${outputDir}/* -not -path "*release-notes*" | xargs rm -rf {}`;
-
 
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${versionWithoutPatch}`,
