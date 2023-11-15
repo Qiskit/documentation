@@ -15,7 +15,7 @@ Read on for more information about how to support this project:
 This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit and IBM Quantum documentation. There are a few different ways to report issues, depending on where it was found:
 
 - For problems you've found in the [Qiskit API Reference](https://docs.quantum-computing.ibm.com/api/qiskit) section, open an issue in the Qiskit repo [here](https://github.com/Qiskit/qiskit/issues/new/choose).
-- For problems you've found in the [Qiskit Runtime IBM Client](https://docs.quantum-computing.ibm.com/api/qiskit-ibm-runtime/runtime_service) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
+- For problems you've found in the [Qiskit Runtime IBM Client](https://docs.quantum-computing.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
 - For problems you've found in any other section of [docs](https://docs.quantum-computing.ibm.com), open a content bug issue [here](https://github.com/Qiskit/documentation/issues/new/choose).
 
 ### 2. Suggest new content
@@ -83,8 +83,8 @@ The local preview does not include the initial index page and the top nav bar fr
 - http://localhost:3000/transpile
 - http://localhost:3000/verify
 - http://localhost:3000/api/qiskit
-- http://localhost:3000/api/qiskit-ibm-runtime/runtime_service
-- http://localhost:3000/api/qiskit-ibm-provider/ibm_provider
+- http://localhost:3000/api/qiskit-ibm-runtime
+- http://localhost:3000/api/qiskit-ibm-provider
 - http://localhost:3000/api/migration-guides
 
 ## Preview the docs in PRs

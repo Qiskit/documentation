@@ -18,14 +18,16 @@ const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"];
 export class File {
   readonly path: string;
   readonly anchors: string[];
+  readonly synthetic: boolean;
 
   /**
    *    path: Path to the file
    * anchors: Anchors available in the file
    */
-  constructor(path: string, anchors: string[]) {
+  constructor(path: string, anchors: string[], synthetic: boolean) {
     this.path = path;
     this.anchors = anchors;
+    this.synthetic = synthetic;
   }
 }
 
@@ -105,7 +107,13 @@ export class Link {
   checkInternalLink(existingFiles: File[], originFile: string): boolean {
     const possiblePaths = this.possibleFilePaths(originFile);
     return possiblePaths.some((filePath) =>
-      existingFiles.some((existingFile) => existingFile.path == filePath),
+      existingFiles.some(
+        (existingFile) =>
+          existingFile.path == filePath &&
+          (this.anchor == "" ||
+            existingFile.synthetic == true ||
+            existingFile.anchors.includes(this.anchor)),
+      ),
     );
   }
 
@@ -169,7 +177,7 @@ export class Link {
         if (!this.checkInternalLink(existingFiles, originFile)) {
           const suggestionPath = this.didYouMean(existingFiles, originFile);
           errorMessages.push(
-            `❌ ${originFile}: Could not find link '${this.value}'. ${suggestionPath}`,
+            `❌ ${originFile}: Could not find link '${this.value}${this.anchor}'. ${suggestionPath}`,
           );
         }
       });
