@@ -155,8 +155,8 @@ zxMain(async () => {
     await $`ls ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet()
   ).stdout
     .split("\n")
-    .filter((x) => x)
     .map((x) => parse(x).name)
+    .filter((x) => x.match(/^\d/))
     .sort((a: string, b: string) => {
       const aParts = a.split(".").map((x) => Number(x));
       const bParts = b.split(".").map((x) => Number(x));
@@ -325,6 +325,17 @@ async function convertHtmlToMarkdown(
     `${markdownPath}/_toc.json`,
     JSON.stringify(toc, null, 2) + "\n",
   );
+
+  if (pkg.hasSeparateReleaseNotes) {
+    console.log("Generating release-notes/index");
+    let markdown = `# ${pkg.title} release notes\n\n`;
+    markdown += `New features, bug fixes, and other changes in previous versions of ${pkg.title}.\n\n`;
+    markdown += `## Release notes by version\n\n`;
+    for (const entry of releaseNoteEntries) {
+      markdown += `* [${entry.title}](${entry.url})\n`;
+    }
+    await writeFile(`${markdownPath}/release-notes/index.md`, markdown);
+  }
 
   console.log("Generating version file");
   const pkg_json = { name: pkg.name, version: version };
