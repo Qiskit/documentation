@@ -7,12 +7,13 @@ from .upload import Lesson, API
 CONF_FILE = "./learning-platform.conf.yaml"
 API_URLS = {
     "staging": "https://learning-api-dev.quantum-computing.ibm.com",
-    "production": "https://learning-api.quantum-computing.ibm.com"
+    "production": "https://learning-api.quantum-computing.ibm.com",
 }
 WEBSITE_URLS = {
     "staging": "https://learning.www-dev.quantum-computing.ibm.com",
-    "production": "https://learning.quantum-computing.ibm.com"
+    "production": "https://learning.quantum-computing.ibm.com",
 }
+
 
 def get_api_name():
     """
@@ -23,20 +24,21 @@ def get_api_name():
 
     if os.environ.get("LEARNING_API_TOKEN", False):
         raise EnvironmentError(
-                "Set 'LEARNING_API_ENVIRONMENT' variable to 'staging' or "
-                "'production' when using the 'LEARNING_API_TOKEN' environment "
-                "variable. You can unset the token using the command:\n\n    "
-                "unset LEARNING_API_TOKEN\n"
+            "Set 'LEARNING_API_ENVIRONMENT' variable to 'staging' or "
+            "'production' when using the 'LEARNING_API_TOKEN' environment "
+            "variable. You can unset the token using the command:\n\n    "
+            "unset LEARNING_API_TOKEN\n"
         )
 
     response = input("Push to staging or production? (s/p): ").lower()
-    if response in ['s', 'staging']:
-        return 'staging'
-    if response in ['p', 'production']:
-        return 'production'
+    if response in ["s", "staging"]:
+        return "staging"
+    if response in ["p", "production"]:
+        return "production"
     print("Not understood; enter either 's' for staging or 'p' for production.")
     print("Trying again...")
     return get_api_name()
+
 
 def get_switch(switch, pop=True):
     """
@@ -49,10 +51,11 @@ def get_switch(switch, pop=True):
         sys.argv.remove(switch)
     return True
 
+
 def check_for_unrecognized_switches():
     for arg in sys.argv:
         if arg.startswith("-"):
-            print(f"Unsupported argument: \"{arg}\"")
+            print(f'Unsupported argument: "{arg}"')
             sys.exit(1)
 
 
@@ -67,14 +70,13 @@ def sync_lessons():
         sys.exit()
     hide_urls = get_switch("--hide-urls")
     check_for_unrecognized_switches()
-    
 
     api_name = get_api_name()
     api = API(
         name=api_name,
         api_url=API_URLS[api_name],
         website_url=WEBSITE_URLS[api_name],
-        hide_urls=hide_urls
+        hide_urls=hide_urls,
     )
 
     lesson_ids = parse_yaml(api_name)

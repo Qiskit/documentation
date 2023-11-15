@@ -48,10 +48,10 @@ class API:
         color = "\033[93m" if self.name == "production" else "\033[94m"
 
         if os.environ.get("LEARNING_API_TOKEN", None) is not None:
-            print(f'✅ Found token for {color}\033[1m{self.name}\033[0m')
+            print(f"✅ Found token for {color}\033[1m{self.name}\033[0m")
             return os.environ.get("LEARNING_API_TOKEN")
 
-        print(f'🔑 Log into {color}\033[1m{self.name}\033[0m:')
+        print(f"🔑 Log into {color}\033[1m{self.name}\033[0m:")
         response = requests.post(
             f"{self.url}/auth/login",
             json=(
@@ -65,14 +65,14 @@ class API:
             print("❌ Couldn't log in 😕")
             sys.exit()
 
-        print(f'✅ Logged in')
+        print(f"✅ Logged in")
         return response.json()["data"]["access_token"]
 
     def push(self, lesson: Lesson):
         """
         Wrapper for `_push` to handle spinner and Exceptions
         """
-        base_msg = f'Push \033[1m{lesson.name}\033[0m'
+        base_msg = f"Push \033[1m{lesson.name}\033[0m"
         spinner = yaspin(Spinners.dots12, text=base_msg, color="blue")
         spinner.start()
 
@@ -98,7 +98,9 @@ class API:
 
         if not self.hide_urls:
             print(f"   \033[30m╷\033[0m Web page: \033[96m{web_page}\033[0m")
-            print(f"   \033[30m╵\033[0m Lesson data: \033[96m{self.url}/admin/content/lessons/{lesson.id}\033[0m")
+            print(
+                f"   \033[30m╵\033[0m Lesson data: \033[96m{self.url}/admin/content/lessons/{lesson.id}\033[0m"
+            )
 
     def _push(self, lesson: Lesson, log):
         """
@@ -120,7 +122,7 @@ class API:
         response = requests.get(
             f"{self.url}/items/lessons/{lesson.id}"
             "?fields[]=translations.id,translations.languages_code",
-            headers=self.auth_header
+            headers=self.auth_header,
         )
         response.raise_for_status()
 
@@ -164,17 +166,16 @@ class API:
         # 6. Return URLs
         log("Getting URLs...")
         response = requests.get(
-            f"{self.url}/items/lessons/{lesson.id}",
-            headers=self.auth_header
+            f"{self.url}/items/lessons/{lesson.id}", headers=self.auth_header
         )
         response.raise_for_status()
-        lesson_slug = response.json()['data']['slug']
+        lesson_slug = response.json()["data"]["slug"]
 
         log("Getting URLs...")
         response = requests.get(
             f"{self.url}/items/courses/{response.json()['data']['course']}",
-            headers=self.auth_header
+            headers=self.auth_header,
         )
         response.raise_for_status()
-        course_slug = response.json()['data']['slug']
+        course_slug = response.json()["data"]["slug"]
         return f"{self.website_url}/course/{course_slug}/{lesson_slug}"
