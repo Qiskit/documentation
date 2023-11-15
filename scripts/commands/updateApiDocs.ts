@@ -117,6 +117,9 @@ const readArgs = (): Arguments => {
 const getLegacyReleaseNotes = async (
   pkg: Pkg,
 ): Promise<{ title: string; url: string }[]> => {
+  /* Check for markdown files in `docs/api/package-name/release-notes/
+   * then sort them and create entries for the TOC.
+   */
   if (!(pkg.name === "qiskit")) {
     return [];
   }
