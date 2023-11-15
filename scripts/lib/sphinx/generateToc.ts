@@ -129,10 +129,10 @@ export function generateToc(options: {
   const releaseNoteEntry: TocEntry = {
     title: "Release notes",
   };
-  if (pkg.releaseNoteEntries) {
-    releaseNoteEntry.url = pkg.releaseNotesUrl;
-  } else {
+  if (pkg.releaseNoteEntries && pkg.releaseNoteEntries.length) {
     releaseNoteEntry.children = pkg.releaseNoteEntries;
+  } else {
+    releaseNoteEntry.url = pkg.releaseNotesUrl;
   }
   tocChildren.push(releaseNoteEntry);
 
