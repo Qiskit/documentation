@@ -21,10 +21,10 @@ To sync your lessons automatically with the API, you'll need to add a
 # iql.conf.yaml
 # This goes in the root of your content folder
 lessons:
- - path: path/to/folder  # path to folder containing the lesson
-   # Lesson IDs in the API:
-   idStaging: 4e85c04a-c2fb-4bfc-9077-b75bf1b73a25
-   idProduction: 5026731b-5e7b-4585-8cf2-f24482819e21
+  - path: path/to/folder # path to folder containing the lesson
+    # Lesson IDs in the API:
+    idStaging: 4e85c04a-c2fb-4bfc-9077-b75bf1b73a25
+    idProduction: 5026731b-5e7b-4585-8cf2-f24482819e21
 ```
 
 To upload lessons using our script:
@@ -38,6 +38,7 @@ To upload lessons using our script:
    ```bash
    sync-lessons
    ```
+
    You'll be prompted for your username and password.
 
 You can also upload just one lesson at a time using
