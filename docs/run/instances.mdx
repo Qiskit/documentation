@@ -24,6 +24,19 @@ To see the instances to which you have access, look at the bottom of your [Accou
 
 You can view a list of your instances on your [account settings page](https://quantum-computing.ibm.com/account), or you can use [the `instances()` method](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#instances).
 
+## Switch instances
+
+If you have access to run on multiple instances, the [IBM Quantum interface](https://quantum-computing.ibm.com/) menu bar contains a dropdown that lets you switch between instances.  The IBM Quantum Platform dashboard, Compute resources, and Jobs pages display information such as usage metrics, jobs, and systems based on the selected instance.  
+
+<Admonition type="note">
+ The instance switcher does not appear in the Administration application.
+ </Admonition>
+
+If you switch to a different instance, it is remembered the next time you log on and, assuming that it's still a valid instance, information pertaining to that instance is displayed.  By default, the first premium instance you have access to is used.  If you do not have any premium instances, the first open instance is shown.   
+<Admonition type="note">
+The first instance is determined alphabetically. 
+</Admonition>
+
 ## Instances and jobs
 
 When you execute a task using an IBM Quantum service (for example, sending circuits to a quantum system or simulator), a **job** instance is returned to you. Regardless of which service is being used, a job can track the progress of the submission through IBM Quantum, and retrieve the final result(s) of the computation. Because services are coupled to instances, the jobs created from these services are also tied to the specific instance being used. Therefore, **if a user is removed from an instance, their jobs and the associated results are no longer accessible**.

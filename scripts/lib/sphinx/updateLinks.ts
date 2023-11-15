@@ -25,10 +25,10 @@ import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
 import { Link } from "../sharedTypes";
 
-export async function updateLinks<T extends SphinxToMdResultWithUrl>(
-  results: T[],
+export async function updateLinks(
+  results: SphinxToMdResultWithUrl[],
   transformLink?: (link: Link) => Link | undefined,
-): Promise<T[]> {
+): Promise<void> {
   const resultsByName = keyBy(
     results,
     (result) => result.meta.python_api_name!,
@@ -112,6 +112,4 @@ export async function updateLinks<T extends SphinxToMdResultWithUrl>(
 
     result.markdown = output?.toString();
   }
-
-  return results;
 }

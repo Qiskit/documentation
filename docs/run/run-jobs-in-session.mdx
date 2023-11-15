@@ -109,7 +109,7 @@ with Session(service=service, backend=backend, max_time="25m"):
   ...   
 ```
 
-There is also an interactive timeout value (ITTL, or interactive time to live) that cannot be configured.  If no session jobs are queued within that window, the session is temporarily deactivated. For more details about session length and timeout, see [How long a session stays active](sessions#active). To determine a session's ITTL, follow the instructions in [Determine session details](#session-details) and look for the `interactive_timeout` value.
+There is also an interactive timeout value (ITTL, or interactive time to live) that cannot be configured.  If no session jobs are queued within that window, the session is temporarily deactivated. For more details about session length and timeout, see [How long a session stays active](sessions#the-mechanics-of-sessions-queuing). To determine a session's ITTL, follow the instructions in [Determine session details](#session-details) and look for the `interactive_timeout` value.
 
 <span id="close"></span>
 ## Close a session 
@@ -147,6 +147,10 @@ print(f"Result2: {job2.result()}")
 # Manually close the session. Running and queued jobs will run to completion.
 session.close()
 ```
+
+<Admonition type="warning" title="When the root job is canceled">
+Note that when you cancel the root job in the session (the job which has the same ID as the session), the session closes and fails any remaining queued jobs in the session.
+</Admonition>
 
 <span id="cancel"></span>
 ## Cancel a session 

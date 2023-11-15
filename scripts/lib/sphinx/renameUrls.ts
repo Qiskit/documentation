@@ -11,14 +11,15 @@
 // that they have been altered from the originals.
 
 import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
-import { removePart } from "../stringUtils";
 
-export function flatFolders(results: SphinxToMdResultWithUrl[]): void {
-  for (const result of results) {
-    result.url = omitRootFolders(result.url);
+export function renameUrls(results: SphinxToMdResultWithUrl[]): void {
+  for (let result of results) {
+    result.url = result.url
+      .replace("release_notes", "release-notes")
+      // The original API docs don't call their API index pages `/index`.
+      // We can't fix their setup until qiskit.org is removed, so
+      // instead we fix it here.
+      .replace(/\/ibm_provider$/g, "/index")
+      .replace(/\/runtime_service$/g, "/index");
   }
-}
-
-function omitRootFolders(path: string): string {
-  return removePart(path, "/", ["stubs", "apidocs", "apidoc"]);
 }

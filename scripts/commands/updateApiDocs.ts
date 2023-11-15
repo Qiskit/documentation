@@ -26,6 +26,7 @@ import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
 import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
 import { flatFolders } from "../lib/sphinx/flatFolders";
 import { updateLinks } from "../lib/sphinx/updateLinks";
+import { renameUrls } from "../lib/sphinx/renameUrls";
 import { addFrontMatter } from "../lib/sphinx/addFrontMatter";
 import { dedupeResultIds } from "../lib/sphinx/dedupeIds";
 import { removePrefix, removeSuffix } from "../lib/stringUtils";
@@ -247,10 +248,11 @@ async function convertHtmlToMarkdown(
   }
 
   results = await mergeClassMembers(results);
-  results = flatFolders(results);
-  results = await updateLinks(results, pkg.transformLink);
-  results = await dedupeResultIds(results);
-  results = addFrontMatter(results, pkg);
+  flatFolders(results);
+  renameUrls(results);
+  await updateLinks(results, pkg.transformLink);
+  await dedupeResultIds(results);
+  addFrontMatter(results, pkg);
 
   for (const result of results) {
     await writeFile(urlToPath(result.url), result.markdown);
@@ -292,6 +294,5 @@ async function convertHtmlToMarkdown(
 }
 
 function urlToPath(url: string) {
-  url = url.replaceAll("release_notes", "release-notes");
   return `${getRoot()}/docs${url}.md`;
 }

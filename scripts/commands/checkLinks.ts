@@ -22,9 +22,13 @@ import { Root } from "remark-mdx";
 import rehypeRemark from "rehype-remark";
 import rehypeParse from "rehype-parse";
 import remarkGfm from "remark-gfm";
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
 
-// These files are not searched to see if their own links are valid.
-const IGNORED_FILES: string[] = [];
+// The links in the files are not searched to see if they are valid.
+// The files need a list of links to be ignored, and when an asterisk
+// (*) is used as a link, all the links in the file will be ignored.
+const FILES_TO_IGNORES: { [id: string]: string[] } = {};
 
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
@@ -33,11 +37,29 @@ const SYNTHETIC_FILES: string[] = [
   "docs/api/runtime/tags/programs.mdx",
 ];
 
+interface Arguments {
+  [x: string]: unknown;
+  external: boolean;
+}
+
+const readArgs = (): Arguments => {
+  return yargs(hideBin(process.argv))
+    .version(false)
+    .option("external", {
+      type: "boolean",
+      demandOption: false,
+      default: false,
+      description:
+        "Should external links be checked? This slows down the script, but is useful to check.",
+    })
+    .parseSync();
+};
+
 function markdownFromNotebook(source: string): string {
   let markdown = "";
   for (let cell of JSON.parse(source).cells) {
     if (cell.cell_type === "markdown") {
-      markdown += cell.source;
+      cell.source.forEach((s: string) => (markdown += s + "\n"));
     }
   }
   return markdown;
@@ -63,8 +85,15 @@ async function loadFilesAndLinks(
       path.extname(filePath) === ".ipynb"
         ? markdownFromNotebook(source)
         : source;
+    const anchors = markdownLinkExtractor(markdown).anchors;
 
-    fileList.push(new File(filePath, []));
+    // Get the anchors from HTML ids.
+    const id_anchors = markdown.match(/(?<=id=")(.*)(?=")/gm);
+    if (id_anchors != null) {
+      id_anchors.forEach((id) => anchors.push("#" + id));
+    }
+
+    fileList.push(new File(filePath, anchors, false));
 
     if (
       filePath.startsWith("docs/api/qiskit") ||
@@ -74,7 +103,10 @@ async function loadFilesAndLinks(
       continue;
     }
 
-    if (IGNORED_FILES.includes(filePath)) {
+    if (
+      filePath in FILES_TO_IGNORES &&
+      FILES_TO_IGNORES[filePath].includes("*")
+    ) {
       continue;
     }
 
@@ -119,48 +151,55 @@ async function loadFilesAndLinks(
   }
 
   for (let [link, originFiles] of linkMap) {
-    linkList.push(new Link(link, originFiles));
+    originFiles = originFiles.filter(
+      (originFile) =>
+        FILES_TO_IGNORES[originFile] == null ||
+        !FILES_TO_IGNORES[originFile].includes(link),
+    );
+
+    if (originFiles.length > 0) {
+      linkList.push(new Link(link, originFiles));
+    }
   }
 
   return [fileList, linkList];
 }
 
-/**
- * Return a list of File objects with all the files
- * in `existingPaths`
- */
-function loadFiles(existingPaths: string[]): File[] {
-  const fileList: File[] = [];
-  for (let path of existingPaths) {
-    fileList.push(new File(path, []));
-  }
-
-  return fileList;
-}
-
 async function main() {
-  // Determine what files we have and separate them into files with links
-  // to read and files we don't need to parse.
+  const args = readArgs();
+
+  // Determine what files with links we want to parse
   const pathsWithLinks = await globby("docs/**/*.{ipynb,md,mdx}");
-  const pathsWithoutLinks = [
-    ...(await globby("{public,docs}/**/*.{png,jpg,gif,svg}")),
-    ...SYNTHETIC_FILES,
-  ];
 
   // Parse the files with links and get a list with all the links
-  // in all the files without duplications.
+  // in all the files without duplications
   const [docsFiles, linkList] = await loadFilesAndLinks(pathsWithLinks);
 
+  // Define extra files that we don't want to parse
+  const otherFiles = [
+    ...(await globby("{public,docs}/**/*.{png,jpg,gif,svg}")).map(
+      (fp) => new File(fp, [], false),
+    ),
+    ...SYNTHETIC_FILES.map((fp) => new File(fp, [], true)),
+  ];
+
   // Create an array with all the valid destinations for a link
-  const otherFiles = loadFiles(pathsWithoutLinks);
   const existingFiles = docsFiles.concat(otherFiles);
 
-  // Validate the links and print the results
+  // Validate the links
+  const results = await Promise.all(
+    linkList
+      .filter((link) => args.external || !link.isExternal)
+      .map((link) => link.checkLink(existingFiles)),
+  );
+
+  // Print the results
   let allGood = true;
-  linkList.forEach((link) => {
-    const errorMessages = link.checkLink(existingFiles);
-    errorMessages.forEach((errorMessage) => console.error(errorMessage));
-    allGood &&= errorMessages.length == 0;
+  results.forEach((linkErrors) => {
+    linkErrors.forEach((errorMessage) => {
+      console.error(errorMessage);
+      allGood = false;
+    });
   });
 
   if (!allGood) {
@@ -170,4 +209,4 @@ async function main() {
   console.log("\nNo links appear broken ✅\n");
 }
 
-main();
+main().then(() => process.exit());
