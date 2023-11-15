@@ -15,10 +15,10 @@ lesson-root
 ```
 
 To sync your lessons automatically with the API, you'll need to add a
-`iql.conf.yaml` to the root of your content folder.
+`learning-platform.conf.yaml` to the root of your content folder.
 
 ```yaml
-# iql.conf.yaml
+# learning-platform.conf.yaml
 # This goes in the root of your content folder
 lessons:
   - path: path/to/folder # path to folder containing the lesson
@@ -31,7 +31,7 @@ To upload lessons using our script:
 
 1. Install the package
    ```bash
-   pip install git+https://github.com/Qiskit/documentation.git#subdirectory=scripts/iql-lesson-sync
+   pip install git+https://github.com/Qiskit/documentation.git#subdirectory=scripts/ibm-quantum-learning-uploader
    ```
 2. Run this from the root of your content folder:
 
@@ -53,5 +53,5 @@ the script, and `LEARNING_API_ENVIRONMENT` to the name of the API (`staging` or
 `production`). You should also pin the package to a specific commit, like so:
 
 ```bash
-pip install git+https://github.com/Qiskit/documentation.git@<commit-hash>#subdirectory=scripts/iql-lesson-sync
+pip install git+https://github.com/Qiskit/documentation.git@<commit-hash>#subdirectory=scripts/ibm-quantum-learning-uploader
 ```

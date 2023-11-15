@@ -20,7 +20,7 @@ class Lesson:
     def zip(self):
         self.zip_path = Path(
             shutil.make_archive(
-                Path(tempfile.gettempdir(), "iql_lesson_sync", self.name),
+                Path(tempfile.gettempdir(), "ibm-quantum-learning-upload", self.name),
                 "zip",
                 root_dir=self.path,
             )

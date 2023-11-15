@@ -4,7 +4,7 @@ import yaml
 from pathlib import Path
 from .upload import Lesson, API
 
-CONF_FILE = "./iql.conf.yaml"
+CONF_FILE = "./learning-platform.conf.yaml"
 API_URLS = {
     "staging": "https://learning-api-dev.quantum-computing.ibm.com",
     "production": "https://learning-api.quantum-computing.ibm.com"
@@ -59,7 +59,7 @@ def check_for_unrecognized_switches():
 def sync_lessons():
     if get_switch("--help"):
         print(
-            "Usage: sync-notebooks [ path(s)/to/specific/notebook(s) ]\n"
+            "Usage: sync-lessons [ path(s)/to/folder(s) ]\n"
             "Optional switches:\n"
             "  --hide-urls:  Don't print URLs after uploading a lesson\n"
             "  --help: Show this message and exit"
@@ -94,7 +94,6 @@ def parse_yaml(api_name):
     """
     Get dict of lesson paths and lesson IDs
     Args:
-        path_to_yaml (str): path to iql.conf.yaml
         api_name (str): "staging" or "production"
     Returns:
         dict: { lesson_path: lesson_id }
