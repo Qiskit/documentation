@@ -153,7 +153,7 @@ describe("Validate links", () => {
     let testFile = new File("docs/testpath.mdx", ["#test_diff_anchor"], false);
     const results = await testLink.checkLink([testFile]);
     expect(results).toEqual([
-      "❌ /testorigin.mdx: Could not find link '/testpath#test_anchor'",
+      "❌ /testorigin.mdx: Could not find link '/testpath#test_anchor'. ❓ Did you mean '/testpath#test_diff_anchor'?",
     ]);
   });
 
@@ -173,7 +173,7 @@ describe("Validate links", () => {
     let testFile = new File("docs/testpath.mdx", ["#test_diff_anchor"], false);
     const results = await testLink.checkLink([testFile]);
     expect(results).toEqual([
-      "❌ docs/test/testorigin.mdx: Could not find link '../testpath#test-anchor'",
+      "❌ docs/test/testorigin.mdx: Could not find link '../testpath#test-anchor'. ❓ Did you mean '/testpath#test_diff_anchor'?",
     ]);
   });
 
