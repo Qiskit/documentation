@@ -304,12 +304,58 @@ describe("generateTocFromPythonApiFiles", () => {
       }
     `);
   });
+
+  test("TOC with nested release notes", () => {
+    const toc = generateToc({
+      pkg: {
+        ...pkg,
+        releaseNoteEntries: [
+          { title: "0.39", url: "/docs/runtime/release-notes/0.39" },
+          { title: "0.38", url: "/docs/runtime/release-notes/0.38" },
+        ],
+      },
+      results: [
+        {
+          meta: {
+            python_api_type: "module",
+            python_api_name: "qiskit_ibm_runtime",
+          },
+          url: "/docs/runtime/qiskit_ibm_runtime",
+        },
+      ],
+    });
+
+    expect(toc).toMatchInlineSnapshot(`
+      {
+        "children": [
+          {
+            "title": "qiskit_ibm_runtime",
+            "url": "/docs/runtime/qiskit_ibm_runtime",
+          },
+          {
+            "children": [
+              {
+                "title": "0.39",
+                "url": "/docs/runtime/release-notes/0.39",
+              },
+              {
+                "title": "0.38",
+                "url": "/docs/runtime/release-notes/0.38",
+              },
+            ],
+            "title": "Release notes",
+          },
+        ],
+        "title": "Qiskit Runtime IBM Client",
+      }
+    `
+    );
+  });
 });
 
 const pkg = {
   title: "Qiskit Runtime IBM Client",
   name: "qiskit_ibm_runtime",
   version: "1.0.0",
-  releaseNoteEntries: [],
   releaseNotesUrl: `/api/qiskit_ibm_runtime/release-notes`,
 };
