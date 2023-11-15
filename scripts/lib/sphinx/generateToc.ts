@@ -134,7 +134,7 @@ export function generateToc(options: {
   } else {
     releaseNotesEntry.url = pkg.releaseNotesUrl;
   }
-  tocChildren.unshift(releaseNotesEntry);
+  tocChildren.push(releaseNotesEntry);
 
   const toc: Toc = {
     title: pkg.title,
