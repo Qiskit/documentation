@@ -90,6 +90,9 @@ const FILES_TO_IGNORES: { [id: string]: string[] } = {
   "docs/api/qiskit/qiskit.algorithms.optimizers.ISRES.md": [
     "https://notendur.hi.is/tpr/software/sres/Tec311r.pdf",
   ],
+  "docs/api/qiskit/qiskit.algorithms.optimizers.SPSA.md": [
+    "https://ieeexplore.ieee.org/document/657661",
+  ],
 };
 
 // While these files don't exist in this repository, the link
