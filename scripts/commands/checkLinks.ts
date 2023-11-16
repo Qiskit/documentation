@@ -22,6 +22,8 @@ import { Root } from "remark-mdx";
 import rehypeRemark from "rehype-remark";
 import rehypeParse from "rehype-parse";
 import remarkGfm from "remark-gfm";
+import yargs from "yargs/yargs";
+import { hideBin } from "yargs/helpers";
 
 // The links in the files are not searched to see if they are valid.
 // The files need a list of links to be ignored, and when an asterisk
@@ -35,11 +37,29 @@ const SYNTHETIC_FILES: string[] = [
   "docs/api/runtime/tags/programs.mdx",
 ];
 
+interface Arguments {
+  [x: string]: unknown;
+  external: boolean;
+}
+
+const readArgs = (): Arguments => {
+  return yargs(hideBin(process.argv))
+    .version(false)
+    .option("external", {
+      type: "boolean",
+      demandOption: false,
+      default: false,
+      description:
+        "Should external links be checked? This slows down the script, but is useful to check.",
+    })
+    .parseSync();
+};
+
 function markdownFromNotebook(source: string): string {
   let markdown = "";
   for (let cell of JSON.parse(source).cells) {
     if (cell.cell_type === "markdown") {
-      markdown += cell.source;
+      cell.source.forEach((s: string) => (markdown += s + "\n"));
     }
   }
   return markdown;
@@ -65,8 +85,15 @@ async function loadFilesAndLinks(
       path.extname(filePath) === ".ipynb"
         ? markdownFromNotebook(source)
         : source;
+    const anchors = markdownLinkExtractor(markdown).anchors;
 
-    fileList.push(new File(filePath, []));
+    // Get the anchors from HTML ids.
+    const id_anchors = markdown.match(/(?<=id=")(.*)(?=")/gm);
+    if (id_anchors != null) {
+      id_anchors.forEach((id) => anchors.push("#" + id));
+    }
+
+    fileList.push(new File(filePath, anchors, false));
 
     if (
       filePath.startsWith("docs/api/qiskit") ||
@@ -138,42 +165,41 @@ async function loadFilesAndLinks(
   return [fileList, linkList];
 }
 
-/**
- * Return a list of File objects with all the files
- * in `existingPaths`
- */
-function loadFiles(existingPaths: string[]): File[] {
-  const fileList: File[] = [];
-  for (let path of existingPaths) {
-    fileList.push(new File(path, []));
-  }
-
-  return fileList;
-}
-
 async function main() {
-  // Determine what files we have and separate them into files with links
-  // to read and files we don't need to parse.
+  const args = readArgs();
+
+  // Determine what files with links we want to parse
   const pathsWithLinks = await globby("docs/**/*.{ipynb,md,mdx}");
-  const pathsWithoutLinks = [
-    ...(await globby("{public,docs}/**/*.{png,jpg,gif,svg}")),
-    ...SYNTHETIC_FILES,
-  ];
 
   // Parse the files with links and get a list with all the links
-  // in all the files without duplications.
+  // in all the files without duplications
   const [docsFiles, linkList] = await loadFilesAndLinks(pathsWithLinks);
 
+  // Define extra files that we don't want to parse
+  const otherFiles = [
+    ...(await globby("{public,docs}/**/*.{png,jpg,gif,svg}")).map(
+      (fp) => new File(fp, [], false),
+    ),
+    ...SYNTHETIC_FILES.map((fp) => new File(fp, [], true)),
+  ];
+
   // Create an array with all the valid destinations for a link
-  const otherFiles = loadFiles(pathsWithoutLinks);
   const existingFiles = docsFiles.concat(otherFiles);
 
-  // Validate the links and print the results
+  // Validate the links
+  const results = await Promise.all(
+    linkList
+      .filter((link) => args.external || !link.isExternal)
+      .map((link) => link.checkLink(existingFiles)),
+  );
+
+  // Print the results
   let allGood = true;
-  linkList.forEach((link) => {
-    const errorMessages = link.checkLink(existingFiles);
-    errorMessages.forEach((errorMessage) => console.error(errorMessage));
-    allGood &&= errorMessages.length == 0;
+  results.forEach((linkErrors) => {
+    linkErrors.forEach((errorMessage) => {
+      console.error(errorMessage);
+      allGood = false;
+    });
   });
 
   if (!allGood) {
@@ -183,4 +209,4 @@ async function main() {
   console.log("\nNo links appear broken ✅\n");
 }
 
-main();
+main().then(() => process.exit());
