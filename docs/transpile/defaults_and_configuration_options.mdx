@@ -62,44 +62,102 @@ Following are all of the available parameters for the `transpile()` method.  The
 
 All parameters except `circuits` are optional.  For full details, see the (Transpiler API documentation)[https://docs.quantum-computing.ibm.com/api/qiskit/transpiler#transpiler-api].
 
-Do we want this whole list?  If so, I'll add descriptions from (https://docs.quantum-computing.ibm.com/api/qiskit/compiler#compilation-routines)
+`circuits` (`_CircuitT`) - One or more circuits to transpile. This is the only required parameter.
 
-Parameters used to describe the compilation target:
+**Do we want this whole list?  If so, I'll add descriptions from (https://docs.quantum-computing.ibm.com/api/qiskit/compiler#compilation-routines)**
+
+### Parameters used to describe the compilation target:
+
+
 
 **We want to group / simplify these.  For example, there are many ways to specify a backend, but if you specify "backend" or "target", you're just done and you can ignore the rest.  Some options can be used to override options in the backend setting for advanced use.  How to best handle that?  Just list the supported ways of specifying a backend and point to those APIs?  Or a page about specifying the backend?**
 
-- `circuits` (`_CircuitT`) - One or more circuits to transpile. This is the only required parameter.
-- backend (Backend)
-- backend_properties (BackendProperties)
-- basis_gates (List[str])
-- coupling_map (CouplingMap | List[List[int]])
-- dt (float) 
-- ignore_backend_supplied_default_methods (bool)
-- inst_map (List[InstructionScheduleMap])
-- instruction_durations (List[Tuple[str, Iterable[int], float, Iterable[float], str]] | List[Tuple[str, Iterable[int], float, Iterable[float]]] | List[Tuple[str, Iterable[int], float, str]] | List[Tuple[str, Iterable[int], float]] | InstructionDurations)
-- target (Target)
-- timing_constraints (Dict[str, int]) 
+* Backend parameters - If you specify `backend`, you don't need to specify `target` or any other backend options. Likewise, if you specify `target`, you don't need to specify `backend` or any other backend options.
+  - backend (Backend) - If this is set, the transpiler compiles the input circuit to this device. If any other option is set that impacts these settings, such as `coupling_map`, it overrides the settings from `backend`.
+  - backend_properties (BackendProperties) - Properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, and so on. Find a backend that provides this information by running `backend.properties()`.
+  - dt (float | None) - Backend sample time (resolution) in seconds. If `None` is specified (default), `backend.configuration().dt` is used. 
+  - ignore_backend_supplied_default_methods (bool) - If set to `True`, any default methods specified by a backend are ignored. Some backends specify alternative default methods to support custom compilation target-specific passes / plugins that support backend-specific compilation techniques. If you prefer that these defaults are not used, this option disables those backend-specific defaults.
+  - instruction_durations (List[Tuple[str, Iterable[int], float, Iterable[float], str]] | List[Tuple[str, Iterable[int], float, Iterable[float]]] | List[Tuple[str, Iterable[int], float, str]] | List[Tuple[str, Iterable[int], float]] | InstructionDurations) - Durations of instructions. Applicable only if `scheduling_method` is specified. The gate lengths defined in `backend.properties` are used by default. They are overwritten if `instruction_durations` is specified. The `instruction_durations` format must be as follows. The instruction_durations must be given as a list of tuples [(instruction_name, qubits, duration, unit), …]. | [(‘cx’, [0, 1], 12.3, ‘ns’), (‘u3’, [0], 4.56, ‘ns’)] | [(‘cx’, [0, 1], 1000), (‘u3’, [0], 300)] If `unit` is omitted, the default is `dt`, which is a sample time depending on backend. If the time unit is ‘dt’, the duration must be an integer.
+  - target (Target) - A backend transpiler target. Normally this is specified as part of the backend argument, but if you manually constructed a Target object, you can specify it here. This overrides the target from `backend`.
+  - timing_constraints (Dict[str, int] | None) - An optional control hardware restriction on instruction time resolution. This information is provided by the backend configuration. If the backend doesn’t have any restriction on the instruction time allocation, `timing_constraints` is `None` and no adjustment is performed. A quantum computer backend might report a set of restrictions, namely:
+      - granularity: An integer value representing minimum pulse gate resolution in units of dt. A user-defined pulse gate should have duration that is a multiple of this granularity value.
+      - min_length: An integer value representing the minimum pulse gate length in units of dt. A user-defined pulse gate should be longer than this length.
+      - pulse_alignment: An integer value representing a time resolution of gate instruction starting time. Gate instructions should start at time that is a multiple of this value. 
+      - acquire_alignment: An integer value representing a time resolution of measure instruction starting time. Measure instruction should start at time that is a multiple of this value. 
 
-Parameters used to influence how the transpiler works:
+* Layout and topology parameters
+  - basis_gates (List[str] | None) - List of basis gate names to unroll to.  For example ['u1', 'u2', 'u3', 'cx']. If `None`, do not unroll.
+  - coupling_map (CouplingMap | List[List[int]]) - Directed coupling map (possibly custom) to target in mapping. If the coupling map is symmetric, both directions need to be specified. These formats are supported:
+      - CouplingMap instance
+      - List, must be given as an adjacency matrix, where each entry specifies all directed two-qubit interactions supported by backend.  For example:[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]
+  - inst_map (List[InstructionScheduleMap] | None) - Mapping of circuit operations to pulse schedules. If `None`, the backend’s `instruction_schedule_map` is used.
 
-- approximation_degree (float | None) - Heuristic dial used for circuit approximation (1.0=no approximation, 0.0=maximal approximation). The default value is 1.0.  Specifying `None` sets the approximation degree to the reported error rate. (optimization stage)
-- callback (Callable[[BasePass, DAGCircuit, float, PropertySet, int], Any])
-- hls_config (HLSConfig) (init stage)
-- init_method (str) (init stage)
-- initial_layout (Layout | Dict | List) (layout stage)
-- layout_method (str) (layout stage)
-- optimization_level (int) (0 or 1: optimization stage)
-- optimization_method (str) (optimization stage)
-- output_name (str | List[str])
-- routing_method (str) (routing stage)
-- scheduling_method (str) (scheduling stage)
-- seed_transpiler (int) (layout/routing stages?)
-- translation_method (str) (translation state)
-- unitary_synthesis_method (str) (init stage, could check with re-synthesis in optimization stage)
-- unitary_synthesis_plugin_config (dict) (init stage, could check with re-synthesis in optimization stage)
+### Parameters used to influence how the transpiler works:
+
+These parameters impact specific transpilation stages. Some of them might impact multiple stages, but have only been listed under one stage for simplicity. For detals about specific stages see [title.](link)
+
+**Initialization stage**
+
+- hls_config (HLSConfig) - An optional configuration class `HLSConfig` that is passed directly to the `HighLevelSynthesis` transformation pass. This configuration class lets you specify the lists of synthesis algorithms and their parameters for various high-level objects.
+- init_method (str) - The plugin name to use for the initialization stage. By default, an external plugin is not used. You can see a list of installed plugins by running `list_stage_plugins()` with `init` for the stage name argument.
+- unitary_synthesis_method (str) - The name of the unitary synthesis method to use. By default, `default` is used. You can see a list of installed plugins by running `unitary_synthesis_plugin_names()`.
+- unitary_synthesis_plugin_config (dict) - An optional configuration dictionary that is passed directly to the unitary synthesis plugin. By default this setting has no effect because the default unitary synthesis method does not take custom configuration. Applying a custom configuration should only be necessary when a unitary synthesis plugin is specified with the `unitary_synthesis` argument. As this is custom for each unitary synthesis plugin, refer to the plugin's documentation for how to use this option.
+
+**Translation stage**
+
+- translation_method (str) - Name of translation pass (`unroller`, `translator`, or `synthesis`) This can also be the external plugin name to use for the translation stage. You can see a list of installed plugins by running `list_stage_plugins()` with `translation` for the `stage_name` argument.
+
+**Layout stage**
+
+- initial_layout (Layout | Dict | List) - Initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the `coupling_map` constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler might permute qubits through swaps or other means. For full details, see the [initial_layout section.](#initial-layout)
+- layout_method (str) - Name of layout selection pass (‘trivial’, ‘dense’, ‘noise_adaptive’, or ‘sabre’). This can also be the external plugin name to use for the layout stage. You can see a list of installed plugins by running `list_stage_plugins()` with `layout` for the `stage_name` argument.
+
+**Routing stage**
+- routing_method (str) - Name of routing pass (‘basic’, ‘lookahead’, ‘stochastic’, ‘sabre’, or  ‘none’). This can also be the external plugin name to use for the routing stage. You can see a list of installed plugins by running `list_stage_plugins()` with `routing` for the `stage_name` argument.
+- seed_transpiler (int) - Sets random seeds for the stochastic parts of the transpiler.
+
+**Optimization stage**
+- approximation_degree (float | None) - Heuristic dial used for circuit approximation (1.0 = no approximation, 0.0 = maximal approximation). The default value is 1.0.  Specifying `None` sets the approximation degree to the reported error rate. See the [Approximation degree section](#approximation-degree) for more details.
+- optimization_level (int) - How much optimization to perform on the circuits. Integer in the range (0 - 3). Higher levels generate more optimized circuits, at the expense of longer transpilation time. The default is `1`. See the [Optimization level section](#optimization-level) for more details.
+- optimization_method (str) - The plugin name to use for the optimization stage. By default an external plugin is not used. You can see a list of installed plugins by running `list_stage_plugins()` with `optimization` for the `stage_name` argument.
+
+
+**Scheduling stage**
+- scheduling_method (str) - Name of the scheduling pass. This can also be the external plugin name to use for the scheduling stage. You can see a list of installed plugins by running `list_stage_plugins()` with `scheduling` for the `stage_name` argument.
+  * 'as_soon_as_possible': Schedule instructions greedily, as early as possible on a qubit resource. (alias: 'asap') 
+  * 'as_late_as_possible': Schedule instructions late, that is, keeping qubits in the ground state when possible. (alias: 'alap') 
+
+**UNKNOWN**
+
+- callback (Callable[[BasePass, DAGCircuit, float, PropertySet, int], Any]) - A callback function that is called after each pass execution. The function is called with these keyword arguments:
+  * pass_: the pass being run. 
+  * dag: the dag output of the pass. 
+  * time: the time to execute the pass. 
+  * property_set: the property set. 
+  * count: the index for the pass execution. 
+  
+  <Admonition type="note"> The arguments passed expose the internals of the pass manager and are subject to change as the pass manager internals change. If you intend to reuse a callback function over multiple releases, verify that the arguments being passed are the same. 
+  </Admonition>
+  
+  To use the callback feature, define a function that will take in kwargs dict and access the variables. For example:
+
+  ```python
+  def callback_func(**kwargs):
+      pass_ = kwargs['pass_']
+      dag = kwargs['dag']
+      time = kwargs['time']
+      property_set = kwargs['property_set']
+      count = kwargs['count']
+      ...
+  transpile(circ, callback=callback_func)
+  ```
+
+- output_name (str | List[str]) -  A list with strings to identify the output circuits. The length of the list should be the same length as the circuits parameter.
+
 
 ## Commonly used parameters 
  
+<span id="optimization-level"></span>
 ### Optimization level
 
 Decomposing quantum circuits into the basis gate set of the target device and the addition of SWAP gates needed to match hardware topology causes an increase the depth and gate count of quantum circuits. To mitigate this increased complexity, you can set the `optimization_level`.  Setting this value calls an optimization routine that optimizes the transpilation process by combining or eliminating gates and by optionally using algorithms to find an optimal layout (depending on the level chosen). 
@@ -128,19 +186,16 @@ Because finding the best layout is an NP-hard problem, it is the most time-consu
       <Td>
         No optimization: typically used for hardware characterization
         - Basic translation
-        - Layout (as specified)
-        - Routing (stochastic swaps)
+        - Layout/Routing: `TrivialLayout`, where it selects the same physical qubit numbers as virtual and inserts SWAPs to make it work (using `StochasticSwap`)
       </Td>
     </Tr>
     <Tr>
       <Td>1</Td>
       <Td>
         Light optimization (default):
-        -   Layout (trivial → vf2 → SabreLayout if routing is required)
-        -   Routing (SabreSWAPs if needed)
-        -   CXCancellation
+        -   Layout/Routing: Chooses a layout with a minimum number of SWAPs using `SabreSWAP` and tries to select the best qubits in the graph using `VF2LayoutPostLayout`
+        -   InverseCancellelation
         -   1Q gate optimization
-        -   Error suppression: VF2PostLayout
       </Td>
     </Tr>
     <Tr>
@@ -150,7 +205,6 @@ Because finding the best layout is an NP-hard problem, it is the most time-consu
           - Layout/Routing: Optimization level 1 (without trivial) + heuristic optimized with greater
         search depth and trials of optimization function
         -   Commutative cancelation
-        -   Error suppression: VF2PostLayout
       </Td>
     </Tr>
     <Tr>
@@ -158,9 +212,10 @@ Because finding the best layout is an NP-hard problem, it is the most time-consu
       <Td>
         High Optimization:
         - Optimization level 2 + heuristic optimized on layout/routing further with greater effort/trials
-        - Two qubit KAK optimization
-        - Resynthesis of two qubit blocks **Is this the same as the previous bullet?  We should define KAK**
-        - Error suppression: VF2PostLayout
+        - Resynthesis of two-qubit blocks using [Cartan's KAK Decomposition](https://arxiv.org/abs/quant-ph/0507171). 
+        - Unitarity-breaking passes: 
+          * `OptimizeSwapBeforeMeasure`: Moves the measurements around to avoid SWAPs
+          * `RemoveDiagonalGatesBeforeMeasure`: Removes gates before measurements that would not effect the measurements
       </Td>
     </Tr>
   </tbody>
@@ -204,7 +259,7 @@ Example, specifying `optimization_level=3`:
 ```
 ![Layout with optimization level 3](/images/transpile/defaults_and_configuration_options/optimization-level-3.png)
 
-Since CX's are the noisiest gate, we can quantify the transpilation's "hardware efficiency" by counting the CX's in the resulting circuit. We will compare the default transpilation levels given the same circuit. 
+Since CX is the noisiest gate, we can quantify the transpilation's "hardware efficiency" by counting the CX gates in the resulting circuit. We will compare the default transpilation levels given the same circuit. 
 
 First, import the necessary libraries:
 
@@ -281,6 +336,7 @@ Exact: 1.000
 Approximate: 0.992
 ```
 
+<span id="approximation-degree"></span>
 ### Approximation degree
 
 You can use the approximation degree to specify how closely you want the resultant circuit to match the desired (input) circuit.  This is a float in the range (0.0 - 1.0), where 0.0 is maximum approximation and 1.0 (default) is no approximation. Smaller values trade output accuracy for ease of execution (that is, fewer gates).  The default value is 1.0.
@@ -291,56 +347,47 @@ When the approximation degree is less than 1.0, circuits with one or two CX gate
 
 ### seed_transpiler
 
-Sets random seed for the stochastic parts of the transpiler
+Sets the random seed for the stochastic parts of the transpiler, used for reproducibility. 
 
-**When / Why use this?**
+Example:
 
-**All of the examples just set the value seed_transpiler=11, with no explanation.  That's probably not particularly helpful**
+```python
+optimized_1 = transpile(qc, backend=backend, seed_transpiler=11, optimization_level=1)
+```
 
 ### initial_layout
 
-Specifies the initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the `coupling_map` constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler might permute qubits through swaps or other means. Multiple formats are supported.  The accepted formats are listed below, with examples of their use:
+Specifies the initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the `coupling_map` constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler might permute qubits through swaps or other means. Multiple formats are supported. Multiple formats are supported:
 
-**Do we need in-context examples?**
+    * Layout instance
+    * Dict 
+      - virtual to physical:
+        ```python
+        {qr[0]: 0,
+        qr[1]: 3,
+        qr[2]: 5}
+        ```
+      - physical to virtual:
+        ```python
+        {0: qr[0],
+        3: qr[1],
+        5: qr[2]}
+        ```
 
-* `Layout` instance
-
-* Dict * 
-
-  - Virtual to physical:
-
-```python
-    {qr[0]: 0,
-    qr[1]: 3,
-    qr[2]: 5}
-```
-
-  - Physical to virtual:
-
-```python
-    {0: qr[0],
-    3: qr[1],
-    5: qr[2]}
-```
-
-* List
-
-  - Virtual to physical:
-
-    `[0, 3, 5]  # Virtual qubits are ordered (in addition to named)`
-
-  - Physical to virtual:
-
-    `[qr[0], None, None, qr[1], None, qr[2]]`
+    * List
+      - virtual to physical:
+        ```python
+        [0, 3, 5]  # virtual qubits are ordered (in addition to named)
+        ```
+      -  physical to virtual:
+        ```python
+        [qr[0], None, None, qr[1], None, qr[2]]
+        ```
 
 ### *_method 
 
 These options influence how the transpiler works and are used to try and get better, different, or specific output from the transpiler.
  
-**Do we need some examples?**
-
-**Do we need more details? If we add descriptions of all of the parameters above, this would just be dup content.**
-
 * `init_method` (str) - The plugin to use for the initialization stage. To see a list of installed plugins, run [list_stage_plugins(init).](https://docs.quantum-computing.ibm.com/api/qiskit/transpiler_plugins#plugin-api)
 
 * `layout_method` (str) - The layout selection pass (`trivial`, `dense`, `noise_adaptive`, `sabre`). This can also be the external plugin name to use for the layout stage. To see a list of installed plugins, run [list_stage_plugins(layout).](https://docs.quantum-computing.ibm.com/api/qiskit/transpiler_plugins#plugin-api)
