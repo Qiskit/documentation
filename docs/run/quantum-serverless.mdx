@@ -1,9 +1,9 @@
 ---
-title: Run workloads with Quantum Serverless
-description: Run workloads with Quantum Serverless
+title: Run Qiskit Patterns with Quantum Serverless
+description: Run Qiskit Patterns with Quantum Serverless
 ---
 
-# Run workloads with Quantum Serverless
+# Run Qiskit Patterns with Quantum Serverless
 
 Premium users can run their workloads remotely on classical compute made available through IBM Quantum Platform.
 
@@ -13,47 +13,74 @@ For more information, see the [Quantum Serverless docs](https://qiskit-extension
     This is an experimental feature, subject to change.
 </Admonition>
 
-## Build a workflow
+## Qiskit Patterns
+
+Creating utility-scale quantum applications generally requires a variety of compute resource requirements. Quantum Serverless can be used to easily submit quantum workflows for remote, managed execution. These quantum workflows can typically be implemented within a common pattern, which we call a Qiskit Pattern. A Qiskit Pattern is an intuitive, repeatable set of steps for implementing a quantum computing workflow.
+
+Steps in a Qiskit Pattern:
+
+1. Map classical inputs to a quantum problem
+2. Optimize problem for quantum execution
+3. Execute using Qiskit Runtime primitives
+4. Post-process, return result in classical format
+
+Once we have built a Qiskit Pattern, we can use Quantum Serverless to deploy it and submit it for managed execution. Overall, the process of creating quantum software and submitting it for managed execution on a remote cluster can be broken down into 3 steps:
+
+5. Build the Qiskit Pattern
+6. Deploy to the cloud
+7. Run the Qiskit Pattern on the cloud
+
+Premium users can run their workloads remotely on classical compute made available through IBM Quantum Platform.
+
+For more information, see the [Quantum Serverless docs](https://qiskit-extensions.github.io/quantum-serverless/).
+
+## Building a Qiskit Pattern
 
 Here is an example of computing the expectation value using the Qiskit Runtime Estimator primitive. This Python script should be saved in your working directory. (Warning! All contents of the working directory will be shipped to the cluster for execution.)
 
 ```python
 # source_files/my_qiskit_pattern.py
 
+from qiskit import transpile
 from qiskit.circuit.random import random_circuit
 from qiskit.quantum_info import SparsePauliOp
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
 from quantum_serverless import save_result
 
 service = QiskitRuntimeService()
+backend = service.least_busy(simulator=False)
 
-# Run on a simulator
-backend = service.get_backend("ibmq_qasm_simulator")
-# Use the next line if you want to run on a system
-# backend = service.least_busy(simulator=False)
-
-circuit = random_circuit(2, 2, seed=1234)
+# Step 1: Map the classical input to an abstract circuit and observables
+abstract_circuit = random_circuit(2, 2, seed=1234)
 observable = SparsePauliOp("IY")
 
+# Step 2: Optimize the circuit for quantum execution
+target_circuit = transpile(abstract_circuit, backend)
+target_observable = observable.apply_layout(target_circuit.layout)
+
+# Step 3: Execute the target circuit
 estimator = Estimator(backend)
-job = estimator.run(circuit, observable)
+job = estimator.run(target_circuit, target_observable)
 result = job.result()
+
+# Step 4: Postprocess the results
+print(result)
 
 # save results of program execution
 # note: saved items must be serializable
 save_result(result.values)
 ```
 
-## Deploy workflow on Quantum Serverless
+## Deploying a Qiskit Pattern to Quantum Serverless
 
-After creating a workflow, authenticate to the `IBMServerlessProvider` with your IBM Quantum token, which can be obtained from your [IBM Quantum account](https://quantum-computing.ibm.com/account), and upload the script.
+After creating a pattern, authenticate to the `IBMServerlessProvider` with your [IBM Quantum token](account-management), which can be obtained from your [IBM Quantum account](https://quantum-computing.ibm.com/account), and upload the script.
 
 ```python
 # Authenticate to the IBM serverless provider
 from quantum_serverless import IBMServerlessProvider
 serverless = IBMServerlessProvider("YOUR_IBM_QUANTUM_TOKEN")
 
-# Deploy the workflow
+# Deploy the pattern
 from quantum_serverless import QiskitPattern
 serverless.upload(
     QiskitPattern(
@@ -64,12 +91,12 @@ serverless.upload(
 )
 ```
 
-## Run workflow remotely on Quantum Serverless
+## Running a Qiskit Pattern remotely on Quantum Serverless
 
-Finally, the workflow is ready to run remotely.
+Finally, the pattern is ready to run remotely.
 
 ```python
-# Run workflow remotely
+# Run pattern remotely
 job = serverless.run("My-Qiskit-Pattern")
 
 # Retrieve status, logs, results
