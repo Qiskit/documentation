@@ -141,7 +141,7 @@ class API:
         with open(lesson.zip_path, "rb") as fileobj:
             response = requests.post(
                 self.url + "/files",
-                files={"file": (fileobj)},
+                files={"file": (lesson.zip_path.stem, fileobj, "application/zip")},
                 data={"filename": lesson.zip_path.stem},
                 headers=self.auth_header,
             )
