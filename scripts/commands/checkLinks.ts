@@ -60,7 +60,7 @@ function markdownFromNotebook(source: string): string {
   let markdown = "";
   for (let cell of JSON.parse(source).cells) {
     if (cell.cell_type === "markdown") {
-      markdown += cell.source;
+      cell.source.forEach((s: string) => (markdown += s + "\n"));
     }
   }
   return markdown;
@@ -87,8 +87,15 @@ async function loadFilesAndLinks(
       path.extname(filePath) === ".ipynb"
         ? markdownFromNotebook(source)
         : source;
+    const anchors = markdownLinkExtractor(markdown).anchors;
 
-    fileList.push(new File(filePath, []));
+    // Get the anchors from HTML ids.
+    const id_anchors = markdown.match(/(?<=id=")(.*)(?=")/gm);
+    if (id_anchors != null) {
+      id_anchors.forEach((id) => anchors.push("#" + id));
+    }
+
+    fileList.push(new File(filePath, anchors, false));
 
     if (
       filePath in FILES_TO_IGNORES &&
@@ -155,37 +162,26 @@ async function loadFilesAndLinks(
   return [fileList, internalLinkList, externalLinkList];
 }
 
-/**
- * Return a list of File objects with all the files
- * in `existingPaths`
- */
-function loadFiles(existingPaths: string[]): File[] {
-  const fileList: File[] = [];
-  for (let path of existingPaths) {
-    fileList.push(new File(path, []));
-  }
-
-  return fileList;
-}
-
 zxMain(async () => {
   const args = readArgs();
 
-  // Determine what files we have and separate them into files with links
-  // to read and files we don't need to parse.
+  // Determine what files with links we want to parse
   const pathsWithLinks = await globby("docs/**/*.{ipynb,md,mdx}");
-  const pathsWithoutLinks = [
-    ...(await globby("{public,docs}/**/*.{png,jpg,gif,svg}")),
-    ...SYNTHETIC_FILES,
-  ];
 
   // Parse the files with links and get a list with all the links
   // in all the files without duplications.
   const [docsFiles, internalLinkList, externalLinkList] =
     await loadFilesAndLinks(pathsWithLinks);
 
+  // Define extra files that we don't want to parse
+  const otherFiles = [
+    ...(await globby("{public,docs}/**/*.{png,jpg,gif,svg}")).map(
+      (fp) => new File(fp, [], false),
+    ),
+    ...SYNTHETIC_FILES.map((fp) => new File(fp, [], true)),
+  ];
+
   // Create an array with all the valid destinations for a link
-  const otherFiles = loadFiles(pathsWithoutLinks);
   const existingFiles = docsFiles.concat(otherFiles);
 
   // Validate internal links
