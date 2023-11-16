@@ -115,21 +115,21 @@ const readArgs = (): Arguments => {
     .parseSync();
 };
 
-const getLegacyReleaseNotes = async (
+/**
+ * Check for markdown files in `docs/api/package-name/release-notes/
+ * then sort them and create entries for the TOC.
+ */
+const processLegacyReleaseNotes = async (
   pkg: Pkg,
 ): Promise<{ title: string; url: string }[]> => {
-  /* Check for markdown files in `docs/api/package-name/release-notes/
-   * then sort them and create entries for the TOC.
-   */
   if (!(pkg.name === "qiskit")) {
     return [];
   }
-  await $`mkdir -p ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet();
   const legacyReleaseNoteVersions = (
     await $`ls ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet()
   ).stdout
+    .trim()
     .split("\n")
-    .filter((x) => x)
     .map((x) => parse(x).name)
     .sort((a: string, b: string) => {
       const aParts = a.split(".").map((x) => Number(x));
@@ -189,7 +189,7 @@ zxMain(async () => {
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${versionWithoutPatch}/`;
   const outputDir = `${getRoot()}/docs/api/${pkg.name}`;
 
-  const legacyReleaseNoteEntries = await getLegacyReleaseNotes(pkg);
+  const legacyReleaseNoteEntries = await processLegacyReleaseNotes(pkg);
 
   console.log(`Deleting existing markdown for ${pkg.name}`);
   await $`find ${outputDir}/* -not -path "*release-notes*" | xargs rm -rf {}`;
@@ -253,17 +253,13 @@ async function convertHtmlToMarkdown(
   version: string,
   legacyReleaseNoteEntries: { title: string; url: string }[],
 ) {
-  const files = await globby(
-    [
-      "apidocs/**.html",
-      "apidoc/**.html",
-      "stubs/**.html",
-      "release_notes.html",
-    ],
-    {
-      cwd: htmlPath,
-    },
-  );
+  const globs = ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"];
+  if (pkg.name !== "qiskit") {
+    globs.push("release_notes.html");
+  }
+  const files = await globby(globs, {
+    cwd: htmlPath,
+  });
 
   const ignore = pkg.ignore ?? (() => false);
 
