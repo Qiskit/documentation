@@ -201,7 +201,7 @@ export class Link {
           const resultSuggestion = this.didYouMean(existingFiles, originFile);
           const suggestedPath = resultSuggestion ? ` ${resultSuggestion}` : "";
           errorMessages.push(
-            `❌ ${originFile}: Could not find link '${this.value}${this.anchor}'.${suggestedPath}`,
+            `❌ ${originFile}: Could not find link '${this.value}${this.anchor}'${suggestedPath}`,
           );
         }
       });
