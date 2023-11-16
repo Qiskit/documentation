@@ -11,6 +11,7 @@
 // that they have been altered from the originals.
 
 import path from "node:path";
+import levenshtein from "fast-levenshtein";
 
 const DOCS_ROOT = "./docs";
 const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"];
@@ -119,48 +120,70 @@ export class Link {
 
   /**
    * Returns a string with a suggested replacement for a broken link
+   * if exists a link similar enough to the broken one
    */
-  didYouMean(existingFiles: File[], originFile: string): string {
-    const levenshtein = require("fast-levenshtein");
+  didYouMean(existingFiles: File[], originFile: string): string | null {
+    // Minimum similarity between 0 and 1 that the suggested link should have
+    const MIN_SIMILARITY = 0.5;
 
     // Find a new valid link
-    let min_score = Number.MAX_SAFE_INTEGER;
-    let suggestion_path: String = "";
-    let suggestion_path_anchors: String[] = [];
+    let minScoreLink = Number.MAX_SAFE_INTEGER;
+    let suggestionPath: String = "";
+    let suggestionPathAnchors: string[] = [];
 
     const possiblePaths = this.possibleFilePaths(originFile);
     const pathNoExtension = possiblePaths[0].replace(/\.[^\/.]+$/, "");
 
     existingFiles.forEach((file) => {
       let score = levenshtein.get(pathNoExtension, file.path);
-      if (score < min_score) {
-        min_score = score;
-        suggestion_path = file.path;
-        suggestion_path_anchors = file.anchors;
+      if (score < minScoreLink) {
+        minScoreLink = score;
+        suggestionPath = file.path;
+        suggestionPathAnchors = file.anchors;
       }
     });
 
+    const lengthLongestPath =
+      this.value.length > suggestionPath.length
+        ? this.value.length
+        : suggestionPath.length;
+    const scoreLinkNormalized = 1 - minScoreLink / lengthLongestPath;
+
+    if (scoreLinkNormalized < MIN_SIMILARITY) {
+      return null;
+    }
+
     if (this.anchor == "") {
-      return `❓ Did you mean '${suggestion_path
+      return `❓ Did you mean '${suggestionPath
         .replace(/\.[^\/.]+$/, "")
         .replace(/^docs/, "")}'?`;
     }
 
     // Find a new valid anchor
-    min_score = Number.MAX_SAFE_INTEGER;
-    let suggestion_anchor: String = "";
+    let minScoreAnchor = Number.MAX_SAFE_INTEGER;
+    let suggestionAnchor: String = "";
 
-    suggestion_path_anchors.forEach((anchor) => {
+    suggestionPathAnchors.forEach((anchor) => {
       let score = levenshtein.get(this.anchor, anchor);
-      if (score < min_score) {
-        min_score = score;
-        suggestion_anchor = anchor;
+      if (score < minScoreAnchor) {
+        minScoreAnchor = score;
+        suggestionAnchor = anchor;
       }
     });
 
-    return `❓ Did you mean '${suggestion_path
+    const lengthLongestAnchor =
+      this.anchor.length > suggestionAnchor.length
+        ? this.anchor.length
+        : suggestionAnchor.length;
+    const scoreAnchorNormalized = 1 - minScoreAnchor / lengthLongestAnchor;
+
+    if (scoreAnchorNormalized < MIN_SIMILARITY) {
+      return null;
+    }
+
+    return `❓ Did you mean '${suggestionPath
       .replace(/\.[^\/.]+$/, "")
-      .replace(/^docs/, "")}${suggestion_anchor}'?`;
+      .replace(/^docs/, "")}${suggestionAnchor}'?`;
   }
 
   /**
@@ -175,9 +198,10 @@ export class Link {
       // Internal link
       this.originFiles.forEach((originFile) => {
         if (!this.checkInternalLink(existingFiles, originFile)) {
-          const suggestionPath = this.didYouMean(existingFiles, originFile);
+          const resultSuggestion = this.didYouMean(existingFiles, originFile);
+          const suggestedPath = resultSuggestion ? ` ${resultSuggestion}` : "";
           errorMessages.push(
-            `❌ ${originFile}: Could not find link '${this.value}${this.anchor}'. ${suggestionPath}`,
+            `❌ ${originFile}: Could not find link '${this.value}${this.anchor}'.${suggestedPath}`,
           );
         }
       });
