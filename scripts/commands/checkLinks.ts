@@ -24,7 +24,6 @@ import rehypeParse from "rehype-parse";
 import remarkGfm from "remark-gfm";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
-import { zxMain } from "../lib/zx";
 
 // The links in the files are not searched to see if they are valid.
 // The files need a list of links to be ignored, and when an asterisk
@@ -264,7 +263,7 @@ async function loadFilesAndLinks(
   return [fileList, internalLinkList, externalLinkList];
 }
 
-zxMain(async () => {
+async function main() {
   const args = readArgs();
 
   // Determine what files with links we want to parse
@@ -313,4 +312,6 @@ zxMain(async () => {
     process.exit(1);
   }
   console.log("\nNo links appear broken ✅\n");
-});
+}
+
+main().then(() => process.exit());
