@@ -18,14 +18,16 @@ const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"];
 export class File {
   readonly path: string;
   readonly anchors: string[];
+  readonly synthetic: boolean;
 
   /**
    *    path: Path to the file
    * anchors: Anchors available in the file
    */
-  constructor(path: string, anchors: string[]) {
+  constructor(path: string, anchors: string[], synthetic: boolean) {
     this.path = path;
     this.anchors = anchors;
+    this.synthetic = synthetic;
   }
 }
 
@@ -79,9 +81,24 @@ export class Link {
     return possibleFilePaths;
   }
 
-  checkExternalLink(): boolean {
-    // External link checking not supported yet
-    return true;
+  /**
+   * Returns a string with the error found, or null
+   * if there are no errors.
+   */
+  async checkExternalLink(): Promise<string | null> {
+    try {
+      const response = await fetch(this.value, {
+        headers: { "User-Agent": "prn-broken-links-finder" },
+      });
+
+      if (response.status >= 300) {
+        return `Could not find link '${this.value}'`;
+      }
+    } catch (error) {
+      return `Failed to fetch '${this.value}': ${(error as Error).message}`;
+    }
+
+    return null;
   }
 
   /**
@@ -90,7 +107,13 @@ export class Link {
   checkInternalLink(existingFiles: File[], originFile: string): boolean {
     const possiblePaths = this.possibleFilePaths(originFile);
     return possiblePaths.some((filePath) =>
-      existingFiles.some((existingFile) => existingFile.path == filePath),
+      existingFiles.some(
+        (existingFile) =>
+          existingFile.path == filePath &&
+          (this.anchor == "" ||
+            existingFile.synthetic == true ||
+            existingFile.anchors.includes(this.anchor)),
+      ),
     );
   }
 
@@ -99,23 +122,29 @@ export class Link {
    * the link, true if the link is in `existingFiles`
    * or is a valid external link, otherwise false
    */
-  checkLink(existingFiles: File[]): string[] {
+  async checkLink(existingFiles: File[]): Promise<string[]> {
     const errorMessages: string[] = [];
 
-    if (this.isExternal) {
-      // External link checking not supported yet
+    if (!this.isExternal) {
+      // Internal link
+      this.originFiles.forEach((originFile) => {
+        if (!this.checkInternalLink(existingFiles, originFile)) {
+          errorMessages.push(
+            `❌ ${originFile}: Could not find link '${this.value}${this.anchor}'`,
+          );
+        }
+      });
+
       return errorMessages;
     }
 
-    // Internal link
-    this.originFiles.forEach((originFile) => {
-      if (!this.checkInternalLink(existingFiles, originFile)) {
-        errorMessages.push(
-          `❌ ${originFile}: Could not find link '${this.value}'`,
-        );
-      }
-    });
-
+    // External link
+    const errorMessage = await this.checkExternalLink();
+    if (errorMessage) {
+      this.originFiles.forEach((originFile: string) => {
+        errorMessages.push(`❌ ${originFile}: ${errorMessage}`);
+      });
+    }
     return errorMessages;
   }
 }
