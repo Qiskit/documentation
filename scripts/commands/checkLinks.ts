@@ -29,46 +29,6 @@ import { hideBin } from "yargs/helpers";
 // The files need a list of links to be ignored, and when an asterisk
 // (*) is used as a link, all the links in the file will be ignored.
 const FILES_TO_IGNORES: { [id: string]: string[] } = {
-  "docs/api/qiskit/release-notes/0.5.md": ["*"],
-  "docs/api/qiskit/release-notes/0.6.md": ["*"],
-  "docs/api/qiskit/release-notes/0.7.md": ["*"],
-  "docs/api/qiskit/release-notes/0.8.md": ["*"],
-  "docs/api/qiskit/release-notes/0.9.md": ["*"],
-  "docs/api/qiskit/release-notes/0.10.md": ["*"],
-  "docs/api/qiskit/release-notes/0.11.md": ["*"],
-  "docs/api/qiskit/release-notes/0.12.md": ["*"],
-  "docs/api/qiskit/release-notes/0.13.md": ["*"],
-  "docs/api/qiskit/release-notes/0.14.md": ["*"],
-  "docs/api/qiskit/release-notes/0.15.md": ["*"],
-  "docs/api/qiskit/release-notes/0.16.md": ["*"],
-  "docs/api/qiskit/release-notes/0.17.md": ["*"],
-  "docs/api/qiskit/release-notes/0.18.md": ["*"],
-  "docs/api/qiskit/release-notes/0.19.md": ["*"],
-  "docs/api/qiskit/release-notes/0.20.md": ["*"],
-  "docs/api/qiskit/release-notes/0.21.md": ["*"],
-  "docs/api/qiskit/release-notes/0.22.md": ["*"],
-  "docs/api/qiskit/release-notes/0.23.md": ["*"],
-  "docs/api/qiskit/release-notes/0.24.md": ["*"],
-  "docs/api/qiskit/release-notes/0.25.md": ["*"],
-  "docs/api/qiskit/release-notes/0.26.md": ["*"],
-  "docs/api/qiskit/release-notes/0.27.md": ["*"],
-  "docs/api/qiskit/release-notes/0.28.md": ["*"],
-  "docs/api/qiskit/release-notes/0.29.md": ["*"],
-  "docs/api/qiskit/release-notes/0.30.md": ["*"],
-  "docs/api/qiskit/release-notes/0.31.md": ["*"],
-  "docs/api/qiskit/release-notes/0.32.md": ["*"],
-  "docs/api/qiskit/release-notes/0.33.md": ["*"],
-  "docs/api/qiskit/release-notes/0.34.md": ["*"],
-  "docs/api/qiskit/release-notes/0.35.md": ["*"],
-  "docs/api/qiskit/release-notes/0.36.md": ["*"],
-  "docs/api/qiskit/release-notes/0.37.md": ["*"],
-  "docs/api/qiskit/release-notes/0.38.md": ["*"],
-  "docs/api/qiskit/release-notes/0.39.md": ["*"],
-  "docs/api/qiskit/release-notes/0.40.md": ["*"],
-  "docs/api/qiskit/release-notes/0.41.md": ["*"],
-  "docs/api/qiskit/release-notes/0.42.md": ["*"],
-  "docs/api/qiskit/release-notes/0.43.md": ["*"],
-  "docs/api/qiskit/release-notes/0.44.md": ["*"],
   "docs/api/qiskit-ibm-provider/ibm-provider.md": ["ibm_provider"],
   "docs/api/qiskit-ibm-runtime/ibm-runtime.md": ["runtime_service"],
   "docs/api/qiskit/pulse.md": [
@@ -197,6 +157,10 @@ async function loadFilesAndLinks(
     }
 
     fileList.push(new File(filePath, anchors, false));
+
+    if (filePath.startsWith("docs/api/qiskit/release-notes/")) {
+      continue;
+    }
 
     if (
       filePath in FILES_TO_IGNORES &&
