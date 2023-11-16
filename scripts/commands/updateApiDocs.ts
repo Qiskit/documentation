@@ -115,6 +115,47 @@ const readArgs = (): Arguments => {
     .parseSync();
 };
 
+/**
+ * Check for markdown files in `docs/api/package-name/release-notes/
+ * then sort them and create entries for the TOC.
+ */
+const processLegacyReleaseNotes = async (
+  pkg: Pkg,
+): Promise<{ title: string; url: string }[]> => {
+  if (!(pkg.name === "qiskit")) {
+    return [];
+  }
+  const legacyReleaseNoteVersions = (
+    await $`ls ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet()
+  ).stdout
+    .trim()
+    .split("\n")
+    .map((x) => parse(x).name)
+    .sort((a: string, b: string) => {
+      const aParts = a.split(".").map((x) => Number(x));
+      const bParts = b.split(".").map((x) => Number(x));
+      for (let i = 0; i < 2; i++) {
+        if (aParts[i] > bParts[i]) {
+          return 1;
+        }
+        if (aParts[i] < bParts[i]) {
+          return -1;
+        }
+      }
+      return 0;
+    })
+    .reverse();
+
+  const legacyReleaseNoteEntries = [];
+  for (let version of legacyReleaseNoteVersions) {
+    legacyReleaseNoteEntries.push({
+      title: version,
+      url: `/api/${pkg.name}/release-notes/${version}`,
+    });
+  }
+  return legacyReleaseNoteEntries;
+};
+
 zxMain(async () => {
   const args = readArgs();
 
@@ -148,8 +189,10 @@ zxMain(async () => {
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${versionWithoutPatch}/`;
   const outputDir = `${getRoot()}/docs/api/${pkg.name}`;
 
+  const legacyReleaseNoteEntries = await processLegacyReleaseNotes(pkg);
+
   console.log(`Deleting existing markdown for ${pkg.name}`);
-  await $`rm -rf ${outputDir}`;
+  await $`find ${outputDir}/* -not -path "*release-notes*" | xargs rm -rf {}`;
 
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${versionWithoutPatch}`,
@@ -160,6 +203,7 @@ zxMain(async () => {
     baseSourceUrl,
     pkg,
     args.version,
+    legacyReleaseNoteEntries,
   );
 });
 
@@ -207,6 +251,7 @@ async function convertHtmlToMarkdown(
   baseSourceUrl: string,
   pkg: Pkg,
   version: string,
+  legacyReleaseNoteEntries: { title: string; url: string }[],
 ) {
   const globs = ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"];
   if (pkg.name !== "qiskit") {
@@ -264,6 +309,7 @@ async function convertHtmlToMarkdown(
       title: pkg.title,
       name: pkg.name,
       version,
+      releaseNoteEntries: legacyReleaseNoteEntries,
       releaseNotesUrl:
         pkg.name !== "qiskit"
           ? `/api/${pkg.name}/release-notes`

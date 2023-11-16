@@ -86,11 +86,11 @@ describe("Validate links", () => {
   });
 
   test("Validate non-existing internal links with relative path", async () => {
-    let testLink = new Link("../testpath", ["docs/testorigin.mdx"]);
+    let testLink = new Link("../testpath", ["docs/test1/test2/testorigin.mdx"]);
     let testFile = new File("docs/testpath.mdx", [], false);
     const results = await testLink.checkLink([testFile]);
     expect(results).toEqual([
-      "❌ docs/testorigin.mdx: Could not find link '../testpath'",
+      "❌ docs/test1/test2/testorigin.mdx: Could not find link '../testpath'",
     ]);
   });
 
@@ -118,10 +118,10 @@ describe("Validate links", () => {
     let testFile2 = new File("docs/test2/test3/testpath.mdx", [], false);
     const results = await testLink.checkLink([testFile1, testFile2]);
     expect(results).toEqual([
-      "❌ docs/test/testorigin.mdx: Could not find link '/testpath'",
-      "❌ docs/test/test2/testorigin.mdx: Could not find link '/testpath'",
-      "❌ docs/test/test3/testorigin.mdx: Could not find link '/testpath'",
-      "❌ docs/test/test2/test4/testorigin.mdx: Could not find link '/testpath'",
+      "❌ docs/test/testorigin.mdx: Could not find link '/testpath' ❓ Did you mean '/test/testpath'?",
+      "❌ docs/test/test2/testorigin.mdx: Could not find link '/testpath' ❓ Did you mean '/test/testpath'?",
+      "❌ docs/test/test3/testorigin.mdx: Could not find link '/testpath' ❓ Did you mean '/test/testpath'?",
+      "❌ docs/test/test2/test4/testorigin.mdx: Could not find link '/testpath' ❓ Did you mean '/test/testpath'?",
     ]);
   });
 
@@ -153,7 +153,7 @@ describe("Validate links", () => {
     let testFile = new File("docs/testpath.mdx", ["#test_diff_anchor"], false);
     const results = await testLink.checkLink([testFile]);
     expect(results).toEqual([
-      "❌ /testorigin.mdx: Could not find link '/testpath#test_anchor'",
+      "❌ /testorigin.mdx: Could not find link '/testpath#test_anchor' ❓ Did you mean '/testpath#test_diff_anchor'?",
     ]);
   });
 
@@ -173,7 +173,7 @@ describe("Validate links", () => {
     let testFile = new File("docs/testpath.mdx", ["#test_diff_anchor"], false);
     const results = await testLink.checkLink([testFile]);
     expect(results).toEqual([
-      "❌ docs/test/testorigin.mdx: Could not find link '../testpath#test-anchor'",
+      "❌ docs/test/testorigin.mdx: Could not find link '../testpath#test-anchor' ❓ Did you mean '/testpath#test_diff_anchor'?",
     ]);
   });
 
