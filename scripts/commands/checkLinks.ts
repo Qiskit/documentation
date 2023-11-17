@@ -190,8 +190,11 @@ async function loadFilesAndLinks(
       continue;
     }
 
-    if (!args.release_notes && filePath.startsWith("docs/api/qiskit/release-notes/")) { 
-      continue; 
+    if (
+      !args.release_notes &&
+      filePath.startsWith("docs/api/qiskit/release-notes/")
+    ) {
+      continue;
     }
 
     unified()
