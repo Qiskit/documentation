@@ -12,12 +12,12 @@
 
 # This Action validates all the links in the documentation, including
 # external links and the validation of all the links in the release notes.
-# This Action will be run at 00:00 on every Sunday.
+# This Action will be run at 00:00 every day.
 
 name: Check broken links
 on:
   schedule:
-    - cron: "0 0 * * 0"
+    - cron: "0 0 * * *"
 
 jobs:
   link-checker:
