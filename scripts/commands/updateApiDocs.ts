@@ -10,27 +10,14 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-// To run the script, first generate an access token in GitHub. Click on your profile, then "Settings",
-// then "Developer settings" at the bottom. Go to "Personal access tokens" and generate a new "classic"
-// token. These classic tokens can be dangerous because they are so permissive, so set a short expiration
-// timeline and be careful to not share the token.
-//
-// Once you have a token generated, run:
-//
-//   PUBLIC_GITHUB_TOKEN=ghp_... node -r esbuild-register scripts/commands/updateApiDocs.ts
-//
-// Pass `--packages {qiskit,qiskit-ibm-provider,qiskit-ibm-runtime} to only generate for certain projects.
-
 import { $ } from "zx";
 import { zxMain } from "../lib/zx";
-import { getRequiredEnv } from "../lib/env";
-import { GithubApiClient } from "../lib/GithubApiClient";
 import { pathExists, getRoot } from "../lib/fs";
 import { readFile, writeFile } from "fs/promises";
 import { globby } from "globby";
 import { join, parse, relative } from "path";
 import { sphinxHtmlToMarkdown } from "../lib/sphinx/sphinxHtmlToMarkdown";
-import { first, last, uniq, uniqBy } from "lodash";
+import { uniq, uniqBy } from "lodash";
 import { mkdirp } from "mkdirp";
 import { WebCrawler } from "../lib/WebCrawler";
 import { downloadImages } from "../lib/downloadImages";
@@ -39,35 +26,39 @@ import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
 import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
 import { flatFolders } from "../lib/sphinx/flatFolders";
 import { updateLinks } from "../lib/sphinx/updateLinks";
+import { renameUrls } from "../lib/sphinx/renameUrls";
 import { addFrontMatter } from "../lib/sphinx/addFrontMatter";
 import { dedupeResultIds } from "../lib/sphinx/dedupeIds";
 import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
+import { Pkg, Link } from "../lib/sharedTypes";
 
 interface Arguments {
   [x: string]: unknown;
-  packages: string[];
+  package: string;
+  version: string;
 }
 
-type Pkg = {
-  name: string;
-  githubSlug: string;
-  baseUrl: string;
-  initialUrls: string[];
-  title: string;
-  ignore?(id: string): boolean;
-  tocOptions?: {
-    collapsed?: boolean;
-    nestModule?(id: string): boolean;
-  };
-  transformLink?: (
-    url: string,
-    text?: string,
-  ) => { url: string; text?: string } | undefined;
-};
-
-type PkgHtml = { pkg: Pkg; version: string; path: string };
+function transformLink(link: Link): Link | undefined {
+  const updateText = link.url === link.text;
+  const prefixes = [
+    "https://qiskit.org/documentation/apidoc/",
+    "https://qiskit.org/documentation/stubs/",
+  ];
+  const prefix = prefixes.find((prefix) => link.url.startsWith(prefix));
+  if (!prefix) {
+    return;
+  }
+  let [url, anchor] = link.url.split("#");
+  url = removePrefix(url, prefix);
+  url = removeSuffix(url, ".html");
+  if (anchor && anchor !== url) {
+    url = `${url}#${anchor}`;
+  }
+  const newText = updateText ? url : undefined;
+  return { url: `/api/qiskit/${url}`, text: newText };
+}
 
 const PACKAGES: Pkg[] = [
   {
@@ -78,20 +69,7 @@ const PACKAGES: Pkg[] = [
     initialUrls: [
       `https://qiskit.org/ecosystem/ibm-runtime/apidocs/ibm-runtime.html`,
     ],
-    transformLink(url, text) {
-      const prefixes = [
-        "https://qiskit.org/documentation/apidoc/",
-        "https://qiskit.org/documentation/stubs/",
-      ];
-      let updateText = url === text;
-      const prefix = prefixes.find((prefix) => url.startsWith(prefix));
-      if (prefix) {
-        url = removePrefix(url, prefix);
-        url = removeSuffix(url, ".html");
-        const newText = updateText ? url : undefined;
-        return { url: `/api/qiskit/${url}`, text: newText };
-      }
-    },
+    transformLink,
   },
   {
     title: "Qiskit IBM Provider",
@@ -101,20 +79,7 @@ const PACKAGES: Pkg[] = [
     initialUrls: [
       `https://qiskit.org/ecosystem/ibm-provider/apidocs/ibm-provider.html`,
     ],
-    transformLink(url, text) {
-      const prefixes = [
-        "https://qiskit.org/documentation/apidoc/",
-        "https://qiskit.org/documentation/stubs/",
-      ];
-      let updateText = url === text;
-      const prefix = prefixes.find((prefix) => url.startsWith(prefix));
-      if (prefix) {
-        url = removePrefix(url, prefix);
-        url = removeSuffix(url, ".html");
-        const newText = updateText ? url : undefined;
-        return { url: `/api/qiskit/${url}`, text: newText };
-      }
-    },
+    transformLink,
   },
   {
     title: "Qiskit",
@@ -122,6 +87,7 @@ const PACKAGES: Pkg[] = [
     githubSlug: "qiskit/qiskit",
     baseUrl: `https://qiskit.org/documentation`,
     initialUrls: [`https://qiskit.org/documentation/apidoc/index.html`],
+    hasSeparateReleaseNotes: true,
     tocOptions: {
       collapsed: true,
       nestModule(id: string) {
@@ -132,37 +98,89 @@ const PACKAGES: Pkg[] = [
 ];
 
 const readArgs = (): Arguments => {
-  const pkgs = PACKAGES.map((p) => p.name);
   return yargs(hideBin(process.argv))
-    .option("packages", {
+    .version(false)
+    .option("package", {
       alias: "p",
-      type: "array",
-      default: pkgs,
-      choices: pkgs,
-      description: "What packages to update",
+      type: "string",
+      choices: PACKAGES.map((p) => p.name),
+      demandOption: true,
+      description: "Which package to update",
+    })
+    .option("version", {
+      alias: "v",
+      type: "string",
+      demandOption: true,
+      description: "The full version string of the --package, e.g. 0.44.0",
     })
     .parseSync();
 };
 
+/**
+ * Check for markdown files in `docs/api/package-name/release-notes/
+ * then sort them and create entries for the TOC.
+ */
+const processLegacyReleaseNotes = async (
+  pkg: Pkg,
+): Promise<{ title: string; url: string }[]> => {
+  if (!pkg.hasSeparateReleaseNotes) {
+    return [];
+  }
+  const legacyReleaseNoteVersions = (
+    await $`ls ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet()
+  ).stdout
+    .trim()
+    .split("\n")
+    .map((x) => parse(x).name)
+    .filter((x) => x.match(/^\d/)) // remove index
+    .sort((a: string, b: string) => {
+      const aParts = a.split(".").map((x) => Number(x));
+      const bParts = b.split(".").map((x) => Number(x));
+      for (let i = 0; i < 2; i++) {
+        if (aParts[i] > bParts[i]) {
+          return 1;
+        }
+        if (aParts[i] < bParts[i]) {
+          return -1;
+        }
+      }
+      return 0;
+    })
+    .reverse();
+
+  const legacyReleaseNoteEntries = [];
+  for (let version of legacyReleaseNoteVersions) {
+    legacyReleaseNoteEntries.push({
+      title: version,
+      url: `/api/${pkg.name}/release-notes/${version}`,
+    });
+  }
+  return legacyReleaseNoteEntries;
+};
+
 zxMain(async () => {
   const args = readArgs();
-  const sourcesPath = `${getRoot()}/.out/python/sources`;
 
-  const pkgHtmls: PkgHtml[] = [];
+  // Determine the minor version, e.g. 0.44.0 -> 0.44
+  const versionMatch = args.version.match(/^(\d+\.\d+)/);
+  if (versionMatch === null) {
+    throw new Error(
+      `Invalid --version. Expected the format 0.44.0, but received ${args.version}`,
+    );
+  }
+  const versionWithoutPatch = versionMatch[0];
 
-  for (const pkg of PACKAGES) {
-    if (!args.packages.includes(pkg.name)) {
-      continue;
-    }
-    const version = await getLatestVersion(pkg.githubSlug);
-    const destination = `${sourcesPath}/${pkg.name}/${version}`;
-    pkgHtmls.push({ pkg, version, path: destination });
+  const pkg = PACKAGES.find((pkg) => pkg.name === args.package);
+  if (pkg === undefined) {
+    throw new Error(`Unrecognized package: ${args.package}`);
+  }
 
-    if (await pathExists(destination)) {
-      console.log(`Skip downloading sources for ${pkg.name}:${version}`);
-      continue;
-    }
-
+  const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
+    args.version
+  }`;
+  if (await pathExists(destination)) {
+    console.log(`Skip downloading sources for ${pkg.name}:${args.version}`);
+  } else {
     await downloadHtml({
       baseUrl: pkg.baseUrl,
       initialUrls: pkg.initialUrls,
@@ -170,33 +188,27 @@ zxMain(async () => {
     });
   }
 
-  for (const src of pkgHtmls) {
-    console.log(`Deleting existing markdown for ${src.pkg.name}`);
-    await $`rm -rf ${getRoot()}/docs/api/${src.pkg.name}`;
+  const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${versionWithoutPatch}/`;
+  const outputDir = `${getRoot()}/docs/api/${pkg.name}`;
 
-    const htmlBase = src.path;
-    const output = `${getRoot()}/docs/api/${src.pkg.name}`;
-    const baseSourceUrl = `https://github.com/${src.pkg.githubSlug}/tree/${src.version}/`;
+  const legacyReleaseNoteEntries = await processLegacyReleaseNotes(pkg);
 
-    // Convert html to markdown
-    console.log(
-      `Convert sphinx html to markdown for ${src.pkg.name}:${src.version}`,
-    );
-    await convertHtmlToMarkdown(htmlBase, output, baseSourceUrl, src);
-  }
+  console.log(`Deleting existing markdown for ${pkg.name}`);
+  await $`find ${outputDir}/* -not -path "*release-notes*" | xargs rm -rf {}`;
+
+  console.log(
+    `Convert sphinx html to markdown for ${pkg.name}:${versionWithoutPatch}`,
+  );
+  await convertHtmlToMarkdown(
+    destination,
+    outputDir,
+    baseSourceUrl,
+    pkg,
+    args.version,
+    legacyReleaseNoteEntries,
+    versionWithoutPatch,
+  );
 });
-
-async function getLatestVersion(githubSlug: string): Promise<string> {
-  const githubToken = getRequiredEnv(`PUBLIC_GITHUB_TOKEN`);
-  const github = new GithubApiClient({ token: githubToken });
-
-  const releases = await github.getReleases({ slug: githubSlug });
-
-  const latestVersion = first(releases)?.tag_name;
-  if (!latestVersion) throw new Error("Cannot fetch latest version");
-
-  return latestVersion;
-}
 
 async function downloadHtml(options: {
   baseUrl: string;
@@ -212,7 +224,8 @@ async function downloadHtml(options: {
       return (
         url.startsWith(`${baseUrl}/apidocs`) ||
         url.startsWith(`${baseUrl}/apidoc`) ||
-        url.startsWith(`${baseUrl}/stubs`)
+        url.startsWith(`${baseUrl}/stubs`) ||
+        url.startsWith(`${baseUrl}/release_notes`)
       );
     },
     async onSuccess(url: string, content: string) {
@@ -239,31 +252,48 @@ async function convertHtmlToMarkdown(
   htmlPath: string,
   markdownPath: string,
   baseSourceUrl: string,
-  pkg: PkgHtml,
+  pkg: Pkg,
+  version: string,
+  releaseNoteEntries: { title: string; url: string }[],
+  versionWithoutPatch: string,
 ) {
   const files = await globby(
-    ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"],
+    [
+      "apidocs/**.html",
+      "apidoc/**.html",
+      "stubs/**.html",
+      "release_notes.html",
+    ],
     {
       cwd: htmlPath,
     },
   );
 
-  const ignore = pkg.pkg.ignore ?? (() => false);
+  const ignore = pkg.ignore ?? (() => false);
 
   let results: Array<SphinxToMdResult & { url: string }> = [];
   for (const file of files) {
     const html = await readFile(join(htmlPath, file), "utf-8");
     const result = await sphinxHtmlToMarkdown({
       html,
-      url: `${pkg.pkg.baseUrl}/${file}`,
+      url: `${pkg.baseUrl}/${file}`,
       baseSourceUrl,
-      imageDestination: `/images/api/${pkg.pkg.name}`,
+      imageDestination: `/images/api/${pkg.name}`,
+      releaseNotesTitle: `${pkg.title} ${versionWithoutPatch} release notes`,
     });
     const { dir, name } = parse(`${markdownPath}/${file}`);
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
 
     if (!result.meta.python_api_name || !ignore(result.meta.python_api_name)) {
       results.push({ ...result, url });
+    }
+    if (pkg.hasSeparateReleaseNotes && file.endsWith("release_notes.html")) {
+      if (releaseNoteEntries[0].title !== versionWithoutPatch) {
+        releaseNoteEntries.unshift({
+          title: versionWithoutPatch,
+          url: `/api/${pkg.name}/release-notes/${versionWithoutPatch}`,
+        });
+      }
     }
   }
 
@@ -280,29 +310,59 @@ async function convertHtmlToMarkdown(
   }
 
   results = await mergeClassMembers(results);
-  results = flatFolders(results);
-  results = await updateLinks(results, pkg.pkg.transformLink);
-  results = await dedupeResultIds(results);
-  results = addFrontMatter(results);
+  flatFolders(results);
+  renameUrls(results);
+  await updateLinks(results, pkg.transformLink);
+  await dedupeResultIds(results);
+  addFrontMatter(results, pkg, versionWithoutPatch);
 
   for (const result of results) {
-    await writeFile(urlToPath(result.url), result.markdown);
+    let path = urlToPath(result.url);
+    if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
+      path = `${getRoot()}/docs/api/${
+        pkg.name
+      }/release-notes/${versionWithoutPatch}.md`;
+    }
+    await writeFile(path, result.markdown);
   }
 
   console.log("Generating toc");
   const toc = generateToc({
     pkg: {
-      title: pkg.pkg.title,
-      name: pkg.pkg.name,
-      version: pkg.version,
-      changelogUrl: `https://github.com/${pkg.pkg.githubSlug}/releases`,
-      tocOptions: pkg.pkg.tocOptions,
+      title: pkg.title,
+      name: pkg.name,
+      version,
+      releaseNoteEntries,
+      releaseNotesUrl: `/api/${pkg.name}/release-notes`,
+      tocOptions: pkg.tocOptions,
     },
     results,
   });
   await writeFile(
     `${markdownPath}/_toc.json`,
     JSON.stringify(toc, null, 2) + "\n",
+  );
+
+  if (pkg.hasSeparateReleaseNotes) {
+    console.log("Generating release-notes/index");
+    let markdown = "---\n";
+    markdown += `title: ${pkg.title} release notes\n`;
+    markdown += `description: New features, bug fixes, and other changes in previous versions of ${pkg.title}.\n`;
+    markdown += "---\n\n";
+    markdown += `# ${pkg.title} release notes\n\n`;
+    markdown += `New features, bug fixes, and other changes in previous versions of ${pkg.title}.\n\n`;
+    markdown += `## Release notes by version\n\n`;
+    for (const entry of releaseNoteEntries) {
+      markdown += `* [${entry.title}](${entry.url})\n`;
+    }
+    await writeFile(`${markdownPath}/release-notes/index.md`, markdown);
+  }
+
+  console.log("Generating version file");
+  const pkg_json = { name: pkg.name, version: version };
+  await writeFile(
+    `${markdownPath}/_package.json`,
+    JSON.stringify(pkg_json, null, 2) + "\n",
   );
 
   console.log("Downloading images");

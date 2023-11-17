@@ -78,5 +78,5 @@ ScalableSymbolicPulse instance.
 
 **Return type**
 
-[*ScalableSymbolicPulse*](qiskit.pulse.library.ScalableSymbolicPulse "qiskit.pulse.library.symbolic_pulses.ScalableSymbolicPulse")
+*ScalableSymbolicPulse*
 

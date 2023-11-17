@@ -58,30 +58,7 @@ The functional equivalency can be roughly summarized as follows:
 | [`qiskit.opflow.expectations`](../qiskit/qiskit.opflow.expectations) | [`qiskit.primitives.Estimator`](../qiskit/qiskit.primitives.Estimator) |
 | [`qiskit.opflow.gradients`](../qiskit/qiskit.opflow.gradients) | [`qiskit.algorithms.gradients`](../qiskit/qiskit.algorithms.gradients) |
 
-## Contents
-
-This document covers the migration from these opflow submodules:
-
-**Operators**
-
-- [Operator Base Class](#operator-base-class)
-- [Operator Globals](#operator-globals)
-- [Primitive and List Ops](#primitive-and-list-ops)
-- [State Functions](#state-functions)
-
-**Converters**
-
-- [Converters](#converters)
-- [Evolutions](#evolutions)
-- [Expectations](#expectations)
-
-**Gradients**
-
-- [Gradients](#gradients)
-
 ## Operator Base Class
-
-*Back to* [Contents](#contents)
 
 The [`qiskit.opflow.OperatorBase`](../qiskit/qiskit.opflow.OperatorBase) abstract class can be replaced with `qiskit.quantum_info.BaseOperator` ,
 keeping in mind that `qiskit.quantum_info.BaseOperator` is more generic than its opflow counterpart.
@@ -109,8 +86,6 @@ keeping in mind that `qiskit.quantum_info.BaseOperator` is more generic than its
 
 ## Operator Globals
 
-*Back to* [Contents](#contents)
-
 Opflow provided shortcuts to define common single qubit states, operators, and non-parametrized gates in the
 [`operator_globals`](../qiskit/opflow#operator-globals) module.
 
@@ -119,8 +94,6 @@ These were mainly used for didactic purposes or quick prototyping, and can easil
 [`qiskit.quantum_info.Statevector`](../qiskit/qiskit.quantum_info.Statevector).
 
 ### 1-Qubit Paulis
-
-*Back to* [Contents](#contents)
 
 The 1-qubit paulis were commonly used for quick testing of algorithms, as they could be combined to create more complex operators
 (for example, `0.39 * (I ^ Z) + 0.5 * (X ^ X)`).
@@ -212,8 +185,6 @@ SparsePauliOp(['IZI', 'IXX'],
 
 ### Common non-parametrized gates (Clifford)
 
-*Back to* [Contents](#contents)
-
 | Opflow | Alternative |
 | --- | --- |
 | `qiskit.opflow.CX`, `qiskit.opflow.S`, `qiskit.opflow.H`, `qiskit.opflow.T`, `qiskit.opflow.CZ`, `qiskit.opflow.Swap` | Append corresponding gate to [`qiskit.circuit.QuantumCircuit`](../qiskit/qiskit.circuit.QuantumCircuit). If necessary, [`qiskit.quantum_info.Operator`](../qiskit/qiskit.quantum_info.Operator)s can be directly constructed from quantum circuits. Another alternative is to wrap the circuit in [`qiskit.quantum_info.Clifford`](../qiskit/qiskit.quantum_info.Clifford) and call `Clifford.to_operator()` <Admonition type="note">Constructing [`qiskit.quantum_info`](../qiskit/quantum_info) operators from circuits is not efficient, as it is a dense operation and scales exponentially with the size of the circuit, use with care.</Admonition> |
@@ -278,8 +249,6 @@ Operator([[ 0.5+0.j,  0.5+0.j,  0.5+0.j,  0.5+0.j],
 
 ### 1-Qubit States
 
-*Back to* [Contents](#contents)
-
 | Opflow | Alternative |
 | --- | --- |
 | `qiskit.opflow.Zero`, `qiskit.opflow.One`, `qiskit.opflow.Plus`, `qiskit.opflow.Minus` | [`qiskit.quantum_info.Statevector`](../qiskit/qiskit.quantum_info.Statevector) or simply [`qiskit.circuit.QuantumCircuit`](../qiskit/qiskit.circuit.QuantumCircuit), depending on the use case. <Admonition type="note">For efficient simulation of stabilizer states, [`qiskit.quantum_info`](../qiskit/quantum_info) includes a [`qiskit.quantum_info.StabilizerState`](../qiskit/qiskit.quantum_info.StabilizerState) class. See API reference of [`qiskit.quantum_info.StabilizerState`](../qiskit/qiskit.quantum_info.StabilizerState) for more info.</Admonition> |
@@ -338,8 +307,6 @@ State 2:  StabilizerState(StabilizerTable: ['-IX', '+XI'])
 
 ## Primitive and List Ops
 
-*Back to* [Contents](#contents)
-
 Most of the workflows that previously relied on components from [`qiskit.opflow.primitive_ops`](../qiskit/qiskit.opflow.primitive_ops) and
 [`qiskit.opflow.list_ops`](../qiskit/qiskit.opflow.list_ops) can now leverage elements from [`qiskit.quantum_info`](../qiskit/quantum_info)'s
 operators instead.
@@ -347,8 +314,6 @@ Some of these classes do not require a 1-1 replacement because they were created
 opflow components.
 
 ### Primitive Ops
-
-*Back to* [Contents](#contents)
 
 [`qiskit.opflow.primitive_ops.PrimitiveOp`](../qiskit/qiskit.opflow.primitive_ops.PrimitiveOp) is the [`qiskit.opflow.primitive_ops`](../qiskit/qiskit.opflow.primitive_ops) module's base class.
 It also acts as a factory to instantiate a corresponding sub-class depending on the computational primitive used
@@ -508,8 +473,6 @@ Tapered Op from Z2 symmetries:  [SparsePauliOp(['I', 'X'],
 
 ### ListOps
 
-*Back to* [Contents](#contents)
-
 The [`qiskit.opflow.list_ops`](../qiskit/qiskit.opflow.list_ops) module contained classes for manipulating lists of [`qiskit.opflow.primitive_ops`](../qiskit/qiskit.opflow.primitive_ops)
 or [`qiskit.opflow.state_fns`](../qiskit/qiskit.opflow.state_fns). The [`qiskit.quantum_info`](../qiskit/quantum_info) alternatives for this functionality are the
 [`qiskit.quantum_info.PauliList`](../qiskit/qiskit.quantum_info.PauliList) and [`qiskit.quantum_info.SparsePauliOp`](../qiskit/qiskit.quantum_info.SparsePauliOp) (for sums of [`qiskit.quantum_info.Pauli`](../qiskit/qiskit.quantum_info.Pauli)s).
@@ -522,8 +485,6 @@ or [`qiskit.opflow.state_fns`](../qiskit/qiskit.opflow.state_fns). The [`qiskit.
 | [`qiskit.opflow.list_ops.TensoredOp`](../qiskit/qiskit.opflow.list_ops.TensoredOp) | No direct replacement. For [`qiskit.quantum_info.Pauli`](../qiskit/qiskit.quantum_info.Pauli) operators, use [`qiskit.quantum_info.SparsePauliOp`](../qiskit/qiskit.quantum_info.SparsePauliOp). |
 
 ## State Functions
-
-*Back to* [Contents](#contents)
 
 The [`qiskit.opflow.state_fns`](../qiskit/qiskit.opflow.state_fns) module can be generally replaced by subclasses of [`qiskit.quantum_info`](../qiskit/quantum_info)'s
 `qiskit.quantum_info.states.quantum_state.QuantumState`.
@@ -625,8 +586,6 @@ Statevector([0.+0.j, 0.+0.j, 0.-1.j, 0.+0.j],
 See more applied examples in [Expectations](#expectations)  and [Converters](#converters).
 
 ## Converters
-
-*Back to* [Contents](#contents)
 
 The role of the [`qiskit.opflow.converters`](../qiskit/qiskit.opflow.converters) submodule was to convert the operators into other opflow operator classes
 ([`qiskit.opflow.converters.TwoQubitReduction`](../qiskit/qiskit.opflow.converters.TwoQubitReduction), [`qiskit.opflow.converters.PauliBasisChange`](../qiskit/qiskit.opflow.converters.PauliBasisChange)...).
@@ -806,8 +765,6 @@ print(repr(grouped_sum))
 
 ## Evolutions
 
-*Back to* [Contents](#contents)
-
 The [`qiskit.opflow.evolutions`](../qiskit/qiskit.opflow.evolutions) submodule was created to provide building blocks for Hamiltonian simulation algorithms,
 including various methods for Trotterization. The original opflow workflow for Hamiltonian simulation did not allow for
 delayed synthesis of the gates or efficient transpilation of the circuits, so this functionality was migrated to the
@@ -832,13 +789,11 @@ delayed synthesis of the gates or efficient transpilation of the circuits, so th
   (for example, [`qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE`](../qiskit/qiskit.algorithms.time_evolvers.trotterization.TrotterQRTE)).
 
   In a similar manner, the [`qiskit.opflow.evolutions.MatrixEvolution`](../qiskit/qiskit.opflow.evolutions.MatrixEvolution) class performs evolution by classical matrix exponentiation,
-  constructing a circuit with [`qiskit.extensions.UnitaryGate`](../qiskit/qiskit.extensions.UnitaryGate)s or [`qiskit.extensions.HamiltonianGate`](../qiskit/qiskit.extensions.HamiltonianGate)s containing the exponentiation of the operator.
-  This class is no longer necessary, as the [`qiskit.extensions.HamiltonianGate`](../qiskit/qiskit.extensions.HamiltonianGate)s can be directly handled by the algorithms.
+  constructing a circuit with `qiskit.extensions.UnitaryGate`s or `qiskit.extensions.HamiltonianGate`s containing the exponentiation of the operator.
+  This class is no longer necessary, as the `qiskit.extensions.HamiltonianGate`s can be directly handled by the algorithms.
 </Admonition>
 
 ### Trotterizations
-
-*Back to* [Contents](#contents)
 
 | Opflow | Alternative |
 | --- | --- |
@@ -849,13 +804,11 @@ delayed synthesis of the gates or efficient transpilation of the circuits, so th
 
 ### Other Evolution Classes
 
-*Back to* [Contents](#contents)
-
 | Opflow | Alternative |
 | --- | --- |
 | [`qiskit.opflow.evolutions.EvolutionFactory`](../qiskit/qiskit.opflow.evolutions.EvolutionFactory) | No direct replacement. This class was used to create instances of one of the classes listed below. |
 | [`qiskit.opflow.evolutions.EvolvedOp`](../qiskit/qiskit.opflow.evolutions.EvolvedOp) | No direct replacement. The workflow no longer requires a specific operator for evolutions. |
-| [`qiskit.opflow.evolutions.MatrixEvolution`](../qiskit/qiskit.opflow.evolutions.MatrixEvolution) | [`qiskit.extensions.HamiltonianGate`](../qiskit/qiskit.extensions.HamiltonianGate) |
+| [`qiskit.opflow.evolutions.MatrixEvolution`](../qiskit/qiskit.opflow.evolutions.MatrixEvolution) | `qiskit.extensions.HamiltonianGate` |
 | [`qiskit.opflow.evolutions.PauliTrotterEvolution`](../qiskit/qiskit.opflow.evolutions.PauliTrotterEvolution) | [`qiskit.circuit.library.PauliEvolutionGate`](../qiskit/qiskit.circuit.library.PauliEvolutionGate) |
 
 #### Example 1: Trotter evolution
@@ -992,15 +945,11 @@ q: ┤ U3(2,-π/2,π/2) ├
 
 ## Expectations
 
-*Back to* [Contents](#contents)
-
 Expectations are converters which enable the computation of the expectation value of an observable with respect to some state function.
 This functionality can now be found in the [`qiskit.primitives.Estimator`](../qiskit/qiskit.primitives.Estimator) primitive. Please remember that there
 are different `Estimator` implementations, as noted in the warning box [here](#attention_primitives)
 
 ### Algorithm-Agnostic Expectations
-
-*Back to* [Contents](#contents)
 
 | Opflow | Alternative |
 | --- | --- |
@@ -1116,8 +1065,6 @@ print(values_plus)
 
 ### CVaRExpectation
 
-*Back to* [Contents](#contents)
-
 | Opflow | Alternative |
 | --- | --- |
 | [`qiskit.opflow.expectations.CVaRExpectation`](../qiskit/qiskit.opflow.expectations.CVaRExpectation) | Functionality migrated into new VQE algorithm: [`qiskit.algorithms.minimum_eigensolvers.SamplingVQE`](../qiskit/qiskit.algorithms.minimum_eigensolvers.SamplingVQE) |
@@ -1175,8 +1122,6 @@ print(result.eigenvalue)
 ```
 
 ## Gradients
-
-*Back to* [Contents](#contents)
 
 The opflow [`qiskit.opflow.gradients`](../qiskit/qiskit.opflow.gradients) framework has been replaced by the new [`qiskit.algorithms.gradients`](../qiskit/qiskit.algorithms.gradients)
 module. The new gradients are **primitive-based subroutines** commonly used by algorithms and applications, which

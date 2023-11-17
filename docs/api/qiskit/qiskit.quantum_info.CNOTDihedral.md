@@ -244,7 +244,7 @@ the n-times composed operator.
 
 **Return type**
 
-[Pauli](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
+[Clifford](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
 
 **Raises**
 

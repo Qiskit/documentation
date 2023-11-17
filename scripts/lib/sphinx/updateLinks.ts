@@ -23,14 +23,12 @@ import remarkMath from "remark-math";
 import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
+import { Link } from "../sharedTypes";
 
-export async function updateLinks<T extends SphinxToMdResultWithUrl>(
-  results: T[],
-  transformLink?: (
-    url: string,
-    text?: string,
-  ) => { url: string; text?: string } | undefined,
-): Promise<T[]> {
+export async function updateLinks(
+  results: SphinxToMdResultWithUrl[],
+  transformLink?: (link: Link) => Link | undefined,
+): Promise<void> {
   const resultsByName = keyBy(
     results,
     (result) => result.meta.python_api_name!,
@@ -51,7 +49,10 @@ export async function updateLinks<T extends SphinxToMdResultWithUrl>(
                 node.children?.[0]?.type === "text"
                   ? node.children?.[0]
                   : undefined;
-              const transformedLink = transformLink(node.url, textNode?.value);
+              const transformedLink = transformLink({
+                url: node.url,
+                text: textNode?.value,
+              });
               if (transformedLink) {
                 node.url = transformedLink.url;
                 if (textNode && transformedLink.text) {
@@ -111,6 +112,4 @@ export async function updateLinks<T extends SphinxToMdResultWithUrl>(
 
     result.markdown = output?.toString();
   }
-
-  return results;
 }

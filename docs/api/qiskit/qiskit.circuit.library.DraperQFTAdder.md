@@ -97,7 +97,7 @@ QuantumCircuitData
 
 ### global\_phase
 
-Return the global phase of the circuit in radians.
+Return the global phase of the current circuit scope in radians.
 
 <span id="qiskit.circuit.library.DraperQFTAdder.header" />
 
@@ -109,7 +109,7 @@ Return the global phase of the circuit in radians.
 
 ### instances
 
-`= 168`
+`= 159`
 
 <span id="qiskit.circuit.library.DraperQFTAdder.layout" />
 

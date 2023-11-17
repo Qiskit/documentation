@@ -34,6 +34,7 @@ describe("mergeClassMembers", () => {
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions",
         images: [],
+        isReleaseNotes: false,
       },
       {
         markdown: `# RuntimeOptions.backend
@@ -46,6 +47,7 @@ describe("mergeClassMembers", () => {
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.backend",
         images: [],
+        isReleaseNotes: false,
       },
       {
         markdown: `# RuntimeOptions.circuits
@@ -58,6 +60,7 @@ describe("mergeClassMembers", () => {
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.circuits",
         images: [],
+        isReleaseNotes: false,
       },
       {
         markdown: `
@@ -85,6 +88,7 @@ Validate options.
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.validate",
         images: [],
+        isReleaseNotes: false,
       },
     ];
     const merged = await mergeClassMembers(results);
