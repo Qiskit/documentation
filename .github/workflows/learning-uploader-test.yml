@@ -18,7 +18,7 @@ on:
   workflow_dispatch:
   schedule:
     # At 08:00 on Monday (https://crontab.guru/#0_8_*_*_1)
-    - cron: '0 8 * * 1'
+    - cron: "0 8 * * 1"
 jobs:
   e2e:
     name: End-to-end test
@@ -28,7 +28,7 @@ jobs:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
         with:
-          python-version: '3.11' 
+          python-version: "3.11"
       - name: Install Firefox
         uses: browser-actions/setup-firefox@v1
       - name: Run test
@@ -50,7 +50,7 @@ jobs:
         with:
           script: |
             const message = `Today's scheduled e2e test of the upload tool failed.
-            
+
             Please [check the logs](https://github.com/Qiskit/documentation/actions/runs/${context.workflow}).
 
             > [!NOTE]
@@ -64,4 +64,3 @@ jobs:
               body: message,
               assignees: ["frankharkins"]
             })
-
