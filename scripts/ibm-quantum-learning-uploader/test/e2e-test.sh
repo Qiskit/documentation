@@ -9,7 +9,7 @@ set -e
 echo "Making new Python environment"
 rm -rf .venv
 python -m venv .venv
-. .venv/bin/activate
+source .venv/bin/activate
 pip install --upgrade pip
 pip install selenium
 
