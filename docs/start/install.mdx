@@ -3,6 +3,7 @@ title: Install and set up
 description: Install and set up Qiskit and Qiskit Runtime on various operating systems
 
 ---
+<span id="qiskit-install"></span>
 # Install and set up Qiskit
 
 Whether you will work locally or in a cloud environment, the first step for all users is to install Qiskit. For those wanting to run on a real backend, your next step is to choose one of two channels in order to access IBM Quantum systems: IBM Quantum Platform or IBM Cloud. 
@@ -126,6 +127,54 @@ Tier 3 operating systems:
 - macOS ARM64 (10.15 or newer)
 - Linux i686 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification) for Python 3.10 or later
 - Windows 32 bit for Python 3.10 or later
+
+
+## Troubleshooting
+
+ ### "No Module 'qiskit'" error with Jupyter Notebook
+  
+
+If you used ``pip install qiskit`` and set up your virtual environment in
+Anaconda, then you may get the ``No Module 'qiskit'`` error when you run a tutorial
+in Jupyter Notebook. If you have not installed Qiskit or set up your
+virtual environment, you can follow the [installation](#qiskit-install) steps.
+
+The error is caused when trying to import the Qiskit package in an
+environment where Qiskit is not installed. If you launched Jupyter Notebook
+from the Anaconda-Navigator, it is possible that Jupyter Notebook is running
+in the base (root) environment, instead of in your virtual
+environment. Choose a virtual environment in the Anaconda-Navigator from the
+**Applications on** dropdown menu. In this menu, you can see
+all of the virtual environments within Anaconda, and you can
+select the environment where you have Qiskit installed to launch Jupyter
+Notebook.
+
+### Compilation errors during installation
+  
+Qiskit depends on a number of other open-source Python packages, which
+are automatically installed when doing ``pip install qiskit``. Depending on
+your system's platform and Python version, it is possible that a particular
+package does not provide pre-built binaries for your system. You can refer
+to [Operating system support](#operating-system-support) for a list of platforms supported by Qiskit, some
+of which may need an extra compiler. In cases where there are
+no precompiled binaries available, ``pip`` will attempt to compile the package
+from source, which in turn might require some extra dependencies that need to
+be installed manually.
+
+If the output of ``pip install qiskit`` contains similar lines to:
+
+```
+Failed building wheel for SOME_PACKAGE
+...
+build/temp.linux-x86_64-3.5/_openssl.c:498:30: fatal error
+compilation terminated.
+error: command 'x86_64-linux-gnu-gcc' failed with exit status 1
+```
+
+please check the documentation of the package that failed to install (in the
+example code, ``SOME_PACKAGE``) for information on how to install the libraries
+needed for compiling from source.
+
 
 ## Next steps
 

@@ -14,7 +14,11 @@ import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { SphinxToMdResult } from "./SphinxToMdResult";
 import { Pkg } from "../sharedTypes";
 
-export function addFrontMatter(results: SphinxToMdResult[], pkg: Pkg): void {
+export function addFrontMatter<T extends SphinxToMdResult>(
+  results: T[],
+  pkg: Pkg,
+  versionWithoutPatch: string,
+): void {
   for (let result of results) {
     let markdown = result.markdown;
     if (result.meta.python_api_name) {
@@ -30,7 +34,9 @@ ${markdown}
 `;
     } else if (result.isReleaseNotes) {
       result.markdown = `---
-title: ${pkg.title} release notes
+title: ${pkg.title}${
+        pkg.hasSeparateReleaseNotes ? " " + versionWithoutPatch : ""
+      } release notes
 description: Changes made to ${pkg.title}
 in_page_toc_max_heading_level: 2
 ---

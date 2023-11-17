@@ -26,6 +26,7 @@ import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
 import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
 import { flatFolders } from "../lib/sphinx/flatFolders";
 import { updateLinks } from "../lib/sphinx/updateLinks";
+import { renameUrls } from "../lib/sphinx/renameUrls";
 import { addFrontMatter } from "../lib/sphinx/addFrontMatter";
 import { dedupeResultIds } from "../lib/sphinx/dedupeIds";
 import { removePrefix, removeSuffix } from "../lib/stringUtils";
@@ -86,6 +87,7 @@ const PACKAGES: Pkg[] = [
     githubSlug: "qiskit/qiskit",
     baseUrl: `https://qiskit.org/documentation`,
     initialUrls: [`https://qiskit.org/documentation/apidoc/index.html`],
+    hasSeparateReleaseNotes: true,
     tocOptions: {
       collapsed: true,
       nestModule(id: string) {
@@ -112,6 +114,48 @@ const readArgs = (): Arguments => {
       description: "The full version string of the --package, e.g. 0.44.0",
     })
     .parseSync();
+};
+
+/**
+ * Check for markdown files in `docs/api/package-name/release-notes/
+ * then sort them and create entries for the TOC.
+ */
+const processLegacyReleaseNotes = async (
+  pkg: Pkg,
+): Promise<{ title: string; url: string }[]> => {
+  if (!pkg.hasSeparateReleaseNotes) {
+    return [];
+  }
+  const legacyReleaseNoteVersions = (
+    await $`ls ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet()
+  ).stdout
+    .trim()
+    .split("\n")
+    .map((x) => parse(x).name)
+    .filter((x) => x.match(/^\d/)) // remove index
+    .sort((a: string, b: string) => {
+      const aParts = a.split(".").map((x) => Number(x));
+      const bParts = b.split(".").map((x) => Number(x));
+      for (let i = 0; i < 2; i++) {
+        if (aParts[i] > bParts[i]) {
+          return 1;
+        }
+        if (aParts[i] < bParts[i]) {
+          return -1;
+        }
+      }
+      return 0;
+    })
+    .reverse();
+
+  const legacyReleaseNoteEntries = [];
+  for (let version of legacyReleaseNoteVersions) {
+    legacyReleaseNoteEntries.push({
+      title: version,
+      url: `/api/${pkg.name}/release-notes/${version}`,
+    });
+  }
+  return legacyReleaseNoteEntries;
 };
 
 zxMain(async () => {
@@ -147,8 +191,10 @@ zxMain(async () => {
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${versionWithoutPatch}/`;
   const outputDir = `${getRoot()}/docs/api/${pkg.name}`;
 
+  const legacyReleaseNoteEntries = await processLegacyReleaseNotes(pkg);
+
   console.log(`Deleting existing markdown for ${pkg.name}`);
-  await $`rm -rf ${outputDir}`;
+  await $`find ${outputDir}/* -not -path "*release-notes*" | xargs rm -rf {}`;
 
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${versionWithoutPatch}`,
@@ -159,6 +205,8 @@ zxMain(async () => {
     baseSourceUrl,
     pkg,
     args.version,
+    legacyReleaseNoteEntries,
+    versionWithoutPatch,
   );
 });
 
@@ -206,14 +254,20 @@ async function convertHtmlToMarkdown(
   baseSourceUrl: string,
   pkg: Pkg,
   version: string,
+  releaseNoteEntries: { title: string; url: string }[],
+  versionWithoutPatch: string,
 ) {
-  const globs = ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"];
-  if (pkg.name !== "qiskit") {
-    globs.push("release_notes.html");
-  }
-  const files = await globby(globs, {
-    cwd: htmlPath,
-  });
+  const files = await globby(
+    [
+      "apidocs/**.html",
+      "apidoc/**.html",
+      "stubs/**.html",
+      "release_notes.html",
+    ],
+    {
+      cwd: htmlPath,
+    },
+  );
 
   const ignore = pkg.ignore ?? (() => false);
 
@@ -225,12 +279,21 @@ async function convertHtmlToMarkdown(
       url: `${pkg.baseUrl}/${file}`,
       baseSourceUrl,
       imageDestination: `/images/api/${pkg.name}`,
+      releaseNotesTitle: `${pkg.title} ${versionWithoutPatch} release notes`,
     });
     const { dir, name } = parse(`${markdownPath}/${file}`);
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
 
     if (!result.meta.python_api_name || !ignore(result.meta.python_api_name)) {
       results.push({ ...result, url });
+    }
+    if (pkg.hasSeparateReleaseNotes && file.endsWith("release_notes.html")) {
+      if (releaseNoteEntries[0].title !== versionWithoutPatch) {
+        releaseNoteEntries.unshift({
+          title: versionWithoutPatch,
+          url: `/api/${pkg.name}/release-notes/${versionWithoutPatch}`,
+        });
+      }
     }
   }
 
@@ -248,12 +311,19 @@ async function convertHtmlToMarkdown(
 
   results = await mergeClassMembers(results);
   flatFolders(results);
+  renameUrls(results);
   await updateLinks(results, pkg.transformLink);
   await dedupeResultIds(results);
-  addFrontMatter(results, pkg);
+  addFrontMatter(results, pkg, versionWithoutPatch);
 
   for (const result of results) {
-    await writeFile(urlToPath(result.url), result.markdown);
+    let path = urlToPath(result.url);
+    if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
+      path = `${getRoot()}/docs/api/${
+        pkg.name
+      }/release-notes/${versionWithoutPatch}.md`;
+    }
+    await writeFile(path, result.markdown);
   }
 
   console.log("Generating toc");
@@ -262,10 +332,8 @@ async function convertHtmlToMarkdown(
       title: pkg.title,
       name: pkg.name,
       version,
-      releaseNotesUrl:
-        pkg.name !== "qiskit"
-          ? `/api/${pkg.name}/release-notes`
-          : "https://github.com/qiskit/qiskit/releases",
+      releaseNoteEntries,
+      releaseNotesUrl: `/api/${pkg.name}/release-notes`,
       tocOptions: pkg.tocOptions,
     },
     results,
@@ -274,6 +342,21 @@ async function convertHtmlToMarkdown(
     `${markdownPath}/_toc.json`,
     JSON.stringify(toc, null, 2) + "\n",
   );
+
+  if (pkg.hasSeparateReleaseNotes) {
+    console.log("Generating release-notes/index");
+    let markdown = "---\n";
+    markdown += `title: ${pkg.title} release notes\n`;
+    markdown += `description: New features, bug fixes, and other changes in previous versions of ${pkg.title}.\n`;
+    markdown += "---\n\n";
+    markdown += `# ${pkg.title} release notes\n\n`;
+    markdown += `New features, bug fixes, and other changes in previous versions of ${pkg.title}.\n\n`;
+    markdown += `## Release notes by version\n\n`;
+    for (const entry of releaseNoteEntries) {
+      markdown += `* [${entry.title}](${entry.url})\n`;
+    }
+    await writeFile(`${markdownPath}/release-notes/index.md`, markdown);
+  }
 
   console.log("Generating version file");
   const pkg_json = { name: pkg.name, version: version };
@@ -292,6 +375,5 @@ async function convertHtmlToMarkdown(
 }
 
 function urlToPath(url: string) {
-  url = url.replaceAll("release_notes", "release-notes");
   return `${getRoot()}/docs${url}.md`;
 }
