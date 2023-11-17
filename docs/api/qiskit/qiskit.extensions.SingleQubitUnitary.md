@@ -24,7 +24,38 @@ Single-qubit unitary.
 
 Create a new single qubit gate based on the unitary `u`.
 
+<Admonition title="Deprecated since version 0.45.0" type="danger">
+  The class `qiskit.extensions.quantum_initializer.squ.SingleQubitUnitary` is deprecated as of qiskit 0.45.0. It will be removed no earlier than 3 months after the release date. Instead, you can use qiskit.circuit.library.UnitaryGate.
+</Admonition>
+
 ## Attributes
+
+<span id="qiskit.extensions.SingleQubitUnitary.base_class" />
+
+### base\_class
+
+Get the base class of this instruction. This is guaranteed to be in the inheritance tree of `self`.
+
+The “base class” of an instruction is the lowest class in its inheritance tree that the object should be considered entirely compatible with for \_all\_ circuit applications. This typically means that the subclass is defined purely to offer some sort of programmer convenience over the base class, and the base class is the “true” class for a behavioural perspective. In particular, you should *not* override [`base_class`](#qiskit.extensions.SingleQubitUnitary.base_class "qiskit.extensions.SingleQubitUnitary.base_class") if you are defining a custom version of an instruction that will be implemented differently by hardware, such as an alternative measurement strategy, or a version of a parametrised gate with a particular set of parameters for the purposes of distinguishing it in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") from the full parametrised gate.
+
+This is often exactly equivalent to `type(obj)`, except in the case of singleton instances of standard-library instructions. These singleton instances are special subclasses of their base class, and this property will return that base. For example:
+
+```python
+>>> isinstance(XGate(), XGate)
+True
+>>> type(XGate()) is XGate
+False
+>>> XGate().base_class is XGate
+True
+```
+
+In general, you should not rely on the precise class of an instruction; within a given circuit, it is expected that `Instruction.name` should be a more suitable discriminator in most situations.
+
+<span id="qiskit.extensions.SingleQubitUnitary.condition" />
+
+### condition
+
+The classical condition on the instruction.
 
 <span id="qiskit.extensions.SingleQubitUnitary.condition_bits" />
 
@@ -63,6 +94,14 @@ Get the duration.
 ### label
 
 Return instruction label
+
+<span id="qiskit.extensions.SingleQubitUnitary.mutable" />
+
+### mutable
+
+Is this instance is a mutable unique instance or not.
+
+If this attribute is `False` the gate instance is a shared singleton and is not mutable.
 
 <span id="qiskit.extensions.SingleQubitUnitary.name" />
 
@@ -261,7 +300,7 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **Return type**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+.library.UnitaryGate
 
 **Raises**
 
@@ -364,6 +403,16 @@ np.ndarray
 **Raises**
 
 [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
+
+### to\_mutable
+
+<span id="qiskit.extensions.SingleQubitUnitary.to_mutable" />
+
+`to_mutable()`
+
+Return a mutable copy of this gate.
+
+This method will return a new mutable copy of this gate instance. If a singleton instance is being used this will be a new unique instance that can be mutated. If the instance is already mutable it will be a deepcopy of that instance.
 
 ### validate\_parameter
 

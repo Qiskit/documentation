@@ -112,7 +112,7 @@ Result object
 
 **Return type**
 
-qiskit.Result
+[qiskit.result.Result](qiskit.result.Result "qiskit.result.Result")
 
 ### running
 

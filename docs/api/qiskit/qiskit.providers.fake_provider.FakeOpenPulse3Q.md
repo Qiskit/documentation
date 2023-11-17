@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.fake_provider.FakeOpenPulse3Q
 
 `qiskit.providers.fake_provider.FakeOpenPulse3Q`
 
-Bases: `FakeBackend`
+Bases: [`FakeBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeBackend "qiskit.providers.fake_provider.fake_backend.FakeBackend")
 
 Trivial extension of the FakeOpenPulse2Q.
 

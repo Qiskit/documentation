@@ -26,36 +26,19 @@ import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
 import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
 import { flatFolders } from "../lib/sphinx/flatFolders";
 import { updateLinks } from "../lib/sphinx/updateLinks";
+import { renameUrls } from "../lib/sphinx/renameUrls";
 import { addFrontMatter } from "../lib/sphinx/addFrontMatter";
 import { dedupeResultIds } from "../lib/sphinx/dedupeIds";
 import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
+import { Pkg, Link } from "../lib/sharedTypes";
 
 interface Arguments {
   [x: string]: unknown;
   package: string;
   version: string;
 }
-
-export interface Link {
-  url: string; // Where the link goes
-  text?: string; // What the user sees
-}
-
-type Pkg = {
-  name: string;
-  githubSlug: string;
-  baseUrl: string;
-  initialUrls: string[];
-  title: string;
-  ignore?(id: string): boolean;
-  tocOptions?: {
-    collapsed?: boolean;
-    nestModule?(id: string): boolean;
-  };
-  transformLink?: (link: Link) => Link | undefined;
-};
 
 function transformLink(link: Link): Link | undefined {
   const updateText = link.url === link.text;
@@ -127,13 +110,64 @@ const readArgs = (): Arguments => {
       alias: "v",
       type: "string",
       demandOption: true,
-      description: "The version string of the --package, e.g. 0.44.0",
+      description: "The full version string of the --package, e.g. 0.44.0",
     })
     .parseSync();
 };
 
+/**
+ * Check for markdown files in `docs/api/package-name/release-notes/
+ * then sort them and create entries for the TOC.
+ */
+const processLegacyReleaseNotes = async (
+  pkg: Pkg,
+): Promise<{ title: string; url: string }[]> => {
+  if (!(pkg.name === "qiskit")) {
+    return [];
+  }
+  const legacyReleaseNoteVersions = (
+    await $`ls ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet()
+  ).stdout
+    .trim()
+    .split("\n")
+    .map((x) => parse(x).name)
+    .sort((a: string, b: string) => {
+      const aParts = a.split(".").map((x) => Number(x));
+      const bParts = b.split(".").map((x) => Number(x));
+      for (let i = 0; i < 2; i++) {
+        if (aParts[i] > bParts[i]) {
+          return 1;
+        }
+        if (aParts[i] < bParts[i]) {
+          return -1;
+        }
+      }
+      return 0;
+    })
+    .reverse();
+
+  const legacyReleaseNoteEntries = [];
+  for (let version of legacyReleaseNoteVersions) {
+    legacyReleaseNoteEntries.push({
+      title: version,
+      url: `/api/${pkg.name}/release-notes/${version}`,
+    });
+  }
+  return legacyReleaseNoteEntries;
+};
+
 zxMain(async () => {
   const args = readArgs();
+
+  // Determine the minor version, e.g. 0.44.0 -> 0.44
+  const versionMatch = args.version.match(/^(\d+\.\d+)/);
+  if (versionMatch === null) {
+    throw new Error(
+      `Invalid --version. Expected the format 0.44.0, but received ${args.version}`,
+    );
+  }
+  const versionWithoutPatch = versionMatch[0];
+
   const pkg = PACKAGES.find((pkg) => pkg.name === args.package);
   if (pkg === undefined) {
     throw new Error(`Unrecognized package: ${args.package}`);
@@ -152,21 +186,24 @@ zxMain(async () => {
     });
   }
 
-  console.log(`Deleting existing markdown for ${pkg.name}`);
-  await $`rm -rf ${getRoot()}/docs/api/${pkg.name}`;
+  const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${versionWithoutPatch}/`;
+  const outputDir = `${getRoot()}/docs/api/${pkg.name}`;
 
-  const output = `${getRoot()}/docs/api/${pkg.name}`;
-  const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${args.version}/`;
+  const legacyReleaseNoteEntries = await processLegacyReleaseNotes(pkg);
+
+  console.log(`Deleting existing markdown for ${pkg.name}`);
+  await $`find ${outputDir}/* -not -path "*release-notes*" | xargs rm -rf {}`;
 
   console.log(
-    `Convert sphinx html to markdown for ${pkg.name}:${args.version}`,
+    `Convert sphinx html to markdown for ${pkg.name}:${versionWithoutPatch}`,
   );
   await convertHtmlToMarkdown(
     destination,
-    output,
+    outputDir,
     baseSourceUrl,
     pkg,
     args.version,
+    legacyReleaseNoteEntries,
   );
 });
 
@@ -184,7 +221,8 @@ async function downloadHtml(options: {
       return (
         url.startsWith(`${baseUrl}/apidocs`) ||
         url.startsWith(`${baseUrl}/apidoc`) ||
-        url.startsWith(`${baseUrl}/stubs`)
+        url.startsWith(`${baseUrl}/stubs`) ||
+        url.startsWith(`${baseUrl}/release_notes`)
       );
     },
     async onSuccess(url: string, content: string) {
@@ -213,13 +251,15 @@ async function convertHtmlToMarkdown(
   baseSourceUrl: string,
   pkg: Pkg,
   version: string,
+  legacyReleaseNoteEntries: { title: string; url: string }[],
 ) {
-  const files = await globby(
-    ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"],
-    {
-      cwd: htmlPath,
-    },
-  );
+  const globs = ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"];
+  if (pkg.name !== "qiskit") {
+    globs.push("release_notes.html");
+  }
+  const files = await globby(globs, {
+    cwd: htmlPath,
+  });
 
   const ignore = pkg.ignore ?? (() => false);
 
@@ -253,10 +293,11 @@ async function convertHtmlToMarkdown(
   }
 
   results = await mergeClassMembers(results);
-  results = flatFolders(results);
-  results = await updateLinks(results, pkg.transformLink);
-  results = await dedupeResultIds(results);
-  results = addFrontMatter(results);
+  flatFolders(results);
+  renameUrls(results);
+  await updateLinks(results, pkg.transformLink);
+  await dedupeResultIds(results);
+  addFrontMatter(results, pkg);
 
   for (const result of results) {
     await writeFile(urlToPath(result.url), result.markdown);
@@ -268,7 +309,11 @@ async function convertHtmlToMarkdown(
       title: pkg.title,
       name: pkg.name,
       version,
-      changelogUrl: `https://github.com/${pkg.githubSlug}/releases`,
+      releaseNoteEntries: legacyReleaseNoteEntries,
+      releaseNotesUrl:
+        pkg.name !== "qiskit"
+          ? `/api/${pkg.name}/release-notes`
+          : "https://github.com/qiskit/qiskit/releases",
       tocOptions: pkg.tocOptions,
     },
     results,
@@ -276,6 +321,13 @@ async function convertHtmlToMarkdown(
   await writeFile(
     `${markdownPath}/_toc.json`,
     JSON.stringify(toc, null, 2) + "\n",
+  );
+
+  console.log("Generating version file");
+  const pkg_json = { name: pkg.name, version: version };
+  await writeFile(
+    `${markdownPath}/_package.json`,
+    JSON.stringify(pkg_json, null, 2) + "\n",
   );
 
   console.log("Downloading images");

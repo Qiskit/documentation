@@ -17,7 +17,7 @@ import { last } from "lodash";
 
 describe("updateLinks", () => {
   test("update links", async () => {
-    const input: SphinxToMdResultWithUrl[] = [
+    const data: SphinxToMdResultWithUrl[] = [
       {
         markdown: `
 [link1](qiskit_ibm_runtime.RuntimeJob)
@@ -34,6 +34,7 @@ describe("updateLinks", () => {
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         images: [],
+        isReleaseNotes: false,
       },
       {
         markdown: `
@@ -45,14 +46,16 @@ describe("updateLinks", () => {
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         images: [],
+        isReleaseNotes: false,
       },
     ];
 
-    const results = await updateLinks(input);
-    expect(results).toMatchInlineSnapshot(`
+    await updateLinks(data);
+    expect(data).toMatchInlineSnapshot(`
       [
         {
           "images": [],
+          "isReleaseNotes": false,
           "markdown": "[link1](qiskit_ibm_runtime.RuntimeJob)
       [link2](qiskit_ibm_runtime.RuntimeJob)
       [link3](qiskit_ibm_runtime.RuntimeJob#job)
@@ -69,6 +72,7 @@ describe("updateLinks", () => {
         },
         {
           "images": [],
+          "isReleaseNotes": false,
           "markdown": "[run](qiskit_ibm_runtime.RuntimeJob#run)
       ",
           "meta": {
@@ -82,7 +86,7 @@ describe("updateLinks", () => {
   });
 
   test("update links using a transform function", async () => {
-    const input: SphinxToMdResultWithUrl[] = [
+    const data: SphinxToMdResultWithUrl[] = [
       {
         markdown: `
 [link1](algorithms)
@@ -97,10 +101,11 @@ describe("updateLinks", () => {
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         images: [],
+        isReleaseNotes: false,
       },
     ];
 
-    const results = await updateLinks(input, (link) => {
+    await updateLinks(data, (link) => {
       let path = last(link.url.split("/"))!;
       if (path.includes("#")) {
         path = path.split("#").join(".html#");
@@ -113,10 +118,11 @@ describe("updateLinks", () => {
       if (path?.startsWith("qiskit.algorithms."))
         return { url: `http://qiskit.org/documentation/stubs/${path}` };
     });
-    expect(results).toMatchInlineSnapshot(`
+    expect(data).toMatchInlineSnapshot(`
       [
         {
           "images": [],
+          "isReleaseNotes": false,
           "markdown": "[link1](http://qiskit.org/documentation/apidoc/algorithms.html)
       [link2](http://qiskit.org/documentation/apidoc/algorithms.html)
       [link3](http://qiskit.org/documentation/stubs/qiskit.algorithms.minimum_eigensolvers.VQE.html#qiskit.algorithms.minimum_eigensolvers.VQE)
