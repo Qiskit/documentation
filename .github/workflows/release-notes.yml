@@ -10,14 +10,17 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-name: Lint
+# This Action validates all the links in the documentation, including
+# external links and the validation of all the links in the release notes.
+# This Action will be run at 00:00 on every Sunday.
+
+name: Check broken links
 on:
   schedule:
     - cron: "0 0 * * 0"
 
 jobs:
-  lint:
-    name: Lint
+  link-checker:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'Qiskit'
     steps:
