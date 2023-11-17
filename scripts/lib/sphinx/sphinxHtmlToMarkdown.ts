@@ -40,6 +40,7 @@ export async function sphinxHtmlToMarkdown(options: {
   // url links to a fixed version and ending in /
   // https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/
   baseSourceUrl?: string;
+  releaseNotesTitle?: string;
 }): Promise<SphinxToMdResult> {
   const images: Array<{ src: string; dest: string }> = [];
   const {
@@ -47,6 +48,7 @@ export async function sphinxHtmlToMarkdown(options: {
     url,
     imageDestination = "/images/api/",
     baseSourceUrl,
+    releaseNotesTitle,
   } = options;
   const meta: PythonObjectMeta = {};
   const isReleaseNotes = url.endsWith("release_notes.html") ? true : false;
@@ -63,6 +65,11 @@ export async function sphinxHtmlToMarkdown(options: {
       $link.attr("href", href.replaceAll(".html", ""));
     }
   });
+
+  if (isReleaseNotes && releaseNotesTitle) {
+    // Replace heading with custom heading
+    $page("h1").html(releaseNotesTitle);
+  }
 
   $main
     .find("img")
