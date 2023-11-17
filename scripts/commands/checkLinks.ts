@@ -95,6 +95,10 @@ const FILES_TO_IGNORES: { [id: string]: string[] } = {
   ],
 };
 
+// The files in the folders are not searched to see if their links
+// are valid.
+const FOLDERS_TO_IGNORES: string[] = [];
+
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
 const SYNTHETIC_FILES: string[] = [
@@ -105,6 +109,7 @@ const SYNTHETIC_FILES: string[] = [
 interface Arguments {
   [x: string]: unknown;
   external: boolean;
+  release_notes: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -116,6 +121,13 @@ const readArgs = (): Arguments => {
       default: false,
       description:
         "Should external links be checked? This slows down the script, but is useful to check.",
+    })
+    .option("release_notes", {
+      type: "boolean",
+      demandOption: false,
+      default: false,
+      description:
+        "Should the release notes be checked? This slows down the script, but is useful to check.",
     })
     .parseSync();
 };
@@ -138,12 +150,17 @@ function markdownFromNotebook(source: string): string {
 async function loadFilesAndLinks(
   filePaths: string[],
 ): Promise<[File[], Link[], Link[]]> {
+  const args = readArgs();
+
   const fileList: File[] = [];
   const internalLinkList: Link[] = [];
   const externalLinkList: Link[] = [];
 
   // Auxiliary Map to avoid link duplications
   const linkMap = new Map<string, string[]>();
+
+  // Files inside the folders we want to ignore
+  const filesInFoldersToIgnores = await globby(FOLDERS_TO_IGNORES);
 
   for (let filePath of filePaths) {
     const source = await readFile(filePath, { encoding: "utf8" });
@@ -161,15 +178,20 @@ async function loadFilesAndLinks(
 
     fileList.push(new File(filePath, anchors, false));
 
-    if (filePath.startsWith("docs/api/qiskit/release-notes/")) {
-      continue;
-    }
-
+    // Files to ignore
     if (
       filePath in FILES_TO_IGNORES &&
       FILES_TO_IGNORES[filePath].includes("*")
     ) {
       continue;
+    }
+
+    if (filesInFoldersToIgnores.includes(filePath)) {
+      continue;
+    }
+
+    if (!args.release_notes && filePath.startsWith("docs/api/qiskit/release-notes/")) { 
+      continue; 
     }
 
     unified()
