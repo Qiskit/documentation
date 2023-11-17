@@ -67,6 +67,7 @@ export async function sphinxHtmlToMarkdown(options: {
   });
 
   if (isReleaseNotes && releaseNotesTitle) {
+    // Replace heading with custom heading
     $page("h1").html(releaseNotesTitle);
   }
 
