@@ -1,3 +1,8 @@
+---
+title: Qiskit release notes
+description: New features, bug fixes, and other changes in previous versions of Qiskit.
+---
+
 # Qiskit release notes
 
 New features, bug fixes, and other changes in previous versions of Qiskit.

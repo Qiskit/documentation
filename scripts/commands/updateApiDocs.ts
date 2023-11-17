@@ -345,7 +345,11 @@ async function convertHtmlToMarkdown(
 
   if (pkg.hasSeparateReleaseNotes) {
     console.log("Generating release-notes/index");
-    let markdown = `# ${pkg.title} release notes\n\n`;
+    let markdown = "---\n";
+    markdown += `title: ${pkg.title} release notes\n`;
+    markdown += `description: New features, bug fixes, and other changes in previous versions of ${pkg.title}.\n`;
+    markdown += "---\n\n";
+    markdown += `# ${pkg.title} release notes\n\n`;
     markdown += `New features, bug fixes, and other changes in previous versions of ${pkg.title}.\n\n`;
     markdown += `## Release notes by version\n\n`;
     for (const entry of releaseNoteEntries) {
