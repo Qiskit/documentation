@@ -29,6 +29,7 @@ import { hideBin } from "yargs/helpers";
 // The files need a list of links to be ignored, and when an asterisk
 // (*) is used as a link, all the links in the file will be ignored.
 const FILES_TO_IGNORES: { [id: string]: string[] } = {
+  "docs/api/qiskit/release-notes/0.44.md": ["*"],
   "docs/api/qiskit-ibm-provider/ibm-provider.md": ["ibm_provider"],
   "docs/api/qiskit-ibm-runtime/ibm-runtime.md": ["runtime_service"],
   "docs/api/qiskit/pulse.md": [
@@ -109,7 +110,7 @@ const SYNTHETIC_FILES: string[] = [
 interface Arguments {
   [x: string]: unknown;
   external: boolean;
-  release_notes: boolean;
+  "release-notes": boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -122,7 +123,7 @@ const readArgs = (): Arguments => {
       description:
         "Should external links be checked? This slows down the script, but is useful to check.",
     })
-    .option("release_notes", {
+    .option("release-notes", {
       type: "boolean",
       demandOption: false,
       default: false,
@@ -162,6 +163,16 @@ async function loadFilesAndLinks(
   // Files inside the folders we want to ignore
   const filesInFoldersToIgnores = await globby(FOLDERS_TO_IGNORES);
 
+  const releaseNotes = await globby("docs/api/qiskit/release-notes/*");
+  const latestReleaseNote = releaseNotes
+    .sort((a, b) => {
+      return a.localeCompare(b, undefined, {
+        numeric: true,
+        sensitivity: "base",
+      });
+    })
+    .pop();
+
   for (let filePath of filePaths) {
     const source = await readFile(filePath, { encoding: "utf8" });
     const markdown =
@@ -191,7 +202,8 @@ async function loadFilesAndLinks(
     }
 
     if (
-      !args.release_notes &&
+      filePath != latestReleaseNote &&
+      !args["release-notes"] &&
       filePath.startsWith("docs/api/qiskit/release-notes/")
     ) {
       continue;
@@ -284,7 +296,7 @@ async function main() {
 
   // Validate external links
   // A for loop is used to reduce the risk of rate-limiting
-  if (args.external) {
+  if (args["external"]) {
     for (let link of externalLinkList) {
       results.push(await link.checkLink(existingFiles));
     }
