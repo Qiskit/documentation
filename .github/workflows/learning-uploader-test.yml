@@ -29,7 +29,10 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: '3.11' 
-      - run: |
+      - name: Install Firefox
+        run: sudo snap install firefox
+      - name: Run test
+        run: |
           cd scripts/ibm-quantum-learning-uploader/test
           ./e2e-test.sh
         env:
