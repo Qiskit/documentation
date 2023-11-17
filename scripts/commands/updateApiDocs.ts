@@ -311,6 +311,7 @@ async function convertHtmlToMarkdown(
 
   results = await mergeClassMembers(results);
   flatFolders(results);
+  renameUrls(results);
   await updateLinks(results, pkg.transformLink);
   await dedupeResultIds(results);
   addFrontMatter(results, pkg, versionWithoutPatch);
