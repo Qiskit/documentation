@@ -1,15 +1,15 @@
 ---
-title: Run primitives in a batch
-description: How to run primitives in batch mode. 
+title: Run jobs in a batch
+description: How to run jobs in batch mode. 
 
 ---
 
-# Run primitives in a batch
+# Run jobs in a batch
 
-Batch mode is ideal for running experiments closely together to avoid device drifts, that is, to maintain device characterization.  All jobs must be provided at the outset. If you want to submit iterative jobs, use [sessions](sessions) instead.
+Batch mode can shorten processing time if all jobs can be provided at the outset. If you want to submit iterative jobs, use [sessions](sessions) instead.  Using batch mode has these benefits:
 
--   Suitable for batching many jobs together.
--   The classical computation, such as compilation, of the jobs is run in parallel. This means running multiple jobs in a batch would be significantly faster than running them serially. 
+-  The jobs' classical computation, such as compilation, is run in parallel. Thus, runing multiple jobs in a batch is significantly faster than running them serially. 
+-  There is no delay between job, which can help avoid drift.
 
 <Admonition type="note">
     When batching, jobs are not guaranteed to run in the order they are submitted.
