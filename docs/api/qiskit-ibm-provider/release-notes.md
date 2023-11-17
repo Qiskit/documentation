@@ -4,7 +4,9 @@ description: Changes made to Qiskit IBM Provider
 in_page_toc_max_heading_level: 2
 ---
 
-# Release Notes
+<span id="release-notes" />
+
+# Qiskit IBM Provider 0.7 release notes
 
 <span id="release-notes-0-7-0" />
 
