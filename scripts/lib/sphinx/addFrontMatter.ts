@@ -34,8 +34,8 @@ ${markdown}
 `;
     } else if (result.isReleaseNotes) {
       result.markdown = `---
-title: ${pkg.title} ${
-        pkg.hasSeparateReleaseNotes ? versionWithoutPatch : ""
+title: ${pkg.title}${
+        pkg.hasSeparateReleaseNotes ? " " + versionWithoutPatch : ""
       } release notes
 description: Changes made to ${pkg.title}
 in_page_toc_max_heading_level: 2
