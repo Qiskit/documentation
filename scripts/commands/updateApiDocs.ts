@@ -123,7 +123,7 @@ const readArgs = (): Arguments => {
 const processLegacyReleaseNotes = async (
   pkg: Pkg,
 ): Promise<{ title: string; url: string }[]> => {
-  if (!(pkg.hasSeparateReleaseNotes)) {
+  if (!pkg.hasSeparateReleaseNotes) {
     return [];
   }
   const legacyReleaseNoteVersions = (
@@ -132,7 +132,7 @@ const processLegacyReleaseNotes = async (
     .trim()
     .split("\n")
     .map((x) => parse(x).name)
-    .filter((x) => x.match(/^\d/))  // remove index
+    .filter((x) => x.match(/^\d/)) // remove index
     .sort((a: string, b: string) => {
       const aParts = a.split(".").map((x) => Number(x));
       const bParts = b.split(".").map((x) => Number(x));

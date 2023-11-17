@@ -348,8 +348,7 @@ describe("generateTocFromPythonApiFiles", () => {
         ],
         "title": "Qiskit Runtime IBM Client",
       }
-    `
-    );
+    `);
   });
 });
 
