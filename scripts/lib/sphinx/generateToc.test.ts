@@ -357,5 +357,6 @@ const pkg = {
   title: "Qiskit Runtime IBM Client",
   name: "qiskit_ibm_runtime",
   version: "1.0.0",
+  releaseNoteEntries: [],
   releaseNotesUrl: `/api/qiskit_ibm_runtime/release-notes`,
 };

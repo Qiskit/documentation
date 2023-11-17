@@ -26,6 +26,7 @@ import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
 import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
 import { flatFolders } from "../lib/sphinx/flatFolders";
 import { updateLinks } from "../lib/sphinx/updateLinks";
+import { renameUrls } from "../lib/sphinx/renameUrls";
 import { addFrontMatter } from "../lib/sphinx/addFrontMatter";
 import { dedupeResultIds } from "../lib/sphinx/dedupeIds";
 import { removePrefix, removeSuffix } from "../lib/stringUtils";
@@ -115,6 +116,48 @@ const readArgs = (): Arguments => {
     .parseSync();
 };
 
+/**
+ * Check for markdown files in `docs/api/package-name/release-notes/
+ * then sort them and create entries for the TOC.
+ */
+const processLegacyReleaseNotes = async (
+  pkg: Pkg,
+): Promise<{ title: string; url: string }[]> => {
+  if (!(pkg.hasSeparateReleaseNotes)) {
+    return [];
+  }
+  const legacyReleaseNoteVersions = (
+    await $`ls ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet()
+  ).stdout
+    .trim()
+    .split("\n")
+    .map((x) => parse(x).name)
+    .filter((x) => x.match(/^\d/))  // remove index
+    .sort((a: string, b: string) => {
+      const aParts = a.split(".").map((x) => Number(x));
+      const bParts = b.split(".").map((x) => Number(x));
+      for (let i = 0; i < 2; i++) {
+        if (aParts[i] > bParts[i]) {
+          return 1;
+        }
+        if (aParts[i] < bParts[i]) {
+          return -1;
+        }
+      }
+      return 0;
+    })
+    .reverse();
+
+  const legacyReleaseNoteEntries = [];
+  for (let version of legacyReleaseNoteVersions) {
+    legacyReleaseNoteEntries.push({
+      title: version,
+      url: `/api/${pkg.name}/release-notes/${version}`,
+    });
+  }
+  return legacyReleaseNoteEntries;
+};
+
 zxMain(async () => {
   const args = readArgs();
 
@@ -148,37 +191,10 @@ zxMain(async () => {
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${versionWithoutPatch}/`;
   const outputDir = `${getRoot()}/docs/api/${pkg.name}`;
 
+  const legacyReleaseNoteEntries = await processLegacyReleaseNotes(pkg);
+
   console.log(`Deleting existing markdown for ${pkg.name}`);
   await $`find ${outputDir}/* -not -path "*release-notes*" | xargs rm -rf {}`;
-
-  const legacyReleaseNoteVersions = (
-    await $`ls ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet()
-  ).stdout
-    .split("\n")
-    .map((x) => parse(x).name)
-    .filter((x) => x.match(/^\d/))
-    .sort((a: string, b: string) => {
-      const aParts = a.split(".").map((x) => Number(x));
-      const bParts = b.split(".").map((x) => Number(x));
-      for (let i = 0; i < 2; i++) {
-        if (aParts[i] > bParts[i]) {
-          return 1;
-        }
-        if (aParts[i] < bParts[i]) {
-          return -1;
-        }
-      }
-      return 0;
-    })
-    .reverse();
-
-  const legacyReleaseNoteEntries = [];
-  for (let version of legacyReleaseNoteVersions) {
-    legacyReleaseNoteEntries.push({
-      title: version,
-      url: `/api/${pkg.name}/release-notes/${version}`,
-    });
-  }
 
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${versionWithoutPatch}`,
@@ -189,8 +205,8 @@ zxMain(async () => {
     baseSourceUrl,
     pkg,
     args.version,
-    versionWithoutPatch,
     legacyReleaseNoteEntries,
+    versionWithoutPatch,
   );
 });
 
@@ -238,8 +254,8 @@ async function convertHtmlToMarkdown(
   baseSourceUrl: string,
   pkg: Pkg,
   version: string,
-  versionWithoutPatch: string,
   releaseNoteEntries: { title: string; url: string }[],
+  versionWithoutPatch: string,
 ) {
   const files = await globby(
     [
@@ -294,10 +310,10 @@ async function convertHtmlToMarkdown(
   }
 
   results = await mergeClassMembers(results);
-  results = flatFolders(results);
-  results = await updateLinks(results, pkg.transformLink);
-  results = await dedupeResultIds(results);
-  results = addFrontMatter(results, pkg, versionWithoutPatch);
+  flatFolders(results);
+  await updateLinks(results, pkg.transformLink);
+  await dedupeResultIds(results);
+  addFrontMatter(results, pkg, versionWithoutPatch);
 
   for (const result of results) {
     let path = urlToPath(result.url);
@@ -354,6 +370,5 @@ async function convertHtmlToMarkdown(
 }
 
 function urlToPath(url: string) {
-  url = url.replaceAll("release_notes", "release-notes");
   return `${getRoot()}/docs${url}.md`;
 }

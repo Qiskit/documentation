@@ -18,7 +18,7 @@ export function addFrontMatter<T extends SphinxToMdResult>(
   results: T[],
   pkg: Pkg,
   versionWithoutPatch: string,
-): T[] {
+): void {
   for (let result of results) {
     let markdown = result.markdown;
     if (result.meta.python_api_name) {
@@ -45,6 +45,4 @@ ${markdown}
 `;
     }
   }
-
-  return results;
 }
