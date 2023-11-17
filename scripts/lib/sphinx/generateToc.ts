@@ -126,15 +126,15 @@ export function generateToc(options: {
     tocChildren.push(...orderEntriesByTitle(nestedTocModules));
   }
 
-  const releaseNoteEntry: TocEntry = {
+  const releaseNotesEntry: TocEntry = {
     title: "Release notes",
   };
   if (pkg.releaseNoteEntries.length) {
-    releaseNoteEntry.children = pkg.releaseNoteEntries;
+    releaseNotesEntry.children = pkg.releaseNoteEntries;
   } else {
-    releaseNoteEntry.url = pkg.releaseNotesUrl;
+    releaseNotesEntry.url = pkg.releaseNotesUrl;
   }
-  tocChildren.push(releaseNoteEntry);
+  tocChildren.push(releaseNotesEntry);
 
   const toc: Toc = {
     title: pkg.title,
