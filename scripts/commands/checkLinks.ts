@@ -144,7 +144,9 @@ function markdownFromNotebook(source: string): string {
 }
 
 async function lastestQiskitReleaseNote(): Promise<string | undefined> {
-  const releaseNotes = await globby("docs/api/qiskit/release-notes/!(index.md)");
+  const releaseNotes = await globby(
+    "docs/api/qiskit/release-notes/!(index.md)",
+  );
   return releaseNotes
     .sort((a, b) => {
       return a.localeCompare(b, undefined, {
