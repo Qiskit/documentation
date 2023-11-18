@@ -128,7 +128,7 @@ const readArgs = (): Arguments => {
       demandOption: false,
       default: false,
       description:
-        "Should all the qiskit release notes be checked? By default only the latest version is validated.",
+        "Should all the Qiskit release notes be checked? By default only the latest version is validated.",
     })
     .parseSync();
 };
