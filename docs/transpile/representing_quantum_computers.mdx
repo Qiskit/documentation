@@ -20,21 +20,19 @@ The simplest use of the transpiler is to provide all the backend infomation by p
 Import the necessary libraries and instantiate the backend:
 
 ```python
-    from qiskit import QuantumCircuit, transpile
+    from qiskit import transpile
+    from qiskit.circuit.library import EfficientSU2
     from qiskit.providers.fake_provider import FakeSherbrooke
 
     backend = FakeSherbrooke()
     target = backend.target
 ```
 
-Construct a 12-qubit circuit with circular entanglement:
+The EfficientSU2 circuit consists of layers of single qubit operations spanned by SU(2) and `CX` entanglements. This is a heuristic pattern that can be used to prepare trial wave functions for variational quantum algorithms or classification circuit for machine learning.
 
 ```python
-    qc = QuantumCircuit(12)
-    qc.h(0)
-    _ = [qc.cx(idx, idx+1) for idx in range(11)]
-    qc.cx(11, 0)
-    qc.draw('mpl')
+    qc = EfficientSU2(12, entanglement='circular', reps=1)
+    qc.decompose(reps=1).draw('mpl', style='iqp')
 ```
 ![The 12-qubit test circuit](/images/transpile/representing_quantum_computers/qc-circular.png)
 
@@ -44,7 +42,7 @@ Transpile the circuit with the simplest options. This example uses `optimization
     qc_t_target = transpile(qc, target=target, optimization_level=2, seed_transpiler=12345)
     qc_t_target.draw('mpl', style='iqp', idle_wires=False)
 ```
-![The transpiled 12-qubit test circuit using Target information](/images/transpile/representing_quantum_computers/qc_t_target.png)
+![The transpiled 12-qubit anstatz using Target information](/images/transpile/representing_quantum_computers/qc_t_target.png)
 
 This example is used in later sections of this topic to illustrate that the coupling map and basis gates are the essential pieces of information to pass to the transpiler for optimal circuit construction. The backend can usually select default settings for other information that is not passed in, such as timing and scheduling. (TODO: check!) 
 
@@ -69,7 +67,7 @@ Pass the `coupling_map` keyword argument to see its effect on the transpiler:
     qc_t_cm_lv0 = transpile(qc, coupling_map=coupling_map, optimization_level=0, seed_transpiler=12345)
     qc_t_cm_lv0.draw('mpl', style='iqp', idle_wires=False)
 ```
-![Test circuit transpiled to coupling map with optimization level 0](/images/transpile/representing_quantum_computers/qc_t_cm_lv0.png)
+![Ansatz transpiled to coupling map with optimization level 0](/images/transpile/representing_quantum_computers/qc_t_cm_lv0.png)
 
 As shown above, several SWAP gates were inserted (each consisting of three CX gates), which will cause a lot of errors on current devices. To see which qubits are selected on the actual qubit topology, use `plot_circuit_layout` from Qiskit Visualizations:
 
@@ -80,13 +78,13 @@ As shown above, several SWAP gates were inserted (each consisting of three CX ga
 ```
 ![Circuit Layout for optimization level 0](/images/transpile/representing_quantum_computers/circ_layout_lv0.png)
 
-
+This show that our virtual qubits 0-11 were trivially mapped to the line of physical qubits 0-11.
 
 ```python
     qc_t_cm_lv2 = transpile(qc, coupling_map=coupling_map, optimization_level=2, seed_transpiler=12345)
     qc_t_cm_lv2.draw('mpl', style='iqp', idle_wires=False)
 ```
-![Test circuit transpiled to coupling map with optimization level 2](/images/transpile/representing_quantum_computers/qc_t_cm_lv2.png)
+![Ansatz transpiled to coupling map with optimization level 2](/images/transpile/representing_quantum_computers/qc_t_cm_lv2.png)
 
 Now we do not have any SWAP gates inserted, and the physical qubits selected are the same when using the Target class *(TODO: actually they should probably be different).*
 
@@ -113,14 +111,15 @@ Every quantum backend supports a limited instruction set, called its _basis gate
 The default single-qubit gates on _ibm_sherbrooke_ are `rz`, `x`, and `sx`, and the default two-qubit gate is `ecr` which standes for echoed cross resonsance. CX gates are constructed from `ecr` gates, so on some backends `ecr` is specified as the two-qubit basis gate while on others `cx` is default. The `ecr` gates is the _entangling_ part of the `cx` gate. If one desires to use a gate that is not in the basis gate set, instructions for custom gates can be provided using pulse gates (*link*). In addition to the control gates, there is also `delay` and `measurement` instructions.
 
 **question: the statement "the default single-qubit gates..." makes it sound like you can choose a different set of gates somehow.  That doesn't seem possible, so what does that statement mean?**
+Technically you can choose whatever gates you like as long as you provide the instruction or add pulse gates (see custom transpiler pass doc). The default basis gates are those that calibrations have been done for on the backend, so no further instrcution/pulse gate needs to be provided. For example, on some backends `cx` is the default two-qubit gates and `ecr` on others.
 
 ```python
     qc_t_cm_bg_lv2 = transpile(qc, coupling_map=coupling_map, basis_gates=basis_gates, optimization_level=2, seed_transpiler=12345)
     qc_t_cm_bg_lv2.draw('mpl', style='iqp', idle_wires=False)
 ```
-![Test circuit transpiled to coupling map and basis gates with optimization level 2](/images/transpile/representing_quantum_computers/qc_t_cm_bg_lv2.png)
+![Ansatz transpiled to coupling map and basis gates with optimization level 2](/images/transpile/representing_quantum_computers/qc_t_cm_bg_lv2.png)
 
-Note that the CX gates have been decomposed to `ecr` gates and single-qubit basis gates.
+Note that the `CXGate`s have been decomposed to `ecr` gates and single-qubit basis gates.
 
 ## Build your own target
 
@@ -150,7 +149,7 @@ Transpile with our new target `err_targ` as the target:
     qc_t_cm_bg_et_lv2 = transpile(qc, target=err_targ, optimization_level=2, seed_transpiler=12345)
     qc_t_cm_bg_et_lv2.draw('mpl', style='iqp', idle_wires=False)
 ```
-![Test circuit transpiled to our target model with optimization level 2](/images/transpile/representing_quantum_computers/qc_t_cm_bg_et_lv2.png)
+![Ansatz transpiled to our target model with optimization level 2](/images/transpile/representing_quantum_computers/qc_t_cm_bg_et_lv2.png)
 
 ### Backend properties
 
