@@ -110,7 +110,7 @@ const SYNTHETIC_FILES: string[] = [
 interface Arguments {
   [x: string]: unknown;
   external: boolean;
-  "release-notes": boolean;
+  "qiskit-release-notes": boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -123,12 +123,12 @@ const readArgs = (): Arguments => {
       description:
         "Should external links be checked? This slows down the script, but is useful to check.",
     })
-    .option("release-notes", {
+    .option("qiskit-release-notes", {
       type: "boolean",
       demandOption: false,
       default: false,
       description:
-        "Should the release notes be checked? This slows down the script, but is useful to check.",
+        "Should all the qiskit release notes be checked? By default only the latest version is validated.",
     })
     .parseSync();
 };
@@ -141,6 +141,18 @@ function markdownFromNotebook(source: string): string {
     }
   }
   return markdown;
+}
+
+async function lastestQiskitReleaseNote(): Promise<string | undefined> {
+  const releaseNotes = await globby("docs/api/qiskit/release-notes/*");
+  return releaseNotes
+    .sort((a, b) => {
+      return a.localeCompare(b, undefined, {
+        numeric: true,
+        sensitivity: "base",
+      });
+    })
+    .pop();
 }
 
 /**
@@ -163,15 +175,8 @@ async function loadFilesAndLinks(
   // Files inside the folders we want to ignore
   const filesInFoldersToIgnores = await globby(FOLDERS_TO_IGNORES);
 
-  const releaseNotes = await globby("docs/api/qiskit/release-notes/*");
-  const latestReleaseNote = releaseNotes
-    .sort((a, b) => {
-      return a.localeCompare(b, undefined, {
-        numeric: true,
-        sensitivity: "base",
-      });
-    })
-    .pop();
+  // Path of the latest Qiskit release note
+  const pathLastestQiskitReleaseNote = await lastestQiskitReleaseNote();
 
   for (let filePath of filePaths) {
     const source = await readFile(filePath, { encoding: "utf8" });
@@ -202,8 +207,8 @@ async function loadFilesAndLinks(
     }
 
     if (
-      filePath != latestReleaseNote &&
-      !args["release-notes"] &&
+      !args["qiskit-release-notes"] &&
+      filePath != pathLastestQiskitReleaseNote &&
       filePath.startsWith("docs/api/qiskit/release-notes/")
     ) {
       continue;
