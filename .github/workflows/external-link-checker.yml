@@ -10,11 +10,16 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-name: Lint
-on: [pull_request]
+# This Action validates all the links in the documentation, including
+# external links. This Action will be run at 00:00 (UTC) every day.
+
+name: Check external links
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
 jobs:
-  lint:
-    name: Lint
+  external-link-checker:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'Qiskit'
     steps:
@@ -26,15 +31,5 @@ jobs:
       - name: Install Node.js dependencies
         run: npm ci
 
-      - name: File metadata
-        run: npm run check:metadata
-      - name: Spellcheck
-        run: npm run check:spelling
-      - name: Link checker
-        run: npm run check:links
-      - name: Formatting
-        run: npm run check:fmt
-      - name: Typecheck
-        run: npm run typecheck
-      - name: Run infrastructure tests
-        run: npm test
+      - name: Check external links
+        run: npm run check:links -- --external
