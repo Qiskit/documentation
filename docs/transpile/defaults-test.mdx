@@ -63,7 +63,8 @@ All parameters except `circuits` are optional.  For full details, see the see th
 
 ### Parameters used to describe the compilation target:
 
-* Backend parameters - If you specify `backend`, you don't need to specify `target` or any other backend options. Likewise, if you specify `target`, you don't need to specify `backend` or any other backend options.
+**Backend parameters** - If you specify `backend`, you don't need to specify `target` or any other backend options. Likewise, if you specify `target`, you don't need to specify `backend` or any other backend options.
+  
   - backend (Backend) - If this is set, the transpiler compiles the input circuit to this device. If any other option is set that impacts these settings, such as `coupling_map`, it overrides the settings from `backend`.
   - backend_properties (BackendProperties) - Properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, and so on. Find a backend that provides this information by running `backend.properties()`.
   - dt (float | None) - Backend sample time (resolution) in seconds. If `None` is specified (default), `backend.configuration().dt` is used. 
@@ -76,14 +77,14 @@ All parameters except `circuits` are optional.  For full details, see the see th
       - pulse_alignment: An integer value representing a time resolution of gate instruction starting time. Gate instructions should start at time that is a multiple of this value. 
       - acquire_alignment: An integer value representing a time resolution of measure instruction starting time. Measure instruction should start at time that is a multiple of this value. 
 
-* Layout and topology parameters
+**Layout and topology parameters**
   - basis_gates (List[str] | None) - List of basis gate names to unroll to.  For example ['u1', 'u2', 'u3', 'cx']. If `None`, do not unroll.
   - coupling_map (CouplingMap | List[List[int]]) - Directed coupling map (possibly custom) to target in mapping. If the coupling map is symmetric, both directions need to be specified. These formats are supported:
       - CouplingMap instance
       - List, must be given as an adjacency matrix, where each entry specifies all directed two-qubit interactions supported by backend.  For example:[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]
   - inst_map (List[InstructionScheduleMap] | None) - Mapping of circuit operations to pulse schedules. If `None`, the backend’s `instruction_schedule_map` is used.
 
-  ### Parameters used to influence how the transpiler works:
+### Parameters used to influence how the transpiler works:
 
 These parameters impact specific transpilation stages. Some of them might impact multiple stages, but have only been listed under one stage for simplicity. If you specify an argument, such as `initial_layout`  for the qubits you want to use, that value overrides all the passes that could change it. In other words, the transpiler won't change anything that you manually specify. 
 
