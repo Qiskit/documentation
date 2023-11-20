@@ -32,7 +32,8 @@ export function generateToc(options: {
     title: string;
     name: string;
     version: string;
-    changelogUrl: string;
+    releaseNoteEntries: TocEntry[];
+    releaseNotesUrl: string;
     tocOptions?: {
       collapsed?: boolean;
       nestModule?(id: string): boolean;
@@ -125,14 +126,18 @@ export function generateToc(options: {
     tocChildren.push(...orderEntriesByTitle(nestedTocModules));
   }
 
-  tocChildren.push({
-    title: "Changelog",
-    url: pkg.changelogUrl,
-  });
+  const releaseNotesEntry: TocEntry = {
+    title: "Release notes",
+  };
+  if (pkg.releaseNoteEntries.length) {
+    releaseNotesEntry.children = pkg.releaseNoteEntries;
+  } else {
+    releaseNotesEntry.url = pkg.releaseNotesUrl;
+  }
+  tocChildren.push(releaseNotesEntry);
 
   const toc: Toc = {
     title: pkg.title,
-    subtitle: `v${pkg.version}`,
     children: tocChildren,
   };
   if (pkg.tocOptions?.collapsed) {

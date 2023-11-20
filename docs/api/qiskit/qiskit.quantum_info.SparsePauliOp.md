@@ -140,6 +140,27 @@ The number of Pauli of Pauli terms in the operator.
 
 Return the adjoint of the Operator.
 
+### apply\_layout
+
+<span id="qiskit.quantum_info.SparsePauliOp.apply_layout" />
+
+`apply_layout(layout, num_qubits=None)`
+
+Apply a transpiler layout to this [`SparsePauliOp`](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
+
+**Parameters**
+
+*   **layout** ([*TranspileLayout*](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") *| List\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*]*) – Either a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") or a list of integers.
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits to expand the operator to. If not provided then if `layout` is a [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout") the number of the transpiler output circuit qubits will be used by default. If `layout` is a list of integers the permutation specified will be applied without any expansion.
+
+**Returns**
+
+A new [`SparsePauliOp`](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp") with the provided layout applied
+
+**Return type**
+
+[SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
+
 ### argsort
 
 <span id="qiskit.quantum_info.SparsePauliOp.argsort" />
@@ -375,7 +396,7 @@ is the current SparsePauliOp, and $b$ is the other SparsePauliOp.
 
 <span id="qiskit.quantum_info.SparsePauliOp.from_list" />
 
-`static from_list(obj, dtype=<class 'complex'>)`
+`static from_list(obj, dtype=<class 'complex'>, *, num_qubits=None)`
 
 Construct from a list of Pauli strings and coefficients.
 
@@ -394,8 +415,9 @@ op = SparsePauliOp.from_list([("XIIZI", 1), ("IYIIY", 2)])
 
 **Parameters**
 
-*   **obj** (*Iterable\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*]]*) – The list of 2-tuples specifying the Pauli terms.
-*   **dtype** ([*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")) – The dtype of coeffs (Default complex).
+*   **obj** (*Iterable\[Tuple\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*]]*) – The list of 2-tuples specifying the Pauli terms.
+*   **dtype** ([*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")) – The dtype of coeffs (Default: complex).
+*   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits of the operator (Default: None).
 
 **Returns**
 
@@ -407,7 +429,8 @@ The SparsePauliOp representation of the Pauli terms.
 
 **Raises**
 
-[**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the list of Paulis is empty.
+*   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If an empty list is passed and num\_qubits is None.
+*   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If num\_qubits and the objects in the input list do not match.
 
 ### from\_operator
 
@@ -467,8 +490,9 @@ op = SparsePauliOp.from_list([("XIIZI", 1), ("IYIIY", 2)])
 
 *   **obj** (*Iterable\[*[*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*,* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")*],* [*complex*](https://docs.python.org/3/library/functions.html#complex "(in Python v3.12)")*]]*) – The list 3-tuples specifying the Paulis.
 *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The number of qubits of the operator.
-*   **do\_checks** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – The flag of checking if the input indices are not duplicated.
-*   **dtype** ([*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")) – The dtype of coeffs (Default complex).
+*   **do\_checks** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – The flag of checking if the input indices are not duplicated
+*   \*\*(\*\***Default** – True).
+*   **dtype** ([*type*](https://docs.python.org/3/library/functions.html#type "(in Python v3.12)")) – The dtype of coeffs (Default: complex).
 
 **Returns**
 
@@ -480,7 +504,6 @@ The SparsePauliOp representation of the Pauli terms.
 
 **Raises**
 
-*   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the list of Paulis is empty.
 *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the number of qubits is incompatible with the indices of the Pauli terms.
 *   [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – If the designated qubit is already assigned.
 
@@ -614,7 +637,7 @@ the n-times composed operator.
 
 **Return type**
 
-[Pauli](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
+[Clifford](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
 
 **Raises**
 

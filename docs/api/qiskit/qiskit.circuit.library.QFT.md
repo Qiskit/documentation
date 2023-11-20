@@ -105,7 +105,7 @@ True, if the final swaps are applied, False if not.
 
 ### global\_phase
 
-Return the global phase of the circuit in radians.
+Return the global phase of the current circuit scope in radians.
 
 <span id="qiskit.circuit.library.QFT.header" />
 

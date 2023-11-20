@@ -19,7 +19,7 @@ Deprecated: Interface for Quantum Imaginary Time Evolution.
 The ImaginaryEvolver interface has been superseded by the `qiskit.algorithms.time_evolvers.ImaginaryTimeEvolver` interface. This interface will be deprecated in a future release and subsequently removed after that.
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
-  The class `qiskit.algorithms.evolvers.imaginary_evolver.ImaginaryEvolver` is deprecated as of qiskit-terra 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the interface `qiskit.algorithms.time_evolvers.ImaginaryTimeEvolver`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
+  The class `qiskit.algorithms.evolvers.imaginary_evolver.ImaginaryEvolver` is deprecated as of qiskit 0.24.0. It will be removed no earlier than 3 months after the release date. Instead, use the interface `qiskit.algorithms.time_evolvers.ImaginaryTimeEvolver`. See [https://qisk.it/algo\_migration](https://qisk.it/algo_migration) for a migration guide.
 </Admonition>
 
 ## Methods

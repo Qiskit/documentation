@@ -24,7 +24,7 @@ python_api_name: qiskit.dagcircuit
 | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
 | [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")()                                     | Quantum circuit as a directed acyclic graph.                                                             |
 | [`DAGNode`](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")(\[nid])                                        | Parent class for DAGOpNode, DAGInNode, and DAGOutNode.                                                   |
-| [`DAGOpNode`](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")(op\[, qargs, cargs])                     | Object to represent an Instruction at a node in the DAGCircuit.                                          |
+| [`DAGOpNode`](qiskit.dagcircuit.DAGOpNode "qiskit.dagcircuit.DAGOpNode")(op\[, qargs, cargs, dag])                | Object to represent an Instruction at a node in the DAGCircuit.                                          |
 | [`DAGInNode`](qiskit.dagcircuit.DAGInNode "qiskit.dagcircuit.DAGInNode")(wire)                                    | Object to represent an incoming wire node in the DAGCircuit.                                             |
 | [`DAGOutNode`](qiskit.dagcircuit.DAGOutNode "qiskit.dagcircuit.DAGOutNode")(wire)                                 | Object to represent an outgoing wire node in the DAGCircuit.                                             |
 | [`DAGDepNode`](qiskit.dagcircuit.DAGDepNode "qiskit.dagcircuit.DAGDepNode")(\[type, op, name, qargs, cargs, ...]) | Object to represent the information at a node in the DAGDependency().                                    |
@@ -47,12 +47,4 @@ Set the error message.
 Base class for errors raised by the DAGDependency object.
 
 Set the error message.
-
-## Utilities
-
-|                                                                                              |                                                                                                                                       |
-| -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
-| [`BlockCollapser`](qiskit.dagcircuit.BlockCollapser "qiskit.dagcircuit.BlockCollapser")(dag) | This class implements various strategies of consolidating blocks of nodes in a DAG (direct acyclic graph).                            |
-| [`BlockCollector`](qiskit.dagcircuit.BlockCollector "qiskit.dagcircuit.BlockCollector")(dag) | This class implements various strategies of dividing a DAG (direct acyclic graph) into blocks of nodes that satisfy certain criteria. |
-| [`BlockSplitter`](qiskit.dagcircuit.BlockSplitter "qiskit.dagcircuit.BlockSplitter")()       | Splits a block of nodes into sub-blocks over disjoint qubits.                                                                         |
 
