@@ -11,6 +11,7 @@
 // that they have been altered from the originals.
 
 import path from "node:path";
+import levenshtein from "fast-levenshtein";
 
 const DOCS_ROOT = "./docs";
 const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"];
@@ -18,14 +19,16 @@ const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"];
 export class File {
   readonly path: string;
   readonly anchors: string[];
+  readonly synthetic: boolean;
 
   /**
    *    path: Path to the file
    * anchors: Anchors available in the file
    */
-  constructor(path: string, anchors: string[]) {
+  constructor(path: string, anchors: string[], synthetic: boolean) {
     this.path = path;
     this.anchors = anchors;
+    this.synthetic = synthetic;
   }
 }
 
@@ -79,9 +82,24 @@ export class Link {
     return possibleFilePaths;
   }
 
-  checkExternalLink(): boolean {
-    // External link checking not supported yet
-    return true;
+  /**
+   * Returns a string with the error found, or null
+   * if there are no errors.
+   */
+  async checkExternalLink(): Promise<string | null> {
+    try {
+      const response = await fetch(this.value, {
+        headers: { "User-Agent": "prn-broken-links-finder" },
+      });
+
+      if (response.status >= 300) {
+        return `Could not find link '${this.value}'`;
+      }
+    } catch (error) {
+      return `Failed to fetch '${this.value}': ${(error as Error).message}`;
+    }
+
+    return null;
   }
 
   /**
@@ -90,8 +108,82 @@ export class Link {
   checkInternalLink(existingFiles: File[], originFile: string): boolean {
     const possiblePaths = this.possibleFilePaths(originFile);
     return possiblePaths.some((filePath) =>
-      existingFiles.some((existingFile) => existingFile.path == filePath),
+      existingFiles.some(
+        (existingFile) =>
+          existingFile.path == filePath &&
+          (this.anchor == "" ||
+            existingFile.synthetic == true ||
+            existingFile.anchors.includes(this.anchor)),
+      ),
     );
+  }
+
+  /**
+   * Returns a string with a suggested replacement for a broken link
+   * if exists a link similar enough to the broken one
+   */
+  didYouMean(existingFiles: File[], originFile: string): string | null {
+    // Minimum similarity between 0 and 1 that the suggested link should have
+    const MIN_SIMILARITY = 0.5;
+
+    // Find a new valid link
+    let minScoreLink = Number.MAX_SAFE_INTEGER;
+    let suggestionPath: String = "";
+    let suggestionPathAnchors: string[] = [];
+
+    const possiblePaths = this.possibleFilePaths(originFile);
+    const pathNoExtension = possiblePaths[0].replace(/\.[^\/.]+$/, "");
+
+    existingFiles.forEach((file) => {
+      let score = levenshtein.get(pathNoExtension, file.path);
+      if (score < minScoreLink) {
+        minScoreLink = score;
+        suggestionPath = file.path;
+        suggestionPathAnchors = file.anchors;
+      }
+    });
+
+    const lengthLongestPath =
+      this.value.length > suggestionPath.length
+        ? this.value.length
+        : suggestionPath.length;
+    const scoreLinkNormalized = 1 - minScoreLink / lengthLongestPath;
+
+    if (scoreLinkNormalized < MIN_SIMILARITY) {
+      return null;
+    }
+
+    if (this.anchor == "") {
+      return `❓ Did you mean '${suggestionPath
+        .replace(/\.[^\/.]+$/, "")
+        .replace(/^docs/, "")}'?`;
+    }
+
+    // Find a new valid anchor
+    let minScoreAnchor = Number.MAX_SAFE_INTEGER;
+    let suggestionAnchor: String = "";
+
+    suggestionPathAnchors.forEach((anchor) => {
+      let score = levenshtein.get(this.anchor, anchor);
+      if (score < minScoreAnchor) {
+        minScoreAnchor = score;
+        suggestionAnchor = anchor;
+      }
+    });
+
+    const lengthLongestAnchor =
+      this.anchor.length > suggestionAnchor.length
+        ? this.anchor.length
+        : suggestionAnchor.length;
+    const scoreAnchorNormalized = 1 - minScoreAnchor / lengthLongestAnchor;
+
+    if (scoreAnchorNormalized < MIN_SIMILARITY) {
+      return null;
+    }
+
+    return `❓ Did you mean '${suggestionPath
+      .replace(/\.[^\/.]+$/, "")
+      .replace(/^docs/, "")}${suggestionAnchor}'?`;
   }
 
   /**
@@ -99,23 +191,31 @@ export class Link {
    * the link, true if the link is in `existingFiles`
    * or is a valid external link, otherwise false
    */
-  checkLink(existingFiles: File[]): string[] {
+  async checkLink(existingFiles: File[]): Promise<string[]> {
     const errorMessages: string[] = [];
 
-    if (this.isExternal) {
-      // External link checking not supported yet
+    if (!this.isExternal) {
+      // Internal link
+      this.originFiles.forEach((originFile) => {
+        if (!this.checkInternalLink(existingFiles, originFile)) {
+          const resultSuggestion = this.didYouMean(existingFiles, originFile);
+          const suggestedPath = resultSuggestion ? ` ${resultSuggestion}` : "";
+          errorMessages.push(
+            `❌ ${originFile}: Could not find link '${this.value}${this.anchor}'${suggestedPath}`,
+          );
+        }
+      });
+
       return errorMessages;
     }
 
-    // Internal link
-    this.originFiles.forEach((originFile) => {
-      if (!this.checkInternalLink(existingFiles, originFile)) {
-        errorMessages.push(
-          `❌ ${originFile}: Could not find link '${this.value}'`,
-        );
-      }
-    });
-
+    // External link
+    const errorMessage = await this.checkExternalLink();
+    if (errorMessage) {
+      this.originFiles.forEach((originFile: string) => {
+        errorMessages.push(`❌ ${originFile}: ${errorMessage}`);
+      });
+    }
     return errorMessages;
   }
 }

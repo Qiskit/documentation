@@ -32,6 +32,7 @@ export function generateToc(options: {
     title: string;
     name: string;
     version: string;
+    releaseNoteEntries: TocEntry[];
     releaseNotesUrl: string;
     tocOptions?: {
       collapsed?: boolean;
@@ -125,10 +126,15 @@ export function generateToc(options: {
     tocChildren.push(...orderEntriesByTitle(nestedTocModules));
   }
 
-  tocChildren.push({
-    title: pkg.name === "qiskit" ? "Changelog" : "Release notes",
-    url: pkg.releaseNotesUrl,
-  });
+  const releaseNotesEntry: TocEntry = {
+    title: "Release notes",
+  };
+  if (pkg.releaseNoteEntries.length) {
+    releaseNotesEntry.children = pkg.releaseNoteEntries;
+  } else {
+    releaseNotesEntry.url = pkg.releaseNotesUrl;
+  }
+  tocChildren.push(releaseNotesEntry);
 
   const toc: Toc = {
     title: pkg.title,

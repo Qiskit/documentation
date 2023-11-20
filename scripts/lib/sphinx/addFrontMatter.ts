@@ -17,7 +17,8 @@ import { Pkg } from "../sharedTypes";
 export function addFrontMatter<T extends SphinxToMdResult>(
   results: T[],
   pkg: Pkg,
-): T[] {
+  versionWithoutPatch: string,
+): void {
   for (let result of results) {
     let markdown = result.markdown;
     if (result.meta.python_api_name) {
@@ -33,7 +34,9 @@ ${markdown}
 `;
     } else if (result.isReleaseNotes) {
       result.markdown = `---
-title: ${pkg.title} release notes
+title: ${pkg.title}${
+        pkg.hasSeparateReleaseNotes ? " " + versionWithoutPatch : ""
+      } release notes
 description: Changes made to ${pkg.title}
 in_page_toc_max_heading_level: 2
 ---
@@ -42,6 +45,4 @@ ${markdown}
 `;
     }
   }
-
-  return results;
 }
