@@ -91,12 +91,12 @@ All parameters except `circuits` are optional.  For full details, see the (Trans
 
 ### Parameters used to influence how the transpiler works:
 
-These parameters impact specific transpilation stages. Some of them might impact multiple stages, but have only been listed under one stage for simplicity. If you specify an argument, such as `init_layout`  for the qubits you want to use, that value overrides all the passes that could change it. In other words, the transpiler won't change anything that you manually specify. 
+These parameters impact specific transpilation stages. Some of them might impact multiple stages, but have only been listed under one stage for simplicity. If you specify an argument, such as `initial_layout`  for the qubits you want to use, that value overrides all the passes that could change it. In other words, the transpiler won't change anything that you manually specify. 
 
 The following default values are used if you don't specify any of these parameters: 
 
 ```python
-  qiskit.compiler.transpile(unitary_synthesis_method=default, translation_method=basis_translator, layout_method=sabre, routing_method=sabre, approximation_degree=1.0, optimization_level=1.0, scheduling_method=as_late_as_possible)
+  qiskit.compiler.transpile(unitary_synthesis_method='default', translation_method='basis_translator', layout_method='sabre', routing_method='sabre', approximation_degree=1.0, optimization_level=1.0, scheduling_method='as_late_as_possible')
 ```
 
 **Initialization stage**
@@ -194,7 +194,7 @@ Because finding the best layout is an NP-hard problem, it is the most time-consu
       <Td>1</Td>
       <Td>
         Light optimization (default):
-        -   Layout/Routing: Chooses a layout with a minimum number of SWAPs using `SabreSWAP` and tries to select the best qubits in the graph using `VF2LayoutPostLayout`
+        -   Layout/Routing: First attempts layout with `TrivialLayout`. If additional SWAPs are required, chooses a layout with a minimum number of SWAPs using `SabreSWAP` and tries to select the best qubits in the graph using `VF2LayoutPostLayout`
         -   InverseCancellelation
         -   1Q gate optimization
       </Td>
@@ -204,7 +204,7 @@ Because finding the best layout is an NP-hard problem, it is the most time-consu
       <Td>
         Medium optimization:
           - Layout/Routing: Optimization level 1 (without trivial) + heuristic optimized with greater
-        search depth and trials of optimization function.  Because `TrivialLayout` is not used, if you specify your own layout, the transpiler won't change it. 
+        search depth and trials of optimization function.  Because `TrivialLayout` is not used, an attempt to use the same physical and virtual qubit numbers is not made. 
         -   Commutative cancelation
       </Td>
     </Tr>
