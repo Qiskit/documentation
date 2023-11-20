@@ -7,3 +7,48 @@ description: Default settings and configuration options including optimization a
 
 Abstract circuits need to be transpiled because backends have a limited set of basis gates and cannot execute arbitrary operations. The transpiler's function is to change arbitrary circuits so that they can run on specified backend.  This is done by translating the circuits to the supported basis gates, and by introducing SWAP gates as needed, so that the circuit's connectivity matches that of the backend. 
 
+You can pass circuits to the `transpile()` method and use all default settings, or you can use parameters to fine tune the transpilation.  
+
+## Basic usage without parameters
+
+You can pass a circuit and target backend to the transpiler without specifying any further parameters. 
+
+Create a circuit and view the result: 
+
+```python
+from qiskit import transpile
+from qiskit import QuantumCircuit
+from qiskit.circuit.library import GroverOperator, Diagonal
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit.providers.fake_provider import FakeVigo
+
+# Create circuit to test transpiler on
+oracle = Diagonal([1] * 7 + [-1])
+qc = QuantumCircuit(3)
+qc.h([0, 1, 2])
+qc = qc.compose(GroverOperator(oracle))
+
+# Add measurements to the circuit
+qc.measure_all()
+
+# View the circuit
+qc.draw(output='mpl')
+```
+
+![Original circuit](/images/transpile/defaults_and_configuration_options/original_circuit.png)
+
+
+Transpile the circuit and view the result:
+
+```python
+# Specify the backend to target
+backend = FakeVigo()
+
+# Transpile the circuit
+transpiled_circ = transpile(qc, backend)
+
+# View the transpiled circuit
+transpiled_circ.draw(output='mpl')
+```
+
+![Transpiled circuit](/images/transpile/defaults_and_configuration_options/transpiled_circuit.png)
