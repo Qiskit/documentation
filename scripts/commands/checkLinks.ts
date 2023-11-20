@@ -95,6 +95,10 @@ const FILES_TO_IGNORES: { [id: string]: string[] } = {
   ],
 };
 
+// The files in the folders are not searched to see if their links
+// are valid.
+const FOLDERS_TO_IGNORES: string[] = ["docs/api/qiskit/release-notes/*"];
+
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
 const SYNTHETIC_FILES: string[] = [
@@ -145,6 +149,9 @@ async function loadFilesAndLinks(
   // Auxiliary Map to avoid link duplications
   const linkMap = new Map<string, string[]>();
 
+  // Files inside the folders we want to ignore
+  const filesInFoldersToIgnores = await globby(FOLDERS_TO_IGNORES);
+
   for (let filePath of filePaths) {
     const source = await readFile(filePath, { encoding: "utf8" });
     const markdown =
@@ -161,14 +168,15 @@ async function loadFilesAndLinks(
 
     fileList.push(new File(filePath, anchors, false));
 
-    if (filePath.startsWith("docs/api/qiskit/release-notes/")) {
-      continue;
-    }
-
+    // Files to ignore
     if (
       filePath in FILES_TO_IGNORES &&
       FILES_TO_IGNORES[filePath].includes("*")
     ) {
+      continue;
+    }
+
+    if (filesInFoldersToIgnores.includes(filePath)) {
       continue;
     }
 
@@ -259,7 +267,7 @@ async function main() {
 
   // Validate external links
   // A for loop is used to reduce the risk of rate-limiting
-  if (args.external) {
+  if (args["external"]) {
     for (let link of externalLinkList) {
       results.push(await link.checkLink(existingFiles));
     }
