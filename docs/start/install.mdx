@@ -63,7 +63,7 @@ Whether you will work locally or in a cloud environment, the first step for all 
 1. Install the following packages.
 
       <Admonition type="note">
-          Periodically rerun these commands or check the [Qiskit release notes](https://qiskit.org/documentation/release_notes.html) and the [Qiskit Runtime release notes](https://qiskit.org/ecosystem/ibm-runtime/release_notes.html) so that you always have the latest versions. 
+          Periodically rerun these commands or check the [Qiskit release notes](../api/qiskit/release-notes) and the [Qiskit Runtime release notes](../api/qiskit-ibm-runtime/release-notes) so that you always have the latest versions. 
       </Admonition>
 
       ```shell
@@ -96,84 +96,97 @@ Qiskit strives to support as many operating systems as possible, but due to limi
 
 Additionally, Qiskit only supports CPython. Running with other Python interpreters is not supported.
 
-### Tier 1
+<details>
+  <summary>
+    Tier 1
+  </summary>
+  Tier 1 operating systems are fully tested as part of the development processes to ensure any proposed change will function correctly. Pre-compiled binaries are built, tested, and published to PyPI as part of the release process. Typically, as long as there is a functioning Python environment installed, Qiskit can be installed on these operating systems without needing to install further dependencies.
 
-Tier 1 operating systems are fully tested as part of the development processes to ensure any proposed change will function correctly. Pre-compiled binaries are built, tested, and published to PyPI as part of the release process. Typically, as long as there is a functioning Python environment installed, Qiskit can be installed on these operating systems without needing to install further dependencies.
+  Tier 1 operating systems:
 
-Tier 1 operating systems:
+  - Linux x86_64 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification).
+  - macOS x86_64 (10.9 or later)
+  - Windows 64 bit
+</details>
 
-- Linux x86_64 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification).
-- macOS x86_64 (10.9 or later)
-- Windows 64 bit
+<details>
+  <summary>
+    Tier 2
+  </summary>
+  Tier 2 operating systems are not tested as part of development process. However, pre-compiled binaries are built, tested, and published to PyPI as part of the release process and these packages can be expected to be installed with just a functioning Python environment.
 
-### Tier 2
+  Tier 2 operating systems:
 
-Tier 2 operating systems are not tested as part of development process. However, pre-compiled binaries are built, tested, and published to PyPI as part of the release process and these packages can be expected to be installed with just a functioning Python environment.
+  - Linux i686 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification) for Python releases earlier than 3.10
+  - Windows 32 bit for Python releases earlier than 3.10
+  - Linux AArch64 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
+</details>
 
-Tier 2 operating systems:
+<details>
+  <summary>
+    Tier 3
+  </summary>
+  Tier 3 operating systems are not tested as part of the development process. Pre-compiled binaries are built and published to PyPI as part of the release process but are not tested. They may not be installable with just a functioning Python environment and might require a C/C++ compiler or additional programs to build dependencies from source as part of the installation process. Support for these operating systems are best effort only.
 
-- Linux i686 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification) for Python releases earlier than 3.10
-- Windows 32 bit for Python releases earlier than 3.10
-- Linux AArch64 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
+  Tier 3 operating systems:
 
-### Tier 3
-
-Tier 3 operating systems are not tested as part of the development process. Pre-compiled binaries are built and published to PyPI as part of the release process but are not tested. They may not be installable with just a functioning Python environment and might require a C/C++ compiler or additional programs to build dependencies from source as part of the installation process. Support for these operating systems are best effort only.
-
-Tier 3 operating systems:
-
-- Linux ppc64le (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/)packaging specification)
-- Linux s390x (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
-- macOS ARM64 (10.15 or newer)
-- Linux i686 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification) for Python 3.10 or later
-- Windows 32 bit for Python 3.10 or later
-
+  - Linux ppc64le (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/)packaging specification)
+  - Linux s390x (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
+  - macOS ARM64 (10.15 or newer)
+  - Linux i686 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification) for Python 3.10 or later
+  - Windows 32 bit for Python 3.10 or later
+</details>
 
 ## Troubleshooting
 
- ### "No Module 'qiskit'" error with Jupyter Notebook
-  
+<details>
+  <summary>
+    "No Module 'qiskit'" error with Jupyter Notebook
+  </summary>
+  If you used ``pip install qiskit`` and set up your virtual environment in
+  Anaconda, then you may get the ``No Module 'qiskit'`` error when you run a tutorial
+  in Jupyter Notebook. If you have not installed Qiskit or set up your
+  virtual environment, you can follow the [installation](#qiskit-install) steps.
 
-If you used ``pip install qiskit`` and set up your virtual environment in
-Anaconda, then you may get the ``No Module 'qiskit'`` error when you run a tutorial
-in Jupyter Notebook. If you have not installed Qiskit or set up your
-virtual environment, you can follow the [installation](#qiskit-install) steps.
+  The error is caused when trying to import the Qiskit package in an
+  environment where Qiskit is not installed. If you launched Jupyter Notebook
+  from the Anaconda-Navigator, it is possible that Jupyter Notebook is running
+  in the base (root) environment, instead of in your virtual
+  environment. Choose a virtual environment in the Anaconda-Navigator from the
+  **Applications on** dropdown menu. In this menu, you can see
+  all of the virtual environments within Anaconda, and you can
+  select the environment where you have Qiskit installed to launch Jupyter
+  Notebook.
+</details>
 
-The error is caused when trying to import the Qiskit package in an
-environment where Qiskit is not installed. If you launched Jupyter Notebook
-from the Anaconda-Navigator, it is possible that Jupyter Notebook is running
-in the base (root) environment, instead of in your virtual
-environment. Choose a virtual environment in the Anaconda-Navigator from the
-**Applications on** dropdown menu. In this menu, you can see
-all of the virtual environments within Anaconda, and you can
-select the environment where you have Qiskit installed to launch Jupyter
-Notebook.
+<details>
+  <summary>
+    Compilation errors during installation
+  </summary>
+  Qiskit depends on a number of other open-source Python packages, which
+  are automatically installed when doing ``pip install qiskit``. Depending on
+  your system's platform and Python version, it is possible that a particular
+  package does not provide pre-built binaries for your system. You can refer
+  to [Operating system support](#operating-system-support) for a list of platforms supported by Qiskit, some
+  of which may need an extra compiler. In cases where there are
+  no precompiled binaries available, ``pip`` will attempt to compile the package
+  from source, which in turn might require some extra dependencies that need to
+  be installed manually.
 
-### Compilation errors during installation
-  
-Qiskit depends on a number of other open-source Python packages, which
-are automatically installed when doing ``pip install qiskit``. Depending on
-your system's platform and Python version, it is possible that a particular
-package does not provide pre-built binaries for your system. You can refer
-to [Operating system support](#operating-system-support) for a list of platforms supported by Qiskit, some
-of which may need an extra compiler. In cases where there are
-no precompiled binaries available, ``pip`` will attempt to compile the package
-from source, which in turn might require some extra dependencies that need to
-be installed manually.
+  If the output of ``pip install qiskit`` contains similar lines to:
 
-If the output of ``pip install qiskit`` contains similar lines to:
+  ```
+  Failed building wheel for SOME_PACKAGE
+  ...
+  build/temp.linux-x86_64-3.5/_openssl.c:498:30: fatal error
+  compilation terminated.
+  error: command 'x86_64-linux-gnu-gcc' failed with exit status 1
+  ```
 
-```
-Failed building wheel for SOME_PACKAGE
-...
-build/temp.linux-x86_64-3.5/_openssl.c:498:30: fatal error
-compilation terminated.
-error: command 'x86_64-linux-gnu-gcc' failed with exit status 1
-```
-
-please check the documentation of the package that failed to install (in the
-example code, ``SOME_PACKAGE``) for information on how to install the libraries
-needed for compiling from source.
+  please check the documentation of the package that failed to install (in the
+  example code, ``SOME_PACKAGE``) for information on how to install the libraries
+  needed for compiling from source.
+</details>
 
 
 ## Next steps
