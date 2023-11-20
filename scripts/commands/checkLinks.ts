@@ -97,9 +97,7 @@ const FILES_TO_IGNORES: { [id: string]: string[] } = {
 
 // The files in the folders are not searched to see if their links
 // are valid.
-const FOLDERS_TO_IGNORES: string[] = [
-  "docs/api/qiskit/release-notes/*",
-];
+const FOLDERS_TO_IGNORES: string[] = ["docs/api/qiskit/release-notes/*"];
 
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
