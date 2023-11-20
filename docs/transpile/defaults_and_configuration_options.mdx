@@ -16,23 +16,23 @@ You can pass a circuit and target backend to the transpiler without specifying a
 Create a circuit and view the result: 
 
 ```python
-    from qiskit import transpile
-    from qiskit import QuantumCircuit
-    from qiskit.circuit.library import GroverOperator, Diagonal
-    from qiskit_ibm_runtime import QiskitRuntimeService
-    from qiskit.providers.fake_provider import FakeVigo
+from qiskit import transpile
+from qiskit import QuantumCircuit
+from qiskit.circuit.library import GroverOperator, Diagonal
+from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit.providers.fake_provider import FakeVigo
 
-    # Create circuit to test transpiler on
-    oracle = Diagonal([1] * 7 + [-1])
-    qc = QuantumCircuit(3)
-    qc.h([0, 1, 2])
-    qc = qc.compose(GroverOperator(oracle))
+# Create circuit to test transpiler on
+oracle = Diagonal([1] * 7 + [-1])
+qc = QuantumCircuit(3)
+qc.h([0, 1, 2])
+qc = qc.compose(GroverOperator(oracle))
 
-    # Add measurements to the circuit
-    qc.measure_all()
+# Add measurements to the circuit
+qc.measure_all()
 
-    # View the circuit
-    qc.draw(output='mpl')
+# View the circuit
+qc.draw(output='mpl')
 ```
 
 ![Original circuit](/images/transpile/defaults-and-configuration-options/original-circuit.png)
@@ -40,14 +40,14 @@ Create a circuit and view the result:
 Transpile the circuit and view the result:
 
 ```python
-    # Specify the backend to target
-    backend = FakeVigo()
+# Specify the backend to target
+backend = FakeVigo()
 
-    # Transpile the circuit
-    transpiled_circ = transpile(qc, backend)
+# Transpile the circuit
+transpiled_circ = transpile(qc, backend)
 
-    # View the transpiled circuit
-    transpiled_circ.draw(output='mpl')
+# View the transpiled circuit
+transpiled_circ.draw(output='mpl')
 ```
 
 ![Transpiled circuit](/images/transpile/defaults-and-configuration-options/transpiled-circuit.png)
@@ -90,7 +90,7 @@ These parameters impact specific transpilation stages. Some of them might impact
 The following default values are used if you don't specify any of these parameters: 
 
 ```python
-    qiskit.compiler.transpile(unitary_synthesis_method='default', translation_method='basis_translator', layout_method='sabre', routing_method='sabre', approximation_degree=1.0, optimization_level=1.0, scheduling_method='as_late_as_possible')
+qiskit.compiler.transpile(unitary_synthesis_method='default', translation_method='basis_translator', layout_method='sabre', routing_method='sabre', approximation_degree=1.0, optimization_level=1.0, scheduling_method='as_late_as_possible')
 ```
 
 **Initialization stage**
@@ -138,14 +138,14 @@ The following default values are used if you don't specify any of these paramete
   To use the callback feature, define a function that will take in kwargs dict and access the variables. For example:
 
   ```python
-      def callback_func(**kwargs):
-          pass_ = kwargs['pass_']
-          dag = kwargs['dag']
-          time = kwargs['time']
-          property_set = kwargs['property_set']
-          count = kwargs['count']
-          ...
-      transpile(circ, callback=callback_func)
+  def callback_func(**kwargs):
+      pass_ = kwargs['pass_']
+      dag = kwargs['dag']
+      time = kwargs['time']
+      property_set = kwargs['property_set']
+      count = kwargs['count']
+      ...
+  transpile(circ, callback=callback_func)
   ```
 
 - seed_transpiler (int) - Sets random seeds for the stochastic parts of the transpiler.
@@ -220,38 +220,38 @@ Because finding the best layout is an NP-hard problem, it is the most time-consu
 Example, specifying `optimization_level=0`: 
 
 ```python
-    from qiskit import QuantumCircuit, transpile
-    from qiskit.visualization import plot_circuit_layout
-    from qiskit.providers.fake_provider import FakeVigo
-    backend = FakeVigo()
+from qiskit import QuantumCircuit, transpile
+from qiskit.visualization import plot_circuit_layout
+from qiskit.providers.fake_provider import FakeVigo
+backend = FakeVigo()
 
-    ghz = QuantumCircuit(3, 3)
-    ghz.h(0)
-    ghz.cx(0,range(1,3))
-    ghz.barrier()
-    ghz.measure(range(3), range(3))
+ghz = QuantumCircuit(3, 3)
+ghz.h(0)
+ghz.cx(0,range(1,3))
+ghz.barrier()
+ghz.measure(range(3), range(3))
 
-    new_circ_lv0 = transpile(ghz, backend=backend, optimization_level=0)
-    plot_circuit_layout(new_circ_lv0, backend)
+new_circ_lv0 = transpile(ghz, backend=backend, optimization_level=0)
+plot_circuit_layout(new_circ_lv0, backend)
 ```
 ![Layout with optimization level 0](/images/transpile/defaults-and-configuration-options/optimization-level-0.png)
 
 Example, specifying `optimization_level=3`: 
 
 ```python
-    from qiskit import QuantumCircuit, transpile
-    from qiskit.visualization import plot_circuit_layout
-    from qiskit.providers.fake_provider import FakeVigo
-    backend = FakeVigo()
+from qiskit import QuantumCircuit, transpile
+from qiskit.visualization import plot_circuit_layout
+from qiskit.providers.fake_provider import FakeVigo
+backend = FakeVigo()
 
-    ghz = QuantumCircuit(3, 3)
-    ghz.h(0)
-    ghz.cx(0,range(1,3))
-    ghz.barrier()
-    ghz.measure(range(3), range(3))
+ghz = QuantumCircuit(3, 3)
+ghz.h(0)
+ghz.cx(0,range(1,3))
+ghz.barrier()
+ghz.measure(range(3), range(3))
 
-    new_circ_lv3 = transpile(ghz, backend=backend, optimization_level=3)
-    plot_circuit_layout(new_circ_lv3, backend)
+new_circ_lv3 = transpile(ghz, backend=backend, optimization_level=3)
+plot_circuit_layout(new_circ_lv3, backend)
 ```
 ![Layout with optimization level 3](/images/transpile/defaults-and-configuration-options/optimization-level-3.png)
 
@@ -260,34 +260,34 @@ Since CX is the noisiest gate, we can quantify the transpilation's "hardware eff
 First, import the necessary libraries:
 
 ```python
-    from qiskit import transpile, QuantumCircuit
-    from qiskit.circuit.library import UnitaryGate
-    from qiskit.providers.fake_provider import FakeTokyo
-    from qiskit.quantum_info import Operator, random_unitary
-    from qiskit.quantum_info.synthesis.two_qubit_decompose import trace_to_fid
+from qiskit import transpile, QuantumCircuit
+from qiskit.circuit.library import UnitaryGate
+from qiskit.providers.fake_provider import FakeTokyo
+from qiskit.quantum_info import Operator, random_unitary
+from qiskit.quantum_info.synthesis.two_qubit_decompose import trace_to_fid
 
-    import numpy as np
+import numpy as np
 ```
 
 Next we build a quantum circuit consisting of a random unitary followed by a SWAP gate. The `random_unitary` method is seeded to ensure reproducible results.
 
 ```python
-    UU = random_unitary(4, seed=12345)
-    rand_U = UnitaryGate(UU)
+UU = random_unitary(4, seed=12345)
+rand_U = UnitaryGate(UU)
 
-    qc = QuantumCircuit(2)
-    qc.append(rand_U, range(2))
-    qc.swap(0, 1)
-    qc.draw('mpl')
+qc = QuantumCircuit(2)
+qc.append(rand_U, range(2))
+qc.swap(0, 1)
+qc.draw('mpl')
 ```
 ![Original abstract circuit](/images/transpile/defaults-and-configuration-options/abstract-circ.png)
 
 We use `FakeTokyo` as the backend and transpile using `optimization_level=1` (the default). To avoid considering the effect of idle qubits, We override the backend's coupling map so that the transpiled circuit returns to a two-qubit circuit.
 
 ```python
-    backend = FakeTokyo()
-    qc_t1_exact = transpile(qc, backend, optimization_level=1, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
-    qc_t1_exact.draw('mpl', style='iqp')
+backend = FakeTokyo()
+qc_t1_exact = transpile(qc, backend, optimization_level=1, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
+qc_t1_exact.draw('mpl', style='iqp')
 ```
 ![Circuit transpiled with optimization level 1](/images/transpile/defaults-and-configuration-options/circ-opt-level-1.png)
 
@@ -297,8 +297,8 @@ The transpiled circuit has six CX gates and several `U3` gates, which have much 
 Repeat for optimization level 2: 
 
 ```python
-    qc_t2_exact = transpile(qc, backend, optimization_level=2, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
-    qc_t2_exact.draw('mpl', style='iqp')
+qc_t2_exact = transpile(qc, backend, optimization_level=2, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
+qc_t2_exact.draw('mpl', style='iqp')
 ```
 ![Circuit transpiled with optimization level 2](/images/transpile/defaults-and-configuration-options/circ-opt-level-2.png)
 
@@ -307,31 +307,31 @@ This yields the same results as optimization level 1. Note that increasing the l
 Repeat again, with optimization level 3:
 
 ```python
-    qc_t3_exact = transpile(qc, backend, optimization_level=3, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
-    qc_t3_exact.draw('mpl', style='iqp')
+qc_t3_exact = transpile(qc, backend, optimization_level=3, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
+qc_t3_exact.draw('mpl', style='iqp')
 ```
 ![Circuit transpiled with optimization level 3](/images/transpile/defaults-and-configuration-options/circ-opt-level-3.png)
 
 Now there are only three CX gates. This is because with optimization level 3, Qiskit tries to re-synthesize two-qubit blocks of gates. Since any two-qubit gate requires at most three CX gates, we get the above result. We can get even fewer CX gates if we sacrifice the fidelity of this synthese by setting `approximation_degree` to a value less than 1:
 
 ```python
-    qc_t3_approx = transpile(qc, backend, optimization_level=3, approximation_degree=0.99, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
-    qc_t3_approx.draw('mpl', style='iqp')
+qc_t3_approx = transpile(qc, backend, optimization_level=3, approximation_degree=0.99, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
+qc_t3_approx.draw('mpl', style='iqp')
 ```
 
 This circuit has only two CX gates. However, this is an approximate circuit, so we need to understand the difference in fidelity to the desired circuit with the incurred error from running on noisy qubits. We can calculate the fidelity of the approximate circuit:
 
 ```python
-    exact_fid = trace_to_fid(np.trace(np.dot(Operator(qc_t3_exact).adjoint().data, UU)))
-    approx_fid = trace_to_fid(np.trace(np.dot(Operator(qc_t3_approx).adjoint().data, UU)))
-    print(f'Synthesis fidelity\nExact: {exact_fid:.3f}\nApproximate: {approx_fid:.3f}')
+exact_fid = trace_to_fid(np.trace(np.dot(Operator(qc_t3_exact).adjoint().data, UU)))
+approx_fid = trace_to_fid(np.trace(np.dot(Operator(qc_t3_approx).adjoint().data, UU)))
+print(f'Synthesis fidelity\nExact: {exact_fid:.3f}\nApproximate: {approx_fid:.3f}')
 ```
 gives
 
 ```text
-      Synthesis fidelity
-    Exact: 1.000
-    Approximate: 0.992
+Synthesis fidelity
+Exact: 1.000
+Approximate: 0.992
 ```
 
 <span id="approximation-degree"></span>
@@ -361,25 +361,25 @@ Specifies the initial position of virtual qubits on physical qubits. If this lay
     * Dict 
       - virtual to physical:
         ```python
-            {qr[0]: 0,
-            qr[1]: 3,
-            qr[2]: 5}
+        {qr[0]: 0,
+        qr[1]: 3,
+        qr[2]: 5}
         ```
       - physical to virtual:
         ```python
-            {0: qr[0],
-            3: qr[1],
-            5: qr[2]}
+        {0: qr[0],
+        3: qr[1],
+         5: qr[2]}
         ```
 
     * List
       - virtual to physical:
         ```python
-            [0, 3, 5]  # virtual qubits are ordered (in addition to named)
+        [0, 3, 5]  # virtual qubits are ordered (in addition to named)
         ```
       -  physical to virtual:
         ```python
-            [qr[0], None, None, qr[1], None, qr[2]]
+        [qr[0], None, None, qr[1], None, qr[2]]
         ```
 
 ### *_method 
