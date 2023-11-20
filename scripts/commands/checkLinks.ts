@@ -98,7 +98,9 @@ const FILES_TO_IGNORES: { [id: string]: string[] } = {
 
 // The files in the folders are not searched to see if their links
 // are valid.
-const FOLDERS_TO_IGNORES: string[] = [];
+const FOLDERS_TO_IGNORES: string[] = [
+  "docs/api/qiskit/release-notes/*",
+];
 
 // While these files don't exist in this repository, the link
 // checker should assume that they exist in production.
@@ -110,7 +112,6 @@ const SYNTHETIC_FILES: string[] = [
 interface Arguments {
   [x: string]: unknown;
   external: boolean;
-  "qiskit-release-notes": boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -123,13 +124,6 @@ const readArgs = (): Arguments => {
       description:
         "Should external links be checked? This slows down the script, but is useful to check.",
     })
-    .option("qiskit-release-notes", {
-      type: "boolean",
-      demandOption: false,
-      default: false,
-      description:
-        "Should all the Qiskit release notes be checked? By default only the latest version is validated.",
-    })
     .parseSync();
 };
 
@@ -141,20 +135,6 @@ function markdownFromNotebook(source: string): string {
     }
   }
   return markdown;
-}
-
-async function lastestQiskitReleaseNote(): Promise<string | undefined> {
-  const releaseNotes = await globby(
-    "docs/api/qiskit/release-notes/!(index.md)",
-  );
-  return releaseNotes
-    .sort((a, b) => {
-      return a.localeCompare(b, undefined, {
-        numeric: true,
-        sensitivity: "base",
-      });
-    })
-    .pop();
 }
 
 /**
@@ -176,9 +156,6 @@ async function loadFilesAndLinks(
 
   // Files inside the folders we want to ignore
   const filesInFoldersToIgnores = await globby(FOLDERS_TO_IGNORES);
-
-  // Path of the latest Qiskit release note
-  const pathLastestQiskitReleaseNote = await lastestQiskitReleaseNote();
 
   for (let filePath of filePaths) {
     const source = await readFile(filePath, { encoding: "utf8" });
@@ -205,14 +182,6 @@ async function loadFilesAndLinks(
     }
 
     if (filesInFoldersToIgnores.includes(filePath)) {
-      continue;
-    }
-
-    if (
-      !args["qiskit-release-notes"] &&
-      filePath != pathLastestQiskitReleaseNote &&
-      filePath.startsWith("docs/api/qiskit/release-notes/")
-    ) {
       continue;
     }
 

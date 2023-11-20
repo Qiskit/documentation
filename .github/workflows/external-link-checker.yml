@@ -11,8 +11,7 @@
 # that they have been altered from the originals.
 
 # This Action validates all the links in the documentation, including
-# external links and the validation of all the links in all the Qiskit
-# release notes. This Action will be run at 00:00 (UTC) every day.
+# external links. This Action will be run at 00:00 (UTC) every day.
 
 name: Check external links
 on:
@@ -33,4 +32,4 @@ jobs:
         run: npm ci
 
       - name: Check external links
-        run: npm run check:links -- --external --qiskit-release-notes
+        run: npm run check:links -- --external

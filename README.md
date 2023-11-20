@@ -104,14 +104,11 @@ This staging environment can be useful to see how the docs are rendering before 
 CI will check for broken links. You can also check locally:
 
 ```bash
-# Only check for internal broken links, excluding the Qiskit release notes, except the latest one.
+# Only check for internal broken links
 npm run check:links
 
-# Enable the validation of external links.
+# Enable the validation of external links
 npm run check:links -- --external
-
-# Enable the validation of the links in all the Qiskit release notes.
-npm run check:links -- --qiskit-release-notes
 
 # Or, run all the checks
 npm run check
