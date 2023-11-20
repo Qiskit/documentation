@@ -16,23 +16,23 @@ You can pass a circuit and target backend to the transpiler without specifying a
 Create a circuit and view the result: 
 
 ```python
-from qiskit import transpile
-from qiskit import QuantumCircuit
-from qiskit.circuit.library import GroverOperator, Diagonal
-from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit.providers.fake_provider import FakeVigo
+  from qiskit import transpile
+  from qiskit import QuantumCircuit
+  from qiskit.circuit.library import GroverOperator, Diagonal
+  from qiskit_ibm_runtime import QiskitRuntimeService
+  from qiskit.providers.fake_provider import FakeVigo
 
-# Create circuit to test transpiler on
-oracle = Diagonal([1] * 7 + [-1])
-qc = QuantumCircuit(3)
-qc.h([0, 1, 2])
-qc = qc.compose(GroverOperator(oracle))
+  # Create circuit to test transpiler on
+  oracle = Diagonal([1] * 7 + [-1])
+  qc = QuantumCircuit(3)
+  qc.h([0, 1, 2])
+  qc = qc.compose(GroverOperator(oracle))
 
-# Add measurements to the circuit
-qc.measure_all()
+  # Add measurements to the circuit
+  qc.measure_all()
 
-# View the circuit
-qc.draw(output='mpl')
+  # View the circuit
+  qc.draw(output='mpl')
 ```
 
 ![Original circuit](/images/transpile/defaults_and_configuration_options/original_circuit.png)
@@ -41,14 +41,14 @@ qc.draw(output='mpl')
 Transpile the circuit and view the result:
 
 ```python
-# Specify the backend to target
-backend = FakeVigo()
+  # Specify the backend to target
+  backend = FakeVigo()
 
-# Transpile the circuit
-transpiled_circ = transpile(qc, backend)
+  # Transpile the circuit
+  transpiled_circ = transpile(qc, backend)
 
-# View the transpiled circuit
-transpiled_circ.draw(output='mpl')
+  # View the transpiled circuit
+  transpiled_circ.draw(output='mpl')
 ```
 
 ![Transpiled circuit](/images/transpile/defaults_and_configuration_options/transpiled_circuit.png)
