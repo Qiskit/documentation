@@ -6,7 +6,7 @@ description: An overview of sessions and when to use them.
 
 # About sessions
 
-A session allows a collection of jobs to be grouped and jointly scheduled by the Qiskit Runtime service, facilitating iterative use of quantum computers without incurring queuing delays on each iteration. This eliminates artificial delays caused by other users’ jobs running on the same quantum device during the session. If you don't need iterative processing and can send all jobs at once, use the [`Batch`](run-primitives-batch) class instead.
+A session allows a collection of jobs to be grouped and jointly scheduled by the Qiskit Runtime service, facilitating iterative use of quantum computers without incurring queuing delays on each iteration. This eliminates artificial delays caused by other users’ jobs running on the same quantum device during the session. If you don't need iterative processing and can send all jobs at once, use the [`Batch`](run-jobs-batch) class instead.
 
 <figure>
     <img src='/images/run/session-overview.png' alt='Jobs are shown moving through the queue.  Only the first session job waits in the fair-share queue.' width="350"/>
@@ -134,7 +134,7 @@ If the maximum timeout value has not been reached:
     -   No further jobs can be submitted to the session.
     -   The session cannot be reopened.
 
-Sessions run _iteratively_. Running iteratively means that any session job submitted within the interactive timeout, also known as interactive time to live (ITTL), is processed immediately. This allows some time for variational algorithms, such as VQE, to perform classical post-processing. To run jobs in batch mode, see [batch](run-primitives-batch).
+Sessions run _iteratively_. Running iteratively means that any session job submitted within the interactive timeout, also known as interactive time to live (ITTL), is processed immediately. This allows some time for variational algorithms, such as VQE, to perform classical post-processing. To run jobs in batch mode, see [batch](run-jobs-batch).
 
 -   When a session is active, its jobs get priority until ITTL or max timeout is reached.
 -   Post-processing could be done anywhere, such as a personal computer, cloud service, or an HPC environment.
