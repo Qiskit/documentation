@@ -28,7 +28,7 @@ Import the necessary libraries and instantiate the backend:
     target = backend.target
 ```
 
-The EfficientSU2 circuit consists of layers of single qubit operations spanned by SU(2) and `CX` entanglements. This is a heuristic pattern that can be used to prepare trial wave functions for variational quantum algorithms or classification circuit for machine learning.
+The EfficientSU2 circuit consists of layers of single qubit operations spanned by SU(2) and `CX` entanglements. This is a heuristic pattern that can be used to prepare trial wave functions for variational quantum algorithms or classification circuits for machine learning.
 
 ```python
     qc = EfficientSU2(12, entanglement='circular', reps=1)
@@ -42,7 +42,7 @@ Transpile the circuit with the simplest options. This example uses `optimization
     qc_t_target = transpile(qc, target=target, optimization_level=2, seed_transpiler=12345)
     qc_t_target.draw('mpl', style='iqp', idle_wires=False)
 ```
-![The transpiled 12-qubit anstatz using Target information](/images/transpile/representing_quantum_computers/qc_t_target.png)
+![The transpiled 12-qubit ansatz using Target information](/images/transpile/representing_quantum_computers/qc_t_target.png)
 
 This example is used in later sections of this topic to illustrate that the coupling map and basis gates are the essential pieces of information to pass to the transpiler for optimal circuit construction. The backend can usually select default settings for other information that is not passed in, such as timing and scheduling. (TODO: check!) 
 
@@ -78,7 +78,7 @@ As shown above, several SWAP gates were inserted (each consisting of three CX ga
 ```
 ![Circuit Layout for optimization level 0](/images/transpile/representing_quantum_computers/circ_layout_lv0.png)
 
-This show that our virtual qubits 0-11 were trivially mapped to the line of physical qubits 0-11.
+This shows that our virtual qubits 0-11 were trivially mapped to the line of physical qubits 0-11.
 
 ```python
     qc_t_cm_lv2 = transpile(qc, coupling_map=coupling_map, optimization_level=2, seed_transpiler=12345)
@@ -86,7 +86,7 @@ This show that our virtual qubits 0-11 were trivially mapped to the line of phys
 ```
 ![Ansatz transpiled to coupling map with optimization level 2](/images/transpile/representing_quantum_computers/qc_t_cm_lv2.png)
 
-Now we do not have any SWAP gates inserted, and the physical qubits selected are the same when using the Target class *(TODO: actually they should probably be different).*
+Now there are no SWAP gates inserted and the physical qubits selected are the same when using the Target class *(TODO: actually they should probably be different).*
 
 ```python
     from qiskit.visualization import plot_circuit_layout
