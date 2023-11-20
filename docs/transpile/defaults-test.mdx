@@ -333,3 +333,22 @@ gives
     Exact: 1.000
     Approximate: 0.992
 ```
+
+<span id="approximation-degree"></span>
+### Approximation degree
+
+You can use the approximation degree to specify how closely you want the resultant circuit to match the desired (input) circuit.  This is a float in the range (0.0 - 1.0), where 0.0 is maximum approximation and 1.0 (default) is no approximation. Smaller values trade output accuracy for ease of execution (that is, fewer gates).  The default value is 1.0.
+
+In two-qubit unitary synthesis (used with optimization level 3), this value specifies the target fidelity of the output decomposition. That is, how much error is introduced when a matrix representation of a circuit is converted to discrete gates. If the approximation degree is a lower value (more approximation), the output circuit from synthesis will differ more from the input matrix, but will also likely have fewer gates (because any arbitrary two-qubit operation can be decomposed perfectly with at most three CX gates) and is easier to run. 
+
+When the approximation degree is less than 1.0, circuits with one or two CX gates might be synthesized, leading to less error from the hardware, but more from the approximation. Since CX is the most expensive gate in terms of error, it might be beneficial to decrease the number of them at the cost of fidelity in synthesis (this technique was used to increase quantum volume on IBM devices: [Validating quantum computers using randomized model circuits](https://arxiv.org/abs/1811.12926)). 
+
+### Seed transpiler
+
+Sets the random seed for the stochastic parts of the transpiler, used for reproducibility. 
+
+Example:
+
+```python
+    optimized_1 = transpile(qc, backend=backend, seed_transpiler=11, optimization_level=1)
+```

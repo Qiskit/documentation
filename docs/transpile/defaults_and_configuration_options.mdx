@@ -120,8 +120,8 @@ The following default values are used if you don't specify any of these paramete
 
 **Scheduling stage**
 - scheduling_method (str) - Name of the scheduling pass. This can also be the external plugin name to use for the scheduling stage. You can see a list of installed plugins by running `list_stage_plugins()` with `scheduling` for the `stage_name` argument.
-  * 'as_soon_as_possible': Schedule instructions greedily, as early as possible on a qubit resource. (alias: 'asap') 
-  * 'as_late_as_possible': Schedule instructions late, that is, keeping qubits in the ground state when possible. (alias: 'alap').  This is the default. 
+  * 'as_soon_as_possible': Schedule instructions greedily, as early as possible on a qubit resource. (alias: `asap`) 
+  * 'as_late_as_possible': Schedule instructions late, that is, keeping qubits in the ground state when possible. (alias: `alap`).  This is the default. 
 
 **Transpiler execution**
 - callback (Callable[[BasePass, DAGCircuit, float, PropertySet, int], Any]) - A callback function that is called after each pass execution. The function is called with these keyword arguments:
@@ -341,9 +341,9 @@ You can use the approximation degree to specify how closely you want the resulta
 
 In two-qubit unitary synthesis (used with optimization level 3), this value specifies the target fidelity of the output decomposition. That is, how much error is introduced when a matrix representation of a circuit is converted to discrete gates. If the approximation degree is a lower value (more approximation), the output circuit from synthesis will differ more from the input matrix, but will also likely have fewer gates (because any arbitrary two-qubit operation can be decomposed perfectly with at most three CX gates) and is easier to run. 
 
-When the approximation degree is less than 1.0, circuits with one or two CX gates might be synthesized, leading to less error from the hardware, but more from the approximation. Since CX is the most expensive gate in terms of error, it might be beneficial to decrease the number of them at the cost of fidelity in synthesis (this technique was used to increase quantum volume on IBM devices: https://arxiv.org/abs/1811.12926). 
+When the approximation degree is less than 1.0, circuits with one or two CX gates might be synthesized, leading to less error from the hardware, but more from the approximation. Since CX is the most expensive gate in terms of error, it might be beneficial to decrease the number of them at the cost of fidelity in synthesis (this technique was used to increase quantum volume on IBM devices: [Validating quantum computers using randomized model circuits](https://arxiv.org/abs/1811.12926)). 
 
-### seed_transpiler
+### Seed transpiler
 
 Sets the random seed for the stochastic parts of the transpiler, used for reproducibility. 
 
@@ -353,7 +353,7 @@ Example:
     optimized_1 = transpile(qc, backend=backend, seed_transpiler=11, optimization_level=1)
 ```
 
-### initial_layout
+### Initial layout
 
 Specifies the initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the `coupling_map` constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler might permute qubits through swaps or other means. Multiple formats are supported. Multiple formats are supported:
 
