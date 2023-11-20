@@ -11,10 +11,10 @@ from yaspin.spinners import Spinners
 
 
 class Lesson:
-    def __init__(self, lesson_path, lesson_id):
+    def __init__(self, lesson_path, lesson_url):
         self.path = Path(lesson_path)
         self.name = self.path.parts[-1]
-        self.id = lesson_id
+        self.url = lesson_url
         self.zip_path = None
 
     def zip(self):
@@ -99,7 +99,7 @@ class API:
         if not self.hide_urls:
             print(f"   \033[30m╷\033[0m Web page: \033[96m{web_page}\033[0m")
             print(
-                f"   \033[30m╵\033[0m Lesson data: \033[96m{self.url}/admin/content/lessons/{lesson.id}\033[0m"
+                f"   \033[30m╵\033[0m Lesson data: \033[96m{self.url}/admin/content/{lesson.url}\033[0m"
             )
 
     def _push(self, lesson: Lesson, log):
@@ -120,7 +120,7 @@ class API:
         # 1. Get ID of english translation (needed for upload)
         log("Finding English translation...")
         response = requests.get(
-            f"{self.url}/items/lessons/{lesson.id}"
+            f"{self.url}/items/{lesson.url}"
             "?fields[]=translations.id,translations.languages_code",
             headers=self.auth_header,
         )
@@ -151,7 +151,7 @@ class API:
         log("Linking upload...")
         # 4. Link .zip to content
         response = requests.patch(
-            f"{self.url}/items/lessons/{lesson.id}",
+            f"{self.url}/items/{lesson.url}",
             json={
                 "translations": [{"id": translation_id, "temporal_file": temp_file_id}]
             },
@@ -166,7 +166,7 @@ class API:
         # 6. Return URLs
         log("Getting URLs...")
         response = requests.get(
-            f"{self.url}/items/lessons/{lesson.id}", headers=self.auth_header
+            f"{self.url}/items/{lesson.url}", headers=self.auth_header
         )
         response.raise_for_status()
         lesson_slug = response.json()["data"]["slug"]
