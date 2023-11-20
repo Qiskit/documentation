@@ -1,5 +1,5 @@
 ---
-title: Introduction to the transpiler
+title: Introduction
 description: Introduction to the transpiler
 
 ---
@@ -31,9 +31,8 @@ Qiskit's prebuilt transpiler pipeline consists of six fundamental stages:
 ## Default transpilation
 The basic usage of the transpiler is to call the [`qiskit.compiler.transpile()`](../api/qiskit/compiler#qiskit.compiler.transpile) function.  This will generate and run one of the preset `StagedPassManager`s based on, among other options, an `optimization_level` flag that can be set to either 0, 1, 2, or 3.  Higher levels generate more optimized circuits, at the expense of longer transpilation times.
 
-If you'd like to read more about the preset pass managers or the transpiler stages, visit the [Transpiler stages](transpiler-stages) topic. To learn how to use the `.transpile()` function, see the [Transpilation default settings and configuration options](defaults_and_configuration_options) topic.
+If you'd like to read more about the preset pass managers or the transpiler stages, visit the section on [Transpiler stages and preset PassManagers](transpiler-stages). To learn how to use the `.transpile()` function, see the [Transpilation default settings and configuration options](defaults_and_configuration_options) topic.
 
 
 ## Customizing passes
 For more advanced users, you can customize your own set of `PassManager` and `StagedPassManager` objects and determine the ordering in which each stage is run.  This can dramatically change the final output circuit. In fact, oftentimes a bespoke approach to transpiling a quantum algorithm produces more efficient error suppression than the default approach.  This involves rewriting quantum circuits to match hardware constraints and suppressing the effects of noise.  The flow of logic for this tool chain is quite customizable and need not be linear.  The transpilation process can even prepare iterative loops, conditional branches, and other complex behaviors.  A good starting place when developing a set of custom passes is to examine the default sequence of transformations.
-
