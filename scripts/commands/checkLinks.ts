@@ -29,7 +29,6 @@ import { hideBin } from "yargs/helpers";
 // The files need a list of links to be ignored, and when an asterisk
 // (*) is used as a link, all the links in the file will be ignored.
 const FILES_TO_IGNORES: { [id: string]: string[] } = {
-  "docs/api/qiskit/release-notes/0.45.md": ["*"],
   "docs/api/qiskit-ibm-provider/ibm-provider.md": ["ibm_provider"],
   "docs/api/qiskit-ibm-runtime/ibm-runtime.md": ["runtime_service"],
   "docs/api/qiskit/pulse.md": [
@@ -145,8 +144,6 @@ function markdownFromNotebook(source: string): string {
 async function loadFilesAndLinks(
   filePaths: string[],
 ): Promise<[File[], Link[], Link[]]> {
-  const args = readArgs();
-
   const fileList: File[] = [];
   const internalLinkList: Link[] = [];
   const externalLinkList: Link[] = [];
