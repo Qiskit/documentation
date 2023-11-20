@@ -6,7 +6,7 @@ description: An overview of sessions and when to use them.
 
 # About sessions
 
-A session allows a collection of jobs to be grouped and jointly scheduled by the Qiskit Runtime service, facilitating iterative use of quantum computers without incurring queuing delays on each iteration. This eliminates artificial delays caused by other users’ jobs running on the same quantum device during the session.
+A session allows a collection of jobs to be grouped and jointly scheduled by the Qiskit Runtime service, facilitating iterative use of quantum computers without incurring queuing delays on each iteration. This eliminates artificial delays caused by other users’ jobs running on the same quantum device during the session. If you don't need iterative processing and can send all jobs at once, use the [`Batch`](run-jobs-batch) class instead.
 
 <figure>
     <img src='/images/run/session-overview.png' alt='Jobs are shown moving through the queue.  Only the first session job waits in the fair-share queue.' width="350"/>
@@ -134,13 +134,7 @@ If the maximum timeout value has not been reached:
     -   No further jobs can be submitted to the session.
     -   The session cannot be reopened.
 
-## Different ways of using sessions
-
-Sessions can be used for iterative or batch execution.
-
-### Iterative
-
-Any session job submitted within the interactive timeout, also known as interactive time to live (ITTL), is processed immediately. This allows some time for variational algorithms, such as VQE, to perform classical post-processing.
+Sessions run _iteratively_. Running iteratively means that any session job submitted within the interactive timeout, also known as interactive time to live (ITTL), is processed immediately. This allows some time for variational algorithms, such as VQE, to perform classical post-processing. To run jobs in batch mode, see [batch](run-jobs-batch).
 
 -   When a session is active, its jobs get priority until ITTL or max timeout is reached.
 -   Post-processing could be done anywhere, such as a personal computer, cloud service, or an HPC environment.
@@ -171,35 +165,6 @@ This is an example of running an iterative workload that uses the classical SciP
     session.close()
 ```
 
-### Batch
-
-Ideal for running experiments closely together to avoid device drifts,
-that is, to maintain device characterization.
-
--   Suitable for batching many jobs together.
--   The classical computation, such as compilation, of the jobs is run in parallel. This means running multiple jobs in a batch would be significantly faster than running them serially. 
-
-<Admonition type="note">
-    When batching, jobs are not guaranteed to run in the order they are submitted.
-</Admonition>
-
-![Batch session execution diagram.](/images/run/batch.png 'Figure 3: Batch session execution')
-
-The following example shows how you can divide up a long list of circuits into multiple jobs and run them as a batch to take advantage of the parallel processing.
-
-```python
-backend = service.backend("ibm_sherbrooke")
-
-with Session(backend=backend):
-    estimator = Estimator()
-    start_idx = 0
-    jobs = []
-    while start_idx < len(circuits):
-        end_idx = start_idx + backend.max_circuits
-        jobs.append(estimator.run(circuits[start_idx:end_idx], obs[start_idx:end_idx], params[start_idx:end_idx]))
-        start_idx = end_idx
-```
-
 ## Sessions and reservations
 
 IBM Quantum Premium users can access both reservations and sessions on
@@ -226,5 +191,5 @@ recommend that you set a realistic `max_time` value.
 
 <Admonition type="tip" title="Recommendation">
     - [Run a job in a session.](run-jobs-in-session)
-    - See sessions at work in the [VQE tutorial.](https://learning.quantum-computing.ibm.com/tutorial/variational-quantum-eigensolver-using-estimator-primitive-and-sessions).
+    - See sessions at work in the [Variational Quantum Eigensolver tutorial.](https://learning.quantum-computing.ibm.com/tutorial/variational-quantum-eigensolver)
 </Admonition>

@@ -107,7 +107,7 @@ CI will check for broken links. You can also check locally:
 # Only check for internal broken links
 npm run check:links
 
-# Only check for internal and external broken links
+# Enable the validation of external links
 npm run check:links -- --external
 
 # Or, run all the checks

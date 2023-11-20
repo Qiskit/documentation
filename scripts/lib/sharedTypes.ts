@@ -24,6 +24,7 @@ export type Pkg = {
   initialUrls: string[];
   title: string;
   ignore?(id: string): boolean;
+  hasSeparateReleaseNotes?: boolean;
   tocOptions?: {
     collapsed?: boolean;
     nestModule?(id: string): boolean;
