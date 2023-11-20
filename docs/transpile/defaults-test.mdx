@@ -57,6 +57,28 @@ Transpile the circuit and view the result:
 Following are all of the available parameters for the `transpile()` method.  There are two classes of arguments: those that describe the target of compilation, and those that influence how the transpiler works.
 
 
-All parameters except `circuits` are optional.  For full details, see the (Transpiler API documentation)[https://docs.quantum-computing.ibm.com/api/qiskit/transpiler#transpiler-api].
+All parameters except `circuits` are optional.  For full details, see the see the [Transpiler API documentation](https://docs.quantum-computing.ibm.com/api/qiskit/transpiler#transpiler-api)..
 
 `circuits` (`_CircuitT`) - One or more circuits to transpile. This is the only required parameter.
+
+### Parameters used to describe the compilation target:
+
+* Backend parameters - If you specify `backend`, you don't need to specify `target` or any other backend options. Likewise, if you specify `target`, you don't need to specify `backend` or any other backend options.
+  - backend (Backend) - If this is set, the transpiler compiles the input circuit to this device. If any other option is set that impacts these settings, such as `coupling_map`, it overrides the settings from `backend`.
+  - backend_properties (BackendProperties) - Properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, and so on. Find a backend that provides this information by running `backend.properties()`.
+  - dt (float | None) - Backend sample time (resolution) in seconds. If `None` is specified (default), `backend.configuration().dt` is used. 
+  - ignore_backend_supplied_default_methods (bool) - If set to `True`, any default methods specified by a backend are ignored. Some backends specify alternative default methods to support custom compilation target-specific passes / plugins that support backend-specific compilation techniques. If you prefer that these defaults are not used, this option disables those backend-specific defaults.
+  - instruction_durations (List[Tuple[str, Iterable[int], float, Iterable[float], str]] | List[Tuple[str, Iterable[int], float, Iterable[float]]] | List[Tuple[str, Iterable[int], float, str]] | List[Tuple[str, Iterable[int], float]] | InstructionDurations) - Durations of instructions. Applicable only if `scheduling_method` is specified. The gate lengths defined in `backend.properties` are used by default. They are overwritten if `instruction_durations` is specified. The `instruction_durations` format must be as follows. The instruction_durations must be given as a list of tuples [(instruction_name, qubits, duration, unit), …]. | [(`cx`, [0, 1], 12.3, `ns`), (`u3`, [0], 4.56, `ns`)] | [(`cx`, [0, 1], 1000), (`u3`, [0], 300)] If `unit` is omitted, the default is `dt`, which is a sample time depending on backend. If the time unit is `dt`, the duration must be an integer.
+  - target (Target) - A backend transpiler target. Normally this is specified as part of the backend argument, but if you manually constructed a Target object, you can specify it here. This overrides the target from `backend`.
+  - timing_constraints (Dict[str, int] | None) - An optional control hardware restriction on instruction time resolution. This information is provided by the backend configuration. If the backend doesn’t have any restriction on the instruction time allocation, `timing_constraints` is `None` and no adjustment is performed. A quantum computer backend might report a set of restrictions, namely:
+      - granularity: An integer value representing minimum pulse gate resolution in units of dt. A user-defined pulse gate should have duration that is a multiple of this granularity value.
+      - min_length: An integer value representing the minimum pulse gate length in units of dt. A user-defined pulse gate should be longer than this length.
+      - pulse_alignment: An integer value representing a time resolution of gate instruction starting time. Gate instructions should start at time that is a multiple of this value. 
+      - acquire_alignment: An integer value representing a time resolution of measure instruction starting time. Measure instruction should start at time that is a multiple of this value. 
+
+* Layout and topology parameters
+  - basis_gates (List[str] | None) - List of basis gate names to unroll to.  For example ['u1', 'u2', 'u3', 'cx']. If `None`, do not unroll.
+  - coupling_map (CouplingMap | List[List[int]]) - Directed coupling map (possibly custom) to target in mapping. If the coupling map is symmetric, both directions need to be specified. These formats are supported:
+      - CouplingMap instance
+      - List, must be given as an adjacency matrix, where each entry specifies all directed two-qubit interactions supported by backend.  For example:[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]
+  - inst_map (List[InstructionScheduleMap] | None) - Mapping of circuit operations to pulse schedules. If `None`, the backend’s `instruction_schedule_map` is used.
