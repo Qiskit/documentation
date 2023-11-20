@@ -92,7 +92,7 @@ All parameters except `circuits` are optional.  For full details, see the (Trans
 
 ### Parameters used to influence how the transpiler works:
 
-These parameters impact specific transpilation stages. Some of them might impact multiple stages, but have only been listed under one stage for simplicity. For details about specific stages see [title.](link)
+These parameters impact specific transpilation stages. Some of them might impact multiple stages, but have only been listed under one stage for simplicity. If you specify an argument, such as `init_layout`  for the qubits you want to use, that value overrides all the passes that could change it. In other words, the transpiler won't change anything that you manually specify. For details about specific stages see [title.](link)
 
 The following default values are used if you don't specify any of these parameters: 
 
@@ -205,7 +205,7 @@ Because finding the best layout is an NP-hard problem, it is the most time-consu
       <Td>
         Medium optimization:
           - Layout/Routing: Optimization level 1 (without trivial) + heuristic optimized with greater
-        search depth and trials of optimization function
+        search depth and trials of optimization function.  Because `TrivialLayout` is not used, if you specify your own layout, the transpiler won't change it. 
         -   Commutative cancelation
       </Td>
     </Tr>
