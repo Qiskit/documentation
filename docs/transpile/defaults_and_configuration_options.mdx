@@ -20,7 +20,7 @@ from qiskit import transpile
 from qiskit import QuantumCircuit
 from qiskit.circuit.library import GroverOperator, Diagonal
 from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit.providers.fake_provider import FakeVigo
+from qiskit.providers.fake_provider import FakeSherbrooke
 
 # Create circuit to test transpiler on
 oracle = Diagonal([1] * 7 + [-1])
@@ -41,7 +41,7 @@ Transpile the circuit and view the result:
 
 ```python
 # Specify the backend to target
-backend = FakeVigo()
+backend = FakeSherbrooke()
 
 # Transpile the circuit
 transpiled_circ = transpile(qc, backend)
