@@ -201,7 +201,7 @@ dependency and the older version.
 
 Whenever a new major version is released, the recommended upgrade path
 is to first upgrade to use the most recent minor version on the previous major
-version. Immediately preceding a new major version a final minor version will
+version. Shortly before a new major version a final minor version will
 be published. This final minor version release `M.N+1.0` is equivalent to
 `M.N.0` but with warnings and deprecations for any API changes that are
 made on the new major version series.
@@ -226,27 +226,27 @@ Pre-emptively capping the version less than the next major version is necessary
 to ensure you get a chance to see deprecation warnings before a
 major version release. The normal release schedule means the last minor
 version release which includes any final deprecation warnings will be released
-at the same time as the next major version and `pip` will default to using
+shortly before the next major version and `pip` will default to using
 the newest version available unless the version cap is set.
 
 ### Pre-releases
 
 For each minor and major version release Qiskit will publish pre-releases that
 are compatible with [PEP440](https://peps.python.org/pep-0440/). Typically
-these are just release candidates of the form `1.2.0rc1`. The `rc` releases
+these are just release candidates of the form `X.Y.0rc1`. The `rc` releases
 will have a finalized API surface and are used to test a prospective release.
 
 If another PEP440 pre-release suffix (such as `a`, `b`, or `pre`) are
 published these do not have the same guarantees as an `rc` release, and are
-just preview releases. The API likely will change between these pre-releases
-and the final release with that version number. For example, `1.0.0pre1` has
-a different final API from `1.0.0`.
+just preview releases. The API might change between these pre-releases
+and the final release with that version number. For example, `1.0.0pre1` might have
+a different final API than `1.0.0`.
 
 ### Post-releases
 
 If there are issues with the packaging of a given release a post-release may be
-issued to correct this. These will follow the form `1.2.1.1` where the fourth
-integer is used to indicate it is the 1st post release of the `1.2.1` release.
+issued to correct this. These will follow the form `X.Y.Z.1` where the fourth
+integer is used to indicate it is the 1st post release of the `X.Y.Z` release.
 For example, the qiskit-terra (the legacy package name for Qiskit) 0.25.2
 release had some issue with the sdist package publishing and a post-release
 0.25.2.1 was published that corrected this issue. The code was identical, and
