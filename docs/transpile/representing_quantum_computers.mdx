@@ -6,7 +6,7 @@ description: The necessary backend information for successfully transpiling quan
 
 # Representing quantum computers
 
-To construct an equivalent circuit that can run on a specific backend, the transpiler needs certain details about the backend.  Typically, this information is found in the `backend` or `target = backend.target` class, so you don't need to pass anything further to the transpiler. (TODO: check with Matthew about how this is moving, seems there is no `target` attribute for older `Backend` classes). However, if more infomation is provided, the transpiler can use it to try to produce the best circuit to run on that hardware.  
+To construct an equivalent circuit that can run on a specific backend, the transpiler needs certain details about the backend.  Typically, this information is found in the `backend` or `target = backend.target` class, so you don't need to pass anything further to the transpiler. However, if more infomation is provided, the transpiler can use it to try to produce the best circuit to run on that hardware.  
 
 <Admonition type="note">
 Because many of the underlying transpilation algorithms are stochastic, there is no guarantee that a better circuit will be found. 
@@ -15,7 +15,7 @@ Because many of the underlying transpilation algorithms are stochastic, there is
 <span id="default-config"></span>
 ## Default configuration
 
-The simplest use of the transpiler is to provide all the backend infomation by providing the `backend` or `target` (TODO: only available on newer backends?). To better understand how the transpiler works, construct a circuit and transpile it with different information:
+The simplest use of the transpiler is to provide all the backend infomation by providing the `backend` or `target`. To better understand how the transpiler works, construct a circuit and transpile it with different information:
 
 Import the necessary libraries and instantiate the backend:
 
@@ -44,7 +44,7 @@ Transpile the circuit with the simplest options. This example uses `optimization
 ```
 ![The transpiled 12-qubit ansatz using Target information](/images/transpile/representing_quantum_computers/qc_t_target.png)
 
-This example is used in later sections of this topic to illustrate that the coupling map and basis gates are the essential pieces of information to pass to the transpiler for optimal circuit construction. The backend can usually select default settings for other information that is not passed in, such as timing and scheduling. (TODO: check!) 
+This example is used in later sections of this topic to illustrate that the coupling map and basis gates are the essential pieces of information to pass to the transpiler for optimal circuit construction. The backend can usually select default settings for other information that is not passed in, such as timing and scheduling.
 
 Providing the backend properties, including the gates' error rates, allows the transpiler to select the best set of qubits on the backend.
 
@@ -85,7 +85,7 @@ This show that our virtual qubits 0-11 were trivially mapped to the line of phys
 ```
 ![Ansatz transpiled to coupling map with optimization level 1](/images/transpile/representing_quantum_computers/qc_t_cm_lv1.png)
 
-Now there are no SWAP gates inserted and the physical qubits selected are the same when using the Target class *(TODO: actually they should probably be different).*
+Now there are no SWAP gates inserted and the physical qubits selected are the same when using the Target class.
 
 ```python
     from qiskit.visualization import plot_circuit_layout
