@@ -119,18 +119,18 @@ Technically you can choose whatever gates you like as long as you provide the in
 
 Note that the `CXGate`s have been decomposed to `ecr` gates and single-qubit basis gates.
 
-## Including Backend Errors
+## Including backend errors
 
-If we wish to consider the error rates of the qubits in addition to the `coupling_map` and `basis_gates`, we will need to construct a `target`.  While the `target` object contains everything we need to target a backend, here we show how to build one that just contains limited amount of information.
+Constructing a `target` object lets you consider the qubits' error rates in addition to the `coupling_map` and `basis_gates`.  The `target` object contains everything needed to target a backend, but here we build one that contains a limited amount of information.
 
-We retrieved the `target` from `backend.target` earlier, which contains lots of backend information, including error rates. For example, the instruction properties of the echoed cross resonance gate between qubit 0 and 1 (not that `ecr` is directional) is shown is retrieved via
+We retrieved the `target` from `backend.target` previously. This contains a lot of backend information, including error rates. For example, the instruction properties of the echoed cross resonance gate between qubit 0 and 1 (not that `ecr` is directional) is retrieved by running the following command:
 
 ```python
     target['ecr'][(1, 0)]
 ```
 `InstructionProperties(duration=5.333333333333332e-07, error=0.006969730734746021, calibration=PulseQobj)`
 
-The above result shows that the gate is 533μs with an error of 0.7%. To reveal error information to the transpiler, we will build our own target model with the `basis_gates` and `coupling_map` above and populate it with error values from the actual backend `FakeSherbrooke`. 
+The above result shows that the gate is 533μs with an error of 0.7%. To reveal error information to the transpiler, we will build our own target model with the `basis_gates` and `coupling_map` from above and populate it with error values from the backend `FakeSherbrooke`. 
 
 ```python
     from qiskit.transpiler import Target
@@ -149,5 +149,5 @@ Transpile with our new target `err_targ` as the target:
 ```
 ![Ansatz transpiled to our target model](/images/transpile/representing_quantum_computers/qc_t_cm_bg_et_lv1.png)
 
-Note that by including the error information, the `VF2PostLayout` pass attempts to find the optimal qubits to use, and we have returned to the circuit found at the top with the same physical qubits.
+Note that by including the error information, the `VF2PostLayout` pass tries to find the optimal qubits to use, resulting in the same circuit that we found originally with the same physical qubits.
 
