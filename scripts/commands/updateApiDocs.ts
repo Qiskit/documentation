@@ -33,7 +33,6 @@ import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { Pkg, Link } from "../lib/sharedTypes";
-import transformLinks from "transform-markdown-links";
 
 interface Arguments {
   [x: string]: unknown;
@@ -329,12 +328,6 @@ async function convertHtmlToMarkdown(
         : `/images/api/${pkg.name}`,
       releaseNotesTitle: `${pkg.title} ${versionWithoutPatch} release notes`,
     });
-
-    result.markdown = transformLinks(result.markdown, (link, _) =>
-      !historical || /^\/images.*/.test(link) || link.startsWith("http")
-        ? link
-        : link.replace(`${pkg.name}/`, `${pkg.name}/${versionWithoutPatch}/`),
-    );
 
     const { dir, name } = parse(`${markdownPath}/${file}`);
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
