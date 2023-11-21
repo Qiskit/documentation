@@ -93,35 +93,6 @@ const FILES_TO_IGNORES: { [id: string]: string[] } = {
   "docs/api/qiskit/qiskit.algorithms.optimizers.SPSA.md": [
     "https://ieeexplore.ieee.org/document/657661",
   ],
-  "docs/api/qiskit/0.44/circuit_singleton.md": [
-    "qiskit.circuit.Instruction#condition",
-    "qiskit.circuit.Instruction#to_mutable",
-    "qiskit.circuit.Instruction#mutable",
-    "qiskit.circuit.Instruction#base_class",
-  ],
-  "docs/api/qiskit/0.44/qiskit.algorithms.optimizers.NFT.md": ["#id2", "#id1"],
-  "docs/api/qiskit/0.44/qpy.md": [
-    "#id2",
-    "circuit#qiskit.circuit.CASE_DEFAULT",
-    "#f1",
-    "#f2",
-    "#f3",
-    "#id3",
-    "#id5",
-    "#id7",
-  ],
-  "docs/api/qiskit/0.44/qiskit.circuit.QuantumCircuit.md": [
-    "circuit#qiskit.circuit.CASE_DEFAULT",
-    "qiskit.org/documentation/tutorials/circuits/3_summary_of_quantum_operations",
-  ],
-  "docs/api/qiskit/0.44/utils.md": [
-    "#qiskit.utils.optionals.HAS_TESTTOOLS",
-    "#qiskit.utils.optionals.HAS_GRAPHVIZ",
-    "#qiskit.utils.optionals.HAS_PYDOT",
-  ],
-  "docs/api/qiskit/0.44/qiskit.circuit.SwitchCaseOp.md": [
-    "circuit#qiskit.circuit.CASE_DEFAULT",
-  ],
 };
 
 // The files in the folders are not searched to see if their links
@@ -206,6 +177,11 @@ async function loadFilesAndLinks(
     }
 
     if (filesInFoldersToIgnores.includes(filePath)) {
+      continue;
+    }
+
+    // Ignore all historical API version files.
+    if(/.*\/[0-9].*\//.test(filePath)) {
       continue;
     }
 
