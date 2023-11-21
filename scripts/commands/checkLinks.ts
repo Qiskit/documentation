@@ -181,7 +181,7 @@ async function loadFilesAndLinks(
     }
 
     // Ignore all historical API version files.
-    if(/.*\/[0-9].*\//.test(filePath)) {
+    if (/.*\/[0-9].*\//.test(filePath)) {
       continue;
     }
 
