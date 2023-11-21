@@ -15,7 +15,7 @@ Because many of the underlying transpilation algorithms are stochastic, there is
 <span id="default-config"></span>
 ## Default configuration
 
-The simplest use of the transpiler is to provide all the backend infomation by providing the `backend` or `target`. To better understand how the transpiler works, construct a circuit and transpile it with different information:
+The simplest use of the transpiler is to provide all the backend information by providing the `backend` or `target`. To better understand how the transpiler works, construct a circuit and transpile it with different information:
 
 Import the necessary libraries and instantiate the backend:
 
@@ -55,7 +55,7 @@ The coupling map is a graph that shows which qubits are connected and hence have
 The qubits from our abstract circuits are called _virtual qubits_ and those on the coupling map are _physical qubits_. The transpiler provides a mapping between virtual and physical qubits. One of the first steps in transpilation, the _routing_ stage, performs this mapping.
 
 <Admonition type="note">
-Although the routing stage it intertwined with the _layout_ stage, which selects the actual qubits, we will consider them as separate stages for simplicity. The combination of routing and layout is called _qubit mapping_. (TODO: insert link to page explaining transpile stages.  Also link to learn more about qubit mapping?) 
+Although the routing stage is intertwined with the _layout_ stage, which selects the actual qubits, we will consider them as separate stages for simplicity. The combination of routing and layout is called _qubit mapping_. 
 </Admonition>
 
 Pass the `coupling_map` keyword argument to see its effect on the transpiler:
@@ -77,7 +77,7 @@ As shown above, several SWAP gates were inserted (each consisting of three CX ga
 ```
 ![Circuit Layout for optimization level 0](/images/transpile/representing_quantum_computers/circ_layout_lv0.png)
 
-This show that our virtual qubits 0-11 were trivially mapped to the line of physical qubits 0-11. Let's return to the default (`optimization_level=1`), which uses `VF2Layout` if any routing is required.
+This shows that our virtual qubits 0-11 were trivially mapped to the line of physical qubits 0-11. Let's return to the default (`optimization_level=1`), which uses `VF2Layout` if any routing is required.
 
 ```python
     qc_t_cm_lv1 = transpile(qc, coupling_map=coupling_map, seed_transpiler=11)
@@ -85,7 +85,7 @@ This show that our virtual qubits 0-11 were trivially mapped to the line of phys
 ```
 ![Ansatz transpiled to coupling map with optimization level 1](/images/transpile/representing_quantum_computers/qc_t_cm_lv1.png)
 
-Now there are no SWAP gates inserted and the physical qubits selected are the same when using the Target class.
+Now there are no SWAP gates inserted and the physical qubits selected are the same when using the `target` class.
 
 ```python
     from qiskit.visualization import plot_circuit_layout
@@ -106,10 +106,8 @@ Every quantum backend supports a limited instruction set, called its _basis gate
 ```
 `['rz', 'sx', 'x', 'ecr', 'measure', 'delay']`
 
-The default single-qubit gates on _ibm_sherbrooke_ are `rz`, `x`, and `sx`, and the default two-qubit gate is `ecr` which stands for echoed cross resonsance. CX gates are constructed from `ecr` gates, so on some backends `ecr` is specified as the two-qubit basis gate while on others `cx` is default. The `ecr` gates is the _entangling_ part of the `cx` gate. If one desires to use a gate that is not in the basis gate set, instructions for custom gates can be provided using [pulse gates](https://qiskit.org/documentation/stubs/qiskit.transpiler.passes.PulseGates.html) (*uses old link*). In addition to the control gates, there is also `delay` and `measurement` instructions.
+The default single-qubit gates on _ibm_sherbrooke_ are `rz`, `x`, and `sx`, and the default two-qubit gate is `ecr` which stands for echoed cross resonsance. CX gates are constructed from `ecr` gates, so on some backends `ecr` is specified as the two-qubit basis gate while on others `cx` is default. The `ecr` gates is the _entangling_ part of the `cx` gate. If one desires to use a gate that is not in the basis gate set, instructions for custom gates can be provided using [pulse gates](https://qiskit.org/documentation/stubs/qiskit.transpiler.passes.PulseGates.html). In addition to the control gates, there are also `delay` and `measurement` instructions.
 
-**question: the statement "the default single-qubit gates..." makes it sound like you can choose a different set of gates somehow.  That doesn't seem possible, so what does that statement mean?**
-Technically you can choose whatever gates you like as long as you provide the instruction or add pulse gates (see custom transpiler pass doc). The default basis gates are those that calibrations have been done for on the backend, so no further instrcution/pulse gate needs to be provided. For example, on some backends `cx` is the default two-qubit gates and `ecr` on others.
 
 ```python
     qc_t_cm_bg = transpile(qc, coupling_map=coupling_map, basis_gates=basis_gates, seed_transpiler=11)
