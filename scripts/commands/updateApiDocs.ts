@@ -323,7 +323,7 @@ async function convertHtmlToMarkdown(
     });
 
     result.markdown = transformLinks(result.markdown, (link, _) =>
-      !historical || /^\/images.*/.test(link) || !link.startsWith("http")
+      !historical || /^\/images.*/.test(link) || link.startsWith("http")
         ? link
         : link.replace(`${pkg.name}/`, `${pkg.name}/${versionWithoutPatch}/`),
     );
@@ -420,7 +420,6 @@ async function convertHtmlToMarkdown(
   await downloadImages(
     allImages.map((img) => ({
       src: img.src,
-      // TODO: probably figure out, including the links used
       dest: `${getRoot()}/public${img.dest}`,
     })),
   );

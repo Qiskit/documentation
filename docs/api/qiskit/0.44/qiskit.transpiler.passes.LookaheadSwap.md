@@ -30,7 +30,7 @@ This algorithm searches through the available combinations of SWAP gates by mean
 *   Choose the layout which maximizes the number of two-qubit which could be performed. Add its mapped gates, including the SWAPs generated, to the output circuit.
 *   Repeat the above until all gates from the initial circuit are mapped.
 
-For more details on the algorithm, see Sven’s blog post: [https://medium.com/qiskit/improving-a-quantum-compiler-48410d7a7084](https://medium.com/qiskit/0.44/improving-a-quantum-compiler-48410d7a7084)
+For more details on the algorithm, see Sven’s blog post: [https://medium.com/qiskit/improving-a-quantum-compiler-48410d7a7084](https://medium.com/qiskit/improving-a-quantum-compiler-48410d7a7084)
 
 LookaheadSwap initializer.
 
