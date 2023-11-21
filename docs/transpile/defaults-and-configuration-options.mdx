@@ -166,7 +166,10 @@ qiskit.compiler.transpile(unitary_synthesis_method='default', translation_method
     **Transpiler execution**
   </summary>
 
-- `callback` (Callable[[BasePass, DAGCircuit, float, PropertySet, int], Any]) - A callback function that is called after each pass execution. The function is called with these keyword arguments:
+- `callback` (Callable[[BasePass, DAGCircuit, float, PropertySet, int], Any]) - A callback function is one that is called after each pass execution. This is useful for debugging. Since the transpiler substantially transforms a circuit, the callback mechanism helps you understand what the transpiler is doing after each pass. For example, if you see an unexpected circuit, you can write a callback to draw the circuit and print the pass name after each pass.
+
+The function is called with these keyword arguments:
+
   * pass_: the pass being run. 
   * dag: the dag output of the pass. 
   * time: the time to execute the pass. 
