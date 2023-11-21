@@ -33,6 +33,7 @@ import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { Pkg, Link } from "../lib/sharedTypes";
+import transformLinks from "transform-markdown-links";
 
 interface Arguments {
   [x: string]: unknown;
@@ -202,14 +203,17 @@ zxMain(async () => {
     });
   }
 
-
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${versionWithoutPatch}/`;
   const outputDir = args.historical
     ? `${getRoot()}/docs/api/${pkg.name}/${versionWithoutPatch}`
     : `${getRoot()}/docs/api/${pkg.name}`;
 
   const legacyReleaseNoteEntries = await processLegacyReleaseNotes(pkg);
-  await rmFilesInFolder(outputDir, `${pkg.name}:${versionWithoutPatch}`);
+  await rmFilesInFolder(
+    outputDir,
+    `${pkg.name}:${versionWithoutPatch}`,
+    args.historical,
+  );
 
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${versionWithoutPatch}`,
@@ -222,6 +226,7 @@ zxMain(async () => {
     args.version,
     legacyReleaseNoteEntries,
     versionWithoutPatch,
+    args.historical,
   );
 });
 
@@ -234,10 +239,12 @@ zxMain(async () => {
 async function rmFilesInFolder(
   dir: string,
   description: string,
+  historical: boolean,
 ): Promise<void> {
   console.log(`Deleting existing markdown for ${description}`);
-  // TODO: implement
-  // await $`rm -rf ${getRoot()}/docs/api/${pkg.name}`;
+  historical
+    ? await $`find ${dir}/* -not -path "*release-notes*" | xargs rm -rf {}`
+    : await $`find ${dir}/* -not -path "*release-notes*" -not -path '*/[0-9]*' | xargs rm -rf {}`;
 }
 
 async function downloadHtml(options: {
@@ -286,6 +293,7 @@ async function convertHtmlToMarkdown(
   version: string,
   releaseNoteEntries: { title: string; url: string }[],
   versionWithoutPatch: string,
+  historical: boolean,
 ) {
   const files = await globby(
     [
@@ -308,9 +316,18 @@ async function convertHtmlToMarkdown(
       html,
       url: `${pkg.baseUrl}/${file}`,
       baseSourceUrl,
-      imageDestination: `/images/api/${pkg.name}`,
+      imageDestination: historical
+        ? `/images/api/${pkg.name}/${versionWithoutPatch}`
+        : `/images/api/${pkg.name}`,
       releaseNotesTitle: `${pkg.title} ${versionWithoutPatch} release notes`,
     });
+
+    result.markdown = transformLinks(result.markdown, (link, _) =>
+      /^\/images.*/.test(link)
+        ? link
+        : link.replace(`${pkg.name}/`, `${pkg.name}/${versionWithoutPatch}/`),
+    );
+
     const { dir, name } = parse(`${markdownPath}/${file}`);
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
 
@@ -373,7 +390,7 @@ async function convertHtmlToMarkdown(
     JSON.stringify(toc, null, 2) + "\n",
   );
 
-  if (pkg.hasSeparateReleaseNotes) {
+  if (pkg.hasSeparateReleaseNotes && !historical) {
     console.log("Generating release-notes/index");
     let markdown = "---\n";
     markdown += `title: ${pkg.title} release notes\n`;
@@ -386,6 +403,10 @@ async function convertHtmlToMarkdown(
       markdown += `* [${entry.title}](${entry.url})\n`;
     }
     await writeFile(`${markdownPath}/release-notes/index.md`, markdown);
+  }
+
+  if (historical) {
+    await $`cp -a docs/api/${pkg.name}/release-notes/index.md ${markdownPath}/release-notes/index.md`;
   }
 
   console.log("Generating version file");
