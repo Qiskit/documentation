@@ -323,7 +323,7 @@ async function convertHtmlToMarkdown(
     });
 
     result.markdown = transformLinks(result.markdown, (link, _) =>
-      /^\/images.*/.test(link)
+      !historical || /^\/images.*/.test(link) || !link.startsWith("http")
         ? link
         : link.replace(`${pkg.name}/`, `${pkg.name}/${versionWithoutPatch}/`),
     );
