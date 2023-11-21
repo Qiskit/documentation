@@ -129,6 +129,8 @@ const readArgs = (): Arguments => {
  */
 const processLegacyReleaseNotes = async (
   pkg: Pkg,
+  versionWithoutPatch: string,
+  historical: boolean,
 ): Promise<{ title: string; url: string }[]> => {
   if (!pkg.hasSeparateReleaseNotes) {
     return [];
@@ -159,7 +161,9 @@ const processLegacyReleaseNotes = async (
   for (let version of legacyReleaseNoteVersions) {
     legacyReleaseNoteEntries.push({
       title: version,
-      url: `/api/${pkg.name}/release-notes/${version}`,
+      url: historical
+        ? `/api/${pkg.name}/${versionWithoutPatch}/release-notes/${version}`
+        : `/api/${pkg.name}/release-notes/${version}`,
     });
   }
   return legacyReleaseNoteEntries;
@@ -208,7 +212,11 @@ zxMain(async () => {
     ? `${getRoot()}/docs/api/${pkg.name}/${versionWithoutPatch}`
     : `${getRoot()}/docs/api/${pkg.name}`;
 
-  const legacyReleaseNoteEntries = await processLegacyReleaseNotes(pkg);
+  const legacyReleaseNoteEntries = await processLegacyReleaseNotes(
+    pkg,
+    versionWithoutPatch,
+    args.historical,
+  );
   await rmFilesInFolder(
     outputDir,
     `${pkg.name}:${versionWithoutPatch}`,
@@ -338,7 +346,9 @@ async function convertHtmlToMarkdown(
       if (releaseNoteEntries[0].title !== versionWithoutPatch) {
         releaseNoteEntries.unshift({
           title: versionWithoutPatch,
-          url: `/api/${pkg.name}/release-notes/${versionWithoutPatch}`,
+          url: historical
+            ? `/api/${pkg.name}/${versionWithoutPatch}/release-notes/${versionWithoutPatch}`
+            : `/api/${pkg.name}/release-notes/${versionWithoutPatch}`,
         });
       }
     }
@@ -380,7 +390,9 @@ async function convertHtmlToMarkdown(
       name: pkg.name,
       version,
       releaseNoteEntries,
-      releaseNotesUrl: `/api/${pkg.name}/release-notes`,
+      releaseNotesUrl: historical
+        ? `/api/${pkg.name}/${versionWithoutPatch}/release-notes`
+        : `/api/${pkg.name}/release-notes`,
       tocOptions: pkg.tocOptions,
     },
     results,
@@ -390,7 +402,7 @@ async function convertHtmlToMarkdown(
     JSON.stringify(toc, null, 2) + "\n",
   );
 
-  if (pkg.hasSeparateReleaseNotes && !historical) {
+  if (pkg.hasSeparateReleaseNotes) {
     console.log("Generating release-notes/index");
     let markdown = "---\n";
     markdown += `title: ${pkg.title} release notes\n`;
@@ -406,7 +418,8 @@ async function convertHtmlToMarkdown(
   }
 
   if (historical) {
-    await $`cp -a docs/api/${pkg.name}/release-notes/index.md ${markdownPath}/release-notes/index.md`;
+    await $`find ${markdownPath}/release-notes/* -not -path "*index.md" | xargs rm -rf {}`;
+    await $`find docs/api/${pkg.name}/release-notes/* -not -path "*index.md" | xargs -I {} cp -a {} docs/api/${pkg.name}/${versionWithoutPatch}/release-notes/`;
   }
 
   console.log("Generating version file");
