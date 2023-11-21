@@ -7,6 +7,7 @@ description: Commonly used parameters such as approximation degree
 
 Following are some of the more commonly used transpilation parameters.
 
+<span id="approx-degree"></span>
 ## Approximation degree
 
 You can use the approximation degree to specify how closely you want the resultant circuit to match the desired (input) circuit.  This is a float in the range (0.0 - 1.0), where 0.0 is maximum approximation and 1.0 (default) is no approximation. Smaller values trade output accuracy for ease of execution (that is, fewer gates).  The default value is 1.0.
@@ -25,6 +26,7 @@ Example:
     optimized_1 = transpile(qc, backend=backend, seed_transpiler=11, optimization_level=1)
 ```
 
+<span id="init-layout"></span>
 ## Initial layout
 
 Specifies the initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the `coupling_map` constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler might permute qubits through swaps or other means. Multiple formats are supported. Multiple formats are supported:
