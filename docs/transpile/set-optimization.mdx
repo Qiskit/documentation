@@ -7,9 +7,9 @@ description: Learn how to set the optimization level
 
 Decomposing quantum circuits into the basis gate set of the target device and the addition of SWAP gates needed to match hardware topology causes an increase the depth and gate count of quantum circuits. To mitigate this increased complexity, you can set the `optimization_level`.  Setting this value calls an optimization routine that optimizes the transpilation process by combining or eliminating gates and by optionally using algorithms to find an optimal layout (depending on the level chosen). 
 
-In some cases these methods are so effective the output circuits have lower depth than the inputs. In other cases, not much can be done, and the computation may be difficult to perform on noisy devices. Choosing the best optimization level might take trial and error, as it depends heavily on the circuit being transpiled and the backend being targeted. By default, `optimization_level=1` is used.
+In some cases these methods are so effective the output circuits have lower depth than the inputs. In other cases, not much can be done, and the computation may be difficult to perform on noisy devices. Choosing the best optimization level might take trial and error, as it depends heavily on the circuit being transpiled and the backend being targeted.
 
-The `optimization_level` setting specifies how much optimization to perform on the circuits. Higher levels generate more optimized circuits by increasing the heuristic effort spent trying to optimize, at the expense of longer compile times.  The default level is 1. 
+Higher optimization levels generate more optimized circuits at the expense of longer compile times.  By default, `optimization_level=1` is used. 
 
 - `optimization_level=0`: Trivial optimization, which maps the circuit to the backend with no explicit optimization.
 - `optimization_level=1-3`: Increasingly complex optimization, with heuristic algorithms that are used to find a layout and insert SWAP gates, with the goal of improving the overall performance of the circuit.  The number of iterations that these algorithms run increases with higher optimization levels. 
