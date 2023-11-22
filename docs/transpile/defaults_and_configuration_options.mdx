@@ -47,7 +47,7 @@ Do we want this whole list?  If so, I'll add descriptions from (https://docs.qua
 
 Set the optimization level
 
-Decomposing quantum circuits into the basis gate set of the target device and the addition of swap gates needed to match hardware topology cause an increase the depth and gate count of quantum circuits. To mitigate this increased complexity, you can set the `optimization_level`.  Setting this value calls an optmization routine that optimizes circuits by combining or eliminating gates. In some cases these methods are so effective the output circuits have lower depth than the inputs. In other cases, not much can be done, and the computation may be difficult to perform on noisy devices. 
+Decomposing quantum circuits into the basis gate set of the target device and the addition of swap gates needed to match hardware topology cause an increase the depth and gate count of quantum circuits. To mitigate this increased complexity, you can set the `optimization_level`.  Setting this value calls an optimization routine that optimizes circuits by combining or eliminating gates. In some cases these methods are so effective the output circuits have lower depth than the inputs. In other cases, not much can be done, and the computation may be difficult to perform on noisy devices.
 
 Different gate optimizations are turned on with different `optimization_level` values. In general, the higher the number, the more optimized it is, at the expense of longer processing time. Choosing the best optimization level might take trial and error, as it depends heavily on the circuit being transpiled and the backend being targeted. By default, `optimization_level=1` is used.
 
@@ -137,7 +137,7 @@ Example, specifying `optimization_level=0`:
 
 It looks like the value is a float in the range [0 - 1]. Should we clarify that in the description?  What do the "in between" measurements mean?**
 
-### Other importatnt options?
+### Other important options?
 
 
 ## Next steps
