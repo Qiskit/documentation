@@ -33,6 +33,7 @@ import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { Pkg, Link } from "../lib/sharedTypes";
+import transformLinks from "transform-markdown-links";
 
 interface Arguments {
   [x: string]: unknown;
@@ -366,6 +367,9 @@ async function convertHtmlToMarkdown(
       const projectFolder = historical
         ? `${pkg.name}/${versionWithoutPatch}`
         : `${pkg.name}`;
+      result.markdown = transformLinks(result.markdown, (link, _) =>
+        link.startsWith("http") ? link : `/api/${projectFolder}/${link}`,
+      );
       path = `${getRoot()}/docs/api/${projectFolder}/release-notes/${versionWithoutPatch}.md`;
     }
     await writeFile(path, result.markdown);
@@ -406,7 +410,7 @@ async function convertHtmlToMarkdown(
   }
 
   if (historical) {
-    copyReleaseNotes(pkg.name, markdownPath);
+    await copyReleaseNotes(pkg.name, versionWithoutPatch, releaseNoteEntries);
   }
 
   console.log("Generating version file");
@@ -429,10 +433,35 @@ function urlToPath(url: string) {
   return `${getRoot()}/docs${url}.md`;
 }
 
+/**
+ * Copies all the legacy release notes of `projectName` found in `legacyReleaseNoteEntries`
+ * to the `versionWithoutPatch` folder, changing the links to point to the historical folder
+ */
 async function copyReleaseNotes(
   projectName: string,
-  pathHistoricalFolder: string,
+  versionWithoutPatch: string,
+  legacyReleaseNoteEntries: { title: string; url: string }[],
 ) {
-  await $`find ${pathHistoricalFolder}/release-notes/* -not -path "*index.md" | xargs rm -rf {}`;
-  await $`find docs/api/${projectName}/release-notes/* -not -path "*index.md" | xargs -I {} cp -a {} ${pathHistoricalFolder}/release-notes/`;
+  for (let entry of legacyReleaseNoteEntries) {
+    let source = await readFile(
+      `${getRoot()}/docs/api/${projectName}/release-notes/${entry.title}.md`,
+      { encoding: "utf8" },
+    );
+
+    source = transformLinks(source, (link, _) =>
+      link.startsWith("http")
+        ? link
+        : link.replace(
+            `${projectName}/`,
+            `${projectName}/${versionWithoutPatch}/`,
+          ),
+    );
+    
+    await writeFile(
+      `${getRoot()}/docs/api/${projectName}/${versionWithoutPatch}/release-notes/${
+        entry.title
+      }.md`,
+      source,
+    );
+  }
 }
