@@ -180,6 +180,11 @@ async function loadFilesAndLinks(
       continue;
     }
 
+    // Ignore all historical API version files.
+    if (/.*\/[0-9].*\//.test(filePath)) {
+      continue;
+    }
+
     unified()
       .use(rehypeParse)
       .use(remarkGfm)
