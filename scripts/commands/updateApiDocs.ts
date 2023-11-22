@@ -250,7 +250,7 @@ async function rmFilesInFolder(
   historical: boolean,
 ): Promise<void> {
   console.log(`Deleting existing markdown for ${description}`);
-  await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`
+  await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`;
 }
 
 async function downloadHtml(options: {
@@ -368,9 +368,10 @@ async function convertHtmlToMarkdown(
   for (const result of results) {
     let path = urlToPath(result.url);
     if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
-      path = `${getRoot()}/docs/api/${
-        pkg.name
-      }/release-notes/${versionWithoutPatch}.md`;
+      const projectFolder = historical
+        ? `${pkg.name}/${versionWithoutPatch}`
+        : `${pkg.name}`;
+      path = `${getRoot()}/docs/api/${projectFolder}/release-notes/${versionWithoutPatch}.md`;
     }
     await writeFile(path, result.markdown);
   }
@@ -433,7 +434,10 @@ function urlToPath(url: string) {
   return `${getRoot()}/docs${url}.md`;
 }
 
-async function copyReleaseNotes(projectName: string, pathHistoricalFolder: string){
+async function copyReleaseNotes(
+  projectName: string,
+  pathHistoricalFolder: string,
+) {
   await $`find ${pathHistoricalFolder}/release-notes/* -not -path "*index.md" | xargs rm -rf {}`;
   await $`find docs/api/${projectName}/release-notes/* -not -path "*index.md" | xargs -I {} cp -a {} ${pathHistoricalFolder}/release-notes/`;
 }
