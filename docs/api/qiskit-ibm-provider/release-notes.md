@@ -68,7 +68,7 @@ in_page_toc_max_heading_level: 2
 
 ### Upgrade Notes
 
-*   Job error messages now include the error code. Error codes can be found in [https://quantum-computing.ibm.com/lab/docs/iql/manage/errors](https://quantum-computing.ibm.com/lab/docs/iql/manage/errors).
+*   Job error messages now include the error code. Error codes can be found in [../lab/docs/iql/manage/errors](../lab/docs/iql/manage/errors).
 
 *   For each qubit, add the ability to select one of two different sets of spacings between dynamical decoupling pulses, based on the input coupling map.
 
