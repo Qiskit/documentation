@@ -217,11 +217,7 @@ zxMain(async () => {
     args.historical,
   );
 
-  await rmFilesInFolder(
-    outputDir,
-    `${pkg.name}:${versionWithoutPatch}`,
-    args.historical,
-  );
+  await rmFilesInFolder(outputDir, `${pkg.name}:${versionWithoutPatch}`);
 
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${versionWithoutPatch}`,
@@ -247,7 +243,6 @@ zxMain(async () => {
 async function rmFilesInFolder(
   dir: string,
   description: string,
-  historical: boolean,
 ): Promise<void> {
   console.log(`Deleting existing markdown for ${description}`);
   await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`;
