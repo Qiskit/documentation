@@ -216,6 +216,7 @@ zxMain(async () => {
     versionWithoutPatch,
     args.historical,
   );
+
   await rmFilesInFolder(
     outputDir,
     `${pkg.name}:${versionWithoutPatch}`,
@@ -249,9 +250,7 @@ async function rmFilesInFolder(
   historical: boolean,
 ): Promise<void> {
   console.log(`Deleting existing markdown for ${description}`);
-  historical
-    ? await $`find ${dir}/* -not -path "*release-notes*" | xargs rm -rf {}`
-    : await $`find ${dir}/* -not -path "*release-notes*" -not -path '*/[0-9]*' | xargs rm -rf {}`;
+  await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`
 }
 
 async function downloadHtml(options: {
@@ -411,8 +410,7 @@ async function convertHtmlToMarkdown(
   }
 
   if (historical) {
-    await $`find ${markdownPath}/release-notes/* -not -path "*index.md" | xargs rm -rf {}`;
-    await $`find docs/api/${pkg.name}/release-notes/* -not -path "*index.md" | xargs -I {} cp -a {} docs/api/${pkg.name}/${versionWithoutPatch}/release-notes/`;
+    copyReleaseNotes(pkg.name, markdownPath);
   }
 
   console.log("Generating version file");
@@ -433,4 +431,9 @@ async function convertHtmlToMarkdown(
 
 function urlToPath(url: string) {
   return `${getRoot()}/docs${url}.md`;
+}
+
+async function copyReleaseNotes(projectName: string, pathHistoricalFolder: string){
+  await $`find ${pathHistoricalFolder}/release-notes/* -not -path "*index.md" | xargs rm -rf {}`;
+  await $`find docs/api/${projectName}/release-notes/* -not -path "*index.md" | xargs -I {} cp -a {} ${pathHistoricalFolder}/release-notes/`;
 }
