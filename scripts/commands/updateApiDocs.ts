@@ -410,7 +410,7 @@ async function convertHtmlToMarkdown(
   }
 
   console.log("Generating version file");
-  const pkg_json = { name: pkg.name, version: version };
+  const pkg_json = { name: pkg.name, version: versionWithoutPatch };
   await writeFile(
     `${markdownPath}/_package.json`,
     JSON.stringify(pkg_json, null, 2) + "\n",
