@@ -161,7 +161,7 @@ in_page_toc_max_heading_level: 2
 
 ### Upgrade Notes
 
-*   Job error messages now include the error code. Error codes can be found in [https://docs.quantum.ibm.com/errors](https://docs.quantum.ibm.com/errors).
+*   Job error messages now include the error code. Error codes can be found in [https://docs.quantum-computing.ibm.com/errors](https://docs.quantum-computing.ibm.com/errors).
 
 <span id="release-notes-0-12-1" />
 

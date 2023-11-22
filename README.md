@@ -1,6 +1,6 @@
 # Qiskit docs
 
-The documentation content home for https://docs.quantum.ibm.com. Note this repo does not contain content for https://learning.quantum-computing.ibm.com/ or https://qiskit.org. Refer to https://github.com/Qiskit/qiskit to make changes to the docs at https://qiskit.org/documentation.
+The documentation content home for https://docs.quantum.ibm.com. Note this repo does not contain content for https://learning.quantum.ibm.com/ or https://qiskit.org. Refer to https://github.com/Qiskit/qiskit to make changes to the docs at https://qiskit.org/documentation.
 
 # Improving IBM Quantum & Qiskit Documentation
 
@@ -75,7 +75,7 @@ npm install
 
 Run `./start` in your terminal, then open http://localhost:3000/start in your browser.
 
-The local preview does not include the initial index page and the top nav bar from docs.quantum-computing.ibm.com. Therefore, you must directly navigate in the URL to the folder that you want:
+The local preview does not include the initial index page and the top nav bar from docs.quantum.ibm.com. Therefore, you must directly navigate in the URL to the folder that you want:
 
 - http://localhost:3000/build
 - http://localhost:3000/start
