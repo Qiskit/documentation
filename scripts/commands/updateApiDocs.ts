@@ -368,7 +368,9 @@ async function convertHtmlToMarkdown(
         ? `${pkg.name}/${versionWithoutPatch}`
         : `${pkg.name}`;
       result.markdown = transformLinks(result.markdown, (link, _) =>
-        link.startsWith("http") ? link : `/api/${projectFolder}/${link}`,
+        link.startsWith("http") || link.startsWith("#")
+          ? link
+          : `/api/${projectFolder}/${link}`,
       );
       path = `${getRoot()}/docs/api/${projectFolder}/release-notes/${versionWithoutPatch}.md`;
     }
@@ -449,14 +451,14 @@ async function copyReleaseNotes(
     );
 
     source = transformLinks(source, (link, _) =>
-      link.startsWith("http")
+      link.startsWith("http") || link.startsWith("#")
         ? link
         : link.replace(
             `${projectName}/`,
             `${projectName}/${versionWithoutPatch}/`,
           ),
     );
-    
+
     await writeFile(
       `${getRoot()}/docs/api/${projectName}/${versionWithoutPatch}/release-notes/${
         entry.title
