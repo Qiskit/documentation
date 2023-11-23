@@ -38,6 +38,7 @@ interface Arguments {
   [x: string]: unknown;
   package: string;
   version: string;
+  historical: boolean;
 }
 
 function transformLink(link: Link): Link | undefined {
@@ -113,6 +114,11 @@ const readArgs = (): Arguments => {
       demandOption: true,
       description: "The full version string of the --package, e.g. 0.44.0",
     })
+    .option("historical", {
+      type: "boolean",
+      default: false,
+      description: "Is this a prior release? Only works with `-p qiskit`.",
+    })
     .parseSync();
 };
 
@@ -122,6 +128,8 @@ const readArgs = (): Arguments => {
  */
 const processLegacyReleaseNotes = async (
   pkg: Pkg,
+  versionWithoutPatch: string,
+  historical: boolean,
 ): Promise<{ title: string; url: string }[]> => {
   if (!pkg.hasSeparateReleaseNotes) {
     return [];
@@ -152,7 +160,9 @@ const processLegacyReleaseNotes = async (
   for (let version of legacyReleaseNoteVersions) {
     legacyReleaseNoteEntries.push({
       title: version,
-      url: `/api/${pkg.name}/release-notes/${version}`,
+      url: historical
+        ? `/api/${pkg.name}/${versionWithoutPatch}/release-notes/${version}`
+        : `/api/${pkg.name}/release-notes/${version}`,
     });
   }
   return legacyReleaseNoteEntries;
@@ -175,6 +185,14 @@ zxMain(async () => {
     throw new Error(`Unrecognized package: ${args.package}`);
   }
 
+  if (args.historical) {
+    if (pkg.name !== "qiskit") {
+      throw new Error("`--historical` can only be used with `-p qiskit`");
+    }
+    pkg.baseUrl = `https://qiskit.org/documentation/stable/${versionWithoutPatch}`;
+    pkg.initialUrls = [`${pkg.baseUrl}/apidoc/index.html`];
+  }
+
   const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
     args.version
   }`;
@@ -189,12 +207,17 @@ zxMain(async () => {
   }
 
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${versionWithoutPatch}/`;
-  const outputDir = `${getRoot()}/docs/api/${pkg.name}`;
+  const outputDir = args.historical
+    ? `${getRoot()}/docs/api/${pkg.name}/${versionWithoutPatch}`
+    : `${getRoot()}/docs/api/${pkg.name}`;
 
-  const legacyReleaseNoteEntries = await processLegacyReleaseNotes(pkg);
+  const legacyReleaseNoteEntries = await processLegacyReleaseNotes(
+    pkg,
+    versionWithoutPatch,
+    args.historical,
+  );
 
-  console.log(`Deleting existing markdown for ${pkg.name}`);
-  await $`find ${outputDir}/* -not -path "*release-notes*" | xargs rm -rf {}`;
+  await rmFilesInFolder(outputDir, `${pkg.name}:${versionWithoutPatch}`);
 
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${versionWithoutPatch}`,
@@ -207,8 +230,23 @@ zxMain(async () => {
     args.version,
     legacyReleaseNoteEntries,
     versionWithoutPatch,
+    args.historical,
   );
 });
+
+/**
+ * Deletes all the files in the folder, but preserves subfolders. That's important
+ * to avoid accidentally deleting other historical versions of the API.
+ *
+ * We delete files when regenerating API docs to capture when APIs have been deleted.
+ */
+async function rmFilesInFolder(
+  dir: string,
+  description: string,
+): Promise<void> {
+  console.log(`Deleting existing markdown for ${description}`);
+  await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`;
+}
 
 async function downloadHtml(options: {
   baseUrl: string;
@@ -256,6 +294,7 @@ async function convertHtmlToMarkdown(
   version: string,
   releaseNoteEntries: { title: string; url: string }[],
   versionWithoutPatch: string,
+  historical: boolean,
 ) {
   const files = await globby(
     [
@@ -278,9 +317,12 @@ async function convertHtmlToMarkdown(
       html,
       url: `${pkg.baseUrl}/${file}`,
       baseSourceUrl,
-      imageDestination: `/images/api/${pkg.name}`,
+      imageDestination: historical
+        ? `/images/api/${pkg.name}/${versionWithoutPatch}`
+        : `/images/api/${pkg.name}`,
       releaseNotesTitle: `${pkg.title} ${versionWithoutPatch} release notes`,
     });
+
     const { dir, name } = parse(`${markdownPath}/${file}`);
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
 
@@ -291,7 +333,9 @@ async function convertHtmlToMarkdown(
       if (releaseNoteEntries[0].title !== versionWithoutPatch) {
         releaseNoteEntries.unshift({
           title: versionWithoutPatch,
-          url: `/api/${pkg.name}/release-notes/${versionWithoutPatch}`,
+          url: historical
+            ? `/api/${pkg.name}/${versionWithoutPatch}/release-notes/${versionWithoutPatch}`
+            : `/api/${pkg.name}/release-notes/${versionWithoutPatch}`,
         });
       }
     }
@@ -319,9 +363,10 @@ async function convertHtmlToMarkdown(
   for (const result of results) {
     let path = urlToPath(result.url);
     if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
-      path = `${getRoot()}/docs/api/${
-        pkg.name
-      }/release-notes/${versionWithoutPatch}.md`;
+      const projectFolder = historical
+        ? `${pkg.name}/${versionWithoutPatch}`
+        : `${pkg.name}`;
+      path = `${getRoot()}/docs/api/${projectFolder}/release-notes/${versionWithoutPatch}.md`;
     }
     await writeFile(path, result.markdown);
   }
@@ -333,7 +378,9 @@ async function convertHtmlToMarkdown(
       name: pkg.name,
       version,
       releaseNoteEntries,
-      releaseNotesUrl: `/api/${pkg.name}/release-notes`,
+      releaseNotesUrl: historical
+        ? `/api/${pkg.name}/${versionWithoutPatch}/release-notes`
+        : `/api/${pkg.name}/release-notes`,
       tocOptions: pkg.tocOptions,
     },
     results,
@@ -358,8 +405,12 @@ async function convertHtmlToMarkdown(
     await writeFile(`${markdownPath}/release-notes/index.md`, markdown);
   }
 
+  if (historical) {
+    copyReleaseNotes(pkg.name, markdownPath);
+  }
+
   console.log("Generating version file");
-  const pkg_json = { name: pkg.name, version: version };
+  const pkg_json = { name: pkg.name, version: versionWithoutPatch };
   await writeFile(
     `${markdownPath}/_package.json`,
     JSON.stringify(pkg_json, null, 2) + "\n",
@@ -376,4 +427,12 @@ async function convertHtmlToMarkdown(
 
 function urlToPath(url: string) {
   return `${getRoot()}/docs${url}.md`;
+}
+
+async function copyReleaseNotes(
+  projectName: string,
+  pathHistoricalFolder: string,
+) {
+  await $`find ${pathHistoricalFolder}/release-notes/* -not -path "*index.md" | xargs rm -rf {}`;
+  await $`find docs/api/${projectName}/release-notes/* -not -path "*index.md" | xargs -I {} cp -a {} ${pathHistoricalFolder}/release-notes/`;
 }
