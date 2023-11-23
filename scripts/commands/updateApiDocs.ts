@@ -438,10 +438,6 @@ function urlToPath(url: string) {
   return `${getRoot()}/docs${url}.md`;
 }
 
-/**
- * Copies all the legacy release notes of `projectName` found in `legacyReleaseNoteEntries`
- * to the `versionWithoutPatch` folder, changing the links to point to the historical folder
- */
 async function copyReleaseNotes(
   projectName: string,
   pathHistoricalFolder: string,
