@@ -33,6 +33,7 @@ import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { Pkg, Link } from "../lib/sharedTypes";
+import transformLinks from "transform-markdown-links";
 
 interface Arguments {
   [x: string]: unknown;
@@ -366,6 +367,14 @@ async function convertHtmlToMarkdown(
       const projectFolder = historical
         ? `${pkg.name}/${versionWithoutPatch}`
         : `${pkg.name}`;
+
+      // Convert the relative links to absolute links
+      result.markdown = transformLinks(result.markdown, (link, _) =>
+        link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
+          ? link
+          : `/api/${projectFolder}/${link}`,
+      );
+
       path = `${getRoot()}/docs/api/${projectFolder}/release-notes/${versionWithoutPatch}.md`;
     }
     await writeFile(path, result.markdown);
