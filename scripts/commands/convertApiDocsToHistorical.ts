@@ -69,12 +69,10 @@ zxMain(async () => {
   }
 
   await mkdirp(projectNewHistoricalFolder);
-  await mkdirp(`${projectNewHistoricalFolder}/release-notes`);
   await mkdirp(`${projectNewHistoricalFolder}/apidoc`);
   await mkdirp(`${projectNewHistoricalFolder}/stubs`);
 
   copyApiDocs(pkgName, versionWithoutPatch);
-  copyReleaseNotes(pkgName, versionWithoutPatch);
   generateJsonFiles(
     pkgName,
     packageInfo.version,
@@ -82,6 +80,11 @@ zxMain(async () => {
     projectNewHistoricalFolder,
   );
   copyImages(pkgName, versionWithoutPatch);
+
+  if(pkgName == "qiskit"){
+    await mkdirp(`${projectNewHistoricalFolder}/release-notes`);
+    copyReleaseNotes(pkgName, versionWithoutPatch);
+  }
 });
 
 async function copyApiDocs(pkgName: string, versionWithoutPatch: string) {
@@ -92,7 +95,7 @@ async function copyApiDocs(pkgName: string, versionWithoutPatch: string) {
       pkgName,
       versionWithoutPatch,
       filePath,
-      filePath.replace(`/api/qiskit`, "/api/qiskit/" + versionWithoutPatch),
+      filePath.replace(`/api/${pkgName}/`, `/api/${pkgName}/${versionWithoutPatch}/`),
     );
   }
 }
