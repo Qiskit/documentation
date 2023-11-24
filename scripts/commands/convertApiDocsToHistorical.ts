@@ -73,28 +73,33 @@ zxMain(async () => {
   await mkdirp(`${projectNewHistoricalFolder}/apidoc`);
   await mkdirp(`${projectNewHistoricalFolder}/stubs`);
 
-  copyApiDocs(pkgName, versionWithoutPatch)
+  copyApiDocs(pkgName, versionWithoutPatch);
   copyReleaseNotes(pkgName, versionWithoutPatch);
-  generateJsonFiles(pkgName, packageInfo.version, versionWithoutPatch, projectNewHistoricalFolder);
-  copyImages(pkgName,versionWithoutPatch)
+  generateJsonFiles(
+    pkgName,
+    packageInfo.version,
+    versionWithoutPatch,
+    projectNewHistoricalFolder,
+  );
+  copyImages(pkgName, versionWithoutPatch);
 });
 
 async function copyApiDocs(pkgName: string, versionWithoutPatch: string) {
-    console.log("Generating API docs");
-    const filePaths = await globby(`docs/api/${pkgName}/*.md`);
-    for(let filePath of filePaths){
-        updateLinksFile(
-            pkgName,
-            versionWithoutPatch,
-            filePath,
-            filePath.replace(`/api/qiskit`,"/api/qiskit/"+versionWithoutPatch),
-          );
-    }
+  console.log("Generating API docs");
+  const filePaths = await globby(`docs/api/${pkgName}/*.md`);
+  for (let filePath of filePaths) {
+    updateLinksFile(
+      pkgName,
+      versionWithoutPatch,
+      filePath,
+      filePath.replace(`/api/qiskit`, "/api/qiskit/" + versionWithoutPatch),
+    );
   }
+}
 
 async function copyReleaseNotes(pkgName: string, versionWithoutPatch: string) {
-    console.log("Generating release notes");
-    await $`find docs/api/${pkgName}/release-notes/* -maxdepth 0 -type f -not -path "*index.md" | xargs -I {} cp -a {}  docs/api/${pkgName}/${versionWithoutPatch}/release-notes/`;
+  console.log("Generating release notes");
+  await $`find docs/api/${pkgName}/release-notes/* -maxdepth 0 -type f -not -path "*index.md" | xargs -I {} cp -a {}  docs/api/${pkgName}/${versionWithoutPatch}/release-notes/`;
   updateLinksFile(
     pkgName,
     versionWithoutPatch,
@@ -103,32 +108,36 @@ async function copyReleaseNotes(pkgName: string, versionWithoutPatch: string) {
   );
 }
 
-async function generateJsonFiles(pkgName: string, version: string, versionWithoutPatch: string, projectNewHistoricalFolder: string){
-    console.log("Generating version file");
-    const pkgName_json = { name: pkgName, version: version };
-    await writeFile(
-      `${projectNewHistoricalFolder}/_package.json`,
-      JSON.stringify(pkgName_json, null, 2) + "\n",
-    );
+async function generateJsonFiles(
+  pkgName: string,
+  version: string,
+  versionWithoutPatch: string,
+  projectNewHistoricalFolder: string,
+) {
+  console.log("Generating version file");
+  const pkgName_json = { name: pkgName, version: version };
+  await writeFile(
+    `${projectNewHistoricalFolder}/_package.json`,
+    JSON.stringify(pkgName_json, null, 2) + "\n",
+  );
 
-    console.log("Generating toc");
-    let tocFile = await readFile(
-        `${getRoot()}/docs/api/${pkgName}/_toc.json`,
-        { encoding: "utf8" },
-      );
-    tocFile = tocFile.replaceAll(`"url": "/api/${pkgName}/`, `"url": "/api/${pkgName}/${versionWithoutPatch}/`);
-    await writeFile(
-      `${projectNewHistoricalFolder}/_toc.json`,
-      tocFile + "\n",
-    );
+  console.log("Generating toc");
+  let tocFile = await readFile(`${getRoot()}/docs/api/${pkgName}/_toc.json`, {
+    encoding: "utf8",
+  });
+  tocFile = tocFile.replaceAll(
+    `"url": "/api/${pkgName}/`,
+    `"url": "/api/${pkgName}/${versionWithoutPatch}/`,
+  );
+  await writeFile(`${projectNewHistoricalFolder}/_toc.json`, tocFile + "\n");
 }
 
-async function copyImages(pkgName: string, versionWithoutPatch: string){
-    console.log("Copying images");
-    const imageDirSource = `${getRoot()}/public/images/api/${pkgName}/`;
-    const imageDirDest = `${getRoot()}/public/images/api/${pkgName}/${versionWithoutPatch}`;
-    await mkdirp(imageDirDest);
-    await $`find ${imageDirSource}/* -maxdepth 0 -type f | xargs -I {} cp -a {} ${imageDirDest}`;
+async function copyImages(pkgName: string, versionWithoutPatch: string) {
+  console.log("Copying images");
+  const imageDirSource = `${getRoot()}/public/images/api/${pkgName}/`;
+  const imageDirDest = `${getRoot()}/public/images/api/${pkgName}/${versionWithoutPatch}`;
+  await mkdirp(imageDirDest);
+  await $`find ${imageDirSource}/* -maxdepth 0 -type f | xargs -I {} cp -a {} ${imageDirDest}`;
 }
 
 async function updateLinksFile(
