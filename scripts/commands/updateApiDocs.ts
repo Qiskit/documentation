@@ -34,6 +34,7 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { Pkg, Link } from "../lib/sharedTypes";
 import transformLinks from "transform-markdown-links";
+import { release } from "os";
 
 interface Arguments {
   [x: string]: unknown;
@@ -447,6 +448,12 @@ async function syncReleaseNotes(projectName: string, pathAPIFolder: string) {
   ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
 
   for (let folder of historicalFolders) {
+    if (projectName != "qiskit") {
+      await $`rm -f ${pathAPIFolder}/${folder.name}/release-notes.md`;
+      await $`cp -a ${pathAPIFolder}/release-notes.md ${pathAPIFolder}/${folder.name}/`;
+      continue;
+    }
+
     copyReleaseNotes(projectName, `${pathAPIFolder}/${folder.name}`);
 
     let markdownIndex = await readFile(
