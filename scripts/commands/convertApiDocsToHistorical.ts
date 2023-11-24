@@ -39,7 +39,7 @@ const readArgs = (): Arguments => {
       type: "string",
       choices: PACKAGES,
       demandOption: true,
-      description: "Which package to update",
+      description: "Which package to convert",
     })
     .parseSync();
 };
@@ -63,7 +63,7 @@ zxMain(async () => {
   const projectNewHistoricalFolder = `${getRoot()}/docs/api/${pkgName}/${versionWithoutPatch}`;
   if (await pathExists(projectNewHistoricalFolder)) {
     console.error(
-      `The package ${pkgName} has already an historical ${versionWithoutPatch} version`,
+      `${pkgName} has already a historical version ${versionWithoutPatch}`,
     );
     process.exit(1);
   }
