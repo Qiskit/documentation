@@ -446,10 +446,13 @@ async function syncReleaseNotes(projectName: string, pathAPIFolder: string) {
     await readdir(`${pathAPIFolder}`, { withFileTypes: true })
   ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
 
-  for(let folder of historicalFolders){
+  for (let folder of historicalFolders) {
     copyReleaseNotes(projectName, `${pathAPIFolder}/${folder.name}`);
 
-    let markdownIndex = await readFile(`${pathAPIFolder}/release-notes/index.md`, { encoding: "utf8" });
+    let markdownIndex = await readFile(
+      `${pathAPIFolder}/release-notes/index.md`,
+      { encoding: "utf8" },
+    );
 
     // Regex to capture the links containing /api/projectName and not followed
     // by any subfolder starting with a number (historical version folders)
@@ -459,9 +462,15 @@ async function syncReleaseNotes(projectName: string, pathAPIFolder: string) {
     );
 
     // Add the specific release note version as the first entry of the index.md
-    markdownIndex = markdownIndex.replace("*", `* [${folder.name}](/api/${projectName}/${folder.name}/release-notes/${folder.name})\n*`);
-  
-    await writeFile(`${pathAPIFolder}/${folder.name}/release-notes/index.md`, markdownIndex);
+    markdownIndex = markdownIndex.replace(
+      "*",
+      `* [${folder.name}](/api/${projectName}/${folder.name}/release-notes/${folder.name})\n*`,
+    );
+
+    await writeFile(
+      `${pathAPIFolder}/${folder.name}/release-notes/index.md`,
+      markdownIndex,
+    );
   }
 }
 
