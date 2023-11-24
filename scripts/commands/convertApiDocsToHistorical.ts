@@ -47,29 +47,23 @@ const readArgs = (): Arguments => {
 zxMain(async () => {
   const args = readArgs();
 
-  const pkg = PACKAGES.find((pkg) => pkg === args.package);
-  if (pkg === undefined) {
+  const pkgName = PACKAGES.find((pkgName) => pkgName === args.package);
+  if (pkgName === undefined) {
     throw new Error(`Unrecognized package: ${args.package}`);
   }
 
   const packageFile = await readFile(
-    `${getRoot()}/docs/api/${pkg}/_package.json`,
+    `${getRoot()}/docs/api/${pkgName}/_package.json`,
     { encoding: "utf8" },
   );
   const packageInfo = JSON.parse(packageFile);
-
   const versionMatch = packageInfo.version.match(/^(\d+\.\d+)/);
-  if (versionMatch === null) {
-    throw new Error(
-      `Invalid --version. Expected the format 0.44.0, but received ${args.version}`,
-    );
-  }
   const versionWithoutPatch = versionMatch[0];
 
-  const projectNewHistoricalFolder = `${getRoot()}/docs/api/${pkg}/${versionWithoutPatch}`;
+  const projectNewHistoricalFolder = `${getRoot()}/docs/api/${pkgName}/${versionWithoutPatch}`;
   if (await pathExists(projectNewHistoricalFolder)) {
     console.error(
-      `The package ${pkg} has already an historical ${versionWithoutPatch} version`,
+      `The package ${pkgName} has already an historical ${versionWithoutPatch} version`,
     );
     process.exit(1);
   }
@@ -79,18 +73,18 @@ zxMain(async () => {
   await mkdirp(`${projectNewHistoricalFolder}/apidoc`);
   await mkdirp(`${projectNewHistoricalFolder}/stubs`);
 
-  copyApiDocs(pkg, versionWithoutPatch)
-  copyReleaseNotes(pkg, versionWithoutPatch);
-  generateJsonFiles(pkg, packageInfo.version, versionWithoutPatch, projectNewHistoricalFolder);
-  copyImages(pkg,versionWithoutPatch)
+  copyApiDocs(pkgName, versionWithoutPatch)
+  copyReleaseNotes(pkgName, versionWithoutPatch);
+  generateJsonFiles(pkgName, packageInfo.version, versionWithoutPatch, projectNewHistoricalFolder);
+  copyImages(pkgName,versionWithoutPatch)
 });
 
-async function copyApiDocs(pkg: string, versionWithoutPatch: string) {
+async function copyApiDocs(pkgName: string, versionWithoutPatch: string) {
     console.log("Generating API docs");
-    const filePaths = await globby(`docs/api/${pkg}/*.md`);
+    const filePaths = await globby(`docs/api/${pkgName}/*.md`);
     for(let filePath of filePaths){
         updateLinksFile(
-            pkg,
+            pkgName,
             versionWithoutPatch,
             filePath,
             filePath.replace(`/api/qiskit`,"/api/qiskit/"+versionWithoutPatch),
@@ -98,47 +92,47 @@ async function copyApiDocs(pkg: string, versionWithoutPatch: string) {
     }
   }
 
-async function copyReleaseNotes(pkg: string, versionWithoutPatch: string) {
+async function copyReleaseNotes(pkgName: string, versionWithoutPatch: string) {
     console.log("Generating release notes");
-    await $`find docs/api/${pkg}/release-notes/* -maxdepth 0 -type f -not -path "*index.md" | xargs -I {} cp -a {}  docs/api/${pkg}/${versionWithoutPatch}/release-notes/`;
+    await $`find docs/api/${pkgName}/release-notes/* -maxdepth 0 -type f -not -path "*index.md" | xargs -I {} cp -a {}  docs/api/${pkgName}/${versionWithoutPatch}/release-notes/`;
   updateLinksFile(
-    pkg,
+    pkgName,
     versionWithoutPatch,
-    `${getRoot()}/docs/api/${pkg}/release-notes/index.md`,
-    `${getRoot()}/docs/api/${pkg}/${versionWithoutPatch}/release-notes/index.md`,
+    `${getRoot()}/docs/api/${pkgName}/release-notes/index.md`,
+    `${getRoot()}/docs/api/${pkgName}/${versionWithoutPatch}/release-notes/index.md`,
   );
 }
 
-async function generateJsonFiles(pkg: string, version: string, versionWithoutPatch: string, projectNewHistoricalFolder: string){
+async function generateJsonFiles(pkgName: string, version: string, versionWithoutPatch: string, projectNewHistoricalFolder: string){
     console.log("Generating version file");
-    const pkg_json = { name: pkg, version: version };
+    const pkgName_json = { name: pkgName, version: version };
     await writeFile(
       `${projectNewHistoricalFolder}/_package.json`,
-      JSON.stringify(pkg_json, null, 2) + "\n",
+      JSON.stringify(pkgName_json, null, 2) + "\n",
     );
 
     console.log("Generating toc");
     let tocFile = await readFile(
-        `${getRoot()}/docs/api/${pkg}/_toc.json`,
+        `${getRoot()}/docs/api/${pkgName}/_toc.json`,
         { encoding: "utf8" },
       );
-    tocFile = tocFile.replaceAll(`"url": "/api/${pkg}/`, `"url": "/api/${pkg}/${versionWithoutPatch}/`);
+    tocFile = tocFile.replaceAll(`"url": "/api/${pkgName}/`, `"url": "/api/${pkgName}/${versionWithoutPatch}/`);
     await writeFile(
       `${projectNewHistoricalFolder}/_toc.json`,
       tocFile + "\n",
     );
 }
 
-async function copyImages(pkg: string, versionWithoutPatch: string){
+async function copyImages(pkgName: string, versionWithoutPatch: string){
     console.log("Copying images");
-    const imageDirSource = `${getRoot()}/public/images/api/${pkg}/`;
-    const imageDirDest = `${getRoot()}/public/images/api/${pkg}/${versionWithoutPatch}`;
+    const imageDirSource = `${getRoot()}/public/images/api/${pkgName}/`;
+    const imageDirDest = `${getRoot()}/public/images/api/${pkgName}/${versionWithoutPatch}`;
     await mkdirp(imageDirDest);
     await $`find ${imageDirSource}/* -maxdepth 0 -type f | xargs -I {} cp -a {} ${imageDirDest}`;
 }
 
 async function updateLinksFile(
-  pkg: string,
+  pkgName: string,
   versionWithoutPatch: string,
   source: string,
   dest: string,
@@ -147,9 +141,9 @@ async function updateLinksFile(
 
   // Regex to capture the links containing /api/projectName and not followed
   // by any subfolder starting with a number (historical version folders)
-  const regexAbsolutePath = new RegExp("/api/" + pkg + "/(?![0-9])");
+  const regexAbsolutePath = new RegExp("/api/" + pkgName + "/(?![0-9])");
   markdown = transformLinks(markdown, (link, _) =>
-    link.replace(regexAbsolutePath, `/api/${pkg}/${versionWithoutPatch}/`),
+    link.replace(regexAbsolutePath, `/api/${pkgName}/${versionWithoutPatch}/`),
   );
 
   await writeFile(dest, markdown);
