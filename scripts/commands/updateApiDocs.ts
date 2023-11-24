@@ -202,7 +202,7 @@ zxMain(async () => {
     pkg.version
   }`;
   if (await pathExists(destination)) {
-    console.log(`Skip downloading sources for ${pkg.name}:${args.version}`);
+    console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
     await downloadHtml({
       baseUrl: pkg.baseUrl,
@@ -212,7 +212,7 @@ zxMain(async () => {
   }
 
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${pkg.versionWithoutPatch}/`;
-  const outputDir = args.historical
+  const outputDir = pkg.historical
     ? `${getRoot()}/docs/api/${pkg.name}/${pkg.versionWithoutPatch}`
     : `${getRoot()}/docs/api/${pkg.name}`;
 
