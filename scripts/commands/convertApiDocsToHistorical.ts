@@ -81,7 +81,7 @@ zxMain(async () => {
   );
   copyImages(pkgName, versionWithoutPatch);
 
-  if(pkgName == "qiskit"){
+  if (pkgName == "qiskit") {
     await mkdirp(`${projectNewHistoricalFolder}/release-notes`);
     copyReleaseNotes(pkgName, versionWithoutPatch);
   }
@@ -95,7 +95,10 @@ async function copyApiDocs(pkgName: string, versionWithoutPatch: string) {
       pkgName,
       versionWithoutPatch,
       filePath,
-      filePath.replace(`/api/${pkgName}/`, `/api/${pkgName}/${versionWithoutPatch}/`),
+      filePath.replace(
+        `/api/${pkgName}/`,
+        `/api/${pkgName}/${versionWithoutPatch}/`,
+      ),
     );
   }
 }
