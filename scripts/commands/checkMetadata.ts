@@ -19,6 +19,7 @@ const IGNORED_FILES = new Set([
   "docs/api/qiskit/transpiler_builtin_plugins.md",
   "docs/api/qiskit/0.44/transpiler_builtin_plugins.md",
   "docs/api/qiskit-ibm-runtime/ibm-runtime.md",
+  "docs/api/qiskit-ibm-runtime/0.14/ibm-runtime.md",
   "docs/start/__migration-guide-algorithms.md",
   "docs/start/__migration-guide-opflow.md",
   "docs/start/__migration-guide-qi.md",
