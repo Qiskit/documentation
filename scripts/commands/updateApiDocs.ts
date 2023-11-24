@@ -13,7 +13,7 @@
 import { $ } from "zx";
 import { zxMain } from "../lib/zx";
 import { pathExists, getRoot } from "../lib/fs";
-import { readFile, writeFile } from "fs/promises";
+import { readFile, writeFile, readdir } from "fs/promises";
 import { globby } from "globby";
 import { join, parse, relative } from "path";
 import { sphinxHtmlToMarkdown } from "../lib/sphinx/sphinxHtmlToMarkdown";
@@ -416,6 +416,8 @@ async function convertHtmlToMarkdown(
 
   if (historical) {
     copyReleaseNotes(pkg.name, markdownPath);
+  } else {
+    syncReleaseNotes(pkg.name, markdownPath);
   }
 
   console.log("Generating version file");
@@ -436,6 +438,31 @@ async function convertHtmlToMarkdown(
 
 function urlToPath(url: string) {
   return `${getRoot()}/docs${url}.md`;
+}
+
+async function syncReleaseNotes(projectName: string, pathAPIFolder: string) {
+  console.log("Synchronizing the release notes with the historical versions");
+  const historicalFolders = (
+    await readdir(`${pathAPIFolder}`, { withFileTypes: true })
+  ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
+
+  for(let folder of historicalFolders){
+    copyReleaseNotes(projectName, `${pathAPIFolder}/${folder.name}`);
+
+    let markdownIndex = await readFile(`${pathAPIFolder}/release-notes/index.md`, { encoding: "utf8" });
+
+    // Regex to capture the links containing /api/projectName and not followed
+    // by any subfolder starting with a number (historical version folders)
+    const regexAbsolutePath = new RegExp("/api/" + projectName + "/(?![0-9])");
+    markdownIndex = transformLinks(markdownIndex, (link, _) =>
+      link.replace(regexAbsolutePath, `/api/${projectName}/${folder.name}/`),
+    );
+
+    // Add the specific release note version as the first entry of the index.md
+    markdownIndex = markdownIndex.replace("*", `* [${folder.name}](/api/${projectName}/${folder.name}/release-notes/${folder.name})\n*`);
+  
+    await writeFile(`${pathAPIFolder}/${folder.name}/release-notes/index.md`, markdownIndex);
+  }
 }
 
 async function copyReleaseNotes(
