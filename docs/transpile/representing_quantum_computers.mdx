@@ -36,7 +36,9 @@ The `EfficientSU2` circuit consists of layers of single qubit operations spanned
 ```
 ![The 12-qubit test circuit](/images/transpile/representing_quantum_computers/qc-circular.png)
 
-Transpile the circuit with the simplest options. This example uses `optimization_level=2` to highlight a feature:
+### Transpile the circuit with the fewest options (kwargs). 
+
+This example uses `optimization_level=2` to highlight a feature:
 
 ```python
     qc_t_target = transpile(qc, target=target, optimization_level=2, seed_transpiler=12345)
@@ -106,7 +108,7 @@ Every quantum backend supports a limited instruction set, called its _basis gate
 ```
 `['rz', 'sx', 'x', 'ecr', 'measure', 'delay']`
 
-The default single-qubit gates on _ibm_sherbrooke_ are `rz`, `x`, and `sx`, and the default two-qubit gate is `ecr` which stands for echoed cross resonsance. CX gates are constructed from `ecr` gates, so on some backends `ecr` is specified as the two-qubit basis gate while on others `cx` is default. The `ecr` gates is the _entangling_ part of the `cx` gate. If one desires to use a gate that is not in the basis gate set, instructions for custom gates can be provided using [pulse gates](https://qiskit.org/documentation/stubs/qiskit.transpiler.passes.PulseGates.html). In addition to the control gates, there are also `delay` and `measurement` instructions.
+The default single-qubit gates on _ibm_sherbrooke_ are `rz`, `x`, and `sx`, and the default two-qubit gate is `ecr` which stands for echoed cross resonance. CX gates are constructed from `ecr` gates, so on some backends `ecr` is specified as the two-qubit basis gate while on others `cx` is default. The `ecr` gates is the _entangling_ part of the `cx` gate. If one desires to use a gate that is not in the basis gate set, instructions for custom gates can be provided using [pulse gates](https://qiskit.org/documentation/stubs/qiskit.transpiler.passes.PulseGates.html). In addition to the control gates, there are also `delay` and `measurement` instructions.
 
 <Admonition>
     Backends have default basis gates, but you can choose whatever gates you want, as long as you provide the instruction or add pulse gates. The default basis gates are those that calibrations have been done for on the backend, so no further instrcution/pulse gate needs to be provided. For example, on some backends `cx` is the default two-qubit gates and `ecr` on others.
