@@ -33,11 +33,13 @@ import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { Pkg, Link } from "../lib/sharedTypes";
+import transformLinks from "transform-markdown-links";
 
 interface Arguments {
   [x: string]: unknown;
   package: string;
   version: string;
+  historical: boolean;
 }
 
 function transformLink(link: Link): Link | undefined {
@@ -87,6 +89,7 @@ const PACKAGES: Pkg[] = [
     githubSlug: "qiskit/qiskit",
     baseUrl: `https://qiskit.org/documentation`,
     initialUrls: [`https://qiskit.org/documentation/apidoc/index.html`],
+    hasSeparateReleaseNotes: true,
     tocOptions: {
       collapsed: true,
       nestModule(id: string) {
@@ -112,7 +115,58 @@ const readArgs = (): Arguments => {
       demandOption: true,
       description: "The full version string of the --package, e.g. 0.44.0",
     })
+    .option("historical", {
+      type: "boolean",
+      default: false,
+      description: "Is this a prior release? Only works with `-p qiskit`.",
+    })
     .parseSync();
+};
+
+/**
+ * Check for markdown files in `docs/api/package-name/release-notes/
+ * then sort them and create entries for the TOC.
+ */
+const processLegacyReleaseNotes = async (
+  pkg: Pkg,
+  versionWithoutPatch: string,
+  historical: boolean,
+): Promise<{ title: string; url: string }[]> => {
+  if (!pkg.hasSeparateReleaseNotes) {
+    return [];
+  }
+  const legacyReleaseNoteVersions = (
+    await $`ls ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet()
+  ).stdout
+    .trim()
+    .split("\n")
+    .map((x) => parse(x).name)
+    .filter((x) => x.match(/^\d/)) // remove index
+    .sort((a: string, b: string) => {
+      const aParts = a.split(".").map((x) => Number(x));
+      const bParts = b.split(".").map((x) => Number(x));
+      for (let i = 0; i < 2; i++) {
+        if (aParts[i] > bParts[i]) {
+          return 1;
+        }
+        if (aParts[i] < bParts[i]) {
+          return -1;
+        }
+      }
+      return 0;
+    })
+    .reverse();
+
+  const legacyReleaseNoteEntries = [];
+  for (let version of legacyReleaseNoteVersions) {
+    legacyReleaseNoteEntries.push({
+      title: version,
+      url: historical
+        ? `/api/${pkg.name}/${versionWithoutPatch}/release-notes/${version}`
+        : `/api/${pkg.name}/release-notes/${version}`,
+    });
+  }
+  return legacyReleaseNoteEntries;
 };
 
 zxMain(async () => {
@@ -132,6 +186,14 @@ zxMain(async () => {
     throw new Error(`Unrecognized package: ${args.package}`);
   }
 
+  if (args.historical) {
+    if (pkg.name !== "qiskit") {
+      throw new Error("`--historical` can only be used with `-p qiskit`");
+    }
+    pkg.baseUrl = `https://qiskit.org/documentation/stable/${versionWithoutPatch}`;
+    pkg.initialUrls = [`${pkg.baseUrl}/apidoc/index.html`];
+  }
+
   const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
     args.version
   }`;
@@ -146,10 +208,17 @@ zxMain(async () => {
   }
 
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${versionWithoutPatch}/`;
-  const outputDir = `${getRoot()}/docs/api/${pkg.name}`;
+  const outputDir = args.historical
+    ? `${getRoot()}/docs/api/${pkg.name}/${versionWithoutPatch}`
+    : `${getRoot()}/docs/api/${pkg.name}`;
 
-  console.log(`Deleting existing markdown for ${pkg.name}`);
-  await $`rm -rf ${outputDir}`;
+  const legacyReleaseNoteEntries = await processLegacyReleaseNotes(
+    pkg,
+    versionWithoutPatch,
+    args.historical,
+  );
+
+  await rmFilesInFolder(outputDir, `${pkg.name}:${versionWithoutPatch}`);
 
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${versionWithoutPatch}`,
@@ -160,8 +229,25 @@ zxMain(async () => {
     baseSourceUrl,
     pkg,
     args.version,
+    legacyReleaseNoteEntries,
+    versionWithoutPatch,
+    args.historical,
   );
 });
+
+/**
+ * Deletes all the files in the folder, but preserves subfolders. That's important
+ * to avoid accidentally deleting other historical versions of the API.
+ *
+ * We delete files when regenerating API docs to capture when APIs have been deleted.
+ */
+async function rmFilesInFolder(
+  dir: string,
+  description: string,
+): Promise<void> {
+  console.log(`Deleting existing markdown for ${description}`);
+  await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`;
+}
 
 async function downloadHtml(options: {
   baseUrl: string;
@@ -207,14 +293,21 @@ async function convertHtmlToMarkdown(
   baseSourceUrl: string,
   pkg: Pkg,
   version: string,
+  releaseNoteEntries: { title: string; url: string }[],
+  versionWithoutPatch: string,
+  historical: boolean,
 ) {
-  const globs = ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"];
-  if (pkg.name !== "qiskit") {
-    globs.push("release_notes.html");
-  }
-  const files = await globby(globs, {
-    cwd: htmlPath,
-  });
+  const files = await globby(
+    [
+      "apidocs/**.html",
+      "apidoc/**.html",
+      "stubs/**.html",
+      "release_notes.html",
+    ],
+    {
+      cwd: htmlPath,
+    },
+  );
 
   const ignore = pkg.ignore ?? (() => false);
 
@@ -225,13 +318,27 @@ async function convertHtmlToMarkdown(
       html,
       url: `${pkg.baseUrl}/${file}`,
       baseSourceUrl,
-      imageDestination: `/images/api/${pkg.name}`,
+      imageDestination: historical
+        ? `/images/api/${pkg.name}/${versionWithoutPatch}`
+        : `/images/api/${pkg.name}`,
+      releaseNotesTitle: `${pkg.title} ${versionWithoutPatch} release notes`,
     });
+
     const { dir, name } = parse(`${markdownPath}/${file}`);
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
 
     if (!result.meta.python_api_name || !ignore(result.meta.python_api_name)) {
       results.push({ ...result, url });
+    }
+    if (pkg.hasSeparateReleaseNotes && file.endsWith("release_notes.html")) {
+      if (releaseNoteEntries[0].title !== versionWithoutPatch) {
+        releaseNoteEntries.unshift({
+          title: versionWithoutPatch,
+          url: historical
+            ? `/api/${pkg.name}/${versionWithoutPatch}/release-notes/${versionWithoutPatch}`
+            : `/api/${pkg.name}/release-notes/${versionWithoutPatch}`,
+        });
+      }
     }
   }
 
@@ -252,10 +359,25 @@ async function convertHtmlToMarkdown(
   renameUrls(results);
   await updateLinks(results, pkg.transformLink);
   await dedupeResultIds(results);
-  addFrontMatter(results, pkg);
+  addFrontMatter(results, pkg, versionWithoutPatch);
 
   for (const result of results) {
-    await writeFile(urlToPath(result.url), result.markdown);
+    let path = urlToPath(result.url);
+    if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
+      const projectFolder = historical
+        ? `${pkg.name}/${versionWithoutPatch}`
+        : `${pkg.name}`;
+
+      // Convert the relative links to absolute links
+      result.markdown = transformLinks(result.markdown, (link, _) =>
+        link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
+          ? link
+          : `/api/${projectFolder}/${link}`,
+      );
+
+      path = `${getRoot()}/docs/api/${projectFolder}/release-notes/${versionWithoutPatch}.md`;
+    }
+    await writeFile(path, result.markdown);
   }
 
   console.log("Generating toc");
@@ -264,10 +386,10 @@ async function convertHtmlToMarkdown(
       title: pkg.title,
       name: pkg.name,
       version,
-      releaseNotesUrl:
-        pkg.name !== "qiskit"
-          ? `/api/${pkg.name}/release-notes`
-          : "https://github.com/qiskit/qiskit/releases",
+      releaseNoteEntries,
+      releaseNotesUrl: historical
+        ? `/api/${pkg.name}/${versionWithoutPatch}/release-notes`
+        : `/api/${pkg.name}/release-notes`,
       tocOptions: pkg.tocOptions,
     },
     results,
@@ -277,8 +399,27 @@ async function convertHtmlToMarkdown(
     JSON.stringify(toc, null, 2) + "\n",
   );
 
+  if (pkg.hasSeparateReleaseNotes) {
+    console.log("Generating release-notes/index");
+    let markdown = "---\n";
+    markdown += `title: ${pkg.title} release notes\n`;
+    markdown += `description: New features, bug fixes, and other changes in previous versions of ${pkg.title}.\n`;
+    markdown += "---\n\n";
+    markdown += `# ${pkg.title} release notes\n\n`;
+    markdown += `New features, bug fixes, and other changes in previous versions of ${pkg.title}.\n\n`;
+    markdown += `## Release notes by version\n\n`;
+    for (const entry of releaseNoteEntries) {
+      markdown += `* [${entry.title}](${entry.url})\n`;
+    }
+    await writeFile(`${markdownPath}/release-notes/index.md`, markdown);
+  }
+
+  if (historical) {
+    copyReleaseNotes(pkg.name, markdownPath);
+  }
+
   console.log("Generating version file");
-  const pkg_json = { name: pkg.name, version: version };
+  const pkg_json = { name: pkg.name, version: versionWithoutPatch };
   await writeFile(
     `${markdownPath}/_package.json`,
     JSON.stringify(pkg_json, null, 2) + "\n",
@@ -295,4 +436,12 @@ async function convertHtmlToMarkdown(
 
 function urlToPath(url: string) {
   return `${getRoot()}/docs${url}.md`;
+}
+
+async function copyReleaseNotes(
+  projectName: string,
+  pathHistoricalFolder: string,
+) {
+  await $`find ${pathHistoricalFolder}/release-notes/* -not -path "*index.md" | xargs rm -rf {}`;
+  await $`find docs/api/${projectName}/release-notes/* -not -path "*index.md" | xargs -I {} cp -a {} ${pathHistoricalFolder}/release-notes/`;
 }
