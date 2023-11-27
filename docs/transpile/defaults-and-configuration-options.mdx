@@ -99,12 +99,6 @@ All parameters except `circuits` are optional.  For full details, see the [Trans
 
 These parameters impact specific transpilation stages. Some of them might impact multiple stages, but have only been listed under one stage for simplicity. If you specify an argument, such as `initial_layout`  for the qubits you want to use, that value overrides all the passes that could change it. In other words, the transpiler won't change anything that you manually specify. 
 
-The following default values are used if you don't specify any of these parameters: 
-
-```python
-qiskit.compiler.transpile(unitary_synthesis_method='default', translation_method='basis_translator', layout_method='sabre', routing_method='sabre', approximation_degree=1.0, optimization_level=1.0, scheduling_method='as_late_as_possible')
-```
-
 <details>
   <summary>
     **Initialization stage**
@@ -196,6 +190,14 @@ The function is called with these keyword arguments:
 - `seed_transpiler` (int) - Sets random seeds for the stochastic parts of the transpiler.
 - `output_name` (str | List[str]) -  A list with strings to identify the output circuits. The length of the list should be the same length as the circuits parameter.
 </details>
+
+<Admonition>
+The following default values are used if you don't specify any of the above parameters.
+
+```python
+qiskit.compiler.transpile(unitary_synthesis_method='default', translation_method='basis_translator', layout_method='sabre', routing_method='sabre', approximation_degree=1.0, optimization_level=1.0, scheduling_method='as_late_as_possible')
+```
+</Admonition>
 
 ## Next steps
 
