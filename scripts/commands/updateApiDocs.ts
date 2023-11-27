@@ -191,7 +191,8 @@ zxMain(async () => {
       throw new Error("`--historical` can only be used with `-p qiskit`");
     }
     pkg.baseUrl = `https://qiskit.org/documentation/stable/${versionWithoutPatch}`;
-    pkg.initialUrls = [`${pkg.baseUrl}/apidoc/index.html`];
+    const htmlFile = +versionWithoutPatch >= 0.44 ? "index.html" : "terra.html";
+    pkg.initialUrls = [`${pkg.baseUrl}/apidoc/${htmlFile}`];
   }
 
   const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
