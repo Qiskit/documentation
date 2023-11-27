@@ -191,8 +191,7 @@ zxMain(async () => {
       throw new Error("`--historical` can only be used with `-p qiskit`");
     }
     pkg.baseUrl = `https://qiskit.org/documentation/stable/${versionWithoutPatch}`;
-    const htmlFile = +versionWithoutPatch >= 0.44 ? "index.html" : "terra.html";
-    pkg.initialUrls = [`${pkg.baseUrl}/apidoc/${htmlFile}`];
+    pkg.initialUrls = [`${pkg.baseUrl}/apidoc/index.html`];
   }
 
   const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
@@ -420,7 +419,7 @@ async function convertHtmlToMarkdown(
   }
 
   console.log("Generating version file");
-  const pkg_json = { name: pkg.name, version: version };
+  const pkg_json = { name: pkg.name, version: versionWithoutPatch };
   await writeFile(
     `${markdownPath}/_package.json`,
     JSON.stringify(pkg_json, null, 2) + "\n",
