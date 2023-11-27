@@ -33,6 +33,7 @@ import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { Pkg, PkgInfo, Link } from "../lib/sharedTypes";
+import transformLinks from "transform-markdown-links";
 
 interface Arguments {
   [x: string]: unknown;
@@ -195,7 +196,9 @@ zxMain(async () => {
       throw new Error("`--historical` can only be used with `-p qiskit`");
     }
     pkg.baseUrl = `https://qiskit.org/documentation/stable/${pkg.versionWithoutPatch}`;
-    pkg.initialUrls = [`${pkg.baseUrl}/apidoc/index.html`];
+    const htmlFile =
+      +pkg.versionWithoutPatch >= 0.44 ? "index.html" : "terra.html";
+    pkg.initialUrls = [`${pkg.baseUrl}/apidoc/${htmlFile}`];
   }
 
   const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
@@ -354,6 +357,14 @@ async function convertHtmlToMarkdown(
       const projectFolder = pkg.historical
         ? `${pkg.name}/${pkg.versionWithoutPatch}`
         : `${pkg.name}`;
+
+      // Convert the relative links to absolute links
+      result.markdown = transformLinks(result.markdown, (link, _) =>
+        link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
+          ? link
+          : `/api/${projectFolder}/${link}`,
+      );
+
       path = `${getRoot()}/docs/api/${projectFolder}/release-notes/${
         pkg.versionWithoutPatch
       }.md`;
@@ -388,7 +399,7 @@ async function convertHtmlToMarkdown(
   }
 
   console.log("Generating version file");
-  const pkg_json = { name: pkg.name, version: pkg.versionWithoutPatch };
+  const pkg_json = { name: pkg.name, version: pkg.version };
   await writeFile(
     `${markdownPath}/_package.json`,
     JSON.stringify(pkg_json, null, 2) + "\n",
