@@ -114,7 +114,7 @@ You need access credentials to use cloud-based IBM Quantum systems.
     python3
     ```
 1. If you do not already have one, set up an IBM Cloud account from the [IBM Cloud Registration page](https://cloud.ibm.com/registration).
-1. Create a service instance, if necessary. Open your [IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances). If you have one or more instances shown, continue to the next step. Otherwise, click **Create instance**. When creating your instance you can name it, tag it, select a resource group for it, and select a performance strategy. Then agree to the license agreements by checking the box in the bottom right corner of the page, and click **Create**.
+1. Create a service instance, if necessary. Open your [IBM Cloud Instances page](https://cloud.ibm.com/quantum/instances). If you have one or more instances shown, continue to the next step. Otherwise, click **Create instance**. When creating your instance you can name it, tag it, select a resource group for it, and select a performance strategy. Next, agree to the license agreements by checking the box in the bottom right corner of the page, and click **Create**.
 
     <Admonition type="note">
       If you are an administrator who needs to set up Qiskit Runtime on Cloud for your organization, refer to [Plan Qiskit Runtime for an organization](https://cloud.ibm.com/docs/quantum-computing?topic=quantum-computing-quickstart-org).
@@ -140,7 +140,7 @@ You need access credentials to use cloud-based IBM Quantum systems.
      If you set up your instance in step 3 to include Q-CTRL performance management, when initializing the `QiskitRuntimeService()` you should include the additional argument `channel_strategy="q-ctrl"`. To learn more about Q-CTRL performance management strategy visit the [Q-CTRL documentation](https://docs.q-ctrl.com/q-ctrl-embedded).
    </Admonition>
 
-   Or, optionally use the `save_account()` method to save your credentials for easy access later on, before initializing the service.
+   You can optionally use the `save_account()` method to save your credentials for easy access later on, before initializing the service.
 
    ```python
     from qiskit_ibm_runtime import QiskitRuntimeService
@@ -152,7 +152,7 @@ You need access credentials to use cloud-based IBM Quantum systems.
     service = QiskitRuntimeService(name="<account-name>")
     ```
 
-    * If you save your credentials to disk, you can use `QiskitRuntimeService()` in the future to initialize your account. The `channel` parameter distinguishes between different account types. When initializing the account, IBM Cloud is the default account used if have saved credentials for an IBM Quantum Platform and an IBM Cloud account.
+    * If you save your credentials to disk, you can use `QiskitRuntimeService()` in the future to initialize your account. The `channel` parameter distinguishes between different account types. When initializing the account, IBM Cloud is the default account used if you have saved credentials for both an IBM Quantum Platform and an IBM Cloud account.
     * If you are saving multiple accounts per channel, consider using the `name` parameter to differentiate them. 
     * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file. 
     * If you don't save your credentials, you must specify them every time you start a new session. 
