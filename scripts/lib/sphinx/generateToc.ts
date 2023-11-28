@@ -13,6 +13,7 @@
 import { isEmpty, keyBy, keys, orderBy } from "lodash";
 import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { PythonObjectMeta } from "./PythonObjectMeta";
+import { Pkg } from "../sharedTypes";
 
 type TocEntry = {
   title: string;
@@ -27,22 +28,14 @@ type Toc = {
   collapsed?: boolean;
 };
 
-export function generateToc(options: {
-  pkg: {
-    title: string;
-    name: string;
-    version: string;
-    releaseNoteEntries: TocEntry[];
-    releaseNotesUrl: string;
-    tocOptions?: {
-      collapsed?: boolean;
-      nestModule?(id: string): boolean;
-    };
-  };
-  results: Array<{ meta: PythonObjectMeta; url: string }>;
-}) {
-  const { pkg, results } = options;
-  const nestModule = options.pkg.tocOptions?.nestModule ?? (() => true);
+export function generateToc(
+  pkg: Pkg,
+  results: Array<{ meta: PythonObjectMeta; url: string }>,
+) {
+  const releaseNotesUrl = pkg.historical
+    ? `/api/${pkg.name}/${pkg.versionWithoutPatch}/release-notes`
+    : `/api/${pkg.name}/release-notes`;
+  const nestModule = pkg.tocOptions?.nestModule ?? (() => true);
   const resultsWithName = results.filter(
     (result) => !isEmpty(result.meta.python_api_name),
   );
@@ -132,7 +125,7 @@ export function generateToc(options: {
   if (pkg.releaseNoteEntries.length) {
     releaseNotesEntry.children = pkg.releaseNoteEntries;
   } else {
-    releaseNotesEntry.url = pkg.releaseNotesUrl;
+    releaseNotesEntry.url = releaseNotesUrl;
   }
   tocChildren.push(releaseNotesEntry);
 

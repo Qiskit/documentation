@@ -15,60 +15,57 @@ import { generateToc } from "./generateToc";
 
 describe("generateTocFromPythonApiFiles", () => {
   test("generate a toc", () => {
-    const toc = generateToc({
-      pkg,
-      results: [
-        { meta: {}, url: "/docs/runtime" },
-        {
-          meta: {
-            python_api_type: "module",
-            python_api_name: "qiskit_ibm_runtime",
-          },
-          url: "/docs/runtime/qiskit_ibm_runtime",
+    const toc = generateToc(pkg, [
+      { meta: {}, url: "/docs/runtime" },
+      {
+        meta: {
+          python_api_type: "module",
+          python_api_name: "qiskit_ibm_runtime",
         },
-        {
-          meta: {
-            python_api_type: "module",
-            python_api_name: "qiskit_ibm_runtime.options",
-          },
-          url: "/docs/runtime/qiskit_ibm_runtime.options",
+        url: "/docs/runtime/qiskit_ibm_runtime",
+      },
+      {
+        meta: {
+          python_api_type: "module",
+          python_api_name: "qiskit_ibm_runtime.options",
         },
-        {
-          meta: { python_api_type: "class", python_api_name: "Sampler" },
-          url: "/docs/runtime/qiskit_ibm_runtime.Sampler",
+        url: "/docs/runtime/qiskit_ibm_runtime.options",
+      },
+      {
+        meta: { python_api_type: "class", python_api_name: "Sampler" },
+        url: "/docs/runtime/qiskit_ibm_runtime.Sampler",
+      },
+      {
+        meta: { python_api_type: "method", python_api_name: "Sampler.run" },
+        url: "/docs/runtime/qiskit_ibm_runtime.Sampler.run",
+      },
+      {
+        meta: { python_api_type: "class", python_api_name: "Estimator" },
+        url: "/docs/runtime/qiskit_ibm_runtime.Estimator",
+      },
+      {
+        meta: { python_api_type: "class" },
+        url: "/docs/runtime/qiskit_ibm_runtime.NoName",
+      },
+      {
+        meta: { python_api_type: "class", python_api_name: "Options" },
+        url: "qiskit_ibm_runtime.options.Options",
+      },
+      {
+        meta: {
+          python_api_type: "function",
+          python_api_name: "runSomething",
         },
-        {
-          meta: { python_api_type: "method", python_api_name: "Sampler.run" },
-          url: "/docs/runtime/qiskit_ibm_runtime.Sampler.run",
+        url: "qiskit_ibm_runtime.runSomething",
+      },
+      {
+        meta: {
+          python_api_type: "module",
+          python_api_name: "qiskit_ibm_runtime.single",
         },
-        {
-          meta: { python_api_type: "class", python_api_name: "Estimator" },
-          url: "/docs/runtime/qiskit_ibm_runtime.Estimator",
-        },
-        {
-          meta: { python_api_type: "class" },
-          url: "/docs/runtime/qiskit_ibm_runtime.NoName",
-        },
-        {
-          meta: { python_api_type: "class", python_api_name: "Options" },
-          url: "qiskit_ibm_runtime.options.Options",
-        },
-        {
-          meta: {
-            python_api_type: "function",
-            python_api_name: "runSomething",
-          },
-          url: "qiskit_ibm_runtime.runSomething",
-        },
-        {
-          meta: {
-            python_api_type: "module",
-            python_api_name: "qiskit_ibm_runtime.single",
-          },
-          url: "/docs/runtime/qiskit_ibm_runtime/single",
-        },
-      ],
-    });
+        url: "/docs/runtime/qiskit_ibm_runtime/single",
+      },
+    ]);
 
     expect(toc).toMatchInlineSnapshot(`
       {
@@ -101,46 +98,43 @@ describe("generateTocFromPythonApiFiles", () => {
   });
 
   test("nest modules", () => {
-    const toc = generateToc({
-      pkg,
-      results: [
-        {
-          meta: {
-            python_api_type: "module",
-            python_api_name: "qiskit_ibm_runtime",
-          },
-          url: "/docs/runtime/qiskit_ibm_runtime",
+    const toc = generateToc(pkg, [
+      {
+        meta: {
+          python_api_type: "module",
+          python_api_name: "qiskit_ibm_runtime",
         },
-        {
-          meta: {
-            python_api_type: "module",
-            python_api_name: "qiskit_ibm_runtime.options",
-          },
-          url: "/docs/runtime/qiskit_ibm_runtime.options",
+        url: "/docs/runtime/qiskit_ibm_runtime",
+      },
+      {
+        meta: {
+          python_api_type: "module",
+          python_api_name: "qiskit_ibm_runtime.options",
         },
-        {
-          meta: {
-            python_api_type: "class",
-            python_api_name: "qiskit_ibm_runtime.Estimator",
-          },
-          url: "/docs/runtime/qiskit_ibm_runtime.Estimator",
+        url: "/docs/runtime/qiskit_ibm_runtime.options",
+      },
+      {
+        meta: {
+          python_api_type: "class",
+          python_api_name: "qiskit_ibm_runtime.Estimator",
         },
-        {
-          meta: {
-            python_api_type: "class",
-            python_api_name: "qiskit_ibm_runtime.options.Options",
-          },
-          url: "qiskit_ibm_runtime.options.Options",
+        url: "/docs/runtime/qiskit_ibm_runtime.Estimator",
+      },
+      {
+        meta: {
+          python_api_type: "class",
+          python_api_name: "qiskit_ibm_runtime.options.Options",
         },
-        {
-          meta: {
-            python_api_type: "class",
-            python_api_name: "qiskit_ibm_runtime.options.Options2",
-          },
-          url: "qiskit_ibm_runtime.options.Options2",
+        url: "qiskit_ibm_runtime.options.Options",
+      },
+      {
+        meta: {
+          python_api_type: "class",
+          python_api_name: "qiskit_ibm_runtime.options.Options2",
         },
-      ],
-    });
+        url: "qiskit_ibm_runtime.options.Options2",
+      },
+    ]);
 
     expect(toc).toMatchInlineSnapshot(`
       {
@@ -186,8 +180,8 @@ describe("generateTocFromPythonApiFiles", () => {
   });
 
   test("skip nest modules using a fn", () => {
-    const toc = generateToc({
-      pkg: {
+    const toc = generateToc(
+      {
         ...pkg,
         tocOptions: {
           nestModule(id: string) {
@@ -196,7 +190,7 @@ describe("generateTocFromPythonApiFiles", () => {
           },
         },
       },
-      results: [
+      [
         {
           meta: {
             python_api_type: "module",
@@ -247,7 +241,7 @@ describe("generateTocFromPythonApiFiles", () => {
           url: "qiskit_ibm_runtime.provider.Provider",
         },
       ],
-    });
+    );
 
     expect(toc).toMatchInlineSnapshot(`
       {
@@ -306,15 +300,15 @@ describe("generateTocFromPythonApiFiles", () => {
   });
 
   test("TOC with nested release notes", () => {
-    const toc = generateToc({
-      pkg: {
+    const toc = generateToc(
+      {
         ...pkg,
         releaseNoteEntries: [
           { title: "0.39", url: "/docs/runtime/release-notes/0.39" },
           { title: "0.38", url: "/docs/runtime/release-notes/0.38" },
         ],
       },
-      results: [
+      [
         {
           meta: {
             python_api_type: "module",
@@ -323,7 +317,7 @@ describe("generateTocFromPythonApiFiles", () => {
           url: "/docs/runtime/qiskit_ibm_runtime",
         },
       ],
-    });
+    );
 
     expect(toc).toMatchInlineSnapshot(`
       {
@@ -356,6 +350,15 @@ const pkg = {
   title: "Qiskit Runtime IBM Client",
   name: "qiskit_ibm_runtime",
   version: "1.0.0",
+  versionWithoutPatch: "1.0",
   releaseNoteEntries: [],
-  releaseNotesUrl: `/api/qiskit_ibm_runtime/release-notes`,
+  historical: false,
+
+  // These properties are not used but included to appease typescript
+  githubSlug: "qiskit/qiskit-ibm-runtime",
+  baseUrl: `https://qiskit.org/ecosystem/ibm-runtime`,
+  initialUrls: [
+    `https://qiskit.org/ecosystem/ibm-runtime/apidocs/ibm-runtime.html`,
+  ],
+  transformLink: undefined,
 };
