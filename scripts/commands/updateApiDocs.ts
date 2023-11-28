@@ -382,7 +382,10 @@ async function syncReleaseNotes(projectName: string, pathAPIFolder: string) {
       continue;
     }
 
-    copyReleaseNotesToHistoricalVersions(projectName, `${pathAPIFolder}/${folder.name}`);
+    copyReleaseNotesToHistoricalVersions(
+      projectName,
+      `${pathAPIFolder}/${folder.name}`,
+    );
 
     let markdownIndex = await readFile(
       `${pathAPIFolder}/release-notes/index.md`,
