@@ -88,6 +88,7 @@ export async function sphinxHtmlToMarkdown(options: {
     });
 
   // remove permalink links
+  $main.find('a[title="Permalink to this headline"]').remove();
   $main.find('a[title="Permalink to this heading"]').remove();
   $main.find('a[title="Permalink to this definition"]').remove();
   $main.find('a[title="Link to this heading"]').remove();
