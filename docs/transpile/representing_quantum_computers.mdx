@@ -36,12 +36,12 @@ The `EfficientSU2` circuit consists of layers of single qubit operations spanned
 ```
 ![The 12-qubit test circuit](/images/transpile/representing_quantum_computers/qc-circular.png)
 
-### Transpile the circuit with the fewest options (kwargs). 
+### Transpile the circuit to backend target
 
-This example uses `optimization_level=2` to highlight a feature:
+This example uses the default `optimization_level=1` to transpile to the `backend` `target`, which providers all the information to the transpiler that is necessary to convert circuit to one that will run on the backend.
 
 ```python
-    qc_t_target = transpile(qc, target=target, optimization_level=2, seed_transpiler=12345)
+    qc_t_target = transpile(qc, target=target, seed_transpiler=12345)
     qc_t_target.draw('mpl', style='iqp', idle_wires=False)
 ```
 ![The transpiled 12-qubit ansatz using Target information](/images/transpile/representing_quantum_computers/qc_t_target.png)
