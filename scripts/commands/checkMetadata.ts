@@ -17,8 +17,8 @@ import { globby } from "globby";
 const IGNORED_FILES = new Set([
   "docs/api/qiskit-ibm-provider/ibm-provider.md",
   "docs/api/qiskit/transpiler_builtin_plugins.md",
-  "docs/api/qiskit/0.44/transpiler_builtin_plugins.md",
   "docs/api/qiskit-ibm-runtime/ibm-runtime.md",
+  "docs/api/qiskit-ibm-runtime/0.14/ibm-runtime.md",
   "docs/start/__migration-guide-algorithms.md",
   "docs/start/__migration-guide-opflow.md",
   "docs/start/__migration-guide-qi.md",
@@ -47,6 +47,12 @@ const main = async (): Promise<void> => {
     if (IGNORED_FILES.has(file)) {
       continue;
     }
+
+    // Ignore all historical API version files.
+    if (/.*\/[0-9].*\//.test(file)) {
+      continue;
+    }
+
     const metadata = await readMetadata(file);
     if (!isValidMetadata(metadata)) {
       mdErrors.push(file);

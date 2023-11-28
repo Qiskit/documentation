@@ -177,3 +177,5 @@ To check that formatting is valid without actually making changes, run `npm run 
 3. Run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
 
 For `qiskit`, you can also regenerate historical versions by adding `--historical` to the arguments. This is useful when we improve our generation script.
+
+In case you want to save the current version and convert it into a historical one, you can run `npm run make-historical -- -p <pkg-name>` beforehand.
