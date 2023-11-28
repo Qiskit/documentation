@@ -65,6 +65,8 @@ All parameters except `circuits` are optional.  For full details, see the [Trans
 
 These arguments describe the system that the input circuit will be run on.  For example, they may be used to ensure that the returned circuit can be run on the specified backend, where the transpiler maps the circuit's virtual qubits to the physical qubits which may have limited connectivity as specified in the `coupling_map`, `basis_gates` that specify which single- and two-qubit gates are calibrated for the backend, and possibly their error rates.
 
+Many of these parameters are described in detail in [Commonly used parameters](common-parameters).
+
 <details>
   <summary>
     **Backend parameters**
@@ -142,7 +144,7 @@ These parameters impact specific transpilation stages. Some of them might impact
     **Optimization stage**
   </summary>
 
-- `approximation_degree` (float | None) - Heuristic dial used for circuit approximation (1.0 = no approximation, 0.0 = maximal approximation). The default value is 1.0.  Specifying `None` sets the approximation degree to the reported error rate. See the [Approximation degree section](common-parameters#approx-degree) for more details.
+- `approximation_degree` (float, in the range 0-1 | None) - Heuristic dial used for circuit approximation (1.0 = no approximation, 0.0 = maximal approximation). The default value is 1.0.  Specifying `None` sets the approximation degree to the reported error rate. See the [Approximation degree section](common-parameters#approx-degree) for more details.
 - `optimization_level` (int) - How much optimization to perform on the circuits. Integer in the range (0 - 3). Higher levels generate more optimized circuits, at the expense of longer transpilation time. The default is `1`. See the [Set optimization topic](set-optimization) for more details.
 - `optimization_method` (str) - The plugin name to use for the optimization stage. By default an external plugin is not used. You can see a list of installed plugins by running `list_stage_plugins()` with `optimization` for the `stage_name` argument.
 </details>
