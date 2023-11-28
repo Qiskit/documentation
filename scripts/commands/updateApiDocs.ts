@@ -34,6 +34,13 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { Pkg, PkgInfo, Link } from "../lib/sharedTypes";
 import transformLinks from "transform-markdown-links";
+import {
+  findLegacyReleaseNotes,
+  addNewReleaseNotes,
+  generateReleaseNotesIndex,
+  copyReleaseNotesToHistoricalVersions,
+  currentReleaseNotesPath,
+} from "../lib/releaseNotes";
 
 interface Arguments {
   [x: string]: unknown;
@@ -123,50 +130,6 @@ const readArgs = (): Arguments => {
     .parseSync();
 };
 
-/**
- * Check for markdown files in `docs/api/package-name/release-notes/
- * then sort them and create entries for the TOC.
- */
-const processLegacyReleaseNotes = async (
-  pkg: Pkg,
-): Promise<{ title: string; url: string }[]> => {
-  if (!pkg.hasSeparateReleaseNotes) {
-    return [];
-  }
-  const legacyReleaseNoteVersions = (
-    await $`ls ${getRoot()}/docs/api/${pkg.name}/release-notes`.quiet()
-  ).stdout
-    .trim()
-    .split("\n")
-    .map((x) => parse(x).name)
-    .filter((x) => x.match(/^\d/)) // remove index
-    .sort((a: string, b: string) => {
-      const aParts = a.split(".").map((x) => Number(x));
-      const bParts = b.split(".").map((x) => Number(x));
-      for (let i = 0; i < 2; i++) {
-        if (aParts[i] > bParts[i]) {
-          return 1;
-        }
-        if (aParts[i] < bParts[i]) {
-          return -1;
-        }
-      }
-      return 0;
-    })
-    .reverse();
-
-  const legacyReleaseNoteEntries = [];
-  for (let version of legacyReleaseNoteVersions) {
-    legacyReleaseNoteEntries.push({
-      title: version,
-      url: pkg.historical
-        ? `/api/${pkg.name}/${pkg.versionWithoutPatch}/release-notes/${version}`
-        : `/api/${pkg.name}/release-notes/${version}`,
-    });
-  }
-  return legacyReleaseNoteEntries;
-};
-
 zxMain(async () => {
   const args = readArgs();
 
@@ -219,7 +182,7 @@ zxMain(async () => {
     ? `${getRoot()}/docs/api/${pkg.name}/${pkg.versionWithoutPatch}`
     : `${getRoot()}/docs/api/${pkg.name}`;
 
-  pkg.releaseNoteEntries = await processLegacyReleaseNotes(pkg);
+  pkg.releaseNoteEntries = await findLegacyReleaseNotes(pkg);
 
   await rmFilesInFolder(outputDir, `${pkg.name}:${pkg.versionWithoutPatch}`);
 
@@ -321,14 +284,7 @@ async function convertHtmlToMarkdown(
       results.push({ ...result, url });
     }
     if (pkg.hasSeparateReleaseNotes && file.endsWith("release_notes.html")) {
-      if (pkg.releaseNoteEntries[0].title !== pkg.versionWithoutPatch) {
-        pkg.releaseNoteEntries.unshift({
-          title: pkg.versionWithoutPatch,
-          url: pkg.historical
-            ? `/api/${pkg.name}/${pkg.versionWithoutPatch}/release-notes/${pkg.versionWithoutPatch}`
-            : `/api/${pkg.name}/release-notes/${pkg.versionWithoutPatch}`,
-        });
-      }
+      addNewReleaseNotes(pkg);
     }
   }
 
@@ -365,9 +321,7 @@ async function convertHtmlToMarkdown(
           : `/api/${projectFolder}/${link}`,
       );
 
-      path = `${getRoot()}/docs/api/${projectFolder}/release-notes/${
-        pkg.versionWithoutPatch
-      }.md`;
+      path = currentReleaseNotesPath(pkg);
     }
     await writeFile(path, result.markdown);
   }
@@ -381,21 +335,12 @@ async function convertHtmlToMarkdown(
 
   if (pkg.hasSeparateReleaseNotes) {
     console.log("Generating release-notes/index");
-    let markdown = "---\n";
-    markdown += `title: ${pkg.title} release notes\n`;
-    markdown += `description: New features, bug fixes, and other changes in previous versions of ${pkg.title}.\n`;
-    markdown += "---\n\n";
-    markdown += `# ${pkg.title} release notes\n\n`;
-    markdown += `New features, bug fixes, and other changes in previous versions of ${pkg.title}.\n\n`;
-    markdown += `## Release notes by version\n\n`;
-    for (const entry of pkg.releaseNoteEntries) {
-      markdown += `* [${entry.title}](${entry.url})\n`;
-    }
+    const markdown = generateReleaseNotesIndex(pkg);
     await writeFile(`${markdownPath}/release-notes/index.md`, markdown);
   }
 
   if (pkg.historical) {
-    copyReleaseNotes(pkg.name, markdownPath);
+    copyReleaseNotesToHistoricalVersions(pkg.name, markdownPath);
   }
 
   console.log("Generating version file");
@@ -416,12 +361,4 @@ async function convertHtmlToMarkdown(
 
 function urlToPath(url: string) {
   return `${getRoot()}/docs${url}.md`;
-}
-
-async function copyReleaseNotes(
-  projectName: string,
-  pathHistoricalFolder: string,
-) {
-  await $`find ${pathHistoricalFolder}/release-notes/* -not -path "*index.md" | xargs rm -rf {}`;
-  await $`find docs/api/${projectName}/release-notes/* -not -path "*index.md" | xargs -I {} cp -a {} ${pathHistoricalFolder}/release-notes/`;
 }
