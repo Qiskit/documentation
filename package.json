@@ -5,15 +5,17 @@
   "author": "Qiskit Development Team",
   "license": "Apache-2.0",
   "scripts": {
-    "check": "npm run check:metadata && npm run check:spelling && npm run check:links && npm run check:fmt",
+    "check": "npm run check:metadata && npm run check:spelling && npm run check:links && npm run check:fmt && npm run check:release-notes",
     "check:metadata": "node -r esbuild-register scripts/commands/checkMetadata.ts",
     "check:links": "node -r esbuild-register scripts/commands/checkLinks.ts",
+    "check:release-notes": "node -r esbuild-register scripts/commands/validateReleaseNotesSync.ts",
     "check:spelling": "cspell --relative --no-progress docs/**/*.md*",
     "check:fmt": "prettier --check .",
     "fmt": "prettier --write .",
     "test": "jest",
     "typecheck": "tsc",
-    "gen-api": "node -r esbuild-register scripts/commands/updateApiDocs.ts"
+    "gen-api": "node -r esbuild-register scripts/commands/updateApiDocs.ts",
+    "make-historical": "node -r esbuild-register scripts/commands/convertApiDocsToHistorical.ts"
   },
   "devDependencies": {
     "@swc/jest": "^0.2.29",

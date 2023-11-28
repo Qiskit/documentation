@@ -56,6 +56,15 @@ basis. Specific error mitigation methods are not guaranteed to be
 applied at each resilience level.
 </Admonition>
 
+<Admonition type="note">
+  If using an IBM Cloud Qiskit Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
+  
+  Setting `optimization_level` or `resilience_level` equal to 0 will result in an
+  execution error. Levels 1, 2, and 3 are permitted but will not impact performance.
+  Setting other options will likewise not impact performance, and it may result in a
+  runtime warning. For more information visit the [Q-CTRL documentation](https://docs.q-ctrl.com/q-ctrl-embedded).
+</Admonition>
+
 ## Configure the Estimator with resilience levels
 
 
