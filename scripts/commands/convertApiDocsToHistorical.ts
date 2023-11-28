@@ -63,16 +63,15 @@ zxMain(async () => {
   const projectNewHistoricalFolder = `${getRoot()}/docs/api/${pkgName}/${versionWithoutPatch}`;
   if (await pathExists(projectNewHistoricalFolder)) {
     console.error(
-      `${pkgName} has already a historical version ${versionWithoutPatch}`,
+      `${pkgName} has already a historical version ${versionWithoutPatch}.`,
+      `Manually delete the existing folder if you intend to overwrite it.`,
     );
     process.exit(1);
   }
 
   await mkdirp(projectNewHistoricalFolder);
-  await mkdirp(`${projectNewHistoricalFolder}/apidoc`);
-  await mkdirp(`${projectNewHistoricalFolder}/stubs`);
 
-  copyApiDocs(pkgName, versionWithoutPatch);
+  copyApiDocsAndUpdateLinks(pkgName, versionWithoutPatch);
   generateJsonFiles(
     pkgName,
     packageInfo.version,
@@ -83,11 +82,11 @@ zxMain(async () => {
 
   if (pkgName == "qiskit") {
     await mkdirp(`${projectNewHistoricalFolder}/release-notes`);
-    copyReleaseNotes(pkgName, versionWithoutPatch);
+    copyReleaseNotesFolder(pkgName, versionWithoutPatch);
   }
 });
 
-async function copyApiDocs(pkgName: string, versionWithoutPatch: string) {
+async function copyApiDocsAndUpdateLinks(pkgName: string, versionWithoutPatch: string) {
   console.log("Generating API docs");
   const filePaths = await globby(`docs/api/${pkgName}/*.md`);
   for (let filePath of filePaths) {
@@ -103,7 +102,7 @@ async function copyApiDocs(pkgName: string, versionWithoutPatch: string) {
   }
 }
 
-async function copyReleaseNotes(pkgName: string, versionWithoutPatch: string) {
+async function copyReleaseNotesFolder(pkgName: string, versionWithoutPatch: string) {
   console.log("Generating release notes");
   await $`find docs/api/${pkgName}/release-notes/* -maxdepth 0 -type f -not -path "*index.md" | xargs -I {} cp -a {}  docs/api/${pkgName}/${versionWithoutPatch}/release-notes/`;
   updateLinksFile(
