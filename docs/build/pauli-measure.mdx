@@ -1,22 +1,94 @@
 ---
-title: Specifying measurements in the Pauli basis
-description: Measure circuits in different Pauli basis, which is required to measure observables that are not diagonal in the computational basis.
+title: Measuring observables in the Pauli basis
+description: Measure circuits in different Pauli bases, which is required to measure observables that are not diagonal in the computational basis.
 
 ---
 
-# Measuring in Pauli bases
+# Specifying observables in Pauli terms
 
 In quantum mechanics, observables correspond to physical properties that can be measured.
-To measure an $n$-qubit observable $O$ on a quantum computer, we first decompose it into a sum of tensor products of Pauli operators, as
+If we are dealing with system of spins, for example, we could be interested in measuring the system's energy or obtaining information about the alignment of the spins, such as the magnetization or the correlations between spins.
+
+To measure an $n$-qubit observable $O$ on a quantum computer, we have to represent it as sum of tensor products of Pauli operators, that is
 
 $$
-O = \sum_{k=1}^K \alpha_k P_k,~~ P_k \in \{I, X, Y, Z\}^{\otimes n},~~ \alpha_k \in \mathbb{C},
+O = \sum_{k=1}^K \alpha_k P_k,~~ P_k \in \{I, X, Y, Z\}^{\otimes n},~~ \alpha_k \in \mathbb{R},
 $$
 
-and then compute the expectation value of each individual Pauli term. 
-However, per default, many quantum computing systems only support measuring Paulis consisting of Z and I terms, 
-since they are diagonal in the computational basis $\{|0\rangle, |1\rangle\}$.
+where 
 
+$$
+I = \begin{pmatrix}
+1 & 0 \\ 0 & 1
+\end{pmatrix}
+~~
+X = \begin{pmatrix}
+0 & 1 \\ 1 & 0
+\end{pmatrix}
+~~
+Y = \begin{pmatrix}
+0 & -i \\ i & 0
+\end{pmatrix}
+~~
+Z = \begin{pmatrix}
+1 & 0 \\ 0 & -1
+\end{pmatrix}
+$$
+
+and we use the fact that an observable is hermitian, i.e. $O^\dagger = O$. If $O$ is not hermitian it can still be decomposed as sum of Paulis, but the coefficient $\alpha_k$ become complex.
+
+In many cases, the observable is naturally specified in this representation after mapping the system of interest to qubits.
+For example, a spin-1/2 system can be mapped to an Ising Hamiltonian
+
+$$
+H = \sum_{\langle i, j\rangle} Z_i Z_j + \sum_{i=1}^n X_i,
+$$
+
+where the indices $\langle i, j\rangle$ run over interacting spins and the spins are subject to a transversal field in $X$.
+The subscript index indicates which qubit the Pauli operator acts on, i.e. $X_i$ acts with an $X$ on qubit $i$ and leaves the rest unchanged.
+If we would like to measure the energy the observable is the Hamiltonian itself. Alternatively, we could measure the 
+average magnetization by counting the number of spins aligned in the $Z$-direction by
+
+$$
+O = \frac{1}{n} \sum_{i=1} Z_i
+$$
+
+If, instead, the observable is given in a matrix form, it can be expressed as Paulis by using the fact that the Pauli terms form a basis for the complex $2^n \times 2^n$ matrices.
+We expand the observable $O$ as 
+
+$$
+O = \sum_{P \in \{I, X, Y, Z\}^{\otimes n}} \mathrm{Tr}(O P) P,
+$$
+
+where the sum runs over all possible $n$-qubit Pauli terms and $\mathrm{Tr}(\cdot)$ is the trace of a matrix, which acts as inner product.
+Qiskit implements this decomposition in the `SparsePauliOp.from_operator` method:
+
+```python
+import numpy as np
+from qiskit.quantum_info import SparsePauliOp
+
+matrix = np.array([[-1, 0, 0.5, -1],
+		   [0, 1, 1, 0.5],
+		   [0.5, 1, -1, 0],
+		   [-1, 0.5, 0, 1]])
+
+observable = SparsePauliOp.from_operator(matrix)
+print(observable)  
+```
+
+which prints
+
+```
+SparsePauliOp(['IZ', 'XI', 'YY'], coeffs=[-1. +0.j,  0.5+0.j,  1. +0.j])
+```
+
+This means the matrix can be written as Pauli terms as $O = -Z_1 + 0.5 X_2 + Y_2 Y_1$.
+Note that the tensor product order maps to qubits as $q_n \otimes q_{n-1} \otimes \cdots \otimes q_1$.
+
+
+# Measuring in Pauli bases
+
+A measurement projects the qubit state to the computational basis $\{|0\rangle, |1\rangle\}$. This implies that we can only measure observables that are diagonal in this basis, such as Paulis consisting only of $I$ and $Z$ terms.
 Measuring arbitrary Pauli terms therefore requires a change of basis to diagonalize them. To do this, we perform the following transformations,
 
 $$
@@ -26,10 +98,10 @@ $$
 \end{aligned}
 $$
 
-where $H$ is the Hadmard gate and $S = \sqrt{Z}$ is sometimes referred to as the phase gate. 
+where $H$ is the Hadamard gate and $S = \sqrt{Z}$ is sometimes referred to as the phase gate. 
 If you are using an `Estimator` to compute expectation values, the basis transformations are automatically performed.
 
-Below is an example demonstrating how to prepare a quantum circuit and manually measure the qubits it in the X, Y, and Z bases:
+Below is an example demonstrating how to prepare a quantum circuit and manually measure the qubits in the X, Y, and Z bases:
 
 ```python
 from qiskit.circuit import QuantumCircuit
