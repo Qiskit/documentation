@@ -1,4 +1,4 @@
-# BasisType[¶](#basistype "Permalink to this headline")
+# BasisType
 
 <span id="undefined" />
 

@@ -12,19 +12,15 @@ python_api_name: qiskit.circuit.library
 
 # Circuit Library
 
-<span id="module-qiskit.circuit.library" />
-
-`¶`
-
 <span id="circuit-library-qiskit-circuit-library" />
 
 ## Circuit Library
 
 <span id="module-qiskit.circuit.library" />
 
-`qiskit.circuit.library¶`
+`qiskit.circuit.library`
 
-### Standard Gates[¶](#standard-gates "Permalink to this headline")
+### Standard Gates
 
 |                                                                                                                                                                       |                                                                      |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
@@ -83,7 +79,7 @@ python_api_name: qiskit.circuit.library
 | [`YGate`](qiskit.circuit.library.YGate#qiskit.circuit.library.YGate "qiskit.circuit.library.YGate")(\[label])                                                         | The single-qubit Pauli-Y gate ($\sigma_y$).                          |
 | [`ZGate`](qiskit.circuit.library.ZGate#qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate")(\[label])                                                         | The single-qubit Pauli-Z gate ($\sigma_z$).                          |
 
-### Generalized Gates[¶](#generalized-gates "Permalink to this headline")
+### Generalized Gates
 
 |                                                                                                                                                               |                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
@@ -97,7 +93,7 @@ python_api_name: qiskit.circuit.library
 | [`GRY`](qiskit.circuit.library.GRY#qiskit.circuit.library.GRY "qiskit.circuit.library.GRY")(num\_qubits, theta)                                               | Global RY gate.                                                                         |
 | [`GRZ`](qiskit.circuit.library.GRZ#qiskit.circuit.library.GRZ "qiskit.circuit.library.GRZ")(num\_qubits, phi)                                                 | Global RZ gate.                                                                         |
 
-### Boolean Logic Circuits[¶](#boolean-logic-circuits "Permalink to this headline")
+### Boolean Logic Circuits
 
 |                                                                                                                                              |                                                                               |
 | -------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
@@ -106,15 +102,15 @@ python_api_name: qiskit.circuit.library
 | [`XOR`](qiskit.circuit.library.XOR#qiskit.circuit.library.XOR "qiskit.circuit.library.XOR")(num\_qubits\[, amount, seed])                    | An n\_qubit circuit for bitwise xor-ing the input with some integer `amount`. |
 | [`InnerProduct`](qiskit.circuit.library.InnerProduct#qiskit.circuit.library.InnerProduct "qiskit.circuit.library.InnerProduct")(num\_qubits) | An n\_qubit circuit that computes the inner product of two registers.         |
 
-### Basis Change Circuits[¶](#basis-change-circuits "Permalink to this headline")
+### Basis Change Circuits
 
 |                                                                                                                                       |                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | [`QFT`](qiskit.circuit.library.QFT#qiskit.circuit.library.QFT "qiskit.circuit.library.QFT")(\[num\_qubits, approximation\_degree, …]) | Quantum Fourier Transform Circuit. |
 
-### Arithmetic Circuits[¶](#arithmetic-circuits "Permalink to this headline")
+### Arithmetic Circuits
 
-#### Functional Pauli Rotations[¶](#functional-pauli-rotations "Permalink to this headline")
+#### Functional Pauli Rotations
 
 |                                                                                                                                                                                                           |                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
@@ -123,31 +119,31 @@ python_api_name: qiskit.circuit.library
 | [`PolynomialPauliRotations`](qiskit.circuit.library.PolynomialPauliRotations#qiskit.circuit.library.PolynomialPauliRotations "qiskit.circuit.library.PolynomialPauliRotations")(\[num\_state\_qubits, …]) | A circuit implementing polynomial Pauli rotations. |
 | [`PiecewiseLinearPauliRotations`](qiskit.circuit.library.PiecewiseLinearPauliRotations#qiskit.circuit.library.PiecewiseLinearPauliRotations "qiskit.circuit.library.PiecewiseLinearPauliRotations")(\[…]) | Piecewise-linearly-controlled Pauli rotations.     |
 
-#### Adders[¶](#adders "Permalink to this headline")
+#### Adders
 
 |                                                                                                                                                                           |                                                           |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
 | [`WeightedAdder`](qiskit.circuit.library.WeightedAdder#qiskit.circuit.library.WeightedAdder "qiskit.circuit.library.WeightedAdder")(\[num\_state\_qubits, weights, name]) | A circuit to compute the weighted sum of qubit registers. |
 
-#### Comparators[¶](#comparators "Permalink to this headline")
+#### Comparators
 
 |                                                                                                                                                                                      |                     |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------- |
 | [`IntegerComparator`](qiskit.circuit.library.IntegerComparator#qiskit.circuit.library.IntegerComparator "qiskit.circuit.library.IntegerComparator")(\[num\_state\_qubits, value, …]) | Integer Comparator. |
 
-#### Functions on binary variables[¶](#functions-on-binary-variables "Permalink to this headline")
+#### Functions on binary variables
 
 |                                                                                                                                                                |                                                                             |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
 | [`QuadraticForm`](qiskit.circuit.library.QuadraticForm#qiskit.circuit.library.QuadraticForm "qiskit.circuit.library.QuadraticForm")(\[num\_result\_qubits, …]) | Implements a quadratic form on binary variables encoded in qubit registers. |
 
-### Amplitude Functions[¶](#amplitude-functions "Permalink to this headline")
+### Amplitude Functions
 
 |                                                                                                                                                                                                    |                                                                           |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | [`LinearAmplitudeFunction`](qiskit.circuit.library.LinearAmplitudeFunction#qiskit.circuit.library.LinearAmplitudeFunction "qiskit.circuit.library.LinearAmplitudeFunction")(num\_state\_qubits, …) | A circuit implementing a (piecewise) linear function on qubit amplitudes. |
 
-### Particular Quantum Circuits[¶](#particular-quantum-circuits "Permalink to this headline")
+### Particular Quantum Circuits
 
 |                                                                                                                                                                                    |                                                      |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
@@ -159,7 +155,7 @@ python_api_name: qiskit.circuit.library
 | [`PhaseEstimation`](qiskit.circuit.library.PhaseEstimation#qiskit.circuit.library.PhaseEstimation "qiskit.circuit.library.PhaseEstimation")(num\_evaluation\_qubits, unitary)      | Phase Estimation circuit.                            |
 | [`GroverOperator`](qiskit.circuit.library.GroverOperator#qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator")(oracle\[, state\_preparation, …])          | The Grover operator.                                 |
 
-### Probability distributions[¶](#probability-distributions "Permalink to this headline")
+### Probability distributions
 
 |                                                                                                                                                                                            |                                                                                |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
@@ -167,7 +163,7 @@ python_api_name: qiskit.circuit.library
 | [`NormalDistribution`](qiskit.circuit.library.NormalDistribution#qiskit.circuit.library.NormalDistribution "qiskit.circuit.library.NormalDistribution")(num\_qubits\[, mu, sigma, …])      | A circuit to encode a discretized normal distribution in qubit amplitudes.     |
 | [`LogNormalDistribution`](qiskit.circuit.library.LogNormalDistribution#qiskit.circuit.library.LogNormalDistribution "qiskit.circuit.library.LogNormalDistribution")(num\_qubits\[, mu, …]) | A circuit to encode a discretized log-normal distribution in qubit amplitudes. |
 
-### N-local circuits[¶](#n-local-circuits "Permalink to this headline")
+### N-local circuits
 
 |                                                                                                                                                                                          |                                                            |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
@@ -177,7 +173,7 @@ python_api_name: qiskit.circuit.library
 | [`EfficientSU2`](qiskit.circuit.library.EfficientSU2#qiskit.circuit.library.EfficientSU2 "qiskit.circuit.library.EfficientSU2")(\[num\_qubits, su2\_gates, …])                           | The hardware efficient SU(2) 2-local circuit.              |
 | [`ExcitationPreserving`](qiskit.circuit.library.ExcitationPreserving#qiskit.circuit.library.ExcitationPreserving "qiskit.circuit.library.ExcitationPreserving")(\[num\_qubits, mode, …]) | The heurisitic excitation-preserving wave function ansatz. |
 
-### Data encoding circuits[¶](#data-encoding-circuits "Permalink to this headline")
+### Data encoding circuits
 
 |                                                                                                                                                                             |                                            |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
@@ -185,7 +181,7 @@ python_api_name: qiskit.circuit.library
 | [`ZFeatureMap`](qiskit.circuit.library.ZFeatureMap#qiskit.circuit.library.ZFeatureMap "qiskit.circuit.library.ZFeatureMap")(feature\_dimension\[, reps, …])                 | The first order Pauli Z-evolution circuit. |
 | [`ZZFeatureMap`](qiskit.circuit.library.ZZFeatureMap#qiskit.circuit.library.ZZFeatureMap "qiskit.circuit.library.ZZFeatureMap")(feature\_dimension\[, reps, …])             | Second-order Pauli-Z evolution circuit.    |
 
-### NCT (Not-CNOT-Toffoli) template circuits[¶](#nct-not-cnot-toffoli-template-circuits "Permalink to this headline")
+### NCT (Not-CNOT-Toffoli) template circuits
 
 |                                                                                                                                                                                                                   |                                           |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |

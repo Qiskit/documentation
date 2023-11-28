@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.TimeUnitConversion
 ---
 
-# TimeUnitConversion[¶](#timeunitconversion "Permalink to this headline")
+# TimeUnitConversion
 
 <span id="qiskit.transpiler.passes.TimeUnitConversion" />
 

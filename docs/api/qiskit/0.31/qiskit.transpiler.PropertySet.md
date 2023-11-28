@@ -1,4 +1,4 @@
-# PropertySet[¶](#propertyset "Permalink to this headline")
+# PropertySet
 
 <span id="undefined" />
 

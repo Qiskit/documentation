@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.verification.coherence_limit
 ---
 
-# coherence\_limit[¶](#coherence-limit "Permalink to this headline")
+# coherence\_limit
 
 <span id="qiskit.ignis.verification.coherence_limit" />
 

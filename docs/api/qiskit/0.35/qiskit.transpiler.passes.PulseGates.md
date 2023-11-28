@@ -1,4 +1,4 @@
-# PulseGates[¶](#pulsegates "Permalink to this headline")
+# PulseGates
 
 <span id="undefined" />
 

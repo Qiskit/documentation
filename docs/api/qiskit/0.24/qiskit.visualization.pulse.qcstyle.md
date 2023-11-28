@@ -12,10 +12,6 @@ python_api_name: qiskit.visualization.pulse.qcstyle
 
 # qiskit.visualization.pulse.qcstyle
 
-<span id="module-qiskit.visualization.pulse.qcstyle" />
-
-`¶`
-
 Style sheets for pulse visualization.
 
 ## Classes

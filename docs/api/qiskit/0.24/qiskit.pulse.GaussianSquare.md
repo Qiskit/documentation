@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-gaussiansquare" />
 
-# qiskit.pulse.GaussianSquare[¶](#qiskit-pulse-gaussiansquare "Permalink to this headline")
+# qiskit.pulse.GaussianSquare
 
 <span id="undefined" />
 

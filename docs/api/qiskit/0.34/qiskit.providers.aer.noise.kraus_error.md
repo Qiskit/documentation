@@ -1,4 +1,4 @@
-# qiskit.providers.aer.noise.kraus\_error[¶](#qiskit-providers-aer-noise-kraus-error "Permalink to this headline")
+# qiskit.providers.aer.noise.kraus\_error
 
 <span id="undefined" />
 

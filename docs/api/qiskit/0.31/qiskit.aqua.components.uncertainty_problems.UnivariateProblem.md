@@ -1,4 +1,4 @@
-# UnivariateProblem[¶](#univariateproblem "Permalink to this headline")
+# UnivariateProblem
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.hellinger\_fidelity[¶](#qiskit-quantum-info-hellinger-fidelity "Permalink to this headline")
+# qiskit.quantum\_info.hellinger\_fidelity
 
 <span id="undefined" />
 

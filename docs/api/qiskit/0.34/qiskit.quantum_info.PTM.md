@@ -1,4 +1,4 @@
-# PTM[¶](#ptm "Permalink to this headline")
+# PTM
 
 <span id="undefined" />
 

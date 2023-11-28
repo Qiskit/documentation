@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.finance.data_providers.WikipediaDataProvider
 ---
 
-# WikipediaDataProvider[¶](#wikipediadataprovider "Permalink to this headline")
+# WikipediaDataProvider
 
 <span id="qiskit.finance.data_providers.WikipediaDataProvider" />
 

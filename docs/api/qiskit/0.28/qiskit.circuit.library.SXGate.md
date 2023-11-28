@@ -1,4 +1,4 @@
-# qiskit.circuit.library.SXGate[¶](#qiskit-circuit-library-sxgate "Permalink to this headline")
+# qiskit.circuit.library.SXGate
 
 <span id="undefined" />
 

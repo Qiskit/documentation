@@ -1,4 +1,4 @@
-# qiskit.circuit.library.HRSCumulativeMultiplier[¶](#qiskit-circuit-library-hrscumulativemultiplier "Permalink to this headline")
+# qiskit.circuit.library.HRSCumulativeMultiplier
 
 <span id="undefined" />
 

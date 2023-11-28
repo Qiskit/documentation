@@ -1,4 +1,4 @@
-# qiskit.aqua.algorithms.MinimumEigensolver[¶](#qiskit-aqua-algorithms-minimumeigensolver "Permalink to this headline")
+# qiskit.aqua.algorithms.MinimumEigensolver
 
 <span id="undefined" />
 

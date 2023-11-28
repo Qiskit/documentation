@@ -1,4 +1,4 @@
-# qiskit.assembler.assemble\_schedules[¶](#qiskit-assembler-assemble-schedules "Permalink to this headline")
+# qiskit.assembler.assemble\_schedules
 
 <span id="undefined" />
 

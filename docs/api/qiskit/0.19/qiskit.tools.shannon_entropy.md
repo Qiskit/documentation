@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.tools.shannon_entropy
 ---
 
-# shannon\_entropy[¶](#shannon-entropy "Permalink to this headline")
+# shannon\_entropy
 
 <span id="qiskit.tools.shannon_entropy" />
 

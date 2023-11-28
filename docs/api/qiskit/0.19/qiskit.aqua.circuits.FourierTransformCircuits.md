@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.circuits.FourierTransformCircuits
 ---
 
-# FourierTransformCircuits[¶](#fouriertransformcircuits "Permalink to this headline")
+# FourierTransformCircuits
 
 <span id="qiskit.aqua.circuits.FourierTransformCircuits" />
 

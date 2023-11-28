@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.neural_networks.QuantumGenerator
 ---
 
-# QuantumGenerator[¶](#quantumgenerator "Permalink to this headline")
+# QuantumGenerator
 
 <span id="qiskit.aqua.components.neural_networks.QuantumGenerator" />
 

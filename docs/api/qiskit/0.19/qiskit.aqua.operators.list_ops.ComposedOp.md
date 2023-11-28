@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.list_ops.ComposedOp
 ---
 
-# ComposedOp[¶](#composedop "Permalink to this headline")
+# ComposedOp
 
 <span id="qiskit.aqua.operators.list_ops.ComposedOp" />
 

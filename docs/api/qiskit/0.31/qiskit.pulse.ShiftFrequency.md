@@ -1,4 +1,4 @@
-# ShiftFrequency[¶](#shiftfrequency "Permalink to this headline")
+# ShiftFrequency
 
 <span id="undefined" />
 

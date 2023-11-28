@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.primitive\_ops.MatrixOp[¶](#qiskit-aqua-operators-primitive-ops-matrixop "Permalink to this headline")
+# qiskit.aqua.operators.primitive\_ops.MatrixOp
 
 <span id="undefined" />
 

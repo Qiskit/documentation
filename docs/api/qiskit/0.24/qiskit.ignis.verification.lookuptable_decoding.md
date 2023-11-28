@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-lookuptable-decoding" />
 
-# qiskit.ignis.verification.lookuptable\_decoding[¶](#qiskit-ignis-verification-lookuptable-decoding "Permalink to this headline")
+# qiskit.ignis.verification.lookuptable\_decoding
 
 <span id="undefined" />
 

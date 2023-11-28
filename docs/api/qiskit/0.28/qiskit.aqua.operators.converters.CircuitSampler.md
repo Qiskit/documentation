@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.converters.CircuitSampler[¶](#qiskit-aqua-operators-converters-circuitsampler "Permalink to this headline")
+# qiskit.aqua.operators.converters.CircuitSampler
 
 <span id="undefined" />
 

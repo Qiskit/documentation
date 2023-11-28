@@ -1,4 +1,4 @@
-# qiskit.optimization.algorithms.MinimumEigenOptimizer[¶](#qiskit-optimization-algorithms-minimumeigenoptimizer "Permalink to this headline")
+# qiskit.optimization.algorithms.MinimumEigenOptimizer
 
 <span id="undefined" />
 

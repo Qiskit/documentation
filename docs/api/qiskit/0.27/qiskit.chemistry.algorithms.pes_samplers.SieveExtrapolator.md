@@ -1,4 +1,4 @@
-# qiskit.chemistry.algorithms.pes\_samplers.SieveExtrapolator[¶](#qiskit-chemistry-algorithms-pes-samplers-sieveextrapolator "Permalink to this headline")
+# qiskit.chemistry.algorithms.pes\_samplers.SieveExtrapolator
 
 <span id="undefined" />
 

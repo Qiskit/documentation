@@ -1,4 +1,4 @@
-# qiskit.circuit.ClassicalRegister[¶](#qiskit-circuit-classicalregister "Permalink to this headline")
+# qiskit.circuit.ClassicalRegister
 
 <span id="undefined" />
 

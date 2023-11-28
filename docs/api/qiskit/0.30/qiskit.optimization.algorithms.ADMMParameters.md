@@ -1,4 +1,4 @@
-# ADMMParameters[¶](#admmparameters "Permalink to this headline")
+# ADMMParameters
 
 <span id="undefined" />
 

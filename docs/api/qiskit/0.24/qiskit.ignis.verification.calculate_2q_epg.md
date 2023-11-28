@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-calculate-2q-epg" />
 
-# qiskit.ignis.verification.calculate\_2q\_epg[¶](#qiskit-ignis-verification-calculate-2q-epg "Permalink to this headline")
+# qiskit.ignis.verification.calculate\_2q\_epg
 
 <span id="undefined" />
 

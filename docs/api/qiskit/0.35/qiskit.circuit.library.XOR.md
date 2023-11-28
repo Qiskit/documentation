@@ -1,4 +1,4 @@
-# XOR[¶](#xor "Permalink to this headline")
+# XOR
 
 <span id="undefined" />
 

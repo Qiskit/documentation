@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.random_statevector
 ---
 
-# random\_statevector[¶](#random-statevector "Permalink to this headline")
+# random\_statevector
 
 <span id="qiskit.quantum_info.random_statevector" />
 

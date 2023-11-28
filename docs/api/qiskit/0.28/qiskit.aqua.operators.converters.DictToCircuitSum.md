@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.converters.DictToCircuitSum[¶](#qiskit-aqua-operators-converters-dicttocircuitsum "Permalink to this headline")
+# qiskit.aqua.operators.converters.DictToCircuitSum
 
 <span id="undefined" />
 

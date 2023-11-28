@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.noise.RelaxationNoisePass
 ---
 
-# RelaxationNoisePass[¶](#relaxationnoisepass "Permalink to this headline")
+# RelaxationNoisePass
 
 <span id="qiskit.providers.aer.noise.RelaxationNoisePass" />
 

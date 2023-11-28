@@ -1,4 +1,4 @@
-# CNOTDihedral[¶](#cnotdihedral "Permalink to this headline")
+# CNOTDihedral
 
 <span id="undefined" />
 

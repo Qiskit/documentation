@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.synthesis.plugin.unitary\_synthesis\_plugin\_names[¶](#qiskit-transpiler-passes-synthesis-plugin-unitary-synthesis-plugin-names "Permalink to this headline")
+# qiskit.transpiler.passes.synthesis.plugin.unitary\_synthesis\_plugin\_names
 
 <span id="undefined" />
 

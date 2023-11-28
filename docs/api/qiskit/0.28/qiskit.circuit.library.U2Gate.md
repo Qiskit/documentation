@@ -1,4 +1,4 @@
-# qiskit.circuit.library.U2Gate[¶](#qiskit-circuit-library-u2gate "Permalink to this headline")
+# qiskit.circuit.library.U2Gate
 
 <span id="undefined" />
 

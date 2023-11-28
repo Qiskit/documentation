@@ -10,10 +10,6 @@ python_api_name: qiskit
 
 # Qiskit Aqua API Reference
 
-<span id="module-qiskit" />
-
-`¶`
-
 *   [Aqua (Algorithms for QUantum Applications) (`qiskit.aqua`)](qiskit_aqua)
 
     *   [aqua\_globals](qiskit.aqua.aqua_globals)

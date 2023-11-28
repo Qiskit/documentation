@@ -1,4 +1,4 @@
-# Extrapolator[¶](#extrapolator "Permalink to this headline")
+# Extrapolator
 
 <span id="undefined" />
 

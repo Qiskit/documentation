@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.gradients.CircuitGradient[¶](#qiskit-aqua-operators-gradients-circuitgradient "Permalink to this headline")
+# qiskit.aqua.operators.gradients.CircuitGradient
 
 <span id="undefined" />
 

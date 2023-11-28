@@ -1,4 +1,4 @@
-# HGate[¶](#hgate "Permalink to this headline")
+# HGate
 
 <span id="undefined" />
 

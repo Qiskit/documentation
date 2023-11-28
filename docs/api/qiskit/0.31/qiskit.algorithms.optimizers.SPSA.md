@@ -1,4 +1,4 @@
-# SPSA[¶](#spsa "Permalink to this headline")
+# SPSA
 
 <span id="undefined" />
 

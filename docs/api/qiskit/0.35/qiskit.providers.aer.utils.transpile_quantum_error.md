@@ -1,4 +1,4 @@
-# qiskit.providers.aer.utils.transpile\_quantum\_error[¶](#qiskit-providers-aer-utils-transpile-quantum-error "Permalink to this headline")
+# qiskit.providers.aer.utils.transpile\_quantum\_error
 
 <span id="undefined" />
 

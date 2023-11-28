@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-algorithms-optimizationalgorithm" />
 
-# qiskit.optimization.algorithms.OptimizationAlgorithm[¶](#qiskit-optimization-algorithms-optimizationalgorithm "Permalink to this headline")
+# qiskit.optimization.algorithms.OptimizationAlgorithm
 
 <span id="undefined" />
 

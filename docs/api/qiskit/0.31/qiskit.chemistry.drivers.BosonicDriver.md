@@ -1,4 +1,4 @@
-# BosonicDriver[¶](#bosonicdriver "Permalink to this headline")
+# BosonicDriver
 
 <span id="undefined" />
 

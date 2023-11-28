@@ -1,4 +1,4 @@
-# qiskit.qpy.load[¶](#qiskit-qpy-load "Permalink to this headline")
+# qiskit.qpy.load
 
 <span id="undefined" />
 

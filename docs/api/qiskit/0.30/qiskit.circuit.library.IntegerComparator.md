@@ -1,4 +1,4 @@
-# IntegerComparator[¶](#integercomparator "Permalink to this headline")
+# IntegerComparator
 
 <span id="undefined" />
 

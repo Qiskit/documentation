@@ -1,4 +1,4 @@
-# NoiseAdaptiveLayout[¶](#noiseadaptivelayout "Permalink to this headline")
+# NoiseAdaptiveLayout
 
 <span id="undefined" />
 

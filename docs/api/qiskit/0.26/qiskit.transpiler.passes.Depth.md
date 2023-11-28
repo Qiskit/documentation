@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.Depth[¶](#qiskit-transpiler-passes-depth "Permalink to this headline")
+# qiskit.transpiler.passes.Depth
 
 <span id="undefined" />
 

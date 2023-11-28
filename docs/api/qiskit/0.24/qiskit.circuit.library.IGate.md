@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-igate" />
 
-# qiskit.circuit.library.IGate[¶](#qiskit-circuit-library-igate "Permalink to this headline")
+# qiskit.circuit.library.IGate
 
 <span id="undefined" />
 

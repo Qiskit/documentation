@@ -1,4 +1,4 @@
-# Credentials[¶](#credentials "Permalink to this headline")
+# Credentials
 
 <span id="undefined" />
 

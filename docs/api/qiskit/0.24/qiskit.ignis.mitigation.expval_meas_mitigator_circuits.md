@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-mitigation-expval-meas-mitigator-circuits" />
 
-# qiskit.ignis.mitigation.expval\_meas\_mitigator\_circuits[¶](#qiskit-ignis-mitigation-expval-meas-mitigator-circuits "Permalink to this headline")
+# qiskit.ignis.mitigation.expval\_meas\_mitigator\_circuits
 
 <span id="undefined" />
 

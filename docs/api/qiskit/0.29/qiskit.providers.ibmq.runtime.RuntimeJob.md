@@ -1,4 +1,4 @@
-# RuntimeJob[¶](#runtimejob "Permalink to this headline")
+# RuntimeJob
 
 <span id="undefined" />
 

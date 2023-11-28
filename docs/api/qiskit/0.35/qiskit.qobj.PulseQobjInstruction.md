@@ -1,4 +1,4 @@
-# PulseQobjInstruction[¶](#pulseqobjinstruction "Permalink to this headline")
+# PulseQobjInstruction
 
 <span id="undefined" />
 

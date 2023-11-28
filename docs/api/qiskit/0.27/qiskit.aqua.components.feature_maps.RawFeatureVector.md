@@ -1,4 +1,4 @@
-# qiskit.aqua.components.feature\_maps.RawFeatureVector[¶](#qiskit-aqua-components-feature-maps-rawfeaturevector "Permalink to this headline")
+# qiskit.aqua.components.feature\_maps.RawFeatureVector
 
 <span id="undefined" />
 

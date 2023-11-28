@@ -1,4 +1,4 @@
-# AbelianGrouper[¶](#abeliangrouper "Permalink to this headline")
+# AbelianGrouper
 
 <span id="undefined" />
 

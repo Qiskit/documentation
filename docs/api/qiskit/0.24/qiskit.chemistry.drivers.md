@@ -16,7 +16,7 @@ python_api_name: qiskit.chemistry.drivers
 
 <span id="module-qiskit.chemistry.drivers" />
 
-`qiskit.chemistry.drivers¶`
+`qiskit.chemistry.drivers`
 
 Qiskit’s chemistry module requires a computational chemistry program or library, accessed via a chemistry *driver*, to be installed on the system for the electronic-structure computation of a given molecule. A driver is created with a molecular configuration, passed in the format compatible with that particular driver. This allows custom configuration specific to each computational chemistry program or library to be passed.
 
@@ -34,10 +34,6 @@ Qiskit’s chemistry module offers the option to serialize the Qmolecule data in
 
 # Driver Base Class
 
-<span id="module-qiskit.chemistry.drivers" />
-
-`¶`
-
 |                                                                                                                                                   |                                                      |
 | ------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
 | [`BaseDriver`](qiskit.chemistry.drivers.BaseDriver#qiskit.chemistry.drivers.BaseDriver "qiskit.chemistry.drivers.BaseDriver")                     | Base class for Qiskit’s chemistry drivers.           |
@@ -45,10 +41,6 @@ Qiskit’s chemistry module offers the option to serialize the Qmolecule data in
 | [`FermionicDriver`](qiskit.chemistry.drivers.FermionicDriver#qiskit.chemistry.drivers.FermionicDriver "qiskit.chemistry.drivers.FermionicDriver") | Base class for Qiskit’s chemistry fermionic drivers. |
 
 # Driver Common
-
-<span id="module-qiskit.chemistry.drivers" />
-
-`¶`
 
 |                                                                                                                                       |                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
@@ -59,10 +51,6 @@ Qiskit’s chemistry module offers the option to serialize the Qmolecule data in
 | [`InitialGuess`](qiskit.chemistry.drivers.InitialGuess#qiskit.chemistry.drivers.InitialGuess "qiskit.chemistry.drivers.InitialGuess") | Initial Guess Enum                      |
 
 # Drivers
-
-<span id="module-qiskit.chemistry.drivers" />
-
-`¶`
 
 The drivers in the chemistry module obtain their information from classical ab-initio programs or libraries. Several drivers, interfacing to common programs and libraries, are available. To use the driver its dependent program/library must be installed. See the relevant installation instructions below for your program/library that you intend to use.
 
@@ -77,10 +65,6 @@ The [`FCIDumpDriver`](qiskit.chemistry.drivers.FCIDumpDriver#qiskit.chemistry.dr
 
 # Fermionic Drivers
 
-<span id="module-qiskit.chemistry.drivers" />
-
-`¶`
-
 |                                                                                                                                               |                                                         |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | [`GaussianDriver`](qiskit.chemistry.drivers.GaussianDriver#qiskit.chemistry.drivers.GaussianDriver "qiskit.chemistry.drivers.GaussianDriver") | Qiskit chemistry driver using the Gaussian™ 16 program. |
@@ -92,19 +76,11 @@ The [`FCIDumpDriver`](qiskit.chemistry.drivers.FCIDumpDriver#qiskit.chemistry.dr
 
 # Bosonic Drivers
 
-<span id="module-qiskit.chemistry.drivers" />
-
-`¶`
-
 |                                                                                                                                                                       |                             |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
 | [`GaussianForcesDriver`](qiskit.chemistry.drivers.GaussianForcesDriver#qiskit.chemistry.drivers.GaussianForcesDriver "qiskit.chemistry.drivers.GaussianForcesDriver") | Gaussian™ 16 forces driver. |
 
 # General Driver
-
-<span id="module-qiskit.chemistry.drivers" />
-
-`¶`
 
 The [`GaussianLogDriver`](qiskit.chemistry.drivers.GaussianLogDriver#qiskit.chemistry.drivers.GaussianLogDriver "qiskit.chemistry.drivers.GaussianLogDriver") allows an arbitrary Gaussian Job Control File to be run and return a [`GaussianLogResult`](qiskit.chemistry.drivers.GaussianLogResult#qiskit.chemistry.drivers.GaussianLogResult "qiskit.chemistry.drivers.GaussianLogResult") containing the log as well as ready access certain data of interest that is parsed from the log.
 

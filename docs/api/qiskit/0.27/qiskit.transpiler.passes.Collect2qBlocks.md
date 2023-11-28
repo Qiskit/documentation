@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.Collect2qBlocks[¶](#qiskit-transpiler-passes-collect2qblocks "Permalink to this headline")
+# qiskit.transpiler.passes.Collect2qBlocks
 
 <span id="undefined" />
 

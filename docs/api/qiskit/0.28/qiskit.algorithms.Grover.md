@@ -1,4 +1,4 @@
-# qiskit.algorithms.Grover[¶](#qiskit-algorithms-grover "Permalink to this headline")
+# qiskit.algorithms.Grover
 
 <span id="undefined" />
 

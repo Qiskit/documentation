@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.utils.split_dataset_to_data_and_labels
 ---
 
-# split\_dataset\_to\_data\_and\_labels[¶](#split-dataset-to-data-and-labels "Permalink to this headline")
+# split\_dataset\_to\_data\_and\_labels
 
 <span id="qiskit.aqua.utils.split_dataset_to_data_and_labels" />
 

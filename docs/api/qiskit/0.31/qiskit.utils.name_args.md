@@ -1,4 +1,4 @@
-# qiskit.utils.name\_args[¶](#qiskit-utils-name-args "Permalink to this headline")
+# qiskit.utils.name\_args
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# ClassicalRegister[¶](#classicalregister "Permalink to this headline")
+# ClassicalRegister
 
 <span id="undefined" />
 

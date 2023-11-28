@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.chemistry.QiskitChemistryError
 ---
 
-# QiskitChemistryError[¶](#qiskitchemistryerror "Permalink to this headline")
+# QiskitChemistryError
 
 <span id="qiskit.chemistry.QiskitChemistryError" />
 

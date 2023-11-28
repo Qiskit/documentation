@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-optimizers-optimizersupportlevel" />
 
-# qiskit.aqua.components.optimizers.OptimizerSupportLevel[¶](#qiskit-aqua-components-optimizers-optimizersupportlevel "Permalink to this headline")
+# qiskit.aqua.components.optimizers.OptimizerSupportLevel
 
 <span id="undefined" />
 

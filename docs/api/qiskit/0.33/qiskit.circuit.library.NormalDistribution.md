@@ -1,4 +1,4 @@
-# NormalDistribution[¶](#normaldistribution "Permalink to this headline")
+# NormalDistribution
 
 <span id="undefined" />
 

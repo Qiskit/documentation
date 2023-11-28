@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.ibmq.utils.seconds_to_duration
 ---
 
-# seconds\_to\_duration[¶](#seconds-to-duration "Permalink to this headline")
+# seconds\_to\_duration
 
 <span id="qiskit.providers.ibmq.utils.seconds_to_duration" />
 

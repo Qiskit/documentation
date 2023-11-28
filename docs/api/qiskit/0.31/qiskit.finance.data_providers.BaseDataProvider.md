@@ -1,4 +1,4 @@
-# BaseDataProvider[¶](#basedataprovider "Permalink to this headline")
+# BaseDataProvider
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.aqua.components.uncertainty\_models.GaussianConditionalIndependenceModel[¶](#qiskit-aqua-components-uncertainty-models-gaussianconditionalindependencemodel "Permalink to this headline")
+# qiskit.aqua.components.uncertainty\_models.GaussianConditionalIndependenceModel
 
 <span id="undefined" />
 

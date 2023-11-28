@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.experiment.ResultQuality
 ---
 
-# ResultQuality[¶](#resultquality "Permalink to this headline")
+# ResultQuality
 
 <span id="qiskit.providers.ibmq.experiment.ResultQuality" />
 

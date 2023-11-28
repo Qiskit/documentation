@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.validation.BaseSchema
 ---
 
-# BaseSchema[¶](#baseschema "Permalink to this headline")
+# BaseSchema
 
 <span id="qiskit.validation.BaseSchema" />
 

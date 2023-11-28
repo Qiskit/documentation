@@ -1,4 +1,4 @@
-# MultivariateProblem[¶](#multivariateproblem "Permalink to this headline")
+# MultivariateProblem
 
 <span id="undefined" />
 

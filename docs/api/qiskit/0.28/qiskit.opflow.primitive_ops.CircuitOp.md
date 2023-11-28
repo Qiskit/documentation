@@ -1,4 +1,4 @@
-# qiskit.opflow\.primitive\_ops.CircuitOp[¶](#qiskit-opflow-primitive-ops-circuitop "Permalink to this headline")
+# qiskit.opflow\.primitive\_ops.CircuitOp
 
 <span id="undefined" />
 

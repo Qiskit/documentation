@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.utils.to\_python\_identifier[¶](#qiskit-providers-ibmq-utils-to-python-identifier "Permalink to this headline")
+# qiskit.providers.ibmq.utils.to\_python\_identifier
 
 <span id="undefined" />
 

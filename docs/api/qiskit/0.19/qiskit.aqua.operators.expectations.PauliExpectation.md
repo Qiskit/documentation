@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.expectations.PauliExpectation
 ---
 
-# PauliExpectation[¶](#pauliexpectation "Permalink to this headline")
+# PauliExpectation
 
 <span id="qiskit.aqua.operators.expectations.PauliExpectation" />
 

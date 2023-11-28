@@ -1,4 +1,4 @@
-# qiskit.aqua.algorithms.QSVM[¶](#qiskit-aqua-algorithms-qsvm "Permalink to this headline")
+# qiskit.aqua.algorithms.QSVM
 
 <span id="undefined" />
 

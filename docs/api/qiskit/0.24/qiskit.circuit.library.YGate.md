@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-ygate" />
 
-# qiskit.circuit.library.YGate[¶](#qiskit-circuit-library-ygate "Permalink to this headline")
+# qiskit.circuit.library.YGate
 
 <span id="undefined" />
 

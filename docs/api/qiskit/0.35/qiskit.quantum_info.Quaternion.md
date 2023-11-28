@@ -1,4 +1,4 @@
-# Quaternion[¶](#quaternion "Permalink to this headline")
+# Quaternion
 
 <span id="undefined" />
 

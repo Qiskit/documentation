@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.GradientDescent
 ---
 
-# GradientDescent[¶](#gradientdescent "Permalink to this headline")
+# GradientDescent
 
 <span id="qiskit.algorithms.optimizers.GradientDescent" />
 

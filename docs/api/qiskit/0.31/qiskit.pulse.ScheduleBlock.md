@@ -1,4 +1,4 @@
-# ScheduleBlock[¶](#scheduleblock "Permalink to this headline")
+# ScheduleBlock
 
 <span id="undefined" />
 

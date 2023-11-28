@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-algorithms-pes-samplers-extrapolator" />
 
-# qiskit.chemistry.algorithms.pes\_samplers.Extrapolator[¶](#qiskit-chemistry-algorithms-pes-samplers-extrapolator "Permalink to this headline")
+# qiskit.chemistry.algorithms.pes\_samplers.Extrapolator
 
 <span id="undefined" />
 

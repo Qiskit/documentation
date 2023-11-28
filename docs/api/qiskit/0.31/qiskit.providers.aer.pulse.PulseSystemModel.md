@@ -1,4 +1,4 @@
-# PulseSystemModel[¶](#pulsesystemmodel "Permalink to this headline")
+# PulseSystemModel
 
 <span id="undefined" />
 

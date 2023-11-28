@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-instructionschedulemap" />
 
-# qiskit.pulse.InstructionScheduleMap[¶](#qiskit-pulse-instructionschedulemap "Permalink to this headline")
+# qiskit.pulse.InstructionScheduleMap
 
 <span id="undefined" />
 

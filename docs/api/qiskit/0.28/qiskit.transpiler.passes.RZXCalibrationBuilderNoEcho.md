@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho[¶](#qiskit-transpiler-passes-rzxcalibrationbuildernoecho "Permalink to this headline")
+# qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# PulseQobjConfig[¶](#pulseqobjconfig "Permalink to this headline")
+# PulseQobjConfig
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.iplot_bloch_multivector
 ---
 
-# iplot\_bloch\_multivector[¶](#iplot-bloch-multivector "Permalink to this headline")
+# iplot\_bloch\_multivector
 
 <span id="qiskit.visualization.iplot_bloch_multivector" />
 

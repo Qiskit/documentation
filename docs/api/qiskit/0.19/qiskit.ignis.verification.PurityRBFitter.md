@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.verification.PurityRBFitter
 ---
 
-# PurityRBFitter[¶](#purityrbfitter "Permalink to this headline")
+# PurityRBFitter
 
 <span id="qiskit.ignis.verification.PurityRBFitter" />
 

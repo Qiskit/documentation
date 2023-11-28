@@ -1,4 +1,4 @@
-# qiskit.pulse.builder.align\_right[¶](#qiskit-pulse-builder-align-right "Permalink to this headline")
+# qiskit.pulse.builder.align\_right
 
 <span id="undefined" />
 

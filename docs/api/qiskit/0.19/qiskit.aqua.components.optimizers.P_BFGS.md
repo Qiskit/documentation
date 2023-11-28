@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.optimizers.P_BFGS
 ---
 
-# P\_BFGS[¶](#p-bfgs "Permalink to this headline")
+# P\_BFGS
 
 <span id="qiskit.aqua.components.optimizers.P_BFGS" />
 

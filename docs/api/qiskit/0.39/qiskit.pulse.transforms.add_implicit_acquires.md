@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.transforms.add_implicit_acquires
 ---
 
-# qiskit.pulse.transforms.add\_implicit\_acquires[¶](#qiskit-pulse-transforms-add-implicit-acquires "Permalink to this headline")
+# qiskit.pulse.transforms.add\_implicit\_acquires
 
 <span id="qiskit.pulse.transforms.add_implicit_acquires" />
 

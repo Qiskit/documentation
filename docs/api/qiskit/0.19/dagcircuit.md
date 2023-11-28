@@ -14,13 +14,9 @@ python_api_name: qiskit.dagcircuit
 
 <span id="module-qiskit.dagcircuit" />
 
-`qiskit.dagcircuit¶`
+`qiskit.dagcircuit`
 
 ## DAG Circuits
-
-<span id="module-qiskit.dagcircuit" />
-
-`¶`
 
 |                                                                                                        |                                                                  |
 | ------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
@@ -28,10 +24,6 @@ python_api_name: qiskit.dagcircuit
 | [`DAGNode`](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.DAGNode")(\[type, op, name, qargs, cargs, …]) | Object to represent the information at a node in the DAGCircuit. |
 
 ## Exceptions
-
-<span id="module-qiskit.dagcircuit" />
-
-`¶`
 
 |                                                                                                   |                                                        |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |

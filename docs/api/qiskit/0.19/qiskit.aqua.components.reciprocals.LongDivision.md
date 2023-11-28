@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.reciprocals.LongDivision
 ---
 
-# LongDivision[¶](#longdivision "Permalink to this headline")
+# LongDivision
 
 <span id="qiskit.aqua.components.reciprocals.LongDivision" />
 

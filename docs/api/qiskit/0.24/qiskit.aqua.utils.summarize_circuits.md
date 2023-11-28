@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-utils-summarize-circuits" />
 
-# qiskit.aqua.utils.summarize\_circuits[¶](#qiskit-aqua-utils-summarize-circuits "Permalink to this headline")
+# qiskit.aqua.utils.summarize\_circuits
 
 <span id="undefined" />
 

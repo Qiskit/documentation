@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.algorithms.ClassicalCPLEX
 ---
 
-# ClassicalCPLEX[¶](#classicalcplex "Permalink to this headline")
+# ClassicalCPLEX
 
 <span id="qiskit.aqua.algorithms.ClassicalCPLEX" />
 

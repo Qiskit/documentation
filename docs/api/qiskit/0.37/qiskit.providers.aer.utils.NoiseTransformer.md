@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.utils.NoiseTransformer
 ---
 
-# NoiseTransformer[¶](#noisetransformer "Permalink to this headline")
+# NoiseTransformer
 
 <span id="qiskit.providers.aer.utils.NoiseTransformer" />
 

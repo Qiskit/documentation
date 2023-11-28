@@ -1,4 +1,4 @@
-# TrivialLayout[¶](#triviallayout "Permalink to this headline")
+# TrivialLayout
 
 <span id="undefined" />
 

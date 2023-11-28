@@ -1,4 +1,4 @@
-# IQXSimple[¶](#iqxsimple "Permalink to this headline")
+# IQXSimple
 
 <span id="undefined" />
 

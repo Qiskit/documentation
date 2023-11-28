@@ -1,4 +1,4 @@
-# ZZFeatureMap[¶](#zzfeaturemap "Permalink to this headline")
+# ZZFeatureMap
 
 <span id="undefined" />
 

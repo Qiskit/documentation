@@ -1,4 +1,4 @@
-# IQP[¶](#iqp "Permalink to this headline")
+# IQP
 
 <span id="undefined" />
 

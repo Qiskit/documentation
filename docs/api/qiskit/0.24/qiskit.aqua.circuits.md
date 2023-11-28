@@ -16,7 +16,7 @@ python_api_name: qiskit.aqua.circuits
 
 <span id="module-qiskit.aqua.circuits" />
 
-`qiskit.aqua.circuits¶`
+`qiskit.aqua.circuits`
 
 Collection of circuits and gates that may be used to build quantum algorithms and components.
 
@@ -27,10 +27,6 @@ Collection of circuits and gates that may be used to build quantum algorithms an
 </Admonition>
 
 # Circuits
-
-<span id="module-qiskit.aqua.circuits" />
-
-`¶`
 
 |                                                                                                                                                                   |                                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |

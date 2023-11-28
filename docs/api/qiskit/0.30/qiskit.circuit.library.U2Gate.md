@@ -1,4 +1,4 @@
-# U2Gate[¶](#u2gate "Permalink to this headline")
+# U2Gate
 
 <span id="undefined" />
 

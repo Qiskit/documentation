@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.BasisTranslator
 ---
 
-# BasisTranslator[¶](#basistranslator "Permalink to this headline")
+# BasisTranslator
 
 <span id="qiskit.transpiler.passes.BasisTranslator" />
 

@@ -1,4 +1,4 @@
-# qiskit.chemistry.algorithms.pes\_samplers.VibronicStructureBase[¶](#qiskit-chemistry-algorithms-pes-samplers-vibronicstructurebase "Permalink to this headline")
+# qiskit.chemistry.algorithms.pes\_samplers.VibronicStructureBase
 
 <span id="undefined" />
 

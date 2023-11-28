@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.models.UchannelLO
 ---
 
-# UchannelLO[¶](#uchannello "Permalink to this headline")
+# UchannelLO
 
 <span id="qiskit.providers.models.UchannelLO" />
 

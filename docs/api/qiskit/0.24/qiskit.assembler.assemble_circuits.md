@@ -1,6 +1,6 @@
 <span id="qiskit-assembler-assemble-circuits" />
 
-# qiskit.assembler.assemble\_circuits[¶](#qiskit-assembler-assemble-circuits "Permalink to this headline")
+# qiskit.assembler.assemble\_circuits
 
 <span id="undefined" />
 

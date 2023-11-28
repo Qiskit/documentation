@@ -1,4 +1,4 @@
-# TruthTableOracle[¶](#truthtableoracle "Permalink to this headline")
+# TruthTableOracle
 
 <span id="undefined" />
 

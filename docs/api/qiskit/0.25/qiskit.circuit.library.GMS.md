@@ -1,4 +1,4 @@
-# qiskit.circuit.library.GMS[¶](#qiskit-circuit-library-gms "Permalink to this headline")
+# qiskit.circuit.library.GMS
 
 <span id="undefined" />
 

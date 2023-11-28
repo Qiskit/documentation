@@ -1,4 +1,4 @@
-# NaturalGradient[¶](#naturalgradient "Permalink to this headline")
+# NaturalGradient
 
 <span id="undefined" />
 

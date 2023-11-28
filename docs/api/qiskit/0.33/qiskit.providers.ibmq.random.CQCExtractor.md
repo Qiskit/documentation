@@ -1,4 +1,4 @@
-# CQCExtractor[¶](#cqcextractor "Permalink to this headline")
+# CQCExtractor
 
 <span id="undefined" />
 

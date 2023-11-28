@@ -1,4 +1,4 @@
-# Play[¶](#play "Permalink to this headline")
+# Play
 
 <span id="undefined" />
 

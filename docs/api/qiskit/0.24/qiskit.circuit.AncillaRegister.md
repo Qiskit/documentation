@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-ancillaregister" />
 
-# qiskit.circuit.AncillaRegister[¶](#qiskit-circuit-ancillaregister "Permalink to this headline")
+# qiskit.circuit.AncillaRegister
 
 <span id="undefined" />
 

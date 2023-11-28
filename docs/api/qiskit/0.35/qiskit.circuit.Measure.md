@@ -1,4 +1,4 @@
-# Measure[¶](#measure "Permalink to this headline")
+# Measure
 
 <span id="undefined" />
 

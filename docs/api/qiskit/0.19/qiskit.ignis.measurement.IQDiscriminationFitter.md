@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.measurement.IQDiscriminationFitter
 ---
 
-# IQDiscriminationFitter[¶](#iqdiscriminationfitter "Permalink to this headline")
+# IQDiscriminationFitter
 
 <span id="qiskit.ignis.measurement.IQDiscriminationFitter" />
 

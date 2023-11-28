@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.qfts.QFT
 ---
 
-# QFT[¶](#qft "Permalink to this headline")
+# QFT
 
 <span id="qiskit.aqua.components.qfts.QFT" />
 

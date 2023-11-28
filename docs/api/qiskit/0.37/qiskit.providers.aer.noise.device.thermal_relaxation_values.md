@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.noise.device.thermal_relaxation_values
 ---
 
-# qiskit.providers.aer.noise.device.thermal\_relaxation\_values[¶](#qiskit-providers-aer-noise-device-thermal-relaxation-values "Permalink to this headline")
+# qiskit.providers.aer.noise.device.thermal\_relaxation\_values
 
 <span id="qiskit.providers.aer.noise.device.thermal_relaxation_values" />
 

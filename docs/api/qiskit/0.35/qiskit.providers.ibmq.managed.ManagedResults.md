@@ -1,4 +1,4 @@
-# ManagedResults[¶](#managedresults "Permalink to this headline")
+# ManagedResults
 
 <span id="undefined" />
 

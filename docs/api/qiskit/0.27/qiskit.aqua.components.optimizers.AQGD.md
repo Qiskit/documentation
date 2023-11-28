@@ -1,4 +1,4 @@
-# qiskit.aqua.components.optimizers.AQGD[¶](#qiskit-aqua-components-optimizers-aqgd "Permalink to this headline")
+# qiskit.aqua.components.optimizers.AQGD
 
 <span id="undefined" />
 

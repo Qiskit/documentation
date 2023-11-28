@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.shannon\_entropy[¶](#qiskit-quantum-info-shannon-entropy "Permalink to this headline")
+# qiskit.quantum\_info.shannon\_entropy
 
 <span id="undefined" />
 

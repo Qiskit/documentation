@@ -1,4 +1,4 @@
-# WeightedPauliOperator[¶](#weightedpaulioperator "Permalink to this headline")
+# WeightedPauliOperator
 
 <span id="undefined" />
 

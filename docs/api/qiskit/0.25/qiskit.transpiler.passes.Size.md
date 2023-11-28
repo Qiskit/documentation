@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.Size[¶](#qiskit-transpiler-passes-size "Permalink to this headline")
+# qiskit.transpiler.passes.Size
 
 <span id="undefined" />
 

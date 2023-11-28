@@ -1,4 +1,4 @@
-# IQXStandard[¶](#iqxstandard "Permalink to this headline")
+# IQXStandard
 
 <span id="undefined" />
 

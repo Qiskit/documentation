@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.scheduler.methods.basic.CircuitPulseDef
 ---
 
-# basic[¶](#module-qiskit.scheduler.methods.basic "Permalink to this headline")
+# basic
 
 The most straightforward scheduling methods: scheduling **as early** or **as late** as possible.
 

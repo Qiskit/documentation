@@ -1,4 +1,4 @@
-# NFT[¶](#nft "Permalink to this headline")
+# NFT
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# Parameter[¶](#parameter "Permalink to this headline")
+# Parameter
 
 <span id="undefined" />
 

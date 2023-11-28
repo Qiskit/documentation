@@ -1,4 +1,4 @@
-# SaveSuperOp[¶](#savesuperop "Permalink to this headline")
+# SaveSuperOp
 
 <span id="undefined" />
 

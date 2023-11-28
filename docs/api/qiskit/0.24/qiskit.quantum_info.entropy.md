@@ -1,6 +1,6 @@
 <span id="qiskit-quantum-info-entropy" />
 
-# qiskit.quantum\_info.entropy[¶](#qiskit-quantum-info-entropy "Permalink to this headline")
+# qiskit.quantum\_info.entropy
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.providers.basicaer.BasicAerJob[¶](#qiskit-providers-basicaer-basicaerjob "Permalink to this headline")
+# qiskit.providers.basicaer.BasicAerJob
 
 <span id="undefined" />
 

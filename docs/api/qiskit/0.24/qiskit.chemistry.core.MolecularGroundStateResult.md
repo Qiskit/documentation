@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-core-moleculargroundstateresult" />
 
-# qiskit.chemistry.core.MolecularGroundStateResult[¶](#qiskit-chemistry-core-moleculargroundstateresult "Permalink to this headline")
+# qiskit.chemistry.core.MolecularGroundStateResult
 
 <span id="undefined" />
 

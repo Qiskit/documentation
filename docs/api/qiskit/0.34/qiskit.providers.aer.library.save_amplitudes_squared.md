@@ -1,4 +1,4 @@
-# qiskit.providers.aer.library.save\_amplitudes\_squared[¶](#qiskit-providers-aer-library-save-amplitudes-squared "Permalink to this headline")
+# qiskit.providers.aer.library.save\_amplitudes\_squared
 
 <span id="undefined" />
 

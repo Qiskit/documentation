@@ -1,4 +1,4 @@
-# qiskit.chemistry.algorithms.MinimumEigensolverFactory[¶](#qiskit-chemistry-algorithms-minimumeigensolverfactory "Permalink to this headline")
+# qiskit.chemistry.algorithms.MinimumEigensolverFactory
 
 <span id="undefined" />
 

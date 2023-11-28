@@ -12,10 +12,6 @@ python_api_name: qiskit.pulse.channels
 
 # qiskit.pulse.channels
 
-<span id="module-qiskit.pulse.channels" />
-
-`¶`
-
 This module defines Pulse Channels. Channels include:
 
 > *   transmit channels, which should subclass `PulseChannel`

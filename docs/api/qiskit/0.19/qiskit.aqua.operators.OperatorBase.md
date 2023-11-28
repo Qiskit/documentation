@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.OperatorBase
 ---
 
-# OperatorBase[¶](#operatorbase "Permalink to this headline")
+# OperatorBase
 
 <span id="qiskit.aqua.operators.OperatorBase" />
 

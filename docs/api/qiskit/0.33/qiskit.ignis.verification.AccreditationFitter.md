@@ -1,4 +1,4 @@
-# AccreditationFitter[¶](#accreditationfitter "Permalink to this headline")
+# AccreditationFitter
 
 <span id="undefined" />
 

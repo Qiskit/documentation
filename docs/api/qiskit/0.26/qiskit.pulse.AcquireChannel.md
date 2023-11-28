@@ -1,4 +1,4 @@
-# qiskit.pulse.AcquireChannel[¶](#qiskit-pulse-acquirechannel "Permalink to this headline")
+# qiskit.pulse.AcquireChannel
 
 <span id="undefined" />
 

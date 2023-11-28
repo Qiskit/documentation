@@ -1,4 +1,4 @@
-# Waveform[¶](#waveform "Permalink to this headline")
+# Waveform
 
 <span id="undefined" />
 

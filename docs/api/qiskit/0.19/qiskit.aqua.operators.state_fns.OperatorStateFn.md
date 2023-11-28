@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.state_fns.OperatorStateFn
 ---
 
-# OperatorStateFn[¶](#operatorstatefn "Permalink to this headline")
+# OperatorStateFn
 
 <span id="qiskit.aqua.operators.state_fns.OperatorStateFn" />
 

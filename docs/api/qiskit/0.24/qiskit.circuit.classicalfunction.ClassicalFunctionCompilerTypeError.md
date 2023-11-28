@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-classicalfunction-classicalfunctioncompilertypeerror" />
 
-# qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError[¶](#qiskit-circuit-classicalfunction-classicalfunctioncompilertypeerror "Permalink to this headline")
+# qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError
 
 <span id="undefined" />
 

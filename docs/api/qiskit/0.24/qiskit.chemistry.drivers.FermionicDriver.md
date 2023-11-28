@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-drivers-fermionicdriver" />
 
-# qiskit.chemistry.drivers.FermionicDriver[¶](#qiskit-chemistry-drivers-fermionicdriver "Permalink to this headline")
+# qiskit.chemistry.drivers.FermionicDriver
 
 <span id="undefined" />
 

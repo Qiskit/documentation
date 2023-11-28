@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.optimization.problems.QuadraticExpression
 ---
 
-# QuadraticExpression[¶](#quadraticexpression "Permalink to this headline")
+# QuadraticExpression
 
 <span id="qiskit.optimization.problems.QuadraticExpression" />
 

@@ -14,17 +14,13 @@ python_api_name: qiskit.chemistry.core
 
 <span id="module-qiskit.chemistry.core" />
 
-`qiskit.chemistry.core¶`
+`qiskit.chemistry.core`
 
 The core was designed to be an extensible system that took a [`QMolecule`](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule") and created output which was ready to be input directly to an Aqua algorithm in the form of a qubit operator and list of auxiliary operators such as dipole moments, spin, number of particles etc.
 
 The one implementation here, [`Hamiltonian`](qiskit.chemistry.core.Hamiltonian "qiskit.chemistry.core.Hamiltonian"), in essence wraps the [`FermionicOperator`](qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator") to provide easier, convenient access to common capabilities such that the [`FermionicOperator`](qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator") class need not be used directly.
 
 # Core Base Class
-
-<span id="module-qiskit.chemistry.core" />
-
-`¶`
 
 |                                                                                                                                           |                                       |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
@@ -34,10 +30,6 @@ The one implementation here, [`Hamiltonian`](qiskit.chemistry.core.Hamiltonian "
 | [`MolecularExcitedStatesResult`](qiskit.chemistry.core.MolecularExcitedStatesResult "qiskit.chemistry.core.MolecularExcitedStatesResult") | Molecular Excited States Result       |
 
 # Core
-
-<span id="module-qiskit.chemistry.core" />
-
-`¶`
 
 |                                                                                                             |                                                                                                      |
 | ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |

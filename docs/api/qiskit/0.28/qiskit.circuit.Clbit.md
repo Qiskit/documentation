@@ -1,4 +1,4 @@
-# qiskit.circuit.Clbit[¶](#qiskit-circuit-clbit "Permalink to this headline")
+# qiskit.circuit.Clbit
 
 <span id="undefined" />
 

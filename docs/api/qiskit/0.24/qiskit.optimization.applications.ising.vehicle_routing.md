@@ -12,10 +12,6 @@ python_api_name: qiskit.optimization.applications.ising.vehicle_routing
 
 # qiskit.optimization.applications.ising.vehicle\_routing
 
-<span id="module-qiskit.optimization.applications.ising.vehicle_routing" />
-
-`¶`
-
 Converts vehicle routing instances into a list of Paulis, and provides some related routines (extracting a solution, checking its objective function value).
 
 ## Functions

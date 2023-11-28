@@ -14,15 +14,11 @@ python_api_name: qiskit.aqua.components.uncertainty_models
 
 <span id="module-qiskit.aqua.components.uncertainty_models" />
 
-`qiskit.aqua.components.uncertainty_models¶`
+`qiskit.aqua.components.uncertainty_models`
 
 An uncertainty model is an implementation that provides a way to construct a quantum circuit to prepare a state which corresponds to a particular distribution. More precisely, the resulting state together with an affine map can be used to sample from the considered distribution. The qubits are measured and then mapped to the desired range using the affine map.
 
 # Uncertainty Model Base Classes
-
-<span id="module-qiskit.aqua.components.uncertainty_models" />
-
-`¶`
 
 [`UncertaintyModel`](qiskit.aqua.components.uncertainty_models.UncertaintyModel#qiskit.aqua.components.uncertainty_models.UncertaintyModel "qiskit.aqua.components.uncertainty_models.UncertaintyModel") is the base class from which further base classes for univariate and multivariate distributions are derived
 
@@ -34,10 +30,6 @@ An uncertainty model is an implementation that provides a way to construct a qua
 
 # Univariate Distributions
 
-<span id="module-qiskit.aqua.components.uncertainty_models" />
-
-`¶`
-
 |                                                                                                                                                                                                                                                                              |                                          |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | [`NormalDistribution`](qiskit.aqua.components.uncertainty_models.NormalDistribution#qiskit.aqua.components.uncertainty_models.NormalDistribution "qiskit.aqua.components.uncertainty_models.NormalDistribution")                                                             | The Univariate Normal Distribution.      |
@@ -47,10 +39,6 @@ An uncertainty model is an implementation that provides a way to construct a qua
 | [`UnivariateVariationalDistribution`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution#qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution") | The Univariate Variational Distribution. |
 
 # Multivariate Distributions
-
-<span id="module-qiskit.aqua.components.uncertainty_models" />
-
-`¶`
 
 |                                                                                                                                                                                                                                                                                          |                                                              |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |

@@ -1,6 +1,6 @@
 <span id="qiskit-providers-ibmq-ibmqbackendvalueerror" />
 
-# qiskit.providers.ibmq.IBMQBackendValueError[¶](#qiskit-providers-ibmq-ibmqbackendvalueerror "Permalink to this headline")
+# qiskit.providers.ibmq.IBMQBackendValueError
 
 <span id="undefined" />
 

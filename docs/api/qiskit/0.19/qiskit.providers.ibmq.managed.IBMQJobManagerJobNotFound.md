@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound
 ---
 
-# IBMQJobManagerJobNotFound[¶](#ibmqjobmanagerjobnotfound "Permalink to this headline")
+# IBMQJobManagerJobNotFound
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound" />
 

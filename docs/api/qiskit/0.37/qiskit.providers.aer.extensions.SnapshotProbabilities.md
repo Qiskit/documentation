@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.extensions.SnapshotProbabilities
 ---
 
-# SnapshotProbabilities[¶](#snapshotprobabilities "Permalink to this headline")
+# SnapshotProbabilities
 
 <span id="qiskit.providers.aer.extensions.SnapshotProbabilities" />
 

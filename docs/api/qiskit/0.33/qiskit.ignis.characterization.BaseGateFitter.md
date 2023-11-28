@@ -1,4 +1,4 @@
-# BaseGateFitter[¶](#basegatefitter "Permalink to this headline")
+# BaseGateFitter
 
 <span id="undefined" />
 

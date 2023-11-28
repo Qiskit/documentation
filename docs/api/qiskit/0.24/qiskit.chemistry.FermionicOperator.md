@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-fermionicoperator" />
 
-# qiskit.chemistry.FermionicOperator[¶](#qiskit-chemistry-fermionicoperator "Permalink to this headline")
+# qiskit.chemistry.FermionicOperator
 
 <span id="undefined" />
 

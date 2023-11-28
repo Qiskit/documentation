@@ -1,4 +1,4 @@
-# SaveStabilizer[¶](#savestabilizer "Permalink to this headline")
+# SaveStabilizer
 
 <span id="undefined" />
 

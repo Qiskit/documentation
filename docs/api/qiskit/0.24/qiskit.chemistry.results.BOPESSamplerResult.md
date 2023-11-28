@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-results-bopessamplerresult" />
 
-# qiskit.chemistry.results.BOPESSamplerResult[¶](#qiskit-chemistry-results-bopessamplerresult "Permalink to this headline")
+# qiskit.chemistry.results.BOPESSamplerResult
 
 <span id="undefined" />
 

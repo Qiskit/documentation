@@ -1,4 +1,4 @@
-# qiskit.visualization.plot\_histogram[¶](#qiskit-visualization-plot-histogram "Permalink to this headline")
+# qiskit.visualization.plot\_histogram
 
 <span id="undefined" />
 

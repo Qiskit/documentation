@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.evolutions.EvolvedOp[¶](#qiskit-aqua-operators-evolutions-evolvedop "Permalink to this headline")
+# qiskit.aqua.operators.evolutions.EvolvedOp
 
 <span id="undefined" />
 

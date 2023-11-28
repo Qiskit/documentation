@@ -1,4 +1,4 @@
-# qiskit.chemistry.drivers.PySCFDriver[¶](#qiskit-chemistry-drivers-pyscfdriver "Permalink to this headline")
+# qiskit.chemistry.drivers.PySCFDriver
 
 <span id="undefined" />
 

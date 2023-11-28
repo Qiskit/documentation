@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.DynamicalDecoupling[¶](#qiskit-transpiler-passes-dynamicaldecoupling "Permalink to this headline")
+# qiskit.transpiler.passes.DynamicalDecoupling
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# YGate[¶](#ygate "Permalink to this headline")
+# YGate
 
 <span id="undefined" />
 

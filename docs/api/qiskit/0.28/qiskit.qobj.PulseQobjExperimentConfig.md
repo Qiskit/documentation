@@ -1,4 +1,4 @@
-# qiskit.qobj.PulseQobjExperimentConfig[¶](#qiskit-qobj-pulseqobjexperimentconfig "Permalink to this headline")
+# qiskit.qobj.PulseQobjExperimentConfig
 
 <span id="undefined" />
 

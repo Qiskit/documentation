@@ -1,6 +1,6 @@
 <span id="qiskit-quantum-info-onequbiteulerdecomposer" />
 
-# qiskit.quantum\_info.OneQubitEulerDecomposer[¶](#qiskit-quantum-info-onequbiteulerdecomposer "Permalink to this headline")
+# qiskit.quantum\_info.OneQubitEulerDecomposer
 
 <span id="undefined" />
 

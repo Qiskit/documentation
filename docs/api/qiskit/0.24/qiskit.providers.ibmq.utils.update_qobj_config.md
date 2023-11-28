@@ -1,6 +1,6 @@
 <span id="qiskit-providers-ibmq-utils-update-qobj-config" />
 
-# qiskit.providers.ibmq.utils.update\_qobj\_config[¶](#qiskit-providers-ibmq-utils-update-qobj-config "Permalink to this headline")
+# qiskit.providers.ibmq.utils.update\_qobj\_config
 
 <span id="undefined" />
 

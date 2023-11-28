@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.Reset
 ---
 
-# Reset[¶](#reset "Permalink to this headline")
+# Reset
 
 <span id="qiskit.circuit.library.Reset" />
 

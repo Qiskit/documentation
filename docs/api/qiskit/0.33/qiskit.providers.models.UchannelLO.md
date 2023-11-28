@@ -1,4 +1,4 @@
-# UchannelLO[¶](#uchannello "Permalink to this headline")
+# UchannelLO
 
 <span id="undefined" />
 

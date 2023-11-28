@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-components-variational-forms-uccsd" />
 
-# qiskit.chemistry.components.variational\_forms.UCCSD[¶](#qiskit-chemistry-components-variational-forms-uccsd "Permalink to this headline")
+# qiskit.chemistry.components.variational\_forms.UCCSD
 
 <span id="undefined" />
 

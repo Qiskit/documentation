@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-noise-device-thermal-relaxation-values" />
 
-# qiskit.providers.aer.noise.device.thermal\_relaxation\_values[¶](#qiskit-providers-aer-noise-device-thermal-relaxation-values "Permalink to this headline")
+# qiskit.providers.aer.noise.device.thermal\_relaxation\_values
 
 <span id="undefined" />
 

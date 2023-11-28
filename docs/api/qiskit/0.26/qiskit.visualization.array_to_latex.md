@@ -1,4 +1,4 @@
-# qiskit.visualization.array\_to\_latex[¶](#qiskit-visualization-array-to-latex "Permalink to this headline")
+# qiskit.visualization.array\_to\_latex
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# ReadoutError[¶](#readouterror "Permalink to this headline")
+# ReadoutError
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# EigenstateResult[¶](#eigenstateresult "Permalink to this headline")
+# EigenstateResult
 
 <span id="undefined" />
 

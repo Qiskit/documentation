@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.experiment.AnalysisResult[¶](#qiskit-providers-ibmq-experiment-analysisresult "Permalink to this headline")
+# qiskit.providers.ibmq.experiment.AnalysisResult
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.average\_gate\_fidelity[¶](#qiskit-quantum-info-average-gate-fidelity "Permalink to this headline")
+# qiskit.quantum\_info.average\_gate\_fidelity
 
 <span id="undefined" />
 

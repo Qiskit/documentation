@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.ConsolidateBlocks[¶](#qiskit-transpiler-passes-consolidateblocks "Permalink to this headline")
+# qiskit.transpiler.passes.ConsolidateBlocks
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# IntermediateResult[¶](#intermediateresult "Permalink to this headline")
+# IntermediateResult
 
 <span id="undefined" />
 

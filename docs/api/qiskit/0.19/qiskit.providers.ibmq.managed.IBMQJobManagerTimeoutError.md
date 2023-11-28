@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.managed.IBMQJobManagerTimeoutError
 ---
 
-# IBMQJobManagerTimeoutError[¶](#ibmqjobmanagertimeouterror "Permalink to this headline")
+# IBMQJobManagerTimeoutError
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManagerTimeoutError" />
 

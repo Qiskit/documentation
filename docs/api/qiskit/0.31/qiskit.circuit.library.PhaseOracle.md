@@ -1,4 +1,4 @@
-# PhaseOracle[¶](#phaseoracle "Permalink to this headline")
+# PhaseOracle
 
 <span id="undefined" />
 

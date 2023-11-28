@@ -1,4 +1,4 @@
-# qiskit.chemistry.algorithms.pes\_samplers.WindowExtrapolator[¶](#qiskit-chemistry-algorithms-pes-samplers-windowextrapolator "Permalink to this headline")
+# qiskit.chemistry.algorithms.pes\_samplers.WindowExtrapolator
 
 <span id="undefined" />
 

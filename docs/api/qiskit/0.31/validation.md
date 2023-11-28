@@ -14,23 +14,15 @@ python_api_name: qiskit.validation
 
 <span id="module-qiskit.validation" />
 
-`qiskit.validation¶`
+`qiskit.validation`
 
 ## JSON Schema
-
-<span id="module-qiskit.validation" />
-
-`¶`
 
 |                                                                                                                                                                                                                                 |                                       |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
 | [`jsonschema.validate_json_against_schema`](qiskit.validation.jsonschema.validate_json_against_schema#qiskit.validation.jsonschema.validate_json_against_schema "qiskit.validation.jsonschema.validate_json_against_schema")(…) | Validates JSON dict against a schema. |
 
 ## Exceptions
-
-<span id="module-qiskit.validation" />
-
-`¶`
 
 |                                                                                                                                                                                                             |                                                    |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |

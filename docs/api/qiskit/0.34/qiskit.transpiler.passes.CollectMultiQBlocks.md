@@ -1,4 +1,4 @@
-# CollectMultiQBlocks[¶](#collectmultiqblocks "Permalink to this headline")
+# CollectMultiQBlocks
 
 <span id="undefined" />
 

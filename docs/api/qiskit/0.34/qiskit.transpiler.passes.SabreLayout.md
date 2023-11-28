@@ -1,4 +1,4 @@
-# SabreLayout[¶](#sabrelayout "Permalink to this headline")
+# SabreLayout
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-integercomparator" />
 
-# qiskit.circuit.library.IntegerComparator[¶](#qiskit-circuit-library-integercomparator "Permalink to this headline")
+# qiskit.circuit.library.IntegerComparator
 
 <span id="undefined" />
 

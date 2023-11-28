@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.least\_busy[¶](#qiskit-providers-ibmq-least-busy "Permalink to this headline")
+# qiskit.providers.ibmq.least\_busy
 
 <span id="undefined" />
 

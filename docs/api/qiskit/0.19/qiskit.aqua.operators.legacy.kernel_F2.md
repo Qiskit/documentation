@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.operators.legacy.kernel_F2
 ---
 
-# kernel\_F2[¶](#kernel-f2 "Permalink to this headline")
+# kernel\_F2
 
 <span id="qiskit.aqua.operators.legacy.kernel_F2" />
 

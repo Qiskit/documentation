@@ -1,4 +1,4 @@
-# PauliOp[¶](#pauliop "Permalink to this headline")
+# PauliOp
 
 <span id="undefined" />
 

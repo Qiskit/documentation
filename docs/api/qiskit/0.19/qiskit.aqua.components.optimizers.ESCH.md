@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.optimizers.ESCH
 ---
 
-# ESCH[¶](#esch "Permalink to this headline")
+# ESCH
 
 <span id="qiskit.aqua.components.optimizers.ESCH" />
 

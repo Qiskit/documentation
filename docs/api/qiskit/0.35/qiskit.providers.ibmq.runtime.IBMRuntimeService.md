@@ -1,4 +1,4 @@
-# IBMRuntimeService[¶](#ibmruntimeservice "Permalink to this headline")
+# IBMRuntimeService
 
 <span id="undefined" />
 

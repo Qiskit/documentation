@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-optimize1qgatesdecomposition" />
 
-# qiskit.transpiler.passes.Optimize1qGatesDecomposition[¶](#qiskit-transpiler-passes-optimize1qgatesdecomposition "Permalink to this headline")
+# qiskit.transpiler.passes.Optimize1qGatesDecomposition
 
 <span id="undefined" />
 

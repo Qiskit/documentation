@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.TrotterQRTE
 ---
 
-# TrotterQRTE[¶](#trotterqrte "Permalink to this headline")
+# TrotterQRTE
 
 <span id="qiskit.algorithms.TrotterQRTE" />
 

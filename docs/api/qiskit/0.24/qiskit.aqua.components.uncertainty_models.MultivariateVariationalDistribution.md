@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-uncertainty-models-multivariatevariationaldistribution" />
 
-# qiskit.aqua.components.uncertainty\_models.MultivariateVariationalDistribution[¶](#qiskit-aqua-components-uncertainty-models-multivariatevariationaldistribution "Permalink to this headline")
+# qiskit.aqua.components.uncertainty\_models.MultivariateVariationalDistribution
 
 <span id="undefined" />
 

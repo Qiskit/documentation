@@ -1,4 +1,4 @@
-# Gate[¶](#gate "Permalink to this headline")
+# Gate
 
 <span id="undefined" />
 

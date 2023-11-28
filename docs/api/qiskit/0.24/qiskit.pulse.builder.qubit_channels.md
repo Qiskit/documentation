@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-builder-qubit-channels" />
 
-# qiskit.pulse.builder.qubit\_channels[¶](#qiskit-pulse-builder-qubit-channels "Permalink to this headline")
+# qiskit.pulse.builder.qubit\_channels
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# OneAgainstRest[¶](#oneagainstrest "Permalink to this headline")
+# OneAgainstRest
 
 <span id="undefined" />
 

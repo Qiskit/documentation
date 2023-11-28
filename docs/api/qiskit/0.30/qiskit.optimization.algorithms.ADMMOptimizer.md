@@ -1,4 +1,4 @@
-# ADMMOptimizer[¶](#admmoptimizer "Permalink to this headline")
+# ADMMOptimizer
 
 <span id="undefined" />
 

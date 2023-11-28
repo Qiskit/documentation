@@ -1,4 +1,4 @@
-# ADAM[¶](#adam "Permalink to this headline")
+# ADAM
 
 <span id="undefined" />
 

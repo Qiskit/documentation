@@ -1,4 +1,4 @@
-# BackendStatus[¶](#backendstatus "Permalink to this headline")
+# BackendStatus
 
 <span id="undefined" />
 

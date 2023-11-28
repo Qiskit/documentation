@@ -1,4 +1,4 @@
-# qiskit.ignis.characterization.get\_single\_q\_pulse[¶](#qiskit-ignis-characterization-get-single-q-pulse "Permalink to this headline")
+# qiskit.ignis.characterization.get\_single\_q\_pulse
 
 <span id="undefined" />
 

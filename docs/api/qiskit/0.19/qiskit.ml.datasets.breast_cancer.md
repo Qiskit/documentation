@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ml.datasets.breast_cancer
 ---
 
-# breast\_cancer[¶](#breast-cancer "Permalink to this headline")
+# breast\_cancer
 
 <span id="qiskit.ml.datasets.breast_cancer" />
 

@@ -1,4 +1,4 @@
-# qiskit.chemistry.core.QubitMappingType[¶](#qiskit-chemistry-core-qubitmappingtype "Permalink to this headline")
+# qiskit.chemistry.core.QubitMappingType
 
 <span id="undefined" />
 

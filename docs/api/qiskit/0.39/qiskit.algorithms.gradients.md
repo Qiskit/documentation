@@ -1,17 +1,17 @@
 <span id="qiskit-algorithms-gradients" />
 
-# qiskit.algorithms.gradients[¶](#module-qiskit.algorithms.gradients "Permalink to this headline")
+# qiskit.algorithms.gradients
 
-## Gradients ([`qiskit.algorithms.gradients`](#module-qiskit.algorithms.gradients "qiskit.algorithms.gradients"))[¶](#gradients-qiskit-algorithms-gradients "Permalink to this headline")
+## Gradients ([`qiskit.algorithms.gradients`](#module-qiskit.algorithms.gradients "qiskit.algorithms.gradients"))
 
-### Base Classes[¶](#base-classes "Permalink to this headline")
+### Base Classes
 
 |                                                                                                                                                         |                                                                                          |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | [`BaseSamplerGradient`](qiskit.algorithms.gradients.BaseSamplerGradient "qiskit.algorithms.gradients.BaseSamplerGradient")(sampler\[, options])         | Base class for a `SamplerGradient` to compute the gradients of the sampling probability. |
 | [`BaseEstimatorGradient`](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.BaseEstimatorGradient")(estimator\[, options]) | Base class for an `EstimatorGradient` to compute the gradients of the expectation value. |
 
-### Estimator Gradients[¶](#estimator-gradients "Permalink to this headline")
+### Estimator Gradients
 
 |                                                                                                                                                                            |                                                                                                                  |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
@@ -20,7 +20,7 @@
 | [`ParamShiftEstimatorGradient`](qiskit.algorithms.gradients.ParamShiftEstimatorGradient "qiskit.algorithms.gradients.ParamShiftEstimatorGradient")(estimator, \*\*options) | Compute the gradients of the expectation values by the parameter shift rule                                      |
 | [`SPSAEstimatorGradient`](qiskit.algorithms.gradients.SPSAEstimatorGradient "qiskit.algorithms.gradients.SPSAEstimatorGradient")(estimator, epsilon\[, ...])               | Compute the gradients of the expectation value by the Simultaneous Perturbation Stochastic Approximation (SPSA). |
 
-### Sampler Gradients[¶](#sampler-gradients "Permalink to this headline")
+### Sampler Gradients
 
 |                                                                                                                                                                     |                                                                                                                     |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
@@ -29,7 +29,7 @@
 | [`ParamShiftSamplerGradient`](qiskit.algorithms.gradients.ParamShiftSamplerGradient "qiskit.algorithms.gradients.ParamShiftSamplerGradient")(sampler, \*\*options)  | Compute the gradients of the sampling probability by the parameter shift rule.                                      |
 | [`SPSASamplerGradient`](qiskit.algorithms.gradients.SPSASamplerGradient "qiskit.algorithms.gradients.SPSASamplerGradient")(sampler, epsilon\[, ...])                | Compute the gradients of the sampling probability by the Simultaneous Perturbation Stochastic Approximation (SPSA). |
 
-### Results[¶](#results "Permalink to this headline")
+### Results
 
 |                                                                                                                                                                  |                              |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |

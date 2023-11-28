@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.IBMQError
 ---
 
-# IBMQError[¶](#ibmqerror "Permalink to this headline")
+# IBMQError
 
 <span id="qiskit.providers.ibmq.IBMQError" />
 

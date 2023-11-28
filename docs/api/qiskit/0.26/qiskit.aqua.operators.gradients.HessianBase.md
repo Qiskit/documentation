@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.gradients.HessianBase[¶](#qiskit-aqua-operators-gradients-hessianbase "Permalink to this headline")
+# qiskit.aqua.operators.gradients.HessianBase
 
 <span id="undefined" />
 

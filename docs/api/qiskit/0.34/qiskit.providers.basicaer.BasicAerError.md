@@ -1,4 +1,4 @@
-# qiskit.providers.basicaer.BasicAerError[¶](#qiskit-providers-basicaer-basicaererror "Permalink to this headline")
+# qiskit.providers.basicaer.BasicAerError
 
 <span id="undefined" />
 

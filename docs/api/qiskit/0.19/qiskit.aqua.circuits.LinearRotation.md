@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.circuits.LinearRotation
 ---
 
-# LinearRotation[¶](#linearrotation "Permalink to this headline")
+# LinearRotation
 
 <span id="qiskit.aqua.circuits.LinearRotation" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.runtime.ResultDecoder
 ---
 
-# ResultDecoder[¶](#resultdecoder "Permalink to this headline")
+# ResultDecoder
 
 <span id="qiskit.providers.ibmq.runtime.ResultDecoder" />
 

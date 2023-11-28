@@ -1,4 +1,4 @@
-# IGate[¶](#igate "Permalink to this headline")
+# IGate
 
 <span id="undefined" />
 

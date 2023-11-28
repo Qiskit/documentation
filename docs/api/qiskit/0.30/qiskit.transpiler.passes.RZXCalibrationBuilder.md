@@ -1,4 +1,4 @@
-# RZXCalibrationBuilder[¶](#rzxcalibrationbuilder "Permalink to this headline")
+# RZXCalibrationBuilder
 
 <span id="undefined" />
 

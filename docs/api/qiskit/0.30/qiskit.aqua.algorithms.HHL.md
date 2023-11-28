@@ -1,4 +1,4 @@
-# HHL[¶](#hhl "Permalink to this headline")
+# HHL
 
 <span id="undefined" />
 

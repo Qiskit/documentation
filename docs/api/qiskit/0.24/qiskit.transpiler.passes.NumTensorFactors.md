@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-numtensorfactors" />
 
-# qiskit.transpiler.passes.NumTensorFactors[¶](#qiskit-transpiler-passes-numtensorfactors "Permalink to this headline")
+# qiskit.transpiler.passes.NumTensorFactors
 
 <span id="undefined" />
 

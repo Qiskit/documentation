@@ -1,4 +1,4 @@
-# QuadraticConstraint[¶](#quadraticconstraint "Permalink to this headline")
+# QuadraticConstraint
 
 <span id="undefined" />
 

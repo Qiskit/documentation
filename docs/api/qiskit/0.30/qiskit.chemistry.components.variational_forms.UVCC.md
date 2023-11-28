@@ -1,4 +1,4 @@
-# UVCC[¶](#uvcc "Permalink to this headline")
+# UVCC
 
 <span id="undefined" />
 

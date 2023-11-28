@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.primitive_ops.TaperedPauliSumOp
 ---
 
-# TaperedPauliSumOp[¶](#taperedpaulisumop "Permalink to this headline")
+# TaperedPauliSumOp
 
 <span id="qiskit.opflow.primitive_ops.TaperedPauliSumOp" />
 

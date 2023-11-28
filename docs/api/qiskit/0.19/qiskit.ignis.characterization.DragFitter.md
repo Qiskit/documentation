@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.characterization.DragFitter
 ---
 
-# DragFitter[¶](#dragfitter "Permalink to this headline")
+# DragFitter
 
 <span id="qiskit.ignis.characterization.DragFitter" />
 

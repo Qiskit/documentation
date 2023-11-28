@@ -1,4 +1,4 @@
-# qiskit.pulse.builder.active\_circuit\_scheduler\_settings[¶](#qiskit-pulse-builder-active-circuit-scheduler-settings "Permalink to this headline")
+# qiskit.pulse.builder.active\_circuit\_scheduler\_settings
 
 <span id="undefined" />
 

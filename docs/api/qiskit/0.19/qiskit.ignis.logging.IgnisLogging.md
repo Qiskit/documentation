@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.logging.IgnisLogging
 ---
 
-# IgnisLogging[¶](#ignislogging "Permalink to this headline")
+# IgnisLogging
 
 <span id="qiskit.ignis.logging.IgnisLogging" />
 

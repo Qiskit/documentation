@@ -1,6 +1,6 @@
 <span id="qiskit-finance-applications-ising-portfolio" />
 
-# qiskit.finance.applications.ising.portfolio[¶](#module-qiskit.finance.applications.ising.portfolio "Permalink to this headline")
+# qiskit.finance.applications.ising.portfolio
 
 Convert portfolio optimization instances into Pauli list
 

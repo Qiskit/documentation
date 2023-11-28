@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.ScheduleBlock
 ---
 
-# ScheduleBlock[¶](#scheduleblock "Permalink to this headline")
+# ScheduleBlock
 
 <span id="qiskit.pulse.ScheduleBlock" />
 

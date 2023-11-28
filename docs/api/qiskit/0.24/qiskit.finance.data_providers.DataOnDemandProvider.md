@@ -1,6 +1,6 @@
 <span id="qiskit-finance-data-providers-dataondemandprovider" />
 
-# qiskit.finance.data\_providers.DataOnDemandProvider[¶](#qiskit-finance-data-providers-dataondemandprovider "Permalink to this headline")
+# qiskit.finance.data\_providers.DataOnDemandProvider
 
 <span id="undefined" />
 

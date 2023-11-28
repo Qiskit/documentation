@@ -1,4 +1,4 @@
-# IBMQFactory[¶](#ibmqfactory "Permalink to this headline")
+# IBMQFactory
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# FourierChecking[¶](#fourierchecking "Permalink to this headline")
+# FourierChecking
 
 <span id="undefined" />
 

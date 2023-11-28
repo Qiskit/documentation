@@ -1,4 +1,4 @@
-# qiskit.circuit.library.PiecewiseChebyshev[¶](#qiskit-circuit-library-piecewisechebyshev "Permalink to this headline")
+# qiskit.circuit.library.PiecewiseChebyshev
 
 <span id="undefined" />
 

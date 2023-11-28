@@ -1,4 +1,4 @@
-# HartreeFock[¶](#hartreefock "Permalink to this headline")
+# HartreeFock
 
 <span id="undefined" />
 

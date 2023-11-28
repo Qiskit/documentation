@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.ValidatePulseGates[¶](#qiskit-transpiler-passes-validatepulsegates "Permalink to this headline")
+# qiskit.transpiler.passes.ValidatePulseGates
 
 <span id="undefined" />
 

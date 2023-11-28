@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-dagfixedpoint" />
 
-# qiskit.transpiler.passes.DAGFixedPoint[¶](#qiskit-transpiler-passes-dagfixedpoint "Permalink to this headline")
+# qiskit.transpiler.passes.DAGFixedPoint
 
 <span id="undefined" />
 

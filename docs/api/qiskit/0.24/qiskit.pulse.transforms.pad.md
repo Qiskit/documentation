@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-transforms-pad" />
 
-# qiskit.pulse.transforms.pad[¶](#qiskit-pulse-transforms-pad "Permalink to this headline")
+# qiskit.pulse.transforms.pad
 
 <span id="undefined" />
 

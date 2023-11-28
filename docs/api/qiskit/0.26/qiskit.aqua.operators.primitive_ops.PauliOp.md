@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.primitive\_ops.PauliOp[¶](#qiskit-aqua-operators-primitive-ops-pauliop "Permalink to this headline")
+# qiskit.aqua.operators.primitive\_ops.PauliOp
 
 <span id="undefined" />
 

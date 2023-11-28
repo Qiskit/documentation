@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.neural_networks.PyTorchDiscriminator
 ---
 
-# PyTorchDiscriminator[¶](#pytorchdiscriminator "Permalink to this headline")
+# PyTorchDiscriminator
 
 <span id="qiskit.aqua.components.neural_networks.PyTorchDiscriminator" />
 

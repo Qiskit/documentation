@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.tools.vectorize
 ---
 
-# vectorize[¶](#vectorize "Permalink to this headline")
+# vectorize
 
 <span id="qiskit.tools.vectorize" />
 

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.timeline.draw
 ---
 
-# qiskit.visualization.timeline.draw[¶](#qiskit-visualization-timeline-draw "Permalink to this headline")
+# qiskit.visualization.timeline.draw
 
 <span id="qiskit.visualization.timeline.draw" />
 

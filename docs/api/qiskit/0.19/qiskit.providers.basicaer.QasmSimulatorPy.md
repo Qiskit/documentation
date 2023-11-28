@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.basicaer.QasmSimulatorPy
 ---
 
-# QasmSimulatorPy[¶](#qasmsimulatorpy "Permalink to this headline")
+# QasmSimulatorPy
 
 <span id="qiskit.providers.basicaer.QasmSimulatorPy" />
 

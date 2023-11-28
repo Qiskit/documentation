@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-optimizers-powell" />
 
-# qiskit.aqua.components.optimizers.POWELL[¶](#qiskit-aqua-components-optimizers-powell "Permalink to this headline")
+# qiskit.aqua.components.optimizers.POWELL
 
 <span id="undefined" />
 

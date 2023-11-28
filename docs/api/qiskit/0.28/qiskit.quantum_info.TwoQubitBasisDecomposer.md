@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.TwoQubitBasisDecomposer[¶](#qiskit-quantum-info-twoqubitbasisdecomposer "Permalink to this headline")
+# qiskit.quantum\_info.TwoQubitBasisDecomposer
 
 <span id="undefined" />
 

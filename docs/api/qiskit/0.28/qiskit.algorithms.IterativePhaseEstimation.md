@@ -1,4 +1,4 @@
-# qiskit.algorithms.IterativePhaseEstimation[¶](#qiskit-algorithms-iterativephaseestimation "Permalink to this headline")
+# qiskit.algorithms.IterativePhaseEstimation
 
 <span id="undefined" />
 

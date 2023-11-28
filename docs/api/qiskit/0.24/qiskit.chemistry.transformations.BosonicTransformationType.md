@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-transformations-bosonictransformationtype" />
 
-# qiskit.chemistry.transformations.BosonicTransformationType[¶](#qiskit-chemistry-transformations-bosonictransformationtype "Permalink to this headline")
+# qiskit.chemistry.transformations.BosonicTransformationType
 
 <span id="undefined" />
 

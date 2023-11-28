@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-algorithms-admmparameters" />
 
-# qiskit.optimization.algorithms.ADMMParameters[¶](#qiskit-optimization-algorithms-admmparameters "Permalink to this headline")
+# qiskit.optimization.algorithms.ADMMParameters
 
 <span id="undefined" />
 

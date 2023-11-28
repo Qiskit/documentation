@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-converters-linearequalitytopenalty" />
 
-# qiskit.optimization.converters.LinearEqualityToPenalty[¶](#qiskit-optimization-converters-linearequalitytopenalty "Permalink to this headline")
+# qiskit.optimization.converters.LinearEqualityToPenalty
 
 <span id="undefined" />
 

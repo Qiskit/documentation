@@ -1,4 +1,4 @@
-# qiskit.opflow\.primitive\_ops.PauliSumOp[¶](#qiskit-opflow-primitive-ops-paulisumop "Permalink to this headline")
+# qiskit.opflow\.primitive\_ops.PauliSumOp
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# two\_qubit\_cnot\_decompose[¶](#two-qubit-cnot-decompose "Permalink to this headline")
+# two\_qubit\_cnot\_decompose
 
 ## two\_qubit\_cnot\_decompose *= \<qiskit.quantum\_info.synthesis.two\_qubit\_decompose.TwoQubitBasisDecomposer object>*
 

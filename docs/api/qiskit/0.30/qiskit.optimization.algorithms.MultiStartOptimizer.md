@@ -1,4 +1,4 @@
-# MultiStartOptimizer[¶](#multistartoptimizer "Permalink to this headline")
+# MultiStartOptimizer
 
 <span id="undefined" />
 

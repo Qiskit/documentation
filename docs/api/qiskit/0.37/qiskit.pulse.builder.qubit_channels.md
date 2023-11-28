@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.qubit_channels
 ---
 
-# qiskit.pulse.builder.qubit\_channels[¶](#qiskit-pulse-builder-qubit-channels "Permalink to this headline")
+# qiskit.pulse.builder.qubit\_channels
 
 <span id="qiskit.pulse.builder.qubit_channels" />
 

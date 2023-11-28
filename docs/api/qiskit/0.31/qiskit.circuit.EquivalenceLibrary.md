@@ -1,4 +1,4 @@
-# EquivalenceLibrary[¶](#equivalencelibrary "Permalink to this headline")
+# EquivalenceLibrary
 
 <span id="undefined" />
 

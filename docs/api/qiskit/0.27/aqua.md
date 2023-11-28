@@ -1,4 +1,4 @@
-# Qiskit Aqua API Reference (Deprecated)[¶](#qiskit-aqua-api-reference-deprecated "Permalink to this headline")
+# Qiskit Aqua API Reference (Deprecated)
 
 *   [Aqua (Algorithms for QUantum Applications) (`qiskit.aqua`)](qiskit_aqua)
 

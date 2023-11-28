@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-characterization-ampcal-cx-circuits" />
 
-# qiskit.ignis.characterization.ampcal\_cx\_circuits[¶](#qiskit-ignis-characterization-ampcal-cx-circuits "Permalink to this headline")
+# qiskit.ignis.characterization.ampcal\_cx\_circuits
 
 <span id="undefined" />
 

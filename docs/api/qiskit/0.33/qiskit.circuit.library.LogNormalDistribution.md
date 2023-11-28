@@ -1,4 +1,4 @@
-# LogNormalDistribution[¶](#lognormaldistribution "Permalink to this headline")
+# LogNormalDistribution
 
 <span id="undefined" />
 

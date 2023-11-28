@@ -1,4 +1,4 @@
-# HamiltonianGate[¶](#hamiltoniangate "Permalink to this headline")
+# HamiltonianGate
 
 <span id="undefined" />
 

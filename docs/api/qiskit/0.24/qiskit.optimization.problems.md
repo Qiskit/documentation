@@ -16,13 +16,9 @@ python_api_name: qiskit.optimization.problems
 
 <span id="module-qiskit.optimization.problems" />
 
-`qiskit.optimization.problems¶`
+`qiskit.optimization.problems`
 
 # Quadratic program
-
-<span id="module-qiskit.optimization.problems" />
-
-`¶`
 
 Structures for defining an optimization problem.
 

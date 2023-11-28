@@ -1,4 +1,4 @@
-# qiskit.algorithms.PhaseEstimationResult[¶](#qiskit-algorithms-phaseestimationresult "Permalink to this headline")
+# qiskit.algorithms.PhaseEstimationResult
 
 <span id="undefined" />
 

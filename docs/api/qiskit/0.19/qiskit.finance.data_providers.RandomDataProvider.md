@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.finance.data_providers.RandomDataProvider
 ---
 
-# RandomDataProvider[¶](#randomdataprovider "Permalink to this headline")
+# RandomDataProvider
 
 <span id="qiskit.finance.data_providers.RandomDataProvider" />
 

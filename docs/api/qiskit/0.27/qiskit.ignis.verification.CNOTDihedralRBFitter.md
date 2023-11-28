@@ -1,4 +1,4 @@
-# qiskit.ignis.verification.CNOTDihedralRBFitter[¶](#qiskit-ignis-verification-cnotdihedralrbfitter "Permalink to this headline")
+# qiskit.ignis.verification.CNOTDihedralRBFitter
 
 <span id="undefined" />
 

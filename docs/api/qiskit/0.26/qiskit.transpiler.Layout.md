@@ -1,4 +1,4 @@
-# qiskit.transpiler.Layout[¶](#qiskit-transpiler-layout "Permalink to this headline")
+# qiskit.transpiler.Layout
 
 <span id="undefined" />
 

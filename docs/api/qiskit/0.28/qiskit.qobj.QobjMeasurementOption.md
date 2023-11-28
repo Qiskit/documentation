@@ -1,4 +1,4 @@
-# qiskit.qobj.QobjMeasurementOption[¶](#qiskit-qobj-qobjmeasurementoption "Permalink to this headline")
+# qiskit.qobj.QobjMeasurementOption
 
 <span id="undefined" />
 

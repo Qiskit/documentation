@@ -1,4 +1,4 @@
-# SXdgGate[¶](#sxdggate "Permalink to this headline")
+# SXdgGate
 
 <span id="undefined" />
 

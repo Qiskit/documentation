@@ -1,4 +1,4 @@
-# qiskit.providers.aer.library.set\_matrix\_product\_state[¶](#qiskit-providers-aer-library-set-matrix-product-state "Permalink to this headline")
+# qiskit.providers.aer.library.set\_matrix\_product\_state
 
 <span id="undefined" />
 

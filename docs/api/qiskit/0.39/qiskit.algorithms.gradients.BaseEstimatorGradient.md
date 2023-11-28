@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.BaseEstimatorGradient
 ---
 
-# BaseEstimatorGradient[¶](#baseestimatorgradient "Permalink to this headline")
+# BaseEstimatorGradient
 
 <span id="qiskit.algorithms.gradients.BaseEstimatorGradient" />
 

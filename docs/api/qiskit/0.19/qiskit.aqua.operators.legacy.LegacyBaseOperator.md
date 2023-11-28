@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.legacy.LegacyBaseOperator
 ---
 
-# LegacyBaseOperator[¶](#legacybaseoperator "Permalink to this headline")
+# LegacyBaseOperator
 
 <span id="qiskit.aqua.operators.legacy.LegacyBaseOperator" />
 

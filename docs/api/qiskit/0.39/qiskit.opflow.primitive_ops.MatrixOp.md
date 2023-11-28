@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.primitive_ops.MatrixOp
 ---
 
-# MatrixOp[¶](#matrixop "Permalink to this headline")
+# MatrixOp
 
 <span id="qiskit.opflow.primitive_ops.MatrixOp" />
 

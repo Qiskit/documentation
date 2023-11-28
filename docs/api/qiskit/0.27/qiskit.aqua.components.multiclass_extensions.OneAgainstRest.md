@@ -1,4 +1,4 @@
-# qiskit.aqua.components.multiclass\_extensions.OneAgainstRest[¶](#qiskit-aqua-components-multiclass-extensions-oneagainstrest "Permalink to this headline")
+# qiskit.aqua.components.multiclass\_extensions.OneAgainstRest
 
 <span id="undefined" />
 

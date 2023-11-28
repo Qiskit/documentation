@@ -1,4 +1,4 @@
-# CNOTUnitObjective[¶](#cnotunitobjective "Permalink to this headline")
+# CNOTUnitObjective
 
 <span id="undefined" />
 

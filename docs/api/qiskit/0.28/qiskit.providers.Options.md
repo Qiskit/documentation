@@ -1,4 +1,4 @@
-# qiskit.providers.Options[¶](#qiskit-providers-options "Permalink to this headline")
+# qiskit.providers.Options
 
 <span id="undefined" />
 

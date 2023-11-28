@@ -1,4 +1,4 @@
-# CountOps[¶](#countops "Permalink to this headline")
+# CountOps
 
 <span id="undefined" />
 

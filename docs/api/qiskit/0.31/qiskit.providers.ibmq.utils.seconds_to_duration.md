@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.utils.seconds\_to\_duration[¶](#qiskit-providers-ibmq-utils-seconds-to-duration "Permalink to this headline")
+# qiskit.providers.ibmq.utils.seconds\_to\_duration
 
 <span id="undefined" />
 

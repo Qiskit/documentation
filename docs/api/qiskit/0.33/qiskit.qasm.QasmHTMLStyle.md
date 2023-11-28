@@ -1,4 +1,4 @@
-# QasmHTMLStyle[¶](#qasmhtmlstyle "Permalink to this headline")
+# QasmHTMLStyle
 
 <span id="undefined" />
 

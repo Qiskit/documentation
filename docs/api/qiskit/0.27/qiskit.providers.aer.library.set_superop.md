@@ -1,4 +1,4 @@
-# qiskit.providers.aer.library.set\_superop[¶](#qiskit-providers-aer-library-set-superop "Permalink to this headline")
+# qiskit.providers.aer.library.set\_superop
 
 <span id="undefined" />
 

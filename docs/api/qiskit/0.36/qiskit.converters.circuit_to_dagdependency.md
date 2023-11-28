@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.converters.circuit_to_dagdependency
 ---
 
-# qiskit.converters.circuit\_to\_dagdependency[¶](#qiskit-converters-circuit-to-dagdependency "Permalink to this headline")
+# qiskit.converters.circuit\_to\_dagdependency
 
 <span id="qiskit.converters.circuit_to_dagdependency" />
 

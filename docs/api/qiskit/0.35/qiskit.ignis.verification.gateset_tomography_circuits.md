@@ -1,4 +1,4 @@
-# qiskit.ignis.verification.gateset\_tomography\_circuits[¶](#qiskit-ignis-verification-gateset-tomography-circuits "Permalink to this headline")
+# qiskit.ignis.verification.gateset\_tomography\_circuits
 
 <span id="undefined" />
 

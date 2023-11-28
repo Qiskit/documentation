@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.quantum_info.StabilizerTable
 ---
 
-# StabilizerTable[¶](#stabilizertable "Permalink to this headline")
+# StabilizerTable
 
 <span id="qiskit.quantum_info.StabilizerTable" />
 

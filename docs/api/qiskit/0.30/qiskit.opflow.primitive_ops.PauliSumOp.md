@@ -1,4 +1,4 @@
-# PauliSumOp[¶](#paulisumop "Permalink to this headline")
+# PauliSumOp
 
 <span id="undefined" />
 

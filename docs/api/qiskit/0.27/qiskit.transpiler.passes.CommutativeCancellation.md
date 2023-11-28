@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.CommutativeCancellation[¶](#qiskit-transpiler-passes-commutativecancellation "Permalink to this headline")
+# qiskit.transpiler.passes.CommutativeCancellation
 
 <span id="undefined" />
 

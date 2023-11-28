@@ -1,4 +1,4 @@
-# qiskit.ignis.characterization.BaseCoherenceFitter[¶](#qiskit-ignis-characterization-basecoherencefitter "Permalink to this headline")
+# qiskit.ignis.characterization.BaseCoherenceFitter
 
 <span id="undefined" />
 

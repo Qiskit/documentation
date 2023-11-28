@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.ConstrainedReschedule
 ---
 
-# ConstrainedReschedule[¶](#constrainedreschedule "Permalink to this headline")
+# ConstrainedReschedule
 
 <span id="qiskit.transpiler.passes.ConstrainedReschedule" />
 

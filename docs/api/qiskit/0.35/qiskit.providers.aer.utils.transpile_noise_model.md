@@ -1,4 +1,4 @@
-# qiskit.providers.aer.utils.transpile\_noise\_model[¶](#qiskit-providers-aer-utils-transpile-noise-model "Permalink to this headline")
+# qiskit.providers.aer.utils.transpile\_noise\_model
 
 <span id="undefined" />
 

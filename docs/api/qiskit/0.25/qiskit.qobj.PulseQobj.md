@@ -1,4 +1,4 @@
-# qiskit.qobj.PulseQobj[¶](#qiskit-qobj-pulseqobj "Permalink to this headline")
+# qiskit.qobj.PulseQobj
 
 <span id="undefined" />
 

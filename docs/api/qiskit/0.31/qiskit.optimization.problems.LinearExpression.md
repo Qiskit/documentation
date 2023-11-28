@@ -1,4 +1,4 @@
-# LinearExpression[¶](#linearexpression "Permalink to this headline")
+# LinearExpression
 
 <span id="undefined" />
 

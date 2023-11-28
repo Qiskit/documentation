@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.BaseProvider
 ---
 
-# BaseProvider[¶](#baseprovider "Permalink to this headline")
+# BaseProvider
 
 <span id="qiskit.providers.BaseProvider" />
 

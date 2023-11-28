@@ -1,4 +1,4 @@
-# qiskit.chemistry.drivers.InitialGuess[¶](#qiskit-chemistry-drivers-initialguess "Permalink to this headline")
+# qiskit.chemistry.drivers.InitialGuess
 
 <span id="undefined" />
 

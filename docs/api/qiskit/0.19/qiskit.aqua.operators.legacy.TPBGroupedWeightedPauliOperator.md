@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator
 ---
 
-# TPBGroupedWeightedPauliOperator[¶](#tpbgroupedweightedpaulioperator "Permalink to this headline")
+# TPBGroupedWeightedPauliOperator
 
 <span id="qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator" />
 

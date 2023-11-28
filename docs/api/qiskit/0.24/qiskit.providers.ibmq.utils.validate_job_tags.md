@@ -1,6 +1,6 @@
 <span id="qiskit-providers-ibmq-utils-validate-job-tags" />
 
-# qiskit.providers.ibmq.utils.validate\_job\_tags[¶](#qiskit-providers-ibmq-utils-validate-job-tags "Permalink to this headline")
+# qiskit.providers.ibmq.utils.validate\_job\_tags
 
 <span id="undefined" />
 

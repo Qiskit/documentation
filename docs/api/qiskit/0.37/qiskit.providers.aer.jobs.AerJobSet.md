@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.jobs.AerJobSet
 ---
 
-# AerJobSet[¶](#aerjobset "Permalink to this headline")
+# AerJobSet
 
 <span id="qiskit.providers.aer.jobs.AerJobSet" />
 

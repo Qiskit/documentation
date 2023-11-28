@@ -14,25 +14,17 @@ python_api_name: qiskit.optimization.algorithms
 
 <span id="module-qiskit.optimization.algorithms" />
 
-`qiskit.optimization.algorithms¶`
+`qiskit.optimization.algorithms`
 
 Algorithms for optimization problems.
 
 # Base class
-
-<span id="module-qiskit.optimization.algorithms" />
-
-`¶`
 
 |                                                                                                                                        |                                                                                |
 | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | [`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.OptimizationAlgorithm") | An abstract class for optimization algorithms in Qiskit’s optimization module. |
 
 # Algorithms
-
-<span id="module-qiskit.optimization.algorithms" />
-
-`¶`
 
 |                                                                                                                                                                   |                                                                                                                                                                                         |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

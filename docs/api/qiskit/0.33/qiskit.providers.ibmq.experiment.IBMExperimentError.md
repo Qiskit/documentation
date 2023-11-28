@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.experiment.IBMExperimentError[¶](#qiskit-providers-ibmq-experiment-ibmexperimenterror "Permalink to this headline")
+# qiskit.providers.ibmq.experiment.IBMExperimentError
 
 <span id="undefined" />
 

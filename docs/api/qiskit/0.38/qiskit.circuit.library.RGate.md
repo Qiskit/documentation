@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.RGate
 ---
 
-# RGate[¶](#rgate "Permalink to this headline")
+# RGate
 
 <span id="qiskit.circuit.library.RGate" />
 

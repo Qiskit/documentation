@@ -1,4 +1,4 @@
-# qiskit.finance.data\_providers.YahooDataProvider[¶](#qiskit-finance-data-providers-yahoodataprovider "Permalink to this headline")
+# qiskit.finance.data\_providers.YahooDataProvider
 
 <span id="undefined" />
 

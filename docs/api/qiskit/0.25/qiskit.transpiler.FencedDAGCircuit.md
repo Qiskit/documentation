@@ -1,4 +1,4 @@
-# qiskit.transpiler.FencedDAGCircuit[¶](#qiskit-transpiler-fenceddagcircuit "Permalink to this headline")
+# qiskit.transpiler.FencedDAGCircuit
 
 <span id="undefined" />
 

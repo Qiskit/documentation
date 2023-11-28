@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.finance.data_providers.DataOnDemandProvider
 ---
 
-# DataOnDemandProvider[¶](#dataondemandprovider "Permalink to this headline")
+# DataOnDemandProvider
 
 <span id="qiskit.finance.data_providers.DataOnDemandProvider" />
 

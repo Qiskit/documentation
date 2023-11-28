@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-initial-states-initialstate" />
 
-# qiskit.aqua.components.initial\_states.InitialState[¶](#qiskit-aqua-components-initial-states-initialstate "Permalink to this headline")
+# qiskit.aqua.components.initial\_states.InitialState
 
 <span id="undefined" />
 

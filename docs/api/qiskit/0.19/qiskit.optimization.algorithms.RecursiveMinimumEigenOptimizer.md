@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer
 ---
 
-# RecursiveMinimumEigenOptimizer[¶](#recursiveminimumeigenoptimizer "Permalink to this headline")
+# RecursiveMinimumEigenOptimizer
 
 <span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer" />
 

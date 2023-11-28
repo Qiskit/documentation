@@ -1,4 +1,4 @@
-# WatsonHamiltonian[¶](#watsonhamiltonian "Permalink to this headline")
+# WatsonHamiltonian
 
 <span id="undefined" />
 

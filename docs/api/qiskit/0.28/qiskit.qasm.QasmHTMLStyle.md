@@ -1,4 +1,4 @@
-# qiskit.qasm.QasmHTMLStyle[¶](#qiskit-qasm-qasmhtmlstyle "Permalink to this headline")
+# qiskit.qasm.QasmHTMLStyle
 
 <span id="undefined" />
 

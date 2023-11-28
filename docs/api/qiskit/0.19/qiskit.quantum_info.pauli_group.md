@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.pauli_group
 ---
 
-# pauli\_group[¶](#pauli-group "Permalink to this headline")
+# pauli\_group
 
 <span id="qiskit.quantum_info.pauli_group" />
 

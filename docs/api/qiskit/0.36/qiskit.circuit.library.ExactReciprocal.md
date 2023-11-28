@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.ExactReciprocal
 ---
 
-# ExactReciprocal[¶](#exactreciprocal "Permalink to this headline")
+# ExactReciprocal
 
 <span id="qiskit.circuit.library.ExactReciprocal" />
 

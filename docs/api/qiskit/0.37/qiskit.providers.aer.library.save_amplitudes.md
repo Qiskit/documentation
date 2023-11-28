@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.library.save_amplitudes
 ---
 
-# qiskit.providers.aer.library.save\_amplitudes[¶](#qiskit-providers-aer-library-save-amplitudes "Permalink to this headline")
+# qiskit.providers.aer.library.save\_amplitudes
 
 <span id="qiskit.providers.aer.library.save_amplitudes" />
 

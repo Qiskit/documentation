@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-extensions-snapshotdensitymatrix" />
 
-# qiskit.providers.aer.extensions.SnapshotDensityMatrix[¶](#qiskit-providers-aer-extensions-snapshotdensitymatrix "Permalink to this headline")
+# qiskit.providers.aer.extensions.SnapshotDensityMatrix
 
 <span id="undefined" />
 

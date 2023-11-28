@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-templateoptimization" />
 
-# qiskit.transpiler.passes.TemplateOptimization[¶](#qiskit-transpiler-passes-templateoptimization "Permalink to this headline")
+# qiskit.transpiler.passes.TemplateOptimization
 
 <span id="undefined" />
 

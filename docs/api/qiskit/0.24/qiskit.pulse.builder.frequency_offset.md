@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-builder-frequency-offset" />
 
-# qiskit.pulse.builder.frequency\_offset[¶](#qiskit-pulse-builder-frequency-offset "Permalink to this headline")
+# qiskit.pulse.builder.frequency\_offset
 
 <span id="undefined" />
 

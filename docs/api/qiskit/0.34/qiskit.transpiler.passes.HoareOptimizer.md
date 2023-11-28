@@ -1,4 +1,4 @@
-# HoareOptimizer[¶](#hoareoptimizer "Permalink to this headline")
+# HoareOptimizer
 
 <span id="undefined" />
 

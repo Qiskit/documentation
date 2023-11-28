@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.utils.tensorproduct
 ---
 
-# tensorproduct[¶](#tensorproduct "Permalink to this headline")
+# tensorproduct
 
 <span id="qiskit.aqua.utils.tensorproduct" />
 

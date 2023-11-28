@@ -1,4 +1,4 @@
-# NumPyLinearSolver[¶](#numpylinearsolver "Permalink to this headline")
+# NumPyLinearSolver
 
 <span id="undefined" />
 

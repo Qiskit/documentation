@@ -1,4 +1,4 @@
-# qiskit.ignis.verification.get\_ghz\_mqc\_para[¶](#qiskit-ignis-verification-get-ghz-mqc-para "Permalink to this headline")
+# qiskit.ignis.verification.get\_ghz\_mqc\_para
 
 <span id="undefined" />
 

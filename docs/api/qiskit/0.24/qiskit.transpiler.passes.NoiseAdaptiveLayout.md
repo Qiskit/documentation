@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-noiseadaptivelayout" />
 
-# qiskit.transpiler.passes.NoiseAdaptiveLayout[¶](#qiskit-transpiler-passes-noiseadaptivelayout "Permalink to this headline")
+# qiskit.transpiler.passes.NoiseAdaptiveLayout
 
 <span id="undefined" />
 

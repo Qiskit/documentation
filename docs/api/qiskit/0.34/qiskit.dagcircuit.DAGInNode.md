@@ -1,4 +1,4 @@
-# DAGInNode[¶](#daginnode "Permalink to this headline")
+# DAGInNode
 
 <span id="undefined" />
 

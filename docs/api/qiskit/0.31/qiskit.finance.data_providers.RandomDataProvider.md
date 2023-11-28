@@ -1,4 +1,4 @@
-# RandomDataProvider[¶](#randomdataprovider "Permalink to this headline")
+# RandomDataProvider
 
 <span id="undefined" />
 

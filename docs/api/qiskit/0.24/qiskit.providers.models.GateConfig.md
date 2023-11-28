@@ -1,6 +1,6 @@
 <span id="qiskit-providers-models-gateconfig" />
 
-# qiskit.providers.models.GateConfig[¶](#qiskit-providers-models-gateconfig "Permalink to this headline")
+# qiskit.providers.models.GateConfig
 
 <span id="undefined" />
 

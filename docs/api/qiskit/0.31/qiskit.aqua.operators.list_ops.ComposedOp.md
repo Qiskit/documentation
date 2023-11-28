@@ -1,4 +1,4 @@
-# ComposedOp[¶](#composedop "Permalink to this headline")
+# ComposedOp
 
 <span id="undefined" />
 

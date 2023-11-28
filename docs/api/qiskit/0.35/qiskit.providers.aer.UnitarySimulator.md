@@ -1,4 +1,4 @@
-# UnitarySimulator[¶](#unitarysimulator "Permalink to this headline")
+# UnitarySimulator
 
 <span id="undefined" />
 

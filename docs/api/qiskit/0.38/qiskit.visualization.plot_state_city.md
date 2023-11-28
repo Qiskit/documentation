@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.plot_state_city
 ---
 
-# qiskit.visualization.plot\_state\_city[¶](#qiskit-visualization-plot-state-city "Permalink to this headline")
+# qiskit.visualization.plot\_state\_city
 
 <span id="qiskit.visualization.plot_state_city" />
 

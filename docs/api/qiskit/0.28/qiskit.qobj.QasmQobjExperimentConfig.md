@@ -1,4 +1,4 @@
-# qiskit.qobj.QasmQobjExperimentConfig[¶](#qiskit-qobj-qasmqobjexperimentconfig "Permalink to this headline")
+# qiskit.qobj.QasmQobjExperimentConfig
 
 <span id="undefined" />
 

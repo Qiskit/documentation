@@ -1,4 +1,4 @@
-# qiskit.chemistry.algorithms.GroundStateSolver[¶](#qiskit-chemistry-algorithms-groundstatesolver "Permalink to this headline")
+# qiskit.chemistry.algorithms.GroundStateSolver
 
 <span id="undefined" />
 

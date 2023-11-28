@@ -1,4 +1,4 @@
-# TNC[¶](#tnc "Permalink to this headline")
+# TNC
 
 <span id="undefined" />
 

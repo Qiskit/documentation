@@ -1,4 +1,4 @@
-# DAGOpNode[¶](#dagopnode "Permalink to this headline")
+# DAGOpNode
 
 <span id="undefined" />
 

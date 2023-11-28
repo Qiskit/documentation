@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.characterization.t2_circuits
 ---
 
-# t2\_circuits[¶](#t2-circuits "Permalink to this headline")
+# t2\_circuits
 
 <span id="qiskit.ignis.characterization.t2_circuits" />
 

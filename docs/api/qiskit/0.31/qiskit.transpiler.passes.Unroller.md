@@ -1,4 +1,4 @@
-# Unroller[¶](#unroller "Permalink to this headline")
+# Unroller
 
 <span id="undefined" />
 

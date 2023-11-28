@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.validation.ModelTypeValidator
 ---
 
-# ModelTypeValidator[¶](#modeltypevalidator "Permalink to this headline")
+# ModelTypeValidator
 
 <span id="qiskit.validation.ModelTypeValidator" />
 

@@ -1,4 +1,4 @@
-# qiskit.algorithms.QAOA[¶](#qiskit-algorithms-qaoa "Permalink to this headline")
+# qiskit.algorithms.QAOA
 
 <span id="undefined" />
 

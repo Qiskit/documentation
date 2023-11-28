@@ -1,4 +1,4 @@
-# LinearConstraint[¶](#linearconstraint "Permalink to this headline")
+# LinearConstraint
 
 <span id="undefined" />
 

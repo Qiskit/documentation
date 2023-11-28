@@ -1,4 +1,4 @@
-# qiskit.aqua.components.uncertainty\_models.UncertaintyModel[¶](#qiskit-aqua-components-uncertainty-models-uncertaintymodel "Permalink to this headline")
+# qiskit.aqua.components.uncertainty\_models.UncertaintyModel
 
 <span id="undefined" />
 

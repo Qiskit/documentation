@@ -1,4 +1,4 @@
-# OrbitalOptimizationVQE[¶](#orbitaloptimizationvqe "Permalink to this headline")
+# OrbitalOptimizationVQE
 
 <span id="undefined" />
 

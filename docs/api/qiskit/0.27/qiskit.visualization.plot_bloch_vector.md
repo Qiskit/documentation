@@ -1,4 +1,4 @@
-# qiskit.visualization.plot\_bloch\_vector[¶](#qiskit-visualization-plot-bloch-vector "Permalink to this headline")
+# qiskit.visualization.plot\_bloch\_vector
 
 <span id="undefined" />
 

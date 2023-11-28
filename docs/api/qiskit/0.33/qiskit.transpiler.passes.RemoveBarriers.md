@@ -1,4 +1,4 @@
-# RemoveBarriers[¶](#removebarriers "Permalink to this headline")
+# RemoveBarriers
 
 <span id="undefined" />
 

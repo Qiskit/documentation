@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.tools.parallel_map
 ---
 
-# parallel\_map[¶](#parallel-map "Permalink to this headline")
+# parallel\_map
 
 <span id="qiskit.tools.parallel_map" />
 

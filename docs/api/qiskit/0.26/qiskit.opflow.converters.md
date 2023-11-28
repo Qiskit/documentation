@@ -14,7 +14,7 @@ python_api_name: qiskit.opflow.converters
 
 <span id="module-qiskit.opflow.converters" />
 
-`qiskit.opflow.converters¶`
+`qiskit.opflow.converters`
 
 Converters are objects which manipulate Operators, usually traversing an Operator to change certain sub-Operators into a desired representation. Often the converted Operator is isomorphic or approximate to the original Operator in some way, but not always. For example, a converter may accept [`CircuitOp`](qiskit.opflow.primitive_ops.CircuitOp#qiskit.opflow.primitive_ops.CircuitOp "qiskit.opflow.primitive_ops.CircuitOp") and return a [`SummedOp`](qiskit.opflow.list_ops.SummedOp#qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.SummedOp") of [`PauliOp`](qiskit.opflow.primitive_ops.PauliOp#qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.PauliOp")’s representing the circuit unitary. Converters may not have polynomial space or time scaling in their operations. On the contrary, many converters, such as a [`MatrixExpectation`](qiskit.opflow.expectations.MatrixExpectation#qiskit.opflow.expectations.MatrixExpectation "qiskit.opflow.expectations.MatrixExpectation") or [`MatrixEvolution`](qiskit.opflow.evolutions.MatrixEvolution#qiskit.opflow.evolutions.MatrixEvolution "qiskit.opflow.evolutions.MatrixEvolution"), which convert [`PauliOp`](qiskit.opflow.primitive_ops.PauliOp#qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.PauliOp")’s to [`MatrixOp`](qiskit.opflow.primitive_ops.MatrixOp#qiskit.opflow.primitive_ops.MatrixOp "qiskit.opflow.primitive_ops.MatrixOp")’s internally, will require time or space exponential in the number of qubits unless a clever trick is known (such as the use of sparse matrices).
 
@@ -24,10 +24,6 @@ Converters are objects which manipulate Operators, usually traversing an Operato
 
 # Converter Base Class
 
-<span id="module-qiskit.opflow.converters" />
-
-`¶`
-
 The converter base class simply enforces the presence of a [`convert()`](qiskit.opflow.converters.ConverterBase#qiskit.opflow.converters.ConverterBase.convert "qiskit.opflow.converters.ConverterBase.convert") method.
 
 |                                                                                                                                           |                                                                                                                                              |
@@ -35,10 +31,6 @@ The converter base class simply enforces the presence of a [`convert()`](qiskit.
 | [`ConverterBase`](qiskit.opflow.converters.ConverterBase#qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.ConverterBase") | Converters take an Operator and return a new Operator, generally isomorphic in some way with the first, but with certain desired properties. |
 
 # Converters
-
-<span id="module-qiskit.opflow.converters" />
-
-`¶`
 
 In addition to the base class, directory holds a few miscellaneous converters which are used frequently around the Operator flow.
 

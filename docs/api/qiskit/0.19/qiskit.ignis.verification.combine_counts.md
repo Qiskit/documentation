@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.verification.combine_counts
 ---
 
-# combine\_counts[¶](#combine-counts "Permalink to this headline")
+# combine\_counts
 
 <span id="qiskit.ignis.verification.combine_counts" />
 

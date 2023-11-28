@@ -1,4 +1,4 @@
-# qiskit.visualization.timeline\_drawer[¶](#qiskit-visualization-timeline-drawer "Permalink to this headline")
+# qiskit.visualization.timeline\_drawer
 
 <span id="undefined" />
 

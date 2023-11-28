@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-phaseestimation" />
 
-# qiskit.circuit.library.PhaseEstimation[¶](#qiskit-circuit-library-phaseestimation "Permalink to this headline")
+# qiskit.circuit.library.PhaseEstimation
 
 <span id="undefined" />
 

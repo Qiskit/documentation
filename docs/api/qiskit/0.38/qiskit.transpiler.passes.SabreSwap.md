@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.SabreSwap
 ---
 
-# SabreSwap[¶](#sabreswap "Permalink to this headline")
+# SabreSwap
 
 <span id="qiskit.transpiler.passes.SabreSwap" />
 

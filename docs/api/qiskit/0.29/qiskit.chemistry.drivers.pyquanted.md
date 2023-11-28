@@ -12,10 +12,6 @@ python_api_name: qiskit.chemistry.drivers.pyquanted
 
 # PyQuante Installation
 
-<span id="module-qiskit.chemistry.drivers.pyquanted" />
-
-`¶`
-
 [PyQuante](https://github.com/rpmuller/pyquante2/) is an open-source library for computational chemistry. Qiskit’s chemistry module specifically requires PyQuante V2, also known as PyQuante2. In order for Qiskit to interface PyQuante and execute PyQuante to extract the electronic structure information PyQuante2 must be installed and discoverable on the system where the Qiskit chemistry module is also installed.
 
 Installing PyQuante2 according to the [installation instructions](https://github.com/rpmuller/pyquante2/blob/master/README.md) while in the Python virtual environment where Qiskit’s chemistry module has also been installed will automatically make PyQuante2 dynamically discovered by Qiskit at run time. If you are not using conda then alternatively you can git clone or download/unzip a zip of the repository and run pip install off the setup.py that is there.

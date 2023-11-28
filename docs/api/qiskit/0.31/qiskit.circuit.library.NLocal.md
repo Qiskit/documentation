@@ -1,4 +1,4 @@
-# NLocal[¶](#nlocal "Permalink to this headline")
+# NLocal
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-quantum-info-statevector" />
 
-# qiskit.quantum\_info.Statevector[¶](#qiskit-quantum-info-statevector "Permalink to this headline")
+# qiskit.quantum\_info.Statevector
 
 <span id="undefined" />
 

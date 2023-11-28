@@ -1,6 +1,6 @@
 <span id="qiskit-finance-components-uncertainty-problems-europeancallexpectedvalue" />
 
-# qiskit.finance.components.uncertainty\_problems.EuropeanCallExpectedValue[¶](#qiskit-finance-components-uncertainty-problems-europeancallexpectedvalue "Permalink to this headline")
+# qiskit.finance.components.uncertainty\_problems.EuropeanCallExpectedValue
 
 <span id="undefined" />
 

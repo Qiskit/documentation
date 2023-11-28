@@ -1,4 +1,4 @@
-# DerivativeBase[¶](#derivativebase "Permalink to this headline")
+# DerivativeBase
 
 <span id="undefined" />
 

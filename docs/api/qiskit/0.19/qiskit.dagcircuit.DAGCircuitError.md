@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.dagcircuit.DAGCircuitError
 ---
 
-# DAGCircuitError[¶](#dagcircuiterror "Permalink to this headline")
+# DAGCircuitError
 
 <span id="qiskit.dagcircuit.DAGCircuitError" />
 

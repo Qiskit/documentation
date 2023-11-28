@@ -1,4 +1,4 @@
-# OneQubitEulerDecomposer[¶](#onequbiteulerdecomposer "Permalink to this headline")
+# OneQubitEulerDecomposer
 
 <span id="undefined" />
 

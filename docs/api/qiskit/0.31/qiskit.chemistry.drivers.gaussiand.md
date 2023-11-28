@@ -12,10 +12,6 @@ python_api_name: qiskit.chemistry.drivers.gaussiand
 
 # Gaussian™ 16 Installation
 
-<span id="module-qiskit.chemistry.drivers.gaussiand" />
-
-`¶`
-
 [Gaussian™ 16](http://gaussian.com/gaussian16/) is a commercial program for computational chemistry. This chemistry driver accesses electronic structure information from Gaussian™ 16 via the Gaussian-supplied open-source [interfacing code](http://www.gaussian.com/interfacing/).
 
 You should follow the installation instructions that come with your Gaussian™ 16 product. Installation instructions can also be found online in [Gaussian product installation support](http://gaussian.com/techsupport/#install]).
@@ -24,19 +20,15 @@ Following the installation make sure the Gaussian™ 16 executable, g16, can be 
 
 ## Gaussian™ 16 Interfacing Code
 
-<span id="module-qiskit.chemistry.drivers.gaussiand" />
-
-`¶`
-
 In the `gauopen` folder the Python part of the above interfacing code, as needed by Qiskit’s chemistry modules, has been made available. It is licensed under a [Gaussian Open-Source Public License](https://github.com/Qiskit/qiskit-aqua/blob/main/qiskit/chemistry/drivers/gaussiand/gauopen/LICENSE.txt).
 
 Part of this interfacing code — specifically, the Fortran file qcmatrixio.F — requires compilation to a Python native extension. However, Qiskit comes with pre-built binaries for most common platforms. If there is no pre-built binary matching your platform, then it will be necessary to compile this file as per the instructions below.
 
-### Compiling the Fortran Interfacing Code[¶](#compiling-the-fortran-interfacing-code "Permalink to this headline")
+### Compiling the Fortran Interfacing Code
 
 If no prebuilt native extension binary, as supplied with Qiskit, works for your platform, then to use the Gaussian™ 16 driver on your machine, the Fortran file qcmatrixio.F must be compiled into object code that can be used by Python. This is accomplished using the [Fortran to Python Interface Generator (F2PY)](https://docs.scipy.org/doc/numpy/f2py/), which is part of the [NumPy](http://www.numpy.org/) Python library. Specifically, on your command prompt window, change directory to the qiskit/chemistry/drivers/gaussiand/gauopen directory inside the Qiskit installation directory, and while in the Python environment created for Aqua and the chemistry module, invoke f2py on qcmatrixio.F as explained below.
 
-#### Apple macOS and Linux[¶](#apple-macos-and-linux "Permalink to this headline")
+#### Apple macOS and Linux
 
 The full syntax of the f2py command on macOS and Linux is as follows:
 
@@ -90,7 +82,7 @@ alias enable_gaussian='. $g16root/g16/bsd/g16.profile'
 ulimit -n 65536 65536
 ```
 
-#### Microsoft Windows[¶](#microsoft-windows "Permalink to this headline")
+#### Microsoft Windows
 
 The following steps can be used with the Intel Fortran compiler on the Microsoft Windows platform:
 

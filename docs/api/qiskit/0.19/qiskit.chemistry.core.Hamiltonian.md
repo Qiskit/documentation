@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.chemistry.core.Hamiltonian
 ---
 
-# Hamiltonian[¶](#hamiltonian "Permalink to this headline")
+# Hamiltonian
 
 <span id="qiskit.chemistry.core.Hamiltonian" />
 

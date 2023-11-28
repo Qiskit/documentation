@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.operators.legacy.commutator
 ---
 
-# commutator[¶](#commutator "Permalink to this headline")
+# commutator
 
 <span id="qiskit.aqua.operators.legacy.commutator" />
 

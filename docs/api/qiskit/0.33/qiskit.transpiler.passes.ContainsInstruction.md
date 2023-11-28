@@ -1,4 +1,4 @@
-# ContainsInstruction[¶](#containsinstruction "Permalink to this headline")
+# ContainsInstruction
 
 <span id="undefined" />
 

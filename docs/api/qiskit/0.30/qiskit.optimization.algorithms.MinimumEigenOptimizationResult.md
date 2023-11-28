@@ -1,4 +1,4 @@
-# MinimumEigenOptimizationResult[¶](#minimumeigenoptimizationresult "Permalink to this headline")
+# MinimumEigenOptimizationResult
 
 <span id="undefined" />
 

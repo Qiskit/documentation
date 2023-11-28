@@ -1,4 +1,4 @@
-# qiskit.ml.circuit.library.RawFeatureVector[¶](#qiskit-ml-circuit-library-rawfeaturevector "Permalink to this headline")
+# qiskit.ml.circuit.library.RawFeatureVector
 
 <span id="undefined" />
 

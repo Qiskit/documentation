@@ -14,7 +14,7 @@ python_api_name: qiskit.opflow.primitive_ops
 
 <span id="module-qiskit.opflow.primitive_ops" />
 
-`qiskit.opflow.primitive_ops¶`
+`qiskit.opflow.primitive_ops`
 
 Operators are defined to be functions which take State functions to State functions.
 
@@ -26,10 +26,6 @@ PrimitiveOps are the classes for representing basic Operators, backed by computa
 
 # Primitive Operators
 
-<span id="module-qiskit.opflow.primitive_ops" />
-
-`¶`
-
 |                                                                                                                                                                    |                                                                                     |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
 | [`PrimitiveOp`](qiskit.opflow.primitive_ops.PrimitiveOp#qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.PrimitiveOp")                         | A class for representing basic Operators, backed by Operator primitives from Terra. |
@@ -40,10 +36,6 @@ PrimitiveOps are the classes for representing basic Operators, backed by computa
 | [`TaperedPauliSumOp`](qiskit.opflow.primitive_ops.TaperedPauliSumOp#qiskit.opflow.primitive_ops.TaperedPauliSumOp "qiskit.opflow.primitive_ops.TaperedPauliSumOp") | Class for PauliSumOp after tapering                                                 |
 
 # Symmetries
-
-<span id="module-qiskit.opflow.primitive_ops" />
-
-`¶`
 
 |                                                                                                                                                |               |
 | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |

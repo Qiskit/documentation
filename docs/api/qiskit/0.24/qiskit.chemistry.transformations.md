@@ -16,25 +16,17 @@ python_api_name: qiskit.chemistry.transformations
 
 <span id="module-qiskit.chemistry.transformations" />
 
-`qiskit.chemistry.transformations¶`
+`qiskit.chemistry.transformations`
 
 Transformations for both Fermionic and Bosonic operators to qubit operators. Transformation includes specification of qubit mapping type for example, as well as other options. As part of the transformation of the main operator other, so called auxiliary operators, may be created to enable other properties of the result state with the main operator to also be evaluated, such as total spin for example.
 
 # Base Transformation
-
-<span id="module-qiskit.chemistry.transformations" />
-
-`¶`
 
 |                                                                                                                                                                       |                                                                         |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | [`Transformation`](qiskit.chemistry.transformations.Transformation#qiskit.chemistry.transformations.Transformation "qiskit.chemistry.transformations.Transformation") | Base class for transformation to qubit operators for chemistry problems |
 
 # Fermionic Transformation
-
-<span id="module-qiskit.chemistry.transformations" />
-
-`¶`
 
 |                                                                                                                                                                                                                           |                                                                                          |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
@@ -43,10 +35,6 @@ Transformations for both Fermionic and Bosonic operators to qubit operators. Tra
 | [`FermionicTransformationType`](qiskit.chemistry.transformations.FermionicTransformationType#qiskit.chemistry.transformations.FermionicTransformationType "qiskit.chemistry.transformations.FermionicTransformationType") | Electronic Transformation Type enum                                                      |
 
 # Bosonic Transformation
-
-<span id="module-qiskit.chemistry.transformations" />
-
-`¶`
 
 |                                                                                                                                                                                                                   |                                                                                       |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |

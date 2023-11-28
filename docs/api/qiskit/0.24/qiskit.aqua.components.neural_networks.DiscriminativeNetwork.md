@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-neural-networks-discriminativenetwork" />
 
-# qiskit.aqua.components.neural\_networks.DiscriminativeNetwork[¶](#qiskit-aqua-components-neural-networks-discriminativenetwork "Permalink to this headline")
+# qiskit.aqua.components.neural\_networks.DiscriminativeNetwork
 
 <span id="undefined" />
 

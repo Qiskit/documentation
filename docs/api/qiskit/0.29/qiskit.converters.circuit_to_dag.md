@@ -1,4 +1,4 @@
-# qiskit.converters.circuit\_to\_dag[¶](#qiskit-converters-circuit-to-dag "Permalink to this headline")
+# qiskit.converters.circuit\_to\_dag
 
 <span id="undefined" />
 

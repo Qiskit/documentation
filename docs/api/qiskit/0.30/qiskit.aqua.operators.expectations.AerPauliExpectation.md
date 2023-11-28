@@ -1,4 +1,4 @@
-# AerPauliExpectation[¶](#aerpauliexpectation "Permalink to this headline")
+# AerPauliExpectation
 
 <span id="undefined" />
 

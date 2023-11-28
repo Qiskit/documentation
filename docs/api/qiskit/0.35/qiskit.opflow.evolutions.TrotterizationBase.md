@@ -1,4 +1,4 @@
-# TrotterizationBase[¶](#trotterizationbase "Permalink to this headline")
+# TrotterizationBase
 
 <span id="undefined" />
 

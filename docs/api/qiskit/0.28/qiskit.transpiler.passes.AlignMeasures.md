@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.AlignMeasures[¶](#qiskit-transpiler-passes-alignmeasures "Permalink to this headline")
+# qiskit.transpiler.passes.AlignMeasures
 
 <span id="undefined" />
 

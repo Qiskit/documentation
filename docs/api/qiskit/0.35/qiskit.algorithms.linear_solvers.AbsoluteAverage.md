@@ -1,4 +1,4 @@
-# AbsoluteAverage[¶](#absoluteaverage "Permalink to this headline")
+# AbsoluteAverage
 
 <span id="undefined" />
 

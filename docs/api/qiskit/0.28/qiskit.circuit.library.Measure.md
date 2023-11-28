@@ -1,4 +1,4 @@
-# qiskit.circuit.library.Measure[¶](#qiskit-circuit-library-measure "Permalink to this headline")
+# qiskit.circuit.library.Measure
 
 <span id="undefined" />
 

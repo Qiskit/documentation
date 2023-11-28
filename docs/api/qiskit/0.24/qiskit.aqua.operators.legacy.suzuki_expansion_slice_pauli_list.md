@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-legacy-suzuki-expansion-slice-pauli-list" />
 
-# qiskit.aqua.operators.legacy.suzuki\_expansion\_slice\_pauli\_list[¶](#qiskit-aqua-operators-legacy-suzuki-expansion-slice-pauli-list "Permalink to this headline")
+# qiskit.aqua.operators.legacy.suzuki\_expansion\_slice\_pauli\_list
 
 <span id="undefined" />
 

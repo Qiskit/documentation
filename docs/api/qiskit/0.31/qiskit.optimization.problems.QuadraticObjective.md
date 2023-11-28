@@ -1,4 +1,4 @@
-# QuadraticObjective[¶](#quadraticobjective "Permalink to this headline")
+# QuadraticObjective
 
 <span id="undefined" />
 

@@ -16,13 +16,9 @@ python_api_name: qiskit.transpiler
 
 <span id="module-qiskit.transpiler" />
 
-`qiskit.transpiler¶`
+`qiskit.transpiler`
 
 ## Overview
-
-<span id="module-qiskit.transpiler" />
-
-`¶`
 
 Transpilation is the process of rewriting a given input circuit to match the topoplogy of a specific quantum device, and/or to optimize the circuit for execution on present day noisy quantum systems.
 
@@ -33,10 +29,6 @@ Most circuits must undergo a series of transformations that make them compatible
 Qiskit has four pre-built transpilation pipelines available here: [`qiskit.transpiler.preset_passmanagers`](transpiler_preset#module-qiskit.transpiler.preset_passmanagers "qiskit.transpiler.preset_passmanagers"). Unless the reader is familiar with quantum circuit optimization methods and their usage, it is best to use one of these ready-made routines.
 
 ## Supplementary Information
-
-<span id="module-qiskit.transpiler" />
-
-`¶`
 
 Basis gates
 
@@ -273,11 +265,7 @@ Gate counts: OrderedDict([('cx', 18), ('u2', 12)])
 
 ## Transpiler API
 
-<span id="module-qiskit.transpiler" />
-
-`¶`
-
-### Pass Manager Construction[¶](#pass-manager-construction "Permalink to this headline")
+### Pass Manager Construction
 
 |                                                                                                                                                             |                                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -286,27 +274,27 @@ Gate counts: OrderedDict([('cx', 18), ('u2', 12)])
 | [`PropertySet`](qiskit.transpiler.PropertySet#qiskit.transpiler.PropertySet "qiskit.transpiler.PropertySet")                                                | A default dictionary-like object                                       |
 | [`FlowController`](qiskit.transpiler.FlowController#qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")(passes, options, …)                | Base class for multiple types of working list.                         |
 
-### Layout and Topology[¶](#layout-and-topology "Permalink to this headline")
+### Layout and Topology
 
 |                                                                                                                                            |                                           |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------- |
 | [`Layout`](qiskit.transpiler.Layout#qiskit.transpiler.Layout "qiskit.transpiler.Layout")(\[input\_dict])                                   | Two-ways dict to represent a Layout.      |
 | [`CouplingMap`](qiskit.transpiler.CouplingMap#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")(\[couplinglist, description]) | Directed graph specifying fixed coupling. |
 
-### Scheduling[¶](#scheduling "Permalink to this headline")
+### Scheduling
 
 |                                                                                                                                                                                 |                                                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | [`InstructionDurations`](qiskit.transpiler.InstructionDurations#qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")(\[instruction\_durations, dt]) | Helper class to provide durations of instructions for scheduling. |
 
-### Fenced Objects[¶](#fenced-objects "Permalink to this headline")
+### Fenced Objects
 
 |                                                                                                                                                               |                                                              |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | [`FencedDAGCircuit`](qiskit.transpiler.FencedDAGCircuit#qiskit.transpiler.FencedDAGCircuit "qiskit.transpiler.FencedDAGCircuit")(dag\_circuit\_instance)      | A dag circuit that cannot be modified (via remove\_op\_node) |
 | [`FencedPropertySet`](qiskit.transpiler.FencedPropertySet#qiskit.transpiler.FencedPropertySet "qiskit.transpiler.FencedPropertySet")(property\_set\_instance) | A property set that cannot be written (via \_\_setitem\_\_)  |
 
-### Exceptions[¶](#exceptions "Permalink to this headline")
+### Exceptions
 
 |                                                                                                                                                                 |                                                                 |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |

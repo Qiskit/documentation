@@ -1,4 +1,4 @@
-# StateFn[¶](#statefn "Permalink to this headline")
+# StateFn
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# EnlargeWithAncilla[¶](#enlargewithancilla "Permalink to this headline")
+# EnlargeWithAncilla
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-lognormaldistribution" />
 
-# qiskit.circuit.library.LogNormalDistribution[¶](#qiskit-circuit-library-lognormaldistribution "Permalink to this headline")
+# qiskit.circuit.library.LogNormalDistribution
 
 <span id="undefined" />
 

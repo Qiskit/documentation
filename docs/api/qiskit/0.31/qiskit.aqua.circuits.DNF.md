@@ -1,4 +1,4 @@
-# DNF[¶](#dnf "Permalink to this headline")
+# DNF
 
 <span id="undefined" />
 

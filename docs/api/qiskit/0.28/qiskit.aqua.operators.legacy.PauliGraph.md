@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.legacy.PauliGraph[¶](#qiskit-aqua-operators-legacy-pauligraph "Permalink to this headline")
+# qiskit.aqua.operators.legacy.PauliGraph
 
 <span id="undefined" />
 

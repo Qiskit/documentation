@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.library.SetUnitary
 ---
 
-# SetUnitary[¶](#setunitary "Permalink to this headline")
+# SetUnitary
 
 <span id="qiskit.providers.aer.library.SetUnitary" />
 

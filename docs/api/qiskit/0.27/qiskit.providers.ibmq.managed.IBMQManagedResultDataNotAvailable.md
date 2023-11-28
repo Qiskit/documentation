@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable[¶](#qiskit-providers-ibmq-managed-ibmqmanagedresultdatanotavailable "Permalink to this headline")
+# qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable
 
 <span id="undefined" />
 

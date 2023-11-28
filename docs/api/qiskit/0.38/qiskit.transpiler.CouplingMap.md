@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.CouplingMap
 ---
 
-# CouplingMap[¶](#couplingmap "Permalink to this headline")
+# CouplingMap
 
 <span id="qiskit.transpiler.CouplingMap" />
 

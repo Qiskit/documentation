@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.legacy.pauli\_measurement[¶](#qiskit-aqua-operators-legacy-pauli-measurement "Permalink to this headline")
+# qiskit.aqua.operators.legacy.pauli\_measurement
 
 <span id="undefined" />
 

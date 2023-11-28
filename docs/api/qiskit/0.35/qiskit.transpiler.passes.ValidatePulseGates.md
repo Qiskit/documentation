@@ -1,4 +1,4 @@
-# ValidatePulseGates[¶](#validatepulsegates "Permalink to this headline")
+# ValidatePulseGates
 
 <span id="undefined" />
 

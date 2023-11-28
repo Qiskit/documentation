@@ -1,6 +1,6 @@
 <span id="qiskit-qobj-validate-qobj-against-schema" />
 
-# qiskit.qobj.validate\_qobj\_against\_schema[¶](#qiskit-qobj-validate-qobj-against-schema "Permalink to this headline")
+# qiskit.qobj.validate\_qobj\_against\_schema
 
 <span id="undefined" />
 

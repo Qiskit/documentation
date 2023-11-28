@@ -1,4 +1,4 @@
-# qiskit.algorithms.NumPyLinearSolver[¶](#qiskit-algorithms-numpylinearsolver "Permalink to this headline")
+# qiskit.algorithms.NumPyLinearSolver
 
 <span id="undefined" />
 

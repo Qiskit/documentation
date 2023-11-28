@@ -1,4 +1,4 @@
-# qiskit.providers.BaseProvider[¶](#qiskit-providers-baseprovider "Permalink to this headline")
+# qiskit.providers.BaseProvider
 
 <span id="undefined" />
 

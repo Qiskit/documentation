@@ -1,4 +1,4 @@
-# LogicalExpressionOracle[¶](#logicalexpressionoracle "Permalink to this headline")
+# LogicalExpressionOracle
 
 <span id="undefined" />
 

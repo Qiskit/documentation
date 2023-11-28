@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.MCMT
 ---
 
-# MCMT[¶](#mcmt "Permalink to this headline")
+# MCMT
 
 <span id="qiskit.circuit.library.MCMT" />
 

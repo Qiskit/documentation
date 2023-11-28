@@ -1,4 +1,4 @@
-# ConditionalController[¶](#conditionalcontroller "Permalink to this headline")
+# ConditionalController
 
 <span id="undefined" />
 

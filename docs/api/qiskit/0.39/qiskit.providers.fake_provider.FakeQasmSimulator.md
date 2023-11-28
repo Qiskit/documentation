@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeQasmSimulator
 ---
 
-# FakeQasmSimulator[¶](#fakeqasmsimulator "Permalink to this headline")
+# FakeQasmSimulator
 
 <span id="qiskit.providers.fake_provider.FakeQasmSimulator" />
 

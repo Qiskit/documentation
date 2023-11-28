@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.quantum_info.SparsePauliOp
 ---
 
-# SparsePauliOp[¶](#sparsepauliop "Permalink to this headline")
+# SparsePauliOp
 
 <span id="qiskit.quantum_info.SparsePauliOp" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-compiler-schedule" />
 
-# qiskit.compiler.schedule[¶](#qiskit-compiler-schedule "Permalink to this headline")
+# qiskit.compiler.schedule
 
 <span id="undefined" />
 

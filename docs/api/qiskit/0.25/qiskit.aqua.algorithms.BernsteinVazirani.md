@@ -1,4 +1,4 @@
-# qiskit.aqua.algorithms.BernsteinVazirani[¶](#qiskit-aqua-algorithms-bernsteinvazirani "Permalink to this headline")
+# qiskit.aqua.algorithms.BernsteinVazirani
 
 <span id="undefined" />
 

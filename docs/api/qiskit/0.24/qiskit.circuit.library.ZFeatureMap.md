@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-zfeaturemap" />
 
-# qiskit.circuit.library.ZFeatureMap[¶](#qiskit-circuit-library-zfeaturemap "Permalink to this headline")
+# qiskit.circuit.library.ZFeatureMap
 
 <span id="undefined" />
 

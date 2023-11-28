@@ -1,4 +1,4 @@
-# qiskit.providers.models.BackendStatus[¶](#qiskit-providers-models-backendstatus "Permalink to this headline")
+# qiskit.providers.models.BackendStatus
 
 <span id="undefined" />
 

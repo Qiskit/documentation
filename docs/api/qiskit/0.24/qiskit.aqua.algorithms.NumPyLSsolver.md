@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-algorithms-numpylssolver" />
 
-# qiskit.aqua.algorithms.NumPyLSsolver[¶](#qiskit-aqua-algorithms-numpylssolver "Permalink to this headline")
+# qiskit.aqua.algorithms.NumPyLSsolver
 
 <span id="undefined" />
 

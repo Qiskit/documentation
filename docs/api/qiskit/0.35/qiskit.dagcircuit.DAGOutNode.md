@@ -1,4 +1,4 @@
-# DAGOutNode[¶](#dagoutnode "Permalink to this headline")
+# DAGOutNode
 
 <span id="undefined" />
 

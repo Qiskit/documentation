@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.NLocal
 ---
 
-# NLocal[¶](#nlocal "Permalink to this headline")
+# NLocal
 
 <span id="qiskit.circuit.library.NLocal" />
 

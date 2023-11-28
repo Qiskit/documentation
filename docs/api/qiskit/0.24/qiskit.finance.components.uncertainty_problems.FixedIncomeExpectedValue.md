@@ -1,6 +1,6 @@
 <span id="qiskit-finance-components-uncertainty-problems-fixedincomeexpectedvalue" />
 
-# qiskit.finance.components.uncertainty\_problems.FixedIncomeExpectedValue[¶](#qiskit-finance-components-uncertainty-problems-fixedincomeexpectedvalue "Permalink to this headline")
+# qiskit.finance.components.uncertainty\_problems.FixedIncomeExpectedValue
 
 <span id="undefined" />
 

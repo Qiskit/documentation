@@ -1,6 +1,6 @@
 <span id="qiskit-dagcircuit-dagcircuit" />
 
-# qiskit.dagcircuit.DAGCircuit[¶](#qiskit-dagcircuit-dagcircuit "Permalink to this headline")
+# qiskit.dagcircuit.DAGCircuit
 
 <span id="undefined" />
 

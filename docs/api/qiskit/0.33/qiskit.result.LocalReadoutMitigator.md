@@ -1,4 +1,4 @@
-# LocalReadoutMitigator[¶](#localreadoutmitigator "Permalink to this headline")
+# LocalReadoutMitigator
 
 <span id="undefined" />
 

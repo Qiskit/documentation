@@ -8,7 +8,7 @@ python_api_name: qiskit.optimization.applications.ising.vertex_cover.check_full_
 
 <span id="qiskit-optimization-applications-ising-vertex-cover" />
 
-# qiskit.optimization.applications.ising.vertex\_cover[¶](#module-qiskit.optimization.applications.ising.vertex_cover "Permalink to this headline")
+# qiskit.optimization.applications.ising.vertex\_cover
 
 Convert vertex cover instances into Pauli list Deal with Gset format. See [https://web.stanford.edu/\~yyye/yyye/Gset/](https://web.stanford.edu/~yyye/yyye/Gset/)
 

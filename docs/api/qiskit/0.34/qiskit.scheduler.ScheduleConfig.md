@@ -1,4 +1,4 @@
-# ScheduleConfig[¶](#scheduleconfig "Permalink to this headline")
+# ScheduleConfig
 
 <span id="undefined" />
 

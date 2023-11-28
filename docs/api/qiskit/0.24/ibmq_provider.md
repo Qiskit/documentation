@@ -16,15 +16,11 @@ python_api_name: qiskit.providers.ibmq
 
 <span id="module-qiskit.providers.ibmq" />
 
-`qiskit.providers.ibmq¶`
+`qiskit.providers.ibmq`
 
 Modules representing the IBM Quantum Provider.
 
 ## Logging
-
-<span id="module-qiskit.providers.ibmq" />
-
-`¶`
 
 The IBM Quantum Provider uses the `qiskit.providers.ibmq` logger.
 
@@ -42,19 +38,11 @@ logging.getLogger('qiskit.providers.ibmq').setLevel(logging.WARNING)
 
 ## Functions
 
-<span id="module-qiskit.providers.ibmq" />
-
-`¶`
-
 |                                                                                                                                                           |                                            |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
 | [`least_busy`](qiskit.providers.ibmq.least_busy#qiskit.providers.ibmq.least_busy "qiskit.providers.ibmq.least_busy")(backends\[, reservation\_lookahead]) | Return the least busy backend from a list. |
 
 ## Classes
-
-<span id="module-qiskit.providers.ibmq" />
-
-`¶`
 
 |                                                                                                                                                                           |                                                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
@@ -65,10 +53,6 @@ logging.getLogger('qiskit.providers.ibmq').setLevel(logging.WARNING)
 | [`IBMQFactory`](qiskit.providers.ibmq.IBMQFactory#qiskit.providers.ibmq.IBMQFactory "qiskit.providers.ibmq.IBMQFactory")()                                                | Factory and account manager for IBM Quantum Experience.           |
 
 ## Exceptions
-
-<span id="module-qiskit.providers.ibmq" />
-
-`¶`
 
 |                                                                                                                                                                                                                                     |                                                                     |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |

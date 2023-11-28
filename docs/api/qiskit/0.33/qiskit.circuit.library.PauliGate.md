@@ -1,4 +1,4 @@
-# PauliGate[¶](#pauligate "Permalink to this headline")
+# PauliGate
 
 <span id="undefined" />
 

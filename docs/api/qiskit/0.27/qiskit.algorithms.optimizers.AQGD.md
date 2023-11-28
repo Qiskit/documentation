@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.AQGD[¶](#qiskit-algorithms-optimizers-aqgd "Permalink to this headline")
+# qiskit.algorithms.optimizers.AQGD
 
 <span id="undefined" />
 

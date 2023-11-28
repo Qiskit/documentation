@@ -1,4 +1,4 @@
-# qiskit.aqua.utils.validate\_entangler\_map[¶](#qiskit-aqua-utils-validate-entangler-map "Permalink to this headline")
+# qiskit.aqua.utils.validate\_entangler\_map
 
 <span id="undefined" />
 

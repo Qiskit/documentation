@@ -1,4 +1,4 @@
-# HRSCumulativeMultiplier[¶](#hrscumulativemultiplier "Permalink to this headline")
+# HRSCumulativeMultiplier
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.GroverResult
 ---
 
-# GroverResult[¶](#groverresult "Permalink to this headline")
+# GroverResult
 
 <span id="qiskit.algorithms.GroverResult" />
 

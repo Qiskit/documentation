@@ -14,15 +14,11 @@ python_api_name: qiskit.finance.data_providers
 
 <span id="module-qiskit.finance.data_providers" />
 
-`qiskit.finance.data_providers¶`
+`qiskit.finance.data_providers`
 
 A selection of providers for financial data. These may be backed by an external service that sources the actual data; please refer to the specific provider class below, for more information in that regard.
 
 # Data Provider Base Class
-
-<span id="module-qiskit.finance.data_providers" />
-
-`¶`
 
 |                                                                                                                                                                      |                                                                                    |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
@@ -30,19 +26,11 @@ A selection of providers for financial data. These may be backed by an external 
 
 # Data Provider Types
 
-<span id="module-qiskit.finance.data_providers" />
-
-`¶`
-
 |                                                                                                                                                  |                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
 | [`StockMarket`](qiskit.finance.data_providers.StockMarket#qiskit.finance.data_providers.StockMarket "qiskit.finance.data_providers.StockMarket") | Stock Market enum |
 
 # Data Providers
-
-<span id="module-qiskit.finance.data_providers" />
-
-`¶`
 
 |                                                                                                                                                                                          |                                                            |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |

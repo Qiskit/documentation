@@ -1,4 +1,4 @@
-# qiskit.visualization.pulse\_v2.IQXStandard[¶](#qiskit-visualization-pulse-v2-iqxstandard "Permalink to this headline")
+# qiskit.visualization.pulse\_v2.IQXStandard
 
 <span id="undefined" />
 

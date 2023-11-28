@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.Unroll3qOrMore[¶](#qiskit-transpiler-passes-unroll3qormore "Permalink to this headline")
+# qiskit.transpiler.passes.Unroll3qOrMore
 
 <span id="undefined" />
 

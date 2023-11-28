@@ -1,4 +1,4 @@
-# LinearAmplitudeFunction[¶](#linearamplitudefunction "Permalink to this headline")
+# LinearAmplitudeFunction
 
 <span id="undefined" />
 

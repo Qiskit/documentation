@@ -1,4 +1,4 @@
-# RBFitter[¶](#rbfitter "Permalink to this headline")
+# RBFitter
 
 <span id="undefined" />
 

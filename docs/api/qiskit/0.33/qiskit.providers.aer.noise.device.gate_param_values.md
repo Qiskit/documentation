@@ -1,4 +1,4 @@
-# qiskit.providers.aer.noise.device.gate\_param\_values[¶](#qiskit-providers-aer-noise-device-gate-param-values "Permalink to this headline")
+# qiskit.providers.aer.noise.device.gate\_param\_values
 
 <span id="undefined" />
 

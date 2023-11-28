@@ -1,4 +1,4 @@
-# qiskit.aqua.algorithms.VQC[¶](#qiskit-aqua-algorithms-vqc "Permalink to this headline")
+# qiskit.aqua.algorithms.VQC
 
 <span id="undefined" />
 

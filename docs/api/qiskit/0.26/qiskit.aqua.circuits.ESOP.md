@@ -1,4 +1,4 @@
-# qiskit.aqua.circuits.ESOP[¶](#qiskit-aqua-circuits-esop "Permalink to this headline")
+# qiskit.aqua.circuits.ESOP
 
 <span id="undefined" />
 

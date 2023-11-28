@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.optimizers.SLSQP
 ---
 
-# SLSQP[¶](#slsqp "Permalink to this headline")
+# SLSQP
 
 <span id="qiskit.aqua.components.optimizers.SLSQP" />
 

@@ -12,10 +12,6 @@ python_api_name: qiskit.chemistry.drivers.psi4d
 
 # PSI4 Installation
 
-<span id="module-qiskit.chemistry.drivers.psi4d" />
-
-`¶`
-
 [PSI4](http://www.psicode.org/) is an open-source program for computational chemistry. In order for Qiskit’s chemistry module to interface PSI4, i.e. execute PSI4 to extract the electronic structure information necessary for the computation of the input to the quantum algorithm, PSI4 must be [installed](http://www.psicode.org/downloads.html) and discoverable on the system where Qiskit’s chemistry module is also installed.
 
 Therefore, once PSI4 has been installed, the psi4 executable must be reachable via the system environment path. For example, on macOS, this can be achieved by adding the following section to the .bash\_profile file in the user’s home directory:

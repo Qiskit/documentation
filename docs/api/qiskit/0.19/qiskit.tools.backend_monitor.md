@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.tools.backend_monitor
 ---
 
-# backend\_monitor[¶](#backend-monitor "Permalink to this headline")
+# backend\_monitor
 
 <span id="qiskit.tools.backend_monitor" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.extensions.SnapshotStabilizer
 ---
 
-# SnapshotStabilizer[¶](#snapshotstabilizer "Permalink to this headline")
+# SnapshotStabilizer
 
 <span id="qiskit.providers.aer.extensions.SnapshotStabilizer" />
 

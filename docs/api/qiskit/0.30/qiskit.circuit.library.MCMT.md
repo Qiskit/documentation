@@ -1,4 +1,4 @@
-# MCMT[¶](#mcmt "Permalink to this headline")
+# MCMT
 
 <span id="undefined" />
 

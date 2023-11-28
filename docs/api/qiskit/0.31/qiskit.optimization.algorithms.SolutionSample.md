@@ -1,4 +1,4 @@
-# SolutionSample[¶](#solutionsample "Permalink to this headline")
+# SolutionSample
 
 <span id="undefined" />
 

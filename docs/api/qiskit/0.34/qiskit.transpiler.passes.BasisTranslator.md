@@ -1,4 +1,4 @@
-# BasisTranslator[¶](#basistranslator "Permalink to this headline")
+# BasisTranslator
 
 <span id="undefined" />
 

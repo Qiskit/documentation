@@ -14,23 +14,15 @@ python_api_name: qiskit.providers.aer
 
 <span id="module-qiskit.providers.aer" />
 
-`qiskit.providers.aer¶`
+`qiskit.providers.aer`
 
 ## Simulator Provider
-
-<span id="module-qiskit.providers.aer" />
-
-`¶`
 
 |                                                                                                                                           |                                   |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
 | [`AerProvider`](qiskit.providers.aer.AerProvider#qiskit.providers.aer.AerProvider "qiskit.providers.aer.AerProvider")(\*args, \*\*kwargs) | Provider for Qiskit Aer backends. |
 
 ## Simulator Backends
-
-<span id="module-qiskit.providers.aer" />
-
-`¶`
 
 |                                                                                                                                                                                |                                             |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
@@ -41,19 +33,11 @@ python_api_name: qiskit.providers.aer
 
 ## Job Class
 
-<span id="module-qiskit.providers.aer" />
-
-`¶`
-
 |                                                                                                                                       |               |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | [`AerJob`](qiskit.providers.aer.AerJob#qiskit.providers.aer.AerJob "qiskit.providers.aer.AerJob")(backend, job\_id, fn, qobj, \*args) | AerJob class. |
 
 ## Exceptions
-
-<span id="module-qiskit.providers.aer" />
-
-`¶`
 
 |                                                                                                                      |                                             |
 | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |

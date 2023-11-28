@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-expectation-counts" />
 
-# qiskit.ignis.verification.expectation\_counts[¶](#qiskit-ignis-verification-expectation-counts "Permalink to this headline")
+# qiskit.ignis.verification.expectation\_counts
 
 <span id="undefined" />
 

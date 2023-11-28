@@ -1,4 +1,4 @@
-# qiskit.opflow\.converters.AbelianGrouper[¶](#qiskit-opflow-converters-abeliangrouper "Permalink to this headline")
+# qiskit.opflow\.converters.AbelianGrouper
 
 <span id="undefined" />
 

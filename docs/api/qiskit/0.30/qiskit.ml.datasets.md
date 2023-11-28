@@ -14,15 +14,11 @@ python_api_name: qiskit.ml.datasets
 
 <span id="module-qiskit.ml.datasets" />
 
-`qiskit.ml.datasets¶`
+`qiskit.ml.datasets`
 
 Sample datasets suitable for machine learning problems
 
 # Datasets
-
-<span id="module-qiskit.ml.datasets" />
-
-`¶`
 
 |                                                                                                                                             |                               |
 | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |

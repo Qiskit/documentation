@@ -1,6 +1,6 @@
 <span id="qiskit-qobj-pulseqobjconfig" />
 
-# qiskit.qobj.PulseQobjConfig[¶](#qiskit-qobj-pulseqobjconfig "Permalink to this headline")
+# qiskit.qobj.PulseQobjConfig
 
 <span id="undefined" />
 

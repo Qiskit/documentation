@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.NoiseAdaptiveLayout
 ---
 
-# NoiseAdaptiveLayout[¶](#noiseadaptivelayout "Permalink to this headline")
+# NoiseAdaptiveLayout
 
 <span id="qiskit.transpiler.passes.NoiseAdaptiveLayout" />
 

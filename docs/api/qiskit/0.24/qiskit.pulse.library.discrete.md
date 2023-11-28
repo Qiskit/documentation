@@ -12,10 +12,6 @@ python_api_name: qiskit.pulse.library.discrete
 
 # qiskit.pulse.library.discrete
 
-<span id="module-qiskit.pulse.library.discrete" />
-
-`¶`
-
 Module for builtin discrete pulses.
 
 Note the sampling strategy use for all discrete pulses is `midpoint`.

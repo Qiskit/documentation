@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.validation.bind_schema
 ---
 
-# bind\_schema[¶](#bind-schema "Permalink to this headline")
+# bind\_schema
 
 <span id="qiskit.validation.bind_schema" />
 

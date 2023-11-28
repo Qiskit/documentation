@@ -1,4 +1,4 @@
-# GraphDecoder[¶](#graphdecoder "Permalink to this headline")
+# GraphDecoder
 
 <span id="undefined" />
 

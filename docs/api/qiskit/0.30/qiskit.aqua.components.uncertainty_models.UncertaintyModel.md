@@ -1,4 +1,4 @@
-# UncertaintyModel[¶](#uncertaintymodel "Permalink to this headline")
+# UncertaintyModel
 
 <span id="undefined" />
 

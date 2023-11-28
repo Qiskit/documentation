@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.converters.PauliBasisChange
 ---
 
-# PauliBasisChange[¶](#paulibasischange "Permalink to this headline")
+# PauliBasisChange
 
 <span id="qiskit.aqua.operators.converters.PauliBasisChange" />
 

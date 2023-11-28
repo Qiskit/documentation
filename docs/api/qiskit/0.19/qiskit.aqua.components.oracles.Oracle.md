@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.oracles.Oracle
 ---
 
-# Oracle[¶](#oracle "Permalink to this headline")
+# Oracle
 
 <span id="qiskit.aqua.components.oracles.Oracle" />
 

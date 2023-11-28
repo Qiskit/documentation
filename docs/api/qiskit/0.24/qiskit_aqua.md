@@ -16,7 +16,7 @@ python_api_name: qiskit.aqua
 
 <span id="module-qiskit.aqua" />
 
-`qiskit.aqua¶`
+`qiskit.aqua`
 
 Qiskit Aqua provides a library of quantum algorithms and components to build quantum applications and leverage near-term devices.
 
@@ -40,10 +40,6 @@ In addition to standard Python errors Aqua will raise this error if circumstance
 A QuantumInstance holds the Qiskit backend as well as a number of compile and runtime parameters controlling circuit compilation and execution. Aqua’s quantum [`algorithms`](qiskit.aqua.algorithms#module-qiskit.aqua.algorithms "qiskit.aqua.algorithms") are run on a device or simulator by passing a QuantumInstance setup with the desired backend etc.
 
 ## Submodules
-
-<span id="module-qiskit.aqua" />
-
-`¶`
 
 |                                                                                               |                                                                                                                        |
 | --------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |

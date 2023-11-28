@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-rho-to-fidelity" />
 
-# qiskit.ignis.verification.rho\_to\_fidelity[¶](#qiskit-ignis-verification-rho-to-fidelity "Permalink to this headline")
+# qiskit.ignis.verification.rho\_to\_fidelity
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# ProgramBackend[¶](#programbackend "Permalink to this headline")
+# ProgramBackend
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.ignis.verification.marginal\_counts[¶](#qiskit-ignis-verification-marginal-counts "Permalink to this headline")
+# qiskit.ignis.verification.marginal\_counts
 
 <span id="undefined" />
 

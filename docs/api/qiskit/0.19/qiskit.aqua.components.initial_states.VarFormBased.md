@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.initial_states.VarFormBased
 ---
 
-# VarFormBased[¶](#varformbased "Permalink to this headline")
+# VarFormBased
 
 <span id="qiskit.aqua.components.initial_states.VarFormBased" />
 

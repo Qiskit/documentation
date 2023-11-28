@@ -1,4 +1,4 @@
-# QVFitter[¶](#qvfitter "Permalink to this headline")
+# QVFitter
 
 <span id="undefined" />
 

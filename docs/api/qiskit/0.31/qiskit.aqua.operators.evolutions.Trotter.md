@@ -1,4 +1,4 @@
-# Trotter[¶](#trotter "Permalink to this headline")
+# Trotter
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# EstimatorResult[¶](#estimatorresult "Permalink to this headline")
+# EstimatorResult
 
 <span id="undefined" />
 

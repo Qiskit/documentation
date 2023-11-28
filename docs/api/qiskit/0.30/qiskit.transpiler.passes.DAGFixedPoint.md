@@ -1,4 +1,4 @@
-# DAGFixedPoint[¶](#dagfixedpoint "Permalink to this headline")
+# DAGFixedPoint
 
 <span id="undefined" />
 

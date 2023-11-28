@@ -1,4 +1,4 @@
-# qiskit.result.Counts[¶](#qiskit-result-counts "Permalink to this headline")
+# qiskit.result.Counts
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# RuntimeDecoder[¶](#runtimedecoder "Permalink to this headline")
+# RuntimeDecoder
 
 <span id="undefined" />
 

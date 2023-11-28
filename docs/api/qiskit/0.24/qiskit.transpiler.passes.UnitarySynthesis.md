@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-unitarysynthesis" />
 
-# qiskit.transpiler.passes.UnitarySynthesis[¶](#qiskit-transpiler-passes-unitarysynthesis "Permalink to this headline")
+# qiskit.transpiler.passes.UnitarySynthesis
 
 <span id="undefined" />
 

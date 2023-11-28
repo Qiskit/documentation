@@ -1,4 +1,4 @@
-# qiskit.circuit.library.ZZFeatureMap[¶](#qiskit-circuit-library-zzfeaturemap "Permalink to this headline")
+# qiskit.circuit.library.ZZFeatureMap
 
 <span id="undefined" />
 

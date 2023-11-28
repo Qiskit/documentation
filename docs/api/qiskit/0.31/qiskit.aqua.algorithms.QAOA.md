@@ -1,4 +1,4 @@
-# QAOA[¶](#qaoa "Permalink to this headline")
+# QAOA
 
 <span id="undefined" />
 

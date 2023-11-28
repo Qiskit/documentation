@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.verification.qv_circuits
 ---
 
-# qv\_circuits[¶](#qv-circuits "Permalink to this headline")
+# qv\_circuits
 
 <span id="qiskit.ignis.verification.qv_circuits" />
 

@@ -1,4 +1,4 @@
-# qiskit.pulse.builder.delay\_qubits[¶](#qiskit-pulse-builder-delay-qubits "Permalink to this headline")
+# qiskit.pulse.builder.delay\_qubits
 
 <span id="undefined" />
 

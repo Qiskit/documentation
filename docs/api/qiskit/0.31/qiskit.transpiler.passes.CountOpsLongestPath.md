@@ -1,4 +1,4 @@
-# CountOpsLongestPath[¶](#countopslongestpath "Permalink to this headline")
+# CountOpsLongestPath
 
 <span id="undefined" />
 

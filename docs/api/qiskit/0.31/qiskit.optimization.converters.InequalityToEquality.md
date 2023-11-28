@@ -1,4 +1,4 @@
-# InequalityToEquality[¶](#inequalitytoequality "Permalink to this headline")
+# InequalityToEquality
 
 <span id="undefined" />
 

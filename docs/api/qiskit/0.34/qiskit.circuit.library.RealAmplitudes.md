@@ -1,4 +1,4 @@
-# RealAmplitudes[¶](#realamplitudes "Permalink to this headline")
+# RealAmplitudes
 
 <span id="undefined" />
 

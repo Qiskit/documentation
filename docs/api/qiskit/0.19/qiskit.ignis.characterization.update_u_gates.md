@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.characterization.update_u_gates
 ---
 
-# update\_u\_gates[¶](#update-u-gates "Permalink to this headline")
+# update\_u\_gates
 
 <span id="qiskit.ignis.characterization.update_u_gates" />
 

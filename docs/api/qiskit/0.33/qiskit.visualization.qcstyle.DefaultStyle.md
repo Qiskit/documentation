@@ -1,4 +1,4 @@
-# DefaultStyle[¶](#defaultstyle "Permalink to this headline")
+# DefaultStyle
 
 <span id="undefined" />
 

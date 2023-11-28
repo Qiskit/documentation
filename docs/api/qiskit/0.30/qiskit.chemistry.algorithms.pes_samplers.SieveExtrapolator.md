@@ -1,4 +1,4 @@
-# SieveExtrapolator[¶](#sieveextrapolator "Permalink to this headline")
+# SieveExtrapolator
 
 <span id="undefined" />
 

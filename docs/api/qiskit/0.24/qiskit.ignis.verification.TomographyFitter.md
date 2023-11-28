@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-tomographyfitter" />
 
-# qiskit.ignis.verification.TomographyFitter[¶](#qiskit-ignis-verification-tomographyfitter "Permalink to this headline")
+# qiskit.ignis.verification.TomographyFitter
 
 <span id="undefined" />
 

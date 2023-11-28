@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.tools.outer
 ---
 
-# outer[¶](#outer "Permalink to this headline")
+# outer
 
 <span id="qiskit.tools.outer" />
 

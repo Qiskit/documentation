@@ -1,4 +1,4 @@
-# VQC[¶](#vqc "Permalink to this headline")
+# VQC
 
 <span id="undefined" />
 

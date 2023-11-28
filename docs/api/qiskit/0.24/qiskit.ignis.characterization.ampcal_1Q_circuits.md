@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-characterization-ampcal-1q-circuits" />
 
-# qiskit.ignis.characterization.ampcal\_1Q\_circuits[¶](#qiskit-ignis-characterization-ampcal-1q-circuits "Permalink to this headline")
+# qiskit.ignis.characterization.ampcal\_1Q\_circuits
 
 <span id="undefined" />
 

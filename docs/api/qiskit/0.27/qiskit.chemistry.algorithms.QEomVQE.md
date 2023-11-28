@@ -1,4 +1,4 @@
-# qiskit.chemistry.algorithms.QEomVQE[¶](#qiskit-chemistry-algorithms-qeomvqe "Permalink to this headline")
+# qiskit.chemistry.algorithms.QEomVQE
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# DraperQFTAdder[¶](#draperqftadder "Permalink to this headline")
+# DraperQFTAdder
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.pulse.duffing_system_model
 ---
 
-# duffing\_system\_model[¶](#duffing-system-model "Permalink to this headline")
+# duffing\_system\_model
 
 <span id="qiskit.providers.aer.pulse.duffing_system_model" />
 

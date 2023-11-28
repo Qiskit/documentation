@@ -1,4 +1,4 @@
-# qiskit.opflow\.OperatorBase[¶](#qiskit-opflow-operatorbase "Permalink to this headline")
+# qiskit.opflow\.OperatorBase
 
 <span id="undefined" />
 

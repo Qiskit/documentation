@@ -1,4 +1,4 @@
-# ContinueLoopOp[¶](#continueloopop "Permalink to this headline")
+# ContinueLoopOp
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.tools.backend_overview
 ---
 
-# backend\_overview[¶](#backend-overview "Permalink to this headline")
+# backend\_overview
 
 <span id="qiskit.tools.backend_overview" />
 

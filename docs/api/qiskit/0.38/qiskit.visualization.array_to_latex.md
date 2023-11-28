@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.array_to_latex
 ---
 
-# qiskit.visualization.array\_to\_latex[¶](#qiskit-visualization-array-to-latex "Permalink to this headline")
+# qiskit.visualization.array\_to\_latex
 
 <span id="qiskit.visualization.array_to_latex" />
 

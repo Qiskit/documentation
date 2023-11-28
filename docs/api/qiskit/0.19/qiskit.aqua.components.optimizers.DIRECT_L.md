@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.optimizers.DIRECT_L
 ---
 
-# DIRECT\_L[¶](#direct-l "Permalink to this headline")
+# DIRECT\_L
 
 <span id="qiskit.aqua.components.optimizers.DIRECT_L" />
 

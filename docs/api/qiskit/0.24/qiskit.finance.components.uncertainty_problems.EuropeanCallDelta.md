@@ -1,6 +1,6 @@
 <span id="qiskit-finance-components-uncertainty-problems-europeancalldelta" />
 
-# qiskit.finance.components.uncertainty\_problems.EuropeanCallDelta[¶](#qiskit-finance-components-uncertainty-problems-europeancalldelta "Permalink to this headline")
+# qiskit.finance.components.uncertainty\_problems.EuropeanCallDelta
 
 <span id="undefined" />
 

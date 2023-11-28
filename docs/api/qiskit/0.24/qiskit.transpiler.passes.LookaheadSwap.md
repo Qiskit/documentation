@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-lookaheadswap" />
 
-# qiskit.transpiler.passes.LookaheadSwap[¶](#qiskit-transpiler-passes-lookaheadswap "Permalink to this headline")
+# qiskit.transpiler.passes.LookaheadSwap
 
 <span id="undefined" />
 

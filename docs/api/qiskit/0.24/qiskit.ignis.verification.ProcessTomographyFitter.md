@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-processtomographyfitter" />
 
-# qiskit.ignis.verification.ProcessTomographyFitter[¶](#qiskit-ignis-verification-processtomographyfitter "Permalink to this headline")
+# qiskit.ignis.verification.ProcessTomographyFitter
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-optimizers-cobyla" />
 
-# qiskit.aqua.components.optimizers.COBYLA[¶](#qiskit-aqua-components-optimizers-cobyla "Permalink to this headline")
+# qiskit.aqua.components.optimizers.COBYLA
 
 <span id="undefined" />
 

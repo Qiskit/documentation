@@ -1,4 +1,4 @@
-# StatePreparation[¶](#statepreparation "Permalink to this headline")
+# StatePreparation
 
 <span id="undefined" />
 

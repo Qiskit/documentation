@@ -1,4 +1,4 @@
-# EigsQPE[¶](#eigsqpe "Permalink to this headline")
+# EigsQPE
 
 <span id="undefined" />
 

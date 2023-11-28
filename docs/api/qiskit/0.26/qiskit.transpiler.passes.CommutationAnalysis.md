@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.CommutationAnalysis[¶](#qiskit-transpiler-passes-commutationanalysis "Permalink to this headline")
+# qiskit.transpiler.passes.CommutationAnalysis
 
 <span id="undefined" />
 

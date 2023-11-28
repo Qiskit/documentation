@@ -1,4 +1,4 @@
-# PulseQobjExperiment[¶](#pulseqobjexperiment "Permalink to this headline")
+# PulseQobjExperiment
 
 <span id="undefined" />
 

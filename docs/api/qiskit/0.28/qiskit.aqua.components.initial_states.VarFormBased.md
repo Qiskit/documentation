@@ -1,4 +1,4 @@
-# qiskit.aqua.components.initial\_states.VarFormBased[¶](#qiskit-aqua-components-initial-states-varformbased "Permalink to this headline")
+# qiskit.aqua.components.initial\_states.VarFormBased
 
 <span id="undefined" />
 

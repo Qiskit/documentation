@@ -1,4 +1,4 @@
-# QuadraticProgramToQubo[¶](#quadraticprogramtoqubo "Permalink to this headline")
+# QuadraticProgramToQubo
 
 <span id="undefined" />
 

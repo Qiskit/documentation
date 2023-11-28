@@ -1,4 +1,4 @@
-# RemoveResetInZeroState[¶](#removeresetinzerostate "Permalink to this headline")
+# RemoveResetInZeroState
 
 <span id="undefined" />
 

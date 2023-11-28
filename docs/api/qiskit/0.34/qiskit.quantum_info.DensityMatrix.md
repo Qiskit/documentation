@@ -1,4 +1,4 @@
-# DensityMatrix[¶](#densitymatrix "Permalink to this headline")
+# DensityMatrix
 
 <span id="undefined" />
 

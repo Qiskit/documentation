@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.uncertainty_problems.UncertaintyProblem
 ---
 
-# UncertaintyProblem[¶](#uncertaintyproblem "Permalink to this headline")
+# UncertaintyProblem
 
 <span id="qiskit.aqua.components.uncertainty_problems.UncertaintyProblem" />
 

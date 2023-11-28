@@ -1,4 +1,4 @@
-# qiskit.providers.aer.library.save\_state[¶](#qiskit-providers-aer-library-save-state "Permalink to this headline")
+# qiskit.providers.aer.library.save\_state
 
 <span id="undefined" />
 

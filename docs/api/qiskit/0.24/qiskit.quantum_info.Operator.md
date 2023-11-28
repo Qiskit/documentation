@@ -1,6 +1,6 @@
 <span id="qiskit-quantum-info-operator" />
 
-# qiskit.quantum\_info.Operator[¶](#qiskit-quantum-info-operator "Permalink to this headline")
+# qiskit.quantum\_info.Operator
 
 <span id="undefined" />
 

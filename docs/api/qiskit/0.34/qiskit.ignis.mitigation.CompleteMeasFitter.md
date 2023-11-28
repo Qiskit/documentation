@@ -1,4 +1,4 @@
-# CompleteMeasFitter[¶](#completemeasfitter "Permalink to this headline")
+# CompleteMeasFitter
 
 <span id="undefined" />
 

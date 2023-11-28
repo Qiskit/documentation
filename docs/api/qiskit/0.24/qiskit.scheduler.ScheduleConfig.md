@@ -1,6 +1,6 @@
 <span id="qiskit-scheduler-scheduleconfig" />
 
-# qiskit.scheduler.ScheduleConfig[¶](#qiskit-scheduler-scheduleconfig "Permalink to this headline")
+# qiskit.scheduler.ScheduleConfig
 
 <span id="undefined" />
 

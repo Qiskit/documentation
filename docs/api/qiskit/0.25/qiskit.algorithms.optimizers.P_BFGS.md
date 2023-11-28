@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.P\_BFGS[¶](#qiskit-algorithms-optimizers-p-bfgs "Permalink to this headline")
+# qiskit.algorithms.optimizers.P\_BFGS
 
 <span id="undefined" />
 

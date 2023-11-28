@@ -1,4 +1,4 @@
-# MulticlassExtension[¶](#multiclassextension "Permalink to this headline")
+# MulticlassExtension
 
 <span id="undefined" />
 

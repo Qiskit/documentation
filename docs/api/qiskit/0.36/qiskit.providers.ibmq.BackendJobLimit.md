@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.BackendJobLimit
 ---
 
-# BackendJobLimit[¶](#backendjoblimit "Permalink to this headline")
+# BackendJobLimit
 
 <span id="qiskit.providers.ibmq.BackendJobLimit" />
 

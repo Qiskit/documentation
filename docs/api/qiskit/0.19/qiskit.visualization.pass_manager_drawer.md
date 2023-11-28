@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.pass_manager_drawer
 ---
 
-# pass\_manager\_drawer[¶](#pass-manager-drawer "Permalink to this headline")
+# pass\_manager\_drawer
 
 <span id="qiskit.visualization.pass_manager_drawer" />
 

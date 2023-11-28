@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.POWELL[¶](#qiskit-algorithms-optimizers-powell "Permalink to this headline")
+# qiskit.algorithms.optimizers.POWELL
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# NumPyEigensolver[¶](#numpyeigensolver "Permalink to this headline")
+# NumPyEigensolver
 
 <span id="undefined" />
 

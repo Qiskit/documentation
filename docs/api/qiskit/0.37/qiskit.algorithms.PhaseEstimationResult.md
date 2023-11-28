@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.PhaseEstimationResult
 ---
 
-# PhaseEstimationResult[¶](#phaseestimationresult "Permalink to this headline")
+# PhaseEstimationResult
 
 <span id="qiskit.algorithms.PhaseEstimationResult" />
 

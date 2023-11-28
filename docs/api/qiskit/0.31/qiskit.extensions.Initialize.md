@@ -1,4 +1,4 @@
-# Initialize[¶](#initialize "Permalink to this headline")
+# Initialize
 
 <span id="undefined" />
 

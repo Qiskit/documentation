@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.characterization.BaseCoherenceFitter
 ---
 
-# BaseCoherenceFitter[¶](#basecoherencefitter "Permalink to this headline")
+# BaseCoherenceFitter
 
 <span id="qiskit.ignis.characterization.BaseCoherenceFitter" />
 

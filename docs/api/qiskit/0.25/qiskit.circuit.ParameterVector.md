@@ -1,4 +1,4 @@
-# qiskit.circuit.ParameterVector[¶](#qiskit-circuit-parametervector "Permalink to this headline")
+# qiskit.circuit.ParameterVector
 
 <span id="undefined" />
 

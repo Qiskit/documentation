@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.random\_pauli[¶](#qiskit-quantum-info-random-pauli "Permalink to this headline")
+# qiskit.quantum\_info.random\_pauli
 
 <span id="undefined" />
 

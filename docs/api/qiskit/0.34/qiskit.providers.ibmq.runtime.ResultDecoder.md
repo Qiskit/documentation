@@ -1,4 +1,4 @@
-# ResultDecoder[¶](#resultdecoder "Permalink to this headline")
+# ResultDecoder
 
 <span id="undefined" />
 

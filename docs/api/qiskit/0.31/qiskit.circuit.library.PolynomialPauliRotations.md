@@ -1,4 +1,4 @@
-# PolynomialPauliRotations[¶](#polynomialpaulirotations "Permalink to this headline")
+# PolynomialPauliRotations
 
 <span id="undefined" />
 

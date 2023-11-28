@@ -1,4 +1,4 @@
-# GRY[¶](#gry "Permalink to this headline")
+# GRY
 
 <span id="undefined" />
 

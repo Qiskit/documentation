@@ -1,4 +1,4 @@
-# OptimizerResult[¶](#optimizerresult "Permalink to this headline")
+# OptimizerResult
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.aqua.utils.optimize\_svm[¶](#qiskit-aqua-utils-optimize-svm "Permalink to this headline")
+# qiskit.aqua.utils.optimize\_svm
 
 <span id="undefined" />
 

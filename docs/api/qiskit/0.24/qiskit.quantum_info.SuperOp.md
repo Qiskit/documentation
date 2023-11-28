@@ -1,6 +1,6 @@
 <span id="qiskit-quantum-info-superop" />
 
-# qiskit.quantum\_info.SuperOp[¶](#qiskit-quantum-info-superop "Permalink to this headline")
+# qiskit.quantum\_info.SuperOp
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.managed.ManagedJob[¶](#qiskit-providers-ibmq-managed-managedjob "Permalink to this headline")
+# qiskit.providers.ibmq.managed.ManagedJob
 
 <span id="undefined" />
 

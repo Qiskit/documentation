@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.runtime.RuntimeJob[¶](#qiskit-providers-ibmq-runtime-runtimejob "Permalink to this headline")
+# qiskit.providers.ibmq.runtime.RuntimeJob
 
 <span id="undefined" />
 

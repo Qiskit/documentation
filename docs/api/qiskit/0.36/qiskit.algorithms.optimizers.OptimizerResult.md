@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.OptimizerResult
 ---
 
-# OptimizerResult[¶](#optimizerresult "Permalink to this headline")
+# OptimizerResult
 
 <span id="qiskit.algorithms.optimizers.OptimizerResult" />
 

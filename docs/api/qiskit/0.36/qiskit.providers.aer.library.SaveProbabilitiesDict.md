@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.library.SaveProbabilitiesDict
 ---
 
-# SaveProbabilitiesDict[¶](#saveprobabilitiesdict "Permalink to this headline")
+# SaveProbabilitiesDict
 
 <span id="qiskit.providers.aer.library.SaveProbabilitiesDict" />
 

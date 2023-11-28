@@ -1,4 +1,4 @@
-# SciPyOptimizer[¶](#scipyoptimizer "Permalink to this headline")
+# SciPyOptimizer
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.JobTimeoutError
 ---
 
-# JobTimeoutError[¶](#jobtimeouterror "Permalink to this headline")
+# JobTimeoutError
 
 <span id="qiskit.providers.JobTimeoutError" />
 

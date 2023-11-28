@@ -16,7 +16,7 @@ python_api_name: qiskit.pulse
 
 <span id="module-qiskit.pulse" />
 
-`qiskit.pulse¶`
+`qiskit.pulse`
 
 Qiskit-Pulse is a pulse-level quantum programming kit. This lower level of programming offers the user more control than programming with [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") s.
 
@@ -34,7 +34,7 @@ This is sufficient to allow the quantum physicist to explore and correct for noi
 
 <span id="module-qiskit.pulse" />
 
-`qiskit.pulse.instructions¶`
+`qiskit.pulse.instructions`
 
 |                                                                                                                                        |                                                                                                                                                                              |
 | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -54,7 +54,7 @@ This is sufficient to allow the quantum physicist to explore and correct for noi
 
 <span id="module-qiskit.pulse" />
 
-`qiskit.pulse.library¶`
+`qiskit.pulse.library`
 
 |                                                                                                                                        |                                                                                                                                        |
 | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -74,7 +74,7 @@ This is sufficient to allow the quantum physicist to explore and correct for noi
 
 <span id="module-qiskit.pulse" />
 
-`qiskit.pulse.channels¶`
+`qiskit.pulse.channels`
 
 Pulse is meant to be agnostic to the underlying hardware implementation, while still allowing low-level control. Therefore, our signal channels are *virtual* hardware channels. The backend which executes our programs is responsible for mapping these virtual channels to the proper physical channel within the quantum control hardware.
 
@@ -92,10 +92,6 @@ Channels are characterized by their type and their index. See each channel type 
 
 ## Schedules
 
-<span id="module-qiskit.pulse" />
-
-`¶`
-
 Schedules are Pulse programs. They describe instruction sequences for the control hardware.
 
 |                                                                                                                                      |                                                                                                                                                                         |
@@ -105,19 +101,11 @@ Schedules are Pulse programs. They describe instruction sequences for the contro
 
 ## Configuration
 
-<span id="module-qiskit.pulse" />
-
-`¶`
-
 |                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                             |
 | ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap#qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")() | Mapping from [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") [`qiskit.circuit.Instruction`](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and qubits to [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") s. In particular, the mapping is formatted as type::. |
 
 ## Schedule Transforms
-
-<span id="module-qiskit.pulse" />
-
-`¶`
 
 These functions take [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") s as input and return modified [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") s.
 
@@ -129,19 +117,11 @@ These functions take [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "q
 
 ## Exceptions
 
-<span id="module-qiskit.pulse" />
-
-`¶`
-
 |                                                                                                      |                                    |
 | ---------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | [`PulseError`](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError")(\*message) | Errors raised by the pulse module. |
 
 ## Pulse Builder (builder)
-
-<span id="module-qiskit.pulse" />
-
-`¶`
 
 <Admonition title="Warning" type="caution">
   The pulse builder interface is still in active development. It may have breaking API changes without deprecation warnings in future releases until otherwise indicated.
@@ -175,7 +155,7 @@ In the future the pulse builder will be coupled to the [`QuantumCircuit`](qiskit
 | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
 | [`build`](qiskit.pulse.builder.build#qiskit.pulse.builder.build "qiskit.pulse.builder.build")(\[backend, schedule, name, …]) | Create a context manager for launching the imperative pulse builder DSL. |
 
-### Channels[¶](#channels "Permalink to this headline")
+### Channels
 
 Methods to return the correct channels for the respective qubit indices.
 
@@ -201,7 +181,7 @@ DriveChannel(0)
 | [`drive_channel`](qiskit.pulse.builder.drive_channel#qiskit.pulse.builder.drive_channel "qiskit.pulse.builder.drive_channel")(qubit)                | Return `DriveChannel` for `qubit` on the active builder backend.   |
 | [`measure_channel`](qiskit.pulse.builder.measure_channel#qiskit.pulse.builder.measure_channel "qiskit.pulse.builder.measure_channel")(qubit)        | Return `MeasureChannel` for `qubit` on the active builder backend. |
 
-### Instructions[¶](#instructions "Permalink to this headline")
+### Instructions
 
 Pulse instructions are available within the builder interface. Here’s an example:
 
@@ -249,7 +229,7 @@ drive_sched.draw(style=style)
 | [`shift_phase`](qiskit.pulse.builder.shift_phase#qiskit.pulse.builder.shift_phase "qiskit.pulse.builder.shift_phase")(phase, channel)                     | Shift the `phase` of a pulse `channel`.                                       |
 | [`snapshot`](qiskit.pulse.builder.snapshot#qiskit.pulse.builder.snapshot "qiskit.pulse.builder.snapshot")(label\[, snapshot\_type])                       | Simulator snapshot.                                                           |
 
-### Contexts[¶](#contexts "Permalink to this headline")
+### Contexts
 
 Builder aware contexts that modify the construction of a pulse program. For example an alignment context like [`align_right()`](qiskit.pulse.builder.align_right#qiskit.pulse.builder.align_right "qiskit.pulse.builder.align_right") may be used to align all pulses as late as possible in a pulse program.
 
@@ -287,7 +267,7 @@ pulse_prog.draw(style=style)
 | [`phase_offset`](qiskit.pulse.builder.phase_offset#qiskit.pulse.builder.phase_offset "qiskit.pulse.builder.phase_offset")(phase, \*channels)                                                    | Shift the phase of input channels on entry into context and undo on exit.                                                    |
 | [`transpiler_settings`](qiskit.pulse.builder.transpiler_settings#qiskit.pulse.builder.transpiler_settings "qiskit.pulse.builder.transpiler_settings")(\*\*settings)                             | Set the currently active transpiler settings for this context.                                                               |
 
-### Macros[¶](#macros "Permalink to this headline")
+### Macros
 
 Macros help you add more complex functionality to your pulse program.
 
@@ -312,7 +292,7 @@ MemorySlot(0)
 | [`measure_all`](qiskit.pulse.builder.measure_all#qiskit.pulse.builder.measure_all "qiskit.pulse.builder.measure_all")()                       | Measure all qubits within the currently active builder context.                                                                                                          |
 | [`delay_qubits`](qiskit.pulse.builder.delay_qubits#qiskit.pulse.builder.delay_qubits "qiskit.pulse.builder.delay_qubits")(duration, \*qubits) | Insert delays on all of the [`channels.Channel`](qiskit.pulse.channels#Channel "qiskit.pulse.channels.Channel")s that correspond to the input `qubits` at the same time. |
 
-### Circuit Gates[¶](#circuit-gates "Permalink to this headline")
+### Circuit Gates
 
 To use circuit level gates within your pulse program call a circuit with [`qiskit.pulse.builder.call()`](qiskit.pulse.builder.call#qiskit.pulse.builder.call "qiskit.pulse.builder.call").
 
@@ -340,7 +320,7 @@ with pulse.build(backend) as u3_sched:
 | [`u3`](qiskit.pulse.builder.u3#qiskit.pulse.builder.u3 "qiskit.pulse.builder.u3")(theta, phi, lam, qubit) | Call a `U3Gate` on the input physical qubit.  |
 | [`x`](qiskit.pulse.builder.x#qiskit.pulse.builder.x "qiskit.pulse.builder.x")(qubit)                      | Call a `XGate` on the input physical qubit.   |
 
-### Utilities[¶](#utilities "Permalink to this headline")
+### Utilities
 
 The utility functions can be used to gather attributes about the backend and modify how the program is built.
 

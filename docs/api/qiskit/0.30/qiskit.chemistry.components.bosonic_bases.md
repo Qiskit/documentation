@@ -14,15 +14,11 @@ python_api_name: qiskit.chemistry.components.bosonic_bases
 
 <span id="module-qiskit.chemistry.components.bosonic_bases" />
 
-`qiskit.chemistry.components.bosonic_bases¶`
+`qiskit.chemistry.components.bosonic_bases`
 
 Basis for bosonic operations.
 
 # Bosonic Basis
-
-<span id="module-qiskit.chemistry.components.bosonic_bases" />
-
-`¶`
 
 |                                                                                                                                                                                              |                                                             |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |

@@ -8,7 +8,7 @@ python_api_name: qiskit.optimization.applications.ising.partition.get_operator
 
 <span id="qiskit-optimization-applications-ising-partition" />
 
-# qiskit.optimization.applications.ising.partition[¶](#module-qiskit.optimization.applications.ising.partition "Permalink to this headline")
+# qiskit.optimization.applications.ising.partition
 
 Generate Number Partitioning (Partition) instances, and convert them into a Hamiltonian given as a Pauli list.
 

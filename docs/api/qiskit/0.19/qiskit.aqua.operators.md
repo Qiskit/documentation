@@ -14,7 +14,7 @@ python_api_name: qiskit.aqua.operators
 
 <span id="module-qiskit.aqua.operators" />
 
-`qiskit.aqua.operators¶`
+`qiskit.aqua.operators`
 
 Operators and State functions are the building blocks of Quantum Algorithms.
 
@@ -36,10 +36,6 @@ Below, you’ll find a base class for all Operators, some convenience immutable 
 
 # Operator Base Class
 
-<span id="module-qiskit.aqua.operators" />
-
-`¶`
-
 The OperatorBase serves as the base class for all Operators, State functions and measurements, and enforces the presence and consistency of methods to manipulate these objects conveniently.
 
 |                                                                                           |                                                                       |
@@ -47,10 +43,6 @@ The OperatorBase serves as the base class for all Operators, State functions and
 | [`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase") | A base class for all Operators: PrimitiveOps, StateFns, ListOps, etc. |
 
 # Operator Globals
-
-<span id="module-qiskit.aqua.operators" />
-
-`¶`
 
 The `operator_globals` is a set of immutable Operator instances that are convenient building blocks to reach for while working with the Operator flow.
 
@@ -68,15 +60,7 @@ The `operator_globals` is a set of immutable Operator instances that are conveni
 
 # Submodules
 
-<span id="module-qiskit.aqua.operators" />
-
-`¶`
-
 ## Operators
-
-<span id="module-qiskit.aqua.operators" />
-
-`¶`
 
 The Operators submodules include the PrimitiveOp, ListOp, and StateFn class groups which represent the primary Operator modules used in Aqua. The [`legacy`](qiskit.aqua.operators.legacy#module-qiskit.aqua.operators.legacy "qiskit.aqua.operators.legacy") submodule includes older Operator classes which are currently being migrated out of usage in Aqua, but are still used in some places.
 
@@ -88,10 +72,6 @@ The Operators submodules include the PrimitiveOp, ListOp, and StateFn class grou
 | [`legacy`](qiskit.aqua.operators.legacy#module-qiskit.aqua.operators.legacy "qiskit.aqua.operators.legacy")                             | Legacy Operators ([`qiskit.aqua.operators.legacy`](qiskit.aqua.operators.legacy#module-qiskit.aqua.operators.legacy "qiskit.aqua.operators.legacy"))                                |
 
 ## Converters
-
-<span id="module-qiskit.aqua.operators" />
-
-`¶`
 
 The Converter submodules include objects which manipulate Operators, usually recursing over an Operator structure and changing certain Operators’ representation. For example, the [`PauliExpectation`](qiskit.aqua.operators.expectations.PauliExpectation "qiskit.aqua.operators.expectations.PauliExpectation") traverses an Operator structure, and replaces all of the [`OperatorStateFn`](qiskit.aqua.operators.state_fns.OperatorStateFn "qiskit.aqua.operators.state_fns.OperatorStateFn") measurements containing non-diagonal Pauli terms into diagonalizing circuits following by [`OperatorStateFn`](qiskit.aqua.operators.state_fns.OperatorStateFn "qiskit.aqua.operators.state_fns.OperatorStateFn") measurement containing only diagonal Paulis.
 

@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-sxdggate" />
 
-# qiskit.circuit.library.SXdgGate[¶](#qiskit-circuit-library-sxdggate "Permalink to this headline")
+# qiskit.circuit.library.SXdgGate
 
 <span id="undefined" />
 

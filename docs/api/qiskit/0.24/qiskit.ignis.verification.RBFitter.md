@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-rbfitter" />
 
-# qiskit.ignis.verification.RBFitter[¶](#qiskit-ignis-verification-rbfitter "Permalink to this headline")
+# qiskit.ignis.verification.RBFitter
 
 <span id="undefined" />
 

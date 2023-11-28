@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.random\_statevector[¶](#qiskit-quantum-info-random-statevector "Permalink to this headline")
+# qiskit.quantum\_info.random\_statevector
 
 <span id="undefined" />
 

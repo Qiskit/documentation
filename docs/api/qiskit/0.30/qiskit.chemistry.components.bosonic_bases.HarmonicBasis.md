@@ -1,4 +1,4 @@
-# HarmonicBasis[¶](#harmonicbasis "Permalink to this headline")
+# HarmonicBasis
 
 <span id="undefined" />
 

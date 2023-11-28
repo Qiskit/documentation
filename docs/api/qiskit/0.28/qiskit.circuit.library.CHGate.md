@@ -1,4 +1,4 @@
-# qiskit.circuit.library.CHGate[¶](#qiskit-circuit-library-chgate "Permalink to this headline")
+# qiskit.circuit.library.CHGate
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.providers.aer.library.SaveMatrixProductState[¶](#qiskit-providers-aer-library-savematrixproductstate "Permalink to this headline")
+# qiskit.providers.aer.library.SaveMatrixProductState
 
 <span id="undefined" />
 

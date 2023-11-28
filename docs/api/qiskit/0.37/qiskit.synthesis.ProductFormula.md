@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.synthesis.ProductFormula
 ---
 
-# ProductFormula[¶](#productformula "Permalink to this headline")
+# ProductFormula
 
 <span id="qiskit.synthesis.ProductFormula" />
 

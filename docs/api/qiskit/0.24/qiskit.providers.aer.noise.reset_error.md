@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-noise-reset-error" />
 
-# qiskit.providers.aer.noise.reset\_error[¶](#qiskit-providers-aer-noise-reset-error "Permalink to this headline")
+# qiskit.providers.aer.noise.reset\_error
 
 <span id="undefined" />
 

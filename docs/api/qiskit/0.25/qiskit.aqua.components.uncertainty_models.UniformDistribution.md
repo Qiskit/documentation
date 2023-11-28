@@ -1,4 +1,4 @@
-# qiskit.aqua.components.uncertainty\_models.UniformDistribution[¶](#qiskit-aqua-components-uncertainty-models-uniformdistribution "Permalink to this headline")
+# qiskit.aqua.components.uncertainty\_models.UniformDistribution
 
 <span id="undefined" />
 

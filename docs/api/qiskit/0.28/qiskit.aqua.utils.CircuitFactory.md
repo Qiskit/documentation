@@ -1,4 +1,4 @@
-# qiskit.aqua.utils.CircuitFactory[¶](#qiskit-aqua-utils-circuitfactory "Permalink to this headline")
+# qiskit.aqua.utils.CircuitFactory
 
 <span id="undefined" />
 

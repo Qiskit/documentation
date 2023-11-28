@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.plot_bloch_vector
 ---
 
-# plot\_bloch\_vector[¶](#plot-bloch-vector "Permalink to this headline")
+# plot\_bloch\_vector
 
 <span id="qiskit.visualization.plot_bloch_vector" />
 

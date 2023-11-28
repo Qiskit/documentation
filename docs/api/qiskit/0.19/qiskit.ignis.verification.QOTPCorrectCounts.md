@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.verification.QOTPCorrectCounts
 ---
 
-# QOTPCorrectCounts[¶](#qotpcorrectcounts "Permalink to this headline")
+# QOTPCorrectCounts
 
 <span id="qiskit.ignis.verification.QOTPCorrectCounts" />
 

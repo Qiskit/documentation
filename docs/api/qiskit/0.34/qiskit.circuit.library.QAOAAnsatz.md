@@ -1,4 +1,4 @@
-# QAOAAnsatz[¶](#qaoaansatz "Permalink to this headline")
+# QAOAAnsatz
 
 <span id="undefined" />
 

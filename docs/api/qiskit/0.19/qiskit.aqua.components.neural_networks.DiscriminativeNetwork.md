@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.neural_networks.DiscriminativeNetwork
 ---
 
-# DiscriminativeNetwork[¶](#discriminativenetwork "Permalink to this headline")
+# DiscriminativeNetwork
 
 <span id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork" />
 

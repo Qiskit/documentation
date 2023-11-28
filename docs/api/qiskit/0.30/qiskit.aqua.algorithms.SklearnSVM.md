@@ -1,4 +1,4 @@
-# SklearnSVM[¶](#sklearnsvm "Permalink to this headline")
+# SklearnSVM
 
 <span id="undefined" />
 

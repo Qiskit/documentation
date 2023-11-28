@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.QNSPSA[¶](#qiskit-algorithms-optimizers-qnspsa "Permalink to this headline")
+# qiskit.algorithms.optimizers.QNSPSA
 
 <span id="undefined" />
 

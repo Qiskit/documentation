@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-characterization-rabifitter" />
 
-# qiskit.ignis.characterization.RabiFitter[¶](#qiskit-ignis-characterization-rabifitter "Permalink to this headline")
+# qiskit.ignis.characterization.RabiFitter
 
 <span id="undefined" />
 

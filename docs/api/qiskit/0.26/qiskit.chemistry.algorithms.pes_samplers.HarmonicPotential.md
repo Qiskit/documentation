@@ -1,4 +1,4 @@
-# qiskit.chemistry.algorithms.pes\_samplers.HarmonicPotential[¶](#qiskit-chemistry-algorithms-pes-samplers-harmonicpotential "Permalink to this headline")
+# qiskit.chemistry.algorithms.pes\_samplers.HarmonicPotential
 
 <span id="undefined" />
 

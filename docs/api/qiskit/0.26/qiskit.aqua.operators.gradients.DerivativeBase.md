@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.gradients.DerivativeBase[¶](#qiskit-aqua-operators-gradients-derivativebase "Permalink to this headline")
+# qiskit.aqua.operators.gradients.DerivativeBase
 
 <span id="undefined" />
 

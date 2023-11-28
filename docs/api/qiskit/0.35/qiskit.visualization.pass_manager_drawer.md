@@ -1,4 +1,4 @@
-# qiskit.visualization.pass\_manager\_drawer[¶](#qiskit-visualization-pass-manager-drawer "Permalink to this headline")
+# qiskit.visualization.pass\_manager\_drawer
 
 <span id="undefined" />
 

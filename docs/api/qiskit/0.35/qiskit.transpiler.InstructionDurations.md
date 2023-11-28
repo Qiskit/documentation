@@ -1,4 +1,4 @@
-# InstructionDurations[¶](#instructiondurations "Permalink to this headline")
+# InstructionDurations
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-qobj-qobjexperimentheader" />
 
-# qiskit.qobj.QobjExperimentHeader[¶](#qiskit-qobj-qobjexperimentheader "Permalink to this headline")
+# qiskit.qobj.QobjExperimentHeader
 
 <span id="undefined" />
 

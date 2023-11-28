@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-applications-ising-vehicle-routing" />
 
-# qiskit.optimization.applications.ising.vehicle\_routing[¶](#module-qiskit.optimization.applications.ising.vehicle_routing "Permalink to this headline")
+# qiskit.optimization.applications.ising.vehicle\_routing
 
 Converts vehicle routing instances into a list of Paulis, and provides some related routines (extracting a solution, checking its objective function value).
 

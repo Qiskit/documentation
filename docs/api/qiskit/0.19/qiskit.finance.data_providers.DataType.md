@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.finance.data_providers.DataType
 ---
 
-# DataType[¶](#datatype "Permalink to this headline")
+# DataType
 
 <span id="qiskit.finance.data_providers.DataType" />
 

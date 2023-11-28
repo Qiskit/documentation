@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.utils.decimal_to_binary
 ---
 
-# decimal\_to\_binary[¶](#decimal-to-binary "Permalink to this headline")
+# decimal\_to\_binary
 
 <span id="qiskit.aqua.utils.decimal_to_binary" />
 

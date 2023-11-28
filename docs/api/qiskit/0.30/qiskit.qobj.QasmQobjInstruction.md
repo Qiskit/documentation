@@ -1,4 +1,4 @@
-# QasmQobjInstruction[¶](#qasmqobjinstruction "Permalink to this headline")
+# QasmQobjInstruction
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# SaveDensityMatrix[¶](#savedensitymatrix "Permalink to this headline")
+# SaveDensityMatrix
 
 <span id="undefined" />
 

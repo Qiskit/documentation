@@ -1,4 +1,4 @@
-# PiecewiseLinearPauliRotations[¶](#piecewiselinearpaulirotations "Permalink to this headline")
+# PiecewiseLinearPauliRotations
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# NumPyEigensolverFactory[¶](#numpyeigensolverfactory "Permalink to this headline")
+# NumPyEigensolverFactory
 
 <span id="undefined" />
 

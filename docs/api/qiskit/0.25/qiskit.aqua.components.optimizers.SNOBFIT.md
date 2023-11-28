@@ -1,4 +1,4 @@
-# qiskit.aqua.components.optimizers.SNOBFIT[¶](#qiskit-aqua-components-optimizers-snobfit "Permalink to this headline")
+# qiskit.aqua.components.optimizers.SNOBFIT
 
 <span id="undefined" />
 

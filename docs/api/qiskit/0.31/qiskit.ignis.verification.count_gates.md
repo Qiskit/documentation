@@ -1,4 +1,4 @@
-# qiskit.ignis.verification.count\_gates[¶](#qiskit-ignis-verification-count-gates "Permalink to this headline")
+# qiskit.ignis.verification.count\_gates
 
 <span id="undefined" />
 

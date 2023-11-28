@@ -1,4 +1,4 @@
-# EigensolverFactory[¶](#eigensolverfactory "Permalink to this headline")
+# EigensolverFactory
 
 <span id="undefined" />
 

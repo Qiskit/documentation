@@ -1,4 +1,4 @@
-# ALAPSchedule[¶](#alapschedule "Permalink to this headline")
+# ALAPSchedule
 
 <span id="undefined" />
 

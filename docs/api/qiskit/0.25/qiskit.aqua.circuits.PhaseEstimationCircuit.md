@@ -1,4 +1,4 @@
-# qiskit.aqua.circuits.PhaseEstimationCircuit[¶](#qiskit-aqua-circuits-phaseestimationcircuit "Permalink to this headline")
+# qiskit.aqua.circuits.PhaseEstimationCircuit
 
 <span id="undefined" />
 

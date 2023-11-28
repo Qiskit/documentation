@@ -1,4 +1,4 @@
-# DenseLayout[¶](#denselayout "Permalink to this headline")
+# DenseLayout
 
 <span id="undefined" />
 

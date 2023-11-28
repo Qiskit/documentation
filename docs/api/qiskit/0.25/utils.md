@@ -14,7 +14,7 @@ python_api_name: qiskit.utils
 
 <span id="module-qiskit.utils" />
 
-`qiskit.utils¶`
+`qiskit.utils`
 
 |                                                                                                                                               |                                                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
@@ -25,10 +25,6 @@ python_api_name: qiskit.utils
 | [`apply_prefix`](qiskit.utils.apply_prefix#qiskit.utils.apply_prefix "qiskit.utils.apply_prefix")(value, unit)                                | Given a SI unit prefix and value, apply the prefix to convert to standard SI unit. |
 
 ## Algorithm Utilities
-
-<span id="module-qiskit.utils" />
-
-`¶`
 
 |                                                                                                                                           |                                                                              |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |

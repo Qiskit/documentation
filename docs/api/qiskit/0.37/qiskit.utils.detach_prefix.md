@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.utils.detach_prefix
 ---
 
-# qiskit.utils.detach\_prefix[¶](#qiskit-utils-detach-prefix "Permalink to this headline")
+# qiskit.utils.detach\_prefix
 
 <span id="qiskit.utils.detach_prefix" />
 

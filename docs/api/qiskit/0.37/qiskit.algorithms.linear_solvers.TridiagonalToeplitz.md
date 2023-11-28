@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.linear_solvers.TridiagonalToeplitz
 ---
 
-# TridiagonalToeplitz[¶](#tridiagonaltoeplitz "Permalink to this headline")
+# TridiagonalToeplitz
 
 <span id="qiskit.algorithms.linear_solvers.TridiagonalToeplitz" />
 

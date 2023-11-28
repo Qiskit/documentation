@@ -1,4 +1,4 @@
-# qiskit.circuit.library.GraphState[¶](#qiskit-circuit-library-graphstate "Permalink to this headline")
+# qiskit.circuit.library.GraphState
 
 <span id="undefined" />
 

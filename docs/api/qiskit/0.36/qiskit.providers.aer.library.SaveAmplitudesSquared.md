@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.library.SaveAmplitudesSquared
 ---
 
-# SaveAmplitudesSquared[¶](#saveamplitudessquared "Permalink to this headline")
+# SaveAmplitudesSquared
 
 <span id="qiskit.providers.aer.library.SaveAmplitudesSquared" />
 

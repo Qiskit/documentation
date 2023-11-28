@@ -1,4 +1,4 @@
-# VF2Layout[¶](#vf2layout "Permalink to this headline")
+# VF2Layout
 
 <span id="undefined" />
 

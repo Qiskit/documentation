@@ -1,4 +1,4 @@
-# qiskit.aqua.components.uncertainty\_problems.UnivariatePiecewiseLinearObjective[¶](#qiskit-aqua-components-uncertainty-problems-univariatepiecewiselinearobjective "Permalink to this headline")
+# qiskit.aqua.components.uncertainty\_problems.UnivariatePiecewiseLinearObjective
 
 <span id="undefined" />
 

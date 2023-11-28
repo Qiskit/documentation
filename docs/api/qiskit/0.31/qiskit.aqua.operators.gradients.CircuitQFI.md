@@ -1,4 +1,4 @@
-# CircuitQFI[¶](#circuitqfi "Permalink to this headline")
+# CircuitQFI
 
 <span id="undefined" />
 

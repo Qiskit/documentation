@@ -1,4 +1,4 @@
-# DictStateFn[¶](#dictstatefn "Permalink to this headline")
+# DictStateFn
 
 <span id="undefined" />
 

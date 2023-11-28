@@ -1,4 +1,4 @@
-# qiskit.qpy.dump[¶](#qiskit-qpy-dump "Permalink to this headline")
+# qiskit.qpy.dump
 
 <span id="undefined" />
 

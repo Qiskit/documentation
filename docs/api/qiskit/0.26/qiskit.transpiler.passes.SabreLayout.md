@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.SabreLayout[¶](#qiskit-transpiler-passes-sabrelayout "Permalink to this headline")
+# qiskit.transpiler.passes.SabreLayout
 
 <span id="undefined" />
 

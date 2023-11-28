@@ -1,4 +1,4 @@
-# ConstrainedReschedule[¶](#constrainedreschedule "Permalink to this headline")
+# ConstrainedReschedule
 
 <span id="undefined" />
 

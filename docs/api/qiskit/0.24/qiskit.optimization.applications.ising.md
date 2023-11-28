@@ -16,15 +16,11 @@ python_api_name: qiskit.optimization.applications.ising
 
 <span id="module-qiskit.optimization.applications.ising" />
 
-`qiskit.optimization.applications.ising¶`
+`qiskit.optimization.applications.ising`
 
 Ising models for optimization application problems
 
 # Ising Models
-
-<span id="module-qiskit.optimization.applications.ising" />
-
-`¶`
 
 |                                                                                                                                                                                                    |                                                                                                                                                              |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -42,10 +38,6 @@ Ising models for optimization application problems
 | [`knapsack`](qiskit.optimization.applications.ising.knapsack#module-qiskit.optimization.applications.ising.knapsack "qiskit.optimization.applications.ising.knapsack")                             | Convert knapsack parameters instances into Pauli list The parameters are a list of values a list of weights and a maximum weight of the knapsack.            |
 
 # Automatic Ising Model Generator from DoCPLEX Model
-
-<span id="module-qiskit.optimization.applications.ising" />
-
-`¶`
 
 |                                                                                                                                                                    |                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------- |

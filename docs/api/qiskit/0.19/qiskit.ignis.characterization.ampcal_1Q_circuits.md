@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.characterization.ampcal_1Q_circuits
 ---
 
-# ampcal\_1Q\_circuits[¶](#ampcal-1q-circuits "Permalink to this headline")
+# ampcal\_1Q\_circuits
 
 <span id="qiskit.ignis.characterization.ampcal_1Q_circuits" />
 

@@ -1,4 +1,4 @@
-# Collect2qBlocks[¶](#collect2qblocks "Permalink to this headline")
+# Collect2qBlocks
 
 <span id="undefined" />
 

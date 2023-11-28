@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.verification.QOTP
 ---
 
-# QOTP[¶](#qotp "Permalink to this headline")
+# QOTP
 
 <span id="qiskit.ignis.verification.QOTP" />
 

@@ -1,4 +1,4 @@
-# VibronicStructureBase[¶](#vibronicstructurebase "Permalink to this headline")
+# VibronicStructureBase
 
 <span id="undefined" />
 

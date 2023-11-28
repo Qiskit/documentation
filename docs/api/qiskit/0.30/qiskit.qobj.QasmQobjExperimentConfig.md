@@ -1,4 +1,4 @@
-# QasmQobjExperimentConfig[¶](#qasmqobjexperimentconfig "Permalink to this headline")
+# QasmQobjExperimentConfig
 
 <span id="undefined" />
 

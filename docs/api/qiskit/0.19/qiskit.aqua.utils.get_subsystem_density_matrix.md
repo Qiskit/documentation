@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.utils.get_subsystem_density_matrix
 ---
 
-# get\_subsystem\_density\_matrix[¶](#get-subsystem-density-matrix "Permalink to this headline")
+# get\_subsystem\_density\_matrix
 
 <span id="qiskit.aqua.utils.get_subsystem_density_matrix" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-algorithms-pes-samplers-morsepotential" />
 
-# qiskit.chemistry.algorithms.pes\_samplers.MorsePotential[¶](#qiskit-chemistry-algorithms-pes-samplers-morsepotential "Permalink to this headline")
+# qiskit.chemistry.algorithms.pes\_samplers.MorsePotential
 
 <span id="undefined" />
 

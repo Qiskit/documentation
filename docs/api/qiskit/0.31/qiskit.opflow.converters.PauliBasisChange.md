@@ -1,4 +1,4 @@
-# PauliBasisChange[¶](#paulibasischange "Permalink to this headline")
+# PauliBasisChange
 
 <span id="undefined" />
 

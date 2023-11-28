@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-utils-get-subsystem-density-matrix" />
 
-# qiskit.aqua.utils.get\_subsystem\_density\_matrix[¶](#qiskit-aqua-utils-get-subsystem-density-matrix "Permalink to this headline")
+# qiskit.aqua.utils.get\_subsystem\_density\_matrix
 
 <span id="undefined" />
 

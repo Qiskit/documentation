@@ -1,4 +1,4 @@
-# Operator[¶](#operator "Permalink to this headline")
+# Operator
 
 <span id="undefined" />
 

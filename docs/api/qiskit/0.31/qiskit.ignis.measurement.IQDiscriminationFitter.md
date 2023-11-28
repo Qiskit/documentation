@@ -1,4 +1,4 @@
-# IQDiscriminationFitter[¶](#iqdiscriminationfitter "Permalink to this headline")
+# IQDiscriminationFitter
 
 <span id="undefined" />
 

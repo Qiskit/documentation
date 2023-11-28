@@ -1,4 +1,4 @@
-# Statevector[¶](#statevector "Permalink to this headline")
+# Statevector
 
 <span id="undefined" />
 

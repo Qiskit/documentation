@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-watsonhamiltonian" />
 
-# qiskit.chemistry.WatsonHamiltonian[¶](#qiskit-chemistry-watsonhamiltonian "Permalink to this headline")
+# qiskit.chemistry.WatsonHamiltonian
 
 <span id="undefined" />
 

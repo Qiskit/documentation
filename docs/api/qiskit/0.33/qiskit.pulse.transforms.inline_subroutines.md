@@ -1,4 +1,4 @@
-# qiskit.pulse.transforms.inline\_subroutines[¶](#qiskit-pulse-transforms-inline-subroutines "Permalink to this headline")
+# qiskit.pulse.transforms.inline\_subroutines
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-oracles-truthtableoracle" />
 
-# qiskit.aqua.components.oracles.TruthTableOracle[¶](#qiskit-aqua-components-oracles-truthtableoracle "Permalink to this headline")
+# qiskit.aqua.components.oracles.TruthTableOracle
 
 <span id="undefined" />
 

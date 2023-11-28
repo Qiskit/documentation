@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.aqua.AquaError
 ---
 
-# AquaError[¶](#aquaerror "Permalink to this headline")
+# AquaError
 
 <span id="qiskit.aqua.AquaError" />
 

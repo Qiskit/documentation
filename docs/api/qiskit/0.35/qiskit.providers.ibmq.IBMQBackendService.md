@@ -1,4 +1,4 @@
-# IBMQBackendService[¶](#ibmqbackendservice "Permalink to this headline")
+# IBMQBackendService
 
 <span id="undefined" />
 

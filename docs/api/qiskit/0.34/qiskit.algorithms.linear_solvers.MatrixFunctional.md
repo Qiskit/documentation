@@ -1,4 +1,4 @@
-# MatrixFunctional[¶](#matrixfunctional "Permalink to this headline")
+# MatrixFunctional
 
 <span id="undefined" />
 

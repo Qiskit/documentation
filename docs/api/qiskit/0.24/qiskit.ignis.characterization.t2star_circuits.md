@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-characterization-t2star-circuits" />
 
-# qiskit.ignis.characterization.t2star\_circuits[¶](#qiskit-ignis-characterization-t2star-circuits "Permalink to this headline")
+# qiskit.ignis.characterization.t2star\_circuits
 
 <span id="undefined" />
 

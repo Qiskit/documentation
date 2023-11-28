@@ -1,4 +1,4 @@
-# Z2Symmetries[¶](#z2symmetries "Permalink to this headline")
+# Z2Symmetries
 
 <span id="undefined" />
 

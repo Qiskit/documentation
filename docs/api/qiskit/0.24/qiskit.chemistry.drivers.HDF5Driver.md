@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-drivers-hdf5driver" />
 
-# qiskit.chemistry.drivers.HDF5Driver[¶](#qiskit-chemistry-drivers-hdf5driver "Permalink to this headline")
+# qiskit.chemistry.drivers.HDF5Driver
 
 <span id="undefined" />
 

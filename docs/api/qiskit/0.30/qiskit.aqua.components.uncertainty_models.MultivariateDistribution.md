@@ -1,4 +1,4 @@
-# MultivariateDistribution[¶](#multivariatedistribution "Permalink to this headline")
+# MultivariateDistribution
 
 <span id="undefined" />
 

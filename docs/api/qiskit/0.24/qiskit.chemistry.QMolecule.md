@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-qmolecule" />
 
-# qiskit.chemistry.QMolecule[¶](#qiskit-chemistry-qmolecule "Permalink to this headline")
+# qiskit.chemistry.QMolecule
 
 <span id="undefined" />
 

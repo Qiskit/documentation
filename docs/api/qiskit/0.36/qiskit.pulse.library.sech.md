@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.library.sech
 ---
 
-# qiskit.pulse.library.sech[¶](#qiskit-pulse-library-sech "Permalink to this headline")
+# qiskit.pulse.library.sech
 
 <span id="qiskit.pulse.library.sech" />
 

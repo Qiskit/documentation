@@ -1,6 +1,6 @@
 <span id="qiskit-qobj-qasmqobjconfig" />
 
-# qiskit.qobj.QasmQobjConfig[¶](#qiskit-qobj-qasmqobjconfig "Permalink to this headline")
+# qiskit.qobj.QasmQobjConfig
 
 <span id="undefined" />
 

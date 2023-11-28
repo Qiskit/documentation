@@ -1,4 +1,4 @@
-# UnrollCustomDefinitions[¶](#unrollcustomdefinitions "Permalink to this headline")
+# UnrollCustomDefinitions
 
 <span id="undefined" />
 

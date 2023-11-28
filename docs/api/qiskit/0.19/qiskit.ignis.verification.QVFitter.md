@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.verification.QVFitter
 ---
 
-# QVFitter[¶](#qvfitter "Permalink to this headline")
+# QVFitter
 
 <span id="qiskit.ignis.verification.QVFitter" />
 

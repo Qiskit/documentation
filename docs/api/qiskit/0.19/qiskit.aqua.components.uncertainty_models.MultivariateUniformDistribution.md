@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution
 ---
 
-# MultivariateUniformDistribution[¶](#multivariateuniformdistribution "Permalink to this headline")
+# MultivariateUniformDistribution
 
 <span id="qiskit.aqua.components.uncertainty_models.MultivariateUniformDistribution" />
 

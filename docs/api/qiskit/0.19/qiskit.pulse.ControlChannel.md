@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.ControlChannel
 ---
 
-# ControlChannel[¶](#controlchannel "Permalink to this headline")
+# ControlChannel
 
 <span id="qiskit.pulse.ControlChannel" />
 

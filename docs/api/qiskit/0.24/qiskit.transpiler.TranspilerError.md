@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-transpilererror" />
 
-# qiskit.transpiler.TranspilerError[¶](#qiskit-transpiler-transpilererror "Permalink to this headline")
+# qiskit.transpiler.TranspilerError
 
 <span id="undefined" />
 

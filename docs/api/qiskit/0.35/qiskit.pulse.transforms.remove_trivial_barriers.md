@@ -1,4 +1,4 @@
-# qiskit.pulse.transforms.remove\_trivial\_barriers[¶](#qiskit-pulse-transforms-remove-trivial-barriers "Permalink to this headline")
+# qiskit.pulse.transforms.remove\_trivial\_barriers
 
 <span id="undefined" />
 

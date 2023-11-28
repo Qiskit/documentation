@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-uncertainty-models-bernoullidistribution" />
 
-# qiskit.aqua.components.uncertainty\_models.BernoulliDistribution[¶](#qiskit-aqua-components-uncertainty-models-bernoullidistribution "Permalink to this headline")
+# qiskit.aqua.components.uncertainty\_models.BernoulliDistribution
 
 <span id="undefined" />
 

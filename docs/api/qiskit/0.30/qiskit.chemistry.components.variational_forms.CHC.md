@@ -1,4 +1,4 @@
-# CHC[¶](#chc "Permalink to this headline")
+# CHC
 
 <span id="undefined" />
 

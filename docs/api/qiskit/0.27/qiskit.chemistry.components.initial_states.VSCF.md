@@ -1,4 +1,4 @@
-# qiskit.chemistry.components.initial\_states.VSCF[¶](#qiskit-chemistry-components-initial-states-vscf "Permalink to this headline")
+# qiskit.chemistry.components.initial\_states.VSCF
 
 <span id="undefined" />
 

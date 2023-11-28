@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-oracles-oracle" />
 
-# qiskit.aqua.components.oracles.Oracle[¶](#qiskit-aqua-components-oracles-oracle "Permalink to this headline")
+# qiskit.aqua.components.oracles.Oracle
 
 <span id="undefined" />
 

@@ -14,13 +14,9 @@ python_api_name: qiskit.visualization
 
 <span id="module-qiskit.visualization" />
 
-`qiskit.visualization¶`
+`qiskit.visualization`
 
 ## Counts and State Visualizations
-
-<span id="module-qiskit.visualization" />
-
-`¶`
 
 |                                                                                                                                               |                                                      |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
@@ -34,10 +30,6 @@ python_api_name: qiskit.visualization
 
 ## Interactive Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                                             |                                       |
 | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
 | [`iplot_histogram`](qiskit.visualization.iplot_histogram "qiskit.visualization.iplot_histogram")(data\[, figsize, …])                       | Create a histogram representation.    |
@@ -49,10 +41,6 @@ python_api_name: qiskit.visualization
 
 ## Device Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                                         |                                                                     |
 | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | [`plot_gate_map`](qiskit.visualization.plot_gate_map "qiskit.visualization.plot_gate_map")(backend\[, figsize, …])                      | Plots the gate map of a device.                                     |
@@ -61,19 +49,11 @@ python_api_name: qiskit.visualization
 
 ## Circuit Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                               |                                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
 | [`circuit_drawer`](qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer")(circuit\[, scale, filename, …]) | Draw a quantum circuit to different formats (set by output parameter): |
 
 ## DAG Visualizations
-
-<span id="module-qiskit.visualization" />
-
-`¶`
 
 |                                                                                                                   |                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
@@ -81,19 +61,11 @@ python_api_name: qiskit.visualization
 
 ## Pass Manager Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                                   |                         |
 | --------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | [`pass_manager_drawer`](qiskit.visualization.pass_manager_drawer "qiskit.visualization.pass_manager_drawer")(pass\_manager\[, …]) | Draws the pass manager. |
 
 ## Pulse Visualizations
-
-<span id="module-qiskit.visualization" />
-
-`¶`
 
 |                                                                                                                                                        |                                                       |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
@@ -103,19 +75,11 @@ python_api_name: qiskit.visualization
 
 ## Single Qubit State Transition Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                                       |                                                                                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | [`visualize_transition`](qiskit.visualization.visualize_transition "qiskit.visualization.visualize_transition")(circuit\[, trace, …]) | Creates animation showing transitions between states of a single qubit by applying quantum gates. |
 
 ## Exceptions
-
-<span id="module-qiskit.visualization" />
-
-`¶`
 
 |                                                                                                                      |                                    |
 | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |

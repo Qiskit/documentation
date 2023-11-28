@@ -1,4 +1,4 @@
-# TensoredExpvalMeasMitigator[¶](#tensoredexpvalmeasmitigator "Permalink to this headline")
+# TensoredExpvalMeasMitigator
 
 <span id="undefined" />
 

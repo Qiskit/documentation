@@ -1,4 +1,4 @@
-# Drag[¶](#drag "Permalink to this headline")
+# Drag
 
 <span id="undefined" />
 

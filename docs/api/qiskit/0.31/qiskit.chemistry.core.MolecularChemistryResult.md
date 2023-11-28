@@ -1,4 +1,4 @@
-# MolecularChemistryResult[¶](#molecularchemistryresult "Permalink to this headline")
+# MolecularChemistryResult
 
 <span id="undefined" />
 

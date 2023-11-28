@@ -1,4 +1,4 @@
-# BooleanExpression[¶](#booleanexpression "Permalink to this headline")
+# BooleanExpression
 
 <span id="undefined" />
 

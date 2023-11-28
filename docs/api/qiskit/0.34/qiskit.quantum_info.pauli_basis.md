@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.pauli\_basis[¶](#qiskit-quantum-info-pauli-basis "Permalink to this headline")
+# qiskit.quantum\_info.pauli\_basis
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# CSXGate[¶](#csxgate "Permalink to this headline")
+# CSXGate
 
 <span id="undefined" />
 

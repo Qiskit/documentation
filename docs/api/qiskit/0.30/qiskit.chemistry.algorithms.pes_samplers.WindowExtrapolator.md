@@ -1,4 +1,4 @@
-# WindowExtrapolator[¶](#windowextrapolator "Permalink to this headline")
+# WindowExtrapolator
 
 <span id="undefined" />
 

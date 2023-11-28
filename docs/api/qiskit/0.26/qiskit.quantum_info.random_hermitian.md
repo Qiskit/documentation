@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.random\_hermitian[¶](#qiskit-quantum-info-random-hermitian "Permalink to this headline")
+# qiskit.quantum\_info.random\_hermitian
 
 <span id="undefined" />
 

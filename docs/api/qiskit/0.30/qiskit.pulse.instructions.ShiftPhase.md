@@ -1,4 +1,4 @@
-# ShiftPhase[¶](#shiftphase "Permalink to this headline")
+# ShiftPhase
 
 <span id="undefined" />
 

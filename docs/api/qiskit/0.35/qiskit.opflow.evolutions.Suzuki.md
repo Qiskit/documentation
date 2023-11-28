@@ -1,4 +1,4 @@
-# Suzuki[¶](#suzuki "Permalink to this headline")
+# Suzuki
 
 <span id="undefined" />
 

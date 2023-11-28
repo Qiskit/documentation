@@ -1,4 +1,4 @@
-# TGate[¶](#tgate "Permalink to this headline")
+# TGate
 
 <span id="undefined" />
 

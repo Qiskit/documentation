@@ -1,6 +1,6 @@
 <span id="qiskit-providers-ibmq-credentials-credentialsnotfounderror" />
 
-# qiskit.providers.ibmq.credentials.CredentialsNotFoundError[¶](#qiskit-providers-ibmq-credentials-credentialsnotfounderror "Permalink to this headline")
+# qiskit.providers.ibmq.credentials.CredentialsNotFoundError
 
 <span id="undefined" />
 

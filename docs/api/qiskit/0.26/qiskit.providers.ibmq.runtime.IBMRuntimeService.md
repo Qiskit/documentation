@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.runtime.IBMRuntimeService[¶](#qiskit-providers-ibmq-runtime-ibmruntimeservice "Permalink to this headline")
+# qiskit.providers.ibmq.runtime.IBMRuntimeService
 
 <span id="undefined" />
 

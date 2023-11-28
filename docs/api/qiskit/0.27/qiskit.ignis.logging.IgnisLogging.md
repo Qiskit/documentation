@@ -1,4 +1,4 @@
-# qiskit.ignis.logging.IgnisLogging[¶](#qiskit-ignis-logging-ignislogging "Permalink to this headline")
+# qiskit.ignis.logging.IgnisLogging
 
 <span id="undefined" />
 

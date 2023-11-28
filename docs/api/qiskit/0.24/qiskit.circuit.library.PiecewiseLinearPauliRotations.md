@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-piecewiselinearpaulirotations" />
 
-# qiskit.circuit.library.PiecewiseLinearPauliRotations[¶](#qiskit-circuit-library-piecewiselinearpaulirotations "Permalink to this headline")
+# qiskit.circuit.library.PiecewiseLinearPauliRotations
 
 <span id="undefined" />
 

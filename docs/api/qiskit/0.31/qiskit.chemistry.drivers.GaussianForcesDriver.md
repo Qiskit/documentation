@@ -1,4 +1,4 @@
-# GaussianForcesDriver[¶](#gaussianforcesdriver "Permalink to this headline")
+# GaussianForcesDriver
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# QuantumCircuit[¶](#quantumcircuit "Permalink to this headline")
+# QuantumCircuit
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.pulse.Drag[¶](#qiskit-pulse-drag "Permalink to this headline")
+# qiskit.pulse.Drag
 
 <span id="undefined" />
 

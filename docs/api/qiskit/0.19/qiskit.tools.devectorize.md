@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.tools.devectorize
 ---
 
-# devectorize[¶](#devectorize "Permalink to this headline")
+# devectorize
 
 <span id="qiskit.tools.devectorize" />
 

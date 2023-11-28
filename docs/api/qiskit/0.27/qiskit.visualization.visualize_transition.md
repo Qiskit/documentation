@@ -1,4 +1,4 @@
-# qiskit.visualization.visualize\_transition[¶](#qiskit-visualization-visualize-transition "Permalink to this headline")
+# qiskit.visualization.visualize\_transition
 
 <span id="undefined" />
 

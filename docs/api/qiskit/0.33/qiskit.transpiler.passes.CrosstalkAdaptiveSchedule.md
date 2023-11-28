@@ -1,4 +1,4 @@
-# CrosstalkAdaptiveSchedule[¶](#crosstalkadaptiveschedule "Permalink to this headline")
+# CrosstalkAdaptiveSchedule
 
 <span id="undefined" />
 

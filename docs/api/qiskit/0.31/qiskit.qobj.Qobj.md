@@ -1,4 +1,4 @@
-# Qobj[¶](#qobj "Permalink to this headline")
+# Qobj
 
 <span id="undefined" />
 

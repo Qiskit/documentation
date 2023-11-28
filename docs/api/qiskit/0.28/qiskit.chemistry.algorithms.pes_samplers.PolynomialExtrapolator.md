@@ -1,4 +1,4 @@
-# qiskit.chemistry.algorithms.pes\_samplers.PolynomialExtrapolator[¶](#qiskit-chemistry-algorithms-pes-samplers-polynomialextrapolator "Permalink to this headline")
+# qiskit.chemistry.algorithms.pes\_samplers.PolynomialExtrapolator
 
 <span id="undefined" />
 

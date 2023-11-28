@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.Clifford[¶](#qiskit-quantum-info-clifford "Permalink to this headline")
+# qiskit.quantum\_info.Clifford
 
 <span id="undefined" />
 

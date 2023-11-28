@@ -14,15 +14,11 @@ python_api_name: qiskit_aer.primitives
 
 <span id="module-qiskit_aer.primitives" />
 
-`qiskit_aer.primitives¶`
+`qiskit_aer.primitives`
 
 This module is Aer implementation of primitives. See the docs [https://qiskit.org/documentation/apidoc/primitives.html](https://qiskit.org/documentation/apidoc/primitives.html) for general descriptions.
 
 ## Classes
-
-<span id="module-qiskit_aer.primitives" />
-
-`¶`
 
 |                                                                                                                 |                                      |
 | --------------------------------------------------------------------------------------------------------------- | ------------------------------------ |

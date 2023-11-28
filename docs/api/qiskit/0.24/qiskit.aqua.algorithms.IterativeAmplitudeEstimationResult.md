@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-algorithms-iterativeamplitudeestimationresult" />
 
-# qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult[¶](#qiskit-aqua-algorithms-iterativeamplitudeestimationresult "Permalink to this headline")
+# qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult
 
 <span id="undefined" />
 

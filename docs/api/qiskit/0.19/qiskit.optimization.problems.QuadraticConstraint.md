@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.optimization.problems.QuadraticConstraint
 ---
 
-# QuadraticConstraint[¶](#quadraticconstraint "Permalink to this headline")
+# QuadraticConstraint
 
 <span id="qiskit.optimization.problems.QuadraticConstraint" />
 

@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.DIRECT\_L\_RAND[¶](#qiskit-algorithms-optimizers-direct-l-rand "Permalink to this headline")
+# qiskit.algorithms.optimizers.DIRECT\_L\_RAND
 
 <span id="undefined" />
 

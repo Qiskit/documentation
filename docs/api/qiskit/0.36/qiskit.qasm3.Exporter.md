@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.qasm3.Exporter
 ---
 
-# Exporter[¶](#exporter "Permalink to this headline")
+# Exporter
 
 <span id="qiskit.qasm3.Exporter" />
 

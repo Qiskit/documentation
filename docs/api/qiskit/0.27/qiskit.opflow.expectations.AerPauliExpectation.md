@@ -1,4 +1,4 @@
-# qiskit.opflow\.expectations.AerPauliExpectation[¶](#qiskit-opflow-expectations-aerpauliexpectation "Permalink to this headline")
+# qiskit.opflow\.expectations.AerPauliExpectation
 
 <span id="undefined" />
 

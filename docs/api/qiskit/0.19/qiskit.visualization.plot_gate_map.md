@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.plot_gate_map
 ---
 
-# plot\_gate\_map[¶](#plot-gate-map "Permalink to this headline")
+# plot\_gate\_map
 
 <span id="qiskit.visualization.plot_gate_map" />
 

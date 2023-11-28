@@ -1,4 +1,4 @@
-# QubitMappingType[¶](#qubitmappingtype "Permalink to this headline")
+# QubitMappingType
 
 <span id="undefined" />
 

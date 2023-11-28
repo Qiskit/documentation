@@ -1,4 +1,4 @@
-# qiskit.chemistry.drivers.UnitsType[¶](#qiskit-chemistry-drivers-unitstype "Permalink to this headline")
+# qiskit.chemistry.drivers.UnitsType
 
 <span id="undefined" />
 

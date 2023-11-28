@@ -1,4 +1,4 @@
-# InterleavedRBFitter[¶](#interleavedrbfitter "Permalink to this headline")
+# InterleavedRBFitter
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# CommutativeCancellation[¶](#commutativecancellation "Permalink to this headline")
+# CommutativeCancellation
 
 <span id="undefined" />
 

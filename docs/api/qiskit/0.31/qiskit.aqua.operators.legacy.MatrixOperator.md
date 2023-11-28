@@ -1,4 +1,4 @@
-# MatrixOperator[¶](#matrixoperator "Permalink to this headline")
+# MatrixOperator
 
 <span id="undefined" />
 

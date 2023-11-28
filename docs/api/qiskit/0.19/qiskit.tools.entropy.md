@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.tools.entropy
 ---
 
-# entropy[¶](#entropy "Permalink to this headline")
+# entropy
 
 <span id="qiskit.tools.entropy" />
 

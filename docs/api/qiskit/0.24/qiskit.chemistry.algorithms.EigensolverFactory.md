@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-algorithms-eigensolverfactory" />
 
-# qiskit.chemistry.algorithms.EigensolverFactory[¶](#qiskit-chemistry-algorithms-eigensolverfactory "Permalink to this headline")
+# qiskit.chemistry.algorithms.EigensolverFactory
 
 <span id="undefined" />
 

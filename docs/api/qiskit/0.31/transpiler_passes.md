@@ -14,13 +14,9 @@ python_api_name: qiskit.transpiler.passes
 
 <span id="module-qiskit.transpiler.passes" />
 
-`qiskit.transpiler.passes¶`
+`qiskit.transpiler.passes`
 
 ## Layout Selection (Placement)
-
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
 
 |                                                                                                                                                                                               |                                                                                   |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
@@ -37,10 +33,6 @@ python_api_name: qiskit.transpiler.passes
 
 ## Routing
 
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
-
 |                                                                                                                                                                   |                                                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | [`BasicSwap`](qiskit.transpiler.passes.BasicSwap#qiskit.transpiler.passes.BasicSwap "qiskit.transpiler.passes.BasicSwap")(\*args, \*\*kwargs)                     | Map (with minimum effort) a DAGCircuit onto a coupling\_map adding swap gates.         |
@@ -51,10 +43,6 @@ python_api_name: qiskit.transpiler.passes
 
 ## Basis Change
 
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
-
 |                                                                                                                                                                                                       |                                                                                                            |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | [`Unroller`](qiskit.transpiler.passes.Unroller#qiskit.transpiler.passes.Unroller "qiskit.transpiler.passes.Unroller")(\*args, \*\*kwargs)                                                             | Unroll a circuit to a given basis.                                                                         |
@@ -64,10 +52,6 @@ python_api_name: qiskit.transpiler.passes
 | [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator#qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator")(\*args, \*\*kwargs)                                 | Translates gates to a target basis by searching for a set of translations from a given EquivalenceLibrary. |
 
 ## Optimizations
-
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
 
 |                                                                                                                                                                                                                                           |                                                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
@@ -85,10 +69,6 @@ python_api_name: qiskit.transpiler.passes
 
 ## Scheduling
 
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
-
 |                                                                                                                                                                                                            |                                                                                                                         |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
 | [`TimeUnitConversion`](qiskit.transpiler.passes.TimeUnitConversion#qiskit.transpiler.passes.TimeUnitConversion "qiskit.transpiler.passes.TimeUnitConversion")(inst\_durations)                             | Choose a time unit to be used in the following time-aware passes, and make all circuit time units consistent with that. |
@@ -102,10 +82,6 @@ python_api_name: qiskit.transpiler.passes
 
 ## Circuit Analysis
 
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
-
 |                                                                                                                                                                                       |                                                                |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | [`Width`](qiskit.transpiler.passes.Width#qiskit.transpiler.passes.Width "qiskit.transpiler.passes.Width")(\*args, \*\*kwargs)                                                         | Calculate the width of a DAG circuit.                          |
@@ -118,19 +94,11 @@ python_api_name: qiskit.transpiler.passes
 
 ## Synthesis
 
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
-
 |                                                                                                                                                                           |                                                  |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
 | [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis#qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis")(basis\_gates\[, …]) | Synthesize gates according to their basis gates. |
 
 ## Additional Passes
-
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
 
 |                                                                                                                                                                                                                                   |                                                                                                                                                                                                                      |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

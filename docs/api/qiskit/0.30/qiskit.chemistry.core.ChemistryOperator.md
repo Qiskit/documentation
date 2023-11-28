@@ -1,4 +1,4 @@
-# ChemistryOperator[¶](#chemistryoperator "Permalink to this headline")
+# ChemistryOperator
 
 <span id="undefined" />
 

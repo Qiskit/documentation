@@ -1,4 +1,4 @@
-# qiskit.aqua.components.optimizers.ISRES[¶](#qiskit-aqua-components-optimizers-isres "Permalink to this headline")
+# qiskit.aqua.components.optimizers.ISRES
 
 <span id="undefined" />
 

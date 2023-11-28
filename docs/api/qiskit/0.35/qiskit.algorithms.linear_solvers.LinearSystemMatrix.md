@@ -1,4 +1,4 @@
-# LinearSystemMatrix[¶](#linearsystemmatrix "Permalink to this headline")
+# LinearSystemMatrix
 
 <span id="undefined" />
 

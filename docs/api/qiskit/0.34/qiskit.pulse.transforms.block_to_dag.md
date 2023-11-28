@@ -1,4 +1,4 @@
-# qiskit.pulse.transforms.block\_to\_dag[¶](#qiskit-pulse-transforms-block-to-dag "Permalink to this headline")
+# qiskit.pulse.transforms.block\_to\_dag
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.opflow\.expectations.MatrixExpectation[¶](#qiskit-opflow-expectations-matrixexpectation "Permalink to this headline")
+# qiskit.opflow\.expectations.MatrixExpectation
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.legacy.PauliGraph
 ---
 
-# PauliGraph[¶](#pauligraph "Permalink to this headline")
+# PauliGraph
 
 <span id="qiskit.aqua.operators.legacy.PauliGraph" />
 

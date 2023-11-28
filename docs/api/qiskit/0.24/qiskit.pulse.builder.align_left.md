@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-builder-align-left" />
 
-# qiskit.pulse.builder.align\_left[¶](#qiskit-pulse-builder-align-left "Permalink to this headline")
+# qiskit.pulse.builder.align\_left
 
 <span id="undefined" />
 

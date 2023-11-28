@@ -1,4 +1,4 @@
-# NELDER\_MEAD[¶](#nelder-mead "Permalink to this headline")
+# NELDER\_MEAD
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-unroller" />
 
-# qiskit.transpiler.passes.Unroller[¶](#qiskit-transpiler-passes-unroller "Permalink to this headline")
+# qiskit.transpiler.passes.Unroller
 
 <span id="undefined" />
 

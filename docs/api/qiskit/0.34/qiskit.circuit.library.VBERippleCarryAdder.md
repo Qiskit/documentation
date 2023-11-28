@@ -1,4 +1,4 @@
-# VBERippleCarryAdder[¶](#vberipplecarryadder "Permalink to this headline")
+# VBERippleCarryAdder
 
 <span id="undefined" />
 

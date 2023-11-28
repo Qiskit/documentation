@@ -1,4 +1,4 @@
-# qiskit.compiler.assemble[¶](#qiskit-compiler-assemble "Permalink to this headline")
+# qiskit.compiler.assemble
 
 <span id="undefined" />
 

@@ -12,10 +12,6 @@ python_api_name: qiskit.optimization.applications.ising.set_packing
 
 # qiskit.optimization.applications.ising.set\_packing
 
-<span id="module-qiskit.optimization.applications.ising.set_packing" />
-
-`¶`
-
 set packing module
 
 ## Functions

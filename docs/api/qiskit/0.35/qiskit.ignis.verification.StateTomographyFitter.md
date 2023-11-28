@@ -1,4 +1,4 @@
-# StateTomographyFitter[¶](#statetomographyfitter "Permalink to this headline")
+# StateTomographyFitter
 
 <span id="undefined" />
 

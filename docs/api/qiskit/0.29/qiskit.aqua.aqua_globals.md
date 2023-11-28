@@ -1,4 +1,4 @@
-# qiskit.aqua.aqua\_globals[¶](#qiskit-aqua-aqua-globals "Permalink to this headline")
+# qiskit.aqua.aqua\_globals
 
 ## `aqua_globals` *= \<qiskit.aqua.aqua\_globals.QiskitAquaGlobals object>*
 

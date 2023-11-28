@@ -1,4 +1,4 @@
-# PulseDefaults[¶](#pulsedefaults "Permalink to this headline")
+# PulseDefaults
 
 <span id="undefined" />
 

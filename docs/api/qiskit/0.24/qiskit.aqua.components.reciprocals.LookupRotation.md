@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-reciprocals-lookuprotation" />
 
-# qiskit.aqua.components.reciprocals.LookupRotation[¶](#qiskit-aqua-components-reciprocals-lookuprotation "Permalink to this headline")
+# qiskit.aqua.components.reciprocals.LookupRotation
 
 <span id="undefined" />
 

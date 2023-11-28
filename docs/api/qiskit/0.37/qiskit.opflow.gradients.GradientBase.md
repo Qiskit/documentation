@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.gradients.GradientBase
 ---
 
-# GradientBase[¶](#gradientbase "Permalink to this headline")
+# GradientBase
 
 <span id="qiskit.opflow.gradients.GradientBase" />
 

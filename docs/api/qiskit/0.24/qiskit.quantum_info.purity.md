@@ -1,6 +1,6 @@
 <span id="qiskit-quantum-info-purity" />
 
-# qiskit.quantum\_info.purity[¶](#qiskit-quantum-info-purity "Permalink to this headline")
+# qiskit.quantum\_info.purity
 
 <span id="undefined" />
 

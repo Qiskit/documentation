@@ -1,4 +1,4 @@
-# qiskit.pulse.ScheduleBlock[¶](#qiskit-pulse-scheduleblock "Permalink to this headline")
+# qiskit.pulse.ScheduleBlock
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-visualization-plot-state-paulivec" />
 
-# qiskit.visualization.plot\_state\_paulivec[¶](#qiskit-visualization-plot-state-paulivec "Permalink to this headline")
+# qiskit.visualization.plot\_state\_paulivec
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.aqua.MissingOptionalLibraryError[¶](#qiskit-aqua-missingoptionallibraryerror "Permalink to this headline")
+# qiskit.aqua.MissingOptionalLibraryError
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-channels" />
 
-# qiskit.pulse.channels[¶](#module-qiskit.pulse.channels "Permalink to this headline")
+# qiskit.pulse.channels
 
 This module defines Pulse Channels. Channels include:
 

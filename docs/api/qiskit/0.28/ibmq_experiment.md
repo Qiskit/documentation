@@ -14,7 +14,7 @@ python_api_name: qiskit.providers.ibmq.experiment
 
 <span id="module-qiskit.providers.ibmq.experiment" />
 
-`qiskit.providers.ibmq.experiment¶`
+`qiskit.providers.ibmq.experiment`
 
 Modules representing IBM Quantum Experience experiments.
 
@@ -37,10 +37,6 @@ experiments = provider.experiment.experiments()
 All the available functions can be invoked using the provider.experiment attribute, which is an instance of the [`ExperimentService`](qiskit.providers.ibmq.experiment.ExperimentService#qiskit.providers.ibmq.experiment.ExperimentService "qiskit.providers.ibmq.experiment.ExperimentService") class.
 
 ## Classes
-
-<span id="module-qiskit.providers.ibmq.experiment" />
-
-`¶`
 
 |                                                                                                                                                                                                       |                                                          |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |

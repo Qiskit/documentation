@@ -1,4 +1,4 @@
-# qiskit.pulse.builder.shift\_phase[¶](#qiskit-pulse-builder-shift-phase "Permalink to this headline")
+# qiskit.pulse.builder.shift\_phase
 
 <span id="undefined" />
 

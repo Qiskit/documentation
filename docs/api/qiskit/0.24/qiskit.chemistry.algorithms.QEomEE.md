@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-algorithms-qeomee" />
 
-# qiskit.chemistry.algorithms.QEomEE[¶](#qiskit-chemistry-algorithms-qeomee "Permalink to this headline")
+# qiskit.chemistry.algorithms.QEomEE
 
 <span id="undefined" />
 

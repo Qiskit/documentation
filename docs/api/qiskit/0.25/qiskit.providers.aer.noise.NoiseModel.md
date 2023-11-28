@@ -1,4 +1,4 @@
-# qiskit.providers.aer.noise.NoiseModel[¶](#qiskit-providers-aer-noise-noisemodel "Permalink to this headline")
+# qiskit.providers.aer.noise.NoiseModel
 
 <span id="undefined" />
 

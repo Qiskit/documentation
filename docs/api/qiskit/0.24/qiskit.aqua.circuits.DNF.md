@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-circuits-dnf" />
 
-# qiskit.aqua.circuits.DNF[¶](#qiskit-aqua-circuits-dnf "Permalink to this headline")
+# qiskit.aqua.circuits.DNF
 
 <span id="undefined" />
 

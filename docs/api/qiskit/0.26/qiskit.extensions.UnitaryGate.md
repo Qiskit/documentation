@@ -1,4 +1,4 @@
-# qiskit.extensions.UnitaryGate[¶](#qiskit-extensions-unitarygate "Permalink to this headline")
+# qiskit.extensions.UnitaryGate
 
 <span id="undefined" />
 

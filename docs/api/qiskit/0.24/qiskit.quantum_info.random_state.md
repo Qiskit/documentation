@@ -1,6 +1,6 @@
 <span id="qiskit-quantum-info-random-state" />
 
-# qiskit.quantum\_info.random\_state[¶](#qiskit-quantum-info-random-state "Permalink to this headline")
+# qiskit.quantum\_info.random\_state
 
 <span id="undefined" />
 

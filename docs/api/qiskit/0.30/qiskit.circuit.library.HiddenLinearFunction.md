@@ -1,4 +1,4 @@
-# HiddenLinearFunction[¶](#hiddenlinearfunction "Permalink to this headline")
+# HiddenLinearFunction
 
 <span id="undefined" />
 

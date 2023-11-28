@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.VBERippleCarryAdder
 ---
 
-# VBERippleCarryAdder[¶](#vberipplecarryadder "Permalink to this headline")
+# VBERippleCarryAdder
 
 <span id="qiskit.circuit.library.VBERippleCarryAdder" />
 

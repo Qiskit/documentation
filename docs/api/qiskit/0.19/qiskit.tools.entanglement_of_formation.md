@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.tools.entanglement_of_formation
 ---
 
-# entanglement\_of\_formation[¶](#entanglement-of-formation "Permalink to this headline")
+# entanglement\_of\_formation
 
 <span id="qiskit.tools.entanglement_of_formation" />
 

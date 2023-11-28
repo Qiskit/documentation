@@ -1,4 +1,4 @@
-# POWELL[¶](#powell "Permalink to this headline")
+# POWELL
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-decompose" />
 
-# qiskit.transpiler.passes.Decompose[¶](#qiskit-transpiler-passes-decompose "Permalink to this headline")
+# qiskit.transpiler.passes.Decompose
 
 <span id="undefined" />
 

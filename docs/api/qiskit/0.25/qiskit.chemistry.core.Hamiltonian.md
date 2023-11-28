@@ -1,4 +1,4 @@
-# qiskit.chemistry.core.Hamiltonian[¶](#qiskit-chemistry-core-hamiltonian "Permalink to this headline")
+# qiskit.chemistry.core.Hamiltonian
 
 <span id="undefined" />
 

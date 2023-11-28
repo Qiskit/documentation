@@ -1,4 +1,4 @@
-# QuantumGenerator[¶](#quantumgenerator "Permalink to this headline")
+# QuantumGenerator
 
 <span id="undefined" />
 

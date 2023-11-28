@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl
 ---
 
-# IBMQAccountCredentialsInvalidUrl[¶](#ibmqaccountcredentialsinvalidurl "Permalink to this headline")
+# IBMQAccountCredentialsInvalidUrl
 
 <span id="qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl" />
 

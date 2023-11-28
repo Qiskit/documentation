@@ -1,4 +1,4 @@
-# RelaxationNoisePass[¶](#relaxationnoisepass "Permalink to this headline")
+# RelaxationNoisePass
 
 <span id="undefined" />
 

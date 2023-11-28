@@ -1,4 +1,4 @@
-# qiskit.providers.models.JobStatus[¶](#qiskit-providers-models-jobstatus "Permalink to this headline")
+# qiskit.providers.models.JobStatus
 
 <span id="undefined" />
 

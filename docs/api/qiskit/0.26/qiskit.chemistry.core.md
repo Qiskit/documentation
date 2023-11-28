@@ -14,7 +14,7 @@ python_api_name: qiskit.chemistry.core
 
 <span id="module-qiskit.chemistry.core" />
 
-`qiskit.chemistry.core¶`
+`qiskit.chemistry.core`
 
 **DEPRECATED** See [`qiskit.chemistry.transformations`](qiskit.chemistry.transformations#module-qiskit.chemistry.transformations "qiskit.chemistry.transformations") which replace this.
 
@@ -24,10 +24,6 @@ The one implementation here, [`Hamiltonian`](qiskit.chemistry.core.Hamiltonian#q
 
 # Core Base Class
 
-<span id="module-qiskit.chemistry.core" />
-
-`¶`
-
 |                                                                                                                                                                                              |                                       |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
 | [`ChemistryOperator`](qiskit.chemistry.core.ChemistryOperator#qiskit.chemistry.core.ChemistryOperator "qiskit.chemistry.core.ChemistryOperator")                                             | Base class for ChemistryOperator.     |
@@ -36,10 +32,6 @@ The one implementation here, [`Hamiltonian`](qiskit.chemistry.core.Hamiltonian#q
 | [`MolecularExcitedStatesResult`](qiskit.chemistry.core.MolecularExcitedStatesResult#qiskit.chemistry.core.MolecularExcitedStatesResult "qiskit.chemistry.core.MolecularExcitedStatesResult") | Molecular Excited States Result       |
 
 # Core
-
-<span id="module-qiskit.chemistry.core" />
-
-`¶`
 
 |                                                                                                                                                      |                                                                                                      |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |

@@ -1,4 +1,4 @@
-# qiskit.pulse.SetFrequency[¶](#qiskit-pulse-setfrequency "Permalink to this headline")
+# qiskit.pulse.SetFrequency
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# QuantumInstance[¶](#quantuminstance "Permalink to this headline")
+# QuantumInstance
 
 <span id="undefined" />
 

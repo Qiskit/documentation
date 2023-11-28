@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.verification.marginal_counts
 ---
 
-# marginal\_counts[¶](#marginal-counts "Permalink to this headline")
+# marginal\_counts
 
 <span id="qiskit.ignis.verification.marginal_counts" />
 

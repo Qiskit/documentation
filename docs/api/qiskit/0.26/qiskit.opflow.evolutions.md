@@ -14,7 +14,7 @@ python_api_name: qiskit.opflow.evolutions
 
 <span id="module-qiskit.opflow.evolutions" />
 
-`qiskit.opflow.evolutions¶`
+`qiskit.opflow.evolutions`
 
 Evolutions are converters which traverse an Operator tree, replacing any [`EvolvedOp`](qiskit.opflow.evolutions.EvolvedOp#qiskit.opflow.evolutions.EvolvedOp "qiskit.opflow.evolutions.EvolvedOp") e with a Schrodinger equation-style evolution [`CircuitOp`](qiskit.opflow.primitive_ops.CircuitOp#qiskit.opflow.primitive_ops.CircuitOp "qiskit.opflow.primitive_ops.CircuitOp") equalling or approximating the matrix exponential of -i \* the Operator contained inside (e.primitive). The Evolutions are essentially implementations of Hamiltonian Simulation algorithms, including various methods for Trotterization.
 
@@ -26,10 +26,6 @@ The [`EvolvedOp`](qiskit.opflow.evolutions.EvolvedOp#qiskit.opflow.evolutions.Ev
 
 # Evolution Base Class
 
-<span id="module-qiskit.opflow.evolutions" />
-
-`¶`
-
 The EvolutionBase class gives an interface for algorithms to ask for Evolutions as execution settings. For example, if an algorithm contains an Operator evolution step within it, such as [`QAOA`](qiskit.algorithms.QAOA#qiskit.algorithms.QAOA "qiskit.algorithms.QAOA"), the algorithm can give the opportunity for the user to pass an EvolutionBase of their choice to be used in that evolution step.
 
 |                                                                                                                                           |                                  |
@@ -37,10 +33,6 @@ The EvolutionBase class gives an interface for algorithms to ask for Evolutions 
 | [`EvolutionBase`](qiskit.opflow.evolutions.EvolutionBase#qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase") | A base for Evolution converters. |
 
 # Evolutions
-
-<span id="module-qiskit.opflow.evolutions" />
-
-`¶`
 
 |                                                                                                                                                                           |                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -50,10 +42,6 @@ The EvolutionBase class gives an interface for algorithms to ask for Evolutions 
 | [`PauliTrotterEvolution`](qiskit.opflow.evolutions.PauliTrotterEvolution#qiskit.opflow.evolutions.PauliTrotterEvolution "qiskit.opflow.evolutions.PauliTrotterEvolution") | An Evolution algorithm replacing exponentiated sums of Paulis by changing them each to the Z basis, rotating with an rZ, changing back, and Trotterizing.              |
 
 # Trotterizations
-
-<span id="module-qiskit.opflow.evolutions" />
-
-`¶`
 
 |                                                                                                                                                                           |                                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

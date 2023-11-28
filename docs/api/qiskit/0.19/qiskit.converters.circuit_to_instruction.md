@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.converters.circuit_to_instruction
 ---
 
-# circuit\_to\_instruction[¶](#circuit-to-instruction "Permalink to this headline")
+# circuit\_to\_instruction
 
 <span id="qiskit.converters.circuit_to_instruction" />
 

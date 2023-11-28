@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution
 ---
 
-# UnivariateVariationalDistribution[¶](#univariatevariationaldistribution "Permalink to this headline")
+# UnivariateVariationalDistribution
 
 <span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution" />
 

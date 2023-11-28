@@ -1,4 +1,4 @@
-# qiskit.circuit.library.GroverOperator[¶](#qiskit-circuit-library-groveroperator "Permalink to this headline")
+# qiskit.circuit.library.GroverOperator
 
 <span id="undefined" />
 

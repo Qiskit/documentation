@@ -14,15 +14,11 @@ python_api_name: qiskit.aqua.utils
 
 <span id="module-qiskit.aqua.utils" />
 
-`qiskit.aqua.utils¶`
+`qiskit.aqua.utils`
 
 Various utility functionality…
 
 # Utilities
-
-<span id="module-qiskit.aqua.utils" />
-
-`¶`
 
 |                                                                                                                                               |                                                                                  |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |

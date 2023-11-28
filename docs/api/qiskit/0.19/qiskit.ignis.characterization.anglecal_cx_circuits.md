@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.characterization.anglecal_cx_circuits
 ---
 
-# anglecal\_cx\_circuits[¶](#anglecal-cx-circuits "Permalink to this headline")
+# anglecal\_cx\_circuits
 
 <span id="qiskit.ignis.characterization.anglecal_cx_circuits" />
 

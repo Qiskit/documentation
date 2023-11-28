@@ -1,4 +1,4 @@
-# qiskit.providers.aer.library.save\_expectation\_value\_variance[¶](#qiskit-providers-aer-library-save-expectation-value-variance "Permalink to this headline")
+# qiskit.providers.aer.library.save\_expectation\_value\_variance
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.linear_solvers.NumPyMatrix
 ---
 
-# NumPyMatrix[¶](#numpymatrix "Permalink to this headline")
+# NumPyMatrix
 
 <span id="qiskit.algorithms.linear_solvers.NumPyMatrix" />
 

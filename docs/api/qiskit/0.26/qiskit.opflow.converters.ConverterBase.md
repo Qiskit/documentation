@@ -1,4 +1,4 @@
-# qiskit.opflow\.converters.ConverterBase[¶](#qiskit-opflow-converters-converterbase "Permalink to this headline")
+# qiskit.opflow\.converters.ConverterBase
 
 <span id="undefined" />
 

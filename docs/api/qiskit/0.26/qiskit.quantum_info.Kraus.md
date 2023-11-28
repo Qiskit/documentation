@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.Kraus[¶](#qiskit-quantum-info-kraus "Permalink to this headline")
+# qiskit.quantum\_info.Kraus
 
 <span id="undefined" />
 

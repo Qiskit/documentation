@@ -1,4 +1,4 @@
-# MultivariateLogNormalDistribution[¶](#multivariatelognormaldistribution "Permalink to this headline")
+# MultivariateLogNormalDistribution
 
 <span id="undefined" />
 

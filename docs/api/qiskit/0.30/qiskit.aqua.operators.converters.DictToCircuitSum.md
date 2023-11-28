@@ -1,4 +1,4 @@
-# DictToCircuitSum[¶](#dicttocircuitsum "Permalink to this headline")
+# DictToCircuitSum
 
 <span id="undefined" />
 

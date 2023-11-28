@@ -1,4 +1,4 @@
-# UnitsType[¶](#unitstype "Permalink to this headline")
+# UnitsType
 
 <span id="undefined" />
 

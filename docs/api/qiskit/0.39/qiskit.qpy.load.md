@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.qpy.load
 ---
 
-# qiskit.qpy.load[¶](#qiskit-qpy-load "Permalink to this headline")
+# qiskit.qpy.load
 
 <span id="qiskit.qpy.load" />
 

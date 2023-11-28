@@ -1,4 +1,4 @@
-# SGate[¶](#sgate "Permalink to this headline")
+# SGate
 
 <span id="undefined" />
 

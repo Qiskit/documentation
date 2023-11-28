@@ -1,4 +1,4 @@
-# Variable[¶](#variable "Permalink to this headline")
+# Variable
 
 <span id="undefined" />
 

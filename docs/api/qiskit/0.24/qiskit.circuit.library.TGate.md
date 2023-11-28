@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-tgate" />
 
-# qiskit.circuit.library.TGate[¶](#qiskit-circuit-library-tgate "Permalink to this headline")
+# qiskit.circuit.library.TGate
 
 <span id="undefined" />
 

@@ -14,13 +14,9 @@ python_api_name: qiskit.transpiler.passes
 
 <span id="module-qiskit.transpiler.passes" />
 
-`qiskit.transpiler.passes¶`
+`qiskit.transpiler.passes`
 
 ## Layout Selection (Placement)
-
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
 
 |                                                                                                                                                                                               |                                                                                                                        |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
@@ -38,10 +34,6 @@ python_api_name: qiskit.transpiler.passes
 
 ## Routing
 
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
-
 |                                                                                                                                                                   |                                                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | [`BasicSwap`](qiskit.transpiler.passes.BasicSwap#qiskit.transpiler.passes.BasicSwap "qiskit.transpiler.passes.BasicSwap")(\*args, \*\*kwargs)                     | Map (with minimum effort) a DAGCircuit onto a coupling\_map adding swap gates.         |
@@ -52,10 +44,6 @@ python_api_name: qiskit.transpiler.passes
 
 ## Basis Change
 
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
-
 |                                                                                                                                                                                                       |                                                                                                            |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
 | [`Unroller`](qiskit.transpiler.passes.Unroller#qiskit.transpiler.passes.Unroller "qiskit.transpiler.passes.Unroller")(\*args, \*\*kwargs)                                                             | Unroll a circuit to a given basis.                                                                         |
@@ -65,10 +53,6 @@ python_api_name: qiskit.transpiler.passes
 | [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator#qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator")(\*args, \*\*kwargs)                                 | Translates gates to a target basis by searching for a set of translations from a given EquivalenceLibrary. |
 
 ## Optimizations
-
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
 
 |                                                                                                                                                                                                                                           |                                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
@@ -91,10 +75,6 @@ python_api_name: qiskit.transpiler.passes
 
 ## Calibration
 
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
-
 |                                                                                                                                                                                                                  |                                                                                                              |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | [`PulseGates`](qiskit.transpiler.passes.PulseGates#qiskit.transpiler.passes.PulseGates "qiskit.transpiler.passes.PulseGates")(inst\_map)                                                                         | Pulse gate adding pass.                                                                                      |
@@ -102,10 +82,6 @@ python_api_name: qiskit.transpiler.passes
 | [`RZXCalibrationBuilderNoEcho`](qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho#qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho "qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho")(\[backend, …]) | Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate. |
 
 ## Scheduling
-
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
 
 |                                                                                                                                                                                            |                                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------- |
@@ -117,10 +93,6 @@ python_api_name: qiskit.transpiler.passes
 | [`ValidatePulseGates`](qiskit.transpiler.passes.ValidatePulseGates#qiskit.transpiler.passes.ValidatePulseGates "qiskit.transpiler.passes.ValidatePulseGates")(\[granularity, min\_length]) | Check custom gate length.                                                                                               |
 
 ## Circuit Analysis
-
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
 
 |                                                                                                                                                                                       |                                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
@@ -134,19 +106,11 @@ python_api_name: qiskit.transpiler.passes
 
 ## Synthesis
 
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
-
 |                                                                                                                                                                           |                                                  |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
 | [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis#qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis")(basis\_gates\[, …]) | Synthesize gates according to their basis gates. |
 
 ## Additional Passes
-
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
 
 |                                                                                                                                                                                                                                   |                                                                                                                                                                                                                      |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

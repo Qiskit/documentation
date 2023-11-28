@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.verification.count_keys
 ---
 
-# count\_keys[¶](#count-keys "Permalink to this headline")
+# count\_keys
 
 <span id="qiskit.ignis.verification.count_keys" />
 

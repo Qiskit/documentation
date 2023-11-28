@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-state-fns-statefn" />
 
-# qiskit.aqua.operators.state\_fns.StateFn[¶](#qiskit-aqua-operators-state-fns-statefn "Permalink to this headline")
+# qiskit.aqua.operators.state\_fns.StateFn
 
 <span id="undefined" />
 

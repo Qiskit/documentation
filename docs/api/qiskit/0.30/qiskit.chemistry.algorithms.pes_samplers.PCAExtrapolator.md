@@ -1,4 +1,4 @@
-# PCAExtrapolator[¶](#pcaextrapolator "Permalink to this headline")
+# PCAExtrapolator
 
 <span id="undefined" />
 

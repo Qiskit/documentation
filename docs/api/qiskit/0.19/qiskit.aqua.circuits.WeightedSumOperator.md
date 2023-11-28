@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.circuits.WeightedSumOperator
 ---
 
-# WeightedSumOperator[¶](#weightedsumoperator "Permalink to this headline")
+# WeightedSumOperator
 
 <span id="qiskit.aqua.circuits.WeightedSumOperator" />
 

@@ -1,4 +1,4 @@
-# qiskit.converters.circuit\_to\_instruction[¶](#qiskit-converters-circuit-to-instruction "Permalink to this headline")
+# qiskit.converters.circuit\_to\_instruction
 
 <span id="undefined" />
 

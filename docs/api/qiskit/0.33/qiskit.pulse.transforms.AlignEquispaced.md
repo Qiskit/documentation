@@ -1,4 +1,4 @@
-# AlignEquispaced[¶](#alignequispaced "Permalink to this headline")
+# AlignEquispaced
 
 <span id="undefined" />
 

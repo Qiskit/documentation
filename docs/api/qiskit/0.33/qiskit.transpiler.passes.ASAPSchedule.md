@@ -1,4 +1,4 @@
-# ASAPSchedule[¶](#asapschedule "Permalink to this headline")
+# ASAPSchedule
 
 <span id="undefined" />
 

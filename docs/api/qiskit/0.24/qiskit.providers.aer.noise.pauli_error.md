@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-noise-pauli-error" />
 
-# qiskit.providers.aer.noise.pauli\_error[¶](#qiskit-providers-aer-noise-pauli-error "Permalink to this headline")
+# qiskit.providers.aer.noise.pauli\_error
 
 <span id="undefined" />
 

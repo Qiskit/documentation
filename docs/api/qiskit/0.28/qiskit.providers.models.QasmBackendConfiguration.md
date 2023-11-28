@@ -1,4 +1,4 @@
-# qiskit.providers.models.QasmBackendConfiguration[¶](#qiskit-providers-models-qasmbackendconfiguration "Permalink to this headline")
+# qiskit.providers.models.QasmBackendConfiguration
 
 <span id="undefined" />
 

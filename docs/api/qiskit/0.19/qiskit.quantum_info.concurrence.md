@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.concurrence
 ---
 
-# concurrence[¶](#concurrence "Permalink to this headline")
+# concurrence
 
 <span id="qiskit.quantum_info.concurrence" />
 

@@ -1,4 +1,4 @@
-# qiskit.algorithms.IterativeAmplitudeEstimationResult[¶](#qiskit-algorithms-iterativeamplitudeestimationresult "Permalink to this headline")
+# qiskit.algorithms.IterativeAmplitudeEstimationResult
 
 <span id="undefined" />
 

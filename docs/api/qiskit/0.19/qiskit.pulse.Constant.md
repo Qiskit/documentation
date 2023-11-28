@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.Constant
 ---
 
-# Constant[¶](#constant "Permalink to this headline")
+# Constant
 
 <span id="qiskit.pulse.Constant" />
 

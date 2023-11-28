@@ -1,4 +1,4 @@
-# SaveProbabilitiesDict[¶](#saveprobabilitiesdict "Permalink to this headline")
+# SaveProbabilitiesDict
 
 <span id="undefined" />
 

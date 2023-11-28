@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.result.ResultError
 ---
 
-# qiskit.result.ResultError[¶](#qiskit-result-resulterror "Permalink to this headline")
+# qiskit.result.ResultError
 
 <span id="qiskit.result.ResultError" />
 

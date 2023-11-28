@@ -1,4 +1,4 @@
-# qiskit.circuit.library.IQP[¶](#qiskit-circuit-library-iqp "Permalink to this headline")
+# qiskit.circuit.library.IQP
 
 <span id="undefined" />
 

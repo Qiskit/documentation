@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.runtime.UserMessenger[¶](#qiskit-providers-ibmq-runtime-usermessenger "Permalink to this headline")
+# qiskit.providers.ibmq.runtime.UserMessenger
 
 <span id="undefined" />
 

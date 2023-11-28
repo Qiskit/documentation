@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.reciprocals.LookupRotation
 ---
 
-# LookupRotation[¶](#lookuprotation "Permalink to this headline")
+# LookupRotation
 
 <span id="qiskit.aqua.components.reciprocals.LookupRotation" />
 

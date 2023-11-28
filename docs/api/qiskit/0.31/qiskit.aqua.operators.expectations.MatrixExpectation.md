@@ -1,4 +1,4 @@
-# MatrixExpectation[¶](#matrixexpectation "Permalink to this headline")
+# MatrixExpectation
 
 <span id="undefined" />
 

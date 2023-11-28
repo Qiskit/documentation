@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-legacy-tpbgroupedweightedpaulioperator" />
 
-# qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator[¶](#qiskit-aqua-operators-legacy-tpbgroupedweightedpaulioperator "Permalink to this headline")
+# qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator
 
 <span id="undefined" />
 

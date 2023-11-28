@@ -1,4 +1,4 @@
-# qiskit.circuit.library.NormalDistribution[¶](#qiskit-circuit-library-normaldistribution "Permalink to this headline")
+# qiskit.circuit.library.NormalDistribution
 
 <span id="undefined" />
 

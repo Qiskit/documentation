@@ -1,4 +1,4 @@
-# DIRECT\_L[¶](#direct-l "Permalink to this headline")
+# DIRECT\_L
 
 <span id="undefined" />
 

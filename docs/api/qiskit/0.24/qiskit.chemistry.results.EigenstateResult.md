@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-results-eigenstateresult" />
 
-# qiskit.chemistry.results.EigenstateResult[¶](#qiskit-chemistry-results-eigenstateresult "Permalink to this headline")
+# qiskit.chemistry.results.EigenstateResult
 
 <span id="undefined" />
 

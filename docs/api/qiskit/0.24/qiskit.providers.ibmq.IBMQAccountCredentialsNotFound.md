@@ -1,6 +1,6 @@
 <span id="qiskit-providers-ibmq-ibmqaccountcredentialsnotfound" />
 
-# qiskit.providers.ibmq.IBMQAccountCredentialsNotFound[¶](#qiskit-providers-ibmq-ibmqaccountcredentialsnotfound "Permalink to this headline")
+# qiskit.providers.ibmq.IBMQAccountCredentialsNotFound
 
 <span id="undefined" />
 

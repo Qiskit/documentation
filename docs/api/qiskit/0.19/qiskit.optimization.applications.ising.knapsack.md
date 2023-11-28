@@ -8,7 +8,7 @@ python_api_name: qiskit.optimization.applications.ising.knapsack.get_operator
 
 <span id="qiskit-optimization-applications-ising-knapsack" />
 
-# qiskit.optimization.applications.ising.knapsack[¶](#module-qiskit.optimization.applications.ising.knapsack "Permalink to this headline")
+# qiskit.optimization.applications.ising.knapsack
 
 Convert knapsack parameters instances into Pauli list The parameters are a list of values a list of weights and a maximum weight of the knapsack.
 

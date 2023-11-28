@@ -1,4 +1,4 @@
-# UnitaryGate[¶](#unitarygate "Permalink to this headline")
+# UnitaryGate
 
 <span id="undefined" />
 

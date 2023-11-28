@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.Size
 ---
 
-# Size[¶](#size "Permalink to this headline")
+# Size
 
 <span id="qiskit.transpiler.passes.Size" />
 

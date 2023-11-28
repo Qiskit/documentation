@@ -1,4 +1,4 @@
-# UnitarySimulatorPy[¶](#unitarysimulatorpy "Permalink to this headline")
+# UnitarySimulatorPy
 
 <span id="undefined" />
 

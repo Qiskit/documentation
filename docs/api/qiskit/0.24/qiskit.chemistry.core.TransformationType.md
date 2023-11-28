@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-core-transformationtype" />
 
-# qiskit.chemistry.core.TransformationType[¶](#qiskit-chemistry-core-transformationtype "Permalink to this headline")
+# qiskit.chemistry.core.TransformationType
 
 <span id="undefined" />
 

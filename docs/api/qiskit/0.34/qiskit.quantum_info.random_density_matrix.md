@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.random\_density\_matrix[¶](#qiskit-quantum-info-random-density-matrix "Permalink to this headline")
+# qiskit.quantum\_info.random\_density\_matrix
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-finance-data-providers-wikipediadataprovider" />
 
-# qiskit.finance.data\_providers.WikipediaDataProvider[¶](#qiskit-finance-data-providers-wikipediadataprovider "Permalink to this headline")
+# qiskit.finance.data\_providers.WikipediaDataProvider
 
 <span id="undefined" />
 

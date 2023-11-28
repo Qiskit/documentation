@@ -1,4 +1,4 @@
-# FlowController[¶](#flowcontroller "Permalink to this headline")
+# FlowController
 
 <span id="undefined" />
 

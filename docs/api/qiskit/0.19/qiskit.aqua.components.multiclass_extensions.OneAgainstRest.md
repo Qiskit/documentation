@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.multiclass_extensions.OneAgainstRest
 ---
 
-# OneAgainstRest[¶](#oneagainstrest "Permalink to this headline")
+# OneAgainstRest
 
 <span id="qiskit.aqua.components.multiclass_extensions.OneAgainstRest" />
 

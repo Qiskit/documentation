@@ -1,4 +1,4 @@
-# qiskit.aqua.components.uncertainty\_models.MultivariateNormalDistribution[¶](#qiskit-aqua-components-uncertainty-models-multivariatenormaldistribution "Permalink to this headline")
+# qiskit.aqua.components.uncertainty\_models.MultivariateNormalDistribution
 
 <span id="undefined" />
 

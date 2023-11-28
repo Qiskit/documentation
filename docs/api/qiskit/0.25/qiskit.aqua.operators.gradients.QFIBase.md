@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.gradients.QFIBase[¶](#qiskit-aqua-operators-gradients-qfibase "Permalink to this headline")
+# qiskit.aqua.operators.gradients.QFIBase
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# EnergySurfaceBase[¶](#energysurfacebase "Permalink to this headline")
+# EnergySurfaceBase
 
 <span id="undefined" />
 

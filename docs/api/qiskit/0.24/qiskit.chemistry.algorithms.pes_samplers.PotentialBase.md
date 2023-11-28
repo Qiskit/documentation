@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-algorithms-pes-samplers-potentialbase" />
 
-# qiskit.chemistry.algorithms.pes\_samplers.PotentialBase[¶](#qiskit-chemistry-algorithms-pes-samplers-potentialbase "Permalink to this headline")
+# qiskit.chemistry.algorithms.pes\_samplers.PotentialBase
 
 <span id="undefined" />
 

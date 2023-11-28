@@ -1,4 +1,4 @@
-# qiskit.ignis.verification.RepetitionCode[¶](#qiskit-ignis-verification-repetitioncode "Permalink to this headline")
+# qiskit.ignis.verification.RepetitionCode
 
 <span id="undefined" />
 

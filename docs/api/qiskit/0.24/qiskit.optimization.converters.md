@@ -16,25 +16,17 @@ python_api_name: qiskit.optimization.converters
 
 <span id="module-qiskit.optimization.converters" />
 
-`qiskit.optimization.converters¶`
+`qiskit.optimization.converters`
 
 This is a set of converters having convert functionality to go between different representations of a given [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram#qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.QuadraticProgram") and to interpret a given result for the problem, based on the original problem before conversion, to return an appropriate [`OptimizationResult`](qiskit.optimization.algorithms.OptimizationResult#qiskit.optimization.algorithms.OptimizationResult "qiskit.optimization.algorithms.OptimizationResult").
 
 # Base class for converters
-
-<span id="module-qiskit.optimization.converters" />
-
-`¶`
 
 |                                                                                                                                                                                                             |                                                                                         |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
 | [`QuadraticProgramConverter`](qiskit.optimization.converters.QuadraticProgramConverter#qiskit.optimization.converters.QuadraticProgramConverter "qiskit.optimization.converters.QuadraticProgramConverter") | An abstract class for converters of quadratic programs in Qiskit’s optimization module. |
 
 # Converters
-
-<span id="module-qiskit.optimization.converters" />
-
-`¶`
 
 |                                                                                                                                                                                                     |                                                                                                                                                                                                                                     |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

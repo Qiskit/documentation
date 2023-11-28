@@ -14,15 +14,11 @@ python_api_name: qiskit.finance.applications.ising
 
 <span id="module-qiskit.finance.applications.ising" />
 
-`qiskit.finance.applications.ising¶`
+`qiskit.finance.applications.ising`
 
 Ising models for finance problems
 
 # Ising Models
-
-<span id="module-qiskit.finance.applications.ising" />
-
-`¶`
 
 |                                                                                                                                                                                                                             |                                                          |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |

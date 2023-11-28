@@ -1,4 +1,4 @@
-# IQXDebugging[¶](#iqxdebugging "Permalink to this headline")
+# IQXDebugging
 
 <span id="undefined" />
 

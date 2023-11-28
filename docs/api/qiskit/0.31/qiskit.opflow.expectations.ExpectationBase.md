@@ -1,4 +1,4 @@
-# ExpectationBase[¶](#expectationbase "Permalink to this headline")
+# ExpectationBase
 
 <span id="undefined" />
 

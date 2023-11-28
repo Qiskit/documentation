@@ -12,10 +12,6 @@ python_api_name: qiskit.optimization.applications.ising.graph_partition
 
 # qiskit.optimization.applications.ising.graph\_partition
 
-<span id="module-qiskit.optimization.applications.ising.graph_partition" />
-
-`¶`
-
 Convert graph partitioning instances into Pauli list Deal with Gset format. See [https://web.stanford.edu/\~yyye/yyye/Gset/](https://web.stanford.edu/~yyye/yyye/Gset/)
 
 ## Functions

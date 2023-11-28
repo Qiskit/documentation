@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError
 ---
 
-# IBMQJobManagerInvalidStateError[¶](#ibmqjobmanagerinvalidstateerror "Permalink to this headline")
+# IBMQJobManagerInvalidStateError
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError" />
 

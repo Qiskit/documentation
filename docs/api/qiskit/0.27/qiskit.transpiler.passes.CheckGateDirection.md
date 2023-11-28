@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.CheckGateDirection[¶](#qiskit-transpiler-passes-checkgatedirection "Permalink to this headline")
+# qiskit.transpiler.passes.CheckGateDirection
 
 <span id="undefined" />
 

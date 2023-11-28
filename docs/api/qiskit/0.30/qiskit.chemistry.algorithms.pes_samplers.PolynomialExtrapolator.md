@@ -1,4 +1,4 @@
-# PolynomialExtrapolator[¶](#polynomialextrapolator "Permalink to this headline")
+# PolynomialExtrapolator
 
 <span id="undefined" />
 

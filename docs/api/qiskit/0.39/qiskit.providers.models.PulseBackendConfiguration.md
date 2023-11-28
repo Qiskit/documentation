@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.models.PulseBackendConfiguration
 ---
 
-# PulseBackendConfiguration[¶](#pulsebackendconfiguration "Permalink to this headline")
+# PulseBackendConfiguration
 
 <span id="qiskit.providers.models.PulseBackendConfiguration" />
 

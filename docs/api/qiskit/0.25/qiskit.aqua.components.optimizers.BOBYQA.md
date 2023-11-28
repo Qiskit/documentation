@@ -1,4 +1,4 @@
-# qiskit.aqua.components.optimizers.BOBYQA[¶](#qiskit-aqua-components-optimizers-bobyqa "Permalink to this headline")
+# qiskit.aqua.components.optimizers.BOBYQA
 
 <span id="undefined" />
 

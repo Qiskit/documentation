@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.legacy.MatrixOperator
 ---
 
-# MatrixOperator[¶](#matrixoperator "Permalink to this headline")
+# MatrixOperator
 
 <span id="qiskit.aqua.operators.legacy.MatrixOperator" />
 

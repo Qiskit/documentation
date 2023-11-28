@@ -1,4 +1,4 @@
-# ApproximateCircuit[¶](#approximatecircuit "Permalink to this headline")
+# ApproximateCircuit
 
 <span id="undefined" />
 

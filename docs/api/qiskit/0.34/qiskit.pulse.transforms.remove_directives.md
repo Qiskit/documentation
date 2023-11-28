@@ -1,4 +1,4 @@
-# qiskit.pulse.transforms.remove\_directives[¶](#qiskit-pulse-transforms-remove-directives "Permalink to this headline")
+# qiskit.pulse.transforms.remove\_directives
 
 <span id="undefined" />
 

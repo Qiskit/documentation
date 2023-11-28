@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.optimizers.CG
 ---
 
-# CG[¶](#cg "Permalink to this headline")
+# CG
 
 <span id="qiskit.aqua.components.optimizers.CG" />
 

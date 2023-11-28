@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.extensions.SnapshotStatevector
 ---
 
-# SnapshotStatevector[¶](#snapshotstatevector "Permalink to this headline")
+# SnapshotStatevector
 
 <span id="qiskit.providers.aer.extensions.SnapshotStatevector" />
 

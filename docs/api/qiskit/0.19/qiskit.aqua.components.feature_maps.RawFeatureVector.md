@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.feature_maps.RawFeatureVector
 ---
 
-# RawFeatureVector[¶](#rawfeaturevector "Permalink to this headline")
+# RawFeatureVector
 
 <span id="qiskit.aqua.components.feature_maps.RawFeatureVector" />
 

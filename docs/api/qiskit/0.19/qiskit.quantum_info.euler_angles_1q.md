@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.euler_angles_1q
 ---
 
-# euler\_angles\_1q[¶](#euler-angles-1q "Permalink to this headline")
+# euler\_angles\_1q
 
 <span id="qiskit.quantum_info.euler_angles_1q" />
 

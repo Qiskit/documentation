@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.reschedule.pad
 ---
 
-# pad[¶](#pad "Permalink to this headline")
+# pad
 
 <span id="qiskit.pulse.reschedule.pad" />
 

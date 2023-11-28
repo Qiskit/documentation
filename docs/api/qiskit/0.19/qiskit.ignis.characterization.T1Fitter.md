@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.characterization.T1Fitter
 ---
 
-# T1Fitter[¶](#t1fitter "Permalink to this headline")
+# T1Fitter
 
 <span id="qiskit.ignis.characterization.T1Fitter" />
 

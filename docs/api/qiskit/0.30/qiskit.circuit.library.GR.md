@@ -1,4 +1,4 @@
-# GR[¶](#gr "Permalink to this headline")
+# GR
 
 <span id="undefined" />
 

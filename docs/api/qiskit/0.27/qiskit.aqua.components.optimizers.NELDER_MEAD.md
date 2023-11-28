@@ -1,4 +1,4 @@
-# qiskit.aqua.components.optimizers.NELDER\_MEAD[¶](#qiskit-aqua-components-optimizers-nelder-mead "Permalink to this headline")
+# qiskit.aqua.components.optimizers.NELDER\_MEAD
 
 <span id="undefined" />
 

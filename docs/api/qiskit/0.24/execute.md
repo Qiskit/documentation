@@ -16,7 +16,7 @@ python_api_name: qiskit.execute
 
 <span id="module-qiskit.execute" />
 
-`qiskit.execute¶`
+`qiskit.execute`
 
 <span id="undefined" />
 

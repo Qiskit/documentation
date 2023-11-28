@@ -1,4 +1,4 @@
-# qiskit.ignis.characterization.ZZFitter[¶](#qiskit-ignis-characterization-zzfitter "Permalink to this headline")
+# qiskit.ignis.characterization.ZZFitter
 
 <span id="undefined" />
 

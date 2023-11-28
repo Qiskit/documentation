@@ -1,4 +1,4 @@
-# qiskit.providers.aer.library.SetUnitary[¶](#qiskit-providers-aer-library-setunitary "Permalink to this headline")
+# qiskit.providers.aer.library.SetUnitary
 
 <span id="undefined" />
 

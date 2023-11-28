@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.qfts.Approximate
 ---
 
-# Approximate[¶](#approximate "Permalink to this headline")
+# Approximate
 
 <span id="qiskit.aqua.components.qfts.Approximate" />
 

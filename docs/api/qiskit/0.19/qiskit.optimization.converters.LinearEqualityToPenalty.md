@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.optimization.converters.LinearEqualityToPenalty
 ---
 
-# LinearEqualityToPenalty[¶](#linearequalitytopenalty "Permalink to this headline")
+# LinearEqualityToPenalty
 
 <span id="qiskit.optimization.converters.LinearEqualityToPenalty" />
 

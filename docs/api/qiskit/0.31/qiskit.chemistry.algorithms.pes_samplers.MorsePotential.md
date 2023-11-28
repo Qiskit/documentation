@@ -1,4 +1,4 @@
-# MorsePotential[¶](#morsepotential "Permalink to this headline")
+# MorsePotential
 
 <span id="undefined" />
 

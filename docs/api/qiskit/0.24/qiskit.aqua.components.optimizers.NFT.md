@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-optimizers-nft" />
 
-# qiskit.aqua.components.optimizers.NFT[¶](#qiskit-aqua-components-optimizers-nft "Permalink to this headline")
+# qiskit.aqua.components.optimizers.NFT
 
 <span id="undefined" />
 

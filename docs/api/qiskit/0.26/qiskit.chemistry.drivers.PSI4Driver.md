@@ -1,4 +1,4 @@
-# qiskit.chemistry.drivers.PSI4Driver[¶](#qiskit-chemistry-drivers-psi4driver "Permalink to this headline")
+# qiskit.chemistry.drivers.PSI4Driver
 
 <span id="undefined" />
 

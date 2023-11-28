@@ -1,4 +1,4 @@
-# qiskit.transpiler.AnalysisPass[¶](#qiskit-transpiler-analysispass "Permalink to this headline")
+# qiskit.transpiler.AnalysisPass
 
 <span id="undefined" />
 

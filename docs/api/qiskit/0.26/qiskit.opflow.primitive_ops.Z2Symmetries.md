@@ -1,4 +1,4 @@
-# qiskit.opflow\.primitive\_ops.Z2Symmetries[¶](#qiskit-opflow-primitive-ops-z2symmetries "Permalink to this headline")
+# qiskit.opflow\.primitive\_ops.Z2Symmetries
 
 <span id="undefined" />
 

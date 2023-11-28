@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-instructions-snapshot" />
 
-# qiskit.pulse.instructions.Snapshot[¶](#qiskit-pulse-instructions-snapshot "Permalink to this headline")
+# qiskit.pulse.instructions.Snapshot
 
 <span id="undefined" />
 

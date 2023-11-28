@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.Clbit
 ---
 
-# Clbit[¶](#clbit "Permalink to this headline")
+# Clbit
 
 <span id="qiskit.circuit.Clbit" />
 

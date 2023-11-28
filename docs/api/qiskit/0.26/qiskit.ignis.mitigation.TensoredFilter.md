@@ -1,4 +1,4 @@
-# qiskit.ignis.mitigation.TensoredFilter[¶](#qiskit-ignis-mitigation-tensoredfilter "Permalink to this headline")
+# qiskit.ignis.mitigation.TensoredFilter
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue
 ---
 
-# FixedIncomeExpectedValue[¶](#fixedincomeexpectedvalue "Permalink to this headline")
+# FixedIncomeExpectedValue
 
 <span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue" />
 

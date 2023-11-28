@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.list_ops.TensoredOp
 ---
 
-# TensoredOp[¶](#tensoredop "Permalink to this headline")
+# TensoredOp
 
 <span id="qiskit.aqua.operators.list_ops.TensoredOp" />
 

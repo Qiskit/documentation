@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.InstructionScheduleMap
 ---
 
-# InstructionScheduleMap[¶](#instructionschedulemap "Permalink to this headline")
+# InstructionScheduleMap
 
 <span id="qiskit.pulse.InstructionScheduleMap" />
 

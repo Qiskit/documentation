@@ -1,4 +1,4 @@
-# IntegerToBinary[¶](#integertobinary "Permalink to this headline")
+# IntegerToBinary
 
 <span id="undefined" />
 

@@ -16,13 +16,9 @@ python_api_name: qiskit.circuit
 
 <span id="module-qiskit.circuit" />
 
-`qiskit.circuit¶`
+`qiskit.circuit`
 
 ## Overview
-
-<span id="module-qiskit.circuit" />
-
-`¶`
 
 The fundamental element of quantum computing is the **quantum circuit**. A quantum circuit is a computational routine consisting of coherent quantum operations on quantum data, such as qubits. It is an ordered sequence of quantum gates, measurements and resets, which may be conditioned on real-time classical computation. A set of quantum gates is said to be universal if any unitary transformation of the quantum data can be efficiently approximated arbitrarily well as as sequence of gates in the set. Any quantum program can be represented by a sequence of quantum circuits and classical near-time computation.
 
@@ -57,10 +53,6 @@ q_2: ──────────┤ X ├
 ```
 
 ## Supplementary Information
-
-<span id="module-qiskit.circuit" />
-
-`¶`
 
 Quantum Circuit Properties
 
@@ -177,11 +169,7 @@ qc.depth()
 
 ## Quantum Circuit API
 
-<span id="module-qiskit.circuit" />
-
-`¶`
-
-### Quantum Circuit Construction[¶](#quantum-circuit-construction "Permalink to this headline")
+### Quantum Circuit Construction
 
 |                                                                                                                                                 |                                  |
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
@@ -193,7 +181,7 @@ qc.depth()
 | [`AncillaRegister`](qiskit.circuit.AncillaRegister#qiskit.circuit.AncillaRegister "qiskit.circuit.AncillaRegister")(size\[, name])              | Implement an ancilla register.   |
 | [`AncillaQubit`](qiskit.circuit.AncillaQubit#qiskit.circuit.AncillaQubit "qiskit.circuit.AncillaQubit")(register, index)                        | A qubit used as ancillary qubit. |
 
-### Gates and Instructions[¶](#gates-and-instructions "Permalink to this headline")
+### Gates and Instructions
 
 |                                                                                                                                                  |                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
@@ -206,7 +194,7 @@ qc.depth()
 | [`InstructionSet`](qiskit.circuit.InstructionSet#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")()                                | Instruction collection, and their contexts.                                                            |
 | [`EquivalenceLibrary`](qiskit.circuit.EquivalenceLibrary#qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")(\*\[, base])     | A library providing a one-way mapping of Gates to their equivalent implementations as QuantumCircuits. |
 
-### Parametric Quantum Circuits[¶](#parametric-quantum-circuits "Permalink to this headline")
+### Parametric Quantum Circuits
 
 |                                                                                                                                                        |                                                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------- |
@@ -214,7 +202,7 @@ qc.depth()
 | [`ParameterVector`](qiskit.circuit.ParameterVector#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")(name\[, length])                   | ParameterVector class to quickly generate lists of parameters.          |
 | [`ParameterExpression`](qiskit.circuit.ParameterExpression#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")(symbol\_map, expr) | ParameterExpression class to enable creating expressions of Parameters. |
 
-### Random Circuits[¶](#random-circuits "Permalink to this headline")
+### Random Circuits
 
 |                                                                                                                                                                       |                                                     |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |

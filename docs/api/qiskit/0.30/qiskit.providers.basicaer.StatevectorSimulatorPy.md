@@ -1,4 +1,4 @@
-# StatevectorSimulatorPy[¶](#statevectorsimulatorpy "Permalink to this headline")
+# StatevectorSimulatorPy
 
 <span id="undefined" />
 

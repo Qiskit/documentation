@@ -1,4 +1,4 @@
-# qiskit.ignis.characterization.zz\_circuits[¶](#qiskit-ignis-characterization-zz-circuits "Permalink to this headline")
+# qiskit.ignis.characterization.zz\_circuits
 
 <span id="undefined" />
 

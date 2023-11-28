@@ -1,4 +1,4 @@
-# BernsteinVazirani[¶](#bernsteinvazirani "Permalink to this headline")
+# BernsteinVazirani
 
 <span id="undefined" />
 

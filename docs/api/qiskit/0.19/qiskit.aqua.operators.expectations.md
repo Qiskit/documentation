@@ -14,15 +14,11 @@ python_api_name: qiskit.aqua.operators.expectations
 
 <span id="module-qiskit.aqua.operators.expectations" />
 
-`qiskit.aqua.operators.expectations¶`
+`qiskit.aqua.operators.expectations`
 
 Expectations are converters which enable the computation of the expectation value of an Observable with respect to some state function. They traverse an Operator tree, replacing [`OperatorStateFn`](qiskit.aqua.operators.state_fns.OperatorStateFn "qiskit.aqua.operators.state_fns.OperatorStateFn") measurements with equivalent measurements which are more amenable to computation on quantum or classical hardware. For example, if one would like to measure the expectation value of an Operator `o` expressed as a sum of Paulis with respect to some state function, but only has access to diagonal measurements on Quantum hardware, we can create a measurement \~StateFn(o), use a [`PauliExpectation`](qiskit.aqua.operators.expectations.PauliExpectation "qiskit.aqua.operators.expectations.PauliExpectation") to convert it to a diagonal measurement and circuit pre-rotations to append to the state, and sample this circuit on Quantum hardware with a [`CircuitSampler`](qiskit.aqua.operators.converters.CircuitSampler "qiskit.aqua.operators.converters.CircuitSampler"). All in all, this would be: `my_sampler.convert(my_expect.convert(~StateFn(o)) @ my_state).eval()`.
 
 # Expectation Base Class
-
-<span id="module-qiskit.aqua.operators.expectations" />
-
-`¶`
 
 The ExpectationBase class gives an interface for algorithms to ask for Expectations as execution settings. For example, if an algorithm contains an expectation value step within it, such as [`VQE`](qiskit.aqua.algorithms.VQE "qiskit.aqua.algorithms.VQE"), the algorithm can give the opportunity for the user to pass an ExpectationBase of their choice to be used in that expectation value step.
 
@@ -31,10 +27,6 @@ The ExpectationBase class gives an interface for algorithms to ask for Expectati
 | [`ExpectationBase`](qiskit.aqua.operators.expectations.ExpectationBase "qiskit.aqua.operators.expectations.ExpectationBase") | A base for Expectation value converters. |
 
 # Expectations
-
-<span id="module-qiskit.aqua.operators.expectations" />
-
-`¶`
 
 |                                                                                                                                          |                                                                                                                                                                                          |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

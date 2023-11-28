@@ -1,4 +1,4 @@
-# GenerativeNetwork[¶](#generativenetwork "Permalink to this headline")
+# GenerativeNetwork
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.pulse.library.Waveform[¶](#qiskit-pulse-library-waveform "Permalink to this headline")
+# qiskit.pulse.library.Waveform
 
 <span id="undefined" />
 

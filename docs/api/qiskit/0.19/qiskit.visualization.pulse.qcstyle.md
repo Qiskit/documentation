@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.visualization.pulse.qcstyle.PulseStyle
 ---
 
-# qcstyle[¶](#module-qiskit.visualization.pulse.qcstyle "Permalink to this headline")
+# qcstyle
 
 Style sheets for pulse visualization.
 

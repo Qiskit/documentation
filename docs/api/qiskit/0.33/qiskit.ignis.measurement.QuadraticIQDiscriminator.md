@@ -1,4 +1,4 @@
-# QuadraticIQDiscriminator[¶](#quadraticiqdiscriminator "Permalink to this headline")
+# QuadraticIQDiscriminator
 
 <span id="undefined" />
 

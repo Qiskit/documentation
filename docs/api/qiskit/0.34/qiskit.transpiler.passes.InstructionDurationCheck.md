@@ -1,4 +1,4 @@
-# InstructionDurationCheck[¶](#instructiondurationcheck "Permalink to this headline")
+# InstructionDurationCheck
 
 <span id="undefined" />
 

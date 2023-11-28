@@ -1,4 +1,4 @@
-# LongDivision[¶](#longdivision "Permalink to this headline")
+# LongDivision
 
 <span id="undefined" />
 

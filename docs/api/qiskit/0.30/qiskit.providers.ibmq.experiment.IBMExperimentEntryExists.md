@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.experiment.IBMExperimentEntryExists[¶](#qiskit-providers-ibmq-experiment-ibmexperimententryexists "Permalink to this headline")
+# qiskit.providers.ibmq.experiment.IBMExperimentEntryExists
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.visualization.plot\_coupling\_map[¶](#qiskit-visualization-plot-coupling-map "Permalink to this headline")
+# qiskit.visualization.plot\_coupling\_map
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# Delay[¶](#delay "Permalink to this headline")
+# Delay
 
 <span id="undefined" />
 

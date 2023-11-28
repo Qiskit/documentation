@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.verification.RepetitionCode
 ---
 
-# RepetitionCode[¶](#repetitioncode "Permalink to this headline")
+# RepetitionCode
 
 <span id="qiskit.ignis.verification.RepetitionCode" />
 

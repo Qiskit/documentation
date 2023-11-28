@@ -1,4 +1,4 @@
-# NumPyMinimumEigensolver[¶](#numpyminimumeigensolver "Permalink to this headline")
+# NumPyMinimumEigensolver
 
 <span id="undefined" />
 

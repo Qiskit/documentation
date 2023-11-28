@@ -1,4 +1,4 @@
-# LinearIQDiscriminator[¶](#lineariqdiscriminator "Permalink to this headline")
+# LinearIQDiscriminator
 
 <span id="undefined" />
 

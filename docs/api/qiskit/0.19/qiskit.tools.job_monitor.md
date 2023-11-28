@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.tools.job_monitor
 ---
 
-# job\_monitor[¶](#job-monitor "Permalink to this headline")
+# job\_monitor
 
 <span id="qiskit.tools.job_monitor" />
 

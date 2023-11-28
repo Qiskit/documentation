@@ -1,4 +1,4 @@
-# qiskit.aqua.algorithms.Simon[¶](#qiskit-aqua-algorithms-simon "Permalink to this headline")
+# qiskit.aqua.algorithms.Simon
 
 <span id="undefined" />
 

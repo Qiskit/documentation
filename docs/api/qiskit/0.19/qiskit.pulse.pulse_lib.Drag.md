@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.pulse_lib.Drag
 ---
 
-# Drag[¶](#drag "Permalink to this headline")
+# Drag
 
 <span id="qiskit.pulse.pulse_lib.Drag" />
 

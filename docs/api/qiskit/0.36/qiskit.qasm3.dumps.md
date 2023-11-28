@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.qasm3.dumps
 ---
 
-# qiskit.qasm3.dumps[¶](#qiskit-qasm3-dumps "Permalink to this headline")
+# qiskit.qasm3.dumps
 
 <span id="qiskit.qasm3.dumps" />
 

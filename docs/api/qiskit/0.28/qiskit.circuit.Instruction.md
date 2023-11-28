@@ -1,4 +1,4 @@
-# qiskit.circuit.Instruction[¶](#qiskit-circuit-instruction "Permalink to this headline")
+# qiskit.circuit.Instruction
 
 <span id="undefined" />
 

@@ -1,46 +1,47 @@
 ---
-title: gaussian
-description: API reference for qiskit.pulse.library.gaussian
+title: Gaussian
+description: API reference for qiskit.pulse.library.Gaussian
 in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.pulse.library.gaussian
+python_api_type: class
+python_api_name: qiskit.pulse.library.Gaussian
 ---
 
-# qiskit.pulse.library.gaussian[¶](#qiskit-pulse-library-gaussian "Permalink to this headline")
+# Gaussian
 
-<span id="qiskit.pulse.library.gaussian" />
+<span id="qiskit.pulse.library.Gaussian" />
 
-`gaussian(duration, amp, sigma, name=None, zero_ends=True)`
+`Gaussian(duration: Union[int, qiskit.circuit.parameterexpression.ParameterExpression], amp: Union[complex, qiskit.circuit.parameterexpression.ParameterExpression], sigma: Union[float, qiskit.circuit.parameterexpression.ParameterExpression], name: Optional[str] = None, limit_amplitude: Optional[bool] = None)`
 
-Generates unnormalized gaussian [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
+Bases: `object`
 
-For $A=$ `amp` and $\sigma=$ `sigma`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
-
-$$
-f(x) = A\exp\left(\left(\frac{x - \mu}{2\sigma}\right)^2 \right),
-$$
-
-with the center $\mu=$ `duration/2`.
-
-If `zero_ends==True`, each output sample $y$ is modified according to:
+A lifted and truncated pulse envelope shaped according to the Gaussian function whose mean is centered at the center of the pulse (duration / 2):
 
 $$
-y \mapsto A\frac{y-y^*}{A-y^*},
+\begin{split}f'(x) &= \exp\Bigl( -\frac12 \frac{{(x - \text{duration}/2)}^2}{\text{sigma}^2} \Bigr)\\
+f(x) &= \text{amp} \times \frac{f'(x) - f'(-1)}{1-f'(-1)}, \quad 0 \le x < \text{duration}\end{split}
 $$
 
-where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$ while preserving the amplitude at the center. If $A=y^*$, $y$ is set to $1$. By default, the endpoints are at `x = -1, x = duration + 1`.
+where $f'(x)$ is the gaussian waveform without lifting or amplitude scaling.
 
-Integrated area under the full curve is `amp * np.sqrt(2*np.pi*sigma**2)`
+Create new pulse instance.
 
 **Parameters**
 
-*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
-*   **amp** (`complex`) – Pulse amplitude at `duration/2`.
-*   **sigma** (`float`) – Width (standard deviation) of pulse.
-*   **name** (`Optional`\[`str`]) – Name of pulse.
-*   **zero\_ends** (`bool`) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
+*   **duration** – Pulse length in terms of the sampling period dt.
+*   **amp** – The amplitude of the Gaussian envelope.
+*   **sigma** – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
+*   **name** – Display name for this pulse envelope.
+*   **limit\_amplitude** – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
 
-**Return type**
+**Returns**
 
-[`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
+SymbolicPulse instance.
+
+## Attributes
+
+<span id="qiskit.pulse.library.Gaussian.alias" />
+
+### alias
+
+`= 'Gaussian'`
 

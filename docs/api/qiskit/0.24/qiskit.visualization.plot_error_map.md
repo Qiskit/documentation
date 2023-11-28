@@ -1,6 +1,6 @@
 <span id="qiskit-visualization-plot-error-map" />
 
-# qiskit.visualization.plot\_error\_map[¶](#qiskit-visualization-plot-error-map "Permalink to this headline")
+# qiskit.visualization.plot\_error\_map
 
 <span id="undefined" />
 

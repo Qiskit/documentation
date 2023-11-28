@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-removediagonalgatesbeforemeasure" />
 
-# qiskit.transpiler.passes.RemoveDiagonalGatesBeforeMeasure[¶](#qiskit-transpiler-passes-removediagonalgatesbeforemeasure "Permalink to this headline")
+# qiskit.transpiler.passes.RemoveDiagonalGatesBeforeMeasure
 
 <span id="undefined" />
 

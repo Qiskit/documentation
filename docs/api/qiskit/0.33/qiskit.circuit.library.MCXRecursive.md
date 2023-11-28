@@ -1,4 +1,4 @@
-# MCXRecursive[¶](#mcxrecursive "Permalink to this headline")
+# MCXRecursive
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.aqua.circuits.CNF[¶](#qiskit-aqua-circuits-cnf "Permalink to this headline")
+# qiskit.aqua.circuits.CNF
 
 <span id="undefined" />
 

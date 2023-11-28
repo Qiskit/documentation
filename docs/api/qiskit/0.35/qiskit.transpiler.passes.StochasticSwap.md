@@ -1,4 +1,4 @@
-# StochasticSwap[¶](#stochasticswap "Permalink to this headline")
+# StochasticSwap
 
 <span id="undefined" />
 

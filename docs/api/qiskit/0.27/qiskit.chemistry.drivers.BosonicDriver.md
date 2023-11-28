@@ -1,4 +1,4 @@
-# qiskit.chemistry.drivers.BosonicDriver[¶](#qiskit-chemistry-drivers-bosonicdriver "Permalink to this headline")
+# qiskit.chemistry.drivers.BosonicDriver
 
 <span id="undefined" />
 

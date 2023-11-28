@@ -1,4 +1,4 @@
-# qiskit.ignis.verification.composite\_pauli\_z[¶](#qiskit-ignis-verification-composite-pauli-z "Permalink to this headline")
+# qiskit.ignis.verification.composite\_pauli\_z
 
 <span id="undefined" />
 

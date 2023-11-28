@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.utils.wrap_method
 ---
 
-# qiskit.utils.wrap\_method[¶](#qiskit-utils-wrap-method "Permalink to this headline")
+# qiskit.utils.wrap\_method
 
 <span id="qiskit.utils.wrap_method" />
 

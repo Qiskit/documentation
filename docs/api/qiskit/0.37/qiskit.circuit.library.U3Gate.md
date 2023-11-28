@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.U3Gate
 ---
 
-# U3Gate[¶](#u3gate "Permalink to this headline")
+# U3Gate
 
 <span id="qiskit.circuit.library.U3Gate" />
 

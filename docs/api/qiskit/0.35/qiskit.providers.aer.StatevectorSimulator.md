@@ -1,4 +1,4 @@
-# StatevectorSimulator[¶](#statevectorsimulator "Permalink to this headline")
+# StatevectorSimulator
 
 <span id="undefined" />
 

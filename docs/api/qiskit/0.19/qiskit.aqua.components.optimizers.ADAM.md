@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.optimizers.ADAM
 ---
 
-# ADAM[¶](#adam "Permalink to this headline")
+# ADAM
 
 <span id="qiskit.aqua.components.optimizers.ADAM" />
 

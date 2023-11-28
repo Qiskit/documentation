@@ -1,4 +1,4 @@
-# SetStabilizer[¶](#setstabilizer "Permalink to this headline")
+# SetStabilizer
 
 <span id="undefined" />
 

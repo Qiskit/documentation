@@ -1,6 +1,6 @@
 <span id="qiskit-converters-ast-to-dag" />
 
-# qiskit.converters.ast\_to\_dag[¶](#qiskit-converters-ast-to-dag "Permalink to this headline")
+# qiskit.converters.ast\_to\_dag
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.evolutions.Trotter
 ---
 
-# Trotter[¶](#trotter "Permalink to this headline")
+# Trotter
 
 <span id="qiskit.opflow.evolutions.Trotter" />
 

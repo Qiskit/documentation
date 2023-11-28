@@ -1,4 +1,4 @@
-# MolecularGroundStateResult[¶](#moleculargroundstateresult "Permalink to this headline")
+# MolecularGroundStateResult
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# MatrixOp[¶](#matrixop "Permalink to this headline")
+# MatrixOp
 
 <span id="undefined" />
 

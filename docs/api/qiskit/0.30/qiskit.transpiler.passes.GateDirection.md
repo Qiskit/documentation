@@ -1,4 +1,4 @@
-# GateDirection[¶](#gatedirection "Permalink to this headline")
+# GateDirection
 
 <span id="undefined" />
 

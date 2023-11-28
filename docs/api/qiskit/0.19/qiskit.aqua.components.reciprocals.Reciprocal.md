@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.reciprocals.Reciprocal
 ---
 
-# Reciprocal[¶](#reciprocal "Permalink to this headline")
+# Reciprocal
 
 <span id="qiskit.aqua.components.reciprocals.Reciprocal" />
 

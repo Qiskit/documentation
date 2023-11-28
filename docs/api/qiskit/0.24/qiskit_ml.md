@@ -16,15 +16,11 @@ python_api_name: qiskit.ml
 
 <span id="module-qiskit.ml" />
 
-`qiskit.ml¶`
+`qiskit.ml`
 
 This is the Qiskit\`s machine learning module. There is an initial set of function here that will be built out over time. At present it has sample sets that can be used with Aqua’s `classifiers`.
 
 ## Submodules
-
-<span id="module-qiskit.ml" />
-
-`¶`
 
 |                                                                                 |                                                                                                      |
 | ------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |

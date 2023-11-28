@@ -1,4 +1,4 @@
-# qiskit.opflow\.expectations.PauliExpectation[¶](#qiskit-opflow-expectations-pauliexpectation "Permalink to this headline")
+# qiskit.opflow\.expectations.PauliExpectation
 
 <span id="undefined" />
 

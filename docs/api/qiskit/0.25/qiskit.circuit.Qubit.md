@@ -1,4 +1,4 @@
-# qiskit.circuit.Qubit[¶](#qiskit-circuit-qubit "Permalink to this headline")
+# qiskit.circuit.Qubit
 
 <span id="undefined" />
 

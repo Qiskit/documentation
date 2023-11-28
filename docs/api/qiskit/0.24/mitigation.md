@@ -16,13 +16,9 @@ python_api_name: qiskit.ignis.mitigation
 
 <span id="module-qiskit.ignis.mitigation" />
 
-`qiskit.ignis.mitigation¶`
+`qiskit.ignis.mitigation`
 
 ## Measurement
-
-<span id="module-qiskit.ignis.mitigation" />
-
-`¶`
 
 The measurement calibration is used to mitigate measurement errors. The main idea is to prepare all $2^n$ basis input states and compute the probability of measuring counts in the other basis states. From these calibrations, it is possible to correct the average results of another experiment of interest.
 
@@ -36,10 +32,6 @@ The measurement calibration is used to mitigate measurement errors. The main ide
 | [`TensoredMeasFitter`](qiskit.ignis.mitigation.TensoredMeasFitter#qiskit.ignis.mitigation.TensoredMeasFitter "qiskit.ignis.mitigation.TensoredMeasFitter")(results, mit\_pattern\[, …])  | Measurement correction fitter for a tensored calibration.                     |
 
 ## Expectation Value Measurement
-
-<span id="module-qiskit.ignis.mitigation" />
-
-`¶`
 
 The following classes allow mitigation of measurement errors when computing expectation values of diagonal operators from counts.
 

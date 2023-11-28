@@ -1,4 +1,4 @@
-# AND[¶](#and "Permalink to this headline")
+# AND
 
 <span id="undefined" />
 

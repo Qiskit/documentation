@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.UnitarySimulator
 ---
 
-# UnitarySimulator[¶](#unitarysimulator "Permalink to this headline")
+# UnitarySimulator
 
 <span id="qiskit.providers.aer.UnitarySimulator" />
 

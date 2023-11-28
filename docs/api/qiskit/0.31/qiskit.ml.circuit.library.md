@@ -14,15 +14,11 @@ python_api_name: qiskit.ml.circuit.library
 
 <span id="module-qiskit.ml.circuit.library" />
 
-`qiskit.ml.circuit.library¶`
+`qiskit.ml.circuit.library`
 
 A library of quantum circuits used for machine learning applications and as building blocks for machine learning algorithms.
 
 # Feature Maps
-
-<span id="module-qiskit.ml.circuit.library" />
-
-`¶`
 
 |                                                                                                                                                          |                                 |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |

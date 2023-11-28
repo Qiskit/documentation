@@ -1,4 +1,4 @@
-# CompleteExpvalMeasMitigator[¶](#completeexpvalmeasmitigator "Permalink to this headline")
+# CompleteExpvalMeasMitigator
 
 <span id="undefined" />
 

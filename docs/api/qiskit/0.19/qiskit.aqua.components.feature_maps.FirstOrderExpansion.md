@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.feature_maps.FirstOrderExpansion
 ---
 
-# FirstOrderExpansion[¶](#firstorderexpansion "Permalink to this headline")
+# FirstOrderExpansion
 
 <span id="qiskit.aqua.components.feature_maps.FirstOrderExpansion" />
 

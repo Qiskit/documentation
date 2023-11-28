@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-mcmt" />
 
-# qiskit.circuit.library.MCMT[¶](#qiskit-circuit-library-mcmt "Permalink to this headline")
+# qiskit.circuit.library.MCMT
 
 <span id="undefined" />
 

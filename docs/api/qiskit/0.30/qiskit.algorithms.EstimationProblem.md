@@ -1,4 +1,4 @@
-# EstimationProblem[¶](#estimationproblem "Permalink to this headline")
+# EstimationProblem
 
 <span id="undefined" />
 

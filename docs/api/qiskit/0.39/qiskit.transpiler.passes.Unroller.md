@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.Unroller
 ---
 
-# Unroller[¶](#unroller "Permalink to this headline")
+# Unroller
 
 <span id="qiskit.transpiler.passes.Unroller" />
 

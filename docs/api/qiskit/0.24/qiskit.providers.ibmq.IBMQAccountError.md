@@ -1,6 +1,6 @@
 <span id="qiskit-providers-ibmq-ibmqaccounterror" />
 
-# qiskit.providers.ibmq.IBMQAccountError[¶](#qiskit-providers-ibmq-ibmqaccounterror "Permalink to this headline")
+# qiskit.providers.ibmq.IBMQAccountError
 
 <span id="undefined" />
 

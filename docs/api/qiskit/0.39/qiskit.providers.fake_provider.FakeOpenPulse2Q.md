@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeOpenPulse2Q
 ---
 
-# FakeOpenPulse2Q[¶](#fakeopenpulse2q "Permalink to this headline")
+# FakeOpenPulse2Q
 
 <span id="qiskit.providers.fake_provider.FakeOpenPulse2Q" />
 

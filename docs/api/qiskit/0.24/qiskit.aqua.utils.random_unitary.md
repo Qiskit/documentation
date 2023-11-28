@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-utils-random-unitary" />
 
-# qiskit.aqua.utils.random\_unitary[¶](#qiskit-aqua-utils-random-unitary "Permalink to this headline")
+# qiskit.aqua.utils.random\_unitary
 
 <span id="undefined" />
 

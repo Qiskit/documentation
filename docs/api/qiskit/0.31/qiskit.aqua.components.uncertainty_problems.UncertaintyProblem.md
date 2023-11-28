@@ -1,4 +1,4 @@
-# UncertaintyProblem[¶](#uncertaintyproblem "Permalink to this headline")
+# UncertaintyProblem
 
 <span id="undefined" />
 

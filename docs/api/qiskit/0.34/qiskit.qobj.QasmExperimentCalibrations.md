@@ -1,4 +1,4 @@
-# QasmExperimentCalibrations[¶](#qasmexperimentcalibrations "Permalink to this headline")
+# QasmExperimentCalibrations
 
 <span id="undefined" />
 

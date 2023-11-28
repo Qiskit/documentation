@@ -14,7 +14,7 @@ python_api_name: qiskit.aqua.components.optimizers
 
 <span id="module-qiskit.aqua.components.optimizers" />
 
-`qiskit.aqua.components.optimizers¶`
+`qiskit.aqua.components.optimizers`
 
 Aqua contains a variety of classical optimizers for use by quantum variational algorithms, such as [`VQE`](qiskit.aqua.algorithms.VQE "qiskit.aqua.algorithms.VQE"). Logically, these optimizers can be divided into two categories:
 
@@ -28,19 +28,11 @@ Given an optimization problem, a **global optimizer** is a function that attempt
 
 # Optimizer Base Class
 
-<span id="module-qiskit.aqua.components.optimizers" />
-
-`¶`
-
 |                                                                                                          |                                        |
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | [`Optimizer`](qiskit.aqua.components.optimizers.Optimizer "qiskit.aqua.components.optimizers.Optimizer") | Base class for optimization algorithm. |
 
 # Local Optimizers
-
-<span id="module-qiskit.aqua.components.optimizers" />
-
-`¶`
 
 |                                                                                                                |                                                                      |
 | -------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
@@ -59,10 +51,6 @@ Given an optimization problem, a **global optimizer** is a function that attempt
 | [`TNC`](qiskit.aqua.components.optimizers.TNC "qiskit.aqua.components.optimizers.TNC")                         | Truncated Newton (TNC) optimizer.                                    |
 
 # Global Optimizers
-
-<span id="module-qiskit.aqua.components.optimizers" />
-
-`¶`
 
 The global optimizers here all use NLopt for their core function and can only be used if their dependent NLopt package is manually installed. See the following section for installation instructions.
 

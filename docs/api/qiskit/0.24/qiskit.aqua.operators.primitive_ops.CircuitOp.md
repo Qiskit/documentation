@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-primitive-ops-circuitop" />
 
-# qiskit.aqua.operators.primitive\_ops.CircuitOp[¶](#qiskit-aqua-operators-primitive-ops-circuitop "Permalink to this headline")
+# qiskit.aqua.operators.primitive\_ops.CircuitOp
 
 <span id="undefined" />
 

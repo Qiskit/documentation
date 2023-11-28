@@ -1,4 +1,4 @@
-# qiskit.opflow\.primitive\_ops.MatrixOp[¶](#qiskit-opflow-primitive-ops-matrixop "Permalink to this headline")
+# qiskit.opflow\.primitive\_ops.MatrixOp
 
 <span id="undefined" />
 

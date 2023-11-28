@@ -1,4 +1,4 @@
-# IBMQJobManager[¶](#ibmqjobmanager "Permalink to this headline")
+# IBMQJobManager
 
 <span id="undefined" />
 

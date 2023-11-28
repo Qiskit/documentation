@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.ESCH[¶](#qiskit-algorithms-optimizers-esch "Permalink to this headline")
+# qiskit.algorithms.optimizers.ESCH
 
 <span id="undefined" />
 

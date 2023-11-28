@@ -1,4 +1,4 @@
-# ListOp[¶](#listop "Permalink to this headline")
+# ListOp
 
 <span id="undefined" />
 

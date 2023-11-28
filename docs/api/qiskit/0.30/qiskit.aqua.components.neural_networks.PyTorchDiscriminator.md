@@ -1,4 +1,4 @@
-# PyTorchDiscriminator[¶](#pytorchdiscriminator "Permalink to this headline")
+# PyTorchDiscriminator
 
 <span id="undefined" />
 

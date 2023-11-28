@@ -1,4 +1,4 @@
-# qiskit.providers.models.Command[¶](#qiskit-providers-models-command "Permalink to this headline")
+# qiskit.providers.models.Command
 
 <span id="undefined" />
 

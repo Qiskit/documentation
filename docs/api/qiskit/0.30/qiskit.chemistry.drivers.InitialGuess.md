@@ -1,4 +1,4 @@
-# InitialGuess[¶](#initialguess "Permalink to this headline")
+# InitialGuess
 
 <span id="undefined" />
 

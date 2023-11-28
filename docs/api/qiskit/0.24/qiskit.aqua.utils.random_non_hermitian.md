@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-utils-random-non-hermitian" />
 
-# qiskit.aqua.utils.random\_non\_hermitian[¶](#qiskit-aqua-utils-random-non-hermitian "Permalink to this headline")
+# qiskit.aqua.utils.random\_non\_hermitian
 
 <span id="undefined" />
 

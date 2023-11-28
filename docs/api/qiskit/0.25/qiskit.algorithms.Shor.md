@@ -1,4 +1,4 @@
-# qiskit.algorithms.Shor[¶](#qiskit-algorithms-shor "Permalink to this headline")
+# qiskit.algorithms.Shor
 
 <span id="undefined" />
 

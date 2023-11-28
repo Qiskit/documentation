@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-initial-states-zero" />
 
-# qiskit.aqua.components.initial\_states.Zero[¶](#qiskit-aqua-components-initial-states-zero "Permalink to this headline")
+# qiskit.aqua.components.initial\_states.Zero
 
 <span id="undefined" />
 

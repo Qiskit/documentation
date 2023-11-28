@@ -1,4 +1,4 @@
-# qiskit.circuit.library.RZZGate[¶](#qiskit-circuit-library-rzzgate "Permalink to this headline")
+# qiskit.circuit.library.RZZGate
 
 <span id="undefined" />
 

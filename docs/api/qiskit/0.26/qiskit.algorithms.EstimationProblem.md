@@ -1,4 +1,4 @@
-# qiskit.algorithms.EstimationProblem[¶](#qiskit-algorithms-estimationproblem "Permalink to this headline")
+# qiskit.algorithms.EstimationProblem
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-extensions-snapshotstatevector" />
 
-# qiskit.providers.aer.extensions.SnapshotStatevector[¶](#qiskit-providers-aer-extensions-snapshotstatevector "Permalink to this headline")
+# qiskit.providers.aer.extensions.SnapshotStatevector
 
 <span id="undefined" />
 

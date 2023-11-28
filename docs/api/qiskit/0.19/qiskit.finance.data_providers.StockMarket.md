@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.finance.data_providers.StockMarket
 ---
 
-# StockMarket[¶](#stockmarket "Permalink to this headline")
+# StockMarket
 
 <span id="qiskit.finance.data_providers.StockMarket" />
 

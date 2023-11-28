@@ -1,4 +1,4 @@
-# ExpectationFactory[¶](#expectationfactory "Permalink to this headline")
+# ExpectationFactory
 
 <span id="undefined" />
 

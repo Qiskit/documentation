@@ -1,4 +1,4 @@
-# DiscriminativeNetwork[¶](#discriminativenetwork "Permalink to this headline")
+# DiscriminativeNetwork
 
 <span id="undefined" />
 

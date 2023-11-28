@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.SwapGate
 ---
 
-# SwapGate[¶](#swapgate "Permalink to this headline")
+# SwapGate
 
 <span id="qiskit.circuit.library.SwapGate" />
 

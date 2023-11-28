@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.DensityMatrix[¶](#qiskit-quantum-info-densitymatrix "Permalink to this headline")
+# qiskit.quantum\_info.DensityMatrix
 
 <span id="undefined" />
 

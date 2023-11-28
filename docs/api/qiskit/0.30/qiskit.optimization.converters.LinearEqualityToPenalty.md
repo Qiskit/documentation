@@ -1,4 +1,4 @@
-# LinearEqualityToPenalty[¶](#linearequalitytopenalty "Permalink to this headline")
+# LinearEqualityToPenalty
 
 <span id="undefined" />
 

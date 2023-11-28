@@ -1,4 +1,4 @@
-# MaximumLikelihoodAmplitudeEstimationResult[¶](#maximumlikelihoodamplitudeestimationresult "Permalink to this headline")
+# MaximumLikelihoodAmplitudeEstimationResult
 
 <span id="undefined" />
 

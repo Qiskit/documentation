@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.CountOpsLongestPath[¶](#qiskit-transpiler-passes-countopslongestpath "Permalink to this headline")
+# qiskit.transpiler.passes.CountOpsLongestPath
 
 <span id="undefined" />
 

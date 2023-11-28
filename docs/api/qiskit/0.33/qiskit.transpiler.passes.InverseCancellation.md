@@ -1,4 +1,4 @@
-# InverseCancellation[¶](#inversecancellation "Permalink to this headline")
+# InverseCancellation
 
 <span id="undefined" />
 

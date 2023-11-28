@@ -1,4 +1,4 @@
-# SetPhase[¶](#setphase "Permalink to this headline")
+# SetPhase
 
 <span id="undefined" />
 

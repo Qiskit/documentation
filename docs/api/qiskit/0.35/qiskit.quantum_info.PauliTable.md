@@ -1,4 +1,4 @@
-# PauliTable[¶](#paulitable "Permalink to this headline")
+# PauliTable
 
 <span id="undefined" />
 

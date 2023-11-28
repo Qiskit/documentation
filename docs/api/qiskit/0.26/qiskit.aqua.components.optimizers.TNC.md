@@ -1,4 +1,4 @@
-# qiskit.aqua.components.optimizers.TNC[¶](#qiskit-aqua-components-optimizers-tnc "Permalink to this headline")
+# qiskit.aqua.components.optimizers.TNC
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.dagcircuit.DAGDepNode[¶](#qiskit-dagcircuit-dagdepnode "Permalink to this headline")
+# qiskit.dagcircuit.DAGDepNode
 
 <span id="undefined" />
 

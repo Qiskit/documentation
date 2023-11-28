@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.Decompose
 ---
 
-# Decompose[¶](#decompose "Permalink to this headline")
+# Decompose
 
 <span id="qiskit.transpiler.passes.Decompose" />
 

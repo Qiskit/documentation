@@ -1,4 +1,4 @@
-# GateConfig[¶](#gateconfig "Permalink to this headline")
+# GateConfig
 
 <span id="undefined" />
 

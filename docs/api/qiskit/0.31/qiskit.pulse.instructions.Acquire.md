@@ -1,4 +1,4 @@
-# Acquire[¶](#acquire "Permalink to this headline")
+# Acquire
 
 <span id="undefined" />
 

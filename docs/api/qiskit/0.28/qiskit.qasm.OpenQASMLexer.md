@@ -1,4 +1,4 @@
-# qiskit.qasm.OpenQASMLexer[¶](#qiskit-qasm-openqasmlexer "Permalink to this headline")
+# qiskit.qasm.OpenQASMLexer
 
 <span id="undefined" />
 

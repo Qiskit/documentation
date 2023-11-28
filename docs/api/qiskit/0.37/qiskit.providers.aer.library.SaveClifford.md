@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.library.SaveClifford
 ---
 
-# SaveClifford[¶](#saveclifford "Permalink to this headline")
+# SaveClifford
 
 <span id="qiskit.providers.aer.library.SaveClifford" />
 

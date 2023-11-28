@@ -1,4 +1,4 @@
-# CRYGate[¶](#crygate "Permalink to this headline")
+# CRYGate
 
 <span id="undefined" />
 

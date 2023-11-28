@@ -1,4 +1,4 @@
-# TransformationType[¶](#transformationtype "Permalink to this headline")
+# TransformationType
 
 <span id="undefined" />
 

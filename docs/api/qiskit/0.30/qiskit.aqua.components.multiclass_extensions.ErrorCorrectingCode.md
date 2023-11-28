@@ -1,4 +1,4 @@
-# ErrorCorrectingCode[¶](#errorcorrectingcode "Permalink to this headline")
+# ErrorCorrectingCode
 
 <span id="undefined" />
 

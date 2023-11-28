@@ -1,6 +1,6 @@
 <span id="qiskit-finance-data-providers-exchangedataprovider" />
 
-# qiskit.finance.data\_providers.ExchangeDataProvider[¶](#qiskit-finance-data-providers-exchangedataprovider "Permalink to this headline")
+# qiskit.finance.data\_providers.ExchangeDataProvider
 
 <span id="undefined" />
 

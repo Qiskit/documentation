@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-interleavedrbfitter" />
 
-# qiskit.ignis.verification.InterleavedRBFitter[¶](#qiskit-ignis-verification-interleavedrbfitter "Permalink to this headline")
+# qiskit.ignis.verification.InterleavedRBFitter
 
 <span id="undefined" />
 

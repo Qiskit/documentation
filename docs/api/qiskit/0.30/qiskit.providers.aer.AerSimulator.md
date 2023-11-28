@@ -1,4 +1,4 @@
-# AerSimulator[¶](#aersimulator "Permalink to this headline")
+# AerSimulator
 
 <span id="undefined" />
 

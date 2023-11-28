@@ -1,4 +1,4 @@
-# QubitProperties[¶](#qubitproperties "Permalink to this headline")
+# QubitProperties
 
 <span id="undefined" />
 

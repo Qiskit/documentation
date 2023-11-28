@@ -1,4 +1,4 @@
-# qiskit.circuit.library.AND[¶](#qiskit-circuit-library-and "Permalink to this headline")
+# qiskit.circuit.library.AND
 
 <span id="undefined" />
 

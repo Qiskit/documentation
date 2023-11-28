@@ -1,4 +1,4 @@
-# qiskit.opflow\.list\_ops.SummedOp[¶](#qiskit-opflow-list-ops-summedop "Permalink to this headline")
+# qiskit.opflow\.list\_ops.SummedOp
 
 <span id="undefined" />
 

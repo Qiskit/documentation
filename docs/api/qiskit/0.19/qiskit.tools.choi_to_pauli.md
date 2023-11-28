@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.tools.choi_to_pauli
 ---
 
-# choi\_to\_pauli[¶](#choi-to-pauli "Permalink to this headline")
+# choi\_to\_pauli
 
 <span id="qiskit.tools.choi_to_pauli" />
 

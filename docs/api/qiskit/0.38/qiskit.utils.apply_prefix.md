@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.utils.apply_prefix
 ---
 
-# qiskit.utils.apply\_prefix[¶](#qiskit-utils-apply-prefix "Permalink to this headline")
+# qiskit.utils.apply\_prefix
 
 <span id="qiskit.utils.apply_prefix" />
 

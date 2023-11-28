@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-legacy-covariance" />
 
-# qiskit.aqua.operators.legacy.covariance[¶](#qiskit-aqua-operators-legacy-covariance "Permalink to this headline")
+# qiskit.aqua.operators.legacy.covariance
 
 <span id="undefined" />
 

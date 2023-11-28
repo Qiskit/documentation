@@ -1,4 +1,4 @@
-# qiskit.circuit.library.GR[¶](#qiskit-circuit-library-gr "Permalink to this headline")
+# qiskit.circuit.library.GR
 
 <span id="undefined" />
 

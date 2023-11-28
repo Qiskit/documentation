@@ -1,4 +1,4 @@
-# qiskit.utils.summarize\_circuits[¶](#qiskit-utils-summarize-circuits "Permalink to this headline")
+# qiskit.utils.summarize\_circuits
 
 <span id="undefined" />
 

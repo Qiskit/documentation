@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-mitigation-tensored-meas-cal" />
 
-# qiskit.ignis.mitigation.tensored\_meas\_cal[¶](#qiskit-ignis-mitigation-tensored-meas-cal "Permalink to this headline")
+# qiskit.ignis.mitigation.tensored\_meas\_cal
 
 <span id="undefined" />
 

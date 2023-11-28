@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-algorithms-minimumeigensolverresult" />
 
-# qiskit.aqua.algorithms.MinimumEigensolverResult[¶](#qiskit-aqua-algorithms-minimumeigensolverresult "Permalink to this headline")
+# qiskit.aqua.algorithms.MinimumEigensolverResult
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# WhileLoopOp[¶](#whileloopop "Permalink to this headline")
+# WhileLoopOp
 
 <span id="undefined" />
 

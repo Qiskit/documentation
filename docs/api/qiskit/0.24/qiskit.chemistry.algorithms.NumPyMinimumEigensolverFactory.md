@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-algorithms-numpyminimumeigensolverfactory" />
 
-# qiskit.chemistry.algorithms.NumPyMinimumEigensolverFactory[¶](#qiskit-chemistry-algorithms-numpyminimumeigensolverfactory "Permalink to this headline")
+# qiskit.chemistry.algorithms.NumPyMinimumEigensolverFactory
 
 <span id="undefined" />
 

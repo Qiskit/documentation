@@ -1,4 +1,4 @@
-# BasicSwap[¶](#basicswap "Permalink to this headline")
+# BasicSwap
 
 <span id="undefined" />
 

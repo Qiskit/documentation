@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.random\_cnotdihedral[¶](#qiskit-quantum-info-random-cnotdihedral "Permalink to this headline")
+# qiskit.quantum\_info.random\_cnotdihedral
 
 <span id="undefined" />
 

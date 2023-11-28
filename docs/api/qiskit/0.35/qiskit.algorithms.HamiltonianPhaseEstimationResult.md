@@ -1,4 +1,4 @@
-# HamiltonianPhaseEstimationResult[¶](#hamiltonianphaseestimationresult "Permalink to this headline")
+# HamiltonianPhaseEstimationResult
 
 <span id="undefined" />
 

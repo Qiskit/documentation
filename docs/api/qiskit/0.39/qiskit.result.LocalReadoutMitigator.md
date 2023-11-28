@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.result.LocalReadoutMitigator
 ---
 
-# LocalReadoutMitigator[¶](#localreadoutmitigator "Permalink to this headline")
+# LocalReadoutMitigator
 
 <span id="qiskit.result.LocalReadoutMitigator" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.optimization.problems.LinearConstraint
 ---
 
-# LinearConstraint[¶](#linearconstraint "Permalink to this headline")
+# LinearConstraint
 
 <span id="qiskit.optimization.problems.LinearConstraint" />
 

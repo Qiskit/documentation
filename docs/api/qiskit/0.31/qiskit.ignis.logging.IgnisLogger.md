@@ -1,4 +1,4 @@
-# IgnisLogger[¶](#ignislogger "Permalink to this headline")
+# IgnisLogger
 
 <span id="undefined" />
 

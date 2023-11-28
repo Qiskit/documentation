@@ -1,4 +1,4 @@
-# Eigensolver[¶](#eigensolver "Permalink to this headline")
+# Eigensolver
 
 <span id="undefined" />
 

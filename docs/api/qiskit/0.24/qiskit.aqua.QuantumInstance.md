@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-quantuminstance" />
 
-# qiskit.aqua.QuantumInstance[¶](#qiskit-aqua-quantuminstance "Permalink to this headline")
+# qiskit.aqua.QuantumInstance
 
 <span id="undefined" />
 

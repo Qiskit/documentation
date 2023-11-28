@@ -1,4 +1,4 @@
-# T2Fitter[¶](#t2fitter "Permalink to this headline")
+# T2Fitter
 
 <span id="undefined" />
 

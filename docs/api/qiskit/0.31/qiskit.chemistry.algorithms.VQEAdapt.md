@@ -1,4 +1,4 @@
-# VQEAdapt[¶](#vqeadapt "Permalink to this headline")
+# VQEAdapt
 
 <span id="undefined" />
 

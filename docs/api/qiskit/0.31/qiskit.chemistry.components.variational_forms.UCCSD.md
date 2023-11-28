@@ -1,4 +1,4 @@
-# UCCSD[¶](#uccsd "Permalink to this headline")
+# UCCSD
 
 <span id="undefined" />
 

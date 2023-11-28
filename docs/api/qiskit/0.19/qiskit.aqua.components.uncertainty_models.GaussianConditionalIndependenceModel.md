@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel
 ---
 
-# GaussianConditionalIndependenceModel[¶](#gaussianconditionalindependencemodel "Permalink to this headline")
+# GaussianConditionalIndependenceModel
 
 <span id="qiskit.aqua.components.uncertainty_models.GaussianConditionalIndependenceModel" />
 

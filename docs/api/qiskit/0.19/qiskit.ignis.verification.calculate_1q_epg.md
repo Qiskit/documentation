@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.verification.calculate_1q_epg
 ---
 
-# calculate\_1q\_epg[¶](#calculate-1q-epg "Permalink to this headline")
+# calculate\_1q\_epg
 
 <span id="qiskit.ignis.verification.calculate_1q_epg" />
 

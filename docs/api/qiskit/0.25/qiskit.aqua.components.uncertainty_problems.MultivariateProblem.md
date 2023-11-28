@@ -1,4 +1,4 @@
-# qiskit.aqua.components.uncertainty\_problems.MultivariateProblem[¶](#qiskit-aqua-components-uncertainty-problems-multivariateproblem "Permalink to this headline")
+# qiskit.aqua.components.uncertainty\_problems.MultivariateProblem
 
 <span id="undefined" />
 

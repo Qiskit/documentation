@@ -1,4 +1,4 @@
-# RawFeatureVector[¶](#rawfeaturevector "Permalink to this headline")
+# RawFeatureVector
 
 <span id="undefined" />
 

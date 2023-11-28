@@ -1,4 +1,4 @@
-# Grover[¶](#grover "Permalink to this headline")
+# Grover
 
 <span id="undefined" />
 

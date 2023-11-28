@@ -1,4 +1,4 @@
-# qiskit.finance.data\_providers.RandomDataProvider[¶](#qiskit-finance-data-providers-randomdataprovider "Permalink to this headline")
+# qiskit.finance.data\_providers.RandomDataProvider
 
 <span id="undefined" />
 

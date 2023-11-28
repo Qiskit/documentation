@@ -1,4 +1,4 @@
-# CDKMRippleCarryAdder[¶](#cdkmripplecarryadder "Permalink to this headline")
+# CDKMRippleCarryAdder
 
 <span id="undefined" />
 

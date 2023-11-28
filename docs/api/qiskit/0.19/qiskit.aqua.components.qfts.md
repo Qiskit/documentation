@@ -14,7 +14,7 @@ python_api_name: qiskit.aqua.components.qfts
 
 <span id="module-qiskit.aqua.components.qfts" />
 
-`qiskit.aqua.components.qfts¶`
+`qiskit.aqua.components.qfts`
 
 In quantum computing, a Quantum Fourier Transform (QFT) is a linear transformation on quantum bits, and is the quantum analogue of the discrete Fourier transform. A QFT is a part of many quantum algorithms, such as [`Shor`](qiskit.aqua.algorithms.Shor "qiskit.aqua.algorithms.Shor")’s algorithm for factoring and computing the discrete logarithm, and the [`QPE`](qiskit.aqua.algorithms.QPE "qiskit.aqua.algorithms.QPE") algorithm for estimating the eigenvalues of a unitary operator.
 
@@ -26,19 +26,11 @@ Since there is an efficient quantum circuit implementing the QFT, the circuit ca
 
 # Quantum Fourier Transform Base Class
 
-<span id="module-qiskit.aqua.components.qfts" />
-
-`¶`
-
 |                                                                            |             |
 | -------------------------------------------------------------------------- | ----------- |
 | [`QFT`](qiskit.aqua.components.qfts.QFT "qiskit.aqua.components.qfts.QFT") | DEPRECATED. |
 
 # Quantum Fourier Transforms
-
-<span id="module-qiskit.aqua.components.qfts" />
-
-`¶`
 
 |                                                                                                    |                      |
 | -------------------------------------------------------------------------------------------------- | -------------------- |

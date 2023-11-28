@@ -1,6 +1,6 @@
 <span id="qiskit-providers-ibmq-credentials-credentials" />
 
-# qiskit.providers.ibmq.credentials.Credentials[¶](#qiskit-providers-ibmq-credentials-credentials "Permalink to this headline")
+# qiskit.providers.ibmq.credentials.Credentials
 
 <span id="undefined" />
 

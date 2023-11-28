@@ -1,4 +1,4 @@
-# Target[¶](#target "Permalink to this headline")
+# Target
 
 <span id="undefined" />
 

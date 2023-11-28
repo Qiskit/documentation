@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-linearpaulirotations" />
 
-# qiskit.circuit.library.LinearPauliRotations[¶](#qiskit-circuit-library-linearpaulirotations "Permalink to this headline")
+# qiskit.circuit.library.LinearPauliRotations
 
 <span id="undefined" />
 

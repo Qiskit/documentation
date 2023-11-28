@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.transpiler.preset_passmanagers.level_0_pass_manager
 ---
 
-# level\_0\_pass\_manager[¶](#level-0-pass-manager "Permalink to this headline")
+# level\_0\_pass\_manager
 
 <span id="qiskit.transpiler.preset_passmanagers.level_0_pass_manager" />
 

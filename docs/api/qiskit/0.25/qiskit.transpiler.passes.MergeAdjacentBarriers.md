@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.MergeAdjacentBarriers[¶](#qiskit-transpiler-passes-mergeadjacentbarriers "Permalink to this headline")
+# qiskit.transpiler.passes.MergeAdjacentBarriers
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.optimizers.CRS
 ---
 
-# CRS[¶](#crs "Permalink to this headline")
+# CRS
 
 <span id="qiskit.aqua.components.optimizers.CRS" />
 

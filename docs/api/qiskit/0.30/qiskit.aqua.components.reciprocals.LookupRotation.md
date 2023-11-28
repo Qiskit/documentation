@@ -1,4 +1,4 @@
-# LookupRotation[¶](#lookuprotation "Permalink to this headline")
+# LookupRotation
 
 <span id="undefined" />
 

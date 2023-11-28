@@ -1,4 +1,4 @@
-# U3Gate[¶](#u3gate "Permalink to this headline")
+# U3Gate
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# QuantumVolume[¶](#quantumvolume "Permalink to this headline")
+# QuantumVolume
 
 <span id="undefined" />
 

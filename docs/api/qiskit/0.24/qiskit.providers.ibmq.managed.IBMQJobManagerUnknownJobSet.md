@@ -1,6 +1,6 @@
 <span id="qiskit-providers-ibmq-managed-ibmqjobmanagerunknownjobset" />
 
-# qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet[¶](#qiskit-providers-ibmq-managed-ibmqjobmanagerunknownjobset "Permalink to this headline")
+# qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet
 
 <span id="undefined" />
 

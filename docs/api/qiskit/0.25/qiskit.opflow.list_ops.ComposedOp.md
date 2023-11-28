@@ -1,4 +1,4 @@
-# qiskit.opflow\.list\_ops.ComposedOp[¶](#qiskit-opflow-list-ops-composedop "Permalink to this headline")
+# qiskit.opflow\.list\_ops.ComposedOp
 
 <span id="undefined" />
 

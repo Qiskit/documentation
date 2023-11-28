@@ -1,4 +1,4 @@
-# ExactReciprocal[¶](#exactreciprocal "Permalink to this headline")
+# ExactReciprocal
 
 <span id="undefined" />
 

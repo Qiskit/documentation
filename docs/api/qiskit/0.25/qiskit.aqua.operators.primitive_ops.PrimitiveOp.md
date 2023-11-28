@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.primitive\_ops.PrimitiveOp[¶](#qiskit-aqua-operators-primitive-ops-primitiveop "Permalink to this headline")
+# qiskit.aqua.operators.primitive\_ops.PrimitiveOp
 
 <span id="undefined" />
 

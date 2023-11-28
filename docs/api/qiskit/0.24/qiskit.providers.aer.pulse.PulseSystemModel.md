@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-pulse-pulsesystemmodel" />
 
-# qiskit.providers.aer.pulse.PulseSystemModel[¶](#qiskit-providers-aer-pulse-pulsesystemmodel "Permalink to this headline")
+# qiskit.providers.aer.pulse.PulseSystemModel
 
 <span id="undefined" />
 

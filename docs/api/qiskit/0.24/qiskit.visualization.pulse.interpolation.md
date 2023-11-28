@@ -12,10 +12,6 @@ python_api_name: qiskit.visualization.pulse.interpolation
 
 # qiskit.visualization.pulse.interpolation
 
-<span id="module-qiskit.visualization.pulse.interpolation" />
-
-`¶`
-
 interpolation module for pulse visualization.
 
 ## Functions

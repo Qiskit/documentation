@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.TellData
 ---
 
-# TellData[¶](#telldata "Permalink to this headline")
+# TellData
 
 <span id="qiskit.algorithms.optimizers.TellData" />
 

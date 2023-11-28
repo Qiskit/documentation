@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-or" />
 
-# qiskit.circuit.library.OR[¶](#qiskit-circuit-library-or "Permalink to this headline")
+# qiskit.circuit.library.OR
 
 <span id="undefined" />
 

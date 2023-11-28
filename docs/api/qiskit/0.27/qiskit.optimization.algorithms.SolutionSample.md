@@ -1,4 +1,4 @@
-# qiskit.optimization.algorithms.SolutionSample[¶](#qiskit-optimization-algorithms-solutionsample "Permalink to this headline")
+# qiskit.optimization.algorithms.SolutionSample
 
 <span id="undefined" />
 

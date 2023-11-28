@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.job.job\_monitor[¶](#qiskit-providers-ibmq-job-job-monitor "Permalink to this headline")
+# qiskit.providers.ibmq.job.job\_monitor
 
 <span id="undefined" />
 

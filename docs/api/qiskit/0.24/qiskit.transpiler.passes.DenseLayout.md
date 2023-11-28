@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-denselayout" />
 
-# qiskit.transpiler.passes.DenseLayout[¶](#qiskit-transpiler-passes-denselayout "Permalink to this headline")
+# qiskit.transpiler.passes.DenseLayout
 
 <span id="undefined" />
 

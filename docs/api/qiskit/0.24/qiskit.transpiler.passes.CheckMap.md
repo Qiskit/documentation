@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-checkmap" />
 
-# qiskit.transpiler.passes.CheckMap[¶](#qiskit-transpiler-passes-checkmap "Permalink to this headline")
+# qiskit.transpiler.passes.CheckMap
 
 <span id="undefined" />
 

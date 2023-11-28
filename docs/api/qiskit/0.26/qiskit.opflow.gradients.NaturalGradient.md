@@ -1,4 +1,4 @@
-# qiskit.opflow\.gradients.NaturalGradient[¶](#qiskit-opflow-gradients-naturalgradient "Permalink to this headline")
+# qiskit.opflow\.gradients.NaturalGradient
 
 <span id="undefined" />
 

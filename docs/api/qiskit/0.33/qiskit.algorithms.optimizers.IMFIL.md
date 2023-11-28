@@ -1,4 +1,4 @@
-# IMFIL[¶](#imfil "Permalink to this headline")
+# IMFIL
 
 <span id="undefined" />
 

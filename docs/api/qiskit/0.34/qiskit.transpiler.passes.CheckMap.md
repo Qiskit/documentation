@@ -1,4 +1,4 @@
-# CheckMap[¶](#checkmap "Permalink to this headline")
+# CheckMap
 
 <span id="undefined" />
 

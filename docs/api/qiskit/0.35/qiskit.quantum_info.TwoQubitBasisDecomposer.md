@@ -1,4 +1,4 @@
-# TwoQubitBasisDecomposer[¶](#twoqubitbasisdecomposer "Permalink to this headline")
+# TwoQubitBasisDecomposer
 
 <span id="undefined" />
 

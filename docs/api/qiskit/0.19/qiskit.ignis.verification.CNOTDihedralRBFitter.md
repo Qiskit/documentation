@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.verification.CNOTDihedralRBFitter
 ---
 
-# CNOTDihedralRBFitter[¶](#cnotdihedralrbfitter "Permalink to this headline")
+# CNOTDihedralRBFitter
 
 <span id="qiskit.ignis.verification.CNOTDihedralRBFitter" />
 

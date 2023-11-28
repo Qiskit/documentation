@@ -1,4 +1,4 @@
-# UserMessenger[¶](#usermessenger "Permalink to this headline")
+# UserMessenger
 
 <span id="undefined" />
 

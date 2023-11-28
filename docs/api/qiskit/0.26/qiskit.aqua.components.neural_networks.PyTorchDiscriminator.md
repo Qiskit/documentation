@@ -1,4 +1,4 @@
-# qiskit.aqua.components.neural\_networks.PyTorchDiscriminator[¶](#qiskit-aqua-components-neural-networks-pytorchdiscriminator "Permalink to this headline")
+# qiskit.aqua.components.neural\_networks.PyTorchDiscriminator
 
 <span id="undefined" />
 

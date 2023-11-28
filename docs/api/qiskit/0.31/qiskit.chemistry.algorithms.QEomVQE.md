@@ -1,4 +1,4 @@
-# QEomVQE[¶](#qeomvqe "Permalink to this headline")
+# QEomVQE
 
 <span id="undefined" />
 

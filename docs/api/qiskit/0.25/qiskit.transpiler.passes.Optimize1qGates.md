@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.Optimize1qGates[¶](#qiskit-transpiler-passes-optimize1qgates "Permalink to this headline")
+# qiskit.transpiler.passes.Optimize1qGates
 
 <span id="undefined" />
 

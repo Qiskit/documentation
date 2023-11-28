@@ -1,4 +1,4 @@
-# UnivariateVariationalDistribution[¶](#univariatevariationaldistribution "Permalink to this headline")
+# UnivariateVariationalDistribution
 
 <span id="undefined" />
 

@@ -12,13 +12,9 @@ python_api_name: qiskit.providers.aer
 
 <span id="module-qiskit.providers.aer" />
 
-`qiskit.providers.aer¶`
+`qiskit.providers.aer`
 
 ## Simulator Provider
-
-<span id="module-qiskit.providers.aer" />
-
-`¶`
 
 |                                                                                                                         |                                   |
 | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
@@ -26,20 +22,12 @@ python_api_name: qiskit.providers.aer
 
 ## Simulator Backends
 
-<span id="module-qiskit.providers.aer" />
-
-`¶`
-
 |                                                                                                                                                                    |                                          |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------- |
 | [`AerSimulator`](qiskit.providers.aer.AerSimulator#qiskit.providers.aer.AerSimulator "qiskit.providers.aer.AerSimulator")(\[configuration, properties, …])         | Noisy quantum circuit simulator backend. |
 | [`PulseSimulator`](qiskit.providers.aer.PulseSimulator#qiskit.providers.aer.PulseSimulator "qiskit.providers.aer.PulseSimulator")(\[configuration, properties, …]) | Pulse schedule simulator backend.        |
 
 ## Legacy Simulator Backends
-
-<span id="module-qiskit.providers.aer" />
-
-`¶`
 
 |                                                                                                                                                                                |                                             |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
@@ -49,19 +37,11 @@ python_api_name: qiskit.providers.aer
 
 ## Job Class
 
-<span id="module-qiskit.providers.aer" />
-
-`¶`
-
 |                                                                                                                                       |               |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
 | [`AerJob`](qiskit.providers.aer.AerJob#qiskit.providers.aer.AerJob "qiskit.providers.aer.AerJob")(backend, job\_id, fn, qobj, \*args) | AerJob class. |
 
 ## Exceptions
-
-<span id="module-qiskit.providers.aer" />
-
-`¶`
 
 |                                                                                                                      |                                             |
 | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |

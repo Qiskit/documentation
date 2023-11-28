@@ -1,4 +1,4 @@
-# qiskit.providers.models.PulseBackendConfiguration[¶](#qiskit-providers-models-pulsebackendconfiguration "Permalink to this headline")
+# qiskit.providers.models.PulseBackendConfiguration
 
 <span id="undefined" />
 

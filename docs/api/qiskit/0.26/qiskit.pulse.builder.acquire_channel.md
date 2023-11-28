@@ -1,4 +1,4 @@
-# qiskit.pulse.builder.acquire\_channel[¶](#qiskit-pulse-builder-acquire-channel "Permalink to this headline")
+# qiskit.pulse.builder.acquire\_channel
 
 <span id="undefined" />
 

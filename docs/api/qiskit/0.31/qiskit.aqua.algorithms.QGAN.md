@@ -1,4 +1,4 @@
-# QGAN[¶](#qgan "Permalink to this headline")
+# QGAN
 
 <span id="undefined" />
 

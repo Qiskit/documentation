@@ -1,6 +1,6 @@
 <span id="qiskit-tools-job-monitor" />
 
-# qiskit.tools.job\_monitor[¶](#qiskit-tools-job-monitor "Permalink to this headline")
+# qiskit.tools.job\_monitor
 
 <span id="undefined" />
 

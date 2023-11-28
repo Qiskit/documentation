@@ -1,4 +1,4 @@
-# qiskit.optimization.converters.QuadraticProgramToQubo[¶](#qiskit-optimization-converters-quadraticprogramtoqubo "Permalink to this headline")
+# qiskit.optimization.converters.QuadraticProgramToQubo
 
 <span id="undefined" />
 

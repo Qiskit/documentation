@@ -1,4 +1,4 @@
-# AmpCalFitter[¶](#ampcalfitter "Permalink to this headline")
+# AmpCalFitter
 
 <span id="undefined" />
 

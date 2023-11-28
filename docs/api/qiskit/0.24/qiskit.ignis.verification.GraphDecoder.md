@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-graphdecoder" />
 
-# qiskit.ignis.verification.GraphDecoder[¶](#qiskit-ignis-verification-graphdecoder "Permalink to this headline")
+# qiskit.ignis.verification.GraphDecoder
 
 <span id="undefined" />
 

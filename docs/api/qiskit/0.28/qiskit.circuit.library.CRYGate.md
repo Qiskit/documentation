@@ -1,4 +1,4 @@
-# qiskit.circuit.library.CRYGate[¶](#qiskit-circuit-library-crygate "Permalink to this headline")
+# qiskit.circuit.library.CRYGate
 
 <span id="undefined" />
 

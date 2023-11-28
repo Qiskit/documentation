@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.utils.get_entangler_map
 ---
 
-# qiskit.utils.get\_entangler\_map[¶](#qiskit-utils-get-entangler-map "Permalink to this headline")
+# qiskit.utils.get\_entangler\_map
 
 <span id="qiskit.utils.get_entangler_map" />
 

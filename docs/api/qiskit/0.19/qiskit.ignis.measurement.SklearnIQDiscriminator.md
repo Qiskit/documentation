@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.measurement.SklearnIQDiscriminator
 ---
 
-# SklearnIQDiscriminator[¶](#sklearniqdiscriminator "Permalink to this headline")
+# SklearnIQDiscriminator
 
 <span id="qiskit.ignis.measurement.SklearnIQDiscriminator" />
 

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.random_quantum_channel
 ---
 
-# random\_quantum\_channel[¶](#random-quantum-channel "Permalink to this headline")
+# random\_quantum\_channel
 
 <span id="qiskit.quantum_info.random_quantum_channel" />
 

@@ -1,4 +1,4 @@
-# CircuitStateFn[¶](#circuitstatefn "Permalink to this headline")
+# CircuitStateFn
 
 <span id="undefined" />
 

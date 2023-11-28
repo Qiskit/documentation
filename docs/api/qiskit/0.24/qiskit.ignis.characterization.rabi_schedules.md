@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-characterization-rabi-schedules" />
 
-# qiskit.ignis.characterization.rabi\_schedules[¶](#qiskit-ignis-characterization-rabi-schedules "Permalink to this headline")
+# qiskit.ignis.characterization.rabi\_schedules
 
 <span id="undefined" />
 

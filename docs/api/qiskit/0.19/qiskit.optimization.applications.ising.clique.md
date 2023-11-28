@@ -8,7 +8,7 @@ python_api_name: qiskit.optimization.applications.ising.clique.get_graph_solutio
 
 <span id="qiskit-optimization-applications-ising-clique" />
 
-# qiskit.optimization.applications.ising.clique[¶](#module-qiskit.optimization.applications.ising.clique "Permalink to this headline")
+# qiskit.optimization.applications.ising.clique
 
 Convert clique instances into Pauli list
 

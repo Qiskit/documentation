@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective
 ---
 
-# DefaultCNOTUnitObjective[¶](#defaultcnotunitobjective "Permalink to this headline")
+# DefaultCNOTUnitObjective
 
 <span id="qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective" />
 

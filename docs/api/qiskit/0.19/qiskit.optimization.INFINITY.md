@@ -1,4 +1,4 @@
-# INFINITY[¶](#infinity "Permalink to this headline")
+# INFINITY
 
 ## INFINITY *= 1e+20*
 

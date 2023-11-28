@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.diamond_norm
 ---
 
-# diamond\_norm[¶](#diamond-norm "Permalink to this headline")
+# diamond\_norm
 
 <span id="qiskit.quantum_info.diamond_norm" />
 

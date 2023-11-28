@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-algorithms-eigensolver" />
 
-# qiskit.aqua.algorithms.Eigensolver[¶](#qiskit-aqua-algorithms-eigensolver "Permalink to this headline")
+# qiskit.aqua.algorithms.Eigensolver
 
 <span id="undefined" />
 

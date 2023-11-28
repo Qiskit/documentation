@@ -1,6 +1,6 @@
 <span id="qiskit-validation-jsonschema-validate-json-against-schema" />
 
-# qiskit.validation.jsonschema.validate\_json\_against\_schema[¶](#qiskit-validation-jsonschema-validate-json-against-schema "Permalink to this headline")
+# qiskit.validation.jsonschema.validate\_json\_against\_schema
 
 <span id="undefined" />
 

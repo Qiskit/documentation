@@ -1,4 +1,4 @@
-# OpenQASMLexer[¶](#openqasmlexer "Permalink to this headline")
+# OpenQASMLexer
 
 <span id="undefined" />
 

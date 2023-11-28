@@ -1,4 +1,4 @@
-# CustomCircuitOracle[¶](#customcircuitoracle "Permalink to this headline")
+# CustomCircuitOracle
 
 <span id="undefined" />
 

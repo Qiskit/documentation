@@ -1,4 +1,4 @@
-# qiskit.utils.detach\_prefix[¶](#qiskit-utils-detach-prefix "Permalink to this headline")
+# qiskit.utils.detach\_prefix
 
 <span id="undefined" />
 

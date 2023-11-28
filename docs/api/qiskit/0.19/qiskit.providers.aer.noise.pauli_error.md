@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.noise.pauli_error
 ---
 
-# pauli\_error[¶](#pauli-error "Permalink to this headline")
+# pauli\_error
 
 <span id="qiskit.providers.aer.noise.pauli_error" />
 

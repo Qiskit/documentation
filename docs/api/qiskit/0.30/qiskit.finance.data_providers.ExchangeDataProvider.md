@@ -1,4 +1,4 @@
-# ExchangeDataProvider[¶](#exchangedataprovider "Permalink to this headline")
+# ExchangeDataProvider
 
 <span id="undefined" />
 

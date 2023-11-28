@@ -16,7 +16,7 @@ python_api_name: qiskit.aqua.components.oracles
 
 <span id="module-qiskit.aqua.components.oracles" />
 
-`qiskit.aqua.components.oracles¶`
+`qiskit.aqua.components.oracles`
 
 An oracle is a black box operation used as input to another algorithm. They tend to encode a function $f:\{0,1\}^n \rightarrow \{0,1\}^m$ where the goal of the algorithm is to determine some property of $f$.
 
@@ -24,19 +24,11 @@ Oracles are used by [`Grover`](qiskit.aqua.algorithms.Grover#qiskit.aqua.algorit
 
 # Oracle Base Class
 
-<span id="module-qiskit.aqua.components.oracles" />
-
-`¶`
-
 |                                                                                                                                 |                         |
 | ------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | [`Oracle`](qiskit.aqua.components.oracles.Oracle#qiskit.aqua.components.oracles.Oracle "qiskit.aqua.components.oracles.Oracle") | Base class for oracles. |
 
 # Oracles
-
-<span id="module-qiskit.aqua.components.oracles" />
-
-`¶`
 
 |                                                                                                                                                                                                     |                                          |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |

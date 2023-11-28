@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.scheduler.utils.format_meas_map
 ---
 
-# utils[¶](#module-qiskit.scheduler.utils "Permalink to this headline")
+# utils
 
 Scheduling utility functions.
 

@@ -1,4 +1,4 @@
-# ZZFitter[¶](#zzfitter "Permalink to this headline")
+# ZZFitter
 
 <span id="undefined" />
 

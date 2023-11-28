@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.variational_forms.VariationalForm
 ---
 
-# VariationalForm[¶](#variationalform "Permalink to this headline")
+# VariationalForm
 
 <span id="qiskit.aqua.components.variational_forms.VariationalForm" />
 

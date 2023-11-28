@@ -1,4 +1,4 @@
-# QMolecule[¶](#qmolecule "Permalink to this headline")
+# QMolecule
 
 <span id="undefined" />
 

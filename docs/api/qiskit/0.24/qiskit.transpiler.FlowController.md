@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-flowcontroller" />
 
-# qiskit.transpiler.FlowController[¶](#qiskit-transpiler-flowcontroller "Permalink to this headline")
+# qiskit.transpiler.FlowController
 
 <span id="undefined" />
 

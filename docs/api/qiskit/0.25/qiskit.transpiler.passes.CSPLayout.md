@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.CSPLayout[¶](#qiskit-transpiler-passes-csplayout "Permalink to this headline")
+# qiskit.transpiler.passes.CSPLayout
 
 <span id="undefined" />
 

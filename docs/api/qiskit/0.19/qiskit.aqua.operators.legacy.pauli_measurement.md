@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.operators.legacy.pauli_measurement
 ---
 
-# pauli\_measurement[¶](#pauli-measurement "Permalink to this headline")
+# pauli\_measurement
 
 <span id="qiskit.aqua.operators.legacy.pauli_measurement" />
 

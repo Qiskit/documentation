@@ -14,7 +14,7 @@ python_api_name: qiskit.result
 
 <span id="module-qiskit.result" />
 
-`qiskit.result¶`
+`qiskit.result`
 
 |                                                                                                                               |                                                                      |
 | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
@@ -27,20 +27,12 @@ python_api_name: qiskit.result
 
 ## Distributions
 
-<span id="module-qiskit.result" />
-
-`¶`
-
 |                                                                                                               |                                                          |
 | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
 | [`ProbDistribution`](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")(data\[, shots])         | A generic dict-like class for probability distributions. |
 | [`QuasiDistribution`](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")(data\[, shots, ...]) | A dict-like class for representing quasi-probabilities.  |
 
 ## Mitigation
-
-<span id="module-qiskit.result" />
-
-`¶`
 
 |                                                                                                                                         |                                                 |
 | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |

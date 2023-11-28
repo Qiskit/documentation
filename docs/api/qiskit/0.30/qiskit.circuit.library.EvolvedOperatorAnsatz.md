@@ -1,4 +1,4 @@
-# EvolvedOperatorAnsatz[¶](#evolvedoperatoransatz "Permalink to this headline")
+# EvolvedOperatorAnsatz
 
 <span id="undefined" />
 

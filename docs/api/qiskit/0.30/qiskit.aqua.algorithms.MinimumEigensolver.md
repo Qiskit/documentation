@@ -1,4 +1,4 @@
-# MinimumEigensolver[¶](#minimumeigensolver "Permalink to this headline")
+# MinimumEigensolver
 
 <span id="undefined" />
 

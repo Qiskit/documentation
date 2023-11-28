@@ -1,4 +1,4 @@
-# PauliEvolutionGate[¶](#paulievolutiongate "Permalink to this headline")
+# PauliEvolutionGate
 
 <span id="undefined" />
 

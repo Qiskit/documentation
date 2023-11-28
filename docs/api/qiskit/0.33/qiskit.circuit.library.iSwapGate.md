@@ -1,4 +1,4 @@
-# iSwapGate[¶](#iswapgate "Permalink to this headline")
+# iSwapGate
 
 <span id="undefined" />
 

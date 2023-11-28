@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.operators.legacy.covariance
 ---
 
-# covariance[¶](#covariance "Permalink to this headline")
+# covariance
 
 <span id="qiskit.aqua.operators.legacy.covariance" />
 

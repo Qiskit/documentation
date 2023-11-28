@@ -1,4 +1,4 @@
-# qiskit.opflow\.converters.TwoQubitReduction[¶](#qiskit-opflow-converters-twoqubitreduction "Permalink to this headline")
+# qiskit.opflow\.converters.TwoQubitReduction
 
 <span id="undefined" />
 

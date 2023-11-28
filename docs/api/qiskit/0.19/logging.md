@@ -14,7 +14,7 @@ python_api_name: qiskit.ignis.logging
 
 <span id="module-qiskit.ignis.logging" />
 
-`qiskit.ignis.logging¶`
+`qiskit.ignis.logging`
 
 |                                                                                                      |                                                           |
 | ---------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |

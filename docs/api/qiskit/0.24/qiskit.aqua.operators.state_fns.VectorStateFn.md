@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-state-fns-vectorstatefn" />
 
-# qiskit.aqua.operators.state\_fns.VectorStateFn[¶](#qiskit-aqua-operators-state-fns-vectorstatefn "Permalink to this headline")
+# qiskit.aqua.operators.state\_fns.VectorStateFn
 
 <span id="undefined" />
 

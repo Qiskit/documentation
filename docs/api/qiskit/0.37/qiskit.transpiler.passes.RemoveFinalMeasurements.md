@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.RemoveFinalMeasurements
 ---
 
-# RemoveFinalMeasurements[¶](#removefinalmeasurements "Permalink to this headline")
+# RemoveFinalMeasurements
 
 <span id="qiskit.transpiler.passes.RemoveFinalMeasurements" />
 

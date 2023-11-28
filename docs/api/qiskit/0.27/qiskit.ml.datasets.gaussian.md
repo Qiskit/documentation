@@ -1,4 +1,4 @@
-# qiskit.ml.datasets.gaussian[¶](#qiskit-ml-datasets-gaussian "Permalink to this headline")
+# qiskit.ml.datasets.gaussian
 
 <span id="undefined" />
 

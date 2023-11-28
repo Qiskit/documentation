@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-schedule" />
 
-# qiskit.pulse.Schedule[¶](#qiskit-pulse-schedule "Permalink to this headline")
+# qiskit.pulse.Schedule
 
 <span id="undefined" />
 

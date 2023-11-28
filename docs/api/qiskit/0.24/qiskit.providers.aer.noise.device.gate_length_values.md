@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-noise-device-gate-length-values" />
 
-# qiskit.providers.aer.noise.device.gate\_length\_values[¶](#qiskit-providers-aer-noise-device-gate-length-values "Permalink to this headline")
+# qiskit.providers.aer.noise.device.gate\_length\_values
 
 <span id="undefined" />
 

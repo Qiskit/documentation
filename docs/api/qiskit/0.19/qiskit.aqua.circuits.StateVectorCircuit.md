@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.circuits.StateVectorCircuit
 ---
 
-# StateVectorCircuit[¶](#statevectorcircuit "Permalink to this headline")
+# StateVectorCircuit
 
 <span id="qiskit.aqua.circuits.StateVectorCircuit" />
 

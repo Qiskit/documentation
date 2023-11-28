@@ -1,4 +1,4 @@
-# TemplateOptimization[¶](#templateoptimization "Permalink to this headline")
+# TemplateOptimization
 
 <span id="undefined" />
 

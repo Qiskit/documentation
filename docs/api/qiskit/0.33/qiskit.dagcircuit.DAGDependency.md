@@ -1,4 +1,4 @@
-# DAGDependency[¶](#dagdependency "Permalink to this headline")
+# DAGDependency
 
 <span id="undefined" />
 

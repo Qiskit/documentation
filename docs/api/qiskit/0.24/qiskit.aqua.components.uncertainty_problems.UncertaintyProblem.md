@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-uncertainty-problems-uncertaintyproblem" />
 
-# qiskit.aqua.components.uncertainty\_problems.UncertaintyProblem[¶](#qiskit-aqua-components-uncertainty-problems-uncertaintyproblem "Permalink to this headline")
+# qiskit.aqua.components.uncertainty\_problems.UncertaintyProblem
 
 <span id="undefined" />
 

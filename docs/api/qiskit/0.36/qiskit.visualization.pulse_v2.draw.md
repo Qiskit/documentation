@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.pulse_v2.draw
 ---
 
-# qiskit.visualization.pulse\_v2.draw[¶](#qiskit-visualization-pulse-v2-draw "Permalink to this headline")
+# qiskit.visualization.pulse\_v2.draw
 
 <span id="qiskit.visualization.pulse_v2.draw" />
 

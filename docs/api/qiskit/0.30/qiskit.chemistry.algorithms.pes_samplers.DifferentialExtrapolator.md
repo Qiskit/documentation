@@ -1,4 +1,4 @@
-# DifferentialExtrapolator[¶](#differentialextrapolator "Permalink to this headline")
+# DifferentialExtrapolator
 
 <span id="undefined" />
 

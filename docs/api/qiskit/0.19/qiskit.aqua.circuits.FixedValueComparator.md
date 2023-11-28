@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.circuits.FixedValueComparator
 ---
 
-# FixedValueComparator[¶](#fixedvaluecomparator "Permalink to this headline")
+# FixedValueComparator
 
 <span id="qiskit.aqua.circuits.FixedValueComparator" />
 

@@ -1,4 +1,4 @@
-# qiskit.circuit.library.Diagonal[¶](#qiskit-circuit-library-diagonal "Permalink to this headline")
+# qiskit.circuit.library.Diagonal
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-algorithms-deutschjozsa" />
 
-# qiskit.aqua.algorithms.DeutschJozsa[¶](#qiskit-aqua-algorithms-deutschjozsa "Permalink to this headline")
+# qiskit.aqua.algorithms.DeutschJozsa
 
 <span id="undefined" />
 

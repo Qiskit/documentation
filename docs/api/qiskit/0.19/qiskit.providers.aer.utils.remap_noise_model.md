@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.utils.remap_noise_model
 ---
 
-# remap\_noise\_model[¶](#remap-noise-model "Permalink to this headline")
+# remap\_noise\_model
 
 <span id="qiskit.providers.aer.utils.remap_noise_model" />
 

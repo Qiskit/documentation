@@ -1,4 +1,4 @@
-# QuantumRegister[¶](#quantumregister "Permalink to this headline")
+# QuantumRegister
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.StabilizerState[¶](#qiskit-quantum-info-stabilizerstate "Permalink to this headline")
+# qiskit.quantum\_info.StabilizerState
 
 <span id="undefined" />
 

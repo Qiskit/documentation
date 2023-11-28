@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-evolutions-matrixevolution" />
 
-# qiskit.aqua.operators.evolutions.MatrixEvolution[¶](#qiskit-aqua-operators-evolutions-matrixevolution "Permalink to this headline")
+# qiskit.aqua.operators.evolutions.MatrixEvolution
 
 <span id="undefined" />
 

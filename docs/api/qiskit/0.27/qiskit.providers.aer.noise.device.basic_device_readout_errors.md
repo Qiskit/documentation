@@ -1,4 +1,4 @@
-# qiskit.providers.aer.noise.device.basic\_device\_readout\_errors[¶](#qiskit-providers-aer-noise-device-basic-device-readout-errors "Permalink to this headline")
+# qiskit.providers.aer.noise.device.basic\_device\_readout\_errors
 
 <span id="undefined" />
 

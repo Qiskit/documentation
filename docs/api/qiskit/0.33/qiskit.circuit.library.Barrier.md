@@ -1,4 +1,4 @@
-# Barrier[¶](#barrier "Permalink to this headline")
+# Barrier
 
 <span id="undefined" />
 

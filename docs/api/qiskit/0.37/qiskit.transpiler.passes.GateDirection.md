@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.GateDirection
 ---
 
-# GateDirection[¶](#gatedirection "Permalink to this headline")
+# GateDirection
 
 <span id="qiskit.transpiler.passes.GateDirection" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.uncertainty_problems.UnivariateProblem
 ---
 
-# UnivariateProblem[¶](#univariateproblem "Permalink to this headline")
+# UnivariateProblem
 
 <span id="qiskit.aqua.components.uncertainty_problems.UnivariateProblem" />
 

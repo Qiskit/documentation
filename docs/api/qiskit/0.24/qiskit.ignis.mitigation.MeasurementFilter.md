@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-mitigation-measurementfilter" />
 
-# qiskit.ignis.mitigation.MeasurementFilter[¶](#qiskit-ignis-mitigation-measurementfilter "Permalink to this headline")
+# qiskit.ignis.mitigation.MeasurementFilter
 
 <span id="undefined" />
 

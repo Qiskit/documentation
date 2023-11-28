@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-classicalfunction-classicalfunction" />
 
-# qiskit.circuit.classicalfunction.ClassicalFunction[¶](#qiskit-circuit-classicalfunction-classicalfunction "Permalink to this headline")
+# qiskit.circuit.classicalfunction.ClassicalFunction
 
 <span id="undefined" />
 

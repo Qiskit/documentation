@@ -1,4 +1,4 @@
-# Stinespring[¶](#stinespring "Permalink to this headline")
+# Stinespring
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# QSVM[¶](#qsvm "Permalink to this headline")
+# QSVM
 
 <span id="undefined" />
 

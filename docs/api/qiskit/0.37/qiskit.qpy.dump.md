@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.qpy.dump
 ---
 
-# qiskit.qpy.dump[¶](#qiskit-qpy-dump "Permalink to this headline")
+# qiskit.qpy.dump
 
 <span id="qiskit.qpy.dump" />
 

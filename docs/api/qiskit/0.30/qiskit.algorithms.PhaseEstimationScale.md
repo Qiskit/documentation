@@ -1,4 +1,4 @@
-# PhaseEstimationScale[¶](#phaseestimationscale "Permalink to this headline")
+# PhaseEstimationScale
 
 <span id="undefined" />
 

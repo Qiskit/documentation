@@ -1,4 +1,4 @@
-# qiskit.algorithms.HHL[¶](#qiskit-algorithms-hhl "Permalink to this headline")
+# qiskit.algorithms.HHL
 
 <span id="undefined" />
 

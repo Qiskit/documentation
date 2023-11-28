@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-problems-quadraticprogram" />
 
-# qiskit.optimization.problems.QuadraticProgram[¶](#qiskit-optimization-problems-quadraticprogram "Permalink to this headline")
+# qiskit.optimization.problems.QuadraticProgram
 
 <span id="undefined" />
 

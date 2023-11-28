@@ -1,4 +1,4 @@
-# qiskit.circuit.library.CYGate[¶](#qiskit-circuit-library-cygate "Permalink to this headline")
+# qiskit.circuit.library.CYGate
 
 <span id="undefined" />
 

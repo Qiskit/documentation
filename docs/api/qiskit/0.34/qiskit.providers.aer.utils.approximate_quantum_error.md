@@ -1,4 +1,4 @@
-# qiskit.providers.aer.utils.approximate\_quantum\_error[¶](#qiskit-providers-aer-utils-approximate-quantum-error "Permalink to this headline")
+# qiskit.providers.aer.utils.approximate\_quantum\_error
 
 <span id="undefined" />
 

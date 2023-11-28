@@ -1,4 +1,4 @@
-# RYGate[¶](#rygate "Permalink to this headline")
+# RYGate
 
 <span id="undefined" />
 

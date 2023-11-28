@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.IBMQAccountCredentialsInvalidToken[¶](#qiskit-providers-ibmq-ibmqaccountcredentialsinvalidtoken "Permalink to this headline")
+# qiskit.providers.ibmq.IBMQAccountCredentialsInvalidToken
 
 <span id="undefined" />
 

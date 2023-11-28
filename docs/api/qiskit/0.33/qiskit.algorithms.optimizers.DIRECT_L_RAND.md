@@ -1,4 +1,4 @@
-# DIRECT\_L\_RAND[¶](#direct-l-rand "Permalink to this headline")
+# DIRECT\_L\_RAND
 
 <span id="undefined" />
 

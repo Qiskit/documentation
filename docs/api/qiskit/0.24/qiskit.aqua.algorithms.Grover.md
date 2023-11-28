@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-algorithms-grover" />
 
-# qiskit.aqua.algorithms.Grover[¶](#qiskit-aqua-algorithms-grover "Permalink to this headline")
+# qiskit.aqua.algorithms.Grover
 
 <span id="undefined" />
 

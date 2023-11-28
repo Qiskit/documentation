@@ -1,4 +1,4 @@
-# BaseSampler[¶](#basesampler "Permalink to this headline")
+# BaseSampler
 
 <span id="undefined" />
 

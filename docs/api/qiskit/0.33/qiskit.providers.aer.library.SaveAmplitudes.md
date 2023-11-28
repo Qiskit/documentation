@@ -1,4 +1,4 @@
-# SaveAmplitudes[¶](#saveamplitudes "Permalink to this headline")
+# SaveAmplitudes
 
 <span id="undefined" />
 

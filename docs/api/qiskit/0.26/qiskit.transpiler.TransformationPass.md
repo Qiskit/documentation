@@ -1,4 +1,4 @@
-# qiskit.transpiler.TransformationPass[¶](#qiskit-transpiler-transformationpass "Permalink to this headline")
+# qiskit.transpiler.TransformationPass
 
 <span id="undefined" />
 

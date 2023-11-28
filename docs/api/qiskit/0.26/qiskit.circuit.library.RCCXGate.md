@@ -1,4 +1,4 @@
-# qiskit.circuit.library.RCCXGate[¶](#qiskit-circuit-library-rccxgate "Permalink to this headline")
+# qiskit.circuit.library.RCCXGate
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.library.save_matrix_product_state
 ---
 
-# qiskit.providers.aer.library.save\_matrix\_product\_state[¶](#qiskit-providers-aer-library-save-matrix-product-state "Permalink to this headline")
+# qiskit.providers.aer.library.save\_matrix\_product\_state
 
 <span id="qiskit.providers.aer.library.save_matrix_product_state" />
 

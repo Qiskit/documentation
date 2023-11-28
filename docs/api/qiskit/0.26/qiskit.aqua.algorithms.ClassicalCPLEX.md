@@ -1,4 +1,4 @@
-# qiskit.aqua.algorithms.ClassicalCPLEX[¶](#qiskit-aqua-algorithms-classicalcplex "Permalink to this headline")
+# qiskit.aqua.algorithms.ClassicalCPLEX
 
 <span id="undefined" />
 

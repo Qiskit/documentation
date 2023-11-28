@@ -14,25 +14,17 @@ python_api_name: qiskit.aqua.components.eigs
 
 <span id="module-qiskit.aqua.components.eigs" />
 
-`qiskit.aqua.components.eigs¶`
+`qiskit.aqua.components.eigs`
 
 These are components designed to find eigenvalues. They were initially designed for use by [`HHL`](qiskit.aqua.algorithms.HHL#qiskit.aqua.algorithms.HHL "qiskit.aqua.algorithms.HHL") which remains their currently principal usage.
 
 # Eigenvalues Base Class
-
-<span id="module-qiskit.aqua.components.eigs" />
-
-`¶`
 
 |                                                                                                                                            |                                       |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
 | [`Eigenvalues`](qiskit.aqua.components.eigs.Eigenvalues#qiskit.aqua.components.eigs.Eigenvalues "qiskit.aqua.components.eigs.Eigenvalues") | Base class for eigenvalue estimation. |
 
 # Eigenvalues
-
-<span id="module-qiskit.aqua.components.eigs" />
-
-`¶`
 
 |                                                                                                                            |                                             |
 | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |

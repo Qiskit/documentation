@@ -12,23 +12,15 @@ python_api_name: qiskit.tools
 
 <span id="module-qiskit.tools" />
 
-`qiskit.tools¶`
+`qiskit.tools`
 
 ## Parallel Routines
-
-<span id="module-qiskit.tools" />
-
-`¶`
 
 |                                                                                                         |                                                                                                       |
 | ------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
 | [`parallel_map`](qiskit.tools.parallel_map "qiskit.tools.parallel_map")(task, values\[, task\_args, …]) | Parallel execution of a mapping of values to the function task. This is functionally equivalent to::. |
 
 ## Monitoring
-
-<span id="module-qiskit.tools" />
-
-`¶`
 
 |                                                                                                       |                                                                         |
 | ----------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
@@ -37,10 +29,6 @@ python_api_name: qiskit.tools
 | [`backend_overview`](qiskit.tools.backend_overview "qiskit.tools.backend_overview")()                 | Gives overview information on all the IBMQ backends that are available. |
 
 ## Quantum Information
-
-<span id="module-qiskit.tools" />
-
-`¶`
 
 |                                                                                                                                  |                                                         |
 | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.partial_trace
 ---
 
-# qiskit.quantum\_info.partial\_trace[¶](#qiskit-quantum-info-partial-trace "Permalink to this headline")
+# qiskit.quantum\_info.partial\_trace
 
 <span id="qiskit.quantum_info.partial_trace" />
 

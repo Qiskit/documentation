@@ -1,4 +1,4 @@
-# PhaseEstimationCircuit[¶](#phaseestimationcircuit "Permalink to this headline")
+# PhaseEstimationCircuit
 
 <span id="undefined" />
 

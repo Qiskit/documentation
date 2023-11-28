@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.qfts.Standard
 ---
 
-# Standard[¶](#standard "Permalink to this headline")
+# Standard
 
 <span id="qiskit.aqua.components.qfts.Standard" />
 

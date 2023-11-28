@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.optimizers.POWELL
 ---
 
-# POWELL[¶](#powell "Permalink to this headline")
+# POWELL
 
 <span id="qiskit.aqua.components.optimizers.POWELL" />
 

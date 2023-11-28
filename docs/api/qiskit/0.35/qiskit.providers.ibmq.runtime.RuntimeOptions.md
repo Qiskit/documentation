@@ -1,4 +1,4 @@
-# RuntimeOptions[¶](#runtimeoptions "Permalink to this headline")
+# RuntimeOptions
 
 <span id="undefined" />
 

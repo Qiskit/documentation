@@ -1,4 +1,4 @@
-# CSPLayout[¶](#csplayout "Permalink to this headline")
+# CSPLayout
 
 <span id="undefined" />
 

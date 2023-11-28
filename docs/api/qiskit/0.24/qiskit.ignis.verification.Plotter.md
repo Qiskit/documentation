@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-plotter" />
 
-# qiskit.ignis.verification.Plotter[¶](#qiskit-ignis-verification-plotter "Permalink to this headline")
+# qiskit.ignis.verification.Plotter
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# PadDelay[¶](#paddelay "Permalink to this headline")
+# PadDelay
 
 <span id="undefined" />
 

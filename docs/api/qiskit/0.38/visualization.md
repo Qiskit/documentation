@@ -14,13 +14,9 @@ python_api_name: qiskit.visualization
 
 <span id="module-qiskit.visualization" />
 
-`qiskit.visualization¶`
+`qiskit.visualization`
 
 ## Counts and State Visualizations
-
-<span id="module-qiskit.visualization" />
-
-`¶`
 
 |                                                                                                                                             |                                                                  |
 | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
@@ -34,10 +30,6 @@ python_api_name: qiskit.visualization
 
 ## Device Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                                        |                                                                     |
 | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | [`plot_gate_map`](qiskit.visualization.plot_gate_map "qiskit.visualization.plot_gate_map")(backend\[, figsize, ...])                   | Plots the gate map of a device.                                     |
@@ -47,10 +39,6 @@ python_api_name: qiskit.visualization
 
 ## Circuit Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                                 |                                    |
 | ------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | [`circuit_drawer`](qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer")(circuit\[, scale, filename, ...]) | Draw the quantum circuit.          |
@@ -58,29 +46,17 @@ python_api_name: qiskit.visualization
 
 ## DAG Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                   |                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | [`dag_drawer`](qiskit.visualization.dag_drawer "qiskit.visualization.dag_drawer")(dag\[, scale, filename, style]) | Plot the directed acyclic graph (dag) to represent operation dependencies in a quantum circuit. |
 
 ## Pass Manager Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                                     |                         |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | [`pass_manager_drawer`](qiskit.visualization.pass_manager_drawer "qiskit.visualization.pass_manager_drawer")(pass\_manager\[, ...]) | Draws the pass manager. |
 
 ## Pulse Visualizations
-
-<span id="module-qiskit.visualization" />
-
-`¶`
 
 |                                                                                                                                 |                                                   |
 | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
@@ -91,10 +67,6 @@ python_api_name: qiskit.visualization
 
 ## Timeline Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                          |                                                             |
 | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
 | [`timeline_drawer`](qiskit.visualization.timeline_drawer "qiskit.visualization.timeline_drawer")(program\[, style, ...]) | Generate visualization data for scheduled circuit programs. |
@@ -102,29 +74,17 @@ python_api_name: qiskit.visualization
 
 ## Single Qubit State Transition Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                                         |                                                                                                   |
 | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
 | [`visualize_transition`](qiskit.visualization.visualize_transition "qiskit.visualization.visualize_transition")(circuit\[, trace, ...]) | Creates animation showing transitions between states of a single qubit by applying quantum gates. |
 
 ## Array/Matrix Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                                 |                                                                       |
 | ------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | [`array_to_latex`](qiskit.visualization.array_to_latex "qiskit.visualization.array_to_latex")(array\[, precision, prefix, ...]) | Latex representation of a complex numpy array (with dimension 1 or 2) |
 
 ## Exceptions
-
-<span id="module-qiskit.visualization" />
-
-`¶`
 
 |                                                                                                                      |                                    |
 | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |

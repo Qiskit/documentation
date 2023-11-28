@@ -1,4 +1,4 @@
-# qiskit.ignis.mitigation.CTMPExpvalMeasMitigator[¶](#qiskit-ignis-mitigation-ctmpexpvalmeasmitigator "Permalink to this headline")
+# qiskit.ignis.mitigation.CTMPExpvalMeasMitigator
 
 <span id="undefined" />
 

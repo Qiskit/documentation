@@ -1,4 +1,4 @@
-# qiskit.qasm3.dumps[¶](#qiskit-qasm3-dumps "Permalink to this headline")
+# qiskit.qasm3.dumps
 
 <span id="undefined" />
 

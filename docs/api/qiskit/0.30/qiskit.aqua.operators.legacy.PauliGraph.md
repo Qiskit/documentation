@@ -1,4 +1,4 @@
-# PauliGraph[¶](#pauligraph "Permalink to this headline")
+# PauliGraph
 
 <span id="undefined" />
 

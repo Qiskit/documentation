@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-applylayout" />
 
-# qiskit.transpiler.passes.ApplyLayout[¶](#qiskit-transpiler-passes-applylayout "Permalink to this headline")
+# qiskit.transpiler.passes.ApplyLayout
 
 <span id="undefined" />
 

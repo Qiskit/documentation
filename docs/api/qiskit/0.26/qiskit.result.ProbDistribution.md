@@ -1,4 +1,4 @@
-# qiskit.result.ProbDistribution[¶](#qiskit-result-probdistribution "Permalink to this headline")
+# qiskit.result.ProbDistribution
 
 <span id="undefined" />
 

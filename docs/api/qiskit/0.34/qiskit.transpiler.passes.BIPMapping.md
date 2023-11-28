@@ -1,4 +1,4 @@
-# BIPMapping[¶](#bipmapping "Permalink to this headline")
+# BIPMapping
 
 <span id="undefined" />
 

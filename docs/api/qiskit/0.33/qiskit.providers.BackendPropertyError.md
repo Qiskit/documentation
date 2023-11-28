@@ -1,4 +1,4 @@
-# qiskit.providers.BackendPropertyError[¶](#qiskit-providers-backendpropertyerror "Permalink to this headline")
+# qiskit.providers.BackendPropertyError
 
 <span id="undefined" />
 

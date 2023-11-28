@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.verification.DihedralUtils
 ---
 
-# DihedralUtils[¶](#dihedralutils "Permalink to this headline")
+# DihedralUtils
 
 <span id="qiskit.ignis.verification.DihedralUtils" />
 

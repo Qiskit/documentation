@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.algorithms.ClassicalAlgorithm
 ---
 
-# ClassicalAlgorithm[¶](#classicalalgorithm "Permalink to this headline")
+# ClassicalAlgorithm
 
 <span id="qiskit.aqua.algorithms.ClassicalAlgorithm" />
 

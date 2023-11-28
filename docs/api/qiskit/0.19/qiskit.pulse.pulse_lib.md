@@ -1,6 +1,6 @@
 <span id="pulse-lib" />
 
-# pulse\_lib[¶](#module-qiskit.pulse.pulse_lib "Permalink to this headline")
+# pulse\_lib
 
 This library provides Pulse users with convenient methods to build Pulse waveforms.
 

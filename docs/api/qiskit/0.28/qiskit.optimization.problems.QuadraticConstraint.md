@@ -1,4 +1,4 @@
-# qiskit.optimization.problems.QuadraticConstraint[¶](#qiskit-optimization-problems-quadraticconstraint "Permalink to this headline")
+# qiskit.optimization.problems.QuadraticConstraint
 
 <span id="undefined" />
 

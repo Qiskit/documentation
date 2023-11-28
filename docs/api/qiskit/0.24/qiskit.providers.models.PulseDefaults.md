@@ -1,6 +1,6 @@
 <span id="qiskit-providers-models-pulsedefaults" />
 
-# qiskit.providers.models.PulseDefaults[¶](#qiskit-providers-models-pulsedefaults "Permalink to this headline")
+# qiskit.providers.models.PulseDefaults
 
 <span id="undefined" />
 

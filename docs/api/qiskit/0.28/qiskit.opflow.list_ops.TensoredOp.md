@@ -1,4 +1,4 @@
-# qiskit.opflow\.list\_ops.TensoredOp[¶](#qiskit-opflow-list-ops-tensoredop "Permalink to this headline")
+# qiskit.opflow\.list\_ops.TensoredOp
 
 <span id="undefined" />
 

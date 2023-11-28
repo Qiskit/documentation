@@ -1,4 +1,4 @@
-# Pauli[¶](#pauli "Permalink to this headline")
+# Pauli
 
 <span id="undefined" />
 

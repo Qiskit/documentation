@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.StatePreparation
 ---
 
-# StatePreparation[¶](#statepreparation "Permalink to this headline")
+# StatePreparation
 
 <span id="qiskit.circuit.library.StatePreparation" />
 

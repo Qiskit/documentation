@@ -12,10 +12,6 @@ python_api_name: qiskit.optimization.applications.ising.knapsack
 
 # qiskit.optimization.applications.ising.knapsack
 
-<span id="module-qiskit.optimization.applications.ising.knapsack" />
-
-`¶`
-
 Convert knapsack parameters instances into Pauli list The parameters are a list of values a list of weights and a maximum weight of the knapsack.
 
 In the Knapsack Problem we are given a list of objects that each has a weight and a value. We are also given a maximum weight we can carry. We need to pick a subset of the objects so as to maximize the total value without going over the maximum weight.

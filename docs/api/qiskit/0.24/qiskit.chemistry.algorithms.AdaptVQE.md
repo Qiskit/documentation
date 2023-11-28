@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-algorithms-adaptvqe" />
 
-# qiskit.chemistry.algorithms.AdaptVQE[¶](#qiskit-chemistry-algorithms-adaptvqe "Permalink to this headline")
+# qiskit.chemistry.algorithms.AdaptVQE
 
 <span id="undefined" />
 

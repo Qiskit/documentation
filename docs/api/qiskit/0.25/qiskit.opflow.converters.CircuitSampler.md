@@ -1,4 +1,4 @@
-# qiskit.opflow\.converters.CircuitSampler[¶](#qiskit-opflow-converters-circuitsampler "Permalink to this headline")
+# qiskit.opflow\.converters.CircuitSampler
 
 <span id="undefined" />
 

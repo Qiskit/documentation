@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.credentials.Credentials
 ---
 
-# Credentials[¶](#credentials "Permalink to this headline")
+# Credentials
 
 <span id="qiskit.providers.ibmq.credentials.Credentials" />
 

@@ -1,4 +1,4 @@
-# Call[¶](#call "Permalink to this headline")
+# Call
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# QobjMeasurementOption[¶](#qobjmeasurementoption "Permalink to this headline")
+# QobjMeasurementOption
 
 <span id="undefined" />
 

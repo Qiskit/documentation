@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-evolutions-evolutionfactory" />
 
-# qiskit.aqua.operators.evolutions.EvolutionFactory[¶](#qiskit-aqua-operators-evolutions-evolutionfactory "Permalink to this headline")
+# qiskit.aqua.operators.evolutions.EvolutionFactory
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.job.QueueInfo[¶](#qiskit-providers-ibmq-job-queueinfo "Permalink to this headline")
+# qiskit.providers.ibmq.job.QueueInfo
 
 <span id="undefined" />
 

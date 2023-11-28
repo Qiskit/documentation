@@ -1,4 +1,4 @@
-# qiskit.opflow\.state\_fns.SparseVectorStateFn[¶](#qiskit-opflow-state-fns-sparsevectorstatefn "Permalink to this headline")
+# qiskit.opflow\.state\_fns.SparseVectorStateFn
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.oracles.TruthTableOracle
 ---
 
-# TruthTableOracle[¶](#truthtableoracle "Permalink to this headline")
+# TruthTableOracle
 
 <span id="qiskit.aqua.components.oracles.TruthTableOracle" />
 

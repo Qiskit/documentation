@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.gradients.NaturalGradient
 ---
 
-# NaturalGradient[¶](#naturalgradient "Permalink to this headline")
+# NaturalGradient
 
 <span id="qiskit.opflow.gradients.NaturalGradient" />
 

@@ -1,4 +1,4 @@
-# ExcitationPreserving[¶](#excitationpreserving "Permalink to this headline")
+# ExcitationPreserving
 
 <span id="undefined" />
 

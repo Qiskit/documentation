@@ -1,4 +1,4 @@
-# AmplitudeAmplifier[¶](#amplitudeamplifier "Permalink to this headline")
+# AmplitudeAmplifier
 
 <span id="undefined" />
 

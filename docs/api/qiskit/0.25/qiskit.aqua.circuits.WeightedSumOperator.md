@@ -1,4 +1,4 @@
-# qiskit.aqua.circuits.WeightedSumOperator[¶](#qiskit-aqua-circuits-weightedsumoperator "Permalink to this headline")
+# qiskit.aqua.circuits.WeightedSumOperator
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-utils-reduce-dim-to-via-pca" />
 
-# qiskit.aqua.utils.reduce\_dim\_to\_via\_pca[¶](#qiskit-aqua-utils-reduce-dim-to-via-pca "Permalink to this headline")
+# qiskit.aqua.utils.reduce\_dim\_to\_via\_pca
 
 <span id="undefined" />
 

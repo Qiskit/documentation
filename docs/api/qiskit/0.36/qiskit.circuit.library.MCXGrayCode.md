@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.MCXGrayCode
 ---
 
-# MCXGrayCode[¶](#mcxgraycode "Permalink to this headline")
+# MCXGrayCode
 
 <span id="qiskit.circuit.library.MCXGrayCode" />
 

@@ -12,10 +12,6 @@ python_api_name: qiskit.pulse.library
 
 # qiskit.pulse.library
 
-<span id="module-qiskit.pulse.library" />
-
-`¶`
-
 This library provides Pulse users with convenient methods to build Pulse waveforms.
 
 Arbitrary waveforms can be described with [`Waveform`](qiskit.pulse.library.Waveform#qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform") s.

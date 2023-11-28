@@ -1,4 +1,4 @@
-# CRZGate[¶](#crzgate "Permalink to this headline")
+# CRZGate
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-fixedpoint" />
 
-# qiskit.transpiler.passes.FixedPoint[¶](#qiskit-transpiler-passes-fixedpoint "Permalink to this headline")
+# qiskit.transpiler.passes.FixedPoint
 
 <span id="undefined" />
 

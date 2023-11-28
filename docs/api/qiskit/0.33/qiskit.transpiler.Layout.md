@@ -1,4 +1,4 @@
-# Layout[¶](#layout "Permalink to this headline")
+# Layout
 
 <span id="undefined" />
 

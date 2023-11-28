@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.visualization.pulse_v2.IQXDebugging
 ---
 
-# IQXDebugging[¶](#iqxdebugging "Permalink to this headline")
+# IQXDebugging
 
 <span id="qiskit.visualization.pulse_v2.IQXDebugging" />
 

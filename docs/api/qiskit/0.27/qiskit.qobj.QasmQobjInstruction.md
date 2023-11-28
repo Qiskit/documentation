@@ -1,4 +1,4 @@
-# qiskit.qobj.QasmQobjInstruction[¶](#qiskit-qobj-qasmqobjinstruction "Permalink to this headline")
+# qiskit.qobj.QasmQobjInstruction
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.optimization.INFINITY[¶](#qiskit-optimization-infinity "Permalink to this headline")
+# qiskit.optimization.INFINITY
 
 ## `INFINITY` *= 1e+20*
 

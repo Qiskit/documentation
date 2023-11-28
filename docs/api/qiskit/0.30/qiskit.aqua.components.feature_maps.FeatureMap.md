@@ -1,4 +1,4 @@
-# FeatureMap[¶](#featuremap "Permalink to this headline")
+# FeatureMap
 
 <span id="undefined" />
 

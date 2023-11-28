@@ -1,4 +1,4 @@
-# CVaRMeasurement[¶](#cvarmeasurement "Permalink to this headline")
+# CVaRMeasurement
 
 <span id="undefined" />
 

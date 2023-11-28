@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.CG[¶](#qiskit-algorithms-optimizers-cg "Permalink to this headline")
+# qiskit.algorithms.optimizers.CG
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# TPBGroupedWeightedPauliOperator[¶](#tpbgroupedweightedpaulioperator "Permalink to this headline")
+# TPBGroupedWeightedPauliOperator
 
 <span id="undefined" />
 

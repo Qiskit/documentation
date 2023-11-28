@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.DIRECT\_L[¶](#qiskit-algorithms-optimizers-direct-l "Permalink to this headline")
+# qiskit.algorithms.optimizers.DIRECT\_L
 
 <span id="undefined" />
 

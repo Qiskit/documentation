@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.transforms.block_to_schedule
 ---
 
-# qiskit.pulse.transforms.block\_to\_schedule[¶](#qiskit-pulse-transforms-block-to-schedule "Permalink to this headline")
+# qiskit.pulse.transforms.block\_to\_schedule
 
 <span id="qiskit.pulse.transforms.block_to_schedule" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-quantum-info-concurrence" />
 
-# qiskit.quantum\_info.concurrence[¶](#qiskit-quantum-info-concurrence "Permalink to this headline")
+# qiskit.quantum\_info.concurrence
 
 <span id="undefined" />
 

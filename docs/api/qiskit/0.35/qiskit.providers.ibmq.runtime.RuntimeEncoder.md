@@ -1,4 +1,4 @@
-# RuntimeEncoder[¶](#runtimeencoder "Permalink to this headline")
+# RuntimeEncoder
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.finance.data_providers.BaseDataProvider
 ---
 
-# BaseDataProvider[¶](#basedataprovider "Permalink to this headline")
+# BaseDataProvider
 
 <span id="qiskit.finance.data_providers.BaseDataProvider" />
 

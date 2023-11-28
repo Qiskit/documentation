@@ -1,4 +1,4 @@
-# DCXGate[¶](#dcxgate "Permalink to this headline")
+# DCXGate
 
 <span id="undefined" />
 

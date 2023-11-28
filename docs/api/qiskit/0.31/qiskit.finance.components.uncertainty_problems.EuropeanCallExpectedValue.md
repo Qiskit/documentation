@@ -1,4 +1,4 @@
-# EuropeanCallExpectedValue[¶](#europeancallexpectedvalue "Permalink to this headline")
+# EuropeanCallExpectedValue
 
 <span id="undefined" />
 

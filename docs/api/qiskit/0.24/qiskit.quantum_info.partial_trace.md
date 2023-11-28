@@ -1,6 +1,6 @@
 <span id="qiskit-quantum-info-partial-trace" />
 
-# qiskit.quantum\_info.partial\_trace[¶](#qiskit-quantum-info-partial-trace "Permalink to this headline")
+# qiskit.quantum\_info.partial\_trace
 
 <span id="undefined" />
 

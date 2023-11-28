@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.noise.depolarizing_error
 ---
 
-# depolarizing\_error[¶](#depolarizing-error "Permalink to this headline")
+# depolarizing\_error
 
 <span id="qiskit.providers.aer.noise.depolarizing_error" />
 

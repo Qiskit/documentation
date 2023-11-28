@@ -1,4 +1,4 @@
-# qiskit.circuit.QuantumRegister[¶](#qiskit-circuit-quantumregister "Permalink to this headline")
+# qiskit.circuit.QuantumRegister
 
 <span id="undefined" />
 

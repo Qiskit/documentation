@@ -1,4 +1,4 @@
-# qiskit.ignis.verification.QOTP[¶](#qiskit-ignis-verification-qotp "Permalink to this headline")
+# qiskit.ignis.verification.QOTP
 
 <span id="undefined" />
 

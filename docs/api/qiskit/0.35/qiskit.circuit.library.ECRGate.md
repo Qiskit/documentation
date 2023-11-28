@@ -1,4 +1,4 @@
-# ECRGate[¶](#ecrgate "Permalink to this headline")
+# ECRGate
 
 <span id="undefined" />
 

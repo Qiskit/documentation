@@ -12,10 +12,6 @@ python_api_name: qiskit.optimization.applications.ising.common
 
 # qiskit.optimization.applications.ising.common
 
-<span id="module-qiskit.optimization.applications.ising.common" />
-
-`¶`
-
 common module
 
 ## Functions

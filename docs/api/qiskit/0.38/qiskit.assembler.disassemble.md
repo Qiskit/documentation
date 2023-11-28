@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.assembler.disassemble
 ---
 
-# qiskit.assembler.disassemble[¶](#qiskit-assembler-disassemble "Permalink to this headline")
+# qiskit.assembler.disassemble
 
 <span id="qiskit.assembler.disassemble" />
 

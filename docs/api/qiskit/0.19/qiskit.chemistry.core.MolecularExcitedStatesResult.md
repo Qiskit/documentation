@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.chemistry.core.MolecularExcitedStatesResult
 ---
 
-# MolecularExcitedStatesResult[¶](#molecularexcitedstatesresult "Permalink to this headline")
+# MolecularExcitedStatesResult
 
 <span id="qiskit.chemistry.core.MolecularExcitedStatesResult" />
 

@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.GateDirection[¶](#qiskit-transpiler-passes-gatedirection "Permalink to this headline")
+# qiskit.transpiler.passes.GateDirection
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.uncertainty_models.UniformDistribution
 ---
 
-# UniformDistribution[¶](#uniformdistribution "Permalink to this headline")
+# UniformDistribution
 
 <span id="qiskit.aqua.components.uncertainty_models.UniformDistribution" />
 

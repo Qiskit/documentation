@@ -1,4 +1,4 @@
-# AlignRight[¶](#alignright "Permalink to this headline")
+# AlignRight
 
 <span id="undefined" />
 

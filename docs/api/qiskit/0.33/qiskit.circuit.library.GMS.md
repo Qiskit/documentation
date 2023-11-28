@@ -1,4 +1,4 @@
-# GMS[¶](#gms "Permalink to this headline")
+# GMS
 
 <span id="undefined" />
 

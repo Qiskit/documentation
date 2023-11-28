@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.verification.process_tomography_circuits
 ---
 
-# process\_tomography\_circuits[¶](#process-tomography-circuits "Permalink to this headline")
+# process\_tomography\_circuits
 
 <span id="qiskit.ignis.verification.process_tomography_circuits" />
 

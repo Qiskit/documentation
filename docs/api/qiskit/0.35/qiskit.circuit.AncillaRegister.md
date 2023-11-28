@@ -1,4 +1,4 @@
-# AncillaRegister[¶](#ancillaregister "Permalink to this headline")
+# AncillaRegister
 
 <span id="undefined" />
 

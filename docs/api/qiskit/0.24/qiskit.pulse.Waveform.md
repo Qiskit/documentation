@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-waveform" />
 
-# qiskit.pulse.Waveform[¶](#qiskit-pulse-waveform "Permalink to this headline")
+# qiskit.pulse.Waveform
 
 <span id="undefined" />
 

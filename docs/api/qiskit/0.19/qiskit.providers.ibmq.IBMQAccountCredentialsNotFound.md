@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.IBMQAccountCredentialsNotFound
 ---
 
-# IBMQAccountCredentialsNotFound[¶](#ibmqaccountcredentialsnotfound "Permalink to this headline")
+# IBMQAccountCredentialsNotFound
 
 <span id="qiskit.providers.ibmq.IBMQAccountCredentialsNotFound" />
 

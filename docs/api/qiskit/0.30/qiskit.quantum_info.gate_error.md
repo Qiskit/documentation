@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.gate\_error[¶](#qiskit-quantum-info-gate-error "Permalink to this headline")
+# qiskit.quantum\_info.gate\_error
 
 <span id="undefined" />
 

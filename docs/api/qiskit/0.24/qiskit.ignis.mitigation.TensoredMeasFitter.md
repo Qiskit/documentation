@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-mitigation-tensoredmeasfitter" />
 
-# qiskit.ignis.mitigation.TensoredMeasFitter[¶](#qiskit-ignis-mitigation-tensoredmeasfitter "Permalink to this headline")
+# qiskit.ignis.mitigation.TensoredMeasFitter
 
 <span id="undefined" />
 

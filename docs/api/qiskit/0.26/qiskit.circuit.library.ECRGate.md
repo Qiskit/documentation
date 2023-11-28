@@ -1,4 +1,4 @@
-# qiskit.circuit.library.ECRGate[¶](#qiskit-circuit-library-ecrgate "Permalink to this headline")
+# qiskit.circuit.library.ECRGate
 
 <span id="undefined" />
 

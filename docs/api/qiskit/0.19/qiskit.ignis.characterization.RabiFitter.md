@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.characterization.RabiFitter
 ---
 
-# RabiFitter[¶](#rabifitter "Permalink to this headline")
+# RabiFitter
 
 <span id="qiskit.ignis.characterization.RabiFitter" />
 

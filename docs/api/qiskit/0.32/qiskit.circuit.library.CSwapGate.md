@@ -1,4 +1,4 @@
-# CSwapGate[¶](#cswapgate "Permalink to this headline")
+# CSwapGate
 
 <span id="undefined" />
 

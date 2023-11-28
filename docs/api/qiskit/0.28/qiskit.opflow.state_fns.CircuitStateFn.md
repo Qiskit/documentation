@@ -1,4 +1,4 @@
-# qiskit.opflow\.state\_fns.CircuitStateFn[¶](#qiskit-opflow-state-fns-circuitstatefn "Permalink to this headline")
+# qiskit.opflow\.state\_fns.CircuitStateFn
 
 <span id="undefined" />
 

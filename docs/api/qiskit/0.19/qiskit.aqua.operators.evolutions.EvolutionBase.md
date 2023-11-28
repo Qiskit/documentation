@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.evolutions.EvolutionBase
 ---
 
-# EvolutionBase[¶](#evolutionbase "Permalink to this headline")
+# EvolutionBase
 
 <span id="qiskit.aqua.operators.evolutions.EvolutionBase" />
 

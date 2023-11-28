@@ -1,4 +1,4 @@
-# qiskit.opflow\.evolutions.QDrift[¶](#qiskit-opflow-evolutions-qdrift "Permalink to this headline")
+# qiskit.opflow\.evolutions.QDrift
 
 <span id="undefined" />
 

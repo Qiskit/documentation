@@ -1,4 +1,4 @@
-# qiskit.ignis.verification.AccreditationCircuits[¶](#qiskit-ignis-verification-accreditationcircuits "Permalink to this headline")
+# qiskit.ignis.verification.AccreditationCircuits
 
 <span id="undefined" />
 

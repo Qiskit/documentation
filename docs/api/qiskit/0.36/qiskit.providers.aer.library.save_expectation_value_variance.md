@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.library.save_expectation_value_variance
 ---
 
-# qiskit.providers.aer.library.save\_expectation\_value\_variance[¶](#qiskit-providers-aer-library-save-expectation-value-variance "Permalink to this headline")
+# qiskit.providers.aer.library.save\_expectation\_value\_variance
 
 <span id="qiskit.providers.aer.library.save_expectation_value_variance" />
 

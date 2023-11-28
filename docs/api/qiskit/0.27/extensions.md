@@ -14,13 +14,9 @@ python_api_name: qiskit.extensions
 
 <span id="module-qiskit.extensions" />
 
-`qiskit.extensions¶`
+`qiskit.extensions`
 
 ## Unitary Extensions
-
-<span id="module-qiskit.extensions" />
-
-`¶`
 
 |                                                                                                                                                    |                                                                                 |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
@@ -29,19 +25,11 @@ python_api_name: qiskit.extensions
 
 ## Simulator Extensions
 
-<span id="module-qiskit.extensions" />
-
-`¶`
-
 |                                                                                                                                            |                                 |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
 | [`Snapshot`](qiskit.extensions.Snapshot#qiskit.extensions.Snapshot "qiskit.extensions.Snapshot")(label\[, snapshot\_type, num\_qubits, …]) | Simulator snapshot instruction. |
 
 ## Initialization
-
-<span id="module-qiskit.extensions" />
-
-`¶`
 
 |                                                                                                                                  |                                   |
 | -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |

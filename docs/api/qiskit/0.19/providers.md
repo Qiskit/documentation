@@ -14,13 +14,9 @@ python_api_name: qiskit.providers
 
 <span id="module-qiskit.providers" />
 
-`qiskit.providers¶`
+`qiskit.providers`
 
 ## Base Objects
-
-<span id="module-qiskit.providers" />
-
-`¶`
 
 |                                                                                                          |                                    |
 | -------------------------------------------------------------------------------------------------------- | ---------------------------------- |
@@ -30,19 +26,11 @@ python_api_name: qiskit.providers
 
 ## Job Status
 
-<span id="module-qiskit.providers" />
-
-`¶`
-
 |                                                                               |                                       |
 | ----------------------------------------------------------------------------- | ------------------------------------- |
 | [`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.JobStatus")(value) | Class for job status enumerated type. |
 
 ## Exceptions
-
-<span id="module-qiskit.providers" />
-
-`¶`
 
 |                                                                                                                                      |                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |

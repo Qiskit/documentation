@@ -1,4 +1,4 @@
-# qiskit.aqua.circuits.StateVectorCircuit[¶](#qiskit-aqua-circuits-statevectorcircuit "Permalink to this headline")
+# qiskit.aqua.circuits.StateVectorCircuit
 
 <span id="undefined" />
 

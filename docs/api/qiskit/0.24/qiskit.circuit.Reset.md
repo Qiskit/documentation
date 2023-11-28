@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-reset" />
 
-# qiskit.circuit.Reset[¶](#qiskit-circuit-reset "Permalink to this headline")
+# qiskit.circuit.Reset
 
 <span id="undefined" />
 

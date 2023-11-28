@@ -1,4 +1,4 @@
-# TransformationPass[¶](#transformationpass "Permalink to this headline")
+# TransformationPass
 
 <span id="undefined" />
 

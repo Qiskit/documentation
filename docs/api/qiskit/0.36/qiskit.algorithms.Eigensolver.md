@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.Eigensolver
 ---
 
-# Eigensolver[¶](#eigensolver "Permalink to this headline")
+# Eigensolver
 
 <span id="qiskit.algorithms.Eigensolver" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.optimization.converters.QuadraticProgramToNegativeValueOracle
 ---
 
-# QuadraticProgramToNegativeValueOracle[¶](#quadraticprogramtonegativevalueoracle "Permalink to this headline")
+# QuadraticProgramToNegativeValueOracle
 
 <span id="qiskit.optimization.converters.QuadraticProgramToNegativeValueOracle" />
 

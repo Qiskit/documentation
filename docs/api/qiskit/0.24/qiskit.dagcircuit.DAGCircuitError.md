@@ -1,6 +1,6 @@
 <span id="qiskit-dagcircuit-dagcircuiterror" />
 
-# qiskit.dagcircuit.DAGCircuitError[¶](#qiskit-dagcircuit-dagcircuiterror "Permalink to this headline")
+# qiskit.dagcircuit.DAGCircuitError
 
 <span id="undefined" />
 

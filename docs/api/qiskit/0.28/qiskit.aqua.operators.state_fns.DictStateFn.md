@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.state\_fns.DictStateFn[¶](#qiskit-aqua-operators-state-fns-dictstatefn "Permalink to this headline")
+# qiskit.aqua.operators.state\_fns.DictStateFn
 
 <span id="undefined" />
 

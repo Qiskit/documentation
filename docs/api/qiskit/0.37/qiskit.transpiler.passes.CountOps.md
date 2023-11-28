@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CountOps
 ---
 
-# CountOps[¶](#countops "Permalink to this headline")
+# CountOps
 
 <span id="qiskit.transpiler.passes.CountOps" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.result.QuasiDistribution
 ---
 
-# QuasiDistribution[¶](#quasidistribution "Permalink to this headline")
+# QuasiDistribution
 
 <span id="qiskit.result.QuasiDistribution" />
 

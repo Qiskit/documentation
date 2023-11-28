@@ -1,4 +1,4 @@
-# qiskit.providers.basicaer.StatevectorSimulatorPy[¶](#qiskit-providers-basicaer-statevectorsimulatorpy "Permalink to this headline")
+# qiskit.providers.basicaer.StatevectorSimulatorPy
 
 <span id="undefined" />
 

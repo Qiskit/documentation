@@ -1,4 +1,4 @@
-# SetMatrixProductState[¶](#setmatrixproductstate "Permalink to this headline")
+# SetMatrixProductState
 
 <span id="undefined" />
 

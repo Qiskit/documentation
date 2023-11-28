@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-multiclass-extensions-allpairs" />
 
-# qiskit.aqua.components.multiclass\_extensions.AllPairs[¶](#qiskit-aqua-components-multiclass-extensions-allpairs "Permalink to this headline")
+# qiskit.aqua.components.multiclass\_extensions.AllPairs
 
 <span id="undefined" />
 

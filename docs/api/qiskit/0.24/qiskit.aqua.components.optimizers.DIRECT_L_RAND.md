@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-optimizers-direct-l-rand" />
 
-# qiskit.aqua.components.optimizers.DIRECT\_L\_RAND[¶](#qiskit-aqua-components-optimizers-direct-l-rand "Permalink to this headline")
+# qiskit.aqua.components.optimizers.DIRECT\_L\_RAND
 
 <span id="undefined" />
 

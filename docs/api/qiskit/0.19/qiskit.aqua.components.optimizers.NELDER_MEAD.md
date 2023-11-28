@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.optimizers.NELDER_MEAD
 ---
 
-# NELDER\_MEAD[¶](#nelder-mead "Permalink to this headline")
+# NELDER\_MEAD
 
 <span id="qiskit.aqua.components.optimizers.NELDER_MEAD" />
 

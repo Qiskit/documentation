@@ -1,4 +1,4 @@
-# qiskit.providers.aer.utils.NoiseTransformer[¶](#qiskit-providers-aer-utils-noisetransformer "Permalink to this headline")
+# qiskit.providers.aer.utils.NoiseTransformer
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# ESOP[¶](#esop "Permalink to this headline")
+# ESOP
 
 <span id="undefined" />
 

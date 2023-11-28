@@ -1,4 +1,4 @@
-# EchoRZXWeylDecomposition[¶](#echorzxweyldecomposition "Permalink to this headline")
+# EchoRZXWeylDecomposition
 
 <span id="undefined" />
 

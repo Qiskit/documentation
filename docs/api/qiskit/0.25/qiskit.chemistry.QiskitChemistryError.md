@@ -1,4 +1,4 @@
-# qiskit.chemistry.QiskitChemistryError[¶](#qiskit-chemistry-qiskitchemistryerror "Permalink to this headline")
+# qiskit.chemistry.QiskitChemistryError
 
 <span id="undefined" />
 

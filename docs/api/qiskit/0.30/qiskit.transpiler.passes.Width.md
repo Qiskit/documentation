@@ -1,4 +1,4 @@
-# Width[¶](#width "Permalink to this headline")
+# Width
 
 <span id="undefined" />
 

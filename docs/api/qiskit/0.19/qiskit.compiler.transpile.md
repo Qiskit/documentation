@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.compiler.transpile
 ---
 
-# transpile[¶](#transpile "Permalink to this headline")
+# transpile
 
 <span id="qiskit.compiler.transpile" />
 

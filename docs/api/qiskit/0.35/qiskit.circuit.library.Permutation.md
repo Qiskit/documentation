@@ -1,4 +1,4 @@
-# Permutation[¶](#permutation "Permalink to this headline")
+# Permutation
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-providers-ibmq-random-cqcextractor" />
 
-# qiskit.providers.ibmq.random.CQCExtractor[¶](#qiskit-providers-ibmq-random-cqcextractor "Permalink to this headline")
+# qiskit.providers.ibmq.random.CQCExtractor
 
 <span id="undefined" />
 

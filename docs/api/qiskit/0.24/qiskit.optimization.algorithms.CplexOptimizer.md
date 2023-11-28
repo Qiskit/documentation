@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-algorithms-cplexoptimizer" />
 
-# qiskit.optimization.algorithms.CplexOptimizer[¶](#qiskit-optimization-algorithms-cplexoptimizer "Permalink to this headline")
+# qiskit.optimization.algorithms.CplexOptimizer
 
 <span id="undefined" />
 

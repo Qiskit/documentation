@@ -1,4 +1,4 @@
-# UnivariatePiecewiseLinearObjective[¶](#univariatepiecewiselinearobjective "Permalink to this headline")
+# UnivariatePiecewiseLinearObjective
 
 <span id="undefined" />
 

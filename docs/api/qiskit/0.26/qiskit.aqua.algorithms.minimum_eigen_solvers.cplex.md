@@ -12,10 +12,6 @@ python_api_name: qiskit.aqua.algorithms.minimum_eigen_solvers.cplex
 
 # CPLEX Installation
 
-<span id="module-qiskit.aqua.algorithms.minimum_eigen_solvers.cplex" />
-
-`¶`
-
 The `ClassicalCPLEX` algorithm utilizes CPLEX from the [IBM ILOG CPLEX Optimization Studio](https://www.ibm.com/support/knowledgecenter/SSSA5P_12.10.0/COS_KC_home.html) and this should be [installed](https://www.ibm.com/support/knowledgecenter/SSSA5P_12.10.0/ilog.odms.cplex.help/CPLEX/GettingStarted/topics/set_up/setup_synopsis.html) along with the [Python API](https://www.ibm.com/support/knowledgecenter/SSSA5P_12.10.0/ilog.odms.cplex.help/CPLEX/GettingStarted/topics/set_up/Python_setup.html) to CPLEX for the algorithm to be operational.
 
 <Admonition title="Note" type="note">

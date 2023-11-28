@@ -1,4 +1,4 @@
-# Provider[¶](#provider "Permalink to this headline")
+# Provider
 
 <span id="undefined" />
 

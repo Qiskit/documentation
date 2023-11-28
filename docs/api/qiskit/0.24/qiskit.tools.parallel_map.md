@@ -1,6 +1,6 @@
 <span id="qiskit-tools-parallel-map" />
 
-# qiskit.tools.parallel\_map[¶](#qiskit-tools-parallel-map "Permalink to this headline")
+# qiskit.tools.parallel\_map
 
 <span id="undefined" />
 

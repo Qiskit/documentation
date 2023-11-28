@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.chemistry.core.QubitMappingType
 ---
 
-# QubitMappingType[¶](#qubitmappingtype "Permalink to this headline")
+# QubitMappingType
 
 <span id="qiskit.chemistry.core.QubitMappingType" />
 

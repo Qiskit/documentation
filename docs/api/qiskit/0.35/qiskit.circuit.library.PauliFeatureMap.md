@@ -1,4 +1,4 @@
-# PauliFeatureMap[¶](#paulifeaturemap "Permalink to this headline")
+# PauliFeatureMap
 
 <span id="undefined" />
 

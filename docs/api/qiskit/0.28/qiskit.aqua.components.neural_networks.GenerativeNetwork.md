@@ -1,4 +1,4 @@
-# qiskit.aqua.components.neural\_networks.GenerativeNetwork[¶](#qiskit-aqua-components-neural-networks-generativenetwork "Permalink to this headline")
+# qiskit.aqua.components.neural\_networks.GenerativeNetwork
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.visualization.plot\_state\_qsphere[¶](#qiskit-visualization-plot-state-qsphere "Permalink to this headline")
+# qiskit.visualization.plot\_state\_qsphere
 
 <span id="undefined" />
 

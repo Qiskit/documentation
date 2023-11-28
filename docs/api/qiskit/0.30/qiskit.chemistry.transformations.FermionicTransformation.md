@@ -1,4 +1,4 @@
-# FermionicTransformation[¶](#fermionictransformation "Permalink to this headline")
+# FermionicTransformation
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.random_pauli_table
 ---
 
-# random\_pauli\_table[¶](#random-pauli-table "Permalink to this headline")
+# random\_pauli\_table
 
 <span id="qiskit.quantum_info.random_pauli_table" />
 

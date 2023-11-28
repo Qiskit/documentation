@@ -1,4 +1,4 @@
-# OptimizationAlgorithm[¶](#optimizationalgorithm "Permalink to this headline")
+# OptimizationAlgorithm
 
 <span id="undefined" />
 

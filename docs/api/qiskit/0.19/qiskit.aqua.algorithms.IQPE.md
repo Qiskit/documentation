@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.algorithms.IQPE
 ---
 
-# IQPE[¶](#iqpe "Permalink to this headline")
+# IQPE
 
 <span id="qiskit.aqua.algorithms.IQPE" />
 

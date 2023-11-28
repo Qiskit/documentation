@@ -1,4 +1,4 @@
-# qiskit.converters.dag\_to\_dagdependency[¶](#qiskit-converters-dag-to-dagdependency "Permalink to this headline")
+# qiskit.converters.dag\_to\_dagdependency
 
 <span id="undefined" />
 

@@ -14,7 +14,7 @@ python_api_name: qiskit.aqua.components.multiclass_extensions
 
 <span id="module-qiskit.aqua.components.multiclass_extensions" />
 
-`qiskit.aqua.components.multiclass_extensions¶`
+`qiskit.aqua.components.multiclass_extensions`
 
 A multiclass extension allows Aqua’s binary classifier algorithms, such as [`QSVM`](qiskit.aqua.algorithms.QSVM "qiskit.aqua.algorithms.QSVM") and [`SklearnSVM`](qiskit.aqua.algorithms.SklearnSVM "qiskit.aqua.algorithms.SklearnSVM") to handle more than two classes and do [multiclass classification](https://en.wikipedia.org/wiki/Multiclass_classification).
 
@@ -22,19 +22,11 @@ The multiclass extensions use different techniques to perform multiclass classif
 
 # Multiclass Extension Base Class
 
-<span id="module-qiskit.aqua.components.multiclass_extensions" />
-
-`¶`
-
 |                                                                                                                                                              |                                      |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------ |
 | [`MulticlassExtension`](qiskit.aqua.components.multiclass_extensions.MulticlassExtension "qiskit.aqua.components.multiclass_extensions.MulticlassExtension") | Base class for multiclass extension. |
 
 # Multiclass Extensions
-
-<span id="module-qiskit.aqua.components.multiclass_extensions" />
-
-`¶`
 
 |                                                                                                                                                              |                                                 |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |

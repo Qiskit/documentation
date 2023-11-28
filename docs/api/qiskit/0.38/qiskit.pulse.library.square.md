@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.library.square
 ---
 
-# qiskit.pulse.library.square[¶](#qiskit-pulse-library-square "Permalink to this headline")
+# qiskit.pulse.library.square
 
 <span id="qiskit.pulse.library.square" />
 

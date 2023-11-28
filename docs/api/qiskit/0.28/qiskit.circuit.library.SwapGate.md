@@ -1,4 +1,4 @@
-# qiskit.circuit.library.SwapGate[¶](#qiskit-circuit-library-swapgate "Permalink to this headline")
+# qiskit.circuit.library.SwapGate
 
 <span id="undefined" />
 

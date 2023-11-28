@@ -1,4 +1,4 @@
-# qiskit.opflow\.converters.PauliBasisChange[¶](#qiskit-opflow-converters-paulibasischange "Permalink to this headline")
+# qiskit.opflow\.converters.PauliBasisChange
 
 <span id="undefined" />
 

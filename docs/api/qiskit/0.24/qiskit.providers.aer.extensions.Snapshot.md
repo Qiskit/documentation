@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-extensions-snapshot" />
 
-# qiskit.providers.aer.extensions.Snapshot[¶](#qiskit-providers-aer-extensions-snapshot "Permalink to this headline")
+# qiskit.providers.aer.extensions.Snapshot
 
 <span id="undefined" />
 

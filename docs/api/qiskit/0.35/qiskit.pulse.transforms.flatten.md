@@ -1,4 +1,4 @@
-# qiskit.pulse.transforms.flatten[¶](#qiskit-pulse-transforms-flatten "Permalink to this headline")
+# qiskit.pulse.transforms.flatten
 
 <span id="undefined" />
 

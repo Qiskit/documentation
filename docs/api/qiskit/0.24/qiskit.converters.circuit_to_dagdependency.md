@@ -1,6 +1,6 @@
 <span id="qiskit-converters-circuit-to-dagdependency" />
 
-# qiskit.converters.circuit\_to\_dagdependency[¶](#qiskit-converters-circuit-to-dagdependency "Permalink to this headline")
+# qiskit.converters.circuit\_to\_dagdependency
 
 <span id="undefined" />
 

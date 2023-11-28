@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-algorithms-sklearnsvm" />
 
-# qiskit.aqua.algorithms.SklearnSVM[¶](#qiskit-aqua-algorithms-sklearnsvm "Permalink to this headline")
+# qiskit.aqua.algorithms.SklearnSVM
 
 <span id="undefined" />
 

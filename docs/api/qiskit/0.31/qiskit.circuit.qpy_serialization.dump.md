@@ -1,4 +1,4 @@
-# qiskit.circuit.qpy\_serialization.dump[¶](#qiskit-circuit-qpy-serialization-dump "Permalink to this headline")
+# qiskit.circuit.qpy\_serialization.dump
 
 <span id="undefined" />
 

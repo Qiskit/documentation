@@ -1,4 +1,4 @@
-# qiskit.aqua.components.variational\_forms.VariationalForm[¶](#qiskit-aqua-components-variational-forms-variationalform "Permalink to this headline")
+# qiskit.aqua.components.variational\_forms.VariationalForm
 
 <span id="undefined" />
 

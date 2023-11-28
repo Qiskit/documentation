@@ -14,7 +14,7 @@ python_api_name: qiskit.aqua.operators.evolutions
 
 <span id="module-qiskit.aqua.operators.evolutions" />
 
-`qiskit.aqua.operators.evolutions¶`
+`qiskit.aqua.operators.evolutions`
 
 Evolutions are converters which traverse an Operator tree, replacing any [`EvolvedOp`](qiskit.aqua.operators.evolutions.EvolvedOp "qiskit.aqua.operators.evolutions.EvolvedOp") e with a Schrodinger equation-style evolution [`CircuitOp`](qiskit.aqua.operators.primitive_ops.CircuitOp "qiskit.aqua.operators.primitive_ops.CircuitOp") equalling or approximating the matrix exponential of -i \* the Operator contained inside (e.primitive). The Evolutions are essentially implementations of Hamiltonian Simulation algorithms, including various methods for Trotterization.
 
@@ -26,10 +26,6 @@ The [`EvolvedOp`](qiskit.aqua.operators.evolutions.EvolvedOp "qiskit.aqua.operat
 
 # Evolution Base Class
 
-<span id="module-qiskit.aqua.operators.evolutions" />
-
-`¶`
-
 The EvolutionBase class gives an interface for algorithms to ask for Evolutions as execution settings. For example, if an algorithm contains an Operator evolution step within it, such as [`QAOA`](qiskit.aqua.algorithms.QAOA "qiskit.aqua.algorithms.QAOA"), the algorithm can give the opportunity for the user to pass an EvolutionBase of their choice to be used in that evolution step.
 
 |                                                                                                                    |                                  |
@@ -37,10 +33,6 @@ The EvolutionBase class gives an interface for algorithms to ask for Evolutions 
 | [`EvolutionBase`](qiskit.aqua.operators.evolutions.EvolutionBase "qiskit.aqua.operators.evolutions.EvolutionBase") | A base for Evolution converters. |
 
 # Evolutions
-
-<span id="module-qiskit.aqua.operators.evolutions" />
-
-`¶`
 
 |                                                                                                                                            |                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -50,10 +42,6 @@ The EvolutionBase class gives an interface for algorithms to ask for Evolutions 
 | [`PauliTrotterEvolution`](qiskit.aqua.operators.evolutions.PauliTrotterEvolution "qiskit.aqua.operators.evolutions.PauliTrotterEvolution") | An Evolution algorithm replacing exponentiated sums of Paulis by changing them each to the Z basis, rotating with an rZ, changing back, and trotterizing.              |
 
 # Trotterizations
-
-<span id="module-qiskit.aqua.operators.evolutions" />
-
-`¶`
 
 |                                                                                                                                            |                                                                                                                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

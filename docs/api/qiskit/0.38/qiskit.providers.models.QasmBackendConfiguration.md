@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.models.QasmBackendConfiguration
 ---
 
-# QasmBackendConfiguration[¶](#qasmbackendconfiguration "Permalink to this headline")
+# QasmBackendConfiguration
 
 <span id="qiskit.providers.models.QasmBackendConfiguration" />
 

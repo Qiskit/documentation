@@ -1,4 +1,4 @@
-# qiskit.ignis.verification.composite\_pauli\_z\_expvalue[¶](#qiskit-ignis-verification-composite-pauli-z-expvalue "Permalink to this headline")
+# qiskit.ignis.verification.composite\_pauli\_z\_expvalue
 
 <span id="undefined" />
 

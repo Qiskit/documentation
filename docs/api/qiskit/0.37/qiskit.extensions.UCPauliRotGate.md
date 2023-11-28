@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.extensions.UCPauliRotGate
 ---
 
-# UCPauliRotGate[¶](#ucpaulirotgate "Permalink to this headline")
+# UCPauliRotGate
 
 <span id="qiskit.extensions.UCPauliRotGate" />
 

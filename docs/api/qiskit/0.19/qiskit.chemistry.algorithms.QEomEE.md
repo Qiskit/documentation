@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.chemistry.algorithms.QEomEE
 ---
 
-# QEomEE[¶](#qeomee "Permalink to this headline")
+# QEomEE
 
 <span id="qiskit.chemistry.algorithms.QEomEE" />
 

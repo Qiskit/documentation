@@ -1,4 +1,4 @@
-# qiskit.chemistry.algorithms.ExcitedStatesSolver[¶](#qiskit-chemistry-algorithms-excitedstatessolver "Permalink to this headline")
+# qiskit.chemistry.algorithms.ExcitedStatesSolver
 
 <span id="undefined" />
 

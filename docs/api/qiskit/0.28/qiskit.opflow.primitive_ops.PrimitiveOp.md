@@ -1,4 +1,4 @@
-# qiskit.opflow\.primitive\_ops.PrimitiveOp[¶](#qiskit-opflow-primitive-ops-primitiveop "Permalink to this headline")
+# qiskit.opflow\.primitive\_ops.PrimitiveOp
 
 <span id="undefined" />
 

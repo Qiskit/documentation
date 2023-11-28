@@ -1,4 +1,4 @@
-# VSCF[¶](#vscf "Permalink to this headline")
+# VSCF
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.chemistry.QMolecule
 ---
 
-# QMolecule[¶](#qmolecule "Permalink to this headline")
+# QMolecule
 
 <span id="qiskit.chemistry.QMolecule" />
 

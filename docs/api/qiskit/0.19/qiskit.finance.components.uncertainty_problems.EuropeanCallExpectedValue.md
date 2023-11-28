@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue
 ---
 
-# EuropeanCallExpectedValue[¶](#europeancallexpectedvalue "Permalink to this headline")
+# EuropeanCallExpectedValue
 
 <span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue" />
 

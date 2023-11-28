@@ -1,4 +1,4 @@
-# qiskit.opflow\.state\_fns.StateFn[¶](#qiskit-opflow-state-fns-statefn "Permalink to this headline")
+# qiskit.opflow\.state\_fns.StateFn
 
 <span id="undefined" />
 

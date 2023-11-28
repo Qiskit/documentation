@@ -1,4 +1,4 @@
-# MeasurementFilter[¶](#measurementfilter "Permalink to this headline")
+# MeasurementFilter
 
 <span id="undefined" />
 

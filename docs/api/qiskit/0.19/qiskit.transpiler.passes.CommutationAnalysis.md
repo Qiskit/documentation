@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CommutationAnalysis
 ---
 
-# CommutationAnalysis[¶](#commutationanalysis "Permalink to this headline")
+# CommutationAnalysis
 
 <span id="qiskit.transpiler.passes.CommutationAnalysis" />
 

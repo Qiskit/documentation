@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.RemoveFinalMeasurements[¶](#qiskit-transpiler-passes-removefinalmeasurements "Permalink to this headline")
+# qiskit.transpiler.passes.RemoveFinalMeasurements
 
 <span id="undefined" />
 

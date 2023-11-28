@@ -1,4 +1,4 @@
-# YahooDataProvider[¶](#yahoodataprovider "Permalink to this headline")
+# YahooDataProvider
 
 <span id="undefined" />
 

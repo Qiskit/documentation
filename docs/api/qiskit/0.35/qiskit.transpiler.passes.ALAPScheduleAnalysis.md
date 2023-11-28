@@ -1,4 +1,4 @@
-# ALAPScheduleAnalysis[¶](#alapscheduleanalysis "Permalink to this headline")
+# ALAPScheduleAnalysis
 
 <span id="undefined" />
 

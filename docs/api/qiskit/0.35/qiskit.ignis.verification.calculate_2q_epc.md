@@ -1,4 +1,4 @@
-# qiskit.ignis.verification.calculate\_2q\_epc[¶](#qiskit-ignis-verification-calculate-2q-epc "Permalink to this headline")
+# qiskit.ignis.verification.calculate\_2q\_epc
 
 <span id="undefined" />
 

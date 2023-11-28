@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.channels.AcquireChannel
 ---
 
-# channels[¶](#module-qiskit.pulse.channels "Permalink to this headline")
+# channels
 
 This module defines Pulse Channels. Channels include:
 

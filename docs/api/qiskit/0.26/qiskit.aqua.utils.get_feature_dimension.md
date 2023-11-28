@@ -1,4 +1,4 @@
-# qiskit.aqua.utils.get\_feature\_dimension[¶](#qiskit-aqua-utils-get-feature-dimension "Permalink to this headline")
+# qiskit.aqua.utils.get\_feature\_dimension
 
 <span id="undefined" />
 

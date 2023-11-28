@@ -1,4 +1,4 @@
-# PyQuanteDriver[¶](#pyquantedriver "Permalink to this headline")
+# PyQuanteDriver
 
 <span id="undefined" />
 

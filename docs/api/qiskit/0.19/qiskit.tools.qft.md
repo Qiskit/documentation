@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.tools.qft
 ---
 
-# qft[¶](#qft "Permalink to this headline")
+# qft
 
 <span id="qiskit.tools.qft" />
 

@@ -1,4 +1,4 @@
-# qiskit.visualization.qcstyle.DefaultStyle[¶](#qiskit-visualization-qcstyle-defaultstyle "Permalink to this headline")
+# qiskit.visualization.qcstyle.DefaultStyle
 
 <span id="undefined" />
 

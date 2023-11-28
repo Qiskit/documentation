@@ -1,4 +1,4 @@
-# qiskit.pulse.builder.set\_frequency[¶](#qiskit-pulse-builder-set-frequency "Permalink to this headline")
+# qiskit.pulse.builder.set\_frequency
 
 <span id="undefined" />
 

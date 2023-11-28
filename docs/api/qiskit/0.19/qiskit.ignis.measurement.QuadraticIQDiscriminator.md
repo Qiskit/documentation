@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.measurement.QuadraticIQDiscriminator
 ---
 
-# QuadraticIQDiscriminator[¶](#quadraticiqdiscriminator "Permalink to this headline")
+# QuadraticIQDiscriminator
 
 <span id="qiskit.ignis.measurement.QuadraticIQDiscriminator" />
 

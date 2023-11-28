@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-aererror" />
 
-# qiskit.providers.aer.AerError[¶](#qiskit-providers-aer-aererror "Permalink to this headline")
+# qiskit.providers.aer.AerError
 
 <span id="undefined" />
 

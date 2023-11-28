@@ -1,4 +1,4 @@
-# Constant[¶](#constant "Permalink to this headline")
+# Constant
 
 <span id="undefined" />
 

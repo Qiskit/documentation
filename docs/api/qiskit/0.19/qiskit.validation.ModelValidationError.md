@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.validation.ModelValidationError
 ---
 
-# ModelValidationError[¶](#modelvalidationerror "Permalink to this headline")
+# ModelValidationError
 
 <span id="qiskit.validation.ModelValidationError" />
 

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.utils.random_unitary
 ---
 
-# random\_unitary[¶](#random-unitary "Permalink to this headline")
+# random\_unitary
 
 <span id="qiskit.aqua.utils.random_unitary" />
 

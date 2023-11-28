@@ -1,4 +1,4 @@
-# ClassicalCPLEX[¶](#classicalcplex "Permalink to this headline")
+# ClassicalCPLEX
 
 <span id="undefined" />
 

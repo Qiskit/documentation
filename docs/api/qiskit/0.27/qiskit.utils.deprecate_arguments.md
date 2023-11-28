@@ -1,4 +1,4 @@
-# qiskit.utils.deprecate\_arguments[¶](#qiskit-utils-deprecate-arguments "Permalink to this headline")
+# qiskit.utils.deprecate\_arguments
 
 <span id="undefined" />
 

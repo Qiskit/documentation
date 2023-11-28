@@ -14,25 +14,17 @@ python_api_name: qiskit.aqua.components.reciprocals
 
 <span id="module-qiskit.aqua.components.reciprocals" />
 
-`qiskit.aqua.components.reciprocals¶`
+`qiskit.aqua.components.reciprocals`
 
 Reciprocals are components to invert a fixed-point number prepared in a quantum register. They were designed to be used in the context of a larger algorithm such as [`HHL`](qiskit.aqua.algorithms.HHL#qiskit.aqua.algorithms.HHL "qiskit.aqua.algorithms.HHL").
 
 # Reciprocal Base Class
-
-<span id="module-qiskit.aqua.components.reciprocals" />
-
-`¶`
 
 |                                                                                                                                                             |                                        |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | [`Reciprocal`](qiskit.aqua.components.reciprocals.Reciprocal#qiskit.aqua.components.reciprocals.Reciprocal "qiskit.aqua.components.reciprocals.Reciprocal") | Base class for reciprocal calculation. |
 
 # Reciprocals
-
-<span id="module-qiskit.aqua.components.reciprocals" />
-
-`¶`
 
 |                                                                                                                                                                             |                                             |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |

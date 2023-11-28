@@ -1,6 +1,6 @@
 <span id="qiskit-ml-datasets-wine" />
 
-# qiskit.ml.datasets.wine[¶](#qiskit-ml-datasets-wine "Permalink to this headline")
+# qiskit.ml.datasets.wine
 
 <span id="undefined" />
 

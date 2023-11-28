@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.IGate
 ---
 
-# IGate[¶](#igate "Permalink to this headline")
+# IGate
 
 <span id="qiskit.circuit.library.IGate" />
 

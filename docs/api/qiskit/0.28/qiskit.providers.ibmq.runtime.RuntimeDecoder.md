@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.runtime.RuntimeDecoder[¶](#qiskit-providers-ibmq-runtime-runtimedecoder "Permalink to this headline")
+# qiskit.providers.ibmq.runtime.RuntimeDecoder
 
 <span id="undefined" />
 

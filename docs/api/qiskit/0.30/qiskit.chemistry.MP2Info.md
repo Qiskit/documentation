@@ -1,4 +1,4 @@
-# MP2Info[¶](#mp2info "Permalink to this headline")
+# MP2Info
 
 <span id="undefined" />
 

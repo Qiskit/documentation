@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.algorithms.QGAN
 ---
 
-# QGAN[¶](#qgan "Permalink to this headline")
+# QGAN
 
 <span id="qiskit.aqua.algorithms.QGAN" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-noise-device-basic-device-gate-errors" />
 
-# qiskit.providers.aer.noise.device.basic\_device\_gate\_errors[¶](#qiskit-providers-aer-noise-device-basic-device-gate-errors "Permalink to this headline")
+# qiskit.providers.aer.noise.device.basic\_device\_gate\_errors
 
 <span id="undefined" />
 

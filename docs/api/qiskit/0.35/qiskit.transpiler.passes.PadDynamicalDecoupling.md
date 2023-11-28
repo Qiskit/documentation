@@ -1,4 +1,4 @@
-# PadDynamicalDecoupling[¶](#paddynamicaldecoupling "Permalink to this headline")
+# PadDynamicalDecoupling
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.circuits.CNF
 ---
 
-# CNF[¶](#cnf "Permalink to this headline")
+# CNF
 
 <span id="qiskit.aqua.circuits.CNF" />
 

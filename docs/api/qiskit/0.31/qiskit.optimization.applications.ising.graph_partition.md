@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-applications-ising-graph-partition" />
 
-# qiskit.optimization.applications.ising.graph\_partition[¶](#module-qiskit.optimization.applications.ising.graph_partition "Permalink to this headline")
+# qiskit.optimization.applications.ising.graph\_partition
 
 Convert graph partitioning instances into Pauli list Deal with Gset format. See [https://web.stanford.edu/\~yyye/yyye/Gset/](https://web.stanford.edu/~yyye/yyye/Gset/)
 

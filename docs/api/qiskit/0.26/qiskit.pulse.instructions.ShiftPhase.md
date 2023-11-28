@@ -1,4 +1,4 @@
-# qiskit.pulse.instructions.ShiftPhase[¶](#qiskit-pulse-instructions-shiftphase "Permalink to this headline")
+# qiskit.pulse.instructions.ShiftPhase
 
 <span id="undefined" />
 

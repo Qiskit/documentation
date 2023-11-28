@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-gradients-gradientbase" />
 
-# qiskit.aqua.operators.gradients.GradientBase[¶](#qiskit-aqua-operators-gradients-gradientbase "Permalink to this headline")
+# qiskit.aqua.operators.gradients.GradientBase
 
 <span id="undefined" />
 

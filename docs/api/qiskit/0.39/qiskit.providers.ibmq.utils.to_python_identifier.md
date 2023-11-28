@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.ibmq.utils.to_python_identifier
 ---
 
-# qiskit.providers.ibmq.utils.to\_python\_identifier[¶](#qiskit-providers-ibmq-utils-to-python-identifier "Permalink to this headline")
+# qiskit.providers.ibmq.utils.to\_python\_identifier
 
 <span id="qiskit.providers.ibmq.utils.to_python_identifier" />
 

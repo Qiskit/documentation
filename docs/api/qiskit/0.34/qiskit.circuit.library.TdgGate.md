@@ -1,4 +1,4 @@
-# TdgGate[¶](#tdggate "Permalink to this headline")
+# TdgGate
 
 <span id="undefined" />
 

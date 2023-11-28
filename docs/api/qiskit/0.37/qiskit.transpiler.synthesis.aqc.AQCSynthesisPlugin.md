@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin
 ---
 
-# AQCSynthesisPlugin[¶](#aqcsynthesisplugin "Permalink to this headline")
+# AQCSynthesisPlugin
 
 <span id="qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin" />
 

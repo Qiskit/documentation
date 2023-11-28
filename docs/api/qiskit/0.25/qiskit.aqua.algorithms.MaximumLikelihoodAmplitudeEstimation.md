@@ -1,4 +1,4 @@
-# qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation[¶](#qiskit-aqua-algorithms-maximumlikelihoodamplitudeestimation "Permalink to this headline")
+# qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 
 <span id="undefined" />
 

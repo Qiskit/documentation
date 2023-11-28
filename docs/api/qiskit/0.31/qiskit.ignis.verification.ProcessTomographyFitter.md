@@ -1,4 +1,4 @@
-# ProcessTomographyFitter[¶](#processtomographyfitter "Permalink to this headline")
+# ProcessTomographyFitter
 
 <span id="undefined" />
 

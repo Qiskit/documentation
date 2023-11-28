@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.library.SaveStatevectorDict
 ---
 
-# SaveStatevectorDict[¶](#savestatevectordict "Permalink to this headline")
+# SaveStatevectorDict
 
 <span id="qiskit.providers.aer.library.SaveStatevectorDict" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.feature_maps.PauliZExpansion
 ---
 
-# PauliZExpansion[¶](#paulizexpansion "Permalink to this headline")
+# PauliZExpansion
 
 <span id="qiskit.aqua.components.feature_maps.PauliZExpansion" />
 

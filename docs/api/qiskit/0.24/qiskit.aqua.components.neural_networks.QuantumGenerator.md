@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-neural-networks-quantumgenerator" />
 
-# qiskit.aqua.components.neural\_networks.QuantumGenerator[¶](#qiskit-aqua-components-neural-networks-quantumgenerator "Permalink to this headline")
+# qiskit.aqua.components.neural\_networks.QuantumGenerator
 
 <span id="undefined" />
 

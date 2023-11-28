@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.managed.IBMQJobManagerTimeoutError[¶](#qiskit-providers-ibmq-managed-ibmqjobmanagertimeouterror "Permalink to this headline")
+# qiskit.providers.ibmq.managed.IBMQJobManagerTimeoutError
 
 <span id="undefined" />
 

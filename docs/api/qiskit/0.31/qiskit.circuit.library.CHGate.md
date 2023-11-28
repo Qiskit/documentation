@@ -1,4 +1,4 @@
-# CHGate[¶](#chgate "Permalink to this headline")
+# CHGate
 
 <span id="undefined" />
 

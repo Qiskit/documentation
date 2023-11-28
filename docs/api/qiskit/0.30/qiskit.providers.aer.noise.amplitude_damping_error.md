@@ -1,4 +1,4 @@
-# qiskit.providers.aer.noise.amplitude\_damping\_error[¶](#qiskit-providers-aer-noise-amplitude-damping-error "Permalink to this headline")
+# qiskit.providers.aer.noise.amplitude\_damping\_error
 
 <span id="undefined" />
 

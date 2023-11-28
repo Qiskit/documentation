@@ -1,4 +1,4 @@
-# ConverterBase[¶](#converterbase "Permalink to this headline")
+# ConverterBase
 
 <span id="undefined" />
 

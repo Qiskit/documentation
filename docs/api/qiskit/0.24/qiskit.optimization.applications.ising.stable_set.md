@@ -12,10 +12,6 @@ python_api_name: qiskit.optimization.applications.ising.stable_set
 
 # qiskit.optimization.applications.ising.stable\_set
 
-<span id="module-qiskit.optimization.applications.ising.stable_set" />
-
-`¶`
-
 Convert stable set instances into Pauli list. We read instances in the Gset format, see [https://web.stanford.edu/\~yyye/yyye/Gset/](https://web.stanford.edu/~yyye/yyye/Gset/) , for compatibility with the maxcut format, but the weights on the edges as they are not really used and are always assumed to be 1. The graph is represented by an adjacency matrix.
 
 ## Functions

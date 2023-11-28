@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.utils.transpile_noise_model
 ---
 
-# qiskit.providers.aer.utils.transpile\_noise\_model[¶](#qiskit-providers-aer-utils-transpile-noise-model "Permalink to this headline")
+# qiskit.providers.aer.utils.transpile\_noise\_model
 
 <span id="qiskit.providers.aer.utils.transpile_noise_model" />
 

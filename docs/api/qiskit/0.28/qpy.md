@@ -14,7 +14,7 @@ python_api_name: qiskit.circuit.qpy_serialization
 
 <span id="module-qiskit.circuit.qpy_serialization" />
 
-`qiskit.circuit.qpy_serialization¶`
+`qiskit.circuit.qpy_serialization`
 
 |                             |                                 |
 | --------------------------- | ------------------------------- |
@@ -22,10 +22,6 @@ python_api_name: qiskit.circuit.qpy_serialization
 | `dump`(circuits, file\_obj) | Write QPY binary data to a file |
 
 ## QPY Format
-
-<span id="module-qiskit.circuit.qpy_serialization" />
-
-`¶`
 
 The QPY serialization format is a portable cross-platform binary serialization format for [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects in Qiskit. The basic file format is as follows:
 
@@ -49,7 +45,7 @@ The file header is immediately followed by the circuit payloads. Each individual
 
 There is a circuit payload for each circuit (where the total number is dictated by `num_circuits` in the file header). There is no padding between the circuits in the data.
 
-### HEADER[¶](#header "Permalink to this headline")
+### HEADER
 
 The contents of HEADER as defined as a C struct are:
 
@@ -68,11 +64,11 @@ struct {
 
 This is immediately followed by `name_size` bytes of utf8 data for the name of the circuit.
 
-### METADATA[¶](#metadata "Permalink to this headline")
+### METADATA
 
 The METADATA field is a UTF8 encoded JSON string. After reading the HEADER (which is a fixed size at the start of the QPY file) and the `name` string you then read the\`metadata\_size\`\` number of bytes and parse the JSON to get the metadata for the circuit.
 
-### REGISTERS[¶](#registers "Permalink to this headline")
+### REGISTERS
 
 The contents of REGISTERS is a number of REGISTER object. If num\_registers is > 0 then after reading METADATA you read that number of REGISTER structs defined as:
 
@@ -106,7 +102,7 @@ qc = QuantumCircuit(bits=bits)
 
 `qr` would have `standalone` set to `False`.
 
-### CUSTOM\_DEFINITIONS[¶](#custom-definitions "Permalink to this headline")
+### CUSTOM\_DEFINITIONS
 
 If the circuit contains custom defitions for any of the instruction in the circuit. this section
 
@@ -133,7 +129,7 @@ Immediately following the CUSTOM\_INSTRUCTION struct is the utf8 encoded name of
 
 If `custom_definition` is `True` that means that the immediately following `size` bytes contains a QPY circuit data which can be used for the custom definition of that gate. If `custom_definition` is `False` than the instruction can be considered opaque (ie no definition).
 
-### INSTRUCTIONS[¶](#instructions "Permalink to this headline")
+### INSTRUCTIONS
 
 The contents of INSTRUCTIONS is a list of INSTRUCTION metadata objects
 
@@ -178,7 +174,7 @@ struct {
 
 After each INSTRUCTION\_PARAM the next `size` bytes are the parameter’s data. The `type` field can be `'i'`, `'f'`, `'p'`, `'e'`, `'s'`, or `'n'` which dictate the format. For `'i'` it’s an integer, `'f'` it’s a double, `'s'` if it’s a string (encoded as utf8), `'p'` defines a [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter") object which is represented by a PARAM struct (see below), `e` defines a [`ParameterExpression`](qiskit.circuit.ParameterExpression#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object (that’s not a `Paramter`) which is represented by a PARAM\_EXPR struct (see below), and `'n'` represents an object from numpy (either an `ndarray` or a numpy type) which means the data is .npy format [2](#f2) data.
 
-### PARAMETER[¶](#parameter "Permalink to this headline")
+### PARAMETER
 
 A PARAMETER represents a [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter") object the data for a INSTRUCTION\_PARAM. The contents of the PARAMETER are defined as:
 
@@ -191,7 +187,7 @@ struct {
 
 which is immediately followed by `name_size` utf8 bytes representing the parameter name.
 
-### PARAMETER\_EXPR[¶](#parameter-expr "Permalink to this headline")
+### PARAMETER\_EXPR
 
 A PARAMETER\_EXPR represents a [`ParameterExpression`](qiskit.circuit.ParameterExpression#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object that the data for an INSTRUCTION\_PARAM. The contents of a PARAMETER\_EXPR are defined as:
 

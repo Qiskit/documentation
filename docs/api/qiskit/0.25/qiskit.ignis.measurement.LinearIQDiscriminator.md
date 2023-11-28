@@ -1,4 +1,4 @@
-# qiskit.ignis.measurement.LinearIQDiscriminator[¶](#qiskit-ignis-measurement-lineariqdiscriminator "Permalink to this headline")
+# qiskit.ignis.measurement.LinearIQDiscriminator
 
 <span id="undefined" />
 

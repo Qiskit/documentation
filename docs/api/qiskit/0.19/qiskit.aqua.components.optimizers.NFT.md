@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.optimizers.NFT
 ---
 
-# NFT[¶](#nft "Permalink to this headline")
+# NFT
 
 <span id="qiskit.aqua.components.optimizers.NFT" />
 

@@ -1,4 +1,4 @@
-# ESCH[¶](#esch "Permalink to this headline")
+# ESCH
 
 <span id="undefined" />
 

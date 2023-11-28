@@ -1,4 +1,4 @@
-# qiskit.ignis.verification.combine\_counts[¶](#qiskit-ignis-verification-combine-counts "Permalink to this headline")
+# qiskit.ignis.verification.combine\_counts
 
 <span id="undefined" />
 

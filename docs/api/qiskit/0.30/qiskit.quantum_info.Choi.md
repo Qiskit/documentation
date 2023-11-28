@@ -1,4 +1,4 @@
-# Choi[¶](#choi "Permalink to this headline")
+# Choi
 
 <span id="undefined" />
 

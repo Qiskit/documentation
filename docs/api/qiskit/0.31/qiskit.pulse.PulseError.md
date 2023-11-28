@@ -1,4 +1,4 @@
-# qiskit.pulse.PulseError[¶](#qiskit-pulse-pulseerror "Permalink to this headline")
+# qiskit.pulse.PulseError
 
 <span id="undefined" />
 

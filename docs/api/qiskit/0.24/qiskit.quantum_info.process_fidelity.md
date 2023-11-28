@@ -1,6 +1,6 @@
 <span id="qiskit-quantum-info-process-fidelity" />
 
-# qiskit.quantum\_info.process\_fidelity[¶](#qiskit-quantum-info-process-fidelity "Permalink to this headline")
+# qiskit.quantum\_info.process\_fidelity
 
 <span id="undefined" />
 

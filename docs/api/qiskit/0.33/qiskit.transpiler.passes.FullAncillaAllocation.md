@@ -1,4 +1,4 @@
-# FullAncillaAllocation[¶](#fullancillaallocation "Permalink to this headline")
+# FullAncillaAllocation
 
 <span id="undefined" />
 

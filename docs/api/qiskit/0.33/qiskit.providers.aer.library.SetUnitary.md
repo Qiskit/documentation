@@ -1,4 +1,4 @@
-# SetUnitary[¶](#setunitary "Permalink to this headline")
+# SetUnitary
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.align_sequential
 ---
 
-# qiskit.pulse.builder.align\_sequential[¶](#qiskit-pulse-builder-align-sequential "Permalink to this headline")
+# qiskit.pulse.builder.align\_sequential
 
 <span id="qiskit.pulse.builder.align_sequential" />
 

@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.StabilizerTable[¶](#qiskit-quantum-info-stabilizertable "Permalink to this headline")
+# qiskit.quantum\_info.StabilizerTable
 
 <span id="undefined" />
 

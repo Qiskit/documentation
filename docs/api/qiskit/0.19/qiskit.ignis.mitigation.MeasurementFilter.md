@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.mitigation.MeasurementFilter
 ---
 
-# MeasurementFilter[¶](#measurementfilter "Permalink to this headline")
+# MeasurementFilter
 
 <span id="qiskit.ignis.mitigation.MeasurementFilter" />
 

@@ -14,15 +14,11 @@ python_api_name: qiskit.transpiler.synthesis.aqc
 
 <span id="module-qiskit.transpiler.synthesis.aqc" />
 
-`qiskit.transpiler.synthesis.aqc¶`
+`qiskit.transpiler.synthesis.aqc`
 
 Implementation of Approximate Quantum Compiler as described in the paper \[1].
 
 ## Interface
-
-<span id="module-qiskit.transpiler.synthesis.aqc" />
-
-`¶`
 
 The main public interface of this module is reached by passing `unitary_synthesis_method='aqc'` to [`transpile`](qiskit.compiler.transpile#qiskit.compiler.transpile "qiskit.compiler.transpile"). This will swap the synthesis method to use [`AQCSynthesisPlugin`](qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin#qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin "qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin"). The individual classes are:
 
@@ -37,10 +33,6 @@ The main public interface of this module is reached by passing `unitary_synthesi
 | [`DefaultCNOTUnitObjective`](qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective#qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective "qiskit.transpiler.synthesis.aqc.DefaultCNOTUnitObjective")(num\_qubits, cnots) | A naive implementation of the objective function based on CNOT units.     |
 
 ## Mathematical Detail
-
-<span id="module-qiskit.transpiler.synthesis.aqc" />
-
-`¶`
 
 We are interested in compiling a quantum circuit, which we formalize as finding the best circuit representation in terms of an ordered gate sequence of a target unitary matrix $U\in U(d)$, with some additional hardware constraints. In particular, we look at representations that could be constrained in terms of hardware connectivity, as well as gate depth, and we choose a gate basis in terms of CNOT and rotation gates. We recall that the combination of CNOT and rotation gates is universal in $SU(d)$ and therefore it does not limit compilation.
 

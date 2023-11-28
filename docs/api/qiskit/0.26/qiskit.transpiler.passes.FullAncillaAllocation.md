@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.FullAncillaAllocation[¶](#qiskit-transpiler-passes-fullancillaallocation "Permalink to this headline")
+# qiskit.transpiler.passes.FullAncillaAllocation
 
 <span id="undefined" />
 

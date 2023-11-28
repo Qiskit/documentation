@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound
 ---
 
-# qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound[¶](#qiskit-providers-ibmq-ibmqaccountmultiplecredentialsfound "Permalink to this headline")
+# qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound
 
 <span id="qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound" />
 

@@ -1,4 +1,4 @@
-# qiskit.utils.has\_ibmq[¶](#qiskit-utils-has-ibmq "Permalink to this headline")
+# qiskit.utils.has\_ibmq
 
 <span id="undefined" />
 

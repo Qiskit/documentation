@@ -1,4 +1,4 @@
-# HFMethodType[¶](#hfmethodtype "Permalink to this headline")
+# HFMethodType
 
 <span id="undefined" />
 

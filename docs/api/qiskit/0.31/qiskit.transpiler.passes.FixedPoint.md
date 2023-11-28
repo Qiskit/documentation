@@ -1,4 +1,4 @@
-# FixedPoint[¶](#fixedpoint "Permalink to this headline")
+# FixedPoint
 
 <span id="undefined" />
 

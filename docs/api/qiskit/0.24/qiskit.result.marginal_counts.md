@@ -1,6 +1,6 @@
 <span id="qiskit-result-marginal-counts" />
 
-# qiskit.result.marginal\_counts[¶](#qiskit-result-marginal-counts "Permalink to this headline")
+# qiskit.result.marginal\_counts
 
 <span id="undefined" />
 

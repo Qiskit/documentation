@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-transformations-fermionicqubitmappingtype" />
 
-# qiskit.chemistry.transformations.FermionicQubitMappingType[¶](#qiskit-chemistry-transformations-fermionicqubitmappingtype "Permalink to this headline")
+# qiskit.chemistry.transformations.FermionicQubitMappingType
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.aqua.components.optimizers.IMFIL[¶](#qiskit-aqua-components-optimizers-imfil "Permalink to this headline")
+# qiskit.aqua.components.optimizers.IMFIL
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.MCPhaseGate
 ---
 
-# MCPhaseGate[¶](#mcphasegate "Permalink to this headline")
+# MCPhaseGate
 
 <span id="qiskit.circuit.library.MCPhaseGate" />
 

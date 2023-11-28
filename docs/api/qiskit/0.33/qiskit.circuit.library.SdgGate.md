@@ -1,4 +1,4 @@
-# SdgGate[¶](#sdggate "Permalink to this headline")
+# SdgGate
 
 <span id="undefined" />
 

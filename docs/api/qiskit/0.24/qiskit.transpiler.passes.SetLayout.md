@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-setlayout" />
 
-# qiskit.transpiler.passes.SetLayout[¶](#qiskit-transpiler-passes-setlayout "Permalink to this headline")
+# qiskit.transpiler.passes.SetLayout
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# TimeUnitConversion[¶](#timeunitconversion "Permalink to this headline")
+# TimeUnitConversion
 
 <span id="undefined" />
 

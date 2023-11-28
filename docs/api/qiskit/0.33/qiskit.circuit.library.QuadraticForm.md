@@ -1,4 +1,4 @@
-# QuadraticForm[¶](#quadraticform "Permalink to this headline")
+# QuadraticForm
 
 <span id="undefined" />
 

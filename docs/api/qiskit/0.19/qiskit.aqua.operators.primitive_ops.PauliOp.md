@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.primitive_ops.PauliOp
 ---
 
-# PauliOp[¶](#pauliop "Permalink to this headline")
+# PauliOp
 
 <span id="qiskit.aqua.operators.primitive_ops.PauliOp" />
 

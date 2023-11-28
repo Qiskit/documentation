@@ -12,10 +12,6 @@ python_api_name: qiskit.finance.applications.ising.portfolio
 
 # qiskit.finance.applications.ising.portfolio
 
-<span id="module-qiskit.finance.applications.ising.portfolio" />
-
-`¶`
-
 Convert portfolio optimization instances into Pauli list
 
 ## Functions

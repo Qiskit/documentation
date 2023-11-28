@@ -1,6 +1,6 @@
 <span id="qiskit-providers-basicaer-unitarysimulatorpy" />
 
-# qiskit.providers.basicaer.UnitarySimulatorPy[¶](#qiskit-providers-basicaer-unitarysimulatorpy "Permalink to this headline")
+# qiskit.providers.basicaer.UnitarySimulatorPy
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.JobStatus
 ---
 
-# JobStatus[¶](#jobstatus "Permalink to this headline")
+# JobStatus
 
 <span id="qiskit.providers.JobStatus" />
 

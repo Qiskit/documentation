@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.InstructionDurationCheck
 ---
 
-# InstructionDurationCheck[¶](#instructiondurationcheck "Permalink to this headline")
+# InstructionDurationCheck
 
 <span id="qiskit.transpiler.passes.InstructionDurationCheck" />
 

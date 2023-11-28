@@ -1,4 +1,4 @@
-# MolecularExcitedStatesResult[¶](#molecularexcitedstatesresult "Permalink to this headline")
+# MolecularExcitedStatesResult
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-problems-variable" />
 
-# qiskit.optimization.problems.Variable[¶](#qiskit-optimization-problems-variable "Permalink to this headline")
+# qiskit.optimization.problems.Variable
 
 <span id="undefined" />
 

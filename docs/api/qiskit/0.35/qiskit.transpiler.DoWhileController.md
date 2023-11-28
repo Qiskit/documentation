@@ -1,4 +1,4 @@
-# DoWhileController[¶](#dowhilecontroller "Permalink to this headline")
+# DoWhileController
 
 <span id="undefined" />
 

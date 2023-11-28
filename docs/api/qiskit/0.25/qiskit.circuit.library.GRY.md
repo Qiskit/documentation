@@ -1,4 +1,4 @@
-# qiskit.circuit.library.GRY[¶](#qiskit-circuit-library-gry "Permalink to this headline")
+# qiskit.circuit.library.GRY
 
 <span id="undefined" />
 

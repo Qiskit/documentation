@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.channels.MeasureChannel
 ---
 
-# MeasureChannel[¶](#measurechannel "Permalink to this headline")
+# MeasureChannel
 
 <span id="qiskit.pulse.channels.MeasureChannel" />
 

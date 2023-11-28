@@ -1,4 +1,4 @@
-# VariationalForm[¶](#variationalform "Permalink to this headline")
+# VariationalForm
 
 <span id="undefined" />
 

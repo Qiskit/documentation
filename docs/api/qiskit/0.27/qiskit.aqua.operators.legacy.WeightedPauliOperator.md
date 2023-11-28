@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.legacy.WeightedPauliOperator[¶](#qiskit-aqua-operators-legacy-weightedpaulioperator "Permalink to this headline")
+# qiskit.aqua.operators.legacy.WeightedPauliOperator
 
 <span id="undefined" />
 

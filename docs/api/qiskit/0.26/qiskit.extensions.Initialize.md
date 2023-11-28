@@ -1,4 +1,4 @@
-# qiskit.extensions.Initialize[¶](#qiskit-extensions-initialize "Permalink to this headline")
+# qiskit.extensions.Initialize
 
 <span id="undefined" />
 

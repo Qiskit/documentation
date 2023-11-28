@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.utils.get_num_classes
 ---
 
-# get\_num\_classes[¶](#get-num-classes "Permalink to this headline")
+# get\_num\_classes
 
 <span id="qiskit.aqua.utils.get_num_classes" />
 

@@ -1,4 +1,4 @@
-# DAGLongestPath[¶](#daglongestpath "Permalink to this headline")
+# DAGLongestPath
 
 <span id="undefined" />
 

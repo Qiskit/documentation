@@ -1,4 +1,4 @@
-# PauliExpectation[¶](#pauliexpectation "Permalink to this headline")
+# PauliExpectation
 
 <span id="undefined" />
 

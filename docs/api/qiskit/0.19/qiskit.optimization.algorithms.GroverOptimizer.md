@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.optimization.algorithms.GroverOptimizer
 ---
 
-# GroverOptimizer[¶](#groveroptimizer "Permalink to this headline")
+# GroverOptimizer
 
 <span id="qiskit.optimization.algorithms.GroverOptimizer" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.library.SetSuperOp
 ---
 
-# SetSuperOp[¶](#setsuperop "Permalink to this headline")
+# SetSuperOp
 
 <span id="qiskit.providers.aer.library.SetSuperOp" />
 

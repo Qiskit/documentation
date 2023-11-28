@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective
 ---
 
-# UnivariatePiecewiseLinearObjective[¶](#univariatepiecewiselinearobjective "Permalink to this headline")
+# UnivariatePiecewiseLinearObjective
 
 <span id="qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective" />
 

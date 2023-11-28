@@ -1,4 +1,4 @@
-# PauliTwoDesign[¶](#paulitwodesign "Permalink to this headline")
+# PauliTwoDesign
 
 <span id="undefined" />
 

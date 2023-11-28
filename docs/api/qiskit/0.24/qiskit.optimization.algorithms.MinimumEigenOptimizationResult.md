@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-algorithms-minimumeigenoptimizationresult" />
 
-# qiskit.optimization.algorithms.MinimumEigenOptimizationResult[¶](#qiskit-optimization-algorithms-minimumeigenoptimizationresult "Permalink to this headline")
+# qiskit.optimization.algorithms.MinimumEigenOptimizationResult
 
 <span id="undefined" />
 

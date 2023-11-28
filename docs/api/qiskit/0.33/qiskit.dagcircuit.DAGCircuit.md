@@ -1,4 +1,4 @@
-# DAGCircuit[¶](#dagcircuit "Permalink to this headline")
+# DAGCircuit
 
 <span id="undefined" />
 

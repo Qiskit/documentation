@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-algorithms-vqeuccsdfactory" />
 
-# qiskit.chemistry.algorithms.VQEUCCSDFactory[¶](#qiskit-chemistry-algorithms-vqeuccsdfactory "Permalink to this headline")
+# qiskit.chemistry.algorithms.VQEUCCSDFactory
 
 <span id="undefined" />
 

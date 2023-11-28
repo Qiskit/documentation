@@ -1,4 +1,4 @@
-# RXXGate[¶](#rxxgate "Permalink to this headline")
+# RXXGate
 
 <span id="undefined" />
 

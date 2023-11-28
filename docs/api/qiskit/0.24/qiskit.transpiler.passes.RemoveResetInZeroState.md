@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-removeresetinzerostate" />
 
-# qiskit.transpiler.passes.RemoveResetInZeroState[¶](#qiskit-transpiler-passes-removeresetinzerostate "Permalink to this headline")
+# qiskit.transpiler.passes.RemoveResetInZeroState
 
 <span id="undefined" />
 

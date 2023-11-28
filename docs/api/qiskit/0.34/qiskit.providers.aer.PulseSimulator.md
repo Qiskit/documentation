@@ -1,4 +1,4 @@
-# PulseSimulator[¶](#pulsesimulator "Permalink to this headline")
+# PulseSimulator
 
 <span id="undefined" />
 

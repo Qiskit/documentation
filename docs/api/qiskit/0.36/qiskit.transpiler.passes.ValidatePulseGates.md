@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.ValidatePulseGates
 ---
 
-# ValidatePulseGates[¶](#validatepulsegates "Permalink to this headline")
+# ValidatePulseGates
 
 <span id="qiskit.transpiler.passes.ValidatePulseGates" />
 

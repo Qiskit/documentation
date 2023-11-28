@@ -1,4 +1,4 @@
-# qiskit.pulse.builder.x[¶](#qiskit-pulse-builder-x "Permalink to this headline")
+# qiskit.pulse.builder.x
 
 <span id="undefined" />
 

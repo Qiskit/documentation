@@ -14,13 +14,9 @@ python_api_name: qiskit.ignis.verification
 
 <span id="module-qiskit.ignis.verification" />
 
-`qiskit.ignis.verification¶`
+`qiskit.ignis.verification`
 
 ## Quantum Volume
-
-<span id="module-qiskit.ignis.verification" />
-
-`¶`
 
 |                                                                                                                                  |                                                               |
 | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
@@ -28,10 +24,6 @@ python_api_name: qiskit.ignis.verification
 | [`QVFitter`](qiskit.ignis.verification.QVFitter "qiskit.ignis.verification.QVFitter")(\[backend\_result, …])                     | Class for fitters for quantum volume.                         |
 
 ## Randomized Benchmarking
-
-<span id="module-qiskit.ignis.verification" />
-
-`¶`
 
 Randomization benchmarking (RB) is a well-known technique to measure average gate performance by running sequences of random Clifford gates that should return the qubits to the initial state. Qiskit Ignis has tools to generate one- and two-qubit gate Clifford RB sequences simultaneously, as well as performing interleaved RB, purity RB and RB on the non-Clifford CNOT-Dihedral group.
 
@@ -58,10 +50,6 @@ Randomization benchmarking (RB) is a well-known technique to measure average gat
 
 ## Tomography
 
-<span id="module-qiskit.ignis.verification" />
-
-`¶`
-
 |                                                                                                                                                                  |                                                          |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
 | [`state_tomography_circuits`](qiskit.ignis.verification.state_tomography_circuits "qiskit.ignis.verification.state_tomography_circuits")(circuit, …\[, …])       | Return a list of quantum state tomography circuits.      |
@@ -77,10 +65,6 @@ Randomization benchmarking (RB) is a well-known technique to measure average gat
 
 ## Topological Codes
 
-<span id="module-qiskit.ignis.verification" />
-
-`¶`
-
 |                                                                                                                                                 |                                                                                                                                          |
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
 | [`RepetitionCode`](qiskit.ignis.verification.RepetitionCode "qiskit.ignis.verification.RepetitionCode")(d\[, T])                                | Implementation of a distance d repetition code, implemented over T syndrome measurement rounds.                                          |
@@ -89,10 +73,6 @@ Randomization benchmarking (RB) is a well-known technique to measure average gat
 | [`postselection_decoding`](qiskit.ignis.verification.postselection_decoding "qiskit.ignis.verification.postselection_decoding")(results)        | Calculates the logical error probability using postselection decoding.                                                                   |
 
 ## Accreditation
-
-<span id="module-qiskit.ignis.verification" />
-
-`¶`
 
 |                                                                                                                                                  |                                                               |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------- |

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.hellinger_distance
 ---
 
-# qiskit.quantum\_info.hellinger\_distance[¶](#qiskit-quantum-info-hellinger-distance "Permalink to this headline")
+# qiskit.quantum\_info.hellinger\_distance
 
 <span id="qiskit.quantum_info.hellinger_distance" />
 

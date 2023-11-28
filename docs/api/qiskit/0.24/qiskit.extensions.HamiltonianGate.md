@@ -1,6 +1,6 @@
 <span id="qiskit-extensions-hamiltoniangate" />
 
-# qiskit.extensions.HamiltonianGate[¶](#qiskit-extensions-hamiltoniangate "Permalink to this headline")
+# qiskit.extensions.HamiltonianGate
 
 <span id="undefined" />
 

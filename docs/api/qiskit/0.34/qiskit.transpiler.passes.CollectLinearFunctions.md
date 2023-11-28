@@ -1,4 +1,4 @@
-# CollectLinearFunctions[¶](#collectlinearfunctions "Permalink to this headline")
+# CollectLinearFunctions
 
 <span id="undefined" />
 

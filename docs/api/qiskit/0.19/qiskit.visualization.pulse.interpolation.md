@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.pulse.interpolation.cubic_spline
 ---
 
-# interpolation[¶](#module-qiskit.visualization.pulse.interpolation "Permalink to this headline")
+# interpolation
 
 interpolation module for pulse visualization.
 

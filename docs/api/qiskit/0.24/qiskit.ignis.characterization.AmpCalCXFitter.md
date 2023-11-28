@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-characterization-ampcalcxfitter" />
 
-# qiskit.ignis.characterization.AmpCalCXFitter[¶](#qiskit-ignis-characterization-ampcalcxfitter "Permalink to this headline")
+# qiskit.ignis.characterization.AmpCalCXFitter
 
 <span id="undefined" />
 

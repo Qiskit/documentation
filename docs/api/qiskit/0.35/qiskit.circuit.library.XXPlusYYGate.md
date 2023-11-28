@@ -1,4 +1,4 @@
-# XXPlusYYGate[¶](#xxplusyygate "Permalink to this headline")
+# XXPlusYYGate
 
 <span id="undefined" />
 

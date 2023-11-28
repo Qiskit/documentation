@@ -1,6 +1,6 @@
 <span id="qiskit-providers-ibmq-ibmqbackend" />
 
-# qiskit.providers.ibmq.IBMQBackend[¶](#qiskit-providers-ibmq-ibmqbackend "Permalink to this headline")
+# qiskit.providers.ibmq.IBMQBackend
 
 <span id="undefined" />
 

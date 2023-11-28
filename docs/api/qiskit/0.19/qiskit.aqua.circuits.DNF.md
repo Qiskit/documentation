@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.circuits.DNF
 ---
 
-# DNF[¶](#dnf "Permalink to this headline")
+# DNF
 
 <span id="qiskit.aqua.circuits.DNF" />
 

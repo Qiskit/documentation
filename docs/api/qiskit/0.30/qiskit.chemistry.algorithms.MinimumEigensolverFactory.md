@@ -1,4 +1,4 @@
-# MinimumEigensolverFactory[¶](#minimumeigensolverfactory "Permalink to this headline")
+# MinimumEigensolverFactory
 
 <span id="undefined" />
 

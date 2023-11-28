@@ -1,4 +1,4 @@
-# qiskit.transpiler.preset\_passmanagers.level\_1\_pass\_manager[¶](#qiskit-transpiler-preset-passmanagers-level-1-pass-manager "Permalink to this headline")
+# qiskit.transpiler.preset\_passmanagers.level\_1\_pass\_manager
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.optimization.QiskitOptimizationError[¶](#qiskit-optimization-qiskitoptimizationerror "Permalink to this headline")
+# qiskit.optimization.QiskitOptimizationError
 
 <span id="undefined" />
 

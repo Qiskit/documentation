@@ -1,4 +1,4 @@
-# qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter[¶](#qiskit-ignis-mitigation-expvalmeasmitigatorfitter "Permalink to this headline")
+# qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter
 
 <span id="undefined" />
 

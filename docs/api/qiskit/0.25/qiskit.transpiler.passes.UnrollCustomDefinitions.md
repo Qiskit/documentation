@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.UnrollCustomDefinitions[¶](#qiskit-transpiler-passes-unrollcustomdefinitions "Permalink to this headline")
+# qiskit.transpiler.passes.UnrollCustomDefinitions
 
 <span id="undefined" />
 

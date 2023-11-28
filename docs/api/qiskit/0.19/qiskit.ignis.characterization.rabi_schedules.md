@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.characterization.rabi_schedules
 ---
 
-# rabi\_schedules[¶](#rabi-schedules "Permalink to this headline")
+# rabi\_schedules
 
 <span id="qiskit.ignis.characterization.rabi_schedules" />
 

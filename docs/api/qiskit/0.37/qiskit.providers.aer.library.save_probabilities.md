@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.library.save_probabilities
 ---
 
-# qiskit.providers.aer.library.save\_probabilities[¶](#qiskit-providers-aer-library-save-probabilities "Permalink to this headline")
+# qiskit.providers.aer.library.save\_probabilities
 
 <span id="qiskit.providers.aer.library.save_probabilities" />
 

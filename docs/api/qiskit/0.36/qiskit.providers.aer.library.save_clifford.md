@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.library.save_clifford
 ---
 
-# qiskit.providers.aer.library.save\_clifford[¶](#qiskit-providers-aer-library-save-clifford "Permalink to this headline")
+# qiskit.providers.aer.library.save\_clifford
 
 <span id="qiskit.providers.aer.library.save_clifford" />
 

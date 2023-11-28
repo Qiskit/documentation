@@ -1,4 +1,4 @@
-# SLSQP[¶](#slsqp "Permalink to this headline")
+# SLSQP
 
 <span id="undefined" />
 

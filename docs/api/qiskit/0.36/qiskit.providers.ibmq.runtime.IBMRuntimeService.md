@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.runtime.IBMRuntimeService
 ---
 
-# IBMRuntimeService[¶](#ibmruntimeservice "Permalink to this headline")
+# IBMRuntimeService
 
 <span id="qiskit.providers.ibmq.runtime.IBMRuntimeService" />
 

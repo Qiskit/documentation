@@ -1,4 +1,4 @@
-# CircuitFactory[¶](#circuitfactory "Permalink to this headline")
+# CircuitFactory
 
 <span id="undefined" />
 

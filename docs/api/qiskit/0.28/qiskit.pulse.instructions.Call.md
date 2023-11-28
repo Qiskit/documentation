@@ -1,4 +1,4 @@
-# qiskit.pulse.instructions.Call[¶](#qiskit-pulse-instructions-call "Permalink to this headline")
+# qiskit.pulse.instructions.Call
 
 <span id="undefined" />
 

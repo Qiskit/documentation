@@ -1,4 +1,4 @@
-# qiskit.pulse.transforms.compress\_pulses[¶](#qiskit-pulse-transforms-compress-pulses "Permalink to this headline")
+# qiskit.pulse.transforms.compress\_pulses
 
 <span id="undefined" />
 

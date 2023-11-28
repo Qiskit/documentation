@@ -16,13 +16,9 @@ python_api_name: qiskit.primitives
 
 <span id="module-qiskit.primitives" />
 
-`qiskit.primitives¶`
+`qiskit.primitives`
 
 ## Overview of Estimator
-
-<span id="module-qiskit.primitives" />
-
-`¶`
 
 Estimator class estimates expectation values of quantum circuits and observables.
 
@@ -96,10 +92,6 @@ with Estimator([psi1, psi2], [H1, H2, H3], [params1, params2]) as e:
 
 ## Overview of Sampler
 
-<span id="module-qiskit.primitives" />
-
-`¶`
-
 Sampler class calculates probabilities or quasi-probabilities of bitstrings from quantum circuits.
 
 A sampler is initialized with the following elements.
@@ -162,10 +154,6 @@ with Sampler(circuits=[pqc, pqc2], parameters=[pqc.parameters, pqc2.parameters])
 
 ## Estimator
 
-<span id="module-qiskit.primitives" />
-
-`¶`
-
 |                                                                                                                                                   |                       |
 | ------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
 | [`BaseEstimator`](qiskit.primitives.BaseEstimator#qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")(circuits, observables\[, …]) | Estimator base class. |
@@ -173,20 +161,12 @@ with Sampler(circuits=[pqc, pqc2], parameters=[pqc.parameters, pqc2.parameters])
 
 ## Sampler
 
-<span id="module-qiskit.primitives" />
-
-`¶`
-
 |                                                                                                                                       |                    |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
 | [`BaseSampler`](qiskit.primitives.BaseSampler#qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")(circuits\[, parameters]) | Sampler base class |
 | [`Sampler`](qiskit.primitives.Sampler#qiskit.primitives.Sampler "qiskit.primitives.Sampler")(circuits\[, parameters])                 | Sampler class      |
 
 ## Results
-
-<span id="module-qiskit.primitives" />
-
-`¶`
 
 |                                                                                                                                                |                     |
 | ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |

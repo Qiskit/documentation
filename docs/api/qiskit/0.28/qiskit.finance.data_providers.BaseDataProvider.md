@@ -1,4 +1,4 @@
-# qiskit.finance.data\_providers.BaseDataProvider[¶](#qiskit-finance-data-providers-basedataprovider "Permalink to this headline")
+# qiskit.finance.data\_providers.BaseDataProvider
 
 <span id="undefined" />
 

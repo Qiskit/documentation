@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-utils-decimal-to-binary" />
 
-# qiskit.aqua.utils.decimal\_to\_binary[¶](#qiskit-aqua-utils-decimal-to-binary "Permalink to this headline")
+# qiskit.aqua.utils.decimal\_to\_binary
 
 <span id="undefined" />
 

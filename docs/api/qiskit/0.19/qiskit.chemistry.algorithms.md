@@ -14,23 +14,15 @@ python_api_name: qiskit.chemistry.algorithms
 
 <span id="module-qiskit.chemistry.algorithms" />
 
-`qiskit.chemistry.algorithms¶`
+`qiskit.chemistry.algorithms`
 
 These are chemistry specific algorithms for Aqua. As they rely on chemistry specific knowledge and/or function they are here in chemistry rather than in Aqua.
 
 # Chemistry Algorithms
 
-<span id="module-qiskit.chemistry.algorithms" />
-
-`¶`
-
 These are algorithms configured and/or functioning using chemistry specific knowledge. See also the Aqua [`algorithms`](qiskit.aqua.algorithms#module-qiskit.aqua.algorithms "qiskit.aqua.algorithms") for other algorithms in these categories which may also be used for chemistry problems such as [`VQE`](qiskit.aqua.algorithms.VQE "qiskit.aqua.algorithms.VQE").
 
 ## Eigensolvers
-
-<span id="module-qiskit.chemistry.algorithms" />
-
-`¶`
 
 Algorithms that can find the eigenvalues of an operator, i.e. excited states for chemistry.
 
@@ -40,10 +32,6 @@ Algorithms that can find the eigenvalues of an operator, i.e. excited states for
 | [`QEomEE`](qiskit.chemistry.algorithms.QEomEE "qiskit.chemistry.algorithms.QEomEE")    | QEomEE algorithm (classical) |
 
 ## Minimum Eigensolvers
-
-<span id="module-qiskit.chemistry.algorithms" />
-
-`¶`
 
 Algorithms that can find the minimum eigenvalue of an operator, i.e. ground state for chemistry.
 

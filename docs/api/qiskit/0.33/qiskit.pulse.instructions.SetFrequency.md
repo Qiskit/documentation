@@ -1,4 +1,4 @@
-# SetFrequency[¶](#setfrequency "Permalink to this headline")
+# SetFrequency
 
 <span id="undefined" />
 

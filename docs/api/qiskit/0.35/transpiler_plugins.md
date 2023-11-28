@@ -14,7 +14,7 @@ python_api_name: qiskit.transpiler.passes.synthesis.plugin
 
 <span id="module-qiskit.transpiler.passes.synthesis.plugin" />
 
-`qiskit.transpiler.passes.synthesis.plugin¶`
+`qiskit.transpiler.passes.synthesis.plugin`
 
 This module defines the plugin interfaces for the synthesis transpiler passes in Qiskit. These provide a hook point for external python packages to implement their own synthesis techniques and have them seamlessly exposed as opt-in options to users when they run [`transpile()`](qiskit.compiler.transpile#qiskit.compiler.transpile "qiskit.compiler.transpile").
 
@@ -22,11 +22,7 @@ The plugin interfaces are built using setuptools [entry points](https://setuptoo
 
 ## Writing Plugins
 
-<span id="module-qiskit.transpiler.passes.synthesis.plugin" />
-
-`¶`
-
-### Unitary Synthesis Plugins[¶](#unitary-synthesis-plugins "Permalink to this headline")
+### Unitary Synthesis Plugins
 
 To write a unitary synthesis plugin there are 2 main steps. The first step is to create a subclass of the abstract plugin class: [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin#qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin"). The plugin class defines the interface and contract for unitary synthesis plugins. The primary method is [`run()`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.run#qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.run "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.run") which takes in a single positional argument, a unitary matrix as a numpy array, and is expected to return a [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") object representing the synthesized circuit from that unitary matrix. Then to inform the Qiskit transpiler about what information is necessary for the pass there are several required property methods that need to be implemented such as `supports_basis_gates` and `supports_coupling_map` depending on whether the plugin supports and/or requires that input to perform synthesis. For the full details refer to the [`UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin#qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin") documentation for all the required fields. An example plugin class would look something like:
 
@@ -96,15 +92,11 @@ entry_points = {
 
 (note that the entry point `name = path` is a single string not a Python expression). There isn’t a limit to the number of plugins a single package can include as long as each plugin has a unique name. So a single package can expose multiple plugins if necessary. The name `default` is used by Qiskit itself and can’t be used in a plugin.
 
-#### Unitary Synthesis Plugin Configuration[¶](#unitary-synthesis-plugin-configuration "Permalink to this headline")
+#### Unitary Synthesis Plugin Configuration
 
 For some unitary synthesis plugins that expose multiple options and tunables the plugin interface has an option for users to provide a free form configuration dictionary. This will be passed through to the `run()` method as the `config` kwarg. If your plugin has these configuration options you should clearly document how a user should specify these configuration options and how they’re used as it’s a free form field.
 
 ## Using Plugins
-
-<span id="module-qiskit.transpiler.passes.synthesis.plugin" />
-
-`¶`
 
 To use a plugin all you need to do is install the package that includes a synthesis plugin. Then Qiskit will automatically discover the installed plugins and expose them as valid options for the appropriate [`transpile()`](qiskit.compiler.transpile#qiskit.compiler.transpile "qiskit.compiler.transpile") kwargs and pass constructors. If there are any installed plugins which can’t be loaded/imported this will be logged to Python logging.
 
@@ -112,11 +104,7 @@ To get the installed list of installed unitary synthesis plugins you can use the
 
 ## Plugin API
 
-<span id="module-qiskit.transpiler.passes.synthesis.plugin" />
-
-`¶`
-
-### Unitary Synthesis Plugins[¶](#id1 "Permalink to this headline")
+### Unitary Synthesis Plugins
 
 |                                                                                                                                                                                                                                                                    |                                                           |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |

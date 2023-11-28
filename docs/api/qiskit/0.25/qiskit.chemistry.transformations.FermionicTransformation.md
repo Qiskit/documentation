@@ -1,4 +1,4 @@
-# qiskit.chemistry.transformations.FermionicTransformation[¶](#qiskit-chemistry-transformations-fermionictransformation "Permalink to this headline")
+# qiskit.chemistry.transformations.FermionicTransformation
 
 <span id="undefined" />
 

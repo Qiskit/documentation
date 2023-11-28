@@ -1,4 +1,4 @@
-# WikipediaDataProvider[¶](#wikipediadataprovider "Permalink to this headline")
+# WikipediaDataProvider
 
 <span id="undefined" />
 

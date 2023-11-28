@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.iplot_histogram
 ---
 
-# iplot\_histogram[¶](#iplot-histogram "Permalink to this headline")
+# iplot\_histogram
 
 <span id="qiskit.visualization.iplot_histogram" />
 

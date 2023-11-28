@@ -1,4 +1,4 @@
-# CheckGateDirection[¶](#checkgatedirection "Permalink to this headline")
+# CheckGateDirection
 
 <span id="undefined" />
 

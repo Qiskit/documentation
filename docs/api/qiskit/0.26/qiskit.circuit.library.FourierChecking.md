@@ -1,4 +1,4 @@
-# qiskit.circuit.library.FourierChecking[¶](#qiskit-circuit-library-fourierchecking "Permalink to this headline")
+# qiskit.circuit.library.FourierChecking
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.OperatorBase[¶](#qiskit-aqua-operators-operatorbase "Permalink to this headline")
+# qiskit.aqua.operators.OperatorBase
 
 <span id="undefined" />
 

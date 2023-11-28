@@ -1,4 +1,4 @@
-# qiskit.aqua.components.oracles.LogicalExpressionOracle[¶](#qiskit-aqua-components-oracles-logicalexpressionoracle "Permalink to this headline")
+# qiskit.aqua.components.oracles.LogicalExpressionOracle
 
 <span id="undefined" />
 

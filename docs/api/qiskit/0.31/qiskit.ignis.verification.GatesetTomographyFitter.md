@@ -1,4 +1,4 @@
-# GatesetTomographyFitter[¶](#gatesettomographyfitter "Permalink to this headline")
+# GatesetTomographyFitter
 
 <span id="undefined" />
 

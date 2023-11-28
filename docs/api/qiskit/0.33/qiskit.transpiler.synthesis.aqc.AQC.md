@@ -1,4 +1,4 @@
-# AQC[¶](#aqc "Permalink to this headline")
+# AQC
 
 <span id="undefined" />
 

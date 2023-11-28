@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.RunnerResult[¶](#qiskit-providers-ibmq-runnerresult "Permalink to this headline")
+# qiskit.providers.ibmq.RunnerResult
 
 <span id="undefined" />
 

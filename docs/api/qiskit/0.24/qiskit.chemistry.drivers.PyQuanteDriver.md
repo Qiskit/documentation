@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-drivers-pyquantedriver" />
 
-# qiskit.chemistry.drivers.PyQuanteDriver[¶](#qiskit-chemistry-drivers-pyquantedriver "Permalink to this headline")
+# qiskit.chemistry.drivers.PyQuanteDriver
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-characterization-t1fitter" />
 
-# qiskit.ignis.characterization.T1Fitter[¶](#qiskit-ignis-characterization-t1fitter "Permalink to this headline")
+# qiskit.ignis.characterization.T1Fitter
 
 <span id="undefined" />
 

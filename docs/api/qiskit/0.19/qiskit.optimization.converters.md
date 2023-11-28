@@ -14,15 +14,11 @@ python_api_name: qiskit.optimization.converters
 
 <span id="module-qiskit.optimization.converters" />
 
-`qiskit.optimization.converters¶`
+`qiskit.optimization.converters`
 
 This is selection of converters having encode, decode functionality to go between different forms.
 
 # Converters
-
-<span id="module-qiskit.optimization.converters" />
-
-`¶`
 
 |                                                                                                                                                                                        |                                                                                                                                                                                       |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

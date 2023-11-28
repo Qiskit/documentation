@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-memoryslot" />
 
-# qiskit.pulse.MemorySlot[¶](#qiskit-pulse-memoryslot "Permalink to this headline")
+# qiskit.pulse.MemorySlot
 
 <span id="undefined" />
 

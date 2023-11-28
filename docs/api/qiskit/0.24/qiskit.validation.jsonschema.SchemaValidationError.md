@@ -1,6 +1,6 @@
 <span id="qiskit-validation-jsonschema-schemavalidationerror" />
 
-# qiskit.validation.jsonschema.SchemaValidationError[¶](#qiskit-validation-jsonschema-schemavalidationerror "Permalink to this headline")
+# qiskit.validation.jsonschema.SchemaValidationError
 
 <span id="undefined" />
 

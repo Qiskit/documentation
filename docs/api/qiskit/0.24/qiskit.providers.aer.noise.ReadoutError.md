@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-noise-readouterror" />
 
-# qiskit.providers.aer.noise.ReadoutError[¶](#qiskit-providers-aer-noise-readouterror "Permalink to this headline")
+# qiskit.providers.aer.noise.ReadoutError
 
 <span id="undefined" />
 

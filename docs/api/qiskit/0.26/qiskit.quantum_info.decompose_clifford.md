@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.decompose\_clifford[¶](#qiskit-quantum-info-decompose-clifford "Permalink to this headline")
+# qiskit.quantum\_info.decompose\_clifford
 
 <span id="undefined" />
 

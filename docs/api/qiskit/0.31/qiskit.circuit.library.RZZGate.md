@@ -1,4 +1,4 @@
-# RZZGate[¶](#rzzgate "Permalink to this headline")
+# RZZGate
 
 <span id="undefined" />
 

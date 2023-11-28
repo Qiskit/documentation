@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.verification.twoQ_clifford_error
 ---
 
-# twoQ\_clifford\_error[¶](#twoq-clifford-error "Permalink to this headline")
+# twoQ\_clifford\_error
 
 <span id="qiskit.ignis.verification.twoQ_clifford_error" />
 

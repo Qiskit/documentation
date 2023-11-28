@@ -1,4 +1,4 @@
-# RGQFTMultiplier[¶](#rgqftmultiplier "Permalink to this headline")
+# RGQFTMultiplier
 
 <span id="undefined" />
 

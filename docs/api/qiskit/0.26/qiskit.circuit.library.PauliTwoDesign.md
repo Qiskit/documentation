@@ -1,4 +1,4 @@
-# qiskit.circuit.library.PauliTwoDesign[¶](#qiskit-circuit-library-paulitwodesign "Permalink to this headline")
+# qiskit.circuit.library.PauliTwoDesign
 
 <span id="undefined" />
 

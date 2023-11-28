@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.optimizers.ISRES
 ---
 
-# ISRES[¶](#isres "Permalink to this headline")
+# ISRES
 
 <span id="qiskit.aqua.components.optimizers.ISRES" />
 

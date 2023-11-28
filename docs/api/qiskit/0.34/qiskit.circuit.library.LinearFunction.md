@@ -1,4 +1,4 @@
-# LinearFunction[¶](#linearfunction "Permalink to this headline")
+# LinearFunction
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# QasmSimulatorPy[¶](#qasmsimulatorpy "Permalink to this headline")
+# QasmSimulatorPy
 
 <span id="undefined" />
 

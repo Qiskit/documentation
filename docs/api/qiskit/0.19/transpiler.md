@@ -14,13 +14,9 @@ python_api_name: qiskit.transpiler
 
 <span id="module-qiskit.transpiler" />
 
-`qiskit.transpiler¶`
+`qiskit.transpiler`
 
 ## Pass Management
-
-<span id="module-qiskit.transpiler" />
-
-`¶`
 
 |                                                                                                                         |                                                                        |
 | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
@@ -31,10 +27,6 @@ python_api_name: qiskit.transpiler
 
 ## Layout and Topology
 
-<span id="module-qiskit.transpiler" />
-
-`¶`
-
 |                                                                                                              |                                           |
 | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------- |
 | [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout")(\[input\_dict])                              | Two-ways dict to represent a Layout.      |
@@ -42,20 +34,12 @@ python_api_name: qiskit.transpiler
 
 ## Fenced Objects
 
-<span id="module-qiskit.transpiler" />
-
-`¶`
-
 |                                                                                                                           |                                                              |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | [`FencedDAGCircuit`](qiskit.transpiler.FencedDAGCircuit "qiskit.transpiler.FencedDAGCircuit")(dag\_circuit\_instance)     | A dag circuit that cannot be modified (via remove\_op\_node) |
 | [`FencedPropertySet`](qiskit.transpiler.FencedPropertySet "qiskit.transpiler.FencedPropertySet")(property\_set\_instance) | A property set that cannot be written (via \_\_setitem\_\_)  |
 
 ## Exceptions
-
-<span id="module-qiskit.transpiler" />
-
-`¶`
 
 |                                                                                                                         |                                                                 |
 | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |

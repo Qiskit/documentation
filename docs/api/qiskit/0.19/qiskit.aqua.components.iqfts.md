@@ -14,7 +14,7 @@ python_api_name: qiskit.aqua.components.iqfts
 
 <span id="module-qiskit.aqua.components.iqfts" />
 
-`qiskit.aqua.components.iqfts¶`
+`qiskit.aqua.components.iqfts`
 
 In quantum computing, a Quantum Fourier Transform (QFT) is a linear transformation on quantum bits, and is the quantum analogue of the discrete Fourier transform. Since there is an efficient quantum circuit implementing the QFT, the circuit can be run in reverse to perform the Inverse Quantum Fourier Transform (IQFT).
 
@@ -22,19 +22,11 @@ See [`qfts`](qiskit.aqua.components.qfts#module-qiskit.aqua.components.qfts "qis
 
 # Inverse Quantum Fourier Transform Base Class
 
-<span id="module-qiskit.aqua.components.iqfts" />
-
-`¶`
-
 |                                                                                 |             |
 | ------------------------------------------------------------------------------- | ----------- |
 | [`IQFT`](qiskit.aqua.components.iqfts.IQFT "qiskit.aqua.components.iqfts.IQFT") | DEPRECATED. |
 
 # Inverse Quantum Fourier Transforms
-
-<span id="module-qiskit.aqua.components.iqfts" />
-
-`¶`
 
 |                                                                                                      |                       |
 | ---------------------------------------------------------------------------------------------------- | --------------------- |

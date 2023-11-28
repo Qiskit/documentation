@@ -1,4 +1,4 @@
-# qiskit.ml.datasets.ad\_hoc\_data[¶](#qiskit-ml-datasets-ad-hoc-data "Permalink to this headline")
+# qiskit.ml.datasets.ad\_hoc\_data
 
 <span id="undefined" />
 

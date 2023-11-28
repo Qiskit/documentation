@@ -1,4 +1,4 @@
-# MCMTVChain[¶](#mcmtvchain "Permalink to this headline")
+# MCMTVChain
 
 <span id="undefined" />
 

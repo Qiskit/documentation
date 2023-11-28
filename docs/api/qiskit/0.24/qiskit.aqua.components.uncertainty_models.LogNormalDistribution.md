@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-uncertainty-models-lognormaldistribution" />
 
-# qiskit.aqua.components.uncertainty\_models.LogNormalDistribution[¶](#qiskit-aqua-components-uncertainty-models-lognormaldistribution "Permalink to this headline")
+# qiskit.aqua.components.uncertainty\_models.LogNormalDistribution
 
 <span id="undefined" />
 

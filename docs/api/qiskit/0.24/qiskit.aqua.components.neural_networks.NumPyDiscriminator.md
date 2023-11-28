@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-neural-networks-numpydiscriminator" />
 
-# qiskit.aqua.components.neural\_networks.NumPyDiscriminator[¶](#qiskit-aqua-components-neural-networks-numpydiscriminator "Permalink to this headline")
+# qiskit.aqua.components.neural\_networks.NumPyDiscriminator
 
 <span id="undefined" />
 

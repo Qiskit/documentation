@@ -1,4 +1,4 @@
-# qiskit.utils.apply\_prefix[¶](#qiskit-utils-apply-prefix "Permalink to this headline")
+# qiskit.utils.apply\_prefix
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation[¶](#qiskit-algorithms-maximumlikelihoodamplitudeestimation "Permalink to this headline")
+# qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
 
 <span id="undefined" />
 

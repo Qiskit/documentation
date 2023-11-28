@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.initial_states.InitialState
 ---
 
-# InitialState[¶](#initialstate "Permalink to this headline")
+# InitialState
 
 <span id="qiskit.aqua.components.initial_states.InitialState" />
 

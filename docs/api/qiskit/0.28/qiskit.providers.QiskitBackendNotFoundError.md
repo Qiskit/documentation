@@ -1,4 +1,4 @@
-# qiskit.providers.QiskitBackendNotFoundError[¶](#qiskit-providers-qiskitbackendnotfounderror "Permalink to this headline")
+# qiskit.providers.QiskitBackendNotFoundError
 
 <span id="undefined" />
 

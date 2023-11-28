@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.noise.device.gate_error_values
 ---
 
-# gate\_error\_values[¶](#gate-error-values "Permalink to this headline")
+# gate\_error\_values
 
 <span id="qiskit.providers.aer.noise.device.gate_error_values" />
 

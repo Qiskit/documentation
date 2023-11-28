@@ -1,4 +1,4 @@
-# Constraint[¶](#constraint "Permalink to this headline")
+# Constraint
 
 <span id="undefined" />
 

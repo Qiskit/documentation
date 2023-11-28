@@ -1,4 +1,4 @@
-# DiscriminationFilter[¶](#discriminationfilter "Permalink to this headline")
+# DiscriminationFilter
 
 <span id="undefined" />
 

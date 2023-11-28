@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.credentials.CredentialsError[¶](#qiskit-providers-ibmq-credentials-credentialserror "Permalink to this headline")
+# qiskit.providers.ibmq.credentials.CredentialsError
 
 <span id="undefined" />
 

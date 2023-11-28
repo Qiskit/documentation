@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeProviderForBackendV2
 ---
 
-# FakeProviderForBackendV2[¶](#fakeproviderforbackendv2 "Permalink to this headline")
+# FakeProviderForBackendV2
 
 <span id="qiskit.providers.fake_provider.FakeProviderForBackendV2" />
 

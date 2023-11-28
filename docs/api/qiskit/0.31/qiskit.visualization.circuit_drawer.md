@@ -1,4 +1,4 @@
-# qiskit.visualization.circuit\_drawer[¶](#qiskit-visualization-circuit-drawer "Permalink to this headline")
+# qiskit.visualization.circuit\_drawer
 
 <span id="undefined" />
 

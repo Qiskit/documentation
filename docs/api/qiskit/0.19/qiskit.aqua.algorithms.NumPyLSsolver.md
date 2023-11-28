@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.algorithms.NumPyLSsolver
 ---
 
-# NumPyLSsolver[¶](#numpylssolver "Permalink to this headline")
+# NumPyLSsolver
 
 <span id="qiskit.aqua.algorithms.NumPyLSsolver" />
 

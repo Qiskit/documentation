@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-paulifeaturemap" />
 
-# qiskit.circuit.library.PauliFeatureMap[¶](#qiskit-circuit-library-paulifeaturemap "Permalink to this headline")
+# qiskit.circuit.library.PauliFeatureMap
 
 <span id="undefined" />
 

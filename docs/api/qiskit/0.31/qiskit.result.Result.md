@@ -1,4 +1,4 @@
-# Result[¶](#result "Permalink to this headline")
+# Result
 
 <span id="undefined" />
 

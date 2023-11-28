@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-unitarysimulator" />
 
-# qiskit.providers.aer.UnitarySimulator[¶](#qiskit-providers-aer-unitarysimulator "Permalink to this headline")
+# qiskit.providers.aer.UnitarySimulator
 
 <span id="undefined" />
 

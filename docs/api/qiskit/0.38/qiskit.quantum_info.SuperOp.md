@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.quantum_info.SuperOp
 ---
 
-# SuperOp[¶](#superop "Permalink to this headline")
+# SuperOp
 
 <span id="qiskit.quantum_info.SuperOp" />
 

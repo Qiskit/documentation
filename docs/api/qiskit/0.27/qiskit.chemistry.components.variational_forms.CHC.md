@@ -1,4 +1,4 @@
-# qiskit.chemistry.components.variational\_forms.CHC[¶](#qiskit-chemistry-components-variational-forms-chc "Permalink to this headline")
+# qiskit.chemistry.components.variational\_forms.CHC
 
 <span id="undefined" />
 

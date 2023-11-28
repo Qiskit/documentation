@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.utils.QuantumInstance
 ---
 
-# QuantumInstance[¶](#quantuminstance "Permalink to this headline")
+# QuantumInstance
 
 <span id="qiskit.utils.QuantumInstance" />
 

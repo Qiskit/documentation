@@ -1,4 +1,4 @@
-# qiskit.optimization.QuadraticProgram[¶](#qiskit-optimization-quadraticprogram "Permalink to this headline")
+# qiskit.optimization.QuadraticProgram
 
 <span id="undefined" />
 

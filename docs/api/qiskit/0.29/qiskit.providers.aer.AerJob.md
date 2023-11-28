@@ -1,4 +1,4 @@
-# AerJob[¶](#aerjob "Permalink to this headline")
+# AerJob
 
 <span id="undefined" />
 

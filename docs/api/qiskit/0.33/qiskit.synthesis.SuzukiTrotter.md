@@ -1,4 +1,4 @@
-# SuzukiTrotter[¶](#suzukitrotter "Permalink to this headline")
+# SuzukiTrotter
 
 <span id="undefined" />
 

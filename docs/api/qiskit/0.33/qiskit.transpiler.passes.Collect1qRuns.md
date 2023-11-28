@@ -1,4 +1,4 @@
-# Collect1qRuns[¶](#collect1qruns "Permalink to this headline")
+# Collect1qRuns
 
 <span id="undefined" />
 

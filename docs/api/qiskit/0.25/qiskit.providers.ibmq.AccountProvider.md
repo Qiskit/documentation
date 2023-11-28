@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.AccountProvider[¶](#qiskit-providers-ibmq-accountprovider "Permalink to this headline")
+# qiskit.providers.ibmq.AccountProvider
 
 <span id="undefined" />
 

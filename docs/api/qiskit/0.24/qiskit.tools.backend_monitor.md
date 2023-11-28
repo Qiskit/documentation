@@ -1,6 +1,6 @@
 <span id="qiskit-tools-backend-monitor" />
 
-# qiskit.tools.backend\_monitor[¶](#qiskit-tools-backend-monitor "Permalink to this headline")
+# qiskit.tools.backend\_monitor
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.diamond\_norm[¶](#qiskit-quantum-info-diamond-norm "Permalink to this headline")
+# qiskit.quantum\_info.diamond\_norm
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# CUGate[¶](#cugate "Permalink to this headline")
+# CUGate
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.transpiler.PropertySet[¶](#qiskit-transpiler-propertyset "Permalink to this headline")
+# qiskit.transpiler.PropertySet
 
 <span id="undefined" />
 

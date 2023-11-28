@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-utils-approximate-noise-model" />
 
-# qiskit.providers.aer.utils.approximate\_noise\_model[¶](#qiskit-providers-aer-utils-approximate-noise-model "Permalink to this headline")
+# qiskit.providers.aer.utils.approximate\_noise\_model
 
 <span id="undefined" />
 

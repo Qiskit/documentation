@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.eigs.Eigenvalues
 ---
 
-# Eigenvalues[¶](#eigenvalues "Permalink to this headline")
+# Eigenvalues
 
 <span id="qiskit.aqua.components.eigs.Eigenvalues" />
 

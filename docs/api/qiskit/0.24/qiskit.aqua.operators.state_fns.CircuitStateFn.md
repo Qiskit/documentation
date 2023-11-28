@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-state-fns-circuitstatefn" />
 
-# qiskit.aqua.operators.state\_fns.CircuitStateFn[¶](#qiskit-aqua-operators-state-fns-circuitstatefn "Permalink to this headline")
+# qiskit.aqua.operators.state\_fns.CircuitStateFn
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# CQCExtractorJob[¶](#cqcextractorjob "Permalink to this headline")
+# CQCExtractorJob
 
 <span id="undefined" />
 

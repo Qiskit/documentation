@@ -1,4 +1,4 @@
-# LegacyBaseOperator[¶](#legacybaseoperator "Permalink to this headline")
+# LegacyBaseOperator
 
 <span id="undefined" />
 

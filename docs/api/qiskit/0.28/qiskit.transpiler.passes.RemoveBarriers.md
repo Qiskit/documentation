@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.RemoveBarriers[¶](#qiskit-transpiler-passes-removebarriers "Permalink to this headline")
+# qiskit.transpiler.passes.RemoveBarriers
 
 <span id="undefined" />
 

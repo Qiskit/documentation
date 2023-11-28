@@ -1,4 +1,4 @@
-# qiskit.visualization.dag\_drawer[¶](#qiskit-visualization-dag-drawer "Permalink to this headline")
+# qiskit.visualization.dag\_drawer
 
 <span id="undefined" />
 

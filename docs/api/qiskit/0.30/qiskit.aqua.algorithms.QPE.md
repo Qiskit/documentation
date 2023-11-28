@@ -1,4 +1,4 @@
-# QPE[¶](#qpe "Permalink to this headline")
+# QPE
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.variational_forms.SwapRZ
 ---
 
-# SwapRZ[¶](#swaprz "Permalink to this headline")
+# SwapRZ
 
 <span id="qiskit.aqua.components.variational_forms.SwapRZ" />
 

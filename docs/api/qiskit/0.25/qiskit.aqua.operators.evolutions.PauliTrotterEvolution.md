@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.evolutions.PauliTrotterEvolution[¶](#qiskit-aqua-operators-evolutions-paulitrotterevolution "Permalink to this headline")
+# qiskit.aqua.operators.evolutions.PauliTrotterEvolution
 
 <span id="undefined" />
 

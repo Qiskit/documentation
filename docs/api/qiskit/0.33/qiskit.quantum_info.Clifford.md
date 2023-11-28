@@ -1,4 +1,4 @@
-# Clifford[¶](#clifford "Permalink to this headline")
+# Clifford
 
 <span id="undefined" />
 

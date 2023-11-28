@@ -1,4 +1,4 @@
-# UGate[¶](#ugate "Permalink to this headline")
+# UGate
 
 <span id="undefined" />
 

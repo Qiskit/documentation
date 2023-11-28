@@ -1,4 +1,4 @@
-# QuasiDistribution[¶](#quasidistribution "Permalink to this headline")
+# QuasiDistribution
 
 <span id="undefined" />
 

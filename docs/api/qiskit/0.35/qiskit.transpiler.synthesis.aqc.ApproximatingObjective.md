@@ -1,4 +1,4 @@
-# ApproximatingObjective[¶](#approximatingobjective "Permalink to this headline")
+# ApproximatingObjective
 
 <span id="undefined" />
 

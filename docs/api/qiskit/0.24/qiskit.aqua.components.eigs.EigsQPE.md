@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-eigs-eigsqpe" />
 
-# qiskit.aqua.components.eigs.EigsQPE[¶](#qiskit-aqua-components-eigs-eigsqpe "Permalink to this headline")
+# qiskit.aqua.components.eigs.EigsQPE
 
 <span id="undefined" />
 

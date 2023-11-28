@@ -1,6 +1,6 @@
 <span id="qiskit-quantum-info-random-clifford" />
 
-# qiskit.quantum\_info.random\_clifford[¶](#qiskit-quantum-info-random-clifford "Permalink to this headline")
+# qiskit.quantum\_info.random\_clifford
 
 <span id="undefined" />
 

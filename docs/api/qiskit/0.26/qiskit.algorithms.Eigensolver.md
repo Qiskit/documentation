@@ -1,4 +1,4 @@
-# qiskit.algorithms.Eigensolver[¶](#qiskit-algorithms-eigensolver "Permalink to this headline")
+# qiskit.algorithms.Eigensolver
 
 <span id="undefined" />
 

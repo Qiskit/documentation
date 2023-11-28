@@ -1,4 +1,4 @@
-# FermionicQubitMappingType[¶](#fermionicqubitmappingtype "Permalink to this headline")
+# FermionicQubitMappingType
 
 <span id="undefined" />
 

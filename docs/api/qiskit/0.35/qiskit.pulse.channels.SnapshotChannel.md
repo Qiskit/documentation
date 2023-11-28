@@ -1,4 +1,4 @@
-# SnapshotChannel[¶](#snapshotchannel "Permalink to this headline")
+# SnapshotChannel
 
 <span id="undefined" />
 

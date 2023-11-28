@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-measurement-quadraticiqdiscriminator" />
 
-# qiskit.ignis.measurement.QuadraticIQDiscriminator[¶](#qiskit-ignis-measurement-quadraticiqdiscriminator "Permalink to this headline")
+# qiskit.ignis.measurement.QuadraticIQDiscriminator
 
 <span id="undefined" />
 

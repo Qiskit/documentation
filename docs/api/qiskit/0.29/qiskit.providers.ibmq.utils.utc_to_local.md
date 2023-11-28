@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.utils.utc\_to\_local[¶](#qiskit-providers-ibmq-utils-utc-to-local "Permalink to this headline")
+# qiskit.providers.ibmq.utils.utc\_to\_local
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.result.marginal_memory
 ---
 
-# qiskit.result.marginal\_memory[¶](#qiskit-result-marginal-memory "Permalink to this headline")
+# qiskit.result.marginal\_memory
 
 <span id="qiskit.result.marginal_memory" />
 

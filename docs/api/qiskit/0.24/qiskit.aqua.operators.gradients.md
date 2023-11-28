@@ -16,7 +16,7 @@ python_api_name: qiskit.aqua.operators.gradients
 
 <span id="module-qiskit.aqua.operators.gradients" />
 
-`qiskit.aqua.operators.gradients¶`
+`qiskit.aqua.operators.gradients`
 
 Given an operator that represents either a quantum state resp. an expectation value, the gradient framework enables the evaluation of gradients, natural gradients, Hessians, as well as the Quantum Fisher Information.
 
@@ -101,10 +101,6 @@ The derivative classes come with a gradient\_wrapper() function which returns th
 
 # Base Classes
 
-<span id="module-qiskit.aqua.operators.gradients" />
-
-`¶`
-
 |                                                                                                                                                                    |                                                  |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ |
 | [`DerivativeBase`](qiskit.aqua.operators.gradients.DerivativeBase#qiskit.aqua.operators.gradients.DerivativeBase "qiskit.aqua.operators.gradients.DerivativeBase") | Base class for differentiating opflow objects.   |
@@ -114,20 +110,12 @@ The derivative classes come with a gradient\_wrapper() function which returns th
 
 # Converters
 
-<span id="module-qiskit.aqua.operators.gradients" />
-
-`¶`
-
 |                                                                                                                                                                        |                                                           |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
 | [`CircuitGradient`](qiskit.aqua.operators.gradients.CircuitGradient#qiskit.aqua.operators.gradients.CircuitGradient "qiskit.aqua.operators.gradients.CircuitGradient") | Circuit to gradient operator converter.                   |
 | [`CircuitQFI`](qiskit.aqua.operators.gradients.CircuitQFI#qiskit.aqua.operators.gradients.CircuitQFI "qiskit.aqua.operators.gradients.CircuitQFI")                     | Circuit to Quantum Fisher Information operator converter. |
 
 # Derivatives
-
-<span id="module-qiskit.aqua.operators.gradients" />
-
-`¶`
 
 |                                                                                                                                                                        |                                                             |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |

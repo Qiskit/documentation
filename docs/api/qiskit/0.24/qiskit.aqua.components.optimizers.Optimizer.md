@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-optimizers-optimizer" />
 
-# qiskit.aqua.components.optimizers.Optimizer[¶](#qiskit-aqua-components-optimizers-optimizer "Permalink to this headline")
+# qiskit.aqua.components.optimizers.Optimizer
 
 <span id="undefined" />
 

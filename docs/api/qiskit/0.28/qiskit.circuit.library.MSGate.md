@@ -1,4 +1,4 @@
-# qiskit.circuit.library.MSGate[¶](#qiskit-circuit-library-msgate "Permalink to this headline")
+# qiskit.circuit.library.MSGate
 
 <span id="undefined" />
 

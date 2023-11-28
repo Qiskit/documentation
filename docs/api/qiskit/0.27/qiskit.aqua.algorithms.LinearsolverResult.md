@@ -1,4 +1,4 @@
-# qiskit.aqua.algorithms.LinearsolverResult[¶](#qiskit-aqua-algorithms-linearsolverresult "Permalink to this headline")
+# qiskit.aqua.algorithms.LinearsolverResult
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.optimization.algorithms.CplexOptimizer
 ---
 
-# CplexOptimizer[¶](#cplexoptimizer "Permalink to this headline")
+# CplexOptimizer
 
 <span id="qiskit.optimization.algorithms.CplexOptimizer" />
 

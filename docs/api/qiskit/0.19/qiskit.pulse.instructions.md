@@ -1,4 +1,4 @@
-# instructions[¶](#module-qiskit.pulse.instructions "Permalink to this headline")
+# instructions
 
 The `instruction` module holds the various `Instruction` s which are supported by Qiskit Pulse. Instructions have operands, which typically include at least one [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") specifying where the instruction will be applied.
 
@@ -25,7 +25,7 @@ An instruction can be added to a [`Schedule`](qiskit.pulse.Schedule "qiskit.puls
 | [`ShiftPhase`](qiskit.pulse.instructions.ShiftPhase "qiskit.pulse.instructions.ShiftPhase")(phase\[, channel, name])           | The shift phase instruction updates the modulation phase of proceeding pulses played on the same [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel"). |
 | [`Snapshot`](qiskit.pulse.instructions.Snapshot "qiskit.pulse.instructions.Snapshot")(label\[, snapshot\_type, name])          | An instruction targeted for simulators, to capture a moment in the simulation.                                                                                                                     |
 
-## Abstract Classes[¶](#abstract-classes "Permalink to this headline")
+## Abstract Classes
 
 |                                                                                                                                       |                                                      |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |

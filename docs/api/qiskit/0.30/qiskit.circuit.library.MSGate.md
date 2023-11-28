@@ -1,4 +1,4 @@
-# MSGate[¶](#msgate "Permalink to this headline")
+# MSGate
 
 <span id="undefined" />
 

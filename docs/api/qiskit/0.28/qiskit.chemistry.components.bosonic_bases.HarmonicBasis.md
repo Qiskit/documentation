@@ -1,4 +1,4 @@
-# qiskit.chemistry.components.bosonic\_bases.HarmonicBasis[¶](#qiskit-chemistry-components-bosonic-bases-harmonicbasis "Permalink to this headline")
+# qiskit.chemistry.components.bosonic\_bases.HarmonicBasis
 
 <span id="undefined" />
 

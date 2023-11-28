@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.chemistry.MP2Info
 ---
 
-# MP2Info[¶](#mp2info "Permalink to this headline")
+# MP2Info
 
 <span id="qiskit.chemistry.MP2Info" />
 

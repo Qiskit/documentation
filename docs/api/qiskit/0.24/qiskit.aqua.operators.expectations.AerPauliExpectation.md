@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-expectations-aerpauliexpectation" />
 
-# qiskit.aqua.operators.expectations.AerPauliExpectation[¶](#qiskit-aqua-operators-expectations-aerpauliexpectation "Permalink to this headline")
+# qiskit.aqua.operators.expectations.AerPauliExpectation
 
 <span id="undefined" />
 

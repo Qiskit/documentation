@@ -1,4 +1,4 @@
-# JobStatus[¶](#jobstatus "Permalink to this headline")
+# JobStatus
 
 <span id="undefined" />
 

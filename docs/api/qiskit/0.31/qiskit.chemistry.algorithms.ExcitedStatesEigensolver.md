@@ -1,4 +1,4 @@
-# ExcitedStatesEigensolver[¶](#excitedstateseigensolver "Permalink to this headline")
+# ExcitedStatesEigensolver
 
 <span id="undefined" />
 

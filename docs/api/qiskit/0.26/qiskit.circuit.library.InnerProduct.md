@@ -1,4 +1,4 @@
-# qiskit.circuit.library.InnerProduct[¶](#qiskit-circuit-library-innerproduct "Permalink to this headline")
+# qiskit.circuit.library.InnerProduct
 
 <span id="undefined" />
 

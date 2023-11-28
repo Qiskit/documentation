@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.CountOps[¶](#qiskit-transpiler-passes-countops "Permalink to this headline")
+# qiskit.transpiler.passes.CountOps
 
 <span id="undefined" />
 

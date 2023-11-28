@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.characterization.drag_schedules
 ---
 
-# drag\_schedules[¶](#drag-schedules "Permalink to this headline")
+# drag\_schedules
 
 <span id="qiskit.ignis.characterization.drag_schedules" />
 

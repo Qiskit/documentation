@@ -1,4 +1,4 @@
-# OperatorBase[¶](#operatorbase "Permalink to this headline")
+# OperatorBase
 
 <span id="undefined" />
 

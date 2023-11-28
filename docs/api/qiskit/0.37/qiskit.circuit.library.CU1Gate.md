@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.CU1Gate
 ---
 
-# CU1Gate[¶](#cu1gate "Permalink to this headline")
+# CU1Gate
 
 <span id="qiskit.circuit.library.CU1Gate" />
 

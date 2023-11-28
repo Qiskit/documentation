@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.transforms.remove_trivial_barriers
 ---
 
-# qiskit.pulse.transforms.remove\_trivial\_barriers[¶](#qiskit-pulse-transforms-remove-trivial-barriers "Permalink to this headline")
+# qiskit.pulse.transforms.remove\_trivial\_barriers
 
 <span id="qiskit.pulse.transforms.remove_trivial_barriers" />
 

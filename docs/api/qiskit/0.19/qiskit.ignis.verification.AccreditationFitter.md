@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.verification.AccreditationFitter
 ---
 
-# AccreditationFitter[¶](#accreditationfitter "Permalink to this headline")
+# AccreditationFitter
 
 <span id="qiskit.ignis.verification.AccreditationFitter" />
 

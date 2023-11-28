@@ -1,4 +1,4 @@
-# DriveChannel[¶](#drivechannel "Permalink to this headline")
+# DriveChannel
 
 <span id="undefined" />
 

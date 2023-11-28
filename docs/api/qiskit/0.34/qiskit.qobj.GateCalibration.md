@@ -1,4 +1,4 @@
-# GateCalibration[¶](#gatecalibration "Permalink to this headline")
+# GateCalibration
 
 <span id="undefined" />
 

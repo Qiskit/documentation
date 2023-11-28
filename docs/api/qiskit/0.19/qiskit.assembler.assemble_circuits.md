@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.assembler.assemble_circuits
 ---
 
-# assemble\_circuits[¶](#assemble-circuits "Permalink to this headline")
+# assemble\_circuits
 
 <span id="qiskit.assembler.assemble_circuits" />
 

@@ -1,4 +1,4 @@
-# ApplyLayout[¶](#applylayout "Permalink to this headline")
+# ApplyLayout
 
 <span id="undefined" />
 

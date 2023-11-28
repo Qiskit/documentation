@@ -1,4 +1,4 @@
-# OptimizerSupportLevel[¶](#optimizersupportlevel "Permalink to this headline")
+# OptimizerSupportLevel
 
 <span id="undefined" />
 

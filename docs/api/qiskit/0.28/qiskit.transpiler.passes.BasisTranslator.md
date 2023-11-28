@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.BasisTranslator[¶](#qiskit-transpiler-passes-basistranslator "Permalink to this headline")
+# qiskit.transpiler.passes.BasisTranslator
 
 <span id="undefined" />
 

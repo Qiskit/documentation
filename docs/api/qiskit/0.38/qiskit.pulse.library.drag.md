@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.library.drag
 ---
 
-# qiskit.pulse.library.drag[¶](#qiskit-pulse-library-drag "Permalink to this headline")
+# qiskit.pulse.library.drag
 
 <span id="qiskit.pulse.library.drag" />
 
@@ -20,9 +20,9 @@ $$
 f(x) = g(x) + i \beta h(x),
 $$
 
-where $g(x)$ is the function sampled in [`gaussian()`](qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian"), and $h(x)$ is the function sampled in [`gaussian_deriv()`](qiskit.pulse.library.gaussian_deriv "qiskit.pulse.library.gaussian_deriv").
+where $g(x)$ is the function sampled in [`gaussian()`](qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian"), and $h(x)$ is the function sampled in [`gaussian_deriv()`](qiskit.pulse.library.gaussian_deriv "qiskit.pulse.library.gaussian_deriv").
 
-If `zero_ends == True`, the samples from $g(x)$ are remapped as in [`gaussian()`](qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian").
+If `zero_ends == True`, the samples from $g(x)$ are remapped as in [`gaussian()`](qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian").
 
 ## References
 

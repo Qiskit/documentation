@@ -1,4 +1,4 @@
-# qiskit.providers.aer.noise.depolarizing\_error[¶](#qiskit-providers-aer-noise-depolarizing-error "Permalink to this headline")
+# qiskit.providers.aer.noise.depolarizing\_error
 
 <span id="undefined" />
 

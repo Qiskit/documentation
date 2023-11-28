@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-characterization-dragfitter" />
 
-# qiskit.ignis.characterization.DragFitter[¶](#qiskit-ignis-characterization-dragfitter "Permalink to this headline")
+# qiskit.ignis.characterization.DragFitter
 
 <span id="undefined" />
 

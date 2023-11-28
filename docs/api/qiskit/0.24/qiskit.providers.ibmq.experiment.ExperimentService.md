@@ -1,6 +1,6 @@
 <span id="qiskit-providers-ibmq-experiment-experimentservice" />
 
-# qiskit.providers.ibmq.experiment.ExperimentService[¶](#qiskit-providers-ibmq-experiment-experimentservice "Permalink to this headline")
+# qiskit.providers.ibmq.experiment.ExperimentService
 
 <span id="undefined" />
 

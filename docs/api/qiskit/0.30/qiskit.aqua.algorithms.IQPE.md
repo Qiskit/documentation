@@ -1,4 +1,4 @@
-# IQPE[¶](#iqpe "Permalink to this headline")
+# IQPE
 
 <span id="undefined" />
 

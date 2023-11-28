@@ -1,4 +1,4 @@
-# Kraus[¶](#kraus "Permalink to this headline")
+# Kraus
 
 <span id="undefined" />
 

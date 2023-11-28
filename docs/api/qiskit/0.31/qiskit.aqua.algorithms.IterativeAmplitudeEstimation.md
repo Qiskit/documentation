@@ -1,4 +1,4 @@
-# IterativeAmplitudeEstimation[¶](#iterativeamplitudeestimation "Permalink to this headline")
+# IterativeAmplitudeEstimation
 
 <span id="undefined" />
 

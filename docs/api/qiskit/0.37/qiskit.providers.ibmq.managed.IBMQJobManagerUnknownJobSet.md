@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet
 ---
 
-# qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet[¶](#qiskit-providers-ibmq-managed-ibmqjobmanagerunknownjobset "Permalink to this headline")
+# qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet" />
 

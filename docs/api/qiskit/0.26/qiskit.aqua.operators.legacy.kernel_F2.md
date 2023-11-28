@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.legacy.kernel\_F2[¶](#qiskit-aqua-operators-legacy-kernel-f2 "Permalink to this headline")
+# qiskit.aqua.operators.legacy.kernel\_F2
 
 <span id="undefined" />
 

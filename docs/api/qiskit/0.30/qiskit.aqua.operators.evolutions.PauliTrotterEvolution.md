@@ -1,4 +1,4 @@
-# PauliTrotterEvolution[¶](#paulitrotterevolution "Permalink to this headline")
+# PauliTrotterEvolution
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-library-discrete" />
 
-# qiskit.pulse.library.discrete[¶](#module-qiskit.pulse.library.discrete "Permalink to this headline")
+# qiskit.pulse.library.discrete
 
 Module for builtin discrete pulses.
 

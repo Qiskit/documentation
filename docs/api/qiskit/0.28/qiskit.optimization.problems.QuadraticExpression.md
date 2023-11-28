@@ -1,4 +1,4 @@
-# qiskit.optimization.problems.QuadraticExpression[¶](#qiskit-optimization-problems-quadraticexpression "Permalink to this headline")
+# qiskit.optimization.problems.QuadraticExpression
 
 <span id="undefined" />
 

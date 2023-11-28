@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.library.SaveState
 ---
 
-# SaveState[¶](#savestate "Permalink to this headline")
+# SaveState
 
 <span id="qiskit.providers.aer.library.SaveState" />
 

@@ -1,4 +1,4 @@
-# QasmQobjExperiment[¶](#qasmqobjexperiment "Permalink to this headline")
+# QasmQobjExperiment
 
 <span id="undefined" />
 

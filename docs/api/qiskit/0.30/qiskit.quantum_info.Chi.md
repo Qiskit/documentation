@@ -1,4 +1,4 @@
-# Chi[¶](#chi "Permalink to this headline")
+# Chi
 
 <span id="undefined" />
 

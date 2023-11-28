@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.Options
 ---
 
-# Options[¶](#options "Permalink to this headline")
+# Options
 
 <span id="qiskit.providers.Options" />
 

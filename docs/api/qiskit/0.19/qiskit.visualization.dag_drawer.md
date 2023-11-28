@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.dag_drawer
 ---
 
-# dag\_drawer[¶](#dag-drawer "Permalink to this headline")
+# dag\_drawer
 
 <span id="qiskit.visualization.dag_drawer" />
 

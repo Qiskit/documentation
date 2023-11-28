@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-utils-get-subsystems-counts" />
 
-# qiskit.aqua.utils.get\_subsystems\_counts[¶](#qiskit-aqua-utils-get-subsystems-counts "Permalink to this headline")
+# qiskit.aqua.utils.get\_subsystems\_counts
 
 <span id="undefined" />
 

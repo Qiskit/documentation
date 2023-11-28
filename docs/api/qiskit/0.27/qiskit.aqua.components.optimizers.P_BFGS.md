@@ -1,4 +1,4 @@
-# qiskit.aqua.components.optimizers.P\_BFGS[¶](#qiskit-aqua-components-optimizers-p-bfgs "Permalink to this headline")
+# qiskit.aqua.components.optimizers.P\_BFGS
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.IBMQBackend
 ---
 
-# IBMQBackend[¶](#ibmqbackend "Permalink to this headline")
+# IBMQBackend
 
 <span id="qiskit.providers.ibmq.IBMQBackend" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-transforms-align-measures" />
 
-# qiskit.pulse.transforms.align\_measures[¶](#qiskit-pulse-transforms-align-measures "Permalink to this headline")
+# qiskit.pulse.transforms.align\_measures
 
 <span id="undefined" />
 

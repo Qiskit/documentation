@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-barrier" />
 
-# qiskit.circuit.library.Barrier[¶](#qiskit-circuit-library-barrier "Permalink to this headline")
+# qiskit.circuit.library.Barrier
 
 <span id="undefined" />
 

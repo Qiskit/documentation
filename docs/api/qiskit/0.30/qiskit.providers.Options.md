@@ -1,4 +1,4 @@
-# Options[¶](#options "Permalink to this headline")
+# Options
 
 <span id="undefined" />
 

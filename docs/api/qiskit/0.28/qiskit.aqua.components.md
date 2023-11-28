@@ -14,7 +14,7 @@ python_api_name: qiskit.aqua.components
 
 <span id="module-qiskit.aqua.components" />
 
-`qiskit.aqua.components¶`
+`qiskit.aqua.components`
 
 Components were designed to be swappable sub-parts of an algorithm. Different implementations of a component type can thereby be exchanged to potentially alter the behavior and outcome of the algorithm. For example [`VQE`](qiskit.aqua.algorithms.VQE#qiskit.aqua.algorithms.VQE "qiskit.aqua.algorithms.VQE") takes an [`Optimizer`](qiskit.aqua.components.optimizers.Optimizer#qiskit.aqua.components.optimizers.Optimizer "qiskit.aqua.components.optimizers.Optimizer") and a [`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm#qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.VariationalForm") components. There are a selection of both different [`optimizers`](qiskit.aqua.components.optimizers#module-qiskit.aqua.components.optimizers "qiskit.aqua.components.optimizers") and [`variational_forms`](qiskit.aqua.components.variational_forms#module-qiskit.aqua.components.variational_forms "qiskit.aqua.components.variational_forms") that can be chosen from according the nature of the problem. Some optimizers use gradients, others have alternative techniques to finding a minimum. Variational forms include heuristic ansatzes such as [`EfficientSU2`](qiskit.circuit.library.EfficientSU2#qiskit.circuit.library.EfficientSU2 "qiskit.circuit.library.EfficientSU2") and types designed for specific problems such as [`UCCSD`](qiskit.chemistry.components.variational_forms.UCCSD#qiskit.chemistry.components.variational_forms.UCCSD "qiskit.chemistry.components.variational_forms.UCCSD") for chemistry and ground state energy computation.
 
@@ -23,10 +23,6 @@ Components may also be used in other components. For example the [`UnivariateVar
 Each type of component has a base class that can be extended to provide a new implementation. For example the base class for [`variational_forms`](qiskit.aqua.components.variational_forms#module-qiskit.aqua.components.variational_forms "qiskit.aqua.components.variational_forms") is [`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm#qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.VariationalForm"). For more information refer to the component type of interest below.
 
 # Submodules
-
-<span id="module-qiskit.aqua.components" />
-
-`¶`
 
 |                                                                                                                                                                            |                                                                                                                                                                                                                            |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

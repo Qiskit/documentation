@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.job.IBMQJobInvalidStateError[¶](#qiskit-providers-ibmq-job-ibmqjobinvalidstateerror "Permalink to this headline")
+# qiskit.providers.ibmq.job.IBMQJobInvalidStateError
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# Qubit[¶](#qubit "Permalink to this headline")
+# Qubit
 
 <span id="undefined" />
 

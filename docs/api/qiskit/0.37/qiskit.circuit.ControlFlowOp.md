@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.ControlFlowOp
 ---
 
-# ControlFlowOp[¶](#controlflowop "Permalink to this headline")
+# ControlFlowOp
 
 <span id="qiskit.circuit.ControlFlowOp" />
 

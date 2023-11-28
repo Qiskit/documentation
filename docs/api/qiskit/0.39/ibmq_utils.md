@@ -14,15 +14,11 @@ python_api_name: qiskit.providers.ibmq.utils
 
 <span id="module-qiskit.providers.ibmq.utils" />
 
-`qiskit.providers.ibmq.utils¶`
+`qiskit.providers.ibmq.utils`
 
 Utility functions related to the IBM Quantum Provider.
 
 ## Conversion
-
-<span id="module-qiskit.providers.ibmq.utils" />
-
-`¶`
 
 |                                                                                                                                     |                                                                           |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
@@ -31,19 +27,11 @@ Utility functions related to the IBM Quantum Provider.
 
 ## Qobj Utils
 
-<span id="module-qiskit.providers.ibmq.utils" />
-
-`¶`
-
 |                                                                                                                                                         |                                                                       |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | [`update_qobj_config`](qiskit.providers.ibmq.utils.update_qobj_config "qiskit.providers.ibmq.utils.update_qobj_config")(qobj\[, backend\_options, ...]) | Update a `Qobj` configuration from backend options and a noise model. |
 
 ## Misc Functions
-
-<span id="module-qiskit.providers.ibmq.utils" />
-
-`¶`
 
 |                                                                                                                                            |                                              |
 | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |

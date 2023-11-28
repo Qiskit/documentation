@@ -1,4 +1,4 @@
-# QasmQobjConfig[¶](#qasmqobjconfig "Permalink to this headline")
+# QasmQobjConfig
 
 <span id="undefined" />
 

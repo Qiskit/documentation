@@ -1,4 +1,4 @@
-# qiskit.circuit.library.LinearAmplitudeFunction[¶](#qiskit-circuit-library-linearamplitudefunction "Permalink to this headline")
+# qiskit.circuit.library.LinearAmplitudeFunction
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-results-vibronicstructureresult" />
 
-# qiskit.chemistry.results.VibronicStructureResult[¶](#qiskit-chemistry-results-vibronicstructureresult "Permalink to this headline")
+# qiskit.chemistry.results.VibronicStructureResult
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.providers.aer.extensions.SnapshotExpectationValue[¶](#qiskit-providers-aer-extensions-snapshotexpectationvalue "Permalink to this headline")
+# qiskit.providers.aer.extensions.SnapshotExpectationValue
 
 <span id="undefined" />
 

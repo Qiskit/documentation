@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-instructions-instruction" />
 
-# qiskit.pulse.instructions.Instruction[¶](#qiskit-pulse-instructions-instruction "Permalink to this headline")
+# qiskit.pulse.instructions.Instruction
 
 <span id="undefined" />
 

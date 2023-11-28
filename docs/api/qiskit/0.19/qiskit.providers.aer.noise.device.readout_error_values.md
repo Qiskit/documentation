@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.noise.device.readout_error_values
 ---
 
-# readout\_error\_values[¶](#readout-error-values "Permalink to this headline")
+# readout\_error\_values
 
 <span id="qiskit.providers.aer.noise.device.readout_error_values" />
 

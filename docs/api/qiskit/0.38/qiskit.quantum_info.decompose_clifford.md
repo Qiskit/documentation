@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.decompose_clifford
 ---
 
-# qiskit.quantum\_info.decompose\_clifford[¶](#qiskit-quantum-info-decompose-clifford "Permalink to this headline")
+# qiskit.quantum\_info.decompose\_clifford
 
 <span id="qiskit.quantum_info.decompose_clifford" />
 

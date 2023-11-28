@@ -1,4 +1,4 @@
-# qiskit.tools.backend\_overview[¶](#qiskit-tools-backend-overview "Permalink to this headline")
+# qiskit.tools.backend\_overview
 
 <span id="undefined" />
 

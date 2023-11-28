@@ -1,4 +1,4 @@
-# BackendConfiguration[¶](#backendconfiguration "Permalink to this headline")
+# BackendConfiguration
 
 <span id="undefined" />
 

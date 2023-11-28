@@ -1,4 +1,4 @@
-# GradientBase[¶](#gradientbase "Permalink to this headline")
+# GradientBase
 
 <span id="undefined" />
 

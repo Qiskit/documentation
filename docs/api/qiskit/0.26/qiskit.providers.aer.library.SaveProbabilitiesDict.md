@@ -1,4 +1,4 @@
-# qiskit.providers.aer.library.SaveProbabilitiesDict[¶](#qiskit-providers-aer-library-saveprobabilitiesdict "Permalink to this headline")
+# qiskit.providers.aer.library.SaveProbabilitiesDict
 
 <span id="undefined" />
 

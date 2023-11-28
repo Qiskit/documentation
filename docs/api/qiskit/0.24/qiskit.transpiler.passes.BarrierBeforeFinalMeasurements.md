@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-barrierbeforefinalmeasurements" />
 
-# qiskit.transpiler.passes.BarrierBeforeFinalMeasurements[¶](#qiskit-transpiler-passes-barrierbeforefinalmeasurements "Permalink to this headline")
+# qiskit.transpiler.passes.BarrierBeforeFinalMeasurements
 
 <span id="undefined" />
 

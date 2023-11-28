@@ -16,15 +16,11 @@ python_api_name: qiskit.finance.applications
 
 <span id="module-qiskit.finance.applications" />
 
-`qiskit.finance.applications¶`
+`qiskit.finance.applications`
 
 Applications for Qiskit’s finance module. The present set are in the form of Ising Hamiltonians.
 
 # Submodules
-
-<span id="module-qiskit.finance.applications" />
-
-`¶`
 
 |                                                                                                                           |                                                                                                                                                                      |
 | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

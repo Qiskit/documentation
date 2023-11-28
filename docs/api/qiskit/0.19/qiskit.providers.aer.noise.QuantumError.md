@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.noise.QuantumError
 ---
 
-# QuantumError[¶](#quantumerror "Permalink to this headline")
+# QuantumError
 
 <span id="qiskit.providers.aer.noise.QuantumError" />
 

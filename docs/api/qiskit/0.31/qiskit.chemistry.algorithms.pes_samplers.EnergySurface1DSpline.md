@@ -1,4 +1,4 @@
-# EnergySurface1DSpline[¶](#energysurface1dspline "Permalink to this headline")
+# EnergySurface1DSpline
 
 <span id="undefined" />
 

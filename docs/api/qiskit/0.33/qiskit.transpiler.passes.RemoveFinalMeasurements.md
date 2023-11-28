@@ -1,4 +1,4 @@
-# RemoveFinalMeasurements[¶](#removefinalmeasurements "Permalink to this headline")
+# RemoveFinalMeasurements
 
 <span id="undefined" />
 

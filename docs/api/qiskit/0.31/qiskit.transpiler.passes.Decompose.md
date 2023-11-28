@@ -1,4 +1,4 @@
-# Decompose[¶](#decompose "Permalink to this headline")
+# Decompose
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-optimizers-direct-l" />
 
-# qiskit.aqua.components.optimizers.DIRECT\_L[¶](#qiskit-aqua-components-optimizers-direct-l "Permalink to this headline")
+# qiskit.aqua.components.optimizers.DIRECT\_L
 
 <span id="undefined" />
 

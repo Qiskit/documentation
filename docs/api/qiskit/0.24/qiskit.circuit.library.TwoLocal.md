@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-twolocal" />
 
-# qiskit.circuit.library.TwoLocal[¶](#qiskit-circuit-library-twolocal "Permalink to this headline")
+# qiskit.circuit.library.TwoLocal
 
 <span id="undefined" />
 

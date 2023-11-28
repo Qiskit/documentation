@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.classicalfunction.ClassicalFunction
 ---
 
-# ClassicalFunction[¶](#classicalfunction "Permalink to this headline")
+# ClassicalFunction
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunction" />
 

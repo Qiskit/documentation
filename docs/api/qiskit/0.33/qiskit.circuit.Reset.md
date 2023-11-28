@@ -1,4 +1,4 @@
-# Reset[¶](#reset "Permalink to this headline")
+# Reset
 
 <span id="undefined" />
 

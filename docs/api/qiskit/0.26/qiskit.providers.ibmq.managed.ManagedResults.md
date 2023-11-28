@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.managed.ManagedResults[¶](#qiskit-providers-ibmq-managed-managedresults "Permalink to this headline")
+# qiskit.providers.ibmq.managed.ManagedResults
 
 <span id="undefined" />
 

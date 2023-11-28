@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
 ---
 
-# MaximumLikelihoodAmplitudeEstimation[¶](#maximumlikelihoodamplitudeestimation "Permalink to this headline")
+# MaximumLikelihoodAmplitudeEstimation
 
 <span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation" />
 

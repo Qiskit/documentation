@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-xor" />
 
-# qiskit.circuit.library.XOR[¶](#qiskit-circuit-library-xor "Permalink to this headline")
+# qiskit.circuit.library.XOR
 
 <span id="undefined" />
 

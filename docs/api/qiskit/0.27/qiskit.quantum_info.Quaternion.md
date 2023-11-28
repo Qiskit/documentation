@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.Quaternion[¶](#qiskit-quantum-info-quaternion "Permalink to this headline")
+# qiskit.quantum\_info.Quaternion
 
 <span id="undefined" />
 

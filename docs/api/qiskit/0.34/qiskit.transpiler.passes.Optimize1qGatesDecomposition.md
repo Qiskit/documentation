@@ -1,4 +1,4 @@
-# Optimize1qGatesDecomposition[¶](#optimize1qgatesdecomposition "Permalink to this headline")
+# Optimize1qGatesDecomposition
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# Snapshot[¶](#snapshot "Permalink to this headline")
+# Snapshot
 
 <span id="undefined" />
 

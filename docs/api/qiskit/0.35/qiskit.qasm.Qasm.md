@@ -1,4 +1,4 @@
-# Qasm[¶](#qasm "Permalink to this headline")
+# Qasm
 
 <span id="undefined" />
 

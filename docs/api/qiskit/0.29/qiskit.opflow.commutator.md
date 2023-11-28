@@ -1,4 +1,4 @@
-# qiskit.opflow\.commutator[¶](#qiskit-opflow-commutator "Permalink to this headline")
+# qiskit.opflow\.commutator
 
 <span id="undefined" />
 

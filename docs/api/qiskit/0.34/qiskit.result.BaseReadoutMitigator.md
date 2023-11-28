@@ -1,4 +1,4 @@
-# BaseReadoutMitigator[¶](#basereadoutmitigator "Permalink to this headline")
+# BaseReadoutMitigator
 
 <span id="undefined" />
 

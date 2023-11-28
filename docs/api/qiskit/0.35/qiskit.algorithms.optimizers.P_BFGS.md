@@ -1,4 +1,4 @@
-# P\_BFGS[¶](#p-bfgs "Permalink to this headline")
+# P\_BFGS
 
 <span id="undefined" />
 

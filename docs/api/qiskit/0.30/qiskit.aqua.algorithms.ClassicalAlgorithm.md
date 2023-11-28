@@ -1,4 +1,4 @@
-# ClassicalAlgorithm[¶](#classicalalgorithm "Permalink to this headline")
+# ClassicalAlgorithm
 
 <span id="undefined" />
 

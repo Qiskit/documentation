@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-statevectorsimulator" />
 
-# qiskit.providers.aer.StatevectorSimulator[¶](#qiskit-providers-aer-statevectorsimulator "Permalink to this headline")
+# qiskit.providers.aer.StatevectorSimulator
 
 <span id="undefined" />
 

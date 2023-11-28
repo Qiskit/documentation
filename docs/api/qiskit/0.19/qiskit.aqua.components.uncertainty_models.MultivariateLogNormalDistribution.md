@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.uncertainty_models.MultivariateLogNormalDistribution
 ---
 
-# MultivariateLogNormalDistribution[¶](#multivariatelognormaldistribution "Permalink to this headline")
+# MultivariateLogNormalDistribution
 
 <span id="qiskit.aqua.components.uncertainty_models.MultivariateLogNormalDistribution" />
 

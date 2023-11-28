@@ -1,4 +1,4 @@
-# LinearFunctionsSynthesis[¶](#linearfunctionssynthesis "Permalink to this headline")
+# LinearFunctionsSynthesis
 
 <span id="undefined" />
 

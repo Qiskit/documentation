@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.SabreSwap[¶](#qiskit-transpiler-passes-sabreswap "Permalink to this headline")
+# qiskit.transpiler.passes.SabreSwap
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-ordered-list-generator" />
 
-# qiskit.ignis.verification.ordered\_list\_generator[¶](#qiskit-ignis-verification-ordered-list-generator "Permalink to this headline")
+# qiskit.ignis.verification.ordered\_list\_generator
 
 <span id="undefined" />
 

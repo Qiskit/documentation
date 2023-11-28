@@ -1,4 +1,4 @@
-# NumPyLSsolverResult[¶](#numpylssolverresult "Permalink to this headline")
+# NumPyLSsolverResult
 
 <span id="undefined" />
 

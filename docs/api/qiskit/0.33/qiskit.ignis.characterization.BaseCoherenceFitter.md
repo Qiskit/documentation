@@ -1,4 +1,4 @@
-# BaseCoherenceFitter[¶](#basecoherencefitter "Permalink to this headline")
+# BaseCoherenceFitter
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# MergeAdjacentBarriers[¶](#mergeadjacentbarriers "Permalink to this headline")
+# MergeAdjacentBarriers
 
 <span id="undefined" />
 

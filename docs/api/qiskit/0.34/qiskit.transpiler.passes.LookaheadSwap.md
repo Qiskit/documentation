@@ -1,4 +1,4 @@
-# LookaheadSwap[¶](#lookaheadswap "Permalink to this headline")
+# LookaheadSwap
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.utils.CircuitFactory
 ---
 
-# CircuitFactory[¶](#circuitfactory "Permalink to this headline")
+# CircuitFactory
 
 <span id="qiskit.aqua.utils.CircuitFactory" />
 

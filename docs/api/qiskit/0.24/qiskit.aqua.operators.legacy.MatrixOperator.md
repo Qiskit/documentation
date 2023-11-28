@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-legacy-matrixoperator" />
 
-# qiskit.aqua.operators.legacy.MatrixOperator[¶](#qiskit-aqua-operators-legacy-matrixoperator "Permalink to this headline")
+# qiskit.aqua.operators.legacy.MatrixOperator
 
 <span id="undefined" />
 

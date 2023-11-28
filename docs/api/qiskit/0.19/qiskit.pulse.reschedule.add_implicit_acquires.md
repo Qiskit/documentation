@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.reschedule.add_implicit_acquires
 ---
 
-# add\_implicit\_acquires[¶](#add-implicit-acquires "Permalink to this headline")
+# add\_implicit\_acquires
 
 <span id="qiskit.pulse.reschedule.add_implicit_acquires" />
 

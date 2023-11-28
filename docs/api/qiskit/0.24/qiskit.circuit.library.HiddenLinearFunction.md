@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-hiddenlinearfunction" />
 
-# qiskit.circuit.library.HiddenLinearFunction[¶](#qiskit-circuit-library-hiddenlinearfunction "Permalink to this headline")
+# qiskit.circuit.library.HiddenLinearFunction
 
 <span id="undefined" />
 

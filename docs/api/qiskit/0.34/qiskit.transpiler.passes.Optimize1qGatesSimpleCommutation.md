@@ -1,4 +1,4 @@
-# Optimize1qGatesSimpleCommutation[¶](#optimize1qgatessimplecommutation "Permalink to this headline")
+# Optimize1qGatesSimpleCommutation
 
 <span id="undefined" />
 

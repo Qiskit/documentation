@@ -1,4 +1,4 @@
-# CNOTUnitCircuit[¶](#cnotunitcircuit "Permalink to this headline")
+# CNOTUnitCircuit
 
 <span id="undefined" />
 

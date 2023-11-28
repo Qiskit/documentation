@@ -1,4 +1,4 @@
-# QDrift[¶](#qdrift "Permalink to this headline")
+# QDrift
 
 <span id="undefined" />
 

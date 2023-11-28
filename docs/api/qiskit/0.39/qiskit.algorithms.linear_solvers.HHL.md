@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.linear_solvers.HHL
 ---
 
-# HHL[¶](#hhl "Permalink to this headline")
+# HHL
 
 <span id="qiskit.algorithms.linear_solvers.HHL" />
 

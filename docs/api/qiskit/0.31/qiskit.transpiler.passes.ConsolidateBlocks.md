@@ -1,4 +1,4 @@
-# ConsolidateBlocks[¶](#consolidateblocks "Permalink to this headline")
+# ConsolidateBlocks
 
 <span id="undefined" />
 

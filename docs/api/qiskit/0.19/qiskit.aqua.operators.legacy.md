@@ -14,7 +14,7 @@ python_api_name: qiskit.aqua.operators.legacy
 
 <span id="module-qiskit.aqua.operators.legacy" />
 
-`qiskit.aqua.operators.legacy¶`
+`qiskit.aqua.operators.legacy`
 
 These are the Operators provided by Aqua up until the 0.6 release. These are being replaced by the operator flow function and we encourage you to use this.
 
@@ -24,10 +24,6 @@ These are the Operators provided by Aqua up until the 0.6 release. These are bei
 
 # Legacy Operators
 
-<span id="module-qiskit.aqua.operators.legacy" />
-
-`¶`
-
 |                                                                                                                                                                  |                                              |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
 | [`LegacyBaseOperator`](qiskit.aqua.operators.legacy.LegacyBaseOperator "qiskit.aqua.operators.legacy.LegacyBaseOperator")                                        | Operators relevant for quantum applications. |
@@ -36,10 +32,6 @@ These are the Operators provided by Aqua up until the 0.6 release. These are bei
 | [`MatrixOperator`](qiskit.aqua.operators.legacy.MatrixOperator "qiskit.aqua.operators.legacy.MatrixOperator")                                                    | Operators relevant for quantum applications  |
 
 # Legacy Operator support
-
-<span id="module-qiskit.aqua.operators.legacy" />
-
-`¶`
 
 |                                                                                                                                                                        |                                                                                                                                                                                          |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

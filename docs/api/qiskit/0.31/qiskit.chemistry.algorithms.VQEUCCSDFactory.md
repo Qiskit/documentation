@@ -1,4 +1,4 @@
-# VQEUCCSDFactory[¶](#vqeuccsdfactory "Permalink to this headline")
+# VQEUCCSDFactory
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-converters-dagdependency-to-dag" />
 
-# qiskit.converters.dagdependency\_to\_dag[¶](#qiskit-converters-dagdependency-to-dag "Permalink to this headline")
+# qiskit.converters.dagdependency\_to\_dag
 
 <span id="undefined" />
 

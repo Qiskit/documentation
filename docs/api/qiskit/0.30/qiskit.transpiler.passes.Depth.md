@@ -1,4 +1,4 @@
-# Depth[¶](#depth "Permalink to this headline")
+# Depth
 
 <span id="undefined" />
 

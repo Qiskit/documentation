@@ -1,4 +1,4 @@
-# qiskit.aqua.components.optimizers.ESCH[¶](#qiskit-aqua-components-optimizers-esch "Permalink to this headline")
+# qiskit.aqua.components.optimizers.ESCH
 
 <span id="undefined" />
 

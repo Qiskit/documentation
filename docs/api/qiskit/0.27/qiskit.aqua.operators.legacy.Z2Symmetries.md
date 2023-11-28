@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.legacy.Z2Symmetries[¶](#qiskit-aqua-operators-legacy-z2symmetries "Permalink to this headline")
+# qiskit.aqua.operators.legacy.Z2Symmetries
 
 <span id="undefined" />
 

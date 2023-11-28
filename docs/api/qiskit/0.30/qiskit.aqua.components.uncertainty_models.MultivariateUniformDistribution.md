@@ -1,4 +1,4 @@
-# MultivariateUniformDistribution[¶](#multivariateuniformdistribution "Permalink to this headline")
+# MultivariateUniformDistribution
 
 <span id="undefined" />
 

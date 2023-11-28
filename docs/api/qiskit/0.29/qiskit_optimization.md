@@ -14,7 +14,7 @@ python_api_name: qiskit.optimization
 
 <span id="module-qiskit.optimization" />
 
-`qiskit.optimization¶`
+`qiskit.optimization`
 
 Qiskit’s optimization module covers the whole range from high-level modeling of optimization problems, with automatic conversion of problems to different required representations, to a suite of easy-to-use quantum optimization algorithms that are ready to run on classical simulators, as well as on real quantum devices via Qiskit.
 
@@ -41,10 +41,6 @@ In addition to standard Python errors the optimization module will raise this er
 A constant for infinity.
 
 ## Submodules
-
-<span id="module-qiskit.optimization" />
-
-`¶`
 
 |                                                                                                                               |                                                                                                                                                                               |
 | ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

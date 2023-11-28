@@ -14,13 +14,9 @@ python_api_name: qiskit.transpiler.passes
 
 <span id="module-qiskit.transpiler.passes" />
 
-`qiskit.transpiler.passes¶`
+`qiskit.transpiler.passes`
 
 ## Layout Selection (Placement)
-
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
 
 |                                                                                                                                                |                                                                                   |
 | ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
@@ -36,10 +32,6 @@ python_api_name: qiskit.transpiler.passes
 
 ## Routing
 
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
-
 |                                                                                                                           |                                                                                |
 | ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | [`BasicSwap`](qiskit.transpiler.passes.BasicSwap "qiskit.transpiler.passes.BasicSwap")(\*args, \*\*kwargs)                | Map (with minimum effort) a DAGCircuit onto a coupling\_map adding swap gates. |
@@ -48,10 +40,6 @@ python_api_name: qiskit.transpiler.passes
 
 ## Basis Change
 
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
-
 |                                                                                                                           |                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | [`Unroller`](qiskit.transpiler.passes.Unroller "qiskit.transpiler.passes.Unroller")(\*args, \*\*kwargs)                   | Unroll a circuit to a given basis.                                            |
@@ -59,10 +47,6 @@ python_api_name: qiskit.transpiler.passes
 | [`Decompose`](qiskit.transpiler.passes.Decompose "qiskit.transpiler.passes.Decompose")(\[gate])                           | Expand a gate in a circuit using its decomposition rules.                     |
 
 ## Optimizations
-
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
 
 |                                                                                                                                                                                 |                                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
@@ -78,10 +62,6 @@ python_api_name: qiskit.transpiler.passes
 
 ## Circuit Analysis
 
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
-
 |                                                                                                                                          |                                                                |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | [`Width`](qiskit.transpiler.passes.Width "qiskit.transpiler.passes.Width")(\*args, \*\*kwargs)                                           | Calculate the width of a DAG circuit.                          |
@@ -93,10 +73,6 @@ python_api_name: qiskit.transpiler.passes
 | [`DAGLongestPath`](qiskit.transpiler.passes.DAGLongestPath "qiskit.transpiler.passes.DAGLongestPath")(\*args, \*\*kwargs)                | Return the longest path in a DAGcircuit as a list of DAGNodes. |
 
 ## Additional Passes
-
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
 
 |                                                                                                                                                                           |                                                                                 |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |

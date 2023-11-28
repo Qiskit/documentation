@@ -14,7 +14,7 @@ python_api_name: qiskit.aqua.components.neural_networks
 
 <span id="module-qiskit.aqua.components.neural_networks" />
 
-`qiskit.aqua.components.neural_networks¶`
+`qiskit.aqua.components.neural_networks`
 
 A neural network is a parametrized network which may be defined as a artificial neural network - classical neural network - or as parametrized quantum circuits - quantum neural network. Furthermore, neural networks can be defined with respect to a discriminative or generative task.
 
@@ -22,20 +22,12 @@ Neural Networks may be used, for example, with the [`QGAN`](qiskit.aqua.algorith
 
 # Neural Network Base Classes
 
-<span id="module-qiskit.aqua.components.neural_networks" />
-
-`¶`
-
 |                                                                                                                                                                                                                     |                                                                     |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | [`DiscriminativeNetwork`](qiskit.aqua.components.neural_networks.DiscriminativeNetwork#qiskit.aqua.components.neural_networks.DiscriminativeNetwork "qiskit.aqua.components.neural_networks.DiscriminativeNetwork") | Base class for discriminative Quantum or Classical Neural Networks. |
 | [`GenerativeNetwork`](qiskit.aqua.components.neural_networks.GenerativeNetwork#qiskit.aqua.components.neural_networks.GenerativeNetwork "qiskit.aqua.components.neural_networks.GenerativeNetwork")                 | Base class for generative Quantum and Classical Neural Networks.    |
 
 # Neural Networks
-
-<span id="module-qiskit.aqua.components.neural_networks" />
-
-`¶`
 
 |                                                                                                                                                                                                                 |                                |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |

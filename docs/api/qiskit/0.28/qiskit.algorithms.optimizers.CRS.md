@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.CRS[¶](#qiskit-algorithms-optimizers-crs "Permalink to this headline")
+# qiskit.algorithms.optimizers.CRS
 
 <span id="undefined" />
 

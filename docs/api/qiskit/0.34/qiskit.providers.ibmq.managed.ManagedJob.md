@@ -1,4 +1,4 @@
-# ManagedJob[¶](#managedjob "Permalink to this headline")
+# ManagedJob
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# RZXCalibrationBuilderNoEcho[¶](#rzxcalibrationbuildernoecho "Permalink to this headline")
+# RZXCalibrationBuilderNoEcho
 
 <span id="undefined" />
 

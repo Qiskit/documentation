@@ -1,4 +1,4 @@
-# qiskit.algorithms.HamiltonianPhaseEstimation[¶](#qiskit-algorithms-hamiltonianphaseestimation "Permalink to this headline")
+# qiskit.algorithms.HamiltonianPhaseEstimation
 
 <span id="undefined" />
 

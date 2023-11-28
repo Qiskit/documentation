@@ -1,4 +1,4 @@
-# AngleCalCXFitter[¶](#anglecalcxfitter "Permalink to this headline")
+# AngleCalCXFitter
 
 <span id="undefined" />
 

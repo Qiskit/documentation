@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passmanagerconfig" />
 
-# qiskit.transpiler.PassManagerConfig[¶](#qiskit-transpiler-passmanagerconfig "Permalink to this headline")
+# qiskit.transpiler.PassManagerConfig
 
 <span id="undefined" />
 

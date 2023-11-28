@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-list-ops-composedop" />
 
-# qiskit.aqua.operators.list\_ops.ComposedOp[¶](#qiskit-aqua-operators-list-ops-composedop "Permalink to this headline")
+# qiskit.aqua.operators.list\_ops.ComposedOp
 
 <span id="undefined" />
 

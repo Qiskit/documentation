@@ -1,4 +1,4 @@
-# MCXGrayCode[¶](#mcxgraycode "Permalink to this headline")
+# MCXGrayCode
 
 <span id="undefined" />
 

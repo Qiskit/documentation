@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-builder-inline" />
 
-# qiskit.pulse.builder.inline[¶](#qiskit-pulse-builder-inline "Permalink to this headline")
+# qiskit.pulse.builder.inline
 
 <span id="undefined" />
 

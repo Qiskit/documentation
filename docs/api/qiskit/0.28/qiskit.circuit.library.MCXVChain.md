@@ -1,4 +1,4 @@
-# qiskit.circuit.library.MCXVChain[¶](#qiskit-circuit-library-mcxvchain "Permalink to this headline")
+# qiskit.circuit.library.MCXVChain
 
 <span id="undefined" />
 

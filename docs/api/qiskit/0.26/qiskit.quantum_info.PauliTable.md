@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.PauliTable[¶](#qiskit-quantum-info-paulitable "Permalink to this headline")
+# qiskit.quantum\_info.PauliTable
 
 <span id="undefined" />
 

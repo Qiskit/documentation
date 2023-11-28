@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.components.feature_maps.self_product
 ---
 
-# self\_product[¶](#self-product "Permalink to this headline")
+# self\_product
 
 <span id="qiskit.aqua.components.feature_maps.self_product" />
 

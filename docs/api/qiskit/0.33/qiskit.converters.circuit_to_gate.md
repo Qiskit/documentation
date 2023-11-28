@@ -1,4 +1,4 @@
-# qiskit.converters.circuit\_to\_gate[¶](#qiskit-converters-circuit-to-gate "Permalink to this headline")
+# qiskit.converters.circuit\_to\_gate
 
 <span id="undefined" />
 

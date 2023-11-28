@@ -1,4 +1,4 @@
-# qiskit.ignis.verification.randomized\_benchmarking\_seq[¶](#qiskit-ignis-verification-randomized-benchmarking-seq "Permalink to this headline")
+# qiskit.ignis.verification.randomized\_benchmarking\_seq
 
 <span id="undefined" />
 

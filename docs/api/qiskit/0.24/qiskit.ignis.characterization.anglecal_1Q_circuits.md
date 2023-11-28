@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-characterization-anglecal-1q-circuits" />
 
-# qiskit.ignis.characterization.anglecal\_1Q\_circuits[¶](#qiskit-ignis-characterization-anglecal-1q-circuits "Permalink to this headline")
+# qiskit.ignis.characterization.anglecal\_1Q\_circuits
 
 <span id="undefined" />
 

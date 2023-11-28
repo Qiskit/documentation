@@ -1,4 +1,4 @@
-# DataOnDemandProvider[¶](#dataondemandprovider "Permalink to this headline")
+# DataOnDemandProvider
 
 <span id="undefined" />
 

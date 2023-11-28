@@ -1,6 +1,6 @@
 <span id="qiskit-ml-datasets-sample-ad-hoc-data" />
 
-# qiskit.ml.datasets.sample\_ad\_hoc\_data[¶](#qiskit-ml-datasets-sample-ad-hoc-data "Permalink to this headline")
+# qiskit.ml.datasets.sample\_ad\_hoc\_data
 
 <span id="undefined" />
 

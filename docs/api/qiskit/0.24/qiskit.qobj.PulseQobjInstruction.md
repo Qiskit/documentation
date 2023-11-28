@@ -1,6 +1,6 @@
 <span id="qiskit-qobj-pulseqobjinstruction" />
 
-# qiskit.qobj.PulseQobjInstruction[¶](#qiskit-qobj-pulseqobjinstruction "Permalink to this headline")
+# qiskit.qobj.PulseQobjInstruction
 
 <span id="undefined" />
 

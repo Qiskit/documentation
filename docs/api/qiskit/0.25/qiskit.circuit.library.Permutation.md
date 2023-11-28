@@ -1,4 +1,4 @@
-# qiskit.circuit.library.Permutation[¶](#qiskit-circuit-library-permutation "Permalink to this headline")
+# qiskit.circuit.library.Permutation
 
 <span id="undefined" />
 

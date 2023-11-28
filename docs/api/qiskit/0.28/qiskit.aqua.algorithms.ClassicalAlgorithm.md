@@ -1,4 +1,4 @@
-# qiskit.aqua.algorithms.ClassicalAlgorithm[¶](#qiskit-aqua-algorithms-classicalalgorithm "Permalink to this headline")
+# qiskit.aqua.algorithms.ClassicalAlgorithm
 
 <span id="undefined" />
 

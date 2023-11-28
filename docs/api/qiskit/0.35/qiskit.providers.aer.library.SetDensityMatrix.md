@@ -1,4 +1,4 @@
-# SetDensityMatrix[¶](#setdensitymatrix "Permalink to this headline")
+# SetDensityMatrix
 
 <span id="undefined" />
 

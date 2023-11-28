@@ -12,9 +12,5 @@ python_api_name: qiskit.ignis.verification.basis
 
 # qiskit.ignis.verification.basis
 
-<span id="module-qiskit.ignis.verification.basis" />
-
-`¶`
-
 Quantum tomography basis
 

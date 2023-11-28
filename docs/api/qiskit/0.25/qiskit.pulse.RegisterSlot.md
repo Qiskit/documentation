@@ -1,4 +1,4 @@
-# qiskit.pulse.RegisterSlot[¶](#qiskit-pulse-registerslot "Permalink to this headline")
+# qiskit.pulse.RegisterSlot
 
 <span id="undefined" />
 

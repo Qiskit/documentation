@@ -1,6 +1,6 @@
 <span id="qiskit-quantum-info-mutual-information" />
 
-# qiskit.quantum\_info.mutual\_information[¶](#qiskit-quantum-info-mutual-information "Permalink to this headline")
+# qiskit.quantum\_info.mutual\_information
 
 <span id="undefined" />
 

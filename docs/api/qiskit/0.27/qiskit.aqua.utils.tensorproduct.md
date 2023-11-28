@@ -1,4 +1,4 @@
-# qiskit.aqua.utils.tensorproduct[¶](#qiskit-aqua-utils-tensorproduct "Permalink to this headline")
+# qiskit.aqua.utils.tensorproduct
 
 <span id="undefined" />
 

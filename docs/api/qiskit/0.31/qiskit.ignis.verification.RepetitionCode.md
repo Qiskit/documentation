@@ -1,4 +1,4 @@
-# RepetitionCode[¶](#repetitioncode "Permalink to this headline")
+# RepetitionCode
 
 <span id="undefined" />
 

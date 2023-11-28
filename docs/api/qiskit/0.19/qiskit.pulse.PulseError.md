@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.pulse.PulseError
 ---
 
-# PulseError[¶](#pulseerror "Permalink to this headline")
+# PulseError
 
 <span id="qiskit.pulse.PulseError" />
 

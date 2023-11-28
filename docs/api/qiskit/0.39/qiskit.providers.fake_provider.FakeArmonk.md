@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeArmonk
 ---
 
-# FakeArmonk[¶](#fakearmonk "Permalink to this headline")
+# FakeArmonk
 
 <span id="qiskit.providers.fake_provider.FakeArmonk" />
 

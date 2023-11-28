@@ -1,4 +1,4 @@
-# qiskit.utils.QuantumInstance[¶](#qiskit-utils-quantuminstance "Permalink to this headline")
+# qiskit.utils.QuantumInstance
 
 <span id="undefined" />
 

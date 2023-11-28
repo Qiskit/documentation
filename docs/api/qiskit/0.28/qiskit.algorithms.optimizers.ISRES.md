@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.ISRES[¶](#qiskit-algorithms-optimizers-isres "Permalink to this headline")
+# qiskit.algorithms.optimizers.ISRES
 
 <span id="undefined" />
 

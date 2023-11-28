@@ -16,15 +16,11 @@ python_api_name: qiskit.optimization.applications
 
 <span id="module-qiskit.optimization.applications" />
 
-`qiskit.optimization.applications¶`
+`qiskit.optimization.applications`
 
 Applications for Qiskit’s optimization module. The present set are in the form of Ising Hamiltonians.
 
 # Submodules
-
-<span id="module-qiskit.optimization.applications" />
-
-`¶`
 
 |                                                                                                                                          |                                                                                                                                                                                          |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

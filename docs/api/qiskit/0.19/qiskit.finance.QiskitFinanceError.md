@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.finance.QiskitFinanceError
 ---
 
-# QiskitFinanceError[¶](#qiskitfinanceerror "Permalink to this headline")
+# QiskitFinanceError
 
 <span id="qiskit.finance.QiskitFinanceError" />
 

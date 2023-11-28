@@ -1,4 +1,4 @@
-# BarrierBeforeFinalMeasurements[¶](#barrierbeforefinalmeasurements "Permalink to this headline")
+# BarrierBeforeFinalMeasurements
 
 <span id="undefined" />
 

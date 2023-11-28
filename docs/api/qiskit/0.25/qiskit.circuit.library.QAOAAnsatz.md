@@ -1,4 +1,4 @@
-# qiskit.circuit.library.QAOAAnsatz[¶](#qiskit-circuit-library-qaoaansatz "Permalink to this headline")
+# qiskit.circuit.library.QAOAAnsatz
 
 <span id="undefined" />
 

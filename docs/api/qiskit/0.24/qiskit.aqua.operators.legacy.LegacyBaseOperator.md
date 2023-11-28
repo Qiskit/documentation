@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-legacy-legacybaseoperator" />
 
-# qiskit.aqua.operators.legacy.LegacyBaseOperator[¶](#qiskit-aqua-operators-legacy-legacybaseoperator "Permalink to this headline")
+# qiskit.aqua.operators.legacy.LegacyBaseOperator
 
 <span id="undefined" />
 

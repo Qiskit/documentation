@@ -1,4 +1,4 @@
-# MeasureChannel[¶](#measurechannel "Permalink to this headline")
+# MeasureChannel
 
 <span id="undefined" />
 

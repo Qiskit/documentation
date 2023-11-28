@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.chemistry.core.MolecularGroundStateResult
 ---
 
-# MolecularGroundStateResult[¶](#moleculargroundstateresult "Permalink to this headline")
+# MolecularGroundStateResult
 
 <span id="qiskit.chemistry.core.MolecularGroundStateResult" />
 

@@ -1,4 +1,4 @@
-# TwoQubitReduction[¶](#twoqubitreduction "Permalink to this headline")
+# TwoQubitReduction
 
 <span id="undefined" />
 

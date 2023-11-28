@@ -1,4 +1,4 @@
-# qiskit.opflow\.state\_fns.DictStateFn[¶](#qiskit-opflow-state-fns-dictstatefn "Permalink to this headline")
+# qiskit.opflow\.state\_fns.DictStateFn
 
 <span id="undefined" />
 

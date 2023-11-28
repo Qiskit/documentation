@@ -1,4 +1,4 @@
-# SamplerResult[¶](#samplerresult "Permalink to this headline")
+# SamplerResult
 
 <span id="undefined" />
 

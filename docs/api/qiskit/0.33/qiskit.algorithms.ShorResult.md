@@ -1,4 +1,4 @@
-# ShorResult[¶](#shorresult "Permalink to this headline")
+# ShorResult
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# ClassicalFunction[¶](#classicalfunction "Permalink to this headline")
+# ClassicalFunction
 
 <span id="undefined" />
 

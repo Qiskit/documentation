@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.chemistry.FermionicOperator
 ---
 
-# FermionicOperator[¶](#fermionicoperator "Permalink to this headline")
+# FermionicOperator
 
 <span id="qiskit.chemistry.FermionicOperator" />
 

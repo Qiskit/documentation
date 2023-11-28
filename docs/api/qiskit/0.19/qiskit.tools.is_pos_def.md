@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.tools.is_pos_def
 ---
 
-# is\_pos\_def[¶](#is-pos-def "Permalink to this headline")
+# is\_pos\_def
 
 <span id="qiskit.tools.is_pos_def" />
 

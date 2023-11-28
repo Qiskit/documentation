@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.GRZ
 ---
 
-# GRZ[¶](#grz "Permalink to this headline")
+# GRZ
 
 <span id="qiskit.circuit.library.GRZ" />
 

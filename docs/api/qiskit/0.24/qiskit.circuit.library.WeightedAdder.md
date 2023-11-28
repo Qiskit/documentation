@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-weightedadder" />
 
-# qiskit.circuit.library.WeightedAdder[¶](#qiskit-circuit-library-weightedadder "Permalink to this headline")
+# qiskit.circuit.library.WeightedAdder
 
 <span id="undefined" />
 

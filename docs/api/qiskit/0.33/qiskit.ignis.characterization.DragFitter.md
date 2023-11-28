@@ -1,4 +1,4 @@
-# DragFitter[¶](#dragfitter "Permalink to this headline")
+# DragFitter
 
 <span id="undefined" />
 

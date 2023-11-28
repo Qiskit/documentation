@@ -1,4 +1,4 @@
-# FencedPropertySet[¶](#fencedpropertyset "Permalink to this headline")
+# FencedPropertySet
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.Play
 ---
 
-# Play[¶](#play "Permalink to this headline")
+# Play
 
 <span id="qiskit.pulse.Play" />
 

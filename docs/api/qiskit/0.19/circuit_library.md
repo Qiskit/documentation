@@ -1,10 +1,10 @@
 <span id="qiskit-circuit-library" />
 
-# Circuit Library[¶](#module-qiskit.circuit.library "Permalink to this headline")
+# Circuit Library
 
-## Circuit Library ([`qiskit.circuit.library`](#module-qiskit.circuit.library "qiskit.circuit.library"))[¶](#circuit-library-qiskit-circuit-library "Permalink to this headline")
+## Circuit Library ([`qiskit.circuit.library`](#module-qiskit.circuit.library "qiskit.circuit.library"))
 
-### Standard Gates[¶](#standard-gates "Permalink to this headline")
+### Standard Gates
 
 |                                                                                                                        |                                                                      |
 | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
@@ -50,7 +50,7 @@
 | [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate")(\[label])                                       | The single-qubit Pauli-Y gate ($\sigma_y$).                          |
 | [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate")(\[label])                                       | The single-qubit Pauli-Z gate ($\sigma_z$).                          |
 
-### Generalized Gates[¶](#generalized-gates "Permalink to this headline")
+### Generalized Gates
 
 |                                                                                                                         |                                                                                         |
 | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
@@ -60,7 +60,7 @@
 | [`Permutation`](qiskit.circuit.library.Permutation "qiskit.circuit.library.Permutation")(num\_qubits\[, pattern, seed]) | An n\_qubit circuit that permutes qubits.                                               |
 | [`GMS`](qiskit.circuit.library.GMS "qiskit.circuit.library.GMS")(num\_qubits, theta)                                    | Global Mølmer–Sørensen gate.                                                            |
 
-### Boolean Logic Circuits[¶](#boolean-logic-circuits "Permalink to this headline")
+### Boolean Logic Circuits
 
 |                                                                                                              |                                                                               |
 | ------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
@@ -69,15 +69,15 @@
 | [`XOR`](qiskit.circuit.library.XOR "qiskit.circuit.library.XOR")(num\_qubits\[, amount, seed])               | An n\_qubit circuit for bitwise xor-ing the input with some integer `amount`. |
 | [`InnerProduct`](qiskit.circuit.library.InnerProduct "qiskit.circuit.library.InnerProduct")(num\_qubits)     | An n\_qubit circuit that computes the inner product of two registers.         |
 
-### Basis Change Circuits[¶](#basis-change-circuits "Permalink to this headline")
+### Basis Change Circuits
 
 |                                                                                                            |                                    |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | [`QFT`](qiskit.circuit.library.QFT "qiskit.circuit.library.QFT")(\[num\_qubits, approximation\_degree, …]) | Quantum Fourier Transform Circuit. |
 
-### Arithmetic Circuits[¶](#arithmetic-circuits "Permalink to this headline")
+### Arithmetic Circuits
 
-#### Functional Pauli Rotations[¶](#functional-pauli-rotations "Permalink to this headline")
+#### Functional Pauli Rotations
 
 |                                                                                                                                                           |                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
@@ -86,19 +86,19 @@
 | [`PolynomialPauliRotations`](qiskit.circuit.library.PolynomialPauliRotations "qiskit.circuit.library.PolynomialPauliRotations")(\[num\_state\_qubits, …]) | A circuit implementing polynomial Pauli rotations. |
 | [`PiecewiseLinearPauliRotations`](qiskit.circuit.library.PiecewiseLinearPauliRotations "qiskit.circuit.library.PiecewiseLinearPauliRotations")(\[…])      | Piecewise-linearly-controlled Pauli rotations.     |
 
-#### Adders[¶](#adders "Permalink to this headline")
+#### Adders
 
 |                                                                                                                                      |                                                           |
 | ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------- |
 | [`WeightedAdder`](qiskit.circuit.library.WeightedAdder "qiskit.circuit.library.WeightedAdder")(\[num\_state\_qubits, weights, name]) | A circuit to compute the weighted sum of qubit registers. |
 
-#### Comparators[¶](#comparators "Permalink to this headline")
+#### Comparators
 
 |                                                                                                                                             |                     |
 | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
 | [`IntegerComparator`](qiskit.circuit.library.IntegerComparator "qiskit.circuit.library.IntegerComparator")(\[num\_state\_qubits, value, …]) | Integer Comparator. |
 
-### Particular Quantum Circuits[¶](#particular-quantum-circuits "Permalink to this headline")
+### Particular Quantum Circuits
 
 |                                                                                                                                        |                                                      |
 | -------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
@@ -108,7 +108,7 @@
 | [`IQP`](qiskit.circuit.library.IQP "qiskit.circuit.library.IQP")(interactions)                                                         | Instantaneous quantum polynomial (IQP) circuit.      |
 | [`QuantumVolume`](qiskit.circuit.library.QuantumVolume "qiskit.circuit.library.QuantumVolume")(num\_qubits\[, depth, seed, …])         | A quantum volume model circuit.                      |
 
-### N-local circuits[¶](#n-local-circuits "Permalink to this headline")
+### N-local circuits
 
 |                                                                                                                                              |                                                            |
 | -------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
@@ -118,7 +118,7 @@
 | [`EfficientSU2`](qiskit.circuit.library.EfficientSU2 "qiskit.circuit.library.EfficientSU2")(\[num\_qubits, su2\_gates, …])                   | The hardware efficient SU(2) 2-local circuit.              |
 | [`ExcitationPreserving`](qiskit.circuit.library.ExcitationPreserving "qiskit.circuit.library.ExcitationPreserving")(\[num\_qubits, mode, …]) | The heurisitic excitation-preserving wave function ansatz. |
 
-### Data encoding circuits[¶](#data-encoding-circuits "Permalink to this headline")
+### Data encoding circuits
 
 |                                                                                                                                      |                                            |
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |

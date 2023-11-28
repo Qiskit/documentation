@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.multiclass_extensions.AllPairs
 ---
 
-# AllPairs[¶](#allpairs "Permalink to this headline")
+# AllPairs
 
 <span id="qiskit.aqua.components.multiclass_extensions.AllPairs" />
 

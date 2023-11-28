@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-optimizers-gsls" />
 
-# qiskit.aqua.components.optimizers.GSLS[¶](#qiskit-aqua-components-optimizers-gsls "Permalink to this headline")
+# qiskit.aqua.components.optimizers.GSLS
 
 <span id="undefined" />
 

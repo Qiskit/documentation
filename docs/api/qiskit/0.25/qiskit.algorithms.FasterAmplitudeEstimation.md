@@ -1,4 +1,4 @@
-# qiskit.algorithms.FasterAmplitudeEstimation[¶](#qiskit-algorithms-fasteramplitudeestimation "Permalink to this headline")
+# qiskit.algorithms.FasterAmplitudeEstimation
 
 <span id="undefined" />
 

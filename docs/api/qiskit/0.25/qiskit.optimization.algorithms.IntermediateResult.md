@@ -1,4 +1,4 @@
-# qiskit.optimization.algorithms.IntermediateResult[¶](#qiskit-optimization-algorithms-intermediateresult "Permalink to this headline")
+# qiskit.optimization.algorithms.IntermediateResult
 
 <span id="undefined" />
 

@@ -14,15 +14,11 @@ python_api_name: qiskit.optimization.algorithms
 
 <span id="module-qiskit.optimization.algorithms" />
 
-`qiskit.optimization.algorithms¶`
+`qiskit.optimization.algorithms`
 
 Algorithms for optimization problems.
 
 # Base classes for algorithms and results
-
-<span id="module-qiskit.optimization.algorithms" />
-
-`¶`
 
 |                                                                                                                                                                                             |                                                                                                           |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
@@ -31,10 +27,6 @@ Algorithms for optimization problems.
 | [`OptimizationResult`](qiskit.optimization.algorithms.OptimizationResult#qiskit.optimization.algorithms.OptimizationResult "qiskit.optimization.algorithms.OptimizationResult")             | A base class for optimization results.                                                                    |
 
 # Algorithms and results
-
-<span id="module-qiskit.optimization.algorithms" />
-
-`¶`
 
 |                                                                                                                                                                                                                                                                     |                                                                                                                                                                                                                                                                                                                                              |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

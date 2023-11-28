@@ -1,4 +1,4 @@
-# qiskit.transpiler.TranspilerAccessError[¶](#qiskit-transpiler-transpileraccesserror "Permalink to this headline")
+# qiskit.transpiler.TranspilerAccessError
 
 <span id="undefined" />
 

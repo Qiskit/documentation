@@ -14,25 +14,17 @@ python_api_name: qiskit.providers.aer.pulse
 
 <span id="module-qiskit.providers.aer.pulse" />
 
-`qiskit.providers.aer.pulse¶`
+`qiskit.providers.aer.pulse`
 
 This module contains classes and functions to build a pulse system model for simulating a Qiskit pulse schedule.
 
 ## Classes
-
-<span id="module-qiskit.providers.aer.pulse" />
-
-`¶`
 
 |                                                                                                                                    |                                            |
 | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
 | [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel")(\[hamiltonian, …]) | Physical model object for pulse simulator. |
 
 ## Functions
-
-<span id="module-qiskit.providers.aer.pulse" />
-
-`¶`
 
 These functions can be used to generate a pulse system model for certain types of systems.
 

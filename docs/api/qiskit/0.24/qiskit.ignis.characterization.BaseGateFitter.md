@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-characterization-basegatefitter" />
 
-# qiskit.ignis.characterization.BaseGateFitter[¶](#qiskit-ignis-characterization-basegatefitter "Permalink to this headline")
+# qiskit.ignis.characterization.BaseGateFitter
 
 <span id="undefined" />
 

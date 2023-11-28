@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.verification.StateTomographyFitter
 ---
 
-# StateTomographyFitter[¶](#statetomographyfitter "Permalink to this headline")
+# StateTomographyFitter
 
 <span id="qiskit.ignis.verification.StateTomographyFitter" />
 

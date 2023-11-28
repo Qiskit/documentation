@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.job.IBMQJobApiError[¶](#qiskit-providers-ibmq-job-ibmqjobapierror "Permalink to this headline")
+# qiskit.providers.ibmq.job.IBMQJobApiError
 
 <span id="undefined" />
 

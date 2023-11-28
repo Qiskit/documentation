@@ -1,4 +1,4 @@
-# ElectronicStructureResult[¶](#electronicstructureresult "Permalink to this headline")
+# ElectronicStructureResult
 
 <span id="undefined" />
 

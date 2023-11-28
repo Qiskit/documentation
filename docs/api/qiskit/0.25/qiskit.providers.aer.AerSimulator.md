@@ -1,4 +1,4 @@
-# qiskit.providers.aer.AerSimulator[¶](#qiskit-providers-aer-aersimulator "Permalink to this headline")
+# qiskit.providers.aer.AerSimulator
 
 <span id="undefined" />
 

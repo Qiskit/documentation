@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.converters.ast_to_dag
 ---
 
-# ast\_to\_dag[¶](#ast-to-dag "Permalink to this headline")
+# ast\_to\_dag
 
 <span id="qiskit.converters.ast_to_dag" />
 

@@ -1,4 +1,4 @@
-# qiskit.ignis.mitigation.CompleteMeasFitter[¶](#qiskit-ignis-mitigation-completemeasfitter "Permalink to this headline")
+# qiskit.ignis.mitigation.CompleteMeasFitter
 
 <span id="undefined" />
 

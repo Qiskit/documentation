@@ -1,6 +1,6 @@
 <span id="qiskit-extensions-snapshot" />
 
-# qiskit.extensions.Snapshot[¶](#qiskit-extensions-snapshot "Permalink to this headline")
+# qiskit.extensions.Snapshot
 
 <span id="undefined" />
 

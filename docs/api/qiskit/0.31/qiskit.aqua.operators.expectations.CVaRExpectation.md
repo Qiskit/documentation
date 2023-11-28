@@ -1,4 +1,4 @@
-# CVaRExpectation[¶](#cvarexpectation "Permalink to this headline")
+# CVaRExpectation
 
 <span id="undefined" />
 

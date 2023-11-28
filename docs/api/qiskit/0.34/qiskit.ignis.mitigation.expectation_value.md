@@ -1,4 +1,4 @@
-# qiskit.ignis.mitigation.expectation\_value[¶](#qiskit-ignis-mitigation-expectation-value "Permalink to this headline")
+# qiskit.ignis.mitigation.expectation\_value
 
 <span id="undefined" />
 

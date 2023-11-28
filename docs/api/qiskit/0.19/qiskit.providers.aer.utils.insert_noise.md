@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.utils.insert_noise
 ---
 
-# insert\_noise[¶](#insert-noise "Permalink to this headline")
+# insert\_noise
 
 <span id="qiskit.providers.aer.utils.insert_noise" />
 

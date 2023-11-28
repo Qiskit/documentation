@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-optimizers-slsqp" />
 
-# qiskit.aqua.components.optimizers.SLSQP[¶](#qiskit-aqua-components-optimizers-slsqp "Permalink to this headline")
+# qiskit.aqua.components.optimizers.SLSQP
 
 <span id="undefined" />
 

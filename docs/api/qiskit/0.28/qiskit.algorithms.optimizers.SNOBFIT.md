@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.SNOBFIT[¶](#qiskit-algorithms-optimizers-snobfit "Permalink to this headline")
+# qiskit.algorithms.optimizers.SNOBFIT
 
 <span id="undefined" />
 

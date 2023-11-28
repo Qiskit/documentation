@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.operators.legacy.row_echelon_F2
 ---
 
-# row\_echelon\_F2[¶](#row-echelon-f2 "Permalink to this headline")
+# row\_echelon\_F2
 
 <span id="qiskit.aqua.operators.legacy.row_echelon_F2" />
 

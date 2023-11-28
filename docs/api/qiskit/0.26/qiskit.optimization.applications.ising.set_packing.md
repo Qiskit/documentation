@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-applications-ising-set-packing" />
 
-# qiskit.optimization.applications.ising.set\_packing[¶](#module-qiskit.optimization.applications.ising.set_packing "Permalink to this headline")
+# qiskit.optimization.applications.ising.set\_packing
 
 set packing module
 

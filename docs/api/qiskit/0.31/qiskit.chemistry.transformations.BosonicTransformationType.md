@@ -1,4 +1,4 @@
-# BosonicTransformationType[¶](#bosonictransformationtype "Permalink to this headline")
+# BosonicTransformationType
 
 <span id="undefined" />
 

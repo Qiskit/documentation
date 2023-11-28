@@ -1,4 +1,4 @@
-# AcquireChannel[¶](#acquirechannel "Permalink to this headline")
+# AcquireChannel
 
 <span id="undefined" />
 

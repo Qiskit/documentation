@@ -1,4 +1,4 @@
-# qiskit.circuit.library.RealAmplitudes[¶](#qiskit-circuit-library-realamplitudes "Permalink to this headline")
+# qiskit.circuit.library.RealAmplitudes
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation
 ---
 
-# Optimize1qGatesSimpleCommutation[¶](#optimize1qgatessimplecommutation "Permalink to this headline")
+# Optimize1qGatesSimpleCommutation
 
 <span id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation" />
 

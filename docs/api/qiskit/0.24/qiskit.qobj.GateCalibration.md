@@ -1,6 +1,6 @@
 <span id="qiskit-qobj-gatecalibration" />
 
-# qiskit.qobj.GateCalibration[¶](#qiskit-qobj-gatecalibration "Permalink to this headline")
+# qiskit.qobj.GateCalibration
 
 <span id="undefined" />
 

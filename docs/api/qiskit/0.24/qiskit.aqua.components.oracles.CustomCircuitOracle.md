@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-oracles-customcircuitoracle" />
 
-# qiskit.aqua.components.oracles.CustomCircuitOracle[¶](#qiskit-aqua-components-oracles-customcircuitoracle "Permalink to this headline")
+# qiskit.aqua.components.oracles.CustomCircuitOracle
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.transpiler.InstructionDurations[¶](#qiskit-transpiler-instructiondurations "Permalink to this headline")
+# qiskit.transpiler.InstructionDurations
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# UniformDistribution[¶](#uniformdistribution "Permalink to this headline")
+# UniformDistribution
 
 <span id="undefined" />
 

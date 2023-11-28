@@ -1,4 +1,4 @@
-# qiskit.pulse.builder.drive\_channel[¶](#qiskit-pulse-builder-drive-channel "Permalink to this headline")
+# qiskit.pulse.builder.drive\_channel
 
 <span id="undefined" />
 

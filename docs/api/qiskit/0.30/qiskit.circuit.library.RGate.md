@@ -1,4 +1,4 @@
-# RGate[¶](#rgate "Permalink to this headline")
+# RGate
 
 <span id="undefined" />
 

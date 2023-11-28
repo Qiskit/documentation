@@ -1,4 +1,4 @@
-# qiskit.ml.datasets.breast\_cancer[¶](#qiskit-ml-datasets-breast-cancer "Permalink to this headline")
+# qiskit.ml.datasets.breast\_cancer
 
 <span id="undefined" />
 

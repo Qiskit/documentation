@@ -1,4 +1,4 @@
-# EOH[¶](#eoh "Permalink to this headline")
+# EOH
 
 <span id="undefined" />
 

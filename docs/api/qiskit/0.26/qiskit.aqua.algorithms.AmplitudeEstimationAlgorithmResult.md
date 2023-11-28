@@ -1,4 +1,4 @@
-# qiskit.aqua.algorithms.AmplitudeEstimationAlgorithmResult[¶](#qiskit-aqua-algorithms-amplitudeestimationalgorithmresult "Permalink to this headline")
+# qiskit.aqua.algorithms.AmplitudeEstimationAlgorithmResult
 
 <span id="undefined" />
 

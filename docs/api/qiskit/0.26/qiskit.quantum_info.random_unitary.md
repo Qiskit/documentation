@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.random\_unitary[¶](#qiskit-quantum-info-random-unitary "Permalink to this headline")
+# qiskit.quantum\_info.random\_unitary
 
 <span id="undefined" />
 

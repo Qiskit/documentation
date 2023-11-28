@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-algorithms-iqpe" />
 
-# qiskit.aqua.algorithms.IQPE[¶](#qiskit-aqua-algorithms-iqpe "Permalink to this headline")
+# qiskit.aqua.algorithms.IQPE
 
 <span id="undefined" />
 

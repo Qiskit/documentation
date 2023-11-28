@@ -1,4 +1,4 @@
-# qiskit.ignis.verification.GatesetTomographyFitter[¶](#qiskit-ignis-verification-gatesettomographyfitter "Permalink to this headline")
+# qiskit.ignis.verification.GatesetTomographyFitter
 
 <span id="undefined" />
 

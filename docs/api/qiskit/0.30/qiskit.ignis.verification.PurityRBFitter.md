@@ -1,4 +1,4 @@
-# PurityRBFitter[¶](#purityrbfitter "Permalink to this headline")
+# PurityRBFitter
 
 <span id="undefined" />
 

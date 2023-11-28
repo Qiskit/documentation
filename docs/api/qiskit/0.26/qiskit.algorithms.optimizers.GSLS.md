@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.GSLS[¶](#qiskit-algorithms-optimizers-gsls "Permalink to this headline")
+# qiskit.algorithms.optimizers.GSLS
 
 <span id="undefined" />
 

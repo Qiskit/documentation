@@ -1,4 +1,4 @@
-# Exporter[¶](#exporter "Permalink to this headline")
+# Exporter
 
 <span id="undefined" />
 

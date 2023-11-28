@@ -1,4 +1,4 @@
-# qiskit.providers.aer.library.save\_probabilities[¶](#qiskit-providers-aer-library-save-probabilities "Permalink to this headline")
+# qiskit.providers.aer.library.save\_probabilities
 
 <span id="undefined" />
 

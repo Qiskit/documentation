@@ -1,4 +1,4 @@
-# SwapGate[¶](#swapgate "Permalink to this headline")
+# SwapGate
 
 <span id="undefined" />
 

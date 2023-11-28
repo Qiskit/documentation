@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-optimizers-spsa" />
 
-# qiskit.aqua.components.optimizers.SPSA[¶](#qiskit-aqua-components-optimizers-spsa "Permalink to this headline")
+# qiskit.aqua.components.optimizers.SPSA
 
 <span id="undefined" />
 

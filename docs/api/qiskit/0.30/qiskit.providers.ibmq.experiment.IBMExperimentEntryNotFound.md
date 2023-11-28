@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound[¶](#qiskit-providers-ibmq-experiment-ibmexperimententrynotfound "Permalink to this headline")
+# qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound
 
 <span id="undefined" />
 

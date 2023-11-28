@@ -1,4 +1,4 @@
-# qiskit.pulse.builder.seconds\_to\_samples[¶](#qiskit-pulse-builder-seconds-to-samples "Permalink to this headline")
+# qiskit.pulse.builder.seconds\_to\_samples
 
 <span id="undefined" />
 

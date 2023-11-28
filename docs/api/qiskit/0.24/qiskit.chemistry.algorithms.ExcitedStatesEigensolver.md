@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-algorithms-excitedstateseigensolver" />
 
-# qiskit.chemistry.algorithms.ExcitedStatesEigensolver[¶](#qiskit-chemistry-algorithms-excitedstateseigensolver "Permalink to this headline")
+# qiskit.chemistry.algorithms.ExcitedStatesEigensolver
 
 <span id="undefined" />
 

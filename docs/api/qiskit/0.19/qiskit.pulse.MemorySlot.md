@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.MemorySlot
 ---
 
-# MemorySlot[¶](#memoryslot "Permalink to this headline")
+# MemorySlot
 
 <span id="qiskit.pulse.MemorySlot" />
 

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.utils.get_feature_dimension
 ---
 
-# get\_feature\_dimension[¶](#get-feature-dimension "Permalink to this headline")
+# get\_feature\_dimension
 
 <span id="qiskit.aqua.utils.get_feature_dimension" />
 

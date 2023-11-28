@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.TrivialLayout[¶](#qiskit-transpiler-passes-triviallayout "Permalink to this headline")
+# qiskit.transpiler.passes.TrivialLayout
 
 <span id="undefined" />
 

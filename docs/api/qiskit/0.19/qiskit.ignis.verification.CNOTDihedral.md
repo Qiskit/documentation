@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.verification.CNOTDihedral
 ---
 
-# CNOTDihedral[¶](#cnotdihedral "Permalink to this headline")
+# CNOTDihedral
 
 <span id="qiskit.ignis.verification.CNOTDihedral" />
 

@@ -1,4 +1,4 @@
-# qiskit.circuit.library.PauliGate[¶](#qiskit-circuit-library-pauligate "Permalink to this headline")
+# qiskit.circuit.library.PauliGate
 
 <span id="undefined" />
 

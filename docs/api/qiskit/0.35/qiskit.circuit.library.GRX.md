@@ -1,4 +1,4 @@
-# GRX[¶](#grx "Permalink to this headline")
+# GRX
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-problems-quadraticobjective" />
 
-# qiskit.optimization.problems.QuadraticObjective[¶](#qiskit-optimization-problems-quadraticobjective "Permalink to this headline")
+# qiskit.optimization.problems.QuadraticObjective
 
 <span id="undefined" />
 

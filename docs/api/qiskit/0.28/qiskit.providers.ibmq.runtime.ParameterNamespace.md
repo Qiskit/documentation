@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.runtime.ParameterNamespace[¶](#qiskit-providers-ibmq-runtime-parameternamespace "Permalink to this headline")
+# qiskit.providers.ibmq.runtime.ParameterNamespace
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-qasm-qasm" />
 
-# qiskit.qasm.Qasm[¶](#qiskit-qasm-qasm "Permalink to this headline")
+# qiskit.qasm.Qasm
 
 <span id="undefined" />
 

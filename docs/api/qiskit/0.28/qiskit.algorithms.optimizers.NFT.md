@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.NFT[¶](#qiskit-algorithms-optimizers-nft "Permalink to this headline")
+# qiskit.algorithms.optimizers.NFT
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.optimization.problems.Variable
 ---
 
-# Variable[¶](#variable "Permalink to this headline")
+# Variable
 
 <span id="qiskit.optimization.problems.Variable" />
 

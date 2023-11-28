@@ -1,4 +1,4 @@
-# CplexOptimizer[¶](#cplexoptimizer "Permalink to this headline")
+# CplexOptimizer
 
 <span id="undefined" />
 

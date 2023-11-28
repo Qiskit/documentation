@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.Depth
 ---
 
-# Depth[¶](#depth "Permalink to this headline")
+# Depth
 
 <span id="qiskit.transpiler.passes.Depth" />
 

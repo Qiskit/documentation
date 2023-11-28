@@ -1,4 +1,4 @@
-# qiskit.pulse.Gaussian[¶](#qiskit-pulse-gaussian "Permalink to this headline")
+# qiskit.pulse.Gaussian
 
 <span id="undefined" />
 

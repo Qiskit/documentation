@@ -1,4 +1,4 @@
-# ADMMOptimizationResult[¶](#admmoptimizationresult "Permalink to this headline")
+# ADMMOptimizationResult
 
 <span id="undefined" />
 

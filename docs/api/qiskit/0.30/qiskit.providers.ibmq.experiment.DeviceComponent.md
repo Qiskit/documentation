@@ -1,4 +1,4 @@
-# DeviceComponent[¶](#devicecomponent "Permalink to this headline")
+# DeviceComponent
 
 <span id="undefined" />
 

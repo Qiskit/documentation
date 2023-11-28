@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.characterization.ZZFitter
 ---
 
-# ZZFitter[¶](#zzfitter "Permalink to this headline")
+# ZZFitter
 
 <span id="qiskit.ignis.characterization.ZZFitter" />
 

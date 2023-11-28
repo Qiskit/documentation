@@ -1,4 +1,4 @@
-# RecursiveMinimumEigenOptimizer[¶](#recursiveminimumeigenoptimizer "Permalink to this headline")
+# RecursiveMinimumEigenOptimizer
 
 <span id="undefined" />
 

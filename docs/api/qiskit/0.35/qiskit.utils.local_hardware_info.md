@@ -1,4 +1,4 @@
-# qiskit.utils.local\_hardware\_info[¶](#qiskit-utils-local-hardware-info "Permalink to this headline")
+# qiskit.utils.local\_hardware\_info
 
 <span id="undefined" />
 

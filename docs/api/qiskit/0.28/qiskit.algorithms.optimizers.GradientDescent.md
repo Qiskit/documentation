@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.GradientDescent[¶](#qiskit-algorithms-optimizers-gradientdescent "Permalink to this headline")
+# qiskit.algorithms.optimizers.GradientDescent
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.aqua.algorithms.HHL[¶](#qiskit-aqua-algorithms-hhl "Permalink to this headline")
+# qiskit.aqua.algorithms.HHL
 
 <span id="undefined" />
 

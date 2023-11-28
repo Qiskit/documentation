@@ -1,4 +1,4 @@
-# ScalarOp[¶](#scalarop "Permalink to this headline")
+# ScalarOp
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.RZXCalibrationBuilder[¶](#qiskit-transpiler-passes-rzxcalibrationbuilder "Permalink to this headline")
+# qiskit.transpiler.passes.RZXCalibrationBuilder
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.aqua.algorithms.NumPyEigensolver[¶](#qiskit-aqua-algorithms-numpyeigensolver "Permalink to this headline")
+# qiskit.aqua.algorithms.NumPyEigensolver
 
 <span id="undefined" />
 

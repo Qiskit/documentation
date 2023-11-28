@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.chemistry.components.variational_forms.UCCSD
 ---
 
-# UCCSD[¶](#uccsd "Permalink to this headline")
+# UCCSD
 
 <span id="qiskit.chemistry.components.variational_forms.UCCSD" />
 

@@ -1,4 +1,4 @@
-# VectorStateFn[¶](#vectorstatefn "Permalink to this headline")
+# VectorStateFn
 
 <span id="undefined" />
 

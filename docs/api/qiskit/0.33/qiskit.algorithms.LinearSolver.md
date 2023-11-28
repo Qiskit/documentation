@@ -1,4 +1,4 @@
-# LinearSolver[¶](#linearsolver "Permalink to this headline")
+# LinearSolver
 
 <span id="undefined" />
 

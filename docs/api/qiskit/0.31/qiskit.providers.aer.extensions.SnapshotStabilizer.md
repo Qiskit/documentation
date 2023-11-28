@@ -1,4 +1,4 @@
-# SnapshotStabilizer[¶](#snapshotstabilizer "Permalink to this headline")
+# SnapshotStabilizer
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# PySCFDriver[¶](#pyscfdriver "Permalink to this headline")
+# PySCFDriver
 
 <span id="undefined" />
 

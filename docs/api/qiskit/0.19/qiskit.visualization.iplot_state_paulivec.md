@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.iplot_state_paulivec
 ---
 
-# iplot\_state\_paulivec[¶](#iplot-state-paulivec "Permalink to this headline")
+# iplot\_state\_paulivec
 
 <span id="qiskit.visualization.iplot_state_paulivec" />
 

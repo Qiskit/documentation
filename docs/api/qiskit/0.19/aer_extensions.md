@@ -14,13 +14,9 @@ python_api_name: qiskit.providers.aer.extensions
 
 <span id="module-qiskit.providers.aer.extensions" />
 
-`qiskit.providers.aer.extensions¶`
+`qiskit.providers.aer.extensions`
 
 ## Snapshots
-
-<span id="module-qiskit.providers.aer.extensions" />
-
-`¶`
 
 Snapshot instructions allow taking a snapshot of the current state of the simulator without effecting the outcome of the simulation. These can be used with the QasmSimulator backend to return the expectation value of an operator or the probability of measurement outcomes.
 

@@ -1,4 +1,4 @@
-# QasmSimulator[¶](#qasmsimulator "Permalink to this headline")
+# QasmSimulator
 
 <span id="undefined" />
 

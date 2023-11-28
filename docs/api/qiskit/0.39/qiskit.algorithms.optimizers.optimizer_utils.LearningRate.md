@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.optimizer_utils.LearningRate
 ---
 
-# LearningRate[¶](#learningrate "Permalink to this headline")
+# LearningRate
 
 <span id="qiskit.algorithms.optimizers.optimizer_utils.LearningRate" />
 

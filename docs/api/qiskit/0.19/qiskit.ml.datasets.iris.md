@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ml.datasets.iris
 ---
 
-# iris[¶](#iris "Permalink to this headline")
+# iris
 
 <span id="qiskit.ml.datasets.iris" />
 

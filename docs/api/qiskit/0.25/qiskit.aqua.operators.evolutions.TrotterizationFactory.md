@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.evolutions.TrotterizationFactory[¶](#qiskit-aqua-operators-evolutions-trotterizationfactory "Permalink to this headline")
+# qiskit.aqua.operators.evolutions.TrotterizationFactory
 
 <span id="undefined" />
 

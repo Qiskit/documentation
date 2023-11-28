@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable
 ---
 
-# IBMQManagedResultDataNotAvailable[¶](#ibmqmanagedresultdatanotavailable "Permalink to this headline")
+# IBMQManagedResultDataNotAvailable
 
 <span id="qiskit.providers.ibmq.managed.IBMQManagedResultDataNotAvailable" />
 

@@ -1,4 +1,4 @@
-# qiskit.utils.wrap\_method[¶](#qiskit-utils-wrap-method "Permalink to this headline")
+# qiskit.utils.wrap\_method
 
 <span id="undefined" />
 

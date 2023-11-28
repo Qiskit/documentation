@@ -1,4 +1,4 @@
-# HessianBase[¶](#hessianbase "Permalink to this headline")
+# HessianBase
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.providers.aer.library.save\_statevector\_dict[¶](#qiskit-providers-aer-library-save-statevector-dict "Permalink to this headline")
+# qiskit.providers.aer.library.save\_statevector\_dict
 
 <span id="undefined" />
 

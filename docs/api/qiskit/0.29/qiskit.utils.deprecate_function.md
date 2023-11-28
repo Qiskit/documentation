@@ -1,4 +1,4 @@
-# qiskit.utils.deprecate\_function[¶](#qiskit-utils-deprecate-function "Permalink to this headline")
+# qiskit.utils.deprecate\_function
 
 <span id="undefined" />
 

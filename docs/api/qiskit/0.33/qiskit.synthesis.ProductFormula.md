@@ -1,4 +1,4 @@
-# ProductFormula[¶](#productformula "Permalink to this headline")
+# ProductFormula
 
 <span id="undefined" />
 

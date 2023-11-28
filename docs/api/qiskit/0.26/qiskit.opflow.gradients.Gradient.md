@@ -1,4 +1,4 @@
-# qiskit.opflow\.gradients.Gradient[¶](#qiskit-opflow-gradients-gradient "Permalink to this headline")
+# qiskit.opflow\.gradients.Gradient
 
 <span id="undefined" />
 

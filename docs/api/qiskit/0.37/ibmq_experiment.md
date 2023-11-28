@@ -14,7 +14,7 @@ python_api_name: qiskit.providers.ibmq.experiment
 
 <span id="module-qiskit.providers.ibmq.experiment" />
 
-`qiskit.providers.ibmq.experiment¶`
+`qiskit.providers.ibmq.experiment`
 
 Modules related to IBM Quantum experiment service.
 
@@ -36,10 +36,6 @@ This service is intended to be used in conjunction with the `qiskit-experiments`
 
 ## Classes
 
-<span id="module-qiskit.providers.ibmq.experiment" />
-
-`¶`
-
 |                                                                                                                                                   |                                              |
 | ------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
 | [`IBMExperimentService`](qiskit.providers.ibmq.experiment.IBMExperimentService "qiskit.providers.ibmq.experiment.IBMExperimentService")(provider) | Provides experiment related services.        |
@@ -47,10 +43,6 @@ This service is intended to be used in conjunction with the `qiskit-experiments`
 | [`DeviceComponent`](qiskit.providers.ibmq.experiment.DeviceComponent "qiskit.providers.ibmq.experiment.DeviceComponent")()                        | Class representing a device component.       |
 
 ## Exceptions
-
-<span id="module-qiskit.providers.ibmq.experiment" />
-
-`¶`
 
 |                                                                                                                                                                      |                                                                 |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |

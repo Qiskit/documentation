@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.ibmq.utils.update_qobj_config
 ---
 
-# update\_qobj\_config[¶](#update-qobj-config "Permalink to this headline")
+# update\_qobj\_config
 
 <span id="qiskit.providers.ibmq.utils.update_qobj_config" />
 

@@ -1,4 +1,4 @@
-# NumTensorFactors[¶](#numtensorfactors "Permalink to this headline")
+# NumTensorFactors
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.circuit.library.RGQFTMultiplier[¶](#qiskit-circuit-library-rgqftmultiplier "Permalink to this headline")
+# qiskit.circuit.library.RGQFTMultiplier
 
 <span id="undefined" />
 

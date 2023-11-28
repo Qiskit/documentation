@@ -1,4 +1,4 @@
-# qiskit.circuit.library.PolynomialPauliRotations[¶](#qiskit-circuit-library-polynomialpaulirotations "Permalink to this headline")
+# qiskit.circuit.library.PolynomialPauliRotations
 
 <span id="undefined" />
 

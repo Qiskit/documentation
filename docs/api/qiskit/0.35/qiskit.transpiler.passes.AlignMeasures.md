@@ -1,4 +1,4 @@
-# AlignMeasures[¶](#alignmeasures "Permalink to this headline")
+# AlignMeasures
 
 <span id="undefined" />
 

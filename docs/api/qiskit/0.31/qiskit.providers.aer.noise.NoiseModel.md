@@ -1,4 +1,4 @@
-# NoiseModel[¶](#noisemodel "Permalink to this headline")
+# NoiseModel
 
 <span id="undefined" />
 

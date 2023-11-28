@@ -1,4 +1,4 @@
-# SnapshotDensityMatrix[¶](#snapshotdensitymatrix "Permalink to this headline")
+# SnapshotDensityMatrix
 
 <span id="undefined" />
 

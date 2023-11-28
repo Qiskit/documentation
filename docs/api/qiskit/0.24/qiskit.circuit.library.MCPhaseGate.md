@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-mcphasegate" />
 
-# qiskit.circuit.library.MCPhaseGate[¶](#qiskit-circuit-library-mcphasegate "Permalink to this headline")
+# qiskit.circuit.library.MCPhaseGate
 
 <span id="undefined" />
 

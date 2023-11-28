@@ -1,4 +1,4 @@
-# CorrelatedReadoutMitigator[¶](#correlatedreadoutmitigator "Permalink to this headline")
+# CorrelatedReadoutMitigator
 
 <span id="undefined" />
 

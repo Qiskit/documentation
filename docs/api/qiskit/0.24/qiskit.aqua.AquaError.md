@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-aquaerror" />
 
-# qiskit.aqua.AquaError[¶](#qiskit-aqua-aquaerror "Permalink to this headline")
+# qiskit.aqua.AquaError
 
 <span id="undefined" />
 

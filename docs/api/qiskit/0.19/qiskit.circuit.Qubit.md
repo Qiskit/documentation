@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.Qubit
 ---
 
-# Qubit[¶](#qubit "Permalink to this headline")
+# Qubit
 
 <span id="qiskit.circuit.Qubit" />
 

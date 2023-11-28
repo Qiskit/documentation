@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.optimization.problems.LinearExpression
 ---
 
-# LinearExpression[¶](#linearexpression "Permalink to this headline")
+# LinearExpression
 
 <span id="qiskit.optimization.problems.LinearExpression" />
 

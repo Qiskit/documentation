@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.CXCancellation[¶](#qiskit-transpiler-passes-cxcancellation "Permalink to this headline")
+# qiskit.transpiler.passes.CXCancellation
 
 <span id="undefined" />
 

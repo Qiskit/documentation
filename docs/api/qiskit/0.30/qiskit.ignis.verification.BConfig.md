@@ -1,4 +1,4 @@
-# BConfig[¶](#bconfig "Permalink to this headline")
+# BConfig
 
 <span id="undefined" />
 

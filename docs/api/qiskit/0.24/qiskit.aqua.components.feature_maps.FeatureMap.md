@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-feature-maps-featuremap" />
 
-# qiskit.aqua.components.feature\_maps.FeatureMap[¶](#qiskit-aqua-components-feature-maps-featuremap "Permalink to this headline")
+# qiskit.aqua.components.feature\_maps.FeatureMap
 
 <span id="undefined" />
 

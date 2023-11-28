@@ -1,4 +1,4 @@
-# InitialState[¶](#initialstate "Permalink to this headline")
+# InitialState
 
 <span id="undefined" />
 

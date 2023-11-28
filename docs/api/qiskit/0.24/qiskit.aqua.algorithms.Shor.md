@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-algorithms-shor" />
 
-# qiskit.aqua.algorithms.Shor[¶](#qiskit-aqua-algorithms-shor "Permalink to this headline")
+# qiskit.aqua.algorithms.Shor
 
 <span id="undefined" />
 

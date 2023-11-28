@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-algorithms-eoh" />
 
-# qiskit.aqua.algorithms.EOH[¶](#qiskit-aqua-algorithms-eoh "Permalink to this headline")
+# qiskit.aqua.algorithms.EOH
 
 <span id="undefined" />
 

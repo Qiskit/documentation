@@ -1,4 +1,4 @@
-# qiskit.circuit.library.CU3Gate[¶](#qiskit-circuit-library-cu3gate "Permalink to this headline")
+# qiskit.circuit.library.CU3Gate
 
 <span id="undefined" />
 

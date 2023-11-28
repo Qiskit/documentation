@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit_aer.PulseSimulator
 ---
 
-# PulseSimulator[¶](#pulsesimulator "Permalink to this headline")
+# PulseSimulator
 
 <span id="qiskit_aer.PulseSimulator" />
 

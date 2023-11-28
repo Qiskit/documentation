@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.entanglement\_of\_formation[¶](#qiskit-quantum-info-entanglement-of-formation "Permalink to this headline")
+# qiskit.quantum\_info.entanglement\_of\_formation
 
 <span id="undefined" />
 

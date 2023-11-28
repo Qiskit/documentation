@@ -1,4 +1,4 @@
-# TensoredOp[¶](#tensoredop "Permalink to this headline")
+# TensoredOp
 
 <span id="undefined" />
 

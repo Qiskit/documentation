@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.mitigation.tensored_meas_cal
 ---
 
-# tensored\_meas\_cal[¶](#tensored-meas-cal "Permalink to this headline")
+# tensored\_meas\_cal
 
 <span id="qiskit.ignis.mitigation.tensored_meas_cal" />
 

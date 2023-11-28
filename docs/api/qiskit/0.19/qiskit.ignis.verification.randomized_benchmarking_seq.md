@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.verification.randomized_benchmarking_seq
 ---
 
-# randomized\_benchmarking\_seq[¶](#randomized-benchmarking-seq "Permalink to this headline")
+# randomized\_benchmarking\_seq
 
 <span id="qiskit.ignis.verification.randomized_benchmarking_seq" />
 

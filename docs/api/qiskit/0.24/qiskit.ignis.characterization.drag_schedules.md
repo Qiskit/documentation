@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-characterization-drag-schedules" />
 
-# qiskit.ignis.characterization.drag\_schedules[¶](#qiskit-ignis-characterization-drag-schedules "Permalink to this headline")
+# qiskit.ignis.characterization.drag\_schedules
 
 <span id="undefined" />
 

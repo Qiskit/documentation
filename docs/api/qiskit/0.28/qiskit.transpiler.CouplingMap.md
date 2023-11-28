@@ -1,4 +1,4 @@
-# qiskit.transpiler.CouplingMap[¶](#qiskit-transpiler-couplingmap "Permalink to this headline")
+# qiskit.transpiler.CouplingMap
 
 <span id="undefined" />
 

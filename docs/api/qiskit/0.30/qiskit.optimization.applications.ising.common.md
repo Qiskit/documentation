@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-applications-ising-common" />
 
-# qiskit.optimization.applications.ising.common[¶](#module-qiskit.optimization.applications.ising.common "Permalink to this headline")
+# qiskit.optimization.applications.ising.common
 
 common module
 

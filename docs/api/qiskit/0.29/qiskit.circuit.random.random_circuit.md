@@ -1,4 +1,4 @@
-# qiskit.circuit.random.random\_circuit[¶](#qiskit-circuit-random-random-circuit "Permalink to this headline")
+# qiskit.circuit.random.random\_circuit
 
 <span id="undefined" />
 

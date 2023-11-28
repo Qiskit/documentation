@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.chemistry.algorithms.VQEAdapt
 ---
 
-# VQEAdapt[¶](#vqeadapt "Permalink to this headline")
+# VQEAdapt
 
 <span id="qiskit.chemistry.algorithms.VQEAdapt" />
 

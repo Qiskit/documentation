@@ -1,4 +1,4 @@
-# qiskit.optimization.algorithms.GroverOptimizationResult[¶](#qiskit-optimization-algorithms-groveroptimizationresult "Permalink to this headline")
+# qiskit.optimization.algorithms.GroverOptimizationResult
 
 <span id="undefined" />
 

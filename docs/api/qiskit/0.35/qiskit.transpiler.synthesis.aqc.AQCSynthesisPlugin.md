@@ -1,4 +1,4 @@
-# AQCSynthesisPlugin[¶](#aqcsynthesisplugin "Permalink to this headline")
+# AQCSynthesisPlugin
 
 <span id="undefined" />
 

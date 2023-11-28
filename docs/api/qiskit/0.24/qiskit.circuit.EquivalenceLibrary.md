@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-equivalencelibrary" />
 
-# qiskit.circuit.EquivalenceLibrary[¶](#qiskit-circuit-equivalencelibrary "Permalink to this headline")
+# qiskit.circuit.EquivalenceLibrary
 
 <span id="undefined" />
 

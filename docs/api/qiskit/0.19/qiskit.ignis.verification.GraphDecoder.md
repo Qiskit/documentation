@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.verification.GraphDecoder
 ---
 
-# GraphDecoder[¶](#graphdecoder "Permalink to this headline")
+# GraphDecoder
 
 <span id="qiskit.ignis.verification.GraphDecoder" />
 

@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.optimization.QiskitOptimizationError
 ---
 
-# QiskitOptimizationError[¶](#qiskitoptimizationerror "Permalink to this headline")
+# QiskitOptimizationError
 
 <span id="qiskit.optimization.QiskitOptimizationError" />
 

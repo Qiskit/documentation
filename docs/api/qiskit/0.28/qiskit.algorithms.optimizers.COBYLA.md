@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.COBYLA[¶](#qiskit-algorithms-optimizers-cobyla "Permalink to this headline")
+# qiskit.algorithms.optimizers.COBYLA
 
 <span id="undefined" />
 

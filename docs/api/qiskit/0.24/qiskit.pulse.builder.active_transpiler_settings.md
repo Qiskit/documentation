@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-builder-active-transpiler-settings" />
 
-# qiskit.pulse.builder.active\_transpiler\_settings[¶](#qiskit-pulse-builder-active-transpiler-settings "Permalink to this headline")
+# qiskit.pulse.builder.active\_transpiler\_settings
 
 <span id="undefined" />
 

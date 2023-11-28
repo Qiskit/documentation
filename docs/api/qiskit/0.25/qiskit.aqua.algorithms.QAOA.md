@@ -1,4 +1,4 @@
-# qiskit.aqua.algorithms.QAOA[¶](#qiskit-aqua-algorithms-qaoa "Permalink to this headline")
+# qiskit.aqua.algorithms.QAOA
 
 <span id="undefined" />
 

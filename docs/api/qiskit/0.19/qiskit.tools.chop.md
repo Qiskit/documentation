@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.tools.chop
 ---
 
-# chop[¶](#chop "Permalink to this headline")
+# chop
 
 <span id="qiskit.tools.chop" />
 

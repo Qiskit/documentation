@@ -1,4 +1,4 @@
-# BosonicQubitMappingType[¶](#bosonicqubitmappingtype "Permalink to this headline")
+# BosonicQubitMappingType
 
 <span id="undefined" />
 

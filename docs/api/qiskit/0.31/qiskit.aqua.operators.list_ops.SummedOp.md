@@ -1,4 +1,4 @@
-# SummedOp[¶](#summedop "Permalink to this headline")
+# SummedOp
 
 <span id="undefined" />
 

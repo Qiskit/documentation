@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.evolutions.Trotter
 ---
 
-# Trotter[¶](#trotter "Permalink to this headline")
+# Trotter
 
 <span id="qiskit.aqua.operators.evolutions.Trotter" />
 

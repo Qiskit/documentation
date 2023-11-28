@@ -1,4 +1,4 @@
-# CPhaseGate[¶](#cphasegate "Permalink to this headline")
+# CPhaseGate
 
 <span id="undefined" />
 

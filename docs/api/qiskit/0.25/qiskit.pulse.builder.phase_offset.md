@@ -1,4 +1,4 @@
-# qiskit.pulse.builder.phase\_offset[¶](#qiskit-pulse-builder-phase-offset "Permalink to this headline")
+# qiskit.pulse.builder.phase\_offset
 
 <span id="undefined" />
 

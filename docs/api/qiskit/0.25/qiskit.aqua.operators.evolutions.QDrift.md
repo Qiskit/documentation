@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.evolutions.QDrift[¶](#qiskit-aqua-operators-evolutions-qdrift "Permalink to this headline")
+# qiskit.aqua.operators.evolutions.QDrift
 
 <span id="undefined" />
 

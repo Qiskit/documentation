@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.noise.thermal_relaxation_error
 ---
 
-# qiskit.providers.aer.noise.thermal\_relaxation\_error[¶](#qiskit-providers-aer-noise-thermal-relaxation-error "Permalink to this headline")
+# qiskit.providers.aer.noise.thermal\_relaxation\_error
 
 <span id="qiskit.providers.aer.noise.thermal_relaxation_error" />
 

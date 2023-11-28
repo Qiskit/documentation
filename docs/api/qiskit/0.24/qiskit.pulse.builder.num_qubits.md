@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-builder-num-qubits" />
 
-# qiskit.pulse.builder.num\_qubits[¶](#qiskit-pulse-builder-num-qubits "Permalink to this headline")
+# qiskit.pulse.builder.num\_qubits
 
 <span id="undefined" />
 

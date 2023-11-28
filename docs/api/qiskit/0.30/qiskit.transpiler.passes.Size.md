@@ -1,4 +1,4 @@
-# Size[¶](#size "Permalink to this headline")
+# Size
 
 <span id="undefined" />
 

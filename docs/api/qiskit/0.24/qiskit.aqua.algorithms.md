@@ -16,7 +16,7 @@ python_api_name: qiskit.aqua.algorithms
 
 <span id="module-qiskit.aqua.algorithms" />
 
-`qiskit.aqua.algorithms¶`
+`qiskit.aqua.algorithms`
 
 Aqua contains a collection of quantum algorithms, for use with quantum computers, to carry out research and investigate how to solve problems in different domains on near-term quantum devices with short depth circuits.
 
@@ -26,20 +26,12 @@ Quantum algorithms are run via a [`QuantumInstance`](qiskit.aqua.QuantumInstance
 
 # Algorithms Base Class
 
-<span id="module-qiskit.aqua.algorithms" />
-
-`¶`
-
 |                                                                                                                                                         |                                      |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
 | [`QuantumAlgorithm`](qiskit.aqua.algorithms.QuantumAlgorithm#qiskit.aqua.algorithms.QuantumAlgorithm "qiskit.aqua.algorithms.QuantumAlgorithm")         | Base class for Quantum Algorithms.   |
 | [`ClassicalAlgorithm`](qiskit.aqua.algorithms.ClassicalAlgorithm#qiskit.aqua.algorithms.ClassicalAlgorithm "qiskit.aqua.algorithms.ClassicalAlgorithm") | Base class for Classical Algorithms. |
 
 # Algorithms
-
-<span id="module-qiskit.aqua.algorithms" />
-
-`¶`
 
 Aqua contains a variety of quantum algorithms and these have been grouped by logical function such as minimum eigensolvers and amplitude amplifiers.
 
@@ -49,20 +41,12 @@ The classical algorithms are designed to take the same input data as the quantum
 
 ## Amplitude Amplifiers
 
-<span id="module-qiskit.aqua.algorithms" />
-
-`¶`
-
 |                                                                                                                                 |                            |
 | ------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | [`Grover`](qiskit.aqua.algorithms.Grover#qiskit.aqua.algorithms.Grover "qiskit.aqua.algorithms.Grover")                         | Grover’s Search algorithm. |
 | [`GroverResult`](qiskit.aqua.algorithms.GroverResult#qiskit.aqua.algorithms.GroverResult "qiskit.aqua.algorithms.GroverResult") | Grover Result.             |
 
 ## Amplitude Estimators
-
-<span id="module-qiskit.aqua.algorithms" />
-
-`¶`
 
 Algorithms that estimate a value.
 
@@ -78,10 +62,6 @@ Algorithms that estimate a value.
 
 ## Classifiers
 
-<span id="module-qiskit.aqua.algorithms" />
-
-`¶`
-
 Algorithms for data classification.
 
 |                                                                                                                         |                                               |
@@ -92,19 +72,11 @@ Algorithms for data classification.
 
 ## Distribution Learners
 
-<span id="module-qiskit.aqua.algorithms" />
-
-`¶`
-
 |                                                                                                 |                                                       |
 | ----------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
 | [`QGAN`](qiskit.aqua.algorithms.QGAN#qiskit.aqua.algorithms.QGAN "qiskit.aqua.algorithms.QGAN") | The Quantum Generative Adversarial Network algorithm. |
 
 ## Education
-
-<span id="module-qiskit.aqua.algorithms" />
-
-`¶`
 
 Algorithms whose main role is educational. These are provided as Aqua algorithms so they can be run in the same framework but their existence here is principally for educational reasons.
 
@@ -116,10 +88,6 @@ Algorithms whose main role is educational. These are provided as Aqua algorithms
 | [`Simon`](qiskit.aqua.algorithms.Simon#qiskit.aqua.algorithms.Simon "qiskit.aqua.algorithms.Simon")                                                 | The Simon algorithm.                                  |
 
 ## Eigensolvers
-
-<span id="module-qiskit.aqua.algorithms" />
-
-`¶`
 
 Algorithms to find eigenvalues of an operator. For chemistry these can be used to find excited states of a molecule and qiskit.chemistry has some algorithms that leverage chemistry specific knowledge to do this in that application domain.
 
@@ -134,10 +102,6 @@ Algorithms to find eigenvalues of an operator. For chemistry these can be used t
 
 ## Factorizers
 
-<span id="module-qiskit.aqua.algorithms" />
-
-`¶`
-
 Algorithms to find factors of a number.
 
 |                                                                                                 |                             |
@@ -145,10 +109,6 @@ Algorithms to find factors of a number.
 | [`Shor`](qiskit.aqua.algorithms.Shor#qiskit.aqua.algorithms.Shor "qiskit.aqua.algorithms.Shor") | Shor’s factoring algorithm. |
 
 ## Linear Solvers
-
-<span id="module-qiskit.aqua.algorithms" />
-
-`¶`
 
 Algorithms to find solutions for linear equations of equations.
 
@@ -161,10 +121,6 @@ Algorithms to find solutions for linear equations of equations.
 | [`NumPyLSsolverResult`](qiskit.aqua.algorithms.NumPyLSsolverResult#qiskit.aqua.algorithms.NumPyLSsolverResult "qiskit.aqua.algorithms.NumPyLSsolverResult") | Numpy LinearSystem Result.                    |
 
 ## Minimum Eigensolvers
-
-<span id="module-qiskit.aqua.algorithms" />
-
-`¶`
 
 Algorithms that can find the minimum eigenvalue of an operator.
 

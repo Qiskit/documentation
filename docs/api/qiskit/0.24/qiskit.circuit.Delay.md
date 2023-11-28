@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-delay" />
 
-# qiskit.circuit.Delay[¶](#qiskit-circuit-delay "Permalink to this headline")
+# qiskit.circuit.Delay
 
 <span id="undefined" />
 

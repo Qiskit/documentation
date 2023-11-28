@@ -1,4 +1,4 @@
-# CG[¶](#cg "Permalink to this headline")
+# CG
 
 <span id="undefined" />
 

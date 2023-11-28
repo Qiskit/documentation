@@ -1,4 +1,4 @@
-# qiskit.chemistry.drivers.Molecule[¶](#qiskit-chemistry-drivers-molecule "Permalink to this headline")
+# qiskit.chemistry.drivers.Molecule
 
 <span id="undefined" />
 

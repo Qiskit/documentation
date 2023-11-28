@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.TimeUnitConversion[¶](#qiskit-transpiler-passes-timeunitconversion "Permalink to this headline")
+# qiskit.transpiler.passes.TimeUnitConversion
 
 <span id="undefined" />
 

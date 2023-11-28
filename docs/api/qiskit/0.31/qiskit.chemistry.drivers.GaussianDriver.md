@@ -1,4 +1,4 @@
-# GaussianDriver[¶](#gaussiandriver "Permalink to this headline")
+# GaussianDriver
 
 <span id="undefined" />
 

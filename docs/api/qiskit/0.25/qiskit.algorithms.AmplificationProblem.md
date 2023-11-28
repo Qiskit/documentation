@@ -1,4 +1,4 @@
-# qiskit.algorithms.AmplificationProblem[¶](#qiskit-algorithms-amplificationproblem "Permalink to this headline")
+# qiskit.algorithms.AmplificationProblem
 
 <span id="undefined" />
 

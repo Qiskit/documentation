@@ -14,7 +14,7 @@ python_api_name: qiskit.aqua.components.initial_states
 
 <span id="module-qiskit.aqua.components.initial_states" />
 
-`qiskit.aqua.components.initial_states¶`
+`qiskit.aqua.components.initial_states`
 
 Initial states are a fixed quantum state. These can be used, for example, to define a starting state for [`variational_forms`](qiskit.aqua.components.variational_forms#module-qiskit.aqua.components.variational_forms "qiskit.aqua.components.variational_forms"), such as when used with [`VQE`](qiskit.aqua.algorithms.VQE#qiskit.aqua.algorithms.VQE "qiskit.aqua.algorithms.VQE"), or to define a starting state for the evolution in algorithms such as [`QPE`](qiskit.aqua.algorithms.QPE#qiskit.aqua.algorithms.QPE "qiskit.aqua.algorithms.QPE") and [`IQPE`](qiskit.aqua.algorithms.IQPE#qiskit.aqua.algorithms.IQPE "qiskit.aqua.algorithms.IQPE").
 
@@ -22,19 +22,11 @@ If you have a specific quantum circuit you would like to use as an initial state
 
 # Initial State Base Class
 
-<span id="module-qiskit.aqua.components.initial_states" />
-
-`¶`
-
 |                                                                                                                                                                              |                              |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
 | [`InitialState`](qiskit.aqua.components.initial_states.InitialState#qiskit.aqua.components.initial_states.InitialState "qiskit.aqua.components.initial_states.InitialState") | Base class for InitialState. |
 
 # Initial States
-
-<span id="module-qiskit.aqua.components.initial_states" />
-
-`¶`
 
 |                                                                                                                                                                              |                                           |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |

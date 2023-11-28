@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.library.SaveMatrixProductState
 ---
 
-# SaveMatrixProductState[¶](#savematrixproductstate "Permalink to this headline")
+# SaveMatrixProductState
 
 <span id="qiskit.providers.aer.library.SaveMatrixProductState" />
 

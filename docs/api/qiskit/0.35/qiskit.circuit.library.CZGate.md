@@ -1,4 +1,4 @@
-# CZGate[¶](#czgate "Permalink to this headline")
+# CZGate
 
 <span id="undefined" />
 

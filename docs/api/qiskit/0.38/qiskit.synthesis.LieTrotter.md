@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.synthesis.LieTrotter
 ---
 
-# LieTrotter[¶](#lietrotter "Permalink to this headline")
+# LieTrotter
 
 <span id="qiskit.synthesis.LieTrotter" />
 

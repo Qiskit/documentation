@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.random_density_matrix
 ---
 
-# random\_density\_matrix[¶](#random-density-matrix "Permalink to this headline")
+# random\_density\_matrix
 
 <span id="qiskit.quantum_info.random_density_matrix" />
 

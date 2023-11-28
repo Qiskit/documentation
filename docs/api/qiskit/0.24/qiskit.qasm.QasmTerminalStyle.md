@@ -1,6 +1,6 @@
 <span id="qiskit-qasm-qasmterminalstyle" />
 
-# qiskit.qasm.QasmTerminalStyle[¶](#qiskit-qasm-qasmterminalstyle "Permalink to this headline")
+# qiskit.qasm.QasmTerminalStyle
 
 <span id="undefined" />
 

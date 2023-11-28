@@ -1,4 +1,4 @@
-# qiskit.circuit.library.EvolvedOperatorAnsatz[¶](#qiskit-circuit-library-evolvedoperatoransatz "Permalink to this headline")
+# qiskit.circuit.library.EvolvedOperatorAnsatz
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# OperatorStateFn[¶](#operatorstatefn "Permalink to this headline")
+# OperatorStateFn
 
 <span id="undefined" />
 

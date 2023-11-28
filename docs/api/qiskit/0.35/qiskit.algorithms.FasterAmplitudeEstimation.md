@@ -1,4 +1,4 @@
-# FasterAmplitudeEstimation[¶](#fasteramplitudeestimation "Permalink to this headline")
+# FasterAmplitudeEstimation
 
 <span id="undefined" />
 

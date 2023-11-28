@@ -1,6 +1,6 @@
 <span id="qiskit-providers-ibmq-managed-ibmqjobmanagerjobnotfound" />
 
-# qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound[¶](#qiskit-providers-ibmq-managed-ibmqjobmanagerjobnotfound "Permalink to this headline")
+# qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound
 
 <span id="undefined" />
 

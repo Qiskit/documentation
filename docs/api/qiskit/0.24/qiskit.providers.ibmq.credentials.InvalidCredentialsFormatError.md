@@ -1,6 +1,6 @@
 <span id="qiskit-providers-ibmq-credentials-invalidcredentialsformaterror" />
 
-# qiskit.providers.ibmq.credentials.InvalidCredentialsFormatError[¶](#qiskit-providers-ibmq-credentials-invalidcredentialsformaterror "Permalink to this headline")
+# qiskit.providers.ibmq.credentials.InvalidCredentialsFormatError
 
 <span id="undefined" />
 

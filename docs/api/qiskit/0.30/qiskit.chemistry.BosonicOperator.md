@@ -1,4 +1,4 @@
-# BosonicOperator[¶](#bosonicoperator "Permalink to this headline")
+# BosonicOperator
 
 <span id="undefined" />
 

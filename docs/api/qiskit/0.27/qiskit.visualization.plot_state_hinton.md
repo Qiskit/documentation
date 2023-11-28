@@ -1,4 +1,4 @@
-# qiskit.visualization.plot\_state\_hinton[¶](#qiskit-visualization-plot-state-hinton "Permalink to this headline")
+# qiskit.visualization.plot\_state\_hinton
 
 <span id="undefined" />
 

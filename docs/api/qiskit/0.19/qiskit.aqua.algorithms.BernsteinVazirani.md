@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.algorithms.BernsteinVazirani
 ---
 
-# BernsteinVazirani[¶](#bernsteinvazirani "Permalink to this headline")
+# BernsteinVazirani
 
 <span id="qiskit.aqua.algorithms.BernsteinVazirani" />
 

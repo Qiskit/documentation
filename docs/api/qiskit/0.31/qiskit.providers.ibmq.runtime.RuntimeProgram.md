@@ -1,4 +1,4 @@
-# RuntimeProgram[¶](#runtimeprogram "Permalink to this headline")
+# RuntimeProgram
 
 <span id="undefined" />
 

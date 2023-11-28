@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.models.Command
 ---
 
-# Command[¶](#command "Permalink to this headline")
+# Command
 
 <span id="qiskit.providers.models.Command" />
 

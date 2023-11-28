@@ -1,4 +1,4 @@
-# QasmTerminalStyle[¶](#qasmterminalstyle "Permalink to this headline")
+# QasmTerminalStyle
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.pulse_lib.discrete.constant
 ---
 
-# discrete[¶](#module-qiskit.pulse.pulse_lib.discrete "Permalink to this headline")
+# discrete
 
 Module for builtin discrete pulses.
 

@@ -1,4 +1,4 @@
-# qiskit.pulse.transforms.target\_qobj\_transform[¶](#qiskit-pulse-transforms-target-qobj-transform "Permalink to this headline")
+# qiskit.pulse.transforms.target\_qobj\_transform
 
 <span id="undefined" />
 

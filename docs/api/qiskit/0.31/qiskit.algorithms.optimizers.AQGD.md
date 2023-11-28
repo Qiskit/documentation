@@ -1,4 +1,4 @@
-# AQGD[¶](#aqgd "Permalink to this headline")
+# AQGD
 
 <span id="undefined" />
 

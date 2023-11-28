@@ -1,4 +1,4 @@
-# RunConfig[¶](#runconfig "Permalink to this headline")
+# RunConfig
 
 <span id="undefined" />
 

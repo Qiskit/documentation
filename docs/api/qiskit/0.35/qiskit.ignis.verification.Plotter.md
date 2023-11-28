@@ -1,4 +1,4 @@
-# Plotter[¶](#plotter "Permalink to this headline")
+# Plotter
 
 <span id="undefined" />
 

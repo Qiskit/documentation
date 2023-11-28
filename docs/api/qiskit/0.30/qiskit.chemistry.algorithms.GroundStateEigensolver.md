@@ -1,4 +1,4 @@
-# GroundStateEigensolver[¶](#groundstateeigensolver "Permalink to this headline")
+# GroundStateEigensolver
 
 <span id="undefined" />
 

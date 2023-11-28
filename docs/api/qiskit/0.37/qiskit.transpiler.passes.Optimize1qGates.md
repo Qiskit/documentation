@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.Optimize1qGates
 ---
 
-# Optimize1qGates[¶](#optimize1qgates "Permalink to this headline")
+# Optimize1qGates
 
 <span id="qiskit.transpiler.passes.Optimize1qGates" />
 

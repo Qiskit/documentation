@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.LinearAmplitudeFunction
 ---
 
-# LinearAmplitudeFunction[¶](#linearamplitudefunction "Permalink to this headline")
+# LinearAmplitudeFunction
 
 <span id="qiskit.circuit.library.LinearAmplitudeFunction" />
 

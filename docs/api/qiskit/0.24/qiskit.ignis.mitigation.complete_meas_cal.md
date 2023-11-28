@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-mitigation-complete-meas-cal" />
 
-# qiskit.ignis.mitigation.complete\_meas\_cal[¶](#qiskit-ignis-mitigation-complete-meas-cal "Permalink to this headline")
+# qiskit.ignis.mitigation.complete\_meas\_cal
 
 <span id="undefined" />
 

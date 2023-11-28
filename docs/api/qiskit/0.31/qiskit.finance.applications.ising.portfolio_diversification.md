@@ -1,6 +1,6 @@
 <span id="qiskit-finance-applications-ising-portfolio-diversification" />
 
-# qiskit.finance.applications.ising.portfolio\_diversification[¶](#module-qiskit.finance.applications.ising.portfolio_diversification "Permalink to this headline")
+# qiskit.finance.applications.ising.portfolio\_diversification
 
 portfolio diversification
 

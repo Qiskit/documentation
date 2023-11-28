@@ -1,4 +1,4 @@
-# qiskit.circuit.ParameterExpression[¶](#qiskit-circuit-parameterexpression "Permalink to this headline")
+# qiskit.circuit.ParameterExpression
 
 <span id="undefined" />
 

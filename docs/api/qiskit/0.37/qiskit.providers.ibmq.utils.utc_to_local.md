@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.ibmq.utils.utc_to_local
 ---
 
-# qiskit.providers.ibmq.utils.utc\_to\_local[¶](#qiskit-providers-ibmq-utils-utc-to-local "Permalink to this headline")
+# qiskit.providers.ibmq.utils.utc\_to\_local
 
 <span id="qiskit.providers.ibmq.utils.utc_to_local" />
 

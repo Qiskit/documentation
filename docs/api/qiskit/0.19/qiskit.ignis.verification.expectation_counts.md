@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.verification.expectation_counts
 ---
 
-# expectation\_counts[¶](#expectation-counts "Permalink to this headline")
+# expectation\_counts
 
 <span id="qiskit.ignis.verification.expectation_counts" />
 

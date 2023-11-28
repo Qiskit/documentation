@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.CNOTDihedral[¶](#qiskit-quantum-info-cnotdihedral "Permalink to this headline")
+# qiskit.quantum\_info.CNOTDihedral
 
 <span id="undefined" />
 

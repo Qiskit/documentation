@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.utils.validate_entangler_map
 ---
 
-# validate\_entangler\_map[¶](#validate-entangler-map "Permalink to this headline")
+# validate\_entangler\_map
 
 <span id="qiskit.aqua.utils.validate_entangler_map" />
 

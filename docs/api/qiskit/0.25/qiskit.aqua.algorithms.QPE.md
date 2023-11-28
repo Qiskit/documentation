@@ -1,4 +1,4 @@
-# qiskit.aqua.algorithms.QPE[¶](#qiskit-aqua-algorithms-qpe "Permalink to this headline")
+# qiskit.aqua.algorithms.QPE
 
 <span id="undefined" />
 

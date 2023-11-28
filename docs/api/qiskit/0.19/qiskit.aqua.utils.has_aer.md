@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.utils.has_aer
 ---
 
-# has\_aer[¶](#has-aer "Permalink to this headline")
+# has\_aer
 
 <span id="qiskit.aqua.utils.has_aer" />
 

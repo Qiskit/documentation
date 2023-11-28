@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-drivers-gaussianlogresult" />
 
-# qiskit.chemistry.drivers.GaussianLogResult[¶](#qiskit-chemistry-drivers-gaussianlogresult "Permalink to this headline")
+# qiskit.chemistry.drivers.GaussianLogResult
 
 <span id="undefined" />
 

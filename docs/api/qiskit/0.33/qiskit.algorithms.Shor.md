@@ -1,4 +1,4 @@
-# Shor[¶](#shor "Permalink to this headline")
+# Shor
 
 <span id="undefined" />
 

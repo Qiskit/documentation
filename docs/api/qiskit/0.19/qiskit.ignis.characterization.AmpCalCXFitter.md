@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.characterization.AmpCalCXFitter
 ---
 
-# AmpCalCXFitter[¶](#ampcalcxfitter "Permalink to this headline")
+# AmpCalCXFitter
 
 <span id="qiskit.ignis.characterization.AmpCalCXFitter" />
 

@@ -1,4 +1,4 @@
-# qiskit.circuit.library.CDKMRippleCarryAdder[¶](#qiskit-circuit-library-cdkmripplecarryadder "Permalink to this headline")
+# qiskit.circuit.library.CDKMRippleCarryAdder
 
 <span id="undefined" />
 

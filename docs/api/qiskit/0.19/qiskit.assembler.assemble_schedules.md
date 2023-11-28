@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.assembler.assemble_schedules
 ---
 
-# assemble\_schedules[¶](#assemble-schedules "Permalink to this headline")
+# assemble\_schedules
 
 <span id="qiskit.assembler.assemble_schedules" />
 

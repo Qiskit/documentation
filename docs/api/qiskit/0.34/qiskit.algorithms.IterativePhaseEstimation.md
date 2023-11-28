@@ -1,4 +1,4 @@
-# IterativePhaseEstimation[¶](#iterativephaseestimation "Permalink to this headline")
+# IterativePhaseEstimation
 
 <span id="undefined" />
 

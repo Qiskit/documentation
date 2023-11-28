@@ -1,4 +1,4 @@
-# FermionicOperator[¶](#fermionicoperator "Permalink to this headline")
+# FermionicOperator
 
 <span id="undefined" />
 

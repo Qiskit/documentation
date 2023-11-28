@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.OR
 ---
 
-# OR[¶](#or "Permalink to this headline")
+# OR
 
 <span id="qiskit.circuit.library.OR" />
 

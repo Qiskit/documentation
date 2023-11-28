@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-list-ops-summedop" />
 
-# qiskit.aqua.operators.list\_ops.SummedOp[¶](#qiskit-aqua-operators-list-ops-summedop "Permalink to this headline")
+# qiskit.aqua.operators.list\_ops.SummedOp
 
 <span id="undefined" />
 

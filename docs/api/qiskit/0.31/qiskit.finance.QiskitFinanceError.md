@@ -1,4 +1,4 @@
-# qiskit.finance.QiskitFinanceError[¶](#qiskit-finance-qiskitfinanceerror "Permalink to this headline")
+# qiskit.finance.QiskitFinanceError
 
 <span id="undefined" />
 

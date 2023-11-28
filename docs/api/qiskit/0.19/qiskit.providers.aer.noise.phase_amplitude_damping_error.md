@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.noise.phase_amplitude_damping_error
 ---
 
-# phase\_amplitude\_damping\_error[¶](#phase-amplitude-damping-error "Permalink to this headline")
+# phase\_amplitude\_damping\_error
 
 <span id="qiskit.providers.aer.noise.phase_amplitude_damping_error" />
 

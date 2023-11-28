@@ -1,4 +1,4 @@
-# qiskit.opflow\.OpflowError[¶](#qiskit-opflow-opflowerror "Permalink to this headline")
+# qiskit.opflow\.OpflowError
 
 <span id="undefined" />
 

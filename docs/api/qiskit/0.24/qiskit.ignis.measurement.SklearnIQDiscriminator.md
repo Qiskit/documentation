@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-measurement-sklearniqdiscriminator" />
 
-# qiskit.ignis.measurement.SklearnIQDiscriminator[¶](#qiskit-ignis-measurement-sklearniqdiscriminator "Permalink to this headline")
+# qiskit.ignis.measurement.SklearnIQDiscriminator
 
 <span id="undefined" />
 

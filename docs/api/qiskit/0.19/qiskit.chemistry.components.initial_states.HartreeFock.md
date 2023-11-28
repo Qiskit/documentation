@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.chemistry.components.initial_states.HartreeFock
 ---
 
-# HartreeFock[¶](#hartreefock "Permalink to this headline")
+# HartreeFock
 
 <span id="qiskit.chemistry.components.initial_states.HartreeFock" />
 

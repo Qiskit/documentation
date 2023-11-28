@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.characterization.AngleCalFitter
 ---
 
-# AngleCalFitter[¶](#anglecalfitter "Permalink to this headline")
+# AngleCalFitter
 
 <span id="qiskit.ignis.characterization.AngleCalFitter" />
 

@@ -1,4 +1,4 @@
-# qiskit.pulse.builder.barrier[¶](#qiskit-pulse-builder-barrier "Permalink to this headline")
+# qiskit.pulse.builder.barrier
 
 <span id="undefined" />
 

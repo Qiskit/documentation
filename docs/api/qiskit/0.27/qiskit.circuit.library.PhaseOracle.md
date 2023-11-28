@@ -1,4 +1,4 @@
-# qiskit.circuit.library.PhaseOracle[¶](#qiskit-circuit-library-phaseoracle "Permalink to this headline")
+# qiskit.circuit.library.PhaseOracle
 
 <span id="undefined" />
 

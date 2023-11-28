@@ -1,4 +1,4 @@
-# QobjExperimentHeader[¶](#qobjexperimentheader "Permalink to this headline")
+# QobjExperimentHeader
 
 <span id="undefined" />
 

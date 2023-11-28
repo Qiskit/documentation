@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.hellinger_fidelity
 ---
 
-# hellinger\_fidelity[¶](#hellinger-fidelity "Permalink to this headline")
+# hellinger\_fidelity
 
 <span id="qiskit.quantum_info.hellinger_fidelity" />
 

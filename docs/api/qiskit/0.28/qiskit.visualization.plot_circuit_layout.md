@@ -1,4 +1,4 @@
-# qiskit.visualization.plot\_circuit\_layout[¶](#qiskit-visualization-plot-circuit-layout "Permalink to this headline")
+# qiskit.visualization.plot\_circuit\_layout
 
 <span id="undefined" />
 

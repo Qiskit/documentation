@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-converters-converterbase" />
 
-# qiskit.aqua.operators.converters.ConverterBase[¶](#qiskit-aqua-operators-converters-converterbase "Permalink to this headline")
+# qiskit.aqua.operators.converters.ConverterBase
 
 <span id="undefined" />
 

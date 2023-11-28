@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.evolutions.Suzuki
 ---
 
-# Suzuki[¶](#suzuki "Permalink to this headline")
+# Suzuki
 
 <span id="qiskit.aqua.operators.evolutions.Suzuki" />
 

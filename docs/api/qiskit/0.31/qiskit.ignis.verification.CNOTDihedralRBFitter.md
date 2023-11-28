@@ -1,4 +1,4 @@
-# CNOTDihedralRBFitter[¶](#cnotdihedralrbfitter "Permalink to this headline")
+# CNOTDihedralRBFitter
 
 <span id="undefined" />
 

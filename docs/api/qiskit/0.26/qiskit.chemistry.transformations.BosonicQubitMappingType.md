@@ -1,4 +1,4 @@
-# qiskit.chemistry.transformations.BosonicQubitMappingType[¶](#qiskit-chemistry-transformations-bosonicqubitmappingtype "Permalink to this headline")
+# qiskit.chemistry.transformations.BosonicQubitMappingType
 
 <span id="undefined" />
 

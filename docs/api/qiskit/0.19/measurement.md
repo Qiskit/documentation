@@ -14,13 +14,9 @@ python_api_name: qiskit.ignis.measurement
 
 <span id="module-qiskit.ignis.measurement" />
 
-`qiskit.ignis.measurement¶`
+`qiskit.ignis.measurement`
 
 ## Discriminator
-
-<span id="module-qiskit.ignis.measurement" />
-
-`¶`
 
 The discriminators are used to to discriminate level one data into level two counts.
 

@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.legacy.check\_commutativity[¶](#qiskit-aqua-operators-legacy-check-commutativity "Permalink to this headline")
+# qiskit.aqua.operators.legacy.check\_commutativity
 
 <span id="undefined" />
 

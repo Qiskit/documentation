@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-efficientsu2" />
 
-# qiskit.circuit.library.EfficientSU2[¶](#qiskit-circuit-library-efficientsu2 "Permalink to this headline")
+# qiskit.circuit.library.EfficientSU2
 
 <span id="undefined" />
 

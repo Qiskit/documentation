@@ -1,4 +1,4 @@
-# FermionicDriver[¶](#fermionicdriver "Permalink to this headline")
+# FermionicDriver
 
 <span id="undefined" />
 

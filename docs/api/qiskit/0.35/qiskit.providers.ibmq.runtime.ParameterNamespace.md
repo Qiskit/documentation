@@ -1,4 +1,4 @@
-# ParameterNamespace[¶](#parameternamespace "Permalink to this headline")
+# ParameterNamespace
 
 <span id="undefined" />
 

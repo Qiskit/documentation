@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.BackendPropertyError
 ---
 
-# BackendPropertyError[¶](#backendpropertyerror "Permalink to this headline")
+# BackendPropertyError
 
 <span id="qiskit.providers.BackendPropertyError" />
 

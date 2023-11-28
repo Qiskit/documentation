@@ -1,6 +1,6 @@
 <span id="qiskit-visualization-visualizationerror" />
 
-# qiskit.visualization.VisualizationError[¶](#qiskit-visualization-visualizationerror "Permalink to this headline")
+# qiskit.visualization.VisualizationError
 
 <span id="undefined" />
 

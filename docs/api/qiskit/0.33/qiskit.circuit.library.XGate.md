@@ -1,4 +1,4 @@
-# XGate[¶](#xgate "Permalink to this headline")
+# XGate
 
 <span id="undefined" />
 

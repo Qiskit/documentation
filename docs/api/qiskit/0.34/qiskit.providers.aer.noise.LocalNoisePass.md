@@ -1,4 +1,4 @@
-# LocalNoisePass[¶](#localnoisepass "Permalink to this headline")
+# LocalNoisePass
 
 <span id="undefined" />
 

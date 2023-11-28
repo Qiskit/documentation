@@ -14,15 +14,11 @@ python_api_name: qiskit.chemistry.results
 
 <span id="module-qiskit.chemistry.results" />
 
-`qiskit.chemistry.results¶`
+`qiskit.chemistry.results`
 
 Qiskit’s chemistry results for ground and excited states, both Fermionic and Bosonic. Algorithms may extend these to provide algorithm specific aspects in their result.
 
 # Results
-
-<span id="module-qiskit.chemistry.results" />
-
-`¶`
 
 |                                                                                                                                                                                           |                                  |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |

@@ -1,4 +1,4 @@
-# StockMarket[¶](#stockmarket "Permalink to this headline")
+# StockMarket
 
 <span id="undefined" />
 

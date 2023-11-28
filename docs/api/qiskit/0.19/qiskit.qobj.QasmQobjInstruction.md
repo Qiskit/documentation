@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.qobj.QasmQobjInstruction
 ---
 
-# QasmQobjInstruction[¶](#qasmqobjinstruction "Permalink to this headline")
+# QasmQobjInstruction
 
 <span id="qiskit.qobj.QasmQobjInstruction" />
 

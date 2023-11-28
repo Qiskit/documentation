@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.evolutions.QDrift
 ---
 
-# QDrift[¶](#qdrift "Permalink to this headline")
+# QDrift
 
 <span id="qiskit.opflow.evolutions.QDrift" />
 

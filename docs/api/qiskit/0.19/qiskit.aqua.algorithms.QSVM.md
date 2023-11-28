@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.algorithms.QSVM
 ---
 
-# QSVM[¶](#qsvm "Permalink to this headline")
+# QSVM
 
 <span id="qiskit.aqua.algorithms.QSVM" />
 

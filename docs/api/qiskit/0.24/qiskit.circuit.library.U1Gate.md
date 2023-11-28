@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-u1gate" />
 
-# qiskit.circuit.library.U1Gate[¶](#qiskit-circuit-library-u1gate "Permalink to this headline")
+# qiskit.circuit.library.U1Gate
 
 <span id="undefined" />
 

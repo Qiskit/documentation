@@ -1,4 +1,4 @@
-# OR[¶](#or "Permalink to this headline")
+# OR
 
 <span id="undefined" />
 

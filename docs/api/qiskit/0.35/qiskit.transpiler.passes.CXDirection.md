@@ -1,4 +1,4 @@
-# CXDirection[¶](#cxdirection "Permalink to this headline")
+# CXDirection
 
 <span id="undefined" />
 

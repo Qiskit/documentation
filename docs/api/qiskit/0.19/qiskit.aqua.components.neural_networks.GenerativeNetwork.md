@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.neural_networks.GenerativeNetwork
 ---
 
-# GenerativeNetwork[¶](#generativenetwork "Permalink to this headline")
+# GenerativeNetwork
 
 <span id="qiskit.aqua.components.neural_networks.GenerativeNetwork" />
 

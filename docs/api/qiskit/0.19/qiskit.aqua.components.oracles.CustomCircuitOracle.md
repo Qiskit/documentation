@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.oracles.CustomCircuitOracle
 ---
 
-# CustomCircuitOracle[¶](#customcircuitoracle "Permalink to this headline")
+# CustomCircuitOracle
 
 <span id="qiskit.aqua.components.oracles.CustomCircuitOracle" />
 

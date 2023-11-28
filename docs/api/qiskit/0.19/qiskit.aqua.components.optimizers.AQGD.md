@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.optimizers.AQGD
 ---
 
-# AQGD[¶](#aqgd "Permalink to this headline")
+# AQGD
 
 <span id="qiskit.aqua.components.optimizers.AQGD" />
 

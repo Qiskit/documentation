@@ -1,4 +1,4 @@
-# Optimizer[¶](#optimizer "Permalink to this headline")
+# Optimizer
 
 <span id="undefined" />
 

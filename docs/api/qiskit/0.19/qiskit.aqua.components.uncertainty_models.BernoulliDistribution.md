@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.uncertainty_models.BernoulliDistribution
 ---
 
-# BernoulliDistribution[¶](#bernoullidistribution "Permalink to this headline")
+# BernoulliDistribution
 
 <span id="qiskit.aqua.components.uncertainty_models.BernoulliDistribution" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-excitationpreserving" />
 
-# qiskit.circuit.library.ExcitationPreserving[¶](#qiskit-circuit-library-excitationpreserving "Permalink to this headline")
+# qiskit.circuit.library.ExcitationPreserving
 
 <span id="undefined" />
 

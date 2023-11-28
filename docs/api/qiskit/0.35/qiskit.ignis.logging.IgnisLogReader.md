@@ -1,4 +1,4 @@
-# IgnisLogReader[¶](#ignislogreader "Permalink to this headline")
+# IgnisLogReader
 
 <span id="undefined" />
 

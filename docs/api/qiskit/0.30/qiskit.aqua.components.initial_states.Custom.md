@@ -1,4 +1,4 @@
-# Custom[¶](#custom "Permalink to this headline")
+# Custom
 
 <span id="undefined" />
 

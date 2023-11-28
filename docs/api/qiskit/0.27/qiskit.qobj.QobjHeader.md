@@ -1,4 +1,4 @@
-# qiskit.qobj.QobjHeader[¶](#qiskit-qobj-qobjheader "Permalink to this headline")
+# qiskit.qobj.QobjHeader
 
 <span id="undefined" />
 

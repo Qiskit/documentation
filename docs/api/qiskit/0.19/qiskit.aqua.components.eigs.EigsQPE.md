@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.eigs.EigsQPE
 ---
 
-# EigsQPE[¶](#eigsqpe "Permalink to this headline")
+# EigsQPE
 
 <span id="qiskit.aqua.components.eigs.EigsQPE" />
 

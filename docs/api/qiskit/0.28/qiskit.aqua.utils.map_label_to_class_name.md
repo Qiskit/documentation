@@ -1,4 +1,4 @@
-# qiskit.aqua.utils.map\_label\_to\_class\_name[¶](#qiskit-aqua-utils-map-label-to-class-name "Permalink to this headline")
+# qiskit.aqua.utils.map\_label\_to\_class\_name
 
 <span id="undefined" />
 

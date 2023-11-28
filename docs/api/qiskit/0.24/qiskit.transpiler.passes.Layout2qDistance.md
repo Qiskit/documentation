@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-layout2qdistance" />
 
-# qiskit.transpiler.passes.Layout2qDistance[¶](#qiskit-transpiler-passes-layout2qdistance "Permalink to this headline")
+# qiskit.transpiler.passes.Layout2qDistance
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.optimization.converters.IsingToQuadraticProgram
 ---
 
-# IsingToQuadraticProgram[¶](#isingtoquadraticprogram "Permalink to this headline")
+# IsingToQuadraticProgram
 
 <span id="qiskit.optimization.converters.IsingToQuadraticProgram" />
 

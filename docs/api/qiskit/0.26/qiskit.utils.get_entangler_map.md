@@ -1,4 +1,4 @@
-# qiskit.utils.get\_entangler\_map[¶](#qiskit-utils-get-entangler-map "Permalink to this headline")
+# qiskit.utils.get\_entangler\_map
 
 <span id="undefined" />
 

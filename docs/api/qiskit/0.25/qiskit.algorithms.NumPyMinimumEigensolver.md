@@ -1,4 +1,4 @@
-# qiskit.algorithms.NumPyMinimumEigensolver[¶](#qiskit-algorithms-numpyminimumeigensolver "Permalink to this headline")
+# qiskit.algorithms.NumPyMinimumEigensolver
 
 <span id="undefined" />
 

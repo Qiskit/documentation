@@ -12,10 +12,6 @@ python_api_name: qiskit.optimization.applications.ising.partition
 
 # qiskit.optimization.applications.ising.partition
 
-<span id="module-qiskit.optimization.applications.ising.partition" />
-
-`¶`
-
 Generate Number Partitioning (Partition) instances, and convert them into a Hamiltonian given as a Pauli list.
 
 ## Functions

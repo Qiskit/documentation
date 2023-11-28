@@ -1,4 +1,4 @@
-# qiskit.aqua.components.reciprocals.LongDivision[¶](#qiskit-aqua-components-reciprocals-longdivision "Permalink to this headline")
+# qiskit.aqua.components.reciprocals.LongDivision
 
 <span id="undefined" />
 

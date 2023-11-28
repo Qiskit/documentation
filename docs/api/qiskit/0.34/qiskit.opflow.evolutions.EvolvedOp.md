@@ -1,4 +1,4 @@
-# EvolvedOp[¶](#evolvedop "Permalink to this headline")
+# EvolvedOp
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.circuit.library.Reset[¶](#qiskit-circuit-library-reset "Permalink to this headline")
+# qiskit.circuit.library.Reset
 
 <span id="undefined" />
 

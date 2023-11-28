@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.StochasticSwap[¶](#qiskit-transpiler-passes-stochasticswap "Permalink to this headline")
+# qiskit.transpiler.passes.StochasticSwap
 
 <span id="undefined" />
 

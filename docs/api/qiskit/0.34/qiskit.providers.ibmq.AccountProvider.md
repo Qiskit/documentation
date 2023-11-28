@@ -1,4 +1,4 @@
-# AccountProvider[¶](#accountprovider "Permalink to this headline")
+# AccountProvider
 
 <span id="undefined" />
 

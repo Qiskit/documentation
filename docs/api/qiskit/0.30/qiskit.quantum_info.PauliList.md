@@ -1,4 +1,4 @@
-# PauliList[¶](#paulilist "Permalink to this headline")
+# PauliList
 
 <span id="undefined" />
 

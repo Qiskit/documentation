@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.utils.is_main_process
 ---
 
-# qiskit.utils.is\_main\_process[¶](#qiskit-utils-is-main-process "Permalink to this headline")
+# qiskit.utils.is\_main\_process
 
 <span id="qiskit.utils.is_main_process" />
 

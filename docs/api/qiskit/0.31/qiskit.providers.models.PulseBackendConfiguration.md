@@ -1,4 +1,4 @@
-# PulseBackendConfiguration[¶](#pulsebackendconfiguration "Permalink to this headline")
+# PulseBackendConfiguration
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.aqua.utils.random\_h1\_body[¶](#qiskit-aqua-utils-random-h1-body "Permalink to this headline")
+# qiskit.aqua.utils.random\_h1\_body
 
 <span id="undefined" />
 

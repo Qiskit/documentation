@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-optimizers-cg" />
 
-# qiskit.aqua.components.optimizers.CG[¶](#qiskit-aqua-components-optimizers-cg "Permalink to this headline")
+# qiskit.aqua.components.optimizers.CG
 
 <span id="undefined" />
 

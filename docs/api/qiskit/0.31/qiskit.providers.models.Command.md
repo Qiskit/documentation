@@ -1,4 +1,4 @@
-# Command[¶](#command "Permalink to this headline")
+# Command
 
 <span id="undefined" />
 

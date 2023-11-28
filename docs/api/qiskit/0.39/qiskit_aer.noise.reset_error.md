@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit_aer.noise.reset_error
 ---
 
-# qiskit\_aer.noise.reset\_error[¶](#qiskit-aer-noise-reset-error "Permalink to this headline")
+# qiskit\_aer.noise.reset\_error
 
 <span id="qiskit_aer.noise.reset_error" />
 

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit_aer.library.save_stabilizer
 ---
 
-# qiskit\_aer.library.save\_stabilizer[¶](#qiskit-aer-library-save-stabilizer "Permalink to this headline")
+# qiskit\_aer.library.save\_stabilizer
 
 <span id="qiskit_aer.library.save_stabilizer" />
 

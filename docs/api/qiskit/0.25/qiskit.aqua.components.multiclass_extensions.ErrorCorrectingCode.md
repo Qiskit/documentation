@@ -1,4 +1,4 @@
-# qiskit.aqua.components.multiclass\_extensions.ErrorCorrectingCode[¶](#qiskit-aqua-components-multiclass-extensions-errorcorrectingcode "Permalink to this headline")
+# qiskit.aqua.components.multiclass\_extensions.ErrorCorrectingCode
 
 <span id="undefined" />
 

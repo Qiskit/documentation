@@ -1,4 +1,4 @@
-# ZGate[¶](#zgate "Permalink to this headline")
+# ZGate
 
 <span id="undefined" />
 

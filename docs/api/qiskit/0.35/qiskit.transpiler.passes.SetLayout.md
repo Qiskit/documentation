@@ -1,4 +1,4 @@
-# SetLayout[¶](#setlayout "Permalink to this headline")
+# SetLayout
 
 <span id="undefined" />
 

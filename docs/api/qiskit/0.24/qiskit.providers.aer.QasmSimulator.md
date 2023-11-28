@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-qasmsimulator" />
 
-# qiskit.providers.aer.QasmSimulator[¶](#qiskit-providers-aer-qasmsimulator "Permalink to this headline")
+# qiskit.providers.aer.QasmSimulator
 
 <span id="undefined" />
 

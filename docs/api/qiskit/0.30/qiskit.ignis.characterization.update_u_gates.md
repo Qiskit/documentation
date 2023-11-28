@@ -1,4 +1,4 @@
-# qiskit.ignis.characterization.update\_u\_gates[¶](#qiskit-ignis-characterization-update-u-gates "Permalink to this headline")
+# qiskit.ignis.characterization.update\_u\_gates
 
 <span id="undefined" />
 

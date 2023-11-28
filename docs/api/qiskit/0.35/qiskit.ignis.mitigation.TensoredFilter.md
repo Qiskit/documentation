@@ -1,4 +1,4 @@
-# TensoredFilter[¶](#tensoredfilter "Permalink to this headline")
+# TensoredFilter
 
 <span id="undefined" />
 

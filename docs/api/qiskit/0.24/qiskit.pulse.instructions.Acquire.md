@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-instructions-acquire" />
 
-# qiskit.pulse.instructions.Acquire[¶](#qiskit-pulse-instructions-acquire "Permalink to this headline")
+# qiskit.pulse.instructions.Acquire
 
 <span id="undefined" />
 

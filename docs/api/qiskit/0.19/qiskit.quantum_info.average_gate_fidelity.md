@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.average_gate_fidelity
 ---
 
-# average\_gate\_fidelity[¶](#average-gate-fidelity "Permalink to this headline")
+# average\_gate\_fidelity
 
 <span id="qiskit.quantum_info.average_gate_fidelity" />
 

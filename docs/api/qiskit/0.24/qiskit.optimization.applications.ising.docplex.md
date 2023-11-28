@@ -12,10 +12,6 @@ python_api_name: qiskit.optimization.applications.ising.docplex
 
 # qiskit.optimization.applications.ising.docplex
 
-<span id="module-qiskit.optimization.applications.ising.docplex" />
-
-`¶`
-
 Automatically generate Ising Hamiltonians from general models of optimization problems. This program converts general models of optimization problems into Ising Hamiltonian. To write models of optimization problems, DOcplex (Python library for optimization problems) is used in the program. ([https://cdn.rawgit.com/IBMDecisionOptimization/docplex-doc/master/docs/index.html](https://cdn.rawgit.com/IBMDecisionOptimization/docplex-doc/master/docs/index.html))
 
 It supports models that consist of the following elements now.

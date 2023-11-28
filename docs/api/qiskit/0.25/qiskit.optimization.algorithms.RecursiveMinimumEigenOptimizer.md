@@ -1,4 +1,4 @@
-# qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer[¶](#qiskit-optimization-algorithms-recursiveminimumeigenoptimizer "Permalink to this headline")
+# qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer
 
 <span id="undefined" />
 

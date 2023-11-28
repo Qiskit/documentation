@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.converters.ConverterBase
 ---
 
-# ConverterBase[¶](#converterbase "Permalink to this headline")
+# ConverterBase
 
 <span id="qiskit.opflow.converters.ConverterBase" />
 

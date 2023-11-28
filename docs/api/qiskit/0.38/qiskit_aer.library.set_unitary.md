@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit_aer.library.set_unitary
 ---
 
-# qiskit\_aer.library.set\_unitary[¶](#qiskit-aer-library-set-unitary "Permalink to this headline")
+# qiskit\_aer.library.set\_unitary
 
 <span id="qiskit_aer.library.set_unitary" />
 

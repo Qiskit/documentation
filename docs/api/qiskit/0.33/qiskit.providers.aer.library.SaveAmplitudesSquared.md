@@ -1,4 +1,4 @@
-# SaveAmplitudesSquared[¶](#saveamplitudessquared "Permalink to this headline")
+# SaveAmplitudesSquared
 
 <span id="undefined" />
 

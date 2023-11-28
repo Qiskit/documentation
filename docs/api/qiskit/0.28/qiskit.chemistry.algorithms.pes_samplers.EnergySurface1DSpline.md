@@ -1,4 +1,4 @@
-# qiskit.chemistry.algorithms.pes\_samplers.EnergySurface1DSpline[¶](#qiskit-chemistry-algorithms-pes-samplers-energysurface1dspline "Permalink to this headline")
+# qiskit.chemistry.algorithms.pes\_samplers.EnergySurface1DSpline
 
 <span id="undefined" />
 

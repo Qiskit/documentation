@@ -1,4 +1,4 @@
-# MatrixExponential[¶](#matrixexponential "Permalink to this headline")
+# MatrixExponential
 
 <span id="undefined" />
 

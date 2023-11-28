@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ml.datasets.wine
 ---
 
-# wine[¶](#wine "Permalink to this headline")
+# wine
 
 <span id="qiskit.ml.datasets.wine" />
 

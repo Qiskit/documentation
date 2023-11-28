@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.scheduler.schedule_circuit
 ---
 
-# schedule\_circuit[¶](#schedule-circuit "Permalink to this headline")
+# schedule\_circuit
 
 <span id="qiskit.scheduler.schedule_circuit" />
 

@@ -1,8 +1,8 @@
 <span id="qiskit-algorithms-optimizers" />
 
-# qiskit.algorithms.optimizers[¶](#module-qiskit.algorithms.optimizers "Permalink to this headline")
+# qiskit.algorithms.optimizers
 
-## Optimizers ([`qiskit.algorithms.optimizers`](#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers"))[¶](#optimizers-qiskit-algorithms-optimizers "Permalink to this headline")
+## Optimizers ([`qiskit.algorithms.optimizers`](#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers"))
 
 It contains a variety of classical optimizers for use by quantum variational algorithms, such as [`VQE`](qiskit.algorithms.VQE "qiskit.algorithms.VQE"). Logically, these optimizers can be divided into two categories:
 
@@ -14,7 +14,7 @@ Given an optimization problem, a **local optimizer** is a function that attempts
 
 Given an optimization problem, a **global optimizer** is a function that attempts to find an optimal value among all possible solutions.
 
-## Optimizer Base Class[¶](#optimizer-base-class "Permalink to this headline")
+## Optimizer Base Class
 
 |                                                                                                                                    |                                                                            |
 | ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
@@ -22,7 +22,7 @@ Given an optimization problem, a **global optimizer** is a function that attempt
 | [`OptimizerSupportLevel`](qiskit.algorithms.optimizers.OptimizerSupportLevel "qiskit.algorithms.optimizers.OptimizerSupportLevel") | Support Level enum for features such as bounds, gradient and initial point |
 | [`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")                                     | Base class for optimization algorithm.                                     |
 
-## Local Optimizers[¶](#local-optimizers "Permalink to this headline")
+## Local Optimizers
 
 |                                                                                                                  |                                                                      |
 | ---------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
@@ -52,7 +52,7 @@ Qiskit also provides the following optimizers, which are built-out using the opt
 | [`IMFIL`](qiskit.algorithms.optimizers.IMFIL "qiskit.algorithms.optimizers.IMFIL")       | IMplicit FILtering algorithm.                            |
 | [`SNOBFIT`](qiskit.algorithms.optimizers.SNOBFIT "qiskit.algorithms.optimizers.SNOBFIT") | Stable Noisy Optimization by Branch and FIT algorithm.   |
 
-## Global Optimizers[¶](#global-optimizers "Permalink to this headline")
+## Global Optimizers
 
 The global optimizers here all use NLopt for their core function and can only be used if their dependent NLopt package is manually installed. See the following section for installation instructions.
 

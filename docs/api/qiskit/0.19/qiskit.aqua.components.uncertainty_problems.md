@@ -14,7 +14,7 @@ python_api_name: qiskit.aqua.components.uncertainty_problems
 
 <span id="module-qiskit.aqua.components.uncertainty_problems" />
 
-`qiskit.aqua.components.uncertainty_problems¶`
+`qiskit.aqua.components.uncertainty_problems`
 
 Uncertainty is present in most realistic applications, and often it is necessary to evaluate the behavior of a system under uncertain data. For instance, in finance, it is of interest to evaluate expected value or risk metrics of financial products that depend on underlying stock prices, economic factors, or changing interest rates. Classically, such problems are often evaluated using Monte Carlo simulation. However, Monte Carlo simulation does not converge very fast, which implies that large numbers of samples are required to achieve estimators of reasonable accuracy and confidence. In quantum computing, *amplitude estimation* can be used instead, which can lead to a quadratic speed-up. Thus, millions of classical samples could be replaced by a few thousand quantum samples.
 
@@ -31,10 +31,6 @@ which is used to map the result of *amplitude estimation* to the range of intere
 
 # Uncertainty Problem Base Classes
 
-<span id="module-qiskit.aqua.components.uncertainty_problems" />
-
-`¶`
-
 [`UncertaintyProblem`](qiskit.aqua.components.uncertainty_problems.UncertaintyProblem "qiskit.aqua.components.uncertainty_problems.UncertaintyProblem") is the base class from which further base classes for univariate and multivariate problems are derived
 
 |                                                                                                                                                            |                                             |
@@ -44,10 +40,6 @@ which is used to map the result of *amplitude estimation* to the range of intere
 | [`MultivariateProblem`](qiskit.aqua.components.uncertainty_problems.MultivariateProblem "qiskit.aqua.components.uncertainty_problems.MultivariateProblem") | Multivariate Uncertainty Problem.           |
 
 # Univariate Problems
-
-<span id="module-qiskit.aqua.components.uncertainty_problems" />
-
-`¶`
 
 |                                                                                                                                                                                                         |                                                 |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |

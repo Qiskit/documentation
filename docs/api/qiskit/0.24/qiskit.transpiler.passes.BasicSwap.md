@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-basicswap" />
 
-# qiskit.transpiler.passes.BasicSwap[¶](#qiskit-transpiler-passes-basicswap "Permalink to this headline")
+# qiskit.transpiler.passes.BasicSwap
 
 <span id="undefined" />
 

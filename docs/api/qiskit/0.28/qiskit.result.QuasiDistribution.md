@@ -1,4 +1,4 @@
-# qiskit.result.QuasiDistribution[¶](#qiskit-result-quasidistribution "Permalink to this headline")
+# qiskit.result.QuasiDistribution
 
 <span id="undefined" />
 

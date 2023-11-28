@@ -1,4 +1,4 @@
-# ControlChannel[¶](#controlchannel "Permalink to this headline")
+# ControlChannel
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.extensions.Initialize
 ---
 
-# Initialize[¶](#initialize "Permalink to this headline")
+# Initialize
 
 <span id="qiskit.extensions.Initialize" />
 

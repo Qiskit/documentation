@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-converters-inequalitytoequality" />
 
-# qiskit.optimization.converters.InequalityToEquality[¶](#qiskit-optimization-converters-inequalitytoequality "Permalink to this headline")
+# qiskit.optimization.converters.InequalityToEquality
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.circuit.library.MCXGrayCode[¶](#qiskit-circuit-library-mcxgraycode "Permalink to this headline")
+# qiskit.circuit.library.MCXGrayCode
 
 <span id="undefined" />
 

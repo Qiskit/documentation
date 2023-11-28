@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-get-ghz-simple" />
 
-# qiskit.ignis.verification.get\_ghz\_simple[¶](#qiskit-ignis-verification-get-ghz-simple "Permalink to this headline")
+# qiskit.ignis.verification.get\_ghz\_simple
 
 <span id="undefined" />
 

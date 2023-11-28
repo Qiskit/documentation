@@ -14,7 +14,7 @@ python_api_name: qiskit.aqua.components.variational_forms
 
 <span id="module-qiskit.aqua.components.variational_forms" />
 
-`qiskit.aqua.components.variational_forms¶`
+`qiskit.aqua.components.variational_forms`
 
 In quantum mechanics, the *variational method* is one way of finding approximations to the lowest energy eigenstate, or *ground state*, and some excited states. This allows calculating approximate wave functions, such as molecular orbitals. The basis for this method is the *variational principle*.
 
@@ -22,19 +22,11 @@ The variational method consists of choosing a *trial wave function*, or *variati
 
 # Variational Form Base Class
 
-<span id="module-qiskit.aqua.components.variational_forms" />
-
-`¶`
-
 |                                                                                                                                          |                                  |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
 | [`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.VariationalForm") | Base class for VariationalForms. |
 
 # Variational Forms
-
-<span id="module-qiskit.aqua.components.variational_forms" />
-
-`¶`
 
 |                                                                                                               |             |
 | ------------------------------------------------------------------------------------------------------------- | ----------- |

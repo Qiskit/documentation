@@ -1,4 +1,4 @@
-# StabilizerTable[¶](#stabilizertable "Permalink to this headline")
+# StabilizerTable
 
 <span id="undefined" />
 

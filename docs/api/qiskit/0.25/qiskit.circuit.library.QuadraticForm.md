@@ -1,4 +1,4 @@
-# qiskit.circuit.library.QuadraticForm[¶](#qiskit-circuit-library-quadraticform "Permalink to this headline")
+# qiskit.circuit.library.QuadraticForm
 
 <span id="undefined" />
 

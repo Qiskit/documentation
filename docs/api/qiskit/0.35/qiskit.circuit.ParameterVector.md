@@ -1,4 +1,4 @@
-# ParameterVector[¶](#parametervector "Permalink to this headline")
+# ParameterVector
 
 <span id="undefined" />
 

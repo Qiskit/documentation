@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-list-ops-tensoredop" />
 
-# qiskit.aqua.operators.list\_ops.TensoredOp[¶](#qiskit-aqua-operators-list-ops-tensoredop "Permalink to this headline")
+# qiskit.aqua.operators.list\_ops.TensoredOp
 
 <span id="undefined" />
 

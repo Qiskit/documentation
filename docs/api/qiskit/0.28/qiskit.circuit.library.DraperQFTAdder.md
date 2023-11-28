@@ -1,4 +1,4 @@
-# qiskit.circuit.library.DraperQFTAdder[¶](#qiskit-circuit-library-draperqftadder "Permalink to this headline")
+# qiskit.circuit.library.DraperQFTAdder
 
 <span id="undefined" />
 

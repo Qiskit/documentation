@@ -12,10 +12,6 @@ python_api_name: qiskit.optimization.applications.ising.vertex_cover
 
 # qiskit.optimization.applications.ising.vertex\_cover
 
-<span id="module-qiskit.optimization.applications.ising.vertex_cover" />
-
-`¶`
-
 Convert vertex cover instances into Pauli list Deal with Gset format. See [https://web.stanford.edu/\~yyye/yyye/Gset/](https://web.stanford.edu/~yyye/yyye/Gset/)
 
 ## Functions

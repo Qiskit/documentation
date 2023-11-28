@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.utils.get_subsystems_counts
 ---
 
-# get\_subsystems\_counts[¶](#get-subsystems-counts "Permalink to this headline")
+# get\_subsystems\_counts
 
 <span id="qiskit.aqua.utils.get_subsystems_counts" />
 

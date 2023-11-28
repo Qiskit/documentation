@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-enlargewithancilla" />
 
-# qiskit.transpiler.passes.EnlargeWithAncilla[¶](#qiskit-transpiler-passes-enlargewithancilla "Permalink to this headline")
+# qiskit.transpiler.passes.EnlargeWithAncilla
 
 <span id="undefined" />
 

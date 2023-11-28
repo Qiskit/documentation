@@ -1,6 +1,6 @@
 <span id="qiskit-providers-ibmq-job-ibmqjob" />
 
-# qiskit.providers.ibmq.job.IBMQJob[¶](#qiskit-providers-ibmq-job-ibmqjob "Permalink to this headline")
+# qiskit.providers.ibmq.job.IBMQJob
 
 <span id="undefined" />
 

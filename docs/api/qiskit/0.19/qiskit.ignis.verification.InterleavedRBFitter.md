@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.verification.InterleavedRBFitter
 ---
 
-# InterleavedRBFitter[¶](#interleavedrbfitter "Permalink to this headline")
+# InterleavedRBFitter
 
 <span id="qiskit.ignis.verification.InterleavedRBFitter" />
 

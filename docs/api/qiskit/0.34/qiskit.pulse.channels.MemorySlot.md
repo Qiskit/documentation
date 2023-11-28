@@ -1,4 +1,4 @@
-# MemorySlot[¶](#memoryslot "Permalink to this headline")
+# MemorySlot
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-bconfig" />
 
-# qiskit.ignis.verification.BConfig[¶](#qiskit-ignis-verification-bconfig "Permalink to this headline")
+# qiskit.ignis.verification.BConfig
 
 <span id="undefined" />
 

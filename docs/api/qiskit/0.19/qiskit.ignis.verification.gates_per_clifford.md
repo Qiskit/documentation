@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.verification.gates_per_clifford
 ---
 
-# gates\_per\_clifford[¶](#gates-per-clifford "Permalink to this headline")
+# gates\_per\_clifford
 
 <span id="qiskit.ignis.verification.gates_per_clifford" />
 

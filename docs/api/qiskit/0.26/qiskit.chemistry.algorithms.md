@@ -14,23 +14,15 @@ python_api_name: qiskit.chemistry.algorithms
 
 <span id="module-qiskit.chemistry.algorithms" />
 
-`qiskit.chemistry.algorithms¶`
+`qiskit.chemistry.algorithms`
 
 These are chemistry specific algorithms for Aqua. As they rely on chemistry specific knowledge and/or function they are here in chemistry rather than in Aqua.
 
 # Chemistry Algorithms
 
-<span id="module-qiskit.chemistry.algorithms" />
-
-`¶`
-
 These are algorithms configured and/or functioning using chemistry specific knowledge. See also the Aqua [`algorithms`](qiskit.aqua.algorithms#module-qiskit.aqua.algorithms "qiskit.aqua.algorithms") for other algorithms in these categories which may also be used for chemistry problems such as [`VQE`](qiskit.aqua.algorithms.VQE#qiskit.aqua.algorithms.VQE "qiskit.aqua.algorithms.VQE").
 
 ## Eigensolvers
-
-<span id="module-qiskit.chemistry.algorithms" />
-
-`¶`
 
 Algorithms that can find the eigenvalues of an operator, i.e. excited states for chemistry.
 
@@ -42,10 +34,6 @@ Algorithms that can find the eigenvalues of an operator, i.e. excited states for
 | [`QEomEE`](qiskit.chemistry.algorithms.QEomEE#qiskit.chemistry.algorithms.QEomEE "qiskit.chemistry.algorithms.QEomEE")     | QEomEE algorithm (classical) |
 
 ## Excited State Solvers
-
-<span id="module-qiskit.chemistry.algorithms" />
-
-`¶`
 
 Algorithms that can find the eigenvalues of an operator, i.e. excited states for chemistry.
 
@@ -70,10 +58,6 @@ and factories to provision Quantum and/or Classical algorithms upon which the ab
 | [`NumPyEigensolverFactory`](qiskit.chemistry.algorithms.NumPyEigensolverFactory#qiskit.chemistry.algorithms.NumPyEigensolverFactory "qiskit.chemistry.algorithms.NumPyEigensolverFactory") | A factory to construct a NumPyEigensolver.                                     |
 
 ## Ground State Solvers
-
-<span id="module-qiskit.chemistry.algorithms" />
-
-`¶`
 
 Algorithms that can find the minimum eigenvalue of an operator, i.e. ground state for chemistry.
 
@@ -102,10 +86,6 @@ and factories to provision Quantum and/or Classical algorithms upon which the ab
 
 ## Minimum Eigensolvers
 
-<span id="module-qiskit.chemistry.algorithms" />
-
-`¶`
-
 Algorithms that can find the minimum eigenvalue of an operator, i.e. ground state for chemistry.
 
 **DEPRECATED** See the Ground State Solvers section above
@@ -115,10 +95,6 @@ Algorithms that can find the minimum eigenvalue of an operator, i.e. ground stat
 | [`VQEAdapt`](qiskit.chemistry.algorithms.VQEAdapt#qiskit.chemistry.algorithms.VQEAdapt "qiskit.chemistry.algorithms.VQEAdapt") | DEPRECATED. |
 
 ## Potential Energy Surface Samplers
-
-<span id="module-qiskit.chemistry.algorithms" />
-
-`¶`
 
 Algorithms that can compute potential energy surfaces.
 

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.utils.map_label_to_class_name
 ---
 
-# map\_label\_to\_class\_name[¶](#map-label-to-class-name "Permalink to this headline")
+# map\_label\_to\_class\_name
 
 <span id="qiskit.aqua.utils.map_label_to_class_name" />
 

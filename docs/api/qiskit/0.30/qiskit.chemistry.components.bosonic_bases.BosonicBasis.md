@@ -1,4 +1,4 @@
-# BosonicBasis[¶](#bosonicbasis "Permalink to this headline")
+# BosonicBasis
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.TNC[¶](#qiskit-algorithms-optimizers-tnc "Permalink to this headline")
+# qiskit.algorithms.optimizers.TNC
 
 <span id="undefined" />
 

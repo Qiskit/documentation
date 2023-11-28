@@ -12,10 +12,6 @@ python_api_name: qiskit.pulse.instructions
 
 # qiskit.pulse.instructions
 
-<span id="module-qiskit.pulse.instructions" />
-
-`¶`
-
 The `instruction` module holds the various `Instruction` s which are supported by Qiskit Pulse. Instructions have operands, which typically include at least one [`Channel`](qiskit.pulse.channels#Channel "qiskit.pulse.channels.Channel") specifying where the instruction will be applied.
 
 Every instruction has a duration, whether explicitly included as an operand or implicitly defined. For instance, a [`ShiftPhase`](qiskit.pulse.instructions.ShiftPhase#qiskit.pulse.instructions.ShiftPhase "qiskit.pulse.instructions.ShiftPhase") instruction can be instantiated with operands *phase* and *channel*, for some float `phase` and a [`Channel`](qiskit.pulse.channels#Channel "qiskit.pulse.channels.Channel") `channel`:
@@ -44,10 +40,6 @@ An instruction can be added to a [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse
 | [`Snapshot`](qiskit.pulse.instructions.Snapshot#qiskit.pulse.instructions.Snapshot "qiskit.pulse.instructions.Snapshot")(label\[, snapshot\_type, name])                      | An instruction targeted for simulators, to capture a moment in the simulation.                                                                                               |
 
 ## Abstract Classes
-
-<span id="module-qiskit.pulse.instructions" />
-
-`¶`
 
 |                                                                                                                                                                             |                                                      |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |

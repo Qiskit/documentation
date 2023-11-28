@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.expectations.ExpectationBase
 ---
 
-# ExpectationBase[¶](#expectationbase "Permalink to this headline")
+# ExpectationBase
 
 <span id="qiskit.aqua.operators.expectations.ExpectationBase" />
 

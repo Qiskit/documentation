@@ -14,15 +14,11 @@ python_api_name: qiskit.chemistry.components.variational_forms
 
 <span id="module-qiskit.chemistry.components.variational_forms" />
 
-`qiskit.chemistry.components.variational_forms¶`
+`qiskit.chemistry.components.variational_forms`
 
 These are chemistry specific Aqua Variational Forms where they inherit from Aqua [`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.VariationalForm"). As they rely on chemistry specific knowledge and/or functions they live here rather than in Aqua.
 
 # Variational Forms
-
-<span id="module-qiskit.chemistry.components.variational_forms" />
-
-`¶`
 
 |                                                                                                                      |                                                                                                      |
 | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------- |

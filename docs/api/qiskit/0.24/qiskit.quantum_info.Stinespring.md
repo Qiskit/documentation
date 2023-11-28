@@ -1,6 +1,6 @@
 <span id="qiskit-quantum-info-stinespring" />
 
-# qiskit.quantum\_info.Stinespring[¶](#qiskit-quantum-info-stinespring "Permalink to this headline")
+# qiskit.quantum\_info.Stinespring
 
 <span id="undefined" />
 

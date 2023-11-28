@@ -1,6 +1,6 @@
 <span id="qiskit-finance-data-providers-stockmarket" />
 
-# qiskit.finance.data\_providers.StockMarket[¶](#qiskit-finance-data-providers-stockmarket "Permalink to this headline")
+# qiskit.finance.data\_providers.StockMarket
 
 <span id="undefined" />
 

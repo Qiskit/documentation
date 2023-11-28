@@ -1,4 +1,4 @@
-# RemoveDiagonalGatesBeforeMeasure[¶](#removediagonalgatesbeforemeasure "Permalink to this headline")
+# RemoveDiagonalGatesBeforeMeasure
 
 <span id="undefined" />
 

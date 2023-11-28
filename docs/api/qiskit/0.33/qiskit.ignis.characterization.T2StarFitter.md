@@ -1,4 +1,4 @@
-# T2StarFitter[¶](#t2starfitter "Permalink to this headline")
+# T2StarFitter
 
 <span id="undefined" />
 

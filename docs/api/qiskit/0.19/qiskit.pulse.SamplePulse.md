@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.SamplePulse
 ---
 
-# SamplePulse[¶](#samplepulse "Permalink to this headline")
+# SamplePulse
 
 <span id="qiskit.pulse.SamplePulse" />
 

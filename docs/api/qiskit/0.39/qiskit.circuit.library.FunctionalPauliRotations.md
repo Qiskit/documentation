@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.FunctionalPauliRotations
 ---
 
-# FunctionalPauliRotations[¶](#functionalpaulirotations "Permalink to this headline")
+# FunctionalPauliRotations
 
 <span id="qiskit.circuit.library.FunctionalPauliRotations" />
 

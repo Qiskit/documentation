@@ -1,4 +1,4 @@
-# DynamicalDecoupling[¶](#dynamicaldecoupling "Permalink to this headline")
+# DynamicalDecoupling
 
 <span id="undefined" />
 

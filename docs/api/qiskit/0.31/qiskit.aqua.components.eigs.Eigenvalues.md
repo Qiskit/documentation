@@ -1,4 +1,4 @@
-# Eigenvalues[¶](#eigenvalues "Permalink to this headline")
+# Eigenvalues
 
 <span id="undefined" />
 

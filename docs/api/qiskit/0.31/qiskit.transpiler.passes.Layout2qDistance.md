@@ -1,4 +1,4 @@
-# Layout2qDistance[¶](#layout2qdistance "Permalink to this headline")
+# Layout2qDistance
 
 <span id="undefined" />
 

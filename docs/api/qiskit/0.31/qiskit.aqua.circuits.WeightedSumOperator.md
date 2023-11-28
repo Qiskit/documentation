@@ -1,4 +1,4 @@
-# WeightedSumOperator[¶](#weightedsumoperator "Permalink to this headline")
+# WeightedSumOperator
 
 <span id="undefined" />
 

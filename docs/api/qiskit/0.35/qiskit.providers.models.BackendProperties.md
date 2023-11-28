@@ -1,4 +1,4 @@
-# BackendProperties[¶](#backendproperties "Permalink to this headline")
+# BackendProperties
 
 <span id="undefined" />
 

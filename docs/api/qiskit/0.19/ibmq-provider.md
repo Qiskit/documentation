@@ -10,10 +10,6 @@ python_api_name: qiskit
 
 # Qiskit IBM Quantum Provider API Reference
 
-<span id="module-qiskit" />
-
-`¶`
-
 *   [IBM Quantum Provider (`qiskit.providers.ibmq`)](ibmq_provider)
 *   [Job (`qiskit.providers.ibmq.job`)](ibmq_job)
 *   [Job Manager (`qiskit.providers.ibmq.managed`)](ibmq_managed)

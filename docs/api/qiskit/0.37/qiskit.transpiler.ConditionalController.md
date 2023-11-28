@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.ConditionalController
 ---
 
-# ConditionalController[¶](#conditionalcontroller "Permalink to this headline")
+# ConditionalController
 
 <span id="qiskit.transpiler.ConditionalController" />
 

@@ -1,4 +1,4 @@
-# qiskit.optimization.algorithms.OptimizationResultStatus[¶](#qiskit-optimization-algorithms-optimizationresultstatus "Permalink to this headline")
+# qiskit.optimization.algorithms.OptimizationResultStatus
 
 <span id="undefined" />
 

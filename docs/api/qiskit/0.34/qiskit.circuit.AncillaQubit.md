@@ -1,4 +1,4 @@
-# AncillaQubit[¶](#ancillaqubit "Permalink to this headline")
+# AncillaQubit
 
 <span id="undefined" />
 

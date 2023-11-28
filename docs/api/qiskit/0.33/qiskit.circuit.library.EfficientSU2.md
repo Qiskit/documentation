@@ -1,4 +1,4 @@
-# EfficientSU2[¶](#efficientsu2 "Permalink to this headline")
+# EfficientSU2
 
 <span id="undefined" />
 

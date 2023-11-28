@@ -1,4 +1,4 @@
-# qiskit.opflow\.gradients.CircuitGradient[¶](#qiskit-opflow-gradients-circuitgradient "Permalink to this headline")
+# qiskit.opflow\.gradients.CircuitGradient
 
 <span id="undefined" />
 

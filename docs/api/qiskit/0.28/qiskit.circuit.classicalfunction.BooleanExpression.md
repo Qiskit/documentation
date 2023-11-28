@@ -1,4 +1,4 @@
-# qiskit.circuit.classicalfunction.BooleanExpression[¶](#qiskit-circuit-classicalfunction-booleanexpression "Permalink to this headline")
+# qiskit.circuit.classicalfunction.BooleanExpression
 
 <span id="undefined" />
 

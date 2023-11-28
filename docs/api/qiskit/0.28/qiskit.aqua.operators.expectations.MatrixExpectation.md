@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.expectations.MatrixExpectation[¶](#qiskit-aqua-operators-expectations-matrixexpectation "Permalink to this headline")
+# qiskit.aqua.operators.expectations.MatrixExpectation
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-providers-basejob" />
 
-# qiskit.providers.BaseJob[¶](#qiskit-providers-basejob "Permalink to this headline")
+# qiskit.providers.BaseJob
 
 <span id="undefined" />
 

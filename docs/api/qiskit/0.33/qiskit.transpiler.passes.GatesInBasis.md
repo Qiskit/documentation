@@ -1,4 +1,4 @@
-# GatesInBasis[¶](#gatesinbasis "Permalink to this headline")
+# GatesInBasis
 
 <span id="undefined" />
 

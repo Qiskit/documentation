@@ -1,4 +1,4 @@
-# AllPairs[¶](#allpairs "Permalink to this headline")
+# AllPairs
 
 <span id="undefined" />
 

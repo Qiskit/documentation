@@ -1,4 +1,4 @@
-# qiskit.aqua.algorithms.QGAN[¶](#qiskit-aqua-algorithms-qgan "Permalink to this headline")
+# qiskit.aqua.algorithms.QGAN
 
 <span id="undefined" />
 

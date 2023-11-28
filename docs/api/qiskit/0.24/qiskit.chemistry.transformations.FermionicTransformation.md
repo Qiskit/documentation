@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-transformations-fermionictransformation" />
 
-# qiskit.chemistry.transformations.FermionicTransformation[¶](#qiskit-chemistry-transformations-fermionictransformation "Permalink to this headline")
+# qiskit.chemistry.transformations.FermionicTransformation
 
 <span id="undefined" />
 

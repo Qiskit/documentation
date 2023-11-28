@@ -1,4 +1,4 @@
-# EuropeanCallDelta[¶](#europeancalldelta "Permalink to this headline")
+# EuropeanCallDelta
 
 <span id="undefined" />
 

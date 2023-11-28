@@ -1,4 +1,4 @@
-# LieTrotter[¶](#lietrotter "Permalink to this headline")
+# LieTrotter
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# UnitarySynthesis[¶](#unitarysynthesis "Permalink to this headline")
+# UnitarySynthesis
 
 <span id="undefined" />
 

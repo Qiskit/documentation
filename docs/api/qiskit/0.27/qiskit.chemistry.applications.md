@@ -14,15 +14,11 @@ python_api_name: qiskit.chemistry.applications
 
 <span id="module-qiskit.chemistry.applications" />
 
-`qiskit.chemistry.applications¶`
+`qiskit.chemistry.applications`
 
 These are chemistry applications leveraging quantum algorithms from Aqua.
 
 # Applications
-
-<span id="module-qiskit.chemistry.applications" />
-
-`¶`
 
 **DEPRECATED** See Ground state solvers in [`qiskit.chemistry.algorithms`](qiskit.chemistry.algorithms#module-qiskit.chemistry.algorithms "qiskit.chemistry.algorithms") which replace this.
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.optimization.converters.InequalityToEquality
 ---
 
-# InequalityToEquality[¶](#inequalitytoequality "Permalink to this headline")
+# InequalityToEquality
 
 <span id="qiskit.optimization.converters.InequalityToEquality" />
 

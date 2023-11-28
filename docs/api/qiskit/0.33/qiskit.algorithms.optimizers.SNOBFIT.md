@@ -1,4 +1,4 @@
-# SNOBFIT[¶](#snobfit "Permalink to this headline")
+# SNOBFIT
 
 <span id="undefined" />
 

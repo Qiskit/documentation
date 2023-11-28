@@ -1,4 +1,4 @@
-# PulseLibraryItem[¶](#pulselibraryitem "Permalink to this headline")
+# PulseLibraryItem
 
 <span id="undefined" />
 

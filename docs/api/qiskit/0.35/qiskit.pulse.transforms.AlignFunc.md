@@ -1,4 +1,4 @@
-# AlignFunc[¶](#alignfunc "Permalink to this headline")
+# AlignFunc
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# ProbDistribution[¶](#probdistribution "Permalink to this headline")
+# ProbDistribution
 
 <span id="undefined" />
 

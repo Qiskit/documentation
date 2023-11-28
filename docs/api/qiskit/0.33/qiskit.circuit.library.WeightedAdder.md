@@ -1,4 +1,4 @@
-# WeightedAdder[¶](#weightedadder "Permalink to this headline")
+# WeightedAdder
 
 <span id="undefined" />
 

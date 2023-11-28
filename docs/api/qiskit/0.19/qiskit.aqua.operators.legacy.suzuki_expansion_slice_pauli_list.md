@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.operators.legacy.suzuki_expansion_slice_pauli_list
 ---
 
-# suzuki\_expansion\_slice\_pauli\_list[¶](#suzuki-expansion-slice-pauli-list "Permalink to this headline")
+# suzuki\_expansion\_slice\_pauli\_list
 
 <span id="qiskit.aqua.operators.legacy.suzuki_expansion_slice_pauli_list" />
 

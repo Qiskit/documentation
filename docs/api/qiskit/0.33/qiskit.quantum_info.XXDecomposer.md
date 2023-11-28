@@ -1,4 +1,4 @@
-# XXDecomposer[¶](#xxdecomposer "Permalink to this headline")
+# XXDecomposer
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# QuantumAlgorithm[¶](#quantumalgorithm "Permalink to this headline")
+# QuantumAlgorithm
 
 <span id="undefined" />
 

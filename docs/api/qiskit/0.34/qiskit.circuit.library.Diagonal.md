@@ -1,4 +1,4 @@
-# Diagonal[¶](#diagonal "Permalink to this headline")
+# Diagonal
 
 <span id="undefined" />
 

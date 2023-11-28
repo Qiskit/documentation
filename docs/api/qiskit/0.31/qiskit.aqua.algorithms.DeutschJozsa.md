@@ -1,4 +1,4 @@
-# DeutschJozsa[¶](#deutschjozsa "Permalink to this headline")
+# DeutschJozsa
 
 <span id="undefined" />
 

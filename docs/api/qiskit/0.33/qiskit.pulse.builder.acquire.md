@@ -1,4 +1,4 @@
-# qiskit.pulse.builder.acquire[¶](#qiskit-pulse-builder-acquire "Permalink to this headline")
+# qiskit.pulse.builder.acquire
 
 <span id="undefined" />
 

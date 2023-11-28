@@ -1,4 +1,4 @@
-# QNSPSA[¶](#qnspsa "Permalink to this headline")
+# QNSPSA
 
 <span id="undefined" />
 

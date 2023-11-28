@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.reschedule.align_measures
 ---
 
-# align\_measures[¶](#align-measures "Permalink to this headline")
+# align\_measures
 
 <span id="qiskit.pulse.reschedule.align_measures" />
 

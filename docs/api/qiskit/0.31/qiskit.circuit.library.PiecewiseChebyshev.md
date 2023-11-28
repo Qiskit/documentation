@@ -1,4 +1,4 @@
-# PiecewiseChebyshev[¶](#piecewisechebyshev "Permalink to this headline")
+# PiecewiseChebyshev
 
 <span id="undefined" />
 

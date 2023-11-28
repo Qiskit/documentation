@@ -12,10 +12,6 @@ python_api_name: qiskit.optimization.applications.ising.exact_cover
 
 # qiskit.optimization.applications.ising.exact\_cover
 
-<span id="module-qiskit.optimization.applications.ising.exact_cover" />
-
-`¶`
-
 exact cover
 
 ## Functions

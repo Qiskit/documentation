@@ -1,4 +1,4 @@
-# StateVectorCircuit[¶](#statevectorcircuit "Permalink to this headline")
+# StateVectorCircuit
 
 <span id="undefined" />
 

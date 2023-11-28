@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.mitigation.TensoredFilter
 ---
 
-# TensoredFilter[¶](#tensoredfilter "Permalink to this headline")
+# TensoredFilter
 
 <span id="qiskit.ignis.mitigation.TensoredFilter" />
 

@@ -1,4 +1,4 @@
-# qiskit.chemistry.algorithms.pes\_samplers.DifferentialExtrapolator[¶](#qiskit-chemistry-algorithms-pes-samplers-differentialextrapolator "Permalink to this headline")
+# qiskit.chemistry.algorithms.pes\_samplers.DifferentialExtrapolator
 
 <span id="undefined" />
 

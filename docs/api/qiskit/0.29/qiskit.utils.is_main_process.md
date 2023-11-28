@@ -1,4 +1,4 @@
-# qiskit.utils.is\_main\_process[¶](#qiskit-utils-is-main-process "Permalink to this headline")
+# qiskit.utils.is\_main\_process
 
 <span id="undefined" />
 

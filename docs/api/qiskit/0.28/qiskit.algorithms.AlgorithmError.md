@@ -1,4 +1,4 @@
-# qiskit.algorithms.AlgorithmError[¶](#qiskit-algorithms-algorithmerror "Permalink to this headline")
+# qiskit.algorithms.AlgorithmError
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.result.Result[¶](#qiskit-result-result "Permalink to this headline")
+# qiskit.result.Result
 
 <span id="undefined" />
 

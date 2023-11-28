@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-pulsesimulator" />
 
-# qiskit.providers.aer.PulseSimulator[¶](#qiskit-providers-aer-pulsesimulator "Permalink to this headline")
+# qiskit.providers.aer.PulseSimulator
 
 <span id="undefined" />
 

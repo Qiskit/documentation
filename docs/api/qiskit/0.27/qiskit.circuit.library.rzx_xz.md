@@ -1,4 +1,4 @@
-# qiskit.circuit.library.rzx\_xz[¶](#qiskit-circuit-library-rzx-xz "Permalink to this headline")
+# qiskit.circuit.library.rzx\_xz
 
 <span id="undefined" />
 

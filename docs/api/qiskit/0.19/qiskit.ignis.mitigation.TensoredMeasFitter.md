@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.mitigation.TensoredMeasFitter
 ---
 
-# TensoredMeasFitter[¶](#tensoredmeasfitter "Permalink to this headline")
+# TensoredMeasFitter
 
 <span id="qiskit.ignis.mitigation.TensoredMeasFitter" />
 

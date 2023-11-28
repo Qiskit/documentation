@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.qasm.Qasm
 ---
 
-# Qasm[¶](#qasm "Permalink to this headline")
+# Qasm
 
 <span id="qiskit.qasm.Qasm" />
 

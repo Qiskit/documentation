@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.quantum_info.Chi
 ---
 
-# Chi[¶](#chi "Permalink to this headline")
+# Chi
 
 <span id="qiskit.quantum_info.Chi" />
 

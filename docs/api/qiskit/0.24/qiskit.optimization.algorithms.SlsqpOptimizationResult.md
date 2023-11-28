@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-algorithms-slsqpoptimizationresult" />
 
-# qiskit.optimization.algorithms.SlsqpOptimizationResult[¶](#qiskit-optimization-algorithms-slsqpoptimizationresult "Permalink to this headline")
+# qiskit.optimization.algorithms.SlsqpOptimizationResult
 
 <span id="undefined" />
 

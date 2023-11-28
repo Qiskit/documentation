@@ -1,4 +1,4 @@
-# DAGDepNode[¶](#dagdepnode "Permalink to this headline")
+# DAGDepNode
 
 <span id="undefined" />
 

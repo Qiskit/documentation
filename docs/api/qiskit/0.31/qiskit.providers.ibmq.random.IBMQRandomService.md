@@ -1,4 +1,4 @@
-# IBMQRandomService[¶](#ibmqrandomservice "Permalink to this headline")
+# IBMQRandomService
 
 <span id="undefined" />
 

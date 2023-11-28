@@ -14,7 +14,7 @@ python_api_name: qiskit.pulse
 
 <span id="module-qiskit.pulse" />
 
-`qiskit.pulse¶`
+`qiskit.pulse`
 
 Qiskit-Pulse is a pulse-level quantum programming kit. This lower level of programming offers the user more control than programming with [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") s.
 
@@ -30,7 +30,7 @@ This is sufficient to allow the quantum physicist to explore and correct for noi
 
 <span id="module-qiskit.pulse" />
 
-`instructions¶`
+`instructions`
 
 |                                                                                                          |                                                                                                                                                                                                    |
 | -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -46,7 +46,7 @@ This is sufficient to allow the quantum physicist to explore and correct for noi
 
 <span id="module-qiskit.pulse" />
 
-`pulse_lib¶`
+`pulse_lib`
 
 |                                                                                                                        |                                                                                                                                        |
 | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------- |
@@ -64,7 +64,7 @@ This is sufficient to allow the quantum physicist to explore and correct for noi
 
 <span id="module-qiskit.pulse" />
 
-`channels¶`
+`channels`
 
 Pulse is meant to be agnostic to the underlying hardware implementation, while still allowing low-level control. Therefore, our signal channels are *virtual* hardware channels. The backend which executes our programs is responsible for mapping these virtual channels to the proper physical channel within the quantum control hardware.
 
@@ -82,10 +82,6 @@ Channels are characterized by their type and their index. See each channel type 
 
 ## Schedules
 
-<span id="module-qiskit.pulse" />
-
-`¶`
-
 Schedules are Pulse programs. They describe instruction sequences for the control hardware.
 
 |                                                                                                             |                                                                                                                                                                         |
@@ -95,19 +91,11 @@ Schedules are Pulse programs. They describe instruction sequences for the contro
 
 ## Configuration
 
-<span id="module-qiskit.pulse" />
-
-`¶`
-
 |                                                                                                         |                                                                                                                                                                                                                                                                                                                              |
 | ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")() | Mapping from [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") [`qiskit.circuit.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and qubits to [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") s. In particular, the mapping is formatted as type::. |
 
 ## Rescheduling Utilities
-
-<span id="module-qiskit.pulse" />
-
-`¶`
 
 These utilities return modified [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") s.
 
@@ -118,10 +106,6 @@ These utilities return modified [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse
 | [`pad`](qiskit.pulse.reschedule.pad "qiskit.pulse.reschedule.pad")(schedule\[, channels, until])                                              | Pad the input `Schedule` with `Delay` s on all unoccupied timeslots until `until` if it is provided, otherwise until `schedule.duration`. |
 
 ## Exceptions
-
-<span id="module-qiskit.pulse" />
-
-`¶`
 
 |                                                                              |                                    |
 | ---------------------------------------------------------------------------- | ---------------------------------- |

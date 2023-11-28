@@ -1,4 +1,4 @@
-# FencedDAGCircuit[¶](#fenceddagcircuit "Permalink to this headline")
+# FencedDAGCircuit
 
 <span id="undefined" />
 

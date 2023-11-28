@@ -1,4 +1,4 @@
-# qiskit.pulse.transforms.block\_to\_schedule[¶](#qiskit-pulse-transforms-block-to-schedule "Permalink to this headline")
+# qiskit.pulse.transforms.block\_to\_schedule
 
 <span id="undefined" />
 

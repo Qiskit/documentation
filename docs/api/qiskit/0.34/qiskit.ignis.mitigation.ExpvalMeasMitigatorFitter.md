@@ -1,4 +1,4 @@
-# ExpvalMeasMitigatorFitter[¶](#expvalmeasmitigatorfitter "Permalink to this headline")
+# ExpvalMeasMitigatorFitter
 
 <span id="undefined" />
 

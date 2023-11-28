@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-gates-per-clifford" />
 
-# qiskit.ignis.verification.gates\_per\_clifford[¶](#qiskit-ignis-verification-gates-per-clifford "Permalink to this headline")
+# qiskit.ignis.verification.gates\_per\_clifford
 
 <span id="undefined" />
 

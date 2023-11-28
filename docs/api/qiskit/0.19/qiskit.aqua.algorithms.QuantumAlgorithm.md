@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.algorithms.QuantumAlgorithm
 ---
 
-# QuantumAlgorithm[¶](#quantumalgorithm "Permalink to this headline")
+# QuantumAlgorithm
 
 <span id="qiskit.aqua.algorithms.QuantumAlgorithm" />
 

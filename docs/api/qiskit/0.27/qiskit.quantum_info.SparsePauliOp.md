@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.SparsePauliOp[¶](#qiskit-quantum-info-sparsepauliop "Permalink to this headline")
+# qiskit.quantum\_info.SparsePauliOp
 
 <span id="undefined" />
 

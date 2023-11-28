@@ -1,4 +1,4 @@
-# qiskit.chemistry.MP2Info[¶](#qiskit-chemistry-mp2info "Permalink to this headline")
+# qiskit.chemistry.MP2Info
 
 <span id="undefined" />
 

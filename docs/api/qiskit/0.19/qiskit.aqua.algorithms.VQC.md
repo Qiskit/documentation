@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.algorithms.VQC
 ---
 
-# VQC[¶](#vqc "Permalink to this headline")
+# VQC
 
 <span id="qiskit.aqua.algorithms.VQC" />
 

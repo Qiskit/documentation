@@ -1,4 +1,4 @@
-# PrimitiveOp[¶](#primitiveop "Permalink to this headline")
+# PrimitiveOp
 
 <span id="undefined" />
 

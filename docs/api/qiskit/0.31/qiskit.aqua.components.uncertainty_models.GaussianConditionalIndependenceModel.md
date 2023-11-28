@@ -1,4 +1,4 @@
-# GaussianConditionalIndependenceModel[¶](#gaussianconditionalindependencemodel "Permalink to this headline")
+# GaussianConditionalIndependenceModel
 
 <span id="undefined" />
 

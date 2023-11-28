@@ -1,4 +1,4 @@
-# qiskit.chemistry.drivers.HFMethodType[¶](#qiskit-chemistry-drivers-hfmethodtype "Permalink to this headline")
+# qiskit.chemistry.drivers.HFMethodType
 
 <span id="undefined" />
 

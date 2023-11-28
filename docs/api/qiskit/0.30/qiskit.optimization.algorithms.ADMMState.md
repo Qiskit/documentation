@@ -1,4 +1,4 @@
-# ADMMState[¶](#admmstate "Permalink to this headline")
+# ADMMState
 
 <span id="undefined" />
 

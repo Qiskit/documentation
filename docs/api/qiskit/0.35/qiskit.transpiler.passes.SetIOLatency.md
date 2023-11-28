@@ -1,4 +1,4 @@
-# SetIOLatency[¶](#setiolatency "Permalink to this headline")
+# SetIOLatency
 
 <span id="undefined" />
 

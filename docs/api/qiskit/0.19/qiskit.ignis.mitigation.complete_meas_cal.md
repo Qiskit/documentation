@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.mitigation.complete_meas_cal
 ---
 
-# complete\_meas\_cal[¶](#complete-meas-cal "Permalink to this headline")
+# complete\_meas\_cal
 
 <span id="qiskit.ignis.mitigation.complete_meas_cal" />
 

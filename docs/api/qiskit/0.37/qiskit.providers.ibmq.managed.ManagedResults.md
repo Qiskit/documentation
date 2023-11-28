@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.managed.ManagedResults
 ---
 
-# ManagedResults[¶](#managedresults "Permalink to this headline")
+# ManagedResults
 
 <span id="qiskit.providers.ibmq.managed.ManagedResults" />
 

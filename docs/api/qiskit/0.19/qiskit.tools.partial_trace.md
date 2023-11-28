@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.tools.partial_trace
 ---
 
-# partial\_trace[¶](#partial-trace "Permalink to this headline")
+# partial\_trace
 
 <span id="qiskit.tools.partial_trace" />
 

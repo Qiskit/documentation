@@ -1,4 +1,4 @@
-# qiskit.aqua.algorithms.QuantumAlgorithm[¶](#qiskit-aqua-algorithms-quantumalgorithm "Permalink to this headline")
+# qiskit.aqua.algorithms.QuantumAlgorithm
 
 <span id="undefined" />
 

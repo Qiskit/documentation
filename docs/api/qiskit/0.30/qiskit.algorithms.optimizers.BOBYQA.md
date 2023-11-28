@@ -1,4 +1,4 @@
-# BOBYQA[¶](#bobyqa "Permalink to this headline")
+# BOBYQA
 
 <span id="undefined" />
 

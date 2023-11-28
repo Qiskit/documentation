@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.MCMTVChain
 ---
 
-# MCMTVChain[¶](#mcmtvchain "Permalink to this headline")
+# MCMTVChain
 
 <span id="qiskit.circuit.library.MCMTVChain" />
 

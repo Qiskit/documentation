@@ -1,4 +1,4 @@
-# qiskit.algorithms.LinearSolverResult[¶](#qiskit-algorithms-linearsolverresult "Permalink to this headline")
+# qiskit.algorithms.LinearSolverResult
 
 <span id="undefined" />
 

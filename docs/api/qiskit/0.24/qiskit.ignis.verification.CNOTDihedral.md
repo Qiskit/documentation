@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-cnotdihedral" />
 
-# qiskit.ignis.verification.CNOTDihedral[¶](#qiskit-ignis-verification-cnotdihedral "Permalink to this headline")
+# qiskit.ignis.verification.CNOTDihedral
 
 <span id="undefined" />
 

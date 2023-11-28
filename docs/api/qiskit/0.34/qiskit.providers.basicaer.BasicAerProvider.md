@@ -1,4 +1,4 @@
-# BasicAerProvider[¶](#basicaerprovider "Permalink to this headline")
+# BasicAerProvider
 
 <span id="undefined" />
 

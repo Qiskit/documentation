@@ -1,4 +1,4 @@
-# NumPyDiscriminator[¶](#numpydiscriminator "Permalink to this headline")
+# NumPyDiscriminator
 
 <span id="undefined" />
 

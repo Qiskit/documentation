@@ -1,4 +1,4 @@
-# qiskit.pulse.builder.active\_backend[¶](#qiskit-pulse-builder-active-backend "Permalink to this headline")
+# qiskit.pulse.builder.active\_backend
 
 <span id="undefined" />
 

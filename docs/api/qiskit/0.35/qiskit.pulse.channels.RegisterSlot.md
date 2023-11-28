@@ -1,4 +1,4 @@
-# RegisterSlot[¶](#registerslot "Permalink to this headline")
+# RegisterSlot
 
 <span id="undefined" />
 

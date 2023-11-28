@@ -1,6 +1,6 @@
 <span id="qiskit-quantum-info-euler-angles-1q" />
 
-# qiskit.quantum\_info.euler\_angles\_1q[¶](#qiskit-quantum-info-euler-angles-1q "Permalink to this headline")
+# qiskit.quantum\_info.euler\_angles\_1q
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# VQE[¶](#vqe "Permalink to this headline")
+# VQE
 
 <span id="undefined" />
 

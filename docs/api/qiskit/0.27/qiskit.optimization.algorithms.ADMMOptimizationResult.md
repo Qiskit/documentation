@@ -1,4 +1,4 @@
-# qiskit.optimization.algorithms.ADMMOptimizationResult[¶](#qiskit-optimization-algorithms-admmoptimizationresult "Permalink to this headline")
+# qiskit.optimization.algorithms.ADMMOptimizationResult
 
 <span id="undefined" />
 

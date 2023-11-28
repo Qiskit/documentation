@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-legacy-commutator" />
 
-# qiskit.aqua.operators.legacy.commutator[¶](#qiskit-aqua-operators-legacy-commutator "Permalink to this headline")
+# qiskit.aqua.operators.legacy.commutator
 
 <span id="undefined" />
 

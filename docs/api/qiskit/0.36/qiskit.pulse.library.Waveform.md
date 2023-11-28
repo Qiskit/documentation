@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.library.Waveform
 ---
 
-# Waveform[¶](#waveform "Permalink to this headline")
+# Waveform
 
 <span id="qiskit.pulse.library.Waveform" />
 

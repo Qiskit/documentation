@@ -1,6 +1,6 @@
 <span id="qiskit-assembler-runconfig" />
 
-# qiskit.assembler.RunConfig[¶](#qiskit-assembler-runconfig "Permalink to this headline")
+# qiskit.assembler.RunConfig
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# BaseJob[¶](#basejob "Permalink to this headline")
+# BaseJob
 
 <span id="undefined" />
 

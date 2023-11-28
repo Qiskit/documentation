@@ -16,15 +16,11 @@ python_api_name: qiskit.chemistry
 
 <span id="module-qiskit.chemistry" />
 
-`qiskit.chemistry¶`
+`qiskit.chemistry`
 
 This is Qiskit’s chemistry module that provides for experimentation with chemistry domain problems such as ground state energy and excited state energies of molecules.
 
 ## Overview
-
-<span id="module-qiskit.chemistry" />
-
-`¶`
 
 This is an overview of the workings of the chemistry module and how it may be used. There are different levels of exposure to its functionality, allowing for experimentation at different abstractions. The outline below starts with the flow that provides the most control of the process.
 
@@ -34,7 +30,7 @@ Instead of using the FermionicOperator the [`core.Hamiltonian`](qiskit.chemistry
 
 Lastly the chemistry [`applications`](qiskit.chemistry.applications#module-qiskit.chemistry.applications "qiskit.chemistry.applications") may be used. These are given a chemistry driver and, in the case of [`MolecularGroundStateEnergy`](qiskit.chemistry.applications.MolecularGroundStateEnergy#qiskit.chemistry.applications.MolecularGroundStateEnergy "qiskit.chemistry.applications.MolecularGroundStateEnergy") an optional instance of an Aqua [`MinimumEigensolver`](qiskit.aqua.algorithms.MinimumEigensolver#qiskit.aqua.algorithms.MinimumEigensolver "qiskit.aqua.algorithms.MinimumEigensolver"), such as [`VQE`](qiskit.aqua.algorithms.VQE#qiskit.aqua.algorithms.VQE "qiskit.aqua.algorithms.VQE"). Optional since components such as [`UCCSD`](qiskit.chemistry.components.variational_forms.UCCSD#qiskit.chemistry.components.variational_forms.UCCSD "qiskit.chemistry.components.variational_forms.UCCSD") need certain information that may be unknown at this point. So alternatively, when its method [`compute_energy()`](qiskit.chemistry.applications.MolecularGroundStateEnergy#qiskit.chemistry.applications.MolecularGroundStateEnergy.compute_energy "qiskit.chemistry.applications.MolecularGroundStateEnergy.compute_energy") is run a callback can be provided which will later be passed information, such as number of particles and orbitals, and allow a complete MinimumEigensolver to be built using say UCCSD with HartreeFock, and subsequently returned to the application and run. MinimumEigensolver itself uses the core.Hamiltonian class wrapping it to form this high level application.
 
-### Mappings[¶](#mappings "Permalink to this headline")
+### Mappings
 
 To map the FermionicOperator to a qubit operator the chemistry module supports the following mappings:
 
@@ -58,19 +54,11 @@ The classes and submodules of qiskit.chemistry are now listed for reference:
 
 ## Chemistry Error
 
-<span id="module-qiskit.chemistry" />
-
-`¶`
-
 |                                                                                                                                               |                                                         |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
 | [`QiskitChemistryError`](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") | Class for errors returned by Qiskit’s Chemistry module. |
 
 ## Chemistry Classes
-
-<span id="module-qiskit.chemistry" />
-
-`¶`
 
 |                                                                                                                                   |                                                                                      |
 | --------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
@@ -81,10 +69,6 @@ The classes and submodules of qiskit.chemistry are now listed for reference:
 | [`MP2Info`](qiskit.chemistry.MP2Info#qiskit.chemistry.MP2Info "qiskit.chemistry.MP2Info")                                         | A utility class for Moller-Plesset 2nd order (MP2) information                       |
 
 ## Submodules
-
-<span id="module-qiskit.chemistry" />
-
-`¶`
 
 |                                                                                                                                  |                                                                                                                                                                           |
 | -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

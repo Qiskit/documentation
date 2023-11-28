@@ -1,6 +1,6 @@
 <span id="qiskit-providers-ibmq-backendjoblimit" />
 
-# qiskit.providers.ibmq.BackendJobLimit[¶](#qiskit-providers-ibmq-backendjoblimit "Permalink to this headline")
+# qiskit.providers.ibmq.BackendJobLimit
 
 <span id="undefined" />
 

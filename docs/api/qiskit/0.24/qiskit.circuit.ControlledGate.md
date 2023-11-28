@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-controlledgate" />
 
-# qiskit.circuit.ControlledGate[¶](#qiskit-circuit-controlledgate "Permalink to this headline")
+# qiskit.circuit.ControlledGate
 
 <span id="undefined" />
 

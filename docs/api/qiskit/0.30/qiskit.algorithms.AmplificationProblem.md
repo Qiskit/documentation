@@ -1,4 +1,4 @@
-# AmplificationProblem[¶](#amplificationproblem "Permalink to this headline")
+# AmplificationProblem
 
 <span id="undefined" />
 

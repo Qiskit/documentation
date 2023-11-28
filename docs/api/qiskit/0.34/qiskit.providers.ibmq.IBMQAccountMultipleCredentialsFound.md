@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound[¶](#qiskit-providers-ibmq-ibmqaccountmultiplecredentialsfound "Permalink to this headline")
+# qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound
 
 <span id="undefined" />
 

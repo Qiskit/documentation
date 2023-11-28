@@ -1,4 +1,4 @@
-# AlignSequential[¶](#alignsequential "Permalink to this headline")
+# AlignSequential
 
 <span id="undefined" />
 

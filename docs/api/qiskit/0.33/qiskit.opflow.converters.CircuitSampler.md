@@ -1,4 +1,4 @@
-# CircuitSampler[¶](#circuitsampler "Permalink to this headline")
+# CircuitSampler
 
 <span id="undefined" />
 

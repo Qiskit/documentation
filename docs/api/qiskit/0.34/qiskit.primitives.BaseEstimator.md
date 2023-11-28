@@ -1,4 +1,4 @@
-# BaseEstimator[¶](#baseestimator "Permalink to this headline")
+# BaseEstimator
 
 <span id="undefined" />
 

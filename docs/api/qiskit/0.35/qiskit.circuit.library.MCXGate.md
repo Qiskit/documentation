@@ -1,4 +1,4 @@
-# MCXGate[¶](#mcxgate "Permalink to this headline")
+# MCXGate
 
 <span id="undefined" />
 

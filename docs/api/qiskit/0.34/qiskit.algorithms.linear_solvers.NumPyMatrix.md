@@ -1,4 +1,4 @@
-# NumPyMatrix[¶](#numpymatrix "Permalink to this headline")
+# NumPyMatrix
 
 <span id="undefined" />
 

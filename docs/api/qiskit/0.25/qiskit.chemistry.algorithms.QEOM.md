@@ -1,4 +1,4 @@
-# qiskit.chemistry.algorithms.QEOM[¶](#qiskit-chemistry-algorithms-qeom "Permalink to this headline")
+# qiskit.chemistry.algorithms.QEOM
 
 <span id="undefined" />
 

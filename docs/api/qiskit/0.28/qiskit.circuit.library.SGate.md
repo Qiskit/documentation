@@ -1,4 +1,4 @@
-# qiskit.circuit.library.SGate[¶](#qiskit-circuit-library-sgate "Permalink to this headline")
+# qiskit.circuit.library.SGate
 
 <span id="undefined" />
 

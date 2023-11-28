@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.CSGate
 ---
 
-# CSGate[¶](#csgate "Permalink to this headline")
+# CSGate
 
 <span id="qiskit.circuit.library.CSGate" />
 

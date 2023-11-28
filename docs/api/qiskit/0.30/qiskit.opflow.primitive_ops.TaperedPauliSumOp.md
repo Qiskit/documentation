@@ -1,4 +1,4 @@
-# TaperedPauliSumOp[¶](#taperedpaulisumop "Permalink to this headline")
+# TaperedPauliSumOp
 
 <span id="undefined" />
 

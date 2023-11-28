@@ -1,4 +1,4 @@
-# QasmBackendConfiguration[¶](#qasmbackendconfiguration "Permalink to this headline")
+# QasmBackendConfiguration
 
 <span id="undefined" />
 

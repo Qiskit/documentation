@@ -1,4 +1,4 @@
-# qiskit.visualization.pulse\_v2.draw[¶](#qiskit-visualization-pulse-v2-draw "Permalink to this headline")
+# qiskit.visualization.pulse\_v2.draw
 
 <span id="undefined" />
 

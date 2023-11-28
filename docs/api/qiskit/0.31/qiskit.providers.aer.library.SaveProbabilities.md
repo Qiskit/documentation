@@ -1,4 +1,4 @@
-# SaveProbabilities[¶](#saveprobabilities "Permalink to this headline")
+# SaveProbabilities
 
 <span id="undefined" />
 

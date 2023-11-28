@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-width" />
 
-# qiskit.transpiler.passes.Width[¶](#qiskit-transpiler-passes-width "Permalink to this headline")
+# qiskit.transpiler.passes.Width
 
 <span id="undefined" />
 

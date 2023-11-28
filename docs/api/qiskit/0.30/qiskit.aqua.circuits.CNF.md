@@ -1,4 +1,4 @@
-# CNF[¶](#cnf "Permalink to this headline")
+# CNF
 
 <span id="undefined" />
 

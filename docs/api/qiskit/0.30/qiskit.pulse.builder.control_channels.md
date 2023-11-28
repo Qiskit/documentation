@@ -1,4 +1,4 @@
-# qiskit.pulse.builder.control\_channels[¶](#qiskit-pulse-builder-control-channels "Permalink to this headline")
+# qiskit.pulse.builder.control\_channels
 
 <span id="undefined" />
 

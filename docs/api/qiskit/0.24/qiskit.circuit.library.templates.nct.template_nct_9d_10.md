@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-templates-nct-template-nct-9d-10" />
 
-# qiskit.circuit.library.templates.nct.template\_nct\_9d\_10[¶](#qiskit-circuit-library-templates-nct-template-nct-9d-10 "Permalink to this headline")
+# qiskit.circuit.library.templates.nct.template\_nct\_9d\_10
 
 <span id="undefined" />
 

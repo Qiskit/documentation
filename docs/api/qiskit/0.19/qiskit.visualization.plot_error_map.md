@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.plot_error_map
 ---
 
-# plot\_error\_map[¶](#plot-error-map "Permalink to this headline")
+# plot\_error\_map
 
 <span id="qiskit.visualization.plot_error_map" />
 

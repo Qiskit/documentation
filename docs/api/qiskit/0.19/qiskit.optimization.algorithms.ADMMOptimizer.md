@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.optimization.algorithms.ADMMOptimizer
 ---
 
-# ADMMOptimizer[¶](#admmoptimizer "Permalink to this headline")
+# ADMMOptimizer
 
 <span id="qiskit.optimization.algorithms.ADMMOptimizer" />
 

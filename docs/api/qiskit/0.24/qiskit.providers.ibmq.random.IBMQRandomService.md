@@ -1,6 +1,6 @@
 <span id="qiskit-providers-ibmq-random-ibmqrandomservice" />
 
-# qiskit.providers.ibmq.random.IBMQRandomService[¶](#qiskit-providers-ibmq-random-ibmqrandomservice "Permalink to this headline")
+# qiskit.providers.ibmq.random.IBMQRandomService
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# ASAPScheduleAnalysis[¶](#asapscheduleanalysis "Permalink to this headline")
+# ASAPScheduleAnalysis
 
 <span id="undefined" />
 

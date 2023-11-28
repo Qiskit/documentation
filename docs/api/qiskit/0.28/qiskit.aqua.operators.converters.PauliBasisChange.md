@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.converters.PauliBasisChange[¶](#qiskit-aqua-operators-converters-paulibasischange "Permalink to this headline")
+# qiskit.aqua.operators.converters.PauliBasisChange
 
 <span id="undefined" />
 

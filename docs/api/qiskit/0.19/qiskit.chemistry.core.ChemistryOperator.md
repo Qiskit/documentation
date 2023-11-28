@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.chemistry.core.ChemistryOperator
 ---
 
-# ChemistryOperator[¶](#chemistryoperator "Permalink to this headline")
+# ChemistryOperator
 
 <span id="qiskit.chemistry.core.ChemistryOperator" />
 

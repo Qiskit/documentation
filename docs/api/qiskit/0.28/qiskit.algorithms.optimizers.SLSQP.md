@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.SLSQP[¶](#qiskit-algorithms-optimizers-slsqp "Permalink to this headline")
+# qiskit.algorithms.optimizers.SLSQP
 
 <span id="undefined" />
 

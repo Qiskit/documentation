@@ -1,4 +1,4 @@
-# Zero[¶](#zero "Permalink to this headline")
+# Zero
 
 <span id="undefined" />
 

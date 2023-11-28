@@ -1,4 +1,4 @@
-# qiskit.pulse.instructions.SetPhase[¶](#qiskit-pulse-instructions-setphase "Permalink to this headline")
+# qiskit.pulse.instructions.SetPhase
 
 <span id="undefined" />
 

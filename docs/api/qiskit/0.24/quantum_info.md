@@ -16,13 +16,9 @@ python_api_name: qiskit.quantum_info
 
 <span id="module-qiskit.quantum_info" />
 
-`qiskit.quantum_info¶`
+`qiskit.quantum_info`
 
 ## Operators
-
-<span id="module-qiskit.quantum_info" />
-
-`¶`
 
 |                                                                                                                                                    |                                                            |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
@@ -39,20 +35,12 @@ python_api_name: qiskit.quantum_info
 
 ## States
 
-<span id="module-qiskit.quantum_info" />
-
-`¶`
-
 |                                                                                                                                           |                     |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ------------------- |
 | [`Statevector`](qiskit.quantum_info.Statevector#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")(data\[, dims])         | Statevector class   |
 | [`DensityMatrix`](qiskit.quantum_info.DensityMatrix#qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")(data\[, dims]) | DensityMatrix class |
 
 ## Channels
-
-<span id="module-qiskit.quantum_info" />
-
-`¶`
 
 |                                                                                                                                                        |                                                                  |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
@@ -64,10 +52,6 @@ python_api_name: qiskit.quantum_info
 | [`PTM`](qiskit.quantum_info.PTM#qiskit.quantum_info.PTM "qiskit.quantum_info.PTM")(data\[, input\_dims, output\_dims])                                 | Pauli Transfer Matrix (PTM) representation of a Quantum Channel. |
 
 ## Measures
-
-<span id="module-qiskit.quantum_info" />
-
-`¶`
 
 |                                                                                                                                                                                   |                                                              |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
@@ -84,20 +68,12 @@ python_api_name: qiskit.quantum_info
 
 ## Utility Functions
 
-<span id="module-qiskit.quantum_info" />
-
-`¶`
-
 |                                                                                                                                                   |                                                                     |
 | ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | [`partial_trace`](qiskit.quantum_info.partial_trace#qiskit.quantum_info.partial_trace "qiskit.quantum_info.partial_trace")(state, qargs)          | Return reduced density matrix by tracing out part of quantum state. |
 | [`shannon_entropy`](qiskit.quantum_info.shannon_entropy#qiskit.quantum_info.shannon_entropy "qiskit.quantum_info.shannon_entropy")(pvec\[, base]) | Compute the Shannon entropy of a probability vector.                |
 
 ## Random
-
-<span id="module-qiskit.quantum_info" />
-
-`¶`
 
 |                                                                                                                                                                                                |                                           |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
@@ -113,19 +89,11 @@ python_api_name: qiskit.quantum_info
 
 ## Analysis
 
-<span id="module-qiskit.quantum_info" />
-
-`¶`
-
 |                                                                                                                                                                  |                                                                   |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | [`hellinger_fidelity`](qiskit.quantum_info.hellinger_fidelity#qiskit.quantum_info.hellinger_fidelity "qiskit.quantum_info.hellinger_fidelity")(dist\_p, dist\_q) | Computes the Hellinger fidelity between two counts distributions. |
 
 ## Synthesis
-
-<span id="module-qiskit.quantum_info" />
-
-`¶`
 
 |                                                                                                                                                                                |                                                                                                |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |

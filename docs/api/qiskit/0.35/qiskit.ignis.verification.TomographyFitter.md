@@ -1,4 +1,4 @@
-# TomographyFitter[¶](#tomographyfitter "Permalink to this headline")
+# TomographyFitter
 
 <span id="undefined" />
 

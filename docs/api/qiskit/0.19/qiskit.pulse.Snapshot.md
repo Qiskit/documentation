@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.Snapshot
 ---
 
-# Snapshot[¶](#snapshot "Permalink to this headline")
+# Snapshot
 
 <span id="qiskit.pulse.Snapshot" />
 

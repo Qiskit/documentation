@@ -1,4 +1,4 @@
-# qiskit.visualization.plot\_state\_city[¶](#qiskit-visualization-plot-state-city "Permalink to this headline")
+# qiskit.visualization.plot\_state\_city
 
 <span id="undefined" />
 

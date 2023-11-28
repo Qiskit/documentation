@@ -16,13 +16,9 @@ python_api_name: qiskit.ignis.characterization
 
 <span id="module-qiskit.ignis.characterization" />
 
-`qiskit.ignis.characterization¶`
+`qiskit.ignis.characterization`
 
 ## Calibrations
-
-<span id="module-qiskit.ignis.characterization" />
-
-`¶`
 
 |                                                                                                                                                                                                 |                                                                          |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
@@ -34,10 +30,6 @@ python_api_name: qiskit.ignis.characterization
 | [`update_u_gates`](qiskit.ignis.characterization.update_u_gates#qiskit.ignis.characterization.update_u_gates "qiskit.ignis.characterization.update_u_gates")(drag\_params\[, …])                | Update the cmd\_def with new single qubit gate values                    |
 
 ## Coherence
-
-<span id="module-qiskit.ignis.characterization" />
-
-`¶`
 
 Design and analyze experiments for characterizing device coherence (e.g. T1, T2). See the following example of T1 estimation.
 
@@ -146,10 +138,6 @@ plt.show()
 
 ## Gates
 
-<span id="module-qiskit.ignis.characterization" />
-
-`¶`
-
 |                                                                                                                                                                                                               |                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | [`ampcal_1Q_circuits`](qiskit.ignis.characterization.ampcal_1Q_circuits#qiskit.ignis.characterization.ampcal_1Q_circuits "qiskit.ignis.characterization.ampcal_1Q_circuits")(max\_reps, qubits)               | Generates circuit for measuring the amplitude error of the single qubit gates |
@@ -163,20 +151,12 @@ plt.show()
 
 ## Hamiltonian
 
-<span id="module-qiskit.ignis.characterization" />
-
-`¶`
-
 |                                                                                                                                                                                         |                                     |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | [`zz_circuits`](qiskit.ignis.characterization.zz_circuits#qiskit.ignis.characterization.zz_circuits "qiskit.ignis.characterization.zz_circuits")(num\_of\_gates, gate\_time, qubits, …) | Generates circuit for measuring ZZ. |
 | [`ZZFitter`](qiskit.ignis.characterization.ZZFitter#qiskit.ignis.characterization.ZZFitter "qiskit.ignis.characterization.ZZFitter")(backend\_result, xdata, qubits, …)                 | ZZ fitter                           |
 
 ## Base Fitters
-
-<span id="module-qiskit.ignis.characterization" />
-
-`¶`
 
 |                                                                                                                                                                                                        |                                                |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------- |

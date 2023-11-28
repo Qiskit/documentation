@@ -14,7 +14,7 @@ python_api_name: qiskit.result
 
 <span id="module-qiskit.result" />
 
-`qiskit.result¶`
+`qiskit.result`
 
 |                                                                                                                                                  |                                                                      |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- |
@@ -24,10 +24,6 @@ python_api_name: qiskit.result
 | [`marginal_counts`](qiskit.result.marginal_counts#qiskit.result.marginal_counts "qiskit.result.marginal_counts")(result\[, indices, inplace, …]) | Marginalize counts from an experiment over some indices of interest. |
 
 ## Distributions
-
-<span id="module-qiskit.result" />
-
-`¶`
 
 |                                                                                                                                          |                                                          |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |

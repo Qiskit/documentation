@@ -1,4 +1,4 @@
-# qiskit.providers.aer.noise.coherent\_unitary\_error[¶](#qiskit-providers-aer-noise-coherent-unitary-error "Permalink to this headline")
+# qiskit.providers.aer.noise.coherent\_unitary\_error
 
 <span id="undefined" />
 

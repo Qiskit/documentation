@@ -1,4 +1,4 @@
-# RYYGate[¶](#ryygate "Permalink to this headline")
+# RYYGate
 
 <span id="undefined" />
 

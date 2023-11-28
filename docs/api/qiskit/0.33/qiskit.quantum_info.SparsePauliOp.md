@@ -1,4 +1,4 @@
-# SparsePauliOp[¶](#sparsepauliop "Permalink to this headline")
+# SparsePauliOp
 
 <span id="undefined" />
 

@@ -1,10 +1,10 @@
 <span id="qiskit-algorithms-optimizers-nlopts" />
 
-# qiskit.algorithms.optimizers.nlopts[¶](#module-qiskit.algorithms.optimizers.nlopts "Permalink to this headline")
+# qiskit.algorithms.optimizers.nlopts
 
 <span id="id1" />
 
-## Installing NLopt[¶](#installing-nlopt "Permalink to this headline")
+## Installing NLopt
 
 In order to use any of the NLOpt based global optimizers NLopt must be installed. The [NLopt download and installation instructions](https://nlopt.readthedocs.io/en/latest/#download-and-installation) describe how to do this.
 

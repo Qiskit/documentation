@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-algorithms-pes-samplers-energysurfacebase" />
 
-# qiskit.chemistry.algorithms.pes\_samplers.EnergySurfaceBase[¶](#qiskit-chemistry-algorithms-pes-samplers-energysurfacebase "Permalink to this headline")
+# qiskit.chemistry.algorithms.pes\_samplers.EnergySurfaceBase
 
 <span id="undefined" />
 

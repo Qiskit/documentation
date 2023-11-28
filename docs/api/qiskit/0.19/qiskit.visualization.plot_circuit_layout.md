@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.plot_circuit_layout
 ---
 
-# plot\_circuit\_layout[¶](#plot-circuit-layout "Permalink to this headline")
+# plot\_circuit\_layout
 
 <span id="qiskit.visualization.plot_circuit_layout" />
 

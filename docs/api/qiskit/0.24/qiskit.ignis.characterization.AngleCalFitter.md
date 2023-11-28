@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-characterization-anglecalfitter" />
 
-# qiskit.ignis.characterization.AngleCalFitter[¶](#qiskit-ignis-characterization-anglecalfitter "Permalink to this headline")
+# qiskit.ignis.characterization.AngleCalFitter
 
 <span id="undefined" />
 

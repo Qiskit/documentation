@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.SetLayout
 ---
 
-# SetLayout[¶](#setlayout "Permalink to this headline")
+# SetLayout
 
 <span id="qiskit.transpiler.passes.SetLayout" />
 

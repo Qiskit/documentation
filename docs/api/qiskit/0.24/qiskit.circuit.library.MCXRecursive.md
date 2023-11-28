@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-mcxrecursive" />
 
-# qiskit.circuit.library.MCXRecursive[¶](#qiskit-circuit-library-mcxrecursive "Permalink to this headline")
+# qiskit.circuit.library.MCXRecursive
 
 <span id="undefined" />
 

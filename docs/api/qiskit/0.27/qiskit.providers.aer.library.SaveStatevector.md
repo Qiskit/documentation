@@ -1,4 +1,4 @@
-# qiskit.providers.aer.library.SaveStatevector[¶](#qiskit-providers-aer-library-savestatevector "Permalink to this headline")
+# qiskit.providers.aer.library.SaveStatevector
 
 <span id="undefined" />
 

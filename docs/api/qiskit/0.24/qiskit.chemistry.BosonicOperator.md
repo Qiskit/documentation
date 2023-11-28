@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-bosonicoperator" />
 
-# qiskit.chemistry.BosonicOperator[¶](#qiskit-chemistry-bosonicoperator "Permalink to this headline")
+# qiskit.chemistry.BosonicOperator
 
 <span id="undefined" />
 

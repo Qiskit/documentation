@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ml.datasets.gaussian
 ---
 
-# gaussian[¶](#gaussian "Permalink to this headline")
+# gaussian
 
 <span id="qiskit.ml.datasets.gaussian" />
 

@@ -1,4 +1,4 @@
-# Qiskit IBM Quantum Provider API Reference[¶](#qiskit-ibm-quantum-provider-api-reference "Permalink to this headline")
+# Qiskit IBM Quantum Provider API Reference
 
 *   [IBM Quantum Provider (`qiskit.providers.ibmq`)](ibmq_provider)
 *   [Job (`qiskit.providers.ibmq.job`)](ibmq_job)

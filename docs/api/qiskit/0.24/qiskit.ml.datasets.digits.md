@@ -1,6 +1,6 @@
 <span id="qiskit-ml-datasets-digits" />
 
-# qiskit.ml.datasets.digits[¶](#qiskit-ml-datasets-digits "Permalink to this headline")
+# qiskit.ml.datasets.digits
 
 <span id="undefined" />
 

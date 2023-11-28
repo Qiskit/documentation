@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.channels.RegisterSlot
 ---
 
-# RegisterSlot[¶](#registerslot "Permalink to this headline")
+# RegisterSlot
 
 <span id="qiskit.pulse.channels.RegisterSlot" />
 

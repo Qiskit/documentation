@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-builder-align-sequential" />
 
-# qiskit.pulse.builder.align\_sequential[¶](#qiskit-pulse-builder-align-sequential "Permalink to this headline")
+# qiskit.pulse.builder.align\_sequential
 
 <span id="undefined" />
 

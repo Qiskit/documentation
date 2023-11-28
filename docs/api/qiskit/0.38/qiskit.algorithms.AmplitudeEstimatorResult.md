@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.AmplitudeEstimatorResult
 ---
 
-# AmplitudeEstimatorResult[¶](#amplitudeestimatorresult "Permalink to this headline")
+# AmplitudeEstimatorResult
 
 <span id="qiskit.algorithms.AmplitudeEstimatorResult" />
 

@@ -14,7 +14,7 @@ python_api_name: qiskit.utils
 
 <span id="module-qiskit.utils" />
 
-`qiskit.utils¶`
+`qiskit.utils`
 
 |                                                                                                               |                                                                                                                 |
 | ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
@@ -27,10 +27,6 @@ python_api_name: qiskit.utils
 | [`wrap_method`](qiskit.utils.wrap_method "qiskit.utils.wrap_method")(cls, name, \*\[, before, after])         | Wrap the functionality the instance- or class method `cls.name` with additional behaviour `before` and `after`. |
 
 ## Algorithm Utilities
-
-<span id="module-qiskit.utils" />
-
-`¶`
 
 |                                                                                                                       |                                                                              |
 | --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
@@ -54,13 +50,13 @@ A QuantumInstance holds the Qiskit backend as well as a number of compile and ru
 
 <span id="module-qiskit.utils" />
 
-`qiskit.utils.optionals¶`
+`qiskit.utils.optionals`
 
 Qiskit Terra, and many of the other Qiskit components, have several features that are enabled only if certain *optional* dependencies are satisfied. This module is a collection of objects that can be used to test if certain functionality is available, and optionally raise `MissingOptionalLibraryError` if the functionality is not available.
 
-### Available Testers[¶](#available-testers "Permalink to this headline")
+### Available Testers
 
-#### Qiskit Components[¶](#qiskit-components "Permalink to this headline")
+#### Qiskit Components
 
 |                |                                                                                                                                                                                |
 | -------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -69,7 +65,7 @@ Qiskit Terra, and many of the other Qiskit components, have several features tha
 | **HAS\_IGNIS** | `Qiskit Ignis` provides tools for quantum hardware verification, noise characterization, and error correction.                                                                 |
 | **HAS\_TOQM**  | [Qiskit TOQM](https://github.com/qiskit-toqm/qiskit-toqm) provides transpiler passes for the [Time-optimal Qubit mapping algorithm](https://doi.org/10.1145/3445814.3446706).  |
 
-#### External Python Libraries[¶](#external-python-libraries "Permalink to this headline")
+#### External Python Libraries
 
 |                     |                                                                                                                                                                                                                                                                                                                                                                                                        |
 | ------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
@@ -95,7 +91,7 @@ Qiskit Terra, and many of the other Qiskit components, have several features tha
 | **HAS\_TESTTOOLS**  | Qiskit Terra’s test suite has more advanced functionality available if the optional [testtools](https://pypi.org/project/testtools/) library is installed. This is generally only needed for Qiskit developers.                                                                                                                                                                                        |
 | **HAS\_Z3**         | [Z3](https://github.com/Z3Prover/z3) is a theorem prover, used in the [`CrosstalkAdaptiveSchedule`](qiskit.transpiler.passes.CrosstalkAdaptiveSchedule "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule") and [`HoareOptimizer`](qiskit.transpiler.passes.HoareOptimizer "qiskit.transpiler.passes.HoareOptimizer") transpiler passes.                                                              |
 
-#### External Command-Line Tools[¶](#external-command-line-tools "Permalink to this headline")
+#### External Command-Line Tools
 
 |                     |                                                                                                                                                                                                                                              |
 | ------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -103,7 +99,7 @@ Qiskit Terra, and many of the other Qiskit components, have several features tha
 | **HAS\_PDFLATEX**   | Visualisation tools that use LaTeX in their output, such as the circuit drawers, require `pdflatex` to be available. You will generally need to ensure that you have a working LaTeX installation available, and the `qcircuit.tex` package. |
 | **HAS\_PDFTOCAIRO** | Visualisation tools that convert LaTeX-generated files into rasterised images use the `pdftocairo` tool. This is part of the [Poppler suite of PDF tools](https://poppler.freedesktop.org/).                                                 |
 
-### Lazy Checker Classes[¶](#lazy-checker-classes "Permalink to this headline")
+### Lazy Checker Classes
 
 Each of the lazy checkers is an instance of [`LazyDependencyManager`](#qiskit.utils.LazyDependencyManager "qiskit.utils.LazyDependencyManager") in one of its two subclasses: [`LazyImportTester`](#qiskit.utils.LazyImportTester "qiskit.utils.LazyImportTester") and [`LazySubprocessTester`](#qiskit.utils.LazySubprocessTester "qiskit.utils.LazySubprocessTester"). These should be imported from [`utils`](aer_utils#module-qiskit.providers.aer.utils "qiskit.providers.aer.utils") directly if required, such as:
 

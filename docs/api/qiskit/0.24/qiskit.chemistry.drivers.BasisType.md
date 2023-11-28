@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-drivers-basistype" />
 
-# qiskit.chemistry.drivers.BasisType[¶](#qiskit-chemistry-drivers-basistype "Permalink to this headline")
+# qiskit.chemistry.drivers.BasisType
 
 <span id="undefined" />
 

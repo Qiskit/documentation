@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.validation.BaseModel
 ---
 
-# BaseModel[¶](#basemodel "Permalink to this headline")
+# BaseModel
 
 <span id="qiskit.validation.BaseModel" />
 

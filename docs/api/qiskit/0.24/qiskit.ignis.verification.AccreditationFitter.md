@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-accreditationfitter" />
 
-# qiskit.ignis.verification.AccreditationFitter[¶](#qiskit-ignis-verification-accreditationfitter "Permalink to this headline")
+# qiskit.ignis.verification.AccreditationFitter
 
 <span id="undefined" />
 

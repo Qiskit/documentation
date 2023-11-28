@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.algorithms.DeutschJozsa
 ---
 
-# DeutschJozsa[¶](#deutschjozsa "Permalink to this headline")
+# DeutschJozsa
 
 <span id="qiskit.aqua.algorithms.DeutschJozsa" />
 

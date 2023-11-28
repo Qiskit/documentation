@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.SPSA
 ---
 
-# SPSA[¶](#spsa "Permalink to this headline")
+# SPSA
 
 <span id="qiskit.algorithms.optimizers.SPSA" />
 

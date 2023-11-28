@@ -1,4 +1,4 @@
-# qiskit.circuit.qpy\_serialization.load[¶](#qiskit-circuit-qpy-serialization-load "Permalink to this headline")
+# qiskit.circuit.qpy\_serialization.load
 
 <span id="undefined" />
 

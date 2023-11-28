@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.NELDER\_MEAD[¶](#qiskit-algorithms-optimizers-nelder-mead "Permalink to this headline")
+# qiskit.algorithms.optimizers.NELDER\_MEAD
 
 <span id="undefined" />
 

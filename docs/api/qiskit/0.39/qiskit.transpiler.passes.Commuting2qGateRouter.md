@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.Commuting2qGateRouter
 ---
 
-# Commuting2qGateRouter[¶](#commuting2qgaterouter "Permalink to this headline")
+# Commuting2qGateRouter
 
 <span id="qiskit.transpiler.passes.Commuting2qGateRouter" />
 

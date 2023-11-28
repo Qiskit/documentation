@@ -1,6 +1,6 @@
 <span id="qiskit-providers-models-backendproperties" />
 
-# qiskit.providers.models.BackendProperties[¶](#qiskit-providers-models-backendproperties "Permalink to this headline")
+# qiskit.providers.models.BackendProperties
 
 <span id="undefined" />
 

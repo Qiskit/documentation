@@ -1,4 +1,4 @@
-# qiskit.providers.aer.pulse.duffing\_system\_model[¶](#qiskit-providers-aer-pulse-duffing-system-model "Permalink to this headline")
+# qiskit.providers.aer.pulse.duffing\_system\_model
 
 <span id="undefined" />
 

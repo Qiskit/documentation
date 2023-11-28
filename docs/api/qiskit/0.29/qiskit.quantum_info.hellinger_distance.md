@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.hellinger\_distance[¶](#qiskit-quantum-info-hellinger-distance "Permalink to this headline")
+# qiskit.quantum\_info.hellinger\_distance
 
 <span id="undefined" />
 

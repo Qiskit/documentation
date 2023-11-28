@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.Target
 ---
 
-# Target[¶](#target "Permalink to this headline")
+# Target
 
 <span id="qiskit.transpiler.Target" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-characterization-t2starfitter" />
 
-# qiskit.ignis.characterization.T2StarFitter[¶](#qiskit-ignis-characterization-t2starfitter "Permalink to this headline")
+# qiskit.ignis.characterization.T2StarFitter
 
 <span id="undefined" />
 

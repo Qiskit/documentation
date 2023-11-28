@@ -1,4 +1,4 @@
-# MCPhaseGate[¶](#mcphasegate "Permalink to this headline")
+# MCPhaseGate
 
 <span id="undefined" />
 

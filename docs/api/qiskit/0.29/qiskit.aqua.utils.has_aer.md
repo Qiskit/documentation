@@ -1,4 +1,4 @@
-# qiskit.aqua.utils.has\_aer[¶](#qiskit-aqua-utils-has-aer "Permalink to this headline")
+# qiskit.aqua.utils.has\_aer
 
 <span id="undefined" />
 

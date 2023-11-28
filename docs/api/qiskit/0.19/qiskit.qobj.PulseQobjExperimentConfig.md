@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.qobj.PulseQobjExperimentConfig
 ---
 
-# PulseQobjExperimentConfig[¶](#pulseqobjexperimentconfig "Permalink to this headline")
+# PulseQobjExperimentConfig
 
 <span id="qiskit.qobj.PulseQobjExperimentConfig" />
 

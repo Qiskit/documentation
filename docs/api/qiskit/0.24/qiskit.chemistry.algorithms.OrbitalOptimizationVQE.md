@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-algorithms-orbitaloptimizationvqe" />
 
-# qiskit.chemistry.algorithms.OrbitalOptimizationVQE[¶](#qiskit-chemistry-algorithms-orbitaloptimizationvqe "Permalink to this headline")
+# qiskit.chemistry.algorithms.OrbitalOptimizationVQE
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.list\_ops.ListOp[¶](#qiskit-aqua-operators-list-ops-listop "Permalink to this headline")
+# qiskit.aqua.operators.list\_ops.ListOp
 
 <span id="undefined" />
 

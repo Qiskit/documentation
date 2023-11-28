@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.converters.AbelianGrouper[¶](#qiskit-aqua-operators-converters-abeliangrouper "Permalink to this headline")
+# qiskit.aqua.operators.converters.AbelianGrouper
 
 <span id="undefined" />
 

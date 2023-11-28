@@ -1,4 +1,4 @@
-# qiskit.visualization.pulse\_v2.IQXDebugging[¶](#qiskit-visualization-pulse-v2-iqxdebugging "Permalink to this headline")
+# qiskit.visualization.pulse\_v2.IQXDebugging
 
 <span id="undefined" />
 

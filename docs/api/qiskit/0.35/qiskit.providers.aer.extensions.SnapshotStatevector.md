@@ -1,4 +1,4 @@
-# SnapshotStatevector[¶](#snapshotstatevector "Permalink to this headline")
+# SnapshotStatevector
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# IfElseOp[¶](#ifelseop "Permalink to this headline")
+# IfElseOp
 
 <span id="undefined" />
 

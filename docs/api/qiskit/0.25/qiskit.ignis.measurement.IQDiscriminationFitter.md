@@ -1,4 +1,4 @@
-# qiskit.ignis.measurement.IQDiscriminationFitter[¶](#qiskit-ignis-measurement-iqdiscriminationfitter "Permalink to this headline")
+# qiskit.ignis.measurement.IQDiscriminationFitter
 
 <span id="undefined" />
 

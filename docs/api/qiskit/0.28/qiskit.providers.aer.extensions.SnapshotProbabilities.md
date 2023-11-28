@@ -1,4 +1,4 @@
-# qiskit.providers.aer.extensions.SnapshotProbabilities[¶](#qiskit-providers-aer-extensions-snapshotprobabilities "Permalink to this headline")
+# qiskit.providers.aer.extensions.SnapshotProbabilities
 
 <span id="undefined" />
 

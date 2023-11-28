@@ -1,4 +1,4 @@
-# QuadraticProgramElement[¶](#quadraticprogramelement "Permalink to this headline")
+# QuadraticProgramElement
 
 <span id="undefined" />
 

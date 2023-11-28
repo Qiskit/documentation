@@ -1,4 +1,4 @@
-# qiskit.pulse.transforms.add\_implicit\_acquires[¶](#qiskit-pulse-transforms-add-implicit-acquires "Permalink to this headline")
+# qiskit.pulse.transforms.add\_implicit\_acquires
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.qasm.QasmHTMLStyle
 ---
 
-# QasmHTMLStyle[¶](#qasmhtmlstyle "Permalink to this headline")
+# QasmHTMLStyle
 
 <span id="qiskit.qasm.QasmHTMLStyle" />
 

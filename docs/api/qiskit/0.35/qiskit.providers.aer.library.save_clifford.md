@@ -1,4 +1,4 @@
-# qiskit.providers.aer.library.save\_clifford[¶](#qiskit-providers-aer-library-save-clifford "Permalink to this headline")
+# qiskit.providers.aer.library.save\_clifford
 
 <span id="undefined" />
 

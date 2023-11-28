@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.verification.CliffordUtils
 ---
 
-# CliffordUtils[¶](#cliffordutils "Permalink to this headline")
+# CliffordUtils
 
 <span id="qiskit.ignis.verification.CliffordUtils" />
 

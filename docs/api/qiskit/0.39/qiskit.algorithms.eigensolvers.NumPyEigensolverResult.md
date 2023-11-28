@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.eigensolvers.NumPyEigensolverResult
 ---
 
-# NumPyEigensolverResult[¶](#numpyeigensolverresult "Permalink to this headline")
+# NumPyEigensolverResult
 
 <span id="qiskit.algorithms.eigensolvers.NumPyEigensolverResult" />
 

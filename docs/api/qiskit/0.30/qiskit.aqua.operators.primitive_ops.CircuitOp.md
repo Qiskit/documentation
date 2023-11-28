@@ -1,4 +1,4 @@
-# CircuitOp[¶](#circuitop "Permalink to this headline")
+# CircuitOp
 
 <span id="undefined" />
 

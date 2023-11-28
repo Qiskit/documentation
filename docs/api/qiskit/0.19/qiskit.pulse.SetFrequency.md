@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.SetFrequency
 ---
 
-# SetFrequency[¶](#setfrequency "Permalink to this headline")
+# SetFrequency
 
 <span id="qiskit.pulse.SetFrequency" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-problems-linearexpression" />
 
-# qiskit.optimization.problems.LinearExpression[¶](#qiskit-optimization-problems-linearexpression "Permalink to this headline")
+# qiskit.optimization.problems.LinearExpression
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.circuit.library.clifford\_3\_1[¶](#qiskit-circuit-library-clifford-3-1 "Permalink to this headline")
+# qiskit.circuit.library.clifford\_3\_1
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.optimization.algorithms.MinimumEigenOptimizer
 ---
 
-# MinimumEigenOptimizer[¶](#minimumeigenoptimizer "Permalink to this headline")
+# MinimumEigenOptimizer
 
 <span id="qiskit.optimization.algorithms.MinimumEigenOptimizer" />
 

@@ -1,4 +1,4 @@
-# AmplitudeEstimator[¶](#amplitudeestimator "Permalink to this headline")
+# AmplitudeEstimator
 
 <span id="undefined" />
 

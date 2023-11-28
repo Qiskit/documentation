@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.state_fidelity
 ---
 
-# state\_fidelity[¶](#state-fidelity "Permalink to this headline")
+# state\_fidelity
 
 <span id="qiskit.quantum_info.state_fidelity" />
 

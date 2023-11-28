@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.utils.deprecate_function
 ---
 
-# qiskit.utils.deprecate\_function[¶](#qiskit-utils-deprecate-function "Permalink to this headline")
+# qiskit.utils.deprecate\_function
 
 <span id="qiskit.utils.deprecate_function" />
 

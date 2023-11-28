@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.chemistry.core.TransformationType
 ---
 
-# TransformationType[¶](#transformationtype "Permalink to this headline")
+# TransformationType
 
 <span id="qiskit.chemistry.core.TransformationType" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.QuadraticForm
 ---
 
-# QuadraticForm[¶](#quadraticform "Permalink to this headline")
+# QuadraticForm
 
 <span id="qiskit.circuit.library.QuadraticForm" />
 

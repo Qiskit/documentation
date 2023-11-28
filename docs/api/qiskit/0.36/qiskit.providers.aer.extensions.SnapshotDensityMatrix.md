@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.extensions.SnapshotDensityMatrix
 ---
 
-# SnapshotDensityMatrix[¶](#snapshotdensitymatrix "Permalink to this headline")
+# SnapshotDensityMatrix
 
 <span id="qiskit.providers.aer.extensions.SnapshotDensityMatrix" />
 

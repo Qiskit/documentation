@@ -1,4 +1,4 @@
-# SnapshotExpectationValue[¶](#snapshotexpectationvalue "Permalink to this headline")
+# SnapshotExpectationValue
 
 <span id="undefined" />
 

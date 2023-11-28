@@ -1,4 +1,4 @@
-# qiskit.circuit.library.QFT[¶](#qiskit-circuit-library-qft "Permalink to this headline")
+# qiskit.circuit.library.QFT
 
 <span id="undefined" />
 

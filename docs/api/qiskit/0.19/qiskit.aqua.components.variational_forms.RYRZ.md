@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.variational_forms.RYRZ
 ---
 
-# RYRZ[¶](#ryrz "Permalink to this headline")
+# RYRZ
 
 <span id="qiskit.aqua.components.variational_forms.RYRZ" />
 

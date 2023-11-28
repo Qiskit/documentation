@@ -1,4 +1,4 @@
-# LinearFunctionsToPermutations[¶](#linearfunctionstopermutations "Permalink to this headline")
+# LinearFunctionsToPermutations
 
 <span id="undefined" />
 

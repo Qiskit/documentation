@@ -1,4 +1,4 @@
-# CobylaOptimizer[¶](#cobylaoptimizer "Permalink to this headline")
+# CobylaOptimizer
 
 <span id="undefined" />
 

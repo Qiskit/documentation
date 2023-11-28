@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.IBMQFactory[¶](#qiskit-providers-ibmq-ibmqfactory "Permalink to this headline")
+# qiskit.providers.ibmq.IBMQFactory
 
 <span id="undefined" />
 

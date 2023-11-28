@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-algorithms-groundstateeigensolver" />
 
-# qiskit.chemistry.algorithms.GroundStateEigensolver[¶](#qiskit-chemistry-algorithms-groundstateeigensolver "Permalink to this headline")
+# qiskit.chemistry.algorithms.GroundStateEigensolver
 
 <span id="undefined" />
 

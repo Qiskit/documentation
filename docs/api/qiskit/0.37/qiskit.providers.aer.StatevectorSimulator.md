@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.StatevectorSimulator
 ---
 
-# StatevectorSimulator[¶](#statevectorsimulator "Permalink to this headline")
+# StatevectorSimulator
 
 <span id="qiskit.providers.aer.StatevectorSimulator" />
 

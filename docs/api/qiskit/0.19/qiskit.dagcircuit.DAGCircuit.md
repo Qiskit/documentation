@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.dagcircuit.DAGCircuit
 ---
 
-# DAGCircuit[¶](#dagcircuit "Permalink to this headline")
+# DAGCircuit
 
 <span id="qiskit.dagcircuit.DAGCircuit" />
 

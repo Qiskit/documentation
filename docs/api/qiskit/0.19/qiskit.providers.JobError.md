@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.JobError
 ---
 
-# JobError[¶](#joberror "Permalink to this headline")
+# JobError
 
 <span id="qiskit.providers.JobError" />
 

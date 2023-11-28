@@ -1,4 +1,4 @@
-# qiskit.assembler.disassemble[¶](#qiskit-assembler-disassemble "Permalink to this headline")
+# qiskit.assembler.disassemble
 
 <span id="undefined" />
 

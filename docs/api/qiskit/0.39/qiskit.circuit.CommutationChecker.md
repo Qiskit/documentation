@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.CommutationChecker
 ---
 
-# CommutationChecker[¶](#commutationchecker "Permalink to this headline")
+# CommutationChecker
 
 <span id="qiskit.circuit.CommutationChecker" />
 

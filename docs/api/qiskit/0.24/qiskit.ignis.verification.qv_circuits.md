@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-qv-circuits" />
 
-# qiskit.ignis.verification.qv\_circuits[¶](#qiskit-ignis-verification-qv-circuits "Permalink to this headline")
+# qiskit.ignis.verification.qv\_circuits
 
 <span id="undefined" />
 

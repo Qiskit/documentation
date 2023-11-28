@@ -1,4 +1,4 @@
-# qiskit.aqua.components.multiclass\_extensions.MulticlassExtension[¶](#qiskit-aqua-components-multiclass-extensions-multiclassextension "Permalink to this headline")
+# qiskit.aqua.components.multiclass\_extensions.MulticlassExtension
 
 <span id="undefined" />
 

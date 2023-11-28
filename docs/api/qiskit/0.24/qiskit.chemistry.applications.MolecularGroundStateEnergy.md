@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-applications-moleculargroundstateenergy" />
 
-# qiskit.chemistry.applications.MolecularGroundStateEnergy[¶](#qiskit-chemistry-applications-moleculargroundstateenergy "Permalink to this headline")
+# qiskit.chemistry.applications.MolecularGroundStateEnergy
 
 <span id="undefined" />
 

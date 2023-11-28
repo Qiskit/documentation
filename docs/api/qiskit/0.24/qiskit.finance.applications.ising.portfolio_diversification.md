@@ -12,10 +12,6 @@ python_api_name: qiskit.finance.applications.ising.portfolio_diversification
 
 # qiskit.finance.applications.ising.portfolio\_diversification
 
-<span id="module-qiskit.finance.applications.ising.portfolio_diversification" />
-
-`¶`
-
 portfolio diversification
 
 ## Functions

@@ -1,4 +1,4 @@
-# qiskit.aqua.components.reciprocals.Reciprocal[¶](#qiskit-aqua-components-reciprocals-reciprocal "Permalink to this headline")
+# qiskit.aqua.components.reciprocals.Reciprocal
 
 <span id="undefined" />
 

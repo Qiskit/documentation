@@ -1,4 +1,4 @@
-# Gaussian[¶](#gaussian "Permalink to this headline")
+# Gaussian
 
 <span id="undefined" />
 

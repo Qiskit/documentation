@@ -1,6 +1,6 @@
 <span id="qiskit-providers-provider" />
 
-# qiskit.providers.Provider[¶](#qiskit-providers-provider "Permalink to this headline")
+# qiskit.providers.Provider
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-problems-linearconstraint" />
 
-# qiskit.optimization.problems.LinearConstraint[¶](#qiskit-optimization-problems-linearconstraint "Permalink to this headline")
+# qiskit.optimization.problems.LinearConstraint
 
 <span id="undefined" />
 

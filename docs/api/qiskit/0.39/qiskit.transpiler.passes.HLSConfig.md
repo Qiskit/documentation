@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.HLSConfig
 ---
 
-# HLSConfig[¶](#hlsconfig "Permalink to this headline")
+# HLSConfig
 
 <span id="qiskit.transpiler.passes.HLSConfig" />
 

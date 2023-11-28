@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.finance.components.uncertainty_problems.EuropeanCallDelta
 ---
 
-# EuropeanCallDelta[¶](#europeancalldelta "Permalink to this headline")
+# EuropeanCallDelta
 
 <span id="qiskit.finance.components.uncertainty_problems.EuropeanCallDelta" />
 

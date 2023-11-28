@@ -12,23 +12,15 @@ python_api_name: qiskit.providers.aer
 
 <span id="module-qiskit.providers.aer" />
 
-`qiskit.providers.aer¶`
+`qiskit.providers.aer`
 
 ## Simulator Provider
-
-<span id="module-qiskit.providers.aer" />
-
-`¶`
 
 |                                                                                                                         |                                   |
 | ----------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
 | [`AerProvider`](qiskit.providers.aer.AerProvider#qiskit.providers.aer.AerProvider "qiskit.providers.aer.AerProvider")() | Provider for Qiskit Aer backends. |
 
 ## Simulator Backends
-
-<span id="module-qiskit.providers.aer" />
-
-`¶`
 
 |                                                                                                                                                                    |                                          |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------- |
@@ -37,10 +29,6 @@ python_api_name: qiskit.providers.aer
 
 ## Legacy Simulator Backends
 
-<span id="module-qiskit.providers.aer" />
-
-`¶`
-
 |                                                                                                                                                                                |                                             |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------- |
 | [`QasmSimulator`](qiskit.providers.aer.QasmSimulator#qiskit.providers.aer.QasmSimulator "qiskit.providers.aer.QasmSimulator")(\[configuration, properties, …])                 | Noisy quantum circuit simulator backend.    |
@@ -48,10 +36,6 @@ python_api_name: qiskit.providers.aer
 | [`UnitarySimulator`](qiskit.providers.aer.UnitarySimulator#qiskit.providers.aer.UnitarySimulator "qiskit.providers.aer.UnitarySimulator")(\[configuration, …])                 | Ideal quantum circuit unitary simulator.    |
 
 ## Exceptions
-
-<span id="module-qiskit.providers.aer" />
-
-`¶`
 
 |                                                                                                                      |                                             |
 | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |

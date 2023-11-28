@@ -1,4 +1,4 @@
-# SlsqpOptimizationResult[¶](#slsqpoptimizationresult "Permalink to this headline")
+# SlsqpOptimizationResult
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-optimizers-crs" />
 
-# qiskit.aqua.components.optimizers.CRS[¶](#qiskit-aqua-components-optimizers-crs "Permalink to this headline")
+# qiskit.aqua.components.optimizers.CRS
 
 <span id="undefined" />
 

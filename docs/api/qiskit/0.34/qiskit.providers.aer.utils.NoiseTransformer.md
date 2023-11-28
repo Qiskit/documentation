@@ -1,4 +1,4 @@
-# NoiseTransformer[¶](#noisetransformer "Permalink to this headline")
+# NoiseTransformer
 
 <span id="undefined" />
 

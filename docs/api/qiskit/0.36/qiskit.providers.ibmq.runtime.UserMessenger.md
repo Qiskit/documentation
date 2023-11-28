@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.runtime.UserMessenger
 ---
 
-# UserMessenger[¶](#usermessenger "Permalink to this headline")
+# UserMessenger
 
 <span id="qiskit.providers.ibmq.runtime.UserMessenger" />
 

@@ -1,4 +1,4 @@
-# Simon[¶](#simon "Permalink to this headline")
+# Simon
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# Clbit[¶](#clbit "Permalink to this headline")
+# Clbit
 
 <span id="undefined" />
 

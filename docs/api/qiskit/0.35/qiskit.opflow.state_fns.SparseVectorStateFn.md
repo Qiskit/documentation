@@ -1,4 +1,4 @@
-# SparseVectorStateFn[¶](#sparsevectorstatefn "Permalink to this headline")
+# SparseVectorStateFn
 
 <span id="undefined" />
 

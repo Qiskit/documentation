@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.verification.BasicUtils
 ---
 
-# BasicUtils[¶](#basicutils "Permalink to this headline")
+# BasicUtils
 
 <span id="qiskit.ignis.verification.BasicUtils" />
 

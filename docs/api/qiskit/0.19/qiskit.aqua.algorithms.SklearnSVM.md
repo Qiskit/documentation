@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.algorithms.SklearnSVM
 ---
 
-# SklearnSVM[¶](#sklearnsvm "Permalink to this headline")
+# SklearnSVM
 
 <span id="qiskit.aqua.algorithms.SklearnSVM" />
 

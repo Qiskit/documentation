@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.AerSimulator
 ---
 
-# AerSimulator[¶](#aersimulator "Permalink to this headline")
+# AerSimulator
 
 <span id="qiskit.providers.aer.AerSimulator" />
 

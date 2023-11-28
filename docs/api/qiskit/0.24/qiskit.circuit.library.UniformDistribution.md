@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-uniformdistribution" />
 
-# qiskit.circuit.library.UniformDistribution[¶](#qiskit-circuit-library-uniformdistribution "Permalink to this headline")
+# qiskit.circuit.library.UniformDistribution
 
 <span id="undefined" />
 

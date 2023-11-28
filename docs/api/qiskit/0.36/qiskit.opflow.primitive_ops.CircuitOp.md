@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.primitive_ops.CircuitOp
 ---
 
-# CircuitOp[¶](#circuitop "Permalink to this headline")
+# CircuitOp
 
 <span id="qiskit.opflow.primitive_ops.CircuitOp" />
 

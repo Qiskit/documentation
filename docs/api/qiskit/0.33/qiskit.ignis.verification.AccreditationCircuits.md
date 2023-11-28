@@ -1,4 +1,4 @@
-# AccreditationCircuits[¶](#accreditationcircuits "Permalink to this headline")
+# AccreditationCircuits
 
 <span id="undefined" />
 

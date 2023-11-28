@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-shiftfrequency" />
 
-# qiskit.pulse.ShiftFrequency[¶](#qiskit-pulse-shiftfrequency "Permalink to this headline")
+# qiskit.pulse.ShiftFrequency
 
 <span id="undefined" />
 

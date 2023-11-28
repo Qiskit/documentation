@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode
 ---
 
-# ErrorCorrectingCode[¶](#errorcorrectingcode "Permalink to this headline")
+# ErrorCorrectingCode
 
 <span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode" />
 

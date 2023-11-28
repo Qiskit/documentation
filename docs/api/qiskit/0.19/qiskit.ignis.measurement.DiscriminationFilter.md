@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.measurement.DiscriminationFilter
 ---
 
-# DiscriminationFilter[¶](#discriminationfilter "Permalink to this headline")
+# DiscriminationFilter
 
 <span id="qiskit.ignis.measurement.DiscriminationFilter" />
 

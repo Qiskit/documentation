@@ -1,4 +1,4 @@
-# CU1Gate[¶](#cu1gate "Permalink to this headline")
+# CU1Gate
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.verification.AccreditationCircuits
 ---
 
-# AccreditationCircuits[¶](#accreditationcircuits "Permalink to this headline")
+# AccreditationCircuits
 
 <span id="qiskit.ignis.verification.AccreditationCircuits" />
 

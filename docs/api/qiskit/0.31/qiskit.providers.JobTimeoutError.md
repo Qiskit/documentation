@@ -1,4 +1,4 @@
-# qiskit.providers.JobTimeoutError[¶](#qiskit-providers-jobtimeouterror "Permalink to this headline")
+# qiskit.providers.JobTimeoutError
 
 <span id="undefined" />
 

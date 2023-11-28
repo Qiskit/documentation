@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-alapschedule" />
 
-# qiskit.transpiler.passes.ALAPSchedule[¶](#qiskit-transpiler-passes-alapschedule "Permalink to this headline")
+# qiskit.transpiler.passes.ALAPSchedule
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# CYGate[¶](#cygate "Permalink to this headline")
+# CYGate
 
 <span id="undefined" />
 

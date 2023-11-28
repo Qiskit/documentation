@@ -1,4 +1,4 @@
-# RVGate[¶](#rvgate "Permalink to this headline")
+# RVGate
 
 <span id="undefined" />
 

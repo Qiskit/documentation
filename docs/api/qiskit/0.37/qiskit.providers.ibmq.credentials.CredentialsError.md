@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.credentials.CredentialsError
 ---
 
-# qiskit.providers.ibmq.credentials.CredentialsError[¶](#qiskit-providers-ibmq-credentials-credentialserror "Permalink to this headline")
+# qiskit.providers.ibmq.credentials.CredentialsError
 
 <span id="qiskit.providers.ibmq.credentials.CredentialsError" />
 

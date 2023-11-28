@@ -14,13 +14,9 @@ python_api_name: qiskit.synthesis
 
 <span id="module-qiskit.synthesis" />
 
-`qiskit.synthesis¶`
+`qiskit.synthesis`
 
 ## Evolution Synthesis
-
-<span id="module-qiskit.synthesis" />
-
-`¶`
 
 |                                                                                                            |                                                                                          |
 | ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |

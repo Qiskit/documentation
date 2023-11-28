@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-extensions-snapshotstabilizer" />
 
-# qiskit.providers.aer.extensions.SnapshotStabilizer[¶](#qiskit-providers-aer-extensions-snapshotstabilizer "Permalink to this headline")
+# qiskit.providers.aer.extensions.SnapshotStabilizer
 
 <span id="undefined" />
 

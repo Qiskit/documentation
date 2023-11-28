@@ -1,4 +1,4 @@
-# TridiagonalToeplitz[¶](#tridiagonaltoeplitz "Permalink to this headline")
+# TridiagonalToeplitz
 
 <span id="undefined" />
 

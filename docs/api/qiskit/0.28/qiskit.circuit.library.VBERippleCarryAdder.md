@@ -1,4 +1,4 @@
-# qiskit.circuit.library.VBERippleCarryAdder[¶](#qiskit-circuit-library-vberipplecarryadder "Permalink to this headline")
+# qiskit.circuit.library.VBERippleCarryAdder
 
 <span id="undefined" />
 

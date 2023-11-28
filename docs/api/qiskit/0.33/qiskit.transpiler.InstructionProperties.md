@@ -1,4 +1,4 @@
-# InstructionProperties[¶](#instructionproperties "Permalink to this headline")
+# InstructionProperties
 
 <span id="undefined" />
 

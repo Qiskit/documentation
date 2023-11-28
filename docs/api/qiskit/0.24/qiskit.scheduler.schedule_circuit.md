@@ -12,10 +12,6 @@ python_api_name: qiskit.scheduler.schedule_circuit
 
 # qiskit.scheduler.schedule\_circuit
 
-<span id="module-qiskit.scheduler.schedule_circuit" />
-
-`¶`
-
 QuantumCircuit to Pulse scheduler.
 
 ## Functions

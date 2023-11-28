@@ -1,6 +1,6 @@
 <span id="qiskit-visualization-plot-bloch-multivector" />
 
-# qiskit.visualization.plot\_bloch\_multivector[¶](#qiskit-visualization-plot-bloch-multivector "Permalink to this headline")
+# qiskit.visualization.plot\_bloch\_multivector
 
 <span id="undefined" />
 

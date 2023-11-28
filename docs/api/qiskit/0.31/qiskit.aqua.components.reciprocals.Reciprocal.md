@@ -1,4 +1,4 @@
-# Reciprocal[¶](#reciprocal "Permalink to this headline")
+# Reciprocal
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# CircuitGradient[¶](#circuitgradient "Permalink to this headline")
+# CircuitGradient
 
 <span id="undefined" />
 

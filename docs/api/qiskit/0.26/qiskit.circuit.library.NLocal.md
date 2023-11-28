@@ -1,4 +1,4 @@
-# qiskit.circuit.library.NLocal[¶](#qiskit-circuit-library-nlocal "Permalink to this headline")
+# qiskit.circuit.library.NLocal
 
 <span id="undefined" />
 

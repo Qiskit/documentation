@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-twoq-clifford-error" />
 
-# qiskit.ignis.verification.twoQ\_clifford\_error[¶](#qiskit-ignis-verification-twoq-clifford-error "Permalink to this headline")
+# qiskit.ignis.verification.twoQ\_clifford\_error
 
 <span id="undefined" />
 

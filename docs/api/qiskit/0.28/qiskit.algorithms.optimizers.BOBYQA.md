@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.BOBYQA[¶](#qiskit-algorithms-optimizers-bobyqa "Permalink to this headline")
+# qiskit.algorithms.optimizers.BOBYQA
 
 <span id="undefined" />
 

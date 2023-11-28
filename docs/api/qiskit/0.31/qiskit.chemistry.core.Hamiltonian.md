@@ -1,4 +1,4 @@
-# Hamiltonian[¶](#hamiltonian "Permalink to this headline")
+# Hamiltonian
 
 <span id="undefined" />
 

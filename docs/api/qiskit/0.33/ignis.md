@@ -12,10 +12,6 @@ python_api_name: qiskit.ignis
 
 # Qiskit Ignis API Reference
 
-<span id="module-qiskit.ignis" />
-
-`¶`
-
 *   [Characterization (`qiskit.ignis.characterization`)](characterization)
 
     *   [Calibrations](characterization#calibrations)

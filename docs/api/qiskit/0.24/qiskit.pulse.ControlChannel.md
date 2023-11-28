@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-controlchannel" />
 
-# qiskit.pulse.ControlChannel[¶](#qiskit-pulse-controlchannel "Permalink to this headline")
+# qiskit.pulse.ControlChannel
 
 <span id="undefined" />
 

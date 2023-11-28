@@ -1,4 +1,4 @@
-# TensoredMeasFitter[¶](#tensoredmeasfitter "Permalink to this headline")
+# TensoredMeasFitter
 
 <span id="undefined" />
 

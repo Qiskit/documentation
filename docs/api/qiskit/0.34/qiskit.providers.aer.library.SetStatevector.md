@@ -1,4 +1,4 @@
-# SetStatevector[¶](#setstatevector "Permalink to this headline")
+# SetStatevector
 
 <span id="undefined" />
 

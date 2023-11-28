@@ -14,7 +14,7 @@ python_api_name: qiskit.aqua.operators.state_fns
 
 <span id="module-qiskit.aqua.operators.state_fns" />
 
-`qiskit.aqua.operators.state_fns¶`
+`qiskit.aqua.operators.state_fns`
 
 State functions are defined to be complex functions over a single binary string (as compared to an operator, which is defined as a function over two binary strings, or a function taking a binary function to another binary function). This function may be called by the eval() method.
 
@@ -29,10 +29,6 @@ Measurements are defined to be functionals over StateFns, taking them to real va
 </Admonition>
 
 # State Functions
-
-<span id="module-qiskit.aqua.operators.state_fns" />
-
-`¶`
 
 |                                                                                                                                                                        |                                                                                                                                                                       |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

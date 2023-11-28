@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-noise-thermal-relaxation-error" />
 
-# qiskit.providers.aer.noise.thermal\_relaxation\_error[¶](#qiskit-providers-aer-noise-thermal-relaxation-error "Permalink to this headline")
+# qiskit.providers.aer.noise.thermal\_relaxation\_error
 
 <span id="undefined" />
 

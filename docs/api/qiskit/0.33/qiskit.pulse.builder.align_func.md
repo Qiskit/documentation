@@ -1,4 +1,4 @@
-# qiskit.pulse.builder.align\_func[¶](#qiskit-pulse-builder-align-func "Permalink to this headline")
+# qiskit.pulse.builder.align\_func
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-drivers-fcidumpdriver" />
 
-# qiskit.chemistry.drivers.FCIDumpDriver[¶](#qiskit-chemistry-drivers-fcidumpdriver "Permalink to this headline")
+# qiskit.chemistry.drivers.FCIDumpDriver
 
 <span id="undefined" />
 

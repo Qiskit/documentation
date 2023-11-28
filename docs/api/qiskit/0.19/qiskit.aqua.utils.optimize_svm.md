@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.utils.optimize_svm
 ---
 
-# optimize\_svm[¶](#optimize-svm "Permalink to this headline")
+# optimize\_svm
 
 <span id="qiskit.aqua.utils.optimize_svm" />
 

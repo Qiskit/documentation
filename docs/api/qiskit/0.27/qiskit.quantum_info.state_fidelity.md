@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.state\_fidelity[¶](#qiskit-quantum-info-state-fidelity "Permalink to this headline")
+# qiskit.quantum\_info.state\_fidelity
 
 <span id="undefined" />
 

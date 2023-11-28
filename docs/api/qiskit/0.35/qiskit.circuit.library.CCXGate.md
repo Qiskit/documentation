@@ -1,4 +1,4 @@
-# CCXGate[¶](#ccxgate "Permalink to this headline")
+# CCXGate
 
 <span id="undefined" />
 

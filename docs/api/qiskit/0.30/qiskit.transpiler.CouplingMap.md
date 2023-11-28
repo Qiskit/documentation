@@ -1,4 +1,4 @@
-# CouplingMap[¶](#couplingmap "Permalink to this headline")
+# CouplingMap
 
 <span id="undefined" />
 

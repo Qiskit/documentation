@@ -1,4 +1,4 @@
-# PhaseGate[¶](#phasegate "Permalink to this headline")
+# PhaseGate
 
 <span id="undefined" />
 

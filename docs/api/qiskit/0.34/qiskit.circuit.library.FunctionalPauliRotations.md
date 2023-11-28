@@ -1,4 +1,4 @@
-# FunctionalPauliRotations[¶](#functionalpaulirotations "Permalink to this headline")
+# FunctionalPauliRotations
 
 <span id="undefined" />
 

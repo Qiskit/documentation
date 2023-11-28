@@ -1,4 +1,4 @@
-# qiskit.pulse.Constant[¶](#qiskit-pulse-constant "Permalink to this headline")
+# qiskit.pulse.Constant
 
 <span id="undefined" />
 

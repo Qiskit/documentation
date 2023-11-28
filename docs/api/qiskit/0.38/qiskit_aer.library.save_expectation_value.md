@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit_aer.library.save_expectation_value
 ---
 
-# qiskit\_aer.library.save\_expectation\_value[¶](#qiskit-aer-library-save-expectation-value "Permalink to this headline")
+# qiskit\_aer.library.save\_expectation\_value
 
 <span id="qiskit_aer.library.save_expectation_value" />
 

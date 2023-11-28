@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.algorithms.EOH
 ---
 
-# EOH[¶](#eoh "Permalink to this headline")
+# EOH
 
 <span id="qiskit.aqua.algorithms.EOH" />
 

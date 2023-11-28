@@ -1,4 +1,4 @@
-# qiskit.opflow\.converters.DictToCircuitSum[¶](#qiskit-opflow-converters-dicttocircuitsum "Permalink to this headline")
+# qiskit.opflow\.converters.DictToCircuitSum
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-crosstalkadaptiveschedule" />
 
-# qiskit.transpiler.passes.CrosstalkAdaptiveSchedule[¶](#qiskit-transpiler-passes-crosstalkadaptiveschedule "Permalink to this headline")
+# qiskit.transpiler.passes.CrosstalkAdaptiveSchedule
 
 <span id="undefined" />
 

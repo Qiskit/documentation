@@ -1,4 +1,4 @@
-# QuadraticExpression[¶](#quadraticexpression "Permalink to this headline")
+# QuadraticExpression
 
 <span id="undefined" />
 

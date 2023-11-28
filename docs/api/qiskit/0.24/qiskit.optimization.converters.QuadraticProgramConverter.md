@@ -1,6 +1,6 @@
 <span id="qiskit-optimization-converters-quadraticprogramconverter" />
 
-# qiskit.optimization.converters.QuadraticProgramConverter[¶](#qiskit-optimization-converters-quadraticprogramconverter "Permalink to this headline")
+# qiskit.optimization.converters.QuadraticProgramConverter
 
 <span id="undefined" />
 

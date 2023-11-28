@@ -1,4 +1,4 @@
-# PassManagerConfig[¶](#passmanagerconfig "Permalink to this headline")
+# PassManagerConfig
 
 <span id="undefined" />
 

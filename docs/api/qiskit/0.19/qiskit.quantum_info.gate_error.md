@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.gate_error
 ---
 
-# gate\_error[¶](#gate-error "Permalink to this headline")
+# gate\_error
 
 <span id="qiskit.quantum_info.gate_error" />
 

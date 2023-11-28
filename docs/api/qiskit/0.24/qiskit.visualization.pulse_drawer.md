@@ -1,6 +1,6 @@
 <span id="qiskit-visualization-pulse-drawer" />
 
-# qiskit.visualization.pulse\_drawer[¶](#qiskit-visualization-pulse-drawer "Permalink to this headline")
+# qiskit.visualization.pulse\_drawer
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# RC3XGate[¶](#rc3xgate "Permalink to this headline")
+# RC3XGate
 
 <span id="undefined" />
 

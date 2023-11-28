@@ -1,6 +1,6 @@
 <span id="qiskit-providers-joberror" />
 
-# qiskit.providers.JobError[¶](#qiskit-providers-joberror "Permalink to this headline")
+# qiskit.providers.JobError
 
 <span id="undefined" />
 

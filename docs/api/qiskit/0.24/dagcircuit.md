@@ -16,13 +16,9 @@ python_api_name: qiskit.dagcircuit
 
 <span id="module-qiskit.dagcircuit" />
 
-`qiskit.dagcircuit¶`
+`qiskit.dagcircuit`
 
 ## DAG Circuits
-
-<span id="module-qiskit.dagcircuit" />
-
-`¶`
 
 |                                                                                                                                              |                                                                                                    |
 | -------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
@@ -32,10 +28,6 @@ python_api_name: qiskit.dagcircuit
 | [`DAGDependency`](qiskit.dagcircuit.DAGDependency#qiskit.dagcircuit.DAGDependency "qiskit.dagcircuit.DAGDependency")()                       | Object to represent a quantum circuit as a directed acyclic graph via operation dependencies (i.e. |
 
 ## Exceptions
-
-<span id="module-qiskit.dagcircuit" />
-
-`¶`
 
 |                                                                                                                                     |                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |

@@ -1,4 +1,4 @@
-# Counts[¶](#counts "Permalink to this headline")
+# Counts
 
 <span id="undefined" />
 

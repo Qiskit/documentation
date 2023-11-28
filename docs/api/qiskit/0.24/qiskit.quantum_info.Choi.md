@@ -1,6 +1,6 @@
 <span id="qiskit-quantum-info-choi" />
 
-# qiskit.quantum\_info.Choi[¶](#qiskit-quantum-info-choi "Permalink to this headline")
+# qiskit.quantum\_info.Choi
 
 <span id="undefined" />
 

@@ -14,13 +14,9 @@ python_api_name: qiskit.qobj
 
 <span id="module-qiskit.qobj" />
 
-`qiskit.qobj¶`
+`qiskit.qobj`
 
 ## Base
-
-<span id="module-qiskit.qobj" />
-
-`¶`
 
 |                                                                                                           |                                                                 |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
@@ -29,10 +25,6 @@ python_api_name: qiskit.qobj
 | [`QobjHeader`](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")(\*\*kwargs)                               | A class used to represent a dictionary header in Qobj objects.  |
 
 ## Qasm
-
-<span id="module-qiskit.qobj" />
-
-`¶`
 
 |                                                                                                                        |                                                                      |
 | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
@@ -43,10 +35,6 @@ python_api_name: qiskit.qobj
 | [`QasmQobjConfig`](qiskit.qobj.QasmQobjConfig "qiskit.qobj.QasmQobjConfig")(\[shots, max\_credits, …])                 | A configuration for a QASM Qobj.                                     |
 
 ## Pulse
-
-<span id="module-qiskit.qobj" />
-
-`¶`
 
 |                                                                                                                                     |                                                                       |
 | ----------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
@@ -59,10 +47,6 @@ python_api_name: qiskit.qobj
 | [`PulseLibraryItem`](qiskit.qobj.PulseLibraryItem "qiskit.qobj.PulseLibraryItem")(name, samples)                                    | An item in a pulse library.                                           |
 
 ## Validation
-
-<span id="module-qiskit.qobj" />
-
-`¶`
 
 |                                                                                                                             |                                            |
 | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |

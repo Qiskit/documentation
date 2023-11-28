@@ -1,4 +1,4 @@
-# BernoulliDistribution[¶](#bernoullidistribution "Permalink to this headline")
+# BernoulliDistribution
 
 <span id="undefined" />
 

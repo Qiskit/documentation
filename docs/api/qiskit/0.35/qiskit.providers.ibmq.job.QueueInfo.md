@@ -1,4 +1,4 @@
-# QueueInfo[¶](#queueinfo "Permalink to this headline")
+# QueueInfo
 
 <span id="undefined" />
 

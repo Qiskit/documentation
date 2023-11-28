@@ -1,4 +1,4 @@
-# MolecularGroundStateEnergy[¶](#moleculargroundstateenergy "Permalink to this headline")
+# MolecularGroundStateEnergy
 
 <span id="undefined" />
 

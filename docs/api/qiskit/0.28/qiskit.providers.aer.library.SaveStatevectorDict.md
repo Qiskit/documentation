@@ -1,4 +1,4 @@
-# qiskit.providers.aer.library.SaveStatevectorDict[¶](#qiskit-providers-aer-library-savestatevectordict "Permalink to this headline")
+# qiskit.providers.aer.library.SaveStatevectorDict
 
 <span id="undefined" />
 

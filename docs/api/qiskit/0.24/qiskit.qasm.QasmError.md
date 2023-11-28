@@ -1,6 +1,6 @@
 <span id="qiskit-qasm-qasmerror" />
 
-# qiskit.qasm.QasmError[¶](#qiskit-qasm-qasmerror "Permalink to this headline")
+# qiskit.qasm.QasmError
 
 <span id="undefined" />
 

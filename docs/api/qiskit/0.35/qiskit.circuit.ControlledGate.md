@@ -1,4 +1,4 @@
-# ControlledGate[¶](#controlledgate "Permalink to this headline")
+# ControlledGate
 
 <span id="undefined" />
 

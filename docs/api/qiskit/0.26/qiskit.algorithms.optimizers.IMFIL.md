@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.IMFIL[¶](#qiskit-algorithms-optimizers-imfil "Permalink to this headline")
+# qiskit.algorithms.optimizers.IMFIL
 
 <span id="undefined" />
 

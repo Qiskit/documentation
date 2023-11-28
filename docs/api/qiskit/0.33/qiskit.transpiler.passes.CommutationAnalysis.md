@@ -1,4 +1,4 @@
-# CommutationAnalysis[¶](#commutationanalysis "Permalink to this headline")
+# CommutationAnalysis
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# BreakLoopOp[¶](#breakloopop "Permalink to this headline")
+# BreakLoopOp
 
 <span id="undefined" />
 

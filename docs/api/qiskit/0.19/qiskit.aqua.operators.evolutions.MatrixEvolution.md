@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.evolutions.MatrixEvolution
 ---
 
-# MatrixEvolution[¶](#matrixevolution "Permalink to this headline")
+# MatrixEvolution
 
 <span id="qiskit.aqua.operators.evolutions.MatrixEvolution" />
 

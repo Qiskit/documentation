@@ -1,6 +1,6 @@
 <span id="qiskit-providers-aer-aerprovider" />
 
-# qiskit.providers.aer.AerProvider[¶](#qiskit-providers-aer-aerprovider "Permalink to this headline")
+# qiskit.providers.aer.AerProvider
 
 <span id="undefined" />
 

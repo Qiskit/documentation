@@ -1,4 +1,4 @@
-# Oracle[¶](#oracle "Permalink to this headline")
+# Oracle
 
 <span id="undefined" />
 

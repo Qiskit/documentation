@@ -1,6 +1,6 @@
 <span id="qiskit-ml-datasets-iris" />
 
-# qiskit.ml.datasets.iris[¶](#qiskit-ml-datasets-iris "Permalink to this headline")
+# qiskit.ml.datasets.iris
 
 <span id="undefined" />
 

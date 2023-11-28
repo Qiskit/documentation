@@ -1,4 +1,4 @@
-# SaveExpectationValueVariance[¶](#saveexpectationvaluevariance "Permalink to this headline")
+# SaveExpectationValueVariance
 
 <span id="undefined" />
 

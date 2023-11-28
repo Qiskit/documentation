@@ -1,4 +1,4 @@
-# qiskit.chemistry.components.initial\_states.HartreeFock[¶](#qiskit-chemistry-components-initial-states-hartreefock "Permalink to this headline")
+# qiskit.chemistry.components.initial\_states.HartreeFock
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.providers.aer.library.SetDensityMatrix[¶](#qiskit-providers-aer-library-setdensitymatrix "Permalink to this headline")
+# qiskit.providers.aer.library.SetDensityMatrix
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.ScalarOp[¶](#qiskit-quantum-info-scalarop "Permalink to this headline")
+# qiskit.quantum\_info.ScalarOp
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.algorithms.Simon
 ---
 
-# Simon[¶](#simon "Permalink to this headline")
+# Simon
 
 <span id="qiskit.aqua.algorithms.Simon" />
 

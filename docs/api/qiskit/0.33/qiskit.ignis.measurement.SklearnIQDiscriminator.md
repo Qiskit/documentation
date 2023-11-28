@@ -1,4 +1,4 @@
-# SklearnIQDiscriminator[¶](#sklearniqdiscriminator "Permalink to this headline")
+# SklearnIQDiscriminator
 
 <span id="undefined" />
 

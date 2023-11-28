@@ -14,13 +14,9 @@ python_api_name: qiskit.qpy
 
 <span id="module-qiskit.qpy" />
 
-`qiskit.qpy¶`
+`qiskit.qpy`
 
 ## Using QPY
-
-<span id="module-qiskit.qpy" />
-
-`¶`
 
 Using QPY is defined to be straightforward and mirror the user API of the serializers in Python’s standard library, `pickle` and `json`. There are 2 user facing functions: `qiskit.circuit.qpy_serialization.dump()` and `qiskit.circuit.qpy_serialization.load()` which are used to dump QPY data to a file object and load circuits from QPY data in a file object respectively. For example:
 
@@ -40,24 +36,20 @@ with open('bell.qpy', 'rb') as fd:
     new_qc = qpy_serialization.load(fd)[0]
 ```
 
-### API documentation[¶](#api-documentation "Permalink to this headline")
+### API documentation
 
 |                                                                                                           |                                 |
 | --------------------------------------------------------------------------------------------------------- | ------------------------------- |
 | [`load`](qiskit.qpy.load#qiskit.qpy.load "qiskit.qpy.load")(file\_obj\[, metadata\_deserializer])         | Load a QPY binary file          |
 | [`dump`](qiskit.qpy.dump#qiskit.qpy.dump "qiskit.qpy.dump")(circuits, file\_obj\[, metadata\_serializer]) | Write QPY binary data to a file |
 
-### QPY Compatibility[¶](#qpy-compatibility "Permalink to this headline")
+### QPY Compatibility
 
 The QPY format is designed to be backwards compatible moving forward. This means you should be able to load a QPY with any newer Qiskit version than the one that generated it. However, loading a QPY file with an older Qiskit version is not supported and may not work.
 
 For example, if you generated a QPY file using qiskit-terra 0.18.1 you could load that QPY file with qiskit-terra 0.19.0 and a hypothetical qiskit-terra 0.29.0. However, loading that QPY file with 0.18.0 is not supported and may not work.
 
 ## QPY Format
-
-<span id="module-qiskit.qpy" />
-
-`¶`
 
 The QPY serialization format is a portable cross-platform binary serialization format for [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects in Qiskit. The basic file format is as follows:
 
@@ -83,7 +75,7 @@ There is a circuit payload for each circuit (where the total number is dictated 
 
 <span id="qpy-version-4" />
 
-### Version 4[¶](#version-4 "Permalink to this headline")
+### Version 4
 
 Version 4 is identical to [Version 3](#qpy-version-3) except that it adds 2 new type strings to the INSTRUCTION\_PARAM struct, `z` to represent `None` (which is encoded as no data), `q` to represent a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") (which is encoded as a QPY circuit), `r` to represent a `range` of integers (which is encoded as a [RANGE](#qpy-range-pack)), and `t` to represent a `sequence` (which is encoded as defined by [SEQUENCE](#qpy-sequence)). Additionally, version 4 changes the type of register index mapping array from `uint32_t` to `int64_t`. If the values of any of the array elements are negative they represent a register bit that is not present in the circuit.
 
@@ -103,7 +95,7 @@ which just adds the `in_circuit` field which represents whether the register is 
 
 <span id="qpy-range-pack" />
 
-#### RANGE[¶](#range "Permalink to this headline")
+#### RANGE
 
 A RANGE is a representation of a `range` object. It is defined as:
 
@@ -117,7 +109,7 @@ struct {
 
 <span id="qpy-sequence" />
 
-#### SEQUENCE[¶](#sequence "Permalink to this headline")
+#### SEQUENCE
 
 A SEQUENCE is a reprentation of a arbitrary sequence object. As sequence are just fixed length containers of arbitrary python objects their QPY can’t fully represent any sequence, but as long as the contents in a sequence are other QPY serializable types for the INSTRUCTION\_PARAM payload the `sequence` object can be serialized.
 
@@ -133,13 +125,13 @@ followed by `size` elements that are INSTRUCTION\_PARAM payloads, where each of 
 
 <span id="qpy-version-3" />
 
-### Version 3[¶](#version-3 "Permalink to this headline")
+### Version 3
 
 Version 3 of the QPY format is identical to [Version 2](#qpy-version-2) except that it defines a struct format to represent a [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate#qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate") natively in QPY. To accomplish this the [CUSTOM\_DEFINITIONS](#qpy-custom-definition) struct now supports a new type value `'p'` to represent a [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate#qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate"). Enties in the custom instructions tables have unique name generated that start with the string `"###PauliEvolutionGate_"` followed by a uuid string. This gate name is reservered in QPY and if you have a custom [`Instruction`](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction") object with a definition set and that name prefix it will error. If it’s of type `'p'` the data payload is defined as follows:
 
 <span id="pauli-evo-qpy" />
 
-#### PAULI\_EVOLUTION[¶](#pauli-evolution "Permalink to this headline")
+#### PAULI\_EVOLUTION
 
 This represents the high level [`PauliEvolutionGate`](qiskit.circuit.library.PauliEvolutionGate#qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")
 
@@ -157,7 +149,7 @@ This is immediately followed by `operator_count` elements defined by the [SPARSE
 
 <span id="qpy-pauli-sum-op" />
 
-#### SPARSE\_PAULI\_OP\_LIST\_ELEM[¶](#sparse-pauli-op-list-elem "Permalink to this headline")
+#### SPARSE\_PAULI\_OP\_LIST\_ELEM
 
 This represents an instance of [`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp#qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp").
 
@@ -173,7 +165,7 @@ Version 3 of the QPY format also defines a struct format to represent a `Paramet
 
 <span id="qpy-param-vector" />
 
-#### PARAMETER\_VECTOR\_ELEMENT[¶](#parameter-vector-element "Permalink to this headline")
+#### PARAMETER\_VECTOR\_ELEMENT
 
 A PARAMETER\_VECTOR\_ELEMENT represents a `ParameterVectorElement` object the data for a INSTRUCTION\_PARAM. The contents of the PARAMETER\_VECTOR\_ELEMENT are defined as:
 
@@ -190,7 +182,7 @@ which is immediately followed by `vector_name_size` utf8 bytes representing the 
 
 <span id="qpy-param-expr-v3" />
 
-#### PARAMETER\_EXPR[¶](#parameter-expr "Permalink to this headline")
+#### PARAMETER\_EXPR
 
 Additionally, since QPY format version v3 distinguishes between a [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter") and `ParameterVectorElement` the payload for a [`ParameterExpression`](qiskit.circuit.ParameterExpression#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") needs to be updated to distinguish between the types. The following is the modified payload format which is mostly identical to the format in Version 1 and [Version 2](#qpy-version-2) but just modifies the `map_elements` struct to include a symbol type field.
 
@@ -217,11 +209,11 @@ The `symbol_type` key determines the payload type of the symbol representation f
 
 <span id="qpy-version-2" />
 
-### Version 2[¶](#version-2 "Permalink to this headline")
+### Version 2
 
 Version 2 of the QPY format is identical to version 1 except for the HEADER section is slightly different. You can refer to the [Version 1](#qpy-version-1) section for the details on the rest of the payload format.
 
-#### HEADER[¶](#header "Permalink to this headline")
+#### HEADER
 
 The contents of HEADER are defined as a C struct are:
 
@@ -243,9 +235,9 @@ This is immediately followed by `name_size` bytes of utf8 data for the name of t
 
 <span id="qpy-version-1" />
 
-### Version 1[¶](#version-1 "Permalink to this headline")
+### Version 1
 
-#### HEADER[¶](#id3 "Permalink to this headline")
+#### HEADER
 
 The contents of HEADER as defined as a C struct are:
 
@@ -264,13 +256,13 @@ struct {
 
 This is immediately followed by `name_size` bytes of utf8 data for the name of the circuit.
 
-#### METADATA[¶](#metadata "Permalink to this headline")
+#### METADATA
 
 The METADATA field is a UTF8 encoded JSON string. After reading the HEADER (which is a fixed size at the start of the QPY file) and the `name` string you then read the `metadata_size` number of bytes and parse the JSON to get the metadata for the circuit.
 
 <span id="qpy-registers" />
 
-#### REGISTERS[¶](#registers "Permalink to this headline")
+#### REGISTERS
 
 The contents of REGISTERS is a number of REGISTER object. If num\_registers is > 0 then after reading METADATA you read that number of REGISTER structs defined as:
 
@@ -310,7 +302,7 @@ qc = QuantumCircuit(bits=bits)
 
 <span id="qpy-custom-definition" />
 
-#### CUSTOM\_DEFINITIONS[¶](#custom-definitions "Permalink to this headline")
+#### CUSTOM\_DEFINITIONS
 
 This section specifies custom definitions for any of the instructions in the circuit.
 
@@ -337,7 +329,7 @@ Immediately following the CUSTOM\_INSTRUCTION struct is the utf8 encoded name of
 
 If `custom_definition` is `True` that means that the immediately following `size` bytes contains a QPY circuit data which can be used for the custom definition of that gate. If `custom_definition` is `False` then the instruction can be considered opaque (ie no definition). The `type` field determines what type of object will get created with the custom definition. If it’s `'g'` it will be a [`Gate`](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate") object, `'i'` it will be a [`Instruction`](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction") object.
 
-#### INSTRUCTIONS[¶](#instructions "Permalink to this headline")
+#### INSTRUCTIONS
 
 The contents of INSTRUCTIONS is a list of INSTRUCTION metadata objects
 
@@ -384,7 +376,7 @@ After each INSTRUCTION\_PARAM the next `size` bytes are the parameter’s data. 
 
 <span id="qpy-param-struct" />
 
-#### PARAMETER[¶](#parameter "Permalink to this headline")
+#### PARAMETER
 
 A PARAMETER represents a [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter") object the data for a INSTRUCTION\_PARAM. The contents of the PARAMETER are defined as:
 
@@ -399,7 +391,7 @@ which is immediately followed by `name_size` utf8 bytes representing the paramet
 
 <span id="id5" />
 
-#### PARAMETER\_EXPR[¶](#qpy-param-expr "Permalink to this headline")
+#### PARAMETER\_EXPR
 
 A PARAMETER\_EXPR represents a [`ParameterExpression`](qiskit.circuit.ParameterExpression#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object that the data for an INSTRUCTION\_PARAM. The contents of a PARAMETER\_EXPR are defined as:
 
@@ -425,7 +417,7 @@ Which is followed immediately by `PARAMETER` object (both the struct and utf8 na
 
 <span id="qpy-complex" />
 
-#### COMPLEX[¶](#complex "Permalink to this headline")
+#### COMPLEX
 
 When representing a double precision complex value in QPY the following struct is used:
 

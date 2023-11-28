@@ -1,4 +1,4 @@
-# CheckCXDirection[¶](#checkcxdirection "Permalink to this headline")
+# CheckCXDirection
 
 <span id="undefined" />
 

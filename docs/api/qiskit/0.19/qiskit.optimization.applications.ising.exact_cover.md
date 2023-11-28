@@ -8,7 +8,7 @@ python_api_name: qiskit.optimization.applications.ising.exact_cover.check_soluti
 
 <span id="qiskit-optimization-applications-ising-exact-cover" />
 
-# qiskit.optimization.applications.ising.exact\_cover[¶](#module-qiskit.optimization.applications.ising.exact_cover "Permalink to this headline")
+# qiskit.optimization.applications.ising.exact\_cover
 
 exact cover
 

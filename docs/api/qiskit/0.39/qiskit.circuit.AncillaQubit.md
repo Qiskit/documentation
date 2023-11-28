@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.AncillaQubit
 ---
 
-# AncillaQubit[¶](#ancillaqubit "Permalink to this headline")
+# AncillaQubit
 
 <span id="qiskit.circuit.AncillaQubit" />
 

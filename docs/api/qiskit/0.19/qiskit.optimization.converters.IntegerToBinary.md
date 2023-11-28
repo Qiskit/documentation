@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.optimization.converters.IntegerToBinary
 ---
 
-# IntegerToBinary[¶](#integertobinary "Permalink to this headline")
+# IntegerToBinary
 
 <span id="qiskit.optimization.converters.IntegerToBinary" />
 

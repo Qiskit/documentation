@@ -1,4 +1,4 @@
-# ISRES[¶](#isres "Permalink to this headline")
+# ISRES
 
 <span id="undefined" />
 

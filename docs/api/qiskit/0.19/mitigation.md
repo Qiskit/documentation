@@ -14,13 +14,9 @@ python_api_name: qiskit.ignis.mitigation
 
 <span id="module-qiskit.ignis.mitigation" />
 
-`qiskit.ignis.mitigation¶`
+`qiskit.ignis.mitigation`
 
 ## Measurement
-
-<span id="module-qiskit.ignis.mitigation" />
-
-`¶`
 
 The measurement calibration is used to mitigate measurement errors. The main idea is to prepare all $2^n$ basis input states and compute the probability of measuring counts in the other basis states. From these calibrations, it is possible to correct the average results of another experiment of interest.
 

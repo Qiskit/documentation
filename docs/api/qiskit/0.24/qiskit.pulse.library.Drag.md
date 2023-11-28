@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-library-drag" />
 
-# qiskit.pulse.library.Drag[¶](#qiskit-pulse-library-drag "Permalink to this headline")
+# qiskit.pulse.library.Drag
 
 <span id="undefined" />
 

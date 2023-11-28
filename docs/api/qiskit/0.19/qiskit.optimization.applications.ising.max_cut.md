@@ -8,7 +8,7 @@ python_api_name: qiskit.optimization.applications.ising.max_cut.get_graph_soluti
 
 <span id="qiskit-optimization-applications-ising-max-cut" />
 
-# qiskit.optimization.applications.ising.max\_cut[¶](#module-qiskit.optimization.applications.ising.max_cut "Permalink to this headline")
+# qiskit.optimization.applications.ising.max\_cut
 
 Convert max-cut instances into Pauli list Deal with Gset format. See [https://web.stanford.edu/\~yyye/yyye/Gset/](https://web.stanford.edu/~yyye/yyye/Gset/) Design the max-cut object w as a two-dimensional np.array e.g., w\[i, j] = x means that the weight of a edge between i and j is x Note that the weights are symmetric, i.e., w\[j, i] = x always holds.
 

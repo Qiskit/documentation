@@ -1,4 +1,4 @@
-# ResultQuality[¶](#resultquality "Permalink to this headline")
+# ResultQuality
 
 <span id="undefined" />
 

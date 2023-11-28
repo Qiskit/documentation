@@ -1,4 +1,4 @@
-# BackendV2[¶](#backendv2 "Permalink to this headline")
+# BackendV2
 
 <span id="undefined" />
 

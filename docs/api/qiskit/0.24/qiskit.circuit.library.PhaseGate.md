@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-phasegate" />
 
-# qiskit.circuit.library.PhaseGate[¶](#qiskit-circuit-library-phasegate "Permalink to this headline")
+# qiskit.circuit.library.PhaseGate
 
 <span id="undefined" />
 

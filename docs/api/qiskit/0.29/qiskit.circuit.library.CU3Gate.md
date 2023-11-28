@@ -1,4 +1,4 @@
-# CU3Gate[¶](#cu3gate "Permalink to this headline")
+# CU3Gate
 
 <span id="undefined" />
 

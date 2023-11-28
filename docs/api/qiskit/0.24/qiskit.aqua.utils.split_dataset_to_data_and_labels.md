@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-utils-split-dataset-to-data-and-labels" />
 
-# qiskit.aqua.utils.split\_dataset\_to\_data\_and\_labels[¶](#qiskit-aqua-utils-split-dataset-to-data-and-labels "Permalink to this headline")
+# qiskit.aqua.utils.split\_dataset\_to\_data\_and\_labels
 
 <span id="undefined" />
 

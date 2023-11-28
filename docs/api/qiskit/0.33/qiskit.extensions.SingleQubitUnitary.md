@@ -1,4 +1,4 @@
-# SingleQubitUnitary[¶](#singlequbitunitary "Permalink to this headline")
+# SingleQubitUnitary
 
 <span id="undefined" />
 

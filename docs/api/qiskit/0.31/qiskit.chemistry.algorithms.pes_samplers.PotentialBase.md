@@ -1,4 +1,4 @@
-# PotentialBase[¶](#potentialbase "Permalink to this headline")
+# PotentialBase
 
 <span id="undefined" />
 

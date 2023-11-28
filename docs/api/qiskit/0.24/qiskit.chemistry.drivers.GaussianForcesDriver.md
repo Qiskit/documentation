@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-drivers-gaussianforcesdriver" />
 
-# qiskit.chemistry.drivers.GaussianForcesDriver[¶](#qiskit-chemistry-drivers-gaussianforcesdriver "Permalink to this headline")
+# qiskit.chemistry.drivers.GaussianForcesDriver
 
 <span id="undefined" />
 

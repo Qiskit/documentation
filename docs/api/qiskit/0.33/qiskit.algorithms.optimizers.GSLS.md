@@ -1,4 +1,4 @@
-# GSLS[¶](#gsls "Permalink to this headline")
+# GSLS
 
 <span id="undefined" />
 

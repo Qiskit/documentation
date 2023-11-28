@@ -1,4 +1,4 @@
-# qiskit.providers.basicaer.QasmSimulatorPy[¶](#qiskit-providers-basicaer-qasmsimulatorpy "Permalink to this headline")
+# qiskit.providers.basicaer.QasmSimulatorPy
 
 <span id="undefined" />
 

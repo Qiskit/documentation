@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.BaseJob
 ---
 
-# BaseJob[¶](#basejob "Permalink to this headline")
+# BaseJob
 
 <span id="qiskit.providers.BaseJob" />
 

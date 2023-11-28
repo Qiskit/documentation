@@ -1,4 +1,4 @@
-# qiskit.algorithms.VQE[¶](#qiskit-algorithms-vqe "Permalink to this headline")
+# qiskit.algorithms.VQE
 
 <span id="undefined" />
 

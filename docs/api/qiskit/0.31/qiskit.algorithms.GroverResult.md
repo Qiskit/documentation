@@ -1,4 +1,4 @@
-# GroverResult[¶](#groverresult "Permalink to this headline")
+# GroverResult
 
 <span id="undefined" />
 

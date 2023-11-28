@@ -1,4 +1,4 @@
-# qiskit.chemistry.core.MolecularExcitedStatesResult[¶](#qiskit-chemistry-core-molecularexcitedstatesresult "Permalink to this headline")
+# qiskit.chemistry.core.MolecularExcitedStatesResult
 
 <span id="undefined" />
 

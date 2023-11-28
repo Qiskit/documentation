@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-mitigation-tensoredexpvalmeasmitigator" />
 
-# qiskit.ignis.mitigation.TensoredExpvalMeasMitigator[¶](#qiskit-ignis-mitigation-tensoredexpvalmeasmitigator "Permalink to this headline")
+# qiskit.ignis.mitigation.TensoredExpvalMeasMitigator
 
 <span id="undefined" />
 

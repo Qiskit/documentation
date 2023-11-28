@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ml.datasets.digits
 ---
 
-# digits[¶](#digits "Permalink to this headline")
+# digits
 
 <span id="qiskit.ml.datasets.digits" />
 

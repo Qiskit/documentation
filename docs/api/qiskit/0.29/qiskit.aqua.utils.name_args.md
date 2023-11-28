@@ -1,4 +1,4 @@
-# qiskit.aqua.utils.name\_args[¶](#qiskit-aqua-utils-name-args "Permalink to this headline")
+# qiskit.aqua.utils.name\_args
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-visualization-plot-gate-map" />
 
-# qiskit.visualization.plot\_gate\_map[¶](#qiskit-visualization-plot-gate-map "Permalink to this headline")
+# qiskit.visualization.plot\_gate\_map
 
 <span id="undefined" />
 

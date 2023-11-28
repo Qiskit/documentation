@@ -1,4 +1,4 @@
-# Schedule[¶](#schedule "Permalink to this headline")
+# Schedule
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# Gradient[¶](#gradient "Permalink to this headline")
+# Gradient
 
 <span id="undefined" />
 

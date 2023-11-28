@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-passes-daglongestpath" />
 
-# qiskit.transpiler.passes.DAGLongestPath[¶](#qiskit-transpiler-passes-daglongestpath "Permalink to this headline")
+# qiskit.transpiler.passes.DAGLongestPath
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# QFIBase[¶](#qfibase "Permalink to this headline")
+# QFIBase
 
 <span id="undefined" />
 

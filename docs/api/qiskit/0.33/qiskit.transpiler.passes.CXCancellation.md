@@ -1,4 +1,4 @@
-# CXCancellation[¶](#cxcancellation "Permalink to this headline")
+# CXCancellation
 
 <span id="undefined" />
 

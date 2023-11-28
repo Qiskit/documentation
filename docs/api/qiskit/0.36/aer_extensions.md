@@ -14,13 +14,9 @@ python_api_name: qiskit.providers.aer.extensions
 
 <span id="module-qiskit.providers.aer.extensions" />
 
-`qiskit.providers.aer.extensions¶`
+`qiskit.providers.aer.extensions`
 
 ## Snapshots
-
-<span id="module-qiskit.providers.aer.extensions" />
-
-`¶`
 
 <Admonition title="Deprecated since version 0.9.0" type="danger">
   Adding nonlocal noise to a noise model is deprecated as of qiskit-aer 0.9.0 and will be removed no earlier than 3 months from that release date. They have been superceded by the save instructions in the [`qiskit.providers.aer.library`](aer_library#module-qiskit.providers.aer.library "qiskit.providers.aer.library") module.

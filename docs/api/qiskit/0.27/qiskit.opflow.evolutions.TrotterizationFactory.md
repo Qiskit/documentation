@@ -1,4 +1,4 @@
-# qiskit.opflow\.evolutions.TrotterizationFactory[¶](#qiskit-opflow-evolutions-trotterizationfactory "Permalink to this headline")
+# qiskit.opflow\.evolutions.TrotterizationFactory
 
 <span id="undefined" />
 

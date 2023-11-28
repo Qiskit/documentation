@@ -1,4 +1,4 @@
-# qiskit.providers.aer.library.save\_amplitudes[¶](#qiskit-providers-aer-library-save-amplitudes "Permalink to this headline")
+# qiskit.providers.aer.library.save\_amplitudes
 
 <span id="undefined" />
 

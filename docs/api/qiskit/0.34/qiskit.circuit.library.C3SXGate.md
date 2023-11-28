@@ -1,4 +1,4 @@
-# C3SXGate[¶](#c3sxgate "Permalink to this headline")
+# C3SXGate
 
 <span id="undefined" />
 

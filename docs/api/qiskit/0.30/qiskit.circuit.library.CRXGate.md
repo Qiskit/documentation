@@ -1,4 +1,4 @@
-# CRXGate[¶](#crxgate "Permalink to this headline")
+# CRXGate
 
 <span id="undefined" />
 

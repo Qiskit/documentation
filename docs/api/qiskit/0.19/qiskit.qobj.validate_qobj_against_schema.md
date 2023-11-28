@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.qobj.validate_qobj_against_schema
 ---
 
-# validate\_qobj\_against\_schema[¶](#validate-qobj-against-schema "Permalink to this headline")
+# validate\_qobj\_against\_schema
 
 <span id="qiskit.qobj.validate_qobj_against_schema" />
 

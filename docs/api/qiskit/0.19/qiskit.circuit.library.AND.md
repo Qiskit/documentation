@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.AND
 ---
 
-# AND[¶](#and "Permalink to this headline")
+# AND
 
 <span id="qiskit.circuit.library.AND" />
 

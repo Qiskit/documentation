@@ -1,4 +1,4 @@
-# qiskit.providers.aer.library.save\_stabilizer[¶](#qiskit-providers-aer-library-save-stabilizer "Permalink to this headline")
+# qiskit.providers.aer.library.save\_stabilizer
 
 <span id="undefined" />
 

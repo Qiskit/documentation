@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-state-tomography-circuits" />
 
-# qiskit.ignis.verification.state\_tomography\_circuits[¶](#qiskit-ignis-verification-state-tomography-circuits "Permalink to this headline")
+# qiskit.ignis.verification.state\_tomography\_circuits
 
 <span id="undefined" />
 

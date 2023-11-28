@@ -1,4 +1,4 @@
-# qiskit.algorithms.MinimumEigensolverResult[¶](#qiskit-algorithms-minimumeigensolverresult "Permalink to this headline")
+# qiskit.algorithms.MinimumEigensolverResult
 
 <span id="undefined" />
 

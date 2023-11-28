@@ -1,4 +1,4 @@
-# GaussianSquare[¶](#gaussiansquare "Permalink to this headline")
+# GaussianSquare
 
 <span id="undefined" />
 

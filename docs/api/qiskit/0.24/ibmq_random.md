@@ -16,7 +16,7 @@ python_api_name: qiskit.providers.ibmq.random
 
 <span id="module-qiskit.providers.ibmq.random" />
 
-`qiskit.providers.ibmq.random¶`
+`qiskit.providers.ibmq.random`
 
 Modules related to IBM Quantum Experience random number generator services.
 
@@ -31,10 +31,6 @@ The only service currently provided is the Cambridge Quantum Computing (CQC) ext
 </Admonition>
 
 ## Classes
-
-<span id="module-qiskit.providers.ibmq.random" />
-
-`¶`
 
 |                                                                                                                                                                                                |                                                                        |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |

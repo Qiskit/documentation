@@ -1,4 +1,4 @@
-# qiskit.aqua.components.eigs.Eigenvalues[¶](#qiskit-aqua-components-eigs-eigenvalues "Permalink to this headline")
+# qiskit.aqua.components.eigs.Eigenvalues
 
 <span id="undefined" />
 

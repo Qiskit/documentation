@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.BIPMapping[¶](#qiskit-transpiler-passes-bipmapping "Permalink to this headline")
+# qiskit.transpiler.passes.BIPMapping
 
 <span id="undefined" />
 

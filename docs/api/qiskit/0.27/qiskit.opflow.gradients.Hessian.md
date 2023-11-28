@@ -1,4 +1,4 @@
-# qiskit.opflow\.gradients.Hessian[¶](#qiskit-opflow-gradients-hessian "Permalink to this headline")
+# qiskit.opflow\.gradients.Hessian
 
 <span id="undefined" />
 

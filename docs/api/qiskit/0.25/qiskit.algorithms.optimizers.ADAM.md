@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.ADAM[¶](#qiskit-algorithms-optimizers-adam "Permalink to this headline")
+# qiskit.algorithms.optimizers.ADAM
 
 <span id="undefined" />
 

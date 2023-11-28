@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.finance.data_providers.ExchangeDataProvider
 ---
 
-# ExchangeDataProvider[¶](#exchangedataprovider "Permalink to this headline")
+# ExchangeDataProvider
 
 <span id="qiskit.finance.data_providers.ExchangeDataProvider" />
 

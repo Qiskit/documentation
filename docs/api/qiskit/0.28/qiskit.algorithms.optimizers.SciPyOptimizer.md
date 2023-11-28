@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.SciPyOptimizer[¶](#qiskit-algorithms-optimizers-scipyoptimizer "Permalink to this headline")
+# qiskit.algorithms.optimizers.SciPyOptimizer
 
 <span id="undefined" />
 

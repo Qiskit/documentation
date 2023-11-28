@@ -16,7 +16,7 @@ python_api_name: qiskit.aqua.operators.primitive_ops
 
 <span id="module-qiskit.aqua.operators.primitive_ops" />
 
-`qiskit.aqua.operators.primitive_ops¶`
+`qiskit.aqua.operators.primitive_ops`
 
 Operators are defined to be functions which take State functions to State functions.
 
@@ -27,10 +27,6 @@ PrimitiveOps are the classes for representing basic Operators, backed by computa
 </Admonition>
 
 # Primitive Operators
-
-<span id="module-qiskit.aqua.operators.primitive_ops" />
-
-`¶`
 
 |                                                                                                                                                                    |                                                                                     |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |

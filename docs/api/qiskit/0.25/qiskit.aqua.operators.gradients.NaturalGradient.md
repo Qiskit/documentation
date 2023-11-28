@@ -1,4 +1,4 @@
-# qiskit.aqua.operators.gradients.NaturalGradient[¶](#qiskit-aqua-operators-gradients-naturalgradient "Permalink to this headline")
+# qiskit.aqua.operators.gradients.NaturalGradient
 
 <span id="undefined" />
 

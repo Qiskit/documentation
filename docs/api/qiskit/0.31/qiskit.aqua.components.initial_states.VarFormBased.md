@@ -1,4 +1,4 @@
-# VarFormBased[¶](#varformbased "Permalink to this headline")
+# VarFormBased
 
 <span id="undefined" />
 

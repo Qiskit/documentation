@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.ignis.characterization.BaseGateFitter
 ---
 
-# BaseGateFitter[¶](#basegatefitter "Permalink to this headline")
+# BaseGateFitter
 
 <span id="qiskit.ignis.characterization.BaseGateFitter" />
 

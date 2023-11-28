@@ -1,6 +1,6 @@
 <span id="qiskit-chemistry-core-chemistryoperator" />
 
-# qiskit.chemistry.core.ChemistryOperator[¶](#qiskit-chemistry-core-chemistryoperator "Permalink to this headline")
+# qiskit.chemistry.core.ChemistryOperator
 
 <span id="undefined" />
 

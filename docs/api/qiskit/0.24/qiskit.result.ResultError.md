@@ -1,6 +1,6 @@
 <span id="qiskit-result-resulterror" />
 
-# qiskit.result.ResultError[¶](#qiskit-result-resulterror "Permalink to this headline")
+# qiskit.result.ResultError
 
 <span id="undefined" />
 

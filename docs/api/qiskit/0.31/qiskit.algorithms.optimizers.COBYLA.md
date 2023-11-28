@@ -1,4 +1,4 @@
-# COBYLA[¶](#cobyla "Permalink to this headline")
+# COBYLA
 
 <span id="undefined" />
 

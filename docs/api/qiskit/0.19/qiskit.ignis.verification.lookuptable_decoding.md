@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.verification.lookuptable_decoding
 ---
 
-# lookuptable\_decoding[¶](#lookuptable-decoding "Permalink to this headline")
+# lookuptable\_decoding
 
 <span id="qiskit.ignis.verification.lookuptable_decoding" />
 

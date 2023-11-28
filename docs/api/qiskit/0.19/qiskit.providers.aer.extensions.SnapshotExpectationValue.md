@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.aer.extensions.SnapshotExpectationValue
 ---
 
-# SnapshotExpectationValue[¶](#snapshotexpectationvalue "Permalink to this headline")
+# SnapshotExpectationValue
 
 <span id="qiskit.providers.aer.extensions.SnapshotExpectationValue" />
 

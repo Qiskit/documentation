@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-postselection-decoding" />
 
-# qiskit.ignis.verification.postselection\_decoding[¶](#qiskit-ignis-verification-postselection-decoding "Permalink to this headline")
+# qiskit.ignis.verification.postselection\_decoding
 
 <span id="undefined" />
 

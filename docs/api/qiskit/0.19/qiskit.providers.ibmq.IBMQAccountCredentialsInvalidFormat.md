@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.IBMQAccountCredentialsInvalidFormat
 ---
 
-# IBMQAccountCredentialsInvalidFormat[¶](#ibmqaccountcredentialsinvalidformat "Permalink to this headline")
+# IBMQAccountCredentialsInvalidFormat
 
 <span id="qiskit.providers.ibmq.IBMQAccountCredentialsInvalidFormat" />
 

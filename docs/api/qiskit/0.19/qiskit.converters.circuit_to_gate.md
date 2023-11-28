@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.converters.circuit_to_gate
 ---
 
-# circuit\_to\_gate[¶](#circuit-to-gate "Permalink to this headline")
+# circuit\_to\_gate
 
 <span id="qiskit.converters.circuit_to_gate" />
 

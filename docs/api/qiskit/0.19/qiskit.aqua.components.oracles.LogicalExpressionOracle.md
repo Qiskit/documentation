@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.oracles.LogicalExpressionOracle
 ---
 
-# LogicalExpressionOracle[¶](#logicalexpressionoracle "Permalink to this headline")
+# LogicalExpressionOracle
 
 <span id="qiskit.aqua.components.oracles.LogicalExpressionOracle" />
 

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ignis.characterization.get_single_q_pulse
 ---
 
-# get\_single\_q\_pulse[¶](#get-single-q-pulse "Permalink to this headline")
+# get\_single\_q\_pulse
 
 <span id="qiskit.ignis.characterization.get_single_q_pulse" />
 

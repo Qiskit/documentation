@@ -1,4 +1,4 @@
-# qiskit.ignis.verification.QOTPCorrectString[¶](#qiskit-ignis-verification-qotpcorrectstring "Permalink to this headline")
+# qiskit.ignis.verification.QOTPCorrectString
 
 <span id="undefined" />
 

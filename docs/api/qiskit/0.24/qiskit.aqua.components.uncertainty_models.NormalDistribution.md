@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-components-uncertainty-models-normaldistribution" />
 
-# qiskit.aqua.components.uncertainty\_models.NormalDistribution[¶](#qiskit-aqua-components-uncertainty-models-normaldistribution "Permalink to this headline")
+# qiskit.aqua.components.uncertainty\_models.NormalDistribution
 
 <span id="undefined" />
 

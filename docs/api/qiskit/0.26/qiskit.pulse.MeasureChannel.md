@@ -1,4 +1,4 @@
-# qiskit.pulse.MeasureChannel[¶](#qiskit-pulse-measurechannel "Permalink to this headline")
+# qiskit.pulse.MeasureChannel
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.components.initial_states.Custom
 ---
 
-# Custom[¶](#custom "Permalink to this headline")
+# Custom
 
 <span id="qiskit.aqua.components.initial_states.Custom" />
 

@@ -14,13 +14,9 @@ python_api_name: qiskit.validation
 
 <span id="module-qiskit.validation" />
 
-`qiskit.validation¶`
+`qiskit.validation`
 
 ## Base
-
-<span id="module-qiskit.validation" />
-
-`¶`
 
 |                                                                                                                              |                                                                |
 | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
@@ -30,10 +26,6 @@ python_api_name: qiskit.validation
 | [`ModelTypeValidator`](qiskit.validation.ModelTypeValidator "qiskit.validation.ModelTypeValidator")(\*\[, load\_default, …]) | A field able to validate the correct type of a value.          |
 
 ## Exceptions
-
-<span id="module-qiskit.validation" />
-
-`¶`
 
 |                                                                                                                                       |                                                   |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |

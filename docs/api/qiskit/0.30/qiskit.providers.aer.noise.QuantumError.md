@@ -1,4 +1,4 @@
-# QuantumError[¶](#quantumerror "Permalink to this headline")
+# QuantumError
 
 <span id="undefined" />
 

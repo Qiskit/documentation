@@ -1,4 +1,4 @@
-# HarmonicPotential[¶](#harmonicpotential "Permalink to this headline")
+# HarmonicPotential
 
 <span id="undefined" />
 

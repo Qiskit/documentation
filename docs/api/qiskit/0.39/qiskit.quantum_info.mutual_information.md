@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.mutual_information
 ---
 
-# qiskit.quantum\_info.mutual\_information[¶](#qiskit-quantum-info-mutual-information "Permalink to this headline")
+# qiskit.quantum\_info.mutual\_information
 
 <span id="qiskit.quantum_info.mutual_information" />
 

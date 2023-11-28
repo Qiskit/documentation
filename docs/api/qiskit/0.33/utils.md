@@ -14,7 +14,7 @@ python_api_name: qiskit.utils
 
 <span id="module-qiskit.utils" />
 
-`qiskit.utils¶`
+`qiskit.utils`
 
 |                                                                                                                                               |                                                                                    |
 | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
@@ -26,10 +26,6 @@ python_api_name: qiskit.utils
 | [`detach_prefix`](qiskit.utils.detach_prefix#qiskit.utils.detach_prefix "qiskit.utils.detach_prefix")(value\[, decimal])                      | Given a SI unit value, find the most suitable prefix to scale the value.           |
 
 ## Algorithm Utilities
-
-<span id="module-qiskit.utils" />
-
-`¶`
 
 |                                                                                                                                           |                                                                              |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |

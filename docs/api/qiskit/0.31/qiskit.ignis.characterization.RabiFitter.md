@@ -1,4 +1,4 @@
-# RabiFitter[¶](#rabifitter "Permalink to this headline")
+# RabiFitter
 
 <span id="undefined" />
 

@@ -16,7 +16,7 @@ python_api_name: qiskit.chemistry.algorithms.pes_samplers
 
 <span id="module-qiskit.chemistry.algorithms.pes_samplers" />
 
-`qiskit.chemistry.algorithms.pes_samplers¶`
+`qiskit.chemistry.algorithms.pes_samplers`
 
 Potential energy surface samplers.
 

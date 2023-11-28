@@ -1,4 +1,4 @@
-# RunnerResult[¶](#runnerresult "Permalink to this headline")
+# RunnerResult
 
 <span id="undefined" />
 

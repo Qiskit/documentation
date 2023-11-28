@@ -1,4 +1,4 @@
-# qiskit.chemistry.components.variational\_forms.UVCC[¶](#qiskit-chemistry-components-variational-forms-uvcc "Permalink to this headline")
+# qiskit.chemistry.components.variational\_forms.UVCC
 
 <span id="undefined" />
 

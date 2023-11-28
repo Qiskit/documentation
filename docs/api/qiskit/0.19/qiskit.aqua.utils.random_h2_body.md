@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.utils.random_h2_body
 ---
 
-# random\_h2\_body[¶](#random-h2-body "Permalink to this headline")
+# random\_h2\_body
 
 <span id="qiskit.aqua.utils.random_h2_body" />
 

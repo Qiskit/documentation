@@ -1,4 +1,4 @@
-# qiskit.opflow\.list\_ops.ListOp[¶](#qiskit-opflow-list-ops-listop "Permalink to this headline")
+# qiskit.opflow\.list\_ops.ListOp
 
 <span id="undefined" />
 

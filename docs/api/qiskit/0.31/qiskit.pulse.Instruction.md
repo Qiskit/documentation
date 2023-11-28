@@ -1,4 +1,4 @@
-# Instruction[¶](#instruction "Permalink to this headline")
+# Instruction
 
 <span id="undefined" />
 

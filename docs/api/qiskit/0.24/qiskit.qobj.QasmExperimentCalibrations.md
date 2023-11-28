@@ -1,6 +1,6 @@
 <span id="qiskit-qobj-qasmexperimentcalibrations" />
 
-# qiskit.qobj.QasmExperimentCalibrations[¶](#qiskit-qobj-qasmexperimentcalibrations "Permalink to this headline")
+# qiskit.qobj.QasmExperimentCalibrations
 
 <span id="undefined" />
 

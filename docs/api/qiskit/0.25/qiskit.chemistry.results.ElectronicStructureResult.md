@@ -1,4 +1,4 @@
-# qiskit.chemistry.results.ElectronicStructureResult[¶](#qiskit-chemistry-results-electronicstructureresult "Permalink to this headline")
+# qiskit.chemistry.results.ElectronicStructureResult
 
 <span id="undefined" />
 

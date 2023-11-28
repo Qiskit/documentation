@@ -1,4 +1,4 @@
-# TwoLocal[¶](#twolocal "Permalink to this headline")
+# TwoLocal
 
 <span id="undefined" />
 

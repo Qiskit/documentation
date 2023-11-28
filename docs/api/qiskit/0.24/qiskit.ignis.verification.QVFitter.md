@@ -1,6 +1,6 @@
 <span id="qiskit-ignis-verification-qvfitter" />
 
-# qiskit.ignis.verification.QVFitter[¶](#qiskit-ignis-verification-qvfitter "Permalink to this headline")
+# qiskit.ignis.verification.QVFitter
 
 <span id="undefined" />
 

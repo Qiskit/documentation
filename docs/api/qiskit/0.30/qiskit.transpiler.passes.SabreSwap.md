@@ -1,4 +1,4 @@
-# SabreSwap[¶](#sabreswap "Permalink to this headline")
+# SabreSwap
 
 <span id="undefined" />
 

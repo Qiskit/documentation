@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.ml.datasets.ad_hoc_data
 ---
 
-# ad\_hoc\_data[¶](#ad-hoc-data "Permalink to this headline")
+# ad\_hoc\_data
 
 <span id="qiskit.ml.datasets.ad_hoc_data" />
 

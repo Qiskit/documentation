@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.operators.legacy.check_commutativity
 ---
 
-# check\_commutativity[¶](#check-commutativity "Permalink to this headline")
+# check\_commutativity
 
 <span id="qiskit.aqua.operators.legacy.check_commutativity" />
 

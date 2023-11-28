@@ -1,6 +1,6 @@
 <span id="qiskit-qobj-pulseqobjexperiment" />
 
-# qiskit.qobj.PulseQobjExperiment[¶](#qiskit-qobj-pulseqobjexperiment "Permalink to this headline")
+# qiskit.qobj.PulseQobjExperiment
 
 <span id="undefined" />
 

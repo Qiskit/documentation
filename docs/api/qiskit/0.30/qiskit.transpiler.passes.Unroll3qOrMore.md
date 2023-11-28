@@ -1,4 +1,4 @@
-# Unroll3qOrMore[¶](#unroll3qormore "Permalink to this headline")
+# Unroll3qOrMore
 
 <span id="undefined" />
 

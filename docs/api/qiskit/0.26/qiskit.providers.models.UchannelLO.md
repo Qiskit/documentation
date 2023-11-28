@@ -1,4 +1,4 @@
-# qiskit.providers.models.UchannelLO[¶](#qiskit-providers-models-uchannello "Permalink to this headline")
+# qiskit.providers.models.UchannelLO
 
 <span id="undefined" />
 

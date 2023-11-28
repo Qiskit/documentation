@@ -1,6 +1,6 @@
 <span id="qiskit-aqua-operators-legacy-row-echelon-f2" />
 
-# qiskit.aqua.operators.legacy.row\_echelon\_F2[¶](#qiskit-aqua-operators-legacy-row-echelon-f2 "Permalink to this headline")
+# qiskit.aqua.operators.legacy.row\_echelon\_F2
 
 <span id="undefined" />
 

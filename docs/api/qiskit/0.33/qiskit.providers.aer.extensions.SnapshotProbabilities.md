@@ -1,4 +1,4 @@
-# SnapshotProbabilities[¶](#snapshotprobabilities "Permalink to this headline")
+# SnapshotProbabilities
 
 <span id="undefined" />
 

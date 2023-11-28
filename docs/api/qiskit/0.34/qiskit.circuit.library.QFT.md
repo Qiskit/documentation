@@ -1,4 +1,4 @@
-# QFT[¶](#qft "Permalink to this headline")
+# QFT
 
 <span id="undefined" />
 

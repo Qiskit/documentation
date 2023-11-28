@@ -1,4 +1,4 @@
-# InnerProduct[¶](#innerproduct "Permalink to this headline")
+# InnerProduct
 
 <span id="undefined" />
 

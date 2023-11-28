@@ -1,4 +1,4 @@
-# qiskit.quantum\_info.PTM[¶](#qiskit-quantum-info-ptm "Permalink to this headline")
+# qiskit.quantum\_info.PTM
 
 <span id="undefined" />
 

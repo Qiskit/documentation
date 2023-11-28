@@ -1,4 +1,4 @@
-# qiskit.transpiler.passes.CheckCXDirection[¶](#qiskit-transpiler-passes-checkcxdirection "Permalink to this headline")
+# qiskit.transpiler.passes.CheckCXDirection
 
 <span id="undefined" />
 

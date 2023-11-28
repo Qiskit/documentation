@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.optimization.problems.Constraint
 ---
 
-# Constraint[¶](#constraint "Permalink to this headline")
+# Constraint
 
 <span id="qiskit.optimization.problems.Constraint" />
 

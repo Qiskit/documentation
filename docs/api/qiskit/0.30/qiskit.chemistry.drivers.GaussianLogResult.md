@@ -1,4 +1,4 @@
-# GaussianLogResult[¶](#gaussianlogresult "Permalink to this headline")
+# GaussianLogResult
 
 <span id="undefined" />
 

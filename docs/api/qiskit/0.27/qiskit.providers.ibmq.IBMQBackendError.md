@@ -1,4 +1,4 @@
-# qiskit.providers.ibmq.IBMQBackendError[¶](#qiskit-providers-ibmq-ibmqbackenderror "Permalink to this headline")
+# qiskit.providers.ibmq.IBMQBackendError
 
 <span id="undefined" />
 

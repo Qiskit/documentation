@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-quantumvolume" />
 
-# qiskit.circuit.library.QuantumVolume[¶](#qiskit-circuit-library-quantumvolume "Permalink to this headline")
+# qiskit.circuit.library.QuantumVolume
 
 <span id="undefined" />
 

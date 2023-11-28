@@ -14,10 +14,6 @@ python_api_name: qiskit.algorithms.optimizers.nlopts
 
 # Installing NLopt
 
-<span id="module-qiskit.algorithms.optimizers.nlopts" />
-
-`¶`
-
 In order to use any of the NLOpt based global optimizers NLopt must be installed. The [NLopt download and installation instructions](https://nlopt.readthedocs.io/en/latest/#download-and-installation) describe how to do this.
 
 If you running on Windows, then you might want to refer to the specific [instructions for NLopt on Windows](https://nlopt.readthedocs.io/en/latest/NLopt_on_Windows/).

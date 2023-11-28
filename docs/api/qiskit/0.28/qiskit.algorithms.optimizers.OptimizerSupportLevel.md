@@ -1,4 +1,4 @@
-# qiskit.algorithms.optimizers.OptimizerSupportLevel[¶](#qiskit-algorithms-optimizers-optimizersupportlevel "Permalink to this headline")
+# qiskit.algorithms.optimizers.OptimizerSupportLevel
 
 <span id="undefined" />
 

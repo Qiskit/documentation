@@ -1,4 +1,4 @@
-# qiskit.ignis.verification.coherence\_limit[¶](#qiskit-ignis-verification-coherence-limit "Permalink to this headline")
+# qiskit.ignis.verification.coherence\_limit
 
 <span id="undefined" />
 

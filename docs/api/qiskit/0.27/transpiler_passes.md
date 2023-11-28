@@ -14,13 +14,9 @@ python_api_name: qiskit.transpiler.passes
 
 <span id="module-qiskit.transpiler.passes" />
 
-`qiskit.transpiler.passes¶`
+`qiskit.transpiler.passes`
 
 ## Layout Selection (Placement)
-
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
 
 |                                                                                                                                                                                               |                                                                                   |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
@@ -37,10 +33,6 @@ python_api_name: qiskit.transpiler.passes
 
 ## Routing
 
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
-
 |                                                                                                                                                                   |                                                                                |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
 | [`BasicSwap`](qiskit.transpiler.passes.BasicSwap#qiskit.transpiler.passes.BasicSwap "qiskit.transpiler.passes.BasicSwap")(\*args, \*\*kwargs)                     | Map (with minimum effort) a DAGCircuit onto a coupling\_map adding swap gates. |
@@ -49,10 +41,6 @@ python_api_name: qiskit.transpiler.passes
 | [`SabreSwap`](qiskit.transpiler.passes.SabreSwap#qiskit.transpiler.passes.SabreSwap "qiskit.transpiler.passes.SabreSwap")(\*args, \*\*kwargs)                     | Map input circuit onto a backend topology via insertion of SWAPs.              |
 
 ## Basis Change
-
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
 
 |                                                                                                                                                                                                       |                                                                                                            |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
@@ -63,10 +51,6 @@ python_api_name: qiskit.transpiler.passes
 | [`BasisTranslator`](qiskit.transpiler.passes.BasisTranslator#qiskit.transpiler.passes.BasisTranslator "qiskit.transpiler.passes.BasisTranslator")(\*args, \*\*kwargs)                                 | Translates gates to a target basis by searching for a set of translations from a given EquivalenceLibrary. |
 
 ## Optimizations
-
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
 
 |                                                                                                                                                                                                                                           |                                                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
@@ -84,10 +68,6 @@ python_api_name: qiskit.transpiler.passes
 
 ## Scheduling
 
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
-
 |                                                                                                                                                                                    |                                                                                                              |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
 | [`ALAPSchedule`](qiskit.transpiler.passes.ALAPSchedule#qiskit.transpiler.passes.ALAPSchedule "qiskit.transpiler.passes.ALAPSchedule")(\*args, \*\*kwargs)                          | ALAP Scheduling.                                                                                             |
@@ -95,10 +75,6 @@ python_api_name: qiskit.transpiler.passes
 | [`RZXCalibrationBuilder`](qiskit.transpiler.passes.RZXCalibrationBuilder#qiskit.transpiler.passes.RZXCalibrationBuilder "qiskit.transpiler.passes.RZXCalibrationBuilder")(backend) | Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate. |
 
 ## Circuit Analysis
-
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
 
 |                                                                                                                                                                                       |                                                                |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
@@ -112,19 +88,11 @@ python_api_name: qiskit.transpiler.passes
 
 ## Synthesis
 
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
-
 |                                                                                                                                                                           |                                                  |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
 | [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis#qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis")(basis\_gates\[, …]) | Synthesize gates according to their basis gates. |
 
 ## Additional Passes
-
-<span id="module-qiskit.transpiler.passes" />
-
-`¶`
 
 |                                                                                                                                                                                                                                   |                                                                                                                                                                                                                      |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

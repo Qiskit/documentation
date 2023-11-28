@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.aqua.utils.random_non_hermitian
 ---
 
-# random\_non\_hermitian[¶](#random-non-hermitian "Permalink to this headline")
+# random\_non\_hermitian
 
 <span id="qiskit.aqua.utils.random_non_hermitian" />
 

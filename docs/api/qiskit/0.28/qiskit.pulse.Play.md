@@ -1,4 +1,4 @@
-# qiskit.pulse.Play[¶](#qiskit-pulse-play "Permalink to this headline")
+# qiskit.pulse.Play
 
 <span id="undefined" />
 

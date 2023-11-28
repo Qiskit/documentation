@@ -1,6 +1,6 @@
 <span id="qiskit-pulse-builder-align-equispaced" />
 
-# qiskit.pulse.builder.align\_equispaced[¶](#qiskit-pulse-builder-align-equispaced "Permalink to this headline")
+# qiskit.pulse.builder.align\_equispaced
 
 <span id="undefined" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.aqua.operators.legacy.WeightedPauliOperator
 ---
 
-# WeightedPauliOperator[¶](#weightedpaulioperator "Permalink to this headline")
+# WeightedPauliOperator
 
 <span id="qiskit.aqua.operators.legacy.WeightedPauliOperator" />
 

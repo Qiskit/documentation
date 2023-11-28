@@ -1,4 +1,4 @@
-# QuadraticProgramConverter[¶](#quadraticprogramconverter "Permalink to this headline")
+# QuadraticProgramConverter
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# qiskit.compiler.sequence[¶](#qiskit-compiler-sequence "Permalink to this headline")
+# qiskit.compiler.sequence
 
 <span id="undefined" />
 

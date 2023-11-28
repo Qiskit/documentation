@@ -1,4 +1,4 @@
-# CTMPExpvalMeasMitigator[¶](#ctmpexpvalmeasmitigator "Permalink to this headline")
+# CTMPExpvalMeasMitigator
 
 <span id="undefined" />
 

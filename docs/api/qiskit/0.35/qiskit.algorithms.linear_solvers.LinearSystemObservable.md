@@ -1,4 +1,4 @@
-# LinearSystemObservable[¶](#linearsystemobservable "Permalink to this headline")
+# LinearSystemObservable
 
 <span id="undefined" />
 

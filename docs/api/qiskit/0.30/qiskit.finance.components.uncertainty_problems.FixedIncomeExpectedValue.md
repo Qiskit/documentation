@@ -1,4 +1,4 @@
-# FixedIncomeExpectedValue[¶](#fixedincomeexpectedvalue "Permalink to this headline")
+# FixedIncomeExpectedValue
 
 <span id="undefined" />
 

@@ -1,4 +1,4 @@
-# GraphState[¶](#graphstate "Permalink to this headline")
+# GraphState
 
 <span id="undefined" />
 

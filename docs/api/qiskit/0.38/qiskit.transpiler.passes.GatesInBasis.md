@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.GatesInBasis
 ---
 
-# GatesInBasis[¶](#gatesinbasis "Permalink to this headline")
+# GatesInBasis
 
 <span id="qiskit.transpiler.passes.GatesInBasis" />
 

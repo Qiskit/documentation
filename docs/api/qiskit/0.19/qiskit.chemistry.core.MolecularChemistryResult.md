@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.chemistry.core.MolecularChemistryResult
 ---
 
-# MolecularChemistryResult[¶](#molecularchemistryresult "Permalink to this headline")
+# MolecularChemistryResult
 
 <span id="qiskit.chemistry.core.MolecularChemistryResult" />
 

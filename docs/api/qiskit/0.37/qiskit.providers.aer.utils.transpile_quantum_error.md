@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.aer.utils.transpile_quantum_error
 ---
 
-# qiskit.providers.aer.utils.transpile\_quantum\_error[¶](#qiskit-providers-aer-utils-transpile-quantum-error "Permalink to this headline")
+# qiskit.providers.aer.utils.transpile\_quantum\_error
 
 <span id="qiskit.providers.aer.utils.transpile_quantum_error" />
 

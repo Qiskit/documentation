@@ -1,4 +1,4 @@
-# qiskit.providers.aer.noise.QuantumError[¶](#qiskit-providers-aer-noise-quantumerror "Permalink to this headline")
+# qiskit.providers.aer.noise.QuantumError
 
 <span id="undefined" />
 

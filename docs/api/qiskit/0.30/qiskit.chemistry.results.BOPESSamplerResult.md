@@ -1,4 +1,4 @@
-# BOPESSamplerResult[¶](#bopessamplerresult "Permalink to this headline")
+# BOPESSamplerResult
 
 <span id="undefined" />
 

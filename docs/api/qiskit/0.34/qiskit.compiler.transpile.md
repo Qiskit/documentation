@@ -1,4 +1,4 @@
-# qiskit.compiler.transpile[¶](#qiskit-compiler-transpile "Permalink to this headline")
+# qiskit.compiler.transpile
 
 <span id="undefined" />
 

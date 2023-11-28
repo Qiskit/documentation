@@ -1,4 +1,4 @@
-# qiskit.optimization.converters.IntegerToBinary[¶](#qiskit-optimization-converters-integertobinary "Permalink to this headline")
+# qiskit.optimization.converters.IntegerToBinary
 
 <span id="undefined" />
 

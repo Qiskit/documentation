@@ -1,4 +1,4 @@
-# AnalysisPass[¶](#analysispass "Permalink to this headline")
+# AnalysisPass
 
 <span id="undefined" />
 

@@ -1,6 +1,6 @@
 <span id="qiskit-circuit-library-cphasegate" />
 
-# qiskit.circuit.library.CPhaseGate[¶](#qiskit-circuit-library-cphasegate "Permalink to this headline")
+# qiskit.circuit.library.CPhaseGate
 
 <span id="undefined" />
 
