@@ -1,6 +1,6 @@
 ---
 title: Representing quantum computers
-description: The necessary backend information for successfully transpiling quantum circuits
+description: Learn about coupling maps, basis gates and backend errors for transpiling
 
 ---
 
@@ -20,19 +20,19 @@ The simplest use of the transpiler is to provide all the backend information by 
 Import the necessary libraries and instantiate the backend:
 
 ```python
-    from qiskit import transpile
-    from qiskit.circuit.library import EfficientSU2
-    from qiskit.providers.fake_provider import FakeSherbrooke
+from qiskit import transpile
+from qiskit.circuit.library import EfficientSU2
+from qiskit.providers.fake_provider import FakeSherbrooke
 
-    backend = FakeSherbrooke()
-    target = backend.target
+backend = FakeSherbrooke()
+target = backend.target
 ```
 
 The `EfficientSU2` circuit consists of layers of single qubit operations spanned by `SU(2)` and `CX` entanglements. This is a heuristic pattern that can be used to prepare trial wave functions for variational quantum algorithms or classification circuits for machine learning.
 
 ```python
-    qc = EfficientSU2(12, entanglement='circular', reps=1)
-    qc.decompose(reps=1).draw('mpl', style='iqp')
+qc = EfficientSU2(12, entanglement='circular', reps=1)
+qc.decompose(reps=1).draw('mpl', style='iqp')
 ```
 ![The 12-qubit test circuit](/images/transpile/representing_quantum_computers/qc-circular.png)
 
@@ -41,8 +41,8 @@ The `EfficientSU2` circuit consists of layers of single qubit operations spanned
 This example uses the default `optimization_level=1` to transpile to the `backend` `target`, which providers all the information to the transpiler that is necessary to convert circuit to one that will run on the backend.
 
 ```python
-    qc_t_target = transpile(qc, target=target, seed_transpiler=12345)
-    qc_t_target.draw('mpl', style='iqp', idle_wires=False)
+qc_t_target = transpile(qc, target=target, seed_transpiler=12345)
+qc_t_target.draw('mpl', style='iqp', idle_wires=False)
 ```
 ![The transpiled 12-qubit ansatz using Target information](/images/transpile/representing_quantum_computers/qc_t_target.png)
 
@@ -63,36 +63,36 @@ Although the routing stage is intertwined with the _layout_ stage, which selects
 Pass the `coupling_map` keyword argument to see its effect on the transpiler:
 
 ```python
-    coupling_map = target.build_coupling_map()
+coupling_map = target.build_coupling_map()
 
-    qc_t_cm_lv0 = transpile(qc, coupling_map=coupling_map, optimization_level=0, seed_transpiler=11)
-    qc_t_cm_lv0.draw('mpl', style='iqp', idle_wires=False)
+qc_t_cm_lv0 = transpile(qc, coupling_map=coupling_map, optimization_level=0, seed_transpiler=11)
+qc_t_cm_lv0.draw('mpl', style='iqp', idle_wires=False)
 ```
 ![Ansatz transpiled to coupling map with optimization level 0](/images/transpile/representing_quantum_computers/qc_t_cm_lv0.png)
 
 As shown above, several SWAP gates were inserted (each consisting of three CX gates), which will cause a lot of errors on current devices. To see which qubits are selected on the actual qubit topology, use `plot_circuit_layout` from Qiskit Visualizations:
 
 ```python
-    from qiskit.visualization import plot_circuit_layout
+from qiskit.visualization import plot_circuit_layout
 
-    plot_circuit_layout(qc_t_cm_lv0, backend, view='physical')
+plot_circuit_layout(qc_t_cm_lv0, backend, view='physical')
 ```
 ![Circuit Layout for optimization level 0](/images/transpile/representing_quantum_computers/circ_layout_lv0.png)
 
 This shows that our virtual qubits 0-11 were trivially mapped to the line of physical qubits 0-11. Let's return to the default (`optimization_level=1`), which uses `VF2Layout` if any routing is required.
 
 ```python
-    qc_t_cm_lv1 = transpile(qc, coupling_map=coupling_map, seed_transpiler=11)
-    qc_t_cm_lv1.draw('mpl', style='iqp', idle_wires=False)
+qc_t_cm_lv1 = transpile(qc, coupling_map=coupling_map, seed_transpiler=11)
+qc_t_cm_lv1.draw('mpl', style='iqp', idle_wires=False)
 ```
 ![Ansatz transpiled to coupling map with optimization level 1](/images/transpile/representing_quantum_computers/qc_t_cm_lv1.png)
 
 Now there are no SWAP gates inserted and the physical qubits selected are the same when using the `target` class.
 
 ```python
-    from qiskit.visualization import plot_circuit_layout
+from qiskit.visualization import plot_circuit_layout
 
-    plot_circuit_layout(qc_t_cm_lv1, backend, view='physical')
+plot_circuit_layout(qc_t_cm_lv1, backend, view='physical')
 ```
 ![Circuit Layout for default optimization level](/images/transpile/representing_quantum_computers/circ_layout_lv1.png)
 
@@ -100,24 +100,26 @@ Now the layout is in a ring.  Because this layout respects the circuit's connect
 
 ## Basis gates
 
-Every quantum backend supports a limited instruction set, called its _basis gates_.  Every gate in the circuit must be translated to the elements of this set. This set should consist of single- and two-qubit gates that provide a universal gates set, meaning that any quantum operation can be decomposed into those gates.  This is done by the _basis translator_ (*link*), and the basis gates can be specified as a keyword argument to the transpiler to provide this information.
+Every quantum backend supports a limited instruction set, called its _basis gates_.  Every gate in the circuit must be translated to the elements of this set. This set should consist of single- and two-qubit gates that provide a universal gates set, meaning that any quantum operation can be decomposed into those gates.  This is done by the [BasisTranslator](../api/qiskit/qiskit.transpiler.passes.BasisTranslator), and the basis gates can be specified as a keyword argument to the transpiler to provide this information.
 
 ```python
-    basis_gates = list(target.operation_names)
-    print(basis_gates)
+basis_gates = list(target.operation_names)
+print(basis_gates)
 ```
-`['rz', 'sx', 'x', 'ecr', 'measure', 'delay']`
+```python
+['rz', 'sx', 'x', 'ecr', 'measure', 'delay']
+```
 
 The default single-qubit gates on _ibm_sherbrooke_ are `rz`, `x`, and `sx`, and the default two-qubit gate is `ecr` which stands for echoed cross resonance. CX gates are constructed from `ecr` gates, so on some backends `ecr` is specified as the two-qubit basis gate while on others `cx` is default. The `ecr` gates is the _entangling_ part of the `cx` gate. If one desires to use a gate that is not in the basis gate set, instructions for custom gates can be provided using [pulse gates](https://qiskit.org/documentation/stubs/qiskit.transpiler.passes.PulseGates.html). In addition to the control gates, there are also `delay` and `measurement` instructions.
 
 <Admonition>
-    Backends have default basis gates, but you can choose whatever gates you want, as long as you provide the instruction or add pulse gates. The default basis gates are those that calibrations have been done for on the backend, so no further instrcution/pulse gate needs to be provided. For example, on some backends `cx` is the default two-qubit gates and `ecr` on others.
+    Backends have default basis gates, but you can choose whatever gates you want, as long as you provide the instruction or add pulse gates. The default basis gates are those that calibrations have been done for on the backend, so no further instruction/pulse gate needs to be provided. For example, on some backends `cx` is the default two-qubit gates and `ecr` on others.
 </Admonition>
 
 
 ```python
-    qc_t_cm_bg = transpile(qc, coupling_map=coupling_map, basis_gates=basis_gates, seed_transpiler=11)
-    qc_t_cm_bg.draw('mpl', style='iqp', fold=-1, idle_wires=False)
+qc_t_cm_bg = transpile(qc, coupling_map=coupling_map, basis_gates=basis_gates, seed_transpiler=11)
+qc_t_cm_bg.draw('mpl', style='iqp', fold=-1, idle_wires=False)
 ```
 ![Ansatz transpiled to coupling map and basis gates](/images/transpile/representing_quantum_computers/qc_t_cm_bg_lv1.png)
 
@@ -130,26 +132,28 @@ Constructing a `target` object lets you consider the qubits' error rates in addi
 We retrieved the `target` from `backend.target` previously. This contains a lot of backend information, including error rates. For example, the instruction properties of the echoed cross resonance gate between qubit 0 and 1 (not that `ecr` is directional) is retrieved by running the following command:
 
 ```python
-    target['ecr'][(1, 0)]
+target['ecr'][(1, 0)]
 ```
-`InstructionProperties(duration=5.333333333333332e-07, error=0.006969730734746021, calibration=PulseQobj)`
+```
+InstructionProperties(duration=5.333333333333332e-07, error=0.006969730734746021, calibration=PulseQobj)
+```
 
 The above result shows that the gate is 533μs with an error of 0.7%. To reveal error information to the transpiler, we will build our own target model with the `basis_gates` and `coupling_map` from above and populate it with error values from the backend `FakeSherbrooke`. 
 
 ```python
-    from qiskit.transpiler import Target
+from qiskit.transpiler import Target
 
-    err_targ = Target.from_configuration(basis_gates=basis_gates, coupling_map=coupling_map, num_qubits=target.num_qubits)
+err_targ = Target.from_configuration(basis_gates=basis_gates, coupling_map=coupling_map, num_qubits=target.num_qubits)
 
-    for idx in range(len(target.instructions)):
-        err_targ[target.instructions[idx][0].name][target.instructions[idx][1]] = target.instruction_properties(idx)
+for idx in range(len(target.instructions)):
+    err_targ[target.instructions[idx][0].name][target.instructions[idx][1]] = target.instruction_properties(idx)
 ```
 
 Transpile with our new target `err_targ` as the target: 
 
 ```python
-    qc_t_cm_bg_et = transpile(qc, target=err_targ, seed_transpiler=11)
-    qc_t_cm_bg_et.draw('mpl', style='iqp', fold=-1, idle_wires=False)
+qc_t_cm_bg_et = transpile(qc, target=err_targ, seed_transpiler=11)
+qc_t_cm_bg_et.draw('mpl', style='iqp', fold=-1, idle_wires=False)
 ```
 ![Ansatz transpiled to our target model](/images/transpile/representing_quantum_computers/qc_t_cm_bg_et_lv1.png)
 
