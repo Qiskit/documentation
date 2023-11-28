@@ -1,6 +1,6 @@
 ---
 title: Configure error mitigation
-description: Configure error mitigation
+description: Configure error mitigation with Qiskit Runtime
 ---
 
 # Configure error mitigation for Qiskit Runtime
@@ -39,12 +39,12 @@ expectation values.
 </Admonition>
 
 
-| Resilience Level | Definition                                                                                            | Estimator                                                                 | Sampler |
-|------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|---------|
-| 0                | No mitigation                                                                                         | None                                                                      | None    |
-| 1 [Default]      | Minimal mitigation costs: Mitigate error associated with readout errors                               | Twirled Readout Error eXtinction  (TREX interpreted-text readout errors ) | M3      |
-| 2                | Medium mitigation costs. Typically reduces bias in estimators, but is not guaranteed to be zero bias. | Zero Noise Extrapolation (ZNE interpreted-text)                           | -       |-
-| 3                | Heavy mitigation with layer sampling. Theoretically expected to deliver zero bias estimators. )       | Probabilistic Error cancelation (PEC interpreted-text)                   | -       |-|
+| Resilience Level | Definition                                                                                            | Estimator                                                                 | Sampler                                |
+|------------------|-------------------------------------------------------------------------------------------------------|---------------------------------------------------------------------------|----------------------------------------|
+| 0                | No mitigation                                                                                         | None                                                                      | None                                   |
+| 1 [Default]      | Minimal mitigation costs: Mitigate error associated with readout errors                               | Twirled Readout Error eXtinction  (TREX)                                  | Matrix-free Measurement Mitigation (M3)|
+| 2                | Medium mitigation costs. Typically reduces bias in estimators, but is not guaranteed to be zero-bias. | Zero Noise Extrapolation (ZNE)                                            | -                                      |
+| 3                | Heavy mitigation with layer sampling. Theoretically expected to deliver zero-bias estimators.         | Probabilistic Error cancelation (PEC)                                     | -                                      |
 
 
 <Admonition type="info" title="Attention">
@@ -54,6 +54,15 @@ solution quality will vary from circuit to circuit. New features,
 advanced options, and management tools will be released on a rolling
 basis. Specific error mitigation methods are not guaranteed to be
 applied at each resilience level.
+</Admonition>
+
+<Admonition type="note">
+  If using an IBM Cloud Qiskit Runtime service instance with Q-CTRL performance management enabled, there is no need to specify runtime optimization or resilience levels, as the strategy includes an automatic preset.
+  
+  Setting `optimization_level` or `resilience_level` equal to 0 will result in an
+  execution error. Levels 1, 2, and 3 are permitted but will not impact performance.
+  Setting other options will likewise not impact performance, and it may result in a
+  runtime warning. For more information visit the [Q-CTRL documentation](https://docs.q-ctrl.com/q-ctrl-embedded).
 </Admonition>
 
 ## Configure the Estimator with resilience levels

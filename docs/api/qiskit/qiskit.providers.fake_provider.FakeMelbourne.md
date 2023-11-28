@@ -12,7 +12,7 @@ python_api_name: qiskit.providers.fake_provider.FakeMelbourne
 
 `qiskit.providers.fake_provider.FakeMelbourne`
 
-Bases: `FakeBackend`
+Bases: [`FakeBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeBackend "qiskit.providers.fake_provider.fake_backend.FakeBackend")
 
 A fake 14 qubit backend.
 

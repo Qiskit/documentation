@@ -26,36 +26,50 @@ import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
 import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
 import { flatFolders } from "../lib/sphinx/flatFolders";
 import { updateLinks } from "../lib/sphinx/updateLinks";
+import { renameUrls } from "../lib/sphinx/renameUrls";
 import { addFrontMatter } from "../lib/sphinx/addFrontMatter";
 import { dedupeResultIds } from "../lib/sphinx/dedupeIds";
 import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
+import { Pkg, PkgInfo, Link } from "../lib/sharedTypes";
+import transformLinks from "transform-markdown-links";
+import {
+  findLegacyReleaseNotes,
+  addNewReleaseNotes,
+  generateReleaseNotesIndex,
+  copyReleaseNotesToHistoricalVersions,
+  currentReleaseNotesPath,
+} from "../lib/releaseNotes";
 
 interface Arguments {
   [x: string]: unknown;
   package: string;
   version: string;
+  historical: boolean;
 }
 
-type Pkg = {
-  name: string;
-  githubSlug: string;
-  baseUrl: string;
-  initialUrls: string[];
-  title: string;
-  ignore?(id: string): boolean;
-  tocOptions?: {
-    collapsed?: boolean;
-    nestModule?(id: string): boolean;
-  };
-  transformLink?: (
-    url: string,
-    text?: string,
-  ) => { url: string; text?: string } | undefined;
-};
+function transformLink(link: Link): Link | undefined {
+  const updateText = link.url === link.text;
+  const prefixes = [
+    "https://qiskit.org/documentation/apidoc/",
+    "https://qiskit.org/documentation/stubs/",
+  ];
+  const prefix = prefixes.find((prefix) => link.url.startsWith(prefix));
+  if (!prefix) {
+    return;
+  }
+  let [url, anchor] = link.url.split("#");
+  url = removePrefix(url, prefix);
+  url = removeSuffix(url, ".html");
+  if (anchor && anchor !== url) {
+    url = `${url}#${anchor}`;
+  }
+  const newText = updateText ? url : undefined;
+  return { url: `/api/qiskit/${url}`, text: newText };
+}
 
-const PACKAGES: Pkg[] = [
+const PACKAGES: PkgInfo[] = [
   {
     title: "Qiskit Runtime IBM Client",
     name: "qiskit-ibm-runtime",
@@ -64,20 +78,7 @@ const PACKAGES: Pkg[] = [
     initialUrls: [
       `https://qiskit.org/ecosystem/ibm-runtime/apidocs/ibm-runtime.html`,
     ],
-    transformLink(url, text) {
-      const prefixes = [
-        "https://qiskit.org/documentation/apidoc/",
-        "https://qiskit.org/documentation/stubs/",
-      ];
-      let updateText = url === text;
-      const prefix = prefixes.find((prefix) => url.startsWith(prefix));
-      if (prefix) {
-        url = removePrefix(url, prefix);
-        url = removeSuffix(url, ".html");
-        const newText = updateText ? url : undefined;
-        return { url: `/api/qiskit/${url}`, text: newText };
-      }
-    },
+    transformLink,
   },
   {
     title: "Qiskit IBM Provider",
@@ -87,20 +88,7 @@ const PACKAGES: Pkg[] = [
     initialUrls: [
       `https://qiskit.org/ecosystem/ibm-provider/apidocs/ibm-provider.html`,
     ],
-    transformLink(url, text) {
-      const prefixes = [
-        "https://qiskit.org/documentation/apidoc/",
-        "https://qiskit.org/documentation/stubs/",
-      ];
-      let updateText = url === text;
-      const prefix = prefixes.find((prefix) => url.startsWith(prefix));
-      if (prefix) {
-        url = removePrefix(url, prefix);
-        url = removeSuffix(url, ".html");
-        const newText = updateText ? url : undefined;
-        return { url: `/api/qiskit/${url}`, text: newText };
-      }
-    },
+    transformLink,
   },
   {
     title: "Qiskit",
@@ -108,6 +96,7 @@ const PACKAGES: Pkg[] = [
     githubSlug: "qiskit/qiskit",
     baseUrl: `https://qiskit.org/documentation`,
     initialUrls: [`https://qiskit.org/documentation/apidoc/index.html`],
+    hasSeparateReleaseNotes: true,
     tocOptions: {
       collapsed: true,
       nestModule(id: string) {
@@ -131,23 +120,55 @@ const readArgs = (): Arguments => {
       alias: "v",
       type: "string",
       demandOption: true,
-      description: "The version string of the --package, e.g. 0.44.0",
+      description: "The full version string of the --package, e.g. 0.44.0",
+    })
+    .option("historical", {
+      type: "boolean",
+      default: false,
+      description: "Is this a prior release? Only works with `-p qiskit`.",
     })
     .parseSync();
 };
 
 zxMain(async () => {
   const args = readArgs();
-  const pkg = PACKAGES.find((pkg) => pkg.name === args.package);
-  if (pkg === undefined) {
+
+  // Determine the minor version, e.g. 0.44.0 -> 0.44
+  const versionMatch = args.version.match(/^(\d+\.\d+)/);
+  if (versionMatch === null) {
+    throw new Error(
+      `Invalid --version. Expected the format 0.44.0, but received ${args.version}`,
+    );
+  }
+
+  const pkgInfo = PACKAGES.find((pkg) => pkg.name === args.package);
+  if (pkgInfo === undefined) {
     throw new Error(`Unrecognized package: ${args.package}`);
   }
 
+  const pkg: Pkg = {
+    version: args.version,
+    versionWithoutPatch: versionMatch[0],
+    historical: args.historical,
+    releaseNoteEntries: [],
+    ...pkgInfo,
+  };
+
+  if (pkg.historical) {
+    if (pkg.name !== "qiskit") {
+      throw new Error("`--historical` can only be used with `-p qiskit`");
+    }
+    pkg.baseUrl = `https://qiskit.org/documentation/stable/${pkg.versionWithoutPatch}`;
+    const htmlFile =
+      +pkg.versionWithoutPatch >= 0.44 ? "index.html" : "terra.html";
+    pkg.initialUrls = [`${pkg.baseUrl}/apidoc/${htmlFile}`];
+  }
+
   const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
-    args.version
+    pkg.version
   }`;
   if (await pathExists(destination)) {
-    console.log(`Skip downloading sources for ${pkg.name}:${args.version}`);
+    console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
     await downloadHtml({
       baseUrl: pkg.baseUrl,
@@ -156,23 +177,34 @@ zxMain(async () => {
     });
   }
 
-  console.log(`Deleting existing markdown for ${pkg.name}`);
-  await $`rm -rf ${getRoot()}/docs/api/${pkg.name}`;
+  const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${pkg.versionWithoutPatch}/`;
+  const outputDir = pkg.historical
+    ? `${getRoot()}/docs/api/${pkg.name}/${pkg.versionWithoutPatch}`
+    : `${getRoot()}/docs/api/${pkg.name}`;
 
-  const output = `${getRoot()}/docs/api/${pkg.name}`;
-  const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${args.version}/`;
+  pkg.releaseNoteEntries = await findLegacyReleaseNotes(pkg);
+
+  await rmFilesInFolder(outputDir, `${pkg.name}:${pkg.versionWithoutPatch}`);
 
   console.log(
-    `Convert sphinx html to markdown for ${pkg.name}:${args.version}`,
+    `Convert sphinx html to markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
-  await convertHtmlToMarkdown(
-    destination,
-    output,
-    baseSourceUrl,
-    pkg,
-    args.version,
-  );
+  await convertHtmlToMarkdown(destination, outputDir, baseSourceUrl, pkg);
 });
+
+/**
+ * Deletes all the files in the folder, but preserves subfolders. That's important
+ * to avoid accidentally deleting other historical versions of the API.
+ *
+ * We delete files when regenerating API docs to capture when APIs have been deleted.
+ */
+async function rmFilesInFolder(
+  dir: string,
+  description: string,
+): Promise<void> {
+  console.log(`Deleting existing markdown for ${description}`);
+  await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`;
+}
 
 async function downloadHtml(options: {
   baseUrl: string;
@@ -188,7 +220,8 @@ async function downloadHtml(options: {
       return (
         url.startsWith(`${baseUrl}/apidocs`) ||
         url.startsWith(`${baseUrl}/apidoc`) ||
-        url.startsWith(`${baseUrl}/stubs`)
+        url.startsWith(`${baseUrl}/stubs`) ||
+        url.startsWith(`${baseUrl}/release_notes`)
       );
     },
     async onSuccess(url: string, content: string) {
@@ -216,10 +249,14 @@ async function convertHtmlToMarkdown(
   markdownPath: string,
   baseSourceUrl: string,
   pkg: Pkg,
-  version: string,
 ) {
   const files = await globby(
-    ["apidocs/**.html", "apidoc/**.html", "stubs/**.html"],
+    [
+      "apidocs/**.html",
+      "apidoc/**.html",
+      "stubs/**.html",
+      "release_notes.html",
+    ],
     {
       cwd: htmlPath,
     },
@@ -234,13 +271,20 @@ async function convertHtmlToMarkdown(
       html,
       url: `${pkg.baseUrl}/${file}`,
       baseSourceUrl,
-      imageDestination: `/images/api/${pkg.name}`,
+      imageDestination: pkg.historical
+        ? `/images/api/${pkg.name}/${pkg.versionWithoutPatch}`
+        : `/images/api/${pkg.name}`,
+      releaseNotesTitle: `${pkg.title} ${pkg.versionWithoutPatch} release notes`,
     });
+
     const { dir, name } = parse(`${markdownPath}/${file}`);
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
 
     if (!result.meta.python_api_name || !ignore(result.meta.python_api_name)) {
       results.push({ ...result, url });
+    }
+    if (pkg.hasSeparateReleaseNotes && file.endsWith("release_notes.html")) {
+      addNewReleaseNotes(pkg);
     }
   }
 
@@ -257,29 +301,53 @@ async function convertHtmlToMarkdown(
   }
 
   results = await mergeClassMembers(results);
-  results = flatFolders(results);
-  results = await updateLinks(results, pkg.transformLink);
-  results = await dedupeResultIds(results);
-  results = addFrontMatter(results);
+  flatFolders(results);
+  renameUrls(results);
+  await updateLinks(results, pkg.transformLink);
+  await dedupeResultIds(results);
+  addFrontMatter(results, pkg);
 
   for (const result of results) {
-    await writeFile(urlToPath(result.url), result.markdown);
+    let path = urlToPath(result.url);
+    if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
+      const projectFolder = pkg.historical
+        ? `${pkg.name}/${pkg.versionWithoutPatch}`
+        : `${pkg.name}`;
+
+      // Convert the relative links to absolute links
+      result.markdown = transformLinks(result.markdown, (link, _) =>
+        link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
+          ? link
+          : `/api/${projectFolder}/${link}`,
+      );
+
+      path = currentReleaseNotesPath(pkg);
+    }
+    await writeFile(path, result.markdown);
   }
 
   console.log("Generating toc");
-  const toc = generateToc({
-    pkg: {
-      title: pkg.title,
-      name: pkg.name,
-      version,
-      changelogUrl: `https://github.com/${pkg.githubSlug}/releases`,
-      tocOptions: pkg.tocOptions,
-    },
-    results,
-  });
+  const toc = generateToc(pkg, results);
   await writeFile(
     `${markdownPath}/_toc.json`,
     JSON.stringify(toc, null, 2) + "\n",
+  );
+
+  if (pkg.hasSeparateReleaseNotes) {
+    console.log("Generating release-notes/index");
+    const markdown = generateReleaseNotesIndex(pkg);
+    await writeFile(`${markdownPath}/release-notes/index.md`, markdown);
+  }
+
+  if (pkg.historical) {
+    copyReleaseNotesToHistoricalVersions(pkg.name, markdownPath);
+  }
+
+  console.log("Generating version file");
+  const pkg_json = { name: pkg.name, version: pkg.version };
+  await writeFile(
+    `${markdownPath}/_package.json`,
+    JSON.stringify(pkg_json, null, 2) + "\n",
   );
 
   console.log("Downloading images");

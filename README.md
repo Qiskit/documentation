@@ -1,6 +1,6 @@
 # Qiskit docs
 
-The documentation content home for https://docs.quantum-computing.ibm.com. Note this repo does not contain content for https://learning.quantum-computing.ibm.com/ or https://qiskit.org. Refer to https://github.com/Qiskit/qiskit to make changes to the docs at https://qiskit.org/documentation.
+The documentation content home for https://docs.quantum-computing.ibm.com (excluding API reference).
 
 # Improving IBM Quantum & Qiskit Documentation
 
@@ -15,7 +15,7 @@ Read on for more information about how to support this project:
 This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit and IBM Quantum documentation. There are a few different ways to report issues, depending on where it was found:
 
 - For problems you've found in the [Qiskit API Reference](https://docs.quantum-computing.ibm.com/api/qiskit) section, open an issue in the Qiskit repo [here](https://github.com/Qiskit/qiskit/issues/new/choose).
-- For problems you've found in the [Qiskit Runtime IBM Client](https://docs.quantum-computing.ibm.com/api/qiskit-ibm-runtime/runtime_service) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
+- For problems you've found in the [Qiskit Runtime IBM Client](https://docs.quantum-computing.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
 - For problems you've found in any other section of [docs](https://docs.quantum-computing.ibm.com), open a content bug issue [here](https://github.com/Qiskit/documentation/issues/new/choose).
 
 ### 2. Suggest new content
@@ -83,8 +83,8 @@ The local preview does not include the initial index page and the top nav bar fr
 - http://localhost:3000/transpile
 - http://localhost:3000/verify
 - http://localhost:3000/api/qiskit
-- http://localhost:3000/api/qiskit-ibm-runtime/runtime_service
-- http://localhost:3000/api/qiskit-ibm-provider/ibm_provider
+- http://localhost:3000/api/qiskit-ibm-runtime
+- http://localhost:3000/api/qiskit-ibm-provider
 - http://localhost:3000/api/migration-guides
 
 ## Preview the docs in PRs
@@ -104,8 +104,11 @@ This staging environment can be useful to see how the docs are rendering before 
 CI will check for broken links. You can also check locally:
 
 ```bash
-# Only check for broken links
+# Only check for internal broken links
 npm run check:links
+
+# Enable the validation of external links
+npm run check:links -- --external
 
 # Or, run all the checks
 npm run check
@@ -170,5 +173,7 @@ To check that formatting is valid without actually making changes, run `npm run 
 ## Regenerate the API docs
 
 1. Choose which documentation you want to regenerate: `qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`
-2. Determine the current version of the published stable documentation, e.g. at https://qiskit.org/documentation/
+2. Determine the current version of the published stable documentation, e.g. at https://github.com/Qiskit/qiskit/releases
 3. Run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
+
+For `qiskit`, you can also regenerate historical versions by adding `--historical` to the arguments. This is useful when we improve our generation script.

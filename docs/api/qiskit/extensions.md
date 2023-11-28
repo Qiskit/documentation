@@ -20,32 +20,15 @@ python_api_name: qiskit.extensions
 
 ## Unitary Extensions
 
-|                                                                                                                                    |                                                                       |
-| ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [`UnitaryGate`](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")(data\[, label])                                     | Class quantum gates specified by a unitary matrix.                    |
-| [`HamiltonianGate`](qiskit.extensions.HamiltonianGate "qiskit.extensions.HamiltonianGate")(data, time\[, label])                   | Class for representing evolution by a Hamiltonian operator as a gate. |
-| [`SingleQubitUnitary`](qiskit.extensions.SingleQubitUnitary "qiskit.extensions.SingleQubitUnitary")(unitary\_matrix\[, mode, ...]) | Single-qubit unitary.                                                 |
+|                                                                                                                                    |                       |
+| ---------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| [`SingleQubitUnitary`](qiskit.extensions.SingleQubitUnitary "qiskit.extensions.SingleQubitUnitary")(unitary\_matrix\[, mode, ...]) | Single-qubit unitary. |
 
 ## Simulator Extensions
 
 |                                                                                                                   |                                 |
 | ----------------------------------------------------------------------------------------------------------------- | ------------------------------- |
 | [`Snapshot`](qiskit.extensions.Snapshot "qiskit.extensions.Snapshot")(label\[, snapshot\_type, num\_qubits, ...]) | Simulator snapshot instruction. |
-
-## Initialization
-
-|                                                                                                                |                                   |
-| -------------------------------------------------------------------------------------------------------------- | --------------------------------- |
-| [`Initialize`](qiskit.extensions.Initialize "qiskit.extensions.Initialize")(params\[, num\_qubits, normalize]) | Complex amplitude initialization. |
-
-## Uniformly Controlled Rotations
-
-|                                                                                                                 |                                                                     |
-| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [`UCPauliRotGate`](qiskit.extensions.UCPauliRotGate "qiskit.extensions.UCPauliRotGate")(angle\_list, rot\_axis) | Uniformly controlled rotations (also called multiplexed rotations). |
-| [`UCRXGate`](qiskit.extensions.UCRXGate "qiskit.extensions.UCRXGate")(angle\_list)                              | Uniformly controlled rotations (also called multiplexed rotations). |
-| [`UCRYGate`](qiskit.extensions.UCRYGate "qiskit.extensions.UCRYGate")(angle\_list)                              | Uniformly controlled rotations (also called multiplexed rotations). |
-| [`UCRZGate`](qiskit.extensions.UCRZGate "qiskit.extensions.UCRZGate")(angle\_list)                              | Uniformly controlled rotations (also called multiplexed rotations). |
 
 ## Exceptions
 
@@ -58,4 +41,8 @@ The additional gates in this module will tend to raise a custom exception when t
 Base class for errors raised by extensions module.
 
 Set the error message.
+
+<Admonition title="Deprecated since version 0.45.0_pending" type="danger">
+  The class `qiskit.extensions.exceptions.ExtensionError` is pending deprecation as of qiskit 0.45.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date.
+</Admonition>
 

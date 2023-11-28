@@ -202,7 +202,7 @@ assemble circuits
 
 **Return type**
 
-[*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")
+[*QasmQobj*](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj") | [*PulseQobj*](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj")
 
 ### cals\_matrix
 

@@ -10,17 +10,17 @@ python_api_name: qiskit.transpiler.PassManager
 
 <span id="qiskit.transpiler.PassManager" />
 
-`qiskit.transpiler.PassManager(passes=None, max_iteration=1000)`
+`qiskit.transpiler.PassManager(passes=(), max_iteration=1000)`
 
-Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
+Bases: [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.passmanager.BasePassManager")
 
 Manager for a set of Passes and their scheduling during transpilation.
 
-Initialize an empty PassManager object (with no passes scheduled).
+Initialize an empty pass manager object.
 
 **Parameters**
 
-*   **passes** (*BasePass |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[BasePass] | None*) – A pass set (as defined in [`qiskit.transpiler.PassManager.append()`](#qiskit.transpiler.PassManager.append "qiskit.transpiler.PassManager.append")) to be added to the pass manager schedule.
+*   **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A pass set to be added to the pass manager schedule.
 *   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – The maximum number of iterations the schedule will be looped if the condition is not met.
 
 ## Methods
@@ -33,19 +33,28 @@ Initialize an empty PassManager object (with no passes scheduled).
 
 Append a Pass Set to the schedule of passes.
 
+<Admonition title="Deprecated since version 0.25_pending" type="danger">
+  `qiskit.transpiler.passmanager.PassManager.append()`’s argument `max_iteration` is pending deprecation as of qiskit-terra 0.25. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. ‘max\_iteration’ can be set in the constructor.
+</Admonition>
+
 **Parameters**
 
-*   **passes** (*BasePass | Sequence\[BasePass |* [*FlowController*](qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")*]*) – A set of passes (a pass set) to be added to schedule. A pass set is a list of passes that are controlled by the same flow controller. If a single pass is provided, the pass set will only have that pass a single element. It is also possible to append a [`FlowController`](qiskit.transpiler.FlowController "qiskit.transpiler.runningpassmanager.FlowController") instance and the rest of the parameter will be ignored.
+*   **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A set of passes (a pass set) to be added to schedule. A pass set is a list of passes that are controlled by the same flow controller. If a single pass is provided, the pass set will only have that pass a single element. It is also possible to append a `BaseFlowController` instance and the rest of the parameter will be ignored.
+
 *   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max number of iterations of passes.
-*   **flow\_controller\_conditions** (*Any*) – control flow plugins.
+
+*   **flow\_controller\_conditions** (*Any*) –
+
+    Dictionary of control flow plugins. Following built-in controllers are available by default:
+
+    *   do\_while: The passes repeat until the callable returns False. Corresponds to [`DoWhileController`](qiskit.passmanager.DoWhileController "qiskit.passmanager.DoWhileController").
+    *   condition: The passes run only if the callable returns True. Corresponds to [`ConditionalController`](qiskit.passmanager.ConditionalController "qiskit.passmanager.ConditionalController").
+
+    In general, you have more control simply by creating the controller you want and passing it to [`append()`](#qiskit.transpiler.PassManager.append "qiskit.transpiler.PassManager.append").
 
 **Raises**
 
 [**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if a pass in passes is not a proper pass.
-
-<Admonition title="See also" type="note">
-  `RunningPassManager.add_flow_controller()` for more information about the control flow plugins.
-</Admonition>
 
 ### draw
 
@@ -101,11 +110,11 @@ Removes a particular pass in the scheduler.
 
 **Parameters**
 
-**index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Pass index to replace, based on the position in passes().
+**index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Pass index to remove, based on the position in [`passes()`](transpiler_passes#module-qiskit.transpiler.passes "qiskit.transpiler.passes").
 
 **Raises**
 
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the index is not found.
+[**PassManagerError**](passmanager#qiskit.passmanager.PassManagerError "qiskit.passmanager.PassManagerError") – If the index is not found.
 
 ### replace
 
@@ -115,20 +124,16 @@ Removes a particular pass in the scheduler.
 
 Replace a particular pass in the scheduler.
 
+<Admonition title="Deprecated since version 0.25_pending" type="danger">
+  `qiskit.transpiler.passmanager.PassManager.replace()`’s argument `max_iteration` is pending deprecation as of qiskit-terra 0.25. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. ‘max\_iteration’ can be set in the constructor.
+</Admonition>
+
 **Parameters**
 
 *   **index** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – Pass index to replace, based on the position in passes().
-*   **passes** (*BasePass |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[BasePass]*) – A pass set (as defined in [`qiskit.transpiler.PassManager.append()`](#qiskit.transpiler.PassManager.append "qiskit.transpiler.PassManager.append")) to be added to the pass manager schedule.
+*   **passes** (*Task |* [*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[Task]*) – A pass set to be added to the pass manager schedule.
 *   **max\_iteration** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – max number of iterations of passes.
-*   **flow\_controller\_conditions** (*Any*) – control flow plugins.
-
-**Raises**
-
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if a pass in passes is not a proper pass or index not found.
-
-<Admonition title="See also" type="note">
-  `RunningPassManager.add_flow_controller()` for more information about the control flow plugins.
-</Admonition>
+*   **flow\_controller\_conditions** (*Any*) – Dictionary of control flow plugins. See [`qiskit.transpiler.PassManager.append()`](#qiskit.transpiler.PassManager.append "qiskit.transpiler.PassManager.append") for details.
 
 ### run
 
@@ -144,7 +149,7 @@ Run all the passes on the specified `circuits`.
 
 *   **output\_name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)") *| None*) – The output circuit name. If `None`, it will be set to the same as the input circuit name.
 
-*   **callback** (*Callable | None*) –
+*   **callback** (*Callable*) –
 
     A callback function that will be called after each pass execution. The function will be called with 5 keyword arguments:
 
@@ -155,6 +160,10 @@ Run all the passes on the specified `circuits`.
     property_set (PropertySet): the property set
     count (int): the index for the pass execution
     ```
+
+    <Admonition title="Note" type="note">
+      Beware that the keyword arguments here are different to those used by the generic [`BasePassManager`](qiskit.passmanager.BasePassManager "qiskit.passmanager.BasePassManager"). This pass manager will translate those arguments into the form described above.
+    </Admonition>
 
     The exact arguments pass expose the internals of the pass manager and are subject to change as the pass manager internals change. If you intend to reuse a callback function over multiple releases be sure to check that the arguments being passed are the same.
 
@@ -184,9 +193,13 @@ The transformed circuit(s).
 
 `to_flow_controller()`
 
-Linearize this manager into a single [`FlowController`](qiskit.transpiler.FlowController "qiskit.transpiler.FlowController"), so that it can be nested inside another [`PassManager`](#qiskit.transpiler.PassManager "qiskit.transpiler.PassManager").
+Linearize this manager into a single [`FlowControllerLinear`](qiskit.passmanager.FlowControllerLinear "qiskit.passmanager.FlowControllerLinear"), so that it can be nested inside another pass manager.
+
+**Returns**
+
+A linearized pass manager.
 
 **Return type**
 
-[*FlowController*](qiskit.transpiler.FlowController "qiskit.transpiler.runningpassmanager.FlowController")
+*RunningPassManager*
 

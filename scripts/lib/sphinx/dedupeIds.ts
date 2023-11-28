@@ -23,13 +23,12 @@ import { toText } from "hast-util-to-text";
 import Slugger from "github-slugger";
 import { SphinxToMdResult } from "./SphinxToMdResult";
 
-export async function dedupeResultIds<T extends SphinxToMdResult>(
-  results: T[],
-): Promise<T[]> {
+export async function dedupeResultIds(
+  results: SphinxToMdResult[],
+): Promise<void> {
   for (let result of results) {
     result.markdown = await dedupeIds(result.markdown);
   }
-  return results;
 }
 
 export async function dedupeIds(md: string): Promise<string> {
