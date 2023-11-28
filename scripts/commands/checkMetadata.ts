@@ -46,6 +46,12 @@ const main = async (): Promise<void> => {
     if (IGNORED_FILES.has(file)) {
       continue;
     }
+
+    // Ignore all historical API version files.
+    if (/.*\/[0-9].*\//.test(file)) {
+      continue;
+    }
+
     const metadata = await readMetadata(file);
     if (!isValidMetadata(metadata)) {
       mdErrors.push(file);
