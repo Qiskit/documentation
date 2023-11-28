@@ -1,0 +1,16 @@
+---
+title: decimal_to_binary
+description: API reference for qiskit.aqua.utils.decimal_to_binary
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.aqua.utils.decimal_to_binary
+---
+
+# decimal\_to\_binary
+
+<span id="qiskit.aqua.utils.decimal_to_binary" />
+
+`decimal_to_binary(decimal_val, max_num_digits=20, fractional_part_only=False)`
+
+decimal to binary
+
