@@ -86,7 +86,10 @@ zxMain(async () => {
   }
 });
 
-async function copyApiDocsAndUpdateLinks(pkgName: string, versionWithoutPatch: string) {
+async function copyApiDocsAndUpdateLinks(
+  pkgName: string,
+  versionWithoutPatch: string,
+) {
   console.log("Generating API docs");
   const filePaths = await globby(`docs/api/${pkgName}/*.md`);
   for (let filePath of filePaths) {
@@ -102,7 +105,10 @@ async function copyApiDocsAndUpdateLinks(pkgName: string, versionWithoutPatch: s
   }
 }
 
-async function copyReleaseNotesFolder(pkgName: string, versionWithoutPatch: string) {
+async function copyReleaseNotesFolder(
+  pkgName: string,
+  versionWithoutPatch: string,
+) {
   console.log("Generating release notes");
   await $`find docs/api/${pkgName}/release-notes/* -maxdepth 0 -type f -not -path "*index.md" | xargs -I {} cp -a {}  docs/api/${pkgName}/${versionWithoutPatch}/release-notes/`;
   updateLinksFile(
