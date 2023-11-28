@@ -30,12 +30,21 @@ zxMain(async () => {
 
     errorMessages.length > 0
       ? errorMessages.forEach((error) => console.error(error))
-      : console.log("✅ The release notes are synchronized\n");
+      : console.log("✅ The release notes are synchronized");
+    console.log("\n");
 
     allGood = allGood && errorMessages.length == 0;
   }
 
   if (!allGood) {
+    console.error(
+      "To synchronize the release notes, replace the indicated files with a copy from the current API.",
+      "You can find the release notes in the following files/folders:\n",
+      " - qiskit-ibm-runtime: docs/api/qiskit-ibm-runtime/release-notes.md\n",
+      " - qiskit-ibm-provider: docs/api/qiskit-ibm-provider/release-notes.md\n",
+      " - qiskit: docs/api/qiskit/release-notes/*.md\n",
+      "All files except index.md on qiskit should be identical for every API version.",
+    );
     process.exit(1);
   }
 });
