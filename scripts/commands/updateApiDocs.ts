@@ -13,7 +13,7 @@
 import { $ } from "zx";
 import { zxMain } from "../lib/zx";
 import { pathExists, getRoot } from "../lib/fs";
-import { readFile, writeFile, readdir } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
 import { globby } from "globby";
 import { join, parse, relative } from "path";
 import { sphinxHtmlToMarkdown } from "../lib/sphinx/sphinxHtmlToMarkdown";
