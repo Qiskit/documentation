@@ -448,6 +448,10 @@ async function syncReleaseNotes(projectName: string, pathAPIFolder: string) {
   ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
 
   for (let folder of historicalFolders) {
+    // All projects except Qiskit have a single release notes file.
+    // Therefore, we only need to copy the `release-notes.md` file
+    // to the historical version folders. We don't need to update
+    // any links because we use relative paths.
     if (projectName != "qiskit") {
       await $`rm -f ${pathAPIFolder}/${folder.name}/release-notes.md`;
       await $`cp -a ${pathAPIFolder}/release-notes.md ${pathAPIFolder}/${folder.name}/`;
