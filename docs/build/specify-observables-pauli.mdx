@@ -7,9 +7,9 @@ description: Measure circuits in different Pauli bases, which is required to mea
 # Specify observables in the Pauli basis
 
 In quantum mechanics, observables correspond to physical properties that can be measured.
-If we are dealing with system of spins, for example, we could be interested in measuring the system's energy or obtaining information about the alignment of the spins, such as the magnetization or the correlations between spins.
+When considering a system of spins, for example, you could be interested in measuring the system's energy or obtaining information about the alignment of the spins, such as the magnetization or the correlations between spins.
 
-To measure an $n$-qubit observable $O$ on a quantum computer, we have to represent it as sum of tensor products of Pauli operators, that is
+To measure an $n$-qubit observable $O$ on a quantum computer, you must represent it as a sum of tensor products of Pauli operators, that is
 
 $$
 O = \sum_{k=1}^K \alpha_k P_k,~~ P_k \in \{I, X, Y, Z\}^{\otimes n},~~ \alpha_k \in \mathbb{R},
@@ -35,7 +35,7 @@ Z = \begin{pmatrix}
 \end{pmatrix}
 $$
 
-and we use the fact that an observable is hermitian, i.e. $O^\dagger = O$. If $O$ is not hermitian it can still be decomposed as sum of Paulis, but the coefficient $\alpha_k$ become complex.
+and you use the fact that an observable is Hermitian, as in, $O^\dagger = O$. If $O$ is not Hermitian it can still be decomposed as a sum of Paulis, but the coefficient $\alpha_k$ becomes complex.
 
 In many cases, the observable is naturally specified in this representation after mapping the system of interest to qubits.
 For example, a spin-1/2 system can be mapped to an Ising Hamiltonian
@@ -45,8 +45,8 @@ H = \sum_{\langle i, j\rangle} Z_i Z_j + \sum_{i=1}^n X_i,
 $$
 
 where the indices $\langle i, j\rangle$ run over interacting spins and the spins are subject to a transversal field in $X$.
-The subscript index indicates which qubit the Pauli operator acts on, i.e. $X_i$ acts with an $X$ on qubit $i$ and leaves the rest unchanged.
-If we would like to measure the energy the observable is the Hamiltonian itself. Alternatively, we could measure the 
+The subscript index indicates which qubit the Pauli operator acts on, i.e. $X_i$ applies an $X$ operator on qubit $i$ and leaves the rest unchanged.
+If we would like to measure the energy, the observable is the Hamiltonian itself. Alternatively, we could measure the 
 average magnetization by counting the number of spins aligned in the $Z$-direction by
 
 $$
@@ -61,7 +61,7 @@ O = \sum_{P \in \{I, X, Y, Z\}^{\otimes n}} \mathrm{Tr}(O P) P,
 $$
 
 where the sum runs over all possible $n$-qubit Pauli terms and $\mathrm{Tr}(\cdot)$ is the trace of a matrix, which acts as inner product.
-Qiskit implements this decomposition in the `SparsePauliOp.from_operator` method:
+You can implement this decomposition  from a matrix to Pauli terms using the `SparsePauliOp.from_operator` method, like so:
 
 ```python
 import numpy as np
@@ -82,14 +82,14 @@ which prints
 SparsePauliOp(['IZ', 'XI', 'YY'], coeffs=[-1. +0.j,  0.5+0.j,  1. +0.j])
 ```
 
-This means the matrix can be written as Pauli terms as $O = -Z_1 + 0.5 X_2 + Y_2 Y_1$.
+This means the matrix can be written in Pauli terms as $O = -Z_1 + 0.5 X_2 + Y_2 Y_1$.
 Note that the tensor product order maps to qubits as $q_n \otimes q_{n-1} \otimes \cdots \otimes q_1$.
 
 
-# Measuring in Pauli bases
+## Measure in Pauli bases
 
-A measurement projects the qubit state to the computational basis $\{|0\rangle, |1\rangle\}$. This implies that we can only measure observables that are diagonal in this basis, such as Paulis consisting only of $I$ and $Z$ terms.
-Measuring arbitrary Pauli terms therefore requires a change of basis to diagonalize them. To do this, we perform the following transformations,
+A measurement projects the qubit state to the computational basis $\{|0\rangle, |1\rangle\}$. This implies that you can only measure observables that are diagonal in this basis, such as Paulis consisting only of $I$ and $Z$ terms.
+Measuring arbitrary Pauli terms therefore requires a change of basis to diagonalize them. To do this, perform the following transformations,
 
 $$
 \begin{aligned}
