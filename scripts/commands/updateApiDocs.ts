@@ -339,7 +339,7 @@ async function convertHtmlToMarkdown(
     await writeFile(`${markdownPath}/release-notes/index.md`, markdown);
   }
 
-  if (historical) {
+  if (pkg.historical) {
     copyReleaseNotesToHistoricalVersions(pkg.name, markdownPath);
   } else {
     syncReleaseNotes(pkg.name, markdownPath);
