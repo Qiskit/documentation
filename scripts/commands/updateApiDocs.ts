@@ -40,6 +40,7 @@ import {
   generateReleaseNotesIndex,
   copyReleaseNotesToHistoricalVersions,
   currentReleaseNotesPath,
+  syncReleaseNotes,
 } from "../lib/releaseNotes";
 
 interface Arguments {
@@ -341,6 +342,8 @@ async function convertHtmlToMarkdown(
 
   if (pkg.historical) {
     copyReleaseNotesToHistoricalVersions(pkg.name, markdownPath);
+  } else {
+    syncReleaseNotes(pkg.name, markdownPath);
   }
 
   console.log("Generating version file");
