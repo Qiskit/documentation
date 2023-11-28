@@ -3,6 +3,8 @@ title: Synthesizing unitary matrices
 description: On the implementation of arbitrary unitary matrices on qubits
 ---
 
+# Synthesizing unitaries
+
 A unitary operation describes a norm-preserving change to a quantum system.
 For $n$ qubits this change is described by a $2^n \times 2^n$ dimensional, complex matrix $U$ whose adjoint equals the inverse, that is $U^\dagger U = \mathbb{1}$.
 
@@ -12,8 +14,10 @@ While efficient synthesis is possible for certain classes of unitaries – like 
 For general unitary matrices, synthesis is a complex task with computational costs that increase exponentially with the number of qubits.
 Therefore, if you know an efficient decomposition for the unitary you would like to implement, it will likely be better than a general synthesis.
 
-If no decomposition is available, Qiskit provides you with the tools to find one. 
-However, note that this generally generates deep circuits that may be unsuitable to run on noisy quantum computers.
+<Admonition type="note">
+    If no decomposition is available, Qiskit provides you with the tools to find one. 
+    However, note that this generally generates deep circuits that may be unsuitable to run on noisy quantum computers.
+</Admonition>
 
 ```python
 import numpy as np
@@ -30,17 +34,11 @@ circuit = QuantumCircuit(2)
 circuit.unitary(U, circuit.qubits)
 ```
 
+## Re-synthesis for circuit optimization
+
 Sometimes it is beneficial to re-synthesis a long series of 1- and 2-qubit gates, if the length can be reduced. For example, the following circuit uses three 2-qubit gates.
 
-```
->>> target_circuit.draw()
-
-     ┌───┐              ┌───┐     ┌───┐
-q_0: ┤ H ├──■─────────■─┤ X ├──■──┤ H ├
-     └───┘┌─┴─┐┌────┐ │ ├───┤┌─┴─┐└───┘
-q_1: ─────┤ X ├┤ √X ├─■─┤ X ├┤ X ├─────
-          └───┘└────┘   └───┘└───┘
-```
+![output](/images/build/unitary-synthesis/unitary_target.png)
 
 However, after re-synthesizing it using the following code, it only needs a single CX gate.
 
@@ -53,19 +51,11 @@ U = Operator(target_circuit)
 # re-synthesize
 better_circuit = QuantumCircuit(2)
 better_circuit.unitary(U, range(2))
+better_circuit.decompose().draw()
 ```
 
+![output](/images/build/unitary-synthesis/unitary_resynth.png)
 
-```
->>> better_circuit.decompose().draw()
-
-global phase: 3.2522
-        ┌────────────┐           ┌────────────┐
-q_0: ───┤ U(π/2,0,0) ├─────■─────┤ U(π/2,0,0) ├───
-     ┌──┴────────────┴──┐┌─┴─┐┌──┴────────────┴──┐
-q_1: ┤ U(1.3496,π/2,-π) ├┤ X ├┤ U(π/2,2.9204,-π) ├
-     └──────────────────┘└───┘└──────────────────┘
-```
-
-Qiskit's [transpile](../api/qiskit/compiler#qiskit.compiler.transpile) function automatically performs this re-synthesis for a sufficiently high optimization level.
+Qiskit's [transpile](../api/qiskit/compiler#qiskit.compiler.transpile) function automatically performs this re-synthesis for a sufficiently high optimization level,
+see also the [transpiler docs](../transpile/index).
 
