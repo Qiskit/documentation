@@ -22,6 +22,8 @@ const PACKAGES: string[] = [
 ];
 
 zxMain(async () => {
+  let allGood = true;
+
   for (let pkgName of PACKAGES) {
     console.log(`${pkgName} release-notes:`);
     const errorMessages = await compareReleaseNotes(pkgName);
@@ -29,6 +31,12 @@ zxMain(async () => {
     errorMessages.length > 0
       ? errorMessages.forEach((error) => console.error(error))
       : console.log("✅ The release notes are synchronized\n");
+
+    allGood = allGood && errorMessages.length == 0;
+  }
+
+  if (!allGood) {
+    process.exit(1);
   }
 });
 
