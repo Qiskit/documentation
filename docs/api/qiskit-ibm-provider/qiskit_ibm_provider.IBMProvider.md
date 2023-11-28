@@ -44,7 +44,7 @@ from qiskit_ibm_provider import IBMProvider
 provider = IBMProvider(token=<INSERT_IBM_QUANTUM_TOKEN>)
 ```
 
-token is the only required attribute that needs to be set using one of the above methods. If no url is set, it defaults to ‘[https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api)’.
+token is the only required attribute that needs to be set using one of the above methods. If no url is set, it defaults to ‘[https://auth.quantum.ibm.com/api](https://auth.quantum.ibm.com/api)’.
 
 <Admonition title="Note" type="note">
   The hub/group/project is selected based on the below selection order, in decreasing order of priority.
@@ -95,7 +95,7 @@ IBMProvider constructor
 **Parameters**
 
 *   **token** (`Optional`\[`str`]) – IBM Quantum API token.
-*   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api).
+*   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://auth.quantum.ibm.com/api](https://auth.quantum.ibm.com/api).
 *   **name** (`Optional`\[`str`]) – Name of the account to load.
 *   **instance** (`Optional`\[`str`]) – Provider in the hub/group/project format.
 *   **proxies** (`Optional`\[`dict`]) – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://docs.python-requests.org/en/latest/api/#requests.Session.proxies](https://docs.python-requests.org/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)
@@ -346,7 +346,7 @@ Save the account to disk for future use.
 **Parameters**
 
 *   **token** (`Optional`\[`str`]) – IBM Quantum API token.
-*   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api)
+*   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://auth.quantum.ibm.com/api](https://auth.quantum.ibm.com/api)
 *   **instance** (`Optional`\[`str`]) – The hub/group/project.
 *   **name** (`Optional`\[`str`]) – Name of the account to save.
 *   **proxies** (`Optional`\[`dict`]) – Proxy configuration. Supported optional keys are `urls` (a dictionary mapping protocol or protocol and host to the URL of the proxy, documented at [https://docs.python-requests.org/en/latest/api/#requests.Session.proxies](https://docs.python-requests.org/en/latest/api/#requests.Session.proxies)), `username_ntlm`, `password_ntlm` (username and password to enable NTLM user authentication)

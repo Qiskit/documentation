@@ -1,6 +1,6 @@
 # Qiskit docs
 
-The documentation content home for https://docs.quantum-computing.ibm.com (excluding API reference).
+The documentation content home for https://docs.quantum.ibm.com (excluding API reference).
 
 # Improving IBM Quantum & Qiskit Documentation
 
@@ -14,9 +14,9 @@ Read on for more information about how to support this project:
 
 This is the quickest, easiest, and most helpful way to contribute to this project and improve the quality of Qiskit and IBM Quantum documentation. There are a few different ways to report issues, depending on where it was found:
 
-- For problems you've found in the [Qiskit API Reference](https://docs.quantum-computing.ibm.com/api/qiskit) section, open an issue in the Qiskit repo [here](https://github.com/Qiskit/qiskit/issues/new/choose).
-- For problems you've found in the [Qiskit Runtime IBM Client](https://docs.quantum-computing.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
-- For problems you've found in any other section of [docs](https://docs.quantum-computing.ibm.com), open a content bug issue [here](https://github.com/Qiskit/documentation/issues/new/choose).
+- For problems you've found in the [Qiskit API Reference](https://docs.quantum.ibm.com/api/qiskit) section, open an issue in the Qiskit repo [here](https://github.com/Qiskit/qiskit/issues/new/choose).
+- For problems you've found in the [Qiskit Runtime IBM Client](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime) section, open an issue in the Qiskit IBM Runtime repo [here](https://github.com/Qiskit/qiskit-ibm-runtime/issues/new/choose).
+- For problems you've found in any other section of [docs](https://docs.quantum.ibm.com), open a content bug issue [here](https://github.com/Qiskit/documentation/issues/new/choose).
 
 ### 2. Suggest new content
 
@@ -75,7 +75,7 @@ npm install
 
 Run `./start` in your terminal, then open http://localhost:3000/start in your browser.
 
-The local preview does not include the initial index page and the top nav bar from docs.quantum-computing.ibm.com. Therefore, you must directly navigate in the URL to the folder that you want:
+The local preview does not include the initial index page and the top nav bar from docs.quantum.ibm.com. Therefore, you must directly navigate in the URL to the folder that you want:
 
 - http://localhost:3000/build
 - http://localhost:3000/start
