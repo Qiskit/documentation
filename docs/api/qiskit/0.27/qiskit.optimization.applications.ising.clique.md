@@ -1,0 +1,94 @@
+<span id="qiskit-optimization-applications-ising-clique" />
+
+# qiskit.optimization.applications.ising.clique
+
+Convert clique instances into Pauli list
+
+Deal with Gset format. See [https://web.stanford.edu/\~yyye/yyye/Gset/](https://web.stanford.edu/~yyye/yyye/Gset/)
+
+## Functions
+
+|                                                                                                                                                                 |                                        |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| [`get_graph_solution`](#qiskit.optimization.applications.ising.clique.get_graph_solution "qiskit.optimization.applications.ising.clique.get_graph_solution")(x) | Get graph solution from binary string. |
+| [`get_operator`](#qiskit.optimization.applications.ising.clique.get_operator "qiskit.optimization.applications.ising.clique.get_operator")(weight\_matrix, K)   | Generate Hamiltonian for the clique.   |
+| [`satisfy_or_not`](#qiskit.optimization.applications.ising.clique.satisfy_or_not "qiskit.optimization.applications.ising.clique.satisfy_or_not")(x, w, K)       | Compute the value of a cut.            |
+
+<span id="undefined" />
+
+`get_graph_solution(x)`
+
+Get graph solution from binary string.
+
+**Parameters**
+
+**x** (*numpy.ndarray*) – binary string as numpy array.
+
+**Returns**
+
+graph solution as binary numpy array.
+
+**Return type**
+
+numpy.ndarray
+
+<span id="undefined" />
+
+`get_operator(weight_matrix, K)`
+
+Generate Hamiltonian for the clique.
+
+The goals is can we find a complete graph of size K?
+
+To build the Hamiltonian the following logic is applied.
+
+Suppose Xv denotes whether v should appear in the clique (Xv=1 or 0)n
+
+H = Ha + Hbn
+
+Ha = (K-sum\_\{v}\{Xv})^2
+
+Hb = K(K−1)/2 - sum\_\{(u,v)in E}\{XuXv}
+
+Besides, Xv = (Zv+1)/2
+
+By replacing Xv with Zv and simplifying it, we get what we want below.
+
+Note: in practice, we use H = A\*Ha + Bb, where A is a large constant such as 1000.
+
+A is like a huge penality over the violation of Ha, which forces Ha to be 0, i.e., you have exact K vertices selected. Under this assumption, Hb = 0 starts to make sense, it means the subgraph constitutes a clique or complete graph. Note the lowest possible value of Hb is 0.
+
+Without the above assumption, Hb may be negative (say you select all). In this case, one needs to use Hb^2 in the hamiltonian to minimize the difference.
+
+**Parameters**
+
+*   **weight\_matrix** (*numpy.ndarray*) – adjacency matrix.
+*   **K** (*numpy.ndarray*) – K
+
+**Returns**
+
+The operator for the Hamiltonian and a constant shift for the obj function.
+
+**Return type**
+
+tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+
+<span id="undefined" />
+
+`satisfy_or_not(x, w, K)`
+
+Compute the value of a cut.
+
+**Parameters**
+
+*   **x** (*numpy.ndarray*) – binary string as numpy array.
+*   **w** (*numpy.ndarray*) – adjacency matrix.
+*   **K** (*numpy.ndarray*) – K
+
+**Returns**
+
+value of the cut.
+
+**Return type**
+
+float

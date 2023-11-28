@@ -4,7 +4,7 @@ import yaml
 from pathlib import Path
 from .upload import Lesson, API
 
-CONF_FILE = "./learning-platform.conf.yaml"
+CONF_FILE = "./learning-api.conf.yaml"
 API_URLS = {
     "staging": "https://learning-api-dev.quantum-computing.ibm.com",
     "production": "https://learning-api.quantum-computing.ibm.com",

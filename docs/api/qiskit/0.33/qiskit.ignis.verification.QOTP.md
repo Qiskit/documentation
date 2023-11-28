@@ -1,0 +1,27 @@
+# qiskit.ignis.verification.QOTP
+
+<span id="undefined" />
+
+`QOTP(circ, num, two_qubit_gate='cx', coupling_map=None, seed=None)`
+
+Performs a QOTP (or random compilation) on a generic circuit.
+
+This is similar to randomized compiling, but follows the methods in \[1].
+
+**Parameters**
+
+*   **circ** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A generic quantum circuit
+*   **num** (*int*) – the number of one-time pads to return
+*   **two\_qubit\_gate** (*string*) – a flag as to which 2 qubit gate to compile with, can be cx or cz
+*   **coupling\_map** (*list*) – a particular device topology as a list of list (e.g. \[\[0,1],\[1,2],\[2,0]])
+*   **seed** (*int*) – seed to the random number generator
+
+**Returns**
+
+**a tuple of type (`qotp_circ`, `qotp_postp`) where:**
+
+qotp\_circs (list): a list of circuits with qotp applied qotp\_postps (list): a list of arrays specifying the one time pads
+
+**Return type**
+
+tuple
