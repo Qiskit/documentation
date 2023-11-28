@@ -1,0 +1,33 @@
+# qiskit.quantum\_info.mutual\_information[¶](#qiskit-quantum-info-mutual-information "Permalink to this headline")
+
+<span id="undefined" />
+
+`mutual_information(state, base=2)`
+
+Calculate the mutual information of a bipartite state.
+
+The mutual information $I$ is given by:
+
+$$
+I(\rho_{AB}) = S(\rho_A) + S(\rho_B) - S(\rho_{AB})
+$$
+
+where $\rho_A=Tr_B[\rho_{AB}], \rho_B=Tr_A[\rho_{AB}]$, are the reduced density matrices of the bipartite state $\rho_{AB}$.
+
+**Parameters**
+
+*   **state** ([*Statevector*](qiskit.quantum_info.Statevector#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix#qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a bipartite state.
+*   **base** (*int*) – the base of the logarithm \[Default: 2].
+
+**Returns**
+
+The mutual information $I(\rho_{AB})$.
+
+**Return type**
+
+float
+
+**Raises**
+
+*   **QiskitError** – if the input state is not a valid QuantumState.
+*   **QiskitError** – if input is not a bipartite QuantumState.

@@ -1,0 +1,26 @@
+# qiskit.ignis.verification.coherence\_limit[¶](#qiskit-ignis-verification-coherence-limit "Permalink to this headline")
+
+<span id="undefined" />
+
+`coherence_limit(nQ=2, T1_list=None, T2_list=None, gatelen=0.1)`
+
+The error per gate (1-average\_gate\_fidelity) given by the T1,T2 limit.
+
+**Parameters**
+
+*   **nQ** (*int*) – number of qubits (1 and 2 supported).
+*   **T1\_list** (*list*) – list of T1’s (Q1,…,Qn).
+*   **T2\_list** (*list*) – list of T2’s (as measured, not Tphi). If not given assume T2=2\*T1 .
+*   **gatelen** (*float*) – length of the gate.
+
+**Returns**
+
+coherence limited error per gate.
+
+**Return type**
+
+float
+
+**Raises**
+
+**ValueError** – if there are invalid inputs
