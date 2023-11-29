@@ -1,6 +1,6 @@
 ---
 title: Select and set up an IBM Quantum channel
-description: Install and set up IBM Quantum Platform or IBM Quantum on IBM Cloud to submit Qiskit and Qiskit Runtime jobs
+description: Installation and setup instructions for IBM Quantum Platform or IBM Quantum on IBM Cloud to submit Qiskit and Qiskit Runtime jobs
 
 ---
 # Select and set up an IBM Quantum channel
@@ -63,7 +63,7 @@ You need access credentials to use cloud-based IBM Quantum systems.
     * If you don't save your credentials, you must specify them every time you start a new session. 
     * The `channel` parameter allows you to distinguish between different account types. When initializing the account, IBM Cloud is the default account used if have saved credentials for an IBM Quantum Platform and an IBM Cloud account.
 
-    <Admonition type="important">
+    <Admonition type="caution">
       Account credentials are saved in plain text, so only do so if you are using a trusted device.
     </Admonition>
 
@@ -132,7 +132,7 @@ QiskitRuntimeService.save_account(channel="ibm_quantum", token="<MY_IBM_QUANTUM_
     * Credentials are saved to `$HOME/.qiskit/qiskit-ibm.json`.  Do not manually edit this file. 
     * If you don't save your credentials, you must specify them every time you start a new session. 
 
-    <Admonition type="important">
+    <Admonition type="caution">
         Account credentials are saved in plain text, so only do so if you are using a trusted device.
     </Admonition>
 
@@ -142,8 +142,6 @@ QiskitRuntimeService.save_account(channel="ibm_quantum", token="<MY_IBM_QUANTUM_
     # Save account to disk. 
     QiskitRuntimeService.save_account(channel="ibm_cloud", token="<IBM Cloud API key>", instance="<IBM Cloud CRN>", name="<account-name>")
     ```
-
-    For more information about managing your account, see the [account management topic](../run/account-management).
 
 1. Authenticate to the service by calling `QiskitRuntimeService` with your saved credentials or with your IBM Cloud API key and CRN:
 

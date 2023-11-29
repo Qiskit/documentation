@@ -1,0 +1,35 @@
+# This code is a Qiskit project.
+#
+# (C) Copyright IBM 2023.
+#
+# This code is licensed under the Apache License, Version 2.0. You may
+# obtain a copy of this license in the LICENSE file in the root directory
+# of this source tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this
+# copyright notice, and modified files need to carry a notice indicating
+# that they have been altered from the originals.
+
+# This Action validates all the links in the documentation, including
+# external links. This Action will be run at 00:00 (UTC) every day.
+
+name: Check external links
+on:
+  schedule:
+    - cron: "0 0 * * *"
+
+jobs:
+  external-link-checker:
+    runs-on: ubuntu-latest
+    if: github.repository_owner == 'Qiskit'
+    steps:
+      - uses: actions/checkout@v4
+      - name: Set up Node.js
+        uses: actions/setup-node@v3
+        with:
+          node-version: 18
+      - name: Install Node.js dependencies
+        run: npm ci
+
+      - name: Check external links
+        run: npm run check:links -- --external

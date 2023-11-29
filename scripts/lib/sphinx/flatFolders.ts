@@ -13,13 +13,10 @@
 import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
 import { removePart } from "../stringUtils";
 
-export function flatFolders<T extends SphinxToMdResultWithUrl>(
-  results: T[],
-): T[] {
+export function flatFolders(results: SphinxToMdResultWithUrl[]): void {
   for (const result of results) {
     result.url = omitRootFolders(result.url);
   }
-  return results;
 }
 
 function omitRootFolders(path: string): string {
