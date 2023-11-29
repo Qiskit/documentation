@@ -41,19 +41,36 @@ In many cases, the observable is naturally specified in this representation afte
 For example, a spin-1/2 system can be mapped to an Ising Hamiltonian
 
 $$
-H = \sum_{\langle i, j\rangle} Z_i Z_j + \sum_{i=1}^n X_i,
+H = \sum_{\langle i, j\rangle} Z_i Z_j - \sum_{i=1}^n X_i,
 $$
 
 where the indices $\langle i, j\rangle$ run over interacting spins and the spins are subject to a transversal field in $X$.
 The subscript index indicates which qubit the Pauli operator acts on, i.e. $X_i$ acts with an $X$ on qubit $i$ and leaves the rest unchanged.
-If we would like to measure the energy the observable is the Hamiltonian itself. Alternatively, we could measure the 
-average magnetization by counting the number of spins aligned in the $Z$-direction by
+In Qiskit, this Hamiltonian could be constructed as 
+
+```python
+# define the number of qubits
+n = 12
+
+# define the single Pauli terms as ("Paulis", [indices], coefficient)
+interactions = [("ZZ", [i, i + 1], 1) for i in range(n - 1)]  # we assume spins on a 1D line
+field = [("X", [i], -1) for i in range(n)]
+
+# build the operator
+hamiltonian = SparsePauliOp.from_sparse_list(interactions + field, num_qubits=n)
+```
+
+If we would like to measure the energy the observable is the Hamiltonian itself. Alternatively, we could be
+interested in measuring system properties like the average magnetization by counting the number of spins 
+aligned in the $Z$-direction with the observable
 
 $$
 O = \frac{1}{n} \sum_{i=1} Z_i
 $$
 
-If, instead, the observable is given in a matrix form, it can be expressed as Paulis by using the fact that the Pauli terms form a basis for the complex $2^n \times 2^n$ matrices.
+For observables that are not given in terms of Pauli operators but in a matrix for, we first have to reformulate them
+in the Pauli basis in order to evaluate them on a quantum computer.
+We are always able to find such a representation as the Pauli matrices form a basis for the Hermitian $2^n \times 2^n$ matrices.
 We expand the observable $O$ as 
 
 $$
@@ -83,7 +100,15 @@ SparsePauliOp(['IZ', 'XI', 'YY'], coeffs=[-1. +0.j,  0.5+0.j,  1. +0.j])
 ```
 
 This means the matrix can be written as Pauli terms as $O = -Z_1 + 0.5 X_2 + Y_2 Y_1$.
-Note that the tensor product order maps to qubits as $q_n \otimes q_{n-1} \otimes \cdots \otimes q_1$.
+
+<Admonition type="note">
+  Remember the tensor product order maps to qubits as $q_n \otimes q_{n-1} \otimes \cdots \otimes q_1$.
+</Admonition>
+
+<Admonition type="note">
+  If the observable is Hermitian (meaning $O^\dagger = O$), the Pauli coefficients are real numbers.
+  We can, however, also decompose any other complex matrix in terms of Paulis, if we allow for complex-valued coefficients.
+</Admonition>
 
 
 # Measuring in Pauli bases
@@ -101,7 +126,9 @@ $$
 where $H$ is the Hadamard gate and $S = \sqrt{Z}$ is sometimes referred to as the phase gate. 
 If you are using an [Estimator](../api/qiskit/qiskit.primitives.Estimator) to compute expectation values, the basis transformations are automatically performed.
 
-Below is an example demonstrating how to prepare a quantum circuit and manually measure the qubits in the X, Y, and Z bases:
+Below is an example demonstrating how to prepare a quantum circuit and manually measure the qubit 0 in the X basis, 
+qubit 1 in the Y basis and qubit 2 in the Z basis. 
+We apply the transformations shown in the previous equation and obtain the following circuit:
 
 ```python
 from qiskit.circuit import QuantumCircuit
@@ -112,6 +139,7 @@ circuit = QuantumCircuit(3)
 circuit.ry(0.8, 0)
 circuit.cx(0, 1)
 circuit.cx(1, 2)
+circuit.barrier()
 
 # diagonalize X with the Hadamard gate 
 circuit.h(0)
@@ -124,5 +152,8 @@ circuit.sdg(1)
 
 # measure all qubits
 circuit.measure_all()
+circuit.draw()
 ```
+
+![output](/images/build/paulibasis.png)
 
