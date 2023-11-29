@@ -20,7 +20,7 @@ Creating utility-scale quantum applications generally requires a variety of comp
 
 Steps in a Qiskit Pattern:
 
-1. Generate classical inputs to a quantum problem
+1. Map classical inputs to a quantum problem
 2. Optimize problem for quantum execution
 3. Execute using Qiskit Runtime primitives
 4. Post-process, return result in classical format
@@ -47,7 +47,7 @@ from quantum_serverless import save_result
 service = QiskitRuntimeService()
 backend = service.least_busy(simulator=False)
 
-# Step 1: Generate quantum circuits and operators
+# Step 1: Map quantum circuits and operators
 abstract_circuit = random_circuit(2, 2, seed=1234)
 observable = SparsePauliOp("IY")
 
