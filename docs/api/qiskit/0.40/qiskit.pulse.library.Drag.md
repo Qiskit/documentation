@@ -1,43 +1,59 @@
 ---
-title: drag
-description: API reference for qiskit.pulse.library.drag
+title: Drag
+description: API reference for qiskit.pulse.library.Drag
 in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.pulse.library.drag
+python_api_type: class
+python_api_name: qiskit.pulse.library.Drag
 ---
 
-# qiskit.pulse.library.drag[¶](#qiskit-pulse-library-drag "Permalink to this headline")
+# Drag[¶](#drag "Permalink to this headline")
 
-<span id="qiskit.pulse.library.drag" />
+<span id="qiskit.pulse.library.Drag" />
 
-`drag(duration, amp, sigma, beta, name=None, zero_ends=True)`
+`Drag(duration: Union[int, qiskit.circuit.parameterexpression.ParameterExpression], amp: Union[complex, float, qiskit.circuit.parameterexpression.ParameterExpression], sigma: Union[float, qiskit.circuit.parameterexpression.ParameterExpression], beta: Union[float, qiskit.circuit.parameterexpression.ParameterExpression], angle: Optional[Union[float, qiskit.circuit.parameterexpression.ParameterExpression]] = None, name: Optional[str] = None, limit_amplitude: Optional[bool] = None)`
 
-Generates Y-only correction DRAG [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform") for standard nonlinear oscillator (SNO) \[1].
+Bases: `object`
 
-For $A=$ `amp`, $\sigma=$ `sigma`, and $\beta=$ `beta`, applies the `midpoint` sampling strategy to generate a discrete pulse sampled from the continuous function:
+The Derivative Removal by Adiabatic Gate (DRAG) pulse is a standard Gaussian pulse with an additional Gaussian derivative component and lifting applied.
+
+It can be calibrated either to reduce the phase error due to virtual population of the $|2\rangle$ state during the pulse or to reduce the frequency spectrum of a standard Gaussian pulse near the $|1\rangle\leftrightarrow|2\rangle$ transition, reducing the chance of leakage to the $|2\rangle$ state.
 
 $$
-f(x) = g(x) + i \beta h(x),
+\begin{split}g(x) &= \exp\Bigl(-\frac12 \frac{(x - \text{duration}/2)^2}{\text{sigma}^2}\Bigr)\\
+g'(x) &= \text{A}\times\frac{g(x)-g(-1)}{1-g(-1)}\\
+f(x) &=  g'(x) \times \Bigl(1 + 1j \times \text{beta} \times            \Bigl(-\frac{x - \text{duration}/2}{\text{sigma}^2}\Bigr)  \Bigr),
+    \quad 0 \le x < \text{duration}\end{split}
 $$
 
-where $g(x)$ is the function sampled in [`gaussian()`](qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian"), and $h(x)$ is the function sampled in [`gaussian_deriv()`](qiskit.pulse.library.gaussian_deriv "qiskit.pulse.library.gaussian_deriv").
-
-If `zero_ends == True`, the samples from $g(x)$ are remapped as in [`gaussian()`](qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian").
+where $g(x)$ is a standard unlifted Gaussian waveform, $g'(x)$ is the lifted [`Gaussian`](qiskit.pulse.library.Gaussian "qiskit.pulse.library.Gaussian") waveform, and $\text{A} = \text{amp} \times \exp\left(i\times\text{angle}\right)$.
 
 ## References
 
-1.  [*Gambetta, J. M., Motzoi, F., Merkel, S. T. & Wilhelm, F. K. “Analytic control methods for high-fidelity unitary operations in a weakly nonlinear oscillator.” Phys. Rev. A 83, 012308 (2011).*](http://dx.doi.org/10.1103/PhysRevA.83.012308)
+1.  [*Gambetta, J. M., Motzoi, F., Merkel, S. T. & Wilhelm, F. K. Analytic control methods for high-fidelity unitary operations in a weakly nonlinear oscillator. Phys. Rev. A 83, 012308 (2011).*](https://link.aps.org/doi/10.1103/PhysRevA.83.012308)
+
+2.  [*F. Motzoi, J. M. Gambetta, P. Rebentrost, and F. K. Wilhelm Phys. Rev. Lett. 103, 110501 – Published 8 September 2009.*](https://link.aps.org/doi/10.1103/PhysRevLett.103.110501)
+
+Create new pulse instance.
 
 **Parameters**
 
-*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
-*   **amp** (`complex`) – Pulse amplitude at center `duration/2`.
-*   **sigma** (`float`) – Width (standard deviation) of pulse.
-*   **beta** (`float`) – Y correction amplitude. For the SNO this is $\beta=-\frac{\lambda_1^2}{4\Delta_2}$. Where $\lambda_1$ is the relative coupling strength between the first excited and second excited states and $\Delta_2$ is the detuning between the respective excited states.
-*   **name** (`Optional`\[`str`]) – Name of pulse.
-*   **zero\_ends** (`bool`) – If True, zero ends at `x = -1, x = duration + 1`, but rescale to preserve amp.
+*   **duration** – Pulse length in terms of the sampling period dt.
+*   **amp** – The magnitude of the amplitude of the DRAG envelope. Complex amp support will be deprecated.
+*   **sigma** – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
+*   **beta** – The correction amplitude.
+*   **angle** – The angle of the complex amplitude of the DRAG envelope. Default value 0.
+*   **name** – Display name for this pulse envelope.
+*   **limit\_amplitude** – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
 
-**Return type**
+**Returns**
 
-[`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
+ScalableSymbolicPulse instance.
+
+## Attributes
+
+<span id="qiskit.pulse.library.Drag.alias" />
+
+### alias
+
+`= 'Drag'`
 
