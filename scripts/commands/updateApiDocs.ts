@@ -37,10 +37,8 @@ import transformLinks from "transform-markdown-links";
 import {
   findLegacyReleaseNotes,
   addNewReleaseNotes,
-  generateReleaseNotesIndex,
-  copyReleaseNotesToHistoricalVersions,
   currentReleaseNotesPath,
-  syncReleaseNotes,
+  generateReleaseNotesIndex,
 } from "../lib/releaseNotes";
 
 interface Arguments {
@@ -342,12 +340,6 @@ async function convertHtmlToMarkdown(
     console.log("Generating release-notes/index");
     const markdown = generateReleaseNotesIndex(pkg);
     await writeFile(`${markdownPath}/release-notes/index.md`, markdown);
-  }
-
-  if (pkg.historical) {
-    await copyReleaseNotesToHistoricalVersions(pkg.name, markdownPath);
-  } else {
-    await syncReleaseNotes(pkg.name, markdownPath);
   }
 
   console.log("Generating version file");
