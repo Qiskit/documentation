@@ -13,6 +13,10 @@ A central component of Qiskit, the transpiler is designed for modularity and ext
 
 Find more information about the pass manager stages in the [Transpiler stages](transpiler-stages) topic.
 
+<Admonition type="caution">
+  If you perform transpilation yourself (locally) and submit these transpiled circuits to the Qiskit Runtime service, you will likely want to set the `skip_transpilation` option to `True` so that the service does attempt to apply any further transformations to your circuit. See [Advanced runtime compilation options](/run/configure-runtime-compilation#advanced-runtime-compilation-options).
+</Admonition>
+
 
 ## Transpiler stages
 Qiskit's prebuilt transpiler pipeline consists of six fundamental stages:
