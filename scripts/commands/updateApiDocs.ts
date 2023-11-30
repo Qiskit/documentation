@@ -13,7 +13,7 @@
 import { $ } from "zx";
 import { zxMain } from "../lib/zx";
 import { pathExists, getRoot } from "../lib/fs";
-import { readFile, writeFile } from "fs/promises";
+import { readFile, writeFile, readdir } from "fs/promises";
 import { globby } from "globby";
 import { join, parse, relative } from "path";
 import { sphinxHtmlToMarkdown } from "../lib/sphinx/sphinxHtmlToMarkdown";
@@ -336,6 +336,10 @@ async function convertHtmlToMarkdown(
     JSON.stringify(toc, null, 2) + "\n",
   );
 
+  if (!pkg.historical) {
+    await updateHistoricalTocFiles(pkg);
+  }
+
   if (!pkg.historical && pkg.hasSeparateReleaseNotes) {
     console.log("Generating release-notes/index");
     const markdown = generateReleaseNotesIndex(pkg);
@@ -360,4 +364,41 @@ async function convertHtmlToMarkdown(
 
 function urlToPath(url: string) {
   return `${getRoot()}/docs${url}.md`;
+}
+
+async function updateHistoricalTocFiles(pkg: Pkg) {
+  console.log("Updating _toc.json files for the historical versions");
+
+  const historicalFolders = (
+    await readdir(`${getRoot()}/docs/api/${pkg.name}`, { withFileTypes: true })
+  ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
+
+  for (let folder of historicalFolders) {
+    let tocFile = await readFile(
+      `${getRoot()}/docs/api/${pkg.name}/${folder.name}/_toc.json`,
+      {
+        encoding: "utf8",
+      },
+    );
+
+    let jsonData = JSON.parse(tocFile);
+
+    // Add the new version if necessary
+    for (let child of jsonData.children) {
+      if (
+        child.title == "Release notes" &&
+        child.children[0].title != pkg.versionWithoutPatch
+      ) {
+        child.children.unshift({
+          title: pkg.versionWithoutPatch,
+          url: `/api/qiskit/release-notes/${pkg.versionWithoutPatch}`,
+        });
+      }
+    }
+
+    await writeFile(
+      `${getRoot()}/docs/api/${pkg.name}/${folder.name}/_toc.json`,
+      JSON.stringify(jsonData, null, 2) + "\n",
+    );
+  }
 }
