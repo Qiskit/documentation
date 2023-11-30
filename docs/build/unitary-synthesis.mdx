@@ -36,11 +36,11 @@ circuit.unitary(U, circuit.qubits)
 
 ## Re-synthesis for circuit optimization
 
-Sometimes it is beneficial to re-synthesis a long series of 1- and 2-qubit gates, if the length can be reduced. For example, the following circuit uses three 2-qubit gates.
+Sometimes it is beneficial to re-synthesize a long series of single- and two-qubit gates, if the length can be reduced. For example, the following circuit uses three two-qubit gates.
 
 ![output](/images/build/unitary-synthesis/unitary_target.png)
 
-However, after re-synthesizing it using the following code, it only needs a single CX gate.
+However, after re-synthesizing with the following code, it only needs a single CX gate.
 
 ```python 
 from qiskit.quantum_info import Operator
