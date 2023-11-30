@@ -145,11 +145,16 @@ Additionally, Qiskit only supports CPython. Running with other Python interprete
   `Y` is the minor version, and `Z` is the patch version.
 
   Breaking API changes are reserved for major version releases. The **minimum**
-  period between major version releases is one year. Minor versions will be
-  periodically (currently every three months) published for the current major
-  version, which add new features and bug fixes. For the most recent minor version,
-  there will also be new patch versions published as bugs are identified and fixed
-  on that release series. A tentative release schedule is included below:
+  period between major version releases is one year. Minor versions introduce
+  new features and bug fixes without breaking API compatibility, and are
+  periodically (currently every three months) published for **only** the
+  current major version. Patch versions provide fixes for bugs identified in
+  the most recent minor version of each actively supported release series (i.e.
+  major version). We support at most two release series at a time, which occurs
+  only during the period of overlap following anew major version release,
+  described in more detail below.
+
+  A tentative release schedule is included below:
 
   ![](/images/start/install/release_schedule.png)
 
@@ -164,9 +169,9 @@ Additionally, Qiskit only supports CPython. Running with other Python interprete
   also document the end of support for that major version series. A longer
   support window is needed for the previous major version as this gives downstream
   consumers of Qiskit a chance to migrate not only their code but also their
-  users. It's typically not recommended for a downstream library that
+  users. We do not recommended for a downstream library that
   depends on Qiskit to bump its minimum Qiskit version to a new
-  major version release immediately because its user base also needs a chance
+  major version release immediately because its user base will also need a chance
   to migrate to the new API changes. Having an extended support window
   for the previous major Qiskit version gives downstream projects time to fix
   compatibility with the next major version. Downstream projects can provide
