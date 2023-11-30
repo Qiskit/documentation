@@ -78,10 +78,10 @@ const FILES_TO_IGNORES: { [id: string]: string[] } = {
     "#qiskit.utils.optionals.HAS_PYDOT",
   ],
   "docs/api/qiskit-ibm-provider/qiskit_ibm_provider.IBMProvider.md": [
-    "https://auth.quantum-computing.ibm.com/api",
+    "https://auth.quantum.ibm.com/api",
   ],
   "docs/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService.md": [
-    "https://auth.quantum-computing.ibm.com/api",
+    "https://auth.quantum.ibm.com/api",
   ],
   "docs/api/qiskit/algorithms.md": ["https://www.qiskit.org/terra"],
   "docs/api/qiskit/qiskit.algorithms.Grover.md": [
