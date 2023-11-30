@@ -183,17 +183,8 @@ zxMain(async () => {
     ? `${getRoot()}/docs/api/${pkg.name}/${pkg.versionWithoutPatch}`
     : `${getRoot()}/docs/api/${pkg.name}`;
 
-  if (!(await pathExists(outputDir))) {
-    mkdirp(outputDir);
-  }
-
-  // All projects have a single release notes file except Qiskit, which has a
-  // subfolder to store the release notes for each historical version.
-  if (
-    pkg.name == "qiskit" &&
-    !(await pathExists(`${outputDir}/release-notes`))
-  ) {
-    mkdirp(`${outputDir}/release-notes`);
+  if (pkg.historical && !(await pathExists(outputDir))) {
+    await createHistoricalFolder(pkg.name, outputDir);
   }
 
   pkg.releaseNoteEntries = await findLegacyReleaseNotes(pkg);
@@ -377,4 +368,17 @@ async function convertHtmlToMarkdown(
 
 function urlToPath(url: string) {
   return `${getRoot()}/docs${url}.md`;
+}
+
+async function createHistoricalFolder(pkgName: string, outputDir: string) {
+  mkdirp(outputDir);
+
+  // All projects have a single release notes file except Qiskit, which has a
+  // subfolder to store the release notes for each historical version.
+  if (
+    pkgName == "qiskit" &&
+    !(await pathExists(`${outputDir}/release-notes`))
+  ) {
+    mkdirp(`${outputDir}/release-notes`);
+  }
 }
