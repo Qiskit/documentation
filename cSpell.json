@@ -270,10 +270,13 @@
     // words joined by underscores. e.g. hello_world, NEW_KEY_VALUE
     "\\S+_\\S+(_\\S+)*",
     // separate line <span id="" /> tags
-    "^<span id=\\S+ />$"
+    "^<span id=\\S+ />$",
+    "^<span id=\\S+></span>$"
   ],
   "ignorePaths": [
     // We cannot easily control these API docs since they live in other repositories.
-    "docs/api"
+    "docs/api/qiskit/**/*.md*",
+    "docs/api/qiskit-ibm-runtime/**/*.md*",
+    "docs/api/qiskit-ibm-provider/**/*.md*"
   ]
 }

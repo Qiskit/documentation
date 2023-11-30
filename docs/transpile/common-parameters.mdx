@@ -1,9 +1,9 @@
 ---
-title: Commonly used parameters for `transpile()`
+title: Commonly used parameters for transpilation
 description: Commonly used parameters such as approximation degree
 
 ---
-# Commonly used parameters
+# Commonly used parameters for transpilation
 
 Following are some of the more commonly used parameters for local transpilation using the `transpile()` method.
 
@@ -30,6 +30,7 @@ As an example, we generate a random 2-qubit `UnitaryGate` which will be synthesi
 
 This yields an output of `2` because the approximation requires fewer CX gates.
 
+<span id="seed"></span>
 ## Seed transpiler
 
 The seed transpiler argument sets the random seed for the stochastic parts of the transpiler, used for reproducibility. Due to the stochastic nature of the transpiler if you run `transpile()` multiple times with the same configuration you are not guaranteed to get the same output each time. So if you are experimenting with transpilation and require the same transpiled output every time you can do so by setting the `seed_transpiler` argument.
@@ -71,6 +72,7 @@ Specifies the initial position of virtual qubits on physical qubits. If this lay
         ```
   
 
+<span id="xx-method"></span>
 ## *_method 
 
 These options influence how the transpiler works and are used to try and get better, different, or specific output from the transpiler.
