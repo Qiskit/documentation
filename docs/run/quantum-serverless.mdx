@@ -115,9 +115,9 @@ Premium Plan users have access to an alpha release of resource management functi
 
 The example below demonstrates how to use `IBMQPUSelectors` to automate the process of selecting which qubits will be used from a set of available backends. This illustrates how the selectors can be used within a four-step Qiskit Pattern. 
 
-Instead of manually selecting a backend, in step 2 of the Qiskit Pattern we will optimize the circuits for execution by using the QPU selectors from Quantum Serverless to automatically allocate a backend according to desired criteria. Here, we will use `IBMLeastNoisyQPUSelector` to find a backend, from the ones available to a given user through their IBM Quantum account, that yields the least-noisy qubit subgraph for the input circuit. We will filter backends with fewer than 127 qubits by setting `min_num_qubits`. (Note: We could also use the `IBMLeastBusyQPUSelector` to find a backend that can support our circuit width but with the shortest queue.)
+Instead of manually selecting a backend, step 2 of the Qiskit Pattern optimizes the circuits for execution by using the QPU selectors from Quantum Serverless to automatically allocate a backend according to desired criteria. Here, `IBMLeastNoisyQPUSelector` finds the backend, among the ones available to you through your IBM Quantum account, that yields the least-noisy qubit subgraph for the input circuit. Filter backends with fewer than 127 qubits by setting `min_num_qubits`. (Note: You can also use the `IBMLeastBusyQPUSelector` to find a backend that can support the circuit width but with the shortest queue.)
 
-Then, in step 3 of the pattern, we will execute the target circuit on the backend chosen by the selector. Since we optimized our circuit for the backend in step 2, we can skip transpilation in the primitives by setting `skip_transpilation=True`. 
+Then, in step 3 of the pattern, you execute the target circuit on the backend chosen by the selector. Since you optimized your circuit for the backend in step 2, you can skip transpilation in the primitives by setting `skip_transpilation=True`. 
 
 ```python
 # source_files/my_qiskit_pattern_resource_management.py
