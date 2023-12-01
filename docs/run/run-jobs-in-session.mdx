@@ -13,7 +13,7 @@ There are several ways to set up and use [sessions](sessions).  It is recommende
 Before starting a session, you must [set up Qiskit Runtime](../start/install) and initialize it as a service:
 
 ``` python
-from qiskit_ibm_runtime import QiskitRuntimeService
+from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler, Estimator
 
 service = QiskitRuntimeService()
 ```
@@ -31,6 +31,8 @@ class. The session starts when its first job begins execution.
 **Session class**
 
 ``` python
+from qiskit_ibm_runtime import Session, Sampler, Estimator
+
 session = Session(service=service, backend="ibmq_qasm_simulator")
 estimator = Estimator(session=session)
 sampler = Sampler(session=session)
