@@ -394,9 +394,9 @@ async function updateHistoricalTocFiles(pkg: Pkg) {
     for (let child of jsonData.children) {
       if (
         child.title == "Release notes" &&
-        child.children[0].title != pkg.versionWithoutPatch
+        child.children[1].title != pkg.versionWithoutPatch
       ) {
-        child.children.unshift({
+        child.children.splice(1, 0, {
           title: pkg.versionWithoutPatch,
           url: `/api/qiskit/release-notes/${pkg.versionWithoutPatch}`,
         });
