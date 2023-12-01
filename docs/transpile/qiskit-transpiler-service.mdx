@@ -5,8 +5,7 @@ description: What is the Qiskit transpiler service and how to use it
 ---
 # Transpile circuits remotely with the Qiskit transpiler service
 
-The Qiskit transpiler service provides transpilation capabilities on the cloud.
-In addition to the traditional [Qiskit transpiling capabilities](index), the Qiskit transpiler service allows users to take advantage of IBM Quantum Cloud resources to run their transpiling tasks and use the latest transpiling technology enhanced by the AI-powered transpiler passes.
+The Qiskit transpiler service provides transpilation capabilities on the cloud. In addition to the traditional [Qiskit transpiling capabilities](index), you can use IBM Quantum Cloud resources for transpilation tasks while taking advantage of AI-powered transpiler passes.
 
 The Qiskit transpiler service offers a Python library to seamlessly integrate this service and its capabilities into your current Qiskit patterns and workflows.
 
@@ -26,51 +25,48 @@ pip install qiskit-transpiler-service
 
 By default, the package will try to authenticate to IBM Quantum services with the defined Qiskit API token, and will take your token from the `QISKIT_IBM_TOKEN` environment variable or from the file `~/.qiskit/qiskit-ibm.json` (under the section `default-ibm-quantum`).
 
-### qiskit-transpiler-service transpile options
+## qiskit-transpiler-service transpile options
 
-- `target` (Optional, str) - It refers to a backend name as it would be expected by QiskitRuntimeService (i.e. `ibm_sherbrooke`). If this is set, the transpile method uses the layout from the specified backend for the transpilation operation. If any other option is set that impacts these settings,
-such as `coupling_map`, it overrides the settings from `target`.
-- `coupling_map` (Optional, List[List[int]]) - It refers to a valid coupling map list (i.e. [[0,1],[1,2]]). If this is set, the transpile method uses this coupling map for the transpilation operation. If defined, it will override any value entered for the option `target`.
-- `optimization_level` (int) refers to the potential optimization level to apply during the transpilation process. The valid values for this option are [1,2,3], being 1 the lightest level of optimization and 3 the top level for optimizations.
-- `ai` (bool) - It refers to the use of AI capabilities during the transpilation operation. The AI capabilities available can be for AIRouting transpiling passes or other AI synthesis methods. If the `ai` parameter is `True`, the service will apply different AI-powered transpiling passes depending on the `optimization_level` requested.
-- `qiskit_transpile_options` (dict) - It refers to a Python dictionary object that can include any other option that is valid to be used in the [Qiskit transpile() method](https://docs.quantum.ibm.com/transpile/defaults-and-configuration-options). If the `qiskit_transpile_options` input includes optimization_level, it will be discarded in favor of the optimization_level used as param input. If the `qiskit_transpile_options` includes any option not recognized by the Qiskit `transpile()` method, the library will raise an error.
-
-
-## Basic usage
-​
-In the following examples, we will show you how to transpile circuits using the service while using different parameters.
+- `target` (optional, str) - Refers to a backend name as it would be expected by QiskitRuntimeService (i.e., `ibm_sherbrooke`). If this is set, the transpile method uses the layout from the specified backend for the transpilation operation. If any other option is set that impacts these settings, such as `coupling_map`, the `target` settings will be overridden.
+- `coupling_map` (optional, List[List[int]]) - Refers to a valid coupling map list (i.e., [[0,1],[1,2]]). If this is set, the transpile method uses this coupling map for the transpilation operation. If defined, it will override any value entered for the option `target`.
+- `optimization_level` (int) - Refers to the potential optimization level to apply during the transpilation process. The valid values for this option are [1,2,3], 1 being the lightest level of optimization and 3 the top level for optimizations.
+- `ai` (bool) - Refers to the use of AI capabilities during the transpilation operation. The AI capabilities available can be for `AIRouting` transpiling passes or other AI synthesis methods. If the `ai` parameter is `True`, the service will apply different AI-powered transpiling passes depending on the `optimization_level` requested.
+- `qiskit_transpile_options` (dict) - Refers to a Python dictionary object that can include any other option that is valid in the [Qiskit `transpile()` method](defaults-and-configuration-options). If the `qiskit_transpile_options` input includes `optimization_level`, it will be discarded in favor of the `optimization_level` used as param input. If the `qiskit_transpile_options` includes any option not recognized by the Qiskit `transpile()` method, the library will raise an error.
 
 
-First example. Create a random circuit and call the Qiskit transpiler service to transpile the circuit using as target `ibm_cairo`, optimization_level one and not requesting to use AI during the transpilation.
-​
-```python
-from qiskit.circuit.random import random_circuit
-from qiskit_transpiler_service.transpiler_service import TranspilerService
-​
-random_circ = random_circuit(5, depth=3, seed=42).decompose(reps=3)
-​
-cloud_transpiler_service = TranspilerService(
-    target="ibm_cairo",
-    ai=False,
-    optimization_level=1,
-)
-transpiled_circuit = cloud_transpiler_service.run(random_circ)
-```
-​
-Second example. Produce a similar random circuit and transpile it, requesting the use of AI transpiling capabilities. To do so, we need to set the flag `ai` to `True`:
-​
-```python
-from qiskit.circuit.random import random_circuit
-from qiskit_transpiler_service.transpiler_service import TranspilerService
-​
-random_circ = random_circuit(5, depth=3, seed=42).decompose(reps=3)
-​
-cloud_transpiler_service = TranspilerService(
-    target="ibm_cairo",
-    ai=True,
-    optimization_level=1,
-)
-transpiled_circuit = cloud_transpiler_service.run(random_circ)
-```
-​
+## Examples
+
+The following examples demonstrate how to transpile circuits using the Qiskit transpiler service with different parameters.
+
+1. Create a random circuit and call the Qiskit transpiler service to transpile the circuit with `ibm_cairo` as the `target`, 1 as the `optimization_level`, and not using AI during the transpilation.
+
+    ```python
+    from qiskit.circuit.random import random_circuit
+    from qiskit_transpiler_service.transpiler_service import TranspilerService
+
+    random_circ = random_circuit(5, depth=3, seed=42).decompose(reps=3)
+
+    cloud_transpiler_service = TranspilerService(
+        target="ibm_cairo",
+        ai=False,
+        optimization_level=1,
+    )
+    transpiled_circuit = cloud_transpiler_service.run(random_circ)
+    ```
+
+1. Produce a similar random circuit and transpile it, requesting AI transpiling capabilities by setting the flag `ai` to `True`:
+
+    ```python
+    from qiskit.circuit.random import random_circuit
+    from qiskit_transpiler_service.transpiler_service import TranspilerService
+
+    random_circ = random_circuit(5, depth=3, seed=42).decompose(reps=3)
+
+    cloud_transpiler_service = TranspilerService(
+        target="ibm_cairo",
+        ai=True,
+        optimization_level=1,
+    )
+    transpiled_circuit = cloud_transpiler_service.run(random_circ)
+    ```
 ​
