@@ -6,34 +6,27 @@ description: What is the Qiskit transpiler service and how to use it
 # Transpile circuits remotely with the Qiskit transpiler service
 
 The Qiskit transpiler service provides transpilation capabilities on the cloud.
-In addition to the traditional [Qiskit transpiling capabilities](index), the Qiskit transpiler service allows the users to take advantage of the IBM Quantum Cloud resources to run their transpiling tasks and use the latest transpiling technology enhanced by the AI-Powered transpiler passes.
+In addition to the traditional [Qiskit transpiling capabilities](index), the Qiskit transpiler service allows users to take advantage of IBM Quantum Cloud resources to run their transpiling tasks and use the latest transpiling technology enhanced by the AI-powered transpiler passes.
 
-We offer a Python library to use the cloud service that enables users to seamlessly integrate this service and its capabilities in their current Qiskit patterns and workflows.
+The Qiskit transpiler service offers a Python library to seamlessly integrate this service and its capabilities into your current Qiskit patterns and workflows.
 
 <Admonition type="note">
-    This experimental service is only available for IBM Quantum premium users.
+    This experimental service is only available for IBM Quantum Premium Plan users.
     The service is an alpha release, subject to change.
 </Admonition>
 
 
-## Installing the qiskit-transpiler-service package
+## Install the qiskit-transpiler-service package
 
-To use the Qiskit transpiler service, you need to install the `qiskit-transpiler-service` package:
+To use the Qiskit transpiler service, install the `qiskit-transpiler-service` package:
 
 ```sh
 pip install qiskit-transpiler-service
 ```
 
-While running the package, it will try to use the defined Qiskit API token to authenticate with the IBM Quantum services. By default, the package will try to get your token from the `QISKIT_IBM_TOKEN` environment variable or from the file `~/.qiskit/qiskit-ibm.json` ( under the section `default-ibm-quantum`).
+By default, the package will try to authenticate to IBM Quantum services with the defined Qiskit API token, and will take your token from the `QISKIT_IBM_TOKEN` environment variable or from the file `~/.qiskit/qiskit-ibm.json` (under the section `default-ibm-quantum`).
 
 ### qiskit-transpiler-service transpile options
-
-Following, we describe the ``qiskit-transpiler-service` transpile method and some of the main features and options available.
-
-<details>
-  <summary>
-    **Transpile options**
-  </summary>
 
 - `target` (Optional, str) - It refers to a backend name as it would be expected by QiskitRuntimeService (i.e. `ibm_sherbrooke`). If this is set, the transpile method uses the layout from the specified backend for the transpilation operation. If any other option is set that impacts these settings,
 such as `coupling_map`, it overrides the settings from `target`.
@@ -41,8 +34,6 @@ such as `coupling_map`, it overrides the settings from `target`.
 - `optimization_level` (int) refers to the potential optimization level to apply during the transpilation process. The valid values for this option are [1,2,3], being 1 the lightest level of optimization and 3 the top level for optimizations.
 - `ai` (bool) - It refers to the use of AI capabilities during the transpilation operation. The AI capabilities available can be for AIRouting transpiling passes or other AI synthesis methods. If the `ai` parameter is `True`, the service will apply different AI-powered transpiling passes depending on the `optimization_level` requested.
 - `qiskit_transpile_options` (dict) - It refers to a Python dictionary object that can include any other option that is valid to be used in the [Qiskit transpile() method](https://docs.quantum.ibm.com/transpile/defaults-and-configuration-options). If the `qiskit_transpile_options` input includes optimization_level, it will be discarded in favor of the optimization_level used as param input. If the `qiskit_transpile_options` includes any option not recognized by the Qiskit `transpile()` method, the library will raise an error.
-
-</details>
 
 
 ## Basic usage
