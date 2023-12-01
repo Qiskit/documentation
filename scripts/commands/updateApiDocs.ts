@@ -336,7 +336,10 @@ async function convertHtmlToMarkdown(
     JSON.stringify(toc, null, 2) + "\n",
   );
 
-  if (!pkg.historical) {
+  // Add the new release entry to the _toc.json for all Qiskit historical API versions.
+  // We don't need to add any entries in other projects, given that the release notes files
+  // are stable.
+  if (!pkg.historical && pkg.name == "qiskit") {
     await updateHistoricalTocFiles(pkg);
   }
 
@@ -366,6 +369,10 @@ function urlToPath(url: string) {
   return `${getRoot()}/docs${url}.md`;
 }
 
+/**
+ * Adds a new entry for the release notes of the current API version to the _toc.json
+ * of all historical API versions.
+ */
 async function updateHistoricalTocFiles(pkg: Pkg) {
   console.log("Updating _toc.json files for the historical versions");
 
