@@ -404,11 +404,19 @@ async function updateHistoricalTocFiles(pkg: Pkg) {
   }
 }
 
-function addNewReleaseNoteToc(releaseNotesNode: any, newVersion: string){
-  if (+releaseNotesNode.children[0].title > +releaseNotesNode.children[1].title) {
+/**
+ * Adds a new entry for the current API version to the JSON list of release notes
+ */
+function addNewReleaseNoteToc(releaseNotesNode: any, newVersion: string) {
+  // We need to duplicate the first entry when we converted the current version
+  // to historical to ensure having that version at the top.
+  if (
+    +releaseNotesNode.children[0].title > +releaseNotesNode.children[1].title
+  ) {
     releaseNotesNode.children.unshift(releaseNotesNode.children[0]);
   }
 
+  // Add the current API version in the second position of the list
   if (releaseNotesNode.children[1].title != newVersion) {
     releaseNotesNode.children.splice(1, 0, {
       title: newVersion,
