@@ -113,7 +113,7 @@ Qiskit Runtime custom programs can be easily migrated to Quantum Serverless via 
 
 Premium Plan users have access to an alpha release of resource management functionality through Quantum Serverless. This enables automatic selection of quantum hardware for your workloads. A how-to guide is also available on [IBM Quantum Learning](https://learning.quantum.ibm.com/tutorial/resource-management-automatically-select-quantum-hardware).
 
-In the below example, we will show how to use `IBMQPUSelectors` to automate the process of selecting which qubits will be used from a set of available backends. We will illustrate how the selectors can be used within a 4-step Qiskit Pattern. 
+The example below demonstrates how to use `IBMQPUSelectors` to automate the process of selecting which qubits will be used from a set of available backends. This illustrates how the selectors can be used within a four-step Qiskit Pattern. 
 
 Instead of manually selecting a backend, in step 2 of the Qiskit Pattern we will optimize the circuits for execution by using the QPU selectors from Quantum Serverless to automatically allocate a backend according to desired criteria. Here, we will use `IBMLeastNoisyQPUSelector` to find a backend, from the ones available to a given user through their IBM Quantum account, that yields the least-noisy qubit subgraph for the input circuit. We will filter backends with fewer than 127 qubits by setting `min_num_qubits`. (Note: We could also use the `IBMLeastBusyQPUSelector` to find a backend that can support our circuit width but with the shortest queue.)
 
