@@ -4,7 +4,7 @@ import yaml
 from pathlib import Path
 from .upload import Lesson, API
 
-CONF_FILE = "./learning-platform.conf.yaml"
+CONF_FILE = "./learning-api.conf.yaml"
 API_URLS = {
     "staging": "https://learning-api-dev.quantum-computing.ibm.com",
     "production": "https://learning-api.quantum-computing.ibm.com",
@@ -79,14 +79,14 @@ def sync_lessons():
         hide_urls=hide_urls,
     )
 
-    lesson_ids = parse_yaml(api_name)
+    lesson_urls = parse_yaml(api_name)
     if len(sys.argv) > 1:
         paths = sys.argv[1:]
     else:
-        paths = lesson_ids.keys()
+        paths = lesson_urls.keys()
 
     for lesson_path in paths:
-        lesson = Lesson(lesson_path, lesson_ids[lesson_path])
+        lesson = Lesson(lesson_path, lesson_urls[lesson_path])
         api.push(lesson)
 
     print("✨ Sync complete! ✨\n")
@@ -94,11 +94,11 @@ def sync_lessons():
 
 def parse_yaml(api_name):
     """
-    Get dict of lesson paths and lesson IDs
+    Get dict of lesson paths and lesson URLs
     Args:
         api_name (str): "staging" or "production"
     Returns:
-        dict: { lesson_path: lesson_id }
+        dict: { lesson_path: lesson_url }
     """
     with open(CONF_FILE) as f:
         api_info = yaml.safe_load(f.read())
@@ -106,7 +106,7 @@ def parse_yaml(api_name):
     output = {}
     for lesson in api_info["lessons"]:
         path = lesson["path"]
-        lesson_id = lesson[f"id{api_name.lower().capitalize()}"]
-        output[path] = lesson_id
+        lesson_url = lesson[f"url{api_name.lower().capitalize()}"]
+        output[path] = lesson_url
 
     return output

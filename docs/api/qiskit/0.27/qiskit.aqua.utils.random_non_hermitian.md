@@ -1,0 +1,29 @@
+# qiskit.aqua.utils.random\_non\_hermitian
+
+<span id="undefined" />
+
+`random_non_hermitian(N, M=None, sings=None, K=None, srange=None, sparsity=None, trunc=None)`
+
+Generate random (sparse) matrix with given properties (singular values). Sparsity is achieved by truncating Pauli matrices. Sparsity settings alternate the singular values due to truncation.
+
+**Parameters**
+
+*   **N** (*int*) – size of matrix
+*   **M** (*int*) – size of matrix
+*   **sings** (*Union(list, tuple, np.ndarray)*) – list of N singular values. Overrides K, srange.
+*   **K** (*Union(float, list, tuple)*) – condition number. Either use only condition number K or list/tuple of (K, lmin). Where lmin specifies the smallest singular value.
+*   **srange** (*Union(list, tuple, nd.ndarray)*) – \[min, max] list for singular value range, min >= 0. (default=\[0, 1]).
+*   **sparsity** (*float*) – sparsity of matrix. Overrides trunc.
+*   **trunc** (*int*) – limit of Pauli matrices.
+
+**Returns**
+
+random matrix
+
+**Return type**
+
+np.ndarray
+
+**Raises:**
+
+ValueError: invalid matrix

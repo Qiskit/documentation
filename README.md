@@ -1,6 +1,6 @@
 # Qiskit docs
 
-The documentation content home for https://docs.quantum-computing.ibm.com. Note this repo does not contain content for https://learning.quantum-computing.ibm.com/ or https://qiskit.org. Refer to https://github.com/Qiskit/qiskit to make changes to the docs at https://qiskit.org/documentation.
+The documentation content home for https://docs.quantum-computing.ibm.com (excluding API reference).
 
 # Improving IBM Quantum & Qiskit Documentation
 
@@ -173,5 +173,9 @@ To check that formatting is valid without actually making changes, run `npm run 
 ## Regenerate the API docs
 
 1. Choose which documentation you want to regenerate: `qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`
-2. Determine the current version of the published stable documentation, e.g. at https://qiskit.org/documentation/
+2. Determine the current version of the published stable documentation, e.g. at https://github.com/Qiskit/qiskit/releases
 3. Run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
+
+For `qiskit`, you can also regenerate historical versions by adding `--historical` to the arguments. This is useful when we improve our generation script.
+
+In case you want to save the current version and convert it into a historical one, you can run `npm run make-historical -- -p <pkg-name>` beforehand.
