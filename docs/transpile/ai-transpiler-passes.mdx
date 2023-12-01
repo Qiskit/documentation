@@ -1,0 +1,50 @@
+---
+title: AI-Powered Transpiler Passes
+description: AI-Powered Transpiler Passes
+​
+---
+​
+<Admonition type="note">
+    This is an experimental feature available only for IBM Quantum premium users.
+    The AI-Powered transpiler passes are in alpha release status, subject to change.
+</Admonition>
+​
+​
+# AI-Powered Transpiler Passes
+​
+AI-Powered transpiler passes are experimental passes that work as drop-in replacement of "traditional" passes for some selected transpiling tasks. They often produce better results than existing heuristic algorithms (e.g. lower depth and cnot count), but are also much faster than optimization algorithms such as SAT solvers.
+​
+AI-Powered transpiler passes run on the cloud and are available to premium users. The following passes are currently available:
+​
+**Routing passes**
+ - `AIRouting`: Layout selection and circuit routing
+​
+**Circuit synthesis passes**
+ - `AICliffordSynthesis`: Clifford circuit synthesis
+ - `AILinearFunctionSynthesis`: Linear function circuit synthesis
+ - `AIPermutationSynthesis`: Permutation circuis synthesis
+​
+​
+## AI routing pass
+​
+The `AIRouting` pass acts both as a Layout stage and a Routing stage. It can be used within a `PassManager` in the following way:
+​
+```python
+from qiskit.transpiler import PassManager
+from qiskit_transpiler_service.ai.routing import AIRouting
+from qiskit.circuit.library import EfficientSU2
+​
+ai_passmanager = PassManager([
+  AIRouting(target="ibm_sherbrooke", optimization_level=2, layout_mode="optimize")
+])
+​
+circuit = EfficientSU2(120, entanglement="circular", reps=1).decompose()
+​
+transpiled_circuit = ai_passmanager.run(circuit)
+```
+​
+Here, the `target` determines which backend to route for, the `optimization_level` (1, 2 or 3) determines the computational effort to spend in the process (higher usually gives better results but takes longer) and the `layout_mode` specifies how to handle the layout selection.
+The `layout_mode` includes the following options:
+ - `keep`: This respects the layout set by the previous transpiler passes (or uses the trivial layout if not set). This is typically only used when it is required to run the circuit on specific qubits of the device. It often produces worse results since it has less room for optimization.
+ - `improve`: This uses the layout set by the previous transpiler passes as a starting point and improves the existing layout from there. It is useful when the we have a good initial guess for the layout, for example for circuits that are built in a way that approximately follows the device's coupling map. It is also useful if we want to try other specific layout passes combined with the `AIRouting` pass.
+ - `optimize`: This is the default mode, and it works best for general circuits where we may not have good layout guesses. This mode ignores previous layout selections and finds a layout on its own.
