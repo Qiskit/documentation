@@ -392,14 +392,8 @@ async function updateHistoricalTocFiles(pkg: Pkg) {
 
     // Add the new version if necessary
     for (let child of jsonData.children) {
-      if (
-        child.title == "Release notes" &&
-        child.children[1].title != pkg.versionWithoutPatch
-      ) {
-        child.children.splice(1, 0, {
-          title: pkg.versionWithoutPatch,
-          url: `/api/qiskit/release-notes/${pkg.versionWithoutPatch}`,
-        });
+      if (child.title == "Release notes") {
+        addNewReleaseNoteToc(child, pkg.versionWithoutPatch);
       }
     }
 
@@ -407,5 +401,18 @@ async function updateHistoricalTocFiles(pkg: Pkg) {
       `${getRoot()}/docs/api/${pkg.name}/${folder.name}/_toc.json`,
       JSON.stringify(jsonData, null, 2) + "\n",
     );
+  }
+}
+
+function addNewReleaseNoteToc(releaseNotesNode: any, newVersion: string){
+  if (+releaseNotesNode.children[0].title > +releaseNotesNode.children[1].title) {
+    releaseNotesNode.children.unshift(releaseNotesNode.children[0]);
+  }
+
+  if (releaseNotesNode.children[1].title != newVersion) {
+    releaseNotesNode.children.splice(1, 0, {
+      title: newVersion,
+      url: `/api/qiskit/release-notes/${newVersion}`,
+    });
   }
 }
