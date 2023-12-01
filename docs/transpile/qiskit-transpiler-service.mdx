@@ -27,7 +27,7 @@ By default, the package tries to authenticate to IBM Quantum services with the d
 
 ## qiskit-transpiler-service transpile options
 
-- `target` (optional, str) - Refers to a backend name as it would be expected by QiskitRuntimeService (i.e., `ibm_sherbrooke`). If this is set, the transpile method uses the layout from the specified backend for the transpilation operation. If any other option is set that impacts these settings, such as `coupling_map`, the `target` settings will be overridden.
+- `target` (optional, str) - A backend name as it would be expected by QiskitRuntimeService (for example, `ibm_sherbrooke`). If this is set, the transpile method uses the layout from the specified backend for the transpilation operation. If any other option is set that impacts these settings, such as `coupling_map`, the `target` settings are overridden.
 - `coupling_map` (optional, List[List[int]]) - Refers to a valid coupling map list (i.e., [[0,1],[1,2]]). If this is set, the transpile method uses this coupling map for the transpilation operation. If defined, it will override any value entered for the option `target`.
 - `optimization_level` (int) - Refers to the potential optimization level to apply during the transpilation process. The valid values for this option are [1,2,3], 1 being the lightest level of optimization and 3 the top level for optimizations.
 - `ai` (bool) - Refers to the use of AI capabilities during the transpilation operation. The AI capabilities available can be for `AIRouting` transpiling passes or other AI synthesis methods. If the `ai` parameter is `True`, the service will apply different AI-powered transpiling passes depending on the `optimization_level` requested.
