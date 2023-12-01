@@ -39,7 +39,7 @@ Here is an example of computing the expectation value using the Qiskit Runtime E
 ```python
 # source_files/my_qiskit_pattern.py
 
-from qiskit import transpile
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 from qiskit.circuit.random import random_circuit
 from qiskit.quantum_info import SparsePauliOp
 from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
@@ -53,7 +53,8 @@ abstract_circuit = random_circuit(2, 2, seed=1234)
 observable = SparsePauliOp("IY")
 
 # Step 2: Optimize the circuit for quantum execution
-target_circuit = transpile(abstract_circuit, backend)
+pm = generate_preset_pass_manager(optimization_level=3, backend=backend)
+target_circuit = pm.run(abstract_circuit)
 target_observable = observable.apply_layout(target_circuit.layout)
 
 # Step 3: Execute the target circuit
@@ -141,12 +142,12 @@ backend = selector.get_backend(min_num_qubits=127)
 target_circuit = selector.optimized_circuit
 
 ## Alternatively, one can automatically select a backend according to most available:
-## TODO: update this to replace transpile with pass manager
-# from qiskit import transpile
+# from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
 # from quantum_serverless_tools.selectors import IBMLeastBusyQPUSelector
 #
 # backend = IBMLeastBusyQPUSelector().get_backend()
-# target_circuit = transpile(abstract_circuit, backend)
+# pm = generate_preset_pass_manager(optimization_level=3, backend=backend)
+# target_circuit = pm.run(abstract_circuit)
 
 # Step 3: Execute the target circuit
 with Session(service, backend=backend) as session:
