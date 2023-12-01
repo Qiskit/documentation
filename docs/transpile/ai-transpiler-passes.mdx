@@ -1,6 +1,6 @@
 ---
-title: AI-Powered Transpiler Passes
-description: AI-Powered Transpiler Passes
+title: AI Transpiler Passes
+description: What are the AI Transpiler Passes and how to use them
 ​
 ---
 ​
@@ -10,20 +10,32 @@ description: AI-Powered Transpiler Passes
 </Admonition>
 ​
 ​
-# AI-Powered Transpiler Passes
+# AI transpiler Passes
 ​
-AI-Powered transpiler passes are experimental passes that work as drop-in replacement of "traditional" passes for some selected transpiling tasks. They often produce better results than existing heuristic algorithms (e.g. lower depth and cnot count), but are also much faster than optimization algorithms such as SAT solvers.
+The AI-powered transpiler passes are experimental passes that work as drop-in replacement of "traditional" qiskit passes for some selected transpiling tasks. They often produce better results than existing heuristic algorithms (e.g. lower depth and CNOT count), but are also much faster than optimization algorithms such as SAT solvers.
 ​
-AI-Powered transpiler passes run on the cloud and are available to premium users. The following passes are currently available:
+The AI transpiler passes run on the cloud and are available to premium users. The following passes are currently available:
 ​
 **Routing passes**
  - `AIRouting`: Layout selection and circuit routing
 ​
+The following ones will be available in Q1 2024.
+
 **Circuit synthesis passes**
  - `AICliffordSynthesis`: Clifford circuit synthesis
  - `AILinearFunctionSynthesis`: Linear function circuit synthesis
  - `AIPermutationSynthesis`: Permutation circuis synthesis
 ​
+
+## Installing the qiskit-transpiler-service package to use the AI transpiler passes
+
+To use the AI transpiler passes using our cloud services, you need to install the `qiskit-transpiler-service` package:
+
+```sh
+pip install qiskit-transpiler-service
+```
+
+While running the package, it will try to use the defined Qiskit API token to authenticate with the IBM Quantum services. By default, the package will try to get your token from the `QISKIT_IBM_TOKEN` environment variable or from the file `~/.qiskit/qiskit-ibm.json` ( under the section `default-ibm-quantum`).
 ​
 ## AI routing pass
 ​
