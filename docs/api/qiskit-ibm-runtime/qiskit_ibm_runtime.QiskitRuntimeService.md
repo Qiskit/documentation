@@ -74,7 +74,7 @@ instance, proxies, and verify can be used to overwrite corresponding values in t
 
 *   **channel** (`Optional`\[`Literal`\[‘ibm\_cloud’, ‘ibm\_quantum’]]) – Channel type. `ibm_cloud` or `ibm_quantum`.
 *   **token** (`Optional`\[`str`]) – IBM Cloud API key or IBM Quantum API token.
-*   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://cloud.ibm.com](https://cloud.ibm.com) (ibm\_cloud) or [https://auth.quantum.ibm.com/api](https://auth.quantum.ibm.com/api) (ibm\_quantum).
+*   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://cloud.ibm.com](https://cloud.ibm.com) (ibm\_cloud) or [https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api) (ibm\_quantum).
 *   **filename** (`Optional`\[`str`]) – Full path of the file where the account is created. Default: \_DEFAULT\_ACCOUNT\_CONFIG\_JSON\_FILE
 *   **name** (`Optional`\[`str`]) – Name of the account to load.
 *   **instance** (`Optional`\[`str`]) – The service instance to use. For `ibm_cloud` runtime, this is the Cloud Resource Name (CRN) or the service name. For `ibm_quantum` runtime, this is the hub/group/project in that format.
@@ -553,7 +553,7 @@ Save the account to disk for future use.
 **Parameters**
 
 *   **token** (`Optional`\[`str`]) – IBM Cloud API key or IBM Quantum API token.
-*   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://cloud.ibm.com](https://cloud.ibm.com) (ibm\_cloud) or [https://auth.quantum.ibm.com/api](https://auth.quantum.ibm.com/api) (ibm\_quantum).
+*   **url** (`Optional`\[`str`]) – The API URL. Defaults to [https://cloud.ibm.com](https://cloud.ibm.com) (ibm\_cloud) or [https://auth.quantum-computing.ibm.com/api](https://auth.quantum-computing.ibm.com/api) (ibm\_quantum).
 *   **instance** (`Optional`\[`str`]) – The CRN (ibm\_cloud) or hub/group/project (ibm\_quantum).
 *   **channel** (`Optional`\[`Literal`\[‘ibm\_cloud’, ‘ibm\_quantum’]]) – Channel type. ibm\_cloud or ibm\_quantum.
 *   **filename** (`Optional`\[`str`]) – Full path of the file where the account is saved.
