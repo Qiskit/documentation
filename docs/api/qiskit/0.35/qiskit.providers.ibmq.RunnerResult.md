@@ -1,0 +1,23 @@
+# RunnerResult
+
+<span id="undefined" />
+
+`RunnerResult(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)`
+
+Bases: `qiskit.result.result.Result`, `qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder`
+
+Result class for Qiskit Runtime program circuit-runner.
+
+## Methods
+
+|                                                                                                                                                                                                             |                                                                                                                                                                                          |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`data`](qiskit.providers.ibmq.RunnerResult.data#qiskit.providers.ibmq.RunnerResult.data "qiskit.providers.ibmq.RunnerResult.data")                                                                         | Get the raw data for an experiment.                                                                                                                                                      |
+| [`decode`](qiskit.providers.ibmq.RunnerResult.decode#qiskit.providers.ibmq.RunnerResult.decode "qiskit.providers.ibmq.RunnerResult.decode")                                                                 | Decoding for results from Qiskit runtime jobs.                                                                                                                                           |
+| [`from_dict`](qiskit.providers.ibmq.RunnerResult.from_dict#qiskit.providers.ibmq.RunnerResult.from_dict "qiskit.providers.ibmq.RunnerResult.from_dict")                                                     | Create a new ExperimentResultData object from a dictionary.                                                                                                                              |
+| [`get_counts`](qiskit.providers.ibmq.RunnerResult.get_counts#qiskit.providers.ibmq.RunnerResult.get_counts "qiskit.providers.ibmq.RunnerResult.get_counts")                                                 | Get the histogram data of an experiment.                                                                                                                                                 |
+| [`get_memory`](qiskit.providers.ibmq.RunnerResult.get_memory#qiskit.providers.ibmq.RunnerResult.get_memory "qiskit.providers.ibmq.RunnerResult.get_memory")                                                 | Get the sequence of memory states (readouts) for each shot The data from the experiment is a list of format \[‘00000’, ‘01000’, ‘10100’, ‘10100’, ‘11101’, ‘11100’, ‘00101’, …, ‘01010’] |
+| [`get_quasiprobabilities`](qiskit.providers.ibmq.RunnerResult.get_quasiprobabilities#qiskit.providers.ibmq.RunnerResult.get_quasiprobabilities "qiskit.providers.ibmq.RunnerResult.get_quasiprobabilities") | Get quasiprobabilites associated with one or more experiments.                                                                                                                           |
+| [`get_statevector`](qiskit.providers.ibmq.RunnerResult.get_statevector#qiskit.providers.ibmq.RunnerResult.get_statevector "qiskit.providers.ibmq.RunnerResult.get_statevector")                             | Get the final statevector of an experiment.                                                                                                                                              |
+| [`get_unitary`](qiskit.providers.ibmq.RunnerResult.get_unitary#qiskit.providers.ibmq.RunnerResult.get_unitary "qiskit.providers.ibmq.RunnerResult.get_unitary")                                             | Get the final unitary of an experiment.                                                                                                                                                  |
+| [`to_dict`](qiskit.providers.ibmq.RunnerResult.to_dict#qiskit.providers.ibmq.RunnerResult.to_dict "qiskit.providers.ibmq.RunnerResult.to_dict")                                                             | Return a dictionary format representation of the Result                                                                                                                                  |
