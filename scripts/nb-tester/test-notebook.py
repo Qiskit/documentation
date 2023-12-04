@@ -1,3 +1,15 @@
+# This code is a Qiskit project.
+#
+# (C) Copyright IBM 2023.
+#
+# This code is licensed under the Apache License, Version 2.0. You may obtain a
+# copy of this license in the LICENSE file in the root directory of this source
+# tree or at http://www.apache.org/licenses/LICENSE-2.0.
+#
+# Any modifications or derivative works of this code must retain this copyright
+# notice, and modified files need to carry a notice indicating that they have
+# been altered from the originals.
+
 import sys
 from pathlib import Path
 import nbconvert
@@ -22,6 +34,9 @@ NOTEBOOKS_EXCLUDE = [
 
 
 def run_notebook(*args, **kwargs):
+    """
+    Wrapper function for `_run_notebook` to print status
+    """
     print(f"▶️  {path}", end="", flush=True)
     try:
         _run_notebook(*args, **kwargs)
@@ -52,7 +67,11 @@ def _run_notebook(filepath: Path, write=False):
     nbformat.write(nb, filepath)
 
 
-def find_notebooks():
+def find_notebooks() -> list[Path]:
+    """
+    Get paths to all notebooks in NOTEBOOKS_GLOB that are not excluded by
+    NOTEBOOKS_EXCLUDE
+    """
     all_notebooks = Path(".").rglob(NOTEBOOKS_GLOB)
     filtered_notebooks = [
         path
