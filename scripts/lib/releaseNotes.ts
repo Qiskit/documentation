@@ -102,3 +102,51 @@ export function currentReleaseNotesPath(pkg: Pkg): string {
     pkg.versionWithoutPatch
   }.md`;
 }
+
+/**
+ * Adds a new entry for the release notes of the current API version to the _toc.json
+ * of all historical API versions.
+ */
+export async function updateHistoricalTocFiles(pkg: Pkg): Promise<void> {
+  console.log("Updating _toc.json files for the historical versions");
+
+  const historicalFolders = (
+    await readdir(`${getRoot()}/docs/api/${pkg.name}`, { withFileTypes: true })
+  ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
+
+  for (let folder of historicalFolders) {
+    let tocFile = await readFile(
+      `${getRoot()}/docs/api/${pkg.name}/${folder.name}/_toc.json`,
+      {
+        encoding: "utf8",
+      },
+    );
+
+    let jsonData = JSON.parse(tocFile);
+
+    // Add the new version if necessary
+    for (let child of jsonData.children) {
+      if (child.title == "Release notes") {
+        addNewReleaseNoteToc(child, pkg.versionWithoutPatch);
+      }
+    }
+
+    await writeFile(
+      `${getRoot()}/docs/api/${pkg.name}/${folder.name}/_toc.json`,
+      JSON.stringify(jsonData, null, 2) + "\n",
+    );
+  }
+}
+
+/**
+ * Adds a new entry for the current API version to the JSON list of release notes
+ */
+function addNewReleaseNoteToc(releaseNotesNode: any, newVersion: string) {
+  // Add the current API version in the second position of the list
+  if (releaseNotesNode.children[0].title != newVersion) {
+    releaseNotesNode.children.unshift({
+      title: newVersion,
+      url: `/api/qiskit/release-notes/${newVersion}`,
+    });
+  }
+}
