@@ -394,7 +394,7 @@ async function createHistoricalFolder(pkgName: string, outputDir: string) {
 }
 
 async function startWebServer(){
-  $`python3 -m http.server -d artifact &`;
+  $`python3 -m http.server 8000 -d artifact -b ::1 &`;
 }
 
 async function closeWebServer(){
