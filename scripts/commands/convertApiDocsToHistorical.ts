@@ -88,7 +88,7 @@ async function copyApiDocsAndUpdateLinks(
   console.log("Generating API docs");
   const filePaths = await globby(`docs/api/${pkgName}/*.md`);
   for (let filePath of filePaths) {
-    if(filePath.endsWith('release-notes.md')){
+    if (filePath.endsWith("release-notes.md")) {
       continue;
     }
     updateLinksFile(
@@ -124,7 +124,10 @@ async function generateJsonFiles(
   // Regex to capture the links starting by /api/projectName and not followed
   // by any subfolder starting with a number (historical version folders)
   // or a release note file
-  const linksToUptade = new RegExp('"url": "/api/' + pkgName + '/(?!release-notes)(?![0-9])','g');
+  const linksToUptade = new RegExp(
+    '"url": "/api/' + pkgName + "/(?!release-notes)(?![0-9])",
+    "g",
+  );
   tocFile = tocFile.replace(
     linksToUptade,
     `"url": "/api/${pkgName}/${versionWithoutPatch}/`,
@@ -151,7 +154,9 @@ async function updateLinksFile(
   // Regex to capture the links containing /api/projectName and not followed
   // by any subfolder starting with a number (historical version folders)
   // or a release note file
-  const regexAbsolutePath = new RegExp("/api/" + pkgName + "/(?!release-notes)(?![0-9])");
+  const regexAbsolutePath = new RegExp(
+    "/api/" + pkgName + "/(?!release-notes)(?![0-9])",
+  );
   markdown = transformLinks(markdown, (link, _) =>
     link.replace(regexAbsolutePath, `/api/${pkgName}/${versionWithoutPatch}/`),
   );
