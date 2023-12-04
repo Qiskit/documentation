@@ -58,9 +58,7 @@ export const findLegacyReleaseNotes = async (
   for (let version of legacyReleaseNoteVersions) {
     legacyReleaseNoteEntries.push({
       title: version,
-      url: pkg.historical
-        ? `/api/${pkg.name}/${pkg.versionWithoutPatch}/release-notes/${version}`
-        : `/api/${pkg.name}/release-notes/${version}`,
+      url: `/api/${pkg.name}/release-notes/${version}`,
     });
   }
   return legacyReleaseNoteEntries;
@@ -73,9 +71,7 @@ export function addNewReleaseNotes(pkg: Pkg): void {
   }
   pkg.releaseNoteEntries.unshift({
     title: pkg.versionWithoutPatch,
-    url: pkg.historical
-      ? `/api/${pkg.name}/${pkg.versionWithoutPatch}/release-notes/${pkg.versionWithoutPatch}`
-      : `/api/${pkg.name}/release-notes/${pkg.versionWithoutPatch}`,
+    url: `/api/${pkg.name}/release-notes/${pkg.versionWithoutPatch}`,
   });
 }
 
@@ -98,73 +94,59 @@ New features, bug fixes, and other changes in previous versions of ${pkg.title}.
   return markdown;
 }
 
-export async function copyReleaseNotesToHistoricalVersions(
-  projectName: string,
-  pathHistoricalFolder: string,
-) {
-  await $`find ${pathHistoricalFolder}/release-notes/* -not -path "*index.md" | xargs rm -rf {}`;
-  await $`find docs/api/${projectName}/release-notes/* -not -path "*index.md" | xargs -I {} cp -a {} ${pathHistoricalFolder}/release-notes/`;
-}
-
 /**
  * Path to release notes file for the version we're adding
  */
 export function currentReleaseNotesPath(pkg: Pkg): string {
-  const projectFolder = pkg.historical
-    ? `${pkg.name}/${pkg.versionWithoutPatch}`
-    : `${pkg.name}`;
-  const path = `${getRoot()}/docs/api/${projectFolder}/release-notes/${
+  return `${getRoot()}/docs/api/${pkg.name}/release-notes/${
     pkg.versionWithoutPatch
   }.md`;
-  return path;
 }
 
-export async function syncReleaseNotes(
-  projectName: string,
-  pathAPIFolder: string,
-) {
-  console.log("Synchronizing the release notes with the historical versions");
+/**
+ * Adds a new entry for the release notes of the current API version to the _toc.json
+ * of all historical API versions.
+ */
+export async function updateHistoricalTocFiles(pkg: Pkg): Promise<void> {
+  console.log("Updating _toc.json files for the historical versions");
+
   const historicalFolders = (
-    await readdir(`${pathAPIFolder}`, { withFileTypes: true })
+    await readdir(`${getRoot()}/docs/api/${pkg.name}`, { withFileTypes: true })
   ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
 
   for (let folder of historicalFolders) {
-    // All projects except Qiskit have a single release notes file.
-    // Therefore, we only need to copy the `release-notes.md` file
-    // to the historical version folders. We don't need to update
-    // any links because we use relative paths.
-    if (projectName != "qiskit") {
-      await $`rm -f ${pathAPIFolder}/${folder.name}/release-notes.md`;
-      await $`cp -a ${pathAPIFolder}/release-notes.md ${pathAPIFolder}/${folder.name}/`;
-      continue;
+    let tocFile = await readFile(
+      `${getRoot()}/docs/api/${pkg.name}/${folder.name}/_toc.json`,
+      {
+        encoding: "utf8",
+      },
+    );
+
+    let jsonData = JSON.parse(tocFile);
+
+    // Add the new version if necessary
+    for (let child of jsonData.children) {
+      if (child.title == "Release notes") {
+        addNewReleaseNoteToc(child, pkg.versionWithoutPatch);
+      }
     }
 
-    copyReleaseNotesToHistoricalVersions(
-      projectName,
-      `${pathAPIFolder}/${folder.name}`,
-    );
-
-    let markdownIndex = await readFile(
-      `${pathAPIFolder}/release-notes/index.md`,
-      { encoding: "utf8" },
-    );
-
-    // Regex to capture the links containing /api/projectName and not followed
-    // by any subfolder starting with a number (historical version folders)
-    const regexAbsolutePath = new RegExp("/api/" + projectName + "/(?![0-9])");
-    markdownIndex = transformLinks(markdownIndex, (link, _) =>
-      link.replace(regexAbsolutePath, `/api/${projectName}/${folder.name}/`),
-    );
-
-    // Add the specific release note version as the first entry of the index.md
-    markdownIndex = markdownIndex.replace(
-      "*",
-      `* [${folder.name}](/api/${projectName}/${folder.name}/release-notes/${folder.name})\n*`,
-    );
-
     await writeFile(
-      `${pathAPIFolder}/${folder.name}/release-notes/index.md`,
-      markdownIndex,
+      `${getRoot()}/docs/api/${pkg.name}/${folder.name}/_toc.json`,
+      JSON.stringify(jsonData, null, 2) + "\n",
     );
+  }
+}
+
+/**
+ * Adds a new entry for the current API version to the JSON list of release notes
+ */
+function addNewReleaseNoteToc(releaseNotesNode: any, newVersion: string) {
+  // Add the current API version in the second position of the list
+  if (releaseNotesNode.children[0].title != newVersion) {
+    releaseNotesNode.children.unshift({
+      title: newVersion,
+      url: `/api/qiskit/release-notes/${newVersion}`,
+    });
   }
 }
