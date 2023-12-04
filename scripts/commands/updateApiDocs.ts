@@ -13,7 +13,7 @@
 import { $ } from "zx";
 import { zxMain } from "../lib/zx";
 import { pathExists, getRoot } from "../lib/fs";
-import { readFile, writeFile } from "fs/promises";
+import { readFile, writeFile, readdir } from "fs/promises";
 import { globby } from "globby";
 import { join, parse, relative } from "path";
 import { sphinxHtmlToMarkdown } from "../lib/sphinx/sphinxHtmlToMarkdown";
@@ -37,10 +37,9 @@ import transformLinks from "transform-markdown-links";
 import {
   findLegacyReleaseNotes,
   addNewReleaseNotes,
-  generateReleaseNotesIndex,
-  copyReleaseNotesToHistoricalVersions,
   currentReleaseNotesPath,
-  syncReleaseNotes,
+  generateReleaseNotesIndex,
+  updateHistoricalTocFiles,
 } from "../lib/releaseNotes";
 
 interface Arguments {
@@ -184,7 +183,7 @@ zxMain(async () => {
     : `${getRoot()}/docs/api/${pkg.name}`;
 
   if (pkg.historical && !(await pathExists(outputDir))) {
-    await createHistoricalFolder(pkg.name, outputDir);
+    mkdirp(outputDir);
   }
 
   pkg.releaseNoteEntries = await findLegacyReleaseNotes(pkg);
@@ -288,7 +287,11 @@ async function convertHtmlToMarkdown(
     if (!result.meta.python_api_name || !ignore(result.meta.python_api_name)) {
       results.push({ ...result, url });
     }
-    if (pkg.hasSeparateReleaseNotes && file.endsWith("release_notes.html")) {
+    if (
+      !pkg.historical &&
+      pkg.hasSeparateReleaseNotes &&
+      file.endsWith("release_notes.html")
+    ) {
       addNewReleaseNotes(pkg);
     }
   }
@@ -338,16 +341,17 @@ async function convertHtmlToMarkdown(
     JSON.stringify(toc, null, 2) + "\n",
   );
 
-  if (pkg.hasSeparateReleaseNotes) {
+  // Add the new release entry to the _toc.json for all Qiskit historical API versions.
+  // We don't need to add any entries in other projects, given that the release notes files
+  // are stable.
+  if (!pkg.historical && pkg.name == "qiskit") {
+    await updateHistoricalTocFiles(pkg);
+  }
+
+  if (!pkg.historical && pkg.hasSeparateReleaseNotes) {
     console.log("Generating release-notes/index");
     const markdown = generateReleaseNotesIndex(pkg);
     await writeFile(`${markdownPath}/release-notes/index.md`, markdown);
-  }
-
-  if (pkg.historical) {
-    await copyReleaseNotesToHistoricalVersions(pkg.name, markdownPath);
-  } else {
-    await syncReleaseNotes(pkg.name, markdownPath);
   }
 
   console.log("Generating version file");
@@ -368,17 +372,4 @@ async function convertHtmlToMarkdown(
 
 function urlToPath(url: string) {
   return `${getRoot()}/docs${url}.md`;
-}
-
-async function createHistoricalFolder(pkgName: string, outputDir: string) {
-  mkdirp(outputDir);
-
-  // All projects have a single release notes file except Qiskit, which has a
-  // subfolder to store the release notes for each historical version.
-  if (
-    pkgName == "qiskit" &&
-    !(await pathExists(`${outputDir}/release-notes`))
-  ) {
-    mkdirp(`${outputDir}/release-notes`);
-  }
 }
