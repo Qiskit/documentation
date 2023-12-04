@@ -287,7 +287,11 @@ async function convertHtmlToMarkdown(
     if (!result.meta.python_api_name || !ignore(result.meta.python_api_name)) {
       results.push({ ...result, url });
     }
-    if (!pkg.historical && pkg.hasSeparateReleaseNotes && file.endsWith("release_notes.html")) {
+    if (
+      !pkg.historical &&
+      pkg.hasSeparateReleaseNotes &&
+      file.endsWith("release_notes.html")
+    ) {
       addNewReleaseNotes(pkg);
     }
   }
