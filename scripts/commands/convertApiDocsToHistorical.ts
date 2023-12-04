@@ -79,11 +79,6 @@ zxMain(async () => {
     projectNewHistoricalFolder,
   );
   copyImages(pkgName, versionWithoutPatch);
-
-  if (pkgName == "qiskit") {
-    await mkdirp(`${projectNewHistoricalFolder}/release-notes`);
-    copyReleaseNotesFolder(pkgName, versionWithoutPatch);
-  }
 });
 
 async function copyApiDocsAndUpdateLinks(
@@ -93,6 +88,9 @@ async function copyApiDocsAndUpdateLinks(
   console.log("Generating API docs");
   const filePaths = await globby(`docs/api/${pkgName}/*.md`);
   for (let filePath of filePaths) {
+    if(filePath.endsWith('release-notes.md')){
+      continue;
+    }
     updateLinksFile(
       pkgName,
       versionWithoutPatch,
@@ -103,20 +101,6 @@ async function copyApiDocsAndUpdateLinks(
       ),
     );
   }
-}
-
-async function copyReleaseNotesFolder(
-  pkgName: string,
-  versionWithoutPatch: string,
-) {
-  console.log("Generating release notes");
-  await $`find docs/api/${pkgName}/release-notes/* -maxdepth 0 -type f -not -path "*index.md" | xargs -I {} cp -a {}  docs/api/${pkgName}/${versionWithoutPatch}/release-notes/`;
-  updateLinksFile(
-    pkgName,
-    versionWithoutPatch,
-    `${getRoot()}/docs/api/${pkgName}/release-notes/index.md`,
-    `${getRoot()}/docs/api/${pkgName}/${versionWithoutPatch}/release-notes/index.md`,
-  );
 }
 
 async function generateJsonFiles(
@@ -136,8 +120,13 @@ async function generateJsonFiles(
   let tocFile = await readFile(`${getRoot()}/docs/api/${pkgName}/_toc.json`, {
     encoding: "utf8",
   });
-  tocFile = tocFile.replaceAll(
-    `"url": "/api/${pkgName}/`,
+
+  // Regex to capture the links starting by /api/projectName and not followed
+  // by any subfolder starting with a number (historical version folders)
+  // or a release note file
+  const linksToUptade = new RegExp('"url": "/api/' + pkgName + '/(?!release-notes)(?![0-9])','g');
+  tocFile = tocFile.replace(
+    linksToUptade,
     `"url": "/api/${pkgName}/${versionWithoutPatch}/`,
   );
   await writeFile(`${projectNewHistoricalFolder}/_toc.json`, tocFile + "\n");
@@ -161,7 +150,8 @@ async function updateLinksFile(
 
   // Regex to capture the links containing /api/projectName and not followed
   // by any subfolder starting with a number (historical version folders)
-  const regexAbsolutePath = new RegExp("/api/" + pkgName + "/(?![0-9])");
+  // or a release note file
+  const regexAbsolutePath = new RegExp("/api/" + pkgName + "/(?!release-notes)(?![0-9])");
   markdown = transformLinks(markdown, (link, _) =>
     link.replace(regexAbsolutePath, `/api/${pkgName}/${versionWithoutPatch}/`),
   );
