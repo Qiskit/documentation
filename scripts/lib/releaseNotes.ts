@@ -139,7 +139,7 @@ export async function syncReleaseNotes(
       continue;
     }
 
-    copyReleaseNotesToHistoricalVersions(
+    await copyReleaseNotesToHistoricalVersions(
       projectName,
       `${pathAPIFolder}/${folder.name}`,
     );

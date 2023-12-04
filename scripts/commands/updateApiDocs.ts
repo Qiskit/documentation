@@ -48,6 +48,7 @@ interface Arguments {
   package: string;
   version: string;
   historical: boolean;
+  artifact: string;
 }
 
 function transformLink(link: Link): Link | undefined {
@@ -75,28 +76,24 @@ const PACKAGES: PkgInfo[] = [
     title: "Qiskit Runtime IBM Client",
     name: "qiskit-ibm-runtime",
     githubSlug: "qiskit/qiskit-ibm-runtime",
-    baseUrl: `https://qiskit.org/ecosystem/ibm-runtime`,
-    initialUrls: [
-      `https://qiskit.org/ecosystem/ibm-runtime/apidocs/ibm-runtime.html`,
-    ],
+    baseUrl: `http://localhost:8000`,
+    initialUrls: [`http://localhost:8000/apidoc/ibm-runtime.html`],
     transformLink,
   },
   {
     title: "Qiskit IBM Provider",
     name: "qiskit-ibm-provider",
     githubSlug: "qiskit/qiskit-ibm-provider",
-    baseUrl: `https://qiskit.org/ecosystem/ibm-provider`,
-    initialUrls: [
-      `https://qiskit.org/ecosystem/ibm-provider/apidocs/ibm-provider.html`,
-    ],
+    baseUrl: `http://localhost:8000`,
+    initialUrls: [`http://localhost:8000/apidoc/ibm-provider.html`],
     transformLink,
   },
   {
     title: "Qiskit",
     name: "qiskit",
     githubSlug: "qiskit/qiskit",
-    baseUrl: `https://qiskit.org/documentation`,
-    initialUrls: [`https://qiskit.org/documentation/apidoc/index.html`],
+    baseUrl: `http://localhost:8000`,
+    initialUrls: [`http://localhost:8000/apidoc/index.html`],
     hasSeparateReleaseNotes: true,
     tocOptions: {
       collapsed: true,
@@ -128,11 +125,19 @@ const readArgs = (): Arguments => {
       default: false,
       description: "Is this a prior release? Only works with `-p qiskit`.",
     })
+    .option("artifact", {
+      alias: "a",
+      type: "string",
+      demandOption: true,
+      description: "Which artifact to download",
+    })
     .parseSync();
 };
 
 zxMain(async () => {
   const args = readArgs();
+
+  startWebServer();
 
   // Determine the minor version, e.g. 0.44.0 -> 0.44
   const versionMatch = args.version.match(/^(\d+\.\d+)/);
@@ -141,6 +146,8 @@ zxMain(async () => {
       `Invalid --version. Expected the format 0.44.0, but received ${args.version}`,
     );
   }
+
+  const artifactId = args.artifact.replace(/.*\//,"");
 
   const pkgInfo = PACKAGES.find((pkg) => pkg.name === args.package);
   if (pkgInfo === undefined) {
@@ -159,7 +166,7 @@ zxMain(async () => {
     if (pkg.name !== "qiskit") {
       throw new Error("`--historical` can only be used with `-p qiskit`");
     }
-    pkg.baseUrl = `https://qiskit.org/documentation/stable/${pkg.versionWithoutPatch}`;
+    //pkg.baseUrl = `https://qiskit.org/documentation/stable/${pkg.versionWithoutPatch}`;
     const htmlFile =
       +pkg.versionWithoutPatch >= 0.44 ? "index.html" : "terra.html";
     pkg.initialUrls = [`${pkg.baseUrl}/apidoc/${htmlFile}`];
@@ -171,6 +178,7 @@ zxMain(async () => {
   if (await pathExists(destination)) {
     console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
+    await downloadCIArtifact(pkg.name, artifactId);
     await downloadHtml({
       baseUrl: pkg.baseUrl,
       initialUrls: pkg.initialUrls,
@@ -195,6 +203,8 @@ zxMain(async () => {
     `Convert sphinx html to markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
   await convertHtmlToMarkdown(destination, outputDir, baseSourceUrl, pkg);
+
+  await closeWebServer();
 });
 
 /**
@@ -381,4 +391,22 @@ async function createHistoricalFolder(pkgName: string, outputDir: string) {
   ) {
     mkdirp(`${outputDir}/release-notes`);
   }
+}
+
+async function startWebServer(){
+  $`python3 -m http.server -d artifact &`;
+}
+
+async function closeWebServer(){
+  await $`rm -rf artifact artifact.zip`;
+  await $`lsof -nti:8000 | xargs kill -TERM`;
+}
+
+async function downloadCIArtifact(pkgName:string, artifactId: string){
+  await $`gh api \
+  -H "Accept: application/vnd.github+json" \
+  -H "X-GitHub-Api-Version: 2022-11-28" \
+  /repos/Qiskit/${pkgName}/actions/artifacts/${artifactId}/zip > artifact.zip`;
+
+await $`unzip -qq artifact.zip -d artifact`;
 }
