@@ -46,7 +46,7 @@ def run_notebook(*args, **kwargs):
     print("\r✅")
 
 
-def _run_notebook(filepath: Path, write=False):
+def _run_notebook(filepath: Path, write=False) -> None:
     """
     Use nbconvert to execute notebook
     """
@@ -73,12 +73,11 @@ def find_notebooks() -> list[Path]:
     NOTEBOOKS_EXCLUDE
     """
     all_notebooks = Path(".").rglob(NOTEBOOKS_GLOB)
-    filtered_notebooks = [
+    return [
         path
         for path in all_notebooks
         if not any(path.match(glob) for glob in NOTEBOOKS_EXCLUDE)
     ]
-    return filtered_notebooks
 
 
 if __name__ == "__main__":
