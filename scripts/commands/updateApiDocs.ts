@@ -137,8 +137,6 @@ const readArgs = (): Arguments => {
 zxMain(async () => {
   const args = readArgs();
 
-  startWebServer();
-
   // Determine the minor version, e.g. 0.44.0 -> 0.44
   const versionMatch = args.version.match(/^(\d+\.\d+)/);
   if (versionMatch === null) {
@@ -147,7 +145,7 @@ zxMain(async () => {
     );
   }
 
-  const artifactId = args.artifact.replace(/.*\//,"");
+  const artifactId = args.artifact.replace(/.*\//, "");
 
   const pkgInfo = PACKAGES.find((pkg) => pkg.name === args.package);
   if (pkgInfo === undefined) {
@@ -178,12 +176,14 @@ zxMain(async () => {
   if (await pathExists(destination)) {
     console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
+    startWebServer(pkg.name);
     await downloadCIArtifact(pkg.name, artifactId);
     await downloadHtml({
       baseUrl: pkg.baseUrl,
       initialUrls: pkg.initialUrls,
       destination,
     });
+    await closeWebServer();
   }
 
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${pkg.versionWithoutPatch}/`;
@@ -203,8 +203,6 @@ zxMain(async () => {
     `Convert sphinx html to markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
   await convertHtmlToMarkdown(destination, outputDir, baseSourceUrl, pkg);
-
-  await closeWebServer();
 });
 
 /**
@@ -393,20 +391,25 @@ async function createHistoricalFolder(pkgName: string, outputDir: string) {
   }
 }
 
-async function startWebServer(){
-  $`python3 -m http.server 8000 -d artifact -b ::1 &`;
+async function startWebServer(pkgName: string) {
+  const directory = `${getRoot()}/.out/artifacts/${pkgName}/artifact`;
+  $`python3 -m http.server 8000 -d ${directory} -b ::1 &`;
 }
 
-async function closeWebServer(){
-  await $`rm -rf artifact artifact.zip`;
+async function closeWebServer() {
   await $`lsof -nti:8000 | xargs kill -TERM`;
 }
 
-async function downloadCIArtifact(pkgName:string, artifactId: string){
+async function downloadCIArtifact(pkgName: string, artifactId: string) {
+  const destination = `${getRoot()}/.out/artifacts/${pkgName}/`;
+  if (!(await pathExists(destination))) {
+    await mkdirp(destination);
+  }
+
   await $`gh api \
   -H "Accept: application/vnd.github+json" \
   -H "X-GitHub-Api-Version: 2022-11-28" \
-  /repos/Qiskit/${pkgName}/actions/artifacts/${artifactId}/zip > artifact.zip`;
+  /repos/Qiskit/${pkgName}/actions/artifacts/${artifactId}/zip > ${destination}/artifact.zip`;
 
-await $`unzip -qq artifact.zip -d artifact`;
+  await $`unzip -qqo ${destination}/artifact.zip -d ${destination}/artifact`;
 }
