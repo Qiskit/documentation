@@ -34,6 +34,8 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { Pkg, PkgInfo, Link } from "../lib/sharedTypes";
 import transformLinks from "transform-markdown-links";
+import { downloadCIArtifact } from "../lib/downloadArtifacts";
+import { startWebServer, closeWebServer } from "../lib/webServer";
 import {
   findLegacyReleaseNotes,
   addNewReleaseNotes,
@@ -76,24 +78,21 @@ const PACKAGES: PkgInfo[] = [
     title: "Qiskit Runtime IBM Client",
     name: "qiskit-ibm-runtime",
     githubSlug: "qiskit/qiskit-ibm-runtime",
-    baseUrl: `http://localhost:8000`,
-    initialUrls: [`http://localhost:8000/apidoc/ibm-runtime.html`],
+    initialUrls: [`/apidoc/ibm-runtime.html`],
     transformLink,
   },
   {
     title: "Qiskit IBM Provider",
     name: "qiskit-ibm-provider",
     githubSlug: "qiskit/qiskit-ibm-provider",
-    baseUrl: `http://localhost:8000`,
-    initialUrls: [`http://localhost:8000/apidoc/ibm-provider.html`],
+    initialUrls: [`/apidoc/ibm-provider.html`],
     transformLink,
   },
   {
     title: "Qiskit",
     name: "qiskit",
     githubSlug: "qiskit/qiskit",
-    baseUrl: `http://localhost:8000`,
-    initialUrls: [`http://localhost:8000/apidoc/index.html`],
+    initialUrls: [`/apidoc/index.html`],
     hasSeparateReleaseNotes: true,
     tocOptions: {
       collapsed: true,
@@ -145,8 +144,6 @@ zxMain(async () => {
     );
   }
 
-  const artifactId = args.artifact.replace(/.*\//, "");
-
   const pkgInfo = PACKAGES.find((pkg) => pkg.name === args.package);
   if (pkgInfo === undefined) {
     throw new Error(`Unrecognized package: ${args.package}`);
@@ -157,33 +154,29 @@ zxMain(async () => {
     versionWithoutPatch: versionMatch[0],
     historical: args.historical,
     releaseNoteEntries: [],
+    baseUrl: `http://localhost:8000`,
     ...pkgInfo,
   };
+
+  pkg.initialUrls = pkg.initialUrls.map(initialURL => pkg.baseUrl+initialURL);
 
   if (pkg.historical) {
     if (pkg.name !== "qiskit") {
       throw new Error("`--historical` can only be used with `-p qiskit`");
     }
-    //pkg.baseUrl = `https://qiskit.org/documentation/stable/${pkg.versionWithoutPatch}`;
     const htmlFile =
       +pkg.versionWithoutPatch >= 0.44 ? "index.html" : "terra.html";
     pkg.initialUrls = [`${pkg.baseUrl}/apidoc/${htmlFile}`];
   }
 
+  const artifactUrl = args.artifact;
   const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
     pkg.version
   }`;
   if (await pathExists(destination)) {
     console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
-    startWebServer(pkg.name);
-    await downloadCIArtifact(pkg.name, artifactId);
-    await downloadHtml({
-      baseUrl: pkg.baseUrl,
-      initialUrls: pkg.initialUrls,
-      destination,
-    });
-    await closeWebServer();
+    await downloadApiSources(pkg, artifactUrl, destination);
   }
 
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${pkg.versionWithoutPatch}/`;
@@ -391,25 +384,21 @@ async function createHistoricalFolder(pkgName: string, outputDir: string) {
   }
 }
 
-async function startWebServer(pkgName: string) {
-  const directory = `${getRoot()}/.out/artifacts/${pkgName}/artifact`;
-  $`python3 -m http.server 8000 -d ${directory} -b ::1 &`;
-}
+/**
+ * Uses a local web server to download the HTML files from a specific CI artifact
+ */
+async function downloadApiSources(pkg: Pkg, artifactUrl: string, destination: string){
+  try{
+    const localWebServerDir = `${getRoot()}/.out/artifacts/${pkg.name}/artifact`;
+    startWebServer(localWebServerDir);
 
-async function closeWebServer() {
-  await $`lsof -nti:8000 | xargs kill -TERM`;
-}
-
-async function downloadCIArtifact(pkgName: string, artifactId: string) {
-  const destination = `${getRoot()}/.out/artifacts/${pkgName}/`;
-  if (!(await pathExists(destination))) {
-    await mkdirp(destination);
+    await downloadCIArtifact(pkg.name, artifactUrl);
+    await downloadHtml({
+      baseUrl: pkg.baseUrl,
+      initialUrls: pkg.initialUrls,
+      destination,
+    });
+  } finally{
+    await closeWebServer();
   }
-
-  await $`gh api \
-  -H "Accept: application/vnd.github+json" \
-  -H "X-GitHub-Api-Version: 2022-11-28" \
-  /repos/Qiskit/${pkgName}/actions/artifacts/${artifactId}/zip > ${destination}/artifact.zip`;
-
-  await $`unzip -qqo ${destination}/artifact.zip -d ${destination}/artifact`;
 }
