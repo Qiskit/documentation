@@ -33,20 +33,22 @@ NOTEBOOKS_EXCLUDE = [
 ]
 
 
-def run_notebook(*args, **kwargs):
+def execute_notebook(path: Path, write=False) -> bool:
     """
-    Wrapper function for `_run_notebook` to print status
+    Wrapper function for `_execute_notebook` to print status
     """
     print(f"▶️  {path}", end="", flush=True)
     try:
-        _run_notebook(*args, **kwargs)
-    except Exception as err:
+        _execute_notebook(path, write)
+    except nbconvert.preprocessors.CellExecutionError as err:
         print("\r❌\n")
-        raise err
+        print(err)
+        return False
     print("\r✅")
+    return True
 
 
-def _run_notebook(filepath: Path, write=False) -> None:
+def _execute_notebook(filepath: Path, write=False) -> None:
     """
     Use nbconvert to execute notebook
     """
@@ -88,5 +90,7 @@ if __name__ == "__main__":
 
     notebook_paths = args or find_notebooks()
     print("Executing notebooks:")
-    for path in notebook_paths:
-        run_notebook(path, write)
+    results = [execute_notebook(path, write) for path in notebook_paths]
+    if not all(results):
+        sys.exit(1)
+    sys.exit(0)
