@@ -101,10 +101,11 @@ This staging environment can be useful to see how the docs are rendering before 
 
 ## Execute notebooks
 
-To execute notebooks in a fixed Python environment, first install tox:
+To execute notebooks in a fixed Python environment, first install `tox` using
+[pipx](https://pipx.pypa.io/stable/):
 
 ```sh
-pip install tox
+pipx install tox
 ```
 
 - To execute all notebooks, run tox.
