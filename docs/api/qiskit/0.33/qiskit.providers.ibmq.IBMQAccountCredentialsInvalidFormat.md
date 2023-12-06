@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.IBMQAccountCredentialsInvalidFormat
 
-<span id="undefined" />
+
 
 `IBMQAccountCredentialsInvalidFormat(*message)`
 

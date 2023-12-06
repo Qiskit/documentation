@@ -1,6 +1,6 @@
 # qiskit.transpiler.passes.Layout2qDistance
 
-<span id="undefined" />
+
 
 `Layout2qDistance(*args, **kwargs)`
 
@@ -15,7 +15,7 @@ Layout2qDistance initializer.
 *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – Directed graph represented a coupling map.
 *   **property\_name** (*str*) – The property name to save the score. Default: layout\_score
 
-<span id="undefined" />
+
 
 `__init__(coupling_map, property_name='layout_score')`
 
@@ -41,7 +41,7 @@ Layout2qDistance initializer.
 | [`is_analysis_pass`](#qiskit.transpiler.passes.Layout2qDistance.is_analysis_pass "qiskit.transpiler.passes.Layout2qDistance.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.Layout2qDistance.is_transformation_pass "qiskit.transpiler.passes.Layout2qDistance.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-<span id="undefined" />
+
 
 `property is_analysis_pass`
 
@@ -49,7 +49,7 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="undefined" />
+
 
 `property is_transformation_pass`
 
@@ -57,13 +57,13 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-<span id="undefined" />
+
 
 `name()`
 
 Return the name of the pass.
 
-<span id="undefined" />
+
 
 `run(dag)`
 

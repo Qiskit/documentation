@@ -2,7 +2,7 @@
 
 # qiskit.ignis.verification.gates\_per\_clifford
 
-<span id="undefined" />
+
 
 `gates_per_clifford(transpiled_circuits_list, clifford_lengths, basis, qubits)`
 

@@ -1,6 +1,6 @@
 # StateFn
 
-<span id="undefined" />
+
 
 `StateFn(primitive=None, coeff=1.0, is_measurement=False)`
 
@@ -46,13 +46,13 @@ NOTE: State functions here are not restricted to wave functions, as there is no 
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### INDENTATION
 
 `= ' '`
 
-<span id="undefined" />
+
 
 ### coeff
 
@@ -62,7 +62,7 @@ A coefficient by which the state function is multiplied.
 
 `Union`\[`complex`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 ### instance\_id
 
@@ -72,7 +72,7 @@ Return the unique instance id.
 
 `int`
 
-<span id="undefined" />
+
 
 ### is\_measurement
 
@@ -82,7 +82,7 @@ Whether the StateFn object is a measurement Operator.
 
 `bool`
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -90,17 +90,17 @@ Whether the StateFn object is a measurement Operator.
 
 `int`
 
-<span id="undefined" />
+
 
 ### parameters
 
-<span id="undefined" />
+
 
 ### primitive
 
 The primitive which defines the behavior of the underlying State function.
 
-<span id="undefined" />
+
 
 ### settings
 

@@ -1,6 +1,6 @@
 # ManagedResults
 
-<span id="undefined" />
+
 
 `ManagedResults(job_set, backend_name, success)`
 
@@ -18,13 +18,13 @@ ManagedResults constructor.
 *   **backend\_name** (`str`) – Name of the backend used to run the experiments.
 *   **success** (`bool`) – `True` if all experiments were successful and results available. `False` otherwise.
 
-<span id="undefined" />
+
 
 ### backend\_name
 
 Name of the backend used to run the experiments.
 
-<span id="undefined" />
+
 
 ### success
 

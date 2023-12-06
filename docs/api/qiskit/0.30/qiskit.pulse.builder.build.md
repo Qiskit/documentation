@@ -1,6 +1,6 @@
 # qiskit.pulse.builder.build
 
-<span id="undefined" />
+
 
 `build(backend=None, schedule=None, name=None, default_alignment='left', default_transpiler_settings=None, default_circuit_scheduler_settings=None)`
 

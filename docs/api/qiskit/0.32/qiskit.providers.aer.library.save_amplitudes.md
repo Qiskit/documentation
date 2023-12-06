@@ -1,6 +1,6 @@
 # qiskit.providers.aer.library.save\_amplitudes
 
-<span id="undefined" />
+
 
 `save_amplitudes(self, params, label='amplitudes', pershot=False, conditional=False)`
 

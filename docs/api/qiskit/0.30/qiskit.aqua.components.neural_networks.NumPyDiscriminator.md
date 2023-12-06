@@ -1,6 +1,6 @@
 # NumPyDiscriminator
 
-<span id="undefined" />
+
 
 `NumPyDiscriminator(n_features=1, n_out=1)`
 
@@ -26,7 +26,7 @@ Discriminator based on NumPy
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### discriminator\_net
 

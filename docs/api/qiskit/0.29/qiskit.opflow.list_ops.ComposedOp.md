@@ -1,6 +1,6 @@
 # ComposedOp
 
-<span id="undefined" />
+
 
 `ComposedOp(oplist, coeff=1.0, abelian=False)`
 
@@ -27,13 +27,13 @@ A class for lazily representing compositions of Operators. Often Operators canno
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### INDENTATION
 
 `= ' '`
 
-<span id="undefined" />
+
 
 ### abelian
 
@@ -47,7 +47,7 @@ Whether the Operators in `oplist` are known to commute with one another.
 
 A bool indicating whether the `oplist` is Abelian.
 
-<span id="undefined" />
+
 
 ### coeff
 
@@ -61,7 +61,7 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
-<span id="undefined" />
+
 
 ### combo\_fn
 
@@ -75,7 +75,7 @@ The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to p
 
 The combination function.
 
-<span id="undefined" />
+
 
 ### distributive
 
@@ -83,7 +83,7 @@ The combination function.
 
 `bool`
 
-<span id="undefined" />
+
 
 ### grad\_combo\_fn
 
@@ -93,7 +93,7 @@ The gradient of `combo_fn`.
 
 `Optional`\[`Callable`]
 
-<span id="undefined" />
+
 
 ### instance\_id
 
@@ -103,7 +103,7 @@ Return the unique instance id.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -111,7 +111,7 @@ Return the unique instance id.
 
 `int`
 
-<span id="undefined" />
+
 
 ### oplist
 
@@ -125,11 +125,11 @@ The list of `OperatorBases` defining the underlying function of this Operator.
 
 The Operators defining the ListOp
 
-<span id="undefined" />
+
 
 ### parameters
 
-<span id="undefined" />
+
 
 ### settings
 

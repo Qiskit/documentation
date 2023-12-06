@@ -1,6 +1,6 @@
 # qiskit.aqua.utils.get\_subsystem\_density\_matrix
 
-<span id="undefined" />
+
 
 `get_subsystem_density_matrix(statevector, trace_systems)`
 

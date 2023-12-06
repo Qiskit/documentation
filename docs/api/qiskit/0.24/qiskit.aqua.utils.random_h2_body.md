@@ -2,7 +2,7 @@
 
 # qiskit.aqua.utils.random\_h2\_body
 
-<span id="undefined" />
+
 
 `random_h2_body(N, M)`
 

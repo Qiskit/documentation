@@ -1,6 +1,6 @@
 # qiskit.visualization.array\_to\_latex
 
-<span id="undefined" />
+
 
 `array_to_latex(array, precision=5, prefix='', source=False, max_size=8)`
 

@@ -1,6 +1,6 @@
 # MaximumLikelihoodAmplitudeEstimationResult
 
-<span id="undefined" />
+
 
 `MaximumLikelihoodAmplitudeEstimationResult(a_dict=None)`
 
@@ -28,7 +28,7 @@ MaximumLikelihoodAmplitudeEstimation Result.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### a\_estimation
 
@@ -38,7 +38,7 @@ return a\_estimation
 
 `float`
 
-<span id="undefined" />
+
 
 ### circuit\_results
 
@@ -48,7 +48,7 @@ return circuit results
 
 `Union`\[`List`\[`ndarray`], `List`\[`Dict`\[`str`, `int`]], `None`]
 
-<span id="undefined" />
+
 
 ### confidence\_interval
 
@@ -58,7 +58,7 @@ return confidence\_interval
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 ### estimation
 
@@ -68,7 +68,7 @@ return estimation
 
 `float`
 
-<span id="undefined" />
+
 
 ### fisher\_information
 
@@ -78,7 +78,7 @@ return fisher\_information
 
 `float`
 
-<span id="undefined" />
+
 
 ### num\_oracle\_queries
 
@@ -88,7 +88,7 @@ return num\_oracle\_queries
 
 `int`
 
-<span id="undefined" />
+
 
 ### theta
 

@@ -1,6 +1,6 @@
 # InitialState
 
-<span id="undefined" />
+
 
 `InitialState`
 
@@ -18,6 +18,6 @@ This method should initialize the module and use an exception if a component of 
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### bitstr

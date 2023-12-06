@@ -1,6 +1,6 @@
 # PulseQobj
 
-<span id="undefined" />
+
 
 `PulseQobj(qobj_id, config, experiments, header=None)`
 

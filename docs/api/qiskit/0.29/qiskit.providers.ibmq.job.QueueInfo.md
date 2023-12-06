@@ -1,6 +1,6 @@
 # QueueInfo
 
-<span id="undefined" />
+
 
 `QueueInfo(position=None, status=None, estimated_start_time=None, estimated_complete_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)`
 
@@ -30,7 +30,7 @@ QueueInfo constructor.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### estimated\_complete\_time
 
@@ -40,7 +40,7 @@ Return estimated complete time in local time.
 
 `Optional`\[`datetime`]
 
-<span id="undefined" />
+
 
 ### estimated\_start\_time
 

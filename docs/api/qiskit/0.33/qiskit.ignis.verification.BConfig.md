@@ -1,6 +1,6 @@
 # BConfig
 
-<span id="undefined" />
+
 
 `BConfig(backend, indicator=True)`
 

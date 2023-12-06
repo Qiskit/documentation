@@ -1,12 +1,12 @@
 # qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult
 
-<span id="undefined" />
+
 
 `MaximumLikelihoodAmplitudeEstimationResult`
 
 The `MaximumLikelihoodAmplitudeEstimation` result object.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -37,7 +37,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`shots`](#qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.shots "qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.shots")                                                                         | Return the number of shots used.                                                    |
 | [`theta`](#qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.theta "qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.theta")                                                                         | Return the estimate for the angle $\theta$.                                         |
 
-<span id="undefined" />
+
 
 `property circuit_results`
 
@@ -47,7 +47,7 @@ Return the circuit results. Can be a statevector or counts dictionary.
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
 
-<span id="undefined" />
+
 
 `combine(result)`
 
@@ -61,7 +61,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-<span id="undefined" />
+
 
 `property confidence_interval`
 
@@ -71,7 +71,7 @@ Return the confidence interval for the amplitude (95% interval by default).
 
 `Tuple`\[`float`, `float`]
 
-<span id="undefined" />
+
 
 `property confidence_interval_processed`
 
@@ -81,7 +81,7 @@ Return the post-processed confidence interval (95% interval by default).
 
 `Tuple`\[`float`, `float`]
 
-<span id="undefined" />
+
 
 `property estimation`
 
@@ -91,7 +91,7 @@ Return the estimation for the amplitude in $[0, 1]$.
 
 `float`
 
-<span id="undefined" />
+
 
 `property estimation_processed`
 
@@ -101,7 +101,7 @@ Return the estimation for the amplitude after the post-processing has been appli
 
 `float`
 
-<span id="undefined" />
+
 
 `property evaluation_schedule`
 
@@ -111,7 +111,7 @@ Return the evaluation schedule for the powers of the Grover operator.
 
 `List`\[`int`]
 
-<span id="undefined" />
+
 
 `property fisher_information`
 
@@ -121,7 +121,7 @@ Return the Fisher information for the estimated amplitude.
 
 `float`
 
-<span id="undefined" />
+
 
 `property good_counts`
 
@@ -131,7 +131,7 @@ Return the percentage of good counts per circuit power.
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 `property minimizer`
 
@@ -141,7 +141,7 @@ Return the minimizer used for the search of the likelihood function.
 
 `callable`
 
-<span id="undefined" />
+
 
 `property num_oracle_queries`
 
@@ -151,7 +151,7 @@ Return the number of Grover oracle queries.
 
 `int`
 
-<span id="undefined" />
+
 
 `property post_processing`
 
@@ -161,7 +161,7 @@ Return a handle to the post processing function.
 
 `Callable`\[\[`float`], `float`]
 
-<span id="undefined" />
+
 
 `property shots`
 
@@ -171,7 +171,7 @@ Return the number of shots used. Is 1 for statevector-based simulations.
 
 `int`
 
-<span id="undefined" />
+
 
 `property theta`
 

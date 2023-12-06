@@ -1,12 +1,12 @@
 # qiskit.providers.basicaer.BasicAerProvider
 
-<span id="undefined" />
+
 
 `BasicAerProvider`
 
 Provider for Basic Aer backends.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -26,7 +26,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | --------- | - |
 | `version` |   |
 
-<span id="undefined" />
+
 
 `backends(name=None, filters=None, **kwargs)`
 
@@ -47,7 +47,7 @@ criteria.
 
 list\[[Backend](qiskit.providers.Backend#qiskit.providers.Backend "qiskit.providers.Backend")]
 
-<span id="undefined" />
+
 
 `get_backend(name=None, **kwargs)`
 

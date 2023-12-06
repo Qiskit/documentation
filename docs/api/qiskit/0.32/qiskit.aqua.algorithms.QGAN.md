@@ -1,6 +1,6 @@
 # QGAN
 
-<span id="undefined" />
+
 
 `QGAN(data, bounds=None, num_qubits=None, batch_size=500, num_epochs=3000, seed=7, discriminator=None, generator=None, tol_rel_ent=None, snapshot_dir=None, quantum_instance=None)`
 
@@ -51,7 +51,7 @@ These networks are trained in alternating optimization steps, where the discrimi
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### backend
 
@@ -61,7 +61,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 ### d\_loss
 
@@ -71,13 +71,13 @@ Returns discriminator loss
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 ### discriminator
 
 Returns discriminator
 
-<span id="undefined" />
+
 
 ### g\_loss
 
@@ -87,13 +87,13 @@ Returns generator loss
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 ### generator
 
 Returns generator
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 
@@ -103,13 +103,13 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 ### random
 
 Return a numpy random.
 
-<span id="undefined" />
+
 
 ### rel\_entr
 
@@ -119,13 +119,13 @@ Returns relative entropy between target and trained distribution
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 ### seed
 
 Returns random seed
 
-<span id="undefined" />
+
 
 ### tol\_rel\_ent
 

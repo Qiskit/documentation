@@ -2,7 +2,7 @@
 
 # qiskit.pulse.Delay
 
-<span id="undefined" />
+
 
 `Delay(duration, channel, name=None)`
 
@@ -30,7 +30,7 @@ No other instruction may be scheduled within a `Delay`.
 *   **channel** ([`Channel`](qiskit.pulse.channels#Channel "qiskit.pulse.channels.Channel")) – The channel that will have the delay.
 *   **name** (`Optional`\[`str`]) – Name of the delay for display purposes.
 
-<span id="undefined" />
+
 
 `__init__(duration, channel, name=None)`
 
@@ -75,7 +75,7 @@ No other instruction may be scheduled within a `Delay`.
 | [`stop_time`](#qiskit.pulse.Delay.stop_time "qiskit.pulse.Delay.stop_time")          | Relative end time of this instruction.                                                                                       |
 | [`timeslots`](#qiskit.pulse.Delay.timeslots "qiskit.pulse.Delay.timeslots")          | Occupied time slots by this instruction.                                                                                     |
 
-<span id="undefined" />
+
 
 `append(schedule, name=None)`
 
@@ -90,7 +90,7 @@ Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pu
 
 `Schedule`
 
-<span id="undefined" />
+
 
 `assign_parameters(value_dict)`
 
@@ -108,7 +108,7 @@ Modify and return self with parameters assigned according to the input.
 
 Self with updated parameters.
 
-<span id="undefined" />
+
 
 `ch_duration(*channels)`
 
@@ -122,7 +122,7 @@ Return duration of the supplied channels in this Instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 `ch_start_time(*channels)`
 
@@ -136,7 +136,7 @@ Return minimum start time for supplied channels.
 
 `int`
 
-<span id="undefined" />
+
 
 `ch_stop_time(*channels)`
 
@@ -150,7 +150,7 @@ Return maximum start time for supplied channels.
 
 `int`
 
-<span id="undefined" />
+
 
 `property channel`
 
@@ -160,7 +160,7 @@ Return the [`Channel`](qiskit.pulse.channels#Channel "qiskit.pulse.channels.Chan
 
 [`Channel`](qiskit.pulse.channels#Channel "qiskit.pulse.channels.Channel")
 
-<span id="undefined" />
+
 
 `property channels`
 
@@ -170,7 +170,7 @@ Returns channels that this schedule uses.
 
 `Tuple`\[[`Channel`](qiskit.pulse.channels#Channel "qiskit.pulse.channels.Channel")]
 
-<span id="undefined" />
+
 
 `property command`
 
@@ -184,7 +184,7 @@ The deprecated command if available.
 
 [Command](qiskit.providers.models.Command#qiskit.providers.models.Command "qiskit.providers.models.Command")
 
-<span id="undefined" />
+
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`
 
@@ -213,7 +213,7 @@ A matplotlib figure object of the pulse schedule
 
 matplotlib.figure
 
-<span id="undefined" />
+
 
 `property duration`
 
@@ -223,7 +223,7 @@ Duration of this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 `flatten()`
 
@@ -233,7 +233,7 @@ Return itself as already single instruction.
 
 `Instruction`
 
-<span id="undefined" />
+
 
 `property id`
 
@@ -243,7 +243,7 @@ Unique identifier for this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 `insert(start_time, schedule, name=None)`
 
@@ -259,7 +259,7 @@ Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pu
 
 `Schedule`
 
-<span id="undefined" />
+
 
 `property instructions`
 
@@ -269,7 +269,7 @@ Iterable for getting instructions from Schedule tree.
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -279,7 +279,7 @@ Name of this instruction.
 
 `str`
 
-<span id="undefined" />
+
 
 `property operands`
 
@@ -289,7 +289,7 @@ Return instruction operands.
 
 `Tuple`
 
-<span id="undefined" />
+
 
 `shift(time, name=None)`
 
@@ -304,7 +304,7 @@ Return a new schedule shifted forward by time.
 
 `Schedule`
 
-<span id="undefined" />
+
 
 `property start_time`
 
@@ -314,7 +314,7 @@ Relative begin time of this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 `property stop_time`
 
@@ -324,7 +324,7 @@ Relative end time of this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 `property timeslots`
 

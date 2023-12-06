@@ -2,13 +2,13 @@
 
 # qiskit.chemistry.transformations.FermionicTransformationType
 
-<span id="undefined" />
+
 
 `FermionicTransformationType(value)`
 
 Electronic Transformation Type enum
 
-<span id="undefined" />
+
 
 `__init__()`
 

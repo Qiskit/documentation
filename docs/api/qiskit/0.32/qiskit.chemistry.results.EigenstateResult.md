@@ -1,6 +1,6 @@
 # EigenstateResult
 
-<span id="undefined" />
+
 
 `EigenstateResult(a_dict=None)`
 
@@ -27,7 +27,7 @@ The eigenstate result interface.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### aux\_operator\_eigenvalues
 
@@ -37,7 +37,7 @@ return aux operator eigen values
 
 `Optional`\[`List`\[`float`]]
 
-<span id="undefined" />
+
 
 ### eigenenergies
 
@@ -47,7 +47,7 @@ returns eigen energies
 
 `Optional`\[`ndarray`]
 
-<span id="undefined" />
+
 
 ### eigenstates
 
@@ -57,7 +57,7 @@ returns eigen states
 
 `Optional`\[`List`\[`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]]]
 
-<span id="undefined" />
+
 
 ### groundenergy
 
@@ -67,7 +67,7 @@ returns ground energy
 
 `Optional`\[`float`]
 
-<span id="undefined" />
+
 
 ### groundstate
 
@@ -77,7 +77,7 @@ returns ground state
 
 `Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]
 
-<span id="undefined" />
+
 
 ### raw\_result
 

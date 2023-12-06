@@ -2,7 +2,7 @@
 
 # qiskit.ignis.verification.marginal\_counts
 
-<span id="undefined" />
+
 
 `marginal_counts(counts, meas_qubits=True, pad_zeros=False)`
 

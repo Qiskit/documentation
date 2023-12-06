@@ -1,6 +1,6 @@
 # GaussianDriver
 
-<span id="undefined" />
+
 
 `GaussianDriver(config='# rhf/sto-3g scf(conventional)\\n\\nh2 molecule\\n\\n0 1\\nH 0.0 0.0 0.0\\nH 0.0 0.0 0.735\\n\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)`
 
@@ -31,7 +31,7 @@ This driver uses the Gaussian open-source Gaussian 16 interfacing code in order 
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### basis
 
@@ -41,7 +41,7 @@ return basis
 
 `str`
 
-<span id="undefined" />
+
 
 ### hf\_method
 
@@ -51,7 +51,7 @@ return Hartree-Fock method
 
 `str`
 
-<span id="undefined" />
+
 
 ### molecule
 
@@ -61,7 +61,7 @@ return molecule
 
 `Optional`\[`Molecule`]
 
-<span id="undefined" />
+
 
 ### supports\_molecule
 

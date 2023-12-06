@@ -2,13 +2,13 @@
 
 # qiskit.providers.ProviderV1
 
-<span id="undefined" />
+
 
 `ProviderV1`
 
 Base class for a Backend Provider.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -28,7 +28,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | --------- | - |
 | `version` |   |
 
-<span id="undefined" />
+
 
 `abstract backends(name=None, **kwargs)`
 
@@ -49,7 +49,7 @@ criteria.
 
 list\[[Backend](qiskit.providers.Backend#qiskit.providers.Backend "qiskit.providers.Backend")]
 
-<span id="undefined" />
+
 
 `get_backend(name=None, **kwargs)`
 

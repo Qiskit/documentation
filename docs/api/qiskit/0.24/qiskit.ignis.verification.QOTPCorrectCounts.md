@@ -2,7 +2,7 @@
 
 # qiskit.ignis.verification.QOTPCorrectCounts
 
-<span id="undefined" />
+
 
 `QOTPCorrectCounts(qotp_counts, qotp_postp)`
 

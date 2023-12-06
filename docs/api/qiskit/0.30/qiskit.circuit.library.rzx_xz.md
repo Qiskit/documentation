@@ -1,6 +1,6 @@
 # qiskit.circuit.library.rzx\_xz
 
-<span id="undefined" />
+
 
 `rzx_xz(theta=None)`
 

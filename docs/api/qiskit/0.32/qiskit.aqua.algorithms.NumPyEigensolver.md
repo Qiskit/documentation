@@ -1,6 +1,6 @@
 # NumPyEigensolver
 
-<span id="undefined" />
+
 
 `NumPyEigensolver(operator=None, k=1, aux_operators=None, filter_criterion=None)`
 
@@ -31,7 +31,7 @@ NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued s
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### aux\_operators
 
@@ -39,7 +39,7 @@ NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued s
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
 
-<span id="undefined" />
+
 
 ### filter\_criterion
 
@@ -49,7 +49,7 @@ returns the filter criterion if set
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
 
-<span id="undefined" />
+
 
 ### k
 
@@ -59,7 +59,7 @@ returns k (number of eigenvalues requested)
 
 `int`
 
-<span id="undefined" />
+
 
 ### operator
 
@@ -67,7 +67,7 @@ returns k (number of eigenvalues requested)
 
 `Optional`\[`OperatorBase`]
 
-<span id="undefined" />
+
 
 ### random
 

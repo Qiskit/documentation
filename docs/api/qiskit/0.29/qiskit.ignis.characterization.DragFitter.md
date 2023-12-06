@@ -1,6 +1,6 @@
 # DragFitter
 
-<span id="undefined" />
+
 
 `DragFitter(backend_result, xdata, qubits, fit_p0, fit_bounds=None)`
 
@@ -24,7 +24,7 @@ fit\_p0 is \[a, x0, c] where the fit is a\*(x-x0)^2+c
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### backend\_result
 
@@ -34,7 +34,7 @@ Return the execution results
 
 `Union`\[`Result`, `List`\[`Result`]]
 
-<span id="undefined" />
+
 
 ### description
 
@@ -44,7 +44,7 @@ Return the fitter’s purpose, e.g. ‘T1’
 
 `str`
 
-<span id="undefined" />
+
 
 ### fit\_fun
 
@@ -54,7 +54,7 @@ Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
 
 `Callable`
 
-<span id="undefined" />
+
 
 ### measured\_qubits
 
@@ -64,7 +64,7 @@ Return the indices of the qubits to be characterized
 
 `List`\[`int`]
 
-<span id="undefined" />
+
 
 ### params
 
@@ -74,7 +74,7 @@ Return the fit function parameters that were calculated by curve\_fit
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 ### params\_err
 
@@ -84,7 +84,7 @@ Return the error of the fit function parameters
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 ### series
 
@@ -94,7 +94,7 @@ Return the list of series for the data
 
 `Optional`\[`List`\[`str`]]
 
-<span id="undefined" />
+
 
 ### xdata
 
@@ -104,7 +104,7 @@ Return the data points on the x-axis, the independenet parameter which is fit ag
 
 `Union`\[`List`\[`float`], `array`]
 
-<span id="undefined" />
+
 
 ### ydata
 

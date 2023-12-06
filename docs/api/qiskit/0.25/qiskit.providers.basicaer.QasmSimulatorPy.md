@@ -1,6 +1,6 @@
 # qiskit.providers.basicaer.QasmSimulatorPy
 
-<span id="undefined" />
+
 
 `QasmSimulatorPy(configuration=None, provider=None, **fields)`
 
@@ -18,7 +18,7 @@ Initialize a backend class
 
 **AttributeError** – if input field not a valid options
 
-<span id="undefined" />
+
 
 `__init__(configuration=None, provider=None, **fields)`
 
@@ -59,7 +59,7 @@ Initialize a backend class
 | [`options`](#qiskit.providers.basicaer.QasmSimulatorPy.options "qiskit.providers.basicaer.QasmSimulatorPy.options") | Return the options for the backend |
 | `version`                                                                                                           |                                    |
 
-<span id="undefined" />
+
 
 `configuration()`
 
@@ -73,7 +73,7 @@ the configuration for the backend.
 
 [BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
 
-<span id="undefined" />
+
 
 `name()`
 
@@ -87,7 +87,7 @@ the name of the backend.
 
 str
 
-<span id="undefined" />
+
 
 `property options`
 
@@ -95,7 +95,7 @@ Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.basicaer.QasmSimulatorPy.run "qiskit.providers.basicaer.QasmSimulatorPy.run") method.
 
-<span id="undefined" />
+
 
 `properties()`
 
@@ -109,7 +109,7 @@ the configuration for the backend. If the backend does not support properties, i
 
 [BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
-<span id="undefined" />
+
 
 `provider()`
 
@@ -123,7 +123,7 @@ the Provider responsible for the backend.
 
 [Provider](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")
 
-<span id="undefined" />
+
 
 `run(qobj, **backend_options)`
 
@@ -158,7 +158,7 @@ backend_options = {
 }
 ```
 
-<span id="undefined" />
+
 
 `run_experiment(experiment)`
 
@@ -196,7 +196,7 @@ dict
 
 [**BasicAerError**](qiskit.providers.basicaer.BasicAerError#qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if an error occurred.
 
-<span id="undefined" />
+
 
 `set_options(**fields)`
 
@@ -212,7 +212,7 @@ This method is used to update the options of a backend. If you need to change an
 
 **AttributeError** – If the field passed in is not part of the options
 
-<span id="undefined" />
+
 
 `status()`
 

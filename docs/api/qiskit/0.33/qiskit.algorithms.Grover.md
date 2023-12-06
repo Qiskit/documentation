@@ -1,6 +1,6 @@
 # Grover
 
-<span id="undefined" />
+
 
 `Grover(iterations=None, growth_rate=None, sample_from_iterations=False, quantum_instance=None)`
 
@@ -85,7 +85,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 

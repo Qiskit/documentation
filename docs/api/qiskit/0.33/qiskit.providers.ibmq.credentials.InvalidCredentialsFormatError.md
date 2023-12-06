@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.credentials.InvalidCredentialsFormatError
 
-<span id="undefined" />
+
 
 `InvalidCredentialsFormatError(*message)`
 

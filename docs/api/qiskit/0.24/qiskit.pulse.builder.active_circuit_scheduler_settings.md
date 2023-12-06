@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.active\_circuit\_scheduler\_settings
 
-<span id="undefined" />
+
 
 `active_circuit_scheduler_settings()`
 

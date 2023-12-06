@@ -1,6 +1,6 @@
 # Schedule
 
-<span id="undefined" />
+
 
 `Schedule(*schedules, name=None, metadata=None)`
 
@@ -81,7 +81,7 @@ Create an empty schedule.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### channels
 
@@ -91,7 +91,7 @@ Returns channels that this schedule uses.
 
 `Tuple`\[`Channel`]
 
-<span id="undefined" />
+
 
 ### children
 
@@ -109,7 +109,7 @@ Nested schedules are returned as-is. If you want to collect only instructions, u
 
 A tuple, where each element is a two-tuple containing the initial scheduled time of each `NamedValue` and the component itself.
 
-<span id="undefined" />
+
 
 ### duration
 
@@ -119,13 +119,13 @@ Duration of this schedule.
 
 `int`
 
-<span id="undefined" />
+
 
 ### instances\_counter
 
 `= count(0)`
 
-<span id="undefined" />
+
 
 ### instructions
 
@@ -135,7 +135,7 @@ Get the time-ordered instructions from self.
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
-<span id="undefined" />
+
 
 ### metadata
 
@@ -147,7 +147,7 @@ User provided `dict` of metadata for the schedule. The metadata contents do not 
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+
 
 ### name
 
@@ -157,7 +157,7 @@ Name of this Schedule
 
 `str`
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -167,13 +167,13 @@ Parameters which determine the schedule behavior.
 
 `Set`
 
-<span id="undefined" />
+
 
 ### prefix
 
 `= 'sched'`
 
-<span id="undefined" />
+
 
 ### start\_time
 
@@ -183,7 +183,7 @@ Starting time of this schedule.
 
 `int`
 
-<span id="undefined" />
+
 
 ### stop\_time
 
@@ -193,7 +193,7 @@ Stopping time of this schedule.
 
 `int`
 
-<span id="undefined" />
+
 
 ### timeslots
 

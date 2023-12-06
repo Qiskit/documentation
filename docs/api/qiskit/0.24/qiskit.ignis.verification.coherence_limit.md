@@ -2,7 +2,7 @@
 
 # qiskit.ignis.verification.coherence\_limit
 
-<span id="undefined" />
+
 
 `coherence_limit(nQ=2, T1_list=None, T2_list=None, gatelen=0.1)`
 

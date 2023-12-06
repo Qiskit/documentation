@@ -1,6 +1,6 @@
 # DiscriminationFilter
 
-<span id="undefined" />
+
 
 `DiscriminationFilter(discriminator, base=None)`
 

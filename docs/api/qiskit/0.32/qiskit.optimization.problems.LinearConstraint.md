@@ -1,6 +1,6 @@
 # LinearConstraint
 
-<span id="undefined" />
+
 
 `LinearConstraint(quadratic_program, name, linear, sense, rhs)`
 
@@ -24,7 +24,7 @@ Representation of a linear constraint.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### linear
 
@@ -38,7 +38,7 @@ Returns the linear expression corresponding to the left-hand-side of the constra
 
 The left-hand-side linear expression.
 
-<span id="undefined" />
+
 
 ### name
 
@@ -52,7 +52,7 @@ Returns the name of the constraint.
 
 The name of the constraint.
 
-<span id="undefined" />
+
 
 ### quadratic\_program
 
@@ -66,7 +66,7 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-<span id="undefined" />
+
 
 ### rhs
 
@@ -80,7 +80,7 @@ Returns the right-hand-side of the constraint.
 
 The right-hand-side of the constraint.
 
-<span id="undefined" />
+
 
 ### sense
 

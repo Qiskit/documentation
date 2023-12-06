@@ -2,7 +2,7 @@
 
 # qiskit.aqua.components.uncertainty\_problems.MultivariateProblem
 
-<span id="undefined" />
+
 
 `MultivariateProblem(uncertainty_model, aggregation_function, univariate_objective, conditions=None)`
 
@@ -17,7 +17,7 @@ Constructor.
 *   **univariate\_objective** (`UnivariatePiecewiseLinearObjective`) – objective function applied to the aggregated value
 *   **conditions** (`Union`\[`List`\[`Tuple`\[`int`, `CircuitFactory`]], `ndarray`, `None`]) – list of pairs (int, CircuitFactory) = target dimension of uncertainty model and condition to be satisfied to apply the aggregation
 
-<span id="undefined" />
+
 
 `__init__(uncertainty_model, aggregation_function, univariate_objective, conditions=None)`
 
@@ -55,7 +55,7 @@ Constructor.
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | [`num_target_qubits`](#qiskit.aqua.components.uncertainty_problems.MultivariateProblem.num_target_qubits "qiskit.aqua.components.uncertainty_problems.MultivariateProblem.num_target_qubits") | Returns the number of target qubits |
 
-<span id="undefined" />
+
 
 `build(qc, q, q_ancillas=None, params=None)`
 
@@ -68,7 +68,7 @@ Adds corresponding sub-circuit to given circuit
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 *   **params** (*list*) – parameters for circuit
 
-<span id="undefined" />
+
 
 `build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
 
@@ -82,7 +82,7 @@ Adds corresponding controlled sub-circuit to given circuit
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
 
-<span id="undefined" />
+
 
 `build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
 
@@ -96,19 +96,19 @@ Adds controlled inverse of corresponding sub-circuit to given circuit
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
 
-<span id="undefined" />
+
 
 `build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-<span id="undefined" />
+
 
 `build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-<span id="undefined" />
+
 
 `build_inverse(qc, q, q_ancillas=None)`
 
@@ -120,49 +120,49 @@ Adds inverse of corresponding sub-circuit to given circuit
 *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 
-<span id="undefined" />
+
 
 `build_inverse_power(qc, q, power, q_ancillas=None)`
 
 Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-<span id="undefined" />
+
 
 `build_power(qc, q, power, q_ancillas=None)`
 
 Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-<span id="undefined" />
+
 
 `get_num_qubits()`
 
 returns number of qubits
 
-<span id="undefined" />
+
 
 `get_num_qubits_controlled()`
 
 returns number of qubits controlled
 
-<span id="undefined" />
+
 
 `property num_target_qubits`
 
 Returns the number of target qubits
 
-<span id="undefined" />
+
 
 `required_ancillas()`
 
 returns required ancillas
 
-<span id="undefined" />
+
 
 `required_ancillas_controlled()`
 
 returns required ancillas controlled
 
-<span id="undefined" />
+
 
 `value_to_estimation(value)`
 

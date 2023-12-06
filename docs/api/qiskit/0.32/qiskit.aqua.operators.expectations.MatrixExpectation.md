@@ -1,6 +1,6 @@
 # MatrixExpectation
 
-<span id="undefined" />
+
 
 `MatrixExpectation`
 

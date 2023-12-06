@@ -1,6 +1,6 @@
 # SPSA
 
-<span id="undefined" />
+
 
 `SPSA(maxiter=1000, save_steps=1, last_avg=1, c0=0.6283185307179586, c1=0.1, c2=0.602, c3=0.101, c4=0, skip_calibration=False, max_trials=None)`
 
@@ -51,79 +51,79 @@ For further details, please refer to [https://arxiv.org/pdf/1704.05018v2.pdf#sec
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### bounds\_support\_level
 
 Returns bounds support level
 
-<span id="undefined" />
+
 
 ### gradient\_support\_level
 
 Returns gradient support level
 
-<span id="undefined" />
+
 
 ### initial\_point\_support\_level
 
 Returns initial point support level
 
-<span id="undefined" />
+
 
 ### is\_bounds\_ignored
 
 Returns is bounds ignored
 
-<span id="undefined" />
+
 
 ### is\_bounds\_required
 
 Returns is bounds required
 
-<span id="undefined" />
+
 
 ### is\_bounds\_supported
 
 Returns is bounds supported
 
-<span id="undefined" />
+
 
 ### is\_gradient\_ignored
 
 Returns is gradient ignored
 
-<span id="undefined" />
+
 
 ### is\_gradient\_required
 
 Returns is gradient required
 
-<span id="undefined" />
+
 
 ### is\_gradient\_supported
 
 Returns is gradient supported
 
-<span id="undefined" />
+
 
 ### is\_initial\_point\_ignored
 
 Returns is initial point ignored
 
-<span id="undefined" />
+
 
 ### is\_initial\_point\_required
 
 Returns is initial point required
 
-<span id="undefined" />
+
 
 ### is\_initial\_point\_supported
 
 Returns is initial point supported
 
-<span id="undefined" />
+
 
 ### setting
 

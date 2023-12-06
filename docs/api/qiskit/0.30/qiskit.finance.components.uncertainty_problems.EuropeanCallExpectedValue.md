@@ -1,6 +1,6 @@
 # EuropeanCallExpectedValue
 
-<span id="undefined" />
+
 
 `EuropeanCallExpectedValue(uncertainty_model, strike_price, c_approx, i_state=None, i_compare=None, i_objective=None)`
 
@@ -41,7 +41,7 @@ Constructor.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 

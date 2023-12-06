@@ -1,6 +1,6 @@
 # NumPyMinimumEigensolver
 
-<span id="undefined" />
+
 
 `NumPyMinimumEigensolver(operator=None, aux_operators=None, filter_criterion=None)`
 
@@ -24,7 +24,7 @@ The Numpy Minimum Eigensolver algorithm.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### aux\_operators
 
@@ -32,7 +32,7 @@ The Numpy Minimum Eigensolver algorithm.
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
 
-<span id="undefined" />
+
 
 ### filter\_criterion
 
@@ -42,7 +42,7 @@ returns the filter criterion if set
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
 
-<span id="undefined" />
+
 
 ### operator
 
@@ -50,7 +50,7 @@ returns the filter criterion if set
 
 `Optional`\[`OperatorBase`]
 
-<span id="undefined" />
+
 
 ### random
 

@@ -1,6 +1,6 @@
 # qiskit.qobj.QasmQobj
 
-<span id="undefined" />
+
 
 `QasmQobj(qobj_id=None, config=None, experiments=None, header=None)`
 
@@ -17,7 +17,7 @@ Each QASM Qobj object is used to represent a single payload that will be passed 
 *   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader#qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
 *   **experiments** (*list*) – A list of lists of [`QasmQobjExperiment`](qiskit.qobj.QasmQobjExperiment#qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment") objects representing an experiment
 
-<span id="undefined" />
+
 
 `__init__(qobj_id=None, config=None, experiments=None, header=None)`
 
@@ -40,7 +40,7 @@ Each QASM Qobj object is used to represent a single payload that will be passed 
 | [`from_dict`](#qiskit.qobj.QasmQobj.from_dict "qiskit.qobj.QasmQobj.from_dict")(data)                                  | Create a new QASMQobj object from a dictionary.             |
 | [`to_dict`](#qiskit.qobj.QasmQobj.to_dict "qiskit.qobj.QasmQobj.to_dict")(\[validate])                                 | Return a dictionary format representation of the QASM Qobj. |
 
-<span id="undefined" />
+
 
 `classmethod from_dict(data)`
 
@@ -58,7 +58,7 @@ The QasmQobj from the input dictionary.
 
 [QasmQobj](#qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj")
 
-<span id="undefined" />
+
 
 `to_dict(validate=False)`
 

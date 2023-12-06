@@ -1,12 +1,12 @@
 # qiskit.algorithms.AmplitudeEstimatorResult
 
-<span id="undefined" />
+
 
 `AmplitudeEstimatorResult`
 
 The results object for amplitude estimation algorithms.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -32,7 +32,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`post_processing`](#qiskit.algorithms.AmplitudeEstimatorResult.post_processing "qiskit.algorithms.AmplitudeEstimatorResult.post_processing")                                           | Return a handle to the post processing function.                                    |
 | [`shots`](#qiskit.algorithms.AmplitudeEstimatorResult.shots "qiskit.algorithms.AmplitudeEstimatorResult.shots")                                                                         | Return the number of shots used.                                                    |
 
-<span id="undefined" />
+
 
 `property circuit_results`
 
@@ -42,7 +42,7 @@ Return the circuit results. Can be a statevector or counts dictionary.
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
 
-<span id="undefined" />
+
 
 `combine(result)`
 
@@ -56,7 +56,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-<span id="undefined" />
+
 
 `property confidence_interval`
 
@@ -66,7 +66,7 @@ Return the confidence interval for the amplitude (95% interval by default).
 
 `Tuple`\[`float`, `float`]
 
-<span id="undefined" />
+
 
 `property confidence_interval_processed`
 
@@ -76,7 +76,7 @@ Return the post-processed confidence interval (95% interval by default).
 
 `Tuple`\[`float`, `float`]
 
-<span id="undefined" />
+
 
 `property estimation`
 
@@ -86,7 +86,7 @@ Return the estimation for the amplitude in $[0, 1]$.
 
 `float`
 
-<span id="undefined" />
+
 
 `property estimation_processed`
 
@@ -96,7 +96,7 @@ Return the estimation for the amplitude after the post-processing has been appli
 
 `float`
 
-<span id="undefined" />
+
 
 `property num_oracle_queries`
 
@@ -106,7 +106,7 @@ Return the number of Grover oracle queries.
 
 `int`
 
-<span id="undefined" />
+
 
 `property post_processing`
 
@@ -116,7 +116,7 @@ Return a handle to the post processing function.
 
 `Callable`\[\[`float`], `float`]
 
-<span id="undefined" />
+
 
 `property shots`
 

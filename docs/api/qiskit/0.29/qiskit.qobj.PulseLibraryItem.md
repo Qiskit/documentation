@@ -1,6 +1,6 @@
 # PulseLibraryItem
 
-<span id="undefined" />
+
 
 `PulseLibraryItem(name, samples)`
 

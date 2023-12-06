@@ -1,6 +1,6 @@
 # Constraint
 
-<span id="undefined" />
+
 
 `Constraint(quadratic_program, name, sense, rhs)`
 
@@ -25,7 +25,7 @@ Initializes the constraint.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### name
 
@@ -39,7 +39,7 @@ Returns the name of the constraint.
 
 The name of the constraint.
 
-<span id="undefined" />
+
 
 ### quadratic\_program
 
@@ -53,7 +53,7 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-<span id="undefined" />
+
 
 ### rhs
 
@@ -67,7 +67,7 @@ Returns the right-hand-side of the constraint.
 
 The right-hand-side of the constraint.
 
-<span id="undefined" />
+
 
 ### sense
 

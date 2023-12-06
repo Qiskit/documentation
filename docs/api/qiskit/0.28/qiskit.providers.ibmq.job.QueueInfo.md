@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.job.QueueInfo
 
-<span id="undefined" />
+
 
 `QueueInfo(position=None, status=None, estimated_start_time=None, estimated_complete_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)`
 
@@ -20,7 +20,7 @@ QueueInfo constructor.
 *   **job\_id** (`Optional`\[`str`]) – Job ID.
 *   **kwargs** (`Any`) – Additional attributes.
 
-<span id="undefined" />
+
 
 `__init__(position=None, status=None, estimated_start_time=None, estimated_complete_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)`
 
@@ -52,7 +52,7 @@ QueueInfo constructor.
 | [`estimated_complete_time`](#qiskit.providers.ibmq.job.QueueInfo.estimated_complete_time "qiskit.providers.ibmq.job.QueueInfo.estimated_complete_time") | Return estimated complete time in local time. |
 | [`estimated_start_time`](#qiskit.providers.ibmq.job.QueueInfo.estimated_start_time "qiskit.providers.ibmq.job.QueueInfo.estimated_start_time")          | Return estimated start time in local time.    |
 
-<span id="undefined" />
+
 
 `property estimated_complete_time`
 
@@ -62,7 +62,7 @@ Return estimated complete time in local time.
 
 `Optional`\[`datetime`]
 
-<span id="undefined" />
+
 
 `property estimated_start_time`
 
@@ -72,7 +72,7 @@ Return estimated start time in local time.
 
 `Optional`\[`datetime`]
 
-<span id="undefined" />
+
 
 `format()`
 

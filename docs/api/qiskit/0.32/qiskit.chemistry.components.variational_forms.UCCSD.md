@@ -1,6 +1,6 @@
 # UCCSD
 
-<span id="undefined" />
+
 
 `UCCSD(num_orbitals, num_particles, reps=1, active_occupied=None, active_unoccupied=None, initial_state=None, qubit_mapping='parity', two_qubit_reduction=True, num_time_slices=1, shallow_circuit_concat=True, z2_symmetries=None, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True, skip_commute_test=False)`
 
@@ -71,13 +71,13 @@ Constructor.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### double\_excitations
 
 Getter of double excitation list :returns: double excitation list :rtype: list\[list\[int]]
 
-<span id="undefined" />
+
 
 ### excitation\_pool
 
@@ -87,7 +87,7 @@ Returns the full list of available excitations (called the pool).
 
 `List`\[`WeightedPauliOperator`]
 
-<span id="undefined" />
+
 
 ### num\_parameters
 
@@ -101,7 +101,7 @@ An integer indicating the number of parameters.
 
 int
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -115,7 +115,7 @@ An integer indicating the number of qubits.
 
 int
 
-<span id="undefined" />
+
 
 ### parameter\_bounds
 
@@ -129,23 +129,23 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 list
 
-<span id="undefined" />
+
 
 ### preferred\_init\_points
 
 Getter of preferred initial points based on the given initial state.
 
-<span id="undefined" />
+
 
 ### setting
 
-<span id="undefined" />
+
 
 ### single\_excitations
 
 Getter of single excitation list :returns: single excitation list :rtype: list\[list\[int]]
 
-<span id="undefined" />
+
 
 ### support\_parameterized\_circuit
 

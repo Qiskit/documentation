@@ -1,6 +1,6 @@
 # qiskit.pulse.transforms.block\_to\_schedule
 
-<span id="undefined" />
+
 
 `block_to_schedule(block)`
 

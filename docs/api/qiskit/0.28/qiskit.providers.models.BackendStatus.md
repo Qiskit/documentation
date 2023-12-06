@@ -1,6 +1,6 @@
 # qiskit.providers.models.BackendStatus
 
-<span id="undefined" />
+
 
 `BackendStatus(backend_name, backend_version, operational, pending_jobs, status_msg)`
 
@@ -20,7 +20,7 @@ Initialize a BackendStatus object
 
 **QiskitError** – If the backend version is in an invalid format
 
-<span id="undefined" />
+
 
 `__init__(backend_name, backend_version, operational, pending_jobs, status_msg)`
 
@@ -46,7 +46,7 @@ Initialize a BackendStatus object
 | [`from_dict`](#qiskit.providers.models.BackendStatus.from_dict "qiskit.providers.models.BackendStatus.from_dict")(data)                            | Create a new BackendStatus object from a dictionary.            |
 | [`to_dict`](#qiskit.providers.models.BackendStatus.to_dict "qiskit.providers.models.BackendStatus.to_dict")()                                      | Return a dictionary format representation of the BackendStatus. |
 
-<span id="undefined" />
+
 
 `classmethod from_dict(data)`
 
@@ -64,7 +64,7 @@ The BackendStatus from the input dictionary.
 
 [BackendStatus](#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
 
-<span id="undefined" />
+
 
 `to_dict()`
 

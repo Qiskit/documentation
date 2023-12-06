@@ -1,6 +1,6 @@
 # EnergySurface1DSpline
 
-<span id="undefined" />
+
 
 `EnergySurface1DSpline`
 

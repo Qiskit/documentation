@@ -1,6 +1,6 @@
 # PrimitiveOp
 
-<span id="undefined" />
+
 
 `PrimitiveOp(primitive=None, coeff=1.0)`
 
@@ -46,19 +46,19 @@ Note that all mathematical methods are not in-place, meaning that they return a 
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ENABLE\_DEPRECATION
 
 `= True`
 
-<span id="undefined" />
+
 
 ### INDENTATION
 
 `= ' '`
 
-<span id="undefined" />
+
 
 ### coeff
 
@@ -72,7 +72,7 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -80,11 +80,11 @@ The coefficient.
 
 `int`
 
-<span id="undefined" />
+
 
 ### parameters
 
-<span id="undefined" />
+
 
 ### primitive
 

@@ -1,6 +1,6 @@
 # qiskit.ignis.verification.get\_ghz\_mqc
 
-<span id="undefined" />
+
 
 `get_ghz_mqc(n, delta, full_measurement=True)`
 

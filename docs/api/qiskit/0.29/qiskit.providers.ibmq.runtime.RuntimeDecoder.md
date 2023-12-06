@@ -1,6 +1,6 @@
 # RuntimeDecoder
 
-<span id="undefined" />
+
 
 `RuntimeDecoder(*args, **kwargs)`
 

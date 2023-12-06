@@ -1,6 +1,6 @@
 # NumPyMinimumEigensolver
 
-<span id="undefined" />
+
 
 `NumPyMinimumEigensolver(filter_criterion=None)`
 
@@ -21,7 +21,7 @@ The Numpy Minimum Eigensolver algorithm.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### filter\_criterion
 

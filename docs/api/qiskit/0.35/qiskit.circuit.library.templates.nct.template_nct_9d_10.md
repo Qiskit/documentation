@@ -1,6 +1,6 @@
 # qiskit.circuit.library.templates.nct.template\_nct\_9d\_10
 
-<span id="undefined" />
+
 
 `template_nct_9d_10()`
 

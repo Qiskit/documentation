@@ -1,6 +1,6 @@
 # Acquire
 
-<span id="undefined" />
+
 
 `Acquire(duration, channel, mem_slot=None, reg_slot=None, kernel=None, discriminator=None, name=None)`
 
@@ -45,7 +45,7 @@ Create a new Acquire instruction.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### acquire
 
@@ -55,7 +55,7 @@ Acquire channel to acquire data. The `AcquireChannel` index maps trivially to qu
 
 [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel#qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
 
-<span id="undefined" />
+
 
 ### channel
 
@@ -65,7 +65,7 @@ Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channel
 
 [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel#qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
 
-<span id="undefined" />
+
 
 ### channels
 
@@ -75,7 +75,7 @@ Returns the channels that this schedule uses.
 
 `Tuple`\[`Union`\[[`AcquireChannel`](qiskit.pulse.channels.AcquireChannel#qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel"), [`MemorySlot`](qiskit.pulse.channels.MemorySlot#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")]]
 
-<span id="undefined" />
+
 
 ### discriminator
 
@@ -85,7 +85,7 @@ Return discrimination settings.
 
 `Discriminator`
 
-<span id="undefined" />
+
 
 ### duration
 
@@ -95,7 +95,7 @@ Duration of this instruction.
 
 `Union`\[`int`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 ### id
 
@@ -105,7 +105,7 @@ Unique identifier for this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 ### instructions
 
@@ -115,7 +115,7 @@ Iterable for getting instructions from Schedule tree.
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
-<span id="undefined" />
+
 
 ### kernel
 
@@ -125,7 +125,7 @@ Return kernel settings.
 
 `Kernel`
 
-<span id="undefined" />
+
 
 ### mem\_slot
 
@@ -135,7 +135,7 @@ The classical memory slot which will store the classified readout result.
 
 [`MemorySlot`](qiskit.pulse.channels.MemorySlot#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")
 
-<span id="undefined" />
+
 
 ### name
 
@@ -145,7 +145,7 @@ Name of this instruction.
 
 `str`
 
-<span id="undefined" />
+
 
 ### operands
 
@@ -155,7 +155,7 @@ Return instruction operands.
 
 `Tuple`
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -165,7 +165,7 @@ Parameters which determine the instruction behavior.
 
 `Set`
 
-<span id="undefined" />
+
 
 ### reg\_slot
 
@@ -175,7 +175,7 @@ The fast-access register slot which will store the classified readout result for
 
 [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")
 
-<span id="undefined" />
+
 
 ### start\_time
 
@@ -185,7 +185,7 @@ Relative begin time of this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 ### stop\_time
 

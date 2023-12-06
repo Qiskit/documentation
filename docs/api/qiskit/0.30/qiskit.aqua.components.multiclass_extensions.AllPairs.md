@@ -1,6 +1,6 @@
 # AllPairs
 
-<span id="undefined" />
+
 
 `AllPairs`
 

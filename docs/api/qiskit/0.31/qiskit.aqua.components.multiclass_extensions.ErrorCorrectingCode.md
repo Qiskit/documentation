@@ -1,6 +1,6 @@
 # ErrorCorrectingCode
 
-<span id="undefined" />
+
 
 `ErrorCorrectingCode(code_size=4)`
 

@@ -1,6 +1,6 @@
 # IterativeAmplitudeEstimationResult
 
-<span id="undefined" />
+
 
 `IterativeAmplitudeEstimationResult(a_dict=None)`
 
@@ -28,7 +28,7 @@ IterativeAmplitudeEstimation Result.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### a\_estimation
 
@@ -38,7 +38,7 @@ return a\_estimation
 
 `float`
 
-<span id="undefined" />
+
 
 ### a\_intervals
 
@@ -48,7 +48,7 @@ return a\_intervals
 
 `List`\[`List`\[`float`]]
 
-<span id="undefined" />
+
 
 ### actual\_epsilon
 
@@ -58,7 +58,7 @@ return mle
 
 `float`
 
-<span id="undefined" />
+
 
 ### alpha
 
@@ -68,7 +68,7 @@ return alpha
 
 `float`
 
-<span id="undefined" />
+
 
 ### confidence\_interval
 
@@ -78,7 +78,7 @@ return confidence\_interval
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 ### estimation
 
@@ -88,7 +88,7 @@ return estimation
 
 `float`
 
-<span id="undefined" />
+
 
 ### num\_oracle\_queries
 
@@ -98,7 +98,7 @@ return num\_oracle\_queries
 
 `int`
 
-<span id="undefined" />
+
 
 ### powers
 
@@ -108,7 +108,7 @@ return powers
 
 `List`\[`int`]
 
-<span id="undefined" />
+
 
 ### ratios
 
@@ -118,7 +118,7 @@ return ratios
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 ### theta\_intervals
 
@@ -128,7 +128,7 @@ return theta\_intervals
 
 `List`\[`List`\[`float`]]
 
-<span id="undefined" />
+
 
 ### value\_confidence\_interval
 

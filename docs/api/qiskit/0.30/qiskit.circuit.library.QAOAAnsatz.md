@@ -1,6 +1,6 @@
 # QAOAAnsatz
 
-<span id="undefined" />
+
 
 `QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA')`
 
@@ -24,13 +24,13 @@ A generalized QAOA quantum circuit with a support of custom initial states and m
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
 
-<span id="undefined" />
+
 
 ### calibrations
 
@@ -40,13 +40,13 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-<span id="undefined" />
+
 
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
 
-<span id="undefined" />
+
 
 ### cost\_operator
 
@@ -60,11 +60,11 @@ cost operator.
 
 [OperatorBase](qiskit.aqua.operators.OperatorBase#qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase")
 
-<span id="undefined" />
+
 
 ### data
 
-<span id="undefined" />
+
 
 ### evolution
 
@@ -78,25 +78,25 @@ The evolution converter used to compute the evolution.
 
 [EvolutionBase](qiskit.aqua.operators.evolutions.EvolutionBase#qiskit.aqua.operators.evolutions.EvolutionBase "qiskit.aqua.operators.evolutions.EvolutionBase")
 
-<span id="undefined" />
+
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-<span id="undefined" />
+
 
 ### global\_phase
 
 Return the global phase of the circuit in radians.
 
-<span id="undefined" />
+
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="undefined" />
+
 
 ### initial\_state
 
@@ -106,13 +106,13 @@ Returns an optional initial state as a circuit
 
 `Optional`\[`QuantumCircuit`]
 
-<span id="undefined" />
+
 
 ### instances
 
 `= 16`
 
-<span id="undefined" />
+
 
 ### metadata
 
@@ -120,7 +120,7 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-<span id="undefined" />
+
 
 ### mixer\_operator
 
@@ -134,19 +134,19 @@ mixer operator or circuit.
 
 [OperatorBase](qiskit.aqua.operators.OperatorBase#qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase") or [QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), optional
 
-<span id="undefined" />
+
 
 ### num\_ancillas
 
 Return the number of ancilla qubits.
 
-<span id="undefined" />
+
 
 ### num\_clbits
 
 Return number of classical bits.
 
-<span id="undefined" />
+
 
 ### num\_parameters
 
@@ -154,7 +154,7 @@ Return number of classical bits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -164,7 +164,7 @@ Return the number of qubits, specified by the size of the cost operator.
 
 `int`
 
-<span id="undefined" />
+
 
 ### operators
 
@@ -180,7 +180,7 @@ in this ansatz.
 
 List\[Union\[[OperatorBase](qiskit.aqua.operators.OperatorBase#qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase"), [QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]]
 
-<span id="undefined" />
+
 
 ### parameter\_bounds
 
@@ -194,7 +194,7 @@ an unbounded parameter in the corresponding direction. If None is returned, prob
 
 `List`\[`Tuple`\[`float`, `float`]]
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -208,31 +208,31 @@ Get the [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.
 
 A set containing the unbound circuit parameters.
 
-<span id="undefined" />
+
 
 ### preferred\_init\_points
 
 Getter of preferred initial points based on the given initial state.
 
-<span id="undefined" />
+
 
 ### prefix
 
 `= 'circuit'`
 
-<span id="undefined" />
+
 
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-<span id="undefined" />
+
 
 ### qubits
 
 Returns a list of quantum bits in the order that the registers were added.
 
-<span id="undefined" />
+
 
 ### reps
 

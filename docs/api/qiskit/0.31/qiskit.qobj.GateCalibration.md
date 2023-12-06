@@ -1,6 +1,6 @@
 # GateCalibration
 
-<span id="undefined" />
+
 
 `GateCalibration(name, qubits, params, instructions)`
 

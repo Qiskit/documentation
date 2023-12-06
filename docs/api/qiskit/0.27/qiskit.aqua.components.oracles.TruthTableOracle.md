@@ -1,6 +1,6 @@
 # qiskit.aqua.components.oracles.TruthTableOracle
 
-<span id="undefined" />
+
 
 `TruthTableOracle(bitmaps, optimization=False, mct_mode='basic')`
 
@@ -30,7 +30,7 @@ Regarding circuit optimization and mct usages, the truth table oracle is similar
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
 
-<span id="undefined" />
+
 
 `__init__(bitmaps, optimization=False, mct_mode='basic')`
 
@@ -61,35 +61,35 @@ Regarding circuit optimization and mct usages, the truth table oracle is similar
 | [`output_register`](#qiskit.aqua.components.oracles.TruthTableOracle.output_register "qiskit.aqua.components.oracles.TruthTableOracle.output_register")          | returns output register    |
 | [`variable_register`](#qiskit.aqua.components.oracles.TruthTableOracle.variable_register "qiskit.aqua.components.oracles.TruthTableOracle.variable_register")    | returns variable register  |
 
-<span id="undefined" />
+
 
 `property ancillary_register`
 
 returns ancillary register
 
-<span id="undefined" />
+
 
 `property circuit`
 
-<span id="undefined" />
+
 
 `construct_circuit()`
 
 construct circuit
 
-<span id="undefined" />
+
 
 `evaluate_classically(measurement)`
 
 evaluate classical
 
-<span id="undefined" />
+
 
 `property output_register`
 
 returns output register
 
-<span id="undefined" />
+
 
 `property variable_register`
 

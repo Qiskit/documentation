@@ -1,12 +1,12 @@
 # qiskit.opflow\.expectations.MatrixExpectation
 
-<span id="undefined" />
+
 
 `MatrixExpectation`
 
 An Expectation converter which converts Operator measurements to be matrix-based so they can be evaluated by matrix multiplication.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -20,7 +20,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`compute_variance`](#qiskit.opflow.expectations.MatrixExpectation.compute_variance "qiskit.opflow.expectations.MatrixExpectation.compute_variance")(exp\_op) | Compute the variance of the expectation estimator.                                                              |
 | [`convert`](#qiskit.opflow.expectations.MatrixExpectation.convert "qiskit.opflow.expectations.MatrixExpectation.convert")(operator)                           | Accept an Operator and return a new Operator with the Pauli measurements replaced by Matrix based measurements. |
 
-<span id="undefined" />
+
 
 `compute_variance(exp_op)`
 
@@ -38,7 +38,7 @@ Compute the variance of the expectation estimator. Because this expectation work
 
 The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation, equal to 0.
 
-<span id="undefined" />
+
 
 `convert(operator)`
 

@@ -2,7 +2,7 @@
 
 # qiskit.providers.ibmq.experiment.ExperimentService
 
-<span id="undefined" />
+
 
 `ExperimentService(provider, access_token)`
 
@@ -50,7 +50,7 @@ IBMQBackendService constructor.
 *   **provider** (`AccountProvider`) – IBM Quantum Experience account provider.
 *   **access\_token** (`str`) – IBM Quantum Experience access token.
 
-<span id="undefined" />
+
 
 `__init__(provider, access_token)`
 
@@ -83,7 +83,7 @@ IBMQBackendService constructor.
 | [`upload_experiment`](#qiskit.providers.ibmq.experiment.ExperimentService.upload_experiment "qiskit.providers.ibmq.experiment.ExperimentService.upload_experiment")(experiment)                      | Upload a new experiment.                                |
 | [`upload_plot`](#qiskit.providers.ibmq.experiment.ExperimentService.upload_plot "qiskit.providers.ibmq.experiment.ExperimentService.upload_plot")(experiment, plot\[, plot\_name])                   | Upload an experiment plot.                              |
 
-<span id="undefined" />
+
 
 `analysis_results(limit=10, backend_name=None, device_components=None, experiment_id=None, result_type=None, quality=None)`
 
@@ -110,7 +110,7 @@ A list of analysis results.
 
 **ValueError** – If an invalid parameter value is specified.
 
-<span id="undefined" />
+
 
 `backends()`
 
@@ -124,7 +124,7 @@ Return a list of backends.
 
 A list of backends.
 
-<span id="undefined" />
+
 
 `delete_analysis_result(result)`
 
@@ -146,7 +146,7 @@ Delete an analysis result.
 
 The deleted analysis result.
 
-<span id="undefined" />
+
 
 `delete_experiment(experiment)`
 
@@ -168,7 +168,7 @@ Delete an experiment.
 
 Deleted experiment.
 
-<span id="undefined" />
+
 
 `delete_plot(experiment, plot_name)`
 
@@ -187,7 +187,7 @@ Delete an experiment plot.
 
 `None`
 
-<span id="undefined" />
+
 
 `device_components(backend_name=None)`
 
@@ -205,7 +205,7 @@ Return the device components.
 
 A list of device components.
 
-<span id="undefined" />
+
 
 `experiments(limit=10, backend_name=None, type=None, start_datetime=None, end_datetime=None, device_components=None, tags=None, tags_operator='OR', hub=None, group=None, project=None, exclude_public=False, public_only=False, exclude_mine=False, mine_only=False)`
 
@@ -262,7 +262,7 @@ A list of experiments.
 
 **ValueError** – If an invalid parameter value is specified.
 
-<span id="undefined" />
+
 
 `retrieve_analysis_result(result_id)`
 
@@ -285,7 +285,7 @@ Retrieved analysis result.
 *   **AnalysisResultNotFoundError** – If the analysis result is not found.
 *   **RequestsApiError** – If an unexpected error occurred when retrieving analysis result from the server.
 
-<span id="undefined" />
+
 
 `retrieve_experiment(experiment_id)`
 
@@ -308,7 +308,7 @@ Retrieved experiment.
 *   **ExperimentNotFoundError** – If the experiment is not found.
 *   **RequestsApiError** – If an unexpected error occurred when retrieving experiment from the server.
 
-<span id="undefined" />
+
 
 `retrieve_plot(experiment, plot_name, file_name=None)`
 
@@ -333,7 +333,7 @@ The size of the plot if file\_name is specified. Otherwise the content of the pl
 *   **PlotNotFoundError** – If the plot is not found.
 *   **RequestsApiError** – If an unexpected error occurred when retrieving plot from the server.
 
-<span id="undefined" />
+
 
 `update_analysis_result(result)`
 
@@ -347,7 +347,7 @@ Update an analysis result.
 
 `None`
 
-<span id="undefined" />
+
 
 `update_experiment(experiment)`
 
@@ -368,7 +368,7 @@ Update an experiment.
 
 `None`
 
-<span id="undefined" />
+
 
 `update_plot(experiment, plot, plot_name)`
 
@@ -388,7 +388,7 @@ Update an experiment plot.
 
 A dictionary with name and size of the uploaded plot.
 
-<span id="undefined" />
+
 
 `upload_analysis_result(result)`
 
@@ -402,7 +402,7 @@ Upload an analysis result.
 
 `None`
 
-<span id="undefined" />
+
 
 `upload_experiment(experiment)`
 
@@ -416,7 +416,7 @@ Upload a new experiment.
 
 `None`
 
-<span id="undefined" />
+
 
 `upload_plot(experiment, plot, plot_name=None)`
 

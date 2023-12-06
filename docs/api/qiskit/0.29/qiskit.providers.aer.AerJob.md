@@ -1,6 +1,6 @@
 # AerJob
 
-<span id="undefined" />
+
 
 `AerJob(backend, job_id, fn, qobj, *args)`
 
@@ -8,7 +8,7 @@ Bases: `qiskit.providers.job.JobV1`
 
 AerJob class.
 
-<span id="undefined" />
+
 
 ### \_executor
 
@@ -45,7 +45,7 @@ Initializes the asynchronous job.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### version
 

@@ -1,6 +1,6 @@
 # qiskit.pulse.builder.align\_sequential
 
-<span id="undefined" />
+
 
 `align_sequential()`
 

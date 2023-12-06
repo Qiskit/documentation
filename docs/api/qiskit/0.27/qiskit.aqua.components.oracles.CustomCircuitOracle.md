@@ -1,6 +1,6 @@
 # qiskit.aqua.components.oracles.CustomCircuitOracle
 
-<span id="undefined" />
+
 
 `CustomCircuitOracle(variable_register, output_register, circuit, ancillary_register=None, evaluate_classically_callback=None)`
 
@@ -30,7 +30,7 @@ This class is provided for easy creation of oracles using custom circuits. It is
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
 
-<span id="undefined" />
+
 
 `__init__(variable_register, output_register, circuit, ancillary_register=None, evaluate_classically_callback=None)`
 
@@ -62,17 +62,17 @@ This class is provided for easy creation of oracles using custom circuits. It is
 | [`output_register`](#qiskit.aqua.components.oracles.CustomCircuitOracle.output_register "qiskit.aqua.components.oracles.CustomCircuitOracle.output_register")          | returns output register    |
 | [`variable_register`](#qiskit.aqua.components.oracles.CustomCircuitOracle.variable_register "qiskit.aqua.components.oracles.CustomCircuitOracle.variable_register")    | returns variable register  |
 
-<span id="undefined" />
+
 
 `property ancillary_register`
 
 returns ancillary register
 
-<span id="undefined" />
+
 
 `property circuit`
 
-<span id="undefined" />
+
 
 `construct_circuit()`
 
@@ -86,13 +86,13 @@ A quantum circuit for the oracle.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-<span id="undefined" />
+
 
 `property output_register`
 
 returns output register
 
-<span id="undefined" />
+
 
 `property variable_register`
 

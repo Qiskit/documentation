@@ -1,6 +1,6 @@
 # SnapshotDensityMatrix
 
-<span id="undefined" />
+
 
 `SnapshotDensityMatrix(label, num_qubits)`
 
@@ -44,43 +44,43 @@ Create a density matrix state snapshot instruction.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+
 
 ### duration
 
 Get the duration.
 
-<span id="undefined" />
+
 
 ### label
 
 Return snapshot label
 
-<span id="undefined" />
+
 
 ### params
 
 return instruction params.
 
-<span id="undefined" />
+
 
 ### snapshot\_type
 
 Return snapshot type
 
-<span id="undefined" />
+
 
 ### unit
 

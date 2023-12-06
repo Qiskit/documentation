@@ -2,7 +2,7 @@
 
 # qiskit.aqua.algorithms.Shor
 
-<span id="undefined" />
+
 
 `Shor(N=15, a=2, quantum_instance=None)`
 
@@ -30,7 +30,7 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 
     ValueError: Invalid input
 
-<span id="undefined" />
+
 
 `__init__(N=15, a=2, quantum_instance=None)`
 
@@ -66,7 +66,7 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 | [`quantum_instance`](#qiskit.aqua.algorithms.Shor.quantum_instance "qiskit.aqua.algorithms.Shor.quantum_instance") | Returns quantum instance. |
 | [`random`](#qiskit.aqua.algorithms.Shor.random "qiskit.aqua.algorithms.Shor.random")                               | Return a numpy random.    |
 
-<span id="undefined" />
+
 
 `property backend`
 
@@ -76,7 +76,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 `construct_circuit(measurement=False)`
 
@@ -94,7 +94,7 @@ Construct circuit.
 
 Quantum circuit.
 
-<span id="undefined" />
+
 
 `static modinv(a, m)`
 
@@ -104,7 +104,7 @@ Returns the modular multiplicative inverse of a with respect to the modulus m.
 
 `int`
 
-<span id="undefined" />
+
 
 `property quantum_instance`
 
@@ -114,13 +114,13 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 `property random`
 
 Return a numpy random.
 
-<span id="undefined" />
+
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -143,7 +143,7 @@ dict
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
-<span id="undefined" />
+
 
 `set_backend(backend, **kwargs)`
 

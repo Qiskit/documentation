@@ -1,6 +1,6 @@
 # qiskit.validation.jsonschema.SchemaValidationError
 
-<span id="undefined" />
+
 
 `SchemaValidationError(*message)`
 

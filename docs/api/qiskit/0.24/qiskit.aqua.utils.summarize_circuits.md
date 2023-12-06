@@ -2,7 +2,7 @@
 
 # qiskit.aqua.utils.summarize\_circuits
 
-<span id="undefined" />
+
 
 `summarize_circuits(circuits)`
 

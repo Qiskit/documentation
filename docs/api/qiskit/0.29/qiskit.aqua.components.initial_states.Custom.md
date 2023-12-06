@@ -1,6 +1,6 @@
 # Custom
 
-<span id="undefined" />
+
 
 `Custom(num_qubits, state='zero', state_vector=None, circuit=None)`
 
@@ -37,6 +37,6 @@ The custom initial state will be set from the *circuit*, the *state\_vector*, or
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### bitstr

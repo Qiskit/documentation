@@ -1,6 +1,6 @@
 # qiskit.providers.QiskitBackendNotFoundError
 
-<span id="undefined" />
+
 
 `QiskitBackendNotFoundError(*message)`
 

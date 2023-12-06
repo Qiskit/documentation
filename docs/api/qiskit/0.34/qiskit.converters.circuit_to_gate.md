@@ -1,6 +1,6 @@
 # qiskit.converters.circuit\_to\_gate
 
-<span id="undefined" />
+
 
 `circuit_to_gate(circuit, parameter_map=None, equivalence_library=None, label=None)`
 

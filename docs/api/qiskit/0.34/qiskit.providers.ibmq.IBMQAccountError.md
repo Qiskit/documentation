@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.IBMQAccountError
 
-<span id="undefined" />
+
 
 `IBMQAccountError(*message)`
 

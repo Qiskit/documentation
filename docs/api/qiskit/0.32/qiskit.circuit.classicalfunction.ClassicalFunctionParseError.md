@@ -1,6 +1,6 @@
 # qiskit.circuit.classicalfunction.ClassicalFunctionParseError
 
-<span id="undefined" />
+
 
 `ClassicalFunctionParseError(*message)`
 

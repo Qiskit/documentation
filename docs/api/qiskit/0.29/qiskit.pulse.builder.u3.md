@@ -1,6 +1,6 @@
 # qiskit.pulse.builder.u3
 
-<span id="undefined" />
+
 
 `u3(theta, phi, lam, qubit)`
 

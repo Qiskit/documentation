@@ -1,6 +1,6 @@
 # LocalReadoutMitigator
 
-<span id="undefined" />
+
 
 `LocalReadoutMitigator(assignment_matrices=None, qubits=None, backend=None)`
 
@@ -34,7 +34,7 @@ Initialize a LocalReadoutMitigator
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### qubits
 
@@ -44,7 +44,7 @@ The device qubits for this mitigator
 
 `Tuple`\[`int`]
 
-<span id="undefined" />
+
 
 ### settings
 

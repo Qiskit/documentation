@@ -1,6 +1,6 @@
 # AmplitudeAmplifier
 
-<span id="undefined" />
+
 
 `AmplitudeAmplifier`
 

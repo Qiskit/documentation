@@ -2,7 +2,7 @@
 
 # qiskit.ignis.verification.expectation\_counts
 
-<span id="undefined" />
+
 
 `expectation_counts(counts)`
 

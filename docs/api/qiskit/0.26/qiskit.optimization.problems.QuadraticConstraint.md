@@ -1,6 +1,6 @@
 # qiskit.optimization.problems.QuadraticConstraint
 
-<span id="undefined" />
+
 
 `QuadraticConstraint(quadratic_program, name, linear, quadratic, sense, rhs)`
 
@@ -17,7 +17,7 @@ Constructs a quadratic constraint, consisting of a linear and a quadratic term.
 *   **sense** (`ConstraintSense`) – The sense of the constraint.
 *   **rhs** (`float`) – The right-hand-side of the constraint.
 
-<span id="undefined" />
+
 
 `__init__(quadratic_program, name, linear, quadratic, sense, rhs)`
 
@@ -50,13 +50,13 @@ Constructs a quadratic constraint, consisting of a linear and a quadratic term.
 | [`rhs`](#qiskit.optimization.problems.QuadraticConstraint.rhs "qiskit.optimization.problems.QuadraticConstraint.rhs")                                           | Returns the right-hand-side of the constraint.                                          |
 | [`sense`](#qiskit.optimization.problems.QuadraticConstraint.sense "qiskit.optimization.problems.QuadraticConstraint.sense")                                     | Returns the sense of the constraint.                                                    |
 
-<span id="undefined" />
+
 
 ### Sense
 
 alias of `qiskit.optimization.problems.constraint.ConstraintSense`
 
-<span id="undefined" />
+
 
 `evaluate(x)`
 
@@ -74,7 +74,7 @@ Evaluate the left-hand-side of the constraint.
 
 The left-hand-side of the constraint given the variable values.
 
-<span id="undefined" />
+
 
 `property linear`
 
@@ -88,7 +88,7 @@ Returns the linear expression corresponding to the left-hand-side of the constra
 
 The left-hand-side linear expression.
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -102,7 +102,7 @@ Returns the name of the constraint.
 
 The name of the constraint.
 
-<span id="undefined" />
+
 
 `property quadratic`
 
@@ -116,7 +116,7 @@ Returns the quadratic expression corresponding to the left-hand-side of the cons
 
 The left-hand-side quadratic expression.
 
-<span id="undefined" />
+
 
 `property quadratic_program`
 
@@ -130,7 +130,7 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-<span id="undefined" />
+
 
 `property rhs`
 
@@ -144,7 +144,7 @@ Returns the right-hand-side of the constraint.
 
 The right-hand-side of the constraint.
 
-<span id="undefined" />
+
 
 `property sense`
 

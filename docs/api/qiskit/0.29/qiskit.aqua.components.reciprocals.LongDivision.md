@@ -1,6 +1,6 @@
 # LongDivision
 
-<span id="undefined" />
+
 
 `LongDivision(scale=0, precision=None, negative_evals=False, evo_time=None, lambda_min=None)`
 

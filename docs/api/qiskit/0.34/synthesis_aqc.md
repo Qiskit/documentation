@@ -123,7 +123,7 @@ Now `approximate_circuit` is a circuit that approximates the target unitary to a
 
 This uses a helper function, [`make_cnot_network`](#qiskit.transpiler.synthesis.aqc.make_cnot_network "qiskit.transpiler.synthesis.aqc.make_cnot_network").
 
-<span id="undefined" />
+
 
 `make_cnot_network(num_qubits, network_layout='spin', connectivity_type='full', depth=0)`
 

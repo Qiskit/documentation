@@ -1,6 +1,6 @@
 # PropertySet
 
-<span id="undefined" />
+
 
 `PropertySet`
 

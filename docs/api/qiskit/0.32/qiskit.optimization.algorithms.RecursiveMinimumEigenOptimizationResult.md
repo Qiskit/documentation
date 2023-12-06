@@ -1,6 +1,6 @@
 # RecursiveMinimumEigenOptimizationResult
 
-<span id="undefined" />
+
 
 `RecursiveMinimumEigenOptimizationResult(x, fval, variables, status, replacements, history)`
 
@@ -21,7 +21,7 @@ Constructs an instance of the result class.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### fval
 
@@ -35,7 +35,7 @@ Returns the optimal function value.
 
 The function value corresponding to the optimal value found in the optimization.
 
-<span id="undefined" />
+
 
 ### history
 
@@ -45,7 +45,7 @@ Returns intermediate results. The first element is a list of `MinimumEigenOptimi
 
 `Tuple`\[`List`\[`MinimumEigenOptimizationResult`], `OptimizationResult`]
 
-<span id="undefined" />
+
 
 ### raw\_results
 
@@ -61,7 +61,7 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
-<span id="undefined" />
+
 
 ### replacements
 
@@ -71,7 +71,7 @@ Returns a dictionary of substituted variables. Key is a variable being substitut
 
 `Dict`\[`str`, `Tuple`\[`str`, `int`]]
 
-<span id="undefined" />
+
 
 ### samples
 
@@ -85,7 +85,7 @@ Returns the list of solution samples
 
 The list of solution samples.
 
-<span id="undefined" />
+
 
 ### status
 
@@ -99,7 +99,7 @@ Returns the termination status of the optimization algorithm.
 
 The termination status of the algorithm.
 
-<span id="undefined" />
+
 
 ### variable\_names
 
@@ -113,7 +113,7 @@ Returns the list of variable names of the optimization problem.
 
 The list of variable names of the optimization problem.
 
-<span id="undefined" />
+
 
 ### variables
 
@@ -127,7 +127,7 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
-<span id="undefined" />
+
 
 ### variables\_dict
 
@@ -141,7 +141,7 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 
 The optimal value as a dictionary of the variable name and corresponding value.
 
-<span id="undefined" />
+
 
 ### x
 

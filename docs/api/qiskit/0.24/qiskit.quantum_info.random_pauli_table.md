@@ -2,7 +2,7 @@
 
 # qiskit.quantum\_info.random\_pauli\_table
 
-<span id="undefined" />
+
 
 `random_pauli_table(num_qubits, size=1, seed=None)`
 

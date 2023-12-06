@@ -1,6 +1,6 @@
 # qiskit.chemistry.drivers.PyQuanteDriver
 
-<span id="undefined" />
+
 
 `PyQuanteDriver(atoms='H 0.0 0.0 0.0; H 0.0 0.0 0.735', units=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, multiplicity=1, basis=<BasisType.BSTO3G: 'sto3g'>, hf_method=<HFMethodType.RHF: 'rhf'>, tol=1e-08, maxiters=100, molecule=None)`
 
@@ -24,7 +24,7 @@ See [https://github.com/rpmuller/pyquante2](https://github.com/rpmuller/pyquante
 
 [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
-<span id="undefined" />
+
 
 `__init__(atoms='H 0.0 0.0 0.0; H 0.0 0.0 0.735', units=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, multiplicity=1, basis=<BasisType.BSTO3G: 'sto3g'>, hf_method=<HFMethodType.RHF: 'rhf'>, tol=1e-08, maxiters=100, molecule=None)`
 
@@ -60,7 +60,7 @@ See [https://github.com/rpmuller/pyquante2](https://github.com/rpmuller/pyquante
 | [`molecule`](#qiskit.chemistry.drivers.PyQuanteDriver.molecule "qiskit.chemistry.drivers.PyQuanteDriver.molecule")                            | return molecule                                 |
 | [`supports_molecule`](#qiskit.chemistry.drivers.PyQuanteDriver.supports_molecule "qiskit.chemistry.drivers.PyQuanteDriver.supports_molecule") | True for derived classes that support Molecule. |
 
-<span id="undefined" />
+
 
 `property basis`
 
@@ -70,7 +70,7 @@ return basis
 
 `str`
 
-<span id="undefined" />
+
 
 `property hf_method`
 
@@ -80,7 +80,7 @@ return Hartree-Fock method
 
 `str`
 
-<span id="undefined" />
+
 
 `property molecule`
 
@@ -90,7 +90,7 @@ return molecule
 
 `Optional`\[`Molecule`]
 
-<span id="undefined" />
+
 
 `run()`
 
@@ -104,7 +104,7 @@ Runs driver to produce a QMolecule output.
 
 A QMolecule containing the molecular data.
 
-<span id="undefined" />
+
 
 `property supports_molecule`
 

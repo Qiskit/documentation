@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.credentials.CredentialsError
 
-<span id="undefined" />
+
 
 `CredentialsError(*message)`
 

@@ -1,6 +1,6 @@
 # PyTorchDiscriminator
 
-<span id="undefined" />
+
 
 `PyTorchDiscriminator(n_features=1, n_out=1)`
 
@@ -31,7 +31,7 @@ Discriminator based on PyTorch
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### discriminator\_net
 

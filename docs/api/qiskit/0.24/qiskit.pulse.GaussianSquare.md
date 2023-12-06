@@ -2,7 +2,7 @@
 
 # qiskit.pulse.GaussianSquare
 
-<span id="undefined" />
+
 
 `GaussianSquare(duration, amp, sigma, width, name=None)`
 
@@ -22,7 +22,7 @@ Initialize the gaussian square pulse.
 *   **width** (`Union`\[`float`, `ParameterExpression`]) – The duration of the embedded square pulse.
 *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
 
-<span id="undefined" />
+
 
 `__init__(duration, amp, sigma, width, name=None)`
 
@@ -57,7 +57,7 @@ Initialize the gaussian square pulse.
 | [`sigma`](#qiskit.pulse.GaussianSquare.sigma "qiskit.pulse.GaussianSquare.sigma")                | The Gaussian standard deviation of the pulse width.    |
 | [`width`](#qiskit.pulse.GaussianSquare.width "qiskit.pulse.GaussianSquare.width")                | The width of the square portion of the pulse.          |
 
-<span id="undefined" />
+
 
 `property amp`
 
@@ -67,7 +67,7 @@ The Gaussian amplitude.
 
 `Union`\[`complex`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `assign_parameters(value_dict)`
 
@@ -85,7 +85,7 @@ Return a new ParametricPulse with parameters assigned.
 
 New pulse with updated parameters.
 
-<span id="undefined" />
+
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False)`
 
@@ -108,7 +108,7 @@ A matplotlib figure object of the pulse envelope
 
 matplotlib.figure
 
-<span id="undefined" />
+
 
 `get_sample_pulse()`
 
@@ -118,7 +118,7 @@ Deprecated.
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `get_waveform()`
 
@@ -128,7 +128,7 @@ Return a Waveform with samples filled according to the formula that the pulse re
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `property id`
 
@@ -138,7 +138,7 @@ Unique identifier for this pulse.
 
 `int`
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -148,7 +148,7 @@ Return a dictionary containing the pulse’s parameters.
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+
 
 `property sigma`
 
@@ -158,7 +158,7 @@ The Gaussian standard deviation of the pulse width.
 
 `Union`\[`float`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `validate_parameters()`
 
@@ -172,7 +172,7 @@ Validate parameters.
 
 `None`
 
-<span id="undefined" />
+
 
 `property width`
 

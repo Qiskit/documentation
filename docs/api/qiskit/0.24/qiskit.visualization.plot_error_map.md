@@ -2,7 +2,7 @@
 
 # qiskit.visualization.plot\_error\_map
 
-<span id="undefined" />
+
 
 `plot_error_map(backend, figsize=(12, 9), show_title=True)`
 

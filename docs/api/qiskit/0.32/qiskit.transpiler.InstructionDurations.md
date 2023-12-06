@@ -1,6 +1,6 @@
 # InstructionDurations
 
-<span id="undefined" />
+
 
 `InstructionDurations(instruction_durations=None, dt=None)`
 

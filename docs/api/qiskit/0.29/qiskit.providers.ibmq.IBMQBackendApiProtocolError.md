@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.IBMQBackendApiProtocolError
 
-<span id="undefined" />
+
 
 `IBMQBackendApiProtocolError(*message)`
 

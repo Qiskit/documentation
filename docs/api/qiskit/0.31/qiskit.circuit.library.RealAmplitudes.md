@@ -1,6 +1,6 @@
 # RealAmplitudes
 
-<span id="undefined" />
+
 
 `RealAmplitudes(num_qubits=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes')`
 
@@ -99,13 +99,13 @@ Create a new RealAmplitudes 2-local circuit.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
 
-<span id="undefined" />
+
 
 ### calibrations
 
@@ -115,17 +115,17 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-<span id="undefined" />
+
 
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
 
-<span id="undefined" />
+
 
 ### data
 
-<span id="undefined" />
+
 
 ### entanglement
 
@@ -139,7 +139,7 @@ Get the entanglement strategy.
 
 The entanglement strategy, see `get_entangler_map()` for more detail on how the format is interpreted.
 
-<span id="undefined" />
+
 
 ### entanglement\_blocks
 
@@ -153,25 +153,25 @@ The blocks in the entanglement layers.
 
 The blocks in the entanglement layers.
 
-<span id="undefined" />
+
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-<span id="undefined" />
+
 
 ### global\_phase
 
 Return the global phase of the circuit in radians.
 
-<span id="undefined" />
+
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="undefined" />
+
 
 ### initial\_state
 
@@ -185,7 +185,7 @@ Return the initial state that is added in front of the n-local circuit.
 
 The initial state.
 
-<span id="undefined" />
+
 
 ### insert\_barriers
 
@@ -199,13 +199,13 @@ If barriers are inserted in between the layers or not.
 
 True, if barriers are inserted in between the layers, False if not.
 
-<span id="undefined" />
+
 
 ### instances
 
 `= 16`
 
-<span id="undefined" />
+
 
 ### metadata
 
@@ -213,19 +213,19 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-<span id="undefined" />
+
 
 ### num\_ancillas
 
 Return the number of ancilla qubits.
 
-<span id="undefined" />
+
 
 ### num\_clbits
 
 Return number of classical bits.
 
-<span id="undefined" />
+
 
 ### num\_layers
 
@@ -239,7 +239,7 @@ Return the number of layers in the n-local circuit.
 
 The number of layers in the circuit.
 
-<span id="undefined" />
+
 
 ### num\_parameters
 
@@ -247,7 +247,7 @@ The number of layers in the circuit.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_parameters\_settable
 
@@ -267,7 +267,7 @@ The number of parameters originally available in the circuit.
   This quantity does not require the circuit to be built yet.
 </Admonition>
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -281,7 +281,7 @@ Returns the number of qubits in this circuit.
 
 The number of qubits.
 
-<span id="undefined" />
+
 
 ### ordered\_parameters
 
@@ -311,7 +311,7 @@ q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
 
 The parameters objects used in the circuit.
 
-<span id="undefined" />
+
 
 ### parameter\_bounds
 
@@ -325,7 +325,7 @@ Return the parameter bounds.
 
 The parameter bounds.
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -333,7 +333,7 @@ The parameter bounds.
 
 `ParameterView`
 
-<span id="undefined" />
+
 
 ### preferred\_init\_points
 
@@ -347,25 +347,25 @@ The initial points for the parameters. Can be stored as initial guess in optimiz
 
 The initial values for the parameters, or None, if none have been set.
 
-<span id="undefined" />
+
 
 ### prefix
 
 `= 'circuit'`
 
-<span id="undefined" />
+
 
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-<span id="undefined" />
+
 
 ### qubits
 
 Returns a list of quantum bits in the order that the registers were added.
 
-<span id="undefined" />
+
 
 ### reps
 
@@ -379,7 +379,7 @@ The number of times rotation and entanglement block are repeated.
 
 The number of repetitions.
 
-<span id="undefined" />
+
 
 ### rotation\_blocks
 

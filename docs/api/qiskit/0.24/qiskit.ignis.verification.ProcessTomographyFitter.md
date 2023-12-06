@@ -2,7 +2,7 @@
 
 # qiskit.ignis.verification.ProcessTomographyFitter
 
-<span id="undefined" />
+
 
 `ProcessTomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')`
 
@@ -17,7 +17,7 @@ Initialize tomography fitter with experimental data.
 *   **meas\_basis** (`Union`\[`TomographyBasis`, `str`]) – (default: ‘Pauli’) A function to return measurement operators corresponding to measurement outcomes. See Additional Information.
 *   **prep\_basis** (`Union`\[`TomographyBasis`, `str`]) – (default: ‘Pauli’) A function to return preparation operators. See Additional Information
 
-<span id="undefined" />
+
 
 `__init__(result, circuits, meas_basis='Pauli', prep_basis='Pauli')`
 
@@ -48,7 +48,7 @@ Initialize tomography fitter with experimental data.
 | [`measure_basis`](#qiskit.ignis.verification.ProcessTomographyFitter.measure_basis "qiskit.ignis.verification.ProcessTomographyFitter.measure_basis")             | Return the tomography measurement basis. |
 | [`preparation_basis`](#qiskit.ignis.verification.ProcessTomographyFitter.preparation_basis "qiskit.ignis.verification.ProcessTomographyFitter.preparation_basis") | Return the tomography preparation basis. |
 
-<span id="undefined" />
+
 
 `add_data(results, circuits)`
 
@@ -63,13 +63,13 @@ Add tomography data from a Qiskit Result object.
 
 **QiskitError** – In case some of the tomography data is not found in the results
 
-<span id="undefined" />
+
 
 `property data`
 
 Return tomography data
 
-<span id="undefined" />
+
 
 `fit(method='auto', standard_weights=True, beta=0.5, **kwargs)`
 
@@ -141,19 +141,19 @@ The fitted Choi-matrix J for the channel that maximizes $||\text{basis_matrix} \
 
 [Choi](qiskit.quantum_info.Choi#qiskit.quantum_info.Choi "qiskit.quantum_info.Choi")
 
-<span id="undefined" />
+
 
 `property measure_basis`
 
 Return the tomography measurement basis.
 
-<span id="undefined" />
+
 
 `property preparation_basis`
 
 Return the tomography preparation basis.
 
-<span id="undefined" />
+
 
 `set_measure_basis(basis)`
 
@@ -167,7 +167,7 @@ Set the measurement basis
 
 **QiskitError** – In case of invalid measurement or preparation basis.
 
-<span id="undefined" />
+
 
 `set_preparation_basis(basis)`
 

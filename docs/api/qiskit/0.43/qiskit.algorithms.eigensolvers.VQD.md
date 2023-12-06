@@ -68,7 +68,7 @@ A classical optimizer or a list of optimizers,
 
 [Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer") | Sequence\[[Optimizer](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.Optimizer")]
 
-<span id="undefined" />
+
 
 ### one for every k-th eigenvalue. Can either be a Qiskit optimizer or a callable
 
@@ -94,7 +94,7 @@ Beta parameters in the VQD paper. Should have length k - 1, with k the number of
 
 list\[float]
 
-<span id="undefined" />
+
 
 ### initial point
 

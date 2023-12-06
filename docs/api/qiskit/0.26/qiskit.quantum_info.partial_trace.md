@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.partial\_trace
 
-<span id="undefined" />
+
 
 `partial_trace(state, qargs)`
 

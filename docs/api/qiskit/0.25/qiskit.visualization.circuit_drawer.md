@@ -1,6 +1,6 @@
 # qiskit.visualization.circuit\_drawer
 
-<span id="undefined" />
+
 
 `circuit_drawer(circuit, scale=None, filename=None, style=None, output=None, interactive=False, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=True)`
 

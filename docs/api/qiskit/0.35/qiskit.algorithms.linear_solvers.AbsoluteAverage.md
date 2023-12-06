@@ -1,6 +1,6 @@
 # AbsoluteAverage
 
-<span id="undefined" />
+
 
 `AbsoluteAverage`
 

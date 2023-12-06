@@ -1,6 +1,6 @@
 # qiskit.visualization.plot\_coupling\_map
 
-<span id="undefined" />
+
 
 `plot_coupling_map(num_qubits, qubit_coordinates, coupling_map, figsize=None, plot_directed=False, label_qubits=True, qubit_size=None, line_width=4, font_size=None, qubit_color=None, qubit_labels=None, line_color=None, font_color='w', ax=None, filename=None)`
 

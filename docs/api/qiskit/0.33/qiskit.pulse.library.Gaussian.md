@@ -1,6 +1,6 @@
 # Gaussian
 
-<span id="undefined" />
+
 
 `Gaussian(duration, amp, sigma, name=None, limit_amplitude=None)`
 
@@ -33,7 +33,7 @@ Initialize the gaussian pulse.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### amp
 
@@ -43,7 +43,7 @@ The Gaussian amplitude.
 
 `Union`\[`complex`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 ### id
 
@@ -53,13 +53,13 @@ Unique identifier for this pulse.
 
 `int`
 
-<span id="undefined" />
+
 
 ### limit\_amplitude
 
 `= True`
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -67,7 +67,7 @@ Unique identifier for this pulse.
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+
 
 ### sigma
 

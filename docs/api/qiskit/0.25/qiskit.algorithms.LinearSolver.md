@@ -1,12 +1,12 @@
 # qiskit.algorithms.LinearSolver
 
-<span id="undefined" />
+
 
 `LinearSolver`
 
 An abstract class for linear system solvers in Qiskit.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -19,7 +19,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.algorithms.LinearSolver.__init__ "qiskit.algorithms.LinearSolver.__init__")()                        | Initialize self.                               |
 | [`solve`](#qiskit.algorithms.LinearSolver.solve "qiskit.algorithms.LinearSolver.solve")(matrix, vector\[, observable, …]) | Solve the system and compute the observable(s) |
 
-<span id="undefined" />
+
 
 `abstract solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`
 

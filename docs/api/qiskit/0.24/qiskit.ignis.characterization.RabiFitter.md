@@ -2,7 +2,7 @@
 
 # qiskit.ignis.characterization.RabiFitter
 
-<span id="undefined" />
+
 
 `RabiFitter(backend_result, xdata, qubits, fit_p0, fit_bounds=None)`
 
@@ -12,7 +12,7 @@ See BaseCalibrationFitter \_\_init\_\_
 
 fit\_po is \[amp, freq, phase, offset]
 
-<span id="undefined" />
+
 
 `__init__(backend_result, xdata, qubits, fit_p0, fit_bounds=None)`
 
@@ -46,7 +46,7 @@ fit\_po is \[amp, freq, phase, offset]
 | [`xdata`](#qiskit.ignis.characterization.RabiFitter.xdata "qiskit.ignis.characterization.RabiFitter.xdata")                               | Return the data points on the x-axis, the independenet parameter which is fit against |
 | [`ydata`](#qiskit.ignis.characterization.RabiFitter.ydata "qiskit.ignis.characterization.RabiFitter.ydata")                               | Return the data points on the y-axis                                                  |
 
-<span id="undefined" />
+
 
 `add_data(results, recalc=True, refit=True)`
 
@@ -58,7 +58,7 @@ Add new execution results to previous execution results
 *   **recalc** (`bool`) – whether tp recalculate the data
 *   **refit** (`bool`) – whether to refit the data
 
-<span id="undefined" />
+
 
 `property backend_result`
 
@@ -68,7 +68,7 @@ Return the execution results
 
 `Union`\[`Result`, `List`\[`Result`]]
 
-<span id="undefined" />
+
 
 `property description`
 
@@ -78,7 +78,7 @@ Return the fitter’s purpose, e.g. ‘T1’
 
 `str`
 
-<span id="undefined" />
+
 
 `fit_data(qid=- 1, p0=None, bounds=None, series=None)`
 
@@ -93,7 +93,7 @@ Compute self.\_params and self.\_params\_err
 *   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
 *   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
 
-<span id="undefined" />
+
 
 `property fit_fun`
 
@@ -103,7 +103,7 @@ Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
 
 `Callable`
 
-<span id="undefined" />
+
 
 `guess_params(qind=0)`
 
@@ -123,7 +123,7 @@ Guess fit parameters for rabi oscillation data
 
 list
 
-<span id="undefined" />
+
 
 `property measured_qubits`
 
@@ -133,7 +133,7 @@ Return the indices of the qubits to be characterized
 
 `List`\[`int`]
 
-<span id="undefined" />
+
 
 `property params`
 
@@ -143,7 +143,7 @@ Return the fit function parameters that were calculated by curve\_fit
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 `property params_err`
 
@@ -153,7 +153,7 @@ Return the error of the fit function parameters
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 `pi2_amplitude(qind=- 1)`
 
@@ -171,7 +171,7 @@ $\frac{\pi}{2}$ amp
 
 float
 
-<span id="undefined" />
+
 
 `pi_amplitude(qind=- 1)`
 
@@ -189,7 +189,7 @@ $\pi$ amp
 
 float
 
-<span id="undefined" />
+
 
 `plot(qind, series='0', ax=None, show_plot=False)`
 
@@ -210,7 +210,7 @@ Plot axes
 
 Axes
 
-<span id="undefined" />
+
 
 `property series`
 
@@ -220,7 +220,7 @@ Return the list of series for the data
 
 `Optional`\[`List`\[`str`]]
 
-<span id="undefined" />
+
 
 `property xdata`
 
@@ -230,7 +230,7 @@ Return the data points on the x-axis, the independenet parameter which is fit ag
 
 `Union`\[`List`\[`float`], `array`]
 
-<span id="undefined" />
+
 
 `property ydata`
 

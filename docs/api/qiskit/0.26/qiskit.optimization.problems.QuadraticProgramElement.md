@@ -1,6 +1,6 @@
 # qiskit.optimization.problems.QuadraticProgramElement
 
-<span id="undefined" />
+
 
 `QuadraticProgramElement(quadratic_program)`
 
@@ -16,7 +16,7 @@ Initialize object with parent QuadraticProgram.
 
 **TypeError** – QuadraticProgram instance expected.
 
-<span id="undefined" />
+
 
 `__init__(quadratic_program)`
 
@@ -42,7 +42,7 @@ Initialize object with parent QuadraticProgram.
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
 | [`quadratic_program`](#qiskit.optimization.problems.QuadraticProgramElement.quadratic_program "qiskit.optimization.problems.QuadraticProgramElement.quadratic_program") | Returns the parent QuadraticProgram. |
 
-<span id="undefined" />
+
 
 `property quadratic_program`
 

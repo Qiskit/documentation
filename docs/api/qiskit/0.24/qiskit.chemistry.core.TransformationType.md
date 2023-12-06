@@ -2,13 +2,13 @@
 
 # qiskit.chemistry.core.TransformationType
 
-<span id="undefined" />
+
 
 `TransformationType(value)`
 
 Transformation Type enum
 
-<span id="undefined" />
+
 
 `__init__()`
 

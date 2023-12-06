@@ -1,6 +1,6 @@
 # qiskit.algorithms.optimizers.NFT
 
-<span id="undefined" />
+
 
 `NFT(maxiter=None, maxfev=1024, disp=False, reset_interval=32)`
 
@@ -27,7 +27,7 @@ In this optimization method, the optimization function have to satisfy three con
 
 K. M. Nakanishi, K. Fujii, and S. Todo. 2019. Sequential minimal optimization for quantum-classical hybrid algorithms. arXiv preprint arXiv:1903.12166.
 
-<span id="undefined" />
+
 
 `__init__(maxiter=None, maxfev=1024, disp=False, reset_interval=32)`
 
@@ -81,19 +81,19 @@ K. M. Nakanishi, K. Fujii, and S. Todo. 2019. Sequential minimal optimization fo
 | [`is_initial_point_supported`](#qiskit.algorithms.optimizers.NFT.is_initial_point_supported "qiskit.algorithms.optimizers.NFT.is_initial_point_supported")    | Returns is initial point supported  |
 | [`setting`](#qiskit.algorithms.optimizers.NFT.setting "qiskit.algorithms.optimizers.NFT.setting")                                                             | Return setting                      |
 
-<span id="undefined" />
+
 
 `property bounds_support_level`
 
 Returns bounds support level
 
-<span id="undefined" />
+
 
 `get_support_level()`
 
 return support level dictionary
 
-<span id="undefined" />
+
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -114,73 +114,73 @@ the gradient computed
 
 grad
 
-<span id="undefined" />
+
 
 `property gradient_support_level`
 
 Returns gradient support level
 
-<span id="undefined" />
+
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-<span id="undefined" />
+
 
 `property is_bounds_ignored`
 
 Returns is bounds ignored
 
-<span id="undefined" />
+
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-<span id="undefined" />
+
 
 `property is_bounds_supported`
 
 Returns is bounds supported
 
-<span id="undefined" />
+
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-<span id="undefined" />
+
 
 `property is_gradient_required`
 
 Returns is gradient required
 
-<span id="undefined" />
+
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-<span id="undefined" />
+
 
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
 
-<span id="undefined" />
+
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-<span id="undefined" />
+
 
 `property is_initial_point_supported`
 
 Returns is initial point supported
 
-<span id="undefined" />
+
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -204,19 +204,19 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
-<span id="undefined" />
+
 
 `print_options()`
 
 Print algorithm-specific options.
 
-<span id="undefined" />
+
 
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
 
-<span id="undefined" />
+
 
 `set_options(**kwargs)`
 
@@ -228,13 +228,13 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-<span id="undefined" />
+
 
 `property setting`
 
 Return setting
 
-<span id="undefined" />
+
 
 `static wrap_function(function, args)`
 

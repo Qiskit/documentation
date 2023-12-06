@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.acquire
 
-<span id="undefined" />
+
 
 `acquire(duration, qubit_or_channel, register, **metadata)`
 

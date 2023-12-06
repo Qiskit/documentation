@@ -1,6 +1,6 @@
 # qiskit.providers.aer.library.set\_density\_matrix
 
-<span id="undefined" />
+
 
 `set_density_matrix(self, state)`
 

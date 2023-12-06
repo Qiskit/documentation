@@ -1,6 +1,6 @@
 # AncillaQubit
 
-<span id="undefined" />
+
 
 `AncillaQubit(register=None, index=None)`
 
@@ -21,13 +21,13 @@ Creates a qubit.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### index
 
 Get bit’s index.
 
-<span id="undefined" />
+
 
 ### register
 

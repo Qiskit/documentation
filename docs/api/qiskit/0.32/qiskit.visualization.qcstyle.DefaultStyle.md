@@ -1,6 +1,6 @@
 # DefaultStyle
 
-<span id="undefined" />
+
 
 `DefaultStyle`
 

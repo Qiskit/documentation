@@ -1,6 +1,6 @@
 # qiskit.providers.models.BackendConfiguration
 
-<span id="undefined" />
+
 
 `BackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, supported_instructions=None, dynamic_reprate_enabled=False, rep_delay_range=None, default_rep_delay=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, dt=None, dtm=None, processor_type=None, **kwargs)`
 
@@ -76,7 +76,7 @@ Initialize a QasmBackendConfiguration Object
 
 *   **\*\*kwargs** – optional fields
 
-<span id="undefined" />
+
 
 `__init__(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, supported_instructions=None, dynamic_reprate_enabled=False, rep_delay_range=None, default_rep_delay=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, dt=None, dtm=None, processor_type=None, **kwargs)`
 
@@ -164,7 +164,7 @@ Initialize a QasmBackendConfiguration Object
 | ---------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
 | [`num_qubits`](#qiskit.providers.models.BackendConfiguration.num_qubits "qiskit.providers.models.BackendConfiguration.num_qubits") | Returns the number of qubits. |
 
-<span id="undefined" />
+
 
 `classmethod from_dict(data)`
 
@@ -182,7 +182,7 @@ The GateConfig from the input dictionary.
 
 [GateConfig](qiskit.providers.models.GateConfig#qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
 
-<span id="undefined" />
+
 
 `property num_qubits`
 
@@ -190,7 +190,7 @@ Returns the number of qubits.
 
 In future, n\_qubits should be replaced in favor of num\_qubits for consistent use throughout Qiskit. Until this is properly refactored, this property serves as intermediate solution.
 
-<span id="undefined" />
+
 
 `to_dict()`
 

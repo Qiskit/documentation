@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.job.job\_monitor
 
-<span id="undefined" />
+
 
 `job_monitor(job, interval=None, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>)`
 

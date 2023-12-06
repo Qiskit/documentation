@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.random\_cnotdihedral
 
-<span id="undefined" />
+
 
 `random_cnotdihedral(num_qubits, seed=None)`
 

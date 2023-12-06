@@ -1,6 +1,6 @@
 # qiskit.chemistry.drivers.PSI4Driver
 
-<span id="undefined" />
+
 
 `PSI4Driver(config='molecule h2 {\\n 0 1\\n H 0.0 0.0 0.0\\n H 0.0 0.0 0.735\\n}\\n\\nset {\\n basis sto-3g\\n scf_type pk\\n reference rhf\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)`
 
@@ -19,7 +19,7 @@ See [http://www.psicode.org/](http://www.psicode.org/)
 
 [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
-<span id="undefined" />
+
 
 `__init__(config='molecule h2 {\\n 0 1\\n H 0.0 0.0 0.0\\n H 0.0 0.0 0.735\\n}\\n\\nset {\\n basis sto-3g\\n scf_type pk\\n reference rhf\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)`
 
@@ -50,7 +50,7 @@ See [http://www.psicode.org/](http://www.psicode.org/)
 | [`molecule`](#qiskit.chemistry.drivers.PSI4Driver.molecule "qiskit.chemistry.drivers.PSI4Driver.molecule")                            | return molecule                                 |
 | [`supports_molecule`](#qiskit.chemistry.drivers.PSI4Driver.supports_molecule "qiskit.chemistry.drivers.PSI4Driver.supports_molecule") | True for derived classes that support Molecule. |
 
-<span id="undefined" />
+
 
 `property basis`
 
@@ -60,7 +60,7 @@ return basis
 
 `str`
 
-<span id="undefined" />
+
 
 `property hf_method`
 
@@ -70,7 +70,7 @@ return Hartree-Fock method
 
 `str`
 
-<span id="undefined" />
+
 
 `property molecule`
 
@@ -80,7 +80,7 @@ return molecule
 
 `Optional`\[`Molecule`]
 
-<span id="undefined" />
+
 
 `run()`
 
@@ -94,7 +94,7 @@ Runs driver to produce a QMolecule output.
 
 A QMolecule containing the molecular data.
 
-<span id="undefined" />
+
 
 `property supports_molecule`
 

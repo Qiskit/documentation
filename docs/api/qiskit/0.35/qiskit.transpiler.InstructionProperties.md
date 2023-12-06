@@ -1,6 +1,6 @@
 # InstructionProperties
 
-<span id="undefined" />
+
 
 `InstructionProperties(duration=None, error=None, calibration=None)`
 
@@ -20,14 +20,14 @@ Create a new `InstructionProperties` object
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### calibration
 
-<span id="undefined" />
+
 
 ### duration
 
-<span id="undefined" />
+
 
 ### error

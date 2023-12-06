@@ -1,6 +1,6 @@
 # LieTrotter
 
-<span id="undefined" />
+
 
 `LieTrotter(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`
 
@@ -39,7 +39,7 @@ $$
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### settings
 

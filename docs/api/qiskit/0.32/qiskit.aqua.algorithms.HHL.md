@@ -1,6 +1,6 @@
 # HHL
 
-<span id="undefined" />
+
 
 `HHL(matrix, vector, truncate_powerdim=False, truncate_hermitian=False, eigs=None, init_state=None, reciprocal=None, num_q=0, num_a=0, orig_size=None, quantum_instance=None)`
 
@@ -60,7 +60,7 @@ See also [https://arxiv.org/abs/0811.3171](https://arxiv.org/abs/0811.3171)
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### backend
 
@@ -70,7 +70,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 
@@ -80,7 +80,7 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 ### random
 

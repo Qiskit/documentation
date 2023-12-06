@@ -1,6 +1,6 @@
 # SieveExtrapolator
 
-<span id="undefined" />
+
 
 `SieveExtrapolator(extrapolator=None, window=2, filter_before=True, filter_after=True)`
 

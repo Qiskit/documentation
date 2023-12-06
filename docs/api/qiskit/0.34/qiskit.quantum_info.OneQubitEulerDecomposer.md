@@ -1,6 +1,6 @@
 # OneQubitEulerDecomposer
 
-<span id="undefined" />
+
 
 `OneQubitEulerDecomposer(basis='U3')`
 
@@ -46,7 +46,7 @@ Supported bases are: ‘U’, ‘PSX’, ‘ZSXX’, ‘ZSX’, ‘U321’, ‘U
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### basis
 

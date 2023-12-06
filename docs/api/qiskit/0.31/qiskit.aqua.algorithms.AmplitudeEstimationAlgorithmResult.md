@@ -1,6 +1,6 @@
 # AmplitudeEstimationAlgorithmResult
 
-<span id="undefined" />
+
 
 `AmplitudeEstimationAlgorithmResult(a_dict=None)`
 
@@ -28,7 +28,7 @@ AmplitudeEstimationAlgorithm Result.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### a\_estimation
 
@@ -38,7 +38,7 @@ return a\_estimation
 
 `float`
 
-<span id="undefined" />
+
 
 ### confidence\_interval
 
@@ -48,7 +48,7 @@ return confidence\_interval
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 ### estimation
 
@@ -58,7 +58,7 @@ return estimation
 
 `float`
 
-<span id="undefined" />
+
 
 ### num\_oracle\_queries
 

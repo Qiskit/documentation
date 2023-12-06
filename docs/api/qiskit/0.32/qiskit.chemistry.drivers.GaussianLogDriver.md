@@ -1,6 +1,6 @@
 # GaussianLogDriver
 
-<span id="undefined" />
+
 
 `GaussianLogDriver(jcf)`
 
@@ -30,7 +30,7 @@ This driver does not use Gaussian 16 interfacing code, as certain data such as f
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### basis
 
@@ -40,7 +40,7 @@ return basis
 
 `str`
 
-<span id="undefined" />
+
 
 ### hf\_method
 
@@ -50,7 +50,7 @@ return Hartree-Fock method
 
 `str`
 
-<span id="undefined" />
+
 
 ### molecule
 
@@ -60,7 +60,7 @@ return molecule
 
 `Optional`\[`Molecule`]
 
-<span id="undefined" />
+
 
 ### supports\_molecule
 

@@ -1,6 +1,6 @@
 # DictStateFn
 
-<span id="undefined" />
+
 
 `DictStateFn(primitive=None, coeff=1.0, is_measurement=False, from_operator=False)`
 
@@ -38,13 +38,13 @@ A class for state functions and measurements which are defined by a lookup table
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### INDENTATION
 
 `= ' '`
 
-<span id="undefined" />
+
 
 ### coeff
 
@@ -54,7 +54,7 @@ A coefficient by which the state function is multiplied.
 
 `Union`\[`complex`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 ### instance\_id
 
@@ -64,7 +64,7 @@ Return the unique instance id.
 
 `int`
 
-<span id="undefined" />
+
 
 ### is\_measurement
 
@@ -74,7 +74,7 @@ Whether the StateFn object is a measurement Operator.
 
 `bool`
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -82,11 +82,11 @@ Whether the StateFn object is a measurement Operator.
 
 `int`
 
-<span id="undefined" />
+
 
 ### parameters
 
-<span id="undefined" />
+
 
 ### primitive
 
@@ -94,7 +94,7 @@ Whether the StateFn object is a measurement Operator.
 
 The primitive which defines the behavior of the underlying State function.
 
-<span id="undefined" />
+
 
 ### settings
 

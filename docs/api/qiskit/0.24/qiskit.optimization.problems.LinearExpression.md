@@ -2,7 +2,7 @@
 
 # qiskit.optimization.problems.LinearExpression
 
-<span id="undefined" />
+
 
 `LinearExpression(quadratic_program, coefficients)`
 
@@ -17,7 +17,7 @@ The linear expression can be defined via an array, a list, a sparse matrix, or a
 *   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
 *   **coefficients** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`]]) – The (sparse) representation of the coefficients.
 
-<span id="undefined" />
+
 
 `__init__(quadratic_program, coefficients)`
 
@@ -47,7 +47,7 @@ The linear expression can be defined via an array, a list, a sparse matrix, or a
 | [`coefficients`](#qiskit.optimization.problems.LinearExpression.coefficients "qiskit.optimization.problems.LinearExpression.coefficients")                | Returns the coefficients of the linear expression. |
 | [`quadratic_program`](#qiskit.optimization.problems.LinearExpression.quadratic_program "qiskit.optimization.problems.LinearExpression.quadratic_program") | Returns the parent QuadraticProgram.               |
 
-<span id="undefined" />
+
 
 `property coefficients`
 
@@ -61,7 +61,7 @@ Returns the coefficients of the linear expression.
 
 The coefficients of the linear expression.
 
-<span id="undefined" />
+
 
 `evaluate(x)`
 
@@ -79,7 +79,7 @@ Evaluate the linear expression for given variables.
 
 The value of the linear expression given the variable values.
 
-<span id="undefined" />
+
 
 `evaluate_gradient(x)`
 
@@ -97,7 +97,7 @@ Evaluate the gradient of the linear expression for given variables.
 
 The value of the gradient of the linear expression given the variable values.
 
-<span id="undefined" />
+
 
 `property quadratic_program`
 
@@ -111,7 +111,7 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-<span id="undefined" />
+
 
 `to_array()`
 
@@ -125,7 +125,7 @@ Returns the coefficients of the linear expression as array.
 
 An array with the coefficients corresponding to the linear expression.
 
-<span id="undefined" />
+
 
 `to_dict(use_name=False)`
 

@@ -1,6 +1,6 @@
 # qiskit.opflow\.gradients.Gradient
 
-<span id="undefined" />
+
 
 `Gradient(grad_method='param_shift', **kwargs)`
 
@@ -15,7 +15,7 @@ Convert an operator expression to the first-order gradient.
 
 **ValueError** – If method != `fin_diff` and `epsilon` is not None.
 
-<span id="undefined" />
+
 
 `__init__(grad_method='param_shift', **kwargs)`
 
@@ -44,7 +44,7 @@ Convert an operator expression to the first-order gradient.
 | ------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | [`grad_method`](#qiskit.opflow.gradients.Gradient.grad_method "qiskit.opflow.gradients.Gradient.grad_method") | Returns `CircuitGradient`. |
 
-<span id="undefined" />
+
 
 `convert(operator, params=None)`
 
@@ -66,7 +66,7 @@ An operator whose evaluation yields the Gradient.
 *   **ValueError** – If `params` contains a parameter not present in `operator`.
 *   **ValueError** – If `operator` is not parameterized.
 
-<span id="undefined" />
+
 
 `get_gradient(operator, params)`
 
@@ -94,7 +94,7 @@ Operator which represents the gradient w\.r.t. the given params.
 *   **Exception** – Unintended code is reached
 *   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – jax not installed
 
-<span id="undefined" />
+
 
 `property grad_method`
 
@@ -108,7 +108,7 @@ Returns `CircuitGradient`.
 
 `CircuitGradient`.
 
-<span id="undefined" />
+
 
 `gradient_wrapper(operator, bind_params, grad_params=None, backend=None, expectation=None)`
 
@@ -130,7 +130,7 @@ Get a callable function which provides the respective gradient, Hessian or QFI f
 
 Function to compute a gradient, Hessian or QFI. The function takes an iterable as argument which holds the parameter values.
 
-<span id="undefined" />
+
 
 `static parameter_expression_grad(param_expr, param)`
 

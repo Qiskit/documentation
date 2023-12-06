@@ -1,6 +1,6 @@
 # qiskit.providers.aer.utils.insert\_noise
 
-<span id="undefined" />
+
 
 `insert_noise(circuits, noise_model, transpile=False)`
 

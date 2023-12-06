@@ -1,6 +1,6 @@
 # PauliExpectation
 
-<span id="undefined" />
+
 
 `PauliExpectation(group_paulis=True)`
 

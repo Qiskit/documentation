@@ -2,7 +2,7 @@
 
 # qiskit.optimization.converters.IntegerToBinary
 
-<span id="undefined" />
+
 
 `IntegerToBinary`
 
@@ -27,7 +27,7 @@ This bounded-coefficient encoding used in this converted is proposed in \[1], Eq
 
 Annealers. arxiv.org:1706.01945.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -43,7 +43,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`encode`](#qiskit.optimization.converters.IntegerToBinary.encode "qiskit.optimization.converters.IntegerToBinary.encode")(problem)         | DEPRECATED Encode a QuadraticProgram into another form and keep the information required to decode the result. |
 | [`interpret`](#qiskit.optimization.converters.IntegerToBinary.interpret "qiskit.optimization.converters.IntegerToBinary.interpret")(result) | Convert back the converted problem (binary variables) to the original (integer variables).                     |
 
-<span id="undefined" />
+
 
 `convert(problem)`
 
@@ -65,7 +65,7 @@ The converted problem, that contains no integer variables.
 
 [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if variable or constraint type is not supported.
 
-<span id="undefined" />
+
 
 `decode(result)`
 
@@ -75,7 +75,7 @@ DEPRECATED Decode a result into another form using the information of conversion
 
 `OptimizationResult`
 
-<span id="undefined" />
+
 
 `encode(problem)`
 
@@ -85,7 +85,7 @@ DEPRECATED Encode a QuadraticProgram into another form and keep the information 
 
 `QuadraticProgram`
 
-<span id="undefined" />
+
 
 `interpret(result)`
 

@@ -2,7 +2,7 @@
 
 # qiskit.ignis.verification.count\_keys
 
-<span id="undefined" />
+
 
 `count_keys(num_qubits)`
 

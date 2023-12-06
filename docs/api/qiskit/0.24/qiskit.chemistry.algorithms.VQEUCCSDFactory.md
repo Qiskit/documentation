@@ -2,7 +2,7 @@
 
 # qiskit.chemistry.algorithms.VQEUCCSDFactory
 
-<span id="undefined" />
+
 
 `VQEUCCSDFactory(quantum_instance, optimizer=None, initial_point=None, expectation=None, include_custom=False, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True)`
 
@@ -20,7 +20,7 @@ A factory to construct a VQE minimum eigensolver with UCCSD ansatz wavefunction.
 *   **excitation\_type** (`str`) – specify the excitation type ‘sd’, ‘s’, ‘d’ respectively for single and double, only single, only double excitations.
 *   **same\_spin\_doubles** (`bool`) – enable double excitations of the same spin.
 
-<span id="undefined" />
+
 
 `__init__(quantum_instance, optimizer=None, initial_point=None, expectation=None, include_custom=False, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True)`
 
@@ -58,7 +58,7 @@ A factory to construct a VQE minimum eigensolver with UCCSD ansatz wavefunction.
 | [`quantum_instance`](#qiskit.chemistry.algorithms.VQEUCCSDFactory.quantum_instance "qiskit.chemistry.algorithms.VQEUCCSDFactory.quantum_instance")    | Getter of the quantum instance.                                                |
 | [`same_spin_doubles`](#qiskit.chemistry.algorithms.VQEUCCSDFactory.same_spin_doubles "qiskit.chemistry.algorithms.VQEUCCSDFactory.same_spin_doubles") | Getter of the `same_spin_doubles` setting for the `same_spin_doubles` setting. |
 
-<span id="undefined" />
+
 
 `property excitation_type`
 
@@ -68,7 +68,7 @@ Getter of the `excitation_type` setting for the `excitation_type` setting.
 
 `str`
 
-<span id="undefined" />
+
 
 `property expectation`
 
@@ -78,7 +78,7 @@ Getter of the expectation.
 
 `ExpectationBase`
 
-<span id="undefined" />
+
 
 `get_solver(transformation)`
 
@@ -100,7 +100,7 @@ A VQE suitable to compute the ground state of the molecule transformed by `trans
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – in case a Transformation of wrong type is given.
 
-<span id="undefined" />
+
 
 `property include_custom`
 
@@ -110,7 +110,7 @@ Getter of the `include_custom` setting for the `expectation` setting.
 
 `bool`
 
-<span id="undefined" />
+
 
 `property initial_point`
 
@@ -120,7 +120,7 @@ Getter of the initial point.
 
 `ndarray`
 
-<span id="undefined" />
+
 
 `property method_doubles`
 
@@ -130,7 +130,7 @@ Getter of the `method_doubles` setting for the `method_doubles` setting.
 
 `str`
 
-<span id="undefined" />
+
 
 `property method_singles`
 
@@ -140,7 +140,7 @@ Getter of the `method_singles` setting for the `method_singles` setting.
 
 `str`
 
-<span id="undefined" />
+
 
 `property optimizer`
 
@@ -150,7 +150,7 @@ Getter of the optimizer.
 
 `Optimizer`
 
-<span id="undefined" />
+
 
 `property quantum_instance`
 
@@ -160,7 +160,7 @@ Getter of the quantum instance.
 
 `QuantumInstance`
 
-<span id="undefined" />
+
 
 `property same_spin_doubles`
 
@@ -170,7 +170,7 @@ Getter of the `same_spin_doubles` setting for the `same_spin_doubles` setting.
 
 `bool`
 
-<span id="undefined" />
+
 
 `supports_aux_operators()`
 

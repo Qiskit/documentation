@@ -1,6 +1,6 @@
 # Target
 
-<span id="undefined" />
+
 
 `Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, aquire_alignment=1)`
 
@@ -97,59 +97,59 @@ Create a new Target object
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### aquire\_alignment
 
-<span id="undefined" />
+
 
 ### description
 
-<span id="undefined" />
+
 
 ### dt
 
-<span id="undefined" />
+
 
 ### granularity
 
-<span id="undefined" />
+
 
 ### instructions
 
 Get the list of tuples ``(:class:`~qiskit.circuit.Instruction`, (qargs))`` for the target
 
-<span id="undefined" />
+
 
 ### min\_length
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
-<span id="undefined" />
+
 
 ### operation\_names
 
 Get the operation names in the target.
 
-<span id="undefined" />
+
 
 ### operations
 
 Get the operation class objects in the target.
 
-<span id="undefined" />
+
 
 ### physical\_qubits
 
 Returns a sorted list of physical\_qubits
 
-<span id="undefined" />
+
 
 ### pulse\_alignment
 
-<span id="undefined" />
+
 
 ### qargs
 

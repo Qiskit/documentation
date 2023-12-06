@@ -1,6 +1,6 @@
 # qiskit.providers.aer.noise.device.readout\_error\_values
 
-<span id="undefined" />
+
 
 `readout_error_values(properties)`
 

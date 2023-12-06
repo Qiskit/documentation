@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.pauli\_basis
 
-<span id="undefined" />
+
 
 `pauli_basis(num_qubits, weight=False)`
 

@@ -1,6 +1,6 @@
 # qiskit.providers.BackendPropertyError
 
-<span id="undefined" />
+
 
 `BackendPropertyError(*message)`
 

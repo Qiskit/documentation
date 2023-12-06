@@ -1,6 +1,6 @@
 # MaximumLikelihoodAmplitudeEstimation
 
-<span id="undefined" />
+
 
 `MaximumLikelihoodAmplitudeEstimation(evaluation_schedule, minimizer=None, quantum_instance=None)`
 
@@ -41,7 +41,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 

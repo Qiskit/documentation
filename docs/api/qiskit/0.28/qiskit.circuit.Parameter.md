@@ -1,6 +1,6 @@
 # qiskit.circuit.Parameter
 
-<span id="undefined" />
+
 
 `Parameter(name)`
 
@@ -12,7 +12,7 @@ Create a new named [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Param
 
 **name** (`str`) – name of the `Parameter`, used for visual representation. This can be any unicode string, e.g. “ϕ”.
 
-<span id="undefined" />
+
 
 `__init__(name)`
 
@@ -49,25 +49,25 @@ Create a new named [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Param
 | [`name`](#qiskit.circuit.Parameter.name "qiskit.circuit.Parameter.name")                   | Returns the name of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter"). |
 | [`parameters`](#qiskit.circuit.Parameter.parameters "qiskit.circuit.Parameter.parameters") | Returns a set of the unbound Parameters in the expression.                                   |
 
-<span id="undefined" />
+
 
 `arccos()`
 
 Arccos of a ParameterExpression
 
-<span id="undefined" />
+
 
 `arcsin()`
 
 Arcsin of a ParameterExpression
 
-<span id="undefined" />
+
 
 `arctan()`
 
 Arctan of a ParameterExpression
 
-<span id="undefined" />
+
 
 `assign(parameter, value)`
 
@@ -86,7 +86,7 @@ Assign one parameter to a value, which can either be numeric or another paramete
 
 A new expression parameterized by any parameters which were not bound by assignment.
 
-<span id="undefined" />
+
 
 `bind(parameter_values)`
 
@@ -114,7 +114,7 @@ Binds the provided set of parameters to their corresponding values.
 
 A new expression parameterized by any parameters which were not bound by parameter\_values.
 
-<span id="undefined" />
+
 
 `conjugate()`
 
@@ -124,19 +124,19 @@ Return the conjugate.
 
 `ParameterExpression`
 
-<span id="undefined" />
+
 
 `cos()`
 
 Cosine of a ParameterExpression
 
-<span id="undefined" />
+
 
 `exp()`
 
 Exponential of a ParameterExpression
 
-<span id="undefined" />
+
 
 `gradient(param)`
 
@@ -154,25 +154,25 @@ Get the derivative of a parameter expression w\.r.t. a specified parameter expre
 
 ParameterExpression representing the gradient of param\_expr w\.r.t. param
 
-<span id="undefined" />
+
 
 `is_real()`
 
 Return whether the expression is real
 
-<span id="undefined" />
+
 
 `log()`
 
 Logarithm of a ParameterExpression
 
-<span id="undefined" />
+
 
 `property name`
 
 Returns the name of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter").
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -182,19 +182,19 @@ Returns a set of the unbound Parameters in the expression.
 
 `Set`
 
-<span id="undefined" />
+
 
 `sin()`
 
 Sine of a ParameterExpression
 
-<span id="undefined" />
+
 
 `subs(parameter_map)`
 
 Substitute self with the corresponding parameter in `parameter_map`.
 
-<span id="undefined" />
+
 
 `tan()`
 

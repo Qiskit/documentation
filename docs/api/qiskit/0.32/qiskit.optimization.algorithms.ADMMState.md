@@ -1,6 +1,6 @@
 # ADMMState
 
-<span id="undefined" />
+
 
 `ADMMState(op, rho_initial)`
 

@@ -1,6 +1,6 @@
 # BosonicDriver
 
-<span id="undefined" />
+
 
 `BosonicDriver(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)`
 
@@ -27,7 +27,7 @@ Base class for Qiskit’s chemistry bosonic drivers.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### basis
 
@@ -37,7 +37,7 @@ return basis
 
 `str`
 
-<span id="undefined" />
+
 
 ### hf\_method
 
@@ -47,7 +47,7 @@ return Hartree-Fock method
 
 `str`
 
-<span id="undefined" />
+
 
 ### molecule
 
@@ -57,7 +57,7 @@ return molecule
 
 `Optional`\[`Molecule`]
 
-<span id="undefined" />
+
 
 ### supports\_molecule
 

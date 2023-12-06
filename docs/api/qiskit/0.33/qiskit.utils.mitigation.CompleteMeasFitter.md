@@ -1,6 +1,6 @@
 # CompleteMeasFitter
 
-<span id="undefined" />
+
 
 `CompleteMeasFitter(results, state_labels, qubit_list=None, circlabel='')`
 
@@ -33,25 +33,25 @@ A wrapper for the tensored fitter
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### cal\_matrix
 
 Return cal\_matrix.
 
-<span id="undefined" />
+
 
 ### filter
 
 Return a measurement filter using the cal matrix.
 
-<span id="undefined" />
+
 
 ### qubit\_list
 
 Return list of qubits.
 
-<span id="undefined" />
+
 
 ### state\_labels
 

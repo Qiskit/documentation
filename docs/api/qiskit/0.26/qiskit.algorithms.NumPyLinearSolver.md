@@ -1,6 +1,6 @@
 # qiskit.algorithms.NumPyLinearSolver
 
-<span id="undefined" />
+
 
 `NumPyLinearSolver`
 
@@ -26,7 +26,7 @@ solution = np_solver.solve(matrix, rhs, observable)
 result = solution.observable
 ```
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -39,7 +39,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.algorithms.NumPyLinearSolver.__init__ "qiskit.algorithms.NumPyLinearSolver.__init__")()                        | Initialize self.                                                  |
 | [`solve`](#qiskit.algorithms.NumPyLinearSolver.solve "qiskit.algorithms.NumPyLinearSolver.solve")(matrix, vector\[, observable, …]) | Solve classically the linear system and compute the observable(s) |
 
-<span id="undefined" />
+
 
 `solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`
 

@@ -1,12 +1,12 @@
 # qiskit.chemistry.components.bosonic\_bases.BosonicBasis
 
-<span id="undefined" />
+
 
 `BosonicBasis`
 
 Basis to express a second quantization Bosonic Hamiltonian.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -19,7 +19,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.chemistry.components.bosonic_bases.BosonicBasis.__init__ "qiskit.chemistry.components.bosonic_bases.BosonicBasis.__init__")()          | Initialize self.                                                                                  |
 | [`convert`](#qiskit.chemistry.components.bosonic_bases.BosonicBasis.convert "qiskit.chemistry.components.bosonic_bases.BosonicBasis.convert")(\[threshold]) | This prepares an array object representing a bosonic hamiltonian expressed in the harmonic basis. |
 
-<span id="undefined" />
+
 
 `convert(threshold=1e-06)`
 

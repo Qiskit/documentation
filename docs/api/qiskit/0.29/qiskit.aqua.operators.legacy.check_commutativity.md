@@ -1,6 +1,6 @@
 # qiskit.aqua.operators.legacy.check\_commutativity
 
-<span id="undefined" />
+
 
 `check_commutativity(op_1, op_2, anti=False)`
 

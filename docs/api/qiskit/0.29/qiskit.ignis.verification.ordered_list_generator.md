@@ -1,6 +1,6 @@
 # qiskit.ignis.verification.ordered\_list\_generator
 
-<span id="undefined" />
+
 
 `ordered_list_generator(counts_dictionary, qn)`
 

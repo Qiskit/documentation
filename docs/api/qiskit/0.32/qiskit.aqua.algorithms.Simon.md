@@ -1,6 +1,6 @@
 # Simon
 
-<span id="undefined" />
+
 
 `Simon(oracle, quantum_instance=None)`
 
@@ -27,7 +27,7 @@ Note: the [`TruthTableOracle`](qiskit.aqua.components.oracles.TruthTableOracle#q
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### backend
 
@@ -37,7 +37,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 
@@ -47,7 +47,7 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 ### random
 

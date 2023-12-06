@@ -1,6 +1,6 @@
 # qiskit.providers.aer.library.save\_unitary
 
-<span id="undefined" />
+
 
 `save_unitary(self, label='unitary', pershot=False)`
 

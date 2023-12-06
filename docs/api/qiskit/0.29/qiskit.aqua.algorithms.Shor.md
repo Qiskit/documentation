@@ -1,6 +1,6 @@
 # Shor
 
-<span id="undefined" />
+
 
 `Shor(N=15, a=2, quantum_instance=None)`
 
@@ -41,7 +41,7 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### backend
 
@@ -51,7 +51,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 
@@ -61,7 +61,7 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 ### random
 

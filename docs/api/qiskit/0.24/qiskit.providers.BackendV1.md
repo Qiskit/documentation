@@ -2,7 +2,7 @@
 
 # qiskit.providers.BackendV1
 
-<span id="undefined" />
+
 
 `BackendV1(configuration, provider=None, **fields)`
 
@@ -24,7 +24,7 @@ Initialize a backend class
 
 **AttributeError** – if input field not a valid options
 
-<span id="undefined" />
+
 
 `__init__(configuration, provider=None, **fields)`
 
@@ -60,7 +60,7 @@ Initialize a backend class
 | [`options`](#qiskit.providers.BackendV1.options "qiskit.providers.BackendV1.options") | Return the options for the backend |
 | `version`                                                                             |                                    |
 
-<span id="undefined" />
+
 
 `configuration()`
 
@@ -74,7 +74,7 @@ the configuration for the backend.
 
 [BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
 
-<span id="undefined" />
+
 
 `name()`
 
@@ -88,7 +88,7 @@ the name of the backend.
 
 str
 
-<span id="undefined" />
+
 
 `property options`
 
@@ -96,7 +96,7 @@ Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.BackendV1.run "qiskit.providers.BackendV1.run") method.
 
-<span id="undefined" />
+
 
 `properties()`
 
@@ -110,7 +110,7 @@ the configuration for the backend. If the backend does not support properties, i
 
 [BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
-<span id="undefined" />
+
 
 `provider()`
 
@@ -124,7 +124,7 @@ the Provider responsible for the backend.
 
 [Provider](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")
 
-<span id="undefined" />
+
 
 `abstract run(run_input, **options)`
 
@@ -145,7 +145,7 @@ The job object for the run
 
 [Job](qiskit.providers.Job#qiskit.providers.Job "qiskit.providers.Job")
 
-<span id="undefined" />
+
 
 `set_options(**fields)`
 
@@ -161,7 +161,7 @@ This method is used to update the options of a backend. If you need to change an
 
 **AttributeError** – If the field passed in is not part of the options
 
-<span id="undefined" />
+
 
 `status()`
 

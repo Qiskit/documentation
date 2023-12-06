@@ -2,7 +2,7 @@
 
 # qiskit.aqua.components.neural\_networks.QuantumGenerator
 
-<span id="undefined" />
+
 
 `QuantumGenerator(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, snapshot_dir=None)`
 
@@ -23,7 +23,7 @@ The quantum generator is a parametrized quantum circuit which can be trained wit
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Set multivariate variational distribution to represent multivariate data
 
-<span id="undefined" />
+
 
 `__init__(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, snapshot_dir=None)`
 
@@ -52,7 +52,7 @@ The quantum generator is a parametrized quantum circuit which can be trained wit
 | [`set_seed`](#qiskit.aqua.components.neural_networks.QuantumGenerator.set_seed "qiskit.aqua.components.neural_networks.QuantumGenerator.set_seed")(seed)                                      | Set seed.                                                      |
 | [`train`](#qiskit.aqua.components.neural_networks.QuantumGenerator.train "qiskit.aqua.components.neural_networks.QuantumGenerator.train")(\[quantum\_instance, shots])                        | Perform one training step w\.r.t to the generator’s parameters |
 
-<span id="undefined" />
+
 
 `construct_circuit(params=None)`
 
@@ -70,7 +70,7 @@ construct the quantum circuit and return as gate
 
 [Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+
 
 `get_output(quantum_instance, params=None, shots=None)`
 
@@ -90,7 +90,7 @@ generated samples, array: sample occurrence in percentage
 
 list
 
-<span id="undefined" />
+
 
 `loss(x, weights)`
 
@@ -109,7 +109,7 @@ loss function
 
 float
 
-<span id="undefined" />
+
 
 `set_discriminator(discriminator)`
 
@@ -119,7 +119,7 @@ Set discriminator network.
 
 **discriminator** (*Discriminator*) – Discriminator used to compute the loss function.
 
-<span id="undefined" />
+
 
 `set_seed(seed)`
 
@@ -129,7 +129,7 @@ Set seed.
 
 **seed** (*int*) – seed
 
-<span id="undefined" />
+
 
 `train(quantum_instance=None, shots=None)`
 

@@ -2,7 +2,7 @@
 
 # qiskit.quantum\_info.SuperOp
 
-<span id="undefined" />
+
 
 `SuperOp(data, input_dims=None, output_dims=None)`
 
@@ -38,7 +38,7 @@ Initialize a quantum channel Superoperator operator.
 
 If the input or output dimensions are None, they will be automatically determined from the input data. If the input data is a Numpy array of shape (4\*\*N, 4\*\*N) qubit systems will be used. If the input operator is not an N-qubit operator, it will assign a single subsystem with dimension specified by the shape of the input.
 
-<span id="undefined" />
+
 
 `__init__(data, input_dims=None, output_dims=None)`
 
@@ -98,7 +98,7 @@ If the input or output dimensions are None, they will be automatically determine
 | [`qargs`](#qiskit.quantum_info.SuperOp.qargs "qiskit.quantum_info.SuperOp.qargs")                | Return the qargs for the operator.                                   |
 | [`rtol`](#qiskit.quantum_info.SuperOp.rtol "qiskit.quantum_info.SuperOp.rtol")                   | The relative tolerance parameter for float comparisons.              |
 
-<span id="undefined" />
+
 
 `add(other)`
 
@@ -118,19 +118,19 @@ the operator self + other.
 
 BaseOperator
 
-<span id="undefined" />
+
 
 `adjoint()`
 
 Return the adjoint of the operator.
 
-<span id="undefined" />
+
 
 `property atol`
 
 The default absolute tolerance parameter for float comparisons.
 
-<span id="undefined" />
+
 
 `compose(other, qargs=None, front=False)`
 
@@ -158,31 +158,31 @@ The quantum channel self @ other.
 
 Composition (`@`) is defined as left matrix multiplication for [`SuperOp`](#qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") matrices. That is that `A @ B` is equal to `B * A`. Setting `front=True` returns right matrix multiplication `A * B` and is equivalent to the [`dot()`](#qiskit.quantum_info.SuperOp.dot "qiskit.quantum_info.SuperOp.dot") method.
 
-<span id="undefined" />
+
 
 `conjugate()`
 
 Return the conjugate of the QuantumChannel.
 
-<span id="undefined" />
+
 
 `copy()`
 
 Make a deep copy of current operator.
 
-<span id="undefined" />
+
 
 `property data`
 
 Return data.
 
-<span id="undefined" />
+
 
 `property dim`
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 `dot(other, qargs=None)`
 
@@ -205,7 +205,7 @@ BaseOperator
 
 **QiskitError** – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
 
-<span id="undefined" />
+
 
 `expand(other)`
 
@@ -227,37 +227,37 @@ the tensor product channel other ⊗ self as a SuperOp object.
 
 **QiskitError** – if other cannot be converted to a channel.
 
-<span id="undefined" />
+
 
 `input_dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
 
-<span id="undefined" />
+
 
 `is_cp(atol=None, rtol=None)`
 
 Test if Choi-matrix is completely-positive (CP)
 
-<span id="undefined" />
+
 
 `is_cptp(atol=None, rtol=None)`
 
 Return True if completely-positive trace-preserving (CPTP).
 
-<span id="undefined" />
+
 
 `is_tp(atol=None, rtol=None)`
 
 Test if a channel is completely-positive (CP)
 
-<span id="undefined" />
+
 
 `is_unitary(atol=None, rtol=None)`
 
 Return True if QuantumChannel is a unitary channel.
 
-<span id="undefined" />
+
 
 `multiply(other)`
 
@@ -281,19 +281,19 @@ BaseOperator
 
 **NotImplementedError** – if subclass does not support multiplication.
 
-<span id="undefined" />
+
 
 `property num_qubits`
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+
 
 `output_dims(qargs=None)`
 
 Return tuple of output dimension for specified subsystems.
 
-<span id="undefined" />
+
 
 `power(n)`
 
@@ -315,13 +315,13 @@ the n-times composition channel as a SuperOp object.
 
 **QiskitError** – if the input and output dimensions of the QuantumChannel are not equal, or the power is not an integer.
 
-<span id="undefined" />
+
 
 `property qargs`
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+
 
 `reshape(input_dims=None, output_dims=None)`
 
@@ -349,13 +349,13 @@ BaseOperator
 
 **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
 
-<span id="undefined" />
+
 
 `property rtol`
 
 The relative tolerance parameter for float comparisons.
 
-<span id="undefined" />
+
 
 `classmethod set_atol(value)`
 
@@ -363,7 +363,7 @@ Set the class default absolute tolerance parameter for float comparisons.
 
 DEPRECATED: use operator.atol = value instead
 
-<span id="undefined" />
+
 
 `classmethod set_rtol(value)`
 
@@ -371,7 +371,7 @@ Set the class default relative tolerance parameter for float comparisons.
 
 DEPRECATED: use operator.rtol = value instead
 
-<span id="undefined" />
+
 
 `subtract(other)`
 
@@ -391,7 +391,7 @@ the operator self - other.
 
 BaseOperator
 
-<span id="undefined" />
+
 
 `tensor(other)`
 
@@ -413,7 +413,7 @@ the tensor product channel self ⊗ other as a SuperOp object.
 
 **QiskitError** – if other cannot be converted to a channel.
 
-<span id="undefined" />
+
 
 `to_instruction()`
 
@@ -433,13 +433,13 @@ A kraus instruction for the channel.
 
 **QiskitError** – if input data is not an N-qubit CPTP quantum channel.
 
-<span id="undefined" />
+
 
 `to_operator()`
 
 Try to convert channel to a unitary representation Operator.
 
-<span id="undefined" />
+
 
 `transpose()`
 

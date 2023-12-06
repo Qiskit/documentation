@@ -1,6 +1,6 @@
 # UnitarySynthesisPluginManager
 
-<span id="undefined" />
+
 
 `UnitarySynthesisPluginManager`
 

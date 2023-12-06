@@ -1,6 +1,6 @@
 # qiskit.aqua.components.uncertainty\_models.UniformDistribution
 
-<span id="undefined" />
+
 
 `UniformDistribution(num_target_qubits, low=0, high=1)`
 
@@ -14,7 +14,7 @@ Uniform distribution is defined by the number of qubits that should be used to r
 *   **low** (`float`) – Lower bound, i.e., the value corresponding to |0…0> (assuming an equidistant grid)
 *   **high** (`float`) – Upper bound, i.e., the value corresponding to |1…1> (assuming an equidistant grid)
 
-<span id="undefined" />
+
 
 `__init__(num_target_qubits, low=0, high=1)`
 
@@ -54,11 +54,11 @@ Uniform distribution is defined by the number of qubits that should be used to r
 | [`probabilities`](#qiskit.aqua.components.uncertainty_models.UniformDistribution.probabilities "qiskit.aqua.components.uncertainty_models.UniformDistribution.probabilities")             | returns probabilities               |
 | [`values`](#qiskit.aqua.components.uncertainty_models.UniformDistribution.values "qiskit.aqua.components.uncertainty_models.UniformDistribution.values")                                  | returns values                      |
 
-<span id="undefined" />
+
 
 `build(qc, q, q_ancillas=None, params=None)`
 
-<span id="undefined" />
+
 
 `build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
 
@@ -72,7 +72,7 @@ Adds corresponding controlled sub-circuit to given circuit
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
 
-<span id="undefined" />
+
 
 `build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
 
@@ -86,19 +86,19 @@ Adds controlled inverse of corresponding sub-circuit to given circuit
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
 
-<span id="undefined" />
+
 
 `build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-<span id="undefined" />
+
 
 `build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-<span id="undefined" />
+
 
 `build_inverse(qc, q, q_ancillas=None)`
 
@@ -110,55 +110,55 @@ Adds inverse of corresponding sub-circuit to given circuit
 *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 
-<span id="undefined" />
+
 
 `build_inverse_power(qc, q, power, q_ancillas=None)`
 
 Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-<span id="undefined" />
+
 
 `build_power(qc, q, power, q_ancillas=None)`
 
 Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-<span id="undefined" />
+
 
 `get_num_qubits()`
 
 returns number of qubits
 
-<span id="undefined" />
+
 
 `get_num_qubits_controlled()`
 
 returns number of qubits controlled
 
-<span id="undefined" />
+
 
 `property high`
 
 returns high
 
-<span id="undefined" />
+
 
 `property low`
 
 returns low
 
-<span id="undefined" />
+
 
 `property num_target_qubits`
 
 Returns the number of target qubits
 
-<span id="undefined" />
+
 
 `property num_values`
 
 returns number of values
 
-<span id="undefined" />
+
 
 `static pdf_to_probabilities(pdf, low, high, num_values)`
 
@@ -179,25 +179,25 @@ array of probabilities
 
 list
 
-<span id="undefined" />
+
 
 `property probabilities`
 
 returns probabilities
 
-<span id="undefined" />
+
 
 `required_ancillas()`
 
 returns required ancillas
 
-<span id="undefined" />
+
 
 `required_ancillas_controlled()`
 
 returns required ancillas controlled
 
-<span id="undefined" />
+
 
 `property values`
 

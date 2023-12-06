@@ -1,6 +1,6 @@
 # DiscriminativeNetwork
 
-<span id="undefined" />
+
 
 `DiscriminativeNetwork`
 

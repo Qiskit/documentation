@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.least\_busy
 
-<span id="undefined" />
+
 
 `least_busy(backends, reservation_lookahead=60)`
 

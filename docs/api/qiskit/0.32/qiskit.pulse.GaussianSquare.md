@@ -1,6 +1,6 @@
 # GaussianSquare
 
-<span id="undefined" />
+
 
 `GaussianSquare(duration, amp, sigma, width=None, risefall_sigma_ratio=None, name=None)`
 
@@ -52,7 +52,7 @@ Initialize the gaussian square pulse.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### amp
 
@@ -62,7 +62,7 @@ The Gaussian amplitude.
 
 `Union`\[`complex`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 ### id
 
@@ -72,13 +72,13 @@ Unique identifier for this pulse.
 
 `int`
 
-<span id="undefined" />
+
 
 ### limit\_amplitude
 
 `= True`
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -86,7 +86,7 @@ Unique identifier for this pulse.
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+
 
 ### risefall\_sigma\_ratio
 
@@ -96,7 +96,7 @@ The duration of each risefall in terms of sigma.
 
 `Union`\[`float`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 ### sigma
 
@@ -106,7 +106,7 @@ The Gaussian standard deviation of the pulse width.
 
 `Union`\[`float`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 ### width
 

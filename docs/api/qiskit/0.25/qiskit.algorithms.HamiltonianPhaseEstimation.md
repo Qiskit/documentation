@@ -1,6 +1,6 @@
 # qiskit.algorithms.HamiltonianPhaseEstimation
 
-<span id="undefined" />
+
 
 `HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None)`
 
@@ -41,7 +41,7 @@ T.E. O’Brien, B. Tarasinski, B.M. Terhal [arXiv:1809.09697](https://arxiv.org/
 *   **num\_evaluation\_qubits** (`int`) – The number of qubits used in estimating the phase. The phase will be estimated as a binary string with this many bits.
 *   **quantum\_instance** (`Union`\[`QuantumInstance`, `BaseBackend`, `None`]) – The quantum instance on which the circuit will be run.
 
-<span id="undefined" />
+
 
 `__init__(num_evaluation_qubits, quantum_instance=None)`
 
@@ -57,7 +57,7 @@ T.E. O’Brien, B. Tarasinski, B.M. Terhal [arXiv:1809.09697](https://arxiv.org/
 | [`__init__`](#qiskit.algorithms.HamiltonianPhaseEstimation.__init__ "qiskit.algorithms.HamiltonianPhaseEstimation.__init__")(num\_evaluation\_qubits\[, …])         | **type num\_evaluation\_qubits**`int`           |
 | [`estimate`](#qiskit.algorithms.HamiltonianPhaseEstimation.estimate "qiskit.algorithms.HamiltonianPhaseEstimation.estimate")(hamiltonian\[, state\_preparation, …]) | Run the Hamiltonian phase estimation algorithm. |
 
-<span id="undefined" />
+
 
 `estimate(hamiltonian, state_preparation=None, evolution=None, bound=None)`
 

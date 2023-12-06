@@ -1,6 +1,6 @@
 # qiskit.optimization.problems.Constraint
 
-<span id="undefined" />
+
 
 `Constraint(quadratic_program, name, sense, rhs)`
 
@@ -15,7 +15,7 @@ Initializes the constraint.
 *   **sense** (`ConstraintSense`) – The sense of the constraint.
 *   **rhs** (`float`) – The right-hand-side of the constraint.
 
-<span id="undefined" />
+
 
 `__init__(quadratic_program, name, sense, rhs)`
 
@@ -44,13 +44,13 @@ Initializes the constraint.
 | [`rhs`](#qiskit.optimization.problems.Constraint.rhs "qiskit.optimization.problems.Constraint.rhs")                                           | Returns the right-hand-side of the constraint. |
 | [`sense`](#qiskit.optimization.problems.Constraint.sense "qiskit.optimization.problems.Constraint.sense")                                     | Returns the sense of the constraint.           |
 
-<span id="undefined" />
+
 
 ### Sense
 
 alias of `ConstraintSense`
 
-<span id="undefined" />
+
 
 `abstract evaluate(x)`
 
@@ -68,7 +68,7 @@ Evaluate left-hand-side of constraint for given values of variables.
 
 The left-hand-side of the constraint.
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -82,7 +82,7 @@ Returns the name of the constraint.
 
 The name of the constraint.
 
-<span id="undefined" />
+
 
 `property quadratic_program`
 
@@ -96,7 +96,7 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-<span id="undefined" />
+
 
 `property rhs`
 
@@ -110,7 +110,7 @@ Returns the right-hand-side of the constraint.
 
 The right-hand-side of the constraint.
 
-<span id="undefined" />
+
 
 `property sense`
 

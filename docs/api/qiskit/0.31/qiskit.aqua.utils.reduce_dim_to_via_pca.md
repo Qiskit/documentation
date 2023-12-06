@@ -1,6 +1,6 @@
 # qiskit.aqua.utils.reduce\_dim\_to\_via\_pca
 
-<span id="undefined" />
+
 
 `reduce_dim_to_via_pca(x, dim)`
 

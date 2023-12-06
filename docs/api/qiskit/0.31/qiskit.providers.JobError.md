@@ -1,6 +1,6 @@
 # qiskit.providers.JobError
 
-<span id="undefined" />
+
 
 `JobError(*message)`
 

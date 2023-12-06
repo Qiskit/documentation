@@ -1,6 +1,6 @@
 # MorsePotential
 
-<span id="undefined" />
+
 
 `MorsePotential(molecule)`
 

@@ -1,6 +1,6 @@
 # qiskit.aqua.operators.legacy.commutator
 
-<span id="undefined" />
+
 
 `commutator(op_a, op_b, op_c=None, sign=False, threshold=1e-12)`
 

@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.random\_unitary
 
-<span id="undefined" />
+
 
 `random_unitary(dims, seed=None)`
 

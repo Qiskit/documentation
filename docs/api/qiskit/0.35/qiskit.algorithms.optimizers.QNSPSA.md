@@ -1,6 +1,6 @@
 # QNSPSA
 
-<span id="undefined" />
+
 
 `QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)`
 
@@ -81,85 +81,85 @@ result = qnspsa.optimize(ansatz.num_parameters, loss, initial_point=initial_poin
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### bounds\_support\_level
 
 Returns bounds support level
 
-<span id="undefined" />
+
 
 ### gradient\_support\_level
 
 Returns gradient support level
 
-<span id="undefined" />
+
 
 ### initial\_point\_support\_level
 
 Returns initial point support level
 
-<span id="undefined" />
+
 
 ### is\_bounds\_ignored
 
 Returns is bounds ignored
 
-<span id="undefined" />
+
 
 ### is\_bounds\_required
 
 Returns is bounds required
 
-<span id="undefined" />
+
 
 ### is\_bounds\_supported
 
 Returns is bounds supported
 
-<span id="undefined" />
+
 
 ### is\_gradient\_ignored
 
 Returns is gradient ignored
 
-<span id="undefined" />
+
 
 ### is\_gradient\_required
 
 Returns is gradient required
 
-<span id="undefined" />
+
 
 ### is\_gradient\_supported
 
 Returns is gradient supported
 
-<span id="undefined" />
+
 
 ### is\_initial\_point\_ignored
 
 Returns is initial point ignored
 
-<span id="undefined" />
+
 
 ### is\_initial\_point\_required
 
 Returns is initial point required
 
-<span id="undefined" />
+
 
 ### is\_initial\_point\_supported
 
 Returns is initial point supported
 
-<span id="undefined" />
+
 
 ### setting
 
 Return setting
 
-<span id="undefined" />
+
 
 ### settings
 

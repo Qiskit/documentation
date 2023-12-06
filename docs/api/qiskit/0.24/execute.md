@@ -18,7 +18,7 @@ python_api_name: qiskit.execute
 
 `qiskit.execute`
 
-<span id="undefined" />
+
 
 `execute(experiments, backend, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, seed_transpiler=None, optimization_level=None, pass_manager=None, qobj_id=None, qobj_header=None, shots=1024, memory=False, max_credits=10, seed_simulator=None, default_qubit_los=None, default_meas_los=None, schedule_los=None, meas_level=<MeasLevel.CLASSIFIED: 2>, meas_return=<MeasReturnType.AVERAGE: 'avg'>, memory_slots=None, memory_slot_size=100, rep_time=None, rep_delay=None, parameter_binds=None, schedule_circuit=False, inst_map=None, meas_map=None, scheduling_method=None, init_qubits=None, **run_config)`
 

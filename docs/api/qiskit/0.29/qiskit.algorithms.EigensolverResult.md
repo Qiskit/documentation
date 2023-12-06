@@ -1,6 +1,6 @@
 # EigensolverResult
 
-<span id="undefined" />
+
 
 `EigensolverResult`
 
@@ -16,7 +16,7 @@ Eigensolver Result.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### aux\_operator\_eigenvalues
 
@@ -26,7 +26,7 @@ return aux operator eigen values
 
 `Optional`\[`ndarray`]
 
-<span id="undefined" />
+
 
 ### eigenstates
 
@@ -36,7 +36,7 @@ return eigen states
 
 `Optional`\[`ndarray`]
 
-<span id="undefined" />
+
 
 ### eigenvalues
 

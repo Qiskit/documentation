@@ -34,7 +34,7 @@ Note the sampling strategy use for all discrete pulses is `midpoint`.
 | [`triangle`](#qiskit.pulse.library.discrete.triangle "qiskit.pulse.library.discrete.triangle")(duration, amp\[, freq, phase, name])             | Generates triangle wave [`Waveform`](qiskit.pulse.Waveform#qiskit.pulse.Waveform "qiskit.pulse.Waveform").                                                       |
 | [`zero`](#qiskit.pulse.library.discrete.zero "qiskit.pulse.library.discrete.zero")(duration\[, name])                                           | Generates zero-sampled [`Waveform`](qiskit.pulse.Waveform#qiskit.pulse.Waveform "qiskit.pulse.Waveform").                                                        |
 
-<span id="undefined" />
+
 
 `constant(duration, amp, name=None)`
 
@@ -56,7 +56,7 @@ $$
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `cos(duration, amp, freq=None, phase=0, name=None)`
 
@@ -80,7 +80,7 @@ $$
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `drag(duration, amp, sigma, beta, name=None, zero_ends=True)`
 
@@ -113,7 +113,7 @@ If `zero_ends == True`, the samples from $g(x)$ are remapped as in [`gaussian()`
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `gaussian(duration, amp, sigma, name=None, zero_ends=True)`
 
@@ -149,7 +149,7 @@ Integrated area under the full curve is `amp * np.sqrt(2*np.pi*sigma**2)`
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `gaussian_deriv(duration, amp, sigma, name=None)`
 
@@ -174,7 +174,7 @@ i.e. the derivative of the Gaussian function, with center $\mu=$ `duration/2`.
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `gaussian_square(duration, amp, sigma, risefall=None, width=None, name=None, zero_ends=True)`
 
@@ -212,7 +212,7 @@ If `zero_ends == True`, the samples for the Gaussian ramps are remapped as in [`
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `sawtooth(duration, amp, freq=None, phase=0, name=None)`
 
@@ -258,7 +258,7 @@ plt.plot(range(duration), sawtooth_wave)
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `sech(duration, amp, sigma, name=None, zero_ends=True)`
 
@@ -292,7 +292,7 @@ where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `sech_deriv(duration, amp, sigma, name=None)`
 
@@ -317,7 +317,7 @@ i.e. the derivative of $\text{sech}$.
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `sin(duration, amp, freq=None, phase=0, name=None)`
 
@@ -341,7 +341,7 @@ $$
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `square(duration, amp, freq=None, phase=0, name=None)`
 
@@ -367,7 +367,7 @@ with the convention $\text{sign}(0) = 1$.
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `triangle(duration, amp, freq=None, phase=0, name=None)`
 
@@ -413,7 +413,7 @@ plt.plot(range(duration), triangle_wave)
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `zero(duration, name=None)`
 

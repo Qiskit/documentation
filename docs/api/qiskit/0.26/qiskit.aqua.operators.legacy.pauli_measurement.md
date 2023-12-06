@@ -1,6 +1,6 @@
 # qiskit.aqua.operators.legacy.pauli\_measurement
 
-<span id="undefined" />
+
 
 `pauli_measurement(circuit, pauli, qr, cr, barrier=False)`
 

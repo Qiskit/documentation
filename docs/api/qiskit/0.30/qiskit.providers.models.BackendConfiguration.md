@@ -1,6 +1,6 @@
 # BackendConfiguration
 
-<span id="undefined" />
+
 
 `BackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, supported_instructions=None, dynamic_reprate_enabled=False, rep_delay_range=None, default_rep_delay=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, dt=None, dtm=None, processor_type=None, parametric_pulses=None, **kwargs)`
 
@@ -89,7 +89,7 @@ Initialize a QasmBackendConfiguration Object
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### num\_qubits
 

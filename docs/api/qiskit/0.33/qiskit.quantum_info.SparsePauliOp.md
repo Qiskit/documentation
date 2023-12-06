@@ -1,6 +1,6 @@
 # SparsePauliOp
 
-<span id="undefined" />
+
 
 `SparsePauliOp(data, coeffs=None, *, ignore_pauli_phase=False, copy=True)`
 
@@ -65,49 +65,49 @@ Initialize an operator object.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### atol
 
 `= 1e-08`
 
-<span id="undefined" />
+
 
 ### coeffs
 
 Return the Pauli coefficients.
 
-<span id="undefined" />
+
 
 ### dim
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+
 
 ### paulis
 
 Return the the PauliList.
 
-<span id="undefined" />
+
 
 ### qargs
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+
 
 ### rtol
 
 `= 1e-05`
 
-<span id="undefined" />
+
 
 ### settings
 
@@ -117,13 +117,13 @@ Return settings.
 
 `Dict`
 
-<span id="undefined" />
+
 
 ### size
 
 The number of Pauli of Pauli terms in the operator.
 
-<span id="undefined" />
+
 
 ### table
 

@@ -34,7 +34,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
 | [`RegisterSlot`](#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")(index)       | Classical resister slot channels represent classical registers (low-latency classical memory). |
 | [`SnapshotChannel`](#qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel")()   | Snapshot channels are used to specify instructions for simulators.                             |
 
-<span id="undefined" />
+
 
 `AcquireChannel(index)`
 
@@ -50,7 +50,7 @@ Channel class.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -60,7 +60,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `int`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -70,7 +70,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `Channel(index)`
 
@@ -86,7 +86,7 @@ Channel class.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -96,7 +96,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `int`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -106,7 +106,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 ### prefix
 
@@ -114,7 +114,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 A shorthand string prefix for characterizing the channel type.
 
-<span id="undefined" />
+
 
 `ControlChannel(index)`
 
@@ -130,7 +130,7 @@ Channel class.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -140,7 +140,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `int`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -150,7 +150,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `DriveChannel(index)`
 
@@ -166,7 +166,7 @@ Channel class.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -176,7 +176,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `int`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -186,7 +186,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `MeasureChannel(index)`
 
@@ -202,7 +202,7 @@ Channel class.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -212,7 +212,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `int`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -222,7 +222,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `MemorySlot(index)`
 
@@ -238,7 +238,7 @@ Channel class.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -248,7 +248,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `int`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -258,7 +258,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `PulseChannel(index)`
 
@@ -274,7 +274,7 @@ Channel class.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -284,7 +284,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `int`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -294,7 +294,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `RegisterSlot(index)`
 
@@ -310,7 +310,7 @@ Channel class.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -320,7 +320,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `int`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -330,7 +330,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `SnapshotChannel`
 
@@ -338,7 +338,7 @@ Snapshot channels are used to specify instructions for simulators.
 
 Create new snapshot channel.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -348,7 +348,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `int`
 
-<span id="undefined" />
+
 
 `property name`
 

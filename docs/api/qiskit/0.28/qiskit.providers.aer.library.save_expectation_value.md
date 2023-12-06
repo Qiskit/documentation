@@ -1,6 +1,6 @@
 # qiskit.providers.aer.library.save\_expectation\_value
 
-<span id="undefined" />
+
 
 `save_expectation_value(self, operator, qubits, label='expectation_value', unnormalized=False, pershot=False, conditional=False)`
 

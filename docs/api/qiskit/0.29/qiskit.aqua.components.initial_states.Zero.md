@@ -1,6 +1,6 @@
 # Zero
 
-<span id="undefined" />
+
 
 `Zero(num_qubits)`
 
@@ -22,6 +22,6 @@ This is suitable for those situations in which the all-zeros state is the desire
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### bitstr

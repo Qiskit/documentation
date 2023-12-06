@@ -1,6 +1,6 @@
 # UnitsType
 
-<span id="undefined" />
+
 
 `UnitsType(value)`
 
@@ -10,13 +10,13 @@ Units Type Enum
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ANGSTROM
 
 `= 'Angstrom'`
 
-<span id="undefined" />
+
 
 ### BOHR
 

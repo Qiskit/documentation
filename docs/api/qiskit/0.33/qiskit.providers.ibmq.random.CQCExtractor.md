@@ -1,6 +1,6 @@
 # CQCExtractor
 
-<span id="undefined" />
+
 
 `CQCExtractor(name, provider, client, methods)`
 

@@ -1,6 +1,6 @@
 # qiskit.algorithms.PhaseEstimationScale
 
-<span id="undefined" />
+
 
 `PhaseEstimationScale(bound)`
 
@@ -16,7 +16,7 @@ Increasing `bound` decreases the part of the interval $[0, 1)$ that is used to m
 
 **bound** (`float`) – an upper bound on the absolute value of the eigenvalues of a Hermitian operator. (The operator is not needed here.)
 
-<span id="undefined" />
+
 
 `__init__(bound)`
 
@@ -39,7 +39,7 @@ Increasing `bound` decreases the part of the interval $[0, 1)$ that is used to m
 | ------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | [`scale`](#qiskit.algorithms.PhaseEstimationScale.scale "qiskit.algorithms.PhaseEstimationScale.scale") | Return the Hamiltonian scaling factor. |
 
-<span id="undefined" />
+
 
 `classmethod from_pauli_sum(pauli_sum)`
 
@@ -63,7 +63,7 @@ It is assumed that the `pauli_sum` is the sum of `PauliOp` objects. The bound on
 
 A `PhaseEstimationScale` object
 
-<span id="undefined" />
+
 
 `property scale`
 
@@ -79,7 +79,7 @@ Return the scale factor by which a Hermitian operator must be multiplied so that
 
 The scale factor.
 
-<span id="undefined" />
+
 
 `scale_phase(phi, id_coefficient=0.0)`
 
@@ -100,7 +100,7 @@ The input phase `phi` corresponds to the eigenvalue of a unitary obtained by exp
 
 An eigenvalue computed from the input phase.
 
-<span id="undefined" />
+
 
 `scale_phases(phases, id_coefficient=0.0)`
 

@@ -1,6 +1,6 @@
 # Counts
 
-<span id="undefined" />
+
 
 `Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)`
 
@@ -53,7 +53,7 @@ Build a counts object
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### bitstring\_regex
 

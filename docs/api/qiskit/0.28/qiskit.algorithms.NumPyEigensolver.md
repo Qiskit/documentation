@@ -1,6 +1,6 @@
 # qiskit.algorithms.NumPyEigensolver
 
-<span id="undefined" />
+
 
 `NumPyEigensolver(k=1, filter_criterion=None)`
 
@@ -17,7 +17,7 @@ NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued s
 *   **k** (`int`) – How many eigenvalues are to be computed, has a min. value of 1.
 *   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates, only feasible eigenstates are returned in the results. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to keep this value in the final returned result or not. If the number of elements that satisfies the criterion is smaller than k then the returned list has fewer elements and can even be empty.
 
-<span id="undefined" />
+
 
 `__init__(k=1, filter_criterion=None)`
 
@@ -41,7 +41,7 @@ NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued s
 | [`filter_criterion`](#qiskit.algorithms.NumPyEigensolver.filter_criterion "qiskit.algorithms.NumPyEigensolver.filter_criterion") | returns the filter criterion if set         |
 | [`k`](#qiskit.algorithms.NumPyEigensolver.k "qiskit.algorithms.NumPyEigensolver.k")                                              | returns k (number of eigenvalues requested) |
 
-<span id="undefined" />
+
 
 `compute_eigenvalues(operator, aux_operators=None)`
 
@@ -60,7 +60,7 @@ Computes eigenvalues. Operator and aux\_operators can be supplied here and if no
 
 EigensolverResult
 
-<span id="undefined" />
+
 
 `property filter_criterion`
 
@@ -70,7 +70,7 @@ returns the filter criterion if set
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
 
-<span id="undefined" />
+
 
 `property k`
 
@@ -80,7 +80,7 @@ returns k (number of eigenvalues requested)
 
 `int`
 
-<span id="undefined" />
+
 
 `classmethod supports_aux_operators()`
 
