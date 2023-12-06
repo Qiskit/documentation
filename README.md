@@ -121,6 +121,11 @@ pipx install tox
   tox -- optional/paths/to/notebooks.ipynb --write
   ```
 
+> [!NOTE]
+> If your notebook submits hardware jobs to IBM Quantum, you must add it to the
+> ignore list in `scripts/nb-tester/test-notebooks.py`. Retrieving information
+> is ok.
+
 ## Check for broken links
 
 CI will check for broken links. You can also check locally:
