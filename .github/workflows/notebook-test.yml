@@ -26,6 +26,16 @@ jobs:
       - uses: actions/setup-python@v4
         with:
           python-version: "3.11"
+      - name: Save IBM Quantum account
+        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+        shell: python
+        run: |
+          from qiskit_ibm_runtime import QiskitRuntimeService
+          QiskitRuntimeService.save_account(
+              channel="ibm_quantum",
+              token="${{ secrets.IBM_QUANTUM_TEST_TOKEN }}",
+              set_as_default=True
+          )
       - name: Run tox
         uses: lsst-sqre/run-tox@97818256d9fa3c72d0c12f31660718adb495a1cb
         with:
