@@ -1,6 +1,6 @@
 # CNOTDihedral
 
-<span id="undefined" />
+
 
 `CNOTDihedral(data, validate=True)`
 
@@ -43,31 +43,31 @@ Initialize a CNOTDihedral operator object.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### dim
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 ### key
 
 Return a string representation of a CNOT-dihedral object.
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+
 
 ### qargs
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+
 
 ### settings
 

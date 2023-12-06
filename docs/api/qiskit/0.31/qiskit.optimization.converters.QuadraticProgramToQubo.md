@@ -1,6 +1,6 @@
 # QuadraticProgramToQubo
 
-<span id="undefined" />
+
 
 `QuadraticProgramToQubo(penalty=None)`
 
@@ -34,7 +34,7 @@ Convert a given optimization problem to a new problem that is a QUBO.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### penalty
 

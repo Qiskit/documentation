@@ -1,6 +1,6 @@
 # Snapshot
 
-<span id="undefined" />
+
 
 `Snapshot(label, snapshot_type='statevector', name=None)`
 
@@ -35,7 +35,7 @@ Create new snapshot.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### channel
 
@@ -45,7 +45,7 @@ Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channel
 
 [`SnapshotChannel`](qiskit.pulse.channels.SnapshotChannel#qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel")
 
-<span id="undefined" />
+
 
 ### channels
 
@@ -55,7 +55,7 @@ Returns the channels that this schedule uses.
 
 `Tuple`\[[`SnapshotChannel`](qiskit.pulse.channels.SnapshotChannel#qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel")]
 
-<span id="undefined" />
+
 
 ### duration
 
@@ -65,7 +65,7 @@ Duration of this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 ### id
 
@@ -75,7 +75,7 @@ Unique identifier for this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 ### instructions
 
@@ -85,7 +85,7 @@ Iterable for getting instructions from Schedule tree.
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
-<span id="undefined" />
+
 
 ### label
 
@@ -95,7 +95,7 @@ Label of snapshot.
 
 `str`
 
-<span id="undefined" />
+
 
 ### name
 
@@ -105,7 +105,7 @@ Name of this instruction.
 
 `str`
 
-<span id="undefined" />
+
 
 ### operands
 
@@ -115,7 +115,7 @@ Return instruction operands.
 
 `Tuple`
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -125,7 +125,7 @@ Parameters which determine the instruction behavior.
 
 `Set`
 
-<span id="undefined" />
+
 
 ### start\_time
 
@@ -135,7 +135,7 @@ Relative begin time of this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 ### stop\_time
 
@@ -145,7 +145,7 @@ Relative end time of this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 ### type
 

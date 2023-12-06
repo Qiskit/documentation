@@ -2,19 +2,19 @@
 
 # qiskit.providers.models.UchannelLO
 
-<span id="undefined" />
+
 
 `UchannelLO(q, scale)`
 
 Class representing a U Channel LO
 
-<span id="undefined" />
+
 
 ### q
 
 Qubit that scale corresponds too.
 
-<span id="undefined" />
+
 
 ### scale
 
@@ -31,7 +31,7 @@ Initialize a UchannelLOSchema object
 
 **QiskitError** – If q is \< 0
 
-<span id="undefined" />
+
 
 `__init__(q, scale)`
 
@@ -54,7 +54,7 @@ Initialize a UchannelLOSchema object
 | [`from_dict`](#qiskit.providers.models.UchannelLO.from_dict "qiskit.providers.models.UchannelLO.from_dict")(data)  | Create a new UchannelLO object from a dictionary.            |
 | [`to_dict`](#qiskit.providers.models.UchannelLO.to_dict "qiskit.providers.models.UchannelLO.to_dict")()            | Return a dictionary format representation of the UChannelLO. |
 
-<span id="undefined" />
+
 
 `classmethod from_dict(data)`
 
@@ -72,7 +72,7 @@ The UchannelLO from the input dictionary.
 
 [UchannelLO](#qiskit.providers.models.UchannelLO "qiskit.providers.models.UchannelLO")
 
-<span id="undefined" />
+
 
 `to_dict()`
 

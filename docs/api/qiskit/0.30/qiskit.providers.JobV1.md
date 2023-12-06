@@ -1,6 +1,6 @@
 # JobV1
 
-<span id="undefined" />
+
 
 `JobV1(backend, job_id, **kwargs)`
 
@@ -36,7 +36,7 @@ Initializes the asynchronous job.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### version
 

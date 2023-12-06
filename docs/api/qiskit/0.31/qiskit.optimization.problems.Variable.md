@@ -1,6 +1,6 @@
 # Variable
 
-<span id="undefined" />
+
 
 `Variable(quadratic_program, name, lowerbound=0, upperbound=1e+20, vartype=<VarType.CONTINUOUS: 0>)`
 
@@ -32,7 +32,7 @@ The variables is exposed by the top-level QuadraticProgram class in QuadraticPro
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### lowerbound
 
@@ -46,7 +46,7 @@ Returns the lowerbound of the variable.
 
 The lower bound of the variable.
 
-<span id="undefined" />
+
 
 ### name
 
@@ -60,7 +60,7 @@ Returns the name of the variable.
 
 The name of the variable.
 
-<span id="undefined" />
+
 
 ### quadratic\_program
 
@@ -74,7 +74,7 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-<span id="undefined" />
+
 
 ### upperbound
 
@@ -88,7 +88,7 @@ Returns the upperbound of the variable.
 
 The upperbound of the variable.
 
-<span id="undefined" />
+
 
 ### vartype
 

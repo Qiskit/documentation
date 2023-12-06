@@ -1,6 +1,6 @@
 # qiskit.ignis.verification.get\_ghz\_po
 
-<span id="undefined" />
+
 
 `get_ghz_po(n, delta)`
 

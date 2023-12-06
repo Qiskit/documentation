@@ -2,7 +2,7 @@
 
 # qiskit.ignis.verification.lookuptable\_decoding
 
-<span id="undefined" />
+
 
 `lookuptable_decoding(training_results, real_results)`
 

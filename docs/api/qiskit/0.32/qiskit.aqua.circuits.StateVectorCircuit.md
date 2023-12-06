@@ -1,6 +1,6 @@
 # StateVectorCircuit
 
-<span id="undefined" />
+
 
 `StateVectorCircuit(state_vector)`
 

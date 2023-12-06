@@ -1,6 +1,6 @@
 # StatevectorSimulatorPy
 
-<span id="undefined" />
+
 
 `StatevectorSimulatorPy(configuration=None, provider=None, **fields)`
 
@@ -22,7 +22,7 @@ Initialize a backend class
 
 In addition to the public abstract methods, subclasses should also implement the following private methods:
 
-<span id="undefined" />
+
 
 `classmethod _default_options()`
 
@@ -55,7 +55,7 @@ default values set
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### DEFAULT\_CONFIGURATION = \{'backend\_name'
 
@@ -63,7 +63,7 @@ default values set
 
 `= {'backend_name': 'statevector_simulator', 'backend_version': '1.1.0', 'basis_gates': ['u1', 'u2', 'u3', 'rz', 'sx', 'x', 'cx', 'id', 'unitary'], 'conditional': True, 'coupling_map': None, 'description': 'A Python statevector simulator for qobj files', 'gates': [{'name': 'u1', 'parameters': ['lambda'], 'qasm_def': 'gate u1(lambda) q { U(0,0,lambda) q; }'}, {'name': 'u2', 'parameters': ['phi', 'lambda'], 'qasm_def': 'gate u2(phi,lambda) q { U(pi/2,phi,lambda) q; }'}, {'name': 'u3', 'parameters': ['theta', 'phi', 'lambda'], 'qasm_def': 'gate u3(theta,phi,lambda) q { U(theta,phi,lambda) q; }'}, {'name': 'rz', 'parameters': ['phi'], 'qasm_def': 'gate rz(phi) q { U(0,0,phi) q; }'}, {'name': 'sx', 'parameters': [], 'qasm_def': 'gate sx(phi) q { U(pi/2,7*pi/2,pi/2) q; }'}, {'name': 'x', 'parameters': [], 'qasm_def': 'gate x q { U(pi,7*pi/2,pi/2) q; }'}, {'name': 'cx', 'parameters': [], 'qasm_def': 'gate cx c,t { CX c,t; }'}, {'name': 'id', 'parameters': [], 'qasm_def': 'gate id a { U(0,0,0) a; }'}, {'name': 'unitary', 'parameters': ['matrix'], 'qasm_def': 'unitary(matrix) q1, q2,...'}], 'local': True, 'max_shots': 65536, 'memory': True, 'n_qubits': 24, 'open_pulse': False, 'simulator': True, 'url': 'https://github.com/Qiskit/qiskit-terra'}`
 
-<span id="undefined" />
+
 
 ### DEFAULT\_OPTIONS = \{'chop\_threshold'
 
@@ -71,19 +71,19 @@ default values set
 
 `= {'chop_threshold': 1e-15, 'initial_statevector': None}`
 
-<span id="undefined" />
+
 
 ### MAX\_QUBITS\_MEMORY
 
 `= 32`
 
-<span id="undefined" />
+
 
 ### SHOW\_FINAL\_STATE
 
 `= True`
 
-<span id="undefined" />
+
 
 ### options
 
@@ -91,7 +91,7 @@ Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.basicaer.StatevectorSimulatorPy.run#qiskit.providers.basicaer.StatevectorSimulatorPy.run "qiskit.providers.basicaer.StatevectorSimulatorPy.run") method.
 
-<span id="undefined" />
+
 
 ### version
 

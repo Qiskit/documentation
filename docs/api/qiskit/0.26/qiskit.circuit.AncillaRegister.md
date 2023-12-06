@@ -1,6 +1,6 @@
 # qiskit.circuit.AncillaRegister
 
-<span id="undefined" />
+
 
 `AncillaRegister(size=None, name=None, bits=None)`
 
@@ -23,7 +23,7 @@ Either the `size` or the `bits` argument must be provided. If `size` is not None
 *   **CircuitError** – if `name` is not a valid name according to the OpenQASM spec.
 *   **CircuitError** – if `bits` contained bits of an incorrect type.
 
-<span id="undefined" />
+
 
 `__init__(size=None, name=None, bits=None)`
 
@@ -61,25 +61,25 @@ Either the `size` or the `bits` argument must be provided. If `size` is not None
 | `prefix`                                                                             |                        |
 | [`size`](#qiskit.circuit.AncillaRegister.size "qiskit.circuit.AncillaRegister.size") | Get the register size. |
 
-<span id="undefined" />
+
 
 ### bit\_type
 
 alias of [`AncillaQubit`](qiskit.circuit.AncillaQubit#qiskit.circuit.AncillaQubit "qiskit.circuit.AncillaQubit")
 
-<span id="undefined" />
+
 
 `property name`
 
 Get the register name.
 
-<span id="undefined" />
+
 
 `qasm()`
 
 Return OPENQASM string for this register.
 
-<span id="undefined" />
+
 
 `property size`
 

@@ -1,6 +1,6 @@
 # GatesetTomographyFitter
 
-<span id="undefined" />
+
 
 `GatesetTomographyFitter(result, circuits, gateset_basis='default')`
 

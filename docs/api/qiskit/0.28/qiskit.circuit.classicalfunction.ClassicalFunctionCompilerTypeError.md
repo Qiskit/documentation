@@ -1,6 +1,6 @@
 # qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError
 
-<span id="undefined" />
+
 
 `ClassicalFunctionCompilerTypeError(*message)`
 
@@ -8,7 +8,7 @@ ClassicalFunction compiler type error. The classicalfunction function fails at t
 
 Set the error message.
 
-<span id="undefined" />
+
 
 `with_traceback()`
 

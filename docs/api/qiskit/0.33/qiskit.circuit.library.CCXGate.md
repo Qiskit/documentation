@@ -1,6 +1,6 @@
 # CCXGate
 
-<span id="undefined" />
+
 
 `CCXGate(label=None, ctrl_state=None)`
 
@@ -75,7 +75,7 @@ Create new CCX gate.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### condition\_bits
 
@@ -85,7 +85,7 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-<span id="undefined" />
+
 
 ### ctrl\_state
 
@@ -95,13 +95,13 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
-<span id="undefined" />
+
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+
 
 ### definition
 
@@ -111,13 +111,13 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
-<span id="undefined" />
+
 
 ### duration
 
 Get the duration.
 
-<span id="undefined" />
+
 
 ### label
 
@@ -127,7 +127,7 @@ Return instruction label
 
 `str`
 
-<span id="undefined" />
+
 
 ### name
 
@@ -141,7 +141,7 @@ where \<original\_name> is the gate name for the default case of closed control 
 
 `str`
 
-<span id="undefined" />
+
 
 ### num\_ctrl\_qubits
 
@@ -155,7 +155,7 @@ The number of control qubits for the gate.
 
 int
 
-<span id="undefined" />
+
 
 ### params
 
@@ -173,7 +173,7 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
-<span id="undefined" />
+
 
 ### unit
 

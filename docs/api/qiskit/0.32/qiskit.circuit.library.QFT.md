@@ -1,6 +1,6 @@
 # QFT
 
-<span id="undefined" />
+
 
 `QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)`
 
@@ -44,13 +44,13 @@ Construct a new QFT circuit.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
 
-<span id="undefined" />
+
 
 ### approximation\_degree
 
@@ -64,7 +64,7 @@ The approximation degree of the QFT.
 
 The currently set approximation degree.
 
-<span id="undefined" />
+
 
 ### calibrations
 
@@ -74,17 +74,17 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-<span id="undefined" />
+
 
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
 
-<span id="undefined" />
+
 
 ### data
 
-<span id="undefined" />
+
 
 ### do\_swaps
 
@@ -98,25 +98,25 @@ Whether the final swaps of the QFT are applied or not.
 
 True, if the final swaps are applied, False if not.
 
-<span id="undefined" />
+
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-<span id="undefined" />
+
 
 ### global\_phase
 
 Return the global phase of the circuit in radians.
 
-<span id="undefined" />
+
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="undefined" />
+
 
 ### insert\_barriers
 
@@ -130,13 +130,13 @@ Whether barriers are inserted for better visualization or not.
 
 True, if barriers are inserted, False if not.
 
-<span id="undefined" />
+
 
 ### instances
 
 `= 16`
 
-<span id="undefined" />
+
 
 ### metadata
 
@@ -144,19 +144,19 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-<span id="undefined" />
+
 
 ### num\_ancillas
 
 Return the number of ancilla qubits.
 
-<span id="undefined" />
+
 
 ### num\_clbits
 
 Return number of classical bits.
 
-<span id="undefined" />
+
 
 ### num\_parameters
 
@@ -164,7 +164,7 @@ Return number of classical bits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -182,7 +182,7 @@ The number of qubits in the circuit.
   This method needs to be overwritten to allow adding the setter for num\_qubits while still complying to pylint.
 </Admonition>
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -190,19 +190,19 @@ The number of qubits in the circuit.
 
 `ParameterView`
 
-<span id="undefined" />
+
 
 ### prefix
 
 `= 'circuit'`
 
-<span id="undefined" />
+
 
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-<span id="undefined" />
+
 
 ### qubits
 

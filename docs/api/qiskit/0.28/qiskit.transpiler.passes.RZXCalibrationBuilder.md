@@ -1,6 +1,6 @@
 # qiskit.transpiler.passes.RZXCalibrationBuilder
 
-<span id="undefined" />
+
 
 `RZXCalibrationBuilder(backend)`
 
@@ -16,7 +16,7 @@ Initializes a RZXGate calibration builder.
 
 **QiskitError** – if open pulse is not supported by the backend.
 
-<span id="undefined" />
+
 
 `__init__(backend)`
 
@@ -48,7 +48,7 @@ Initializes a RZXGate calibration builder.
 | [`is_analysis_pass`](#qiskit.transpiler.passes.RZXCalibrationBuilder.is_analysis_pass "qiskit.transpiler.passes.RZXCalibrationBuilder.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.RZXCalibrationBuilder.is_transformation_pass "qiskit.transpiler.passes.RZXCalibrationBuilder.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-<span id="undefined" />
+
 
 `get_calibration(params, qubits)`
 
@@ -69,7 +69,7 @@ schedule
 
 **QiskitError** – if the control and target qubits cannot be identified or the backend does not support cx between the qubits.
 
-<span id="undefined" />
+
 
 `property is_analysis_pass`
 
@@ -77,7 +77,7 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="undefined" />
+
 
 `property is_transformation_pass`
 
@@ -85,13 +85,13 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-<span id="undefined" />
+
 
 `name()`
 
 Return the name of the pass.
 
-<span id="undefined" />
+
 
 `static rescale_cr_inst(instruction, theta, sample_mult=16)`
 
@@ -115,7 +115,7 @@ GaussianSquare pulse.
 
 **QiskitError** – if the pulses are not GaussianSquare.
 
-<span id="undefined" />
+
 
 `run(dag)`
 
@@ -133,7 +133,7 @@ A DAG with calibrations added to it.
 
 [DAGCircuit](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
-<span id="undefined" />
+
 
 `supported(node_op)`
 

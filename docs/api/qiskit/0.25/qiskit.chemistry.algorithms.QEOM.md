@@ -1,6 +1,6 @@
 # qiskit.chemistry.algorithms.QEOM
 
-<span id="undefined" />
+
 
 `QEOM(ground_state_solver, excitations='sd')`
 
@@ -11,7 +11,7 @@ The calculation of excited states via the qEOM algorithm
 *   **ground\_state\_solver** (`GroundStateSolver`) – a GroundStateSolver object. The qEOM algorithm will use this ground state to compute the EOM matrix elements
 *   **excitations** (`Union`\[`str`, `List`\[`List`\[`int`]]]) – The excitations to be included in the eom pseudo-eigenvalue problem. If a string (‘s’, ‘d’ or ‘sd’) then all excitations of the given type will be used. Otherwise a list of custom excitations can directly be provided.
 
-<span id="undefined" />
+
 
 `__init__(ground_state_solver, excitations='sd')`
 
@@ -33,7 +33,7 @@ The calculation of excited states via the qEOM algorithm
 | ------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [`excitations`](#qiskit.chemistry.algorithms.QEOM.excitations "qiskit.chemistry.algorithms.QEOM.excitations") | Returns the excitations to be included in the eom pseudo-eigenvalue problem. |
 
-<span id="undefined" />
+
 
 `property excitations`
 
@@ -43,7 +43,7 @@ Returns the excitations to be included in the eom pseudo-eigenvalue problem.
 
 `Union`\[`str`, `List`\[`List`\[`int`]]]
 
-<span id="undefined" />
+
 
 `solve(driver, aux_operators=None)`
 

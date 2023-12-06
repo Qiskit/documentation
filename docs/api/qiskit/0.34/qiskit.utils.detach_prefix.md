@@ -1,6 +1,6 @@
 # qiskit.utils.detach\_prefix
 
-<span id="undefined" />
+
 
 `detach_prefix(value, decimal=None)`
 

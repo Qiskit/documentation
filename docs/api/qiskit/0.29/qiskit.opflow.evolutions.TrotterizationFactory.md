@@ -1,6 +1,6 @@
 # TrotterizationFactory
 
-<span id="undefined" />
+
 
 `TrotterizationFactory`
 

@@ -1,6 +1,6 @@
 # qiskit.algorithms.HHL
 
-<span id="undefined" />
+
 
 `HHL(epsilon=0.01, expectation=None, quantum_instance=None)`
 
@@ -46,7 +46,7 @@ approx_result = solution.observable
 *   **expectation** (`Optional`\[`ExpectationBase`]) – The expectation converter applied to the expectation values before evaluation. If None then PauliExpectation is used.
 *   **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – Quantum Instance or Backend. If None, a Statevector calculation is done.
 
-<span id="undefined" />
+
 
 `__init__(epsilon=0.01, expectation=None, quantum_instance=None)`
 
@@ -72,7 +72,7 @@ approx_result = solution.observable
 | [`quantum_instance`](#qiskit.algorithms.HHL.quantum_instance "qiskit.algorithms.HHL.quantum_instance") | Get the quantum instance.                                                                          |
 | [`scaling`](#qiskit.algorithms.HHL.scaling "qiskit.algorithms.HHL.scaling")                            | The scaling of the solution vector.                                                                |
 
-<span id="undefined" />
+
 
 `construct_circuit(matrix, vector)`
 
@@ -96,7 +96,7 @@ The HHL circuit.
 *   **ValueError** – If the input is not in the correct format.
 *   **ValueError** – If the type of the input matrix is not supported.
 
-<span id="undefined" />
+
 
 `property expectation`
 
@@ -106,7 +106,7 @@ The expectation value algorithm used to construct the expectation measurement fr
 
 `ExpectationBase`
 
-<span id="undefined" />
+
 
 `property quantum_instance`
 
@@ -120,7 +120,7 @@ Get the quantum instance.
 
 The quantum instance used to run this algorithm.
 
-<span id="undefined" />
+
 
 `property scaling`
 
@@ -130,7 +130,7 @@ The scaling of the solution vector.
 
 `float`
 
-<span id="undefined" />
+
 
 `solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`
 

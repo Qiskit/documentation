@@ -1,6 +1,6 @@
 # qiskit.pulse.Schedule
 
-<span id="undefined" />
+
 
 `Schedule(*schedules, name=None, metadata=None)`
 
@@ -57,7 +57,7 @@ Create an empty schedule.
 
 **TypeError** – if metadata is not a dict.
 
-<span id="undefined" />
+
 
 `__init__(*schedules, name=None, metadata=None)`
 
@@ -111,7 +111,7 @@ Create an empty schedule.
 | [`stop_time`](#qiskit.pulse.Schedule.stop_time "qiskit.pulse.Schedule.stop_time")          | Stopping time of this schedule.                                                                       |
 | [`timeslots`](#qiskit.pulse.Schedule.timeslots "qiskit.pulse.Schedule.timeslots")          | Time keeping attribute.                                                                               |
 
-<span id="undefined" />
+
 
 `append(schedule, name=None, inplace=False)`
 
@@ -132,7 +132,7 @@ $$
 
 `Schedule`
 
-<span id="undefined" />
+
 
 `assign_parameters(value_dict, inplace=True)`
 
@@ -151,7 +151,7 @@ Assign the parameters in this schedule according to the input.
 
 Schedule with updated parameters.
 
-<span id="undefined" />
+
 
 `ch_duration(*channels)`
 
@@ -165,7 +165,7 @@ Return the time of the end of the last instruction over the supplied channels.
 
 `int`
 
-<span id="undefined" />
+
 
 `ch_start_time(*channels)`
 
@@ -179,7 +179,7 @@ Return the time of the start of the first instruction over the supplied channels
 
 `int`
 
-<span id="undefined" />
+
 
 `ch_stop_time(*channels)`
 
@@ -193,7 +193,7 @@ Return maximum start time over supplied channels.
 
 `int`
 
-<span id="undefined" />
+
 
 `property channels`
 
@@ -203,7 +203,7 @@ Returns channels that this schedule uses.
 
 `Tuple`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
 
-<span id="undefined" />
+
 
 `property children`
 
@@ -221,7 +221,7 @@ Nested schedules are returned as-is. If you want to collect only instructions, u
 
 A tuple, where each element is a two-tuple containing the initial scheduled time of each `NamedValue` and the component itself.
 
-<span id="undefined" />
+
 
 `draw(dt=None, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, plot_all=None, plot_range=None, interactive=None, table=None, label=None, framechange=None, channels=None, show_framechange_channels=None, draw_title=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)`
 
@@ -293,7 +293,7 @@ Plot the schedule.
 
 Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
 
-<span id="undefined" />
+
 
 `property duration`
 
@@ -303,7 +303,7 @@ Duration of this schedule.
 
 `int`
 
-<span id="undefined" />
+
 
 `exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`
 
@@ -326,7 +326,7 @@ self.filter(args) | self.exclude(args) == self
 
 `Schedule`
 
-<span id="undefined" />
+
 
 `filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`
 
@@ -347,7 +347,7 @@ If no arguments are provided, `self` is returned.
 
 `Schedule`
 
-<span id="undefined" />
+
 
 `flatten()`
 
@@ -357,7 +357,7 @@ Deprecated.
 
 `Schedule`
 
-<span id="undefined" />
+
 
 `get_parameters(parameter_name)`
 
@@ -377,7 +377,7 @@ Because different `Parameter` objects can have the same name, this method return
 
 Parameter objects that have corresponding name.
 
-<span id="undefined" />
+
 
 `classmethod initialize_from(other_program, name=None)`
 
@@ -400,7 +400,7 @@ New schedule object with name and metadata.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When other\_program does not provide necessary information.
 
-<span id="undefined" />
+
 
 `insert(start_time, schedule, name=None, inplace=False)`
 
@@ -417,7 +417,7 @@ Return a new schedule with `schedule` inserted into `self` at `start_time`.
 
 `Schedule`
 
-<span id="undefined" />
+
 
 `property instructions`
 
@@ -427,7 +427,7 @@ Get the time-ordered instructions from self.
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
@@ -437,7 +437,7 @@ Return True iff the instruction is parameterized.
 
 `bool`
 
-<span id="undefined" />
+
 
 `property metadata`
 
@@ -449,7 +449,7 @@ User provided `dict` of metadata for the schedule. The metadata contents do not 
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -459,7 +459,7 @@ Name of this Schedule
 
 `str`
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -469,7 +469,7 @@ Parameters which determine the schedule behavior.
 
 `Set`
 
-<span id="undefined" />
+
 
 `replace(old, new, inplace=False)`
 
@@ -528,7 +528,7 @@ The modified schedule with `old` replaced by `new`.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the `Schedule` after replacements will has a timing overlap.
 
-<span id="undefined" />
+
 
 `shift(time, name=None, inplace=False)`
 
@@ -544,7 +544,7 @@ Return a schedule shifted forward by `time`.
 
 `Schedule`
 
-<span id="undefined" />
+
 
 `property start_time`
 
@@ -554,7 +554,7 @@ Starting time of this schedule.
 
 `int`
 
-<span id="undefined" />
+
 
 `property stop_time`
 
@@ -564,7 +564,7 @@ Stopping time of this schedule.
 
 `int`
 
-<span id="undefined" />
+
 
 `property timeslots`
 

@@ -1,6 +1,6 @@
 # qiskit.ignis.mitigation.expval\_meas\_mitigator\_circuits
 
-<span id="undefined" />
+
 
 `expval_meas_mitigator_circuits(num_qubits, method='CTMP', labels=None)`
 

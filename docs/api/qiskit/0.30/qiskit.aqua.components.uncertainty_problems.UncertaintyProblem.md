@@ -1,6 +1,6 @@
 # UncertaintyProblem
 
-<span id="undefined" />
+
 
 `UncertaintyProblem(num_qubits)`
 
@@ -28,7 +28,7 @@ The abstract Uncertainty Problem component.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 

@@ -1,6 +1,6 @@
 # qiskit.chemistry.algorithms.pes\_samplers.HarmonicPotential
 
-<span id="undefined" />
+
 
 `HarmonicPotential(molecule)`
 
@@ -16,7 +16,7 @@ Input units are Angstroms (distance between the two atoms), and output units are
 
 **ValueError** – Only implemented for diatomic molecules
 
-<span id="undefined" />
+
 
 `__init__(molecule)`
 
@@ -48,7 +48,7 @@ Input units are Angstroms (distance between the two atoms), and output units are
 | [`vibrational_energy_level`](#qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.vibrational_energy_level "qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.vibrational_energy_level")(n)          | Returns the n-th vibrational energy level for the current fit (in Hartrees).                                               |
 | [`wave_number`](#qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.wave_number "qiskit.chemistry.algorithms.pes_samplers.HarmonicPotential.wave_number")()                                                  | Returns the wave number for the current fit (in cm^-1).                                                                    |
 
-<span id="undefined" />
+
 
 `dissociation_energy(scaling=1.0)`
 
@@ -66,7 +66,7 @@ Returns the estimated dissociation energy for the current fit.
 
 estimated dissociation energy
 
-<span id="undefined" />
+
 
 `eval(x)`
 
@@ -84,7 +84,7 @@ After fitting the data to the fit function, predict the energy at a point x.
 
 value of potential in point x
 
-<span id="undefined" />
+
 
 `fit(xdata, ydata, initial_vals=None, bounds_list=None)`
 
@@ -101,7 +101,7 @@ Fits a potential to computed molecular energies.
 
 `None`
 
-<span id="undefined" />
+
 
 `static fit_function(x, k, r_0, m_shift)`
 
@@ -122,7 +122,7 @@ Functional form of the potential.
 
 harmonic potential functional form
 
-<span id="undefined" />
+
 
 `fundamental_frequency()`
 
@@ -136,7 +136,7 @@ Returns the fundamental frequency for the current fit (in s^-1).
 
 fundamental frequency for the current fit
 
-<span id="undefined" />
+
 
 `get_equilibrium_geometry(scaling=1.0)`
 
@@ -154,7 +154,7 @@ Returns the interatomic distance corresponding to minimal energy.
 
 geometry corresponding to minimal energy
 
-<span id="undefined" />
+
 
 `get_maximum_trusted_level(n=0)`
 
@@ -172,7 +172,7 @@ Returns the maximum energy level for which the particular implementation still p
 
 maximum\_trusted\_level setted
 
-<span id="undefined" />
+
 
 `get_minimal_energy(scaling=1.0)`
 
@@ -190,7 +190,7 @@ Returns the smallest molecular energy for the current fit.
 
 smallest molecular energy for the current fit
 
-<span id="undefined" />
+
 
 `get_num_modes()`
 
@@ -200,7 +200,7 @@ This (1D) potential represents a single vibrational mode
 
 `int`
 
-<span id="undefined" />
+
 
 `get_trust_region()`
 
@@ -210,7 +210,7 @@ The potential will usually be well-defined (even if not useful) for arbitrary x 
 
 `Tuple`\[`float`, `float`]
 
-<span id="undefined" />
+
 
 `classmethod process_fit_data(xdata, ydata)`
 
@@ -231,7 +231,7 @@ so that only the points around the minimum are fit (which gives more accurate vi
 
 the processed data that fit better to a harmonic potential
 
-<span id="undefined" />
+
 
 `update_molecule(molecule)`
 
@@ -249,7 +249,7 @@ Updates the underlying molecule.
 
 `Molecule`
 
-<span id="undefined" />
+
 
 `vibrational_energy_level(n)`
 
@@ -267,7 +267,7 @@ Returns the n-th vibrational energy level for the current fit (in Hartrees).
 
 vibrational energy level for the current fit
 
-<span id="undefined" />
+
 
 `wave_number()`
 

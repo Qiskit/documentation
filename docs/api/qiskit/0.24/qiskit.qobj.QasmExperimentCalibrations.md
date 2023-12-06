@@ -2,7 +2,7 @@
 
 # qiskit.qobj.QasmExperimentCalibrations
 
-<span id="undefined" />
+
 
 `QasmExperimentCalibrations(gates)`
 
@@ -14,7 +14,7 @@ Initialize a container for calibrations.
 
 **gates** (*list(*[*GateCalibration*](qiskit.qobj.GateCalibration#qiskit.qobj.GateCalibration "qiskit.qobj.GateCalibration")*)*) –
 
-<span id="undefined" />
+
 
 `__init__(gates)`
 
@@ -32,7 +32,7 @@ Initialize a container for calibrations.
 | [`from_dict`](#qiskit.qobj.QasmExperimentCalibrations.from_dict "qiskit.qobj.QasmExperimentCalibrations.from_dict")(data) | Create a new GateCalibration object from a dictionary.         |
 | [`to_dict`](#qiskit.qobj.QasmExperimentCalibrations.to_dict "qiskit.qobj.QasmExperimentCalibrations.to_dict")()           | Return a dictionary format representation of the calibrations. |
 
-<span id="undefined" />
+
 
 `classmethod from_dict(data)`
 
@@ -50,7 +50,7 @@ The QasmExperimentCalibrations from the input dictionary.
 
 [QasmExperimentCalibrations](#qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")
 
-<span id="undefined" />
+
 
 `to_dict()`
 

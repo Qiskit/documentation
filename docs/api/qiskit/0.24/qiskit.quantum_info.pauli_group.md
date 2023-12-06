@@ -2,7 +2,7 @@
 
 # qiskit.quantum\_info.pauli\_group
 
-<span id="undefined" />
+
 
 `pauli_group(number_of_qubits, case='weight')`
 

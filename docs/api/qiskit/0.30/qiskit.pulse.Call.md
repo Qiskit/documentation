@@ -1,6 +1,6 @@
 # Call
 
-<span id="undefined" />
+
 
 `Call(subroutine, value_dict=None, name=None)`
 
@@ -44,7 +44,7 @@ Define new subroutine.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### arguments
 
@@ -54,7 +54,7 @@ Parameters dictionary to be assigned to subroutine.
 
 `Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]
 
-<span id="undefined" />
+
 
 ### channels
 
@@ -64,7 +64,7 @@ Returns the channels that this schedule uses.
 
 `Tuple`\[`Channel`]
 
-<span id="undefined" />
+
 
 ### duration
 
@@ -74,7 +74,7 @@ Duration of this instruction.
 
 `Union`\[`int`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 ### id
 
@@ -84,7 +84,7 @@ Unique identifier for this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 ### instructions
 
@@ -94,7 +94,7 @@ Iterable for getting instructions from Schedule tree.
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
-<span id="undefined" />
+
 
 ### name
 
@@ -104,7 +104,7 @@ Name of this instruction.
 
 `str`
 
-<span id="undefined" />
+
 
 ### operands
 
@@ -114,7 +114,7 @@ Return instruction operands.
 
 `Tuple`
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -124,13 +124,13 @@ Unassigned parameters which determine the instruction behavior.
 
 `Set`
 
-<span id="undefined" />
+
 
 ### prefix
 
 `= 'call'`
 
-<span id="undefined" />
+
 
 ### start\_time
 
@@ -140,7 +140,7 @@ Relative begin time of this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 ### stop\_time
 
@@ -150,7 +150,7 @@ Relative end time of this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 ### subroutine
 

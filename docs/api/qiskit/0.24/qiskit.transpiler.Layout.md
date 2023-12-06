@@ -2,7 +2,7 @@
 
 # qiskit.transpiler.Layout
 
-<span id="undefined" />
+
 
 `Layout(input_dict=None)`
 
@@ -10,7 +10,7 @@ Two-ways dict to represent a Layout.
 
 construct a Layout from a bijective dictionary, mapping virtual qubits to physical qubits
 
-<span id="undefined" />
+
 
 `__init__(input_dict=None)`
 
@@ -36,7 +36,7 @@ construct a Layout from a bijective dictionary, mapping virtual qubits to physic
 | [`reorder_bits`](#qiskit.transpiler.Layout.reorder_bits "qiskit.transpiler.Layout.reorder_bits")(bits)                                       | Given an ordered list of bits, reorder them according to this layout.                                                                               |
 | [`swap`](#qiskit.transpiler.Layout.swap "qiskit.transpiler.Layout.swap")(left, right)                                                        | Swaps the map between left and right.                                                                                                               |
 
-<span id="undefined" />
+
 
 `add(virtual_bit, physical_bit=None)`
 
@@ -47,7 +47,7 @@ Adds a map element between bit and physical\_bit. If physical\_bit is not define
 *   **virtual\_bit** (*tuple*) – A (qu)bit. For example, (QuantumRegister(3, ‘qr’), 2).
 *   **physical\_bit** (*int*) – A physical bit. For example, 3.
 
-<span id="undefined" />
+
 
 `add_register(reg)`
 
@@ -57,7 +57,7 @@ Adds at the end physical\_qubits that map each bit in reg.
 
 **reg** (*Register*) – A (qu)bit Register. For example, QuantumRegister(3, ‘qr’).
 
-<span id="undefined" />
+
 
 `combine_into_edge_map(another_layout)`
 
@@ -90,13 +90,13 @@ dict
 
 **LayoutError** – another\_layout can be bigger than self, but not smaller. Otherwise, raises.
 
-<span id="undefined" />
+
 
 `copy()`
 
 Returns a copy of a Layout instance.
 
-<span id="undefined" />
+
 
 `from_dict(input_dict)`
 
@@ -130,7 +130,7 @@ Can be written more concisely as follows:
      2: qr[2]}
 ```
 
-<span id="undefined" />
+
 
 `static from_intlist(int_list, *qregs)`
 
@@ -153,7 +153,7 @@ The corresponding Layout object.
 
 **LayoutError** – Invalid input layout.
 
-<span id="undefined" />
+
 
 `static from_qubit_list(qubit_list)`
 
@@ -175,7 +175,7 @@ the corresponding Layout object
 
 **LayoutError** – If the elements are not Qubit or None
 
-<span id="undefined" />
+
 
 `static generate_trivial_layout(*regs)`
 
@@ -193,31 +193,31 @@ A layout with all the regs in the given order.
 
 [Layout](#qiskit.transpiler.Layout "qiskit.transpiler.Layout")
 
-<span id="undefined" />
+
 
 `get_physical_bits()`
 
 Returns the dictionary where the keys are physical (qu)bits and the values are virtual (qu)bits.
 
-<span id="undefined" />
+
 
 `get_registers()`
 
 Returns the registers in the layout \[QuantumRegister(2, ‘qr0’), QuantumRegister(3, ‘qr1’)] :returns: A list of Register in the layout :rtype: List
 
-<span id="undefined" />
+
 
 `get_virtual_bits()`
 
 Returns the dictionary where the keys are virtual (qu)bits and the values are physical (qu)bits.
 
-<span id="undefined" />
+
 
 `static order_based_on_type(value1, value2)`
 
 decides which one is physical/virtual based on the type. Returns (virtual, physical)
 
-<span id="undefined" />
+
 
 `reorder_bits(bits)`
 
@@ -237,7 +237,7 @@ ordered bits.
 
 List
 
-<span id="undefined" />
+
 
 `swap(left, right)`
 

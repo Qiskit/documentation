@@ -1,6 +1,6 @@
 # qiskit.providers.aer.library.save\_clifford
 
-<span id="undefined" />
+
 
 `save_clifford(self, label='clifford', pershot=False)`
 

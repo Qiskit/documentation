@@ -1,6 +1,6 @@
 # DAGCircuit
 
-<span id="undefined" />
+
 
 `DAGCircuit`
 
@@ -81,7 +81,7 @@ Create an empty circuit.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### calibrations
 
@@ -91,19 +91,19 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-<span id="undefined" />
+
 
 ### global\_phase
 
 Return the global phase of the circuit.
 
-<span id="undefined" />
+
 
 ### node\_counter
 
 Returns the number of nodes in the dag.
 
-<span id="undefined" />
+
 
 ### wires
 

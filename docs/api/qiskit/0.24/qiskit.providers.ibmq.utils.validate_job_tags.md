@@ -2,7 +2,7 @@
 
 # qiskit.providers.ibmq.utils.validate\_job\_tags
 
-<span id="undefined" />
+
 
 `validate_job_tags(job_tags, exception)`
 

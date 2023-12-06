@@ -1,6 +1,6 @@
 # MatrixOp
 
-<span id="undefined" />
+
 
 `MatrixOp(primitive, coeff=1.0)`
 
@@ -37,13 +37,13 @@ Class for Operators represented by matrices, backed by Terra’s `Operator` modu
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### INDENTATION
 
 `= ' '`
 
-<span id="undefined" />
+
 
 ### coeff
 
@@ -57,7 +57,7 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
-<span id="undefined" />
+
 
 ### instance\_id
 
@@ -67,7 +67,7 @@ Return the unique instance id.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -75,11 +75,11 @@ Return the unique instance id.
 
 `int`
 
-<span id="undefined" />
+
 
 ### parameters
 
-<span id="undefined" />
+
 
 ### primitive
 
@@ -95,7 +95,7 @@ The primitive defining the underlying function of the Operator.
 
 The primitive object.
 
-<span id="undefined" />
+
 
 ### settings
 

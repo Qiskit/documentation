@@ -1,6 +1,6 @@
 # ManagedJob
 
-<span id="undefined" />
+
 
 `ManagedJob(start_index, experiments_count, job=None)`
 

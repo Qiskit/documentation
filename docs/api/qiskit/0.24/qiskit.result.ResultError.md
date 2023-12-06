@@ -2,7 +2,7 @@
 
 # qiskit.result.ResultError
 
-<span id="undefined" />
+
 
 `ResultError(error)`
 
@@ -24,7 +24,7 @@ error = {'status': 403,
 
 Set the error message.
 
-<span id="undefined" />
+
 
 `with_traceback()`
 

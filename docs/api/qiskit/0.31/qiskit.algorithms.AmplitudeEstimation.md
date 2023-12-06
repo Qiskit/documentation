@@ -1,6 +1,6 @@
 # AmplitudeEstimation
 
-<span id="undefined" />
+
 
 `AmplitudeEstimation(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None)`
 
@@ -51,7 +51,7 @@ Iterative Quantum Amplitude Estimation. [arXiv:1912.05559](https://arxiv.org/abs
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 

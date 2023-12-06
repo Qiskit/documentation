@@ -1,6 +1,6 @@
 # qiskit.optimization.algorithms.SlsqpOptimizationResult
 
-<span id="undefined" />
+
 
 `SlsqpOptimizationResult(x, fval, variables, status, fx=None, its=None, imode=None, smode=None)`
 
@@ -19,7 +19,7 @@ Constructs a result object with properties specific to SLSQP.
 *   **smode** (`Optional`\[`str`]) – Message describing the exit mode from the optimizer.
 *   **status** (`OptimizationResultStatus`) – the termination status of the optimization algorithm.
 
-<span id="undefined" />
+
 
 `__init__(x, fval, variables, status, fx=None, its=None, imode=None, smode=None)`
 
@@ -59,7 +59,7 @@ Constructs a result object with properties specific to SLSQP.
 | [`variables_dict`](#qiskit.optimization.algorithms.SlsqpOptimizationResult.variables_dict "qiskit.optimization.algorithms.SlsqpOptimizationResult.variables_dict") | Returns the optimal value as a dictionary of the variable name and corresponding value. |
 | [`x`](#qiskit.optimization.algorithms.SlsqpOptimizationResult.x "qiskit.optimization.algorithms.SlsqpOptimizationResult.x")                                        | Returns the optimal value found in the optimization or None in case of FAILURE.         |
 
-<span id="undefined" />
+
 
 `property fval`
 
@@ -73,7 +73,7 @@ Returns the optimal function value.
 
 The function value corresponding to the optimal value found in the optimization.
 
-<span id="undefined" />
+
 
 `property fx`
 
@@ -83,7 +83,7 @@ Returns the final value of the objective function being actually optimized.
 
 `Optional`\[`ndarray`]
 
-<span id="undefined" />
+
 
 `property imode`
 
@@ -93,7 +93,7 @@ Returns the exit mode from the optimizer.
 
 `Optional`\[`int`]
 
-<span id="undefined" />
+
 
 `property its`
 
@@ -103,7 +103,7 @@ Returns the number of iterations
 
 `Optional`\[`int`]
 
-<span id="undefined" />
+
 
 `property raw_results`
 
@@ -119,7 +119,7 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
-<span id="undefined" />
+
 
 `property samples`
 
@@ -133,7 +133,7 @@ Returns the list of solution samples
 
 The list of solution samples.
 
-<span id="undefined" />
+
 
 `property smode`
 
@@ -143,7 +143,7 @@ Returns message describing the exit mode from the optimizer.
 
 `Optional`\[`str`]
 
-<span id="undefined" />
+
 
 `property status`
 
@@ -157,7 +157,7 @@ Returns the termination status of the optimization algorithm.
 
 The termination status of the algorithm.
 
-<span id="undefined" />
+
 
 `property variable_names`
 
@@ -171,7 +171,7 @@ Returns the list of variable names of the optimization problem.
 
 The list of variable names of the optimization problem.
 
-<span id="undefined" />
+
 
 `property variables`
 
@@ -185,7 +185,7 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
-<span id="undefined" />
+
 
 `property variables_dict`
 
@@ -199,7 +199,7 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 
 The optimal value as a dictionary of the variable name and corresponding value.
 
-<span id="undefined" />
+
 
 `property x`
 

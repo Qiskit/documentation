@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.hellinger\_fidelity
 
-<span id="undefined" />
+
 
 `hellinger_fidelity(dist_p, dist_q)`
 

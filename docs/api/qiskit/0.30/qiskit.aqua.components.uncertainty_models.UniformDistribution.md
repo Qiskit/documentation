@@ -1,6 +1,6 @@
 # UniformDistribution
 
-<span id="undefined" />
+
 
 `UniformDistribution(num_target_qubits, low=0, high=1)`
 
@@ -36,37 +36,37 @@ Uniform distribution is defined by the number of qubits that should be used to r
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### high
 
 returns high
 
-<span id="undefined" />
+
 
 ### low
 
 returns low
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 
 Returns the number of target qubits
 
-<span id="undefined" />
+
 
 ### num\_values
 
 returns number of values
 
-<span id="undefined" />
+
 
 ### probabilities
 
 returns probabilities
 
-<span id="undefined" />
+
 
 ### values
 

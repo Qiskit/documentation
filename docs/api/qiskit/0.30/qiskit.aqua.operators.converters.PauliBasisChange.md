@@ -1,6 +1,6 @@
 # PauliBasisChange
 
-<span id="undefined" />
+
 
 `PauliBasisChange(destination_basis=None, traverse=True, replacement_fn=None)`
 
@@ -42,7 +42,7 @@ This class uses the typical basis change method found in most Quantum Computing 
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### destination
 

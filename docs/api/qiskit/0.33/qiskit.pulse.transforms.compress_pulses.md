@@ -1,6 +1,6 @@
 # qiskit.pulse.transforms.compress\_pulses
 
-<span id="undefined" />
+
 
 `compress_pulses(schedules)`
 

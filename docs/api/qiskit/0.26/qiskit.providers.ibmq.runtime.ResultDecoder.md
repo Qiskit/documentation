@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.runtime.ResultDecoder
 
-<span id="undefined" />
+
 
 `ResultDecoder`
 
@@ -19,7 +19,7 @@ class MyResultDecoder(ResultDecoder):
 
 Users of your program will need to pass in the subclass when invoking [`qiskit.providers.ibmq.runtime.RuntimeJob.result()`](qiskit.providers.ibmq.runtime.RuntimeJob#qiskit.providers.ibmq.runtime.RuntimeJob.result "qiskit.providers.ibmq.runtime.RuntimeJob.result") or [`qiskit.providers.ibmq.runtime.IBMRuntimeService.run()`](qiskit.providers.ibmq.runtime.IBMRuntimeService#qiskit.providers.ibmq.runtime.IBMRuntimeService.run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run").
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -32,7 +32,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.providers.ibmq.runtime.ResultDecoder.__init__ "qiskit.providers.ibmq.runtime.ResultDecoder.__init__")() | Initialize self.        |
 | [`decode`](#qiskit.providers.ibmq.runtime.ResultDecoder.decode "qiskit.providers.ibmq.runtime.ResultDecoder.decode")(data)   | Decode the result data. |
 
-<span id="undefined" />
+
 
 `classmethod decode(data)`
 

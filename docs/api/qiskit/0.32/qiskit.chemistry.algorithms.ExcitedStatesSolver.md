@@ -1,6 +1,6 @@
 # ExcitedStatesSolver
 
-<span id="undefined" />
+
 
 `ExcitedStatesSolver`
 

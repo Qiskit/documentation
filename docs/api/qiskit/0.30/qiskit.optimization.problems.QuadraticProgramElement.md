@@ -1,6 +1,6 @@
 # QuadraticProgramElement
 
-<span id="undefined" />
+
 
 `QuadraticProgramElement(quadratic_program)`
 
@@ -20,7 +20,7 @@ Initialize object with parent QuadraticProgram.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### quadratic\_program
 

@@ -1,6 +1,6 @@
 # OrbitalOptimizationVQE
 
-<span id="undefined" />
+
 
 `OrbitalOptimizationVQE(transformation, solver, initial_point=None, orbital_rotation=None, bounds=None, iterative_oo=True, iterative_oo_iterations=2)`
 
@@ -32,7 +32,7 @@ A ground state calculation employing the OOVQE algorithm. The Variational Quantu
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### solver
 
@@ -42,7 +42,7 @@ Returns the minimum eigensolver or factory.
 
 `Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
 
-<span id="undefined" />
+
 
 ### transformation
 

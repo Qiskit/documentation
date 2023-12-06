@@ -1,6 +1,6 @@
 # qiskit.scheduler.ScheduleConfig
 
-<span id="undefined" />
+
 
 `ScheduleConfig(inst_map, meas_map, dt)`
 
@@ -14,7 +14,7 @@ Container for information needed to schedule a QuantumCircuit into a pulse Sched
 *   **meas\_map** (`List`\[`List`\[`int`]]) – A list of groups of qubits which have to be measured together.
 *   **dt** (`float`) – Sample duration.
 
-<span id="undefined" />
+
 
 `__init__(inst_map, meas_map, dt)`
 

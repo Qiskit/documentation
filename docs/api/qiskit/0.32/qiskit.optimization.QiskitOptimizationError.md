@@ -1,6 +1,6 @@
 # qiskit.optimization.QiskitOptimizationError
 
-<span id="undefined" />
+
 
 `QiskitOptimizationError(*message)`
 

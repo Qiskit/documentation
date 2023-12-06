@@ -2,7 +2,7 @@
 
 # qiskit.ignis.verification.calculate\_1q\_epc
 
-<span id="undefined" />
+
 
 `calculate_1q_epc(gate_per_cliff, epg_1q, qubit)`
 

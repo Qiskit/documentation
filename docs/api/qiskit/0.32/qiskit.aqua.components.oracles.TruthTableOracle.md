@@ -1,6 +1,6 @@
 # TruthTableOracle
 
-<span id="undefined" />
+
 
 `TruthTableOracle(bitmaps, optimization=False, mct_mode='basic')`
 
@@ -41,23 +41,23 @@ Regarding circuit optimization and mct usages, the truth table oracle is similar
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ancillary\_register
 
 returns ancillary register
 
-<span id="undefined" />
+
 
 ### circuit
 
-<span id="undefined" />
+
 
 ### output\_register
 
 returns output register
 
-<span id="undefined" />
+
 
 ### variable\_register
 

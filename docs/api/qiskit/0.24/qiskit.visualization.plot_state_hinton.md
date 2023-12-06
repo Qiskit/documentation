@@ -2,7 +2,7 @@
 
 # qiskit.visualization.plot\_state\_hinton
 
-<span id="undefined" />
+
 
 `plot_state_hinton(state, title='', figsize=None, ax_real=None, ax_imag=None, *, rho=None)`
 

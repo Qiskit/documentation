@@ -2,7 +2,7 @@
 
 # qiskit.quantum\_info.entropy
 
-<span id="undefined" />
+
 
 `entropy(state, base=2)`
 

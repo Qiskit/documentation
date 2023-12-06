@@ -1,6 +1,6 @@
 # Hessian
 
-<span id="undefined" />
+
 
 `Hessian(hess_method='param_shift', **kwargs)`
 
@@ -28,7 +28,7 @@ Compute the Hessian of an expected value.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### hess\_method
 

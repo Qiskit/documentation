@@ -1,6 +1,6 @@
 # VibronicStructureBase
 
-<span id="undefined" />
+
 
 `VibronicStructureBase(molecule)`
 

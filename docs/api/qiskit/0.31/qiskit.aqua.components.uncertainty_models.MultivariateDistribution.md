@@ -1,6 +1,6 @@
 # MultivariateDistribution
 
-<span id="undefined" />
+
 
 `MultivariateDistribution(num_qubits, probabilities=None, low=None, high=None)`
 
@@ -35,55 +35,55 @@ This module contains the definition of a base class for multivariate distributio
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### dimension
 
 returns dimensions
 
-<span id="undefined" />
+
 
 ### high
 
 returns high
 
-<span id="undefined" />
+
 
 ### low
 
 returns low
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 returns num qubits
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 
 Returns the number of target qubits
 
-<span id="undefined" />
+
 
 ### num\_values
 
 returns number of values
 
-<span id="undefined" />
+
 
 ### probabilities
 
 returns probabilities
 
-<span id="undefined" />
+
 
 ### probabilities\_vector
 
 returns probabilities vector
 
-<span id="undefined" />
+
 
 ### values
 

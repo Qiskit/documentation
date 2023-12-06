@@ -2,7 +2,7 @@
 
 # qiskit.chemistry.algorithms.pes\_samplers.WindowExtrapolator
 
-<span id="undefined" />
+
 
 `WindowExtrapolator(extrapolator=None, window=2)`
 
@@ -15,7 +15,7 @@ Constructor.
 *   **extrapolator** (`Union`\[`PolynomialExtrapolator`, `DifferentialExtrapolator`, `None`]) – ‘internal’ extrapolator that performs extrapolation on variational parameters based on data window
 *   **window** (`int`) – Number of previous points to use for extrapolation. A value of zero indicates that all previous points will be used for bootstrapping.
 
-<span id="undefined" />
+
 
 `__init__(extrapolator=None, window=2)`
 
@@ -41,7 +41,7 @@ Constructor.
 | [`extrapolator`](#qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.extrapolator "qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.extrapolator") | Returns the internal extrapolator. |
 | [`window`](#qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.window "qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.window")                   | Returns the size of the window.    |
 
-<span id="undefined" />
+
 
 `extrapolate(points, param_dict)`
 
@@ -60,7 +60,7 @@ Extrapolate at specified point of interest given a set of variational parameters
 
 Dictionary of variational parameters for extrapolated point(s).
 
-<span id="undefined" />
+
 
 `property extrapolator`
 
@@ -74,7 +74,7 @@ Returns the internal extrapolator.
 
 The internal extrapolator.
 
-<span id="undefined" />
+
 
 `static factory(mode, **kwargs)`
 
@@ -97,7 +97,7 @@ A newly created extrapolator instance.
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
 
-<span id="undefined" />
+
 
 `property window`
 

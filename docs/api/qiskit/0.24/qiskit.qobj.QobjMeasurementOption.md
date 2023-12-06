@@ -2,7 +2,7 @@
 
 # qiskit.qobj.QobjMeasurementOption
 
-<span id="undefined" />
+
 
 `QobjMeasurementOption(name, params=None)`
 
@@ -15,7 +15,7 @@ Instantiate a new QobjMeasurementOption object.
 *   **name** (*str*) – The name of the measurement option
 *   **params** (*list*) – The parameters of the measurement option.
 
-<span id="undefined" />
+
 
 `__init__(name, params=None)`
 
@@ -34,7 +34,7 @@ Instantiate a new QobjMeasurementOption object.
 | [`from_dict`](#qiskit.qobj.QobjMeasurementOption.from_dict "qiskit.qobj.QobjMeasurementOption.from_dict")(data)         | Create a new QobjMeasurementOption object from a dictionary.      |
 | [`to_dict`](#qiskit.qobj.QobjMeasurementOption.to_dict "qiskit.qobj.QobjMeasurementOption.to_dict")()                   | Return a dict format representation of the QobjMeasurementOption. |
 
-<span id="undefined" />
+
 
 `classmethod from_dict(data)`
 
@@ -52,7 +52,7 @@ The object from the input dictionary.
 
 [QobjMeasurementOption](#qiskit.qobj.QobjMeasurementOption "qiskit.qobj.QobjMeasurementOption")
 
-<span id="undefined" />
+
 
 `to_dict()`
 

@@ -1,6 +1,6 @@
 # ManagedJobSet
 
-<span id="undefined" />
+
 
 `ManagedJobSet(name=None, short_id=None)`
 

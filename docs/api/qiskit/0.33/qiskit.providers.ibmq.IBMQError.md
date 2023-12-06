@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.IBMQError
 
-<span id="undefined" />
+
 
 `IBMQError(*message)`
 

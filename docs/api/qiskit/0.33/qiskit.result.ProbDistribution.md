@@ -1,6 +1,6 @@
 # ProbDistribution
 
-<span id="undefined" />
+
 
 `ProbDistribution(data, shots=None)`
 

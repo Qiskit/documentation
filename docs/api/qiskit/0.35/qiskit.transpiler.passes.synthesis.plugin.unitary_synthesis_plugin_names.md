@@ -1,6 +1,6 @@
 # qiskit.transpiler.passes.synthesis.plugin.unitary\_synthesis\_plugin\_names
 
-<span id="undefined" />
+
 
 `unitary_synthesis_plugin_names()`
 

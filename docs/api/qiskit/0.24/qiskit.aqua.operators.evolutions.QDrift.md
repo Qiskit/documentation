@@ -2,7 +2,7 @@
 
 # qiskit.aqua.operators.evolutions.QDrift
 
-<span id="undefined" />
+
 
 `QDrift(reps=1)`
 
@@ -12,7 +12,7 @@ The QDrift Trotterization method, which selects each each term in the Trotteriza
 
 **reps** (`int`) – The number of times to repeat the Trotterization circuit.
 
-<span id="undefined" />
+
 
 `__init__(reps=1)`
 
@@ -33,7 +33,7 @@ The QDrift Trotterization method, which selects each each term in the Trotteriza
 | ------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
 | [`reps`](#qiskit.aqua.operators.evolutions.QDrift.reps "qiskit.aqua.operators.evolutions.QDrift.reps") | The number of repetitions to use in the Trotterization, improving the approximation accuracy. |
 
-<span id="undefined" />
+
 
 `convert(operator)`
 
@@ -55,7 +55,7 @@ The Operator approximating op\_sum’s evolution.
 
 **TypeError** – A non-SummedOps Operator is passed into `convert`.
 
-<span id="undefined" />
+
 
 `property reps`
 

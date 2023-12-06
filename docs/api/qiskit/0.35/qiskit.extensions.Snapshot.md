@@ -1,6 +1,6 @@
 # Snapshot
 
-<span id="undefined" />
+
 
 `Snapshot(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)`
 
@@ -41,7 +41,7 @@ Create new snapshot instruction.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### condition\_bits
 
@@ -51,61 +51,61 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-<span id="undefined" />
+
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+
 
 ### duration
 
 Get the duration.
 
-<span id="undefined" />
+
 
 ### label
 
 Return snapshot label
 
-<span id="undefined" />
+
 
 ### name
 
 Return the name.
 
-<span id="undefined" />
+
 
 ### num\_clbits
 
 Return the number of clbits.
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 Return the number of qubits.
 
-<span id="undefined" />
+
 
 ### params
 
 return instruction params.
 
-<span id="undefined" />
+
 
 ### snapshot\_type
 
 Return snapshot type
 
-<span id="undefined" />
+
 
 ### unit
 

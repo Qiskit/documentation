@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.utils.seconds\_to\_duration
 
-<span id="undefined" />
+
 
 `seconds_to_duration(seconds)`
 

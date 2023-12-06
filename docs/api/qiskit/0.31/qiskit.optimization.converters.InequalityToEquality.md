@@ -1,6 +1,6 @@
 # InequalityToEquality
 
-<span id="undefined" />
+
 
 `InequalityToEquality(mode='auto')`
 
@@ -42,7 +42,7 @@ To chose the type of slack variables. There are 3 options for mode.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### mode
 

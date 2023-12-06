@@ -1,6 +1,6 @@
 # qiskit.algorithms.AlgorithmError
 
-<span id="undefined" />
+
 
 `AlgorithmError(*message)`
 

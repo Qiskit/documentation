@@ -2,7 +2,7 @@
 
 # qiskit.providers.basicaer.UnitarySimulatorPy
 
-<span id="undefined" />
+
 
 `UnitarySimulatorPy(configuration=None, provider=None)`
 
@@ -21,7 +21,7 @@ This method should initialize the module and its configuration, and raise an exc
 
 **QiskitError** – if an error occurred when instantiating the backend.
 
-<span id="undefined" />
+
 
 `__init__(configuration=None, provider=None)`
 
@@ -60,7 +60,7 @@ This method should initialize the module and its configuration, and raise an exc
 | `DEFAULT_OPTIONS`       |   |
 | `MAX_QUBITS_MEMORY`     |   |
 
-<span id="undefined" />
+
 
 `configuration()`
 
@@ -74,7 +74,7 @@ the configuration for the backend.
 
 [BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
 
-<span id="undefined" />
+
 
 `name()`
 
@@ -88,7 +88,7 @@ the name of the backend.
 
 str
 
-<span id="undefined" />
+
 
 `properties()`
 
@@ -102,7 +102,7 @@ the configuration for the backend. If the backend does not support properties, i
 
 [BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
-<span id="undefined" />
+
 
 `provider()`
 
@@ -116,7 +116,7 @@ the Provider responsible for the backend.
 
 [BaseProvider](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
 
-<span id="undefined" />
+
 
 `run(qobj, backend_options=None)`
 
@@ -162,7 +162,7 @@ Example::
     }
 ```
 
-<span id="undefined" />
+
 
 `run_experiment(experiment)`
 
@@ -201,7 +201,7 @@ dict
 *   [**BasicAerError**](qiskit.providers.basicaer.BasicAerError#qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if the number of qubits in the circuit is greater than 24.
 *   **Note that the practical qubit limit is much lower than 24.** –
 
-<span id="undefined" />
+
 
 `status()`
 
@@ -215,7 +215,7 @@ the status of the backend.
 
 [BackendStatus](qiskit.providers.models.BackendStatus#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
 
-<span id="undefined" />
+
 
 `version()`
 

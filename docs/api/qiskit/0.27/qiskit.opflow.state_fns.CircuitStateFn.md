@@ -1,6 +1,6 @@
 # qiskit.opflow\.state\_fns.CircuitStateFn
 
-<span id="undefined" />
+
 
 `CircuitStateFn(primitive=None, coeff=1.0, is_measurement=False)`
 
@@ -16,7 +16,7 @@ A class for state functions and measurements which are defined by the action of 
 
 **TypeError** – Unsupported primitive, or primitive has ClassicalRegisters.
 
-<span id="undefined" />
+
 
 `__init__(primitive=None, coeff=1.0, is_measurement=False)`
 
@@ -75,7 +75,7 @@ A class for state functions and measurements which are defined by the action of 
 | [`parameters`](#qiskit.opflow.state_fns.CircuitStateFn.parameters "qiskit.opflow.state_fns.CircuitStateFn.parameters")             | Return a set of Parameter objects contained in the Operator.               |
 | [`primitive`](#qiskit.opflow.state_fns.CircuitStateFn.primitive "qiskit.opflow.state_fns.CircuitStateFn.primitive")                | The primitive which defines the behavior of the underlying State function. |
 
-<span id="undefined" />
+
 
 `add(other)`
 
@@ -93,7 +93,7 @@ Return Operator addition of self and other, overloaded by `+`.
 
 An `OperatorBase` equivalent to the sum of self and other.
 
-<span id="undefined" />
+
 
 `adjoint()`
 
@@ -107,7 +107,7 @@ Return a new Operator equal to the Operator’s adjoint (conjugate transpose), o
 
 An `OperatorBase` equivalent to the adjoint of self.
 
-<span id="undefined" />
+
 
 `assign_parameters(param_dict)`
 
@@ -125,7 +125,7 @@ Binds scalar values to any Terra `Parameters` in the coefficients or primitives 
 
 The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
 
-<span id="undefined" />
+
 
 `bind_parameters(param_dict)`
 
@@ -135,7 +135,7 @@ Same as assign\_parameters, but maintained for consistency with QuantumCircuit i
 
 `OperatorBase`
 
-<span id="undefined" />
+
 
 `property coeff`
 
@@ -145,7 +145,7 @@ A coefficient by which the state function is multiplied.
 
 `Union`\[`complex`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `compose(other, permutation=None, front=False)`
 
@@ -169,7 +169,7 @@ An Operator equivalent to the function composition of self and other.
 
 **ValueError** – If self is not a measurement, it cannot be composed from the right.
 
-<span id="undefined" />
+
 
 `copy()`
 
@@ -179,7 +179,7 @@ Return a deep copy of the Operator.
 
 `OperatorBase`
 
-<span id="undefined" />
+
 
 `equals(other)`
 
@@ -197,7 +197,7 @@ Evaluate Equality between Operators, overloaded by `==`. Only returns True if se
 
 A bool equal to the equality of self and other.
 
-<span id="undefined" />
+
 
 `eval(front=None)`
 
@@ -217,7 +217,7 @@ If `front` is None, the matrix-representation of the operator is returned.
 
 The output of the Operator’s evaluation function. If self is a `StateFn`, the result is a float or complex. If self is an Operator (`PrimitiveOp, ComposedOp, SummedOp, EvolvedOp,` etc.), the result is a StateFn. If `front` is None, the matrix-representation of the operator is returned, which is a `MatrixOp` for the operators and a `VectorStateFn` for state-functions. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
 
-<span id="undefined" />
+
 
 `static from_dict(density_dict)`
 
@@ -235,7 +235,7 @@ Construct the CircuitStateFn from a dict mapping strings to probability densitie
 
 The CircuitStateFn created from the dict.
 
-<span id="undefined" />
+
 
 `static from_vector(statevector)`
 
@@ -253,7 +253,7 @@ Construct the CircuitStateFn from a vector representing the statevector.
 
 The CircuitStateFn created from the vector.
 
-<span id="undefined" />
+
 
 `property instance_id`
 
@@ -263,7 +263,7 @@ Return the unique instance id.
 
 `int`
 
-<span id="undefined" />
+
 
 `property is_measurement`
 
@@ -273,7 +273,7 @@ Whether the StateFn object is a measurement Operator.
 
 `bool`
 
-<span id="undefined" />
+
 
 `mul(scalar)`
 
@@ -291,7 +291,7 @@ Returns the scalar multiplication of the Operator, overloaded by `*`, including 
 
 An `OperatorBase` equivalent to product of self and scalar.
 
-<span id="undefined" />
+
 
 `neg()`
 
@@ -305,7 +305,7 @@ Return the Operator’s negation, effectively just multiplying by -1.0, overload
 
 An `OperatorBase` equivalent to the negation of self.
 
-<span id="undefined" />
+
 
 `property num_qubits`
 
@@ -319,13 +319,13 @@ The number of qubits over which the Operator is defined. If `op.num_qubits == 5`
 
 The number of qubits accepted by the Operator’s underlying function.
 
-<span id="undefined" />
+
 
 `property parameters`
 
 Return a set of Parameter objects contained in the Operator.
 
-<span id="undefined" />
+
 
 `permute(permutation)`
 
@@ -343,7 +343,7 @@ Permute the qubits of the circuit.
 
 A new CircuitStateFn containing the permuted circuit.
 
-<span id="undefined" />
+
 
 `power(exponent)`
 
@@ -361,13 +361,13 @@ Compose with Self Multiple Times, undefined for StateFns.
 
 `OperatorBase`
 
-<span id="undefined" />
+
 
 `property primitive`
 
 The primitive which defines the behavior of the underlying State function.
 
-<span id="undefined" />
+
 
 `primitive_strings()`
 
@@ -381,7 +381,7 @@ Return a set of strings describing the primitives contained in the Operator. For
 
 A set of strings describing the primitives contained within the Operator.
 
-<span id="undefined" />
+
 
 `reduce()`
 
@@ -395,7 +395,7 @@ Try collapsing the Operator structure, usually after some type of conversion, e.
 
 The reduced `OperatorBase`.
 
-<span id="undefined" />
+
 
 `sample(shots=1024, massive=False, reverse_endianness=False)`
 
@@ -405,7 +405,7 @@ Sample the state function as a normalized probability distribution. Returns dict
 
 `dict`
 
-<span id="undefined" />
+
 
 `tensor(other)`
 
@@ -427,7 +427,7 @@ Because Terra prints circuits and results with qubit 0 at the end of the string 
 
 An `OperatorBase` equivalent to the tensor product of self and other.
 
-<span id="undefined" />
+
 
 `tensorpower(other)`
 
@@ -445,7 +445,7 @@ Return tensor product with self multiple times, overloaded by `^`.
 
 An `OperatorBase` equivalent to the tensorpower of self by other.
 
-<span id="undefined" />
+
 
 `to_circuit(meas=False)`
 
@@ -455,7 +455,7 @@ Return QuantumCircuit representing StateFn
 
 `QuantumCircuit`
 
-<span id="undefined" />
+
 
 `to_circuit_op()`
 
@@ -465,7 +465,7 @@ Return `StateFnCircuit` corresponding to this StateFn.
 
 `OperatorBase`
 
-<span id="undefined" />
+
 
 `to_density_matrix(massive=False)`
 
@@ -475,13 +475,13 @@ Return numpy matrix of density operator, warn if more than 16 qubits to force th
 
 `ndarray`
 
-<span id="undefined" />
+
 
 `to_instruction()`
 
 Return Instruction corresponding to primitive.
 
-<span id="undefined" />
+
 
 `to_matrix(massive=False)`
 
@@ -495,7 +495,7 @@ Return NumPy representation of the Operator. Represents the evaluation of the Op
 
 The NumPy `ndarray` equivalent to this Operator.
 
-<span id="undefined" />
+
 
 `to_matrix_op(massive=False)`
 
@@ -513,7 +513,7 @@ Return a `VectorStateFn` for this `StateFn`.
 
 A VectorStateFn equivalent to self.
 
-<span id="undefined" />
+
 
 `to_spmatrix()`
 
@@ -527,7 +527,7 @@ Return SciPy sparse matrix representation of the Operator. Represents the evalua
 
 The SciPy `spmatrix` equivalent to this Operator.
 
-<span id="undefined" />
+
 
 `traverse(convert_fn, coeff=None)`
 

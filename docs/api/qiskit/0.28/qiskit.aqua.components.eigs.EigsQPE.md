@@ -1,6 +1,6 @@
 # qiskit.aqua.components.eigs.EigsQPE
 
-<span id="undefined" />
+
 
 `EigsQPE(operator, iqft, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=None, negative_evals=False, ne_qfts=None)`
 
@@ -20,7 +20,7 @@ Specifically, this class is based on PhaseEstimationCircuit with no measurements
 *   **negative\_evals** (`bool`) – Set `True` to indicate negative eigenvalues need to be handled
 *   **ne\_qfts** (`Optional`\[`List`]) – The QFT and IQFT circuits for handling negative eigenvalues
 
-<span id="undefined" />
+
 
 `__init__(operator, iqft, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=None, negative_evals=False, ne_qfts=None)`
 
@@ -46,7 +46,7 @@ Specifically, this class is based on PhaseEstimationCircuit with no measurements
 | [`get_register_sizes`](#qiskit.aqua.components.eigs.EigsQPE.get_register_sizes "qiskit.aqua.components.eigs.EigsQPE.get_register_sizes")()               | get register sizes                                                    |
 | [`get_scaling`](#qiskit.aqua.components.eigs.EigsQPE.get_scaling "qiskit.aqua.components.eigs.EigsQPE.get_scaling")()                                    | get scaling                                                           |
 
-<span id="undefined" />
+
 
 `construct_circuit(mode, register=None)`
 
@@ -69,7 +69,7 @@ object for the constructed circuit
 
 **ValueError** – QPE is only possible as a circuit not as a matrix
 
-<span id="undefined" />
+
 
 `construct_inverse(mode, circuit)`
 
@@ -95,13 +95,13 @@ circuit.
 *   **NotImplementedError** – not implemented for matrix mode
 *   **ValueError** – Circuit was not constructed beforehand
 
-<span id="undefined" />
+
 
 `get_register_sizes()`
 
 get register sizes
 
-<span id="undefined" />
+
 
 `get_scaling()`
 

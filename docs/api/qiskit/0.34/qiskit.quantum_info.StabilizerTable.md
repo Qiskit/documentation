@@ -1,6 +1,6 @@
 # StabilizerTable
 
-<span id="undefined" />
+
 
 `StabilizerTable(data, phase=None)`
 
@@ -118,55 +118,55 @@ The input array is not copied so multiple Pauli and Stabilizer tables can share 
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### X
 
 The X block of the [`array`](#qiskit.quantum_info.StabilizerTable.array "qiskit.quantum_info.StabilizerTable.array").
 
-<span id="undefined" />
+
 
 ### Z
 
 The Z block of the [`array`](#qiskit.quantum_info.StabilizerTable.array "qiskit.quantum_info.StabilizerTable.array").
 
-<span id="undefined" />
+
 
 ### array
 
 The underlying boolean array.
 
-<span id="undefined" />
+
 
 ### dim
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+
 
 ### pauli
 
 Return PauliTable
 
-<span id="undefined" />
+
 
 ### phase
 
 Return phase vector
 
-<span id="undefined" />
+
 
 ### qargs
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+
 
 ### settings
 
@@ -176,13 +176,13 @@ Return settings.
 
 `Dict`
 
-<span id="undefined" />
+
 
 ### shape
 
 The full shape of the [`array()`](#qiskit.quantum_info.StabilizerTable.array "qiskit.quantum_info.StabilizerTable.array")
 
-<span id="undefined" />
+
 
 ### size
 

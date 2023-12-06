@@ -1,6 +1,6 @@
 # qiskit.pulse.transforms.remove\_trivial\_barriers
 
-<span id="undefined" />
+
 
 `remove_trivial_barriers(schedule)`
 

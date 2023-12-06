@@ -1,6 +1,6 @@
 # NumPyEigensolverFactory
 
-<span id="undefined" />
+
 
 `NumPyEigensolverFactory(filter_criterion=None, k=100, use_default_filter_criterion=False)`
 
@@ -23,7 +23,7 @@ A factory to construct a NumPyEigensolver.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### filter\_criterion
 
@@ -33,7 +33,7 @@ returns filter criterion
 
 `Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]
 
-<span id="undefined" />
+
 
 ### k
 
@@ -43,7 +43,7 @@ returns k (number of eigenvalues requested)
 
 `int`
 
-<span id="undefined" />
+
 
 ### use\_default\_filter\_criterion
 

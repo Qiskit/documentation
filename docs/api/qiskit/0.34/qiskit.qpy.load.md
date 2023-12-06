@@ -1,6 +1,6 @@
 # qiskit.qpy.load
 
-<span id="undefined" />
+
 
 `load(file_obj, metadata_deserializer=None)`
 

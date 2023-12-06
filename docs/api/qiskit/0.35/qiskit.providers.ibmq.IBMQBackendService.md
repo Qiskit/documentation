@@ -1,6 +1,6 @@
 # IBMQBackendService
 
-<span id="undefined" />
+
 
 `IBMQBackendService(provider)`
 

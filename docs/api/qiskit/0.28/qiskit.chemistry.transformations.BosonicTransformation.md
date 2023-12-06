@@ -1,6 +1,6 @@
 # qiskit.chemistry.transformations.BosonicTransformation
 
-<span id="undefined" />
+
 
 `BosonicTransformation(qubit_mapping=<BosonicQubitMappingType.DIRECT: 'direct'>, transformation_type=<BosonicTransformationType.HARMONIC: 'harmonic'>, basis_size=2, truncation=3)`
 
@@ -13,7 +13,7 @@ A vibronic Hamiltonian operator representing the energy of the nuclei in the mol
 *   **basis\_size** (`Union`\[`int`, `List`\[`int`]]) – define the number of modals per mode. If the number of modals is the same for each mode, then only an int is required. However, if the number of modals differ depending on the mode basis\_size should be a list of int, for example: \[3,4] means 2 modes: first mode has 3 modals, second mode has 4 modals.
 *   **truncation** (`int`) – where is the Hamiltonian expansion truncation (1 for having only 1-body terms, 2 for having on 1- and 2-body terms…)
 
-<span id="undefined" />
+
 
 `__init__(qubit_mapping=<BosonicQubitMappingType.DIRECT: 'direct'>, transformation_type=<BosonicTransformationType.HARMONIC: 'harmonic'>, basis_size=2, truncation=3)`
 
@@ -43,7 +43,7 @@ A vibronic Hamiltonian operator representing the energy of the nuclei in the mol
 | [`num_modes`](#qiskit.chemistry.transformations.BosonicTransformation.num_modes "qiskit.chemistry.transformations.BosonicTransformation.num_modes")                            | the number of modes                           |
 | [`untapered_qubit_op`](#qiskit.chemistry.transformations.BosonicTransformation.untapered_qubit_op "qiskit.chemistry.transformations.BosonicTransformation.untapered_qubit_op") | Getter for the untapered qubit operator       |
 
-<span id="undefined" />
+
 
 `property basis`
 
@@ -53,7 +53,7 @@ returns the basis (number of modals per mode)
 
 `Union`\[`int`, `List`\[`int`]]
 
-<span id="undefined" />
+
 
 `build_hopping_operators(excitations='sd')`
 
@@ -69,7 +69,7 @@ returns the basis (number of modals per mode)
 
 Dict of hopping operators, dict of commutativity types and dict of excitation indices
 
-<span id="undefined" />
+
 
 `property commutation_rule`
 
@@ -79,7 +79,7 @@ Getter of the commutation rule
 
 `bool`
 
-<span id="undefined" />
+
 
 `get_default_filter_criterion()`
 
@@ -89,7 +89,7 @@ Returns a default filter criterion method to filter the eigenvalues computed by 
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
 
-<span id="undefined" />
+
 
 `interpret(raw_result)`
 
@@ -107,7 +107,7 @@ Interprets an EigenstateResult in the context of this transformation.
 
 An vibronic structure result.
 
-<span id="undefined" />
+
 
 `property num_modes`
 
@@ -121,7 +121,7 @@ Returns
 
 `int`
 
-<span id="undefined" />
+
 
 `transform(driver, aux_operators=None)`
 
@@ -140,7 +140,7 @@ Transformation to qubit operator from the driver
 
 qubit operator, auxiliary operators
 
-<span id="undefined" />
+
 
 `property untapered_qubit_op`
 

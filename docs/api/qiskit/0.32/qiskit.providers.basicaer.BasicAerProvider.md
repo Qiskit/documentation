@@ -1,6 +1,6 @@
 # BasicAerProvider
 
-<span id="undefined" />
+
 
 `BasicAerProvider`
 
@@ -17,7 +17,7 @@ Provider for Basic Aer backends.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### version
 

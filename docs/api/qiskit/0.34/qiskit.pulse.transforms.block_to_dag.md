@@ -1,6 +1,6 @@
 # qiskit.pulse.transforms.block\_to\_dag
 
-<span id="undefined" />
+
 
 `block_to_dag(block)`
 

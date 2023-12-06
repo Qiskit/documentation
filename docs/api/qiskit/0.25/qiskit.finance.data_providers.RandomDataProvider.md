@@ -1,6 +1,6 @@
 # qiskit.finance.data\_providers.RandomDataProvider
 
-<span id="undefined" />
+
 
 `RandomDataProvider(tickers=None, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0), seed=None)`
 
@@ -12,7 +12,7 @@ Initializer :type tickers: `Union`\[`str`, `List`\[`str`], `None`] :param ticker
 
 [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – Pandas not installed
 
-<span id="undefined" />
+
 
 `__init__(tickers=None, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0), seed=None)`
 
@@ -35,7 +35,7 @@ Initializer :type tickers: `Union`\[`str`, `List`\[`str`], `None`] :param ticker
 | [`get_similarity_matrix`](#qiskit.finance.data_providers.RandomDataProvider.get_similarity_matrix "qiskit.finance.data_providers.RandomDataProvider.get_similarity_matrix")()                                           | Returns time-series similarity matrix computed using dynamic time warping.                                                                                                                                                                                                               |
 | [`run`](#qiskit.finance.data_providers.RandomDataProvider.run "qiskit.finance.data_providers.RandomDataProvider.run")()                                                                                                 | Generates data pseudo-randomly, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.                                                                                                                                                             |
 
-<span id="undefined" />
+
 
 `get_coordinates()`
 
@@ -45,7 +45,7 @@ Returns random coordinates for visualisation purposes.
 
 `Tuple`\[`ndarray`, `ndarray`]
 
-<span id="undefined" />
+
 
 `get_covariance_matrix()`
 
@@ -63,7 +63,7 @@ an asset-to-asset covariance matrix.
 
 [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
-<span id="undefined" />
+
 
 `get_mean_vector()`
 
@@ -81,7 +81,7 @@ a per-asset mean vector.
 
 [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
-<span id="undefined" />
+
 
 `get_period_return_covariance_matrix()`
 
@@ -99,7 +99,7 @@ a per-asset mean vector.
 
 [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
-<span id="undefined" />
+
 
 `get_period_return_mean_vector()`
 
@@ -117,7 +117,7 @@ a per-asset mean vector.
 
 [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
-<span id="undefined" />
+
 
 `get_similarity_matrix()`
 
@@ -135,7 +135,7 @@ an asset-to-asset similarity matrix.
 
 [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
-<span id="undefined" />
+
 
 `run()`
 

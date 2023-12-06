@@ -1,6 +1,6 @@
 # qiskit.result.ResultError
 
-<span id="undefined" />
+
 
 `ResultError(error)`
 

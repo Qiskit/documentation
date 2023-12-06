@@ -1,6 +1,6 @@
 # IntegerToBinary
 
-<span id="undefined" />
+
 
 `IntegerToBinary`
 

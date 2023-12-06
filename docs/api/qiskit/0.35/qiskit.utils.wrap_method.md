@@ -1,6 +1,6 @@
 # qiskit.utils.wrap\_method
 
-<span id="undefined" />
+
 
 `wrap_method(cls, name, *, before=None, after=None)`
 

@@ -1,6 +1,6 @@
 # BosonicOperator
 
-<span id="undefined" />
+
 
 `BosonicOperator(h, basis)`
 

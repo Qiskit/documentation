@@ -1,6 +1,6 @@
 # qiskit.ignis.verification.rho\_to\_fidelity
 
-<span id="undefined" />
+
 
 `rho_to_fidelity(rho)`
 

@@ -32,31 +32,31 @@ Convert symmetric TSP instances into Pauli list Deal with TSPLIB format. It supp
 | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
 | [`TspData`](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")(name, dim, coord, w) | Create new instance of TspData(name, dim, coord, w) |
 
-<span id="undefined" />
+
 
 `TspData(name, dim, coord, w)`
 
 Create new instance of TspData(name, dim, coord, w)
 
-<span id="undefined" />
+
 
 `property coord`
 
 Alias for field number 2
 
-<span id="undefined" />
+
 
 `count(value, /)`
 
 Return number of occurrences of value.
 
-<span id="undefined" />
+
 
 `property dim`
 
 Alias for field number 1
 
-<span id="undefined" />
+
 
 `index(value, start=0, stop=9223372036854775807, /)`
 
@@ -64,25 +64,25 @@ Return first index of value.
 
 Raises ValueError if the value is not present.
 
-<span id="undefined" />
+
 
 `property name`
 
 Alias for field number 0
 
-<span id="undefined" />
+
 
 `property w`
 
 Alias for field number 3
 
-<span id="undefined" />
+
 
 `calc_distance(coord, name='tmp')`
 
 calculate distance
 
-<span id="undefined" />
+
 
 `get_operator(ins, penalty=100000.0)`
 
@@ -101,7 +101,7 @@ operator for the Hamiltonian and a constant shift for the obj function.
 
 tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
 
-<span id="undefined" />
+
 
 `get_tsp_solution(x)`
 
@@ -125,7 +125,7 @@ list\[int]
 
 Instance data of TSP
 
-<span id="undefined" />
+
 
 `parse_tsplib_format(filename)`
 
@@ -143,7 +143,7 @@ instance data.
 
 [TspData](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")
 
-<span id="undefined" />
+
 
 `random_tsp(n, low=0, high=100, savefile=None, seed=None, name='tmp')`
 
@@ -166,7 +166,7 @@ instance data.
 
 [TspData](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")
 
-<span id="undefined" />
+
 
 `tsp_feasible(x)`
 
@@ -184,7 +184,7 @@ feasible or not.
 
 bool
 
-<span id="undefined" />
+
 
 `tsp_value(z, w)`
 

@@ -1,6 +1,6 @@
 # MolecularGroundStateResult
 
-<span id="undefined" />
+
 
 `MolecularGroundStateResult(a_dict=None)`
 
@@ -31,7 +31,7 @@ Energies are in Hartree and dipole moments in A.U unless otherwise stated.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### algorithm\_result
 
@@ -41,7 +41,7 @@ Returns raw algorithm result
 
 `AlgorithmResult`
 
-<span id="undefined" />
+
 
 ### computed\_dipole\_moment
 
@@ -51,7 +51,7 @@ Returns computed electronic part of dipole moment
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
 
-<span id="undefined" />
+
 
 ### computed\_electronic\_energy
 
@@ -61,7 +61,7 @@ Returns computed electronic part of ground state energy
 
 `float`
 
-<span id="undefined" />
+
 
 ### dipole\_moment
 
@@ -71,7 +71,7 @@ Returns dipole moment
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
 
-<span id="undefined" />
+
 
 ### dipole\_moment\_in\_debye
 
@@ -81,7 +81,7 @@ Returns dipole moment in Debye
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
 
-<span id="undefined" />
+
 
 ### electronic\_dipole\_moment
 
@@ -91,7 +91,7 @@ Returns electronic dipole moment
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
 
-<span id="undefined" />
+
 
 ### electronic\_energy
 
@@ -101,7 +101,7 @@ Returns electronic part of ground state energy
 
 `float`
 
-<span id="undefined" />
+
 
 ### energy
 
@@ -111,7 +111,7 @@ Returns ground state energy if nuclear\_repulsion\_energy is available from driv
 
 `Optional`\[`float`]
 
-<span id="undefined" />
+
 
 ### formatted
 
@@ -121,7 +121,7 @@ Formatted result as a list of strings
 
 `List`\[`str`]
 
-<span id="undefined" />
+
 
 ### frozen\_extracted\_dipole\_moment
 
@@ -131,7 +131,7 @@ Returns frozen extracted part of dipole moment
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
 
-<span id="undefined" />
+
 
 ### frozen\_extracted\_energy
 
@@ -141,7 +141,7 @@ Returns frozen extracted part of ground state energy
 
 `float`
 
-<span id="undefined" />
+
 
 ### hartree\_fock\_energy
 
@@ -151,7 +151,7 @@ Returns Hartree-Fock energy
 
 `float`
 
-<span id="undefined" />
+
 
 ### magnetization
 
@@ -161,7 +161,7 @@ Returns measured magnetization
 
 `Optional`\[`float`]
 
-<span id="undefined" />
+
 
 ### nuclear\_dipole\_moment
 
@@ -171,7 +171,7 @@ Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
 
-<span id="undefined" />
+
 
 ### nuclear\_repulsion\_energy
 
@@ -181,7 +181,7 @@ Returns nuclear repulsion energy when available from driver
 
 `Optional`\[`float`]
 
-<span id="undefined" />
+
 
 ### num\_particles
 
@@ -191,7 +191,7 @@ Returns measured number of particles
 
 `Optional`\[`float`]
 
-<span id="undefined" />
+
 
 ### ph\_extracted\_dipole\_moment
 
@@ -201,7 +201,7 @@ Returns particle hole extracted part of dipole moment
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
 
-<span id="undefined" />
+
 
 ### ph\_extracted\_energy
 
@@ -211,7 +211,7 @@ Returns particle hole extracted part of ground state energy
 
 `float`
 
-<span id="undefined" />
+
 
 ### reverse\_dipole\_sign
 
@@ -221,7 +221,7 @@ Returns if electronic dipole moment sign should be reversed when adding to nucle
 
 `bool`
 
-<span id="undefined" />
+
 
 ### spin
 
@@ -231,7 +231,7 @@ Returns computed spin
 
 `Optional`\[`float`]
 
-<span id="undefined" />
+
 
 ### total\_angular\_momentum
 
@@ -241,7 +241,7 @@ Returns total angular momentum (S^2)
 
 `Optional`\[`float`]
 
-<span id="undefined" />
+
 
 ### total\_dipole\_moment
 
@@ -251,7 +251,7 @@ Returns total dipole of moment
 
 `Optional`\[`float`]
 
-<span id="undefined" />
+
 
 ### total\_dipole\_moment\_in\_debye
 

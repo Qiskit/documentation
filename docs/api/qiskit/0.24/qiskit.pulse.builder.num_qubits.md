@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.num\_qubits
 
-<span id="undefined" />
+
 
 `num_qubits()`
 

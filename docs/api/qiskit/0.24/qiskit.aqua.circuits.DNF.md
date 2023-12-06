@@ -2,7 +2,7 @@
 
 # qiskit.aqua.circuits.DNF
 
-<span id="undefined" />
+
 
 `DNF(ast, num_vars=None)`
 
@@ -19,7 +19,7 @@ Constructor.
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
 
-<span id="undefined" />
+
 
 `__init__(ast, num_vars=None)`
 
@@ -53,25 +53,25 @@ Constructor.
 | [`output_register`](#qiskit.aqua.circuits.DNF.output_register "qiskit.aqua.circuits.DNF.output_register")          | returns output register    |
 | [`variable_register`](#qiskit.aqua.circuits.DNF.variable_register "qiskit.aqua.circuits.DNF.variable_register")    | returns variable register  |
 
-<span id="undefined" />
+
 
 `property ancillary_register`
 
 returns ancillary register
 
-<span id="undefined" />
+
 
 `property clause_register`
 
 returns clause register
 
-<span id="undefined" />
+
 
 `compute_num_ancillae(mct_mode='basic')`
 
 returns the number of ancillary qubits needed
 
-<span id="undefined" />
+
 
 `construct_circuit(circuit=None, variable_register=None, clause_register=None, output_register=None, ancillary_register=None, mct_mode='basic')`
 
@@ -98,25 +98,25 @@ quantum circuit.
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
 
-<span id="undefined" />
+
 
 `property num_clauses`
 
 returns num clauses
 
-<span id="undefined" />
+
 
 `property num_variables`
 
 return num variables
 
-<span id="undefined" />
+
 
 `property output_register`
 
 returns output register
 
-<span id="undefined" />
+
 
 `property variable_register`
 

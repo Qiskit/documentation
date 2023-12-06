@@ -2,7 +2,7 @@
 
 # qiskit.providers.ibmq.AccountProvider
 
-<span id="undefined" />
+
 
 `AccountProvider(credentials, access_token)`
 
@@ -59,7 +59,7 @@ AccountProvider constructor.
 *   **credentials** (`Credentials`) – IBM Quantum Experience credentials.
 *   **access\_token** (`str`) – IBM Quantum Experience access token.
 
-<span id="undefined" />
+
 
 `__init__(credentials, access_token)`
 
@@ -89,7 +89,7 @@ AccountProvider constructor.
 | [`random`](#qiskit.providers.ibmq.AccountProvider.random "qiskit.providers.ibmq.AccountProvider.random")             | Return the random number service. |
 | `version`                                                                                                            |                                   |
 
-<span id="undefined" />
+
 
 `property backend`
 
@@ -103,7 +103,7 @@ Return the backend service.
 
 The backend service instance.
 
-<span id="undefined" />
+
 
 `backends(name=None, filters=None, **kwargs)`
 
@@ -137,7 +137,7 @@ Return all backends accessible via this provider, subject to optional filtering.
 
 The list of available backends that match the filter.
 
-<span id="undefined" />
+
 
 `property experiment`
 
@@ -155,7 +155,7 @@ The experiment service instance.
 
 **IBMQNotAuthorizedError** – If the account is not authorized to use the experiment service.
 
-<span id="undefined" />
+
 
 `get_backend(name=None, **kwargs)`
 
@@ -178,7 +178,7 @@ a backend matching the filtering.
 
 [**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError#qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
 
-<span id="undefined" />
+
 
 `property random`
 
@@ -196,7 +196,7 @@ The random number service instance.
 
 **IBMQNotAuthorizedError** – If the account is not authorized to use the service.
 
-<span id="undefined" />
+
 
 `service(name)`
 
@@ -219,7 +219,7 @@ The specified service.
 *   **IBMQInputValueError** – If an unknown service name is specified.
 *   **IBMQNotAuthorizedError** – If the account is not authorized to use the service.
 
-<span id="undefined" />
+
 
 `services()`
 

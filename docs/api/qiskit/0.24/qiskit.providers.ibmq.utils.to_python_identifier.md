@@ -2,7 +2,7 @@
 
 # qiskit.providers.ibmq.utils.to\_python\_identifier
 
-<span id="undefined" />
+
 
 `to_python_identifier(name)`
 

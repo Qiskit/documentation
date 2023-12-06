@@ -1,6 +1,6 @@
 # AmplitudeEstimationResult
 
-<span id="undefined" />
+
 
 `AmplitudeEstimationResult`
 
@@ -16,7 +16,7 @@ The `AmplitudeEstimation` result object.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### circuit\_results
 
@@ -26,7 +26,7 @@ Return the circuit results. Can be a statevector or counts dictionary.
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
 
-<span id="undefined" />
+
 
 ### confidence\_interval
 
@@ -36,7 +36,7 @@ Return the confidence interval for the amplitude (95% interval by default).
 
 `Tuple`\[`float`, `float`]
 
-<span id="undefined" />
+
 
 ### confidence\_interval\_processed
 
@@ -46,7 +46,7 @@ Return the post-processed confidence interval (95% interval by default).
 
 `Tuple`\[`float`, `float`]
 
-<span id="undefined" />
+
 
 ### estimation
 
@@ -56,7 +56,7 @@ Return the estimation for the amplitude in $[0, 1]$.
 
 `float`
 
-<span id="undefined" />
+
 
 ### estimation\_processed
 
@@ -66,7 +66,7 @@ Return the estimation for the amplitude after the post-processing has been appli
 
 `float`
 
-<span id="undefined" />
+
 
 ### max\_probability
 
@@ -76,7 +76,7 @@ Return the maximum sampling probability.
 
 `float`
 
-<span id="undefined" />
+
 
 ### measurements
 
@@ -86,7 +86,7 @@ Return the measurements as integers with their measurement probability.
 
 `Dict`\[`int`, `float`]
 
-<span id="undefined" />
+
 
 ### mle
 
@@ -96,7 +96,7 @@ Return the MLE for the amplitude, in $\[0, 1]\$.
 
 `float`
 
-<span id="undefined" />
+
 
 ### mle\_processed
 
@@ -106,7 +106,7 @@ Return the post-processed MLE for the amplitude.
 
 `float`
 
-<span id="undefined" />
+
 
 ### num\_evaluation\_qubits
 
@@ -116,7 +116,7 @@ Returns the number of evaluation qubits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_oracle\_queries
 
@@ -126,7 +126,7 @@ Return the number of Grover oracle queries.
 
 `int`
 
-<span id="undefined" />
+
 
 ### post\_processing
 
@@ -136,7 +136,7 @@ Return a handle to the post processing function.
 
 `Callable`\[\[`float`], `float`]
 
-<span id="undefined" />
+
 
 ### samples
 
@@ -146,7 +146,7 @@ Return the measurement samples with their measurement probability.
 
 `Dict`\[`float`, `float`]
 
-<span id="undefined" />
+
 
 ### samples\_processed
 
@@ -156,7 +156,7 @@ Return the post-processed measurement samples with their measurement probability
 
 `Dict`\[`float`, `float`]
 
-<span id="undefined" />
+
 
 ### shots
 

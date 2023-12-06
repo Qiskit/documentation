@@ -1,6 +1,6 @@
 # qiskit.ignis.characterization.update\_u\_gates
 
-<span id="undefined" />
+
 
 `update_u_gates(drag_params, pi2_pulse_schedules=None, qubits=None, inst_map=None, drives=None)`
 

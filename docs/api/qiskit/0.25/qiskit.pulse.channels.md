@@ -24,7 +24,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
 | [`RegisterSlot`](#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")(index)                       | Classical resister slot channels represent classical registers (low-latency classical memory). |
 | [`SnapshotChannel`](#qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel")(\*args, \*\*kwargs) | Snapshot channels are used to specify instructions for simulators.                             |
 
-<span id="undefined" />
+
 
 `AcquireChannel(index)`
 
@@ -36,7 +36,7 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
-<span id="undefined" />
+
 
 `assign(parameter, value)`
 
@@ -59,7 +59,7 @@ A new channel with updated parameters.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -69,7 +69,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
@@ -79,7 +79,7 @@ Return True iff the channel is parameterized.
 
 `bool`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -89,7 +89,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -99,7 +99,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-<span id="undefined" />
+
 
 `Channel(index)`
 
@@ -115,7 +115,7 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
-<span id="undefined" />
+
 
 `assign(parameter, value)`
 
@@ -138,7 +138,7 @@ A new channel with updated parameters.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -148,7 +148,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
@@ -158,7 +158,7 @@ Return True iff the channel is parameterized.
 
 `bool`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -168,7 +168,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -178,7 +178,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-<span id="undefined" />
+
 
 ### prefix
 
@@ -186,7 +186,7 @@ Parameters which determine the channel index.
 
 A shorthand string prefix for characterizing the channel type.
 
-<span id="undefined" />
+
 
 `ControlChannel(index)`
 
@@ -198,7 +198,7 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
-<span id="undefined" />
+
 
 `assign(parameter, value)`
 
@@ -221,7 +221,7 @@ A new channel with updated parameters.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -231,7 +231,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
@@ -241,7 +241,7 @@ Return True iff the channel is parameterized.
 
 `bool`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -251,7 +251,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -261,7 +261,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-<span id="undefined" />
+
 
 `DriveChannel(index)`
 
@@ -273,7 +273,7 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
-<span id="undefined" />
+
 
 `assign(parameter, value)`
 
@@ -296,7 +296,7 @@ A new channel with updated parameters.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -306,7 +306,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
@@ -316,7 +316,7 @@ Return True iff the channel is parameterized.
 
 `bool`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -326,7 +326,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -336,7 +336,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-<span id="undefined" />
+
 
 `MeasureChannel(index)`
 
@@ -348,7 +348,7 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
-<span id="undefined" />
+
 
 `assign(parameter, value)`
 
@@ -371,7 +371,7 @@ A new channel with updated parameters.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -381,7 +381,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
@@ -391,7 +391,7 @@ Return True iff the channel is parameterized.
 
 `bool`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -401,7 +401,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -411,7 +411,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-<span id="undefined" />
+
 
 `MemorySlot(index)`
 
@@ -423,7 +423,7 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
-<span id="undefined" />
+
 
 `assign(parameter, value)`
 
@@ -446,7 +446,7 @@ A new channel with updated parameters.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -456,7 +456,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
@@ -466,7 +466,7 @@ Return True iff the channel is parameterized.
 
 `bool`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -476,7 +476,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -486,7 +486,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-<span id="undefined" />
+
 
 `PulseChannel(index)`
 
@@ -498,7 +498,7 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
-<span id="undefined" />
+
 
 `assign(parameter, value)`
 
@@ -521,7 +521,7 @@ A new channel with updated parameters.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -531,7 +531,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
@@ -541,7 +541,7 @@ Return True iff the channel is parameterized.
 
 `bool`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -551,7 +551,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -561,7 +561,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-<span id="undefined" />
+
 
 `RegisterSlot(index)`
 
@@ -573,7 +573,7 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
-<span id="undefined" />
+
 
 `assign(parameter, value)`
 
@@ -596,7 +596,7 @@ A new channel with updated parameters.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -606,7 +606,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
@@ -616,7 +616,7 @@ Return True iff the channel is parameterized.
 
 `bool`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -626,7 +626,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -636,7 +636,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-<span id="undefined" />
+
 
 `SnapshotChannel(*args, **kwargs)`
 
@@ -644,7 +644,7 @@ Snapshot channels are used to specify instructions for simulators.
 
 Create new snapshot channel.
 
-<span id="undefined" />
+
 
 `assign(parameter, value)`
 
@@ -667,7 +667,7 @@ A new channel with updated parameters.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -677,7 +677,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
@@ -687,7 +687,7 @@ Return True iff the channel is parameterized.
 
 `bool`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -697,7 +697,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `property parameters`
 

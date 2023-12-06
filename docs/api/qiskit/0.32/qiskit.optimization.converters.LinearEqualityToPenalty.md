@@ -1,6 +1,6 @@
 # LinearEqualityToPenalty
 
-<span id="undefined" />
+
 
 `LinearEqualityToPenalty(penalty=None)`
 
@@ -21,7 +21,7 @@ Convert a problem with only equality constraints to unconstrained with penalty t
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### penalty
 

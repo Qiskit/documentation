@@ -1,6 +1,6 @@
 # MolecularChemistryResult
 
-<span id="undefined" />
+
 
 `MolecularChemistryResult(a_dict=None)`
 
@@ -29,7 +29,7 @@ Energies are in Hartree and dipole moments in A.U unless otherwise stated.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### algorithm\_result
 
@@ -39,7 +39,7 @@ Returns raw algorithm result
 
 `AlgorithmResult`
 
-<span id="undefined" />
+
 
 ### hartree\_fock\_energy
 
@@ -49,7 +49,7 @@ Returns Hartree-Fock energy
 
 `float`
 
-<span id="undefined" />
+
 
 ### nuclear\_dipole\_moment
 
@@ -59,7 +59,7 @@ Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
 
-<span id="undefined" />
+
 
 ### nuclear\_repulsion\_energy
 

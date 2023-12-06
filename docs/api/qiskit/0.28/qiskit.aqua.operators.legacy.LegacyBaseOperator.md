@@ -1,6 +1,6 @@
 # qiskit.aqua.operators.legacy.LegacyBaseOperator
 
-<span id="undefined" />
+
 
 `LegacyBaseOperator(basis=None, z2_symmetries=None, name=None)`
 
@@ -8,7 +8,7 @@ Operators relevant for quantum applications.
 
 Constructor.
 
-<span id="undefined" />
+
 
 `abstract __init__(basis=None, z2_symmetries=None, name=None)`
 
@@ -36,65 +36,65 @@ Constructor.
 | [`num_qubits`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.num_qubits "qiskit.aqua.operators.legacy.LegacyBaseOperator.num_qubits")          | Returns number of qubits for operator |
 | [`z2_symmetries`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.z2_symmetries "qiskit.aqua.operators.legacy.LegacyBaseOperator.z2_symmetries") | returns z2 symmetries                 |
 
-<span id="undefined" />
+
 
 `property basis`
 
 returns basis
 
-<span id="undefined" />
+
 
 `abstract chop(threshold, copy=False)`
 
-<span id="undefined" />
+
 
 `abstract construct_evaluation_circuit(wave_function, statevector_mode, **kwargs)`
 
 Build circuits to compute the expectation w\.r.t the wavefunction.
 
-<span id="undefined" />
+
 
 `abstract evaluate_with_result(result, statevector_mode, **kwargs)`
 
 Consume the result from the quantum computer to build the expectation, will be only used along with the [`construct_evaluation_circuit()`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit "qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit") method.
 
-<span id="undefined" />
+
 
 `abstract evolve(state_in, evo_time, num_time_slices, expansion_mode, expansion_order, **kwargs)`
 
 Time evolution, exp^(-jt H).
 
-<span id="undefined" />
+
 
 `abstract is_empty()`
 
 Check Operator is empty or not
 
-<span id="undefined" />
+
 
 `property name`
 
 returns name
 
-<span id="undefined" />
+
 
 `abstract property num_qubits`
 
 Returns number of qubits for operator
 
-<span id="undefined" />
+
 
 `abstract print_details()`
 
 print details
 
-<span id="undefined" />
+
 
 `abstract to_opflow()`
 
 Convert to new Operator format.
 
-<span id="undefined" />
+
 
 `property z2_symmetries`
 

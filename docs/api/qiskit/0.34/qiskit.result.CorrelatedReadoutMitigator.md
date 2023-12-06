@@ -1,6 +1,6 @@
 # CorrelatedReadoutMitigator
 
-<span id="undefined" />
+
 
 `CorrelatedReadoutMitigator(assignment_matrix, qubits=None)`
 
@@ -33,7 +33,7 @@ Initialize a CorrelatedReadoutMitigator
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### qubits
 
@@ -43,7 +43,7 @@ The device qubits for this mitigator
 
 `Tuple`\[`int`]
 
-<span id="undefined" />
+
 
 ### settings
 

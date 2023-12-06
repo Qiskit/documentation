@@ -1,6 +1,6 @@
 # qiskit.pulse.builder.pad
 
-<span id="undefined" />
+
 
 `pad(*chs)`
 

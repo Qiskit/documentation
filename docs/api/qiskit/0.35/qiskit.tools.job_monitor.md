@@ -1,6 +1,6 @@
 # qiskit.tools.job\_monitor
 
-<span id="undefined" />
+
 
 `job_monitor(job, interval=None, quiet=False, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>, line_discipline='\r')`
 

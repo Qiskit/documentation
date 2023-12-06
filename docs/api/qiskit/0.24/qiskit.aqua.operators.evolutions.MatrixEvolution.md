@@ -2,13 +2,13 @@
 
 # qiskit.aqua.operators.evolutions.MatrixEvolution
 
-<span id="undefined" />
+
 
 `MatrixEvolution`
 
 Performs Evolution by classical matrix exponentiation, constructing a circuit with `UnitaryGates` or `HamiltonianGates` containing the exponentiation of the Operator.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -21,7 +21,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.aqua.operators.evolutions.MatrixEvolution.__init__ "qiskit.aqua.operators.evolutions.MatrixEvolution.__init__")()      | Initialize self.                                                                                                                                                                                           |
 | [`convert`](#qiskit.aqua.operators.evolutions.MatrixEvolution.convert "qiskit.aqua.operators.evolutions.MatrixEvolution.convert")(operator) | Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing `UnitaryGates` or `HamiltonianGates` (if self.coeff is a `ParameterExpression`) equalling the exponentiation of -i \* operator. |
 
-<span id="undefined" />
+
 
 `convert(operator)`
 

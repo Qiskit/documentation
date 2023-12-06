@@ -2,7 +2,7 @@
 
 # qiskit.converters.dag\_to\_dagdependency
 
-<span id="undefined" />
+
 
 `dag_to_dagdependency(dag)`
 

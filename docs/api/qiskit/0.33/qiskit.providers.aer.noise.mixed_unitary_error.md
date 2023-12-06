@@ -1,6 +1,6 @@
 # qiskit.providers.aer.noise.mixed\_unitary\_error
 
-<span id="undefined" />
+
 
 `mixed_unitary_error(noise_ops, standard_gates=True)`
 

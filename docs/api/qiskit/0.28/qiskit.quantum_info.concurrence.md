@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.concurrence
 
-<span id="undefined" />
+
 
 `concurrence(state)`
 

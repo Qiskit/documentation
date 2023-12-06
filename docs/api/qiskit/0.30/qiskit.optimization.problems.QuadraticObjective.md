@@ -1,6 +1,6 @@
 # QuadraticObjective
 
-<span id="undefined" />
+
 
 `QuadraticObjective(quadratic_program, constant=0.0, linear=None, quadratic=None, sense=<ObjSense.MINIMIZE: 1>)`
 
@@ -27,7 +27,7 @@ Constructs a quadratic objective function.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### constant
 
@@ -41,7 +41,7 @@ Returns the constant part of the objective function.
 
 The constant part of the objective function.
 
-<span id="undefined" />
+
 
 ### linear
 
@@ -55,7 +55,7 @@ Returns the linear part of the objective function.
 
 The linear part of the objective function.
 
-<span id="undefined" />
+
 
 ### quadratic
 
@@ -69,7 +69,7 @@ Returns the quadratic part of the objective function.
 
 The quadratic part of the objective function.
 
-<span id="undefined" />
+
 
 ### quadratic\_program
 
@@ -83,7 +83,7 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-<span id="undefined" />
+
 
 ### sense
 

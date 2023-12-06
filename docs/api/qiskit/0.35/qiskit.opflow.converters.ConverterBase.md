@@ -1,6 +1,6 @@
 # ConverterBase
 
-<span id="undefined" />
+
 
 `ConverterBase`
 

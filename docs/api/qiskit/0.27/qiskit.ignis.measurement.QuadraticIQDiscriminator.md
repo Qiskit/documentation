@@ -1,6 +1,6 @@
 # qiskit.ignis.measurement.QuadraticIQDiscriminator
 
-<span id="undefined" />
+
 
 `QuadraticIQDiscriminator(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None, discriminator_parameters=None)`
 
@@ -19,7 +19,7 @@ Quadratic discriminant analysis discriminator for IQ data.
 
 **ImportError** – If scikit-learn is not installed
 
-<span id="undefined" />
+
 
 `__init__(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None, discriminator_parameters=None)`
 
@@ -59,7 +59,7 @@ Quadratic discriminant analysis discriminator for IQ data.
 | [`fitted`](#qiskit.ignis.measurement.QuadraticIQDiscriminator.fitted "qiskit.ignis.measurement.QuadraticIQDiscriminator.fitted")                            | True if the discriminator has been fitted to calibration data. |
 | [`schedules`](#qiskit.ignis.measurement.QuadraticIQDiscriminator.schedules "qiskit.ignis.measurement.QuadraticIQDiscriminator.schedules")                   | Returns the schedules with which the discriminator was fitted. |
 
-<span id="undefined" />
+
 
 `add_data(result, expected_states, refit=True, schedules=None)`
 
@@ -70,7 +70,7 @@ Quadratic discriminant analysis discriminator for IQ data.
 *   **refit** (`bool`) – refit the discriminator if True.
 *   **schedules** (`Union`\[`List`\[`str`], `List`\[`Schedule`], `None`]) – The schedules or a subset of schedules in cal\_results used to train the discriminator. The user may also pass the name of the schedules instead of the schedules. If schedules is None, then all the schedules in cal\_results are used.
 
-<span id="undefined" />
+
 
 `discriminate(x_data)`
 
@@ -88,25 +88,25 @@ Applies the discriminator to x\_data.
 
 The discriminated x\_data as a list of labels.
 
-<span id="undefined" />
+
 
 `property expected_states`
 
 Returns the expected states used to train the discriminator.
 
-<span id="undefined" />
+
 
 `fit()`
 
 Fits the discriminator using self.\_xdata and self.\_ydata.
 
-<span id="undefined" />
+
 
 `property fitted`
 
 True if the discriminator has been fitted to calibration data.
 
-<span id="undefined" />
+
 
 `format_iq_data(iq_data)`
 
@@ -128,7 +128,7 @@ A list of shots where each entry is a list of IQ points.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – if the measurement return type is unknown
 
-<span id="undefined" />
+
 
 `get_xdata(results, schedule_type_to_get, schedules=None)`
 
@@ -152,7 +152,7 @@ data as a list of features. Each feature is a list.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – if IQ data could not be found
 
-<span id="undefined" />
+
 
 `get_ydata(results, schedule_type_to_get, schedules=None)`
 
@@ -174,7 +174,7 @@ y data with the same length as the x data.
 
 list
 
-<span id="undefined" />
+
 
 `is_calibration(result_name)`
 
@@ -194,7 +194,7 @@ calibration result.
 
 bool
 
-<span id="undefined" />
+
 
 `plot(axs=None, show_boundary=False, show_fitting_data=True, flag_misclassified=False, qubits_to_plot=None, title=True)`
 
@@ -223,7 +223,7 @@ tuple
 
 **QiskitError** – If matplotlib is not installed, or there is invalid input
 
-<span id="undefined" />
+
 
 `plot_xdata(axs, results, color=None)`
 
@@ -239,7 +239,7 @@ Add the relevant IQ data from the Qiskit Result, or list thereof, to the given a
 
 **QiskitError** – If not enough axis instances are provided
 
-<span id="undefined" />
+
 
 `property schedules`
 

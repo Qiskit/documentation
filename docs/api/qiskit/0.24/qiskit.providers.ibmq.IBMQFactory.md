@@ -2,7 +2,7 @@
 
 # qiskit.providers.ibmq.IBMQFactory
 
-<span id="undefined" />
+
 
 `IBMQFactory`
 
@@ -10,7 +10,7 @@ Factory and account manager for IBM Quantum Experience.
 
 IBMQFactory constructor.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -32,7 +32,7 @@ IBMQFactory constructor.
 | [`stored_account`](#qiskit.providers.ibmq.IBMQFactory.stored_account "qiskit.providers.ibmq.IBMQFactory.stored_account")()                                   | List the account stored on disk.                                                  |
 | [`update_account`](#qiskit.providers.ibmq.IBMQFactory.update_account "qiskit.providers.ibmq.IBMQFactory.update_account")(\[force])                           | Interactive helper for migrating stored credentials to IBM Quantum Experience v2. |
 
-<span id="undefined" />
+
 
 `active_account()`
 
@@ -46,7 +46,7 @@ Return the IBM Quantum Experience account currently in use for the session.
 
 Information about the account currently in the session.
 
-<span id="undefined" />
+
 
 `static delete_account()`
 
@@ -62,7 +62,7 @@ Delete the saved account from disk.
 
 `None`
 
-<span id="undefined" />
+
 
 `disable_account()`
 
@@ -76,7 +76,7 @@ Disable the account currently in use for the session.
 
 `None`
 
-<span id="undefined" />
+
 
 `enable_account(token, url='https://auth.quantum-computing.ibm.com/api', hub=None, group=None, project=None, **kwargs)`
 
@@ -119,7 +119,7 @@ If hub, group, and project are specified, the corresponding provider is returned
 *   [**IBMQAccountCredentialsInvalidUrl**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl#qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl") – If the URL specified is not a valid IBM Quantum Experience authentication URL.
 *   [**IBMQProviderError**](qiskit.providers.ibmq.IBMQProviderError#qiskit.providers.ibmq.IBMQProviderError "qiskit.providers.ibmq.IBMQProviderError") – If no provider matches the specified criteria, or more than one provider matches the specified criteria.
 
-<span id="undefined" />
+
 
 `get_provider(hub=None, group=None, project=None)`
 
@@ -143,7 +143,7 @@ A provider that matches the specified criteria.
 
 [**IBMQProviderError**](qiskit.providers.ibmq.IBMQProviderError#qiskit.providers.ibmq.IBMQProviderError "qiskit.providers.ibmq.IBMQProviderError") – If no provider matches the specified criteria, or more than one provider matches the specified criteria.
 
-<span id="undefined" />
+
 
 `load_account()`
 
@@ -165,7 +165,7 @@ If the configuration file specifies a default provider, it is returned. Otherwis
 *   [**IBMQAccountCredentialsInvalidUrl**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl#qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl") – If invalid IBM Quantum Experience credentials are found.
 *   [**IBMQProviderError**](qiskit.providers.ibmq.IBMQProviderError#qiskit.providers.ibmq.IBMQProviderError "qiskit.providers.ibmq.IBMQProviderError") – If the default provider stored on disk could not be found.
 
-<span id="undefined" />
+
 
 `providers(hub=None, group=None, project=None)`
 
@@ -185,7 +185,7 @@ Return a list of providers, subject to optional filtering.
 
 A list of providers that match the specified criteria.
 
-<span id="undefined" />
+
 
 `static save_account(token, url='https://auth.quantum-computing.ibm.com/api', hub=None, group=None, project=None, overwrite=False, **kwargs)`
 
@@ -224,7 +224,7 @@ Save the account to disk for future use.
 
 `None`
 
-<span id="undefined" />
+
 
 `static stored_account()`
 
@@ -243,7 +243,7 @@ A dictionary with information about the account stored on disk.
 *   [**IBMQAccountMultipleCredentialsFound**](qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound#qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound "qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound") – If multiple IBM Quantum Experience credentials are found on disk.
 *   [**IBMQAccountCredentialsInvalidUrl**](qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl#qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl "qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl") – If invalid IBM Quantum Experience credentials are found on disk.
 
-<span id="undefined" />
+
 
 `static update_account(force=False)`
 

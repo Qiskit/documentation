@@ -1,6 +1,6 @@
 # LinearSolverResult
 
-<span id="undefined" />
+
 
 `LinearSolverResult`
 
@@ -18,7 +18,7 @@ The linear systems algorithms return an object of the type `LinearSystemsResult`
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### circuit\_results
 
@@ -28,7 +28,7 @@ return the results from the circuits
 
 `Union`\[`List`\[`float`], `List`\[`Result`]]
 
-<span id="undefined" />
+
 
 ### euclidean\_norm
 
@@ -38,7 +38,7 @@ return the euclidean norm if the algorithm knows how to calculate it
 
 `float`
 
-<span id="undefined" />
+
 
 ### observable
 
@@ -48,7 +48,7 @@ return the (list of) calculated observable(s)
 
 `Union`\[`float`, `List`\[`float`]]
 
-<span id="undefined" />
+
 
 ### state
 

@@ -2,7 +2,7 @@
 
 # qiskit.qobj.PulseQobjInstruction
 
-<span id="undefined" />
+
 
 `PulseQobjInstruction(name, t0, ch=None, conditional=None, val=None, phase=None, duration=None, qubits=None, memory_slot=None, register_slot=None, kernels=None, discriminators=None, label=None, type=None, pulse_shape=None, parameters=None, frequency=None)`
 
@@ -30,7 +30,7 @@ Instantiate a new PulseQobjInstruction object.
 *   **pulse\_shape** (*str*) – The shape of the parametric pulse
 *   **parameters** (*dict*) – The parameters for a parametric pulse
 
-<span id="undefined" />
+
 
 `__init__(name, t0, ch=None, conditional=None, val=None, phase=None, duration=None, qubits=None, memory_slot=None, register_slot=None, kernels=None, discriminators=None, label=None, type=None, pulse_shape=None, parameters=None, frequency=None)`
 
@@ -64,7 +64,7 @@ Instantiate a new PulseQobjInstruction object.
 | [`from_dict`](#qiskit.qobj.PulseQobjInstruction.from_dict "qiskit.qobj.PulseQobjInstruction.from_dict")(data)                              | Create a new PulseQobjExperimentConfig object from a dictionary. |
 | [`to_dict`](#qiskit.qobj.PulseQobjInstruction.to_dict "qiskit.qobj.PulseQobjInstruction.to_dict")()                                        | Return a dictionary format representation of the Instruction.    |
 
-<span id="undefined" />
+
 
 `classmethod from_dict(data)`
 
@@ -82,7 +82,7 @@ The object from the input dictionary.
 
 [PulseQobjInstruction](#qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction")
 
-<span id="undefined" />
+
 
 `to_dict()`
 

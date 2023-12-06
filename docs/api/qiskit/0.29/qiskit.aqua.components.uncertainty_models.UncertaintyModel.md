@@ -1,6 +1,6 @@
 # UncertaintyModel
 
-<span id="undefined" />
+
 
 `UncertaintyModel(num_target_qubits)`
 
@@ -27,7 +27,7 @@ The abstract Uncertainty Model
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 

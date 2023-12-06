@@ -1,12 +1,12 @@
 # qiskit.chemistry.drivers.BasisType
 
-<span id="undefined" />
+
 
 `BasisType(value)`
 
 Basis Type
 
-<span id="undefined" />
+
 
 `__init__()`
 

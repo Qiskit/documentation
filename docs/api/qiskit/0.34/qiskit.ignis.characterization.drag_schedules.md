@@ -1,6 +1,6 @@
 # qiskit.ignis.characterization.drag\_schedules
 
-<span id="undefined" />
+
 
 `drag_schedules(beta_list, qubits, pulse_amp, pulse_width, pulse_sigma=None, width_sigma_ratio=4, drives=None, inst_map=None, meas_map=None)`
 

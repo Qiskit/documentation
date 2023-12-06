@@ -1,6 +1,6 @@
 # GroundStateSolver
 
-<span id="undefined" />
+
 
 `GroundStateSolver(transformation)`
 
@@ -22,7 +22,7 @@ The ground state calculation interface
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### transformation
 

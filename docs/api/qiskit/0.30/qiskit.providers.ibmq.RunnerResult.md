@@ -1,6 +1,6 @@
 # RunnerResult
 
-<span id="undefined" />
+
 
 `RunnerResult(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)`
 

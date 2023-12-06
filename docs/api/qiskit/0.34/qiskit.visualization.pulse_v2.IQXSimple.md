@@ -1,6 +1,6 @@
 # IQXSimple
 
-<span id="undefined" />
+
 
 `IQXSimple(**kwargs)`
 

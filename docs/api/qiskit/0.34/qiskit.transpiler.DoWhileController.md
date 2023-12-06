@@ -1,6 +1,6 @@
 # DoWhileController
 
-<span id="undefined" />
+
 
 `DoWhileController(passes, options=None, do_while=None, **partial_controller)`
 
@@ -19,7 +19,7 @@ Implements a set of passes in a do-while loop.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### registered\_controllers = \{'condition'
 

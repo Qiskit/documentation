@@ -1,6 +1,6 @@
 # qiskit.pulse.builder.inline
 
-<span id="undefined" />
+
 
 `inline()`
 

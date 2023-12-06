@@ -1,6 +1,6 @@
 # TransformationType
 
-<span id="undefined" />
+
 
 `TransformationType(value)`
 
@@ -10,13 +10,13 @@ Transformation Type enum
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### FULL
 
 `= 'full'`
 
-<span id="undefined" />
+
 
 ### PARTICLE\_HOLE
 

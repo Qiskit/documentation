@@ -1,6 +1,6 @@
 # qiskit.aqua.operators.gradients.NaturalGradient
 
-<span id="undefined" />
+
 
 `NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`
 
@@ -23,7 +23,7 @@ where R(x) represents the penalization term.
 *   **regularization** (`Optional`\[`str`]) – Use the following regularization with a least square method to solve the underlying system of linear equations Can be either None or `'ridge'` or `'lasso'` or `'perturb_diag'` `'ridge'` and `'lasso'` use an automatic optimal parameter search If regularization is None but the metric is ill-conditioned or singular then a least square solver is used without regularization
 *   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
 
-<span id="undefined" />
+
 
 `__init__(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`
 
@@ -51,7 +51,7 @@ where R(x) represents the penalization term.
 | [`qfi_method`](#qiskit.aqua.operators.gradients.NaturalGradient.qfi_method "qiskit.aqua.operators.gradients.NaturalGradient.qfi_method")             | Returns `CircuitQFI`.              |
 | [`regularization`](#qiskit.aqua.operators.gradients.NaturalGradient.regularization "qiskit.aqua.operators.gradients.NaturalGradient.regularization") | Returns the regularization option. |
 
-<span id="undefined" />
+
 
 `convert(operator, params=None)`
 
@@ -73,7 +73,7 @@ An operator whose evaluation yields the NaturalGradient.
 *   **TypeError** – If `operator` does not represent an expectation value or the quantum state is not `CircuitStateFn`.
 *   **ValueError** – If `params` contains a parameter not present in `operator`.
 
-<span id="undefined" />
+
 
 `property grad_method`
 
@@ -87,7 +87,7 @@ Returns `CircuitGradient`.
 
 `CircuitGradient`.
 
-<span id="undefined" />
+
 
 `gradient_wrapper(operator, bind_params, grad_params=None, backend=None)`
 
@@ -108,7 +108,7 @@ Function to compute a gradient, Hessian or QFI. The function takes an iterable a
 
 callable(param\_values)
 
-<span id="undefined" />
+
 
 `static parameter_expression_grad(param_expr, param)`
 
@@ -127,7 +127,7 @@ Get the derivative of a parameter expression w\.r.t. the given parameter.
 
 ParameterExpression representing the gradient of param\_expr w\.r.t. param
 
-<span id="undefined" />
+
 
 `property qfi_method`
 
@@ -139,7 +139,7 @@ Returns: `CircuitQFI`
 
 `CircuitQFI`
 
-<span id="undefined" />
+
 
 `property regularization`
 

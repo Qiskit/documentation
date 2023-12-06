@@ -1,6 +1,6 @@
 # EigensolverResult
 
-<span id="undefined" />
+
 
 `EigensolverResult`
 
@@ -16,7 +16,7 @@ Eigensolver Result.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### aux\_operator\_eigenvalues
 
@@ -28,7 +28,7 @@ These values are in fact tuples formatted as (mean, standard deviation).
 
 `Optional`\[`List`\[`Union`\[`List`\[`Optional`\[`Tuple`\[`complex`, `complex`]]], `Dict`\[`str`, `Tuple`\[`complex`, `complex`]]]]]
 
-<span id="undefined" />
+
 
 ### eigenstates
 
@@ -38,7 +38,7 @@ return eigen states
 
 `Optional`\[`ndarray`]
 
-<span id="undefined" />
+
 
 ### eigenvalues
 

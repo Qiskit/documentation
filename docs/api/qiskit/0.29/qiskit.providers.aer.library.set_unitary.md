@@ -1,6 +1,6 @@
 # qiskit.providers.aer.library.set\_unitary
 
-<span id="undefined" />
+
 
 `set_unitary(self, state)`
 

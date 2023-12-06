@@ -1,6 +1,6 @@
 # CompleteExpvalMeasMitigator
 
-<span id="undefined" />
+
 
 `CompleteExpvalMeasMitigator(amat)`
 

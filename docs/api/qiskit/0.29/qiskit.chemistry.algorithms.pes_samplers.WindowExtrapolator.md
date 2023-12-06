@@ -1,6 +1,6 @@
 # WindowExtrapolator
 
-<span id="undefined" />
+
 
 `WindowExtrapolator(extrapolator=None, window=2)`
 
@@ -24,7 +24,7 @@ Constructor.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### extrapolator
 
@@ -38,7 +38,7 @@ Returns the internal extrapolator.
 
 The internal extrapolator.
 
-<span id="undefined" />
+
 
 ### window
 

@@ -1,6 +1,6 @@
 # EstimatorResult
 
-<span id="undefined" />
+
 
 `EstimatorResult(values, metadata)`
 

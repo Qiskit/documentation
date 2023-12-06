@@ -1,6 +1,6 @@
 # ClassicalFunction
 
-<span id="undefined" />
+
 
 `ClassicalFunction(source, name=None)`
 
@@ -48,31 +48,31 @@ The code should be a single function with types.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### args
 
 Returns the classicalfunction arguments
 
-<span id="undefined" />
+
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+
 
 ### duration
 
 Get the duration.
 
-<span id="undefined" />
+
 
 ### label
 
@@ -82,37 +82,37 @@ Return instruction label
 
 `str`
 
-<span id="undefined" />
+
 
 ### network
 
 Returns the logical network
 
-<span id="undefined" />
+
 
 ### params
 
 return instruction params.
 
-<span id="undefined" />
+
 
 ### qregs
 
 The list of qregs used by the classicalfunction
 
-<span id="undefined" />
+
 
 ### scopes
 
 Returns the scope dict
 
-<span id="undefined" />
+
 
 ### truth\_table
 
 Returns (and computes) the truth table
 
-<span id="undefined" />
+
 
 ### types
 
@@ -126,7 +126,7 @@ A list of scopes as dicts, where key is the variable name and value is its type.
 
 list(dict)
 
-<span id="undefined" />
+
 
 ### unit
 

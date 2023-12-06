@@ -2,7 +2,7 @@
 
 # qiskit.providers.ibmq.utils.utc\_to\_local
 
-<span id="undefined" />
+
 
 `utc_to_local(utc_dt)`
 

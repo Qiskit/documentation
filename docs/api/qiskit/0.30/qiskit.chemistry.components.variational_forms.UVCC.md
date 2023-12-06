@@ -1,6 +1,6 @@
 # UVCC
 
-<span id="undefined" />
+
 
 `UVCC(num_qubits, basis, degrees, reps=1, excitations=None, initial_state=None, qubit_mapping='direct', num_time_slices=1, shallow_circuit_concat=True)`
 
@@ -32,7 +32,7 @@ This trial wavefunction is a Unitary Vibrational Coupled-Cluster Single and Doub
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### num\_parameters
 
@@ -46,7 +46,7 @@ An integer indicating the number of parameters.
 
 int
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -60,7 +60,7 @@ An integer indicating the number of qubits.
 
 int
 
-<span id="undefined" />
+
 
 ### parameter\_bounds
 
@@ -74,7 +74,7 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 list
 
-<span id="undefined" />
+
 
 ### preferred\_init\_points
 
@@ -82,11 +82,11 @@ Return preferred init points.
 
 If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
 
-<span id="undefined" />
+
 
 ### setting
 
-<span id="undefined" />
+
 
 ### support\_parameterized\_circuit
 

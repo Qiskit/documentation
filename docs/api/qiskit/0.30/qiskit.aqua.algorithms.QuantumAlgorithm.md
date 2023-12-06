@@ -1,6 +1,6 @@
 # QuantumAlgorithm
 
-<span id="undefined" />
+
 
 `QuantumAlgorithm(quantum_instance)`
 
@@ -19,7 +19,7 @@ This method should initialize the module and use an exception if a component of 
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### backend
 
@@ -29,7 +29,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 
@@ -39,7 +39,7 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 ### random
 

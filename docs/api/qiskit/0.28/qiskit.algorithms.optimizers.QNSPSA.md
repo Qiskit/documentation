@@ -1,6 +1,6 @@
 # qiskit.algorithms.optimizers.QNSPSA
 
-<span id="undefined" />
+
 
 `QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None)`
 
@@ -56,7 +56,7 @@ result = qnspsa.optimize(ansatz.num_parameters, loss, initial_point=initial_poin
 *   **initial\_hessian** (`Optional`\[`ndarray`]) – The initial guess for the Hessian. By default the identity matrix is used.
 *   **callback** (`Optional`\[`Callable`\[\[`ndarray`, `float`, `float`, `int`, `bool`], `None`]]) – A callback function passed information in each iteration step. The information is, in this order: the parameters, the function value, the number of function evaluations, the stepsize, whether the step was accepted.
 
-<span id="undefined" />
+
 
 `__init__(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None)`
 
@@ -112,13 +112,13 @@ result = qnspsa.optimize(ansatz.num_parameters, loss, initial_point=initial_poin
 | [`setting`](#qiskit.algorithms.optimizers.QNSPSA.setting "qiskit.algorithms.optimizers.QNSPSA.setting")                                                             | Return setting                                 |
 | [`settings`](#qiskit.algorithms.optimizers.QNSPSA.settings "qiskit.algorithms.optimizers.QNSPSA.settings")                                                          | The optimizer settings in a dictionary format. |
 
-<span id="undefined" />
+
 
 `property bounds_support_level`
 
 Returns bounds support level
 
-<span id="undefined" />
+
 
 `static calibrate(loss, initial_point, c=0.2, stability_constant=0, target_magnitude=None, alpha=0.602, gamma=0.101, modelspace=False)`
 
@@ -151,7 +151,7 @@ learning rate and the second one for the perturbation.
 
 tuple(generator, generator)
 
-<span id="undefined" />
+
 
 `static estimate_stddev(loss, initial_point, avg=25)`
 
@@ -161,7 +161,7 @@ Estimate the standard deviation of the loss function.
 
 `float`
 
-<span id="undefined" />
+
 
 `static get_fidelity(circuit, backend=None, expectation=None)`
 
@@ -189,13 +189,13 @@ The output of this function can be used as input for the `fidelity` to the :clas
 
 A handle to the function $F$.
 
-<span id="undefined" />
+
 
 `get_support_level()`
 
 Get the support level dictionary.
 
-<span id="undefined" />
+
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -216,73 +216,73 @@ the gradient computed
 
 grad
 
-<span id="undefined" />
+
 
 `property gradient_support_level`
 
 Returns gradient support level
 
-<span id="undefined" />
+
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-<span id="undefined" />
+
 
 `property is_bounds_ignored`
 
 Returns is bounds ignored
 
-<span id="undefined" />
+
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-<span id="undefined" />
+
 
 `property is_bounds_supported`
 
 Returns is bounds supported
 
-<span id="undefined" />
+
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-<span id="undefined" />
+
 
 `property is_gradient_required`
 
 Returns is gradient required
 
-<span id="undefined" />
+
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-<span id="undefined" />
+
 
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
 
-<span id="undefined" />
+
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-<span id="undefined" />
+
 
 `property is_initial_point_supported`
 
 Returns is initial point supported
 
-<span id="undefined" />
+
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -306,19 +306,19 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
-<span id="undefined" />
+
 
 `print_options()`
 
 Print algorithm-specific options.
 
-<span id="undefined" />
+
 
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
 
-<span id="undefined" />
+
 
 `set_options(**kwargs)`
 
@@ -330,13 +330,13 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-<span id="undefined" />
+
 
 `property setting`
 
 Return setting
 
-<span id="undefined" />
+
 
 `property settings`
 
@@ -350,7 +350,7 @@ The optimizer settings in a dictionary format.
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+
 
 `static wrap_function(function, args)`
 

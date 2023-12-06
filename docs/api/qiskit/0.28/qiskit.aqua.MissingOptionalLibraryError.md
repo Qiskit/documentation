@@ -1,6 +1,6 @@
 # qiskit.aqua.MissingOptionalLibraryError
 
-<span id="undefined" />
+
 
 `MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)`
 
@@ -15,7 +15,7 @@ Set the error message.
 *   **pip\_install** (`Optional`\[`str`]) – pip install command, if any
 *   **msg** (`Optional`\[`str`]) – Descriptive message, if any
 
-<span id="undefined" />
+
 
 `with_traceback()`
 

@@ -1,6 +1,6 @@
 # qiskit.assembler.disassemble
 
-<span id="undefined" />
+
 
 `disassemble(qobj)`
 

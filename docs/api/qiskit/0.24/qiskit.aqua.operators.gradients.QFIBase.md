@@ -2,7 +2,7 @@
 
 # qiskit.aqua.operators.gradients.QFIBase
 
-<span id="undefined" />
+
 
 `QFIBase(qfi_method='lin_comb_full')`
 
@@ -22,7 +22,7 @@ The QFI is:
 
 **ValueError** – if `qfi_method` is neither a `CircuitQFI` object nor one of the predefined strings.
 
-<span id="undefined" />
+
 
 `__init__(qfi_method='lin_comb_full')`
 
@@ -49,7 +49,7 @@ The QFI is:
 | ------------------------------------------------------------------------------------------------------------------------ | --------------------- |
 | [`qfi_method`](#qiskit.aqua.operators.gradients.QFIBase.qfi_method "qiskit.aqua.operators.gradients.QFIBase.qfi_method") | Returns `CircuitQFI`. |
 
-<span id="undefined" />
+
 
 `abstract convert(operator, params=None)`
 
@@ -70,7 +70,7 @@ An operator whose evaluation yields the gradient, Hessian or QFI.
 
 **ValueError** – If `params` contains a parameter not present in `operator`.
 
-<span id="undefined" />
+
 
 `gradient_wrapper(operator, bind_params, grad_params=None, backend=None)`
 
@@ -91,7 +91,7 @@ Function to compute a gradient, Hessian or QFI. The function takes an iterable a
 
 callable(param\_values)
 
-<span id="undefined" />
+
 
 `static parameter_expression_grad(param_expr, param)`
 
@@ -110,7 +110,7 @@ Get the derivative of a parameter expression w\.r.t. the given parameter.
 
 ParameterExpression representing the gradient of param\_expr w\.r.t. param
 
-<span id="undefined" />
+
 
 `property qfi_method`
 

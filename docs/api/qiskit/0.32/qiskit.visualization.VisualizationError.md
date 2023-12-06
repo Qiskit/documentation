@@ -1,6 +1,6 @@
 # qiskit.visualization.VisualizationError
 
-<span id="undefined" />
+
 
 `VisualizationError(*message)`
 

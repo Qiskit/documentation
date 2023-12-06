@@ -1,6 +1,6 @@
 # PyQuanteDriver
 
-<span id="undefined" />
+
 
 `PyQuanteDriver(atoms='H 0.0 0.0 0.0; H 0.0 0.0 0.735', units=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, multiplicity=1, basis=<BasisType.BSTO3G: 'sto3g'>, hf_method=<HFMethodType.RHF: 'rhf'>, tol=1e-08, maxiters=100, molecule=None)`
 
@@ -34,7 +34,7 @@ See [https://github.com/rpmuller/pyquante2](https://github.com/rpmuller/pyquante
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### basis
 
@@ -44,7 +44,7 @@ return basis
 
 `str`
 
-<span id="undefined" />
+
 
 ### hf\_method
 
@@ -54,7 +54,7 @@ return Hartree-Fock method
 
 `str`
 
-<span id="undefined" />
+
 
 ### molecule
 
@@ -64,7 +64,7 @@ return molecule
 
 `Optional`\[`Molecule`]
 
-<span id="undefined" />
+
 
 ### supports\_molecule
 

@@ -1,6 +1,6 @@
 # qiskit.ignis.verification.qv\_circuits
 
-<span id="undefined" />
+
 
 `qv_circuits(qubit_lists, ntrials=1, qr=None, cr=None, seed=None)`
 

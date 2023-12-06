@@ -1,6 +1,6 @@
 # qiskit.pulse.builder.delay\_qubits
 
-<span id="undefined" />
+
 
 `delay_qubits(duration, *qubits)`
 

@@ -1,6 +1,6 @@
 # qiskit.providers.aer.library.set\_statevector
 
-<span id="undefined" />
+
 
 `set_statevector(self, state)`
 

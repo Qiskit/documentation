@@ -1,6 +1,6 @@
 # DAGOpNode
 
-<span id="undefined" />
+
 
 `DAGOpNode(op, qargs=None, cargs=None)`
 
@@ -18,41 +18,41 @@ Create an Instruction node
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### cargs
 
-<span id="undefined" />
+
 
 ### condition
 
 Returns the condition of the node.op
 
-<span id="undefined" />
+
 
 ### name
 
 Returns the Instruction name corresponding to the op for this node
 
-<span id="undefined" />
+
 
 ### op
 
-<span id="undefined" />
+
 
 ### qargs
 
-<span id="undefined" />
+
 
 ### sort\_key
 
-<span id="undefined" />
+
 
 ### type
 
 Returns the type object
 
-<span id="undefined" />
+
 
 ### wire
 

@@ -2,7 +2,7 @@
 
 # qiskit.chemistry.algorithms.pes\_samplers.SieveExtrapolator
 
-<span id="undefined" />
+
 
 `SieveExtrapolator(extrapolator=None, window=2, filter_before=True, filter_after=True)`
 
@@ -17,7 +17,7 @@ Constructor.
 *   **filter\_before** (`bool`) – Keyword to perform clustering before extrapolation.
 *   **filter\_after** (`bool`) – Keyword to perform clustering after extrapolation.
 
-<span id="undefined" />
+
 
 `__init__(extrapolator=None, window=2, filter_before=True, filter_after=True)`
 
@@ -38,7 +38,7 @@ Constructor.
 | [`extrapolate`](#qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.extrapolate "qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.extrapolate")(points, param\_dict) | Extrapolate at specified point of interest given a set of variational parameters. |
 | [`factory`](#qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.factory "qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.factory")(mode, \*\*kwargs)                | Factory method for constructing extrapolators.                                    |
 
-<span id="undefined" />
+
 
 `extrapolate(points, param_dict)`
 
@@ -57,7 +57,7 @@ Extrapolate at specified point of interest given a set of variational parameters
 
 Dictionary of variational parameters for extrapolated point(s).
 
-<span id="undefined" />
+
 
 `static factory(mode, **kwargs)`
 

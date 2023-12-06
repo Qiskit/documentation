@@ -1,6 +1,6 @@
 # qiskit.transpiler.CouplingMap
 
-<span id="undefined" />
+
 
 `CouplingMap(couplinglist=None, description=None)`
 
@@ -15,7 +15,7 @@ Create coupling graph. By default, the generated coupling has no nodes.
 *   **couplinglist** (*list or None*) – An initial coupling graph, specified as an adjacency list containing couplings, e.g. \[\[0,1], \[0,2], \[1,2]].
 *   **description** (*str*) – A string to describe the coupling map.
 
-<span id="undefined" />
+
 
 `__init__(couplinglist=None, description=None)`
 
@@ -57,7 +57,7 @@ Create coupling graph. By default, the generated coupling has no nodes.
 | [`is_symmetric`](#qiskit.transpiler.CouplingMap.is_symmetric "qiskit.transpiler.CouplingMap.is_symmetric")          | Test if the graph is symmetric.                  |
 | [`physical_qubits`](#qiskit.transpiler.CouplingMap.physical_qubits "qiskit.transpiler.CouplingMap.physical_qubits") | Returns a sorted list of physical\_qubits        |
 
-<span id="undefined" />
+
 
 `add_edge(src, dst)`
 
@@ -65,7 +65,7 @@ Add directed edge to coupling graph.
 
 src (int): source physical qubit dst (int): destination physical qubit
 
-<span id="undefined" />
+
 
 `add_physical_qubit(physical_qubit)`
 
@@ -77,7 +77,7 @@ physical\_qubit (int): An integer representing a physical qubit.
 
 **CouplingError** – if trying to add duplicate qubit
 
-<span id="undefined" />
+
 
 `distance(physical_qubit1, physical_qubit2)`
 
@@ -100,13 +100,13 @@ int
 
 **CouplingError** – if the qubits do not exist in the CouplingMap
 
-<span id="undefined" />
+
 
 `property distance_matrix`
 
 Return the distance matrix for the coupling map.
 
-<span id="undefined" />
+
 
 `draw()`
 
@@ -126,31 +126,31 @@ PIL.Image
 
 **ImportError** – when pydot or pillow are not installed.
 
-<span id="undefined" />
+
 
 `classmethod from_full(num_qubits, bidirectional=True)`
 
 Return a fully connected coupling map on n qubits.
 
-<span id="undefined" />
+
 
 `classmethod from_grid(num_rows, num_columns, bidirectional=True)`
 
 Return qubits connected on a grid of num\_rows x num\_columns.
 
-<span id="undefined" />
+
 
 `classmethod from_line(num_qubits, bidirectional=True)`
 
 Return a fully connected coupling map on n qubits.
 
-<span id="undefined" />
+
 
 `classmethod from_ring(num_qubits, bidirectional=True)`
 
 Return a fully connected coupling map on n qubits.
 
-<span id="undefined" />
+
 
 `get_edges()`
 
@@ -164,7 +164,7 @@ Each edge is a pair of physical qubits.
 
 Tuple(int,int)
 
-<span id="undefined" />
+
 
 `is_connected()`
 
@@ -172,7 +172,7 @@ Test if the graph is connected.
 
 Return True if connected, False otherwise
 
-<span id="undefined" />
+
 
 `property is_symmetric`
 
@@ -180,19 +180,19 @@ Test if the graph is symmetric.
 
 Return True if symmetric, False otherwise
 
-<span id="undefined" />
+
 
 `largest_connected_component()`
 
 Return a set of qubits in the largest connected component.
 
-<span id="undefined" />
+
 
 `make_symmetric()`
 
 Convert uni-directional edges into bi-directional.
 
-<span id="undefined" />
+
 
 `neighbors(physical_qubit)`
 
@@ -200,13 +200,13 @@ Return the nearest neighbors of a physical qubit.
 
 Directionality matters, i.e. a neighbor must be reachable by going one hop in the direction of an edge.
 
-<span id="undefined" />
+
 
 `property physical_qubits`
 
 Returns a sorted list of physical\_qubits
 
-<span id="undefined" />
+
 
 `reduce(mapping)`
 
@@ -228,7 +228,7 @@ A reduced coupling\_map for the selected qubits.
 
 **CouplingError** – Reduced coupling map must be connected.
 
-<span id="undefined" />
+
 
 `shortest_undirected_path(physical_qubit1, physical_qubit2)`
 
@@ -251,13 +251,13 @@ List
 
 **CouplingError** – When there is no path between physical\_qubit1, physical\_qubit2.
 
-<span id="undefined" />
+
 
 `size()`
 
 Return the number of physical qubits in this graph.
 
-<span id="undefined" />
+
 
 `subgraph(nodelist)`
 

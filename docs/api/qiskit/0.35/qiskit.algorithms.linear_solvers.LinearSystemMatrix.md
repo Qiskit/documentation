@@ -1,6 +1,6 @@
 # LinearSystemMatrix
 
-<span id="undefined" />
+
 
 `LinearSystemMatrix(num_state_qubits, tolerance, evolution_time, name='ls_matrix')`
 
@@ -177,7 +177,7 @@ Base class for linear system matrices.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ancillas
 
@@ -187,7 +187,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 `List`\[`AncillaQubit`]
 
-<span id="undefined" />
+
 
 ### calibrations
 
@@ -201,7 +201,7 @@ Return calibration dictionary.
 
 `dict`
 
-<span id="undefined" />
+
 
 ### clbits
 
@@ -211,11 +211,11 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-<span id="undefined" />
+
 
 ### data
 
-<span id="undefined" />
+
 
 ### evolution\_time
 
@@ -225,13 +225,13 @@ Return the time of the evolution.
 
 `float`
 
-<span id="undefined" />
+
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-<span id="undefined" />
+
 
 ### global\_phase
 
@@ -241,19 +241,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-<span id="undefined" />
+
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="undefined" />
+
 
 ### instances
 
 `= 9`
 
-<span id="undefined" />
+
 
 ### metadata
 
@@ -265,7 +265,7 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-<span id="undefined" />
+
 
 ### num\_ancillas
 
@@ -275,7 +275,7 @@ Return the number of ancilla qubits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_clbits
 
@@ -285,7 +285,7 @@ Return number of classical bits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_parameters
 
@@ -293,7 +293,7 @@ Return number of classical bits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -303,7 +303,7 @@ Return number of qubits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_state\_qubits
 
@@ -317,7 +317,7 @@ The number of state qubits representing the state $|x\rangle$.
 
 The number of state qubits.
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -325,19 +325,19 @@ The number of state qubits.
 
 `ParameterView`
 
-<span id="undefined" />
+
 
 ### prefix
 
 `= 'circuit'`
 
-<span id="undefined" />
+
 
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-<span id="undefined" />
+
 
 ### qubits
 
@@ -347,7 +347,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 `List`\[`Qubit`]
 
-<span id="undefined" />
+
 
 ### tolerance
 

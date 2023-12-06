@@ -1,6 +1,6 @@
 # UserMessenger
 
-<span id="undefined" />
+
 
 `UserMessenger`
 

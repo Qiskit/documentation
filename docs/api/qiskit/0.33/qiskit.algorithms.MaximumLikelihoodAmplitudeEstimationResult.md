@@ -1,6 +1,6 @@
 # MaximumLikelihoodAmplitudeEstimationResult
 
-<span id="undefined" />
+
 
 `MaximumLikelihoodAmplitudeEstimationResult`
 
@@ -16,7 +16,7 @@ The `MaximumLikelihoodAmplitudeEstimation` result object.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### circuit\_results
 
@@ -26,7 +26,7 @@ Return the circuit results. Can be a statevector or counts dictionary.
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
 
-<span id="undefined" />
+
 
 ### confidence\_interval
 
@@ -36,7 +36,7 @@ Return the confidence interval for the amplitude (95% interval by default).
 
 `Tuple`\[`float`, `float`]
 
-<span id="undefined" />
+
 
 ### confidence\_interval\_processed
 
@@ -46,7 +46,7 @@ Return the post-processed confidence interval (95% interval by default).
 
 `Tuple`\[`float`, `float`]
 
-<span id="undefined" />
+
 
 ### estimation
 
@@ -56,7 +56,7 @@ Return the estimation for the amplitude in $[0, 1]$.
 
 `float`
 
-<span id="undefined" />
+
 
 ### estimation\_processed
 
@@ -66,7 +66,7 @@ Return the estimation for the amplitude after the post-processing has been appli
 
 `float`
 
-<span id="undefined" />
+
 
 ### evaluation\_schedule
 
@@ -76,7 +76,7 @@ Return the evaluation schedule for the powers of the Grover operator.
 
 `List`\[`int`]
 
-<span id="undefined" />
+
 
 ### fisher\_information
 
@@ -86,7 +86,7 @@ Return the Fisher information for the estimated amplitude.
 
 `float`
 
-<span id="undefined" />
+
 
 ### good\_counts
 
@@ -96,7 +96,7 @@ Return the percentage of good counts per circuit power.
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 ### minimizer
 
@@ -106,7 +106,7 @@ Return the minimizer used for the search of the likelihood function.
 
 `callable`
 
-<span id="undefined" />
+
 
 ### num\_oracle\_queries
 
@@ -116,7 +116,7 @@ Return the number of Grover oracle queries.
 
 `int`
 
-<span id="undefined" />
+
 
 ### post\_processing
 
@@ -126,7 +126,7 @@ Return a handle to the post processing function.
 
 `Callable`\[\[`float`], `float`]
 
-<span id="undefined" />
+
 
 ### shots
 
@@ -136,7 +136,7 @@ Return the number of shots used. Is 1 for statevector-based simulations.
 
 `int`
 
-<span id="undefined" />
+
 
 ### theta
 

@@ -2,7 +2,7 @@
 
 # qiskit.ignis.characterization.BaseGateFitter
 
-<span id="undefined" />
+
 
 `BaseGateFitter(description, backend_result, xdata, qubits, fit_fun, fit_p0, fit_bounds, circuit_names, series=None, expected_state='0')`
 
@@ -10,7 +10,7 @@ Base class for fitters of gate errors
 
 See BaseFitter \_\_init\_\_
 
-<span id="undefined" />
+
 
 `__init__(description, backend_result, xdata, qubits, fit_fun, fit_p0, fit_bounds, circuit_names, series=None, expected_state='0')`
 
@@ -39,7 +39,7 @@ See BaseFitter \_\_init\_\_
 | [`xdata`](#qiskit.ignis.characterization.BaseGateFitter.xdata "qiskit.ignis.characterization.BaseGateFitter.xdata")                               | Return the data points on the x-axis, the independenet parameter which is fit against |
 | [`ydata`](#qiskit.ignis.characterization.BaseGateFitter.ydata "qiskit.ignis.characterization.BaseGateFitter.ydata")                               | Return the data points on the y-axis                                                  |
 
-<span id="undefined" />
+
 
 `add_data(results, recalc=True, refit=True)`
 
@@ -51,7 +51,7 @@ Add new execution results to previous execution results
 *   **recalc** (`bool`) – whether tp recalculate the data
 *   **refit** (`bool`) – whether to refit the data
 
-<span id="undefined" />
+
 
 `property backend_result`
 
@@ -61,7 +61,7 @@ Return the execution results
 
 `Union`\[`Result`, `List`\[`Result`]]
 
-<span id="undefined" />
+
 
 `property description`
 
@@ -71,7 +71,7 @@ Return the fitter’s purpose, e.g. ‘T1’
 
 `str`
 
-<span id="undefined" />
+
 
 `fit_data(qid=- 1, p0=None, bounds=None, series=None)`
 
@@ -86,7 +86,7 @@ Compute self.\_params and self.\_params\_err
 *   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
 *   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
 
-<span id="undefined" />
+
 
 `property fit_fun`
 
@@ -96,7 +96,7 @@ Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
 
 `Callable`
 
-<span id="undefined" />
+
 
 `property measured_qubits`
 
@@ -106,7 +106,7 @@ Return the indices of the qubits to be characterized
 
 `List`\[`int`]
 
-<span id="undefined" />
+
 
 `property params`
 
@@ -116,7 +116,7 @@ Return the fit function parameters that were calculated by curve\_fit
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 `property params_err`
 
@@ -126,7 +126,7 @@ Return the error of the fit function parameters
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 `plot(qind, series='0', ax=None, show_plot=True)`
 
@@ -151,7 +151,7 @@ Axes
 
 **ImportError** – if matplotlib is not installed
 
-<span id="undefined" />
+
 
 `property series`
 
@@ -161,7 +161,7 @@ Return the list of series for the data
 
 `Optional`\[`List`\[`str`]]
 
-<span id="undefined" />
+
 
 `property xdata`
 
@@ -171,7 +171,7 @@ Return the data points on the x-axis, the independenet parameter which is fit ag
 
 `Union`\[`List`\[`float`], `array`]
 
-<span id="undefined" />
+
 
 `property ydata`
 

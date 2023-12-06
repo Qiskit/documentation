@@ -2,7 +2,7 @@
 
 # qiskit.providers.models.PulseBackendConfiguration
 
-<span id="undefined" />
+
 
 `PulseBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, n_uchannels, u_channel_lo, meas_levels, qubit_lo_range, meas_lo_range, dt, dtm, rep_times, meas_kernels, discriminators, hamiltonian=None, channel_bandwidth=None, acquisition_latency=None, conditional_latency=None, meas_map=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, channels=None, **kwargs)`
 
@@ -52,7 +52,7 @@ Initialize a backend configuration that contains all the extra configuration tha
 *   **channels** (`Optional`\[`Dict`\[`str`, `Any`]]) – An optional dictionary containing information of each channel – their purpose, type, and qubits operated on.
 *   **\*\*kwargs** – Optional fields.
 
-<span id="undefined" />
+
 
 `__init__(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, n_uchannels, u_channel_lo, meas_levels, qubit_lo_range, meas_lo_range, dt, dtm, rep_times, meas_kernels, discriminators, hamiltonian=None, channel_bandwidth=None, acquisition_latency=None, conditional_latency=None, meas_map=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, channels=None, **kwargs)`
 
@@ -122,7 +122,7 @@ Initialize a backend configuration that contains all the extra configuration tha
 | [`num_qubits`](#qiskit.providers.models.PulseBackendConfiguration.num_qubits "qiskit.providers.models.PulseBackendConfiguration.num_qubits")    | Returns the number of qubits.                    |
 | [`sample_rate`](#qiskit.providers.models.PulseBackendConfiguration.sample_rate "qiskit.providers.models.PulseBackendConfiguration.sample_rate") | Sample rate of the signal channels in Hz (1/dt). |
 
-<span id="undefined" />
+
 
 `acquire(qubit)`
 
@@ -140,7 +140,7 @@ Return the acquisition channel for the given qubit.
 
 Qubit measurement acquisition line.
 
-<span id="undefined" />
+
 
 `control(qubits=None, channel=None)`
 
@@ -163,7 +163,7 @@ Return the secondary drive channel for the given qubit – typically utilized fo
 
 List of control channels.
 
-<span id="undefined" />
+
 
 `describe(channel)`
 
@@ -199,7 +199,7 @@ backend.configuration().describe(ControlChannel(1))
 
 Control channel derivations.
 
-<span id="undefined" />
+
 
 `drive(qubit)`
 
@@ -217,7 +217,7 @@ Return the drive channel for the given qubit.
 
 Qubit drive channel.
 
-<span id="undefined" />
+
 
 `classmethod from_dict(data)`
 
@@ -235,7 +235,7 @@ The GateConfig from the input dictionary.
 
 [GateConfig](qiskit.providers.models.GateConfig#qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
 
-<span id="undefined" />
+
 
 `get_channel_qubits(channel)`
 
@@ -253,7 +253,7 @@ Return a list of indices for qubits which are operated on directly by the given 
 
 List of qubits operated on my the given `channel`.
 
-<span id="undefined" />
+
 
 `get_qubit_channels(qubit)`
 
@@ -271,7 +271,7 @@ Return a list of channels which operate on the given `qubit`.
 
 List of `Channel`s operated on my the given `qubit`.
 
-<span id="undefined" />
+
 
 `measure(qubit)`
 
@@ -289,7 +289,7 @@ Return the measure stimulus channel for the given qubit.
 
 Qubit measurement stimulus line.
 
-<span id="undefined" />
+
 
 `property num_qubits`
 
@@ -297,7 +297,7 @@ Returns the number of qubits.
 
 In future, n\_qubits should be replaced in favor of num\_qubits for consistent use throughout Qiskit. Until this is properly refactored, this property serves as intermediate solution.
 
-<span id="undefined" />
+
 
 `property sample_rate`
 
@@ -307,7 +307,7 @@ Sample rate of the signal channels in Hz (1/dt).
 
 `float`
 
-<span id="undefined" />
+
 
 `to_dict()`
 

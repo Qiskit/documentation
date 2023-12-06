@@ -1,6 +1,6 @@
 # qiskit.aqua.algorithms.NumPyMinimumEigensolver
 
-<span id="undefined" />
+
 
 `NumPyMinimumEigensolver(operator=None, aux_operators=None, filter_criterion=None)`
 
@@ -12,7 +12,7 @@ The Numpy Minimum Eigensolver algorithm.
 *   **aux\_operators** (`Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]]]) – Auxiliary operators to be evaluated at minimum eigenvalue
 *   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
 
-<span id="undefined" />
+
 
 `__init__(operator=None, aux_operators=None, filter_criterion=None)`
 
@@ -40,7 +40,7 @@ The Numpy Minimum Eigensolver algorithm.
 | [`operator`](#qiskit.aqua.algorithms.NumPyMinimumEigensolver.operator "qiskit.aqua.algorithms.NumPyMinimumEigensolver.operator")                         | Return the operator.                |
 | [`random`](#qiskit.aqua.algorithms.NumPyMinimumEigensolver.random "qiskit.aqua.algorithms.NumPyMinimumEigensolver.random")                               | Return a numpy random.              |
 
-<span id="undefined" />
+
 
 `property aux_operators`
 
@@ -50,7 +50,7 @@ Returns the auxiliary operators.
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
 
-<span id="undefined" />
+
 
 `compute_minimum_eigenvalue(operator=None, aux_operators=None)`
 
@@ -69,7 +69,7 @@ Computes minimum eigenvalue. Operator and aux\_operators can be supplied here an
 
 MinimumEigensolverResult
 
-<span id="undefined" />
+
 
 `property filter_criterion`
 
@@ -79,7 +79,7 @@ returns the filter criterion if set
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
 
-<span id="undefined" />
+
 
 `property operator`
 
@@ -89,13 +89,13 @@ Return the operator.
 
 `Optional`\[`OperatorBase`]
 
-<span id="undefined" />
+
 
 `property random`
 
 Return a numpy random.
 
-<span id="undefined" />
+
 
 `run()`
 
@@ -109,7 +109,7 @@ results of an algorithm.
 
 dict
 
-<span id="undefined" />
+
 
 `classmethod supports_aux_operators()`
 

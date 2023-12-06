@@ -2,7 +2,7 @@
 
 # qiskit.providers.aer.utils.approximate\_quantum\_error
 
-<span id="undefined" />
+
 
 `approximate_quantum_error(error, *, operator_string=None, operator_dict=None, operator_list=None)`
 

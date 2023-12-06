@@ -1,6 +1,6 @@
 # BOPESSampler
 
-<span id="undefined" />
+
 
 `BOPESSampler(gss, tolerance=0.001, bootstrap=True, num_bootstrap=None, extrapolator=None)`
 

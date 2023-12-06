@@ -1,12 +1,12 @@
 # qiskit.transpiler.FencedDAGCircuit
 
-<span id="undefined" />
+
 
 `FencedDAGCircuit(dag_circuit_instance)`
 
 A dag circuit that cannot be modified (via remove\_op\_node)
 
-<span id="undefined" />
+
 
 `__init__(dag_circuit_instance)`
 

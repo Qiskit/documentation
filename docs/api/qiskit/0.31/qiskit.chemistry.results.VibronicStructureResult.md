@@ -1,6 +1,6 @@
 # VibronicStructureResult
 
-<span id="undefined" />
+
 
 `VibronicStructureResult(a_dict=None)`
 
@@ -27,7 +27,7 @@ The vibronic structure result.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### algorithm\_result
 
@@ -37,7 +37,7 @@ Returns raw algorithm result
 
 `AlgorithmResult`
 
-<span id="undefined" />
+
 
 ### aux\_operator\_eigenvalues
 
@@ -47,7 +47,7 @@ return aux operator eigen values
 
 `Optional`\[`List`\[`float`]]
 
-<span id="undefined" />
+
 
 ### computed\_vibronic\_energies
 
@@ -57,7 +57,7 @@ Returns computed electronic part of ground state energy
 
 `ndarray`
 
-<span id="undefined" />
+
 
 ### eigenenergies
 
@@ -67,7 +67,7 @@ returns eigen energies
 
 `Optional`\[`ndarray`]
 
-<span id="undefined" />
+
 
 ### eigenstates
 
@@ -77,7 +77,7 @@ returns eigen states
 
 `Optional`\[`List`\[`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]]]
 
-<span id="undefined" />
+
 
 ### formatted
 
@@ -87,7 +87,7 @@ Formatted result as a list of strings
 
 `List`\[`str`]
 
-<span id="undefined" />
+
 
 ### groundenergy
 
@@ -97,7 +97,7 @@ returns ground energy
 
 `Optional`\[`float`]
 
-<span id="undefined" />
+
 
 ### groundstate
 
@@ -107,7 +107,7 @@ returns ground state
 
 `Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]
 
-<span id="undefined" />
+
 
 ### num\_occupied\_modals\_per\_mode
 
@@ -117,7 +117,7 @@ Returns the number of occupied modal per mode
 
 `Optional`\[`List`\[`float`]]
 
-<span id="undefined" />
+
 
 ### raw\_result
 

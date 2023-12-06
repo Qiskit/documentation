@@ -1,6 +1,6 @@
 # qiskit.qobj.GateCalibration
 
-<span id="undefined" />
+
 
 `GateCalibration(name, qubits, params, instructions)`
 
@@ -15,7 +15,7 @@ Initialize a single gate calibration. Instructions may reference waveforms which
 *   **params** (*list(complex)*) – Gate parameter values, if any.
 *   **instructions** (*list(*[*PulseQobjInstruction*](qiskit.qobj.PulseQobjInstruction#qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction")*)*) – The gate implementation.
 
-<span id="undefined" />
+
 
 `__init__(name, qubits, params, instructions)`
 
@@ -36,7 +36,7 @@ Initialize a single gate calibration. Instructions may reference waveforms which
 | [`from_dict`](#qiskit.qobj.GateCalibration.from_dict "qiskit.qobj.GateCalibration.from_dict")(data)                            | Create a new GateCalibration object from a dictionary.             |
 | [`to_dict`](#qiskit.qobj.GateCalibration.to_dict "qiskit.qobj.GateCalibration.to_dict")()                                      | Return a dictionary format representation of the Gate Calibration. |
 
-<span id="undefined" />
+
 
 `classmethod from_dict(data)`
 
@@ -54,7 +54,7 @@ The GateCalibration from the input dictionary.
 
 [GateCalibration](#qiskit.qobj.GateCalibration "qiskit.qobj.GateCalibration")
 
-<span id="undefined" />
+
 
 `to_dict()`
 

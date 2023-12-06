@@ -1,6 +1,6 @@
 # EOH
 
-<span id="undefined" />
+
 
 `EOH(operator, initial_state, evo_operator, evo_time=1, num_time_slices=1, expansion_mode='trotter', expansion_order=1, quantum_instance=None)`
 
@@ -31,7 +31,7 @@ EOH provides the lower-level building blocks for simulating universal quantum sy
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### backend
 
@@ -41,7 +41,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 
@@ -51,7 +51,7 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 ### random
 

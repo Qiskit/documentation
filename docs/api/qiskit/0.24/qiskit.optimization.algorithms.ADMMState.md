@@ -2,7 +2,7 @@
 
 # qiskit.optimization.algorithms.ADMMState
 
-<span id="undefined" />
+
 
 `ADMMState(op, rho_initial)`
 
@@ -15,7 +15,7 @@ The state keeps track of various variables are stored that are being updated dur
 *   **op** (`QuadraticProgram`) – The optimization problem being solved.
 *   **rho\_initial** (`float`) – Initial value of the rho parameter.
 
-<span id="undefined" />
+
 
 `__init__(op, rho_initial)`
 

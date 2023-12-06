@@ -1,6 +1,6 @@
 # AerJobSet
 
-<span id="undefined" />
+
 
 `AerJobSet(backend, job_id, fn, experiments, executor=None)`
 
@@ -43,7 +43,7 @@ AerJobSet constructor.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### version
 

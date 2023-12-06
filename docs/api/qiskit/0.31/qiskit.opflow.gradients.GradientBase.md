@@ -1,6 +1,6 @@
 # GradientBase
 
-<span id="undefined" />
+
 
 `GradientBase(grad_method='param_shift', **kwargs)`
 
@@ -21,7 +21,7 @@ Convert an operator expression to the first-order gradient.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### grad\_method
 

@@ -1,6 +1,6 @@
 # qiskit.providers.aer.noise.device.gate\_error\_values
 
-<span id="undefined" />
+
 
 `gate_error_values(properties)`
 

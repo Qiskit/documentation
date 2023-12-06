@@ -1,6 +1,6 @@
 # BaseBackend
 
-<span id="undefined" />
+
 
 `BaseBackend(configuration, provider=None)`
 

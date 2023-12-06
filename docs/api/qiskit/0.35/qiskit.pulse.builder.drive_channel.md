@@ -1,6 +1,6 @@
 # qiskit.pulse.builder.drive\_channel
 
-<span id="undefined" />
+
 
 `drive_channel(qubit)`
 

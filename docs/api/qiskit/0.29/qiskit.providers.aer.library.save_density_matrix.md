@@ -1,6 +1,6 @@
 # qiskit.providers.aer.library.save\_density\_matrix
 
-<span id="undefined" />
+
 
 `save_density_matrix(self, qubits=None, label='density_matrix', unnormalized=False, pershot=False, conditional=False)`
 

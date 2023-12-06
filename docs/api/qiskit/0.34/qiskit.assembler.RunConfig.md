@@ -1,6 +1,6 @@
 # RunConfig
 
-<span id="undefined" />
+
 
 `RunConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, **kwargs)`
 
@@ -8,7 +8,7 @@ Bases: `types.SimpleNamespace`
 
 Class for Run Configuration.
 
-<span id="undefined" />
+
 
 ### shots
 
@@ -18,7 +18,7 @@ the number of shots
 
 int
 
-<span id="undefined" />
+
 
 ### max\_credits
 
@@ -28,7 +28,7 @@ DEPRECATED This parameter is deprecated as of Qiskit Terra 0.20.0, and will be r
 
 int
 
-<span id="undefined" />
+
 
 ### seed\_simulator
 
@@ -38,7 +38,7 @@ the seed to use in the simulator
 
 int
 
-<span id="undefined" />
+
 
 ### memory
 
@@ -48,7 +48,7 @@ whether to request memory from backend (per-shot readouts)
 
 bool
 
-<span id="undefined" />
+
 
 ### parameter\_binds
 

@@ -1,6 +1,6 @@
 # qiskit.visualization.dag\_drawer
 
-<span id="undefined" />
+
 
 `dag_drawer(dag, scale=0.7, filename=None, style='color')`
 

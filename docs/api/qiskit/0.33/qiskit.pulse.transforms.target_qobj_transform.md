@@ -1,6 +1,6 @@
 # qiskit.pulse.transforms.target\_qobj\_transform
 
-<span id="undefined" />
+
 
 `target_qobj_transform(sched, remove_directives=True)`
 

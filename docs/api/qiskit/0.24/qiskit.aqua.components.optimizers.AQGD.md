@@ -2,7 +2,7 @@
 
 # qiskit.aqua.components.optimizers.AQGD
 
-<span id="undefined" />
+
 
 `AQGD(maxiter=1000, eta=1.0, tol=1e-06, disp=False, momentum=0.25, param_tol=1e-06, averaging=10)`
 
@@ -31,7 +31,7 @@ Performs Analytical Quantum Gradient Descent (AQGD) with Epochs.
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If the length of `maxiter`, momentum\`, and `eta` is not the same.
 
-<span id="undefined" />
+
 
 `__init__(maxiter=1000, eta=1.0, tol=1e-06, disp=False, momentum=0.25, param_tol=1e-06, averaging=10)`
 
@@ -82,13 +82,13 @@ Performs Analytical Quantum Gradient Descent (AQGD) with Epochs.
 | [`is_initial_point_supported`](#qiskit.aqua.components.optimizers.AQGD.is_initial_point_supported "qiskit.aqua.components.optimizers.AQGD.is_initial_point_supported")    | Returns is initial point supported  |
 | [`setting`](#qiskit.aqua.components.optimizers.AQGD.setting "qiskit.aqua.components.optimizers.AQGD.setting")                                                             | Return setting                      |
 
-<span id="undefined" />
+
 
 `property bounds_support_level`
 
 Returns bounds support level
 
-<span id="undefined" />
+
 
 `get_support_level()`
 
@@ -104,7 +104,7 @@ support information that is ignored/required.
 
 Dict\[str, int]
 
-<span id="undefined" />
+
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -125,73 +125,73 @@ the gradient computed
 
 grad
 
-<span id="undefined" />
+
 
 `property gradient_support_level`
 
 Returns gradient support level
 
-<span id="undefined" />
+
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-<span id="undefined" />
+
 
 `property is_bounds_ignored`
 
 Returns is bounds ignored
 
-<span id="undefined" />
+
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-<span id="undefined" />
+
 
 `property is_bounds_supported`
 
 Returns is bounds supported
 
-<span id="undefined" />
+
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-<span id="undefined" />
+
 
 `property is_gradient_required`
 
 Returns is gradient required
 
-<span id="undefined" />
+
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-<span id="undefined" />
+
 
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
 
-<span id="undefined" />
+
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-<span id="undefined" />
+
 
 `property is_initial_point_supported`
 
 Returns is initial point supported
 
-<span id="undefined" />
+
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -219,19 +219,19 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
-<span id="undefined" />
+
 
 `print_options()`
 
 Print algorithm-specific options.
 
-<span id="undefined" />
+
 
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
 
-<span id="undefined" />
+
 
 `set_options(**kwargs)`
 
@@ -243,13 +243,13 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-<span id="undefined" />
+
 
 `property setting`
 
 Return setting
 
-<span id="undefined" />
+
 
 `static wrap_function(function, args)`
 

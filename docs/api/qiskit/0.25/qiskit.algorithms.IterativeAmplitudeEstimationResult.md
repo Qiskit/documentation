@@ -1,12 +1,12 @@
 # qiskit.algorithms.IterativeAmplitudeEstimationResult
 
-<span id="undefined" />
+
 
 `IterativeAmplitudeEstimationResult`
 
 The `IterativeAmplitudeEstimation` result object.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -40,7 +40,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`shots`](#qiskit.algorithms.IterativeAmplitudeEstimationResult.shots "qiskit.algorithms.IterativeAmplitudeEstimationResult.shots")                                                                         | Return the number of shots used.                                                    |
 | [`theta_intervals`](#qiskit.algorithms.IterativeAmplitudeEstimationResult.theta_intervals "qiskit.algorithms.IterativeAmplitudeEstimationResult.theta_intervals")                                           | Return the confidence intervals for the angles in each iteration.                   |
 
-<span id="undefined" />
+
 
 `property alpha`
 
@@ -50,7 +50,7 @@ Return the confidence level $\alpha$.
 
 `float`
 
-<span id="undefined" />
+
 
 `property circuit_results`
 
@@ -60,7 +60,7 @@ Return the circuit results. Can be a statevector or counts dictionary.
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
 
-<span id="undefined" />
+
 
 `combine(result)`
 
@@ -74,7 +74,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-<span id="undefined" />
+
 
 `property confidence_interval`
 
@@ -84,7 +84,7 @@ Return the confidence interval for the amplitude (95% interval by default).
 
 `Tuple`\[`float`, `float`]
 
-<span id="undefined" />
+
 
 `property confidence_interval_processed`
 
@@ -94,7 +94,7 @@ Return the post-processed confidence interval.
 
 `Tuple`\[`float`, `float`]
 
-<span id="undefined" />
+
 
 `property epsilon_estimated`
 
@@ -104,7 +104,7 @@ Return the estimated half-width of the confidence interval.
 
 `float`
 
-<span id="undefined" />
+
 
 `property epsilon_estimated_processed`
 
@@ -114,7 +114,7 @@ Return the post-processed estimated half-width of the confidence interval.
 
 `float`
 
-<span id="undefined" />
+
 
 `property epsilon_target`
 
@@ -124,7 +124,7 @@ Return the target half-width of the confidence interval.
 
 `float`
 
-<span id="undefined" />
+
 
 `property estimate_intervals`
 
@@ -134,7 +134,7 @@ Return the confidence intervals for the estimate in each iteration.
 
 `List`\[`List`\[`float`]]
 
-<span id="undefined" />
+
 
 `property estimation`
 
@@ -144,7 +144,7 @@ Return the estimation for the amplitude in $[0, 1]$.
 
 `float`
 
-<span id="undefined" />
+
 
 `property estimation_processed`
 
@@ -154,7 +154,7 @@ Return the estimation for the amplitude after the post-processing has been appli
 
 `float`
 
-<span id="undefined" />
+
 
 `property num_oracle_queries`
 
@@ -164,7 +164,7 @@ Return the number of Grover oracle queries.
 
 `int`
 
-<span id="undefined" />
+
 
 `property post_processing`
 
@@ -174,7 +174,7 @@ Return a handle to the post processing function.
 
 `Callable`\[\[`float`], `float`]
 
-<span id="undefined" />
+
 
 `property powers`
 
@@ -184,7 +184,7 @@ Return the powers of the Grover operator in each iteration.
 
 `List`\[`int`]
 
-<span id="undefined" />
+
 
 `property ratios`
 
@@ -194,7 +194,7 @@ Return the ratios $K_{i+1}/K_{i}$ for each iteration $i$.
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 `property shots`
 
@@ -204,7 +204,7 @@ Return the number of shots used. Is 1 for statevector-based simulations.
 
 `int`
 
-<span id="undefined" />
+
 
 `property theta_intervals`
 

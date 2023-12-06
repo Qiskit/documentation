@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.Operator
 
-<span id="undefined" />
+
 
 `Operator(data, input_dims=None, output_dims=None)`
 
@@ -34,7 +34,7 @@ Initialize an operator object.
 
 If the input or output dimensions are None, they will be automatically determined from the input data. If the input data is a Numpy array of shape (2\*\*N, 2\*\*N) qubit systems will be used. If the input operator is not an N-qubit operator, it will assign a single subsystem with dimension specified by the shape of the input.
 
-<span id="undefined" />
+
 
 `__init__(data, input_dims=None, output_dims=None)`
 
@@ -89,19 +89,19 @@ If the input or output dimensions are None, they will be automatically determine
 | [`qargs`](#qiskit.quantum_info.Operator.qargs "qiskit.quantum_info.Operator.qargs")                | Return the qargs for the operator.                                   |
 | [`rtol`](#qiskit.quantum_info.Operator.rtol "qiskit.quantum_info.Operator.rtol")                   | Default relative tolerance parameter for float comparisons.          |
 
-<span id="undefined" />
+
 
 `adjoint()`
 
 Return the adjoint of the Operator.
 
-<span id="undefined" />
+
 
 `property atol`
 
 Default absolute tolerance parameter for float comparisons.
 
-<span id="undefined" />
+
 
 `compose(other, qargs=None, front=False)`
 
@@ -131,31 +131,31 @@ The composed Operator.
   Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](#qiskit.quantum_info.Operator.dot "qiskit.quantum_info.Operator.dot") method `A.dot(B) == A.compose(B, front=True)`.
 </Admonition>
 
-<span id="undefined" />
+
 
 `conjugate()`
 
 Return the conjugate of the Operator.
 
-<span id="undefined" />
+
 
 `copy()`
 
 Make a deep copy of current operator.
 
-<span id="undefined" />
+
 
 `property data`
 
 Return data.
 
-<span id="undefined" />
+
 
 `property dim`
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 `dot(other, qargs=None)`
 
@@ -174,7 +174,7 @@ The right matrix multiplied Operator.
 
 [Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-<span id="undefined" />
+
 
 `equiv(other, rtol=None, atol=None)`
 
@@ -194,7 +194,7 @@ True if operators are equivalent up to global phase.
 
 bool
 
-<span id="undefined" />
+
 
 `expand(other)`
 
@@ -214,7 +214,7 @@ is the current Operator, and $b$ is the other Operator.
 
 [Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-<span id="undefined" />
+
 
 `classmethod from_label(label)`
 
@@ -240,31 +240,31 @@ The N-qubit operator.
 
 The labels correspond to the single-qubit matrices: ‘I’: \[\[1, 0], \[0, 1]] ‘X’: \[\[0, 1], \[1, 0]] ‘Y’: \[\[0, -1j], \[1j, 0]] ‘Z’: \[\[1, 0], \[0, -1]] ‘H’: \[\[1, 1], \[1, -1]] / sqrt(2) ‘S’: \[\[1, 0], \[0 , 1j]] ‘T’: \[\[1, 0], \[0, (1+1j) / sqrt(2)]] ‘0’: \[\[1, 0], \[0, 0]] ‘1’: \[\[0, 0], \[0, 1]] ‘+’: \[\[0.5, 0.5], \[0.5 , 0.5]] ‘-‘: \[\[0.5, -0.5], \[-0.5 , 0.5]] ‘r’: \[\[0.5, -0.5j], \[0.5j , 0.5]] ‘l’: \[\[0.5, 0.5j], \[-0.5j , 0.5]]
 
-<span id="undefined" />
+
 
 `input_dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
 
-<span id="undefined" />
+
 
 `is_unitary(atol=None, rtol=None)`
 
 Return True if operator is a unitary matrix.
 
-<span id="undefined" />
+
 
 `property num_qubits`
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+
 
 `output_dims(qargs=None)`
 
 Return tuple of output dimension for specified subsystems.
 
-<span id="undefined" />
+
 
 `power(n)`
 
@@ -286,13 +286,13 @@ the resulting operator `O ** n`.
 
 **QiskitError** – if the input and output dimensions of the operator are not equal.
 
-<span id="undefined" />
+
 
 `property qargs`
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+
 
 `reshape(input_dims=None, output_dims=None, num_qubits=None)`
 
@@ -316,7 +316,7 @@ BaseOperator
 
 **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
 
-<span id="undefined" />
+
 
 `reverse_qargs()`
 
@@ -332,13 +332,13 @@ the operator with reversed subsystem order.
 
 [Operator](#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-<span id="undefined" />
+
 
 `property rtol`
 
 Default relative tolerance parameter for float comparisons.
 
-<span id="undefined" />
+
 
 `tensor(other)`
 
@@ -362,19 +362,19 @@ is the current Operator, and $b$ is the other Operator.
   The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
 </Admonition>
 
-<span id="undefined" />
+
 
 `to_instruction()`
 
 Convert to a UnitaryGate instruction.
 
-<span id="undefined" />
+
 
 `to_operator()`
 
 Convert operator to matrix operator class
 
-<span id="undefined" />
+
 
 `transpose()`
 

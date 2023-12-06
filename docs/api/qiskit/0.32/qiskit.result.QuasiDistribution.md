@@ -1,6 +1,6 @@
 # QuasiDistribution
 
-<span id="undefined" />
+
 
 `QuasiDistribution(data, shots=None)`
 

@@ -1,6 +1,6 @@
 # CNOTDihedralRBFitter
 
-<span id="undefined" />
+
 
 `CNOTDihedralRBFitter(cnotdihedral_Z_result, cnotdihedral_X_result, elmnts_lengths, rb_pattern=None)`
 
@@ -30,61 +30,61 @@ Derived from RBFitterBase class. Contains two RBFitter objects.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### cliff\_lengths
 
 Return group elements lengths.
 
-<span id="undefined" />
+
 
 ### fit
 
 Return fit as a 2 element list.
 
-<span id="undefined" />
+
 
 ### fit\_cnotdihedral
 
 Return cnotdihedral fit parameters.
 
-<span id="undefined" />
+
 
 ### raw\_data
 
 Return raw\_data as 2 element list.
 
-<span id="undefined" />
+
 
 ### rb\_fit\_fun
 
 Return the fit function rb\_fit\_fun.
 
-<span id="undefined" />
+
 
 ### rbfit\_X
 
 Return the cnotdihedral X fitter.
 
-<span id="undefined" />
+
 
 ### rbfit\_Z
 
 Return the cnotdihedral Z fitter.
 
-<span id="undefined" />
+
 
 ### results
 
 Return all the results as a 2 element list.
 
-<span id="undefined" />
+
 
 ### seeds
 
 Return the number of loaded seeds as a 2 element list.
 
-<span id="undefined" />
+
 
 ### ydata
 

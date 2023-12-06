@@ -1,6 +1,6 @@
 # PhaseEstimationScale
 
-<span id="undefined" />
+
 
 `PhaseEstimationScale(bound)`
 
@@ -28,7 +28,7 @@ Increasing `bound` decreases the part of the interval $[0, 1)$ that is used to m
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### scale
 

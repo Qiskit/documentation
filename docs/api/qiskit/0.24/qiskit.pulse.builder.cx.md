@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.cx
 
-<span id="undefined" />
+
 
 `cx(control, target)`
 

@@ -1,6 +1,6 @@
 # qiskit.aqua.components.neural\_networks.DiscriminativeNetwork
 
-<span id="undefined" />
+
 
 `DiscriminativeNetwork`
 
@@ -8,7 +8,7 @@ Base class for discriminative Quantum or Classical Neural Networks.
 
 This method should initialize the module but raise an exception if a required component of the module is not available.
 
-<span id="undefined" />
+
 
 `abstract __init__()`
 
@@ -25,7 +25,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`set_seed`](#qiskit.aqua.components.neural_networks.DiscriminativeNetwork.set_seed "qiskit.aqua.components.neural_networks.DiscriminativeNetwork.set_seed")(seed)                | Set seed.                                                                                              |
 | [`train`](#qiskit.aqua.components.neural_networks.DiscriminativeNetwork.train "qiskit.aqua.components.neural_networks.DiscriminativeNetwork.train")(data, weights\[, penalty, …]) | Perform one training step w\.r.t to the discriminator’s parameters                                     |
 
-<span id="undefined" />
+
 
 `abstract get_label(x)`
 
@@ -39,7 +39,7 @@ Apply quantum/classical neural network to the given input sample and compute the
 
 **NotImplementedError** – not implemented
 
-<span id="undefined" />
+
 
 `abstract loss(x, y, weights=None)`
 
@@ -59,7 +59,7 @@ Loss w\.r.t to the generated data points.
 
 **NotImplementedError** – not implemented
 
-<span id="undefined" />
+
 
 `abstract save_model(snapshot_dir)`
 
@@ -73,7 +73,7 @@ Save discriminator model
 
 **NotImplementedError** – not implemented
 
-<span id="undefined" />
+
 
 `abstract set_seed(seed)`
 
@@ -87,7 +87,7 @@ Set seed.
 
 **NotImplementedError** – not implemented
 
-<span id="undefined" />
+
 
 `abstract train(data, weights, penalty=False, quantum_instance=None, shots=None)`
 

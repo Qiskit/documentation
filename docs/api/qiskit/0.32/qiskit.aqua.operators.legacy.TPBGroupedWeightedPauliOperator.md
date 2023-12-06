@@ -1,6 +1,6 @@
 # TPBGroupedWeightedPauliOperator
 
-<span id="undefined" />
+
 
 `TPBGroupedWeightedPauliOperator(paulis, basis, z2_symmetries=None, atol=1e-12, name=None, grouping_func=None, kwargs=None)`
 
@@ -51,43 +51,43 @@ TPB Grouped Weighted Pauli Operator
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### atol
 
 get atol
 
-<span id="undefined" />
+
 
 ### basis
 
 returns basis
 
-<span id="undefined" />
+
 
 ### grouping\_func
 
 returns grouping function
 
-<span id="undefined" />
+
 
 ### kwargs
 
 returns kwargs
 
-<span id="undefined" />
+
 
 ### name
 
 returns name
 
-<span id="undefined" />
+
 
 ### num\_groups
 
 returns number of groups
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -101,13 +101,13 @@ number of qubits
 
 int
 
-<span id="undefined" />
+
 
 ### paulis
 
 get paulis
 
-<span id="undefined" />
+
 
 ### z2\_symmetries
 

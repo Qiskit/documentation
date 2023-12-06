@@ -1,6 +1,6 @@
 # qiskit.circuit.classicalfunction.ClassicalFunctionParseError
 
-<span id="undefined" />
+
 
 `ClassicalFunctionParseError(*message)`
 
@@ -8,7 +8,7 @@ ClassicalFunction compiler parse error. The classicalfunction function fails at 
 
 Set the error message.
 
-<span id="undefined" />
+
 
 `with_traceback()`
 

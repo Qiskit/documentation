@@ -1,6 +1,6 @@
 # IQDiscriminationFitter
 
-<span id="undefined" />
+
 
 `IQDiscriminationFitter(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)`
 
@@ -32,19 +32,19 @@ Abstract discriminator that implements the data formatting for IQ level 1 data.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### expected\_states
 
 Returns the expected states used to train the discriminator.
 
-<span id="undefined" />
+
 
 ### fitted
 
 True if the discriminator has been fitted to calibration data.
 
-<span id="undefined" />
+
 
 ### schedules
 

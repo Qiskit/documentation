@@ -1,6 +1,6 @@
 # qiskit.pulse.AcquireChannel
 
-<span id="undefined" />
+
 
 `AcquireChannel(index)`
 
@@ -12,7 +12,7 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
-<span id="undefined" />
+
 
 `__init__(index)`
 
@@ -39,7 +39,7 @@ Channel class.
 | [`parameters`](#qiskit.pulse.AcquireChannel.parameters "qiskit.pulse.AcquireChannel.parameters") | Parameters which determine the channel index.                                      |
 | `prefix`                                                                                         |                                                                                    |
 
-<span id="undefined" />
+
 
 `assign(parameter, value)`
 
@@ -62,7 +62,7 @@ A new channel with updated parameters.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -72,7 +72,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
@@ -82,7 +82,7 @@ Return True iff the channel is parameterized.
 
 `bool`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -92,7 +92,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 `property parameters`
 

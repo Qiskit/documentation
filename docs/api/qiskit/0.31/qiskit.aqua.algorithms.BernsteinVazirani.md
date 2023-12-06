@@ -1,6 +1,6 @@
 # BernsteinVazirani
 
-<span id="undefined" />
+
 
 `BernsteinVazirani(oracle, quantum_instance=None)`
 
@@ -25,7 +25,7 @@ The Bernstein-Vazirani algorithm is an extension / restriction of the Deutsch-Jo
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### backend
 
@@ -35,7 +35,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 
@@ -45,7 +45,7 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 ### random
 

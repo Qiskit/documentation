@@ -1,6 +1,6 @@
 # qiskit.ignis.characterization.t1\_circuits
 
-<span id="undefined" />
+
 
 `t1_circuits(num_of_gates, gate_time, qubits)`
 

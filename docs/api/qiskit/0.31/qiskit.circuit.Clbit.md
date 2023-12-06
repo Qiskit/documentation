@@ -1,6 +1,6 @@
 # Clbit
 
-<span id="undefined" />
+
 
 `Clbit(register=None, index=None)`
 
@@ -21,13 +21,13 @@ Creates a classical bit.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### index
 
 Get bit’s index.
 
-<span id="undefined" />
+
 
 ### register
 

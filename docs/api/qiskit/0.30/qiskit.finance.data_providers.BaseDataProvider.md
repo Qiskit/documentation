@@ -1,6 +1,6 @@
 # BaseDataProvider
 
-<span id="undefined" />
+
 
 `BaseDataProvider`
 

@@ -1,6 +1,6 @@
 # qiskit.qobj.PulseQobjConfig
 
-<span id="undefined" />
+
 
 `PulseQobjConfig(meas_level, meas_return, pulse_library, qubit_lo_freq, meas_lo_freq, memory_slot_size=None, rep_time=None, rep_delay=None, shots=None, max_credits=None, seed_simulator=None, memory_slots=None, **kwargs)`
 
@@ -24,7 +24,7 @@ Instantiate a PulseQobjConfig object.
 *   **memory\_slots** (*list*) – The number of memory slots on the device
 *   **kwargs** – Additional free form key value fields to add to the configuration
 
-<span id="undefined" />
+
 
 `__init__(meas_level, meas_return, pulse_library, qubit_lo_freq, meas_lo_freq, memory_slot_size=None, rep_time=None, rep_delay=None, shots=None, max_credits=None, seed_simulator=None, memory_slots=None, **kwargs)`
 
@@ -54,7 +54,7 @@ Instantiate a PulseQobjConfig object.
 | [`from_dict`](#qiskit.qobj.PulseQobjConfig.from_dict "qiskit.qobj.PulseQobjConfig.from_dict")(data)                            | Create a new PulseQobjConfig object from a dictionary.              |
 | [`to_dict`](#qiskit.qobj.PulseQobjConfig.to_dict "qiskit.qobj.PulseQobjConfig.to_dict")()                                      | Return a dictionary format representation of the Pulse Qobj config. |
 
-<span id="undefined" />
+
 
 `classmethod from_dict(data)`
 
@@ -72,7 +72,7 @@ The object from the input dictionary.
 
 [PulseQobjConfig](#qiskit.qobj.PulseQobjConfig "qiskit.qobj.PulseQobjConfig")
 
-<span id="undefined" />
+
 
 `to_dict()`
 

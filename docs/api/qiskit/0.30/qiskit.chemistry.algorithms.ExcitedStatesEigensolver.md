@@ -1,6 +1,6 @@
 # ExcitedStatesEigensolver
 
-<span id="undefined" />
+
 
 `ExcitedStatesEigensolver(transformation, solver)`
 
@@ -21,7 +21,7 @@ The calculation of excited states via an Eigensolver algorithm
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### solver
 
@@ -31,7 +31,7 @@ Returns the minimum eigensolver or factory.
 
 `Union`\[`Eigensolver`, `EigensolverFactory`]
 
-<span id="undefined" />
+
 
 ### transformation
 

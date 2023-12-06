@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.purity
 
-<span id="undefined" />
+
 
 `purity(state, validate=True)`
 

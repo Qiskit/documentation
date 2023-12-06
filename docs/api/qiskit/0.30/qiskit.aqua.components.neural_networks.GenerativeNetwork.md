@@ -1,6 +1,6 @@
 # GenerativeNetwork
 
-<span id="undefined" />
+
 
 `GenerativeNetwork`
 
@@ -22,7 +22,7 @@ This method should initialize the module, but raise an exception if a required c
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### parameter\_values
 

@@ -2,7 +2,7 @@
 
 # qiskit.visualization.timeline\_drawer
 
-<span id="undefined" />
+
 
 `timeline_drawer(program, style=None, time_range=None, disable_bits=None, show_clbits=None, show_idle=None, show_barriers=None, show_delays=None, show_labels=True, plotter='mpl', axis=None, filename=None)`
 

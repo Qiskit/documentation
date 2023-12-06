@@ -2,7 +2,7 @@
 
 # qiskit.ignis.verification.composite\_pauli\_z\_expvalue
 
-<span id="undefined" />
+
 
 `composite_pauli_z_expvalue(counts_dictionary, qn)`
 

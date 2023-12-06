@@ -1,6 +1,6 @@
 # AerJob
 
-<span id="undefined" />
+
 
 `AerJob(backend, job_id, fn, qobj, executor=None)`
 
@@ -38,7 +38,7 @@ Initializes the asynchronous job.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### version
 

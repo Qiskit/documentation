@@ -1,6 +1,6 @@
 # qiskit.chemistry.FermionicOperator
 
-<span id="undefined" />
+
 
 `FermionicOperator(h1, h2=None, ph_trans_shift=None)`
 
@@ -34,7 +34,7 @@ The [`QMolecule`](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule "qiskit.
 *   **h2** (*numpy.ndarray*) – second-quantized fermionic two-body operator, a 4-D (NxNxNxN) tensor
 *   **ph\_trans\_shift** (*float*) – energy shift caused by particle hole transformation
 
-<span id="undefined" />
+
 
 `__init__(h1, h2=None, ph_trans_shift=None)`
 
@@ -80,7 +80,7 @@ The [`QMolecule`](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule "qiskit.
 | [`h2`](#qiskit.chemistry.FermionicOperator.h2 "qiskit.chemistry.FermionicOperator.h2")          | Getter of two body integral tensor. |
 | [`modes`](#qiskit.chemistry.FermionicOperator.modes "qiskit.chemistry.FermionicOperator.modes") | Getter of modes.                    |
 
-<span id="undefined" />
+
 
 `fermion_mode_elimination(fermion_mode_array)`
 
@@ -100,7 +100,7 @@ Fermionic Hamiltonian
 
 [FermionicOperator](#qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
 
-<span id="undefined" />
+
 
 `fermion_mode_freezing(fermion_mode_array)`
 
@@ -120,19 +120,19 @@ Fermionic Hamiltonian and energy of frozen modes
 
 tuple([FermionicOperator](#qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator"), float)
 
-<span id="undefined" />
+
 
 `property h1`
 
 Getter of one body integral tensor.
 
-<span id="undefined" />
+
 
 `property h2`
 
 Getter of two body integral tensor.
 
-<span id="undefined" />
+
 
 `mapping(map_type, threshold=1e-08)`
 
@@ -157,13 +157,13 @@ create an Operator object in Paulis form.
 
 [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – if the map\_type can not be recognized.
 
-<span id="undefined" />
+
 
 `property modes`
 
 Getter of modes.
 
-<span id="undefined" />
+
 
 `particle_hole_transformation(num_particles)`
 
@@ -181,7 +181,7 @@ new\_fer\_op, energy\_shift
 
 tuple
 
-<span id="undefined" />
+
 
 `total_angular_momentum()`
 
@@ -197,7 +197,7 @@ Fermionic Hamiltonian
 
 [FermionicOperator](#qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
 
-<span id="undefined" />
+
 
 `total_magnetization()`
 
@@ -211,7 +211,7 @@ Fermionic Hamiltonian
 
 [FermionicOperator](#qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
 
-<span id="undefined" />
+
 
 `total_particle_number()`
 
@@ -225,7 +225,7 @@ Fermionic Hamiltonian
 
 [FermionicOperator](#qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
 
-<span id="undefined" />
+
 
 `transform(unitary_matrix)`
 

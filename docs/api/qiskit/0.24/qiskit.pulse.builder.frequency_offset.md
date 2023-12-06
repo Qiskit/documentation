@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.frequency\_offset
 
-<span id="undefined" />
+
 
 `frequency_offset(frequency, *channels, compensate_phase=False)`
 

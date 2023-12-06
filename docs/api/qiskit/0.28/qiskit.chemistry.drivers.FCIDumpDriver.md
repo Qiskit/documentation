@@ -1,6 +1,6 @@
 # qiskit.chemistry.drivers.FCIDumpDriver
 
-<span id="undefined" />
+
 
 `FCIDumpDriver(fcidump_input, atoms=None)`
 
@@ -23,7 +23,7 @@ A determinant based full configuration interaction program, Computer Physics Com
 
 [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If `fcidump_input` is not a string or if `atoms` is not a list of valid atomic symbols as specified in `QMolecule`.
 
-<span id="undefined" />
+
 
 `__init__(fcidump_input, atoms=None)`
 
@@ -53,7 +53,7 @@ A determinant based full configuration interaction program, Computer Physics Com
 | [`molecule`](#qiskit.chemistry.drivers.FCIDumpDriver.molecule "qiskit.chemistry.drivers.FCIDumpDriver.molecule")                            | return molecule                                 |
 | [`supports_molecule`](#qiskit.chemistry.drivers.FCIDumpDriver.supports_molecule "qiskit.chemistry.drivers.FCIDumpDriver.supports_molecule") | True for derived classes that support Molecule. |
 
-<span id="undefined" />
+
 
 `property basis`
 
@@ -63,7 +63,7 @@ return basis
 
 `str`
 
-<span id="undefined" />
+
 
 `static dump(q_mol, outpath, orbsym=None, isym=1)`
 
@@ -80,7 +80,7 @@ Convenience method to produce an FCIDump output file.
 
 `None`
 
-<span id="undefined" />
+
 
 `property hf_method`
 
@@ -90,7 +90,7 @@ return Hartree-Fock method
 
 `str`
 
-<span id="undefined" />
+
 
 `property molecule`
 
@@ -100,7 +100,7 @@ return molecule
 
 `Optional`\[`Molecule`]
 
-<span id="undefined" />
+
 
 `run()`
 
@@ -114,7 +114,7 @@ Constructs a QMolecule instance out of a FCIDump file.
 
 A QMolecule instance populated with a minimal set of required data.
 
-<span id="undefined" />
+
 
 `property supports_molecule`
 

@@ -2,7 +2,7 @@
 
 # qiskit.converters.circuit\_to\_dagdependency
 
-<span id="undefined" />
+
 
 `circuit_to_dagdependency(circuit)`
 

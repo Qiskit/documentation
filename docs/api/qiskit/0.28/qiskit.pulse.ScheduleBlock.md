@@ -1,6 +1,6 @@
 # qiskit.pulse.ScheduleBlock
 
-<span id="undefined" />
+
 
 `ScheduleBlock(name=None, metadata=None, alignment_context=None)`
 
@@ -47,7 +47,7 @@ Create an empty schedule block.
 
 **TypeError** – if metadata is not a dict.
 
-<span id="undefined" />
+
 
 `__init__(name=None, metadata=None, alignment_context=None)`
 
@@ -102,13 +102,13 @@ Create an empty schedule block.
 | [`stop_time`](#qiskit.pulse.ScheduleBlock.stop_time "qiskit.pulse.ScheduleBlock.stop_time")                         | Stopping time of this schedule block.                                          |
 | [`timeslots`](#qiskit.pulse.ScheduleBlock.timeslots "qiskit.pulse.ScheduleBlock.timeslots")                         | Time keeping attribute.                                                        |
 
-<span id="undefined" />
+
 
 `property alignment_context`
 
 Return alignment instance that allocates block component to generate schedule.
 
-<span id="undefined" />
+
 
 `append(block, name=None, inplace=True)`
 
@@ -132,7 +132,7 @@ Schedule block with appended schedule.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When invalid schedule type is specified.
 
-<span id="undefined" />
+
 
 `assign_parameters(value_dict, inplace=True)`
 
@@ -151,7 +151,7 @@ Assign the parameters in this schedule according to the input.
 
 Schedule with updated parameters.
 
-<span id="undefined" />
+
 
 `property blocks`
 
@@ -161,7 +161,7 @@ Get the time-ordered instructions from self.
 
 `Tuple`\[`Union`\[`ScheduleBlock`, `Instruction`]]
 
-<span id="undefined" />
+
 
 `ch_duration(*channels)`
 
@@ -175,7 +175,7 @@ Return the time of the end of the last instruction over the supplied channels.
 
 `int`
 
-<span id="undefined" />
+
 
 `ch_start_time(*channels)`
 
@@ -189,7 +189,7 @@ Return the time of the start of the first instruction over the supplied channels
 
 `int`
 
-<span id="undefined" />
+
 
 `ch_stop_time(*channels)`
 
@@ -203,7 +203,7 @@ Return maximum start time over supplied channels.
 
 `int`
 
-<span id="undefined" />
+
 
 `property channels`
 
@@ -213,7 +213,7 @@ Returns channels that this schedule clock uses.
 
 `Tuple`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
 
-<span id="undefined" />
+
 
 `draw(dt=None, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, plot_all=None, plot_range=None, interactive=None, table=None, label=None, framechange=None, channels=None, show_framechange_channels=None, draw_title=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)`
 
@@ -285,7 +285,7 @@ Plot the schedule.
 
 Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
 
-<span id="undefined" />
+
 
 `property duration`
 
@@ -295,7 +295,7 @@ Duration of this schedule block.
 
 `int`
 
-<span id="undefined" />
+
 
 `exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`
 
@@ -326,7 +326,7 @@ self.filter(args) | self.exclude(args) == self
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When this method is called. This method will be supported soon.
 
-<span id="undefined" />
+
 
 `filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`
 
@@ -355,7 +355,7 @@ If no arguments are provided, `self` is returned.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When this method is called. This method will be supported soon.
 
-<span id="undefined" />
+
 
 `get_parameters(parameter_name)`
 
@@ -375,7 +375,7 @@ Because different `Parameter` objects can have the same name, this method return
 
 Parameter objects that have corresponding name.
 
-<span id="undefined" />
+
 
 `classmethod initialize_from(other_program, name=None)`
 
@@ -398,7 +398,7 @@ New block object with name and metadata.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When other\_program does not provide necessary information.
 
-<span id="undefined" />
+
 
 `insert(start_time, block, name=None, inplace=True)`
 
@@ -419,7 +419,7 @@ This method will be removed. Temporarily added for backward compatibility.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When this method is called. This method is not supported.
 
-<span id="undefined" />
+
 
 `property instructions`
 
@@ -429,7 +429,7 @@ Get the time-ordered instructions from self.
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
@@ -439,7 +439,7 @@ Return True iff the instruction is parameterized.
 
 `bool`
 
-<span id="undefined" />
+
 
 `is_schedulable()`
 
@@ -449,7 +449,7 @@ Return `True` if all durations are assigned.
 
 `bool`
 
-<span id="undefined" />
+
 
 `property metadata`
 
@@ -461,7 +461,7 @@ User provided `dict` of metadata for the schedule. The metadata contents do not 
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -471,7 +471,7 @@ Name of this Schedule
 
 `str`
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -481,7 +481,7 @@ Parameters which determine the schedule behavior.
 
 `Set`
 
-<span id="undefined" />
+
 
 `replace(old, new, inplace=True)`
 
@@ -501,7 +501,7 @@ Return a `ScheduleBlock` with the `old` component replaced with a `new` componen
 
 The modified schedule block with `old` replaced by `new`.
 
-<span id="undefined" />
+
 
 `shift(time, name=None, inplace=True)`
 
@@ -521,7 +521,7 @@ This method will be removed. Temporarily added for backward compatibility.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When this method is called. This method is not supported.
 
-<span id="undefined" />
+
 
 `property start_time`
 
@@ -531,7 +531,7 @@ Starting time of this schedule block.
 
 `int`
 
-<span id="undefined" />
+
 
 `property stop_time`
 
@@ -541,7 +541,7 @@ Stopping time of this schedule block.
 
 `int`
 
-<span id="undefined" />
+
 
 `property timeslots`
 

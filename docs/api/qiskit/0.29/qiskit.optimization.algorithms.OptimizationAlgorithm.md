@@ -1,6 +1,6 @@
 # OptimizationAlgorithm
 
-<span id="undefined" />
+
 
 `OptimizationAlgorithm`
 

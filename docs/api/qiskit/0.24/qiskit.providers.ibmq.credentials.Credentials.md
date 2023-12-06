@@ -2,7 +2,7 @@
 
 # qiskit.providers.ibmq.credentials.Credentials
 
-<span id="undefined" />
+
 
 `Credentials(token, url, websockets_url=None, hub=None, group=None, project=None, proxies=None, verify=True, services=None)`
 
@@ -26,7 +26,7 @@ Credentials constructor.
 *   **verify** (`bool`) – If `False`, ignores SSL certificates errors.
 *   **services** (`Optional`\[`Dict`]) – Additional services for this account.
 
-<span id="undefined" />
+
 
 `__init__(token, url, websockets_url=None, hub=None, group=None, project=None, proxies=None, verify=True, services=None)`
 
@@ -53,7 +53,7 @@ Credentials constructor.
 | [`is_ibmq`](#qiskit.providers.ibmq.credentials.Credentials.is_ibmq "qiskit.providers.ibmq.credentials.Credentials.is_ibmq")()                                           | Return whether the credentials represent an IBM Quantum Experience account. |
 | [`unique_id`](#qiskit.providers.ibmq.credentials.Credentials.unique_id "qiskit.providers.ibmq.credentials.Credentials.unique_id")()                                     | Return a value that uniquely identifies these credentials.                  |
 
-<span id="undefined" />
+
 
 `connection_parameters()`
 
@@ -67,7 +67,7 @@ Construct connection related parameters.
 
 A dictionary with connection-related parameters in the format expected by `requests`. The following keys can be present: `proxies`, `verify`, and `auth`.
 
-<span id="undefined" />
+
 
 `is_ibmq()`
 
@@ -77,7 +77,7 @@ Return whether the credentials represent an IBM Quantum Experience account.
 
 `bool`
 
-<span id="undefined" />
+
 
 `unique_id()`
 

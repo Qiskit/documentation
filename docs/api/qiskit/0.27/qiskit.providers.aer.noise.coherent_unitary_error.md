@@ -1,6 +1,6 @@
 # qiskit.providers.aer.noise.coherent\_unitary\_error
 
-<span id="undefined" />
+
 
 `coherent_unitary_error(unitary)`
 

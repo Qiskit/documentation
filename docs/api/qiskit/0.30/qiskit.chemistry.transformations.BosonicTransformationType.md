@@ -1,6 +1,6 @@
 # BosonicTransformationType
 
-<span id="undefined" />
+
 
 `BosonicTransformationType(value)`
 
@@ -10,7 +10,7 @@ BosonicTransformationType enum
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### HARMONIC
 
