@@ -21,12 +21,7 @@ NOTEBOOKS_EXCLUDE = [
     "docs/api/**",
     "**/.ipynb_checkpoints/**",
     # Following notebooks have code errors
-    "docs/build/circuit-construction.ipynb",
-    "docs/build/pulse.ipynb",
-    "docs/transpile/custom-transpiler-pass.ipynb",
     "docs/transpile/transpiler-stages.ipynb",
-    # Following notebook has some non-python dependency I can't figure out
-    "docs/build/circuit-visualization.ipynb",
     # Following notebooks make requests so can't be tested yet
     "docs/run/get-backend-information.ipynb",
     "docs/start/hello-world.ipynb",
