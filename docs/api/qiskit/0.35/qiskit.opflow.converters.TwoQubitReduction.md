@@ -1,6 +1,6 @@
 # TwoQubitReduction
 
-<span id="undefined" />
+
 
 `TwoQubitReduction(num_particles)`
 

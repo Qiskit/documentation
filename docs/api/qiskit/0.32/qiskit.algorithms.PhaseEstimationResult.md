@@ -1,6 +1,6 @@
 # PhaseEstimationResult
 
-<span id="undefined" />
+
 
 `PhaseEstimationResult(num_evaluation_qubits, circuit_result, phases)`
 
@@ -27,7 +27,7 @@ The canonical phase satisfying the `PhaseEstimator` interface, returned by the a
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### circuit\_result
 
@@ -39,7 +39,7 @@ This is useful for inspecting and troubleshooting the QPE algorithm.
 
 `Result`
 
-<span id="undefined" />
+
 
 ### most\_likely\_phase
 
@@ -51,7 +51,7 @@ DEPRECATED - Return the most likely phase as a number in $[0.0, 1.0)$.
 
 `float`
 
-<span id="undefined" />
+
 
 ### phase
 
@@ -63,7 +63,7 @@ Return the most likely phase as a number in $[0.0, 1.0)$.
 
 `float`
 
-<span id="undefined" />
+
 
 ### phases
 

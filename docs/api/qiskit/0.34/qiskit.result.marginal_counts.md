@@ -1,6 +1,6 @@
 # qiskit.result.marginal\_counts
 
-<span id="undefined" />
+
 
 `marginal_counts(result, indices=None, inplace=False, format_marginal=False, marginalize_memory=True)`
 

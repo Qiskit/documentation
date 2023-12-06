@@ -1,6 +1,6 @@
 # PrimitiveOp
 
-<span id="undefined" />
+
 
 `PrimitiveOp(primitive, coeff=1.0)`
 
@@ -42,13 +42,13 @@ Note that all mathematical methods are not in-place, meaning that they return a 
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### INDENTATION
 
 `= ' '`
 
-<span id="undefined" />
+
 
 ### coeff
 
@@ -62,7 +62,7 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
-<span id="undefined" />
+
 
 ### instance\_id
 
@@ -72,7 +72,7 @@ Return the unique instance id.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -80,11 +80,11 @@ Return the unique instance id.
 
 `int`
 
-<span id="undefined" />
+
 
 ### parameters
 
-<span id="undefined" />
+
 
 ### primitive
 
@@ -98,7 +98,7 @@ The primitive defining the underlying function of the Operator.
 
 The primitive object.
 
-<span id="undefined" />
+
 
 ### settings
 

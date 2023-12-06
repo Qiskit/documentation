@@ -1,6 +1,6 @@
 # IterativeAmplitudeEstimationResult
 
-<span id="undefined" />
+
 
 `IterativeAmplitudeEstimationResult`
 
@@ -16,7 +16,7 @@ The `IterativeAmplitudeEstimation` result object.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### alpha
 
@@ -26,7 +26,7 @@ Return the confidence level $\alpha$.
 
 `float`
 
-<span id="undefined" />
+
 
 ### circuit\_results
 
@@ -36,7 +36,7 @@ Return the circuit results. Can be a statevector or counts dictionary.
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
 
-<span id="undefined" />
+
 
 ### confidence\_interval
 
@@ -46,7 +46,7 @@ Return the confidence interval for the amplitude (95% interval by default).
 
 `Tuple`\[`float`, `float`]
 
-<span id="undefined" />
+
 
 ### confidence\_interval\_processed
 
@@ -56,7 +56,7 @@ Return the post-processed confidence interval.
 
 `Tuple`\[`float`, `float`]
 
-<span id="undefined" />
+
 
 ### epsilon\_estimated
 
@@ -66,7 +66,7 @@ Return the estimated half-width of the confidence interval.
 
 `float`
 
-<span id="undefined" />
+
 
 ### epsilon\_estimated\_processed
 
@@ -76,7 +76,7 @@ Return the post-processed estimated half-width of the confidence interval.
 
 `float`
 
-<span id="undefined" />
+
 
 ### epsilon\_target
 
@@ -86,7 +86,7 @@ Return the target half-width of the confidence interval.
 
 `float`
 
-<span id="undefined" />
+
 
 ### estimate\_intervals
 
@@ -96,7 +96,7 @@ Return the confidence intervals for the estimate in each iteration.
 
 `List`\[`List`\[`float`]]
 
-<span id="undefined" />
+
 
 ### estimation
 
@@ -106,7 +106,7 @@ Return the estimation for the amplitude in $[0, 1]$.
 
 `float`
 
-<span id="undefined" />
+
 
 ### estimation\_processed
 
@@ -116,7 +116,7 @@ Return the estimation for the amplitude after the post-processing has been appli
 
 `float`
 
-<span id="undefined" />
+
 
 ### num\_oracle\_queries
 
@@ -126,7 +126,7 @@ Return the number of Grover oracle queries.
 
 `int`
 
-<span id="undefined" />
+
 
 ### post\_processing
 
@@ -136,7 +136,7 @@ Return a handle to the post processing function.
 
 `Callable`\[\[`float`], `float`]
 
-<span id="undefined" />
+
 
 ### powers
 
@@ -146,7 +146,7 @@ Return the powers of the Grover operator in each iteration.
 
 `List`\[`int`]
 
-<span id="undefined" />
+
 
 ### ratios
 
@@ -156,7 +156,7 @@ Return the ratios $K_{i+1}/K_{i}$ for each iteration $i$.
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 ### shots
 
@@ -166,7 +166,7 @@ Return the number of shots used. Is 1 for statevector-based simulations.
 
 `int`
 
-<span id="undefined" />
+
 
 ### theta\_intervals
 

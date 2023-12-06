@@ -1,6 +1,6 @@
 # CircuitSampler
 
-<span id="undefined" />
+
 
 `CircuitSampler(backend, statevector=None, param_qobj=False, attach_results=False)`
 
@@ -31,7 +31,7 @@ The CircuitSampler aggressively caches transpiled circuits to handle re-paramete
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### backend
 
@@ -45,7 +45,7 @@ Returns the backend.
 
 The backend used by the CircuitSampler
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 

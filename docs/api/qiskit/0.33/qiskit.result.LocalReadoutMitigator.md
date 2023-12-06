@@ -1,6 +1,6 @@
 # LocalReadoutMitigator
 
-<span id="undefined" />
+
 
 `LocalReadoutMitigator(amats=None, qubits=None, backend=None)`
 
@@ -34,7 +34,7 @@ Initialize a LocalReadoutMitigator
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### qubits
 

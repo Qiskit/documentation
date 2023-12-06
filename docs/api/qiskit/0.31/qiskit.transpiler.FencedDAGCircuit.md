@@ -1,6 +1,6 @@
 # FencedDAGCircuit
 
-<span id="undefined" />
+
 
 `FencedDAGCircuit(dag_circuit_instance)`
 

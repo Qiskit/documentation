@@ -1,6 +1,6 @@
 # qiskit.pulse.builder.u2
 
-<span id="undefined" />
+
 
 `u2(phi, lam, qubit)`
 

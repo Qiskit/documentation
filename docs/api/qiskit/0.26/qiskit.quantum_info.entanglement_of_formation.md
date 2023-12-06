@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.entanglement\_of\_formation
 
-<span id="undefined" />
+
 
 `entanglement_of_formation(state)`
 

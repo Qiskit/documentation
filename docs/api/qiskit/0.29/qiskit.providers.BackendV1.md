@@ -1,6 +1,6 @@
 # BackendV1
 
-<span id="undefined" />
+
 
 `BackendV1(configuration, provider=None, **fields)`
 
@@ -26,7 +26,7 @@ Initialize a backend class
 
 In addition to the public abstract methods, subclasses should also implement the following private methods:
 
-<span id="undefined" />
+
 
 `abstract classmethod _default_options()`
 
@@ -58,7 +58,7 @@ default values set
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### options
 
@@ -66,7 +66,7 @@ Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.BackendV1.run#qiskit.providers.BackendV1.run "qiskit.providers.BackendV1.run") method.
 
-<span id="undefined" />
+
 
 ### version
 

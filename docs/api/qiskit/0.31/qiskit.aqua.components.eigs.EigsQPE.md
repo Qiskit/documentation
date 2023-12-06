@@ -1,6 +1,6 @@
 # EigsQPE
 
-<span id="undefined" />
+
 
 `EigsQPE(operator, iqft, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=None, negative_evals=False, ne_qfts=None)`
 

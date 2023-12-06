@@ -2,7 +2,7 @@
 
 # qiskit.aqua.components.oracles.LogicalExpressionOracle
 
-<span id="undefined" />
+
 
 `LogicalExpressionOracle(expression, optimization=False, mct_mode='basic')`
 
@@ -44,7 +44,7 @@ By default, the Logical Expression oracle will not try to apply any optimization
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
 
-<span id="undefined" />
+
 
 `__init__(expression, optimization=False, mct_mode='basic')`
 
@@ -75,35 +75,35 @@ By default, the Logical Expression oracle will not try to apply any optimization
 | [`output_register`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.output_register "qiskit.aqua.components.oracles.LogicalExpressionOracle.output_register")          | returns output register    |
 | [`variable_register`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.variable_register "qiskit.aqua.components.oracles.LogicalExpressionOracle.variable_register")    | returns variable register  |
 
-<span id="undefined" />
+
 
 `property ancillary_register`
 
 returns ancillary register
 
-<span id="undefined" />
+
 
 `property circuit`
 
-<span id="undefined" />
+
 
 `construct_circuit()`
 
 construct circuit
 
-<span id="undefined" />
+
 
 `evaluate_classically(measurement)`
 
 evaluate classically
 
-<span id="undefined" />
+
 
 `property output_register`
 
 returns output register
 
-<span id="undefined" />
+
 
 `property variable_register`
 

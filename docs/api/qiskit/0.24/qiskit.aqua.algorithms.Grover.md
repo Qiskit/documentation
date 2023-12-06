@@ -2,7 +2,7 @@
 
 # qiskit.aqua.algorithms.Grover
 
-<span id="undefined" />
+
 
 `Grover(oracle, good_state=None, state_preparation=None, iterations=1, sample_from_iterations=False, post_processing=None, grover_operator=None, quantum_instance=None, init_state=None, incremental=False, num_iterations=None, lam=None, rotation_counts=None, mct_mode=None)`
 
@@ -86,7 +86,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 [https://arxiv.org/abs/quant-ph/9605034](https://arxiv.org/abs/quant-ph/9605034)
 
-<span id="undefined" />
+
 
 `__init__(oracle, good_state=None, state_preparation=None, iterations=1, sample_from_iterations=False, post_processing=None, grover_operator=None, quantum_instance=None, init_state=None, incremental=False, num_iterations=None, lam=None, rotation_counts=None, mct_mode=None)`
 
@@ -140,7 +140,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 | [`quantum_instance`](#qiskit.aqua.algorithms.Grover.quantum_instance "qiskit.aqua.algorithms.Grover.quantum_instance") | Returns quantum instance. |
 | [`random`](#qiskit.aqua.algorithms.Grover.random "qiskit.aqua.algorithms.Grover.random")                               | Return a numpy random.    |
 
-<span id="undefined" />
+
 
 `property backend`
 
@@ -150,7 +150,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 `construct_circuit(power=None, measurement=False)`
 
@@ -169,7 +169,7 @@ the QuantumCircuit object for the constructed circuit
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-<span id="undefined" />
+
 
 `property grover_operator`
 
@@ -179,7 +179,7 @@ Returns grover\_operator.
 
 `QuantumCircuit`
 
-<span id="undefined" />
+
 
 `is_good_state(bitstr)`
 
@@ -197,7 +197,7 @@ Check whether a provided bitstring is a good state or not.
 
 True if the measurement is a good state, False otherwise.
 
-<span id="undefined" />
+
 
 `static optimal_num_iterations(num_solutions, num_qubits)`
 
@@ -216,7 +216,7 @@ Return the optimal number of iterations, if the number of solutions is known.
 
 The optimal number of iterations for Grover’s algorithm to succeed.
 
-<span id="undefined" />
+
 
 `post_processing(measurement)`
 
@@ -234,7 +234,7 @@ Do the post-processing to the measurement result
 
 Do the post-processing based on the post\_processing argument. If the post\_processing argument is None and the Oracle class is used as its oracle, oracle.evaluate\_classically is used as the post\_processing. Otherwise, just return the input bitstr
 
-<span id="undefined" />
+
 
 `property quantum_instance`
 
@@ -244,13 +244,13 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 `property random`
 
 Return a numpy random.
 
-<span id="undefined" />
+
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -273,7 +273,7 @@ dict
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
-<span id="undefined" />
+
 
 `set_backend(backend, **kwargs)`
 

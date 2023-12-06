@@ -1,6 +1,6 @@
 # qiskit.opflow\.anti\_commutator
 
-<span id="undefined" />
+
 
 `anti_commutator(op_a, op_b)`
 

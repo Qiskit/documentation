@@ -2,13 +2,13 @@
 
 # qiskit.chemistry.transformations.BosonicTransformationType
 
-<span id="undefined" />
+
 
 `BosonicTransformationType(value)`
 
 BosonicTransformationType enum
 
-<span id="undefined" />
+
 
 `__init__()`
 

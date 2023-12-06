@@ -1,6 +1,6 @@
 # DAGDepNode
 
-<span id="undefined" />
+
 
 `DAGDepNode(type=None, op=None, name=None, qargs=None, cargs=None, condition=None, successors=None, predecessors=None, reachable=None, matchedwith=None, successorstovisit=None, isblocked=None, qindices=None, cindices=None, nid=- 1)`
 
@@ -19,72 +19,72 @@ It is used as the return value from \*\_nodes() functions and can be supplied to
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### cargs
 
-<span id="undefined" />
+
 
 ### cindices
 
-<span id="undefined" />
+
 
 ### condition
 
 Returns the condition of the node.op
 
-<span id="undefined" />
+
 
 ### isblocked
 
-<span id="undefined" />
+
 
 ### matchedwith
 
-<span id="undefined" />
+
 
 ### name
 
-<span id="undefined" />
+
 
 ### node\_id
 
-<span id="undefined" />
+
 
 ### op
 
 Returns the Instruction object corresponding to the op for the node, else None
 
-<span id="undefined" />
+
 
 ### predecessors
 
-<span id="undefined" />
+
 
 ### qargs
 
 Returns list of Qubit, else an empty list.
 
-<span id="undefined" />
+
 
 ### qindices
 
-<span id="undefined" />
+
 
 ### reachable
 
-<span id="undefined" />
+
 
 ### sort\_key
 
-<span id="undefined" />
+
 
 ### successors
 
-<span id="undefined" />
+
 
 ### successorstovisit
 
-<span id="undefined" />
+
 
 ### type

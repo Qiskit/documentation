@@ -1,6 +1,6 @@
 # UnivariateProblem
 
-<span id="undefined" />
+
 
 `UnivariateProblem(uncertainty_model, univariate_objective, i_state=None, i_objective=None)`
 
@@ -37,7 +37,7 @@ Constructor.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 

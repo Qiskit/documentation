@@ -1,6 +1,6 @@
 # qiskit.compiler.schedule
 
-<span id="undefined" />
+
 
 `schedule(circuits, backend=None, inst_map=None, meas_map=None, dt=None, method=None)`
 

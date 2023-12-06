@@ -1,6 +1,6 @@
 # QuadraticProgram
 
-<span id="undefined" />
+
 
 `QuadraticProgram(name='')`
 
@@ -58,7 +58,7 @@ This representation supports inequality and equality constraints, as well as con
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### linear\_constraints
 
@@ -72,7 +72,7 @@ Returns the list of linear constraints of the quadratic program.
 
 List of linear constraints.
 
-<span id="undefined" />
+
 
 ### linear\_constraints\_index
 
@@ -86,7 +86,7 @@ Returns the dictionary that maps the name of a linear constraint to its index.
 
 The linear constraint index dictionary.
 
-<span id="undefined" />
+
 
 ### name
 
@@ -100,7 +100,7 @@ Returns the name of the quadratic program.
 
 The name of the quadratic program.
 
-<span id="undefined" />
+
 
 ### objective
 
@@ -114,7 +114,7 @@ Returns the quadratic objective.
 
 The quadratic objective.
 
-<span id="undefined" />
+
 
 ### quadratic\_constraints
 
@@ -128,7 +128,7 @@ Returns the list of quadratic constraints of the quadratic program.
 
 List of quadratic constraints.
 
-<span id="undefined" />
+
 
 ### quadratic\_constraints\_index
 
@@ -142,7 +142,7 @@ Returns the dictionary that maps the name of a quadratic constraint to its index
 
 The quadratic constraint index dictionary.
 
-<span id="undefined" />
+
 
 ### status
 
@@ -156,7 +156,7 @@ Status of the quadratic program. It can be infeasible due to variable substituti
 
 The status of the quadratic program
 
-<span id="undefined" />
+
 
 ### variables
 
@@ -170,7 +170,7 @@ Returns the list of variables of the quadratic program.
 
 List of variables.
 
-<span id="undefined" />
+
 
 ### variables\_index
 

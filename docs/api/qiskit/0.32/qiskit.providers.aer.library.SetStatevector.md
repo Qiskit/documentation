@@ -1,6 +1,6 @@
 # SetStatevector
 
-<span id="undefined" />
+
 
 `SetStatevector(state)`
 
@@ -42,25 +42,25 @@ Create new instruction to set the statevector state of the simulator.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+
 
 ### duration
 
 Get the duration.
 
-<span id="undefined" />
+
 
 ### label
 
@@ -70,13 +70,13 @@ Return instruction label
 
 `str`
 
-<span id="undefined" />
+
 
 ### params
 
 return instruction params.
 
-<span id="undefined" />
+
 
 ### unit
 

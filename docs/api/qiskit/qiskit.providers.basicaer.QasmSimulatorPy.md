@@ -30,7 +30,7 @@ Initialize a backend class
 
 In addition to the public abstract methods, subclasses should also implement the following private methods:
 
-<span id="undefined" />
+
 
 `classmethod _default_options()`
 

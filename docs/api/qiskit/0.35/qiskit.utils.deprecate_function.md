@@ -1,6 +1,6 @@
 # qiskit.utils.deprecate\_function
 
-<span id="undefined" />
+
 
 `deprecate_function(msg, stacklevel=2)`
 

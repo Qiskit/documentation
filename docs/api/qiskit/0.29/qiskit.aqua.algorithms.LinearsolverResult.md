@@ -1,6 +1,6 @@
 # LinearsolverResult
 
-<span id="undefined" />
+
 
 `LinearsolverResult(a_dict=None)`
 
@@ -28,7 +28,7 @@ Linear solver Result.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### solution
 

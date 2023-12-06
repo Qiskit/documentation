@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.random.IBMQRandomService
 
-<span id="undefined" />
+
 
 `IBMQRandomService(provider)`
 
@@ -20,7 +20,7 @@ IBMQRandomService constructor.
 
 **provider** (`AccountProvider`) – IBM Quantum Experience account provider.
 
-<span id="undefined" />
+
 
 `__init__(provider)`
 
@@ -38,7 +38,7 @@ IBMQRandomService constructor.
 | [`get_service`](#qiskit.providers.ibmq.random.IBMQRandomService.get_service "qiskit.providers.ibmq.random.IBMQRandomService.get_service")(name) | Return the random number service with the given name.        |
 | [`services`](#qiskit.providers.ibmq.random.IBMQRandomService.services "qiskit.providers.ibmq.random.IBMQRandomService.services")()              | Return all random number services available to this account. |
 
-<span id="undefined" />
+
 
 `get_service(name)`
 
@@ -60,7 +60,7 @@ Service with the given name.
 
 [**IBMQError**](qiskit.providers.ibmq.IBMQError#qiskit.providers.ibmq.IBMQError "qiskit.providers.ibmq.IBMQError") – If the service cannot be found.
 
-<span id="undefined" />
+
 
 `services()`
 

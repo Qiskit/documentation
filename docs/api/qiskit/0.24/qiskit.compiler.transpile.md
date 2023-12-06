@@ -2,7 +2,7 @@
 
 # qiskit.compiler.transpile
 
-<span id="undefined" />
+
 
 `transpile(circuits, backend=None, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, seed_transpiler=None, optimization_level=None, pass_manager=None, callback=None, output_name=None)`
 

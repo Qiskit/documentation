@@ -1,6 +1,6 @@
 # HHLResult
 
-<span id="undefined" />
+
 
 `HHLResult(a_dict=None)`
 
@@ -28,7 +28,7 @@ HHL Result.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### circuit\_info
 
@@ -38,7 +38,7 @@ return circuit info
 
 `DAGCircuit`
 
-<span id="undefined" />
+
 
 ### matrix
 
@@ -48,7 +48,7 @@ return matrix
 
 `ndarray`
 
-<span id="undefined" />
+
 
 ### output
 
@@ -58,7 +58,7 @@ return output
 
 `ndarray`
 
-<span id="undefined" />
+
 
 ### probability\_result
 
@@ -68,7 +68,7 @@ return probability result
 
 `Union`\[`ndarray`, `float`]
 
-<span id="undefined" />
+
 
 ### solution
 
@@ -78,7 +78,7 @@ return solution
 
 `ndarray`
 
-<span id="undefined" />
+
 
 ### vector
 

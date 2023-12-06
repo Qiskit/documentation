@@ -1,6 +1,6 @@
 # qiskit.aqua.components.oracles.Oracle
 
-<span id="undefined" />
+
 
 `Oracle(*args, **kwargs)`
 
@@ -13,7 +13,7 @@ This method should initialize the module and use an exception if a component of 
 *   **args** (*list*) – args
 *   **kwargs** (*dict*) – kwargs
 
-<span id="undefined" />
+
 
 `abstract __init__(*args, **kwargs)`
 
@@ -35,17 +35,17 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`output_register`](#qiskit.aqua.components.oracles.Oracle.output_register "qiskit.aqua.components.oracles.Oracle.output_register")          | returns output register    |
 | [`variable_register`](#qiskit.aqua.components.oracles.Oracle.variable_register "qiskit.aqua.components.oracles.Oracle.variable_register")    | returns variable register  |
 
-<span id="undefined" />
+
 
 `abstract property ancillary_register`
 
 returns ancillary register
 
-<span id="undefined" />
+
 
 `property circuit`
 
-<span id="undefined" />
+
 
 `abstract construct_circuit()`
 
@@ -55,13 +55,13 @@ Construct the oracle circuit.
 
 A quantum circuit for the oracle.
 
-<span id="undefined" />
+
 
 `abstract property output_register`
 
 returns output register
 
-<span id="undefined" />
+
 
 `abstract property variable_register`
 

@@ -1,6 +1,6 @@
 # GraphDecoder
 
-<span id="undefined" />
+
 
 `GraphDecoder(code, S=None)`
 

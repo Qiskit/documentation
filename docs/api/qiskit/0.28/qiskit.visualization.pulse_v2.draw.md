@@ -1,6 +1,6 @@
 # qiskit.visualization.pulse\_v2.draw
 
-<span id="undefined" />
+
 
 `draw(program, style=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)`
 

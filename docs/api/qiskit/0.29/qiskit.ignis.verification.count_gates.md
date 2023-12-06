@@ -1,6 +1,6 @@
 # qiskit.ignis.verification.count\_gates
 
-<span id="undefined" />
+
 
 `count_gates(qobj, basis, qubits)`
 

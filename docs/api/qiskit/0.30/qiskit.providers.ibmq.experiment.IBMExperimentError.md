@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.experiment.IBMExperimentError
 
-<span id="undefined" />
+
 
 `IBMExperimentError(*message)`
 

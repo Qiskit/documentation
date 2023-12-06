@@ -1,6 +1,6 @@
 # AbelianGrouper
 
-<span id="undefined" />
+
 
 `AbelianGrouper(traverse=True)`
 

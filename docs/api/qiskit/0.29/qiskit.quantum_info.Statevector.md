@@ -1,6 +1,6 @@
 # Statevector
 
-<span id="undefined" />
+
 
 `Statevector(data, dims=None)`
 
@@ -58,37 +58,37 @@ The `dims` kwarg can be None, an integer, or an iterable of integers.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### atol
 
 `= 1e-08`
 
-<span id="undefined" />
+
 
 ### data
 
 Return data.
 
-<span id="undefined" />
+
 
 ### dim
 
 Return total state dimension.
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 Return the number of qubits if a N-qubit state or None otherwise.
 
-<span id="undefined" />
+
 
 ### rtol
 
 `= 1e-05`
 
-<span id="undefined" />
+
 
 ### settings
 

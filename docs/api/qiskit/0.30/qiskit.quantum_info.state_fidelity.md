@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.state\_fidelity
 
-<span id="undefined" />
+
 
 `state_fidelity(state1, state2, validate=True)`
 

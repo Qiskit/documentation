@@ -1,6 +1,6 @@
 # qiskit.aqua.components.multiclass\_extensions.AllPairs
 
-<span id="undefined" />
+
 
 `AllPairs`
 
@@ -8,7 +8,7 @@ The All-Pairs multiclass extension.
 
 In the **all-pairs** reduction, one trains $k(k−1)/2$ binary classifiers for a $k$-way multiclass problem; each receives the samples of a pair of classes from the original training set, and must learn to distinguish these two classes. At prediction time, a **weighted voting scheme** is used: all $k(k−1)/2$ classifiers are applied to an unseen sample, and each class gets assigned the sum of all the scores obtained by the various classifiers. The combined classifier returns as a result the class getting the highest value.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -24,7 +24,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`test`](#qiskit.aqua.components.multiclass_extensions.AllPairs.test "qiskit.aqua.components.multiclass_extensions.AllPairs.test")(x, y)                                                 | Testing multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                  |
 | [`train`](#qiskit.aqua.components.multiclass_extensions.AllPairs.train "qiskit.aqua.components.multiclass_extensions.AllPairs.train")(x, y)                                              | Training multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                 |
 
-<span id="undefined" />
+
 
 `predict(x)`
 
@@ -42,7 +42,7 @@ predicted labels, Nx1 array
 
 numpy.ndarray
 
-<span id="undefined" />
+
 
 `set_estimator(estimator_cls, params=None)`
 
@@ -52,7 +52,7 @@ Called internally to set `Estimator` and parameters :type estimator\_cls: `Calla
 
 `None`
 
-<span id="undefined" />
+
 
 `test(x, y)`
 
@@ -71,7 +71,7 @@ accuracy
 
 float
 
-<span id="undefined" />
+
 
 `train(x, y)`
 

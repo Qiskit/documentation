@@ -1,6 +1,6 @@
 # TridiagonalToeplitz
 
-<span id="undefined" />
+
 
 `TridiagonalToeplitz(num_state_qubits, main_diag, off_diag, tolerance=0.01, evolution_time=1.0, trotter_steps=1, name='tridi')`
 
@@ -213,7 +213,7 @@ qc.append(matrix.power(power).control(), list(range(circ_qubits)))
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ancillas
 
@@ -223,7 +223,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 `List`\[`AncillaQubit`]
 
-<span id="undefined" />
+
 
 ### calibrations
 
@@ -237,7 +237,7 @@ Return calibration dictionary.
 
 `dict`
 
-<span id="undefined" />
+
 
 ### clbits
 
@@ -247,11 +247,11 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-<span id="undefined" />
+
 
 ### data
 
-<span id="undefined" />
+
 
 ### evolution\_time
 
@@ -261,13 +261,13 @@ Return the time of the evolution.
 
 `float`
 
-<span id="undefined" />
+
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-<span id="undefined" />
+
 
 ### global\_phase
 
@@ -277,19 +277,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-<span id="undefined" />
+
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="undefined" />
+
 
 ### instances
 
 `= 9`
 
-<span id="undefined" />
+
 
 ### main\_diag
 
@@ -299,7 +299,7 @@ Return the entry in the main diagonal.
 
 `float`
 
-<span id="undefined" />
+
 
 ### matrix
 
@@ -309,7 +309,7 @@ Returns the tridiagonal Toeplitz matrix built according to the main and off diag
 
 `ndarray`
 
-<span id="undefined" />
+
 
 ### metadata
 
@@ -321,7 +321,7 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-<span id="undefined" />
+
 
 ### num\_ancillas
 
@@ -331,7 +331,7 @@ Return the number of ancilla qubits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_clbits
 
@@ -341,7 +341,7 @@ Return number of classical bits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_parameters
 
@@ -349,7 +349,7 @@ Return number of classical bits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -359,7 +359,7 @@ Return number of qubits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_state\_qubits
 
@@ -373,7 +373,7 @@ The number of state qubits representing the state $|x\rangle$.
 
 The number of state qubits.
 
-<span id="undefined" />
+
 
 ### off\_diag
 
@@ -383,7 +383,7 @@ Return the entry in the off diagonals.
 
 `float`
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -391,19 +391,19 @@ Return the entry in the off diagonals.
 
 `ParameterView`
 
-<span id="undefined" />
+
 
 ### prefix
 
 `= 'circuit'`
 
-<span id="undefined" />
+
 
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-<span id="undefined" />
+
 
 ### qubits
 
@@ -413,7 +413,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 `List`\[`Qubit`]
 
-<span id="undefined" />
+
 
 ### tolerance
 
@@ -423,7 +423,7 @@ Return the error tolerance
 
 `float`
 
-<span id="undefined" />
+
 
 ### trotter\_steps
 

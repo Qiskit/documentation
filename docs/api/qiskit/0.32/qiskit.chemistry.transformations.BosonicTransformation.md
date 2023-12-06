@@ -1,6 +1,6 @@
 # BosonicTransformation
 
-<span id="undefined" />
+
 
 `BosonicTransformation(qubit_mapping=<BosonicQubitMappingType.DIRECT: 'direct'>, transformation_type=<BosonicTransformationType.HARMONIC: 'harmonic'>, basis_size=2, truncation=3)`
 
@@ -26,7 +26,7 @@ A vibronic Hamiltonian operator representing the energy of the nuclei in the mol
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### basis
 
@@ -36,7 +36,7 @@ returns the basis (number of modals per mode)
 
 `Union`\[`int`, `List`\[`int`]]
 
-<span id="undefined" />
+
 
 ### commutation\_rule
 
@@ -46,7 +46,7 @@ Getter of the commutation rule
 
 `bool`
 
-<span id="undefined" />
+
 
 ### num\_modes
 
@@ -60,7 +60,7 @@ Returns
 
 `int`
 
-<span id="undefined" />
+
 
 ### untapered\_qubit\_op
 

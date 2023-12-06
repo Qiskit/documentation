@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.Clifford
 
-<span id="undefined" />
+
 
 `Clifford(data, validate=True)`
 
@@ -59,7 +59,7 @@ Clifford operators can also be converted to [`Operator`](qiskit.quantum_info.Ope
 
 Initialize an operator object.
 
-<span id="undefined" />
+
 
 `__init__(data, validate=True)`
 
@@ -104,13 +104,13 @@ Initialize an operator object.
 | [`stabilizer`](#qiskit.quantum_info.Clifford.stabilizer "qiskit.quantum_info.Clifford.stabilizer")       | Return the stabilizer block of the StabilizerTable.                  |
 | [`table`](#qiskit.quantum_info.Clifford.table "qiskit.quantum_info.Clifford.table")                      | Return StabilizerTable                                               |
 
-<span id="undefined" />
+
 
 `adjoint()`
 
 Return the adjoint of the Operator.
 
-<span id="undefined" />
+
 
 `compose(other, qargs=None, front=False)`
 
@@ -140,31 +140,31 @@ The composed Clifford.
   Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](#qiskit.quantum_info.Clifford.dot "qiskit.quantum_info.Clifford.dot") method `A.dot(B) == A.compose(B, front=True)`.
 </Admonition>
 
-<span id="undefined" />
+
 
 `conjugate()`
 
 Return the conjugate of the Clifford.
 
-<span id="undefined" />
+
 
 `copy()`
 
 Make a deep copy of current operator.
 
-<span id="undefined" />
+
 
 `property destabilizer`
 
 Return the destabilizer block of the StabilizerTable.
 
-<span id="undefined" />
+
 
 `property dim`
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 `dot(other, qargs=None)`
 
@@ -183,7 +183,7 @@ The right matrix multiplied Operator.
 
 [Operator](qiskit.quantum_info.Operator#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-<span id="undefined" />
+
 
 `expand(other)`
 
@@ -203,7 +203,7 @@ is the current Clifford, and $b$ is the other Clifford.
 
 [Clifford](#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")
 
-<span id="undefined" />
+
 
 `static from_circuit(circuit)`
 
@@ -225,13 +225,13 @@ the Clifford object for the instruction.
 
 **QiskitError** – if the input instruction is non-Clifford or contains classical register instruction.
 
-<span id="undefined" />
+
 
 `static from_dict(obj)`
 
 Load a Clifford from a dictionary
 
-<span id="undefined" />
+
 
 `static from_label(label)`
 
@@ -279,31 +279,31 @@ The labels correspond to the single-qubit Cliffords are
     *   +Z
     *   +Y
 
-<span id="undefined" />
+
 
 `input_dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
 
-<span id="undefined" />
+
 
 `is_unitary()`
 
 Return True if the Clifford table is valid.
 
-<span id="undefined" />
+
 
 `property num_qubits`
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+
 
 `output_dims(qargs=None)`
 
 Return tuple of output dimension for specified subsystems.
 
-<span id="undefined" />
+
 
 `power(n)`
 
@@ -325,13 +325,13 @@ the n-times composed operator.
 
 **QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
 
-<span id="undefined" />
+
 
 `property qargs`
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+
 
 `reshape(input_dims=None, output_dims=None, num_qubits=None)`
 
@@ -355,25 +355,25 @@ BaseOperator
 
 **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
 
-<span id="undefined" />
+
 
 `property settings`
 
 Return operator settings.
 
-<span id="undefined" />
+
 
 `property stabilizer`
 
 Return the stabilizer block of the StabilizerTable.
 
-<span id="undefined" />
+
 
 `property table`
 
 Return StabilizerTable
 
-<span id="undefined" />
+
 
 `tensor(other)`
 
@@ -397,7 +397,7 @@ is the current Clifford, and $b$ is the other Clifford.
   The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
 </Admonition>
 
-<span id="undefined" />
+
 
 `to_circuit()`
 
@@ -418,31 +418,31 @@ a circuit implementation of the Clifford.
 1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
 2.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)
 
-<span id="undefined" />
+
 
 `to_dict()`
 
 Return dictionary representation of Clifford object.
 
-<span id="undefined" />
+
 
 `to_instruction()`
 
 Return a Gate instruction implementing the Clifford.
 
-<span id="undefined" />
+
 
 `to_matrix()`
 
 Convert operator to Numpy matrix.
 
-<span id="undefined" />
+
 
 `to_operator()`
 
 Convert to an Operator object.
 
-<span id="undefined" />
+
 
 `transpose()`
 

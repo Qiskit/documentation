@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.acquire\_channel
 
-<span id="undefined" />
+
 
 `acquire_channel(qubit)`
 

@@ -1,6 +1,6 @@
 # Sampler
 
-<span id="undefined" />
+
 
 `Sampler(circuits, parameters=None)`
 
@@ -24,7 +24,7 @@ Sampler class
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### circuits
 
@@ -34,7 +34,7 @@ Quantum circuits
 
 quantum circuits
 
-<span id="undefined" />
+
 
 ### parameters
 

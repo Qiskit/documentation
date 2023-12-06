@@ -1,6 +1,6 @@
 # qiskit.tools.backend\_overview
 
-<span id="undefined" />
+
 
 `backend_overview()`
 

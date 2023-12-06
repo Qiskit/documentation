@@ -1,6 +1,6 @@
 # qiskit.providers.JobTimeoutError
 
-<span id="undefined" />
+
 
 `JobTimeoutError(*message)`
 

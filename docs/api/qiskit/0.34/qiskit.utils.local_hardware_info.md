@@ -1,6 +1,6 @@
 # qiskit.utils.local\_hardware\_info
 
-<span id="undefined" />
+
 
 `local_hardware_info()`
 

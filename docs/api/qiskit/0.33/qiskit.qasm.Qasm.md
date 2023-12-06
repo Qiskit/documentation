@@ -1,6 +1,6 @@
 # Qasm
 
-<span id="undefined" />
+
 
 `Qasm(filename=None, data=None)`
 

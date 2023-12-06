@@ -1,6 +1,6 @@
 # ChemistryOperator
 
-<span id="undefined" />
+
 
 `ChemistryOperator`
 
@@ -17,31 +17,31 @@ Base class for ChemistryOperator.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### INFO\_NUM\_ORBITALS
 
 `= 'num_orbitals'`
 
-<span id="undefined" />
+
 
 ### INFO\_NUM\_PARTICLES
 
 `= 'num_particles'`
 
-<span id="undefined" />
+
 
 ### INFO\_TWO\_QUBIT\_REDUCTION
 
 `= 'two_qubit_reduction'`
 
-<span id="undefined" />
+
 
 ### INFO\_Z2SYMMETRIES
 
 `= 'z2symmetries'`
 
-<span id="undefined" />
+
 
 ### molecule\_info
 

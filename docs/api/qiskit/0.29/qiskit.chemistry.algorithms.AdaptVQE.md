@@ -1,6 +1,6 @@
 # AdaptVQE
 
-<span id="undefined" />
+
 
 `AdaptVQE(transformation, solver, threshold=1e-05, delta=1, max_iterations=None)`
 
@@ -26,7 +26,7 @@ A ground state calculation employing the AdaptVQE algorithm.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### solver
 
@@ -36,7 +36,7 @@ Returns the minimum eigensolver or factory.
 
 `Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
 
-<span id="undefined" />
+
 
 ### transformation
 

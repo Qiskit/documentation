@@ -1,6 +1,6 @@
 # ADMMOptimizer
 
-<span id="undefined" />
+
 
 `ADMMOptimizer(qubo_optimizer=None, continuous_optimizer=None, params=None)`
 
@@ -32,7 +32,7 @@ Optimization on Classical and Quantum Computers. arXiv preprint arXiv:2001.02069
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### parameters
 

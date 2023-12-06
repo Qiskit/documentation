@@ -29,7 +29,7 @@ class used to instantiate the instance. The
 
 type
 
-<span id="undefined" />
+
 
 ### constructor is passed all named parameters from deserialization.
 

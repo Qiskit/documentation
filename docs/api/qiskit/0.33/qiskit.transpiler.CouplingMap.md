@@ -1,6 +1,6 @@
 # CouplingMap
 
-<span id="undefined" />
+
 
 `CouplingMap(couplinglist=None, description=None)`
 
@@ -45,21 +45,21 @@ Create coupling graph. By default, the generated coupling has no nodes.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### description
 
-<span id="undefined" />
+
 
 ### distance\_matrix
 
 Return the distance matrix for the coupling map.
 
-<span id="undefined" />
+
 
 ### graph
 
-<span id="undefined" />
+
 
 ### is\_symmetric
 
@@ -67,7 +67,7 @@ Test if the graph is symmetric.
 
 Return True if symmetric, False otherwise
 
-<span id="undefined" />
+
 
 ### physical\_qubits
 

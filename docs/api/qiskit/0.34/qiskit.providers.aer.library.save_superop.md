@@ -1,6 +1,6 @@
 # qiskit.providers.aer.library.save\_superop
 
-<span id="undefined" />
+
 
 `save_superop(self, label='superop', pershot=False)`
 

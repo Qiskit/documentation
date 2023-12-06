@@ -2,7 +2,7 @@
 
 # qiskit.pulse.Constant
 
-<span id="undefined" />
+
 
 `Constant(duration, amp, name=None)`
 
@@ -21,7 +21,7 @@ Initialize the constant-valued pulse.
 *   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the constant square pulse.
 *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
 
-<span id="undefined" />
+
 
 `__init__(duration, amp, name=None)`
 
@@ -52,7 +52,7 @@ Initialize the constant-valued pulse.
 | [`id`](#qiskit.pulse.Constant.id "qiskit.pulse.Constant.id")                         | Unique identifier for this pulse.                      |
 | [`parameters`](#qiskit.pulse.Constant.parameters "qiskit.pulse.Constant.parameters") | Return a dictionary containing the pulse’s parameters. |
 
-<span id="undefined" />
+
 
 `property amp`
 
@@ -62,7 +62,7 @@ The constant value amplitude.
 
 `Union`\[`complex`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `assign_parameters(value_dict)`
 
@@ -80,7 +80,7 @@ Return a new ParametricPulse with parameters assigned.
 
 New pulse with updated parameters.
 
-<span id="undefined" />
+
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False)`
 
@@ -103,7 +103,7 @@ A matplotlib figure object of the pulse envelope
 
 matplotlib.figure
 
-<span id="undefined" />
+
 
 `get_sample_pulse()`
 
@@ -113,7 +113,7 @@ Deprecated.
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `get_waveform()`
 
@@ -123,7 +123,7 @@ Return a Waveform with samples filled according to the formula that the pulse re
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `property id`
 
@@ -133,7 +133,7 @@ Unique identifier for this pulse.
 
 `int`
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -143,7 +143,7 @@ Return a dictionary containing the pulse’s parameters.
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+
 
 `validate_parameters()`
 

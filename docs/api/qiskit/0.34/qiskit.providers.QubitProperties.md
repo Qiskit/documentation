@@ -1,6 +1,6 @@
 # QubitProperties
 
-<span id="undefined" />
+
 
 `QubitProperties(t1=None, t2=None, frequency=None)`
 
@@ -20,14 +20,14 @@ Create a new `QubitProperties` object
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### frequency
 
-<span id="undefined" />
+
 
 ### t1
 
-<span id="undefined" />
+
 
 ### t2

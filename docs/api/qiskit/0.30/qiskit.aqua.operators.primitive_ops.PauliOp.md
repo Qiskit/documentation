@@ -1,6 +1,6 @@
 # PauliOp
 
-<span id="undefined" />
+
 
 `PauliOp(primitive, coeff=1.0)`
 
@@ -50,19 +50,19 @@ Class for Operators backed by Terra’s `Pauli` module.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ENABLE\_DEPRECATION
 
 `= True`
 
-<span id="undefined" />
+
 
 ### INDENTATION
 
 `= ' '`
 
-<span id="undefined" />
+
 
 ### coeff
 
@@ -76,7 +76,7 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -84,11 +84,11 @@ The coefficient.
 
 `int`
 
-<span id="undefined" />
+
 
 ### parameters
 
-<span id="undefined" />
+
 
 ### primitive
 

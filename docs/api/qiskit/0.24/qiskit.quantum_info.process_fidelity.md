@@ -2,7 +2,7 @@
 
 # qiskit.quantum\_info.process\_fidelity
 
-<span id="undefined" />
+
 
 `process_fidelity(channel, target=None, require_cp=True, require_tp=False, require_cptp=False)`
 

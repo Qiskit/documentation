@@ -2,7 +2,7 @@
 
 # qiskit.aqua.algorithms.QGAN
 
-<span id="undefined" />
+
 
 `QGAN(data, bounds=None, num_qubits=None, batch_size=500, num_epochs=3000, seed=7, discriminator=None, generator=None, tol_rel_ent=None, snapshot_dir=None, quantum_instance=None)`
 
@@ -38,7 +38,7 @@ These networks are trained in alternating optimization steps, where the discrimi
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
 
-<span id="undefined" />
+
 
 `__init__(data, bounds=None, num_qubits=None, batch_size=500, num_epochs=3000, seed=7, discriminator=None, generator=None, tol_rel_ent=None, snapshot_dir=None, quantum_instance=None)`
 
@@ -87,7 +87,7 @@ These networks are trained in alternating optimization steps, where the discrimi
 | [`seed`](#qiskit.aqua.algorithms.QGAN.seed "qiskit.aqua.algorithms.QGAN.seed")                                     | Returns random seed                                              |
 | [`tol_rel_ent`](#qiskit.aqua.algorithms.QGAN.tol_rel_ent "qiskit.aqua.algorithms.QGAN.tol_rel_ent")                | Returns tolerance for relative entropy                           |
 
-<span id="undefined" />
+
 
 `property backend`
 
@@ -97,7 +97,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 `property d_loss`
 
@@ -107,13 +107,13 @@ Returns discriminator loss
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 `property discriminator`
 
 Returns discriminator
 
-<span id="undefined" />
+
 
 `property g_loss`
 
@@ -123,13 +123,13 @@ Returns generator loss
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 `property generator`
 
 Returns generator
 
-<span id="undefined" />
+
 
 `get_rel_entr()`
 
@@ -139,7 +139,7 @@ Get relative entropy between target and trained distribution
 
 `float`
 
-<span id="undefined" />
+
 
 `property quantum_instance`
 
@@ -149,13 +149,13 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 `property random`
 
 Return a numpy random.
 
-<span id="undefined" />
+
 
 `property rel_entr`
 
@@ -165,7 +165,7 @@ Returns relative entropy between target and trained distribution
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -188,13 +188,13 @@ dict
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
-<span id="undefined" />
+
 
 `property seed`
 
 Returns random seed
 
-<span id="undefined" />
+
 
 `set_backend(backend, **kwargs)`
 
@@ -204,7 +204,7 @@ Sets backend with configuration.
 
 `None`
 
-<span id="undefined" />
+
 
 `set_discriminator(discriminator=None)`
 
@@ -214,7 +214,7 @@ Initialize discriminator.
 
 **discriminator** (*Discriminator*) – discriminator
 
-<span id="undefined" />
+
 
 `set_generator(generator_circuit=None, generator_init_params=None, generator_optimizer=None)`
 
@@ -226,13 +226,13 @@ Initialize generator.
 *   **generator\_init\_params** (`Optional`\[`ndarray`]) – initial parameters for the generator circuit
 *   **generator\_optimizer** (`Optional`\[`Optimizer`]) – optimizer to be used for the training of the generator
 
-<span id="undefined" />
+
 
 `property tol_rel_ent`
 
 Returns tolerance for relative entropy
 
-<span id="undefined" />
+
 
 `train()`
 

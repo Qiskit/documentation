@@ -1,6 +1,6 @@
 # TrotterizationBase
 
-<span id="undefined" />
+
 
 `TrotterizationBase(reps=1)`
 
@@ -16,7 +16,7 @@ A base for Trotterization methods, algorithms for approximating exponentiations 
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### reps
 

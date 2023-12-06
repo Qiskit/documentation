@@ -1,6 +1,6 @@
 # ParameterVector
 
-<span id="undefined" />
+
 
 `ParameterVector(name, length=0)`
 
@@ -17,13 +17,13 @@ ParameterVector class to quickly generate lists of parameters.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### name
 
 Returns the name of the ParameterVector.
 
-<span id="undefined" />
+
 
 ### params
 

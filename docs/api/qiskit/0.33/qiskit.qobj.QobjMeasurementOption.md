@@ -1,6 +1,6 @@
 # QobjMeasurementOption
 
-<span id="undefined" />
+
 
 `QobjMeasurementOption(name, params=None)`
 

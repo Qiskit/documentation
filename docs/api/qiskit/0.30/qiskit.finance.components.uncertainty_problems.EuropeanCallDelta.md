@@ -1,6 +1,6 @@
 # EuropeanCallDelta
 
-<span id="undefined" />
+
 
 `EuropeanCallDelta(uncertainty_model, strike_price, i_state=None, i_objective=None)`
 
@@ -39,7 +39,7 @@ Constructor.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 

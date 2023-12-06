@@ -1,6 +1,6 @@
 # Z2Symmetries
 
-<span id="undefined" />
+
 
 `Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None)`
 
@@ -32,7 +32,7 @@ Z2 Symmetries
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### cliffords
 
@@ -46,25 +46,25 @@ a list of unitaries used to diagonalize the Hamiltonian.
 
 list\[[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")]
 
-<span id="undefined" />
+
 
 ### sq\_list
 
 returns sq list
 
-<span id="undefined" />
+
 
 ### sq\_paulis
 
 returns sq paulis
 
-<span id="undefined" />
+
 
 ### symmetries
 
 return symmetries
 
-<span id="undefined" />
+
 
 ### tapering\_values
 

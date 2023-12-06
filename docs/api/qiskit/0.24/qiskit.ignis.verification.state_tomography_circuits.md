@@ -2,7 +2,7 @@
 
 # qiskit.ignis.verification.state\_tomography\_circuits
 
-<span id="undefined" />
+
 
 `state_tomography_circuits(circuit, measured_qubits, meas_labels='Pauli', meas_basis='Pauli')`
 

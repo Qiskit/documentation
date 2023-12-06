@@ -1,6 +1,6 @@
 # IterativeAmplitudeEstimation
 
-<span id="undefined" />
+
 
 `IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None)`
 
@@ -48,7 +48,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### epsilon\_target
 
@@ -62,7 +62,7 @@ Returns the target precision `epsilon_target` of the algorithm.
 
 The target precision (which is half the width of the confidence interval).
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 

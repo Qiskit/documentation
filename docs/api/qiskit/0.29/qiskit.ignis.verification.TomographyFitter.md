@@ -1,6 +1,6 @@
 # TomographyFitter
 
-<span id="undefined" />
+
 
 `TomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')`
 
@@ -28,19 +28,19 @@ Initialize tomography fitter with experimental data.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### data
 
 Return tomography data
 
-<span id="undefined" />
+
 
 ### measure\_basis
 
 Return the tomography measurement basis.
 
-<span id="undefined" />
+
 
 ### preparation\_basis
 

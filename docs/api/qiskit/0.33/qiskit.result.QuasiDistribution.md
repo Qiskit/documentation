@@ -1,6 +1,6 @@
 # QuasiDistribution
 
-<span id="undefined" />
+
 
 `QuasiDistribution(data, shots=None, stddev_upper_bound=None)`
 
@@ -50,7 +50,7 @@ Builds a quasiprobability distribution object.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### stddev\_upper\_bound
 

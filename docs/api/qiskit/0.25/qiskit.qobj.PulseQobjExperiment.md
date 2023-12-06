@@ -1,6 +1,6 @@
 # qiskit.qobj.PulseQobjExperiment
 
-<span id="undefined" />
+
 
 `PulseQobjExperiment(instructions, config=None, header=None)`
 
@@ -16,7 +16,7 @@ Instantiate a PulseQobjExperiment.
 *   **header** (*PulseQobjExperimentHeader*) – A header object for the experiment
 *   **instructions** (*list*) – A list of [`PulseQobjInstruction`](qiskit.qobj.PulseQobjInstruction#qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction") objects
 
-<span id="undefined" />
+
 
 `__init__(instructions, config=None, header=None)`
 
@@ -36,7 +36,7 @@ Instantiate a PulseQobjExperiment.
 | [`from_dict`](#qiskit.qobj.PulseQobjExperiment.from_dict "qiskit.qobj.PulseQobjExperiment.from_dict")(data)                         | Create a new PulseQobjExperiment object from a dictionary.   |
 | [`to_dict`](#qiskit.qobj.PulseQobjExperiment.to_dict "qiskit.qobj.PulseQobjExperiment.to_dict")()                                   | Return a dictionary format representation of the Experiment. |
 
-<span id="undefined" />
+
 
 `classmethod from_dict(data)`
 
@@ -54,7 +54,7 @@ The object from the input dictionary.
 
 [PulseQobjExperiment](#qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment")
 
-<span id="undefined" />
+
 
 `to_dict()`
 

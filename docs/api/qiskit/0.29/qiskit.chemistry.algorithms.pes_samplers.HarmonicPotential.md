@@ -1,6 +1,6 @@
 # HarmonicPotential
 
-<span id="undefined" />
+
 
 `HarmonicPotential(molecule)`
 

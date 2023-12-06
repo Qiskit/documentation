@@ -1,6 +1,6 @@
 # LinearExpression
 
-<span id="undefined" />
+
 
 `LinearExpression(quadratic_program, coefficients)`
 
@@ -28,7 +28,7 @@ The linear expression can be defined via an array, a list, a sparse matrix, or a
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### coefficients
 
@@ -42,7 +42,7 @@ Returns the coefficients of the linear expression.
 
 The coefficients of the linear expression.
 
-<span id="undefined" />
+
 
 ### quadratic\_program
 

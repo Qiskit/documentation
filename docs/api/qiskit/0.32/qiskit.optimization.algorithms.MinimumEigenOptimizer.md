@@ -1,6 +1,6 @@
 # MinimumEigenOptimizer
 
-<span id="undefined" />
+
 
 `MinimumEigenOptimizer(min_eigen_solver, penalty=None, converters=None)`
 
@@ -49,7 +49,7 @@ This initializer takes the minimum eigen solver to be used to approximate the gr
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### min\_eigen\_solver
 

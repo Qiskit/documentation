@@ -1,6 +1,6 @@
 # ApproximatingObjective
 
-<span id="undefined" />
+
 
 `ApproximatingObjective`
 
@@ -17,7 +17,7 @@ A base class for an optimization problem definition. An implementing class must 
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### num\_thetas
 
@@ -27,7 +27,7 @@ Returns: the number of parameters in this optimization problem.
 
 `int`
 
-<span id="undefined" />
+
 
 ### target\_matrix
 

@@ -1,6 +1,6 @@
 # MatrixExponential
 
-<span id="undefined" />
+
 
 `MatrixExponential`
 
@@ -18,7 +18,7 @@ This class synthesis the exponential of operators by calculating their exponenti
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### settings
 

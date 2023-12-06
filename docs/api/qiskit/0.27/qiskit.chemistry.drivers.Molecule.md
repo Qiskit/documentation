@@ -1,6 +1,6 @@
 # qiskit.chemistry.drivers.Molecule
 
-<span id="undefined" />
+
 
 `Molecule(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)`
 
@@ -20,7 +20,7 @@ This module implements an interface for a driver-independent, i.e. generic molec
 
 **ValueError** – Length of masses must match length of geometries.
 
-<span id="undefined" />
+
 
 `__init__(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)`
 
@@ -59,7 +59,7 @@ This module implements an interface for a driver-independent, i.e. generic molec
 | [`perturbations`](#qiskit.chemistry.drivers.Molecule.perturbations "qiskit.chemistry.drivers.Molecule.perturbations") | Get perturbations                             |
 | [`units`](#qiskit.chemistry.drivers.Molecule.units "qiskit.chemistry.drivers.Molecule.units")                         | The geometry coordinate units                 |
 
-<span id="undefined" />
+
 
 `classmethod absolute_angle(angle, geometry, atom_trio)`
 
@@ -77,7 +77,7 @@ This module implements an interface for a driver-independent, i.e. generic molec
 
 end geometry
 
-<span id="undefined" />
+
 
 `classmethod absolute_bending(bend, geometry, atom_trio)`
 
@@ -95,7 +95,7 @@ end geometry
 
 end geometry
 
-<span id="undefined" />
+
 
 `classmethod absolute_distance(distance, geometry, atom_pair)`
 
@@ -113,7 +113,7 @@ end geometry
 
 end geometry
 
-<span id="undefined" />
+
 
 `classmethod absolute_stretching(perturbation, geometry, atom_pair)`
 
@@ -131,7 +131,7 @@ end geometry
 
 end geometry
 
-<span id="undefined" />
+
 
 `property charge`
 
@@ -141,7 +141,7 @@ Get charge
 
 `int`
 
-<span id="undefined" />
+
 
 `property geometry`
 
@@ -151,7 +151,7 @@ Get geometry accounting for any perturbations
 
 `List`\[`Tuple`\[`str`, `List`\[`float`]]]
 
-<span id="undefined" />
+
 
 `property masses`
 
@@ -161,7 +161,7 @@ Get masses
 
 `Optional`\[`List`\[`float`]]
 
-<span id="undefined" />
+
 
 `property multiplicity`
 
@@ -171,7 +171,7 @@ Get multiplicity
 
 `int`
 
-<span id="undefined" />
+
 
 `property perturbations`
 
@@ -181,7 +181,7 @@ Get perturbations
 
 `Optional`\[`List`\[`float`]]
 
-<span id="undefined" />
+
 
 `classmethod relative_bending(bend, geometry, atom_trio)`
 
@@ -199,7 +199,7 @@ Get perturbations
 
 end geometry
 
-<span id="undefined" />
+
 
 `classmethod relative_stretching(perturbation, geometry, atom_pair)`
 
@@ -217,7 +217,7 @@ end geometry
 
 end geometry
 
-<span id="undefined" />
+
 
 `property units`
 

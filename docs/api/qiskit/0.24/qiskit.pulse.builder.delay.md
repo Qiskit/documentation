@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.delay
 
-<span id="undefined" />
+
 
 `delay(duration, channel)`
 

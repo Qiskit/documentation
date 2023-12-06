@@ -1,6 +1,6 @@
 # OptimizerResult
 
-<span id="undefined" />
+
 
 `OptimizerResult`
 
@@ -16,7 +16,7 @@ The result of an optimization routine.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### fun
 
@@ -26,7 +26,7 @@ The final value of the minimization.
 
 `Optional`\[`float`]
 
-<span id="undefined" />
+
 
 ### jac
 
@@ -36,7 +36,7 @@ The final gradient of the minimization.
 
 `Union`\[`float`, `ndarray`, `None`]
 
-<span id="undefined" />
+
 
 ### nfev
 
@@ -46,7 +46,7 @@ The total number of function evaluations.
 
 `Optional`\[`int`]
 
-<span id="undefined" />
+
 
 ### nit
 
@@ -56,7 +56,7 @@ The total number of iterations.
 
 `Optional`\[`int`]
 
-<span id="undefined" />
+
 
 ### njev
 
@@ -66,7 +66,7 @@ The total number of gradient evaluations.
 
 `Optional`\[`int`]
 
-<span id="undefined" />
+
 
 ### x
 

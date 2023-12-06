@@ -1,6 +1,6 @@
 # JobStatus
 
-<span id="undefined" />
+
 
 `JobStatus(job_id, status, status_msg, **kwargs)`
 
@@ -8,7 +8,7 @@ Bases: `object`
 
 Model for JobStatus.
 
-<span id="undefined" />
+
 
 ### job\_id
 
@@ -18,7 +18,7 @@ backend job\_id.
 
 str
 
-<span id="undefined" />
+
 
 ### status
 
@@ -28,7 +28,7 @@ status of the job.
 
 str
 
-<span id="undefined" />
+
 
 ### status\_msg
 

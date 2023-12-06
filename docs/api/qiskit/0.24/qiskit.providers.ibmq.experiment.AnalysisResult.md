@@ -2,7 +2,7 @@
 
 # qiskit.providers.ibmq.experiment.AnalysisResult
 
-<span id="undefined" />
+
 
 `AnalysisResult(experiment_uuid, device_components, fit, result_type, chisq=None, quality=<ResultQuality.NO_INFORMATION: 'No Information'>, tags=None, result_uuid=None, backend_name=None)`
 
@@ -26,7 +26,7 @@ AnalysisResult constructor.
 
 **IBMQInputValueError** – If an input argument is invalid.
 
-<span id="undefined" />
+
 
 `__init__(experiment_uuid, device_components, fit, result_type, chisq=None, quality=<ResultQuality.NO_INFORMATION: 'No Information'>, tags=None, result_uuid=None, backend_name=None)`
 
@@ -66,7 +66,7 @@ AnalysisResult constructor.
 | [`updated_datetime`](#qiskit.providers.ibmq.experiment.AnalysisResult.updated_datetime "qiskit.providers.ibmq.experiment.AnalysisResult.updated_datetime")    | Return the timestamp when the experiment was last updated. |
 | [`uuid`](#qiskit.providers.ibmq.experiment.AnalysisResult.uuid "qiskit.providers.ibmq.experiment.AnalysisResult.uuid")                                        | Return UUID of this analysis result.                       |
 
-<span id="undefined" />
+
 
 `property creation_datetime`
 
@@ -76,7 +76,7 @@ Return the timestamp when the experiment was created.
 
 `datetime`
 
-<span id="undefined" />
+
 
 `property fit`
 
@@ -86,7 +86,7 @@ Return the fit value for the experiment.
 
 `Fit`
 
-<span id="undefined" />
+
 
 `classmethod from_remote_data(remote_data)`
 
@@ -104,7 +104,7 @@ Create an instance of this class from remote data.
 
 An instance of this class.
 
-<span id="undefined" />
+
 
 `property quality`
 
@@ -114,7 +114,7 @@ Return the analysis result quality.
 
 `ResultQuality`
 
-<span id="undefined" />
+
 
 `update_from_remote_data(remote_data)`
 
@@ -128,7 +128,7 @@ Update the attributes of this instance using remote data.
 
 `None`
 
-<span id="undefined" />
+
 
 `property updated_datetime`
 
@@ -138,7 +138,7 @@ Return the timestamp when the experiment was last updated.
 
 `datetime`
 
-<span id="undefined" />
+
 
 `property uuid`
 

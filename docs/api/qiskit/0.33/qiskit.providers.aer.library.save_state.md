@@ -1,6 +1,6 @@
 # qiskit.providers.aer.library.save\_state
 
-<span id="undefined" />
+
 
 `save_state(self, label=None, pershot=False, conditional=False)`
 

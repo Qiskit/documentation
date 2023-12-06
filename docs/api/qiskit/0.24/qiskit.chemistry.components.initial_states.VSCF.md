@@ -2,7 +2,7 @@
 
 # qiskit.chemistry.components.initial\_states.VSCF
 
-<span id="undefined" />
+
 
 `VSCF(basis)`
 
@@ -14,7 +14,7 @@ Creates an occupation number vector as defined in Ollitrault Pauline J., Chemica
 
 **basis** (`List`\[`int`]) – Is a list defining the number of modals per mode. E.g. for a 3 modes system with 4 modals per mode basis = \[4,4,4]
 
-<span id="undefined" />
+
 
 `__init__(basis)`
 
@@ -35,7 +35,7 @@ Creates an occupation number vector as defined in Ollitrault Pauline J., Chemica
 | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
 | [`bitstr`](#qiskit.chemistry.components.initial_states.VSCF.bitstr "qiskit.chemistry.components.initial_states.VSCF.bitstr") | Getter of the bit string represented the statevector. |
 
-<span id="undefined" />
+
 
 `property bitstr`
 
@@ -49,7 +49,7 @@ Getter of the bit string represented the statevector.
 
 numpy.ndarray containing the bitstring representation
 
-<span id="undefined" />
+
 
 `construct_circuit(mode='circuit', register=None)`
 

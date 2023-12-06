@@ -1,6 +1,6 @@
 # qiskit.pulse.transforms.flatten
 
-<span id="undefined" />
+
 
 `flatten(program)`
 

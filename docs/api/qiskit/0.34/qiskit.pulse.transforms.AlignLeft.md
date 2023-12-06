@@ -1,6 +1,6 @@
 # AlignLeft
 
-<span id="undefined" />
+
 
 `AlignLeft`
 
@@ -21,7 +21,7 @@ Create new context.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### is\_sequential
 

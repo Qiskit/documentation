@@ -1,6 +1,6 @@
 # qiskit.opflow\.converters.TwoQubitReduction
 
-<span id="undefined" />
+
 
 `TwoQubitReduction(num_particles)`
 
@@ -12,7 +12,7 @@ Chemistry specific method: It can be used to taper two qubits in parity and bina
 
 **num\_particles** (`Union`\[`int`, `List`\[`int`], `Tuple`\[`int`, `int`]]) – number of particles, if it is a list, the first number is alpha and the second number if beta.
 
-<span id="undefined" />
+
 
 `__init__(num_particles)`
 
@@ -27,7 +27,7 @@ Chemistry specific method: It can be used to taper two qubits in parity and bina
 | [`__init__`](#qiskit.opflow.converters.TwoQubitReduction.__init__ "qiskit.opflow.converters.TwoQubitReduction.__init__")(num\_particles) | **type num\_particles**`Union`\[`int`, `List`\[`int`], `Tuple`\[`int`, `int`]] |
 | [`convert`](#qiskit.opflow.converters.TwoQubitReduction.convert "qiskit.opflow.converters.TwoQubitReduction.convert")(operator)          | Converts the Operator to tapered one by Z2 symmetries.                         |
 
-<span id="undefined" />
+
 
 `convert(operator)`
 

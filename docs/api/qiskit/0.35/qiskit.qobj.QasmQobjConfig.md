@@ -1,6 +1,6 @@
 # QasmQobjConfig
 
-<span id="undefined" />
+
 
 `QasmQobjConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, meas_level=None, meas_return=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`
 

@@ -1,6 +1,6 @@
 # NumPyLSsolver
 
-<span id="undefined" />
+
 
 `NumPyLSsolver(matrix, vector)`
 
@@ -25,7 +25,7 @@ This is a classical counterpart to the [`HHL`](qiskit.aqua.algorithms.HHL#qiskit
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### random
 

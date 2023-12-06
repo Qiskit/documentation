@@ -2,7 +2,7 @@
 
 # qiskit.providers.ibmq.random.CQCExtractor
 
-<span id="undefined" />
+
 
 `CQCExtractor(name, provider, client, methods)`
 
@@ -35,7 +35,7 @@ BaseRandomService constructor.
 *   **client** (`RandomClient`) – Client used to communicate with the server.
 *   **methods** (`List`) – Service methods.
 
-<span id="undefined" />
+
 
 `__init__(name, provider, client, methods)`
 
@@ -58,7 +58,7 @@ BaseRandomService constructor.
 | [`run_async_ext1`](#qiskit.providers.ibmq.random.CQCExtractor.run_async_ext1 "qiskit.providers.ibmq.random.CQCExtractor.run_async_ext1")(ext1\_input\_num\_bits, …) | Run the first extractor asynchronously.  |
 | [`run_async_ext2`](#qiskit.providers.ibmq.random.CQCExtractor.run_async_ext2 "qiskit.providers.ibmq.random.CQCExtractor.run_async_ext2")(ext2\_seed, …\[, …])       | Run the second extractor asynchronously. |
 
-<span id="undefined" />
+
 
 `retrieve_job(job_id)`
 
@@ -76,7 +76,7 @@ Retrieve a previously submitted job.
 
 A `CQCExtractorJob` instance.
 
-<span id="undefined" />
+
 
 `run(ext1_input_num_bits, ext1_output_num_bits, ext1_raw_bytes, ext1_wsr_bytes, ext2_seed_num_bits, ext2_wsr_multiplier, ext2_wsr_generator=None)`
 
@@ -100,7 +100,7 @@ Process input data synchronously.
 
 An instance of `CQCExtractorJob` which can be used to retrieve the results later.
 
-<span id="undefined" />
+
 
 `run_async_ext1(ext1_input_num_bits, ext1_output_num_bits, ext1_raw_bytes, ext1_wsr_bytes)`
 
@@ -125,7 +125,7 @@ An instance of `CQCExtractorJob` which can be used to retrieve the results later
 
 **ValueError** – If an invalid argument values are specified.
 
-<span id="undefined" />
+
 
 `run_async_ext2(ext2_seed, ext2_seed_num_bits, ext2_wsr_multiplier, ext2_wsr_generator=None)`
 

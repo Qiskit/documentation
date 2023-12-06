@@ -2,7 +2,7 @@
 
 # qiskit.tools.parallel\_map
 
-<span id="undefined" />
+
 
 `parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=32)`
 

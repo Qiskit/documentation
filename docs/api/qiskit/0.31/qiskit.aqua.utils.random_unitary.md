@@ -1,6 +1,6 @@
 # qiskit.aqua.utils.random\_unitary
 
-<span id="undefined" />
+
 
 `random_unitary(N)`
 

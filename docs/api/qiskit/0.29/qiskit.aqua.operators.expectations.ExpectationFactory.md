@@ -1,6 +1,6 @@
 # ExpectationFactory
 
-<span id="undefined" />
+
 
 `ExpectationFactory`
 

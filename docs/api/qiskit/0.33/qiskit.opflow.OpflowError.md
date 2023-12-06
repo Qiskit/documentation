@@ -1,6 +1,6 @@
 # qiskit.opflow\.OpflowError
 
-<span id="undefined" />
+
 
 `OpflowError(*message)`
 

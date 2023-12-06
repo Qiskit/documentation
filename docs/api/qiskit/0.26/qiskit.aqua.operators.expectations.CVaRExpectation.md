@@ -1,6 +1,6 @@
 # qiskit.aqua.operators.expectations.CVaRExpectation
 
-<span id="undefined" />
+
 
 `CVaRExpectation(alpha, expectation=None)`
 
@@ -29,7 +29,7 @@ Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best ob
 
 **NotImplementedError** – If the `expectation` is an AerPauliExpecation.
 
-<span id="undefined" />
+
 
 `__init__(alpha, expectation=None)`
 
@@ -50,7 +50,7 @@ Let $\alpha$ be a real number in $[0,1]$ which specifies the fraction of best ob
 | [`compute_variance`](#qiskit.aqua.operators.expectations.CVaRExpectation.compute_variance "qiskit.aqua.operators.expectations.CVaRExpectation.compute_variance")(exp\_op) | Returns the variance of the CVaR calculation                                 |
 | [`convert`](#qiskit.aqua.operators.expectations.CVaRExpectation.convert "qiskit.aqua.operators.expectations.CVaRExpectation.convert")(operator)                           | Return an expression that computes the CVaR expectation upon calling `eval`. |
 
-<span id="undefined" />
+
 
 `compute_variance(exp_op)`
 
@@ -74,7 +74,7 @@ exp\_op.
 
 **ValueError** – If the exp\_op does not correspond to an expectation value.
 
-<span id="undefined" />
+
 
 `convert(operator)`
 

@@ -2,7 +2,7 @@
 
 # qiskit.optimization.algorithms.ADMMOptimizer
 
-<span id="undefined" />
+
 
 `ADMMOptimizer(qubo_optimizer=None, continuous_optimizer=None, params=None)`
 
@@ -22,7 +22,7 @@ Optimization on Classical and Quantum Computers. arXiv preprint arXiv:2001.02069
 *   **continuous\_optimizer** (`Optional`\[`OptimizationAlgorithm`]) – An instance of OptimizationAlgorithm that can solve continuous problems. If not specified then [`SlsqpOptimizer`](qiskit.optimization.algorithms.SlsqpOptimizer#qiskit.optimization.algorithms.SlsqpOptimizer "qiskit.optimization.algorithms.SlsqpOptimizer") will be used.
 *   **params** (`Optional`\[`ADMMParameters`]) – An instance of ADMMParameters.
 
-<span id="undefined" />
+
 
 `__init__(qubo_optimizer=None, continuous_optimizer=None, params=None)`
 
@@ -47,7 +47,7 @@ Optimization on Classical and Quantum Computers. arXiv preprint arXiv:2001.02069
 | ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
 | [`parameters`](#qiskit.optimization.algorithms.ADMMOptimizer.parameters "qiskit.optimization.algorithms.ADMMOptimizer.parameters") | Returns current parameters of the optimizer. |
 
-<span id="undefined" />
+
 
 `get_compatibility_msg(problem)`
 
@@ -69,7 +69,7 @@ Returns True if the problem is compatible, otherwise raises an error.
 
 [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is not compatible with the ADMM optimizer.
 
-<span id="undefined" />
+
 
 `is_compatible(problem)`
 
@@ -87,7 +87,7 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 
 Returns True if the problem is compatible, False otherwise.
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -101,7 +101,7 @@ Returns current parameters of the optimizer.
 
 The parameters.
 
-<span id="undefined" />
+
 
 `solve(problem)`
 

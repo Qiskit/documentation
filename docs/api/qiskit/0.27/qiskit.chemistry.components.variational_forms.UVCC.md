@@ -1,6 +1,6 @@
 # qiskit.chemistry.components.variational\_forms.UVCC
 
-<span id="undefined" />
+
 
 `UVCC(num_qubits, basis, degrees, reps=1, excitations=None, initial_state=None, qubit_mapping='direct', num_time_slices=1, shallow_circuit_concat=True)`
 
@@ -18,7 +18,7 @@ This trial wavefunction is a Unitary Vibrational Coupled-Cluster Single and Doub
 *   **num\_time\_slices** (`int`) – parameters for dynamics.
 *   **shallow\_circuit\_concat** (`bool`) – indicate whether to use shallow (cheap) mode for circuit concatenation
 
-<span id="undefined" />
+
 
 `__init__(num_qubits, basis, degrees, reps=1, excitations=None, initial_state=None, qubit_mapping='direct', num_time_slices=1, shallow_circuit_concat=True)`
 
@@ -56,7 +56,7 @@ This trial wavefunction is a Unitary Vibrational Coupled-Cluster Single and Doub
 | [`setting`](#qiskit.chemistry.components.variational_forms.UVCC.setting "qiskit.chemistry.components.variational_forms.UVCC.setting")                                                                   |                                                             |
 | [`support_parameterized_circuit`](#qiskit.chemistry.components.variational_forms.UVCC.support_parameterized_circuit "qiskit.chemistry.components.variational_forms.UVCC.support_parameterized_circuit") | Whether or not the sub-class support parameterized circuit. |
 
-<span id="undefined" />
+
 
 `static compute_excitation_lists(basis, degrees)`
 
@@ -79,7 +79,7 @@ List of excitation indexes in terms of modes and modals
 
 **ValueError** – If excitation degree is greater than size of basis
 
-<span id="undefined" />
+
 
 `construct_circuit(parameters, q=None)`
 
@@ -103,7 +103,7 @@ Quantum Circuit a quantum circuit with given parameters
 *   **ValueError** – the number of parameters is incorrect.
 *   **ValueError** – if num\_qubits has not been set and is still None
 
-<span id="undefined" />
+
 
 `excitations_in_qubit_format()`
 
@@ -119,13 +119,13 @@ than in modes and modals
 
 List of excitation indexes
 
-<span id="undefined" />
+
 
 `static get_entangler_map(map_type, num_qubits, offset=0)`
 
 returns entangler map
 
-<span id="undefined" />
+
 
 `property num_parameters`
 
@@ -139,7 +139,7 @@ An integer indicating the number of parameters.
 
 int
 
-<span id="undefined" />
+
 
 `property num_qubits`
 
@@ -153,7 +153,7 @@ An integer indicating the number of qubits.
 
 int
 
-<span id="undefined" />
+
 
 `property parameter_bounds`
 
@@ -167,7 +167,7 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 list
 
-<span id="undefined" />
+
 
 `property preferred_init_points`
 
@@ -175,11 +175,11 @@ Return preferred init points.
 
 If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
 
-<span id="undefined" />
+
 
 `property setting`
 
-<span id="undefined" />
+
 
 `property support_parameterized_circuit`
 
@@ -193,7 +193,7 @@ indicate the sub-class support parameterized circuit
 
 boolean
 
-<span id="undefined" />
+
 
 `static validate_entangler_map(entangler_map, num_qubits)`
 

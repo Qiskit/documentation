@@ -1,6 +1,6 @@
 # QobjExperimentHeader
 
-<span id="undefined" />
+
 
 `QobjExperimentHeader(**kwargs)`
 

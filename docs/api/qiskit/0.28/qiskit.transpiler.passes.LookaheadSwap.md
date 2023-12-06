@@ -1,6 +1,6 @@
 # qiskit.transpiler.passes.LookaheadSwap
 
-<span id="undefined" />
+
 
 `LookaheadSwap(*args, **kwargs)`
 
@@ -31,7 +31,7 @@ LookaheadSwap initializer.
 *   **search\_width** (*int*) – lookahead tree width when ranking best SWAP options.
 *   **fake\_run** (*bool*) – if true, it only pretend to do routing, i.e., no swap is effectively added.
 
-<span id="undefined" />
+
 
 `__init__(coupling_map, search_depth=4, search_width=4, fake_run=False)`
 
@@ -59,7 +59,7 @@ LookaheadSwap initializer.
 | [`is_analysis_pass`](#qiskit.transpiler.passes.LookaheadSwap.is_analysis_pass "qiskit.transpiler.passes.LookaheadSwap.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.LookaheadSwap.is_transformation_pass "qiskit.transpiler.passes.LookaheadSwap.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-<span id="undefined" />
+
 
 `property is_analysis_pass`
 
@@ -67,7 +67,7 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="undefined" />
+
 
 `property is_transformation_pass`
 
@@ -75,13 +75,13 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-<span id="undefined" />
+
 
 `name()`
 
 Return the name of the pass.
 
-<span id="undefined" />
+
 
 `run(dag)`
 

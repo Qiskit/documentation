@@ -2,7 +2,7 @@
 
 # qiskit.quantum\_info.random\_quantum\_channel
 
-<span id="undefined" />
+
 
 `random_quantum_channel(input_dims=None, output_dims=None, rank=None, seed=None)`
 

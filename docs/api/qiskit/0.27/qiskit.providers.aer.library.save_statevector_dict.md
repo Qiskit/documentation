@@ -1,6 +1,6 @@
 # qiskit.providers.aer.library.save\_statevector\_dict
 
-<span id="undefined" />
+
 
 `save_statevector_dict(self, label='statevector', pershot=False, conditional=False)`
 

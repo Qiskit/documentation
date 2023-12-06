@@ -1,6 +1,6 @@
 # LinearAmplitudeFunction
 
-<span id="undefined" />
+
 
 `LinearAmplitudeFunction(num_state_qubits, slope, offset, domain, image, rescaling_factor=1, breakpoints=None, name='F')`
 
@@ -68,7 +68,7 @@ Quantum-Enhanced Simulation-Based Optimization. [arXiv:2005.10780](http://arxiv.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ancillas
 
@@ -78,7 +78,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 `List`\[`AncillaQubit`]
 
-<span id="undefined" />
+
 
 ### calibrations
 
@@ -92,7 +92,7 @@ Return calibration dictionary.
 
 `dict`
 
-<span id="undefined" />
+
 
 ### clbits
 
@@ -102,7 +102,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-<span id="undefined" />
+
 
 ### data
 
@@ -118,13 +118,13 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-<span id="undefined" />
+
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-<span id="undefined" />
+
 
 ### global\_phase
 
@@ -134,19 +134,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-<span id="undefined" />
+
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="undefined" />
+
 
 ### instances
 
 `= 9`
 
-<span id="undefined" />
+
 
 ### metadata
 
@@ -158,7 +158,7 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-<span id="undefined" />
+
 
 ### num\_ancillas
 
@@ -168,7 +168,7 @@ Return the number of ancilla qubits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_clbits
 
@@ -178,7 +178,7 @@ Return number of classical bits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_parameters
 
@@ -188,7 +188,7 @@ Convenience function to get the number of parameter objects in the circuit.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -198,7 +198,7 @@ Return number of qubits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -208,13 +208,13 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
-<span id="undefined" />
+
 
 ### prefix
 
 `= 'circuit'`
 
-<span id="undefined" />
+
 
 ### qubits
 

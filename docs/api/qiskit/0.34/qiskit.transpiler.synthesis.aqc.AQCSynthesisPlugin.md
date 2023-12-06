@@ -1,6 +1,6 @@
 # AQCSynthesisPlugin
 
-<span id="undefined" />
+
 
 `AQCSynthesisPlugin`
 
@@ -46,61 +46,61 @@ Initial values of angles/parameters to start the optimization process from.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### max\_qubits
 
 Maximum number of supported qubits is `14`.
 
-<span id="undefined" />
+
 
 ### min\_qubits
 
 Minimum number of supported qubits is `3`.
 
-<span id="undefined" />
+
 
 ### supported\_bases
 
 The plugin does not support bases for synthesis.
 
-<span id="undefined" />
+
 
 ### supports\_basis\_gates
 
 The plugin does not support basis gates and by default it synthesizes a circuit using `["rx", "ry", "rz", "cx"]` gate basis.
 
-<span id="undefined" />
+
 
 ### supports\_coupling\_map
 
 The plugin does not support coupling maps.
 
-<span id="undefined" />
+
 
 ### supports\_gate\_errors
 
 The plugin does not support gate errors.
 
-<span id="undefined" />
+
 
 ### supports\_gate\_lengths
 
 The plugin does not support gate lengths.
 
-<span id="undefined" />
+
 
 ### supports\_natural\_direction
 
 The plugin does not support natural direction, it assumes bidirectional two qubit gates.
 
-<span id="undefined" />
+
 
 ### supports\_pulse\_optimize
 
 The plugin does not support optimization of pulses.
 
-<span id="undefined" />
+
 
 ### supports\_target
 

@@ -1,6 +1,6 @@
 # VQEUCCSDFactory
 
-<span id="undefined" />
+
 
 `VQEUCCSDFactory(quantum_instance, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True)`
 
@@ -30,7 +30,7 @@ A factory to construct a VQE minimum eigensolver with UCCSD ansatz wavefunction.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### excitation\_type
 
@@ -40,7 +40,7 @@ Getter of the `excitation_type` setting for the `excitation_type` setting.
 
 `str`
 
-<span id="undefined" />
+
 
 ### expectation
 
@@ -50,7 +50,7 @@ Getter of the expectation.
 
 `ExpectationBase`
 
-<span id="undefined" />
+
 
 ### gradient
 
@@ -60,7 +60,7 @@ Getter of the gradient function
 
 `Union`\[`GradientBase`, `Callable`, `None`]
 
-<span id="undefined" />
+
 
 ### include\_custom
 
@@ -70,7 +70,7 @@ Getter of the `include_custom` setting for the `expectation` setting.
 
 `bool`
 
-<span id="undefined" />
+
 
 ### initial\_point
 
@@ -80,7 +80,7 @@ Getter of the initial point.
 
 `ndarray`
 
-<span id="undefined" />
+
 
 ### method\_doubles
 
@@ -90,7 +90,7 @@ Getter of the `method_doubles` setting for the `method_doubles` setting.
 
 `str`
 
-<span id="undefined" />
+
 
 ### method\_singles
 
@@ -100,7 +100,7 @@ Getter of the `method_singles` setting for the `method_singles` setting.
 
 `str`
 
-<span id="undefined" />
+
 
 ### optimizer
 
@@ -110,7 +110,7 @@ Getter of the optimizer.
 
 `Optimizer`
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 
@@ -120,7 +120,7 @@ Getter of the quantum instance.
 
 `QuantumInstance`
 
-<span id="undefined" />
+
 
 ### same\_spin\_doubles
 

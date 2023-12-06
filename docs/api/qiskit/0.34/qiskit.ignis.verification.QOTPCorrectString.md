@@ -1,6 +1,6 @@
 # qiskit.ignis.verification.QOTPCorrectString
 
-<span id="undefined" />
+
 
 `QOTPCorrectString(qotp_string, qotp_postp)`
 

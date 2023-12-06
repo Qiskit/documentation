@@ -1,6 +1,6 @@
 # UnivariateVariationalDistribution
 
-<span id="undefined" />
+
 
 `UnivariateVariationalDistribution(num_qubits, var_form, params, low=0, high=1)`
 
@@ -37,37 +37,37 @@ The Univariate Variational Distribution.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### high
 
 returns high
 
-<span id="undefined" />
+
 
 ### low
 
 returns low
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 
 Returns the number of target qubits
 
-<span id="undefined" />
+
 
 ### num\_values
 
 returns number of values
 
-<span id="undefined" />
+
 
 ### probabilities
 
 returns probabilities
 
-<span id="undefined" />
+
 
 ### values
 

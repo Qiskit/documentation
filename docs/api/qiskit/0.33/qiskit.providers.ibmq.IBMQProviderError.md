@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.IBMQProviderError
 
-<span id="undefined" />
+
 
 `IBMQProviderError(*message)`
 

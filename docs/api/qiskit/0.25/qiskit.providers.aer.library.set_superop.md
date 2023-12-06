@@ -1,6 +1,6 @@
 # qiskit.providers.aer.library.set\_superop
 
-<span id="undefined" />
+
 
 `set_superop(self, state)`
 

@@ -1,6 +1,6 @@
 # qiskit.qobj.PulseQobj
 
-<span id="undefined" />
+
 
 `PulseQobj(qobj_id, config, experiments, header=None)`
 
@@ -17,7 +17,7 @@ Each Pulse Qobj object is used to represent a single payload that will be passed
 *   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader#qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
 *   **experiments** (*list*) – A list of lists of [`PulseQobjExperiment`](qiskit.qobj.PulseQobjExperiment#qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment") objects representing an experiment
 
-<span id="undefined" />
+
 
 `__init__(qobj_id, config, experiments, header=None)`
 
@@ -40,7 +40,7 @@ Each Pulse Qobj object is used to represent a single payload that will be passed
 | [`from_dict`](#qiskit.qobj.PulseQobj.from_dict "qiskit.qobj.PulseQobj.from_dict")(data)                                  | Create a new PulseQobj object from a dictionary.             |
 | [`to_dict`](#qiskit.qobj.PulseQobj.to_dict "qiskit.qobj.PulseQobj.to_dict")(\[validate])                                 | Return a dictionary format representation of the Pulse Qobj. |
 
-<span id="undefined" />
+
 
 `classmethod from_dict(data)`
 
@@ -58,7 +58,7 @@ The PulseQobj from the input dictionary.
 
 [PulseQobj](#qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj")
 
-<span id="undefined" />
+
 
 `to_dict(validate=False)`
 

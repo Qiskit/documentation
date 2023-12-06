@@ -1,6 +1,6 @@
 # qiskit.ignis.verification.combine\_counts
 
-<span id="undefined" />
+
 
 `combine_counts(counts1, counts2)`
 

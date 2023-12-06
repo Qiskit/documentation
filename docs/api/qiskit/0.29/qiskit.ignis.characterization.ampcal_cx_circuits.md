@@ -1,6 +1,6 @@
 # qiskit.ignis.characterization.ampcal\_cx\_circuits
 
-<span id="undefined" />
+
 
 `ampcal_cx_circuits(max_reps, qubits, control_qubits)`
 

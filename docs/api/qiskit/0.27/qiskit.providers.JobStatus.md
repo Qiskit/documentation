@@ -1,12 +1,12 @@
 # qiskit.providers.JobStatus
 
-<span id="undefined" />
+
 
 `JobStatus(value)`
 
 Class for job status enumerated type.
 
-<span id="undefined" />
+
 
 `__init__()`
 

@@ -22,7 +22,7 @@ Convert vertex cover instances into Pauli list Deal with Gset format. See [https
 | [`get_graph_solution`](#qiskit.optimization.applications.ising.vertex_cover.get_graph_solution "qiskit.optimization.applications.ising.vertex_cover.get_graph_solution")(x)                      | Get graph solution from binary string.                                             |
 | [`get_operator`](#qiskit.optimization.applications.ising.vertex_cover.get_operator "qiskit.optimization.applications.ising.vertex_cover.get_operator")(weight\_matrix)                           | Generate Hamiltonian for the vertex cover :param weight\_matrix: adjacency matrix. |
 
-<span id="undefined" />
+
 
 `check_full_edge_coverage(x, w)`
 
@@ -39,7 +39,7 @@ value of the cut.
 
 float
 
-<span id="undefined" />
+
 
 `get_graph_solution(x)`
 
@@ -57,7 +57,7 @@ graph solution as binary numpy array.
 
 numpy.ndarray
 
-<span id="undefined" />
+
 
 `get_operator(weight_matrix)`
 

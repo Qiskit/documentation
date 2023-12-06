@@ -2,13 +2,13 @@
 
 # qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult
 
-<span id="undefined" />
+
 
 `IterativeAmplitudeEstimationResult(a_dict=None)`
 
 IterativeAmplitudeEstimation Result.
 
-<span id="undefined" />
+
 
 `__init__(a_dict=None)`
 
@@ -49,7 +49,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`theta_intervals`](#qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.theta_intervals "qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.theta_intervals")                               | return theta\_intervals            |
 | [`value_confidence_interval`](#qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.value_confidence_interval "qiskit.aqua.algorithms.IterativeAmplitudeEstimationResult.value_confidence_interval") | return value\_confidence\_interval |
 
-<span id="undefined" />
+
 
 `property a_estimation`
 
@@ -59,7 +59,7 @@ return a\_estimation
 
 `float`
 
-<span id="undefined" />
+
 
 `property a_intervals`
 
@@ -69,7 +69,7 @@ return a\_intervals
 
 `List`\[`List`\[`float`]]
 
-<span id="undefined" />
+
 
 `property actual_epsilon`
 
@@ -79,7 +79,7 @@ return mle
 
 `float`
 
-<span id="undefined" />
+
 
 `property alpha`
 
@@ -89,7 +89,7 @@ return alpha
 
 `float`
 
-<span id="undefined" />
+
 
 `clear()`
 
@@ -97,7 +97,7 @@ return alpha
 
 `None`
 
-<span id="undefined" />
+
 
 `combine(result)`
 
@@ -111,7 +111,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-<span id="undefined" />
+
 
 `property confidence_interval`
 
@@ -121,7 +121,7 @@ return confidence\_interval
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 `property estimation`
 
@@ -131,7 +131,7 @@ return estimation
 
 `float`
 
-<span id="undefined" />
+
 
 `static from_dict(a_dict)`
 
@@ -141,19 +141,19 @@ create new object from a dictionary
 
 `IterativeAmplitudeEstimationResult`
 
-<span id="undefined" />
+
 
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
 
-<span id="undefined" />
+
 
 `items() → a set-like object providing a view on D’s items`
 
-<span id="undefined" />
+
 
 `keys() → a set-like object providing a view on D’s keys`
 
-<span id="undefined" />
+
 
 `property num_oracle_queries`
 
@@ -163,7 +163,7 @@ return num\_oracle\_queries
 
 `int`
 
-<span id="undefined" />
+
 
 `pop(key, default=None)`
 
@@ -173,7 +173,7 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 
 `object`
 
-<span id="undefined" />
+
 
 `popitem()`
 
@@ -183,7 +183,7 @@ as a 2-tuple; but raise KeyError if D is empty.
 
 `Tuple`\[`object`, `object`]
 
-<span id="undefined" />
+
 
 `property powers`
 
@@ -193,7 +193,7 @@ return powers
 
 `List`\[`int`]
 
-<span id="undefined" />
+
 
 `property ratios`
 
@@ -203,11 +203,11 @@ return ratios
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
 
-<span id="undefined" />
+
 
 `property theta_intervals`
 
@@ -217,7 +217,7 @@ return theta\_intervals
 
 `List`\[`List`\[`float`]]
 
-<span id="undefined" />
+
 
 `update(*args, **kwargs)`
 
@@ -227,7 +227,7 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 
 `None`
 
-<span id="undefined" />
+
 
 `property value_confidence_interval`
 
@@ -237,6 +237,6 @@ return value\_confidence\_interval
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 `values() → an object providing a view on D’s values`

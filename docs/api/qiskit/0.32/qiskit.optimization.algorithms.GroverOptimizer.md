@@ -1,6 +1,6 @@
 # GroverOptimizer
 
-<span id="undefined" />
+
 
 `GroverOptimizer(num_value_qubits, num_iterations=3, quantum_instance=None, converters=None, penalty=None)`
 
@@ -30,7 +30,7 @@ Uses Grover Adaptive Search (GAS) to find the minimum of a QUBO function.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 

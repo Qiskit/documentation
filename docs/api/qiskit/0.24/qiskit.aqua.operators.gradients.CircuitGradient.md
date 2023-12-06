@@ -2,7 +2,7 @@
 
 # qiskit.aqua.operators.gradients.CircuitGradient
 
-<span id="undefined" />
+
 
 `CircuitGradient`
 
@@ -14,7 +14,7 @@ This is distinct from DerivativeBase converters which take gradients of composit
 
 CircuitGradient - uses quantum techniques to get derivatives of circuits DerivativeBase - uses classical techniques to differentiate operator flow data structures
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -27,7 +27,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.aqua.operators.gradients.CircuitGradient.__init__ "qiskit.aqua.operators.gradients.CircuitGradient.__init__")()                 | Initialize self.                |
 | [`convert`](#qiskit.aqua.operators.gradients.CircuitGradient.convert "qiskit.aqua.operators.gradients.CircuitGradient.convert")(operator\[, params]) | **type operator**`OperatorBase` |
 
-<span id="undefined" />
+
 
 `abstract convert(operator, params=None)`
 

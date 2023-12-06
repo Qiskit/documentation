@@ -1,6 +1,6 @@
 # qiskit.pulse.PulseError
 
-<span id="undefined" />
+
 
 `PulseError(*message)`
 

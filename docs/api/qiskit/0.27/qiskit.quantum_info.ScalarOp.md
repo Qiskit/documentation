@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.ScalarOp
 
-<span id="undefined" />
+
 
 `ScalarOp(dims=None, coeff=1)`
 
@@ -19,7 +19,7 @@ Initialize an operator object.
 
 **QiskitError** – If the optional coefficient is invalid.
 
-<span id="undefined" />
+
 
 `__init__(dims=None, coeff=1)`
 
@@ -66,25 +66,25 @@ Initialize an operator object.
 | [`qargs`](#qiskit.quantum_info.ScalarOp.qargs "qiskit.quantum_info.ScalarOp.qargs")                | Return the qargs for the operator.                                   |
 | [`rtol`](#qiskit.quantum_info.ScalarOp.rtol "qiskit.quantum_info.ScalarOp.rtol")                   | Default relative tolerance parameter for float comparisons.          |
 
-<span id="undefined" />
+
 
 `adjoint()`
 
 Return the adjoint of the Operator.
 
-<span id="undefined" />
+
 
 `property atol`
 
 Default absolute tolerance parameter for float comparisons.
 
-<span id="undefined" />
+
 
 `property coeff`
 
 Return the coefficient
 
-<span id="undefined" />
+
 
 `compose(other, qargs=None, front=False)`
 
@@ -114,25 +114,25 @@ The composed ScalarOp.
   Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](#qiskit.quantum_info.ScalarOp.dot "qiskit.quantum_info.ScalarOp.dot") method `A.dot(B) == A.compose(B, front=True)`.
 </Admonition>
 
-<span id="undefined" />
+
 
 `conjugate()`
 
 Return the conjugate of the ScalarOp.
 
-<span id="undefined" />
+
 
 `copy()`
 
 Make a deep copy of current operator.
 
-<span id="undefined" />
+
 
 `property dim`
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 `dot(other, qargs=None)`
 
@@ -151,7 +151,7 @@ The right matrix multiplied Operator.
 
 [Operator](qiskit.quantum_info.Operator#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-<span id="undefined" />
+
 
 `expand(other)`
 
@@ -171,31 +171,31 @@ is the current ScalarOp, and $b$ is the other ScalarOp.
 
 [ScalarOp](#qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")
 
-<span id="undefined" />
+
 
 `input_dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
 
-<span id="undefined" />
+
 
 `is_unitary(atol=None, rtol=None)`
 
 Return True if operator is a unitary matrix.
 
-<span id="undefined" />
+
 
 `property num_qubits`
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+
 
 `output_dims(qargs=None)`
 
 Return tuple of output dimension for specified subsystems.
 
-<span id="undefined" />
+
 
 `power(n)`
 
@@ -213,13 +213,13 @@ the `coeff ** n` ScalarOp.
 
 [ScalarOp](#qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")
 
-<span id="undefined" />
+
 
 `property qargs`
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+
 
 `reshape(input_dims=None, output_dims=None, num_qubits=None)`
 
@@ -243,13 +243,13 @@ BaseOperator
 
 **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
 
-<span id="undefined" />
+
 
 `property rtol`
 
 Default relative tolerance parameter for float comparisons.
 
-<span id="undefined" />
+
 
 `tensor(other)`
 
@@ -273,19 +273,19 @@ is the current ScalarOp, and $b$ is the other ScalarOp.
   The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
 </Admonition>
 
-<span id="undefined" />
+
 
 `to_matrix()`
 
 Convert to a Numpy matrix.
 
-<span id="undefined" />
+
 
 `to_operator()`
 
 Convert to an Operator object.
 
-<span id="undefined" />
+
 
 `transpose()`
 

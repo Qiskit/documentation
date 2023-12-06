@@ -1,6 +1,6 @@
 # qiskit.algorithms.IterativePhaseEstimation
 
-<span id="undefined" />
+
 
 `IterativePhaseEstimation(num_iterations, quantum_instance=None)`
 
@@ -21,7 +21,7 @@ qubit benchmark, [arxiv/quant-ph/0610214](https://arxiv.org/abs/quant-ph/0610214
 
 **ValueError** – if num\_iterations is not greater than zero.
 
-<span id="undefined" />
+
 
 `__init__(num_iterations, quantum_instance=None)`
 
@@ -42,7 +42,7 @@ qubit benchmark, [arxiv/quant-ph/0610214](https://arxiv.org/abs/quant-ph/0610214
 | [`construct_circuit`](#qiskit.algorithms.IterativePhaseEstimation.construct_circuit "qiskit.algorithms.IterativePhaseEstimation.construct_circuit")(unitary, state\_preparation, k) | Construct the kth iteration Quantum Phase Estimation circuit.        |
 | [`estimate`](#qiskit.algorithms.IterativePhaseEstimation.estimate "qiskit.algorithms.IterativePhaseEstimation.estimate")(unitary, state\_preparation)                               | Estimate the eigenphase of the input unitary and initial-state pair. |
 
-<span id="undefined" />
+
 
 `construct_circuit(unitary, state_preparation, k, omega=0, measurement=False)`
 
@@ -66,7 +66,7 @@ the quantum circuit per iteration
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-<span id="undefined" />
+
 
 `estimate(unitary, state_preparation)`
 

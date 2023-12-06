@@ -1,6 +1,6 @@
 # qiskit.assembler.assemble\_schedules
 
-<span id="undefined" />
+
 
 `assemble_schedules(schedules, qobj_id, qobj_header, run_config)`
 

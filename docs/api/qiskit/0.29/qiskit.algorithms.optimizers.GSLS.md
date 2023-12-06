@@ -1,6 +1,6 @@
 # GSLS
 
-<span id="undefined" />
+
 
 `GSLS(maxiter=10000, max_eval=10000, disp=False, sampling_radius=1e-06, sample_size_factor=1, initial_step_size=0.01, min_step_size=1e-10, step_size_multiplier=0.4, armijo_parameter=0.1, min_gradient_norm=1e-08, max_failed_rejection_sampling=50)`
 
@@ -46,85 +46,85 @@ An implementation of the line search algorithm described in [https://arxiv.org/p
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### bounds\_support\_level
 
 Returns bounds support level
 
-<span id="undefined" />
+
 
 ### gradient\_support\_level
 
 Returns gradient support level
 
-<span id="undefined" />
+
 
 ### initial\_point\_support\_level
 
 Returns initial point support level
 
-<span id="undefined" />
+
 
 ### is\_bounds\_ignored
 
 Returns is bounds ignored
 
-<span id="undefined" />
+
 
 ### is\_bounds\_required
 
 Returns is bounds required
 
-<span id="undefined" />
+
 
 ### is\_bounds\_supported
 
 Returns is bounds supported
 
-<span id="undefined" />
+
 
 ### is\_gradient\_ignored
 
 Returns is gradient ignored
 
-<span id="undefined" />
+
 
 ### is\_gradient\_required
 
 Returns is gradient required
 
-<span id="undefined" />
+
 
 ### is\_gradient\_supported
 
 Returns is gradient supported
 
-<span id="undefined" />
+
 
 ### is\_initial\_point\_ignored
 
 Returns is initial point ignored
 
-<span id="undefined" />
+
 
 ### is\_initial\_point\_required
 
 Returns is initial point required
 
-<span id="undefined" />
+
 
 ### is\_initial\_point\_supported
 
 Returns is initial point supported
 
-<span id="undefined" />
+
 
 ### setting
 
 Return setting
 
-<span id="undefined" />
+
 
 ### settings
 

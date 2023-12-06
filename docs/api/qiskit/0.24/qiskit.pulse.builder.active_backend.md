@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.active\_backend
 
-<span id="undefined" />
+
 
 `active_backend()`
 

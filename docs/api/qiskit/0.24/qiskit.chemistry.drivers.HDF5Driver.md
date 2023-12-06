@@ -2,7 +2,7 @@
 
 # qiskit.chemistry.drivers.HDF5Driver
 
-<span id="undefined" />
+
 
 `HDF5Driver(hdf5_input='molecule.hdf5')`
 
@@ -14,7 +14,7 @@ The HDF5 file is as saved from a [`QMolecule`](qiskit.chemistry.QMolecule#qiskit
 
 **hdf5\_input** (`str`) – Path to HDF5 file
 
-<span id="undefined" />
+
 
 `__init__(hdf5_input='molecule.hdf5')`
 
@@ -39,7 +39,7 @@ The HDF5 file is as saved from a [`QMolecule`](qiskit.chemistry.QMolecule#qiskit
 | [`supports_molecule`](#qiskit.chemistry.drivers.HDF5Driver.supports_molecule "qiskit.chemistry.drivers.HDF5Driver.supports_molecule") | True for derived classes that support Molecule. |
 | [`work_path`](#qiskit.chemistry.drivers.HDF5Driver.work_path "qiskit.chemistry.drivers.HDF5Driver.work_path")                         | Returns work path.                              |
 
-<span id="undefined" />
+
 
 `property basis`
 
@@ -49,7 +49,7 @@ return basis
 
 `str`
 
-<span id="undefined" />
+
 
 `property hf_method`
 
@@ -59,7 +59,7 @@ return Hartree-Fock method
 
 `str`
 
-<span id="undefined" />
+
 
 `property molecule`
 
@@ -69,7 +69,7 @@ return molecule
 
 `Optional`\[`Molecule`]
 
-<span id="undefined" />
+
 
 `run()`
 
@@ -87,7 +87,7 @@ A QMolecule containing the molecular data.
 
 **LookupError** – file not found.
 
-<span id="undefined" />
+
 
 `property supports_molecule`
 
@@ -101,7 +101,7 @@ True for derived classes that support Molecule.
 
 True if Molecule is supported.
 
-<span id="undefined" />
+
 
 `property work_path`
 

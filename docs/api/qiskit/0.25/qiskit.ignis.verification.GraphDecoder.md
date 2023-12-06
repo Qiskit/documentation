@@ -1,6 +1,6 @@
 # qiskit.ignis.verification.GraphDecoder
 
-<span id="undefined" />
+
 
 `GraphDecoder(code, S=None)`
 
@@ -15,7 +15,7 @@ Class to construct the graph corresponding to the possible syndromes of a quantu
 
 The decoder for the supplied `code` is initialized by running `_make_syndrome_graph()`. Since this process can take some time, it is also possible to load in a premade `S`. However, if this was created for a differently defined `code`, it won’t work properly.
 
-<span id="undefined" />
+
 
 `__init__(code, S=None)`
 
@@ -39,7 +39,7 @@ The decoder for the supplied `code` is initialized by running `_make_syndrome_gr
 | [`matching`](#qiskit.ignis.verification.GraphDecoder.matching "qiskit.ignis.verification.GraphDecoder.matching")(string)                                         | **param string**A string describing the output from the code.     |
 | [`weight_syndrome_graph`](#qiskit.ignis.verification.GraphDecoder.weight_syndrome_graph "qiskit.ignis.verification.GraphDecoder.weight_syndrome_graph")(results) | Generate weighted syndrome graph from result counts.              |
 
-<span id="undefined" />
+
 
 `get_error_probs(results)`
 
@@ -62,7 +62,7 @@ dict
 
 Uses results to estimate the probability of the errors that create the pairs of nodes specified by the edge. Calculation done using the method of Spitz, et al. [https://doi.org/10.1002/qute.201800012](https://doi.org/10.1002/qute.201800012)
 
-<span id="undefined" />
+
 
 `get_logical_prob(results, algorithm='matching')`
 
@@ -80,7 +80,7 @@ Dictionary of logical error probabilities for each of the encoded logical states
 
 dict
 
-<span id="undefined" />
+
 
 `make_error_graph(string, subgraphs=None)`
 
@@ -98,7 +98,7 @@ The subgraph(s) of S which corresponds to the non-trivial syndrome elements in t
 
 E
 
-<span id="undefined" />
+
 
 `matching(string)`
 
@@ -120,7 +120,7 @@ str
 
 This function can be run directly, or used indirectly to calculate a logical error probability with get\_logical\_prob
 
-<span id="undefined" />
+
 
 `weight_syndrome_graph(results)`
 

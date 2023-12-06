@@ -1,6 +1,6 @@
 # qiskit.ignis.verification.gateset\_tomography\_circuits
 
-<span id="undefined" />
+
 
 `gateset_tomography_circuits(measured_qubits=None, gateset_basis='default')`
 

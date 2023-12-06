@@ -1,6 +1,6 @@
 # PulseSimulator
 
-<span id="undefined" />
+
 
 `PulseSimulator(configuration=None, properties=None, defaults=None, provider=None, **backend_options)`
 
@@ -109,7 +109,7 @@ This method should initialize the module and its configuration, and raise an exc
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### options
 
@@ -117,7 +117,7 @@ Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.aer.PulseSimulator.run#qiskit.providers.aer.PulseSimulator.run "qiskit.providers.aer.PulseSimulator.run") method.
 
-<span id="undefined" />
+
 
 ### version
 

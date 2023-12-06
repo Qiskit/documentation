@@ -2,7 +2,7 @@
 
 # qiskit.tools.backend\_monitor
 
-<span id="undefined" />
+
 
 `backend_monitor(backend)`
 

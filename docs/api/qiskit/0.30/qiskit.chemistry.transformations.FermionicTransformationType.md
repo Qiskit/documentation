@@ -1,6 +1,6 @@
 # FermionicTransformationType
 
-<span id="undefined" />
+
 
 `FermionicTransformationType(value)`
 
@@ -10,13 +10,13 @@ Electronic Transformation Type enum
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### FULL
 
 `= 'full'`
 
-<span id="undefined" />
+
 
 ### PARTICLE\_HOLE
 

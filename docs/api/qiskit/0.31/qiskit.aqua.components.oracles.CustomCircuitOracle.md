@@ -1,6 +1,6 @@
 # CustomCircuitOracle
 
-<span id="undefined" />
+
 
 `CustomCircuitOracle(variable_register, output_register, circuit, ancillary_register=None, evaluate_classically_callback=None)`
 
@@ -40,18 +40,18 @@ This class is provided for easy creation of oracles using custom circuits. It is
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ancillary\_register
 
-<span id="undefined" />
+
 
 ### circuit
 
-<span id="undefined" />
+
 
 ### output\_register
 
-<span id="undefined" />
+
 
 ### variable\_register

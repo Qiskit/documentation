@@ -1,6 +1,6 @@
 # qiskit.optimization.problems.QuadraticObjective
 
-<span id="undefined" />
+
 
 `QuadraticObjective(quadratic_program, constant=0.0, linear=None, quadratic=None, sense=<ObjSense.MINIMIZE: 1>)`
 
@@ -16,7 +16,7 @@ Constructs a quadratic objective function.
 *   **quadratic** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`], `None`]) – The coefficients of the quadratic part of the objective.
 *   **sense** (`ObjSense`) – The optimization sense of the objective.
 
-<span id="undefined" />
+
 
 `__init__(quadratic_program, constant=0.0, linear=None, quadratic=None, sense=<ObjSense.MINIMIZE: 1>)`
 
@@ -48,13 +48,13 @@ Constructs a quadratic objective function.
 | [`quadratic_program`](#qiskit.optimization.problems.QuadraticObjective.quadratic_program "qiskit.optimization.problems.QuadraticObjective.quadratic_program") | Returns the parent QuadraticProgram.                  |
 | [`sense`](#qiskit.optimization.problems.QuadraticObjective.sense "qiskit.optimization.problems.QuadraticObjective.sense")                                     | Returns the sense of the objective function.          |
 
-<span id="undefined" />
+
 
 ### Sense
 
 alias of `ObjSense`
 
-<span id="undefined" />
+
 
 `property constant`
 
@@ -68,7 +68,7 @@ Returns the constant part of the objective function.
 
 The constant part of the objective function.
 
-<span id="undefined" />
+
 
 `evaluate(x)`
 
@@ -86,7 +86,7 @@ Evaluate the quadratic objective for given variable values.
 
 The value of the quadratic objective given the variable values.
 
-<span id="undefined" />
+
 
 `evaluate_gradient(x)`
 
@@ -104,7 +104,7 @@ Evaluate the gradient of the quadratic objective for given variable values.
 
 The value of the gradient of the quadratic objective given the variable values.
 
-<span id="undefined" />
+
 
 `property linear`
 
@@ -118,7 +118,7 @@ Returns the linear part of the objective function.
 
 The linear part of the objective function.
 
-<span id="undefined" />
+
 
 `property quadratic`
 
@@ -132,7 +132,7 @@ Returns the quadratic part of the objective function.
 
 The quadratic part of the objective function.
 
-<span id="undefined" />
+
 
 `property quadratic_program`
 
@@ -146,7 +146,7 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-<span id="undefined" />
+
 
 `property sense`
 

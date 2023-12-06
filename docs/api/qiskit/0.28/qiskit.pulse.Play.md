@@ -1,6 +1,6 @@
 # qiskit.pulse.Play
 
-<span id="undefined" />
+
 
 `Play(pulse, channel, name=None)`
 
@@ -20,7 +20,7 @@ Create a new pulse instruction.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If pulse is not a Pulse type.
 
-<span id="undefined" />
+
 
 `__init__(pulse, channel, name=None)`
 
@@ -68,7 +68,7 @@ Create a new pulse instruction.
 | [`start_time`](#qiskit.pulse.Play.start_time "qiskit.pulse.Play.start_time")       | Relative begin time of this instruction.                                                                                                           |
 | [`stop_time`](#qiskit.pulse.Play.stop_time "qiskit.pulse.Play.stop_time")          | Relative end time of this instruction.                                                                                                             |
 
-<span id="undefined" />
+
 
 `append(schedule, name=None)`
 
@@ -87,7 +87,7 @@ A new schedule with `schedule` a this instruction at t=0.
 
 [Schedule](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
-<span id="undefined" />
+
 
 `assign_parameters(value_dict)`
 
@@ -105,7 +105,7 @@ Modify and return self with parameters assigned according to the input.
 
 Self with updated parameters.
 
-<span id="undefined" />
+
 
 `ch_duration(*channels)`
 
@@ -119,7 +119,7 @@ Return duration of the supplied channels in this Instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 `ch_start_time(*channels)`
 
@@ -133,7 +133,7 @@ Return minimum start time for supplied channels.
 
 `int`
 
-<span id="undefined" />
+
 
 `ch_stop_time(*channels)`
 
@@ -147,7 +147,7 @@ Return maximum start time for supplied channels.
 
 `int`
 
-<span id="undefined" />
+
 
 `property channel`
 
@@ -157,7 +157,7 @@ Return the [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qisk
 
 [`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")
 
-<span id="undefined" />
+
 
 `property channels`
 
@@ -167,7 +167,7 @@ Returns the channels that this schedule uses.
 
 `Tuple`\[[`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")]
 
-<span id="undefined" />
+
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`
 
@@ -196,7 +196,7 @@ A matplotlib figure object of the pulse schedule
 
 matplotlib.figure
 
-<span id="undefined" />
+
 
 `property duration`
 
@@ -206,7 +206,7 @@ Duration of this instruction.
 
 `Union`\[`int`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `flatten()`
 
@@ -216,7 +216,7 @@ Return itself as already single instruction.
 
 `Instruction`
 
-<span id="undefined" />
+
 
 `property id`
 
@@ -226,7 +226,7 @@ Unique identifier for this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 `insert(start_time, schedule, name=None)`
 
@@ -246,7 +246,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 [Schedule](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
-<span id="undefined" />
+
 
 `property instructions`
 
@@ -256,7 +256,7 @@ Iterable for getting instructions from Schedule tree.
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
@@ -266,7 +266,7 @@ Return True iff the instruction is parameterized.
 
 `bool`
 
-<span id="undefined" />
+
 
 `property name`
 
@@ -276,7 +276,7 @@ Name of this instruction.
 
 `str`
 
-<span id="undefined" />
+
 
 `property operands`
 
@@ -286,7 +286,7 @@ Return instruction operands.
 
 `Tuple`
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -296,7 +296,7 @@ Parameters which determine the instruction behavior.
 
 `Set`
 
-<span id="undefined" />
+
 
 `property pulse`
 
@@ -306,7 +306,7 @@ A description of the samples that will be played.
 
 `Pulse`
 
-<span id="undefined" />
+
 
 `shift(time, name=None)`
 
@@ -325,7 +325,7 @@ The shifted schedule.
 
 [Schedule](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
-<span id="undefined" />
+
 
 `property start_time`
 
@@ -335,7 +335,7 @@ Relative begin time of this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 `property stop_time`
 

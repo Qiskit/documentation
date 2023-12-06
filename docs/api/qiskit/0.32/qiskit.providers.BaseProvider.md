@@ -1,6 +1,6 @@
 # BaseProvider
 
-<span id="undefined" />
+
 
 `BaseProvider(*args, **kwargs)`
 

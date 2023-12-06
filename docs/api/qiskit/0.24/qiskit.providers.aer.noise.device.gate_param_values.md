@@ -2,7 +2,7 @@
 
 # qiskit.providers.aer.noise.device.gate\_param\_values
 
-<span id="undefined" />
+
 
 `gate_param_values(properties)`
 

@@ -2,7 +2,7 @@
 
 # qiskit.aqua.operators.legacy.row\_echelon\_F2
 
-<span id="undefined" />
+
 
 `row_echelon_F2(matrix_in)`
 

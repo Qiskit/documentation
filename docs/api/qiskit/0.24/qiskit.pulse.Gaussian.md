@@ -2,7 +2,7 @@
 
 # qiskit.pulse.Gaussian
 
-<span id="undefined" />
+
 
 `Gaussian(duration, amp, sigma, name=None)`
 
@@ -21,7 +21,7 @@ Initialize the gaussian pulse.
 *   **sigma** (`Union`\[`float`, `ParameterExpression`]) – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
 *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
 
-<span id="undefined" />
+
 
 `__init__(duration, amp, sigma, name=None)`
 
@@ -54,7 +54,7 @@ Initialize the gaussian pulse.
 | [`parameters`](#qiskit.pulse.Gaussian.parameters "qiskit.pulse.Gaussian.parameters") | Return a dictionary containing the pulse’s parameters. |
 | [`sigma`](#qiskit.pulse.Gaussian.sigma "qiskit.pulse.Gaussian.sigma")                | The Gaussian standard deviation of the pulse width.    |
 
-<span id="undefined" />
+
 
 `property amp`
 
@@ -64,7 +64,7 @@ The Gaussian amplitude.
 
 `Union`\[`complex`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `assign_parameters(value_dict)`
 
@@ -82,7 +82,7 @@ Return a new ParametricPulse with parameters assigned.
 
 New pulse with updated parameters.
 
-<span id="undefined" />
+
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False)`
 
@@ -105,7 +105,7 @@ A matplotlib figure object of the pulse envelope
 
 matplotlib.figure
 
-<span id="undefined" />
+
 
 `get_sample_pulse()`
 
@@ -115,7 +115,7 @@ Deprecated.
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `get_waveform()`
 
@@ -125,7 +125,7 @@ Return a Waveform with samples filled according to the formula that the pulse re
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `property id`
 
@@ -135,7 +135,7 @@ Unique identifier for this pulse.
 
 `int`
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -145,7 +145,7 @@ Return a dictionary containing the pulse’s parameters.
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+
 
 `property sigma`
 
@@ -155,7 +155,7 @@ The Gaussian standard deviation of the pulse width.
 
 `Union`\[`float`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `validate_parameters()`
 

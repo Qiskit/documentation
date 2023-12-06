@@ -2,7 +2,7 @@
 
 # qiskit.providers.aer.noise.phase\_amplitude\_damping\_error
 
-<span id="undefined" />
+
 
 `phase_amplitude_damping_error(param_amp, param_phase, excited_state_population=0, canonical_kraus=True)`
 

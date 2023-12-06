@@ -1,6 +1,6 @@
 # qiskit.opflow\.gradients.CircuitQFI
 
-<span id="undefined" />
+
 
 `CircuitQFI`
 
@@ -12,7 +12,7 @@ This is distinct from DerivativeBase converters which take gradients of composit
 
 CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase - uses classical techniques to differentiate opflow data structures
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -25,7 +25,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.opflow.gradients.CircuitQFI.__init__ "qiskit.opflow.gradients.CircuitQFI.__init__")()              | Initialize self.                |
 | [`convert`](#qiskit.opflow.gradients.CircuitQFI.convert "qiskit.opflow.gradients.CircuitQFI.convert")(operator, params) | **type operator**`OperatorBase` |
 
-<span id="undefined" />
+
 
 `abstract convert(operator, params)`
 

@@ -1,6 +1,6 @@
 # FermionicOperator
 
-<span id="undefined" />
+
 
 `FermionicOperator(h1, h2=None, ph_trans_shift=None)`
 
@@ -51,19 +51,19 @@ The [`QMolecule`](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule "qiskit.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### h1
 
 Getter of one body integral tensor.
 
-<span id="undefined" />
+
 
 ### h2
 
 Getter of two body integral tensor.
 
-<span id="undefined" />
+
 
 ### modes
 

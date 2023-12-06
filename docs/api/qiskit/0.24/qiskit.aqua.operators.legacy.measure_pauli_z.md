@@ -2,7 +2,7 @@
 
 # qiskit.aqua.operators.legacy.measure\_pauli\_z
 
-<span id="undefined" />
+
 
 `measure_pauli_z(data, pauli)`
 

@@ -1,6 +1,6 @@
 # QPE
 
-<span id="undefined" />
+
 
 `QPE(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, shallow_circuit_concat=False, quantum_instance=None)`
 
@@ -34,7 +34,7 @@ QPE (also sometimes abbreviated as PEA, for Phase Estimation Algorithm), has two
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### aux\_operators
 
@@ -44,7 +44,7 @@ Returns aux operators
 
 `Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`]]]
 
-<span id="undefined" />
+
 
 ### backend
 
@@ -54,7 +54,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 ### operator
 
@@ -64,7 +64,7 @@ Returns operator
 
 `Optional`\[`LegacyBaseOperator`]
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 
@@ -74,7 +74,7 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 ### random
 

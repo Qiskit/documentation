@@ -1,6 +1,6 @@
 # OneAgainstRest
 
-<span id="undefined" />
+
 
 `OneAgainstRest`
 

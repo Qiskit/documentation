@@ -1,6 +1,6 @@
 # FixedIncomeExpectedValue
 
-<span id="undefined" />
+
 
 `FixedIncomeExpectedValue(uncertainty_model, A, b, cash_flow, c_approx, i_state=None, i_objective=None)`
 
@@ -42,7 +42,7 @@ Constructor.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 

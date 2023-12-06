@@ -2,7 +2,7 @@
 
 # qiskit.pulse.library.Drag
 
-<span id="undefined" />
+
 
 `Drag(duration, amp, sigma, beta, name=None)`
 
@@ -35,7 +35,7 @@ Initialize the drag pulse.
 *   **beta** (`Union`\[`float`, `ParameterExpression`]) – The correction amplitude.
 *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
 
-<span id="undefined" />
+
 
 `__init__(duration, amp, sigma, beta, name=None)`
 
@@ -70,7 +70,7 @@ Initialize the drag pulse.
 | [`parameters`](#qiskit.pulse.library.Drag.parameters "qiskit.pulse.library.Drag.parameters") | Return a dictionary containing the pulse’s parameters.                     |
 | [`sigma`](#qiskit.pulse.library.Drag.sigma "qiskit.pulse.library.Drag.sigma")                | The Gaussian standard deviation of the pulse width.                        |
 
-<span id="undefined" />
+
 
 `property amp`
 
@@ -80,7 +80,7 @@ The Gaussian amplitude.
 
 `Union`\[`complex`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `assign_parameters(value_dict)`
 
@@ -98,7 +98,7 @@ Return a new ParametricPulse with parameters assigned.
 
 New pulse with updated parameters.
 
-<span id="undefined" />
+
 
 `property beta`
 
@@ -108,7 +108,7 @@ The weighing factor for the Gaussian derivative component of the waveform.
 
 `Union`\[`float`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False)`
 
@@ -131,7 +131,7 @@ A matplotlib figure object of the pulse envelope
 
 matplotlib.figure
 
-<span id="undefined" />
+
 
 `get_sample_pulse()`
 
@@ -141,7 +141,7 @@ Deprecated.
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `get_waveform()`
 
@@ -151,7 +151,7 @@ Return a Waveform with samples filled according to the formula that the pulse re
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `property id`
 
@@ -161,7 +161,7 @@ Unique identifier for this pulse.
 
 `int`
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -171,7 +171,7 @@ Return a dictionary containing the pulse’s parameters.
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+
 
 `property sigma`
 
@@ -181,7 +181,7 @@ The Gaussian standard deviation of the pulse width.
 
 `Union`\[`float`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `validate_parameters()`
 

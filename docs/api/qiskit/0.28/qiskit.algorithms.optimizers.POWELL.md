@@ -1,6 +1,6 @@
 # qiskit.algorithms.optimizers.POWELL
 
-<span id="undefined" />
+
 
 `POWELL(maxiter=None, maxfev=1000, disp=False, xtol=0.0001, tol=None, options=None, **kwargs)`
 
@@ -20,7 +20,7 @@ Uses scipy.optimize.minimize Powell. For further detail, please refer to See [ht
 *   **options** (`Optional`\[`dict`]) – A dictionary of solver options.
 *   **kwargs** – additional kwargs for scipy.optimize.minimize.
 
-<span id="undefined" />
+
 
 `__init__(maxiter=None, maxfev=1000, disp=False, xtol=0.0001, tol=None, options=None, **kwargs)`
 
@@ -66,19 +66,19 @@ Uses scipy.optimize.minimize Powell. For further detail, please refer to See [ht
 | [`setting`](#qiskit.algorithms.optimizers.POWELL.setting "qiskit.algorithms.optimizers.POWELL.setting")                                                             | Return setting                                 |
 | [`settings`](#qiskit.algorithms.optimizers.POWELL.settings "qiskit.algorithms.optimizers.POWELL.settings")                                                          | The optimizer settings in a dictionary format. |
 
-<span id="undefined" />
+
 
 `property bounds_support_level`
 
 Returns bounds support level
 
-<span id="undefined" />
+
 
 `get_support_level()`
 
 Return support level dictionary
 
-<span id="undefined" />
+
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -99,73 +99,73 @@ the gradient computed
 
 grad
 
-<span id="undefined" />
+
 
 `property gradient_support_level`
 
 Returns gradient support level
 
-<span id="undefined" />
+
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-<span id="undefined" />
+
 
 `property is_bounds_ignored`
 
 Returns is bounds ignored
 
-<span id="undefined" />
+
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-<span id="undefined" />
+
 
 `property is_bounds_supported`
 
 Returns is bounds supported
 
-<span id="undefined" />
+
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-<span id="undefined" />
+
 
 `property is_gradient_required`
 
 Returns is gradient required
 
-<span id="undefined" />
+
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-<span id="undefined" />
+
 
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
 
-<span id="undefined" />
+
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-<span id="undefined" />
+
 
 `property is_initial_point_supported`
 
 Returns is initial point supported
 
-<span id="undefined" />
+
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -189,19 +189,19 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
-<span id="undefined" />
+
 
 `print_options()`
 
 Print algorithm-specific options.
 
-<span id="undefined" />
+
 
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
 
-<span id="undefined" />
+
 
 `set_options(**kwargs)`
 
@@ -213,13 +213,13 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-<span id="undefined" />
+
 
 `property setting`
 
 Return setting
 
-<span id="undefined" />
+
 
 `property settings`
 
@@ -237,7 +237,7 @@ optimizer = OptimizerClass(**settings)
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+
 
 `static wrap_function(function, args)`
 

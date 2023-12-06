@@ -1,6 +1,6 @@
 # PiecewiseLinearPauliRotations
 
-<span id="undefined" />
+
 
 `PiecewiseLinearPauliRotations(num_state_qubits=None, breakpoints=None, slopes=None, offsets=None, basis='Y', name='pw_lin')`
 
@@ -38,13 +38,13 @@ Construct piecewise-linearly-controlled Pauli rotations.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
 
-<span id="undefined" />
+
 
 ### basis
 
@@ -60,7 +60,7 @@ Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotatio
 
 The kind of Pauli rotation used in controlled rotation.
 
-<span id="undefined" />
+
 
 ### breakpoints
 
@@ -72,7 +72,7 @@ The function is linear in the intervals `[point_i, point_{i+1}]` where the last 
 
 `List`\[`int`]
 
-<span id="undefined" />
+
 
 ### calibrations
 
@@ -82,13 +82,13 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-<span id="undefined" />
+
 
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
 
-<span id="undefined" />
+
 
 ### contains\_zero\_breakpoint
 
@@ -102,35 +102,35 @@ Whether 0 is the first breakpoint.
 
 True, if 0 is the first breakpoint, otherwise False.
 
-<span id="undefined" />
+
 
 ### data
 
-<span id="undefined" />
+
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-<span id="undefined" />
+
 
 ### global\_phase
 
 Return the global phase of the circuit in radians.
 
-<span id="undefined" />
+
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="undefined" />
+
 
 ### instances
 
 `= 16`
 
-<span id="undefined" />
+
 
 ### mapped\_offsets
 
@@ -144,7 +144,7 @@ The offsets mapped to the internal representation.
 
 The mapped offsets.
 
-<span id="undefined" />
+
 
 ### mapped\_slopes
 
@@ -158,7 +158,7 @@ The slopes mapped to the internal representation.
 
 The mapped slopes.
 
-<span id="undefined" />
+
 
 ### metadata
 
@@ -166,25 +166,25 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-<span id="undefined" />
+
 
 ### num\_ancilla\_qubits
 
 Deprecated. Use num\_ancillas instead.
 
-<span id="undefined" />
+
 
 ### num\_ancillas
 
 Return the number of ancilla qubits.
 
-<span id="undefined" />
+
 
 ### num\_clbits
 
 Return number of classical bits.
 
-<span id="undefined" />
+
 
 ### num\_parameters
 
@@ -192,13 +192,13 @@ Return number of classical bits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 Return number of qubits.
 
-<span id="undefined" />
+
 
 ### num\_state\_qubits
 
@@ -212,7 +212,7 @@ The number of state qubits representing the state $|x\rangle$.
 
 The number of state qubits.
 
-<span id="undefined" />
+
 
 ### offsets
 
@@ -224,7 +224,7 @@ The function is linear in the intervals `[point_i, point_{i+1}]` where the last 
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -232,25 +232,25 @@ The function is linear in the intervals `[point_i, point_{i+1}]` where the last 
 
 `ParameterView`
 
-<span id="undefined" />
+
 
 ### prefix
 
 `= 'circuit'`
 
-<span id="undefined" />
+
 
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-<span id="undefined" />
+
 
 ### qubits
 
 Returns a list of quantum bits in the order that the registers were added.
 
-<span id="undefined" />
+
 
 ### slopes
 

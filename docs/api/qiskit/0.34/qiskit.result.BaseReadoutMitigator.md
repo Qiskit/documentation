@@ -1,6 +1,6 @@
 # BaseReadoutMitigator
 
-<span id="undefined" />
+
 
 `BaseReadoutMitigator`
 

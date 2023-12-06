@@ -1,6 +1,6 @@
 # FermionicTransformation
 
-<span id="undefined" />
+
 
 `FermionicTransformation(transformation=<FermionicTransformationType.FULL: 'full'>, qubit_mapping=<FermionicQubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`
 
@@ -32,7 +32,7 @@ A transformation from a fermionic problem, represented by a driver, to a qubit o
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### commutation\_rule
 
@@ -42,7 +42,7 @@ Getter of the commutation rule
 
 `bool`
 
-<span id="undefined" />
+
 
 ### molecule\_info
 
@@ -52,7 +52,7 @@ Getter of the molecule information.
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+
 
 ### qubit\_mapping
 
@@ -62,7 +62,7 @@ Getter of the qubit mapping.
 
 `str`
 
-<span id="undefined" />
+
 
 ### untapered\_qubit\_op
 

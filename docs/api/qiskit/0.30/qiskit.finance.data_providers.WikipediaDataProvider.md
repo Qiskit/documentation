@@ -1,6 +1,6 @@
 # WikipediaDataProvider
 
-<span id="undefined" />
+
 
 `WikipediaDataProvider(token=None, tickers=None, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0))`
 

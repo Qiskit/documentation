@@ -1,6 +1,6 @@
 # Command
 
-<span id="undefined" />
+
 
 `Command(name, qubits=None, sequence=None, **kwargs)`
 
@@ -8,7 +8,7 @@ Bases: `object`
 
 Class representing a Command.
 
-<span id="undefined" />
+
 
 ### name
 

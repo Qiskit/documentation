@@ -1,6 +1,6 @@
 # SnapshotProbabilities
 
-<span id="undefined" />
+
 
 `SnapshotProbabilities(label, num_qubits, variance=False)`
 
@@ -45,7 +45,7 @@ Create a probability snapshot instruction.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### condition\_bits
 
@@ -55,43 +55,43 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-<span id="undefined" />
+
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+
 
 ### duration
 
 Get the duration.
 
-<span id="undefined" />
+
 
 ### label
 
 Return snapshot label
 
-<span id="undefined" />
+
 
 ### params
 
 return instruction params.
 
-<span id="undefined" />
+
 
 ### snapshot\_type
 
 Return snapshot type
 
-<span id="undefined" />
+
 
 ### unit
 

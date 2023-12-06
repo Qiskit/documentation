@@ -1,6 +1,6 @@
 # AmplitudeEstimationResult
 
-<span id="undefined" />
+
 
 `AmplitudeEstimationResult(a_dict=None)`
 
@@ -28,7 +28,7 @@ AmplitudeEstimation Result.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### a\_estimation
 
@@ -38,7 +38,7 @@ return a\_estimation
 
 `float`
 
-<span id="undefined" />
+
 
 ### a\_samples
 
@@ -48,7 +48,7 @@ return a\_samples
 
 `List`\[`Tuple`\[`float`, `float`]]
 
-<span id="undefined" />
+
 
 ### circuit\_result
 
@@ -58,7 +58,7 @@ return circuit result
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
 
-<span id="undefined" />
+
 
 ### confidence\_interval
 
@@ -68,7 +68,7 @@ return confidence\_interval
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 ### estimation
 
@@ -78,7 +78,7 @@ return estimation
 
 `float`
 
-<span id="undefined" />
+
 
 ### mapped\_a\_samples
 
@@ -88,7 +88,7 @@ return mapped\_a\_samples
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 ### mapped\_values
 
@@ -98,7 +98,7 @@ return mapped\_values
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 ### max\_probability
 
@@ -108,7 +108,7 @@ return max\_probability
 
 `float`
 
-<span id="undefined" />
+
 
 ### ml\_value
 
@@ -118,7 +118,7 @@ returns ml\_value
 
 `float`
 
-<span id="undefined" />
+
 
 ### mle
 
@@ -128,7 +128,7 @@ return mle
 
 `float`
 
-<span id="undefined" />
+
 
 ### num\_oracle\_queries
 
@@ -138,7 +138,7 @@ return num\_oracle\_queries
 
 `int`
 
-<span id="undefined" />
+
 
 ### probabilities
 
@@ -148,7 +148,7 @@ return probabilities
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 ### shots
 
@@ -158,7 +158,7 @@ return shots
 
 `int`
 
-<span id="undefined" />
+
 
 ### y\_measurements
 

@@ -1,6 +1,6 @@
 # Options
 
-<span id="undefined" />
+
 
 `Options(**kwargs)`
 
@@ -20,6 +20,6 @@ This class is the abstract class that all backend options are based on. The prop
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### validator

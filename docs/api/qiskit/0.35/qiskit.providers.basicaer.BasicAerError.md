@@ -1,6 +1,6 @@
 # qiskit.providers.basicaer.BasicAerError
 
-<span id="undefined" />
+
 
 `BasicAerError(*message)`
 

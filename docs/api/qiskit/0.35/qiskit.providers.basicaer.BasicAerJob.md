@@ -1,6 +1,6 @@
 # BasicAerJob
 
-<span id="undefined" />
+
 
 `BasicAerJob(backend, job_id, result)`
 
@@ -34,7 +34,7 @@ Initializes the asynchronous job.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### version
 

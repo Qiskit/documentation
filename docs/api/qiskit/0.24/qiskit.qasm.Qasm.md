@@ -2,7 +2,7 @@
 
 # qiskit.qasm.Qasm
 
-<span id="undefined" />
+
 
 `Qasm(filename=None, data=None)`
 
@@ -10,7 +10,7 @@ OPENQASM circuit object.
 
 Create an OPENQASM circuit object.
 
-<span id="undefined" />
+
 
 `__init__(filename=None, data=None)`
 
@@ -25,19 +25,19 @@ Create an OPENQASM circuit object.
 | [`parse`](#qiskit.qasm.Qasm.parse "qiskit.qasm.Qasm.parse")()                               | Parse the data.                    |
 | [`return_filename`](#qiskit.qasm.Qasm.return_filename "qiskit.qasm.Qasm.return_filename")() | Return the filename.               |
 
-<span id="undefined" />
+
 
 `generate_tokens()`
 
 Returns a generator of the tokens.
 
-<span id="undefined" />
+
 
 `parse()`
 
 Parse the data.
 
-<span id="undefined" />
+
 
 `return_filename()`
 

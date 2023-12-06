@@ -1,6 +1,6 @@
 # UchannelLO
 
-<span id="undefined" />
+
 
 `UchannelLO(q, scale)`
 
@@ -8,13 +8,13 @@ Bases: `object`
 
 Class representing a U Channel LO
 
-<span id="undefined" />
+
 
 ### q
 
 Qubit that scale corresponds too.
 
-<span id="undefined" />
+
 
 ### scale
 

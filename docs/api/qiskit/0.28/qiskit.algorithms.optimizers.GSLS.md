@@ -1,6 +1,6 @@
 # qiskit.algorithms.optimizers.GSLS
 
-<span id="undefined" />
+
 
 `GSLS(maxiter=10000, max_eval=10000, disp=False, sampling_radius=1e-06, sample_size_factor=1, initial_step_size=0.01, min_step_size=1e-10, step_size_multiplier=0.4, armijo_parameter=0.1, min_gradient_norm=1e-08, max_failed_rejection_sampling=50)`
 
@@ -26,7 +26,7 @@ An implementation of the line search algorithm described in [https://arxiv.org/p
 *   **min\_gradient\_norm** (`float`) – If the gradient norm is below this threshold, the algorithm stops.
 *   **max\_failed\_rejection\_sampling** (`int`) – Maximum number of attempts to sample points within bounds.
 
-<span id="undefined" />
+
 
 `__init__(maxiter=10000, max_eval=10000, disp=False, sampling_radius=1e-06, sample_size_factor=1, initial_step_size=0.01, min_step_size=1e-10, step_size_multiplier=0.4, armijo_parameter=0.1, min_gradient_norm=1e-08, max_failed_rejection_sampling=50)`
 
@@ -80,13 +80,13 @@ An implementation of the line search algorithm described in [https://arxiv.org/p
 | [`setting`](#qiskit.algorithms.optimizers.GSLS.setting "qiskit.algorithms.optimizers.GSLS.setting")                                                             | Return setting                                 |
 | [`settings`](#qiskit.algorithms.optimizers.GSLS.settings "qiskit.algorithms.optimizers.GSLS.settings")                                                          | The optimizer settings in a dictionary format. |
 
-<span id="undefined" />
+
 
 `property bounds_support_level`
 
 Returns bounds support level
 
-<span id="undefined" />
+
 
 `get_support_level()`
 
@@ -100,7 +100,7 @@ Return support level dictionary.
 
 A dictionary containing the support levels for different options.
 
-<span id="undefined" />
+
 
 `gradient_approximation(n, x, x_value, directions, sample_set_x, sample_set_y)`
 
@@ -123,7 +123,7 @@ Construct gradient approximation from given sample.
 
 Gradient approximation at x, as a 1D array.
 
-<span id="undefined" />
+
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -144,73 +144,73 @@ the gradient computed
 
 grad
 
-<span id="undefined" />
+
 
 `property gradient_support_level`
 
 Returns gradient support level
 
-<span id="undefined" />
+
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-<span id="undefined" />
+
 
 `property is_bounds_ignored`
 
 Returns is bounds ignored
 
-<span id="undefined" />
+
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-<span id="undefined" />
+
 
 `property is_bounds_supported`
 
 Returns is bounds supported
 
-<span id="undefined" />
+
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-<span id="undefined" />
+
 
 `property is_gradient_required`
 
 Returns is gradient required
 
-<span id="undefined" />
+
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-<span id="undefined" />
+
 
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
 
-<span id="undefined" />
+
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-<span id="undefined" />
+
 
 `property is_initial_point_supported`
 
 Returns is initial point supported
 
-<span id="undefined" />
+
 
 `ls_optimize(n, obj_fun, initial_point, var_lb, var_ub)`
 
@@ -236,7 +236,7 @@ Final iterate as a vector, corresponding objective function value, number of eva
 
 **ValueError** – If the number of dimensions mismatches the size of the initial point or the length of the lower or upper bound.
 
-<span id="undefined" />
+
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -264,13 +264,13 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
-<span id="undefined" />
+
 
 `print_options()`
 
 Print algorithm-specific options.
 
-<span id="undefined" />
+
 
 `sample_points(n, x, num_points)`
 
@@ -292,7 +292,7 @@ The radius of the sphere is `self._options['sampling_radius']`.
 
 A tuple containing the sampling points and the directions.
 
-<span id="undefined" />
+
 
 `sample_set(n, x, var_lb, var_ub, num_points)`
 
@@ -318,13 +318,13 @@ Matrices of (unit-norm) sample directions and sample points, one per row. Both m
 
 **RuntimeError** – If not enough samples could be generated within the bounds.
 
-<span id="undefined" />
+
 
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
 
-<span id="undefined" />
+
 
 `set_options(**kwargs)`
 
@@ -336,13 +336,13 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-<span id="undefined" />
+
 
 `property setting`
 
 Return setting
 
-<span id="undefined" />
+
 
 `property settings`
 
@@ -360,7 +360,7 @@ optimizer = OptimizerClass(**settings)
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+
 
 `static wrap_function(function, args)`
 

@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.control\_channels
 
-<span id="undefined" />
+
 
 `control_channels(*qubits)`
 

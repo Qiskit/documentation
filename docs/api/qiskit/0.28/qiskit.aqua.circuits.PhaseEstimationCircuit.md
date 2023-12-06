@@ -1,6 +1,6 @@
 # qiskit.aqua.circuits.PhaseEstimationCircuit
 
-<span id="undefined" />
+
 
 `PhaseEstimationCircuit(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=6.283185307179586, state_in_circuit_factory=None, unitary_circuit_factory=None, shallow_circuit_concat=False, pauli_list=None)`
 
@@ -26,7 +26,7 @@ Quantum Phase Estimation Circuit.
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Missing input
 
-<span id="undefined" />
+
 
 `__init__(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=6.283185307179586, state_in_circuit_factory=None, unitary_circuit_factory=None, shallow_circuit_concat=False, pauli_list=None)`
 
@@ -65,19 +65,19 @@ Quantum Phase Estimation Circuit.
 | [`auxiliary_register`](#qiskit.aqua.circuits.PhaseEstimationCircuit.auxiliary_register "qiskit.aqua.circuits.PhaseEstimationCircuit.auxiliary_register") | returns auxiliary register |
 | [`state_register`](#qiskit.aqua.circuits.PhaseEstimationCircuit.state_register "qiskit.aqua.circuits.PhaseEstimationCircuit.state_register")             | returns state register     |
 
-<span id="undefined" />
+
 
 `property ancillary_register`
 
 returns ancillary register
 
-<span id="undefined" />
+
 
 `property auxiliary_register`
 
 returns auxiliary register
 
-<span id="undefined" />
+
 
 `construct_circuit(state_register=None, ancillary_register=None, auxiliary_register=None, measurement=False)`
 
@@ -105,7 +105,7 @@ the QuantumCircuit object for the constructed circuit
 *   **RuntimeError** – Multiple identity pauli terms are present
 *   **ValueError** – invalid mode
 
-<span id="undefined" />
+
 
 `property state_register`
 

@@ -1,6 +1,6 @@
 # qiskit.providers.aer.noise.device.gate\_length\_values
 
-<span id="undefined" />
+
 
 `gate_length_values(properties)`
 

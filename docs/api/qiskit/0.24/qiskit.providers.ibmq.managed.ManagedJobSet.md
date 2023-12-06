@@ -2,7 +2,7 @@
 
 # qiskit.providers.ibmq.managed.ManagedJobSet
 
-<span id="undefined" />
+
 
 `ManagedJobSet(name=None, short_id=None)`
 
@@ -17,7 +17,7 @@ ManagedJobSet constructor.
 *   **name** (`Optional`\[`str`]) – Name for this set of jobs. If not specified, the current date and time is used.
 *   **short\_id** (`Optional`\[`str`]) – Short ID for this set of jobs.
 
-<span id="undefined" />
+
 
 `__init__(name=None, short_id=None)`
 
@@ -50,7 +50,7 @@ ManagedJobSet constructor.
 | [`update_name`](#qiskit.providers.ibmq.managed.ManagedJobSet.update_name "qiskit.providers.ibmq.managed.ManagedJobSet.update_name")(name)                       | Update the name of this job set.                                        |
 | [`update_tags`](#qiskit.providers.ibmq.managed.ManagedJobSet.update_tags "qiskit.providers.ibmq.managed.ManagedJobSet.update_tags")(\[replacement\_tags, …])    | Update the tags assigned to this job set.                               |
 
-<span id="undefined" />
+
 
 `cancel()`
 
@@ -60,7 +60,7 @@ Cancel all jobs in this job set.
 
 `None`
 
-<span id="undefined" />
+
 
 `error_messages()`
 
@@ -76,7 +76,7 @@ This call will block until all jobs finish.
 
 An error report if one or more jobs failed or `None` otherwise.
 
-<span id="undefined" />
+
 
 `job(experiment)`
 
@@ -107,7 +107,7 @@ A tuple of the job used to submit the experiment, or `None` if the job submit fa
 
 [**IBMQJobManagerJobNotFound**](qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound#qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound "qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound") – If the job for the experiment could not be found.
 
-<span id="undefined" />
+
 
 `job_set_id()`
 
@@ -121,7 +121,7 @@ Return the ID of this job set.
 
 ID of this job set.
 
-<span id="undefined" />
+
 
 `jobs()`
 
@@ -135,7 +135,7 @@ Return jobs in this job set.
 
 A list of [`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob#qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.IBMQJob") instances that represents the submitted jobs. An entry in the list is `None` if the job failed to be submitted.
 
-<span id="undefined" />
+
 
 `managed_jobs()`
 
@@ -149,7 +149,7 @@ Return the managed jobs in this set.
 
 A list of managed jobs.
 
-<span id="undefined" />
+
 
 `name()`
 
@@ -163,7 +163,7 @@ Return the name of this job set.
 
 Name of this job set.
 
-<span id="undefined" />
+
 
 `qobjs()`
 
@@ -177,7 +177,7 @@ Return the Qobjs for the jobs in this set.
 
 A list of Qobjs for the jobs. An entry in the list is `None` if the Qobj could not be retrieved.
 
-<span id="undefined" />
+
 
 `report(detailed=True)`
 
@@ -195,7 +195,7 @@ Return a report on current job statuses.
 
 A report on job statuses.
 
-<span id="undefined" />
+
 
 `results(timeout=None, partial=False, refresh=False)`
 
@@ -240,7 +240,7 @@ A [`ManagedResults`](qiskit.providers.ibmq.managed.ManagedResults#qiskit.provide
 
 [**IBMQJobManagerTimeoutError**](qiskit.providers.ibmq.managed.IBMQJobManagerTimeoutError#qiskit.providers.ibmq.managed.IBMQJobManagerTimeoutError "qiskit.providers.ibmq.managed.IBMQJobManagerTimeoutError") – if unable to retrieve all job results before the specified timeout.
 
-<span id="undefined" />
+
 
 `retrieve_jobs(provider, refresh=False)`
 
@@ -260,7 +260,7 @@ Retrieve previously submitted jobs in this set.
 
 `None`
 
-<span id="undefined" />
+
 
 `run(experiment_list, backend, executor, job_share_level, job_tags=None, **assemble_config)`
 
@@ -283,7 +283,7 @@ Execute a list of circuits or pulse schedules on a backend.
 
 `None`
 
-<span id="undefined" />
+
 
 `statuses()`
 
@@ -297,7 +297,7 @@ Return the status of each job in this set.
 
 A list of job statuses. An entry in the list is `None` if the job status could not be retrieved due to a server error.
 
-<span id="undefined" />
+
 
 `tags()`
 
@@ -311,7 +311,7 @@ Return the tags assigned to this job set.
 
 Tags assigned to this job set.
 
-<span id="undefined" />
+
 
 `update_name(name)`
 
@@ -329,7 +329,7 @@ Update the name of this job set.
 
 The new name associated with this job set.
 
-<span id="undefined" />
+
 
 `update_tags(replacement_tags=None, additional_tags=None, removal_tags=None)`
 

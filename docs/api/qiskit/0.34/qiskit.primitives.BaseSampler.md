@@ -1,6 +1,6 @@
 # BaseSampler
 
-<span id="undefined" />
+
 
 `BaseSampler(circuits, parameters=None)`
 
@@ -27,7 +27,7 @@ Base class of Sampler that calculates quasi-probabilities of bitstrings from qua
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### circuits
 
@@ -37,7 +37,7 @@ Quantum circuits
 
 quantum circuits
 
-<span id="undefined" />
+
 
 ### parameters
 

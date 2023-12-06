@@ -1,6 +1,6 @@
 # qiskit.aqua.circuits.StateVectorCircuit
 
-<span id="undefined" />
+
 
 `StateVectorCircuit(state_vector)`
 
@@ -16,7 +16,7 @@ Constructor.
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
 
-<span id="undefined" />
+
 
 `__init__(state_vector)`
 
@@ -37,7 +37,7 @@ Constructor.
 | [`__init__`](#qiskit.aqua.circuits.StateVectorCircuit.__init__ "qiskit.aqua.circuits.StateVectorCircuit.__init__")(state\_vector)                                   | Constructor.                                                 |
 | [`construct_circuit`](#qiskit.aqua.circuits.StateVectorCircuit.construct_circuit "qiskit.aqua.circuits.StateVectorCircuit.construct_circuit")(\[circuit, register]) | Construct the circuit representing the desired state vector. |
 
-<span id="undefined" />
+
 
 `construct_circuit(circuit=None, register=None)`
 

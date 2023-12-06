@@ -1,6 +1,6 @@
 # NoiseTransformer
 
-<span id="undefined" />
+
 
 `NoiseTransformer`
 

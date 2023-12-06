@@ -1,6 +1,6 @@
 # qiskit.circuit.Clbit
 
-<span id="undefined" />
+
 
 `Clbit(register=None, index=None)`
 
@@ -17,7 +17,7 @@ Creates a classical bit.
 
 **CircuitError** – if the provided register is not a valid [`ClassicalRegister`](qiskit.circuit.ClassicalRegister#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")
 
-<span id="undefined" />
+
 
 `__init__(register=None, index=None)`
 
@@ -45,13 +45,13 @@ Creates a classical bit.
 | [`index`](#qiskit.circuit.Clbit.index "qiskit.circuit.Clbit.index")          | Get bit’s index.    |
 | [`register`](#qiskit.circuit.Clbit.register "qiskit.circuit.Clbit.register") | Get bit’s register. |
 
-<span id="undefined" />
+
 
 `property index`
 
 Get bit’s index.
 
-<span id="undefined" />
+
 
 `property register`
 

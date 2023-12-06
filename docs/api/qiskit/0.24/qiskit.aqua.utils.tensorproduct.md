@@ -2,7 +2,7 @@
 
 # qiskit.aqua.utils.tensorproduct
 
-<span id="undefined" />
+
 
 `tensorproduct(*args)`
 

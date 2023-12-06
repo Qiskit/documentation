@@ -2,7 +2,7 @@
 
 # qiskit.aqua.utils.get\_num\_classes
 
-<span id="undefined" />
+
 
 `get_num_classes(dataset)`
 

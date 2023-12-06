@@ -1,6 +1,6 @@
 # Clifford
 
-<span id="undefined" />
+
 
 `Clifford(data, validate=True)`
 
@@ -89,49 +89,49 @@ Initialize an operator object.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### destabilizer
 
 Return the destabilizer block of the StabilizerTable.
 
-<span id="undefined" />
+
 
 ### dim
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 ### name
 
 Unique string identifier for operation type.
 
-<span id="undefined" />
+
 
 ### num\_clbits
 
 Number of classical bits.
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 Number of qubits.
 
-<span id="undefined" />
+
 
 ### qargs
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+
 
 ### stabilizer
 
 Return the stabilizer block of the StabilizerTable.
 
-<span id="undefined" />
+
 
 ### table
 

@@ -1,6 +1,6 @@
 # CircuitStateFn
 
-<span id="undefined" />
+
 
 `CircuitStateFn(primitive=None, coeff=1.0, is_measurement=False)`
 
@@ -51,19 +51,19 @@ A class for state functions and measurements which are defined by the action of 
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ENABLE\_DEPRECATION
 
 `= True`
 
-<span id="undefined" />
+
 
 ### INDENTATION
 
 `= ' '`
 
-<span id="undefined" />
+
 
 ### coeff
 
@@ -73,7 +73,7 @@ A coefficient by which the state function is multiplied.
 
 `Union`\[`int`, `float`, `complex`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 ### is\_measurement
 
@@ -83,7 +83,7 @@ Whether the StateFn object is a measurement Operator.
 
 `bool`
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -91,11 +91,11 @@ Whether the StateFn object is a measurement Operator.
 
 `int`
 
-<span id="undefined" />
+
 
 ### parameters
 
-<span id="undefined" />
+
 
 ### primitive
 

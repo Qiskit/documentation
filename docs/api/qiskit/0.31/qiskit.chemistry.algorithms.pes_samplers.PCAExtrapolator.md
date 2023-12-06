@@ -1,6 +1,6 @@
 # PCAExtrapolator
 
-<span id="undefined" />
+
 
 `PCAExtrapolator(extrapolator=None, kernel=None, window=2)`
 

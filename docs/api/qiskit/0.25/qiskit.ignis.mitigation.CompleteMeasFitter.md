@@ -1,6 +1,6 @@
 # qiskit.ignis.mitigation.CompleteMeasFitter
 
-<span id="undefined" />
+
 
 `CompleteMeasFitter(results, state_labels, qubit_list=None, circlabel='')`
 
@@ -17,7 +17,7 @@ A wrapper for the tensored fitter
 *   **qubit\_list** (`Optional`\[`List`\[`int`]]) – List of the qubits (for reference and if the subset is needed). If None, the qubit\_list will be created according to the length of state\_labels\[0].
 *   **circlabel** (`str`) – if the qubits were labeled.
 
-<span id="undefined" />
+
 
 `__init__(results, state_labels, qubit_list=None, circlabel='')`
 
@@ -51,7 +51,7 @@ A wrapper for the tensored fitter
 | [`qubit_list`](#qiskit.ignis.mitigation.CompleteMeasFitter.qubit_list "qiskit.ignis.mitigation.CompleteMeasFitter.qubit_list")       | Return list of qubits.                            |
 | [`state_labels`](#qiskit.ignis.mitigation.CompleteMeasFitter.state_labels "qiskit.ignis.mitigation.CompleteMeasFitter.state_labels") | Return state\_labels.                             |
 
-<span id="undefined" />
+
 
 `add_data(new_results, rebuild_cal_matrix=True)`
 
@@ -62,19 +62,19 @@ Add measurement calibration data
 *   **new\_results** (*list or* [*qiskit.result.Result*](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result")) – a single result or list of result objects.
 *   **rebuild\_cal\_matrix** (*bool*) – rebuild the calibration matrix
 
-<span id="undefined" />
+
 
 `property cal_matrix`
 
 Return cal\_matrix.
 
-<span id="undefined" />
+
 
 `property filter`
 
 Return a measurement filter using the cal matrix.
 
-<span id="undefined" />
+
 
 `plot_calibration(ax=None, show_plot=True)`
 
@@ -85,13 +85,13 @@ Plot the calibration matrix (2D color grid plot)
 *   **show\_plot** (*bool*) – call plt.show()
 *   **ax** (*matplotlib.axes.Axes*) – An optional Axes object to use for the plot
 
-<span id="undefined" />
+
 
 `property qubit_list`
 
 Return list of qubits.
 
-<span id="undefined" />
+
 
 `readout_fidelity(label_list=None)`
 
@@ -113,13 +113,13 @@ numpy.array
 
 The on-diagonal elements of the calibration matrix are the probabilities of measuring state ‘x’ given preparation of state ‘x’ and so the normalized trace is the average assignment fidelity
 
-<span id="undefined" />
+
 
 `property state_labels`
 
 Return state\_labels.
 
-<span id="undefined" />
+
 
 `subset_fitter(qubit_sublist=None)`
 

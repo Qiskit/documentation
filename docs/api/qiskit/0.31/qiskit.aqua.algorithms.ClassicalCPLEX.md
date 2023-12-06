@@ -1,6 +1,6 @@
 # ClassicalCPLEX
 
-<span id="undefined" />
+
 
 `ClassicalCPLEX(operator, timelimit=600, thread=1, display=2)`
 
@@ -27,13 +27,13 @@ See these `installation instructions` if you need more information in that regar
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### random
 
 Return a numpy random.
 
-<span id="undefined" />
+
 
 ### solution
 

@@ -2,13 +2,13 @@
 
 # qiskit.qasm.QasmHTMLStyle
 
-<span id="undefined" />
+
 
 `QasmHTMLStyle`
 
 A style for OpenQasm in a HTML env (e.g. Jupyter widget).
 
-<span id="undefined" />
+
 
 `__init__()`
 

@@ -2,7 +2,7 @@
 
 # qiskit.quantum\_info.ScalarOp
 
-<span id="undefined" />
+
 
 `ScalarOp(dims, coeff=1)`
 
@@ -21,7 +21,7 @@ Initialize an operator object.
 
 **QiskitError** – If the optional coefficient is invalid.
 
-<span id="undefined" />
+
 
 `__init__(dims, coeff=1)`
 
@@ -73,7 +73,7 @@ Initialize an operator object.
 | [`qargs`](#qiskit.quantum_info.ScalarOp.qargs "qiskit.quantum_info.ScalarOp.qargs")                | Return the qargs for the operator.                                   |
 | [`rtol`](#qiskit.quantum_info.ScalarOp.rtol "qiskit.quantum_info.ScalarOp.rtol")                   | The relative tolerance parameter for float comparisons.              |
 
-<span id="undefined" />
+
 
 `add(other)`
 
@@ -93,25 +93,25 @@ the operator self + other.
 
 BaseOperator
 
-<span id="undefined" />
+
 
 `adjoint()`
 
 Return the adjoint of the operator.
 
-<span id="undefined" />
+
 
 `property atol`
 
 The default absolute tolerance parameter for float comparisons.
 
-<span id="undefined" />
+
 
 `property coeff`
 
 Return the coefficient
 
-<span id="undefined" />
+
 
 `compose(other, qargs=None, front=False)`
 
@@ -139,25 +139,25 @@ BaseOperator
 
 Composition (`@`) is defined as left matrix multiplication for matrix operators. That is that `A @ B` is equal to `B * A`. Setting `front=True` returns right matrix multiplication `A * B` and is equivalent to the [`dot()`](#qiskit.quantum_info.ScalarOp.dot "qiskit.quantum_info.ScalarOp.dot") method.
 
-<span id="undefined" />
+
 
 `conjugate()`
 
 Return the conjugate of the operator.
 
-<span id="undefined" />
+
 
 `copy()`
 
 Make a deep copy of current operator.
 
-<span id="undefined" />
+
 
 `property dim`
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 `dot(other, qargs=None)`
 
@@ -180,7 +180,7 @@ BaseOperator
 
 **QiskitError** – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
 
-<span id="undefined" />
+
 
 `expand(other)`
 
@@ -198,19 +198,19 @@ if other is an ScalarOp. BaseOperator: if other is not an ScalarOp.
 
 [ScalarOp](#qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")
 
-<span id="undefined" />
+
 
 `input_dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
 
-<span id="undefined" />
+
 
 `is_unitary(atol=None, rtol=None)`
 
 Return True if operator is a unitary matrix.
 
-<span id="undefined" />
+
 
 `multiply(other)`
 
@@ -234,19 +234,19 @@ BaseOperator
 
 **NotImplementedError** – if subclass does not support multiplication.
 
-<span id="undefined" />
+
 
 `property num_qubits`
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+
 
 `output_dims(qargs=None)`
 
 Return tuple of output dimension for specified subsystems.
 
-<span id="undefined" />
+
 
 `power(n)`
 
@@ -268,13 +268,13 @@ the `coeff ** n` ScalarOp.
 
 **QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
 
-<span id="undefined" />
+
 
 `property qargs`
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+
 
 `reshape(input_dims=None, output_dims=None)`
 
@@ -302,13 +302,13 @@ BaseOperator
 
 **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
 
-<span id="undefined" />
+
 
 `property rtol`
 
 The relative tolerance parameter for float comparisons.
 
-<span id="undefined" />
+
 
 `classmethod set_atol(value)`
 
@@ -316,7 +316,7 @@ Set the class default absolute tolerance parameter for float comparisons.
 
 DEPRECATED: use operator.atol = value instead
 
-<span id="undefined" />
+
 
 `classmethod set_rtol(value)`
 
@@ -324,7 +324,7 @@ Set the class default relative tolerance parameter for float comparisons.
 
 DEPRECATED: use operator.rtol = value instead
 
-<span id="undefined" />
+
 
 `subtract(other)`
 
@@ -344,7 +344,7 @@ the operator self - other.
 
 BaseOperator
 
-<span id="undefined" />
+
 
 `tensor(other)`
 
@@ -362,19 +362,19 @@ if other is an ScalarOp. BaseOperator: if other is not an ScalarOp.
 
 [ScalarOp](#qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")
 
-<span id="undefined" />
+
 
 `to_matrix()`
 
 Convert to a Numpy matrix.
 
-<span id="undefined" />
+
 
 `to_operator()`
 
 Convert to an Operator object.
 
-<span id="undefined" />
+
 
 `transpose()`
 

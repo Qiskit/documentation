@@ -22,7 +22,7 @@ python_api_name: qiskit.ignis.logging
 | [`IgnisLogging`](qiskit.ignis.logging.IgnisLogging "qiskit.ignis.logging.IgnisLogging")()            | Singleton class to configure file logging via IgnisLogger |
 | [`IgnisLogReader`](qiskit.ignis.logging.IgnisLogReader "qiskit.ignis.logging.IgnisLogReader")()      | Class to read from Ignis log files                        |
 
-<span id="undefined" />
+
 
 `IgnisLogger(name, level=0)`
 

@@ -2,7 +2,7 @@
 
 # qiskit.transpiler.passes.CSPLayout
 
-<span id="undefined" />
+
 
 `CSPLayout(*args, **kwargs)`
 
@@ -25,7 +25,7 @@ If not possible, does not set the layout property. In all the cases, the propert
 *   **call\_limit** (*int*) – Amount of times that `constraint.RecursiveBacktrackingSolver.recursiveBacktracking` will be called. None means no call limit. Default: 1000.
 *   **time\_limit** (*int*) – Amount of seconds that the pass will try to find a solution. None means no time limit. Default: 10 seconds.
 
-<span id="undefined" />
+
 
 `__init__(coupling_map, strict_direction=False, seed=None, call_limit=1000, time_limit=10)`
 
@@ -61,7 +61,7 @@ If not possible, does not set the layout property. In all the cases, the propert
 | [`is_analysis_pass`](#qiskit.transpiler.passes.CSPLayout.is_analysis_pass "qiskit.transpiler.passes.CSPLayout.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.CSPLayout.is_transformation_pass "qiskit.transpiler.passes.CSPLayout.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-<span id="undefined" />
+
 
 `property is_analysis_pass`
 
@@ -69,7 +69,7 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="undefined" />
+
 
 `property is_transformation_pass`
 
@@ -77,13 +77,13 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-<span id="undefined" />
+
 
 `name()`
 
 Return the name of the pass.
 
-<span id="undefined" />
+
 
 `run(dag)`
 

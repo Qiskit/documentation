@@ -1,6 +1,6 @@
 # QMolecule
 
-<span id="undefined" />
+
 
 `QMolecule(filename=None)`
 
@@ -32,25 +32,25 @@ This class provides methods to save it and load it again from an HDF5 file
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### BOHR
 
 `= 0.52917721092`
 
-<span id="undefined" />
+
 
 ### DEBYE
 
 `= 0.393430307`
 
-<span id="undefined" />
+
 
 ### QMOLECULE\_VERSION
 
 `= 2`
 
-<span id="undefined" />
+
 
 ### core\_orbitals
 
@@ -60,43 +60,43 @@ Returns: A list of core orbital indices.
 
 `List`\[`int`]
 
-<span id="undefined" />
+
 
 ### filename
 
 returns temp file path
 
-<span id="undefined" />
+
 
 ### one\_body\_integrals
 
 Returns one body electron integrals.
 
-<span id="undefined" />
+
 
 ### symbols
 
 `= ['_', 'H', 'He', 'Li', 'Be', 'B', 'C', 'N', 'O', 'F', 'Ne', 'Na', 'Mg', 'Al', 'Si', 'P', 'S', 'Cl', 'Ar', 'K', 'Ca', 'Sc', 'Ti', 'V', 'Cr', 'Mn', 'Fe', 'Co', 'Ni', 'Cu', 'Zn', 'Ga', 'Ge', 'As', 'Se', 'Br', 'Kr', 'Rb', 'Sr', 'Y', 'Zr', 'Nb', 'Mo', 'Tc', 'Ru', 'Rh', 'Pd', 'Ag', 'Cd', 'In', 'Sn', 'Sb', 'Te', 'I', 'Xe', 'Cs', 'Ba', 'La', 'Ce', 'Pr', 'Nd', 'Pm', 'Sm', 'Eu', 'Gd', 'Tb', 'Dy', 'Ho', 'Er', 'Tm', 'Yb', 'Lu', 'Hf', 'Ta', 'W', 'Re', 'Os', 'Ir', 'Pt', 'Au', 'Hg', 'Tl', 'Pb', 'Bi', 'Po', 'At', 'Rn', 'Fr', 'Ra', 'Ac', 'Th', 'Pa', 'U', 'Np', 'Pu', 'Am', 'Cm', 'Bk', 'Cf', 'Es', 'Fm', 'Md', 'No', 'Lr', 'Rf', 'Db', 'Sg', 'Bh', 'Hs', 'Mt', 'Ds', 'Rg', 'Cn', 'Nh', 'Fl', 'Mc', 'Lv', 'Ts', 'Og']`
 
-<span id="undefined" />
+
 
 ### two\_body\_integrals
 
 Returns two body electron integrals.
 
-<span id="undefined" />
+
 
 ### x\_dipole\_integrals
 
 returns x\_dipole\_integrals
 
-<span id="undefined" />
+
 
 ### y\_dipole\_integrals
 
 returns y\_dipole\_integrals
 
-<span id="undefined" />
+
 
 ### z\_dipole\_integrals
 

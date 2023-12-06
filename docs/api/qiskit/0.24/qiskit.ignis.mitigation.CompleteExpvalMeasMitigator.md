@@ -2,7 +2,7 @@
 
 # qiskit.ignis.mitigation.CompleteExpvalMeasMitigator
 
-<span id="undefined" />
+
 
 `CompleteExpvalMeasMitigator(amat)`
 
@@ -18,7 +18,7 @@ Initialize a TensorMeasurementMitigator
 
 **amat** (*np.array*) – readout error assignment matrix.
 
-<span id="undefined" />
+
 
 `__init__(amat)`
 
@@ -43,7 +43,7 @@ Initialize a TensorMeasurementMitigator
 | [`required_shots`](#qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.required_shots "qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.required_shots")(delta\[, qubits])                      | Return the number of shots required for expectation value estimation. |
 | [`stddev_upper_bound`](#qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.stddev_upper_bound "qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.stddev_upper_bound")(\[shots, qubits])          | Return an upper bound on standard deviation of expval estimator.      |
 
-<span id="undefined" />
+
 
 `assignment_fidelity(qubits=None)`
 
@@ -63,7 +63,7 @@ the assignment fidelity.
 
 float
 
-<span id="undefined" />
+
 
 `assignment_matrix(qubits=None)`
 
@@ -83,7 +83,7 @@ the assignment matrix A.
 
 np.ndarray
 
-<span id="undefined" />
+
 
 `expectation_value(counts, diagonal=None, qubits=None, clbits=None)`
 
@@ -116,7 +116,7 @@ The diagonal observable $O$ is input using the `diagonal` kwarg as a list or Num
 
 The `clbits` kwarg is used to marginalize the input counts dictionary over the specified bit-values, and the `qubits` kwarg is used to specify which physical qubits these bit-values correspond to as `circuit.measure(qubits, clbits)`.
 
-<span id="undefined" />
+
 
 `mitigation_matrix(qubits=None)`
 
@@ -136,7 +136,7 @@ the measurement error mitigation matrix $A^{-1}$.
 
 np.ndarray
 
-<span id="undefined" />
+
 
 `mitigation_overhead(qubits=None)`
 
@@ -156,7 +156,7 @@ the mitigation overhead factor.
 
 int
 
-<span id="undefined" />
+
 
 `plot_assignment_matrix(qubits=None, ax=None)`
 
@@ -179,7 +179,7 @@ plt.axes
 
 **ImportError** – if matplotlib is not installed.
 
-<span id="undefined" />
+
 
 `plot_mitigation_matrix(qubits=None, ax=None)`
 
@@ -202,7 +202,7 @@ plt.axes
 
 **ImportError** – if matplotlib is not installed.
 
-<span id="undefined" />
+
 
 `required_shots(delta, qubits=None)`
 
@@ -223,7 +223,7 @@ the required shots.
 
 int
 
-<span id="undefined" />
+
 
 `stddev_upper_bound(shots=1, qubits=None)`
 

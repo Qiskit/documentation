@@ -1,6 +1,6 @@
 # MultivariateNormalDistribution
 
-<span id="undefined" />
+
 
 `MultivariateNormalDistribution(num_qubits, low=None, high=None, mu=None, sigma=None)`
 
@@ -38,55 +38,55 @@ Provides a discretized and truncated normal distribution loaded into a quantum s
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### dimension
 
 returns dimensions
 
-<span id="undefined" />
+
 
 ### high
 
 returns high
 
-<span id="undefined" />
+
 
 ### low
 
 returns low
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 returns num qubits
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 
 Returns the number of target qubits
 
-<span id="undefined" />
+
 
 ### num\_values
 
 returns number of values
 
-<span id="undefined" />
+
 
 ### probabilities
 
 returns probabilities
 
-<span id="undefined" />
+
 
 ### probabilities\_vector
 
 returns probabilities vector
 
-<span id="undefined" />
+
 
 ### values
 

@@ -1,6 +1,6 @@
 # qiskit.chemistry.algorithms.OrbitalOptimizationVQE
 
-<span id="undefined" />
+
 
 `OrbitalOptimizationVQE(transformation, solver, initial_point=None, orbital_rotation=None, bounds=None, iterative_oo=True, iterative_oo_iterations=2)`
 
@@ -20,7 +20,7 @@ A ground state calculation employing the OOVQE algorithm. The Variational Quantu
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the number of orbital optimization iterations is less or equal to zero.
 
-<span id="undefined" />
+
 
 `__init__(transformation, solver, initial_point=None, orbital_rotation=None, bounds=None, iterative_oo=True, iterative_oo_iterations=2)`
 
@@ -54,7 +54,7 @@ A ground state calculation employing the OOVQE algorithm. The Variational Quantu
 | [`solver`](#qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solver "qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solver")                         | Returns the minimum eigensolver or factory.                                   |
 | [`transformation`](#qiskit.chemistry.algorithms.OrbitalOptimizationVQE.transformation "qiskit.chemistry.algorithms.OrbitalOptimizationVQE.transformation") | Returns the transformation used to obtain a qubit operator from the molecule. |
 
-<span id="undefined" />
+
 
 `evaluate_operators(state, operators)`
 
@@ -73,7 +73,7 @@ Evaluates additional operators at the given state.
 
 The expectation value of the given operator(s). The return type will be identical to the format of the provided operators.
 
-<span id="undefined" />
+
 
 `returns_groundstate()`
 
@@ -83,7 +83,7 @@ Whether the eigensolver returns the ground state or only ground state energy.
 
 `bool`
 
-<span id="undefined" />
+
 
 `solve(driver, aux_operators=None)`
 
@@ -106,7 +106,7 @@ Compute Ground State properties.
 
 An eigenstate result. Depending on the transformation this can be an electronic structure or bosonic result.
 
-<span id="undefined" />
+
 
 `property solver`
 
@@ -116,7 +116,7 @@ Returns the minimum eigensolver or factory.
 
 `Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
 
-<span id="undefined" />
+
 
 `property transformation`
 

@@ -1,6 +1,6 @@
 # qiskit.circuit.library.clifford\_8\_1
 
-<span id="undefined" />
+
 
 `clifford_8_1()`
 

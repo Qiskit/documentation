@@ -1,6 +1,6 @@
 # qiskit.pulse.builder.measure
 
-<span id="undefined" />
+
 
 `measure(qubits, registers=None)`
 

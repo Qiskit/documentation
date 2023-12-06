@@ -1,6 +1,6 @@
 # QasmSimulator
 
-<span id="undefined" />
+
 
 `QasmSimulator(configuration=None, properties=None, provider=None, **backend_options)`
 
@@ -136,7 +136,7 @@ This method should initialize the module and its configuration, and raise an exc
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### options
 
@@ -144,7 +144,7 @@ Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.aer.QasmSimulator.run#qiskit.providers.aer.QasmSimulator.run "qiskit.providers.aer.QasmSimulator.run") method.
 
-<span id="undefined" />
+
 
 ### version
 
