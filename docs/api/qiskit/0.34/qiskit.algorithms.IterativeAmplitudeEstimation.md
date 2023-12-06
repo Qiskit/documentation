@@ -43,7 +43,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 |                                                                                                                                                                                                                             |                                                   |             |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ----------- |
-| [`construct_circuit`](qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit#qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit "qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit") | Construct the circuit \$\mathcal{Q}^k \mathcal{A} | 0\rangle\$. |
+| [`construct_circuit`](qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit#qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit "qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit") | Construct the circuit $\mathcal{Q}^k \mathcal{A} \vert0\rangle$. |
 | [`estimate`](qiskit.algorithms.IterativeAmplitudeEstimation.estimate#qiskit.algorithms.IterativeAmplitudeEstimation.estimate "qiskit.algorithms.IterativeAmplitudeEstimation.estimate")                                     | Run the amplitude estimation algorithm.           |             |
 
 ## Attributes
