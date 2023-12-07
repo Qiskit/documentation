@@ -158,7 +158,9 @@ zxMain(async () => {
     ...pkgInfo,
   };
 
-  pkg.initialUrls = pkg.initialUrls.map(initialURL => pkg.baseUrl+initialURL);
+  pkg.initialUrls = pkg.initialUrls.map(
+    (initialURL) => pkg.baseUrl + initialURL,
+  );
 
   if (pkg.historical) {
     if (pkg.name !== "qiskit") {
@@ -387,10 +389,14 @@ async function createHistoricalFolder(pkgName: string, outputDir: string) {
 /**
  * Uses a local web server to download the HTML files from a specific CI artifact
  */
-async function downloadApiSources(pkg: Pkg, artifactUrl: string, destination: string){
+async function downloadApiSources(
+  pkg: Pkg,
+  artifactUrl: string,
+  destination: string,
+) {
   const localWebServerDir = `${destination}/artifact`;
   const listenPort = 8000;
-  try{
+  try {
     startWebServer(localWebServerDir, listenPort);
 
     await downloadCIArtifact(pkg.name, artifactUrl, destination);
@@ -399,7 +405,7 @@ async function downloadApiSources(pkg: Pkg, artifactUrl: string, destination: st
       initialUrls: pkg.initialUrls,
       destination,
     });
-  } finally{
+  } finally {
     await closeWebServer(listenPort);
   }
 }

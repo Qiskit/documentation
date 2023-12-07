@@ -13,9 +13,11 @@
 import { describe, expect, test } from "@jest/globals";
 import { getArtifactID } from "./downloadArtifacts";
 
-describe("Test the extraction of the artifact ID from a URL", () => {
+describe("downloadArtifacts", () => {
   test("Pass the full URL of the artifact", () => {
-    const artifactID = getArtifactID("https://github.com/Qiskit/qiskit/suites/17881600359/artifacts/1026798160");
+    const artifactID = getArtifactID(
+      "https://github.com/Qiskit/qiskit/suites/17881600359/artifacts/1026798160",
+    );
     expect(artifactID).toEqual("1026798160");
   });
 

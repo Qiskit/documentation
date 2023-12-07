@@ -14,21 +14,25 @@ import { $ } from "zx";
 import { pathExists, getRoot } from "../lib/fs";
 import { mkdirp } from "mkdirp";
 
-export function getArtifactID(url: string){
-    return url.replace(/.*\//, "");
+export function getArtifactID(url: string) {
+  return url.replace(/.*\//, "");
 }
 
-export async function downloadCIArtifact(pkgName: string, artifactUrl: string, destination: string) {
-    const artifactId = getArtifactID(artifactUrl)
+export async function downloadCIArtifact(
+  pkgName: string,
+  artifactUrl: string,
+  destination: string,
+) {
+  const artifactId = getArtifactID(artifactUrl);
 
-    if (!(await pathExists(destination))) {
-        await mkdirp(destination);
-    }
+  if (!(await pathExists(destination))) {
+    await mkdirp(destination);
+  }
 
-    await $`gh api \
+  await $`gh api \
     -H "Accept: application/vnd.github+json" \
     -H "X-GitHub-Api-Version: 2022-11-28" \
     /repos/Qiskit/${pkgName}/actions/artifacts/${artifactId}/zip > ${destination}/artifact.zip`;
 
-    await $`unzip -qqo ${destination}/artifact.zip -d ${destination}/artifact`;
+  await $`unzip -qqo ${destination}/artifact.zip -d ${destination}/artifact`;
 }

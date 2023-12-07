@@ -13,9 +13,9 @@
 import { $ } from "zx";
 
 export async function startWebServer(directory: string, listenPort: number) {
-    $`python3 -m http.server ${listenPort} -d ${directory} -b ::1 &`;
+  $`python3 -m http.server ${listenPort} -d ${directory} -b ::1 &`;
 }
 
 export async function closeWebServer(listenPort: number) {
-    await $`lsof -nti:${listenPort} | xargs kill -TERM`;
+  await $`lsof -nti:${listenPort} | xargs kill -TERM`;
 }
