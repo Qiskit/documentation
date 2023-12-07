@@ -172,10 +172,11 @@ To check that formatting is valid without actually making changes, run `npm run 
 
 ## Regenerate the API docs
 
-1. Choose which documentation you want to regenerate: `qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`
-2. Determine the current version of the published stable documentation, e.g. at https://github.com/Qiskit/qiskit/releases
-3. Find a link to a CI artifact with the project's documentation, e.g at https://github.com/Qiskit/qiskit/suites/17881600359/artifacts/1026798160
-4. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <artifact-url>`,
+1. Install and configure GitHub CLI: https://docs.github.com/en/github-cli/github-cli/quickstart
+2. Choose which documentation you want to regenerate: `qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`
+3. Determine the current version of the published stable documentation, e.g. at https://github.com/Qiskit/qiskit/releases
+4. Find a link to a CI artifact with the project's documentation, e.g at https://github.com/Qiskit/qiskit/suites/17881600359/artifacts/1026798160
+5. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <artifact-url>`,
    e.g. `npm run gen-api -- -p qiskit -v 0.45.0 -a https://github.com/Qiskit/qiskit/suites/17881600359/artifacts/1026798160`
 
 For `qiskit`, you can also regenerate historical versions by adding `--historical` to the arguments. This is useful when we improve our generation script.
