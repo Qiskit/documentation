@@ -77,21 +77,21 @@ const PACKAGES: PkgInfo[] = [
     title: "Qiskit Runtime IBM Client",
     name: "qiskit-ibm-runtime",
     githubSlug: "qiskit/qiskit-ibm-runtime",
-    initialUrls: [`/apidoc/ibm-runtime.html`],
+    initialUrl: `/apidocs/ibm-runtime.html`,
     transformLink,
   },
   {
     title: "Qiskit IBM Provider",
     name: "qiskit-ibm-provider",
     githubSlug: "qiskit/qiskit-ibm-provider",
-    initialUrls: [`/apidoc/ibm-provider.html`],
+    initialUrl: `/apidocs/ibm-provider.html`,
     transformLink,
   },
   {
     title: "Qiskit",
     name: "qiskit",
     githubSlug: "qiskit/qiskit",
-    initialUrls: [`/apidoc/index.html`],
+    initialUrl: `/apidoc/index.html`,
     hasSeparateReleaseNotes: true,
     tocOptions: {
       collapsed: true,
@@ -127,7 +127,7 @@ const readArgs = (): Arguments => {
       alias: "a",
       type: "string",
       demandOption: true,
-      description: "Which artifact to download",
+      description: "Which artifact from CI to download",
     })
     .parseSync();
 };
@@ -157,27 +157,26 @@ zxMain(async () => {
     ...pkgInfo,
   };
 
-  pkg.initialUrls = pkg.initialUrls.map(
-    (initialURL) => pkg.baseUrl + initialURL,
-  );
+  pkg.initialUrl = pkg.baseUrl + pkg.initialUrl;
 
-  if (pkg.historical) {
-    if (pkg.name !== "qiskit") {
-      throw new Error("`--historical` can only be used with `-p qiskit`");
-    }
+  if (pkg.historical && pkg.name == "qiskit") {
     const htmlFile =
       +pkg.versionWithoutPatch >= 0.44 ? "index.html" : "terra.html";
-    pkg.initialUrls = [`${pkg.baseUrl}/apidoc/${htmlFile}`];
+    pkg.initialUrl = `${pkg.baseUrl}/apidoc/${htmlFile}`;
   }
 
   const artifactUrl = args.artifact;
   const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
     pkg.version
   }`;
+  const localWebServerDir = `${destination}/artifact`;
+  const listenPort = 8000;
+  startWebServer(localWebServerDir, listenPort);
+
   if (await pathExists(destination)) {
     console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
-    await downloadApiSources(pkg, artifactUrl, destination);
+    await downloadApiSources(pkg, artifactUrl, destination, listenPort);
   }
 
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${pkg.versionWithoutPatch}/`;
@@ -187,16 +186,17 @@ zxMain(async () => {
 
   if (pkg.historical && !(await pathExists(outputDir))) {
     mkdirp(outputDir);
+  } else {
+    await rmFilesInFolder(outputDir, `${pkg.name}:${pkg.versionWithoutPatch}`);
   }
 
   pkg.releaseNoteEntries = await findLegacyReleaseNotes(pkg);
-
-  await rmFilesInFolder(outputDir, `${pkg.name}:${pkg.versionWithoutPatch}`);
 
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
   await convertHtmlToMarkdown(destination, outputDir, baseSourceUrl, pkg);
+  await closeWebServer(listenPort);
 });
 
 /**
@@ -213,16 +213,16 @@ async function rmFilesInFolder(
   await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`;
 }
 
-async function downloadHtml(options: {
+async function saveHtml(options: {
   baseUrl: string;
-  initialUrls: string[];
+  initialUrl: string;
   destination: string;
 }): Promise<void> {
-  const { baseUrl, destination, initialUrls } = options;
+  const { baseUrl, destination, initialUrl } = options;
   let successCount = 0;
   let errorCount = 0;
   const crawler = new WebCrawler({
-    initialUrls: initialUrls,
+    initialUrl: initialUrl,
     followUrl(url) {
       return (
         url.startsWith(`${baseUrl}/apidocs`) ||
@@ -384,19 +384,17 @@ async function downloadApiSources(
   pkg: Pkg,
   artifactUrl: string,
   destination: string,
+  listenPort: number,
 ) {
-  const localWebServerDir = `${destination}/artifact`;
-  const listenPort = 8000;
   try {
-    startWebServer(localWebServerDir, listenPort);
-
     await downloadCIArtifact(pkg.name, artifactUrl, destination);
-    await downloadHtml({
+    await saveHtml({
       baseUrl: pkg.baseUrl,
-      initialUrls: pkg.initialUrls,
+      initialUrl: pkg.initialUrl,
       destination,
     });
-  } finally {
+  } catch (e) {
     await closeWebServer(listenPort);
+    throw e;
   }
 }

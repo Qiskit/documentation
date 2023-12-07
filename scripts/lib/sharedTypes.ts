@@ -25,7 +25,7 @@ export interface Link {
 export type PkgInfo = {
   name: string;
   githubSlug: string;
-  initialUrls: string[];
+  initialUrl: string;
   title: string;
   ignore?(id: string): boolean;
   hasSeparateReleaseNotes?: boolean;
