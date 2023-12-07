@@ -18,10 +18,9 @@ export function getArtifactID(url: string){
     return url.replace(/.*\//, "");
 }
 
-export async function downloadCIArtifact(pkgName: string, artifactUrl: string) {
+export async function downloadCIArtifact(pkgName: string, artifactUrl: string, destination: string) {
     const artifactId = getArtifactID(artifactUrl)
 
-    const destination = `${getRoot()}/.out/artifacts/${pkgName}/`;
     if (!(await pathExists(destination))) {
         await mkdirp(destination);
     }

@@ -12,10 +12,10 @@
 
 import { $ } from "zx";
 
-export async function startWebServer(directory: string) {
-    $`python3 -m http.server 8000 -d ${directory} -b ::1`;
+export async function startWebServer(directory: string, listenPort: number) {
+    $`python3 -m http.server ${listenPort} -d ${directory} -b ::1 &`;
 }
 
-export async function closeWebServer() {
-    await $`lsof -nti:8000 | xargs kill -TERM`;
+export async function closeWebServer(listenPort: number) {
+    await $`lsof -nti:${listenPort} | xargs kill -TERM`;
 }

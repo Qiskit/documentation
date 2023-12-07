@@ -388,17 +388,18 @@ async function createHistoricalFolder(pkgName: string, outputDir: string) {
  * Uses a local web server to download the HTML files from a specific CI artifact
  */
 async function downloadApiSources(pkg: Pkg, artifactUrl: string, destination: string){
+  const localWebServerDir = `${destination}/artifact`;
+  const listenPort = 8000;
   try{
-    const localWebServerDir = `${getRoot()}/.out/artifacts/${pkg.name}/artifact`;
-    startWebServer(localWebServerDir);
+    startWebServer(localWebServerDir, listenPort);
 
-    await downloadCIArtifact(pkg.name, artifactUrl);
+    await downloadCIArtifact(pkg.name, artifactUrl, destination);
     await downloadHtml({
       baseUrl: pkg.baseUrl,
       initialUrls: pkg.initialUrls,
       destination,
     });
   } finally{
-    await closeWebServer();
+    await closeWebServer(listenPort);
   }
 }
