@@ -321,15 +321,16 @@ async function convertHtmlToMarkdown(
   for (const result of results) {
     let path = urlToPath(result.url);
     if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
-      const projectFolder = pkg.historical
-        ? `${pkg.name}/${pkg.versionWithoutPatch}`
-        : `${pkg.name}`;
+      // Historical versions use the same release notes files as the current API
+      if (pkg.historical) {
+        continue;
+      }
 
       // Convert the relative links to absolute links
       result.markdown = transformLinks(result.markdown, (link, _) =>
         link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
           ? link
-          : `/api/${projectFolder}/${link}`,
+          : `/api/${pkg.name}/${link}`,
       );
 
       path = currentReleaseNotesPath(pkg);
