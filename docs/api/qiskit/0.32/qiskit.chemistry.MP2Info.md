@@ -1,6 +1,6 @@
 # MP2Info
 
-<span id="undefined" />
+
 
 `MP2Info(qmolecule, threshold=1e-12)`
 
@@ -36,7 +36,7 @@ A utility class for MP2 info
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### mp2\_delta
 
@@ -50,7 +50,7 @@ The MP2 delta energy
 
 float
 
-<span id="undefined" />
+
 
 ### mp2\_energy
 

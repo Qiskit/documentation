@@ -1,6 +1,6 @@
 # FasterAmplitudeEstimation
 
-<span id="undefined" />
+
 
 `FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None)`
 
@@ -46,7 +46,7 @@ Due to the iterative version of the QPE, this algorithm does not require any add
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 

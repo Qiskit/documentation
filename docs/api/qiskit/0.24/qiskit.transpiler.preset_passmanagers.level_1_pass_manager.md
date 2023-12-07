@@ -2,7 +2,7 @@
 
 # qiskit.transpiler.preset\_passmanagers.level\_1\_pass\_manager
 
-<span id="undefined" />
+
 
 `level_1_pass_manager(pass_manager_config)`
 

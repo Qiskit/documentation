@@ -11,7 +11,7 @@ Generate Number Partitioning (Partition) instances, and convert them into a Hami
 | [`get_operator`](#qiskit.optimization.applications.ising.partition.get_operator "qiskit.optimization.applications.ising.partition.get_operator")(values)                   | Construct the Hamiltonian for a given Partition instance. |
 | [`partition_value`](#qiskit.optimization.applications.ising.partition.partition_value "qiskit.optimization.applications.ising.partition.partition_value")(x, number\_list) | Compute the value of a partition.                         |
 
-<span id="undefined" />
+
 
 `get_operator(values)`
 
@@ -31,7 +31,7 @@ operator for the Hamiltonian and a constant shift for the obj function.
 
 tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
 
-<span id="undefined" />
+
 
 `partition_value(x, number_list)`
 

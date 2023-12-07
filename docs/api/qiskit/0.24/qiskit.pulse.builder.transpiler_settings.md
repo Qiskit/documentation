@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.transpiler\_settings
 
-<span id="undefined" />
+
 
 `transpiler_settings(**settings)`
 

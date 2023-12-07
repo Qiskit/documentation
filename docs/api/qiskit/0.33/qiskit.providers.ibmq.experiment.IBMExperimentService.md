@@ -1,6 +1,6 @@
 # IBMExperimentService
 
-<span id="undefined" />
+
 
 `IBMExperimentService(provider)`
 
@@ -72,7 +72,7 @@ IBMExperimentService constructor.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### preferences
 

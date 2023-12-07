@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.hellinger\_distance
 
-<span id="undefined" />
+
 
 `hellinger_distance(dist_p, dist_q)`
 

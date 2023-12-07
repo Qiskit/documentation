@@ -1,6 +1,6 @@
 # qiskit.providers.aer.utils.transpile\_quantum\_error
 
-<span id="undefined" />
+
 
 `transpile_quantum_error(error, **transpile_kwargs)`
 

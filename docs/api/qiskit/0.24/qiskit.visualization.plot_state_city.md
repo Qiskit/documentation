@@ -2,7 +2,7 @@
 
 # qiskit.visualization.plot\_state\_city
 
-<span id="undefined" />
+
 
 `plot_state_city(state, title='', figsize=None, color=None, alpha=1, ax_real=None, ax_imag=None, *, rho=None)`
 

@@ -1,6 +1,6 @@
 # qiskit.qasm.QasmError
 
-<span id="undefined" />
+
 
 `QasmError(*msg)`
 

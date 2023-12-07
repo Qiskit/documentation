@@ -2,7 +2,7 @@
 
 # qiskit.visualization.plot\_circuit\_layout
 
-<span id="undefined" />
+
 
 `plot_circuit_layout(circuit, backend, view='virtual')`
 

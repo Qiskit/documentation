@@ -1,6 +1,6 @@
 # qiskit.qasm3.dumps
 
-<span id="undefined" />
+
 
 `dumps(circuit, **kwargs)`
 

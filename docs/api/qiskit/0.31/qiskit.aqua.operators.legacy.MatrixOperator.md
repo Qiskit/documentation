@@ -1,6 +1,6 @@
 # MatrixOperator
 
-<span id="undefined" />
+
 
 `MatrixOperator(matrix, basis=None, z2_symmetries=None, atol=1e-12, name=None)`
 
@@ -38,43 +38,43 @@ Operators relevant for quantum applications
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### atol
 
 return atol
 
-<span id="undefined" />
+
 
 ### basis
 
 returns basis
 
-<span id="undefined" />
+
 
 ### dense\_matrix
 
 Getter of matrix in dense matrix form.
 
-<span id="undefined" />
+
 
 ### dia\_matrix
 
 diagonal matrix
 
-<span id="undefined" />
+
 
 ### matrix
 
 Getter of matrix.
 
-<span id="undefined" />
+
 
 ### name
 
 returns name
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -88,7 +88,7 @@ number of qubits
 
 int
 
-<span id="undefined" />
+
 
 ### z2\_symmetries
 

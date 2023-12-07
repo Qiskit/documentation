@@ -1,6 +1,6 @@
 # qiskit.aqua.components.multiclass\_extensions.ErrorCorrectingCode
 
-<span id="undefined" />
+
 
 `ErrorCorrectingCode(code_size=4)`
 
@@ -22,7 +22,7 @@ The table above shows a 6-bit ECC for a 3-class problem. Each class is assigned 
 
 **code\_size** (`int`) – Size of error correcting code
 
-<span id="undefined" />
+
 
 `__init__(code_size=4)`
 
@@ -40,7 +40,7 @@ The table above shows a 6-bit ECC for a 3-class problem. Each class is assigned 
 | [`test`](#qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test")(x, y)                                                 | Testing multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                  |
 | [`train`](#qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train")(x, y)                                              | Training multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                 |
 
-<span id="undefined" />
+
 
 `predict(x)`
 
@@ -58,7 +58,7 @@ predicted labels, Nx1 array
 
 numpy.ndarray
 
-<span id="undefined" />
+
 
 `set_estimator(estimator_cls, params=None)`
 
@@ -68,7 +68,7 @@ Called internally to set `Estimator` and parameters :type estimator\_cls: `Calla
 
 `None`
 
-<span id="undefined" />
+
 
 `test(x, y)`
 
@@ -87,7 +87,7 @@ accuracy
 
 float
 
-<span id="undefined" />
+
 
 `train(x, y)`
 

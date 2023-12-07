@@ -1,6 +1,6 @@
 # SamplerResult
 
-<span id="undefined" />
+
 
 `SamplerResult(quasi_dists, metadata)`
 

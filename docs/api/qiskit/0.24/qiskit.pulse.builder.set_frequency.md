@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.set\_frequency
 
-<span id="undefined" />
+
 
 `set_frequency(frequency, channel)`
 

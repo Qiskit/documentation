@@ -1,6 +1,6 @@
 # PurityRBFitter
 
-<span id="undefined" />
+
 
 `PurityRBFitter(purity_result, npurity, cliff_lengths, rb_pattern=None)`
 
@@ -32,49 +32,49 @@ Derived from RBFitterBase class.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### cliff\_lengths
 
 Return clifford lengths.
 
-<span id="undefined" />
+
 
 ### fit
 
 Return the purity fit parameters.
 
-<span id="undefined" />
+
 
 ### raw\_data
 
 Return raw data.
 
-<span id="undefined" />
+
 
 ### rb\_fit\_fun
 
 Return the fit function rb\_fit\_fun.
 
-<span id="undefined" />
+
 
 ### rbfit\_pur
 
 Return the purity RB fitter.
 
-<span id="undefined" />
+
 
 ### results
 
 Return all the results.
 
-<span id="undefined" />
+
 
 ### seeds
 
 Return the number of loaded seeds.
 
-<span id="undefined" />
+
 
 ### ydata
 

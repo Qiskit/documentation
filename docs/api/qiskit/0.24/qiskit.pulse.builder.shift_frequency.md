@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.shift\_frequency
 
-<span id="undefined" />
+
 
 `shift_frequency(frequency, channel)`
 

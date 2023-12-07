@@ -1,12 +1,12 @@
 # qiskit.chemistry.algorithms.pes\_samplers.PotentialBase
 
-<span id="undefined" />
+
 
 `PotentialBase(molecule)`
 
 Class to hold prescribed 1D potentials (e.g. Morse/Harmonic) over a degree of freedom.
 
-<span id="undefined" />
+
 
 `__init__(molecule)`
 
@@ -28,7 +28,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`update_molecule`](#qiskit.chemistry.algorithms.pes_samplers.PotentialBase.update_molecule "qiskit.chemistry.algorithms.pes_samplers.PotentialBase.update_molecule")(molecule)                              | Wipe state if molecule changes, and check validity of molecule for potential.                                              |
 | [`vibrational_energy_level`](#qiskit.chemistry.algorithms.pes_samplers.PotentialBase.vibrational_energy_level "qiskit.chemistry.algorithms.pes_samplers.PotentialBase.vibrational_energy_level")(n)          | Returns the n-th vibrational energy level for a given mode.                                                                |
 
-<span id="undefined" />
+
 
 `abstract dissociation_energy(scaling=1.0)`
 
@@ -38,7 +38,7 @@ Returns the dissociation energy (scaled by ‘scaling’)
 
 `float`
 
-<span id="undefined" />
+
 
 `abstract eval(x)`
 
@@ -56,7 +56,7 @@ After fitting the data to the fit function, predict the energy at a point x.
 
 value of surface in point x
 
-<span id="undefined" />
+
 
 `abstract fit(xdata, ydata, initial_vals=None, bounds_list=None)`
 
@@ -73,7 +73,7 @@ Fits surface to data
 
 `None`
 
-<span id="undefined" />
+
 
 `abstract get_equilibrium_geometry(scaling=1.0)`
 
@@ -93,7 +93,7 @@ Returns the geometry for the minimal energy (scaled by ‘scaling’) Default un
 
 equilibrium geometry
 
-<span id="undefined" />
+
 
 `get_maximum_trusted_level(n=0)`
 
@@ -111,7 +111,7 @@ Returns the maximum energy level for which the particular implementation still p
 
 maximum\_trusted\_level setted
 
-<span id="undefined" />
+
 
 `abstract get_minimal_energy(scaling=1.0)`
 
@@ -131,7 +131,7 @@ Returns the value of the minimal energy (scaled by ‘scaling’) Default units 
 
 minimum energy
 
-<span id="undefined" />
+
 
 `get_num_modes()`
 
@@ -141,7 +141,7 @@ This (1D) potential represents a single vibrational mode
 
 `int`
 
-<span id="undefined" />
+
 
 `get_trust_region()`
 
@@ -151,7 +151,7 @@ The potential will usually be well-defined (even if not useful) for arbitrary x 
 
 `Tuple`\[`float`, `float`]
 
-<span id="undefined" />
+
 
 `update_molecule(molecule)`
 
@@ -169,7 +169,7 @@ Wipe state if molecule changes, and check validity of molecule for potential.
 
 molecule used
 
-<span id="undefined" />
+
 
 `abstract vibrational_energy_level(n)`
 

@@ -2,7 +2,7 @@
 
 # qiskit.providers.aer.utils.approximate\_noise\_model
 
-<span id="undefined" />
+
 
 `approximate_noise_model(model, *, operator_string=None, operator_dict=None, operator_list=None)`
 

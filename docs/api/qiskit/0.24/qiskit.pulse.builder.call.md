@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.call
 
-<span id="undefined" />
+
 
 `call(target)`
 

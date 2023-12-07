@@ -2,7 +2,7 @@
 
 # qiskit.chemistry.QMolecule
 
-<span id="undefined" />
+
 
 `QMolecule(filename=None)`
 
@@ -14,7 +14,7 @@ Note that values here, for the same input molecule to each driver, may be vary a
 
 This class provides methods to save it and load it again from an HDF5 file
 
-<span id="undefined" />
+
 
 `__init__(filename=None)`
 
@@ -53,11 +53,11 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`y_dipole_integrals`](#qiskit.chemistry.QMolecule.y_dipole_integrals "qiskit.chemistry.QMolecule.y_dipole_integrals") | returns y\_dipole\_integrals             |
 | [`z_dipole_integrals`](#qiskit.chemistry.QMolecule.z_dipole_integrals "qiskit.chemistry.QMolecule.z_dipole_integrals") | returns z\_dipole\_integrals             |
 
-<span id="undefined" />
+
 
 `Z(natom)`
 
-<span id="undefined" />
+
 
 `property core_orbitals`
 
@@ -67,37 +67,37 @@ Returns: A list of core orbital indices.
 
 `List`\[`int`]
 
-<span id="undefined" />
+
 
 `property filename`
 
 returns temp file path
 
-<span id="undefined" />
+
 
 `has_dipole_integrals()`
 
 Check if dipole integrals are present.
 
-<span id="undefined" />
+
 
 `load()`
 
 loads info saved.
 
-<span id="undefined" />
+
 
 `log()`
 
 log properties
 
-<span id="undefined" />
+
 
 `property one_body_integrals`
 
 Returns one body electron integrals.
 
-<span id="undefined" />
+
 
 `static onee_to_spin(mohij, mohij_b=None, threshold=1e-12)`
 
@@ -119,7 +119,7 @@ One body integrals in spin orbitals
 
 numpy.ndarray
 
-<span id="undefined" />
+
 
 `static oneeints2mo(ints, moc)`
 
@@ -140,25 +140,25 @@ integrals in MO basis
 
 numpy.ndarray
 
-<span id="undefined" />
+
 
 `remove_file(file_name=None)`
 
 remove file
 
-<span id="undefined" />
+
 
 `save(file_name=None)`
 
 Saves the info from the driver.
 
-<span id="undefined" />
+
 
 `property two_body_integrals`
 
 Returns two body electron integrals.
 
-<span id="undefined" />
+
 
 `static twoe_to_spin(mohijkl, mohijkl_bb=None, mohijkl_ba=None, threshold=1e-12)`
 
@@ -181,7 +181,7 @@ Two body integrals in spin orbitals
 
 numpy.ndarray
 
-<span id="undefined" />
+
 
 `static twoeints2mo(ints, moc)`
 
@@ -202,23 +202,23 @@ integrals in MO basis
 
 numpy.ndarray
 
-<span id="undefined" />
+
 
 `static twoeints2mo_general(ints, moc1, moc2, moc3, moc4)`
 
-<span id="undefined" />
+
 
 `property x_dipole_integrals`
 
 returns x\_dipole\_integrals
 
-<span id="undefined" />
+
 
 `property y_dipole_integrals`
 
 returns y\_dipole\_integrals
 
-<span id="undefined" />
+
 
 `property z_dipole_integrals`
 

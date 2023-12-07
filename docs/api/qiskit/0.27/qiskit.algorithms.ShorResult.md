@@ -1,12 +1,12 @@
 # qiskit.algorithms.ShorResult
 
-<span id="undefined" />
+
 
 `ShorResult`
 
 Shor Result.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -27,7 +27,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`successful_counts`](#qiskit.algorithms.ShorResult.successful_counts "qiskit.algorithms.ShorResult.successful_counts") | returns successful counts |
 | [`total_counts`](#qiskit.algorithms.ShorResult.total_counts "qiskit.algorithms.ShorResult.total_counts")                | returns total counts      |
 
-<span id="undefined" />
+
 
 `combine(result)`
 
@@ -41,7 +41,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-<span id="undefined" />
+
 
 `property factors`
 
@@ -51,7 +51,7 @@ returns factors
 
 `List`\[`List`\[`int`]]
 
-<span id="undefined" />
+
 
 `property successful_counts`
 
@@ -61,7 +61,7 @@ returns successful counts
 
 `int`
 
-<span id="undefined" />
+
 
 `property total_counts`
 

@@ -1,6 +1,6 @@
 # VSCF
 
-<span id="undefined" />
+
 
 `VSCF(basis)`
 
@@ -22,7 +22,7 @@ Creates an occupation number vector as defined in Ollitrault Pauline J., Chemica
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### bitstr
 

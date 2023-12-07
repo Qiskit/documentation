@@ -1,6 +1,6 @@
 # FeatureMap
 
-<span id="undefined" />
+
 
 `FeatureMap`
 
@@ -20,19 +20,19 @@ This method should initialize the module and use an exception if a component of 
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### feature\_dimension
 
 returns feature dimension
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 returns number of qubits
 
-<span id="undefined" />
+
 
 ### support\_parameterized\_circuit
 

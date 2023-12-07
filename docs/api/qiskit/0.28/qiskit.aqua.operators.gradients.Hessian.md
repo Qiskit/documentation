@@ -1,6 +1,6 @@
 # qiskit.aqua.operators.gradients.Hessian
 
-<span id="undefined" />
+
 
 `Hessian(hess_method='param_shift', **kwargs)`
 
@@ -15,7 +15,7 @@ Compute the Hessian of an expected value.
 
 **ValueError** – If method != `fin_diff` and `epsilon` is not None.
 
-<span id="undefined" />
+
 
 `__init__(hess_method='param_shift', **kwargs)`
 
@@ -44,7 +44,7 @@ Compute the Hessian of an expected value.
 | --------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | [`hess_method`](#qiskit.aqua.operators.gradients.Hessian.hess_method "qiskit.aqua.operators.gradients.Hessian.hess_method") | Returns `CircuitGradient`. |
 
-<span id="undefined" />
+
 
 `convert(operator, params=None)`
 
@@ -65,7 +65,7 @@ An operator whose evaluation yields the Hessian
 
 **ValueError** – If params is not set.
 
-<span id="undefined" />
+
 
 `get_hessian(operator, params=None)`
 
@@ -92,7 +92,7 @@ Operator which represents the gradient w\.r.t. the given params.
 *   **TypeError** – If the parameters were given in an unsupported format.
 *   **Exception** – Unintended code is reached
 
-<span id="undefined" />
+
 
 `gradient_wrapper(operator, bind_params, grad_params=None, backend=None)`
 
@@ -113,7 +113,7 @@ Function to compute a gradient, Hessian or QFI. The function takes an iterable a
 
 callable(param\_values)
 
-<span id="undefined" />
+
 
 `property hess_method`
 
@@ -127,7 +127,7 @@ Returns `CircuitGradient`.
 
 `CircuitGradient`.
 
-<span id="undefined" />
+
 
 `static parameter_expression_grad(param_expr, param)`
 

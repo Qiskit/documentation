@@ -1,6 +1,6 @@
 # qiskit.circuit.qpy\_serialization.dump
 
-<span id="undefined" />
+
 
 `dump(circuits, file_obj)`
 

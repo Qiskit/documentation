@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.align\_left
 
-<span id="undefined" />
+
 
 `align_left()`
 

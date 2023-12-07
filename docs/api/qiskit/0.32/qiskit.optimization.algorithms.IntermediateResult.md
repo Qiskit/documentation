@@ -1,6 +1,6 @@
 # IntermediateResult
 
-<span id="undefined" />
+
 
 `IntermediateResult(value)`
 
@@ -10,7 +10,7 @@ Defines whether the intermediate results of [`RecursiveMinimumEigenOptimizer`](q
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ALL\_ITERATIONS
 
@@ -18,7 +18,7 @@ Defines whether the intermediate results of [`RecursiveMinimumEigenOptimizer`](q
 
 All intermediate results are stored.
 
-<span id="undefined" />
+
 
 ### LAST\_ITERATION
 
@@ -26,7 +26,7 @@ All intermediate results are stored.
 
 Only results from the last iteration are stored.
 
-<span id="undefined" />
+
 
 ### NO\_ITERATIONS
 

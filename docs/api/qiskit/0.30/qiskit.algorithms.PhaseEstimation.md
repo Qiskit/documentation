@@ -1,6 +1,6 @@
 # PhaseEstimation
 
-<span id="undefined" />
+
 
 `PhaseEstimation(num_evaluation_qubits, quantum_instance=None)`
 

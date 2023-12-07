@@ -1,6 +1,6 @@
 # PulseQobjExperimentConfig
 
-<span id="undefined" />
+
 
 `PulseQobjExperimentConfig(qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`
 

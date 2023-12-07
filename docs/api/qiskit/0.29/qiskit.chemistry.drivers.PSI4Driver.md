@@ -1,6 +1,6 @@
 # PSI4Driver
 
-<span id="undefined" />
+
 
 `PSI4Driver(config='molecule h2 {\\n 0 1\\n H 0.0 0.0 0.0\\n H 0.0 0.0 0.735\\n}\\n\\nset {\\n basis sto-3g\\n scf_type pk\\n reference rhf\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)`
 
@@ -29,7 +29,7 @@ See [http://www.psicode.org/](http://www.psicode.org/)
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### basis
 
@@ -39,7 +39,7 @@ return basis
 
 `str`
 
-<span id="undefined" />
+
 
 ### hf\_method
 
@@ -49,7 +49,7 @@ return Hartree-Fock method
 
 `str`
 
-<span id="undefined" />
+
 
 ### molecule
 
@@ -59,7 +59,7 @@ return molecule
 
 `Optional`\[`Molecule`]
 
-<span id="undefined" />
+
 
 ### supports\_molecule
 

@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.job.IBMQJobInvalidStateError
 
-<span id="undefined" />
+
 
 `IBMQJobInvalidStateError(*message)`
 

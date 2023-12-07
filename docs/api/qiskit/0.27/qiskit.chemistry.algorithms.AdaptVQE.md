@@ -1,6 +1,6 @@
 # qiskit.chemistry.algorithms.AdaptVQE
 
-<span id="undefined" />
+
 
 `AdaptVQE(transformation, solver, threshold=1e-05, delta=1, max_iterations=None)`
 
@@ -14,7 +14,7 @@ A ground state calculation employing the AdaptVQE algorithm.
 *   **delta** (`float`) – the finite difference step size for the gradient computation. It has a minimum value of 1e-5.
 *   **max\_iterations** (`Optional`\[`int`]) – the maximum number of iterations of the AdaptVQE algorithm.
 
-<span id="undefined" />
+
 
 `__init__(transformation, solver, threshold=1e-05, delta=1, max_iterations=None)`
 
@@ -42,7 +42,7 @@ A ground state calculation employing the AdaptVQE algorithm.
 | [`solver`](#qiskit.chemistry.algorithms.AdaptVQE.solver "qiskit.chemistry.algorithms.AdaptVQE.solver")                         | Returns the minimum eigensolver or factory.                                   |
 | [`transformation`](#qiskit.chemistry.algorithms.AdaptVQE.transformation "qiskit.chemistry.algorithms.AdaptVQE.transformation") | Returns the transformation used to obtain a qubit operator from the molecule. |
 
-<span id="undefined" />
+
 
 `evaluate_operators(state, operators)`
 
@@ -61,7 +61,7 @@ Evaluates additional operators at the given state.
 
 The expectation value of the given operator(s). The return type will be identical to the format of the provided operators.
 
-<span id="undefined" />
+
 
 `returns_groundstate()`
 
@@ -71,7 +71,7 @@ Whether the eigensolver returns the ground state or only ground state energy.
 
 `bool`
 
-<span id="undefined" />
+
 
 `solve(driver, aux_operators=None)`
 
@@ -94,7 +94,7 @@ Computes the ground state.
 
 An AdaptVQEResult which is an ElectronicStructureResult but also includes runtime information about the AdaptVQE algorithm like the number of iterations, finishing criterion, and the final maximum gradient.
 
-<span id="undefined" />
+
 
 `property solver`
 
@@ -104,7 +104,7 @@ Returns the minimum eigensolver or factory.
 
 `Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
 
-<span id="undefined" />
+
 
 `property transformation`
 

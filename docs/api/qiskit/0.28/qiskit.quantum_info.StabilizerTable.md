@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.StabilizerTable
 
-<span id="undefined" />
+
 
 `StabilizerTable(data, phase=None)`
 
@@ -84,7 +84,7 @@ Initialize the StabilizerTable.
 
 The input array is not copied so multiple Pauli and Stabilizer tables can share the same underlying array.
 
-<span id="undefined" />
+
 
 `__init__(data, phase=None)`
 
@@ -150,25 +150,25 @@ The input array is not copied so multiple Pauli and Stabilizer tables can share 
 | [`shape`](#qiskit.quantum_info.StabilizerTable.shape "qiskit.quantum_info.StabilizerTable.shape")                | The full shape of the [`array()`](#qiskit.quantum_info.StabilizerTable.array "qiskit.quantum_info.StabilizerTable.array") |
 | [`size`](#qiskit.quantum_info.StabilizerTable.size "qiskit.quantum_info.StabilizerTable.size")                   | The number of Pauli rows in the table.                                                                                    |
 
-<span id="undefined" />
+
 
 `property X`
 
 The X block of the [`array`](#qiskit.quantum_info.StabilizerTable.array "qiskit.quantum_info.StabilizerTable.array").
 
-<span id="undefined" />
+
 
 `property Z`
 
 The Z block of the [`array`](#qiskit.quantum_info.StabilizerTable.array "qiskit.quantum_info.StabilizerTable.array").
 
-<span id="undefined" />
+
 
 `adjoint()`
 
 Return the adjoint of the Operator.
 
-<span id="undefined" />
+
 
 `anticommutes_with_all(other)`
 
@@ -188,7 +188,7 @@ index array of the anti-commuting rows.
 
 array
 
-<span id="undefined" />
+
 
 `argsort(weight=False)`
 
@@ -210,13 +210,13 @@ the indices for sorting the table.
 
 array
 
-<span id="undefined" />
+
 
 `property array`
 
 The underlying boolean array.
 
-<span id="undefined" />
+
 
 `commutes(pauli)`
 
@@ -240,7 +240,7 @@ array
 
 **QiskitError** – if input is not a single Pauli row.
 
-<span id="undefined" />
+
 
 `commutes_with_all(other)`
 
@@ -260,7 +260,7 @@ index array of the commuting rows.
 
 array
 
-<span id="undefined" />
+
 
 `compose(other, qargs=None, front=False)`
 
@@ -311,19 +311,19 @@ the compose outer product table.
 
 **QiskitError** – if other cannot be converted to a StabilizerTable.
 
-<span id="undefined" />
+
 
 `conjugate()`
 
 Not implemented.
 
-<span id="undefined" />
+
 
 `copy()`
 
 Return a copy of the StabilizerTable.
 
-<span id="undefined" />
+
 
 `delete(ind, qubit=False)`
 
@@ -348,13 +348,13 @@ the resulting table with the entries removed.
 
 **QiskitError** – if ind is out of bounds for the array size or number of qubits.
 
-<span id="undefined" />
+
 
 `property dim`
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 `dot(other, qargs=None)`
 
@@ -402,7 +402,7 @@ the dot outer product table.
 
 **QiskitError** – if other cannot be converted to a StabilizerTable.
 
-<span id="undefined" />
+
 
 `expand(other)`
 
@@ -440,7 +440,7 @@ the expand outer product table.
 
 **QiskitError** – if other cannot be converted to a StabilizerTable.
 
-<span id="undefined" />
+
 
 `classmethod from_labels(labels)`
 
@@ -475,13 +475,13 @@ the constructed StabilizerTable.
 
 **QiskitError** – If the input list is empty or contains invalid Pauli stabilizer strings.
 
-<span id="undefined" />
+
 
 `input_dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
 
-<span id="undefined" />
+
 
 `insert(ind, value, qubit=False)`
 
@@ -507,7 +507,7 @@ the resulting table with the entries inserted.
 
 **QiskitError** – if the insertion index is invalid.
 
-<span id="undefined" />
+
 
 `label_iter()`
 
@@ -523,7 +523,7 @@ label iterator object for the StabilizerTable.
 
 LabelIterator
 
-<span id="undefined" />
+
 
 `matrix_iter(sparse=False)`
 
@@ -543,31 +543,31 @@ matrix iterator object for the StabilizerTable.
 
 MatrixIterator
 
-<span id="undefined" />
+
 
 `property num_qubits`
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+
 
 `output_dims(qargs=None)`
 
 Return tuple of output dimension for specified subsystems.
 
-<span id="undefined" />
+
 
 `property pauli`
 
 Return PauliTable
 
-<span id="undefined" />
+
 
 `property phase`
 
 Return phase vector
 
-<span id="undefined" />
+
 
 `power(n)`
 
@@ -589,13 +589,13 @@ the n-times composed operator.
 
 **QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
 
-<span id="undefined" />
+
 
 `property qargs`
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+
 
 `reshape(input_dims=None, output_dims=None, num_qubits=None)`
 
@@ -619,7 +619,7 @@ BaseOperator
 
 **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
 
-<span id="undefined" />
+
 
 `property settings`
 
@@ -629,19 +629,19 @@ Return settings.
 
 `Dict`
 
-<span id="undefined" />
+
 
 `property shape`
 
 The full shape of the [`array()`](#qiskit.quantum_info.StabilizerTable.array "qiskit.quantum_info.StabilizerTable.array")
 
-<span id="undefined" />
+
 
 `property size`
 
 The number of Pauli rows in the table.
 
-<span id="undefined" />
+
 
 `sort(weight=False)`
 
@@ -700,7 +700,7 @@ a sorted copy of the original table.
 
 [StabilizerTable](#qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
 
-<span id="undefined" />
+
 
 `tensor(other)`
 
@@ -738,7 +738,7 @@ the tensor outer product table.
 
 **QiskitError** – if other cannot be converted to a StabilizerTable.
 
-<span id="undefined" />
+
 
 `to_labels(array=False)`
 
@@ -769,7 +769,7 @@ The rows of the StabilizerTable in label form.
 
 list or array
 
-<span id="undefined" />
+
 
 `to_matrix(sparse=False, array=False)`
 
@@ -801,13 +801,13 @@ A list of dense Pauli matrices if array=False and sparse=False. list: A list of 
 
 list
 
-<span id="undefined" />
+
 
 `transpose()`
 
 Not implemented.
 
-<span id="undefined" />
+
 
 `unique(return_index=False, return_counts=False)`
 

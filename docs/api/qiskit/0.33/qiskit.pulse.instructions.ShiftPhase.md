@@ -1,6 +1,6 @@
 # ShiftPhase
 
-<span id="undefined" />
+
 
 `ShiftPhase(phase, channel, name=None)`
 
@@ -41,7 +41,7 @@ Instantiate a shift phase instruction, increasing the output signal phase on `ch
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### channel
 
@@ -51,7 +51,7 @@ Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channel
 
 `PulseChannel`
 
-<span id="undefined" />
+
 
 ### channels
 
@@ -61,7 +61,7 @@ Returns the channels that this schedule uses.
 
 `Tuple`\[`PulseChannel`]
 
-<span id="undefined" />
+
 
 ### duration
 
@@ -71,7 +71,7 @@ Duration of this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 ### id
 
@@ -81,7 +81,7 @@ Unique identifier for this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 ### instructions
 
@@ -91,7 +91,7 @@ Iterable for getting instructions from Schedule tree.
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
-<span id="undefined" />
+
 
 ### name
 
@@ -101,7 +101,7 @@ Name of this instruction.
 
 `str`
 
-<span id="undefined" />
+
 
 ### operands
 
@@ -111,7 +111,7 @@ Return instruction operands.
 
 `Tuple`
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -121,7 +121,7 @@ Parameters which determine the instruction behavior.
 
 `Set`
 
-<span id="undefined" />
+
 
 ### phase
 
@@ -131,7 +131,7 @@ Return the rotation angle enacted by this instruction in radians.
 
 `Union`\[`complex`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 ### start\_time
 
@@ -141,7 +141,7 @@ Relative begin time of this instruction.
 
 `int`
 
-<span id="undefined" />
+
 
 ### stop\_time
 

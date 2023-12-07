@@ -1,6 +1,6 @@
 # LinearIQDiscriminator
 
-<span id="undefined" />
+
 
 `LinearIQDiscriminator(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None, discriminator_parameters=None)`
 
@@ -37,19 +37,19 @@ Linear discriminant analysis discriminator for IQ data.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### expected\_states
 
 Returns the expected states used to train the discriminator.
 
-<span id="undefined" />
+
 
 ### fitted
 
 True if the discriminator has been fitted to calibration data.
 
-<span id="undefined" />
+
 
 ### schedules
 

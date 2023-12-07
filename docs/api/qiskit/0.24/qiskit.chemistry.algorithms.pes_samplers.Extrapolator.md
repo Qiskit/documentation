@@ -2,7 +2,7 @@
 
 # qiskit.chemistry.algorithms.pes\_samplers.Extrapolator
 
-<span id="undefined" />
+
 
 `Extrapolator`
 
@@ -12,7 +12,7 @@ Each instance of an Extrapolator requires a dictionary where each item consist o
 
 There are two types of Extrapolators: external/wrapper and internal. The external/wrapper extrapolator specifies the number of previous points or data window within which to perform the extrapolation as well as the dimensionality/space to perform the extrapolation. For instance, one can utilize the PCA Extrapolator as an external extrapolator that sets the data window and transforms the variational parameters in PCA space before the actual extrapolation is executed. The internal extrapolator can then proceed via linear regression/spline fitting of variational parameters to predict a parameter set.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -26,7 +26,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`extrapolate`](#qiskit.chemistry.algorithms.pes_samplers.Extrapolator.extrapolate "qiskit.chemistry.algorithms.pes_samplers.Extrapolator.extrapolate")(points, param\_dict) | Abstract method to extrapolate point(s) of interest. |
 | [`factory`](#qiskit.chemistry.algorithms.pes_samplers.Extrapolator.factory "qiskit.chemistry.algorithms.pes_samplers.Extrapolator.factory")(mode, \*\*kwargs)                | Factory method for constructing extrapolators.       |
 
-<span id="undefined" />
+
 
 `abstract extrapolate(points, param_dict)`
 
@@ -45,7 +45,7 @@ Abstract method to extrapolate point(s) of interest.
 
 Dictionary of variational parameters for extrapolated point(s).
 
-<span id="undefined" />
+
 
 `static factory(mode, **kwargs)`
 

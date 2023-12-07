@@ -1,6 +1,6 @@
 # ProductFormula
 
-<span id="undefined" />
+
 
 `ProductFormula(order, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`
 
@@ -26,7 +26,7 @@ Product formula base class for the decomposition of non-commuting operator expon
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### settings
 

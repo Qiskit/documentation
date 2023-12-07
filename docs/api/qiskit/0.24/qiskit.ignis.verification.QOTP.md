@@ -2,7 +2,7 @@
 
 # qiskit.ignis.verification.QOTP
 
-<span id="undefined" />
+
 
 `QOTP(circ, num, two_qubit_gate='cx', coupling_map=None, seed=None)`
 

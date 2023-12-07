@@ -2,7 +2,7 @@
 
 # qiskit.aqua.operators.evolutions.Suzuki
 
-<span id="undefined" />
+
 
 `Suzuki(reps=1, order=2)`
 
@@ -15,7 +15,7 @@ Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/q
 *   **reps** (`int`) – The number of times to repeat the expansion circuit.
 *   **order** (`int`) – The order of the expansion to perform.
 
-<span id="undefined" />
+
 
 `__init__(reps=1, order=2)`
 
@@ -38,7 +38,7 @@ Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/q
 | [`order`](#qiskit.aqua.operators.evolutions.Suzuki.order "qiskit.aqua.operators.evolutions.Suzuki.order") | returns order                                                                                 |
 | [`reps`](#qiskit.aqua.operators.evolutions.Suzuki.reps "qiskit.aqua.operators.evolutions.Suzuki.reps")    | The number of repetitions to use in the Trotterization, improving the approximation accuracy. |
 
-<span id="undefined" />
+
 
 `convert(operator)`
 
@@ -60,7 +60,7 @@ The Operator approximating op\_sum’s evolution.
 
 **TypeError** – A non-SummedOps Operator is passed into `convert`.
 
-<span id="undefined" />
+
 
 `property order`
 
@@ -70,7 +70,7 @@ returns order
 
 `int`
 
-<span id="undefined" />
+
 
 `property reps`
 

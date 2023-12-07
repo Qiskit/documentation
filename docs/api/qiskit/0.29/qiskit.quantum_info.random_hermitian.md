@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.random\_hermitian
 
-<span id="undefined" />
+
 
 `random_hermitian(dims, traceless=False, seed=None)`
 

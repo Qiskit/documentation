@@ -2,7 +2,7 @@
 
 # qiskit.converters.ast\_to\_dag
 
-<span id="undefined" />
+
 
 `ast_to_dag(ast)`
 

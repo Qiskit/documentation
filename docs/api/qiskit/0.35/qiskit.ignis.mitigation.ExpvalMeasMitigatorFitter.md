@@ -1,6 +1,6 @@
 # ExpvalMeasMitigatorFitter
 
-<span id="undefined" />
+
 
 `ExpvalMeasMitigatorFitter(result, metadata)`
 
@@ -25,7 +25,7 @@ Fit a measurement error mitigator object from experiment data.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### mitigator
 

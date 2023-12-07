@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.IBMQAccountCredentialsInvalidUrl
 
-<span id="undefined" />
+
 
 `IBMQAccountCredentialsInvalidUrl(*message)`
 

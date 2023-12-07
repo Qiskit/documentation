@@ -1,6 +1,6 @@
 # RawFeatureVector
 
-<span id="undefined" />
+
 
 `RawFeatureVector(feature_dimension=2)`
 
@@ -24,19 +24,19 @@ The Raw Feature Vector can be directly used as a feature map, where the raw feat
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### feature\_dimension
 
 returns feature dimension
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 returns number of qubits
 
-<span id="undefined" />
+
 
 ### support\_parameterized\_circuit
 

@@ -1,6 +1,6 @@
 # SuzukiTrotter
 
-<span id="undefined" />
+
 
 `SuzukiTrotter(order=2, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`
 
@@ -42,7 +42,7 @@ $$
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### settings
 

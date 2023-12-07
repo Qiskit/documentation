@@ -2,7 +2,7 @@
 
 # qiskit.providers.aer.noise.device.thermal\_relaxation\_values
 
-<span id="undefined" />
+
 
 `thermal_relaxation_values(properties)`
 

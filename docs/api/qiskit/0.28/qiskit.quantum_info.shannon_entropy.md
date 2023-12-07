@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.shannon\_entropy
 
-<span id="undefined" />
+
 
 `shannon_entropy(pvec, base=2)`
 

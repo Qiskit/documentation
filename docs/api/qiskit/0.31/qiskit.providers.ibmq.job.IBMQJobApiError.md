@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.job.IBMQJobApiError
 
-<span id="undefined" />
+
 
 `IBMQJobApiError(*message)`
 

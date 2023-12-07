@@ -1,6 +1,6 @@
 # qiskit.circuit.library.templates.nct.template\_nct\_6b\_2
 
-<span id="undefined" />
+
 
 `template_nct_6b_2()`
 

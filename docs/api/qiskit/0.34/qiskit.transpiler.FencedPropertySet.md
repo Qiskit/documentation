@@ -1,6 +1,6 @@
 # FencedPropertySet
 
-<span id="undefined" />
+
 
 `FencedPropertySet(property_set_instance)`
 

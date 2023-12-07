@@ -1,6 +1,6 @@
 # IQXStandard
 
-<span id="undefined" />
+
 
 `IQXStandard(**kwargs)`
 

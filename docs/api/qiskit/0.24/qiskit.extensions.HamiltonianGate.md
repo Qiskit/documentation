@@ -2,7 +2,7 @@
 
 # qiskit.extensions.HamiltonianGate
 
-<span id="undefined" />
+
 
 `HamiltonianGate(data, time, label=None)`
 
@@ -20,7 +20,7 @@ Create a gate from a hamiltonian operator and evolution time parameter t
 
 **ExtensionError** – if input data is not an N-qubit unitary operator.
 
-<span id="undefined" />
+
 
 `__init__(data, time, label=None)`
 
@@ -71,19 +71,19 @@ Create a gate from a hamiltonian operator and evolution time parameter t
 | [`params`](#qiskit.extensions.HamiltonianGate.params "qiskit.extensions.HamiltonianGate.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.extensions.HamiltonianGate.unit "qiskit.extensions.HamiltonianGate.unit")                               | Get the time unit of duration.                                                |
 
-<span id="undefined" />
+
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+
 
 `adjoint()`
 
 Return the adjoint of the unitary.
 
-<span id="undefined" />
+
 
 `assemble()`
 
@@ -93,7 +93,7 @@ Assemble a QasmQobjInstruction
 
 `Instruction`
 
-<span id="undefined" />
+
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -146,19 +146,19 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="undefined" />
+
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
-<span id="undefined" />
+
 
 `conjugate()`
 
 Return the conjugate of the Hamiltonian.
 
-<span id="undefined" />
+
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
@@ -182,7 +182,7 @@ Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 anci
 
 **QiskitError** – unrecognized mode or invalid ctrl\_state
 
-<span id="undefined" />
+
 
 `copy(name=None)`
 
@@ -202,37 +202,37 @@ updated if it was provided
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+
 
 `property duration`
 
 Get the duration.
 
-<span id="undefined" />
+
 
 `inverse()`
 
 Return the adjoint of the unitary.
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
-<span id="undefined" />
+
 
 `property label`
 
@@ -242,7 +242,7 @@ Return gate label
 
 `str`
 
-<span id="undefined" />
+
 
 `mirror()`
 
@@ -258,13 +258,13 @@ reversed.
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+
 
 `property params`
 
 return instruction params.
 
-<span id="undefined" />
+
 
 `power(exponent)`
 
@@ -286,13 +286,13 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **CircuitError** – If Gate is not unitary
 
-<span id="undefined" />
+
 
 `qasm()`
 
 Raise an error, as QASM is not defined for the HamiltonianGate.
 
-<span id="undefined" />
+
 
 `repeat(n)`
 
@@ -314,7 +314,7 @@ Containing the definition.
 
 **CircuitError** – If n \< 1.
 
-<span id="undefined" />
+
 
 `reverse_ops()`
 
@@ -332,25 +332,25 @@ sub-instructions reversed.
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+
 
 `to_matrix()`
 
 Return matrix for the unitary.
 
-<span id="undefined" />
+
 
 `transpose()`
 
 Return the transpose of the Hamiltonian.
 
-<span id="undefined" />
+
 
 `property unit`
 
 Get the time unit of duration.
 
-<span id="undefined" />
+
 
 `validate_parameter(parameter)`
 

@@ -1,6 +1,6 @@
 # qiskit.chemistry.QiskitChemistryError
 
-<span id="undefined" />
+
 
 `QiskitChemistryError(*message)`
 

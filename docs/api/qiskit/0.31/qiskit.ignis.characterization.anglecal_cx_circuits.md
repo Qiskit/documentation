@@ -1,6 +1,6 @@
 # qiskit.ignis.characterization.anglecal\_cx\_circuits
 
-<span id="undefined" />
+
 
 `anglecal_cx_circuits(max_reps, qubits, control_qubits, angleerr=0.0)`
 

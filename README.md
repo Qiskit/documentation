@@ -99,6 +99,28 @@ We also re-deploy the docs every time we merge into `main` at the site https://q
 
 This staging environment can be useful to see how the docs are rendering before we push it live to production.
 
+## Execute notebooks
+
+To execute notebooks in a fixed Python environment, first install `tox` using
+[pipx](https://pipx.pypa.io/stable/):
+
+```sh
+pipx install tox
+```
+
+- To execute all notebooks, run tox.
+  ```sh
+  tox
+  ```
+- To only execute specific notebooks, pass them as arguments.
+  ```sh
+  tox -- path/to/notebook.ipynb path/to/another-notbook.ipynb
+  ```
+- To write the execution results to the file, pass the `--write` argument.
+  ```sh
+  tox -- optional/paths/to/notebooks.ipynb --write
+  ```
+
 ## Check for broken links
 
 CI will check for broken links. You can also check locally:

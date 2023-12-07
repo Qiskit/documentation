@@ -1,6 +1,6 @@
 # QasmQobj
 
-<span id="undefined" />
+
 
 `QasmQobj(qobj_id=None, config=None, experiments=None, header=None)`
 

@@ -1,6 +1,6 @@
 # MultivariateProblem
 
-<span id="undefined" />
+
 
 `MultivariateProblem(uncertainty_model, aggregation_function, univariate_objective, conditions=None)`
 
@@ -37,7 +37,7 @@ Constructor.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 

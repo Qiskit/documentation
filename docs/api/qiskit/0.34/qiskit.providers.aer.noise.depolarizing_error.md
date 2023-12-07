@@ -1,6 +1,6 @@
 # qiskit.providers.aer.noise.depolarizing\_error
 
-<span id="undefined" />
+
 
 `depolarizing_error(param, num_qubits, standard_gates=None)`
 

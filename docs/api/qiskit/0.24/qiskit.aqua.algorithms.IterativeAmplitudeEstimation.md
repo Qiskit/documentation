@@ -2,7 +2,7 @@
 
 # qiskit.aqua.algorithms.IterativeAmplitudeEstimation
 
-<span id="undefined" />
+
 
 `IterativeAmplitudeEstimation(epsilon, alpha, confint_method='beta', min_ratio=2, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, initial_state=None, quantum_instance=None)`
 
@@ -44,7 +44,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the method to compute the confidence intervals is not supported
 
-<span id="undefined" />
+
 
 `__init__(epsilon, alpha, confint_method='beta', min_ratio=2, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, initial_state=None, quantum_instance=None)`
 
@@ -96,7 +96,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 | [`random`](#qiskit.aqua.algorithms.IterativeAmplitudeEstimation.random "qiskit.aqua.algorithms.IterativeAmplitudeEstimation.random")                                  | Return a numpy random.                                                              |
 | [`state_preparation`](#qiskit.aqua.algorithms.IterativeAmplitudeEstimation.state_preparation "qiskit.aqua.algorithms.IterativeAmplitudeEstimation.state_preparation") | Get the $\mathcal{A}$ operator encoding the amplitude $a$.                          |
 
-<span id="undefined" />
+
 
 `property a_factory`
 
@@ -114,7 +114,7 @@ the A operator as CircuitFactory
 
 [CircuitFactory](qiskit.aqua.utils.CircuitFactory#qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")
 
-<span id="undefined" />
+
 
 `property backend`
 
@@ -124,7 +124,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 `construct_circuit(k, measurement=False)`
 
@@ -145,7 +145,7 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 The circuit Q^k A |0>.
 
-<span id="undefined" />
+
 
 `property grover_operator`
 
@@ -161,7 +161,7 @@ If the Grover operator is not set, we try to build it from the $\mathcal{A}$ ope
 
 The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
 
-<span id="undefined" />
+
 
 `property i_objective`
 
@@ -181,7 +181,7 @@ the index of the objective qubit
 
 int
 
-<span id="undefined" />
+
 
 `is_good_state(measurement)`
 
@@ -203,7 +203,7 @@ True if the measurement corresponds to a good state, False otherwise.
 
 **ValueError** – If `self.objective_qubits` is not set.
 
-<span id="undefined" />
+
 
 `property objective_qubits`
 
@@ -217,7 +217,7 @@ Get the criterion for a measurement outcome to be in a ‘good’ state.
 
 The criterion as list of qubit indices.
 
-<span id="undefined" />
+
 
 `post_processing(value)`
 
@@ -235,7 +235,7 @@ Post processing of the raw amplitude estimation output $0 \leq a \leq 1$.
 
 The value after post processing, usually mapping the interval $[0, 1]$ to the target interval.
 
-<span id="undefined" />
+
 
 `property precision`
 
@@ -249,7 +249,7 @@ Returns the target precision epsilon of the algorithm.
 
 The target precision (which is half the width of the confidence interval).
 
-<span id="undefined" />
+
 
 `property q_factory`
 
@@ -271,7 +271,7 @@ returns the current Q factory of the algorithm
 
 QFactory
 
-<span id="undefined" />
+
 
 `property quantum_instance`
 
@@ -281,13 +281,13 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 `property random`
 
 Return a numpy random.
 
-<span id="undefined" />
+
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -310,7 +310,7 @@ dict
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
-<span id="undefined" />
+
 
 `set_backend(backend, **kwargs)`
 
@@ -320,7 +320,7 @@ Sets backend with configuration.
 
 `None`
 
-<span id="undefined" />
+
 
 `property state_preparation`
 

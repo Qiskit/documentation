@@ -2,7 +2,7 @@
 
 # qiskit.qobj.validate\_qobj\_against\_schema
 
-<span id="undefined" />
+
 
 `validate_qobj_against_schema(qobj)`
 

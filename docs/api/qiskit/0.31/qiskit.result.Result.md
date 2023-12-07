@@ -1,6 +1,6 @@
 # Result
 
-<span id="undefined" />
+
 
 `Result(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)`
 
@@ -8,7 +8,7 @@ Bases: `object`
 
 Model for Results.
 
-<span id="undefined" />
+
 
 ### backend\_name
 
@@ -18,7 +18,7 @@ backend name.
 
 str
 
-<span id="undefined" />
+
 
 ### backend\_version
 
@@ -28,7 +28,7 @@ backend version, in the form X.Y.Z.
 
 str
 
-<span id="undefined" />
+
 
 ### qobj\_id
 
@@ -38,7 +38,7 @@ user-generated Qobj id.
 
 str
 
-<span id="undefined" />
+
 
 ### job\_id
 
@@ -48,7 +48,7 @@ unique execution id from the backend.
 
 str
 
-<span id="undefined" />
+
 
 ### success
 
@@ -58,7 +58,7 @@ True if complete input qobj executed correctly. (Implies each experiment success
 
 bool
 
-<span id="undefined" />
+
 
 ### results
 

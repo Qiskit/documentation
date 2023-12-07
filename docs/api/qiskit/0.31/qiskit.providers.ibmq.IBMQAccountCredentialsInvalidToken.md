@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.IBMQAccountCredentialsInvalidToken
 
-<span id="undefined" />
+
 
 `IBMQAccountCredentialsInvalidToken(*message)`
 

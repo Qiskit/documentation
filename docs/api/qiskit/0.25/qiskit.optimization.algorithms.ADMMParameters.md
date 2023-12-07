@@ -1,6 +1,6 @@
 # qiskit.optimization.algorithms.ADMMParameters
 
-<span id="undefined" />
+
 
 `ADMMParameters(rho_initial=10000, factor_c=100000, beta=1000, maxiter=10, tol=0.0001, max_time=inf, three_block=True, vary_rho=0, tau_incr=2, tau_decr=2, mu_res=10, mu_merit=1000, warm_start=False, max_iter=None)`
 
@@ -25,7 +25,7 @@ Defines parameters for ADMM optimizer and their default values.
 *   **warm\_start** (`bool`) – Start ADMM with pre-initialized values for binary and continuous variables by solving a relaxed (all variables are continuous) problem first. This option does not guarantee the solution will optimal or even feasible. The option should be used when tuning other options does not help and should be considered as a hint to the optimizer where to start its iterative process.
 *   **max\_iter** (`Optional`\[`int`]) – Deprecated, use maxiter.
 
-<span id="undefined" />
+
 
 `__init__(rho_initial=10000, factor_c=100000, beta=1000, maxiter=10, tol=0.0001, max_time=inf, three_block=True, vary_rho=0, tau_incr=2, tau_decr=2, mu_res=10, mu_merit=1000, warm_start=False, max_iter=None)`
 

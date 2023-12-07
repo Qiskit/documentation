@@ -2,7 +2,7 @@
 
 # qiskit.visualization.plot\_bloch\_vector
 
-<span id="undefined" />
+
 
 `plot_bloch_vector(bloch, title='', ax=None, figsize=None, coord_type='cartesian')`
 

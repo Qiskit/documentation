@@ -1,6 +1,6 @@
 # qiskit.providers.aer.library.set\_stabilizer
 
-<span id="undefined" />
+
 
 `set_stabilizer(self, state)`
 

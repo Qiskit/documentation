@@ -2,7 +2,7 @@
 
 # qiskit.aqua.utils.get\_feature\_dimension
 
-<span id="undefined" />
+
 
 `get_feature_dimension(dataset)`
 

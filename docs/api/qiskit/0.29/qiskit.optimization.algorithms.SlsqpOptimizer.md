@@ -1,6 +1,6 @@
 # SlsqpOptimizer
 
-<span id="undefined" />
+
 
 `SlsqpOptimizer(iter=100, acc=1e-06, iprint=0, trials=1, clip=100.0, full_output=False)`
 
@@ -59,7 +59,7 @@ This initializer takes the algorithmic parameters of SLSQP and stores them for l
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### clip
 
@@ -73,7 +73,7 @@ Returns the clip value for this optimizer.
 
 The clip value.
 
-<span id="undefined" />
+
 
 ### trials
 

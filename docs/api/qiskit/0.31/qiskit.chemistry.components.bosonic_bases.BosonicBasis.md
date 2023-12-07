@@ -1,6 +1,6 @@
 # BosonicBasis
 
-<span id="undefined" />
+
 
 `BosonicBasis`
 

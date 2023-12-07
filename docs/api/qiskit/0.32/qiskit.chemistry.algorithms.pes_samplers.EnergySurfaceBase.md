@@ -1,6 +1,6 @@
 # EnergySurfaceBase
 
-<span id="undefined" />
+
 
 `EnergySurfaceBase`
 

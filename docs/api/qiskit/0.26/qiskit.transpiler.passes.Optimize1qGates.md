@@ -1,6 +1,6 @@
 # qiskit.transpiler.passes.Optimize1qGates
 
-<span id="undefined" />
+
 
 `Optimize1qGates(*args, **kwargs)`
 
@@ -13,7 +13,7 @@ Optimize1qGates initializer.
 *   **basis** (*list\[str]*) – Basis gates to consider, e.g. \[‘u3’, ‘cx’]. For the effects of this pass, the basis is the set intersection between the basis parameter and the set \{‘u1’,’u2’,’u3’, ‘u’, ‘p’}.
 *   **eps** (*float*) – EPS to check against
 
-<span id="undefined" />
+
 
 `__init__(basis=None, eps=1e-15)`
 
@@ -41,7 +41,7 @@ Optimize1qGates initializer.
 | [`is_analysis_pass`](#qiskit.transpiler.passes.Optimize1qGates.is_analysis_pass "qiskit.transpiler.passes.Optimize1qGates.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.Optimize1qGates.is_transformation_pass "qiskit.transpiler.passes.Optimize1qGates.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-<span id="undefined" />
+
 
 `static compose_u3(theta1, phi1, lambda1, theta2, phi2, lambda2)`
 
@@ -53,7 +53,7 @@ Return a triple theta, phi, lambda for the product.
 
 Return theta, phi, lambda.
 
-<span id="undefined" />
+
 
 `property is_analysis_pass`
 
@@ -61,7 +61,7 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="undefined" />
+
 
 `property is_transformation_pass`
 
@@ -69,13 +69,13 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-<span id="undefined" />
+
 
 `name()`
 
 Return the name of the pass.
 
-<span id="undefined" />
+
 
 `run(dag)`
 
@@ -97,7 +97,7 @@ the optimized DAG.
 
 [**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if YZY and ZYZ angles do not give same rotation matrix.
 
-<span id="undefined" />
+
 
 `static yzy_to_zyz(xi, theta1, theta2, eps=1e-09)`
 

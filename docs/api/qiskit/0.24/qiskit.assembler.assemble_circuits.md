@@ -2,7 +2,7 @@
 
 # qiskit.assembler.assemble\_circuits
 
-<span id="undefined" />
+
 
 `assemble_circuits(circuits, run_config, qobj_id, qobj_header)`
 

@@ -1,6 +1,6 @@
 # Reciprocal
 
-<span id="undefined" />
+
 
 `Reciprocal`
 

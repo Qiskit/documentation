@@ -1,6 +1,6 @@
 # QuantumRegister
 
-<span id="undefined" />
+
 
 `QuantumRegister(size=None, name=None, bits=None)`
 
@@ -35,31 +35,31 @@ Either the `size` or the `bits` argument must be provided. If `size` is not None
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### instances\_counter
 
 `= count(0)`
 
-<span id="undefined" />
+
 
 ### name
 
 Get the register name.
 
-<span id="undefined" />
+
 
 ### name\_format
 
 `= re.compile('[a-z][a-zA-Z0-9_]*')`
 
-<span id="undefined" />
+
 
 ### prefix
 
 `= 'q'`
 
-<span id="undefined" />
+
 
 ### size
 

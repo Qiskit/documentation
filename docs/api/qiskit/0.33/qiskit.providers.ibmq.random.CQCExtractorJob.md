@@ -1,6 +1,6 @@
 # CQCExtractorJob
 
-<span id="undefined" />
+
 
 `CQCExtractorJob(job_id, client, parameters=None)`
 
@@ -40,7 +40,7 @@ CQCExtractorJob constructor.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### extractor\_method
 
@@ -54,7 +54,7 @@ Return the extractor method used.
 
 Extractor method used.
 
-<span id="undefined" />
+
 
 ### parameters
 

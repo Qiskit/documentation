@@ -1,6 +1,6 @@
 # CplexOptimizer
 
-<span id="undefined" />
+
 
 `CplexOptimizer(disp=False)`
 
@@ -42,7 +42,7 @@ Initializes the CplexOptimizer.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### disp
 

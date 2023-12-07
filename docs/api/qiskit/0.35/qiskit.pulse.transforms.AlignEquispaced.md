@@ -1,6 +1,6 @@
 # AlignEquispaced
 
-<span id="undefined" />
+
 
 `AlignEquispaced(duration)`
 
@@ -25,13 +25,13 @@ Create new equispaced context.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### duration
 
 Return context duration.
 
-<span id="undefined" />
+
 
 ### is\_sequential
 

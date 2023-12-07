@@ -2,7 +2,7 @@
 
 # qiskit.quantum\_info.random\_clifford
 
-<span id="undefined" />
+
 
 `random_clifford(num_qubits, seed=None)`
 

@@ -1,6 +1,6 @@
 # qiskit.providers.aer.utils.transpile\_noise\_model
 
-<span id="undefined" />
+
 
 `transpile_noise_model(noise_model, **transpile_kwargs)`
 

@@ -1,6 +1,6 @@
 # PiecewiseChebyshev
 
-<span id="undefined" />
+
 
 `PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')`
 
@@ -45,13 +45,13 @@ Optimizing Quantum Circuits for Arithmetic. [arXiv:1805.12445](http://arxiv.org/
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
 
-<span id="undefined" />
+
 
 ### breakpoints
 
@@ -65,7 +65,7 @@ The breakpoints for the piecewise approximation.
 
 The breakpoints for the piecewise approximation.
 
-<span id="undefined" />
+
 
 ### calibrations
 
@@ -75,17 +75,17 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-<span id="undefined" />
+
 
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
 
-<span id="undefined" />
+
 
 ### data
 
-<span id="undefined" />
+
 
 ### degree
 
@@ -99,13 +99,13 @@ The degree of the polynomials.
 
 The degree of the polynomials.
 
-<span id="undefined" />
+
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-<span id="undefined" />
+
 
 ### f\_x
 
@@ -119,25 +119,25 @@ The function to be approximated.
 
 The function to be approximated.
 
-<span id="undefined" />
+
 
 ### global\_phase
 
 Return the global phase of the circuit in radians.
 
-<span id="undefined" />
+
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="undefined" />
+
 
 ### instances
 
 `= 16`
 
-<span id="undefined" />
+
 
 ### metadata
 
@@ -145,19 +145,19 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-<span id="undefined" />
+
 
 ### num\_ancillas
 
 Return the number of ancilla qubits.
 
-<span id="undefined" />
+
 
 ### num\_clbits
 
 Return number of classical bits.
 
-<span id="undefined" />
+
 
 ### num\_parameters
 
@@ -165,13 +165,13 @@ Return number of classical bits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 Return number of qubits.
 
-<span id="undefined" />
+
 
 ### num\_state\_qubits
 
@@ -185,7 +185,7 @@ The number of state qubits representing the state $|x\rangle$.
 
 The number of state qubits.
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -193,7 +193,7 @@ The number of state qubits.
 
 `ParameterView`
 
-<span id="undefined" />
+
 
 ### polynomials
 
@@ -207,19 +207,19 @@ The polynomials for the piecewise approximation.
 
 The polynomials for the piecewise approximation.
 
-<span id="undefined" />
+
 
 ### prefix
 
 `= 'circuit'`
 
-<span id="undefined" />
+
 
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-<span id="undefined" />
+
 
 ### qubits
 

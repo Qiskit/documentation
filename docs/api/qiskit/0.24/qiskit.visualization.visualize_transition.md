@@ -2,7 +2,7 @@
 
 # qiskit.visualization.visualize\_transition
 
-<span id="undefined" />
+
 
 `visualize_transition(circuit, trace=False, saveas=None, fpg=100, spg=2)`
 

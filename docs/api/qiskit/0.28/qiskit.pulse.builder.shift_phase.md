@@ -1,6 +1,6 @@
 # qiskit.pulse.builder.shift\_phase
 
-<span id="undefined" />
+
 
 `shift_phase(phase, channel, name=None)`
 

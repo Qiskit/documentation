@@ -1,6 +1,6 @@
 # QobjHeader
 
-<span id="undefined" />
+
 
 `QobjHeader(**kwargs)`
 

@@ -1,6 +1,6 @@
 # WeightedSumOperator
 
-<span id="undefined" />
+
 
 `WeightedSumOperator(num_state_qubits, weights, i_state=None, i_sum=None)`
 
@@ -41,31 +41,31 @@ Computes the weighted sum controlled by state qubits
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### num\_carry\_qubits
 
 returns num carry qubits
 
-<span id="undefined" />
+
 
 ### num\_state\_qubits
 
 returns num state qubits
 
-<span id="undefined" />
+
 
 ### num\_sum\_qubits
 
 returns num sum qubits
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 
 Returns the number of target qubits
 
-<span id="undefined" />
+
 
 ### weights
 

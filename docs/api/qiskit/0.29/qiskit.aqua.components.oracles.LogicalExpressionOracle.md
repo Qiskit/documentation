@@ -1,6 +1,6 @@
 # LogicalExpressionOracle
 
-<span id="undefined" />
+
 
 `LogicalExpressionOracle(expression, optimization=False, mct_mode='basic')`
 
@@ -53,23 +53,23 @@ By default, the Logical Expression oracle will not try to apply any optimization
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ancillary\_register
 
 returns ancillary register
 
-<span id="undefined" />
+
 
 ### circuit
 
-<span id="undefined" />
+
 
 ### output\_register
 
 returns output register
 
-<span id="undefined" />
+
 
 ### variable\_register
 

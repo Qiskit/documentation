@@ -1,6 +1,6 @@
 # QVFitter
 
-<span id="undefined" />
+
 
 `QVFitter(backend_result=None, statevector_result=None, qubit_lists=None)`
 
@@ -32,43 +32,43 @@ Class for fitters for quantum volume.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### depths
 
 Return depth list.
 
-<span id="undefined" />
+
 
 ### heavy\_output\_counts
 
 Return the number of heavy output counts as measured.
 
-<span id="undefined" />
+
 
 ### heavy\_output\_prob\_ideal
 
 Return the heavy output probability ideally.
 
-<span id="undefined" />
+
 
 ### heavy\_outputs
 
 Return the ideal heavy outputs dictionary.
 
-<span id="undefined" />
+
 
 ### qubit\_lists
 
 Return depth list.
 
-<span id="undefined" />
+
 
 ### results
 
 Return all the results.
 
-<span id="undefined" />
+
 
 ### ydata
 

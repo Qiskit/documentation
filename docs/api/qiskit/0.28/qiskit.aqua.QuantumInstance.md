@@ -1,6 +1,6 @@
 # qiskit.aqua.QuantumInstance
 
-<span id="undefined" />
+
 
 `QuantumInstance(backend, shots=1024, seed_simulator=None, max_credits=10, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None)`
 
@@ -36,7 +36,7 @@ Quantum Instance holds a Qiskit Terra backend as well as configuration for circu
 *   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – set noise model but the backend does not support that
 *   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – set backend\_options but the backend does not support that
 
-<span id="undefined" />
+
 
 `__init__(backend, shots=1024, seed_simulator=None, max_credits=10, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None)`
 
@@ -105,7 +105,7 @@ Quantum Instance holds a Qiskit Terra backend as well as configuration for circu
 | [`skip_qobj_validation`](#qiskit.aqua.QuantumInstance.skip_qobj_validation "qiskit.aqua.QuantumInstance.skip_qobj_validation")                                           | checks if skip qobj validation                          |
 | [`time_taken`](#qiskit.aqua.QuantumInstance.time_taken "qiskit.aqua.QuantumInstance.time_taken")                                                                         | Accumulated time taken for execution.                   |
 
-<span id="undefined" />
+
 
 `assemble(circuits)`
 
@@ -115,31 +115,31 @@ assemble circuits
 
 [`Qobj`](qiskit.qobj.Qobj#qiskit.qobj.Qobj "qiskit.qobj.Qobj")
 
-<span id="undefined" />
+
 
 `property backend`
 
 Return BaseBackend backend object.
 
-<span id="undefined" />
+
 
 `property backend_config`
 
 Getter of backend\_config.
 
-<span id="undefined" />
+
 
 `property backend_name`
 
 Return backend name.
 
-<span id="undefined" />
+
 
 `property backend_options`
 
 Getter of backend\_options.
 
-<span id="undefined" />
+
 
 `cals_matrix(qubit_index=None)`
 
@@ -157,25 +157,25 @@ Get the stored calibration matrices and its timestamp.
 
 The calibration matrix and the creation timestamp if qubit\_index is not None otherwise, return all matrices and their timestamp in a dictionary.
 
-<span id="undefined" />
+
 
 `property cals_matrix_refresh_period`
 
 returns matrix refresh period
 
-<span id="undefined" />
+
 
 `property circuit_summary`
 
 Getter of circuit summary.
 
-<span id="undefined" />
+
 
 `property compile_config`
 
 Getter of compile\_config.
 
-<span id="undefined" />
+
 
 `execute(circuits, had_transpiled=False)`
 
@@ -198,25 +198,25 @@ Result object
 
 assembling to the qobj.
 
-<span id="undefined" />
+
 
 `property is_local`
 
 Return True if backend is a local backend.
 
-<span id="undefined" />
+
 
 `property is_simulator`
 
 Return True if backend is a simulator.
 
-<span id="undefined" />
+
 
 `property is_statevector`
 
 Return True if backend is a statevector-type simulator.
 
-<span id="undefined" />
+
 
 `maybe_refresh_cals_matrix(timestamp=None)`
 
@@ -234,31 +234,31 @@ Calculate the time difference from the query of last time.
 
 Whether or not refresh the cals\_matrix
 
-<span id="undefined" />
+
 
 `property measurement_error_mitigation_cls`
 
 returns measurement error mitigation cls
 
-<span id="undefined" />
+
 
 `property measurement_error_mitigation_shots`
 
 returns measurement error mitigation shots
 
-<span id="undefined" />
+
 
 `property noise_config`
 
 Getter of noise\_config.
 
-<span id="undefined" />
+
 
 `property qjob_config`
 
 Getter of qjob\_config.
 
-<span id="undefined" />
+
 
 `reset_execution_results()`
 
@@ -268,25 +268,25 @@ Reset execution results
 
 `None`
 
-<span id="undefined" />
+
 
 `property run_config`
 
 Getter of run\_config.
 
-<span id="undefined" />
+
 
 `set_config(**kwargs)`
 
 Set configurations for the quantum instance.
 
-<span id="undefined" />
+
 
 `property skip_qobj_validation`
 
 checks if skip qobj validation
 
-<span id="undefined" />
+
 
 `property time_taken`
 
@@ -296,7 +296,7 @@ Accumulated time taken for execution.
 
 `float`
 
-<span id="undefined" />
+
 
 `transpile(circuits)`
 

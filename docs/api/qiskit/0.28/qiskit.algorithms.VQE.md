@@ -1,6 +1,6 @@
 # qiskit.algorithms.VQE
 
-<span id="undefined" />
+
 
 `VQE(ansatz=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None, sort_parameters_by_name=None)`
 
@@ -27,7 +27,7 @@ The length of the *initial\_point* list value must match the number of the param
 *   **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – Quantum Instance or Backend
 *   **sort\_parameters\_by\_name** (`Optional`\[`bool`]) – Deprecated. If True, the initial point is bound to the ansatz parameters strictly sorted by name instead of the default circuit order. That means that the ansatz parameters are e.g. sorted as `x[0] x[1] x[10] x[2] ...` instead of `x[0] x[1] x[2] ... x[10]`. Set this to `True` to obtain the behavior prior to Qiskit Terra 0.18.0.
 
-<span id="undefined" />
+
 
 `__init__(ansatz=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None, sort_parameters_by_name=None)`
 
@@ -76,7 +76,7 @@ The length of the *initial\_point* list value must match the number of the param
 | [`quantum_instance`](#qiskit.algorithms.VQE.quantum_instance "qiskit.algorithms.VQE.quantum_instance") | Returns quantum instance.                                                                          |
 | [`setting`](#qiskit.algorithms.VQE.setting "qiskit.algorithms.VQE.setting")                            | Prepare the setting of VQE as a string.                                                            |
 
-<span id="undefined" />
+
 
 `property ansatz`
 
@@ -86,13 +86,13 @@ Returns the ansatz.
 
 `Optional`\[`QuantumCircuit`]
 
-<span id="undefined" />
+
 
 `cleanup_parameterized_circuits()`
 
 set parameterized circuits to None
 
-<span id="undefined" />
+
 
 `compute_minimum_eigenvalue(operator, aux_operators=None)`
 
@@ -111,7 +111,7 @@ Computes minimum eigenvalue. Operator and aux\_operators can be supplied here an
 
 MinimumEigensolverResult
 
-<span id="undefined" />
+
 
 `construct_circuit(parameter, operator)`
 
@@ -130,7 +130,7 @@ Return the circuits used to compute the expectation value.
 
 A list of the circuits used to compute the expectation value.
 
-<span id="undefined" />
+
 
 `construct_expectation(parameter, operator, return_expectation=False)`
 
@@ -155,7 +155,7 @@ The Operator equalling the measurement of the ansatz `StateFn` by the Observable
 *   [**AlgorithmError**](qiskit.algorithms.AlgorithmError#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If no operator has been provided.
 *   [**AlgorithmError**](qiskit.algorithms.AlgorithmError#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If no expectation is passed and None could be inferred via the ExpectationFactory.
 
-<span id="undefined" />
+
 
 `property expectation`
 
@@ -165,7 +165,7 @@ The expectation value algorithm used to construct the expectation measurement fr
 
 `Optional`\[`ExpectationBase`]
 
-<span id="undefined" />
+
 
 `find_minimum(initial_point=None, ansatz=None, cost_fn=None, optimizer=None, gradient_fn=None)`
 
@@ -191,7 +191,7 @@ dict
 
 **ValueError** – invalid input
 
-<span id="undefined" />
+
 
 `get_energy_evaluation(operator, return_expectation=False)`
 
@@ -216,7 +216,7 @@ Energy of the hamiltonian of each parameter, and, optionally, the expectation co
 
 **RuntimeError** – If the circuit is not parameterized (i.e. has 0 free parameters).
 
-<span id="undefined" />
+
 
 `get_optimal_circuit()`
 
@@ -226,7 +226,7 @@ Get the circuit with the optimal parameters.
 
 `QuantumCircuit`
 
-<span id="undefined" />
+
 
 `get_optimal_cost()`
 
@@ -236,7 +236,7 @@ Get the minimal cost or energy found by the VQE.
 
 `float`
 
-<span id="undefined" />
+
 
 `get_optimal_vector()`
 
@@ -246,19 +246,19 @@ Get the simulation outcome of the optimal circuit.
 
 `Union`\[`List`\[`float`], `Dict`\[`str`, `int`]]
 
-<span id="undefined" />
+
 
 `get_prob_vector_for_params(construct_circuit_fn, params_s, quantum_instance, construct_circuit_args=None)`
 
 Helper function to get probability vectors for a set of params
 
-<span id="undefined" />
+
 
 `get_probabilities_for_counts(counts)`
 
 get probabilities for counts
 
-<span id="undefined" />
+
 
 `property gradient`
 
@@ -268,7 +268,7 @@ Returns the gradient.
 
 `Union`\[`GradientBase`, `Callable`, `None`]
 
-<span id="undefined" />
+
 
 `property initial_point`
 
@@ -278,7 +278,7 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
-<span id="undefined" />
+
 
 `property optimal_params`
 
@@ -288,7 +288,7 @@ The optimal parameters for the ansatz.
 
 `ndarray`
 
-<span id="undefined" />
+
 
 `property optimizer`
 
@@ -298,7 +298,7 @@ Returns optimizer
 
 `Optional`\[`Optimizer`]
 
-<span id="undefined" />
+
 
 `print_settings()`
 
@@ -312,7 +312,7 @@ the formatted setting of VQE
 
 str
 
-<span id="undefined" />
+
 
 `property quantum_instance`
 
@@ -322,13 +322,13 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 `property setting`
 
 Prepare the setting of VQE as a string.
 
-<span id="undefined" />
+
 
 `classmethod supports_aux_operators()`
 

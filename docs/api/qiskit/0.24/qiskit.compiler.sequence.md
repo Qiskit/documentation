@@ -2,7 +2,7 @@
 
 # qiskit.compiler.sequence
 
-<span id="undefined" />
+
 
 `sequence(scheduled_circuits, backend=None, inst_map=None, meas_map=None, dt=None)`
 

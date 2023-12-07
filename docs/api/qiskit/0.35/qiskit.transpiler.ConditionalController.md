@@ -1,6 +1,6 @@
 # ConditionalController
 
-<span id="undefined" />
+
 
 `ConditionalController(passes, options=None, condition=None, **partial_controller)`
 
@@ -19,7 +19,7 @@ Implements a set of passes under a certain condition.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### registered\_controllers = \{'condition'
 

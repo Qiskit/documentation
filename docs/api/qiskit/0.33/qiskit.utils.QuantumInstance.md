@@ -1,6 +1,6 @@
 # QuantumInstance
 
-<span id="undefined" />
+
 
 `QuantumInstance(backend, shots=None, seed_simulator=None, max_credits=10, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, bound_pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None, mit_pattern=None, max_job_retries=50)`
 
@@ -55,31 +55,31 @@ Quantum Instance holds a Qiskit Terra backend as well as configuration for circu
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### backend
 
 Return BaseBackend backend object.
 
-<span id="undefined" />
+
 
 ### backend\_config
 
 Getter of backend\_config.
 
-<span id="undefined" />
+
 
 ### backend\_name
 
 Return backend name.
 
-<span id="undefined" />
+
 
 ### backend\_options
 
 Getter of backend\_options.
 
-<span id="undefined" />
+
 
 ### bound\_pass\_manager
 
@@ -93,85 +93,85 @@ The pass manager for bound circuits, if it has been set.
 
 Optional\[‘PassManager’]
 
-<span id="undefined" />
+
 
 ### cals\_matrix\_refresh\_period
 
 returns matrix refresh period
 
-<span id="undefined" />
+
 
 ### circuit\_summary
 
 Getter of circuit summary.
 
-<span id="undefined" />
+
 
 ### compile\_config
 
 Getter of compile\_config.
 
-<span id="undefined" />
+
 
 ### is\_local
 
 Return True if backend is a local backend.
 
-<span id="undefined" />
+
 
 ### is\_simulator
 
 Return True if backend is a simulator.
 
-<span id="undefined" />
+
 
 ### is\_statevector
 
 Return True if backend is a statevector-type simulator.
 
-<span id="undefined" />
+
 
 ### max\_job\_retries
 
 Getter of max tries
 
-<span id="undefined" />
+
 
 ### measurement\_error\_mitigation\_cls
 
 returns measurement error mitigation cls
 
-<span id="undefined" />
+
 
 ### measurement\_error\_mitigation\_shots
 
 returns measurement error mitigation shots
 
-<span id="undefined" />
+
 
 ### noise\_config
 
 Getter of noise\_config.
 
-<span id="undefined" />
+
 
 ### qjob\_config
 
 Getter of qjob\_config.
 
-<span id="undefined" />
+
 
 ### run\_config
 
 Getter of run\_config.
 
-<span id="undefined" />
+
 
 ### skip\_qobj\_validation
 
 checks if skip qobj validation
 
-<span id="undefined" />
+
 
 ### time\_taken
 
@@ -181,7 +181,7 @@ Accumulated time taken for execution.
 
 `float`
 
-<span id="undefined" />
+
 
 ### unbound\_pass\_manager
 

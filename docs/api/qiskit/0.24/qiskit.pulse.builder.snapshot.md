@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.snapshot
 
-<span id="undefined" />
+
 
 `snapshot(label, snapshot_type='statevector')`
 

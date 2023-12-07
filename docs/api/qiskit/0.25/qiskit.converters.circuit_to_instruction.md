@@ -1,6 +1,6 @@
 # qiskit.converters.circuit\_to\_instruction
 
-<span id="undefined" />
+
 
 `circuit_to_instruction(circuit, parameter_map=None, equivalence_library=None)`
 

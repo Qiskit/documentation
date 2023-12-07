@@ -1,6 +1,6 @@
 # RegisterSlot
 
-<span id="undefined" />
+
 
 `RegisterSlot(index)`
 
@@ -22,7 +22,7 @@ Channel class.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### index
 
@@ -32,7 +32,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 ### name
 
@@ -42,7 +42,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -52,7 +52,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-<span id="undefined" />
+
 
 ### prefix
 

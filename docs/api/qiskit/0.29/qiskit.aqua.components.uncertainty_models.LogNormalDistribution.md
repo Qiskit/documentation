@@ -1,6 +1,6 @@
 # LogNormalDistribution
 
-<span id="undefined" />
+
 
 `LogNormalDistribution(num_target_qubits, mu=0, sigma=1, low=0, high=1)`
 
@@ -38,37 +38,37 @@ Log-normal distribution, truncated to lower and upper bound and discretized on a
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### high
 
 returns high
 
-<span id="undefined" />
+
 
 ### low
 
 returns low
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 
 Returns the number of target qubits
 
-<span id="undefined" />
+
 
 ### num\_values
 
 returns number of values
 
-<span id="undefined" />
+
 
 ### probabilities
 
 returns probabilities
 
-<span id="undefined" />
+
 
 ### values
 

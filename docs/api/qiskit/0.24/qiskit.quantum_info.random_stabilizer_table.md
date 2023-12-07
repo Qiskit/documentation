@@ -2,7 +2,7 @@
 
 # qiskit.quantum\_info.random\_stabilizer\_table
 
-<span id="undefined" />
+
 
 `random_stabilizer_table(num_qubits, size=1, seed=None)`
 

@@ -2,7 +2,7 @@
 
 # qiskit.circuit.EquivalenceLibrary
 
-<span id="undefined" />
+
 
 `EquivalenceLibrary(*, base=None)`
 
@@ -14,7 +14,7 @@ Create a new equivalence library.
 
 **base** (*Optional\[*[*EquivalenceLibrary*](#qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")*]*) – Base equivalence library to will be referenced if an entry is not found in this library.
 
-<span id="undefined" />
+
 
 `__init__(*, base=None)`
 
@@ -35,7 +35,7 @@ Create a new equivalence library.
 | [`has_entry`](#qiskit.circuit.EquivalenceLibrary.has_entry "qiskit.circuit.EquivalenceLibrary.has_entry")(gate)                                        | Check if a library contains any decompositions for gate.                                               |
 | [`set_entry`](#qiskit.circuit.EquivalenceLibrary.set_entry "qiskit.circuit.EquivalenceLibrary.set_entry")(gate, entry)                                 | Set the equivalence record for a Gate.                                                                 |
 
-<span id="undefined" />
+
 
 `add_equivalence(gate, equivalent_circuit)`
 
@@ -48,7 +48,7 @@ Parameterized Gates (those including qiskit.circuit.Parameters in their Gate.par
 *   **gate** ([*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
 *   **equivalent\_circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A circuit equivalently implementing the given Gate.
 
-<span id="undefined" />
+
 
 `draw(filename=None)`
 
@@ -70,7 +70,7 @@ PIL.Image
 
 **ImportError** – when pydot or pillow are not installed.
 
-<span id="undefined" />
+
 
 `get_entry(gate)`
 
@@ -94,7 +94,7 @@ Returned circuits will be ordered according to their insertion in the library, f
 
 List\[[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
 
-<span id="undefined" />
+
 
 `has_entry(gate)`
 
@@ -114,7 +114,7 @@ False otherwise.
 
 Bool
 
-<span id="undefined" />
+
 
 `set_entry(gate, entry)`
 

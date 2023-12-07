@@ -20,7 +20,7 @@ QuantumCircuit to Pulse scheduler.
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
 | [`schedule_circuit`](#qiskit.scheduler.schedule_circuit.schedule_circuit "qiskit.scheduler.schedule_circuit.schedule_circuit")(circuit, schedule\_config\[, …]) | Basic scheduling pass from a circuit to a pulse Schedule, using the backend. |
 
-<span id="undefined" />
+
 
 `schedule_circuit(circuit, schedule_config, method=None)`
 

@@ -1,6 +1,6 @@
 # Oracle
 
-<span id="undefined" />
+
 
 `Oracle(*args, **kwargs)`
 
@@ -23,23 +23,23 @@ This method should initialize the module and use an exception if a component of 
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ancillary\_register
 
 returns ancillary register
 
-<span id="undefined" />
+
 
 ### circuit
 
-<span id="undefined" />
+
 
 ### output\_register
 
 returns output register
 
-<span id="undefined" />
+
 
 ### variable\_register
 

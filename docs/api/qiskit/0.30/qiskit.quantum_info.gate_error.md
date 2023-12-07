@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.gate\_error
 
-<span id="undefined" />
+
 
 `gate_error(channel, target=None, require_cp=True, require_tp=False)`
 

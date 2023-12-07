@@ -2,7 +2,7 @@
 
 # qiskit.aqua.algorithms.SklearnSVM
 
-<span id="undefined" />
+
 
 `SklearnSVM(training_dataset, test_dataset=None, datapoints=None, gamma=None, multiclass_extension=None)`
 
@@ -24,7 +24,7 @@ Internally, this algorithm will run the binary classification or multiclass clas
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Multiclass extension not supplied when number of classes > 2
 
-<span id="undefined" />
+
 
 `__init__(training_dataset, test_dataset=None, datapoints=None, gamma=None, multiclass_extension=None)`
 
@@ -67,19 +67,19 @@ Internally, this algorithm will run the binary classification or multiclass clas
 | [`random`](#qiskit.aqua.algorithms.SklearnSVM.random "qiskit.aqua.algorithms.SklearnSVM.random")                         | Return a numpy random. |
 | [`ret`](#qiskit.aqua.algorithms.SklearnSVM.ret "qiskit.aqua.algorithms.SklearnSVM.ret")                                  | returns result         |
 
-<span id="undefined" />
+
 
 `property class_to_label`
 
 returns class to label
 
-<span id="undefined" />
+
 
 `property label_to_class`
 
 returns label to class
 
-<span id="undefined" />
+
 
 `load_model(file_path)`
 
@@ -89,7 +89,7 @@ Load a model from a file path.
 
 **file\_path** (*str*) – the path of the saved model.
 
-<span id="undefined" />
+
 
 `predict(data)`
 
@@ -107,19 +107,19 @@ predicted labels, Nx1 array
 
 numpy.ndarray
 
-<span id="undefined" />
+
 
 `property random`
 
 Return a numpy random.
 
-<span id="undefined" />
+
 
 `property ret`
 
 returns result
 
-<span id="undefined" />
+
 
 `run()`
 
@@ -133,7 +133,7 @@ results of an algorithm.
 
 dict
 
-<span id="undefined" />
+
 
 `save_model(file_path)`
 
@@ -143,7 +143,7 @@ Save the model to a file path.
 
 **file\_path** (*str*) – a path to save the model.
 
-<span id="undefined" />
+
 
 `test(data, labels)`
 
@@ -162,7 +162,7 @@ accuracy
 
 float
 
-<span id="undefined" />
+
 
 `train(data, labels)`
 

@@ -1,6 +1,6 @@
 # qiskit.aqua.MissingOptionalLibraryError
 
-<span id="undefined" />
+
 
 `MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)`
 

@@ -2,7 +2,7 @@
 
 # qiskit.validation.jsonschema.validate\_json\_against\_schema
 
-<span id="undefined" />
+
 
 `validate_json_against_schema(json_dict, schema, err_msg=None)`
 

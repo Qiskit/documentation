@@ -1,6 +1,6 @@
 # MinimumEigensolver
 
-<span id="undefined" />
+
 
 `MinimumEigensolver`
 
@@ -19,7 +19,7 @@ Algorithms that can compute a minimum eigenvalue for an operator may implement t
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### aux\_operators
 
@@ -29,7 +29,7 @@ Returns the auxiliary operators.
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
 
-<span id="undefined" />
+
 
 ### operator
 

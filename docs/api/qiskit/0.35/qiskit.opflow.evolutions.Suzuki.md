@@ -1,6 +1,6 @@
 # Suzuki
 
-<span id="undefined" />
+
 
 `Suzuki(reps=1, order=2)`
 
@@ -23,7 +23,7 @@ Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/q
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### order
 
@@ -33,7 +33,7 @@ returns order
 
 `int`
 
-<span id="undefined" />
+
 
 ### reps
 

@@ -1,6 +1,6 @@
 # qiskit.opflow\.gradients.GradientBase
 
-<span id="undefined" />
+
 
 `GradientBase(grad_method='param_shift', **kwargs)`
 
@@ -17,7 +17,7 @@ Convert an operator expression to the first-order gradient.
 
 **ValueError** – If method != `fin_diff` and `epsilon` is not None.
 
-<span id="undefined" />
+
 
 `__init__(grad_method='param_shift', **kwargs)`
 
@@ -45,7 +45,7 @@ Convert an operator expression to the first-order gradient.
 | --------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | [`grad_method`](#qiskit.opflow.gradients.GradientBase.grad_method "qiskit.opflow.gradients.GradientBase.grad_method") | Returns `CircuitGradient`. |
 
-<span id="undefined" />
+
 
 `abstract convert(operator, params=None)`
 
@@ -66,7 +66,7 @@ An operator whose evaluation yields the gradient, Hessian or QFI.
 
 **ValueError** – If `params` contains a parameter not present in `operator`.
 
-<span id="undefined" />
+
 
 `property grad_method`
 
@@ -80,7 +80,7 @@ Returns `CircuitGradient`.
 
 `CircuitGradient`.
 
-<span id="undefined" />
+
 
 `gradient_wrapper(operator, bind_params, grad_params=None, backend=None)`
 
@@ -101,7 +101,7 @@ Function to compute a gradient, Hessian or QFI. The function takes an iterable a
 
 callable(param\_values)
 
-<span id="undefined" />
+
 
 `static parameter_expression_grad(param_expr, param)`
 

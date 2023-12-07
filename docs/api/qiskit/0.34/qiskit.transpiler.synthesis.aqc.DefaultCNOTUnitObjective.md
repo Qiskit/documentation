@@ -1,6 +1,6 @@
 # DefaultCNOTUnitObjective
 
-<span id="undefined" />
+
 
 `DefaultCNOTUnitObjective(num_qubits, cnots)`
 
@@ -22,19 +22,19 @@ A naive implementation of the objective function based on CNOT units.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### num\_cnots
 
 Returns: A number of CNOT units to be used by the approximate circuit.
 
-<span id="undefined" />
+
 
 ### num\_thetas
 
 Returns: Number of parameters (angles) of rotation gates in this circuit.
 
-<span id="undefined" />
+
 
 ### target\_matrix
 

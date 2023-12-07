@@ -1,6 +1,6 @@
 # QuadraticExpression
 
-<span id="undefined" />
+
 
 `QuadraticExpression(quadratic_program, coefficients)`
 
@@ -28,7 +28,7 @@ The quadratic expression can be defined via an array, a list, a sparse matrix, o
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### coefficients
 
@@ -42,7 +42,7 @@ Returns the coefficients of the quadratic expression.
 
 The coefficients of the quadratic expression.
 
-<span id="undefined" />
+
 
 ### quadratic\_program
 

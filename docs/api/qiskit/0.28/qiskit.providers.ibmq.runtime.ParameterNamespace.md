@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.runtime.ParameterNamespace
 
-<span id="undefined" />
+
 
 `ParameterNamespace(params)`
 
@@ -14,7 +14,7 @@ ParameterNamespace constructor.
 
 **params** (`List`\[`ProgramParameter`]) – The program’s input parameters.
 
-<span id="undefined" />
+
 
 `__init__(params)`
 
@@ -37,7 +37,7 @@ ParameterNamespace constructor.
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------ |
 | [`metadata`](#qiskit.providers.ibmq.runtime.ParameterNamespace.metadata "qiskit.providers.ibmq.runtime.ParameterNamespace.metadata") | Returns the parameter metadata |
 
-<span id="undefined" />
+
 
 `property metadata`
 
@@ -47,7 +47,7 @@ Returns the parameter metadata
 
 `List`\[`ProgramParameter`]
 
-<span id="undefined" />
+
 
 `validate()`
 

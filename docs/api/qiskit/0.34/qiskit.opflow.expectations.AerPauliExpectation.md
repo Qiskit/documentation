@@ -1,6 +1,6 @@
 # AerPauliExpectation
 
-<span id="undefined" />
+
 
 `AerPauliExpectation`
 

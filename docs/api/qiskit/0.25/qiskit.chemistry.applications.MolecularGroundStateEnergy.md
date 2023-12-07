@@ -1,6 +1,6 @@
 # qiskit.chemistry.applications.MolecularGroundStateEnergy
 
-<span id="undefined" />
+
 
 `MolecularGroundStateEnergy(driver, solver=None, transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`
 
@@ -17,7 +17,7 @@ Molecular ground state energy chemistry application
 *   **orbital\_reduction** (`Optional`\[`List`\[`int`]]) – Orbital list to be frozen or removed
 *   **z2symmetry\_reduction** (`Union`\[`str`, `List`\[`int`], `None`]) – If z2 symmetry reduction should be applied to the qubit operators that are computed. Setting ‘auto’ will use an automatic computation of the correct sector. If from other experiments, with the z2symmetry logic, the sector is known, then the tapering values of that sector can be provided (a list of int of values -1, and 1). The default is None meaning no symmetry reduction is done. See also [`Hamiltonian`](qiskit.chemistry.core.Hamiltonian#qiskit.chemistry.core.Hamiltonian "qiskit.chemistry.core.Hamiltonian") which has the core processing behind this class.
 
-<span id="undefined" />
+
 
 `__init__(driver, solver=None, transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`
 
@@ -47,7 +47,7 @@ Molecular ground state energy chemistry application
 | [`driver`](#qiskit.chemistry.applications.MolecularGroundStateEnergy.driver "qiskit.chemistry.applications.MolecularGroundStateEnergy.driver") | Returns chemistry driver     |
 | [`solver`](#qiskit.chemistry.applications.MolecularGroundStateEnergy.solver "qiskit.chemistry.applications.MolecularGroundStateEnergy.solver") | Returns minimum eigen solver |
 
-<span id="undefined" />
+
 
 `compute_energy(callback=None)`
 
@@ -69,7 +69,7 @@ A molecular ground state result
 
 [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If no MinimumEigensolver was given and no callback is being used that could supply one instead.
 
-<span id="undefined" />
+
 
 `property driver`
 
@@ -79,7 +79,7 @@ Returns chemistry driver
 
 `FermionicDriver`
 
-<span id="undefined" />
+
 
 `static get_default_solver(quantum_instance)`
 
@@ -93,7 +93,7 @@ Get the default solver callback that can be used with [`compute_energy()`](#qisk
 
 Default solver callback
 
-<span id="undefined" />
+
 
 `property solver`
 

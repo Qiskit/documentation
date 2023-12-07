@@ -1,6 +1,6 @@
 # IterativeAmplitudeEstimation
 
-<span id="undefined" />
+
 
 `IterativeAmplitudeEstimation(epsilon, alpha, confint_method='beta', min_ratio=2, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, initial_state=None, quantum_instance=None)`
 
@@ -56,7 +56,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### a\_factory
 
@@ -74,7 +74,7 @@ the A operator as CircuitFactory
 
 [CircuitFactory](qiskit.aqua.utils.CircuitFactory#qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")
 
-<span id="undefined" />
+
 
 ### backend
 
@@ -84,7 +84,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 ### grover\_operator
 
@@ -100,7 +100,7 @@ If the Grover operator is not set, we try to build it from the $\mathcal{A}$ ope
 
 The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
 
-<span id="undefined" />
+
 
 ### i\_objective
 
@@ -120,7 +120,7 @@ the index of the objective qubit
 
 int
 
-<span id="undefined" />
+
 
 ### objective\_qubits
 
@@ -134,7 +134,7 @@ Get the criterion for a measurement outcome to be in a ‘good’ state.
 
 The criterion as list of qubit indices.
 
-<span id="undefined" />
+
 
 ### precision
 
@@ -148,7 +148,7 @@ Returns the target precision epsilon of the algorithm.
 
 The target precision (which is half the width of the confidence interval).
 
-<span id="undefined" />
+
 
 ### q\_factory
 
@@ -170,7 +170,7 @@ returns the current Q factory of the algorithm
 
 QFactory
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 
@@ -180,13 +180,13 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 ### random
 
 Return a numpy random.
 
-<span id="undefined" />
+
 
 ### state\_preparation
 

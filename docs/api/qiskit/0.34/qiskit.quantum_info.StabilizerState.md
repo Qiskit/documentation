@@ -1,6 +1,6 @@
 # StabilizerState
 
-<span id="undefined" />
+
 
 `StabilizerState(data, validate=True)`
 
@@ -70,19 +70,19 @@ Initialize a StabilizerState object.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### clifford
 
 Return StabilizerState Clifford data
 
-<span id="undefined" />
+
 
 ### dim
 
 Return total state dimension.
 
-<span id="undefined" />
+
 
 ### num\_qubits
 

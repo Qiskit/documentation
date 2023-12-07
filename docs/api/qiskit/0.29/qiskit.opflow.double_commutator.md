@@ -1,6 +1,6 @@
 # qiskit.opflow\.double\_commutator
 
-<span id="undefined" />
+
 
 `double_commutator(op_a, op_b, op_c, sign=False)`
 

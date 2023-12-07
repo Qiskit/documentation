@@ -1,6 +1,6 @@
 # LinearSystemObservable
 
-<span id="undefined" />
+
 
 `LinearSystemObservable`
 

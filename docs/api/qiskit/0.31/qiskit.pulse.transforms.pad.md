@@ -1,6 +1,6 @@
 # qiskit.pulse.transforms.pad
 
-<span id="undefined" />
+
 
 `pad(schedule, channels=None, until=None, inplace=False)`
 

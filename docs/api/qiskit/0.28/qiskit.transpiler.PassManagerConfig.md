@@ -1,6 +1,6 @@
 # qiskit.transpiler.PassManagerConfig
 
-<span id="undefined" />
+
 
 `PassManagerConfig(initial_layout=None, basis_gates=None, coupling_map=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, backend_properties=None, approximation_degree=None, seed_transpiler=None, timing_constraints=None)`
 
@@ -23,7 +23,7 @@ Initialize a PassManagerConfig object
 *   **seed\_transpiler** (*int*) – Sets random seed for the stochastic parts of the transpiler.
 *   **timing\_constraints** (*TimingConstraints*) – Hardware time alignment restrictions.
 
-<span id="undefined" />
+
 
 `__init__(initial_layout=None, basis_gates=None, coupling_map=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, backend_properties=None, approximation_degree=None, seed_transpiler=None, timing_constraints=None)`
 

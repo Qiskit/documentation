@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.random\_pauli
 
-<span id="undefined" />
+
 
 `random_pauli(num_qubits, group_phase=False, seed=None)`
 

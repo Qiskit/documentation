@@ -1,6 +1,6 @@
 # RecursiveMinimumEigenOptimizer
 
-<span id="undefined" />
+
 
 `RecursiveMinimumEigenOptimizer(min_eigen_optimizer, min_num_vars=1, min_num_vars_optimizer=None, penalty=None, history=<IntermediateResult.LAST_ITERATION: 1>, converters=None)`
 

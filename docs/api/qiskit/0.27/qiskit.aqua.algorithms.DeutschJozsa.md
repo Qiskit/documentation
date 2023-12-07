@@ -1,6 +1,6 @@
 # qiskit.aqua.algorithms.DeutschJozsa
 
-<span id="undefined" />
+
 
 `DeutschJozsa(oracle, quantum_instance=None)`
 
@@ -15,7 +15,7 @@ Note: the [`TruthTableOracle`](qiskit.aqua.components.oracles.TruthTableOracle#q
 *   **oracle** (`Oracle`) – The oracle component
 *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
 
-<span id="undefined" />
+
 
 `__init__(oracle, quantum_instance=None)`
 
@@ -41,7 +41,7 @@ Note: the [`TruthTableOracle`](qiskit.aqua.components.oracles.TruthTableOracle#q
 | [`quantum_instance`](#qiskit.aqua.algorithms.DeutschJozsa.quantum_instance "qiskit.aqua.algorithms.DeutschJozsa.quantum_instance") | Returns quantum instance. |
 | [`random`](#qiskit.aqua.algorithms.DeutschJozsa.random "qiskit.aqua.algorithms.DeutschJozsa.random")                               | Return a numpy random.    |
 
-<span id="undefined" />
+
 
 `property backend`
 
@@ -51,7 +51,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 `construct_circuit(measurement=False)`
 
@@ -69,7 +69,7 @@ the QuantumCircuit object for the constructed circuit
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-<span id="undefined" />
+
 
 `property quantum_instance`
 
@@ -79,13 +79,13 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 `property random`
 
 Return a numpy random.
 
-<span id="undefined" />
+
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -108,7 +108,7 @@ dict
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
-<span id="undefined" />
+
 
 `set_backend(backend, **kwargs)`
 

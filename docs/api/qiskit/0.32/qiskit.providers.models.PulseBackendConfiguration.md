@@ -1,6 +1,6 @@
 # PulseBackendConfiguration
 
-<span id="undefined" />
+
 
 `PulseBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, n_uchannels, u_channel_lo, meas_levels, qubit_lo_range, meas_lo_range, dt, dtm, rep_times, meas_kernels, discriminators, hamiltonian=None, channel_bandwidth=None, acquisition_latency=None, conditional_latency=None, meas_map=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, channels=None, **kwargs)`
 
@@ -68,7 +68,7 @@ Initialize a backend configuration that contains all the extra configuration tha
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### control\_channels
 
@@ -78,7 +78,7 @@ Return the control channels
 
 `Dict`\[`Tuple`\[`int`, …], `List`]
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -86,7 +86,7 @@ Returns the number of qubits.
 
 In future, n\_qubits should be replaced in favor of num\_qubits for consistent use throughout Qiskit. Until this is properly refactored, this property serves as intermediate solution.
 
-<span id="undefined" />
+
 
 ### sample\_rate
 

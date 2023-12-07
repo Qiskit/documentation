@@ -1,6 +1,6 @@
 # qiskit.providers.aer.QasmSimulator
 
-<span id="undefined" />
+
 
 `QasmSimulator(configuration=None, properties=None, provider=None, **backend_options)`
 
@@ -115,7 +115,7 @@ This method should initialize the module and its configuration, and raise an exc
 
 [**AerError**](qiskit.providers.aer.AerError#qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
 
-<span id="undefined" />
+
 
 `__init__(configuration=None, properties=None, provider=None, **backend_options)`
 
@@ -161,19 +161,19 @@ This method should initialize the module and its configuration, and raise an exc
 | [`options`](#qiskit.providers.aer.QasmSimulator.options "qiskit.providers.aer.QasmSimulator.options") | Return the options for the backend |
 | `version`                                                                                             |                                    |
 
-<span id="undefined" />
+
 
 `available_methods()`
 
 Return the available simulation methods.
 
-<span id="undefined" />
+
 
 `clear_options()`
 
 Reset the simulator options to default values.
 
-<span id="undefined" />
+
 
 `configuration()`
 
@@ -187,7 +187,7 @@ the configuration for the backend.
 
 [BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
 
-<span id="undefined" />
+
 
 `defaults()`
 
@@ -203,13 +203,13 @@ backend does not support pulse.
 
 [PulseDefaults](qiskit.providers.models.PulseDefaults#qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
 
-<span id="undefined" />
+
 
 `classmethod from_backend(backend, **options)`
 
 Initialize simulator from backend.
 
-<span id="undefined" />
+
 
 `name()`
 
@@ -223,7 +223,7 @@ the name of the backend.
 
 str
 
-<span id="undefined" />
+
 
 `property options`
 
@@ -231,7 +231,7 @@ Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.aer.QasmSimulator.run "qiskit.providers.aer.QasmSimulator.run") method.
 
-<span id="undefined" />
+
 
 `properties()`
 
@@ -247,7 +247,7 @@ backend does not have properties set.
 
 [BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
-<span id="undefined" />
+
 
 `provider()`
 
@@ -261,7 +261,7 @@ the Provider responsible for the backend.
 
 [Provider](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")
 
-<span id="undefined" />
+
 
 `run(circuits, backend_options=None, validate=False, **run_options)`
 
@@ -287,7 +287,7 @@ The simulation job.
 *   kwarg options specified in `run_options` will temporarily override any set options of the same name for the current run.
 *   The entries in the `backend_options` will be combined with the `Qobj.config` dictionary with the values of entries in `backend_options` taking precedence. This kwarg is deprecated and direct kwarg’s should be used for options to pass them to `run_options`.
 
-<span id="undefined" />
+
 
 `set_option(key, value)`
 
@@ -304,7 +304,7 @@ This method should be extended by sub classes to update special option values.
 
 [**AerError**](qiskit.providers.aer.AerError#qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if key is ‘method’ and val isn’t in available methods.
 
-<span id="undefined" />
+
 
 `set_options(**fields)`
 
@@ -320,7 +320,7 @@ This method is used to update the options of a backend. If you need to change an
 
 **AttributeError** – If the field passed in is not part of the options
 
-<span id="undefined" />
+
 
 `status()`
 

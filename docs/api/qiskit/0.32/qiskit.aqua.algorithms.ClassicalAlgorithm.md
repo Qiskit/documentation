@@ -1,6 +1,6 @@
 # ClassicalAlgorithm
 
-<span id="undefined" />
+
 
 `ClassicalAlgorithm`
 
@@ -16,7 +16,7 @@ Base class for Classical Algorithms.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### random
 

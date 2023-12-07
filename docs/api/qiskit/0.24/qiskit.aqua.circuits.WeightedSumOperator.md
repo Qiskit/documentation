@@ -2,7 +2,7 @@
 
 # qiskit.aqua.circuits.WeightedSumOperator
 
-<span id="undefined" />
+
 
 `WeightedSumOperator(num_state_qubits, weights, i_state=None, i_sum=None)`
 
@@ -21,7 +21,7 @@ Computes the weighted sum controlled by state qubits
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
 
-<span id="undefined" />
+
 
 `__init__(num_state_qubits, weights, i_state=None, i_sum=None)`
 
@@ -67,7 +67,7 @@ Computes the weighted sum controlled by state qubits
 | [`num_target_qubits`](#qiskit.aqua.circuits.WeightedSumOperator.num_target_qubits "qiskit.aqua.circuits.WeightedSumOperator.num_target_qubits") | Returns the number of target qubits |
 | [`weights`](#qiskit.aqua.circuits.WeightedSumOperator.weights "qiskit.aqua.circuits.WeightedSumOperator.weights")                               | returns weights                     |
 
-<span id="undefined" />
+
 
 `build(qc, q, q_ancillas=None, params=None)`
 
@@ -80,7 +80,7 @@ Adds corresponding sub-circuit to given circuit
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 *   **params** (*list*) – parameters for circuit
 
-<span id="undefined" />
+
 
 `build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
 
@@ -94,7 +94,7 @@ Adds corresponding controlled sub-circuit to given circuit
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
 
-<span id="undefined" />
+
 
 `build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
 
@@ -108,19 +108,19 @@ Adds controlled inverse of corresponding sub-circuit to given circuit
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
 
-<span id="undefined" />
+
 
 `build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-<span id="undefined" />
+
 
 `build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-<span id="undefined" />
+
 
 `build_inverse(qc, q, q_ancillas=None)`
 
@@ -132,73 +132,73 @@ Adds inverse of corresponding sub-circuit to given circuit
 *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 
-<span id="undefined" />
+
 
 `build_inverse_power(qc, q, power, q_ancillas=None)`
 
 Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-<span id="undefined" />
+
 
 `build_power(qc, q, power, q_ancillas=None)`
 
 Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-<span id="undefined" />
+
 
 `get_num_qubits()`
 
 returns number of qubits
 
-<span id="undefined" />
+
 
 `get_num_qubits_controlled()`
 
 returns number of qubits controlled
 
-<span id="undefined" />
+
 
 `static get_required_sum_qubits(weights)`
 
 get required sum qubits
 
-<span id="undefined" />
+
 
 `property num_carry_qubits`
 
 returns num carry qubits
 
-<span id="undefined" />
+
 
 `property num_state_qubits`
 
 returns num state qubits
 
-<span id="undefined" />
+
 
 `property num_sum_qubits`
 
 returns num sum qubits
 
-<span id="undefined" />
+
 
 `property num_target_qubits`
 
 Returns the number of target qubits
 
-<span id="undefined" />
+
 
 `required_ancillas()`
 
 required ancillas
 
-<span id="undefined" />
+
 
 `required_ancillas_controlled()`
 
 returns required ancillas controlled
 
-<span id="undefined" />
+
 
 `property weights`
 

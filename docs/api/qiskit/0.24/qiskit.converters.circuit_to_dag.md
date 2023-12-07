@@ -2,7 +2,7 @@
 
 # qiskit.converters.circuit\_to\_dag
 
-<span id="undefined" />
+
 
 `circuit_to_dag(circuit)`
 

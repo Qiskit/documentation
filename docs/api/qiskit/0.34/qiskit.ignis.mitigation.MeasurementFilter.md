@@ -1,6 +1,6 @@
 # MeasurementFilter
 
-<span id="undefined" />
+
 
 `MeasurementFilter(cal_matrix, state_labels)`
 
@@ -25,13 +25,13 @@ Initialize a measurement error mitigation filter using the cal\_matrix from a me
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### cal\_matrix
 
 Return cal\_matrix.
 
-<span id="undefined" />
+
 
 ### state\_labels
 

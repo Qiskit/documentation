@@ -2,7 +2,7 @@
 
 # qiskit.pulse.AcquireChannel
 
-<span id="undefined" />
+
 
 `AcquireChannel(index)`
 
@@ -18,7 +18,7 @@ Channel class.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
 
-<span id="undefined" />
+
 
 `__init__(index)`
 
@@ -46,7 +46,7 @@ Channel class.
 | [`name`](#qiskit.pulse.AcquireChannel.name "qiskit.pulse.AcquireChannel.name")    | Return the shorthand alias for this channel, which is based on its type and index. |
 | `prefix`                                                                          |                                                                                    |
 
-<span id="undefined" />
+
 
 `property index`
 
@@ -56,7 +56,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `int`
 
-<span id="undefined" />
+
 
 `property name`
 

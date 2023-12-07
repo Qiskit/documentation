@@ -2,7 +2,7 @@
 
 # qiskit.optimization.problems.QuadraticExpression
 
-<span id="undefined" />
+
 
 `QuadraticExpression(quadratic_program, coefficients)`
 
@@ -17,7 +17,7 @@ The quadratic expression can be defined via an array, a list, a sparse matrix, o
 *   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
 *   **coefficients** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`]]) – The (sparse) representation of the coefficients.
 
-<span id="undefined" />
+
 
 `__init__(quadratic_program, coefficients)`
 
@@ -47,7 +47,7 @@ The quadratic expression can be defined via an array, a list, a sparse matrix, o
 | [`coefficients`](#qiskit.optimization.problems.QuadraticExpression.coefficients "qiskit.optimization.problems.QuadraticExpression.coefficients")                | Returns the coefficients of the quadratic expression. |
 | [`quadratic_program`](#qiskit.optimization.problems.QuadraticExpression.quadratic_program "qiskit.optimization.problems.QuadraticExpression.quadratic_program") | Returns the parent QuadraticProgram.                  |
 
-<span id="undefined" />
+
 
 `property coefficients`
 
@@ -61,7 +61,7 @@ Returns the coefficients of the quadratic expression.
 
 The coefficients of the quadratic expression.
 
-<span id="undefined" />
+
 
 `evaluate(x)`
 
@@ -79,7 +79,7 @@ Evaluate the quadratic expression for given variables: x \* Q \* x.
 
 The value of the quadratic expression given the variable values.
 
-<span id="undefined" />
+
 
 `evaluate_gradient(x)`
 
@@ -97,7 +97,7 @@ Evaluate the gradient of the quadratic expression for given variables.
 
 The value of the gradient quadratic expression given the variable values.
 
-<span id="undefined" />
+
 
 `property quadratic_program`
 
@@ -111,7 +111,7 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-<span id="undefined" />
+
 
 `to_array(symmetric=False)`
 
@@ -129,7 +129,7 @@ Returns the coefficients of the quadratic expression as array.
 
 An array with the coefficients corresponding to the quadratic expression.
 
-<span id="undefined" />
+
 
 `to_dict(symmetric=False, use_name=False)`
 

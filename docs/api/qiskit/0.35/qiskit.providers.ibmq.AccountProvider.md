@@ -1,6 +1,6 @@
 # AccountProvider
 
-<span id="undefined" />
+
 
 `AccountProvider(credentials, factory)`
 
@@ -72,7 +72,7 @@ AccountProvider constructor.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### backend
 
@@ -86,7 +86,7 @@ Return the backend service.
 
 The backend service instance.
 
-<span id="undefined" />
+
 
 ### experiment
 
@@ -104,7 +104,7 @@ The experiment service instance.
 
 **IBMQNotAuthorizedError** – If the account is not authorized to use the experiment service.
 
-<span id="undefined" />
+
 
 ### runtime
 
@@ -122,7 +122,7 @@ The runtime service instance.
 
 **IBMQNotAuthorizedError** – If the account is not authorized to use the service.
 
-<span id="undefined" />
+
 
 ### version
 

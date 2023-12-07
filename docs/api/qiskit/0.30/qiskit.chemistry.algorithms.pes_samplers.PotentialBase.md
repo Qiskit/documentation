@@ -1,6 +1,6 @@
 # PotentialBase
 
-<span id="undefined" />
+
 
 `PotentialBase(molecule)`
 

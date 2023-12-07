@@ -1,6 +1,6 @@
 # qiskit.optimization.algorithms.MinimumEigenOptimizer
 
-<span id="undefined" />
+
 
 `MinimumEigenOptimizer(min_eigen_solver, penalty=None, converters=None)`
 
@@ -37,7 +37,7 @@ This initializer takes the minimum eigen solver to be used to approximate the gr
 *   **TypeError** – When one of converters has an invalid type.
 *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – When the minimum eigensolver does not return an eigenstate.
 
-<span id="undefined" />
+
 
 `__init__(min_eigen_solver, penalty=None, converters=None)`
 
@@ -69,7 +69,7 @@ This initializer takes the minimum eigen solver to be used to approximate the gr
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
 | [`min_eigen_solver`](#qiskit.optimization.algorithms.MinimumEigenOptimizer.min_eigen_solver "qiskit.optimization.algorithms.MinimumEigenOptimizer.min_eigen_solver") | Returns the minimum eigensolver. |
 
-<span id="undefined" />
+
 
 `get_compatibility_msg(problem)`
 
@@ -89,7 +89,7 @@ Checks whether the given problem is compatible, i.e., whether the problem can be
 
 A message describing the incompatibility.
 
-<span id="undefined" />
+
 
 `is_compatible(problem)`
 
@@ -107,7 +107,7 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 
 Returns True if the problem is compatible, False otherwise.
 
-<span id="undefined" />
+
 
 `property min_eigen_solver`
 
@@ -117,7 +117,7 @@ Returns the minimum eigensolver.
 
 `MinimumEigensolver`
 
-<span id="undefined" />
+
 
 `solve(problem)`
 

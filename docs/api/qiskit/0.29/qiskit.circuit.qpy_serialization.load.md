@@ -1,6 +1,6 @@
 # qiskit.circuit.qpy\_serialization.load
 
-<span id="undefined" />
+
 
 `load(file_obj)`
 

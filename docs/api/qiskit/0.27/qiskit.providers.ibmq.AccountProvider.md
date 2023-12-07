@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.AccountProvider
 
-<span id="undefined" />
+
 
 `AccountProvider(credentials, factory)`
 
@@ -57,7 +57,7 @@ AccountProvider constructor.
 *   **credentials** (`Credentials`) – IBM Quantum Experience credentials.
 *   **factory** (`IBMQFactory`) – IBM Quantum account.
 
-<span id="undefined" />
+
 
 `__init__(credentials, factory)`
 
@@ -90,7 +90,7 @@ AccountProvider constructor.
 | [`runtime`](#qiskit.providers.ibmq.AccountProvider.runtime "qiskit.providers.ibmq.AccountProvider.runtime")          | Return the runtime service.       |
 | `version`                                                                                                            |                                   |
 
-<span id="undefined" />
+
 
 `property backend`
 
@@ -104,7 +104,7 @@ Return the backend service.
 
 The backend service instance.
 
-<span id="undefined" />
+
 
 `backends(name=None, filters=None, **kwargs)`
 
@@ -138,7 +138,7 @@ Return all backends accessible via this provider, subject to optional filtering.
 
 The list of available backends that match the filter.
 
-<span id="undefined" />
+
 
 `property experiment`
 
@@ -156,7 +156,7 @@ The experiment service instance.
 
 **IBMQNotAuthorizedError** – If the account is not authorized to use the experiment service.
 
-<span id="undefined" />
+
 
 `get_backend(name=None, **kwargs)`
 
@@ -179,7 +179,7 @@ a backend matching the filtering.
 
 [**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError#qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
 
-<span id="undefined" />
+
 
 `has_service(name)`
 
@@ -201,7 +201,7 @@ Whether the provider has access to the service.
 
 **IBMQInputValueError** – If an unknown service name is specified.
 
-<span id="undefined" />
+
 
 `property random`
 
@@ -219,7 +219,7 @@ The random number service instance.
 
 **IBMQNotAuthorizedError** – If the account is not authorized to use the service.
 
-<span id="undefined" />
+
 
 `run_circuits(circuits, backend, shots=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, seed_transpiler=None, optimization_level=1, init_qubits=True, rep_delay=None, transpiler_options=None, measurement_error_mitigation=False, **run_config)`
 
@@ -254,7 +254,7 @@ Execute the input circuit(s) on a backend using the runtime service.
 
 Runtime job.
 
-<span id="undefined" />
+
 
 `property runtime`
 
@@ -272,7 +272,7 @@ The runtime service instance.
 
 **IBMQNotAuthorizedError** – If the account is not authorized to use the service.
 
-<span id="undefined" />
+
 
 `service(name)`
 
@@ -295,7 +295,7 @@ The specified service.
 *   **IBMQInputValueError** – If an unknown service name is specified.
 *   **IBMQNotAuthorizedError** – If the account is not authorized to use the service.
 
-<span id="undefined" />
+
 
 `services()`
 

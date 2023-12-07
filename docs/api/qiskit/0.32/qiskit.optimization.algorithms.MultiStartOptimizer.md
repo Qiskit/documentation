@@ -1,6 +1,6 @@
 # MultiStartOptimizer
 
-<span id="undefined" />
+
 
 `MultiStartOptimizer(trials=1, clip=100.0)`
 
@@ -26,7 +26,7 @@ Constructs an instance of this optimizer.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### clip
 
@@ -40,7 +40,7 @@ Returns the clip value for this optimizer.
 
 The clip value.
 
-<span id="undefined" />
+
 
 ### trials
 

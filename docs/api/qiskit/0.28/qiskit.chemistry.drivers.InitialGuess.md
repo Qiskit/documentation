@@ -1,12 +1,12 @@
 # qiskit.chemistry.drivers.InitialGuess
 
-<span id="undefined" />
+
 
 `InitialGuess(value)`
 
 Initial Guess Enum
 
-<span id="undefined" />
+
 
 `__init__()`
 

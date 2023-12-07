@@ -1,6 +1,6 @@
 # Plotter
 
-<span id="undefined" />
+
 
 `Plotter(label)`
 

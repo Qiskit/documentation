@@ -1,6 +1,6 @@
 # qiskit.opflow\.converters.DictToCircuitSum
 
-<span id="undefined" />
+
 
 `DictToCircuitSum(traverse=True, convert_dicts=True, convert_vectors=True)`
 
@@ -12,7 +12,7 @@ Converts `DictStateFns` or `VectorStateFns` to equivalent `CircuitStateFns` or s
 *   **convert\_dicts** (`bool`) – Whether to convert VectorStateFn.
 *   **convert\_vectors** (`bool`) – Whether to convert DictStateFns.
 
-<span id="undefined" />
+
 
 `__init__(traverse=True, convert_dicts=True, convert_vectors=True)`
 
@@ -29,7 +29,7 @@ Converts `DictStateFns` or `VectorStateFns` to equivalent `CircuitStateFns` or s
 | [`__init__`](#qiskit.opflow.converters.DictToCircuitSum.__init__ "qiskit.opflow.converters.DictToCircuitSum.__init__")(\[traverse, convert\_dicts, …]) | **type traverse**`bool`                                                       |
 | [`convert`](#qiskit.opflow.converters.DictToCircuitSum.convert "qiskit.opflow.converters.DictToCircuitSum.convert")(operator)                          | Convert the Operator to `CircuitStateFns`, recursively if `traverse` is True. |
 
-<span id="undefined" />
+
 
 `convert(operator)`
 

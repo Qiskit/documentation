@@ -1,6 +1,6 @@
 # qiskit.ignis.mitigation.tensored\_meas\_cal
 
-<span id="undefined" />
+
 
 `tensored_meas_cal(mit_pattern=None, qr=None, cr=None, circlabel='')`
 

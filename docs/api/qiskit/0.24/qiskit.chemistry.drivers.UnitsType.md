@@ -2,13 +2,13 @@
 
 # qiskit.chemistry.drivers.UnitsType
 
-<span id="undefined" />
+
 
 `UnitsType(value)`
 
 Units Type Enum
 
-<span id="undefined" />
+
 
 `__init__()`
 

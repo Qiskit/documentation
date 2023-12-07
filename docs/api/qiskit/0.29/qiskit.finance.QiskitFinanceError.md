@@ -1,6 +1,6 @@
 # qiskit.finance.QiskitFinanceError
 
-<span id="undefined" />
+
 
 `QiskitFinanceError(*message)`
 

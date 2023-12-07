@@ -1,6 +1,6 @@
 # GroundStateEigensolver
 
-<span id="undefined" />
+
 
 `GroundStateEigensolver(transformation, solver)`
 
@@ -23,7 +23,7 @@ Ground state computation using a minimum eigensolver.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### solver
 
@@ -33,7 +33,7 @@ Returns the minimum eigensolver or factory.
 
 `Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
 
-<span id="undefined" />
+
 
 ### transformation
 

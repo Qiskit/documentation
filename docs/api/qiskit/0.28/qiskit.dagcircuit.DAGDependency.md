@@ -1,6 +1,6 @@
 # qiskit.dagcircuit.DAGDependency
 
-<span id="undefined" />
+
 
 `DAGDependency`
 
@@ -30,7 +30,7 @@ The dependency DAG for the above circuit is represented by two nodes. The first 
 
 Create an empty DAGDependency.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -71,19 +71,19 @@ Create an empty DAGDependency.
 | [`calibrations`](#qiskit.dagcircuit.DAGDependency.calibrations "qiskit.dagcircuit.DAGDependency.calibrations") | Return calibration dictionary.          |
 | [`global_phase`](#qiskit.dagcircuit.DAGDependency.global_phase "qiskit.dagcircuit.DAGDependency.global_phase") | Return the global phase of the circuit. |
 
-<span id="undefined" />
+
 
 `add_clbits(clbits)`
 
 Add individual clbit wires.
 
-<span id="undefined" />
+
 
 `add_creg(creg)`
 
 Add clbits in a classical register.
 
-<span id="undefined" />
+
 
 `add_op_node(operation, qargs, cargs)`
 
@@ -95,19 +95,19 @@ Add a DAGDepNode to the graph and update the edges.
 *   **qargs** (*list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of qubits on which the operation acts
 *   **cargs** (*list\[*[*Clbit*](qiskit.circuit.Clbit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – list of classical wires to attach to.
 
-<span id="undefined" />
+
 
 `add_qreg(qreg)`
 
 Add qubits in a quantum register.
 
-<span id="undefined" />
+
 
 `add_qubits(qubits)`
 
 Add individual qubit wires.
 
-<span id="undefined" />
+
 
 `property calibrations`
 
@@ -117,19 +117,19 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-<span id="undefined" />
+
 
 `copy()`
 
 Function to copy a DAGDependency object. :returns: a copy of a DAGDependency object. :rtype: DAGDependency
 
-<span id="undefined" />
+
 
 `depth()`
 
 Return the circuit depth. :returns: the circuit depth :rtype: int
 
-<span id="undefined" />
+
 
 `direct_predecessors(node_id)`
 
@@ -147,7 +147,7 @@ direct predecessors id as a sorted list
 
 List
 
-<span id="undefined" />
+
 
 `direct_successors(node_id)`
 
@@ -165,7 +165,7 @@ direct successors id as a sorted list
 
 List
 
-<span id="undefined" />
+
 
 `draw(scale=0.7, filename=None, style='color')`
 
@@ -189,7 +189,7 @@ otherwise None.
 
 Ipython.display.Image
 
-<span id="undefined" />
+
 
 `get_all_edges()`
 
@@ -203,7 +203,7 @@ corresponding to the label.
 
 List
 
-<span id="undefined" />
+
 
 `get_edges(src_id, dest_id)`
 
@@ -222,7 +222,7 @@ corresponding to all edges between the two nodes.
 
 List
 
-<span id="undefined" />
+
 
 `get_in_edges(node_id)`
 
@@ -240,7 +240,7 @@ corresponding incoming edges data.
 
 List
 
-<span id="undefined" />
+
 
 `get_node(node_id)`
 
@@ -256,7 +256,7 @@ corresponding to the label.
 
 node
 
-<span id="undefined" />
+
 
 `get_nodes()`
 
@@ -268,7 +268,7 @@ iterator over all the nodes.
 
 generator(dict)
 
-<span id="undefined" />
+
 
 `get_out_edges(node_id)`
 
@@ -286,13 +286,13 @@ corresponding outgoing edges data.
 
 List
 
-<span id="undefined" />
+
 
 `property global_phase`
 
 Return the global phase of the circuit.
 
-<span id="undefined" />
+
 
 `predecessors(node_id)`
 
@@ -310,13 +310,13 @@ all predecessors id as a sorted list
 
 List
 
-<span id="undefined" />
+
 
 `size()`
 
 Returns the number of gates in the circuit
 
-<span id="undefined" />
+
 
 `successors(node_id)`
 
@@ -334,19 +334,19 @@ all successors id as a sorted list
 
 List
 
-<span id="undefined" />
+
 
 `to_networkx()`
 
 Returns a copy of the DAGDependency in networkx format.
 
-<span id="undefined" />
+
 
 `to_retworkx()`
 
 Returns the DAGDependency in retworkx format.
 
-<span id="undefined" />
+
 
 `topological_nodes()`
 

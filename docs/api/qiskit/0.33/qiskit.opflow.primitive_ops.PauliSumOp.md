@@ -1,6 +1,6 @@
 # PauliSumOp
 
-<span id="undefined" />
+
 
 `PauliSumOp(primitive, coeff=1.0, grouping_type='None')`
 
@@ -44,13 +44,13 @@ Class for Operators backend by Terra’s `SparsePauliOp` class.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### INDENTATION
 
 `= ' '`
 
-<span id="undefined" />
+
 
 ### coeff
 
@@ -64,13 +64,13 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
-<span id="undefined" />
+
 
 ### coeffs
 
 Return the Pauli coefficients.
 
-<span id="undefined" />
+
 
 ### grouping\_type
 
@@ -84,7 +84,7 @@ Returns
 
 `str`
 
-<span id="undefined" />
+
 
 ### instance\_id
 
@@ -94,7 +94,7 @@ Return the unique instance id.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -102,11 +102,11 @@ Return the unique instance id.
 
 `int`
 
-<span id="undefined" />
+
 
 ### parameters
 
-<span id="undefined" />
+
 
 ### primitive
 
@@ -122,7 +122,7 @@ The primitive defining the underlying function of the Operator.
 
 The primitive object.
 
-<span id="undefined" />
+
 
 ### settings
 

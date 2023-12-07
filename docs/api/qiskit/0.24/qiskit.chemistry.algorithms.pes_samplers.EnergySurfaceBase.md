@@ -2,13 +2,13 @@
 
 # qiskit.chemistry.algorithms.pes\_samplers.EnergySurfaceBase
 
-<span id="undefined" />
+
 
 `EnergySurfaceBase`
 
 Class to hold a potential energy surface
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -25,7 +25,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`get_minimal_energy`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_minimal_energy "qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_minimal_energy")(\[scaling])                   | Get the minimal energy.                                                      |
 | [`get_trust_region`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_trust_region "qiskit.chemistry.algorithms.pes_samplers.EnergySurfaceBase.get_trust_region")()                                   | Get the trust region.                                                        |
 
-<span id="undefined" />
+
 
 `abstract eval(x)`
 
@@ -43,7 +43,7 @@ After fitting the data to the fit function, predict the energy at a point x.
 
 value of surface in point x
 
-<span id="undefined" />
+
 
 `abstract fit(xdata, ydata, initial_vals=None, bounds_list=None)`
 
@@ -60,7 +60,7 @@ Fits surface to data
 
 `None`
 
-<span id="undefined" />
+
 
 `abstract get_equilibrium_geometry(scaling=1.0)`
 
@@ -80,7 +80,7 @@ Returns the geometry for the minimal energy (scaled by ‘scaling’) Default un
 
 equilibrium geometry
 
-<span id="undefined" />
+
 
 `abstract get_minimal_energy(scaling=1.0)`
 
@@ -100,7 +100,7 @@ Returns the value of the minimal energy (scaled by ‘scaling’) Default units 
 
 minimum energy
 
-<span id="undefined" />
+
 
 `abstract get_trust_region()`
 

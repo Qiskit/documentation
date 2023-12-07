@@ -1,6 +1,6 @@
 # NumPyLSsolverResult
 
-<span id="undefined" />
+
 
 `NumPyLSsolverResult(a_dict=None)`
 
@@ -28,7 +28,7 @@ Numpy LinearSystem Result.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### eigvals
 
@@ -38,7 +38,7 @@ return eigvals
 
 `ndarray`
 
-<span id="undefined" />
+
 
 ### solution
 

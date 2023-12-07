@@ -1,6 +1,6 @@
 # qiskit.ignis.verification.postselection\_decoding
 
-<span id="undefined" />
+
 
 `postselection_decoding(results)`
 

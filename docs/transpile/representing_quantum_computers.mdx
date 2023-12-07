@@ -4,7 +4,7 @@ description: Learn about coupling maps, basis gates and backend errors for trans
 
 ---
 
-# Representing quantum computers
+# Represent quantum computers
 
 To construct an equivalent circuit that can run on a specific backend, the transpiler needs certain details about the backend.  Typically, this information is found in the `backend` or `target = backend.target` class, so you don't need to pass anything further to the transpiler. However, if more infomation is provided, the transpiler can use it to try to produce the best circuit to run on that hardware.  
 
@@ -159,3 +159,11 @@ qc_t_cm_bg_et.draw('mpl', style='iqp', fold=-1, idle_wires=False)
 
 Note that by including the error information, the `VF2PostLayout` pass tries to find the optimal qubits to use, resulting in the same circuit that we found originally with the same physical qubits.
 
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Understand [Transpilation default settings and configuration options.](defaults-and-configuration-options)
+    - Review the [Commonly used parameters for transpilation](common-parameters) topic. 
+    - Try the [Submit transpiled circuits](https://learning.quantum.ibm.com/tutorial/submit-transpiled-circuits) tutorial.
+    - See the [Transpile API documentation.](/api/qiskit/transpiler)
+</Admonition>

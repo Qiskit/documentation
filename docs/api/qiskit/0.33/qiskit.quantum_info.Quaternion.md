@@ -1,6 +1,6 @@
 # Quaternion
 
-<span id="undefined" />
+
 
 `Quaternion(data)`
 

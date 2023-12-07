@@ -1,6 +1,6 @@
 # Extrapolator
 
-<span id="undefined" />
+
 
 `Extrapolator`
 

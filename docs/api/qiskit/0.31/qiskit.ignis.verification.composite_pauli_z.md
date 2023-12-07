@@ -1,6 +1,6 @@
 # qiskit.ignis.verification.composite\_pauli\_z
 
-<span id="undefined" />
+
 
 `composite_pauli_z(qn)`
 

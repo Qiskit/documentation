@@ -1,6 +1,6 @@
 # qiskit.chemistry.core.MolecularExcitedStatesResult
 
-<span id="undefined" />
+
 
 `MolecularExcitedStatesResult(a_dict=None)`
 
@@ -8,7 +8,7 @@ Molecular Excited States Result
 
 Energies are in Hartree and dipole moments in A.U unless otherwise stated.
 
-<span id="undefined" />
+
 
 `__init__(a_dict=None)`
 
@@ -42,7 +42,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`nuclear_dipole_moment`](#qiskit.chemistry.core.MolecularExcitedStatesResult.nuclear_dipole_moment "qiskit.chemistry.core.MolecularExcitedStatesResult.nuclear_dipole_moment")          | Returns nuclear dipole moment X,Y,Z components in A.U when available from driver |
 | [`nuclear_repulsion_energy`](#qiskit.chemistry.core.MolecularExcitedStatesResult.nuclear_repulsion_energy "qiskit.chemistry.core.MolecularExcitedStatesResult.nuclear_repulsion_energy") | Returns nuclear repulsion energy when available from driver                      |
 
-<span id="undefined" />
+
 
 `property algorithm_result`
 
@@ -52,7 +52,7 @@ Returns raw algorithm result
 
 `AlgorithmResult`
 
-<span id="undefined" />
+
 
 `clear()`
 
@@ -60,7 +60,7 @@ Returns raw algorithm result
 
 `None`
 
-<span id="undefined" />
+
 
 `combine(result)`
 
@@ -74,7 +74,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-<span id="undefined" />
+
 
 `property energies`
 
@@ -84,11 +84,11 @@ Returns ground state energy
 
 `Tuple`
 
-<span id="undefined" />
+
 
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
 
-<span id="undefined" />
+
 
 `property hartree_fock_energy`
 
@@ -98,15 +98,15 @@ Returns Hartree-Fock energy
 
 `float`
 
-<span id="undefined" />
+
 
 `items() → a set-like object providing a view on D’s items`
 
-<span id="undefined" />
+
 
 `keys() → a set-like object providing a view on D’s keys`
 
-<span id="undefined" />
+
 
 `property nuclear_dipole_moment`
 
@@ -116,7 +116,7 @@ Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
 
-<span id="undefined" />
+
 
 `property nuclear_repulsion_energy`
 
@@ -126,7 +126,7 @@ Returns nuclear repulsion energy when available from driver
 
 `Optional`\[`float`]
 
-<span id="undefined" />
+
 
 `pop(key, default=None)`
 
@@ -136,7 +136,7 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 
 `object`
 
-<span id="undefined" />
+
 
 `popitem()`
 
@@ -146,11 +146,11 @@ as a 2-tuple; but raise KeyError if D is empty.
 
 `Tuple`\[`object`, `object`]
 
-<span id="undefined" />
+
 
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
 
-<span id="undefined" />
+
 
 `update(*args, **kwargs)`
 
@@ -160,6 +160,6 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 
 `None`
 
-<span id="undefined" />
+
 
 `values() → an object providing a view on D’s values`

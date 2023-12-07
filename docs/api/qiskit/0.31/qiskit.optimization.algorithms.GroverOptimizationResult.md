@@ -1,6 +1,6 @@
 # GroverOptimizationResult
 
-<span id="undefined" />
+
 
 `GroverOptimizationResult(x, fval, variables, operation_counts, n_input_qubits, n_output_qubits, intermediate_fval, threshold, status)`
 
@@ -24,7 +24,7 @@ Constructs a result object with the specific Grover properties.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### fval
 
@@ -38,7 +38,7 @@ Returns the optimal function value.
 
 The function value corresponding to the optimal value found in the optimization.
 
-<span id="undefined" />
+
 
 ### intermediate\_fval
 
@@ -52,7 +52,7 @@ Getter of the intermediate fval
 
 The intermediate value of fval before interpret.
 
-<span id="undefined" />
+
 
 ### n\_input\_qubits
 
@@ -66,7 +66,7 @@ Getter of n\_input\_qubits
 
 The number of qubits used to represent the input.
 
-<span id="undefined" />
+
 
 ### n\_output\_qubits
 
@@ -80,7 +80,7 @@ Getter of n\_output\_qubits
 
 The number of qubits used to represent the output.
 
-<span id="undefined" />
+
 
 ### operation\_counts
 
@@ -94,7 +94,7 @@ Get the operation counts.
 
 The counts of each operation performed per iteration.
 
-<span id="undefined" />
+
 
 ### raw\_results
 
@@ -110,7 +110,7 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
-<span id="undefined" />
+
 
 ### samples
 
@@ -124,7 +124,7 @@ Returns the list of solution samples
 
 The list of solution samples.
 
-<span id="undefined" />
+
 
 ### status
 
@@ -138,7 +138,7 @@ Returns the termination status of the optimization algorithm.
 
 The termination status of the algorithm.
 
-<span id="undefined" />
+
 
 ### threshold
 
@@ -152,7 +152,7 @@ Getter of the threshold of Grover algorithm.
 
 The threshold of Grover algorithm.
 
-<span id="undefined" />
+
 
 ### variable\_names
 
@@ -166,7 +166,7 @@ Returns the list of variable names of the optimization problem.
 
 The list of variable names of the optimization problem.
 
-<span id="undefined" />
+
 
 ### variables
 
@@ -180,7 +180,7 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
-<span id="undefined" />
+
 
 ### variables\_dict
 
@@ -194,7 +194,7 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 
 The optimal value as a dictionary of the variable name and corresponding value.
 
-<span id="undefined" />
+
 
 ### x
 

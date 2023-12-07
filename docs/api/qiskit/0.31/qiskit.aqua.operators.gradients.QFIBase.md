@@ -1,6 +1,6 @@
 # QFIBase
 
-<span id="undefined" />
+
 
 `QFIBase(qfi_method='lin_comb_full')`
 
@@ -32,7 +32,7 @@ The QFI is:
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### qfi\_method
 

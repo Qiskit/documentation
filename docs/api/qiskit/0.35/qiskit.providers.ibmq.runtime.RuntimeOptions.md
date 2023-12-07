@@ -1,6 +1,6 @@
 # RuntimeOptions
 
-<span id="undefined" />
+
 
 `RuntimeOptions(backend_name=None, image=None, log_level=None)`
 
@@ -22,7 +22,7 @@ Class for representing runtime execution options.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### backend\_name
 
@@ -30,7 +30,7 @@ Class for representing runtime execution options.
 
 `= None`
 
-<span id="undefined" />
+
 
 ### image
 
@@ -38,7 +38,7 @@ Class for representing runtime execution options.
 
 `= None`
 
-<span id="undefined" />
+
 
 ### log\_level
 

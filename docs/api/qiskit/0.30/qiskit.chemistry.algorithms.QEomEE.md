@@ -1,6 +1,6 @@
 # QEomEE
 
-<span id="undefined" />
+
 
 `QEomEE(operator, num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, active_occupied=None, active_unoccupied=None, is_eom_matrix_symmetric=True, se_list=None, de_list=None, z2_symmetries=None, untapered_op=None, aux_operators=None)`
 
@@ -38,7 +38,7 @@ QEomEE algorithm (classical)
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### aux\_operators
 
@@ -46,7 +46,7 @@ QEomEE algorithm (classical)
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
 
-<span id="undefined" />
+
 
 ### filter\_criterion
 
@@ -56,7 +56,7 @@ returns the filter criterion if set
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
 
-<span id="undefined" />
+
 
 ### operator
 
@@ -64,7 +64,7 @@ returns the filter criterion if set
 
 `Optional`\[`OperatorBase`]
 
-<span id="undefined" />
+
 
 ### random
 

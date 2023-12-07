@@ -2,7 +2,7 @@
 
 # qiskit.pulse.Waveform
 
-<span id="undefined" />
+
 
 `Waveform(samples, name=None, epsilon=1e-07)`
 
@@ -16,7 +16,7 @@ Create new sample pulse command.
 *   **name** (`Optional`\[`str`]) – Unique name to identify the pulse.
 *   **epsilon** (`float`) – Pulse sample norm tolerance for clipping. If any sample’s norm exceeds unity by less than or equal to epsilon it will be clipped to unit norm. If the sample norm is greater than 1+epsilon an error will be raised.
 
-<span id="undefined" />
+
 
 `__init__(samples, name=None, epsilon=1e-07)`
 
@@ -43,7 +43,7 @@ Create new sample pulse command.
 | [`id`](#qiskit.pulse.Waveform.id "qiskit.pulse.Waveform.id")                | Unique identifier for this pulse. |
 | [`samples`](#qiskit.pulse.Waveform.samples "qiskit.pulse.Waveform.samples") | Return sample values.             |
 
-<span id="undefined" />
+
 
 `assign_parameters(value_dict)`
 
@@ -61,7 +61,7 @@ Return a new pulse with parameters assigned.
 
 New pulse with updated parameters.
 
-<span id="undefined" />
+
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False)`
 
@@ -84,7 +84,7 @@ A matplotlib figure object of the pulse envelope
 
 matplotlib.figure
 
-<span id="undefined" />
+
 
 `property id`
 
@@ -94,7 +94,7 @@ Unique identifier for this pulse.
 
 `int`
 
-<span id="undefined" />
+
 
 `property samples`
 

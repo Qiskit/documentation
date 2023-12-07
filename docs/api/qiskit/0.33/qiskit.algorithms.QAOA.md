@@ -1,6 +1,6 @@
 # QAOA
 
-<span id="undefined" />
+
 
 `QAOA(optimizer=None, reps=1, initial_state=None, mixer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)`
 
@@ -50,7 +50,7 @@ An operator or a parameterized quantum circuit may optionally also be provided a
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ansatz
 
@@ -60,7 +60,7 @@ Returns the ansatz.
 
 `QuantumCircuit`
 
-<span id="undefined" />
+
 
 ### callback
 
@@ -70,7 +70,7 @@ Returns callback
 
 `Optional`\[`Callable`\[\[`int`, `ndarray`, `float`, `float`], `None`]]
 
-<span id="undefined" />
+
 
 ### expectation
 
@@ -80,7 +80,7 @@ The expectation value algorithm used to construct the expectation measurement fr
 
 `Optional`\[`ExpectationBase`]
 
-<span id="undefined" />
+
 
 ### gradient
 
@@ -90,7 +90,7 @@ Returns the gradient.
 
 `Union`\[`GradientBase`, `Callable`, `None`]
 
-<span id="undefined" />
+
 
 ### include\_custom
 
@@ -100,7 +100,7 @@ Returns include\_custom
 
 `bool`
 
-<span id="undefined" />
+
 
 ### initial\_point
 
@@ -110,7 +110,7 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
-<span id="undefined" />
+
 
 ### initial\_state
 
@@ -120,7 +120,7 @@ Returns: Returns the initial state.
 
 `Optional`\[`QuantumCircuit`]
 
-<span id="undefined" />
+
 
 ### max\_evals\_grouped
 
@@ -130,7 +130,7 @@ Returns max\_evals\_grouped
 
 `int`
 
-<span id="undefined" />
+
 
 ### mixer
 
@@ -140,7 +140,7 @@ Returns: Returns the mixer.
 
 `Union`\[`QuantumCircuit`, `OperatorBase`]
 
-<span id="undefined" />
+
 
 ### optimal\_params
 
@@ -150,7 +150,7 @@ The optimal parameters for the ansatz.
 
 `ndarray`
 
-<span id="undefined" />
+
 
 ### optimizer
 
@@ -160,7 +160,7 @@ Returns optimizer
 
 `Optimizer`
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 
@@ -170,7 +170,7 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 ### setting
 

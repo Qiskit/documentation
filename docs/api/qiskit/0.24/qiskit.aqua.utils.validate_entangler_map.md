@@ -2,7 +2,7 @@
 
 # qiskit.aqua.utils.validate\_entangler\_map
 
-<span id="undefined" />
+
 
 `validate_entangler_map(entangler_map, num_qubits, allow_double_entanglement=False)`
 

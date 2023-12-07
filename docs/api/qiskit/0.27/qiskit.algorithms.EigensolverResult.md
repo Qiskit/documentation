@@ -1,12 +1,12 @@
 # qiskit.algorithms.EigensolverResult
 
-<span id="undefined" />
+
 
 `EigensolverResult`
 
 Eigensolver Result.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -27,7 +27,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`eigenstates`](#qiskit.algorithms.EigensolverResult.eigenstates "qiskit.algorithms.EigensolverResult.eigenstates")                                        | return eigen states              |
 | [`eigenvalues`](#qiskit.algorithms.EigensolverResult.eigenvalues "qiskit.algorithms.EigensolverResult.eigenvalues")                                        | returns eigen values             |
 
-<span id="undefined" />
+
 
 `property aux_operator_eigenvalues`
 
@@ -37,7 +37,7 @@ return aux operator eigen values
 
 `Optional`\[`ndarray`]
 
-<span id="undefined" />
+
 
 `combine(result)`
 
@@ -51,7 +51,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-<span id="undefined" />
+
 
 `property eigenstates`
 
@@ -61,7 +61,7 @@ return eigen states
 
 `Optional`\[`ndarray`]
 
-<span id="undefined" />
+
 
 `property eigenvalues`
 

@@ -1,6 +1,6 @@
 # LegacyBaseOperator
 
-<span id="undefined" />
+
 
 `LegacyBaseOperator(basis=None, z2_symmetries=None, name=None)`
 
@@ -24,25 +24,25 @@ Constructor.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### basis
 
 returns basis
 
-<span id="undefined" />
+
 
 ### name
 
 returns name
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 Returns number of qubits for operator
 
-<span id="undefined" />
+
 
 ### z2\_symmetries
 

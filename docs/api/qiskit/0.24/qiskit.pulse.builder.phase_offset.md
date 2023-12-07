@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.phase\_offset
 
-<span id="undefined" />
+
 
 `phase_offset(phase, *channels)`
 

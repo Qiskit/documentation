@@ -2,7 +2,7 @@
 
 # qiskit.aqua.utils.random\_non\_hermitian
 
-<span id="undefined" />
+
 
 `random_non_hermitian(N, M=None, sings=None, K=None, srange=None, sparsity=None, trunc=None)`
 

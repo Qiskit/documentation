@@ -1,6 +1,6 @@
 # VQC
 
-<span id="undefined" />
+
 
 `VQC(optimizer, feature_map, var_form, training_dataset, test_dataset=None, datapoints=None, max_evals_grouped=1, minibatch_size=- 1, callback=None, use_sigmoid_cross_entropy=False, quantum_instance=None)`
 
@@ -60,7 +60,7 @@ Similar to [`QSVM`](qiskit.aqua.algorithms.QSVM#qiskit.aqua.algorithms.QSVM "qis
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### backend
 
@@ -70,19 +70,19 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 ### class\_to\_label
 
 returns class to label
 
-<span id="undefined" />
+
 
 ### datapoints
 
 return data points
 
-<span id="undefined" />
+
 
 ### feature\_map
 
@@ -92,7 +92,7 @@ Return the feature map.
 
 `Union`\[`FeatureMap`, `QuantumCircuit`, `None`]
 
-<span id="undefined" />
+
 
 ### initial\_point
 
@@ -102,19 +102,19 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
-<span id="undefined" />
+
 
 ### label\_to\_class
 
 returns label to class
 
-<span id="undefined" />
+
 
 ### optimal\_params
 
 returns optimal parameters
 
-<span id="undefined" />
+
 
 ### optimizer
 
@@ -124,7 +124,7 @@ Returns optimizer
 
 `Optional`\[`Optimizer`]
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 
@@ -134,31 +134,31 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 ### random
 
 Return a numpy random.
 
-<span id="undefined" />
+
 
 ### ret
 
 returns result
 
-<span id="undefined" />
+
 
 ### test\_dataset
 
 returns test dataset
 
-<span id="undefined" />
+
 
 ### training\_dataset
 
 returns training dataset
 
-<span id="undefined" />
+
 
 ### var\_form
 

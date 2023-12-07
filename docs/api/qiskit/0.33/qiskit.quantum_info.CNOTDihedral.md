@@ -1,6 +1,6 @@
 # CNOTDihedral
 
-<span id="undefined" />
+
 
 `CNOTDihedral(data=None, num_qubits=None, validate=True)`
 
@@ -88,19 +88,19 @@ Initialize a CNOTDihedral operator object.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### dim
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+
 
 ### qargs
 

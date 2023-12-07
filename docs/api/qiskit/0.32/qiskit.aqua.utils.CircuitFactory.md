@@ -1,6 +1,6 @@
 # CircuitFactory
 
-<span id="undefined" />
+
 
 `CircuitFactory(num_target_qubits)`
 
@@ -27,7 +27,7 @@ Base class for CircuitFactories
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 

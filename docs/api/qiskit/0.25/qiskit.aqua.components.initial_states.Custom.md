@@ -1,6 +1,6 @@
 # qiskit.aqua.components.initial\_states.Custom
 
-<span id="undefined" />
+
 
 `Custom(num_qubits, state='zero', state_vector=None, circuit=None)`
 
@@ -27,7 +27,7 @@ The custom initial state will be set from the *circuit*, the *state\_vector*, or
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
 
-<span id="undefined" />
+
 
 `__init__(num_qubits, state='zero', state_vector=None, circuit=None)`
 
@@ -55,11 +55,11 @@ The custom initial state will be set from the *circuit*, the *state\_vector*, or
 | ---------------------------------------------------------------------------------------------------------------------- | - |
 | [`bitstr`](#qiskit.aqua.components.initial_states.Custom.bitstr "qiskit.aqua.components.initial_states.Custom.bitstr") |   |
 
-<span id="undefined" />
+
 
 `property bitstr`
 
-<span id="undefined" />
+
 
 `construct_circuit(mode='circuit', register=None)`
 

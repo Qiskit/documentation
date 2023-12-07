@@ -1,6 +1,6 @@
 # SklearnSVM
 
-<span id="undefined" />
+
 
 `SklearnSVM(training_dataset, test_dataset=None, datapoints=None, gamma=None, multiclass_extension=None)`
 
@@ -37,25 +37,25 @@ Internally, this algorithm will run the binary classification or multiclass clas
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### class\_to\_label
 
 returns class to label
 
-<span id="undefined" />
+
 
 ### label\_to\_class
 
 returns label to class
 
-<span id="undefined" />
+
 
 ### random
 
 Return a numpy random.
 
-<span id="undefined" />
+
 
 ### ret
 

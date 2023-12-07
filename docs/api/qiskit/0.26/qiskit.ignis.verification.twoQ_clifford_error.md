@@ -1,6 +1,6 @@
 # qiskit.ignis.verification.twoQ\_clifford\_error
 
-<span id="undefined" />
+
 
 `twoQ_clifford_error(ngates, gate_qubit, gate_err)`
 

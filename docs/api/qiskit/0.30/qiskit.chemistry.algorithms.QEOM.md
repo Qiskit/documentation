@@ -1,6 +1,6 @@
 # QEOM
 
-<span id="undefined" />
+
 
 `QEOM(ground_state_solver, excitations='sd')`
 
@@ -21,7 +21,7 @@ The calculation of excited states via the qEOM algorithm
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### excitations
 

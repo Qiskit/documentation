@@ -1,6 +1,6 @@
 # qiskit.circuit.library.RZGate
 
-<span id="undefined" />
+
 
 `RZGate(phi, label=None)`
 
@@ -38,7 +38,7 @@ $$
 
 Create new RZ gate.
 
-<span id="undefined" />
+
 
 `__init__(phi, label=None)`
 
@@ -77,13 +77,13 @@ Create new RZ gate.
 | [`params`](#qiskit.circuit.library.RZGate.params "qiskit.circuit.library.RZGate.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.circuit.library.RZGate.unit "qiskit.circuit.library.RZGate.unit")                               | Get the time unit of duration.                                                |
 
-<span id="undefined" />
+
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+
 
 `assemble()`
 
@@ -93,7 +93,7 @@ Assemble a QasmQobjInstruction
 
 `Instruction`
 
-<span id="undefined" />
+
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -146,13 +146,13 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="undefined" />
+
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
-<span id="undefined" />
+
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
@@ -172,7 +172,7 @@ controlled version of this gate.
 
 [ControlledGate](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
-<span id="undefined" />
+
 
 `copy(name=None)`
 
@@ -192,25 +192,25 @@ updated if it was provided
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+
 
 `property duration`
 
 Get the duration.
 
-<span id="undefined" />
+
 
 `inverse()`
 
@@ -218,13 +218,13 @@ Return inverted RZ gate
 
 $RZ(\lambda){\dagger} = RZ(-\lambda)$
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
-<span id="undefined" />
+
 
 `property label`
 
@@ -234,7 +234,7 @@ Return gate label
 
 `str`
 
-<span id="undefined" />
+
 
 `mirror()`
 
@@ -250,13 +250,13 @@ reversed.
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+
 
 `property params`
 
 return instruction params.
 
-<span id="undefined" />
+
 
 `power(exponent)`
 
@@ -278,7 +278,7 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **CircuitError** – If Gate is not unitary
 
-<span id="undefined" />
+
 
 `qasm()`
 
@@ -286,7 +286,7 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
-<span id="undefined" />
+
 
 `repeat(n)`
 
@@ -308,7 +308,7 @@ Containing the definition.
 
 **CircuitError** – If n \< 1.
 
-<span id="undefined" />
+
 
 `reverse_ops()`
 
@@ -326,7 +326,7 @@ sub-instructions reversed.
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+
 
 `soft_compare(other)`
 
@@ -344,7 +344,7 @@ are self and other equal up to parameter expressions.
 
 bool
 
-<span id="undefined" />
+
 
 `to_matrix()`
 
@@ -362,13 +362,13 @@ np.ndarray
 
 **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
 
-<span id="undefined" />
+
 
 `property unit`
 
 Get the time unit of duration.
 
-<span id="undefined" />
+
 
 `validate_parameter(parameter)`
 

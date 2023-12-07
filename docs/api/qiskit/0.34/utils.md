@@ -105,7 +105,7 @@ Each of the lazy checkers is an instance of [`LazyDependencyManager`](#qiskit.ut
 from qiskit.utils import LazyImportTester
 ```
 
-<span id="undefined" />
+
 
 `LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)`
 
@@ -146,7 +146,7 @@ This is the base class, which provides the Boolean context checking and error ma
 *   **install** – how to install this optional dependency. Passed to `MissingOptionalLibraryError` as the `pip_install` parameter.
 *   **msg** – an extra message to include in the error raised if this is required.
 
-<span id="undefined" />
+
 
 `abstract _is_available()`
 
@@ -156,17 +156,17 @@ Subclasses of [`LazyDependencyManager`](#qiskit.utils.LazyDependencyManager "qis
 
 `bool`
 
-<span id="undefined" />
+
 
 `disable_locally()`
 
 Create a context, during which the value of the dependency manager will be `False`. This means that within the context, any calls to this object will behave as if the dependency is not available, including raising errors. It is valid to call this method whether or not the dependency has already been evaluated. This is most useful in tests.
 
-<span id="undefined" />
+
 
 `require_in_call(feature_or_callable: Callable) → Callable`
 
-<span id="undefined" />
+
 
 `require_in_call(feature_or_callable: str) → Callable[[Callable], Callable]`
 
@@ -184,11 +184,11 @@ a decorator that will make its argument require this dependency before it is cal
 
 Callable
 
-<span id="undefined" />
+
 
 `require_in_instance(feature_or_class: Type) → Type`
 
-<span id="undefined" />
+
 
 `require_in_instance(feature_or_class: str) → Callable[[Type], Type]`
 
@@ -206,7 +206,7 @@ a class decorator that ensures that the wrapped feature is present if the class 
 
 Callable
 
-<span id="undefined" />
+
 
 `require_now(feature)`
 
@@ -220,7 +220,7 @@ Eagerly attempt to import the dependencies in this object, and raise an exceptio
 
 **MissingOptionalLibraryError** – if the dependencies cannot be imported.
 
-<span id="undefined" />
+
 
 `LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)`
 
@@ -234,7 +234,7 @@ A lazy dependency tester for importable Python modules. Any required objects wil
 
 **ValueError** – if no modules are given.
 
-<span id="undefined" />
+
 
 `LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)`
 

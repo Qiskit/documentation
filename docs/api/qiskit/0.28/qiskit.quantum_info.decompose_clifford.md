@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.decompose\_clifford
 
-<span id="undefined" />
+
 
 `decompose_clifford(clifford, method=None)`
 

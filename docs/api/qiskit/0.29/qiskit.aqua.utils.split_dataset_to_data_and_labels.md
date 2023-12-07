@@ -1,6 +1,6 @@
 # qiskit.aqua.utils.split\_dataset\_to\_data\_and\_labels
 
-<span id="undefined" />
+
 
 `split_dataset_to_data_and_labels(dataset, class_names=None)`
 

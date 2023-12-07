@@ -1,6 +1,6 @@
 # VarFormBased
 
-<span id="undefined" />
+
 
 `VarFormBased(var_form, params)`
 

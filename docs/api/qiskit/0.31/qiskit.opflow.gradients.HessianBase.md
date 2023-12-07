@@ -1,6 +1,6 @@
 # HessianBase
 
-<span id="undefined" />
+
 
 `HessianBase(hess_method='param_shift', **kwargs)`
 
@@ -19,7 +19,7 @@ Base class for the Hessian of an expected value.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### hess\_method
 

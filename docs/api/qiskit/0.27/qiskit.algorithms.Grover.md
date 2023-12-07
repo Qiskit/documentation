@@ -1,6 +1,6 @@
 # qiskit.algorithms.Grover
 
-<span id="undefined" />
+
 
 `Grover(iterations=None, growth_rate=None, sample_from_iterations=False, quantum_instance=None)`
 
@@ -73,7 +73,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 [https://arxiv.org/abs/quant-ph/9605034](https://arxiv.org/abs/quant-ph/9605034)
 
-<span id="undefined" />
+
 
 `__init__(iterations=None, growth_rate=None, sample_from_iterations=False, quantum_instance=None)`
 
@@ -110,7 +110,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 | ------------------------------------------------------------------------------------------------------------ | ------------------------- |
 | [`quantum_instance`](#qiskit.algorithms.Grover.quantum_instance "qiskit.algorithms.Grover.quantum_instance") | Get the quantum instance. |
 
-<span id="undefined" />
+
 
 `amplify(amplification_problem)`
 
@@ -128,7 +128,7 @@ Run the Grover algorithm.
 
 The result as a `GroverResult`, where e.g. the most likely state can be queried as `result.top_measurement`.
 
-<span id="undefined" />
+
 
 `construct_circuit(problem, power=None, measurement=False)`
 
@@ -152,7 +152,7 @@ the QuantumCircuit object for the constructed circuit
 
 **ValueError** – If no power is passed and the iterations are not an integer.
 
-<span id="undefined" />
+
 
 `static optimal_num_iterations(num_solutions, num_qubits)`
 
@@ -171,7 +171,7 @@ Return the optimal number of iterations, if the number of solutions is known.
 
 The optimal number of iterations for Grover’s algorithm to succeed.
 
-<span id="undefined" />
+
 
 `property quantum_instance`
 

@@ -1,6 +1,6 @@
 # qiskit.aqua.components.variational\_forms.VariationalForm
 
-<span id="undefined" />
+
 
 `VariationalForm`
 
@@ -8,7 +8,7 @@ Base class for VariationalForms.
 
 This method should initialize the module and use an exception if a component of the module is not available.
 
-<span id="undefined" />
+
 
 `abstract __init__()`
 
@@ -34,7 +34,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`setting`](#qiskit.aqua.components.variational_forms.VariationalForm.setting "qiskit.aqua.components.variational_forms.VariationalForm.setting")                                                                   |                                                             |
 | [`support_parameterized_circuit`](#qiskit.aqua.components.variational_forms.VariationalForm.support_parameterized_circuit "qiskit.aqua.components.variational_forms.VariationalForm.support_parameterized_circuit") | Whether or not the sub-class support parameterized circuit. |
 
-<span id="undefined" />
+
 
 `abstract construct_circuit(parameters, q=None)`
 
@@ -53,13 +53,13 @@ A quantum circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-<span id="undefined" />
+
 
 `static get_entangler_map(map_type, num_qubits, offset=0)`
 
 returns entangler map
 
-<span id="undefined" />
+
 
 `property num_parameters`
 
@@ -73,7 +73,7 @@ An integer indicating the number of parameters.
 
 int
 
-<span id="undefined" />
+
 
 `property num_qubits`
 
@@ -87,7 +87,7 @@ An integer indicating the number of qubits.
 
 int
 
-<span id="undefined" />
+
 
 `property parameter_bounds`
 
@@ -101,7 +101,7 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 list
 
-<span id="undefined" />
+
 
 `property preferred_init_points`
 
@@ -109,11 +109,11 @@ Return preferred init points.
 
 If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
 
-<span id="undefined" />
+
 
 `property setting`
 
-<span id="undefined" />
+
 
 `property support_parameterized_circuit`
 
@@ -127,7 +127,7 @@ indicate the sub-class support parameterized circuit
 
 boolean
 
-<span id="undefined" />
+
 
 `static validate_entangler_map(entangler_map, num_qubits)`
 

@@ -1,6 +1,6 @@
 # InstructionScheduleMap
 
-<span id="undefined" />
+
 
 `InstructionScheduleMap`
 
@@ -35,7 +35,7 @@ Initialize a circuit instruction to schedule mapper instance.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### instructions
 

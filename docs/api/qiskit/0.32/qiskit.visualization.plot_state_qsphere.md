@@ -1,6 +1,6 @@
 # qiskit.visualization.plot\_state\_qsphere
 
-<span id="undefined" />
+
 
 `plot_state_qsphere(state, figsize=None, ax=None, show_state_labels=True, show_state_phases=False, use_degrees=False, *, rho=None)`
 

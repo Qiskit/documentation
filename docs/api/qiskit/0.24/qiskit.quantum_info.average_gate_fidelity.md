@@ -2,7 +2,7 @@
 
 # qiskit.quantum\_info.average\_gate\_fidelity
 
-<span id="undefined" />
+
 
 `average_gate_fidelity(channel, target=None, require_cp=True, require_tp=False)`
 

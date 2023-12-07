@@ -1,6 +1,6 @@
 # qiskit.algorithms.Shor
 
-<span id="undefined" />
+
 
 `Shor(quantum_instance=None)`
 
@@ -16,7 +16,7 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 
 **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – Quantum Instance or Backend
 
-<span id="undefined" />
+
 
 `__init__(quantum_instance=None)`
 
@@ -39,7 +39,7 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 | -------------------------------------------------------------------------------------------------------- | ------------------------- |
 | [`quantum_instance`](#qiskit.algorithms.Shor.quantum_instance "qiskit.algorithms.Shor.quantum_instance") | Returns quantum instance. |
 
-<span id="undefined" />
+
 
 `construct_circuit(N, a=2, measurement=False)`
 
@@ -59,7 +59,7 @@ Construct quantum part of the algorithm.
 
 Quantum circuit.
 
-<span id="undefined" />
+
 
 `factor(N, a=2)`
 
@@ -85,7 +85,7 @@ results of the algorithm.
 *   **ValueError** – Invalid input
 *   [**AlgorithmError**](qiskit.algorithms.AlgorithmError#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If a quantum instance or backend has not been provided
 
-<span id="undefined" />
+
 
 `static modinv(a, m)`
 
@@ -95,7 +95,7 @@ Returns the modular multiplicative inverse of a with respect to the modulus m.
 
 `int`
 
-<span id="undefined" />
+
 
 `property quantum_instance`
 

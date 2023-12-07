@@ -1,6 +1,6 @@
 # qiskit.visualization.qcstyle.DefaultStyle
 
-<span id="undefined" />
+
 
 `DefaultStyle`
 
@@ -149,7 +149,7 @@ the form (gate\_color, text\_color). Colors can also be entered without the text
 }
 ```
 
-<span id="undefined" />
+
 
 `__init__()`
 

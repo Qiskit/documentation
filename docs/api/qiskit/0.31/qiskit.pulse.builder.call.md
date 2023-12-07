@@ -1,6 +1,6 @@
 # qiskit.pulse.builder.call
 
-<span id="undefined" />
+
 
 `call(target, name=None, value_dict=None, **kw_params)`
 

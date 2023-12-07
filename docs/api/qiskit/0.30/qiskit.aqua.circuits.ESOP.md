@@ -1,6 +1,6 @@
 # ESOP
 
-<span id="undefined" />
+
 
 `ESOP(ast, num_vars=None)`
 
@@ -28,37 +28,37 @@ Constructor.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### ancillary\_register
 
 returns ancillary register
 
-<span id="undefined" />
+
 
 ### clause\_register
 
 returns clause register
 
-<span id="undefined" />
+
 
 ### num\_clauses
 
 returns num clauses
 
-<span id="undefined" />
+
 
 ### num\_variables
 
 return num variables
 
-<span id="undefined" />
+
 
 ### output\_register
 
 returns output register
 
-<span id="undefined" />
+
 
 ### variable\_register
 

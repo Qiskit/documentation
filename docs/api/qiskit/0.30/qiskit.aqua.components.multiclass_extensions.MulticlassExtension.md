@@ -1,6 +1,6 @@
 # MulticlassExtension
 
-<span id="undefined" />
+
 
 `MulticlassExtension`
 
