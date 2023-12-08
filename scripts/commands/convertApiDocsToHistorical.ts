@@ -125,7 +125,7 @@ async function generateJsonFiles(
   // by any subfolder starting with a number (historical version folders)
   // or a release note file
   const linksToUptade = new RegExp(
-    '"url": "/api/' + pkgName + '(?!/release-notes)(?!/[0-9])',
+    '"url": "/api/' + pkgName + "(?!/release-notes)(?!/[0-9])",
     "g",
   );
   tocFile = tocFile.replace(
