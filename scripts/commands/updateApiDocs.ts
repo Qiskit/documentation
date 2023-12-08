@@ -159,10 +159,12 @@ zxMain(async () => {
 
   pkg.initialUrl = pkg.baseUrl + pkg.initialUrl;
 
-  if (pkg.historical && pkg.name == "qiskit") {
-    const htmlFile =
-      +pkg.versionWithoutPatch >= 0.44 ? "index.html" : "terra.html";
-    pkg.initialUrl = `${pkg.baseUrl}/apidoc/${htmlFile}`;
+  if (
+    pkg.historical &&
+    pkg.name == "qiskit" &&
+    +pkg.versionWithoutPatch < 0.44
+  ) {
+    pkg.initialUrl = `${pkg.baseUrl}/apidoc/terra.html`;
   }
 
   const artifactUrl = args.artifact;
