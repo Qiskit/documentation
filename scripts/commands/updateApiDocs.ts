@@ -159,11 +159,7 @@ zxMain(async () => {
 
   pkg.initialUrl = pkg.baseUrl + pkg.initialUrl;
 
-  if (
-    pkg.historical &&
-    pkg.name == "qiskit" &&
-    +pkg.versionWithoutPatch < 0.44
-  ) {
+  if (pkg.name == "qiskit" && +pkg.versionWithoutPatch < 0.44) {
     pkg.initialUrl = `${pkg.baseUrl}/apidoc/terra.html`;
   }
 
