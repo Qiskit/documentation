@@ -1470,6 +1470,59 @@ test("identify release notes", async () => {
 `);
 });
 
+// This test checks that the conversion to markdown is correct when we have a <dt class=sig-object"> tag
+// without id. For more information: https://github.com/Qiskit/documentation/issues/485
+test("test dt tag without id", async () => {
+  expect(
+    await toMd(`
+    <div role="main">
+    <p>In addition to the public abstract methods, subclasses should also implement the following
+    private methods:</p>
+    <dl class="py method">
+    <dt class="sig sig-object py">
+    <em class="property"><span class="pre">classmethod</span><span class="w"> </span></em><span class="sig-name descname"><span class="pre">_default_options</span></span><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qiskit/providers/basicaer/qasm_simulator.html#QasmSimulatorPy._default_options"><span class="viewcode-link"><span class="pre">[source]</span></span></a></dt>
+    <dd><p>Return the default options</p>
+    <p>This method will return a <a class="reference internal" href="qiskit.providers.Options.html#qiskit.providers.Options" title="qiskit.providers.Options"><code class="xref py py-class docutils literal notranslate"><span class="pre">qiskit.providers.Options</span></code></a>
+    subclass object that will be used for the default options. These
+    should be the default parameters to use for the options of the
+    backend.</p>
+    <dl class="field-list simple">
+    <dt class="field-odd">Returns<span class="colon">:</span></dt>
+    <dd class="field-odd"><p><dl class="simple">
+    <dt>A options object with</dt><dd><p>default values set</p>
+    </dd>
+    </dl>
+    </p>
+    </dd>
+    <dt class="field-even">Return type<span class="colon">:</span></dt>
+    <dd class="field-even"><p><a class="reference internal" href="qiskit.providers.Options.html#qiskit.providers.Options" title="qiskit.providers.Options">qiskit.providers.Options</a></p>
+    </dd>
+    </dl>
+    </dd></dl>
+    </div>
+`),
+  ).toMatchInlineSnapshot(`
+  "In addition to the public abstract methods, subclasses should also implement the following private methods:
+  
+  \`classmethod _default_options()\`
+  
+  Return the default options
+  
+  This method will return a [\`qiskit.providers.Options\`](qiskit.providers.Options#qiskit.providers.Options "qiskit.providers.Options") subclass object that will be used for the default options. These should be the default parameters to use for the options of the backend.
+  
+  **Returns**
+  
+  **A options object with**
+  
+  default values set
+  
+  **Return type**
+  
+  [qiskit.providers.Options](qiskit.providers.Options#qiskit.providers.Options "qiskit.providers.Options")
+  "
+  `);
+});
+
 async function toMd(html: string) {
   return (
     await sphinxHtmlToMarkdown({
