@@ -193,7 +193,8 @@ export async function sphinxHtmlToMarkdown(options: {
       .map((child) => {
         const $child = $page(child);
         $child.find(".viewcode-link").closest("a").remove();
-        const id = $dl.find("dt.sig-object").attr("id");
+        const findID = $dl.find("dt.sig-object").attr("id");
+        const id = findID != undefined ? findID : "";
 
         if (child.name === "dt" && $dl.hasClass("class")) {
           if (!meta.python_api_type) {
