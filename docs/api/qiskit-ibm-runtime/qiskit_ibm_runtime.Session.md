@@ -137,19 +137,15 @@ A dictionary with the sessions details, including
 
 <span id="qiskit_ibm_runtime.Session.from_id" />
 
-`classmethod from_id(session_id, service, backend=None)`
+`classmethod from_id(session_id, service=None, backend=None)`
 
 Construct a Session object with a given session\_id
 
 **Parameters**
 
 *   **session\_id** (`str`) – the id of the session to be created. This must be an already existing session id.
-*   **service** ([`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")) – instance of the `QiskitRuntimeService` class.
+*   **service** (`Optional`\[[`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")]) – instance of the `QiskitRuntimeService` class.
 *   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – instance of [`qiskit_ibm_runtime.IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") class or string name of backend.
-
-**Raises**
-
-**IBMInputValueError** – If given session\_id does not exist. or the backend passed in does not match the original session backend.
 
 **Return type**
 
@@ -170,7 +166,7 @@ Run a program in the session.
 **Parameters**
 
 *   **program\_id** (`str`) – Program ID.
-*   **inputs** (`Union`\[`Dict`, [`ParameterNamespace`](qiskit_ibm_runtime.ParameterNamespace "qiskit_ibm_runtime.runtime_program.ParameterNamespace")]) – Program input parameters. These input values are passed to the runtime program.
+*   **inputs** (`Dict`) – Program input parameters. These input values are passed to the runtime program.
 *   **options** (`Optional`\[`Dict`]) – Runtime options that control the execution environment. See [`qiskit_ibm_runtime.RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions") for all available options.
 *   **callback** (`Optional`\[`Callable`]) – Callback function to be invoked for any interim results and final result.
 
