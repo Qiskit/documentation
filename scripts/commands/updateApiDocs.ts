@@ -336,13 +336,10 @@ async function convertHtmlToMarkdown(
     await writeFile(path, result.markdown);
   }
 
-  if (pkg.name == "qiskit") {
-    const qiskitIndex = `/${relative(`${getRoot()}/docs`, `${markdownPath}`)}`;
-
-    results.forEach((result) => {
-      result.url = result.url.replace(`${qiskitIndex}/index`, `${qiskitIndex}`);
-    });
-  }
+  const projectIndex = `/${relative(`${getRoot()}/docs`, `${markdownPath}`)}`;
+  results.forEach((result) => {
+    result.url = result.url.replace(`${projectIndex}/index`, `${projectIndex}`);
+  });
 
   console.log("Generating toc");
   const toc = generateToc(pkg, results);
