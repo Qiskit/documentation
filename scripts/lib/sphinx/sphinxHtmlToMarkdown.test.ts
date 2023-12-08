@@ -1470,7 +1470,9 @@ test("identify release notes", async () => {
 `);
 });
 
-test("test HTML tag without id", async () => {
+// This test checks that the conversion to markdown is correct when we have a <dt class=sig-object"> tag
+// without id. For more information: https://github.com/Qiskit/documentation/issues/485
+test("test dt tag without id", async () => {
   expect(
     await toMd(`
     <div role="main">
