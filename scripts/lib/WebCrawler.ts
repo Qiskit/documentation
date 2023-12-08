@@ -14,7 +14,7 @@ import { load } from "cheerio";
 import PQueue from "p-queue";
 
 export class WebCrawler {
-  private initialUrls: string[];
+  private initialUrl: string;
   private followUrl: (url: string, baseUrl: string) => boolean;
   private retryUrl?: (url: string) => boolean;
   private onSuccess: (url: string, content: string) => void;
@@ -27,7 +27,7 @@ export class WebCrawler {
   private linkSelector: string;
 
   constructor(options: {
-    initialUrls: string[];
+    initialUrl: string;
     linkSelector?: string;
     retryUrl?: (url: string) => boolean;
     followUrl: (linkUrl: string, baseUrl: string) => boolean;
@@ -36,7 +36,7 @@ export class WebCrawler {
     onError?: (url: string, error: unknown) => void;
     concurrency?: number;
   }) {
-    this.initialUrls = options.initialUrls;
+    this.initialUrl = options.initialUrl;
     this.followUrl = options.followUrl;
     this.retryUrl = options.retryUrl;
     this.onSuccess = options.onSuccess;
@@ -49,7 +49,7 @@ export class WebCrawler {
   async run() {
     return new Promise((resolve) => {
       this.queue.once("idle", resolve);
-      this.queueUrls(this.initialUrls);
+      this.queueUrl(this.initialUrl);
     });
   }
 
