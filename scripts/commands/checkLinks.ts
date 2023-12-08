@@ -26,28 +26,18 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
 const DOCS_GLOBS_TO_CHECK = [
-  "docs/build/*",
-  "docs/run/*",
-  "docs/start/*",
-  "docs/transpile/*",
-  "docs/verify/*",
-  "docs/support.mdx",
-  "docs/api/migration-guides/*",
-  "docs/api/qiskit/*",
-  "docs/api/qiskit-ibm-runtime/*",
-  "docs/api/qiskit-ibm-provider/*",
-  "!docs/**/*.json",
+  "docs/**/*.{ipynb,md,mdx}",
+  // Ignore historical versions
+  "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
+  "!docs/api/qiskit/release-notes/*",
 ];
 
 // These docs/ globs are only loaded so that we can
 // validate that internal links to the files are valid.
 // We don't check that their own links are valid.
 const DOCS_GLOBS_TO_LOAD = [
-  "docs/api/qiskit/0.44/algorithms.md",
-  "docs/api/qiskit/0.44/opflow.md",
-  "docs/api/qiskit/0.44/qiskit.algorithms.*",
-  "docs/api/qiskit/0.44/qiskit.extensions.*",
-  "docs/api/qiskit/0.44/qiskit.opflow.*",
+  "docs/api/qiskit/0.44/{algorithms,opflow}.md",
+  "docs/api/qiskit/0.44/qiskit.{algorithms,extensions,opflow}.*",
   "docs/api/qiskit/0.44/qiskit.utils.QuantumInstance.md",
   "docs/api/qiskit/release-notes/index.md",
 ];
