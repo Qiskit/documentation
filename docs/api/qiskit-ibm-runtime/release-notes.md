@@ -6,15 +6,61 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes" />
 
-# Qiskit Runtime IBM Client 0.15 release notes
+# Qiskit Runtime IBM Client 0.16 release notes
+
+<span id="release-notes-0-16-0" />
+
+<span id="id1" />
+
+## 0.16.0
+
+<span id="release-notes-0-16-0-prelude" />
+
+### Prelude
+
+Sessions are now thread-safe and allow for multiple concurrent interactive experiments.
+
+<span id="release-notes-0-16-0-new-features" />
+
+### New Features
+
+*   Sessions are now thread-safe.
+
+<span id="release-notes-0-16-0-upgrade-notes" />
+
+### Upgrade Notes
+
+*   Methods related to using custom programs are removed.
+
+<span id="release-notes-0-16-0-bug-fixes" />
+
+### Bug Fixes
+
+*   If a cloud instance that is `q-ctrl` enabled is used while `q-ctrl` is not passed in as the `channel_strategy`, an error will be raised.
+
+<span id="release-notes-0-15-1" />
+
+<span id="id2" />
+
+## 0.15.1
+
+<span id="release-notes-0-15-1-bug-fixes" />
+
+<span id="id3" />
+
+### Bug Fixes
+
+*   Reverting 0.15.0 changes to [`from_id()`](qiskit_ibm_runtime.Session#from_id "qiskit_ibm_runtime.Session.from_id") because it was a breaking change without proper deprecation.
 
 <span id="release-notes-0-15-0" />
 
-<span id="id1" />
+<span id="id4" />
 
 ## 0.15.0
 
 <span id="release-notes-0-15-0-new-features" />
+
+<span id="id5" />
 
 ### New Features
 
@@ -59,6 +105,8 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-15-0-bug-fixes" />
 
+<span id="id6" />
+
 ### Bug Fixes
 
 *   Fixed an issue where canceled and failed jobs would return an invalid result that resulted in a type error, preventing the actual error from being returned to the user.
@@ -77,13 +125,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-14-0" />
 
-<span id="id2" />
+<span id="id7" />
 
 ## 0.14.0
 
 <span id="release-notes-0-14-0-new-features" />
 
-<span id="id3" />
+<span id="id8" />
 
 ### New Features
 
@@ -93,7 +141,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-14-0-deprecation-notes" />
 
-<span id="id4" />
+<span id="id9" />
 
 ### Deprecation Notes
 
@@ -101,13 +149,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-13-0" />
 
-<span id="id5" />
+<span id="id10" />
 
 ## 0.13.0
 
 <span id="release-notes-0-13-0-new-features" />
 
-<span id="id6" />
+<span id="id11" />
 
 ### New Features
 
@@ -119,6 +167,8 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-13-0-upgrade-notes" />
 
+<span id="id12" />
+
 ### Upgrade Notes
 
 *   [`qiskit_ibm_runtime.Session.close()`](qiskit_ibm_runtime.Session#close "qiskit_ibm_runtime.Session.close") has been updated to mark a `Session` as no longer accepting new jobs. The session won’t accept more jobs but it will continue to run any queued jobs until they are done or the max time expires. This will also happen automatically when the session context manager is exited. When a session that is not accepting jobs has run out of jobs to run, it’s immediately closed, freeing up the backend to run more jobs rather than wait for the interactive timeout.
@@ -127,7 +177,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-13-0-bug-fixes" />
 
-<span id="id7" />
+<span id="id13" />
 
 ### Bug Fixes
 
@@ -137,13 +187,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-2" />
 
-<span id="id8" />
+<span id="id14" />
 
 ## 0.12.2
 
 <span id="release-notes-0-12-2-new-features" />
 
-<span id="id9" />
+<span id="id15" />
 
 ### New Features
 
@@ -157,7 +207,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-2-upgrade-notes" />
 
-<span id="id10" />
+<span id="id16" />
 
 ### Upgrade Notes
 
@@ -165,13 +215,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-1" />
 
-<span id="id11" />
+<span id="id17" />
 
 ## 0.12.1
 
 <span id="release-notes-0-12-1-new-features" />
 
-<span id="id12" />
+<span id="id18" />
 
 ### New Features
 
@@ -183,7 +233,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-1-bug-fixes" />
 
-<span id="id13" />
+<span id="id19" />
 
 ### Bug Fixes
 
@@ -197,13 +247,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-0" />
 
-<span id="id14" />
+<span id="id20" />
 
 ## 0.12.0
 
 <span id="release-notes-0-12-0-new-features" />
 
-<span id="id15" />
+<span id="id21" />
 
 ### New Features
 
@@ -224,7 +274,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-0-upgrade-notes" />
 
-<span id="id16" />
+<span id="id22" />
 
 ### Upgrade Notes
 
@@ -232,7 +282,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-0-deprecation-notes" />
 
-<span id="id17" />
+<span id="id23" />
 
 ### Deprecation Notes
 
@@ -240,7 +290,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-12-0-bug-fixes" />
 
-<span id="id18" />
+<span id="id24" />
 
 ### Bug Fixes
 
@@ -252,13 +302,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-3" />
 
-<span id="id19" />
+<span id="id25" />
 
 ## 0.11.3
 
 <span id="release-notes-0-11-3-new-features" />
 
-<span id="id20" />
+<span id="id26" />
 
 ### New Features
 
@@ -274,13 +324,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-2" />
 
-<span id="id21" />
+<span id="id27" />
 
 ## 0.11.2
 
 <span id="release-notes-0-11-2-new-features" />
 
-<span id="id22" />
+<span id="id28" />
 
 ### New Features
 
@@ -303,7 +353,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-2-bug-fixes" />
 
-<span id="id23" />
+<span id="id29" />
 
 ### Bug Fixes
 
@@ -313,13 +363,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-1" />
 
-<span id="id24" />
+<span id="id30" />
 
 ## 0.11.1
 
 <span id="release-notes-0-11-1-deprecation-notes" />
 
-<span id="id25" />
+<span id="id31" />
 
 ### Deprecation Notes
 
@@ -327,13 +377,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-0" />
 
-<span id="id26" />
+<span id="id32" />
 
 ## 0.11.0
 
 <span id="release-notes-0-11-0-new-features" />
 
-<span id="id27" />
+<span id="id33" />
 
 ### New Features
 
@@ -355,7 +405,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-0-upgrade-notes" />
 
-<span id="id28" />
+<span id="id34" />
 
 ### Upgrade Notes
 
@@ -365,7 +415,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-11-0-deprecation-notes" />
 
-<span id="id29" />
+<span id="id35" />
 
 ### Deprecation Notes
 
@@ -373,13 +423,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-10-0" />
 
-<span id="id30" />
+<span id="id36" />
 
 ## 0.10.0
 
 <span id="release-notes-0-10-0-new-features" />
 
-<span id="id31" />
+<span id="id37" />
 
 ### New Features
 
@@ -387,7 +437,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-10-0-upgrade-notes" />
 
-<span id="id32" />
+<span id="id38" />
 
 ### Upgrade Notes
 
@@ -395,7 +445,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-10-0-bug-fixes" />
 
-<span id="id33" />
+<span id="id39" />
 
 ### Bug Fixes
 
@@ -405,13 +455,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-4" />
 
-<span id="id35" />
+<span id="id41" />
 
 ## 0.9.4
 
 <span id="release-notes-0-9-4-new-features" />
 
-<span id="id36" />
+<span id="id42" />
 
 ### New Features
 
@@ -419,7 +469,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-4-upgrade-notes" />
 
-<span id="id37" />
+<span id="id43" />
 
 ### Upgrade Notes
 
@@ -427,7 +477,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-4-deprecation-notes" />
 
-<span id="id38" />
+<span id="id44" />
 
 ### Deprecation Notes
 
@@ -441,7 +491,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-4-bug-fixes" />
 
-<span id="id39" />
+<span id="id45" />
 
 ### Bug Fixes
 
@@ -449,13 +499,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-3" />
 
-<span id="id40" />
+<span id="id46" />
 
 ## 0.9.3
 
 <span id="release-notes-0-9-3-upgrade-notes" />
 
-<span id="id41" />
+<span id="id47" />
 
 ### Upgrade Notes
 
@@ -465,7 +515,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-3-bug-fixes" />
 
-<span id="id42" />
+<span id="id48" />
 
 ### Bug Fixes
 
@@ -473,13 +523,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-2" />
 
-<span id="id43" />
+<span id="id49" />
 
 ## 0.9.2
 
 <span id="release-notes-0-9-2-new-features" />
 
-<span id="id44" />
+<span id="id50" />
 
 ### New Features
 
@@ -489,7 +539,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-2-upgrade-notes" />
 
-<span id="id45" />
+<span id="id51" />
 
 ### Upgrade Notes
 
@@ -501,7 +551,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-2-bug-fixes" />
 
-<span id="id46" />
+<span id="id52" />
 
 ### Bug Fixes
 
@@ -515,13 +565,13 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-1" />
 
-<span id="id47" />
+<span id="id53" />
 
 ## 0.9.1
 
 <span id="release-notes-0-9-1-upgrade-notes" />
 
-<span id="id48" />
+<span id="id54" />
 
 ### Upgrade Notes
 
@@ -541,7 +591,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-1-deprecation-notes" />
 
-<span id="id49" />
+<span id="id55" />
 
 ### Deprecation Notes
 
@@ -549,7 +599,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-1-bug-fixes" />
 
-<span id="id50" />
+<span id="id56" />
 
 ### Bug Fixes
 
@@ -557,7 +607,7 @@ in_page_toc_max_heading_level: 2
 
 <span id="release-notes-0-9-1-other-notes" />
 
-<span id="id51" />
+<span id="id57" />
 
 ### Other Notes
 
