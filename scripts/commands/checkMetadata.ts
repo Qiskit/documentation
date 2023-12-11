@@ -76,10 +76,13 @@ const main = async (): Promise<void> => {
       Invalid markdown file metadata. Every .md and .mdx file should start with a metadata block like this:
 
       ---
-      title: OpenQASM 3 feature table
-      description: A list of the OpenQASM 3 language features
+      title: Representing quantum computers
+      description: Learn about coupling maps, basis gates and backend errors for transpiling
       ---
 
+      The title should be the page title; the description should describe the page
+      in <160 characters, ideally using some keywords. The description is what
+      shows up on Google results. See https://github.com/Qiskit/documentation/issues/131 for some tips.
 
       Please fix these files: ${mdErrors}
     `);
@@ -87,7 +90,19 @@ const main = async (): Promise<void> => {
   if (notebookErrors.length > 0) {
     console.error(`
       Invalid Jupyter notebook metadata. Every .ipynb file needs to 
-      set 'title' and 'description' in the file metadata.
+      set 'title' and 'description' in the file metadata. You need to
+      manually add this metadata. 
+      
+      For example, if using VSCode, open up the file with the "Open With..." option and then "Text Editor".
+      
+      Once the file is open in text-mode, scroll down to the bottom of the file for the top-level key "metadata". Be careful that this is the metada for the entire file
+      and not a single code block. You should see in the "metadata" section other
+      entries like "language_info" and "nbconvert_exporter".
+
+      Finally, add new keys in the "metadata" section for "title" and "description". The
+      "title" should be the page title; the "description" should describe the page
+      in <160 characters, ideally using some keywords. The description is what
+      shows up on Google results. See https://github.com/Qiskit/documentation/issues/131 for some tips. 
 
       Please fix these files: ${notebookErrors}
     `);
