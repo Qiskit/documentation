@@ -95,7 +95,7 @@ const main = async (): Promise<void> => {
       
       For example, if using VSCode, open up the file with the "Open With..." option and then "Text Editor".
       
-      Once the file is open in text-mode, scroll down to the bottom of the file for the top-level key "metadata". Be careful that this is the metada for the entire file
+      Once the file is open in text-mode, scroll down to the bottom of the file for the top-level key "metadata". Be careful that this is the metadata for the entire file
       and not a single code block. You should see in the "metadata" section other
       entries like "language_info" and "nbconvert_exporter".
 
