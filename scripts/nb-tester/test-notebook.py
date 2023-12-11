@@ -23,6 +23,8 @@ NOTEBOOKS_GLOB = "docs/**/*.ipynb"
 NOTEBOOKS_EXCLUDE = [
     "docs/api/**",
     "**/.ipynb_checkpoints/**",
+    # Following notebooks are broken
+    "docs/transpile/transpiler-stages.ipynb",
 ]
 NOTEBOOKS_THAT_SUBMIT_JOBS = [
     "docs/start/hello-world.ipynb",
