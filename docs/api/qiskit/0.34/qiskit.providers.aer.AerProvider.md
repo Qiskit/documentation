@@ -1,6 +1,6 @@
 # AerProvider
 
-<span id="undefined" />
+
 
 `AerProvider`
 
@@ -17,7 +17,7 @@ Provider for Qiskit Aer backends.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### version
 

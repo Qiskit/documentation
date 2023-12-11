@@ -2,7 +2,7 @@
 
 # qiskit.circuit.library.RCCXGate
 
-<span id="undefined" />
+
 
 `RCCXGate(label=None)`
 
@@ -14,7 +14,7 @@ This concrete implementation is from [https://arxiv.org/abs/1508.03273](https://
 
 Create a new simplified CCX gate.
 
-<span id="undefined" />
+
 
 `__init__(label=None)`
 
@@ -52,13 +52,13 @@ Create a new simplified CCX gate.
 | [`params`](#qiskit.circuit.library.RCCXGate.params "qiskit.circuit.library.RCCXGate.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.circuit.library.RCCXGate.unit "qiskit.circuit.library.RCCXGate.unit")                               | Get the time unit of duration.                                                |
 
-<span id="undefined" />
+
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+
 
 `assemble()`
 
@@ -68,7 +68,7 @@ Assemble a QasmQobjInstruction
 
 `Instruction`
 
-<span id="undefined" />
+
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -121,13 +121,13 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-<span id="undefined" />
+
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
-<span id="undefined" />
+
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
@@ -151,7 +151,7 @@ Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 anci
 
 **QiskitError** – unrecognized mode or invalid ctrl\_state
 
-<span id="undefined" />
+
 
 `copy(name=None)`
 
@@ -171,25 +171,25 @@ updated if it was provided
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+
 
 `property duration`
 
 Get the duration.
 
-<span id="undefined" />
+
 
 `inverse()`
 
@@ -211,13 +211,13 @@ a fresh instruction for the inverse
 
 **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
-<span id="undefined" />
+
 
 `property label`
 
@@ -227,7 +227,7 @@ Return gate label
 
 `str`
 
-<span id="undefined" />
+
 
 `mirror()`
 
@@ -243,13 +243,13 @@ reversed.
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+
 
 `property params`
 
 return instruction params.
 
-<span id="undefined" />
+
 
 `power(exponent)`
 
@@ -271,7 +271,7 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **CircuitError** – If Gate is not unitary
 
-<span id="undefined" />
+
 
 `qasm()`
 
@@ -279,7 +279,7 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
-<span id="undefined" />
+
 
 `repeat(n)`
 
@@ -301,7 +301,7 @@ Containing the definition.
 
 **CircuitError** – If n \< 1.
 
-<span id="undefined" />
+
 
 `reverse_ops()`
 
@@ -319,19 +319,19 @@ sub-instructions reversed.
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-<span id="undefined" />
+
 
 `to_matrix()`
 
 Return a numpy.array for the simplified CCX gate.
 
-<span id="undefined" />
+
 
 `property unit`
 
 Get the time unit of duration.
 
-<span id="undefined" />
+
 
 `validate_parameter(parameter)`
 

@@ -1,6 +1,6 @@
 # QasmQobjExperimentConfig
 
-<span id="undefined" />
+
 
 `QasmQobjExperimentConfig(calibrations=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`
 

@@ -1,6 +1,6 @@
 # qiskit.aqua.operators.evolutions.PauliTrotterEvolution
 
-<span id="undefined" />
+
 
 `PauliTrotterEvolution(trotter_mode='trotter', reps=1)`
 
@@ -18,7 +18,7 @@ More specifically, we compute basis change circuits for each Pauli into a single
 *   **a single diagonalization circuit can be used for each group** (*so*) –
 *   **rather than each Pauli.** (*#*) –
 
-<span id="undefined" />
+
 
 `__init__(trotter_mode='trotter', reps=1)`
 
@@ -47,7 +47,7 @@ More specifically, we compute basis change circuits for each Pauli into a single
 | --------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
 | [`trotter`](#qiskit.aqua.operators.evolutions.PauliTrotterEvolution.trotter "qiskit.aqua.operators.evolutions.PauliTrotterEvolution.trotter") | TrotterizationBase used to evolve SummedOps. |
 
-<span id="undefined" />
+
 
 `convert(operator)`
 
@@ -65,7 +65,7 @@ Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing trott
 
 The converted operator.
 
-<span id="undefined" />
+
 
 `evolution_for_abelian_paulisum(op_sum)`
 
@@ -75,7 +75,7 @@ Evolution for abelian pauli sum
 
 `PrimitiveOp`
 
-<span id="undefined" />
+
 
 `evolution_for_pauli(pauli_op)`
 
@@ -93,7 +93,7 @@ Compute evolution Operator for a single Pauli using a `PauliBasisChange`.
 
 A `PrimitiveOp`, either the evolution `CircuitOp` or a `PauliOp` equal to the identity if pauli\_op is the identity.
 
-<span id="undefined" />
+
 
 `property trotter`
 

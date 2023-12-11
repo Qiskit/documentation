@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.u1
 
-<span id="undefined" />
+
 
 `u1(theta, qubit)`
 

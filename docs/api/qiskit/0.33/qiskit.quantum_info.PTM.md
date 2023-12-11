@@ -1,6 +1,6 @@
 # PTM
 
-<span id="undefined" />
+
 
 `PTM(data, input_dims=None, output_dims=None)`
 
@@ -71,43 +71,43 @@ If the input or output dimensions are None, they will be automatically determine
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### atol
 
 `= 1e-08`
 
-<span id="undefined" />
+
 
 ### data
 
 Return data.
 
-<span id="undefined" />
+
 
 ### dim
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+
 
 ### qargs
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+
 
 ### rtol
 
 `= 1e-05`
 
-<span id="undefined" />
+
 
 ### settings
 

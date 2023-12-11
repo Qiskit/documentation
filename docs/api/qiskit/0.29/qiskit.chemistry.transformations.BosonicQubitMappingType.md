@@ -1,6 +1,6 @@
 # BosonicQubitMappingType
 
-<span id="undefined" />
+
 
 `BosonicQubitMappingType(value)`
 
@@ -10,7 +10,7 @@ BosonicQubitMappingType enum
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### DIRECT
 

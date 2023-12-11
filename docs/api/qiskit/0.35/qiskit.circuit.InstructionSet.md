@@ -1,6 +1,6 @@
 # InstructionSet
 
-<span id="undefined" />
+
 
 `InstructionSet(circuit_cregs=None, *, resource_requester=None)`
 
@@ -44,14 +44,14 @@ The context (qargs and cargs that each instruction is attached to) is also store
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### cargs
 
-<span id="undefined" />
+
 
 ### instructions
 
-<span id="undefined" />
+
 
 ### qargs

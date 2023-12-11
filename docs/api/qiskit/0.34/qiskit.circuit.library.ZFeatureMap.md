@@ -1,6 +1,6 @@
 # ZFeatureMap
 
-<span id="undefined" />
+
 
 `ZFeatureMap(feature_dimension, reps=2, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZFeatureMap')`
 
@@ -73,7 +73,7 @@ Create a new first-order Pauli-Z expansion circuit.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### alpha
 
@@ -87,7 +87,7 @@ The Pauli rotation factor (alpha).
 
 The Pauli rotation factor.
 
-<span id="undefined" />
+
 
 ### ancillas
 
@@ -97,7 +97,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 `List`\[`AncillaQubit`]
 
-<span id="undefined" />
+
 
 ### calibrations
 
@@ -111,7 +111,7 @@ Return calibration dictionary.
 
 `dict`
 
-<span id="undefined" />
+
 
 ### clbits
 
@@ -121,11 +121,11 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-<span id="undefined" />
+
 
 ### data
 
-<span id="undefined" />
+
 
 ### entanglement
 
@@ -139,17 +139,17 @@ Get the entanglement strategy.
 
 The entanglement strategy, see `get_entangler_map()` for more detail on how the format is interpreted.
 
-<span id="undefined" />
+
 
 ### entanglement\_blocks
 
-<span id="undefined" />
+
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-<span id="undefined" />
+
 
 ### feature\_dimension
 
@@ -163,7 +163,7 @@ Returns the feature dimension (which is equal to the number of qubits).
 
 The feature dimension of this feature map.
 
-<span id="undefined" />
+
 
 ### global\_phase
 
@@ -173,13 +173,13 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-<span id="undefined" />
+
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="undefined" />
+
 
 ### initial\_state
 
@@ -193,7 +193,7 @@ Return the initial state that is added in front of the n-local circuit.
 
 The initial state.
 
-<span id="undefined" />
+
 
 ### insert\_barriers
 
@@ -207,13 +207,13 @@ If barriers are inserted in between the layers or not.
 
 True, if barriers are inserted in between the layers, False if not.
 
-<span id="undefined" />
+
 
 ### instances
 
 `= 9`
 
-<span id="undefined" />
+
 
 ### metadata
 
@@ -225,7 +225,7 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-<span id="undefined" />
+
 
 ### num\_ancillas
 
@@ -235,7 +235,7 @@ Return the number of ancilla qubits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_clbits
 
@@ -245,7 +245,7 @@ Return number of classical bits.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_layers
 
@@ -259,7 +259,7 @@ Return the number of layers in the n-local circuit.
 
 The number of layers in the circuit.
 
-<span id="undefined" />
+
 
 ### num\_parameters
 
@@ -267,13 +267,13 @@ The number of layers in the circuit.
 
 `int`
 
-<span id="undefined" />
+
 
 ### num\_parameters\_settable
 
 The number of distinct parameters.
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -287,7 +287,7 @@ Returns the number of qubits in this circuit.
 
 The number of qubits.
 
-<span id="undefined" />
+
 
 ### ordered\_parameters
 
@@ -317,7 +317,7 @@ q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
 
 The parameters objects used in the circuit.
 
-<span id="undefined" />
+
 
 ### parameter\_bounds
 
@@ -331,7 +331,7 @@ The parameter bounds for the unbound parameters in the circuit.
 
 A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -339,7 +339,7 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 `ParameterView`
 
-<span id="undefined" />
+
 
 ### paulis
 
@@ -353,7 +353,7 @@ The Pauli strings used in the entanglement of the qubits.
 
 The Pauli strings as list.
 
-<span id="undefined" />
+
 
 ### preferred\_init\_points
 
@@ -367,19 +367,19 @@ The initial points for the parameters. Can be stored as initial guess in optimiz
 
 The initial values for the parameters, or None, if none have been set.
 
-<span id="undefined" />
+
 
 ### prefix
 
 `= 'circuit'`
 
-<span id="undefined" />
+
 
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-<span id="undefined" />
+
 
 ### qubits
 
@@ -389,7 +389,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 `List`\[`Qubit`]
 
-<span id="undefined" />
+
 
 ### reps
 
@@ -403,7 +403,7 @@ The number of times rotation and entanglement block are repeated.
 
 The number of repetitions.
 
-<span id="undefined" />
+
 
 ### rotation\_blocks
 

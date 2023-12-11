@@ -1,6 +1,6 @@
 # qiskit.pulse.builder.samples\_to\_seconds
 
-<span id="undefined" />
+
 
 `samples_to_seconds(samples)`
 

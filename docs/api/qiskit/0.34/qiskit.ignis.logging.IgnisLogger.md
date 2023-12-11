@@ -1,6 +1,6 @@
 # IgnisLogger
 
-<span id="undefined" />
+
 
 `IgnisLogger(name, level=0)`
 
@@ -53,13 +53,13 @@ Initialize the IgnisLogger object
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### manager
 
 `=`
 
-<span id="undefined" />
+
 
 ### root
 

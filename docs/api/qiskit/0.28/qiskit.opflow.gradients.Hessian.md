@@ -1,6 +1,6 @@
 # qiskit.opflow\.gradients.Hessian
 
-<span id="undefined" />
+
 
 `Hessian(hess_method='param_shift', **kwargs)`
 
@@ -15,7 +15,7 @@ Compute the Hessian of an expected value.
 
 **ValueError** – If method != `fin_diff` and `epsilon` is not None.
 
-<span id="undefined" />
+
 
 `__init__(hess_method='param_shift', **kwargs)`
 
@@ -44,7 +44,7 @@ Compute the Hessian of an expected value.
 | ----------------------------------------------------------------------------------------------------------- | -------------------------- |
 | [`hess_method`](#qiskit.opflow.gradients.Hessian.hess_method "qiskit.opflow.gradients.Hessian.hess_method") | Returns `CircuitGradient`. |
 
-<span id="undefined" />
+
 
 `convert(operator, params=None)`
 
@@ -61,7 +61,7 @@ An operator whose evaluation yields the Hessian
 
 [OperatorBase](qiskit.aqua.operators.OperatorBase#qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase")
 
-<span id="undefined" />
+
 
 `get_hessian(operator, params=None)`
 
@@ -91,7 +91,7 @@ Operator which represents the gradient w\.r.t. the given params.
 *   **Exception** – Unintended code is reached
 *   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – jax not installed
 
-<span id="undefined" />
+
 
 `gradient_wrapper(operator, bind_params, grad_params=None, backend=None, expectation=None)`
 
@@ -113,7 +113,7 @@ Get a callable function which provides the respective gradient, Hessian or QFI f
 
 Function to compute a gradient, Hessian or QFI. The function takes an iterable as argument which holds the parameter values.
 
-<span id="undefined" />
+
 
 `property hess_method`
 
@@ -127,7 +127,7 @@ Returns `CircuitGradient`.
 
 `CircuitGradient`.
 
-<span id="undefined" />
+
 
 `static parameter_expression_grad(param_expr, param)`
 

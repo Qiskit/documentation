@@ -1,6 +1,6 @@
 # DifferentialExtrapolator
 
-<span id="undefined" />
+
 
 `DifferentialExtrapolator(degree=1, model=None)`
 

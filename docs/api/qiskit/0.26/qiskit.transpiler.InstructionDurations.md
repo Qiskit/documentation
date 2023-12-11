@@ -1,6 +1,6 @@
 # qiskit.transpiler.InstructionDurations
 
-<span id="undefined" />
+
 
 `InstructionDurations(instruction_durations=None, dt=None)`
 
@@ -8,7 +8,7 @@ Helper class to provide durations of instructions for scheduling.
 
 It stores durations (gate lengths) and dt to be used at the scheduling stage of transpiling. It can be constructed from `backend` or `instruction_durations`, which is an argument of `transpile()`.
 
-<span id="undefined" />
+
 
 `__init__(instruction_durations=None, dt=None)`
 
@@ -24,7 +24,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`units_used`](#qiskit.transpiler.InstructionDurations.units_used "qiskit.transpiler.InstructionDurations.units_used")()                        | Get the set of all units used in this instruction durations.                                                                                     |
 | [`update`](#qiskit.transpiler.InstructionDurations.update "qiskit.transpiler.InstructionDurations.update")(inst\_durations\[, dt])              | Update self with inst\_durations (inst\_durations overwrite self).                                                                               |
 
-<span id="undefined" />
+
 
 `classmethod from_backend(backend)`
 
@@ -46,7 +46,7 @@ The InstructionDurations constructed from backend.
 
 [**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If dt and dtm is different in the backend.
 
-<span id="undefined" />
+
 
 `get(inst, qubits, unit='dt')`
 
@@ -70,7 +70,7 @@ float|int
 
 [**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – No duration is defined for the instruction.
 
-<span id="undefined" />
+
 
 `units_used()`
 
@@ -84,7 +84,7 @@ Get the set of all units used in this instruction durations.
 
 Set of units used in this instruction durations.
 
-<span id="undefined" />
+
 
 `update(inst_durations, dt=None)`
 

@@ -1,6 +1,6 @@
 # Drag
 
-<span id="undefined" />
+
 
 `Drag(duration, amp, sigma, beta, name=None)`
 
@@ -48,7 +48,7 @@ Initialize the drag pulse.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### amp
 
@@ -58,7 +58,7 @@ The Gaussian amplitude.
 
 `Union`\[`complex`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 ### beta
 
@@ -68,7 +68,7 @@ The weighing factor for the Gaussian derivative component of the waveform.
 
 `Union`\[`float`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 ### id
 
@@ -78,13 +78,13 @@ Unique identifier for this pulse.
 
 `int`
 
-<span id="undefined" />
+
 
 ### limit\_amplitude
 
 `= True`
 
-<span id="undefined" />
+
 
 ### parameters
 
@@ -92,7 +92,7 @@ Unique identifier for this pulse.
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+
 
 ### sigma
 

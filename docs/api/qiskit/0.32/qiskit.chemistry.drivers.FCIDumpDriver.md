@@ -1,6 +1,6 @@
 # FCIDumpDriver
 
-<span id="undefined" />
+
 
 `FCIDumpDriver(fcidump_input, atoms=None)`
 
@@ -34,7 +34,7 @@ A determinant based full configuration interaction program, Computer Physics Com
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### basis
 
@@ -44,7 +44,7 @@ return basis
 
 `str`
 
-<span id="undefined" />
+
 
 ### hf\_method
 
@@ -54,7 +54,7 @@ return Hartree-Fock method
 
 `str`
 
-<span id="undefined" />
+
 
 ### molecule
 
@@ -64,7 +64,7 @@ return molecule
 
 `Optional`\[`Molecule`]
 
-<span id="undefined" />
+
 
 ### supports\_molecule
 

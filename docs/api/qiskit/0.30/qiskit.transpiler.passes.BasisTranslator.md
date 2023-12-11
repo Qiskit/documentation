@@ -1,6 +1,6 @@
 # BasisTranslator
 
-<span id="undefined" />
+
 
 `BasisTranslator(*args, **kwargs)`
 
@@ -31,7 +31,7 @@ Initialize a BasisTranslator instance.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### is\_analysis\_pass
 
@@ -39,7 +39,7 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="undefined" />
+
 
 ### is\_transformation\_pass
 

@@ -1,6 +1,6 @@
 # qiskit.utils.apply\_prefix
 
-<span id="undefined" />
+
 
 `apply_prefix(value, unit)`
 

@@ -1,6 +1,6 @@
 # qiskit.pulse.transforms.remove\_directives
 
-<span id="undefined" />
+
 
 `remove_directives(schedule)`
 

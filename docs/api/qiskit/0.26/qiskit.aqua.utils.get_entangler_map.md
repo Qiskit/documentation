@@ -1,6 +1,6 @@
 # qiskit.aqua.utils.get\_entangler\_map
 
-<span id="undefined" />
+
 
 `get_entangler_map(map_type, num_qubits, offset=0)`
 

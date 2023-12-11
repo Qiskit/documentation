@@ -199,10 +199,14 @@ To check that formatting is valid without actually making changes, run `npm run 
 
 ## Regenerate the API docs
 
-1. Choose which documentation you want to regenerate: `qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`
-2. Determine the current version of the published stable documentation, e.g. at https://github.com/Qiskit/qiskit/releases
-3. Run `npm run gen-api -- -p <pkg-name> -v <version>`, e.g. `npm run gen-api -- -p qiskit -v 0.45.0`
+1. Install and configure GitHub CLI: https://docs.github.com/en/github-cli/github-cli/quickstart
+2. Choose which documentation you want to regenerate: `qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`
+3. Determine the current version of the published stable documentation, e.g. at https://github.com/Qiskit/qiskit/releases
+4. Find a link to a CI artifact with the project's documentation, e.g at https://github.com/Qiskit/qiskit/suites/17881600359/artifacts/1026798160. To find this, go to the "Summary" page in GitHub Actions for the CI run you want to build, then scroll down to "Artifacts".
+5. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <artifact-url>`,
+   e.g. `npm run gen-api -- -p qiskit -v 0.45.0 -a https://github.com/Qiskit/qiskit/suites/17881600359/artifacts/1026798160`
+6. When opening your PR, include the CLI arguments you used. That helps us to know exactly how the docs have been generated over time.
 
-For `qiskit`, you can also regenerate historical versions by adding `--historical` to the arguments. This is useful when we improve our generation script.
+If the version is not for the latest stable minor release series, then add `--historical` to the arguments. For example, use `--historical` if the latest stable release is 0.45.\* but you're generating docs for the patch release 0.44.3.
 
 In case you want to save the current version and convert it into a historical one, you can run `npm run make-historical -- -p <pkg-name>` beforehand.

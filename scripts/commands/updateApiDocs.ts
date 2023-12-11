@@ -34,6 +34,8 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { Pkg, PkgInfo, Link } from "../lib/sharedTypes";
 import transformLinks from "transform-markdown-links";
+import { downloadCIArtifact } from "../lib/downloadArtifacts";
+import { startWebServer, closeWebServer } from "../lib/webServer";
 import {
   findLegacyReleaseNotes,
   addNewReleaseNotes,
@@ -47,6 +49,7 @@ interface Arguments {
   package: string;
   version: string;
   historical: boolean;
+  artifact: string;
 }
 
 function transformLink(link: Link): Link | undefined {
@@ -74,28 +77,21 @@ const PACKAGES: PkgInfo[] = [
     title: "Qiskit Runtime IBM Client",
     name: "qiskit-ibm-runtime",
     githubSlug: "qiskit/qiskit-ibm-runtime",
-    baseUrl: `https://qiskit.org/ecosystem/ibm-runtime`,
-    initialUrls: [
-      `https://qiskit.org/ecosystem/ibm-runtime/apidocs/ibm-runtime.html`,
-    ],
+    initialUrl: `/apidocs/ibm-runtime.html`,
     transformLink,
   },
   {
     title: "Qiskit IBM Provider",
     name: "qiskit-ibm-provider",
     githubSlug: "qiskit/qiskit-ibm-provider",
-    baseUrl: `https://qiskit.org/ecosystem/ibm-provider`,
-    initialUrls: [
-      `https://qiskit.org/ecosystem/ibm-provider/apidocs/ibm-provider.html`,
-    ],
+    initialUrl: `/apidocs/ibm-provider.html`,
     transformLink,
   },
   {
     title: "Qiskit",
     name: "qiskit",
     githubSlug: "qiskit/qiskit",
-    baseUrl: `https://qiskit.org/documentation`,
-    initialUrls: [`https://qiskit.org/documentation/apidoc/index.html`],
+    initialUrl: `/apidoc/index.html`,
     hasSeparateReleaseNotes: true,
     tocOptions: {
       collapsed: true,
@@ -127,6 +123,12 @@ const readArgs = (): Arguments => {
       default: false,
       description: "Is this a prior release? Only works with `-p qiskit`.",
     })
+    .option("artifact", {
+      alias: "a",
+      type: "string",
+      demandOption: true,
+      description: "Which artifact from CI to download",
+    })
     .parseSync();
 };
 
@@ -151,30 +153,28 @@ zxMain(async () => {
     versionWithoutPatch: versionMatch[0],
     historical: args.historical,
     releaseNoteEntries: [],
+    baseUrl: `http://localhost:8000`,
     ...pkgInfo,
   };
 
-  if (pkg.historical) {
-    if (pkg.name !== "qiskit") {
-      throw new Error("`--historical` can only be used with `-p qiskit`");
-    }
-    pkg.baseUrl = `https://qiskit.org/documentation/stable/${pkg.versionWithoutPatch}`;
-    const htmlFile =
-      +pkg.versionWithoutPatch >= 0.44 ? "index.html" : "terra.html";
-    pkg.initialUrls = [`${pkg.baseUrl}/apidoc/${htmlFile}`];
+  pkg.initialUrl = pkg.baseUrl + pkg.initialUrl;
+
+  if (pkg.name == "qiskit" && +pkg.versionWithoutPatch < 0.44) {
+    pkg.initialUrl = `${pkg.baseUrl}/apidoc/terra.html`;
   }
 
+  const artifactUrl = args.artifact;
   const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
     pkg.version
   }`;
+  const localWebServerDir = `${destination}/artifact`;
+  const listenPort = 8000;
+  startWebServer(localWebServerDir, listenPort);
+
   if (await pathExists(destination)) {
     console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
-    await downloadHtml({
-      baseUrl: pkg.baseUrl,
-      initialUrls: pkg.initialUrls,
-      destination,
-    });
+    await downloadApiSources(pkg, artifactUrl, destination, listenPort);
   }
 
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${pkg.versionWithoutPatch}/`;
@@ -184,16 +184,17 @@ zxMain(async () => {
 
   if (pkg.historical && !(await pathExists(outputDir))) {
     mkdirp(outputDir);
+  } else {
+    await rmFilesInFolder(outputDir, `${pkg.name}:${pkg.versionWithoutPatch}`);
   }
 
   pkg.releaseNoteEntries = await findLegacyReleaseNotes(pkg);
-
-  await rmFilesInFolder(outputDir, `${pkg.name}:${pkg.versionWithoutPatch}`);
 
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
   await convertHtmlToMarkdown(destination, outputDir, baseSourceUrl, pkg);
+  await closeWebServer(listenPort);
 });
 
 /**
@@ -210,16 +211,16 @@ async function rmFilesInFolder(
   await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`;
 }
 
-async function downloadHtml(options: {
+async function saveHtml(options: {
   baseUrl: string;
-  initialUrls: string[];
+  initialUrl: string;
   destination: string;
 }): Promise<void> {
-  const { baseUrl, destination, initialUrls } = options;
+  const { baseUrl, destination, initialUrl } = options;
   let successCount = 0;
   let errorCount = 0;
   const crawler = new WebCrawler({
-    initialUrls: initialUrls,
+    initialUrl: initialUrl,
     followUrl(url) {
       return (
         url.startsWith(`${baseUrl}/apidocs`) ||
@@ -318,15 +319,16 @@ async function convertHtmlToMarkdown(
   for (const result of results) {
     let path = urlToPath(result.url);
     if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
-      const projectFolder = pkg.historical
-        ? `${pkg.name}/${pkg.versionWithoutPatch}`
-        : `${pkg.name}`;
+      // Historical versions use the same release notes files as the current API
+      if (pkg.historical) {
+        continue;
+      }
 
       // Convert the relative links to absolute links
       result.markdown = transformLinks(result.markdown, (link, _) =>
         link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
           ? link
-          : `/api/${projectFolder}/${link}`,
+          : `/api/${pkg.name}/${link}`,
       );
 
       path = currentReleaseNotesPath(pkg);
@@ -372,4 +374,26 @@ async function convertHtmlToMarkdown(
 
 function urlToPath(url: string) {
   return `${getRoot()}/docs${url}.md`;
+}
+
+/**
+ * Uses a local web server to download the HTML files from a specific CI artifact
+ */
+async function downloadApiSources(
+  pkg: Pkg,
+  artifactUrl: string,
+  destination: string,
+  listenPort: number,
+) {
+  try {
+    await downloadCIArtifact(pkg.name, artifactUrl, destination);
+    await saveHtml({
+      baseUrl: pkg.baseUrl,
+      initialUrl: pkg.initialUrl,
+      destination,
+    });
+  } catch (e) {
+    await closeWebServer(listenPort);
+    throw e;
+  }
 }

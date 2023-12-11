@@ -1,6 +1,6 @@
 # qiskit.circuit.InstructionSet
 
-<span id="undefined" />
+
 
 `InstructionSet`
 
@@ -10,7 +10,7 @@ New collection of instructions.
 
 The context (qargs and cargs that each instruction is attached to) is also stored separately for each instruction.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -27,19 +27,19 @@ The context (qargs and cargs that each instruction is attached to) is also store
 | [`c_if`](#qiskit.circuit.InstructionSet.c_if "qiskit.circuit.InstructionSet.c_if")(classical, val)  | Add condition on classical register to all instructions.   |
 | [`inverse`](#qiskit.circuit.InstructionSet.inverse "qiskit.circuit.InstructionSet.inverse")()       | Invert all instructions.                                   |
 
-<span id="undefined" />
+
 
 `add(gate, qargs, cargs)`
 
 Add an instruction and its context (where it is attached).
 
-<span id="undefined" />
+
 
 `c_if(classical, val)`
 
 Add condition on classical register to all instructions.
 
-<span id="undefined" />
+
 
 `inverse()`
 

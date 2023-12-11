@@ -1,6 +1,6 @@
 # HamiltonianPhaseEstimation
 
-<span id="undefined" />
+
 
 `HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None)`
 

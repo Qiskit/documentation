@@ -1,6 +1,6 @@
 # qiskit.pulse.transforms.add\_implicit\_acquires
 
-<span id="undefined" />
+
 
 `add_implicit_acquires(schedule, meas_map)`
 

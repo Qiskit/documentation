@@ -1,6 +1,6 @@
 # qiskit.providers.aer.library.save\_amplitudes\_squared
 
-<span id="undefined" />
+
 
 `save_amplitudes_squared(self, params, label='amplitudes_squared', unnormalized=False, pershot=False, conditional=False)`
 

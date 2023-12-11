@@ -1,6 +1,6 @@
 # CHC
 
-<span id="undefined" />
+
 
 `CHC(num_qubits=None, reps=1, ladder=False, excitations=None, entanglement='full', initial_state=None)`
 
@@ -33,7 +33,7 @@ The trial wavefunction is as defined in Ollitrault Pauline J., Chemical science 
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### num\_parameters
 
@@ -47,7 +47,7 @@ An integer indicating the number of parameters.
 
 int
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
@@ -61,7 +61,7 @@ An integer indicating the number of qubits.
 
 int
 
-<span id="undefined" />
+
 
 ### parameter\_bounds
 
@@ -75,7 +75,7 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 list
 
-<span id="undefined" />
+
 
 ### preferred\_init\_points
 
@@ -83,11 +83,11 @@ Return preferred init points.
 
 If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
 
-<span id="undefined" />
+
 
 ### setting
 
-<span id="undefined" />
+
 
 ### support\_parameterized\_circuit
 

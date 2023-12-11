@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.random\_density\_matrix
 
-<span id="undefined" />
+
 
 `random_density_matrix(dims, rank=None, method='Hilbert-Schmidt', seed=None)`
 

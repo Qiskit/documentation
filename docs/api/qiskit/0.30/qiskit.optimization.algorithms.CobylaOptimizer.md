@@ -1,6 +1,6 @@
 # CobylaOptimizer
 
-<span id="undefined" />
+
 
 `CobylaOptimizer(rhobeg=1.0, rhoend=0.0001, maxfun=1000, disp=None, catol=0.0002, trials=1, clip=100.0)`
 
@@ -46,7 +46,7 @@ This initializer takes the algorithmic parameters of COBYLA and stores them for 
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### clip
 
@@ -60,7 +60,7 @@ Returns the clip value for this optimizer.
 
 The clip value.
 
-<span id="undefined" />
+
 
 ### trials
 

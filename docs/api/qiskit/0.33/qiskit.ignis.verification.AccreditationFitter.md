@@ -1,6 +1,6 @@
 # AccreditationFitter
 
-<span id="undefined" />
+
 
 `AccreditationFitter`
 

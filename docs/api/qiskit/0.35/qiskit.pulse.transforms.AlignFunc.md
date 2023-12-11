@@ -1,6 +1,6 @@
 # AlignFunc
 
-<span id="undefined" />
+
 
 `AlignFunc(duration, func)`
 
@@ -35,13 +35,13 @@ Create new equispaced context.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### duration
 
 Return context duration.
 
-<span id="undefined" />
+
 
 ### is\_sequential
 

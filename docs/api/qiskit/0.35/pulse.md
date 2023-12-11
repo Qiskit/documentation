@@ -64,7 +64,7 @@ An instruction can be added to a [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse
 
 These are all instances of the same base class:
 
-<span id="undefined" />
+
 
 `Instruction(operands, name=None)`
 
@@ -139,7 +139,7 @@ Novel channel types can often utilize the [`ControlChannel`](qiskit.pulse.channe
 
 All channels are children of the same abstract base class:
 
-<span id="undefined" />
+
 
 `Channel(index)`
 
@@ -190,7 +190,7 @@ The alignment transforms define alignment policies of instructions in [`Schedule
 
 These are all subtypes of the abstract base class [`AlignmentKind`](#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.AlignmentKind").
 
-<span id="undefined" />
+
 
 `AlignmentKind`
 
@@ -632,7 +632,7 @@ There are 1e-06 seconds in 4500 samples.
 
 ## Exceptions
 
-<span id="undefined" />
+
 
 `PulseError(*message)`
 

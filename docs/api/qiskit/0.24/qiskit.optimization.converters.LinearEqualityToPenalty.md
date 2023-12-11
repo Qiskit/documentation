@@ -2,7 +2,7 @@
 
 # qiskit.optimization.converters.LinearEqualityToPenalty
 
-<span id="undefined" />
+
 
 `LinearEqualityToPenalty(penalty=None)`
 
@@ -12,7 +12,7 @@ Convert a problem with only equality constraints to unconstrained with penalty t
 
 **penalty** (`Optional`\[`float`]) – Penalty factor to scale equality constraints that are added to objective. If None is passed, penalty factor will be automatically calculated.
 
-<span id="undefined" />
+
 
 `__init__(penalty=None)`
 
@@ -36,7 +36,7 @@ Convert a problem with only equality constraints to unconstrained with penalty t
 | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | [`penalty`](#qiskit.optimization.converters.LinearEqualityToPenalty.penalty "qiskit.optimization.converters.LinearEqualityToPenalty.penalty") | Returns the penalty factor used in conversion. |
 
-<span id="undefined" />
+
 
 `convert(problem)`
 
@@ -58,7 +58,7 @@ The converted problem, that is an unconstrained problem.
 
 [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an inequality constraint exists.
 
-<span id="undefined" />
+
 
 `decode(result)`
 
@@ -68,7 +68,7 @@ DEPRECATED Decode a result into another form using the information of conversion
 
 `OptimizationResult`
 
-<span id="undefined" />
+
 
 `encode(problem)`
 
@@ -78,7 +78,7 @@ DEPRECATED Encode a QuadraticProgram into another form and keep the information 
 
 `QuadraticProgram`
 
-<span id="undefined" />
+
 
 `interpret(result)`
 
@@ -100,7 +100,7 @@ The result of the original problem.
 
 [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the number of variables in the result differs from that of the original problem.
 
-<span id="undefined" />
+
 
 `property penalty`
 

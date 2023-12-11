@@ -2,7 +2,7 @@
 
 # qiskit.visualization.plot\_bloch\_multivector
 
-<span id="undefined" />
+
 
 `plot_bloch_multivector(state, title='', figsize=None, *, rho=None)`
 

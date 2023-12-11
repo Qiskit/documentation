@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.align\_func
 
-<span id="undefined" />
+
 
 `align_func(duration, func)`
 

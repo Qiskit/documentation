@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound
 
-<span id="undefined" />
+
 
 `IBMQAccountMultipleCredentialsFound(*message)`
 

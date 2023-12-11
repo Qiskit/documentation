@@ -1,6 +1,6 @@
 # HamiltonianPhaseEstimationResult
 
-<span id="undefined" />
+
 
 `HamiltonianPhaseEstimationResult(phase_estimation_result, phase_estimation_scale, id_coefficient)`
 
@@ -27,7 +27,7 @@ This class is meant to be instantiated via HamiltonianPhaseEstimation.estimate.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### most\_likely\_eigenvalue
 
@@ -43,7 +43,7 @@ This method calls most\_likely\_phase and scales the result to obtain an eigenva
 
 The most likely eigenvalue of the Hamiltonian.
 
-<span id="undefined" />
+
 
 ### most\_likely\_phase
 
@@ -57,7 +57,7 @@ DEPRECATED - The most likely phase of the unitary corresponding to the Hamiltoni
 
 The most likely phase.
 
-<span id="undefined" />
+
 
 ### phase
 

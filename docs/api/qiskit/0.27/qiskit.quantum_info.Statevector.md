@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.Statevector
 
-<span id="undefined" />
+
 
 `Statevector(data, dims=None)`
 
@@ -24,7 +24,7 @@ The `dims` kwarg can be None, an integer, or an iterable of integers.
 *   `Iterable` – the subsystem dimensions are the values in the list with the total number of subsystems given by the length of the list.
 *   `Int` or `None` – the length of the input vector specifies the total dimension of the density matrix. If it is a power of two the state will be initialized as an N-qubit state. If it is not a power of two the state will have a single d-dimensional subsystem.
 
-<span id="undefined" />
+
 
 `__init__(data, dims=None)`
 
@@ -87,43 +87,43 @@ The `dims` kwarg can be None, an integer, or an iterable of integers.
 | [`num_qubits`](#qiskit.quantum_info.Statevector.num_qubits "qiskit.quantum_info.Statevector.num_qubits") | Return the number of qubits if a N-qubit state or None otherwise. |
 | [`rtol`](#qiskit.quantum_info.Statevector.rtol "qiskit.quantum_info.Statevector.rtol")                   | Default relative tolerance parameter for float comparisons.       |
 
-<span id="undefined" />
+
 
 `property atol`
 
 Default absolute tolerance parameter for float comparisons.
 
-<span id="undefined" />
+
 
 `conjugate()`
 
 Return the conjugate of the operator.
 
-<span id="undefined" />
+
 
 `copy()`
 
 Make a copy of current operator.
 
-<span id="undefined" />
+
 
 `property data`
 
 Return data.
 
-<span id="undefined" />
+
 
 `property dim`
 
 Return total state dimension.
 
-<span id="undefined" />
+
 
 `dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
 
-<span id="undefined" />
+
 
 `draw(output=None, **drawer_args)`
 
@@ -156,7 +156,7 @@ Return a visualization of the Statevector.
 
 **ValueError** – when an invalid output method is selected.
 
-<span id="undefined" />
+
 
 `equiv(other, rtol=None, atol=None)`
 
@@ -180,7 +180,7 @@ True if statevectors are equivalent up to global phase.
 
 bool
 
-<span id="undefined" />
+
 
 `evolve(other, qargs=None)`
 
@@ -203,7 +203,7 @@ the output quantum state.
 
 **QiskitError** – if the operator dimension does not match the specified Statevector subsystem dimensions.
 
-<span id="undefined" />
+
 
 `expand(other)`
 
@@ -225,7 +225,7 @@ the tensor product state other ⊗ self.
 
 **QiskitError** – if other is not a quantum state.
 
-<span id="undefined" />
+
 
 `expectation_value(oper, qargs=None)`
 
@@ -244,7 +244,7 @@ the expectation value.
 
 complex
 
-<span id="undefined" />
+
 
 `classmethod from_instruction(instruction)`
 
@@ -268,7 +268,7 @@ The final statevector.
 
 **QiskitError** – if the instruction contains invalid instructions for the statevector simulation.
 
-<span id="undefined" />
+
 
 `static from_int(i, dims)`
 
@@ -294,7 +294,7 @@ The `dims` kwarg can be an integer or an iterable of integers.
 *   `Iterable` – the subsystem dimensions are the values in the list with the total number of subsystems given by the length of the list.
 *   `Int` – the integer specifies the total dimension of the state. If it is a power of two the state will be initialized as an N-qubit state. If it is not a power of two the state will have a single d-dimensional subsystem.
 
-<span id="undefined" />
+
 
 `classmethod from_label(label)`
 
@@ -325,13 +325,13 @@ The N-qubit basis state density matrix.
 
 **QiskitError** – if the label contains invalid characters, or the length of the label is larger than an explicitly specified num\_qubits.
 
-<span id="undefined" />
+
 
 `is_valid(atol=None, rtol=None)`
 
 Return True if a Statevector has norm 1.
 
-<span id="undefined" />
+
 
 `measure(qargs=None)`
 
@@ -353,13 +353,13 @@ measurement outcome string label, and `state` is the collapsed post-measurement 
 
 tuple
 
-<span id="undefined" />
+
 
 `property num_qubits`
 
 Return the number of qubits if a N-qubit state or None otherwise.
 
-<span id="undefined" />
+
 
 `probabilities(qargs=None, decimals=None)`
 
@@ -430,7 +430,7 @@ probs: [0.5 0.  0.5 0. ]
 Swapped probs: [0.5 0.5 0.  0. ]
 ```
 
-<span id="undefined" />
+
 
 `probabilities_dict(qargs=None, decimals=None)`
 
@@ -453,13 +453,13 @@ The measurement probabilities in dict (ket) form.
 
 dict
 
-<span id="undefined" />
+
 
 `purity()`
 
 Return the purity of the quantum state.
 
-<span id="undefined" />
+
 
 `reset(qargs=None)`
 
@@ -481,7 +481,7 @@ the reset state.
 
 If all subsystems are reset this will return the ground state on all subsystems. If only a some subsystems are reset this function will perform a measurement on those subsystems and evolve the subsystems so that the collapsed post-measurement states are rotated to the 0-state. The RNG seed for this sampling can be set using the [`seed()`](#qiskit.quantum_info.Statevector.seed "qiskit.quantum_info.Statevector.seed") method.
 
-<span id="undefined" />
+
 
 `reverse_qargs()`
 
@@ -497,13 +497,13 @@ the Statevector with reversed subsystem order.
 
 [Statevector](#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
 
-<span id="undefined" />
+
 
 `property rtol`
 
 Default relative tolerance parameter for float comparisons.
 
-<span id="undefined" />
+
 
 `sample_counts(shots, qargs=None)`
 
@@ -528,7 +528,7 @@ Additional Information:
 >
 > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.Statevector.seed "qiskit.quantum_info.Statevector.seed") method.
 
-<span id="undefined" />
+
 
 `sample_memory(shots, qargs=None)`
 
@@ -553,13 +553,13 @@ Additional Information:
 >
 > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.Statevector.seed "qiskit.quantum_info.Statevector.seed") method.
 
-<span id="undefined" />
+
 
 `seed(value=None)`
 
 Set the seed for the quantum state RNG.
 
-<span id="undefined" />
+
 
 `tensor(other)`
 
@@ -581,7 +581,7 @@ the tensor product operator self ⊗ other.
 
 **QiskitError** – if other is not a quantum state.
 
-<span id="undefined" />
+
 
 `to_dict(decimals=None)`
 
@@ -650,13 +650,13 @@ print(psi.to_dict())
 {'00': (0.7071067811865475+0j), '91': (0.7071067811865475+0j)}
 ```
 
-<span id="undefined" />
+
 
 `to_operator()`
 
 Convert state to a rank-1 projector operator
 
-<span id="undefined" />
+
 
 `trace()`
 

@@ -14,7 +14,7 @@ Deal with Gset format. See [https://web.stanford.edu/\~yyye/yyye/Gset/](https://
 | [`get_operator`](#qiskit.optimization.applications.ising.clique.get_operator "qiskit.optimization.applications.ising.clique.get_operator")(weight\_matrix, K)   | Generate Hamiltonian for the clique.   |
 | [`satisfy_or_not`](#qiskit.optimization.applications.ising.clique.satisfy_or_not "qiskit.optimization.applications.ising.clique.satisfy_or_not")(x, w, K)       | Compute the value of a cut.            |
 
-<span id="undefined" />
+
 
 `get_graph_solution(x)`
 
@@ -32,7 +32,7 @@ graph solution as binary numpy array.
 
 numpy.ndarray
 
-<span id="undefined" />
+
 
 `get_operator(weight_matrix, K)`
 
@@ -73,7 +73,7 @@ The operator for the Hamiltonian and a constant shift for the obj function.
 
 tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
 
-<span id="undefined" />
+
 
 `satisfy_or_not(x, w, K)`
 

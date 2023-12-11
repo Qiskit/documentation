@@ -1,6 +1,6 @@
 # qiskit.ignis.characterization.rabi\_schedules
 
-<span id="undefined" />
+
 
 `rabi_schedules(amp_list, qubits, pulse_width, pulse_sigma=None, width_sigma_ratio=4, drives=None, inst_map=None, meas_map=None)`
 

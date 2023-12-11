@@ -1,6 +1,6 @@
 # qiskit.visualization.pass\_manager\_drawer
 
-<span id="undefined" />
+
 
 `pass_manager_drawer(pass_manager, filename=None, style=None, raw=False)`
 

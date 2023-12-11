@@ -2,7 +2,7 @@
 
 # qiskit.optimization.converters.QuadraticProgramToQubo
 
-<span id="undefined" />
+
 
 `QuadraticProgramToQubo(penalty=None)`
 
@@ -23,7 +23,7 @@ Convert a given optimization problem to a new problem that is a QUBO.
 
 **penalty** (`Optional`\[`float`]) – Penalty factor to scale equality constraints that are added to objective. If None is passed, penalty factor will be automatically calculated.
 
-<span id="undefined" />
+
 
 `__init__(penalty=None)`
 
@@ -49,7 +49,7 @@ Convert a given optimization problem to a new problem that is a QUBO.
 | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | [`penalty`](#qiskit.optimization.converters.QuadraticProgramToQubo.penalty "qiskit.optimization.converters.QuadraticProgramToQubo.penalty") | Returns the penalty factor used in conversion. |
 
-<span id="undefined" />
+
 
 `convert(problem)`
 
@@ -71,7 +71,7 @@ The problem converted in QUBO format.
 
 [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – In case of an incompatible problem.
 
-<span id="undefined" />
+
 
 `decode(result)`
 
@@ -81,7 +81,7 @@ DEPRECATED Decode a result into another form using the information of conversion
 
 `OptimizationResult`
 
-<span id="undefined" />
+
 
 `encode(problem)`
 
@@ -91,7 +91,7 @@ DEPRECATED Encode a QuadraticProgram into another form and keep the information 
 
 `QuadraticProgram`
 
-<span id="undefined" />
+
 
 `static get_compatibility_msg(problem)`
 
@@ -111,7 +111,7 @@ Checks whether the given problem is compatible, i.e., whether the problem can be
 
 A message describing the incompatibility.
 
-<span id="undefined" />
+
 
 `interpret(result)`
 
@@ -129,7 +129,7 @@ Convert a result of a converted problem into that of the original problem.
 
 The result of the original problem.
 
-<span id="undefined" />
+
 
 `is_compatible(problem)`
 
@@ -147,7 +147,7 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 
 Returns True if the problem is compatible, False otherwise.
 
-<span id="undefined" />
+
 
 `property penalty`
 

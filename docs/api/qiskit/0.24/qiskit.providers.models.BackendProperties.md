@@ -2,7 +2,7 @@
 
 # qiskit.providers.models.BackendProperties
 
-<span id="undefined" />
+
 
 `BackendProperties(backend_name, backend_version, last_update_date, qubits, gates, general, **kwargs)`
 
@@ -22,7 +22,7 @@ Initialize a BackendProperties instance.
 *   **general** (*list*) – General parameters as a list of `Nduv` objects
 *   **kwargs** – optional additional fields
 
-<span id="undefined" />
+
 
 `__init__(backend_name, backend_version, last_update_date, qubits, gates, general, **kwargs)`
 
@@ -58,19 +58,19 @@ Initialize a BackendProperties instance.
 | [`t2`](#qiskit.providers.models.BackendProperties.t2 "qiskit.providers.models.BackendProperties.t2")(qubit)                                                              | Return the T2 time of the given qubit.                              |
 | [`to_dict`](#qiskit.providers.models.BackendProperties.to_dict "qiskit.providers.models.BackendProperties.to_dict")()                                                    | Return a dictionary format representation of the BackendProperties. |
 
-<span id="undefined" />
+
 
 `faulty_gates()`
 
 Return a list of faulty gates.
 
-<span id="undefined" />
+
 
 `faulty_qubits()`
 
 Return a list of faulty qubits.
 
-<span id="undefined" />
+
 
 `frequency(qubit)`
 
@@ -88,7 +88,7 @@ Return the frequency of the given qubit.
 
 Frequency of the given qubit.
 
-<span id="undefined" />
+
 
 `classmethod from_dict(data)`
 
@@ -108,7 +108,7 @@ dictionary.
 
 [BackendProperties](#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
-<span id="undefined" />
+
 
 `gate_error(gate, qubits)`
 
@@ -127,7 +127,7 @@ Return gate error estimates from backend properties.
 
 Gate error of the given gate and qubit(s).
 
-<span id="undefined" />
+
 
 `gate_length(gate, qubits)`
 
@@ -146,7 +146,7 @@ Return the duration of the gate in units of seconds.
 
 Gate length of the given gate and qubit(s).
 
-<span id="undefined" />
+
 
 `gate_property(gate, qubits=None, name=None)`
 
@@ -170,7 +170,7 @@ Gate property as a tuple of the value and the time it was measured.
 
 [**BackendPropertyError**](qiskit.providers.BackendPropertyError#qiskit.providers.BackendPropertyError "qiskit.providers.BackendPropertyError") – If the property is not found or name is specified but qubit is not.
 
-<span id="undefined" />
+
 
 `is_gate_operational(gate, qubits=None)`
 
@@ -189,7 +189,7 @@ Operational status of the given gate. True if the gate is operational, False oth
 
 bool
 
-<span id="undefined" />
+
 
 `is_qubit_operational(qubit)`
 
@@ -207,7 +207,7 @@ Return the operational status of the given qubit.
 
 Operational status of the given qubit.
 
-<span id="undefined" />
+
 
 `qubit_property(qubit, name=None)`
 
@@ -230,7 +230,7 @@ Qubit property as a tuple of the value and the time it was measured.
 
 [**BackendPropertyError**](qiskit.providers.BackendPropertyError#qiskit.providers.BackendPropertyError "qiskit.providers.BackendPropertyError") – If the property is not found.
 
-<span id="undefined" />
+
 
 `readout_error(qubit)`
 
@@ -248,7 +248,7 @@ Return the readout error of the given qubit.
 
 Readout error of the given qubit,
 
-<span id="undefined" />
+
 
 `t1(qubit)`
 
@@ -266,7 +266,7 @@ Return the T1 time of the given qubit.
 
 T1 time of the given qubit.
 
-<span id="undefined" />
+
 
 `t2(qubit)`
 
@@ -284,7 +284,7 @@ Return the T2 time of the given qubit.
 
 T2 time of the given qubit.
 
-<span id="undefined" />
+
 
 `to_dict()`
 

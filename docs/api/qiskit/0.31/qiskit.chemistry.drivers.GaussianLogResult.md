@@ -1,6 +1,6 @@
 # GaussianLogResult
 
-<span id="undefined" />
+
 
 `GaussianLogResult(log)`
 
@@ -26,7 +26,7 @@ This result allows access to selected data from the log file that is not availab
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### a\_to\_h\_numbering
 
@@ -40,7 +40,7 @@ A to H numbering mapping.
 
 Dictionary mapping string A numbering such as ‘1’, ‘3a’ etc from forces modes to H integer numbering
 
-<span id="undefined" />
+
 
 ### cubic\_force\_constants
 
@@ -54,7 +54,7 @@ Cubic force constants. (3 indices, 3 values)
 
 A list of tuples each with 3 index values and 3 constant values. An empty list is returned if no such data is present in the log.
 
-<span id="undefined" />
+
 
 ### log
 
@@ -64,7 +64,7 @@ The complete Gaussian log in the form of a list of strings.
 
 `List`\[`str`]
 
-<span id="undefined" />
+
 
 ### quadratic\_force\_constants
 
@@ -78,7 +78,7 @@ Quadratic force constants. (2 indices, 3 values)
 
 A list of tuples each with 2 index values and 3 constant values. An empty list is returned if no such data is present in the log.
 
-<span id="undefined" />
+
 
 ### quartic\_force\_constants
 

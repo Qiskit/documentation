@@ -2,7 +2,7 @@
 
 # qiskit.chemistry.algorithms.QEomVQE
 
-<span id="undefined" />
+
 
 `QEomVQE(operator, var_form, optimizer, num_orbitals, num_particles, initial_point=None, max_evals_grouped=1, callback=None, qubit_mapping='parity', two_qubit_reduction=True, is_eom_matrix_symmetric=True, active_occupied=None, active_unoccupied=None, se_list=None, de_list=None, z2_symmetries=None, untapered_op=None, aux_operators=None, quantum_instance=None)`
 
@@ -34,7 +34,7 @@ QEomVQE algorithm
 
 **ValueError** – invalid parameter
 
-<span id="undefined" />
+
 
 `__init__(operator, var_form, optimizer, num_orbitals, num_particles, initial_point=None, max_evals_grouped=1, callback=None, qubit_mapping='parity', two_qubit_reduction=True, is_eom_matrix_symmetric=True, active_occupied=None, active_unoccupied=None, se_list=None, de_list=None, z2_symmetries=None, untapered_op=None, aux_operators=None, quantum_instance=None)`
 
@@ -100,7 +100,7 @@ QEomVQE algorithm
 | [`setting`](#qiskit.chemistry.algorithms.QEomVQE.setting "qiskit.chemistry.algorithms.QEomVQE.setting")                            | Prepare the setting of VQE as a string.                                                            |
 | [`var_form`](#qiskit.chemistry.algorithms.QEomVQE.var_form "qiskit.chemistry.algorithms.QEomVQE.var_form")                         | Returns variational form                                                                           |
 
-<span id="undefined" />
+
 
 `property aux_operators`
 
@@ -110,7 +110,7 @@ Returns aux operators
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
 
-<span id="undefined" />
+
 
 `property backend`
 
@@ -120,13 +120,13 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 `cleanup_parameterized_circuits()`
 
 set parameterized circuits to None
 
-<span id="undefined" />
+
 
 `compute_minimum_eigenvalue(operator=None, aux_operators=None)`
 
@@ -145,7 +145,7 @@ Computes minimum eigenvalue. Operator and aux\_operators can be supplied here an
 
 MinimumEigensolverResult
 
-<span id="undefined" />
+
 
 `construct_circuit(parameter)`
 
@@ -163,7 +163,7 @@ Return the circuits used to compute the expectation value.
 
 A list of the circuits used to compute the expectation value.
 
-<span id="undefined" />
+
 
 `construct_expectation(parameter)`
 
@@ -185,7 +185,7 @@ The Operator equalling the measurement of the ansatz `StateFn` by the Observable
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If no operator has been provided.
 
-<span id="undefined" />
+
 
 `property expectation`
 
@@ -195,7 +195,7 @@ The expectation value algorithm used to construct the expectation measurement fr
 
 `ExpectationBase`
 
-<span id="undefined" />
+
 
 `find_minimum(initial_point=None, var_form=None, cost_fn=None, optimizer=None, gradient_fn=None)`
 
@@ -221,7 +221,7 @@ dict
 
 **ValueError** – invalid input
 
-<span id="undefined" />
+
 
 `get_optimal_circuit()`
 
@@ -231,7 +231,7 @@ Get the circuit with the optimal parameters.
 
 `QuantumCircuit`
 
-<span id="undefined" />
+
 
 `get_optimal_cost()`
 
@@ -241,7 +241,7 @@ Get the minimal cost or energy found by the VQE.
 
 `float`
 
-<span id="undefined" />
+
 
 `get_optimal_vector()`
 
@@ -251,19 +251,19 @@ Get the simulation outcome of the optimal circuit.
 
 `Union`\[`List`\[`float`], `Dict`\[`str`, `int`]]
 
-<span id="undefined" />
+
 
 `get_prob_vector_for_params(construct_circuit_fn, params_s, quantum_instance, construct_circuit_args=None)`
 
 Helper function to get probability vectors for a set of params
 
-<span id="undefined" />
+
 
 `get_probabilities_for_counts(counts)`
 
 get probabilities for counts
 
-<span id="undefined" />
+
 
 `property initial_point`
 
@@ -273,7 +273,7 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
-<span id="undefined" />
+
 
 `property operator`
 
@@ -283,7 +283,7 @@ Returns operator
 
 `Optional`\[`OperatorBase`]
 
-<span id="undefined" />
+
 
 `property optimal_params`
 
@@ -293,7 +293,7 @@ The optimal parameters for the variational form.
 
 `List`\[`float`]
 
-<span id="undefined" />
+
 
 `property optimizer`
 
@@ -303,7 +303,7 @@ Returns optimizer
 
 `Optional`\[`Optimizer`]
 
-<span id="undefined" />
+
 
 `print_settings()`
 
@@ -317,7 +317,7 @@ the formatted setting of VQE
 
 str
 
-<span id="undefined" />
+
 
 `property quantum_instance`
 
@@ -327,13 +327,13 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 `property random`
 
 Return a numpy random.
 
-<span id="undefined" />
+
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -356,7 +356,7 @@ dict
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
-<span id="undefined" />
+
 
 `set_backend(backend, **kwargs)`
 
@@ -366,13 +366,13 @@ Sets backend with configuration.
 
 `None`
 
-<span id="undefined" />
+
 
 `property setting`
 
 Prepare the setting of VQE as a string.
 
-<span id="undefined" />
+
 
 `classmethod supports_aux_operators()`
 
@@ -388,7 +388,7 @@ If the minimum eigensolver computes an eigenstate of the main operator then it c
 
 True if aux\_operator expectations can be evaluated, False otherwise
 
-<span id="undefined" />
+
 
 `property var_form`
 

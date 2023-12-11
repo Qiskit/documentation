@@ -2,7 +2,7 @@
 
 # qiskit.providers.aer.noise.ReadoutError
 
-<span id="undefined" />
+
 
 `ReadoutError(probabilities, atol=1e-08)`
 
@@ -39,7 +39,7 @@ probabilities[3] = [P("00"|"11"), P("01"|"11"), P("10"|"11"), P("11"|"11")]
 *   **probabilities** (*matrix*) – List of outcome assignment probabilities.
 *   **atol** (*double*) – Threshold for checking probabilities are normalized (Default: 1e-8).
 
-<span id="undefined" />
+
 
 `__init__(probabilities, atol=1e-08)`
 
@@ -100,13 +100,13 @@ probabilities[3] = [P("00"|"11"), P("01"|"11"), P("10"|"11"), P("11"|"11")]
 | [`probabilities`](#qiskit.providers.aer.noise.ReadoutError.probabilities "qiskit.providers.aer.noise.ReadoutError.probabilities")          | Return the readout error probabilities matrix.                  |
 | [`rtol`](#qiskit.providers.aer.noise.ReadoutError.rtol "qiskit.providers.aer.noise.ReadoutError.rtol")                                     | The relative tolerance parameter for float comparisons.         |
 
-<span id="undefined" />
+
 
 `property atol`
 
 The default absolute tolerance parameter for float comparisons.
 
-<span id="undefined" />
+
 
 `compose(other, front=False)`
 
@@ -132,13 +132,13 @@ The composition readout error.
 *   **NoiseError** – if other is not a ReadoutError or has incompatible
 *   **dimensions.** –
 
-<span id="undefined" />
+
 
 `copy()`
 
 Make a copy of current ReadoutError.
 
-<span id="undefined" />
+
 
 `dot(other)`
 
@@ -161,7 +161,7 @@ The composition readout error.
 *   **NoiseError** – if other is not a ReadoutError or has incompatible
 *   **dimensions.** –
 
-<span id="undefined" />
+
 
 `expand(other)`
 
@@ -183,19 +183,19 @@ the tensor product readout error other ⊗ self.
 
 **NoiseError** – if other is not a ReadoutError.
 
-<span id="undefined" />
+
 
 `ideal()`
 
 Return True if current error object is an identity
 
-<span id="undefined" />
+
 
 `property number_of_qubits`
 
 Return the number of qubits for the error.
 
-<span id="undefined" />
+
 
 `power(n)`
 
@@ -217,31 +217,31 @@ the n-times composition channel.
 
 **NoiseError** – if the power is not a positive integer.
 
-<span id="undefined" />
+
 
 `property probabilities`
 
 Return the readout error probabilities matrix.
 
-<span id="undefined" />
+
 
 `property rtol`
 
 The relative tolerance parameter for float comparisons.
 
-<span id="undefined" />
+
 
 `classmethod set_atol(value)`
 
 Set the class default absolute tolerance parameter for float comparisons.
 
-<span id="undefined" />
+
 
 `classmethod set_rtol(value)`
 
 Set the class default relative tolerance parameter for float comparisons.
 
-<span id="undefined" />
+
 
 `tensor(other)`
 
@@ -263,13 +263,13 @@ the tensor product readout error self ⊗ other.
 
 **NoiseError** – if other is not a ReadoutError.
 
-<span id="undefined" />
+
 
 `to_dict()`
 
 Return the current error as a dictionary.
 
-<span id="undefined" />
+
 
 `to_instruction()`
 

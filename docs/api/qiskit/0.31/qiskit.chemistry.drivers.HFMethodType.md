@@ -1,6 +1,6 @@
 # HFMethodType
 
-<span id="undefined" />
+
 
 `HFMethodType(value)`
 
@@ -10,19 +10,19 @@ HFMethodType Enum
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### RHF
 
 `= 'rhf'`
 
-<span id="undefined" />
+
 
 ### ROHF
 
 `= 'rohf'`
 
-<span id="undefined" />
+
 
 ### UHF
 

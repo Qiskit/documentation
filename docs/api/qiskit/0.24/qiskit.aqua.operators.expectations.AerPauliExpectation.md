@@ -2,13 +2,13 @@
 
 # qiskit.aqua.operators.expectations.AerPauliExpectation
 
-<span id="undefined" />
+
 
 `AerPauliExpectation`
 
 An Expectation converter for using Aer’s operator snapshot to take expectations of quantum state circuits over Pauli observables.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -22,7 +22,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`compute_variance`](#qiskit.aqua.operators.expectations.AerPauliExpectation.compute_variance "qiskit.aqua.operators.expectations.AerPauliExpectation.compute_variance")(exp\_op) | Compute the variance of the expectation estimator.                                                                           |
 | [`convert`](#qiskit.aqua.operators.expectations.AerPauliExpectation.convert "qiskit.aqua.operators.expectations.AerPauliExpectation.convert")(operator)                           | Accept an Operator and return a new Operator with the Pauli measurements replaced by AerSnapshot-based expectation circuits. |
 
-<span id="undefined" />
+
 
 `compute_variance(exp_op)`
 
@@ -40,7 +40,7 @@ Compute the variance of the expectation estimator. Because Aer takes this expect
 
 The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation, equal to 0.
 
-<span id="undefined" />
+
 
 `convert(operator)`
 

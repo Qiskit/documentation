@@ -1,6 +1,6 @@
 # DAGDependency
 
-<span id="undefined" />
+
 
 `DAGDependency`
 
@@ -61,7 +61,7 @@ Create an empty DAGDependency.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### calibrations
 
@@ -71,7 +71,7 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-<span id="undefined" />
+
 
 ### global\_phase
 

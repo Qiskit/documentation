@@ -54,7 +54,8 @@ export function generateToc(
     const tocModules = modules.map(
       (module): TocEntry => ({
         title: module.meta.python_api_name!,
-        url: module.url,
+        // Remove the final /index from the url
+        url: module.url.replace(/\/index$/, ""),
       }),
     );
     const tocModulesByTitle = keyBy(tocModules, (toc) => toc.title);

@@ -1,6 +1,6 @@
 # CorrelatedReadoutMitigator
 
-<span id="undefined" />
+
 
 `CorrelatedReadoutMitigator(amat, qubits=None)`
 
@@ -33,7 +33,7 @@ Initialize a CorrelatedReadoutMitigator
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### qubits
 

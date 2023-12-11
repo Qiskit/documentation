@@ -1,6 +1,6 @@
 # qiskit.circuit.ParameterExpression
 
-<span id="undefined" />
+
 
 `ParameterExpression(symbol_map, expr)`
 
@@ -15,7 +15,7 @@ Not intended to be called directly, but to be instantiated via operations on oth
 *   **symbol\_map** (*Dict\[*[*Parameter*](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter")*, \[*[*ParameterExpression*](#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*, float, or int]]*) – Mapping of [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances to the `sympy.Symbol` serving as their placeholder in expr.
 *   **expr** (*sympy.Expr*) – Expression of `sympy.Symbol` s.
 
-<span id="undefined" />
+
 
 `__init__(symbol_map, expr)`
 
@@ -54,25 +54,25 @@ Not intended to be called directly, but to be instantiated via operations on oth
 | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
 | [`parameters`](#qiskit.circuit.ParameterExpression.parameters "qiskit.circuit.ParameterExpression.parameters") | Returns a set of the unbound Parameters in the expression. |
 
-<span id="undefined" />
+
 
 `arccos()`
 
 Arccos of a ParameterExpression
 
-<span id="undefined" />
+
 
 `arcsin()`
 
 Arcsin of a ParameterExpression
 
-<span id="undefined" />
+
 
 `arctan()`
 
 Arctan of a ParameterExpression
 
-<span id="undefined" />
+
 
 `assign(parameter, value)`
 
@@ -91,7 +91,7 @@ Assign one parameter to a value, which can either be numeric or another paramete
 
 A new expression parameterized by any parameters which were not bound by assignment.
 
-<span id="undefined" />
+
 
 `bind(parameter_values)`
 
@@ -119,7 +119,7 @@ Binds the provided set of parameters to their corresponding values.
 
 A new expression parameterized by any parameters which were not bound by parameter\_values.
 
-<span id="undefined" />
+
 
 `conjugate()`
 
@@ -129,19 +129,19 @@ Return the conjugate.
 
 `ParameterExpression`
 
-<span id="undefined" />
+
 
 `cos()`
 
 Cosine of a ParameterExpression
 
-<span id="undefined" />
+
 
 `exp()`
 
 Exponential of a ParameterExpression
 
-<span id="undefined" />
+
 
 `gradient(param)`
 
@@ -159,19 +159,19 @@ Get the derivative of a parameter expression w\.r.t. a specified parameter expre
 
 ParameterExpression representing the gradient of param\_expr w\.r.t. param
 
-<span id="undefined" />
+
 
 `is_real()`
 
 Return whether the expression is real
 
-<span id="undefined" />
+
 
 `log()`
 
 Logarithm of a ParameterExpression
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -181,13 +181,13 @@ Returns a set of the unbound Parameters in the expression.
 
 `Set`
 
-<span id="undefined" />
+
 
 `sin()`
 
 Sine of a ParameterExpression
 
-<span id="undefined" />
+
 
 `subs(parameter_map)`
 
@@ -211,7 +211,7 @@ Returns a new Expression with replacement Parameters.
 
 A new expression with the specified parameters replaced.
 
-<span id="undefined" />
+
 
 `tan()`
 

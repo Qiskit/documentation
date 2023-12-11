@@ -2,7 +2,7 @@
 
 # qiskit.circuit.library.templates.nct.template\_nct\_4b\_1
 
-<span id="undefined" />
+
 
 `template_nct_4b_1()`
 

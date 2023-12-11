@@ -1,6 +1,6 @@
 # qiskit.qobj.QasmQobjInstruction
 
-<span id="undefined" />
+
 
 `QasmQobjInstruction(name, params=None, qubits=None, register=None, memory=None, condition=None, conditional=None, label=None, mask=None, relation=None, val=None, snapshot_type=None)`
 
@@ -23,7 +23,7 @@ Instantiate a new QasmQobjInstruction object.
 *   **val** (*int*) – Value to which to compare the masked register. In other words, the output of the function is `(register AND mask)`
 *   **snapshot\_type** (*str*) – For snapshot instructions the type of snapshot to use
 
-<span id="undefined" />
+
 
 `__init__(name, params=None, qubits=None, register=None, memory=None, condition=None, conditional=None, label=None, mask=None, relation=None, val=None, snapshot_type=None)`
 
@@ -52,7 +52,7 @@ Instantiate a new QasmQobjInstruction object.
 | [`from_dict`](#qiskit.qobj.QasmQobjInstruction.from_dict "qiskit.qobj.QasmQobjInstruction.from_dict")(data)                              | Create a new QasmQobjInstruction object from a dictionary.    |
 | [`to_dict`](#qiskit.qobj.QasmQobjInstruction.to_dict "qiskit.qobj.QasmQobjInstruction.to_dict")()                                        | Return a dictionary format representation of the Instruction. |
 
-<span id="undefined" />
+
 
 `classmethod from_dict(data)`
 
@@ -70,7 +70,7 @@ The object from the input dictionary.
 
 [QasmQobjInstruction](#qiskit.qobj.QasmQobjInstruction "qiskit.qobj.QasmQobjInstruction")
 
-<span id="undefined" />
+
 
 `to_dict()`
 

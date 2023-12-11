@@ -1,6 +1,6 @@
 # qiskit.pulse.builder.active\_transpiler\_settings
 
-<span id="undefined" />
+
 
 `active_transpiler_settings()`
 

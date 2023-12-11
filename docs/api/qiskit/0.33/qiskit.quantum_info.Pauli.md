@@ -1,6 +1,6 @@
 # Pauli
 
-<span id="undefined" />
+
 
 `Pauli(data=None, x=None, *, z=None, label=None)`
 
@@ -136,31 +136,31 @@ When using the symplectic array input data both z and x arguments must be provid
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### dim
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+
 
 ### phase
 
 Return the group phase exponent for the Pauli.
 
-<span id="undefined" />
+
 
 ### qargs
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+
 
 ### settings
 
@@ -170,13 +170,13 @@ Return settings.
 
 `Dict`
 
-<span id="undefined" />
+
 
 ### x
 
 The x vector for the Pauli.
 
-<span id="undefined" />
+
 
 ### z
 

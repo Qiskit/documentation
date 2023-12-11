@@ -1,6 +1,6 @@
 # ResultQuality
 
-<span id="undefined" />
+
 
 `ResultQuality(value)`
 
@@ -10,19 +10,19 @@ Possible values for analysis result quality.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### BAD
 
 `= 'BAD'`
 
-<span id="undefined" />
+
 
 ### GOOD
 
 `= 'GOOD'`
 
-<span id="undefined" />
+
 
 ### UNKNOWN
 

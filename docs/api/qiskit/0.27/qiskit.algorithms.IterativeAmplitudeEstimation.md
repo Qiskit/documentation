@@ -1,6 +1,6 @@
 # qiskit.algorithms.IterativeAmplitudeEstimation
 
-<span id="undefined" />
+
 
 `IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None)`
 
@@ -37,7 +37,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 *   **ValueError** – If alpha is not in (0, 1)
 *   **ValueError** – If confint\_method is not supported
 
-<span id="undefined" />
+
 
 `__init__(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None)`
 
@@ -63,7 +63,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 |                                                                                                                                                                                           |                                                                                                                                   |             |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | [`__init__`](#qiskit.algorithms.IterativeAmplitudeEstimation.__init__ "qiskit.algorithms.IterativeAmplitudeEstimation.__init__")(epsilon\_target, alpha\[, …])                            | The output of the algorithm is an estimate for the amplitude a, that with at least probability 1 - alpha has an error of epsilon. |             |
-| [`construct_circuit`](#qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit "qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit")(estimation\_problem\[, k, …]) | Construct the circuit \$\mathcal{Q}^k \mathcal{A}                                                                                 | 0\rangle\$. |
+| [`construct_circuit`](#qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit "qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit")(estimation\_problem\[, k, …]) | Construct the circuit $\mathcal{Q}^k \mathcal{A} \vert0\rangle$. |
 | [`estimate`](#qiskit.algorithms.IterativeAmplitudeEstimation.estimate "qiskit.algorithms.IterativeAmplitudeEstimation.estimate")(estimation\_problem)                                     | Run the amplitude estimation algorithm.                                                                                           |             |
 
 ## Attributes
@@ -73,7 +73,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 | [`epsilon_target`](#qiskit.algorithms.IterativeAmplitudeEstimation.epsilon_target "qiskit.algorithms.IterativeAmplitudeEstimation.epsilon_target")       | Returns the target precision `epsilon_target` of the algorithm. |
 | [`quantum_instance`](#qiskit.algorithms.IterativeAmplitudeEstimation.quantum_instance "qiskit.algorithms.IterativeAmplitudeEstimation.quantum_instance") | Get the quantum instance.                                       |
 
-<span id="undefined" />
+
 
 `construct_circuit(estimation_problem, k=0, measurement=False)`
 
@@ -95,7 +95,7 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 The circuit implementing $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
-<span id="undefined" />
+
 
 `property epsilon_target`
 
@@ -109,7 +109,7 @@ Returns the target precision `epsilon_target` of the algorithm.
 
 The target precision (which is half the width of the confidence interval).
 
-<span id="undefined" />
+
 
 `estimate(estimation_problem)`
 
@@ -123,7 +123,7 @@ Run the amplitude estimation algorithm.
 
 `IterativeAmplitudeEstimationResult`
 
-<span id="undefined" />
+
 
 `property quantum_instance`
 

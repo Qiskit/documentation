@@ -1,6 +1,6 @@
 # IBMRuntimeService
 
-<span id="undefined" />
+
 
 `IBMRuntimeService(provider)`
 

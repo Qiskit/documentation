@@ -2,7 +2,7 @@
 
 # qiskit.quantum\_info.diamond\_norm
 
-<span id="undefined" />
+
 
 `diamond_norm(choi, **kwargs)`
 

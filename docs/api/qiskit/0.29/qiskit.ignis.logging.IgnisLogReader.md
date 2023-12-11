@@ -1,6 +1,6 @@
 # IgnisLogReader
 
-<span id="undefined" />
+
 
 `IgnisLogReader`
 

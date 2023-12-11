@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.runtime.IBMRuntimeService
 
-<span id="undefined" />
+
 
 `IBMRuntimeService(provider)`
 
@@ -55,7 +55,7 @@ IBMRuntimeService constructor.
 
 **provider** (`AccountProvider`) – IBM Quantum account provider.
 
-<span id="undefined" />
+
 
 `__init__(provider)`
 
@@ -82,7 +82,7 @@ IBMRuntimeService constructor.
 | [`set_program_visibility`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.set_program_visibility "qiskit.providers.ibmq.runtime.IBMRuntimeService.set_program_visibility")(program\_id, public) | Sets a program’s visibility.                               |
 | [`upload_program`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.upload_program "qiskit.providers.ibmq.runtime.IBMRuntimeService.upload_program")(data\[, metadata, name, …])                  | Upload a runtime program.                                  |
 
-<span id="undefined" />
+
 
 `delete_job(job_id)`
 
@@ -103,7 +103,7 @@ Note that this operation cannot be reversed.
 
 `None`
 
-<span id="undefined" />
+
 
 `delete_program(program_id)`
 
@@ -122,7 +122,7 @@ Delete a runtime program.
 
 `None`
 
-<span id="undefined" />
+
 
 `job(job_id)`
 
@@ -145,7 +145,7 @@ Runtime job retrieved.
 *   **RuntimeJobNotFound** – If the job doesn’t exist.
 *   **QiskitRuntimeError** – If the request failed.
 
-<span id="undefined" />
+
 
 `jobs(limit=10, skip=0, pending=None)`
 
@@ -165,7 +165,7 @@ Retrieve all runtime jobs, subject to optional filtering.
 
 A list of runtime jobs.
 
-<span id="undefined" />
+
 
 `logout()`
 
@@ -181,7 +181,7 @@ For better performance, the runtime server caches each user’s authorization in
 
 `None`
 
-<span id="undefined" />
+
 
 `pprint_programs(refresh=False)`
 
@@ -195,7 +195,7 @@ Pretty print information about available runtime programs.
 
 `None`
 
-<span id="undefined" />
+
 
 `program(program_id, refresh=False)`
 
@@ -221,7 +221,7 @@ Runtime program.
 *   **RuntimeProgramNotFound** – If the program does not exist.
 *   **QiskitRuntimeError** – If the request failed.
 
-<span id="undefined" />
+
 
 `programs(refresh=False)`
 
@@ -241,7 +241,7 @@ Currently only program metadata is returned.
 
 A list of runtime programs.
 
-<span id="undefined" />
+
 
 `run(program_id, options, inputs, callback=None, result_decoder=None)`
 
@@ -276,7 +276,7 @@ A `RuntimeJob` instance representing the execution.
 
 **IBMQInputValueError** – If input is invalid.
 
-<span id="undefined" />
+
 
 `set_program_visibility(program_id, public)`
 
@@ -296,7 +296,7 @@ Sets a program’s visibility.
 
 `None`
 
-<span id="undefined" />
+
 
 `upload_program(data, metadata=None, name=None, max_execution_time=None, description=None, version=None, backend_requirements=None, parameters=None, return_values=None, interim_results=None)`
 

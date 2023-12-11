@@ -1,6 +1,6 @@
 # UnivariateDistribution
 
-<span id="undefined" />
+
 
 `UnivariateDistribution(num_target_qubits, probabilities=None, low=0, high=1)`
 
@@ -39,37 +39,37 @@ This module contains the definition of a base class for univariate distributions
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### high
 
 returns high
 
-<span id="undefined" />
+
 
 ### low
 
 returns low
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 
 Returns the number of target qubits
 
-<span id="undefined" />
+
 
 ### num\_values
 
 returns number of values
 
-<span id="undefined" />
+
 
 ### probabilities
 
 returns probabilities
 
-<span id="undefined" />
+
 
 ### values
 

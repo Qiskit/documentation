@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.mutual\_information
 
-<span id="undefined" />
+
 
 `mutual_information(state, base=2)`
 

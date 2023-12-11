@@ -1,6 +1,6 @@
 # MinimumEigensolver
 
-<span id="undefined" />
+
 
 `MinimumEigensolver`
 

@@ -1,6 +1,6 @@
 # PauliGraph
 
-<span id="undefined" />
+
 
 `PauliGraph(paulis, mode='largest-degree')`
 
@@ -10,7 +10,7 @@ Pauli Graph.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### grouped\_paulis
 

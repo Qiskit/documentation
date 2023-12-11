@@ -1,6 +1,6 @@
 # qiskit.pulse.builder.circuit\_scheduler\_settings
 
-<span id="undefined" />
+
 
 `circuit_scheduler_settings(**settings)`
 

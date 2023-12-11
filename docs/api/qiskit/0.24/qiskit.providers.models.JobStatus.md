@@ -2,13 +2,13 @@
 
 # qiskit.providers.models.JobStatus
 
-<span id="undefined" />
+
 
 `JobStatus(job_id, status, status_msg, **kwargs)`
 
 Model for JobStatus.
 
-<span id="undefined" />
+
 
 ### job\_id
 
@@ -18,7 +18,7 @@ backend job\_id.
 
 str
 
-<span id="undefined" />
+
 
 ### status
 
@@ -28,7 +28,7 @@ status of the job.
 
 str
 
-<span id="undefined" />
+
 
 ### status\_msg
 
@@ -38,7 +38,7 @@ status message.
 
 str
 
-<span id="undefined" />
+
 
 `__init__(job_id, status, status_msg, **kwargs)`
 
@@ -52,7 +52,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`from_dict`](#qiskit.providers.models.JobStatus.from_dict "qiskit.providers.models.JobStatus.from_dict")(data)                                  | Create a new JobStatus object from a dictionary.            |
 | [`to_dict`](#qiskit.providers.models.JobStatus.to_dict "qiskit.providers.models.JobStatus.to_dict")()                                            | Return a dictionary format representation of the JobStatus. |
 
-<span id="undefined" />
+
 
 `classmethod from_dict(data)`
 
@@ -72,7 +72,7 @@ dictionary.
 
 qiskit.providers.model.JobStatus
 
-<span id="undefined" />
+
 
 `to_dict()`
 

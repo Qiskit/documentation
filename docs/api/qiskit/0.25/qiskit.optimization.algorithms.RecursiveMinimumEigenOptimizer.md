@@ -1,6 +1,6 @@
 # qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer
 
-<span id="undefined" />
+
 
 `RecursiveMinimumEigenOptimizer(min_eigen_optimizer, min_num_vars=1, min_num_vars_optimizer=None, penalty=None, history=<IntermediateResult.LAST_ITERATION: 1>, converters=None)`
 
@@ -48,7 +48,7 @@ This initializer takes a `MinimumEigenOptimizer`, the parameters to specify unti
 *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – In case of invalid parameters (num\_min\_vars \< 1).
 *   **TypeError** – When there one of converters is an invalid type.
 
-<span id="undefined" />
+
 
 `__init__(min_eigen_optimizer, min_num_vars=1, min_num_vars_optimizer=None, penalty=None, history=<IntermediateResult.LAST_ITERATION: 1>, converters=None)`
 
@@ -79,7 +79,7 @@ This initializer takes a `MinimumEigenOptimizer`, the parameters to specify unti
 | [`is_compatible`](#qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.is_compatible "qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method. |
 | [`solve`](#qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.solve "qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.solve")(problem)                                                 | Tries to solve the given problem using the recursive optimizer.                           |
 
-<span id="undefined" />
+
 
 `get_compatibility_msg(problem)`
 
@@ -99,7 +99,7 @@ Checks whether the given problem is compatible, i.e., whether the problem can be
 
 A message describing the incompatibility.
 
-<span id="undefined" />
+
 
 `is_compatible(problem)`
 
@@ -117,7 +117,7 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 
 Returns True if the problem is compatible, False otherwise.
 
-<span id="undefined" />
+
 
 `solve(problem)`
 

@@ -1,6 +1,6 @@
 # qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter
 
-<span id="undefined" />
+
 
 `ExpvalMeasMitigatorFitter(result, metadata)`
 
@@ -15,7 +15,7 @@ Fit a measurement error mitigator object from experiment data.
 *   **result** (`Result`) – Qiskit result object.
 *   **metadata** (`List`\[`Dict`\[`str`, `any`]]) – mitigation generator metadata.
 
-<span id="undefined" />
+
 
 `__init__(result, metadata)`
 
@@ -39,7 +39,7 @@ Fit a measurement error mitigator object from experiment data.
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | [`mitigator`](#qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.mitigator "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.mitigator") | Return the fitted mitigator object |
 
-<span id="undefined" />
+
 
 `fit(method=None, generators=None)`
 
@@ -49,7 +49,7 @@ Fit and return the Mitigator object from the calibration data.
 
 `Union`\[`CompleteExpvalMeasMitigator`, `TensoredExpvalMeasMitigator`, `CTMPExpvalMeasMitigator`]
 
-<span id="undefined" />
+
 
 `property mitigator`
 

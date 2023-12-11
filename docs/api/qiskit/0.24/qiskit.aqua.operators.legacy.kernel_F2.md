@@ -2,7 +2,7 @@
 
 # qiskit.aqua.operators.legacy.kernel\_F2
 
-<span id="undefined" />
+
 
 `kernel_F2(matrix_in)`
 

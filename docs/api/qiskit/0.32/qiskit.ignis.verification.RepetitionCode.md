@@ -1,6 +1,6 @@
 # RepetitionCode
 
-<span id="undefined" />
+
 
 `RepetitionCode(d, T=0)`
 

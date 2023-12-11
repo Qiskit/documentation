@@ -2,7 +2,7 @@
 
 # qiskit.aqua.operators.legacy.suzuki\_expansion\_slice\_pauli\_list
 
-<span id="undefined" />
+
 
 `suzuki_expansion_slice_pauli_list(pauli_list, lam_coef, expansion_order)`
 

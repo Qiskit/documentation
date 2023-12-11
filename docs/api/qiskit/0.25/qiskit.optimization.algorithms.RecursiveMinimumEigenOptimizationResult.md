@@ -1,6 +1,6 @@
 # qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult
 
-<span id="undefined" />
+
 
 `RecursiveMinimumEigenOptimizationResult(x, fval, variables, status, replacements, history)`
 
@@ -17,7 +17,7 @@ Constructs an instance of the result class.
 *   **replacements** (`Dict`\[`str`, `Tuple`\[`str`, `int`]]) – a dictionary of substituted variables. Key is a variable being substituted, value is a tuple of substituting variable and a weight, either 1 or -1.
 *   **history** (`Tuple`\[`List`\[`MinimumEigenOptimizationResult`], `OptimizationResult`]) – a tuple containing intermediate results. The first element is a list of `MinimumEigenOptimizerResult` obtained by invoking [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer#qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer") iteratively, the second element is an instance of `OptimizationResult` obtained at the last step via min\_num\_vars\_optimizer.
 
-<span id="undefined" />
+
 
 `__init__(x, fval, variables, status, replacements, history)`
 
@@ -53,7 +53,7 @@ Constructs an instance of the result class.
 | [`variables_dict`](#qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.variables_dict "qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.variables_dict") | Returns the optimal value as a dictionary of the variable name and corresponding value. |
 | [`x`](#qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.x "qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.x")                                        | Returns the optimal value found in the optimization or None in case of FAILURE.         |
 
-<span id="undefined" />
+
 
 `property fval`
 
@@ -67,7 +67,7 @@ Returns the optimal function value.
 
 The function value corresponding to the optimal value found in the optimization.
 
-<span id="undefined" />
+
 
 `property history`
 
@@ -77,7 +77,7 @@ Returns intermediate results. The first element is a list of `MinimumEigenOptimi
 
 `Tuple`\[`List`\[`MinimumEigenOptimizationResult`], `OptimizationResult`]
 
-<span id="undefined" />
+
 
 `property raw_results`
 
@@ -93,7 +93,7 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
-<span id="undefined" />
+
 
 `property replacements`
 
@@ -103,7 +103,7 @@ Returns a dictionary of substituted variables. Key is a variable being substitut
 
 `Dict`\[`str`, `Tuple`\[`str`, `int`]]
 
-<span id="undefined" />
+
 
 `property samples`
 
@@ -117,7 +117,7 @@ Returns the list of solution samples
 
 The list of solution samples.
 
-<span id="undefined" />
+
 
 `property status`
 
@@ -131,7 +131,7 @@ Returns the termination status of the optimization algorithm.
 
 The termination status of the algorithm.
 
-<span id="undefined" />
+
 
 `property variable_names`
 
@@ -145,7 +145,7 @@ Returns the list of variable names of the optimization problem.
 
 The list of variable names of the optimization problem.
 
-<span id="undefined" />
+
 
 `property variables`
 
@@ -159,7 +159,7 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
-<span id="undefined" />
+
 
 `property variables_dict`
 
@@ -173,7 +173,7 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 
 The optimal value as a dictionary of the variable name and corresponding value.
 
-<span id="undefined" />
+
 
 `property x`
 

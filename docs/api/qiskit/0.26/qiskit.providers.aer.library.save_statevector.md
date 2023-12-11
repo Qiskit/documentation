@@ -1,6 +1,6 @@
 # qiskit.providers.aer.library.save\_statevector
 
-<span id="undefined" />
+
 
 `save_statevector(self, label='statevector', pershot=False, conditional=False)`
 

@@ -1,6 +1,6 @@
 # PauliTrotterEvolution
 
-<span id="undefined" />
+
 
 `PauliTrotterEvolution(trotter_mode='trotter', reps=1)`
 
@@ -30,7 +30,7 @@ More specifically, we compute basis change circuits for each Pauli into a single
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### trotter
 

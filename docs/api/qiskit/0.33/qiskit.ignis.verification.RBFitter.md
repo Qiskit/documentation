@@ -1,6 +1,6 @@
 # RBFitter
 
-<span id="undefined" />
+
 
 `RBFitter(backend_result, cliff_lengths, rb_pattern=None)`
 
@@ -27,43 +27,43 @@ Class for fitters for randomized benchmarking.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### cliff\_lengths
 
 Return clifford lengths.
 
-<span id="undefined" />
+
 
 ### fit
 
 Return fit.
 
-<span id="undefined" />
+
 
 ### raw\_data
 
 Return raw data.
 
-<span id="undefined" />
+
 
 ### rb\_fit\_fun
 
 Return the fit function rb\_fit\_fun.
 
-<span id="undefined" />
+
 
 ### results
 
 Return all the results.
 
-<span id="undefined" />
+
 
 ### seeds
 
 Return the number of loaded seeds.
 
-<span id="undefined" />
+
 
 ### ydata
 

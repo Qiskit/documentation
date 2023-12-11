@@ -1,6 +1,6 @@
 # Shor
 
-<span id="undefined" />
+
 
 `Shor(quantum_instance=None)`
 
@@ -28,7 +28,7 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 

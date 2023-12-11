@@ -1,6 +1,6 @@
 # qiskit.pulse.builder.measure\_channel
 
-<span id="undefined" />
+
 
 `measure_channel(qubit)`
 

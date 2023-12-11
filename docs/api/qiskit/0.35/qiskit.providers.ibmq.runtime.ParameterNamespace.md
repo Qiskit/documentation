@@ -1,6 +1,6 @@
 # ParameterNamespace
 
-<span id="undefined" />
+
 
 `ParameterNamespace(parameters)`
 
@@ -24,7 +24,7 @@ ParameterNamespace constructor.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### metadata
 

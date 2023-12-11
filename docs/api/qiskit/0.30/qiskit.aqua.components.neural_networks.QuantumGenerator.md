@@ -1,6 +1,6 @@
 # QuantumGenerator
 
-<span id="undefined" />
+
 
 `QuantumGenerator(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, gradient_function=None, snapshot_dir=None)`
 
@@ -37,7 +37,7 @@ The quantum generator is a parametrized quantum circuit which can be trained wit
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### discriminator
 
@@ -47,7 +47,7 @@ Get discriminator.
 
 `DiscriminativeNetwork`
 
-<span id="undefined" />
+
 
 ### optimizer
 
@@ -57,7 +57,7 @@ Get optimizer.
 
 `Optimizer`
 
-<span id="undefined" />
+
 
 ### parameter\_values
 
@@ -71,7 +71,7 @@ Get parameter values from the quantum generator
 
 Current parameter values
 
-<span id="undefined" />
+
 
 ### seed
 

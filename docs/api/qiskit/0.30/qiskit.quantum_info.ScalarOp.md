@@ -1,6 +1,6 @@
 # ScalarOp
 
-<span id="undefined" />
+
 
 `ScalarOp(dims=None, coeff=1)`
 
@@ -43,43 +43,43 @@ Initialize an operator object.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### atol
 
 `= 1e-08`
 
-<span id="undefined" />
+
 
 ### coeff
 
 Return the coefficient
 
-<span id="undefined" />
+
 
 ### dim
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+
 
 ### qargs
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+
 
 ### rtol
 
 `= 1e-05`
 
-<span id="undefined" />
+
 
 ### settings
 

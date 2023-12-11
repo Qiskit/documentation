@@ -1,6 +1,6 @@
 # qiskit.transpiler.TranspilerAccessError
 
-<span id="undefined" />
+
 
 `TranspilerAccessError(*message)`
 

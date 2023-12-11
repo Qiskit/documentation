@@ -1,6 +1,6 @@
 # qiskit.aqua.AquaError
 
-<span id="undefined" />
+
 
 `AquaError(*message)`
 

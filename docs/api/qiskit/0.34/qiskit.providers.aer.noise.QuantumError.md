@@ -1,6 +1,6 @@
 # QuantumError
 
-<span id="undefined" />
+
 
 `QuantumError(noise_ops, number_of_qubits=None, standard_gates=None, atol=None)`
 
@@ -73,61 +73,61 @@ noise_ops = Kraus([np.sqrt(0.9) * np.array([[1, 0], [0, 1]]),
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### atol
 
 `= 1e-08`
 
-<span id="undefined" />
+
 
 ### circuits
 
 Return the list of error circuits.
 
-<span id="undefined" />
+
 
 ### dim
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 ### id
 
 Return unique ID string for error
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+
 
 ### number\_of\_qubits
 
 Return the number of qubits for the error.
 
-<span id="undefined" />
+
 
 ### probabilities
 
 Return the list of error probabilities.
 
-<span id="undefined" />
+
 
 ### qargs
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+
 
 ### rtol
 
 `= 1e-05`
 
-<span id="undefined" />
+
 
 ### size
 

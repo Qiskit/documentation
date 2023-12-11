@@ -2,7 +2,7 @@
 
 # qiskit.aqua.operators.legacy.covariance
 
-<span id="undefined" />
+
 
 `covariance(data, pauli_1, pauli_2, avg_1, avg_2)`
 

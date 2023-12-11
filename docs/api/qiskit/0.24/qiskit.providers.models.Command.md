@@ -2,13 +2,13 @@
 
 # qiskit.providers.models.Command
 
-<span id="undefined" />
+
 
 `Command(name, qubits=None, sequence=None, **kwargs)`
 
 Class representing a Command.
 
-<span id="undefined" />
+
 
 ### name
 
@@ -23,7 +23,7 @@ Initialize a Command object
 *   **sequence** ([*PulseQobjInstruction*](qiskit.qobj.PulseQobjInstruction#qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction")) – The sequence for the Command
 *   **kwargs** – Optional additional fields
 
-<span id="undefined" />
+
 
 `__init__(name, qubits=None, sequence=None, **kwargs)`
 
@@ -44,7 +44,7 @@ Initialize a Command object
 | [`from_dict`](#qiskit.providers.models.Command.from_dict "qiskit.providers.models.Command.from_dict")(data)                   | Create a new Command object from a dictionary.            |
 | [`to_dict`](#qiskit.providers.models.Command.to_dict "qiskit.providers.models.Command.to_dict")()                             | Return a dictionary format representation of the Command. |
 
-<span id="undefined" />
+
 
 `classmethod from_dict(data)`
 
@@ -64,7 +64,7 @@ dictionary.
 
 qiskit.providers.model.Command
 
-<span id="undefined" />
+
 
 `to_dict()`
 

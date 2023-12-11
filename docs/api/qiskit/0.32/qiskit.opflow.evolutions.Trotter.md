@@ -1,6 +1,6 @@
 # Trotter
 
-<span id="undefined" />
+
 
 `Trotter(reps=1)`
 
@@ -14,7 +14,7 @@ Simple Trotter expansion, composing the evolution circuits of each Operator in t
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### order
 
@@ -24,7 +24,7 @@ returns order
 
 `int`
 
-<span id="undefined" />
+
 
 ### reps
 

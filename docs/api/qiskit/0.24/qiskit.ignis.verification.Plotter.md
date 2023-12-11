@@ -2,13 +2,13 @@
 
 # qiskit.ignis.verification.Plotter
 
-<span id="undefined" />
+
 
 `Plotter(label)`
 
 Various plots of the ground state in MQC and PO experiments
 
-<span id="undefined" />
+
 
 `__init__(label)`
 
@@ -23,7 +23,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`sin_plotter`](#qiskit.ignis.verification.Plotter.sin_plotter "qiskit.ignis.verification.Plotter.sin_plotter")(x, y\[, y\_m])                          | Make sin plot of counts in both mqc and po exps. |
 | [`title_maker`](#qiskit.ignis.verification.Plotter.title_maker "qiskit.ignis.verification.Plotter.title_maker")()                                       | Make title depending on type of exp.             |
 
-<span id="undefined" />
+
 
 `get_fourier_info(qn, x, y, y_m, p_dict)`
 
@@ -42,7 +42,7 @@ The fourier transform data
 *   **ImportError** – If matplotlib is not present
 *   **Exception** – If y\_m or p\_dict are not provided
 
-<span id="undefined" />
+
 
 `sin_plotter(x, y, y_m=None)`
 
@@ -52,7 +52,7 @@ Make sin plot of counts in both mqc and po exps. :type x: `array` :param x: Phas
 
 **ImportError** – If matplotlib is not present
 
-<span id="undefined" />
+
 
 `title_maker()`
 

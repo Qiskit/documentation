@@ -1,6 +1,6 @@
 # HartreeFock
 
-<span id="undefined" />
+
 
 `HartreeFock(num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, sq_list=None)`
 
@@ -29,7 +29,7 @@ A Hartree-Fock initial state.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### bitstr
 

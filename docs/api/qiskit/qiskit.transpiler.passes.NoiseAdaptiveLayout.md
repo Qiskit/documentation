@@ -20,11 +20,7 @@ Choose a noise-adaptive Layout based on current calibration data for the backend
 >
 > The pass implements the qubit mapping method from: Noise-Adaptive Compiler Mappings for Noisy Intermediate-Scale Quantum Computers Prakash Murali, Jonathan M. Baker, Ali Javadi-Abhari, Frederic T. Chong, Margaret R. Martonosi ASPLOS 2019 (arXiv:1901.11054).
 
-<span id="undefined" />
-
 `Ordering of edges`
-
-<span id="undefined" />
 
 `Map qubits edge-by-edge in the order of decreasing frequency of occurrence in the program dag.`
 
@@ -34,39 +30,21 @@ Choose a noise-adaptive Layout based on current calibration data for the backend
 
 `Initialization()`
 
-<span id="undefined" />
-
 `If an edge exists with both endpoints unmapped,`
-
-<span id="undefined" />
 
 `pick the best available hardware cx to execute this edge.`
 
-<span id="undefined" />
-
 `Iterative step`
-
-<span id="undefined" />
 
 `When an edge exists with one endpoint unmapped,`
 
-<span id="undefined" />
-
 `map that endpoint to a location which allows`
-
-<span id="undefined" />
 
 `maximum reliability for CNOTs with previously mapped qubits.`
 
-<span id="undefined" />
-
 `In the end if there are unmapped qubits (which don't`
 
-<span id="undefined" />
-
 `participate in any CNOT), map them to any available`
-
-<span id="undefined" />
 
 `hardware qubit.`
 

@@ -1,6 +1,6 @@
 # qiskit.opflow\.primitive\_ops.Z2Symmetries
 
-<span id="undefined" />
+
 
 `Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None)`
 
@@ -17,7 +17,7 @@ Z2 Symmetries
 
 [**OpflowError**](qiskit.opflow.OpflowError#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – Invalid paulis
 
-<span id="undefined" />
+
 
 `__init__(symmetries, sq_paulis, sq_list, tapering_values=None)`
 
@@ -53,13 +53,13 @@ Z2 Symmetries
 | [`symmetries`](#qiskit.opflow.primitive_ops.Z2Symmetries.symmetries "qiskit.opflow.primitive_ops.Z2Symmetries.symmetries")                | return symmetries                                                     |
 | [`tapering_values`](#qiskit.opflow.primitive_ops.Z2Symmetries.tapering_values "qiskit.opflow.primitive_ops.Z2Symmetries.tapering_values") | returns tapering values                                               |
 
-<span id="undefined" />
+
 
 `property cliffords`
 
 Get clifford operators, build based on symmetries and single-qubit X. :rtype: `List`\[`PauliSumOp`] :returns: a list of unitaries used to diagonalize the Hamiltonian.
 
-<span id="undefined" />
+
 
 `consistent_tapering(operator)`
 
@@ -81,13 +81,13 @@ The tapered operator
 
 [**OpflowError**](qiskit.opflow.OpflowError#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – The given operator does not commute with the symmetry
 
-<span id="undefined" />
+
 
 `copy()`
 
 Get a copy of self. :rtype: `Z2Symmetries` :returns: copy
 
-<span id="undefined" />
+
 
 `classmethod find_Z2_symmetries(operator)`
 
@@ -101,31 +101,31 @@ Finds Z2 Pauli-type symmetries of an Operator.
 
 a z2\_symmetries object contains symmetries, single-qubit X, single-qubit list.
 
-<span id="undefined" />
+
 
 `is_empty()`
 
 Check the z2\_symmetries is empty or not. :rtype: `bool` :returns: Empty or not
 
-<span id="undefined" />
+
 
 `property sq_list`
 
 returns sq list
 
-<span id="undefined" />
+
 
 `property sq_paulis`
 
 returns sq paulis
 
-<span id="undefined" />
+
 
 `property symmetries`
 
 return symmetries
 
-<span id="undefined" />
+
 
 `taper(operator)`
 
@@ -147,7 +147,7 @@ If tapering\_values is None
 
 [**OpflowError**](qiskit.opflow.OpflowError#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – Z2 symmetries, single qubit pauli and single qubit list cannot be empty
 
-<span id="undefined" />
+
 
 `property tapering_values`
 

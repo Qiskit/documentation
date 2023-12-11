@@ -88,7 +88,7 @@ Beta parameters in the VQD paper. Should have length k - 1, with k the number of
 
 list\[float]
 
-<span id="undefined" />
+
 
 ### initial point
 

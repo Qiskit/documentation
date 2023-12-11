@@ -1,6 +1,6 @@
 # AlignSequential
 
-<span id="undefined" />
+
 
 `AlignSequential`
 
@@ -21,7 +21,7 @@ Create new context.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### is\_sequential
 

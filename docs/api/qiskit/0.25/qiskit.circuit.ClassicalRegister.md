@@ -1,6 +1,6 @@
 # qiskit.circuit.ClassicalRegister
 
-<span id="undefined" />
+
 
 `ClassicalRegister(size=None, name=None, bits=None)`
 
@@ -23,7 +23,7 @@ Either the `size` or the `bits` argument must be provided. If `size` is not None
 *   **CircuitError** – if `name` is not a valid name according to the OpenQASM spec.
 *   **CircuitError** – if `bits` contained bits of an incorrect type.
 
-<span id="undefined" />
+
 
 `__init__(size=None, name=None, bits=None)`
 
@@ -61,25 +61,25 @@ Either the `size` or the `bits` argument must be provided. If `size` is not None
 | `prefix`                                                                                 |                        |
 | [`size`](#qiskit.circuit.ClassicalRegister.size "qiskit.circuit.ClassicalRegister.size") | Get the register size. |
 
-<span id="undefined" />
+
 
 ### bit\_type
 
 alias of [`Clbit`](qiskit.circuit.Clbit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")
 
-<span id="undefined" />
+
 
 `property name`
 
 Get the register name.
 
-<span id="undefined" />
+
 
 `qasm()`
 
 Return OPENQASM string for this register.
 
-<span id="undefined" />
+
 
 `property size`
 

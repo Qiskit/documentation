@@ -2,7 +2,7 @@
 
 # qiskit.dagcircuit.DAGNode
 
-<span id="undefined" />
+
 
 `DAGNode(type=None, op=None, name=None, qargs=None, cargs=None, condition=None, wire=None, nid=- 1)`
 
@@ -12,7 +12,7 @@ It is used as the return value from \*\_nodes() functions and can be supplied to
 
 Create a node
 
-<span id="undefined" />
+
 
 `__init__(type=None, op=None, name=None, qargs=None, cargs=None, condition=None, wire=None, nid=- 1)`
 
@@ -38,19 +38,19 @@ Create a node
 | `type`                                                                        |                                                                                |
 | [`wire`](#qiskit.dagcircuit.DAGNode.wire "qiskit.dagcircuit.DAGNode.wire")    | Returns the Bit object, else None.                                             |
 
-<span id="undefined" />
+
 
 `property op`
 
 Returns the Instruction object corresponding to the op for the node, else None
 
-<span id="undefined" />
+
 
 `property qargs`
 
 Returns list of Qubit, else an empty list.
 
-<span id="undefined" />
+
 
 `static semantic_eq(node1, node2)`
 
@@ -69,7 +69,7 @@ If node1 == node2
 
 Bool
 
-<span id="undefined" />
+
 
 `property wire`
 

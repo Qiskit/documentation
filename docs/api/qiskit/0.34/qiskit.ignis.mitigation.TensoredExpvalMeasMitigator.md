@@ -1,6 +1,6 @@
 # TensoredExpvalMeasMitigator
 
-<span id="undefined" />
+
 
 `TensoredExpvalMeasMitigator(amats)`
 

@@ -2,7 +2,7 @@
 
 # qiskit.ignis.verification.get\_ghz\_simple
 
-<span id="undefined" />
+
 
 `get_ghz_simple(n, measure=True, full_measurement=True)`
 

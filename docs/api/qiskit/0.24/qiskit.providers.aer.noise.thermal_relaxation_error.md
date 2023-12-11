@@ -2,7 +2,7 @@
 
 # qiskit.providers.aer.noise.thermal\_relaxation\_error
 
-<span id="undefined" />
+
 
 `thermal_relaxation_error(t1, t2, time, excited_state_population=0)`
 

@@ -2,7 +2,7 @@
 
 # qiskit.providers.aer.noise.pauli\_error
 
-<span id="undefined" />
+
 
 `pauli_error(noise_ops, standard_gates=True)`
 

@@ -1,6 +1,6 @@
 # Eigensolver
 
-<span id="undefined" />
+
 
 `Eigensolver`
 
@@ -19,7 +19,7 @@ Algorithms that can compute eigenvalues for an operator may implement this inter
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### aux\_operators
 
@@ -29,7 +29,7 @@ Returns the auxiliary operators.
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
 
-<span id="undefined" />
+
 
 ### operator
 

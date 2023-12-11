@@ -1,6 +1,6 @@
 # PolynomialExtrapolator
 
-<span id="undefined" />
+
 
 `PolynomialExtrapolator(degree=1)`
 

@@ -1,6 +1,6 @@
 # qiskit.providers.aer.library.set\_matrix\_product\_state
 
-<span id="undefined" />
+
 
 `set_matrix_product_state(self, state)`
 

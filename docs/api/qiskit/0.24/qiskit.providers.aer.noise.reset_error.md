@@ -2,7 +2,7 @@
 
 # qiskit.providers.aer.noise.reset\_error
 
-<span id="undefined" />
+
 
 `reset_error(prob0, prob1=0)`
 

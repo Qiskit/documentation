@@ -1,6 +1,6 @@
 # PauliList
 
-<span id="undefined" />
+
 
 `PauliList(data)`
 
@@ -133,55 +133,55 @@ The input array is not copied so multiple Pauli tables can share the same underl
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### dim
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+
 
 ### phase
 
 Return the phase exponent of the PauliList.
 
-<span id="undefined" />
+
 
 ### qargs
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+
 
 ### settings
 
 Return settings.
 
-<span id="undefined" />
+
 
 ### shape
 
 The full shape of the `array()`
 
-<span id="undefined" />
+
 
 ### size
 
 The number of Pauli rows in the table.
 
-<span id="undefined" />
+
 
 ### x
 
 The x array for the symplectic representation.
 
-<span id="undefined" />
+
 
 ### z
 

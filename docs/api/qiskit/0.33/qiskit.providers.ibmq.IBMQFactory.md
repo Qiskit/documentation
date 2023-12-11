@@ -1,6 +1,6 @@
 # IBMQFactory
 
-<span id="undefined" />
+
 
 `IBMQFactory`
 

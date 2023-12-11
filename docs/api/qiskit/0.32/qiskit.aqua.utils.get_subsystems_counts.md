@@ -1,6 +1,6 @@
 # qiskit.aqua.utils.get\_subsystems\_counts
 
-<span id="undefined" />
+
 
 `get_subsystems_counts(complete_system_counts, post_select_index=None, post_select_flag=None)`
 

@@ -1,6 +1,6 @@
 # qiskit.ignis.characterization.get\_single\_q\_pulse
 
-<span id="undefined" />
+
 
 `get_single_q_pulse(inst_map, qubits)`
 

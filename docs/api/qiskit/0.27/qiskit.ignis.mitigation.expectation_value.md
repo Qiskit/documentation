@@ -1,6 +1,6 @@
 # qiskit.ignis.mitigation.expectation\_value
 
-<span id="undefined" />
+
 
 `expectation_value(counts, diagonal=None, qubits=None, clbits=None, meas_mitigator=None)`
 

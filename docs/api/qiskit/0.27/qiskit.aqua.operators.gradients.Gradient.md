@@ -1,6 +1,6 @@
 # qiskit.aqua.operators.gradients.Gradient
 
-<span id="undefined" />
+
 
 `Gradient(grad_method='param_shift', **kwargs)`
 
@@ -15,7 +15,7 @@ Convert an operator expression to the first-order gradient.
 
 **ValueError** – If method != `fin_diff` and `epsilon` is not None.
 
-<span id="undefined" />
+
 
 `__init__(grad_method='param_shift', **kwargs)`
 
@@ -44,7 +44,7 @@ Convert an operator expression to the first-order gradient.
 | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | [`grad_method`](#qiskit.aqua.operators.gradients.Gradient.grad_method "qiskit.aqua.operators.gradients.Gradient.grad_method") | Returns `CircuitGradient`. |
 
-<span id="undefined" />
+
 
 `convert(operator, params=None)`
 
@@ -65,7 +65,7 @@ An operator whose evaluation yields the Gradient.
 
 **ValueError** – If `params` contains a parameter not present in `operator`.
 
-<span id="undefined" />
+
 
 `get_gradient(operator, params)`
 
@@ -92,7 +92,7 @@ Operator which represents the gradient w\.r.t. the given params.
 *   **TypeError** – If the operator does not include a StateFn given by a quantum circuit
 *   **Exception** – Unintended code is reached
 
-<span id="undefined" />
+
 
 `property grad_method`
 
@@ -106,7 +106,7 @@ Returns `CircuitGradient`.
 
 `CircuitGradient`.
 
-<span id="undefined" />
+
 
 `gradient_wrapper(operator, bind_params, grad_params=None, backend=None)`
 
@@ -127,7 +127,7 @@ Function to compute a gradient, Hessian or QFI. The function takes an iterable a
 
 callable(param\_values)
 
-<span id="undefined" />
+
 
 `static parameter_expression_grad(param_expr, param)`
 

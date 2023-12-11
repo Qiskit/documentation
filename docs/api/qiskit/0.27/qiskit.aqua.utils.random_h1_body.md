@@ -1,6 +1,6 @@
 # qiskit.aqua.utils.random\_h1\_body
 
-<span id="undefined" />
+
 
 `random_h1_body(N)`
 

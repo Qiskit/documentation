@@ -2,7 +2,7 @@
 
 # qiskit.chemistry.algorithms.pes\_samplers.EnergySurface1DSpline
 
-<span id="undefined" />
+
 
 `EnergySurface1DSpline`
 
@@ -12,7 +12,7 @@ A spline interpolation method for data fitting.
 
 This allows for fitting BOPES sampler results or potential energy surfaces.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -31,7 +31,7 @@ This allows for fitting BOPES sampler results or potential energy surfaces.
 | [`get_minimal_energy`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_minimal_energy "qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_minimal_energy")(\[scaling])                   | Returns the value of the minimal energy (scaled by ‘scaling’) Default units (scaling=1.0) are J/mol.         |
 | [`get_trust_region`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_trust_region "qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_trust_region")()                                   | Get the trust region.                                                                                        |
 
-<span id="undefined" />
+
 
 `eval(x)`
 
@@ -49,7 +49,7 @@ After fitting the data to the fit function, predict the energy at a point x.
 
 Value of surface fit in point x.
 
-<span id="undefined" />
+
 
 `fit(xdata, ydata, initial_vals=None, bounds_list=None)`
 
@@ -66,7 +66,7 @@ Fits surface to data.
 
 `None`
 
-<span id="undefined" />
+
 
 `get_equilibrium_geometry(scaling=1.0)`
 
@@ -80,7 +80,7 @@ Returns the geometry for the minimal energy (scaled by ‘scaling’) Default un
 
 equilibrium geometry
 
-<span id="undefined" />
+
 
 `get_minimal_energy(scaling=1.0)`
 
@@ -94,7 +94,7 @@ Returns the value of the minimal energy (scaled by ‘scaling’) Default units 
 
 minimum energy
 
-<span id="undefined" />
+
 
 `get_trust_region()`
 

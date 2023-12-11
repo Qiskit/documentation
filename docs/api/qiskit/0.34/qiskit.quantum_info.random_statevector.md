@@ -1,6 +1,6 @@
 # qiskit.quantum\_info.random\_statevector
 
-<span id="undefined" />
+
 
 `random_statevector(dims, seed=None)`
 

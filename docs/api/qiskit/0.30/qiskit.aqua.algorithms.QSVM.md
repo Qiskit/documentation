@@ -1,6 +1,6 @@
 # QSVM
 
-<span id="undefined" />
+
 
 `QSVM(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, lambda2=0.001, quantum_instance=None)`
 
@@ -50,13 +50,13 @@ See also [https://arxiv.org/abs/1804.11326](https://arxiv.org/abs/1804.11326)
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### BATCH\_SIZE
 
 `= 1000`
 
-<span id="undefined" />
+
 
 ### backend
 
@@ -66,7 +66,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-<span id="undefined" />
+
 
 ### quantum\_instance
 
@@ -76,13 +76,13 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="undefined" />
+
 
 ### random
 
 Return a numpy random.
 
-<span id="undefined" />
+
 
 ### ret
 

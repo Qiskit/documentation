@@ -1,6 +1,6 @@
 # AccreditationFitter
 
-<span id="undefined" />
+
 
 `AccreditationFitter`
 
@@ -19,49 +19,49 @@ Implementation follows the methods from Samuele Ferracin, Theodoros Kapourniotis
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### N\_acc
 
 `= 0`
 
-<span id="undefined" />
+
 
 ### bound
 
 `= 1`
 
-<span id="undefined" />
+
 
 ### confidence
 
 `= 1`
 
-<span id="undefined" />
+
 
 ### flag
 
 `= 'accepted'`
 
-<span id="undefined" />
+
 
 ### g\_num
 
 `= 1`
 
-<span id="undefined" />
+
 
 ### num\_runs
 
 `= 0`
 
-<span id="undefined" />
+
 
 ### num\_traps
 
 `= 0`
 
-<span id="undefined" />
+
 
 ### outputs
 

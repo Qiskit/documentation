@@ -1,6 +1,6 @@
 # qiskit.visualization.plot\_histogram
 
-<span id="undefined" />
+
 
 `plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None)`
 

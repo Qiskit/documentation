@@ -1,6 +1,6 @@
 # qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator
 
-<span id="undefined" />
+
 
 `TPBGroupedWeightedPauliOperator(paulis, basis, z2_symmetries=None, atol=1e-12, name=None, grouping_func=None, kwargs=None)`
 
@@ -16,7 +16,7 @@ TPB Grouped Weighted Pauli Operator
 *   **grouping\_func** (*Callable, optional*) – Function to group paulis
 *   **kwargs** (*dict*) – Optional parameters for grouping function call
 
-<span id="undefined" />
+
 
 `__init__(paulis, basis, z2_symmetries=None, atol=1e-12, name=None, grouping_func=None, kwargs=None)`
 
@@ -76,7 +76,7 @@ TPB Grouped Weighted Pauli Operator
 | [`paulis`](#qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.paulis "qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.paulis")                      | get paulis                                  |
 | [`z2_symmetries`](#qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.z2_symmetries "qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator.z2_symmetries") | returns z2 symmetries                       |
 
-<span id="undefined" />
+
 
 `add(other, copy=False)`
 
@@ -95,25 +95,25 @@ operator
 
 [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
-<span id="undefined" />
+
 
 `anticommute_with(other)`
 
 Anti commutes with
 
-<span id="undefined" />
+
 
 `property atol`
 
 get atol
 
-<span id="undefined" />
+
 
 `property basis`
 
 returns basis
 
-<span id="undefined" />
+
 
 `chop(threshold=None, copy=False)`
 
@@ -138,13 +138,13 @@ the operator is mutated.
 
 [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
-<span id="undefined" />
+
 
 `commute_with(other)`
 
 Commutes with
 
-<span id="undefined" />
+
 
 `construct_evaluation_circuit(wave_function, statevector_mode, qr=None, cr=None, use_simulator_snapshot_mode=False, circuit_name_prefix='')`
 
@@ -177,13 +177,13 @@ list\[[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircu
 *   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if quantum register is not provided explicitly and cannot find quantum register with q as the name
 *   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – The provided qr is not in the wave\_function
 
-<span id="undefined" />
+
 
 `copy()`
 
 Get a copy of self
 
-<span id="undefined" />
+
 
 `evaluate_with_result(result, statevector_mode, use_simulator_snapshot_mode=False, circuit_name_prefix='')`
 
@@ -210,7 +210,7 @@ float
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
 
-<span id="undefined" />
+
 
 `evaluate_with_statevector(quantum_state)`
 
@@ -230,7 +230,7 @@ float
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
 
-<span id="undefined" />
+
 
 `evaluation_instruction(statevector_mode, use_simulator_snapshot_mode=False)`
 
@@ -252,7 +252,7 @@ dict
 *   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
 *   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – qiskit-aer not installed
 
-<span id="undefined" />
+
 
 `evolve(state_in=None, evo_time=0, num_time_slices=1, quantum_registers=None, expansion_mode='trotter', expansion_order=1)`
 
@@ -280,7 +280,7 @@ The constructed circuit.
 *   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – quantum\_registers must be in the provided state\_in circuit
 *   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if operator is empty
 
-<span id="undefined" />
+
 
 `evolve_instruction(evo_time=0, num_time_slices=1, expansion_mode='trotter', expansion_order=1)`
 
@@ -307,7 +307,7 @@ The constructed QuantumCircuit.
 *   **NotImplementedError** – expansion mode not supported
 *   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if operator is empty
 
-<span id="undefined" />
+
 
 `classmethod from_dict(dictionary, before_04=False)`
 
@@ -342,7 +342,7 @@ the operator created from the input dictionary.
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid dictionary
 
-<span id="undefined" />
+
 
 `classmethod from_file(file_name, before_04=False)`
 
@@ -361,7 +361,7 @@ the loaded operator.
 
 [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
-<span id="undefined" />
+
 
 `classmethod from_list(paulis, weights=None, name=None)`
 
@@ -385,13 +385,13 @@ operator
 
 **ValueError** – The length of weights and paulis must be the same
 
-<span id="undefined" />
+
 
 `property grouping_func`
 
 returns grouping function
 
-<span id="undefined" />
+
 
 `is_empty()`
 
@@ -405,13 +405,13 @@ True if empty, False otherwise
 
 bool
 
-<span id="undefined" />
+
 
 `property kwargs`
 
 returns kwargs
 
-<span id="undefined" />
+
 
 `multiply(other)`
 
@@ -431,19 +431,19 @@ the multiplied operator
 
 [TPBGroupedWeightedPauliOperator](#qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator "qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator")
 
-<span id="undefined" />
+
 
 `property name`
 
 returns name
 
-<span id="undefined" />
+
 
 `property num_groups`
 
 returns number of groups
 
-<span id="undefined" />
+
 
 `property num_qubits`
 
@@ -457,13 +457,13 @@ number of qubits
 
 int
 
-<span id="undefined" />
+
 
 `property paulis`
 
 get paulis
 
-<span id="undefined" />
+
 
 `print_details()`
 
@@ -477,7 +477,7 @@ a formatted string describes the operator.
 
 str
 
-<span id="undefined" />
+
 
 `reorder_paulis()`
 
@@ -491,7 +491,7 @@ Reorder the paulis based on the basis and return the reordered paulis.
 
 the ordered paulis based on the basis.
 
-<span id="undefined" />
+
 
 `rounding(decimals, copy=False)`
 
@@ -510,7 +510,7 @@ operator
 
 [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
-<span id="undefined" />
+
 
 `simplify(copy=False)`
 
@@ -532,7 +532,7 @@ the simplified operator
 
 [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
-<span id="undefined" />
+
 
 `classmethod sorted_grouping(weighted_pauli_operator, method='largest-degree')`
 
@@ -551,7 +551,7 @@ operator
 
 [TPBGroupedWeightedPauliOperator](#qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator "qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator")
 
-<span id="undefined" />
+
 
 `sub(other, copy=False)`
 
@@ -570,7 +570,7 @@ operator
 
 [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
-<span id="undefined" />
+
 
 `to_dict()`
 
@@ -584,7 +584,7 @@ a dictionary contains an operator with pauli representation.
 
 dict
 
-<span id="undefined" />
+
 
 `to_file(file_name)`
 
@@ -594,13 +594,13 @@ Save operator to a file in pauli representation.
 
 **file\_name** (*str*) – path to the file
 
-<span id="undefined" />
+
 
 `to_opflow(reverse_endianness=False)`
 
 to op flow
 
-<span id="undefined" />
+
 
 `classmethod unsorted_grouping(weighted_pauli_operator)`
 
@@ -618,7 +618,7 @@ operator
 
 [TPBGroupedWeightedPauliOperator](#qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator "qiskit.aqua.operators.legacy.TPBGroupedWeightedPauliOperator")
 
-<span id="undefined" />
+
 
 `property z2_symmetries`
 

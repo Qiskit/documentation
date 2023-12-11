@@ -1,6 +1,6 @@
 # qiskit.providers.aer.utils.transform\_noise\_model
 
-<span id="undefined" />
+
 
 `transform_noise_model(noise_model, func)`
 

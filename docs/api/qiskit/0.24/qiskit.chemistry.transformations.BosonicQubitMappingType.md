@@ -2,13 +2,13 @@
 
 # qiskit.chemistry.transformations.BosonicQubitMappingType
 
-<span id="undefined" />
+
 
 `BosonicQubitMappingType(value)`
 
 BosonicQubitMappingType enum
 
-<span id="undefined" />
+
 
 `__init__()`
 

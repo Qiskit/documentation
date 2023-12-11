@@ -1,6 +1,6 @@
 # Estimator
 
-<span id="undefined" />
+
 
 `Estimator(circuits, observables, parameters=None)`
 
@@ -29,7 +29,7 @@ Creating an instance of an Estimator, or using one in a `with` context opens a s
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### circuits
 
@@ -39,7 +39,7 @@ Quantum circuits that represents quantum states.
 
 quantum circuits
 
-<span id="undefined" />
+
 
 ### observables
 
@@ -49,7 +49,7 @@ Observables to be estimated
 
 observables
 
-<span id="undefined" />
+
 
 ### parameters
 

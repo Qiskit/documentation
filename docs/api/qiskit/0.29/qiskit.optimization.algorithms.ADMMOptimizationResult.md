@@ -1,6 +1,6 @@
 # ADMMOptimizationResult
 
-<span id="undefined" />
+
 
 `ADMMOptimizationResult(x, fval, variables, state, status)`
 
@@ -18,7 +18,7 @@ ADMMOptimization Result.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### fval
 
@@ -32,7 +32,7 @@ Returns the optimal function value.
 
 The function value corresponding to the optimal value found in the optimization.
 
-<span id="undefined" />
+
 
 ### raw\_results
 
@@ -48,7 +48,7 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
-<span id="undefined" />
+
 
 ### samples
 
@@ -62,7 +62,7 @@ Returns the list of solution samples
 
 The list of solution samples.
 
-<span id="undefined" />
+
 
 ### state
 
@@ -72,7 +72,7 @@ returns state
 
 `ADMMState`
 
-<span id="undefined" />
+
 
 ### status
 
@@ -86,7 +86,7 @@ Returns the termination status of the optimization algorithm.
 
 The termination status of the algorithm.
 
-<span id="undefined" />
+
 
 ### variable\_names
 
@@ -100,7 +100,7 @@ Returns the list of variable names of the optimization problem.
 
 The list of variable names of the optimization problem.
 
-<span id="undefined" />
+
 
 ### variables
 
@@ -114,7 +114,7 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
-<span id="undefined" />
+
 
 ### variables\_dict
 
@@ -128,7 +128,7 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 
 The optimal value as a dictionary of the variable name and corresponding value.
 
-<span id="undefined" />
+
 
 ### x
 

@@ -1,6 +1,6 @@
 # qiskit.aqua.utils.map\_label\_to\_class\_name
 
-<span id="undefined" />
+
 
 `map_label_to_class_name(predicted_labels, label_to_class)`
 

@@ -1,6 +1,6 @@
 # qiskit.algorithms.eval\_observables
 
-<span id="undefined" />
+
 
 `eval_observables(quantum_instance, quantum_state, observables, expectation, threshold=1e-12)`
 

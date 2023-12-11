@@ -2,7 +2,7 @@
 
 # qiskit.pulse.builder.barrier
 
-<span id="undefined" />
+
 
 `barrier(*channels_or_qubits)`
 

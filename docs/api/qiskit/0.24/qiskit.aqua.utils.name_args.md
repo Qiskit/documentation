@@ -2,7 +2,7 @@
 
 # qiskit.aqua.utils.name\_args
 
-<span id="undefined" />
+
 
 `name_args(mapping, skip=0)`
 

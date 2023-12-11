@@ -1,6 +1,6 @@
 # qiskit.providers.aer.noise.kraus\_error
 
-<span id="undefined" />
+
 
 `kraus_error(noise_ops, standard_gates=True, canonical_kraus=False)`
 

@@ -1,12 +1,12 @@
 # qiskit.optimization.algorithms.OptimizationResultStatus
 
-<span id="undefined" />
+
 
 `OptimizationResultStatus(value)`
 
 Termination status of an optimization algorithm.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -20,7 +20,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`INFEASIBLE`](#qiskit.optimization.algorithms.OptimizationResultStatus.INFEASIBLE "qiskit.optimization.algorithms.OptimizationResultStatus.INFEASIBLE") | the optimization algorithm obtained an infeasible solution.       |
 | [`SUCCESS`](#qiskit.optimization.algorithms.OptimizationResultStatus.SUCCESS "qiskit.optimization.algorithms.OptimizationResultStatus.SUCCESS")          | the optimization algorithm succeeded to find an optimal solution. |
 
-<span id="undefined" />
+
 
 ### FAILURE
 
@@ -28,7 +28,7 @@ Initialize self. See help(type(self)) for accurate signature.
 
 the optimization algorithm ended in a failure.
 
-<span id="undefined" />
+
 
 ### INFEASIBLE
 
@@ -36,7 +36,7 @@ the optimization algorithm ended in a failure.
 
 the optimization algorithm obtained an infeasible solution.
 
-<span id="undefined" />
+
 
 ### SUCCESS
 

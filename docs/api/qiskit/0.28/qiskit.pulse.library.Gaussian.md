@@ -1,6 +1,6 @@
 # qiskit.pulse.library.Gaussian
 
-<span id="undefined" />
+
 
 `Gaussian(duration, amp, sigma, name=None)`
 
@@ -19,7 +19,7 @@ Initialize the gaussian pulse.
 *   **sigma** (`Union`\[`float`, `ParameterExpression`]) – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
 *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
 
-<span id="undefined" />
+
 
 `__init__(duration, amp, sigma, name=None)`
 
@@ -54,7 +54,7 @@ Initialize the gaussian pulse.
 | [`parameters`](#qiskit.pulse.library.Gaussian.parameters "qiskit.pulse.library.Gaussian.parameters") | Return a dictionary containing the pulse’s parameters. |
 | [`sigma`](#qiskit.pulse.library.Gaussian.sigma "qiskit.pulse.library.Gaussian.sigma")                | The Gaussian standard deviation of the pulse width.    |
 
-<span id="undefined" />
+
 
 `property amp`
 
@@ -64,7 +64,7 @@ The Gaussian amplitude.
 
 `Union`\[`complex`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `assign(parameter, value)`
 
@@ -74,7 +74,7 @@ Assign one parameter to a value, which can either be numeric or another paramete
 
 `ParametricPulse`
 
-<span id="undefined" />
+
 
 `assign_parameters(value_dict)`
 
@@ -92,7 +92,7 @@ Return a new ParametricPulse with parameters assigned.
 
 New pulse with updated parameters.
 
-<span id="undefined" />
+
 
 `draw(dt=None, style=None, filename=None, interp_method=None, scale=None, interactive=None, draw_title=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)`
 
@@ -140,7 +140,7 @@ Plot the interpolated envelope of pulse.
 
 Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
 
-<span id="undefined" />
+
 
 `get_waveform()`
 
@@ -150,7 +150,7 @@ Return a Waveform with samples filled according to the formula that the pulse re
 
 `Waveform`
 
-<span id="undefined" />
+
 
 `property id`
 
@@ -160,7 +160,7 @@ Unique identifier for this pulse.
 
 `int`
 
-<span id="undefined" />
+
 
 `is_parameterized()`
 
@@ -170,7 +170,7 @@ Return True iff the instruction is parameterized.
 
 `bool`
 
-<span id="undefined" />
+
 
 `property parameters`
 
@@ -180,7 +180,7 @@ Return a dictionary containing the pulse’s parameters.
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+
 
 `property sigma`
 
@@ -190,7 +190,7 @@ The Gaussian standard deviation of the pulse width.
 
 `Union`\[`float`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `validate_parameters()`
 

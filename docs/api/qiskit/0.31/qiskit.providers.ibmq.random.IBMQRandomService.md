@@ -1,6 +1,6 @@
 # IBMQRandomService
 
-<span id="undefined" />
+
 
 `IBMQRandomService(provider)`
 

@@ -2,7 +2,7 @@
 
 # qiskit.providers.BaseJob
 
-<span id="undefined" />
+
 
 `BaseJob(backend, job_id)`
 
@@ -15,7 +15,7 @@ Initializes the asynchronous job.
 *   **backend** (`BaseBackend`) – the backend used to run the job.
 *   **job\_id** (`str`) – a unique id in the context of the backend used to run the job.
 
-<span id="undefined" />
+
 
 `__init__(backend, job_id)`
 
@@ -43,7 +43,7 @@ Initializes the asynchronous job.
 | [`submit`](#qiskit.providers.BaseJob.submit "qiskit.providers.BaseJob.submit")()                                                                     | Submit the job to the backend for execution.                                        |
 | [`wait_for_final_state`](#qiskit.providers.BaseJob.wait_for_final_state "qiskit.providers.BaseJob.wait_for_final_state")(\[timeout, wait, callback]) | Poll the job status until it progresses to a final state such as `DONE` or `ERROR`. |
 
-<span id="undefined" />
+
 
 `backend()`
 
@@ -53,13 +53,13 @@ Return the backend where this job was executed.
 
 `BaseBackend`
 
-<span id="undefined" />
+
 
 `abstract cancel()`
 
 Attempt to cancel the job.
 
-<span id="undefined" />
+
 
 `cancelled()`
 
@@ -69,7 +69,7 @@ Return whether the job has been cancelled.
 
 `bool`
 
-<span id="undefined" />
+
 
 `done()`
 
@@ -79,7 +79,7 @@ Return whether the job has successfully run.
 
 `bool`
 
-<span id="undefined" />
+
 
 `in_final_state()`
 
@@ -89,7 +89,7 @@ Return whether the job is in a final job state.
 
 `bool`
 
-<span id="undefined" />
+
 
 `job_id()`
 
@@ -99,13 +99,13 @@ Return a unique id identifying the job.
 
 `str`
 
-<span id="undefined" />
+
 
 `abstract result()`
 
 Return the results of the job.
 
-<span id="undefined" />
+
 
 `running()`
 
@@ -115,19 +115,19 @@ Return whether the job is actively running.
 
 `bool`
 
-<span id="undefined" />
+
 
 `abstract status()`
 
 Return the status of the job, among the values of `JobStatus`.
 
-<span id="undefined" />
+
 
 `abstract submit()`
 
 Submit the job to the backend for execution.
 
-<span id="undefined" />
+
 
 `wait_for_final_state(timeout=None, wait=5, callback=None)`
 

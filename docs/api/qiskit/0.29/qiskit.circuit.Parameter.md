@@ -1,6 +1,6 @@
 # Parameter
 
-<span id="undefined" />
+
 
 `Parameter(name)`
 
@@ -35,13 +35,13 @@ Create a new named [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Param
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### name
 
 Returns the name of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter").
 
-<span id="undefined" />
+
 
 ### parameters
 

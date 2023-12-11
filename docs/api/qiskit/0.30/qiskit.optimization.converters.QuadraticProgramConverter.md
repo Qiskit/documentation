@@ -1,6 +1,6 @@
 # QuadraticProgramConverter
 
-<span id="undefined" />
+
 
 `QuadraticProgramConverter`
 

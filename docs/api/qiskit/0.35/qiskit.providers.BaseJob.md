@@ -1,6 +1,6 @@
 # BaseJob
 
-<span id="undefined" />
+
 
 `BaseJob(backend, job_id)`
 

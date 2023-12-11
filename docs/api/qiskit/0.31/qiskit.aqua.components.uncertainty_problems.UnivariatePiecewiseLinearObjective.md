@@ -1,6 +1,6 @@
 # UnivariatePiecewiseLinearObjective
 
-<span id="undefined" />
+
 
 `UnivariatePiecewiseLinearObjective(num_state_qubits, min_state_value, max_state_value, breakpoints, slopes, offsets, f_min, f_max, c_approx, i_state=None, i_objective=None)`
 
@@ -48,7 +48,7 @@ $$
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 

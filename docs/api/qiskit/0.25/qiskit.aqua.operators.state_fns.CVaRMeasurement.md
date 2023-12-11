@@ -1,6 +1,6 @@
 # qiskit.aqua.operators.state\_fns.CVaRMeasurement
 
-<span id="undefined" />
+
 
 `CVaRMeasurement(primitive=None, alpha=1.0, coeff=1.0)`
 
@@ -22,7 +22,7 @@ Used in `CVaRExpectation`, see there for more details.
 *   **ValueError** – If alpha is not in \[0, 1].
 *   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If the primitive is not diagonal.
 
-<span id="undefined" />
+
 
 `__init__(primitive=None, alpha=1.0, coeff=1.0)`
 
@@ -82,7 +82,7 @@ Used in `CVaRExpectation`, see there for more details.
 | [`parameters`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.parameters "qiskit.aqua.operators.state_fns.CVaRMeasurement.parameters")             | Return a set of Parameter objects contained in the Operator.               |
 | [`primitive`](#qiskit.aqua.operators.state_fns.CVaRMeasurement.primitive "qiskit.aqua.operators.state_fns.CVaRMeasurement.primitive")                | The primitive which defines the behavior of the underlying State function. |
 
-<span id="undefined" />
+
 
 `add(other)`
 
@@ -100,7 +100,7 @@ Return Operator addition of self and other, overloaded by `+`.
 
 An `OperatorBase` equivalent to the sum of self and other.
 
-<span id="undefined" />
+
 
 `adjoint()`
 
@@ -118,7 +118,7 @@ Does not return anything, raises an error.
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – The adjoint of a CVaRMeasurement is not defined.
 
-<span id="undefined" />
+
 
 `property alpha`
 
@@ -134,7 +134,7 @@ fraction of observed samples to include when computing the objective value. alph
 
 The parameter alpha which was given at initialization
 
-<span id="undefined" />
+
 
 `assign_parameters(param_dict)`
 
@@ -152,7 +152,7 @@ Binds scalar values to any Terra `Parameters` in the coefficients or primitives 
 
 The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
 
-<span id="undefined" />
+
 
 `bind_parameters(param_dict)`
 
@@ -162,7 +162,7 @@ Same as assign\_parameters, but maintained for consistency with QuantumCircuit i
 
 `OperatorBase`
 
-<span id="undefined" />
+
 
 `property coeff`
 
@@ -172,7 +172,7 @@ A coefficient by which the state function is multiplied.
 
 `Union`\[`int`, `float`, `complex`, `ParameterExpression`]
 
-<span id="undefined" />
+
 
 `compose(other, permutation=None, front=False)`
 
@@ -196,7 +196,7 @@ An Operator equivalent to the function composition of self and other.
 
 **ValueError** – If self is not a measurement, it cannot be composed from the right.
 
-<span id="undefined" />
+
 
 `compute_cvar(energies, probabilities)`
 
@@ -223,7 +223,7 @@ the sampled quantum state described by the inputs (energies, probabilities). For
 
 **ValueError** – front isn’t a DictStateFn or VectorStateFn
 
-<span id="undefined" />
+
 
 `equals(other)`
 
@@ -241,7 +241,7 @@ Evaluate Equality between Operators, overloaded by `==`. Only returns True if se
 
 A bool equal to the equality of self and other.
 
-<span id="undefined" />
+
 
 `eval(front=None)`
 
@@ -263,7 +263,7 @@ This computation is broken up into two subroutines. One which evaluates each mea
 
 the sampled quantum state described by the inputs (energies, probabilities). For index j (described above), the CVaR is computed as H\_j + 1/α\*(sum\_i\<j p\_i\*(H\_i - H\_j))
 
-<span id="undefined" />
+
 
 `eval_variance(front=None)`
 
@@ -283,7 +283,7 @@ Given the energies of each sampled measurement outcome (H\_i) as well as the sam
 
 and the sampled quantum state described by the inputs (energies, probabilities). For index j (described above), the CVaR is computed as H\_j^2 + 1/α\*(sum\_i\<j p\_i\*(H\_i^2 - H\_j^2))
 
-<span id="undefined" />
+
 
 `get_outcome_energies_probabilities(front=None)`
 
@@ -307,7 +307,7 @@ unique measurement outcome computed against the diagonal observable stored in se
 
 **ValueError** – front isn’t a DictStateFn or VectorStateFn
 
-<span id="undefined" />
+
 
 `property is_measurement`
 
@@ -317,7 +317,7 @@ Whether the StateFn object is a measurement Operator.
 
 `bool`
 
-<span id="undefined" />
+
 
 `mul(scalar)`
 
@@ -335,7 +335,7 @@ Returns the scalar multiplication of the Operator, overloaded by `*`, including 
 
 An `OperatorBase` equivalent to product of self and scalar.
 
-<span id="undefined" />
+
 
 `neg()`
 
@@ -349,7 +349,7 @@ Return the Operator’s negation, effectively just multiplying by -1.0, overload
 
 An `OperatorBase` equivalent to the negation of self.
 
-<span id="undefined" />
+
 
 `property num_qubits`
 
@@ -363,13 +363,13 @@ The number of qubits over which the Operator is defined. If `op.num_qubits == 5`
 
 The number of qubits accepted by the Operator’s underlying function.
 
-<span id="undefined" />
+
 
 `property parameters`
 
 Return a set of Parameter objects contained in the Operator.
 
-<span id="undefined" />
+
 
 `permute(permutation)`
 
@@ -387,7 +387,7 @@ Permute the qubits of the state function.
 
 A new StateFn containing the permuted primitive.
 
-<span id="undefined" />
+
 
 `power(exponent)`
 
@@ -405,13 +405,13 @@ Compose with Self Multiple Times, undefined for StateFns.
 
 `OperatorBase`
 
-<span id="undefined" />
+
 
 `property primitive`
 
 The primitive which defines the behavior of the underlying State function.
 
-<span id="undefined" />
+
 
 `primitive_strings()`
 
@@ -425,7 +425,7 @@ Return a set of strings describing the primitives contained in the Operator. For
 
 A set of strings describing the primitives contained within the Operator.
 
-<span id="undefined" />
+
 
 `reduce()`
 
@@ -439,7 +439,7 @@ Try collapsing the Operator structure, usually after some type of conversion, e.
 
 The reduced `OperatorBase`.
 
-<span id="undefined" />
+
 
 `sample(shots=1024, massive=False, reverse_endianness=False)`
 
@@ -459,7 +459,7 @@ Sample the state function as a normalized probability distribution. Returns dict
 
 A dict containing pairs sampled strings from the State function and sampling frequency divided by shots.
 
-<span id="undefined" />
+
 
 `tensor(other)`
 
@@ -481,7 +481,7 @@ Because Terra prints circuits and results with qubit 0 at the end of the string 
 
 An `OperatorBase` equivalent to the tensor product of self and other.
 
-<span id="undefined" />
+
 
 `tensorpower(other)`
 
@@ -499,7 +499,7 @@ Return tensor product with self multiple times, overloaded by `^`.
 
 An `OperatorBase` equivalent to the tensorpower of self by other.
 
-<span id="undefined" />
+
 
 `to_circuit_op()`
 
@@ -509,7 +509,7 @@ Not defined.
 
 `OperatorBase`
 
-<span id="undefined" />
+
 
 `to_density_matrix(massive=False)`
 
@@ -519,7 +519,7 @@ Not defined.
 
 `ndarray`
 
-<span id="undefined" />
+
 
 `to_legacy_op(massive=False)`
 
@@ -539,7 +539,7 @@ The `LegacyBaseOperator` representing this Operator.
 
 **TypeError** – self is an Operator which cannot be represented by a `LegacyBaseOperator`, such as `StateFn`, proper (non-subclass) `ListOp`, or an Operator with an unbound coeff Parameter.
 
-<span id="undefined" />
+
 
 `to_matrix(massive=False)`
 
@@ -549,7 +549,7 @@ Not defined.
 
 `ndarray`
 
-<span id="undefined" />
+
 
 `to_matrix_op(massive=False)`
 
@@ -559,7 +559,7 @@ Not defined.
 
 `OperatorBase`
 
-<span id="undefined" />
+
 
 `traverse(convert_fn, coeff=None)`
 

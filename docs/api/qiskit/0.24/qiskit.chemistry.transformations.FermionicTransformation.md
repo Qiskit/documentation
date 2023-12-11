@@ -2,7 +2,7 @@
 
 # qiskit.chemistry.transformations.FermionicTransformation
 
-<span id="undefined" />
+
 
 `FermionicTransformation(transformation=<FermionicTransformationType.FULL: 'full'>, qubit_mapping=<FermionicQubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`
 
@@ -21,7 +21,7 @@ A transformation from a fermionic problem, represented by a driver, to a qubit o
 
 [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid symmetry reduction
 
-<span id="undefined" />
+
 
 `__init__(transformation=<FermionicTransformationType.FULL: 'full'>, qubit_mapping=<FermionicQubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`
 
@@ -57,7 +57,7 @@ A transformation from a fermionic problem, represented by a driver, to a qubit o
 | [`qubit_mapping`](#qiskit.chemistry.transformations.FermionicTransformation.qubit_mapping "qiskit.chemistry.transformations.FermionicTransformation.qubit_mapping")                | Getter of the qubit mapping.            |
 | [`untapered_qubit_op`](#qiskit.chemistry.transformations.FermionicTransformation.untapered_qubit_op "qiskit.chemistry.transformations.FermionicTransformation.untapered_qubit_op") | Getter for the untapered qubit operator |
 
-<span id="undefined" />
+
 
 `build_hopping_operators(excitations='sd')`
 
@@ -75,7 +75,7 @@ Builds the product of raising and lowering operators (basic excitation operators
 
 A tuple containing the hopping operators, the types of commutativities and the excitation indices.
 
-<span id="undefined" />
+
 
 `property commutation_rule`
 
@@ -85,7 +85,7 @@ Getter of the commutation rule
 
 `bool`
 
-<span id="undefined" />
+
 
 `get_default_filter_criterion()`
 
@@ -97,7 +97,7 @@ In the fermionic case the default filter ensures that the number of particles is
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
 
-<span id="undefined" />
+
 
 `interpret(raw_result)`
 
@@ -115,7 +115,7 @@ Interprets an EigenstateResult in the context of this transformation.
 
 An electronic structure result.
 
-<span id="undefined" />
+
 
 `property molecule_info`
 
@@ -125,7 +125,7 @@ Getter of the molecule information.
 
 `Dict`\[`str`, `Any`]
 
-<span id="undefined" />
+
 
 `property qubit_mapping`
 
@@ -135,7 +135,7 @@ Getter of the qubit mapping.
 
 `str`
 
-<span id="undefined" />
+
 
 `transform(driver, aux_operators=None)`
 
@@ -154,7 +154,7 @@ Transformation from the `driver` to a qubit operator.
 
 A qubit operator and a dictionary of auxiliary operators.
 
-<span id="undefined" />
+
 
 `property untapered_qubit_op`
 

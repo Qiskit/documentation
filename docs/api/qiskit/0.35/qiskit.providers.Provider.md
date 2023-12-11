@@ -1,6 +1,6 @@
 # Provider
 
-<span id="undefined" />
+
 
 `Provider`
 
@@ -12,7 +12,7 @@ Note this class should not be inherited from directly, it is intended to be used
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### version
 

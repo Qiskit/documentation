@@ -1,6 +1,6 @@
 # GroverResult
 
-<span id="undefined" />
+
 
 `GroverResult(a_dict=None)`
 
@@ -28,7 +28,7 @@ Grover Result.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### assignment
 
@@ -38,7 +38,7 @@ return assignment
 
 `List`\[`int`]
 
-<span id="undefined" />
+
 
 ### circuit
 
@@ -48,7 +48,7 @@ return circuit
 
 `Optional`\[`QuantumCircuit`]
 
-<span id="undefined" />
+
 
 ### measurement
 
@@ -58,7 +58,7 @@ returns measurement
 
 `Optional`\[`Dict`\[`str`, `int`]]
 
-<span id="undefined" />
+
 
 ### oracle\_evaluation
 
@@ -68,7 +68,7 @@ return oracle evaluation
 
 `bool`
 
-<span id="undefined" />
+
 
 ### top\_measurement
 

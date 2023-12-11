@@ -273,27 +273,6 @@ Note that this operation cannot be reversed.
 
 `None`
 
-### delete\_program
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.delete_program" />
-
-`delete_program(program_id)`
-
-Delete a runtime program.
-
-**Parameters**
-
-**program\_id** (`str`) – Program ID.
-
-**Raises**
-
-*   **RuntimeProgramNotFound** – If the program doesn’t exist.
-*   **IBMRuntimeError** – If the request failed.
-
-**Return type**
-
-`None`
-
 ### get\_backend
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.get_backend" />
@@ -428,77 +407,6 @@ The backend with the fewest number of pending jobs.
 
 **QiskitBackendNotFoundError** – If no backend matches the criteria.
 
-### pprint\_programs
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.pprint_programs" />
-
-`pprint_programs(refresh=False, detailed=False, limit=20, skip=0)`
-
-Pretty print information about available runtime programs.
-
-**Parameters**
-
-*   **refresh** (`bool`) – If `True`, re-query the server for the programs. Otherwise return the cached value.
-*   **detailed** (`bool`) – If `True` print all details about available runtime programs.
-*   **limit** (`int`) – The number of programs returned at a time. Default and maximum value of 20.
-*   **skip** (`int`) – The number of programs to skip.
-
-**Return type**
-
-`None`
-
-### program
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.program" />
-
-`program(program_id, refresh=False)`
-
-Retrieve a runtime program.
-
-Currently only program metadata is returned.
-
-**Parameters**
-
-*   **program\_id** (`str`) – Program ID.
-*   **refresh** (`bool`) – If `True`, re-query the server for the program. Otherwise return the cached value.
-
-**Return type**
-
-[`RuntimeProgram`](qiskit_ibm_runtime.RuntimeProgram "qiskit_ibm_runtime.runtime_program.RuntimeProgram")
-
-**Returns**
-
-Runtime program.
-
-**Raises**
-
-*   **RuntimeProgramNotFound** – If the program does not exist.
-*   **IBMRuntimeError** – If the request failed.
-
-### programs
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.programs" />
-
-`programs(refresh=False, limit=20, skip=0)`
-
-Return available runtime programs.
-
-Currently only program metadata is returned.
-
-**Parameters**
-
-*   **refresh** (`bool`) – If `True`, re-query the server for the programs. Otherwise return the cached value.
-*   **limit** (`int`) – The number of programs returned at a time. `None` means no limit.
-*   **skip** (`int`) – The number of programs to skip.
-
-**Return type**
-
-`List`\[[`RuntimeProgram`](qiskit_ibm_runtime.RuntimeProgram "qiskit_ibm_runtime.runtime_program.RuntimeProgram")]
-
-**Returns**
-
-A list of runtime programs.
-
 ### run
 
 <span id="qiskit_ibm_runtime.QiskitRuntimeService.run" />
@@ -511,7 +419,7 @@ Execute the runtime program.
 
 *   **program\_id** (`str`) – Program ID.
 
-*   **inputs** (`Union`\[`Dict`, [`ParameterNamespace`](qiskit_ibm_runtime.ParameterNamespace "qiskit_ibm_runtime.runtime_program.ParameterNamespace")]) – Program input parameters. These input values are passed to the runtime program.
+*   **inputs** (`Dict`) – Program input parameters. These input values are passed to the runtime program.
 
 *   **options** (`Union`\[[`RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.runtime_options.RuntimeOptions"), `Dict`, `None`]) – Runtime options that control the execution environment. See [`RuntimeOptions`](qiskit_ibm_runtime.RuntimeOptions "qiskit_ibm_runtime.RuntimeOptions") for all available options.
 
@@ -594,118 +502,4 @@ A dictionary with information about the accounts saved on disk.
 **Raises**
 
 **ValueError** – If an invalid account is found on disk.
-
-### set\_program\_visibility
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.set_program_visibility" />
-
-`set_program_visibility(program_id, public)`
-
-Sets a program’s visibility.
-
-**Parameters**
-
-*   **program\_id** (`str`) – Program ID.
-*   **public** (`bool`) – If `True`, make the program visible to all. If `False`, make the program visible to just your account.
-
-**Raises**
-
-*   **RuntimeProgramNotFound** – if program not found (404)
-*   **IBMRuntimeError** – if update failed (401, 403)
-
-**Return type**
-
-`None`
-
-### update\_program
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.update_program" />
-
-`update_program(program_id, data=None, metadata=None, name=None, description=None, max_execution_time=None, spec=None)`
-
-Update a runtime program.
-
-Program metadata can be specified using the metadata parameter or individual parameters, such as name and description. If the same metadata field is specified in both places, the individual parameter takes precedence.
-
-**Parameters**
-
-*   **program\_id** (`str`) – Program ID.
-*   **data** (`Optional`\[`str`]) – Program data or path of the file containing program data to upload.
-*   **metadata** (`Union`\[`Dict`, `str`, `None`]) – Name of the program metadata file or metadata dictionary.
-*   **name** (`Optional`\[`str`]) – New program name.
-*   **description** (`Optional`\[`str`]) – New program description.
-*   **max\_execution\_time** (`Optional`\[`int`]) – New maximum execution time.
-*   **spec** (`Optional`\[`Dict`]) – New specifications for backend characteristics, input parameters, interim results and final result.
-
-**Raises**
-
-*   **RuntimeProgramNotFound** – If the program doesn’t exist.
-*   **IBMRuntimeError** – If the request failed.
-
-**Return type**
-
-`None`
-
-### upload\_program
-
-<span id="qiskit_ibm_runtime.QiskitRuntimeService.upload_program" />
-
-`upload_program(data, metadata=None)`
-
-Upload a runtime program.
-
-In addition to program data, the following program metadata is also required:
-
-> *   name
-> *   max\_execution\_time
-
-Program metadata can be specified using the metadata parameter or individual parameter (for example, name and description). If the same metadata field is specified in both places, the individual parameter takes precedence. For example, if you specify:
-
-```python
-upload_program(metadata={"name": "name1"}, name="name2")
-```
-
-`name2` will be used as the program name.
-
-**Parameters**
-
-*   **data** (`str`) – Program data or path of the file containing program data to upload.
-
-*   **metadata** (`Union`\[`Dict`, `str`, `None`]) –
-
-    Name of the program metadata file or metadata dictionary. A metadata file needs to be in the JSON format. The `parameters`, `return_values`, and `interim_results` should be defined as JSON Schema. See `program/program_metadata_sample.json` for an example. The fields in metadata are explained below.
-
-    *   name: Name of the program. Required.
-
-    *   max\_execution\_time: Maximum execution time in seconds. Required.
-
-    *   description: Program description.
-
-    *   **is\_public: Whether the runtime program should be visible to the public.**
-
-        The default is `False`.
-
-    *   **spec: Specifications for backend characteristics and input parameters**
-
-        required to run the program, interim results and final result.
-
-        *   backend\_requirements: Backend requirements.
-        *   parameters: Program input parameters in JSON schema format.
-        *   return\_values: Program return values in JSON schema format.
-        *   interim\_results: Program interim results in JSON schema format.
-
-**Return type**
-
-`str`
-
-**Returns**
-
-Program ID.
-
-**Raises**
-
-*   **IBMInputValueError** – If required metadata is missing.
-*   **RuntimeDuplicateProgramError** – If a program with the same name already exists.
-*   **IBMNotAuthorizedError** – If you are not authorized to upload programs.
-*   **IBMRuntimeError** – If the upload failed.
 

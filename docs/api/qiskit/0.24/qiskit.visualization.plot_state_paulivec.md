@@ -2,7 +2,7 @@
 
 # qiskit.visualization.plot\_state\_paulivec
 
-<span id="undefined" />
+
 
 `plot_state_paulivec(state, title='', figsize=None, color=None, ax=None, *, rho=None)`
 

@@ -1,6 +1,6 @@
 # qiskit.optimization.converters.InequalityToEquality
 
-<span id="undefined" />
+
 
 `InequalityToEquality(mode='auto')`
 
@@ -31,7 +31,7 @@ To chose the type of slack variables. There are 3 options for mode.
 
     use continuous variables
 
-<span id="undefined" />
+
 
 `__init__(mode='auto')`
 
@@ -63,7 +63,7 @@ To chose the type of slack variables. There are 3 options for mode.
 | ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
 | [`mode`](#qiskit.optimization.converters.InequalityToEquality.mode "qiskit.optimization.converters.InequalityToEquality.mode") | Returns the mode of the converter |
 
-<span id="undefined" />
+
 
 `convert(problem)`
 
@@ -87,7 +87,7 @@ The converted problem, that contain only equality constraints.
 *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an unsupported mode is selected.
 *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an unsupported sense is specified.
 
-<span id="undefined" />
+
 
 `interpret(x)`
 
@@ -105,7 +105,7 @@ Convert a result of a converted problem into that of the original problem.
 
 The result of the original problem.
 
-<span id="undefined" />
+
 
 `property mode`
 

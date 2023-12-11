@@ -2,7 +2,7 @@
 
 # qiskit.pulse.transforms.align\_measures
 
-<span id="undefined" />
+
 
 `align_measures(schedules, inst_map=None, cal_gate='u3', max_calibration_duration=None, align_time=None, align_all=True)`
 

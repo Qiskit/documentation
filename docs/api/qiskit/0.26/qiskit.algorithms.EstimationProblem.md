@@ -1,6 +1,6 @@
 # qiskit.algorithms.EstimationProblem
 
-<span id="undefined" />
+
 
 `EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)`
 
@@ -16,7 +16,7 @@ This class contains all problem-specific information required to run an amplitud
 *   **post\_processing** (`Optional`\[`Callable`\[\[`float`], `float`]]) – A mapping applied to the result of the algorithm $0 \leq a \leq 1$, usually used to map the estimate to a target interval. Defaults to the identity.
 *   **is\_good\_state** (`Optional`\[`Callable`\[\[`str`], `bool`]]) – A function to check whether a string represents a good state. Defaults to all objective qubits being in state $|1\rangle$.
 
-<span id="undefined" />
+
 
 `__init__(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)`
 
@@ -45,7 +45,7 @@ This class contains all problem-specific information required to run an amplitud
 | [`post_processing`](#qiskit.algorithms.EstimationProblem.post_processing "qiskit.algorithms.EstimationProblem.post_processing")       | Apply post processing to the input value.                            |
 | [`state_preparation`](#qiskit.algorithms.EstimationProblem.state_preparation "qiskit.algorithms.EstimationProblem.state_preparation") | Get the $\mathcal{A}$ operator encoding the amplitude $a$.           |
 
-<span id="undefined" />
+
 
 `property grover_operator`
 
@@ -61,7 +61,7 @@ If the Grover operator is not set, we try to build it from the $\mathcal{A}$ ope
 
 The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
 
-<span id="undefined" />
+
 
 `property is_good_state`
 
@@ -75,7 +75,7 @@ Checks whether a bitstring represents a good state.
 
 Handle to the `is_good_state` callable.
 
-<span id="undefined" />
+
 
 `property objective_qubits`
 
@@ -89,7 +89,7 @@ Get the criterion for a measurement outcome to be in a ‘good’ state.
 
 The criterion as list of qubit indices.
 
-<span id="undefined" />
+
 
 `property post_processing`
 
@@ -103,7 +103,7 @@ Apply post processing to the input value.
 
 A handle to the post processing function. Acts as identity by default.
 
-<span id="undefined" />
+
 
 `rescale(scaling_factor)`
 
@@ -121,7 +121,7 @@ Rescale the good state amplitude in the estimation problem.
 
 A rescaled estimation problem.
 
-<span id="undefined" />
+
 
 `property state_preparation`
 

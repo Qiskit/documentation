@@ -1,6 +1,6 @@
 # CTMPExpvalMeasMitigator
 
-<span id="undefined" />
+
 
 `CTMPExpvalMeasMitigator(generators, rates, num_qubits=None, seed=None)`
 

@@ -1,6 +1,6 @@
 # IBMQJobManager
 
-<span id="undefined" />
+
 
 `IBMQJobManager`
 

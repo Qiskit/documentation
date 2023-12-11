@@ -2,7 +2,7 @@
 
 # qiskit.ignis.mitigation.complete\_meas\_cal
 
-<span id="undefined" />
+
 
 `complete_meas_cal(qubit_list=None, qr=None, cr=None, circlabel='')`
 

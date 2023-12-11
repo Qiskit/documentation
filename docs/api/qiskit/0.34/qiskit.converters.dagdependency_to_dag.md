@@ -1,6 +1,6 @@
 # qiskit.converters.dagdependency\_to\_dag
 
-<span id="undefined" />
+
 
 `dagdependency_to_dag(dagdependency)`
 

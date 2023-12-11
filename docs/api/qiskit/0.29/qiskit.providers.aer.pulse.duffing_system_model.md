@@ -1,6 +1,6 @@
 # qiskit.providers.aer.pulse.duffing\_system\_model
 
-<span id="undefined" />
+
 
 `duffing_system_model(dim_oscillators, oscillator_freqs, anharm_freqs, drive_strengths, coupling_dict, dt)`
 

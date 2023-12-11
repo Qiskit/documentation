@@ -1,6 +1,6 @@
 # ScheduleConfig
 
-<span id="undefined" />
+
 
 `ScheduleConfig(inst_map, meas_map, dt)`
 

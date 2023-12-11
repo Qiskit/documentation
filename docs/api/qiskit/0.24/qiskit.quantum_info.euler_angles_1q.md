@@ -2,7 +2,7 @@
 
 # qiskit.quantum\_info.euler\_angles\_1q
 
-<span id="undefined" />
+
 
 `euler_angles_1q(unitary_matrix)`
 

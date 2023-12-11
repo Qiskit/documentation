@@ -1,6 +1,6 @@
 # qiskit.ignis.verification.CNOTDihedral
 
-<span id="undefined" />
+
 
 `CNOTDihedral(data, validate=True)`
 
@@ -13,7 +13,7 @@ CNOT-dihedral Object Class. The CNOT-dihedral group on num\_qubits qubits is gen
 
 Initialize a CNOTDihedral operator object.
 
-<span id="undefined" />
+
 
 `__init__(data, validate=True)`
 
@@ -56,19 +56,19 @@ Initialize a CNOTDihedral operator object.
 | [`qargs`](#qiskit.ignis.verification.CNOTDihedral.qargs "qiskit.ignis.verification.CNOTDihedral.qargs")                | Return the qargs for the operator.                                   |
 | [`settings`](#qiskit.ignis.verification.CNOTDihedral.settings "qiskit.ignis.verification.CNOTDihedral.settings")       | Return operator settings.                                            |
 
-<span id="undefined" />
+
 
 `adjoint()`
 
 Return the conjugate transpose of the CNOTDihedral element
 
-<span id="undefined" />
+
 
 `cnot(i, j)`
 
 Apply a CNOT gate to this element. Left multiply the element by CNOT\_\{i,j}.
 
-<span id="undefined" />
+
 
 `compose(other, qargs=None, front=False)`
 
@@ -97,25 +97,25 @@ The operator self @ other.
 
 Composition (`@`) is defined as left matrix multiplication for matrix operators. That is that `A @ B` is equal to `B * A`. Setting `front=True` returns right matrix multiplication `A * B` and is equivalent to the [`dot()`](#qiskit.ignis.verification.CNOTDihedral.dot "qiskit.ignis.verification.CNOTDihedral.dot") method.
 
-<span id="undefined" />
+
 
 `conjugate()`
 
 Return the conjugate of the CNOTDihedral element.
 
-<span id="undefined" />
+
 
 `copy()`
 
 Make a deep copy of current operator.
 
-<span id="undefined" />
+
 
 `property dim`
 
 Return tuple (input\_shape, output\_shape).
 
-<span id="undefined" />
+
 
 `dot(other, qargs=None)`
 
@@ -139,7 +139,7 @@ The operator self \* other.
 *   **QiskitError** – if operators have incompatible dimensions for composition.
 *   **NotImplementedError** – if qargs is not None.
 
-<span id="undefined" />
+
 
 `expand(other)`
 
@@ -157,13 +157,13 @@ the tensor product operator: other tensor other.
 
 [CNOTDihedral](#qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")
 
-<span id="undefined" />
+
 
 `flip(i)`
 
 Apply X to this element. Left multiply the element by X\_i.
 
-<span id="undefined" />
+
 
 `from_circuit(circuit)`
 
@@ -185,43 +185,43 @@ the CNOTDihedral object for the circuit.
 
 **QiskitError** – if the input instruction is not CNOTDihedral or contains classical register instruction.
 
-<span id="undefined" />
+
 
 `input_dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
 
-<span id="undefined" />
+
 
 `is_cnotdihedral()`
 
 Return True if input is a CNOTDihedral element.
 
-<span id="undefined" />
+
 
 `property key`
 
 Return a string representation of a CNOT-dihedral object.
 
-<span id="undefined" />
+
 
 `property num_qubits`
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-<span id="undefined" />
+
 
 `output_dims(qargs=None)`
 
 Return tuple of output dimension for specified subsystems.
 
-<span id="undefined" />
+
 
 `phase(k, i)`
 
 Apply an k-th power of T to this element. Left multiply the element by T\_i^k.
 
-<span id="undefined" />
+
 
 `power(n)`
 
@@ -243,13 +243,13 @@ the n-times composed operator.
 
 **QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
 
-<span id="undefined" />
+
 
 `property qargs`
 
 Return the qargs for the operator.
 
-<span id="undefined" />
+
 
 `reshape(input_dims=None, output_dims=None, num_qubits=None)`
 
@@ -273,13 +273,13 @@ BaseOperator
 
 **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
 
-<span id="undefined" />
+
 
 `property settings`
 
 Return operator settings.
 
-<span id="undefined" />
+
 
 `tensor(other)`
 
@@ -297,7 +297,7 @@ the tensor product operator: self tensor other.
 
 [CNOTDihedral](#qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")
 
-<span id="undefined" />
+
 
 `to_circuit()`
 
@@ -320,25 +320,25 @@ Decompose 1 and 2-qubit CNOTDihedral elements.
 1.  Shelly Garion and Andrew W. Cross, *On the structure of the CNOT-Dihedral group*, [arXiv:2006.12042 \[quant-ph\]](https://arxiv.org/abs/2006.12042)
 2.  Andrew W. Cross, Easwar Magesan, Lev S. Bishop, John A. Smolin and Jay M. Gambetta, *Scalable randomised benchmarking of non-Clifford gates*, npj Quantum Inf 2, 16012 (2016).
 
-<span id="undefined" />
+
 
 `to_instruction()`
 
 Return a Gate instruction implementing the CNOTDihedral object.
 
-<span id="undefined" />
+
 
 `to_matrix()`
 
 Convert operator to Numpy matrix.
 
-<span id="undefined" />
+
 
 `to_operator()`
 
 Convert to an Operator object.
 
-<span id="undefined" />
+
 
 `transpose()`
 

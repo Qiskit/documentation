@@ -1,12 +1,12 @@
 # qiskit.algorithms.AmplitudeEstimator
 
-<span id="undefined" />
+
 
 `AmplitudeEstimator`
 
 The Amplitude Estimation interface.
 
-<span id="undefined" />
+
 
 `__init__()`
 
@@ -19,7 +19,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.algorithms.AmplitudeEstimator.__init__ "qiskit.algorithms.AmplitudeEstimator.__init__")()                    | Initialize self.                        |
 | [`estimate`](#qiskit.algorithms.AmplitudeEstimator.estimate "qiskit.algorithms.AmplitudeEstimator.estimate")(estimation\_problem) | Run the amplitude estimation algorithm. |
 
-<span id="undefined" />
+
 
 `abstract estimate(estimation_problem)`
 

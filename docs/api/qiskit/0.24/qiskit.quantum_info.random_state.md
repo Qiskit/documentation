@@ -2,7 +2,7 @@
 
 # qiskit.quantum\_info.random\_state
 
-<span id="undefined" />
+
 
 `random_state(dim, seed=None)`
 

@@ -1,6 +1,6 @@
 # QDrift
 
-<span id="undefined" />
+
 
 `QDrift(reps=1)`
 
@@ -20,7 +20,7 @@ The QDrift Trotterization method, which selects each each term in the Trotteriza
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### reps
 

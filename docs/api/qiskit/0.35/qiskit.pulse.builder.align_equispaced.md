@@ -1,6 +1,6 @@
 # qiskit.pulse.builder.align\_equispaced
 
-<span id="undefined" />
+
 
 `align_equispaced(duration)`
 

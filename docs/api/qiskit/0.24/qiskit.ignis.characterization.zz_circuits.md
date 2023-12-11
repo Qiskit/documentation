@@ -2,7 +2,7 @@
 
 # qiskit.ignis.characterization.zz\_circuits
 
-<span id="undefined" />
+
 
 `zz_circuits(num_of_gates, gate_time, qubits, spectators, nosc=5)`
 

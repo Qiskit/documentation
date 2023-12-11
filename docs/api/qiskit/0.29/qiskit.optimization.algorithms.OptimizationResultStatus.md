@@ -1,6 +1,6 @@
 # OptimizationResultStatus
 
-<span id="undefined" />
+
 
 `OptimizationResultStatus(value)`
 
@@ -10,7 +10,7 @@ Termination status of an optimization algorithm.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### FAILURE
 
@@ -18,7 +18,7 @@ Termination status of an optimization algorithm.
 
 the optimization algorithm ended in a failure.
 
-<span id="undefined" />
+
 
 ### INFEASIBLE
 
@@ -26,7 +26,7 @@ the optimization algorithm ended in a failure.
 
 the optimization algorithm obtained an infeasible solution.
 
-<span id="undefined" />
+
 
 ### SUCCESS
 

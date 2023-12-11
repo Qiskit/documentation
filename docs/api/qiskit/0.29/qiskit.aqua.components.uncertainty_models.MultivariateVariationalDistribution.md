@@ -1,6 +1,6 @@
 # MultivariateVariationalDistribution
 
-<span id="undefined" />
+
 
 `MultivariateVariationalDistribution(num_qubits, var_form, params, low=None, high=None)`
 
@@ -37,55 +37,55 @@ The Multivariate Variational Distribution.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### dimension
 
 returns dimensions
 
-<span id="undefined" />
+
 
 ### high
 
 returns high
 
-<span id="undefined" />
+
 
 ### low
 
 returns low
 
-<span id="undefined" />
+
 
 ### num\_qubits
 
 returns num qubits
 
-<span id="undefined" />
+
 
 ### num\_target\_qubits
 
 Returns the number of target qubits
 
-<span id="undefined" />
+
 
 ### num\_values
 
 returns number of values
 
-<span id="undefined" />
+
 
 ### probabilities
 
 returns probabilities
 
-<span id="undefined" />
+
 
 ### probabilities\_vector
 
 returns probabilities vector
 
-<span id="undefined" />
+
 
 ### values
 

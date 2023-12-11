@@ -1,6 +1,6 @@
 # NumPyMinimumEigensolverFactory
 
-<span id="undefined" />
+
 
 `NumPyMinimumEigensolverFactory(filter_criterion=None, use_default_filter_criterion=False)`
 
@@ -22,7 +22,7 @@ A factory to construct a NumPyMinimumEigensolver.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### filter\_criterion
 
@@ -32,7 +32,7 @@ returns filter criterion
 
 `Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]
 
-<span id="undefined" />
+
 
 ### use\_default\_filter\_criterion
 

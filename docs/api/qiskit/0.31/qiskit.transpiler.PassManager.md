@@ -1,6 +1,6 @@
 # PassManager
 
-<span id="undefined" />
+
 
 `PassManager(passes=None, max_iteration=1000)`
 

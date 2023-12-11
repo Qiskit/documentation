@@ -1,6 +1,6 @@
 # ResultDecoder
 
-<span id="undefined" />
+
 
 `ResultDecoder`
 

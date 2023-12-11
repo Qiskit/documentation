@@ -1,6 +1,6 @@
 # qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound
 
-<span id="undefined" />
+
 
 `IBMExperimentEntryNotFound(*message)`
 

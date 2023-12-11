@@ -1,6 +1,6 @@
 # qiskit.utils.deprecate\_arguments
 
-<span id="undefined" />
+
 
 `deprecate_arguments(kwarg_map)`
 

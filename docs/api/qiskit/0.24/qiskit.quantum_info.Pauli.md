@@ -2,7 +2,7 @@
 
 # qiskit.quantum\_info.Pauli
 
-<span id="undefined" />
+
 
 `Pauli(z=None, x=None, label=None)`
 
@@ -36,7 +36,7 @@ Make the Pauli object.
 *   **x** (*numpy.ndarray*) – boolean, x vector
 *   **label** (*str*) – pauli label
 
-<span id="undefined" />
+
 
 `__init__(z=None, x=None, label=None)`
 
@@ -87,7 +87,7 @@ Make the Pauli object.
 | [`x`](#qiskit.quantum_info.Pauli.x "qiskit.quantum_info.Pauli.x")                            | Getter of x.      |
 | [`z`](#qiskit.quantum_info.Pauli.z "qiskit.quantum_info.Pauli.z")                            | Getter of z.      |
 
-<span id="undefined" />
+
 
 `append_paulis(paulis=None, pauli_labels=None)`
 
@@ -106,7 +106,7 @@ self
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
-<span id="undefined" />
+
 
 `delete_qubits(indices)`
 
@@ -124,7 +124,7 @@ self
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
-<span id="undefined" />
+
 
 `classmethod from_label(label)`
 
@@ -148,7 +148,7 @@ the constructed pauli
 
 **QiskitError** – invalid character in the label
 
-<span id="undefined" />
+
 
 `insert_paulis(indices=None, paulis=None, pauli_labels=None)`
 
@@ -178,7 +178,7 @@ self
 
 **QiskitError** – provide both paulis and pauli\_labels at the same time
 
-<span id="undefined" />
+
 
 `kron(other)`
 
@@ -198,13 +198,13 @@ self
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
-<span id="undefined" />
+
 
 `property num_qubits`
 
 Number of qubits.
 
-<span id="undefined" />
+
 
 `classmethod pauli_single(num_qubits, index, pauli_label)`
 
@@ -224,7 +224,7 @@ single qubit pauli
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
-<span id="undefined" />
+
 
 `classmethod random(num_qubits, seed=None)`
 
@@ -243,7 +243,7 @@ the random pauli
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
-<span id="undefined" />
+
 
 `static sgn_prod(p1, p2)`
 
@@ -264,13 +264,13 @@ the multiplied pauli complex: the sign of the multiplication, 1, -1, 1j or -1j
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
-<span id="undefined" />
+
 
 `to_instruction()`
 
 Convert to Pauli circuit instruction.
 
-<span id="undefined" />
+
 
 `to_label()`
 
@@ -286,7 +286,7 @@ pauli label
 
 str
 
-<span id="undefined" />
+
 
 `to_matrix()`
 
@@ -302,13 +302,13 @@ a matrix that represents the pauli.
 
 numpy.array
 
-<span id="undefined" />
+
 
 `to_operator()`
 
 Convert to Operator object.
 
-<span id="undefined" />
+
 
 `to_spmatrix()`
 
@@ -324,7 +324,7 @@ a sparse matrix with CSR format that represents the pauli.
 
 scipy.sparse.csr\_matrix
 
-<span id="undefined" />
+
 
 `update_x(x, indices=None)`
 
@@ -347,7 +347,7 @@ self
 
 **QiskitError** – when updating whole x, the number of qubits must be the same.
 
-<span id="undefined" />
+
 
 `update_z(z, indices=None)`
 
@@ -370,13 +370,13 @@ self
 
 **QiskitError** – when updating whole z, the number of qubits must be the same.
 
-<span id="undefined" />
+
 
 `property x`
 
 Getter of x.
 
-<span id="undefined" />
+
 
 `property z`
 

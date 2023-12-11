@@ -1,6 +1,6 @@
 # ExpectationBase
 
-<span id="undefined" />
+
 
 `ExpectationBase`
 

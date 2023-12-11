@@ -1,6 +1,6 @@
 # SaveStatevectorDict
 
-<span id="undefined" />
+
 
 `SaveStatevectorDict(num_qubits, label='statevector_dict', pershot=False, conditional=False)`
 
@@ -41,7 +41,7 @@ Create new instruction to save the simulator statevector as a dict.
 
 ## Attributes
 
-<span id="undefined" />
+
 
 ### condition\_bits
 
@@ -51,25 +51,25 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-<span id="undefined" />
+
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-<span id="undefined" />
+
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-<span id="undefined" />
+
 
 ### duration
 
 Get the duration.
 
-<span id="undefined" />
+
 
 ### label
 
@@ -79,13 +79,13 @@ Return instruction label
 
 `str`
 
-<span id="undefined" />
+
 
 ### params
 
 return instruction params.
 
-<span id="undefined" />
+
 
 ### unit
 
