@@ -104,6 +104,15 @@ const main = async (): Promise<void> => {
       in <160 characters, ideally using some keywords. The description is what
       shows up on Google results. See https://github.com/Qiskit/documentation/issues/131 for some tips. 
 
+      For example:
+
+      "metadata": {
+        "description": "Get started using Qiskit with IBM Quantum hardware in this Hello World example",
+        "title": "Hello world",
+        "celltoolbar": "Raw Cell Format",
+        "kernelspec": { ...
+      }
+
       Please fix these files: ${notebookErrors}
     `);
   }
