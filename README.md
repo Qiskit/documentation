@@ -123,8 +123,11 @@ pipx install tox
 
 > [!NOTE]
 > If your notebook submits hardware jobs to IBM Quantum, you must add it to the
-> ignore list in `scripts/nb-tester/test-notebooks.py`. Retrieving information
-> is ok.
+> ignore list in `scripts/nb-tester/test-notebooks.py`. This is not needed if
+> you only retrieve information.
+> 
+> If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
+> add it to the `NEEDS_LATEX` list in `.github/workflows/notebook-test.yml`.
 
 ## Check for broken links
 

@@ -37,10 +37,14 @@ class ExecuteOptions:
     submit_jobs: bool
 
 
-def execute_notebook(path: Path, options: ExecuteOptions) -> bool:
+def execute_notebook(path: str, options: ExecuteOptions) -> bool:
     """
     Wrapper function for `_execute_notebook` to print status
     """
+    path = Path(path)
+    if path.suffix != ".ipynb":
+        print(f"⏭️ {path} is not a notebook; skipping")
+        return True
     print(f"▶️  {path}", end="", flush=True)
     possible_exceptions = (
         nbconvert.preprocessors.CellExecutionError,
@@ -51,6 +55,8 @@ def execute_notebook(path: Path, options: ExecuteOptions) -> bool:
     except possible_exceptions as err:
         print("\r❌\n")
         print(err)
+        with open("latex_error.log") as f:
+            print(f.read())
         return False
     print("\r✅")
     return True

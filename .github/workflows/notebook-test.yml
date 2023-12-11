@@ -27,6 +27,21 @@ jobs:
         with:
           python-version: "3.11"
 
+      - name: Get changed files
+        id: changed-files
+        uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
+
+      - name: Install LaTeX dependencies
+        run: |
+          # Add your notebook to this list if it needs latex to run
+          NEEDS_LATEX="docs/build/circuit-visualization.ipynb"
+          for FILE in $NEEDS_LATEX; do
+            if [[ "${{ steps.changed-files.outputs.all_changed_files }}" = *"$FILE"* ]]; then
+              sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils
+              break
+            fi
+          done
+
       - name: Install Qiskit IBM Runtime to save account
         # To save account; this is re-installed during the "Run tox" step
         run: pip install qiskit-ibm-runtime
@@ -48,3 +63,4 @@ jobs:
         with:
           python-version: "3.11"
           tox-envs: "py311"
+          tox-posargs: ${{ steps.changed-files.outputs.all_changed_files }}
