@@ -39,7 +39,7 @@ Session constructor.
 
 *   **service** (`Optional`\[[`QiskitRuntimeService`](qiskit_ibm_runtime.QiskitRuntimeService "qiskit_ibm_runtime.qiskit_runtime_service.QiskitRuntimeService")]) – Optional instance of the `QiskitRuntimeService` class. If `None`, the service associated with the backend, if known, is used. Otherwise `QiskitRuntimeService()` is used to initialize your default saved account.
 *   **backend** (`Union`\[`str`, [`IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.ibm_backend.IBMBackend"), `None`]) – Optional instance of [`qiskit_ibm_runtime.IBMBackend`](qiskit_ibm_runtime.IBMBackend "qiskit_ibm_runtime.IBMBackend") class or string name of backend. An instance of `qiskit_ibm_provider.IBMBackend` will not work. If not specified, a backend will be selected automatically (IBM Cloud channel only).
-*   **max\_time** (`Union`\[`int`, `str`, `None`]) – (EXPERIMENTAL setting, can break between releases without warning) Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be less than the [system imposed maximum](https://docs.quantum.ibm.com/run/max-execution-time).
+*   **max\_time** (`Union`\[`int`, `str`, `None`]) – (EXPERIMENTAL setting, can break between releases without warning) Maximum amount of time, a runtime session can be open before being forcibly closed. Can be specified as seconds (int) or a string like “2h 30m 40s”. This value must be less than the [system imposed maximum](https://qiskit.org/documentation/partners/qiskit_ibm_runtime/faqs/max_execution_time.html).
 
 **Raises**
 
@@ -127,7 +127,7 @@ Return session details.
 
 **Returns**
 
-id: id of the session. backend\_name: backend used for the session. interactive\_timeout: The maximum idle time (in seconds) between jobs that is allowed to occur before the session is deactivated. max\_time: Maximum allowed time (in seconds) for the session, subject to plan limits. active\_timeout: The maximum time (in seconds) a session can stay active. state: State of the session - open, active, inactive, or closed. accepting\_jobs: Whether or not the session is accepting jobs. last\_job\_started: Timestamp of when the last job in the session started. last\_job\_completed: Timestamp of when the last job in the session completed. started\_at: Timestamp of when the session was started. closed\_at: Timestamp of when the session was closed. activated\_at: Timestamp of when the session state was changed to active.
+id: id of the session. backend\_name: backend used for the session. interactive\_timeout: The maximum idle time (in seconds) between jobs that is allowed to occur before the session is deactivated. max\_time: Maximum allowed time (in seconds) for the session, subject to plan limits. active\_timeout: The maximum time (in seconds) a session can stay active. state: State of the session - open, active, inactive, or closed. accepting\_jobs: Whether or not the session is accepting jobs. last\_job\_started: Timestamp of when the last job in the session started. last\_job\_completed: Timestamp of when the last job in the session completed. started\_at: Timestamp of when the session was started. closed\_at: Timestamp of when the session was closed.
 
 **Return type**
 

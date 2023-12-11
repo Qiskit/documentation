@@ -213,7 +213,7 @@ Return all backends accessible via this account, subject to optional filtering.
     QiskitRuntimeService.backends(open_pulse=True)
     ```
 
-    For the full list of backend attributes, see the IBMBackend class documentation \<[https://docs.quantum.ibm.com/api/qiskit/providers\_models](https://docs.quantum.ibm.com/api/qiskit/providers_models)>
+    For the full list of backend attributes, see the IBMBackend class documentation \<[providers\_models](/api/qiskit/providers_models)>
 
 **Return type**
 
