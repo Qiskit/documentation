@@ -214,7 +214,7 @@ Refer to the [Common Markdown syntax](https://commonmark.org/) for a primer on M
 
 ## How to add a new page
 
-Choose which existing folder from `docs/` your new page belongs to. 
+Choose which existing folder from `docs/` your new page belongs to.
 
 Next, choose the file name. The file name will determine the URL. For example, `start/my-new-page.mdx` results in the URL `start/my-new-page`. Choose a file name that will be stable over the page's lifespan and that is unlikely to clash with other topics. Use `-` rather than `_` as the delimiter. You can also ask for help choosing a name in the GitHub issue or pull request.
 
@@ -243,7 +243,7 @@ Inline ![Inline image](/images/build/your-file/your_image.png) image
 To include a caption
 
 ```markdown
-![Your image](/images/build/your-file/your_image.png 'Image caption')
+![Your image](/images/build/your-file/your_image.png "Image caption")
 ```
 
 You can include a version of the image to be with the dark theme. You only need to create an image with the same name ending in `@dark`. So for example, if you have a `sampler.png` image, the dark version would be `sampler@dark.png`. This is important for images that have a white background.
@@ -268,7 +268,7 @@ Tables are supported: https://www.markdownguide.org/extended-syntax/.
 
 ## Comments
 
-Example comment: {/* Comes from https://qiskit.org/documentation/partners/qiskit_ibm_runtime/getting_started.html */}
+Example comment: {/_ Comes from https://qiskit.org/documentation/partners/qiskit_ibm_runtime/getting_started.html _/}
 
 ## Collapsible sections
 
@@ -322,7 +322,6 @@ To use a `DefinitionTooltip`, use the following syntax:
 ```
 
 For full list of props, please check [here](https://react.carbondesignsystem.com/?path=/docs/components-definitiontooltip--playground#component-api).
-
 
 ### Composer
 
@@ -396,9 +395,10 @@ There is a specific use case where you want to show instructions for different o
     Open a terminal and write the command
   </TabItem>
 
-  <TabItem value="linux" label="Linux">
-    Open a terminal and write the command
-  </TabItem>
+{" "}
+<TabItem value="linux" label="Linux">
+  Open a terminal and write the command
+</TabItem>
 
   <TabItem value="win" label="Windows">
     Go to windows/run and write `cmd`. It will open a command line. Execute this command
@@ -415,15 +415,15 @@ This component show tabs with the Composer and the OpenQasm code. It also shows 
   OPENQASM 2.0;
   include "qelib1.inc";
 
-  qreg q[2];
-  creg c[2];
+qreg q[2];
+creg c[2];
 
-  reset q[0];
-  h q[0];
-  reset q[1];
-  cx q[0],q[1];
-  measure q[0] -> c[0];
-  measure q[1] -> c[1];
+reset q[0];
+h q[0];
+reset q[1];
+cx q[0],q[1];
+measure q[0] -> c[0];
+measure q[1] -> c[1];
 `}/>
 ```
 
