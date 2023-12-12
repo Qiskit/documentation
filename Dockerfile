@@ -21,8 +21,8 @@
 #
 #   1. Install IBM CLI, https://cloud.ibm.com/docs/cli?topic=cli-getting-started
 #   2. ❯ ibmcloud plugin install cr
-#   3. ❯ ibmcloud cr region-set global
-#   4. ❯ ibmcloud login --sso
+#   3. ❯ ibmcloud login --sso
+#   4. ❯ ibmcloud cr region-set global
 #   5. ❯ ibmcloud cr login
 #
 #   Once logged in to IBM Cloud:
