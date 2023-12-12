@@ -32,6 +32,7 @@ NOTEBOOKS_THAT_SUBMIT_JOBS = [
 ]
 
 
+@dataclass(frozen=True)
 class ExecuteOptions:
     write: bool
     submit_jobs: bool
@@ -79,7 +80,7 @@ def _execute_notebook(filepath: Path, options: ExecuteOptions) -> None:
         return
 
     for cell in nb.cells:
-        # To avoid noisy diffs
+        # Remove execution metadata to avoid noisy diffs.
         cell.metadata.pop("execution", None)
     nbformat.write(nb, filepath)
 

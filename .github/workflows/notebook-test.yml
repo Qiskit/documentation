@@ -44,7 +44,8 @@ jobs:
           done
 
       - name: Install Qiskit IBM Runtime to save account
-        # To save account; this is re-installed during the "Run tox" step
+        # This is to save our account in the next step. Note that the
+        # package will be re-installed during the "Run tox" step.
         run: pip install qiskit-ibm-runtime
 
       - name: Save IBM Quantum account
