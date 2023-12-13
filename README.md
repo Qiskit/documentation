@@ -313,7 +313,7 @@ To use an `Admonition`, use the following syntax
 
 Available types are `note, tip, info, caution, danger`
 
-By default, the title is the `type` capitalized. You can customize it by using the `title` prop:
+By default, the title is the `type` capitalized. You can customize it by setting `title`:
 
 ```mdx
 <Admonition type="note" title="Custom title">
@@ -362,7 +362,7 @@ To use a `Tabs` component, use the following syntax:
   </TabItem>
 
   <TabItem value="qasm" label="QASM">
-    This in cloud the text for QASM
+    This is the text for QASM
   </TabItem>
 </Tabs>
 ```
@@ -376,7 +376,7 @@ By default, the first tab is selected. You can change that by using the `default
   </TabItem>
 
   <TabItem value="qasm" label="QASM">
-    This in cloud the text for QASM
+    This is the text for QASM
   </TabItem>
 </Tabs>
 ```
@@ -390,7 +390,7 @@ There are situations where you want to repeat the same tabs in several part of t
   </TabItem>
 
   <TabItem value="qasm" label="QASM">
-    This in cloud the text for QASM
+    This is the text for QASM
   </TabItem>
 </Tabs>
 ```
@@ -402,15 +402,12 @@ There is a specific use case where you want to show instructions for different o
   <TabItem value="mac" label="macOS">
     Open a terminal and write the command
   </TabItem>
-
-{" "}
-
-<TabItem value="linux" label="Linux">
-  Open a terminal and write the command
-</TabItem>
-
+  <TabItem value="linux" label="Linux">
+    Open a terminal and write the command
+  </TabItem>
   <TabItem value="win" label="Windows">
-    Go to windows/run and write `cmd`. It will open a command line. Execute this command
+    Go to windows/run and write `cmd`. It will open a command line. Execute this
+    command
   </TabItem>
 </OperatingSystemTabs>
 ```
