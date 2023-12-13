@@ -44,10 +44,6 @@ def execute_notebook(path: str, options: ExecuteOptions) -> bool:
     """
     Wrapper function for `_execute_notebook` to print status
     """
-    path = Path(path)
-    if path.suffix != ".ipynb":
-        print(f"⏭️ {path} is not a notebook; skipping")
-        return True
     print(f"▶️  {path}", end="", flush=True)
     possible_exceptions = (
         nbconvert.preprocessors.CellExecutionError,
@@ -123,41 +119,49 @@ def cancel_trailing_jobs(start_time: datetime) -> bool:
     return False
 
 
-parser = argparse.ArgumentParser(
-    prog="Notebook executor",
-    description="For testing notebooks and updating their outputs",
-    epilog="For help, contact Frank Harkins",
-)
-parser.add_argument(
-    "filenames",
-    help=(
-        "Paths to notebooks. If not provided, the script will search for "
-        "notebooks in `docs/`. To exclude a notebook from this process, add it "
-        "to `NOTEBOOKS_EXCLUDE` in the script."
-    ),
-    nargs="*",
-)
-parser.add_argument(
-    "-w",
-    "--write",
-    action="store_true",
-    help="overwrite notebooks with execution outputs",
-)
-parser.add_argument(
-    "--submit-jobs",
-    action="store_true",
-    help=(
-        "run notebooks that submit jobs to IBM Quantum and wait indefinitely "
-        "for jobs to complete"
-    ),
-)
+def create_argument_parser() -> argparse.ArgumentParser:
+    parser = argparse.ArgumentParser(
+        prog="Notebook executor",
+        description="For testing notebooks and updating their outputs",
+        epilog="For help, contact Frank Harkins",
+    )
+    parser.add_argument(
+        "filenames",
+        help=(
+            "Paths to notebooks. If not provided, the script will search for "
+            "notebooks in `docs/`. To exclude a notebook from this process, add it "
+            "to `NOTEBOOKS_EXCLUDE` in the script."
+        ),
+        nargs="*",
+    )
+    parser.add_argument(
+        "-w",
+        "--write",
+        action="store_true",
+        help="overwrite notebooks with execution outputs",
+    )
+    parser.add_argument(
+        "--submit-jobs",
+        action="store_true",
+        help=(
+            "run notebooks that submit jobs to IBM Quantum and wait indefinitely "
+            "for jobs to complete"
+        ),
+    )
+    return parser
+
 
 if __name__ == "__main__":
-    args = parser.parse_args()
-    notebook_paths = args.filenames or find_notebooks(args.submit_jobs)
+    args = create_argument_parser().parse_args()
+
+    paths = map(Path, args.filenames or find_notebooks(args.submit_jobs))
+
+    # Execute notebooks
     start_time = datetime.now()
     print("Executing notebooks:")
-    results = [execute_notebook(path, args) for path in notebook_paths]
+    results = [
+        execute_notebook(path, args) for path in paths if path.suffix == ".ipynb"
+    ]
     print("Checking for trailing jobs...")
     results.append(cancel_trailing_jobs(start_time))
     if not all(results):
