@@ -10,14 +10,16 @@
 # notice, and modified files need to carry a notice indicating that they have
 # been altered from the originals.
 
+import argparse
 import sys
+from dataclasses import dataclass
+from datetime import datetime
 from pathlib import Path
+
+import nbclient
 import nbconvert
 import nbformat
-import nbclient
-from datetime import datetime
 from qiskit_ibm_runtime import QiskitRuntimeService
-import argparse
 
 NOTEBOOKS_GLOB = "docs/**/*.ipynb"
 NOTEBOOKS_EXCLUDE = [
