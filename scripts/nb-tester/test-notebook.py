@@ -40,7 +40,7 @@ class ExecuteOptions:
     submit_jobs: bool
 
 
-def execute_notebook(path: str, options: ExecuteOptions) -> bool:
+def execute_notebook(path: Path, options: ExecuteOptions) -> bool:
     """
     Wrapper function for `_execute_notebook` to print status
     """
@@ -82,7 +82,7 @@ def _execute_notebook(filepath: Path, options: ExecuteOptions) -> None:
     nbformat.write(nb, filepath)
 
 
-def find_notebooks(submit_jobs=False) -> list[Path]:
+def find_notebooks(*, submit_jobs: bool = False) -> list[Path]:
     """
     Get paths to all notebooks in NOTEBOOKS_GLOB that are not excluded by
     NOTEBOOKS_EXCLUDE
@@ -129,7 +129,6 @@ def create_argument_parser() -> argparse.ArgumentParser:
     parser = argparse.ArgumentParser(
         prog="Notebook executor",
         description="For testing notebooks and updating their outputs",
-        epilog="For help, contact Frank Harkins",
     )
     parser.add_argument(
         "filenames",
@@ -144,14 +143,15 @@ def create_argument_parser() -> argparse.ArgumentParser:
         "-w",
         "--write",
         action="store_true",
-        help="overwrite notebooks with execution outputs",
+        help="Overwrite notebooks with the results of this script's execution.",
     )
     parser.add_argument(
         "--submit-jobs",
         action="store_true",
         help=(
-            "run notebooks that submit jobs to IBM Quantum and wait indefinitely "
-            "for jobs to complete"
+            "Run notebooks that submit jobs to IBM Quantum and wait indefinitely "
+            "for jobs to complete. Warning: this has a real cost because it uses "
+            "quantum resources! Only use this argument occasionally and intentionally." 
         ),
     )
     return parser
