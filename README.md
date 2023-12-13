@@ -127,7 +127,8 @@ pipx install tox
 > you only retrieve information.
 >
 > If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
-> add it to the `NEEDS_LATEX` list in `.github/workflows/notebook-test.yml`.
+> add it to the "Check for notebooks that require LaTeX" step in
+> `.github/workflows/notebook-test.yml`.
 
 ## Check for broken links
 
