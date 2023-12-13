@@ -197,7 +197,15 @@ To check that formatting is valid without actually making changes, run `npm run 
 1. Install and configure GitHub CLI: https://docs.github.com/en/github-cli/github-cli/quickstart
 2. Choose which documentation you want to regenerate: `qiskit`, `qiskit-ibm-provider`, or `qiskit-ibm-runtime`
 3. Determine the current version of the published stable documentation, e.g. at https://github.com/Qiskit/qiskit/releases
-4. Find a link to a CI artifact with the project's documentation, e.g at https://github.com/Qiskit/qiskit/suites/17881600359/artifacts/1026798160. To find this, first find the CI run for the commit you are trying to build docs for. This should come from a stable commit, not from a Pull Request. Then, go to the "Summary" page in GitHub Actions for the CI run. Scroll down to "Artifacts" and look for the artifact related to documentation, such as `html_docs`. Copy the link by right-clicking on the artifact.
+4. Find a link to a CI artifact with the project's documentation, e.g at https://github.com/Qiskit/qiskit/suites/17881600359/artifacts/1026798160. To find this:
+   1. Pull up the CI runs for the stable commit that you want to build docs from. This should not be from a Pull Request
+   2. Open up the "Details" for the relevant workflow.
+      - Qiskit: "Documentation / Build (push)"
+      - Runtime: "CI / Build documentation (push)"
+      - Provider: "CI / Build documentation (push)"
+   3. Click the "Summary" page at the top of the left navbar.
+   4. Scroll down to "Artifacts" and look for the artifact related to documentation, such as `html_docs`.
+   5. Copy the link by right-clicking on the artifact.
 5. Run `npm run gen-api -- -p <pkg-name> -v <version> -a <artifact-url>`,
    e.g. `npm run gen-api -- -p qiskit -v 0.45.0 -a https://github.com/Qiskit/qiskit/suites/17881600359/artifacts/1026798160`
 6. When opening your PR, include the CLI arguments you used. That helps us to know exactly how the docs have been generated over time.
@@ -252,7 +260,7 @@ You can include a version of the image to be with the dark theme. You only need 
 
 We use [LaTeX](https://www.latex-project.org) to write math, which gets rendered by the library [KaTeX](https://katex.org).
 
-Inline math expressions should start with `$` and end with `$`, e.g. `$\frac{123}{2}`.
+Inline math expressions should start with `$` and end with `$`, e.g. `$\frac{123}{2}$`.
 
 Multi-line expressions should start with `$$` and end with `$$`:
 
@@ -293,7 +301,7 @@ Duplicated footnote reference[^second].
 ## Custom components
 
 These are components that we expose through MDX. You can use them in both
-`.mdx` and `.ipynb` files. In Jupyter notebooks, use Markdown blocks.
+`.mdx` and `.ipynb` files. In Jupyter notebooks, use Markdown cells.
 
 ### Admonitions
 
@@ -396,6 +404,7 @@ There is a specific use case where you want to show instructions for different o
   </TabItem>
 
 {" "}
+
 <TabItem value="linux" label="Linux">
   Open a terminal and write the command
 </TabItem>
