@@ -46,10 +46,10 @@ jobs:
           sudo apt-get update
           sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils
 
-      - name: Install Qiskit IBM Runtime (to save account)
+      - name: Install Python packages
         # This is to save our account in the next step. Note that the
         # package will be re-installed during the "Run tox" step.
-        run: pip install qiskit-ibm-runtime
+        run: pip install qiskit-ibm-runtime tox
 
       - name: Save IBM Quantum account
         if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
@@ -63,9 +63,11 @@ jobs:
               set_as_default=True
           )
 
-      - name: Run tox
-        uses: lsst-sqre/run-tox@97818256d9fa3c72d0c12f31660718adb495a1cb
+      - name: Cache tox environment
+        uses: actions/cache@v3
         with:
-          python-version: "3.11"
-          tox-envs: "py311"
-          tox-posargs: ${{ steps.all-changed-files.outputs.all_changed_files }}
+          path: ".tox"
+          key: ${{ hashFiles('scripts/nb-tester/requirements.txt') }}
+
+      - name: Run tox
+        run: tox -- ${{ steps.all-changed-files.outputs.all_changed_files }}
