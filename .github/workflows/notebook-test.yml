@@ -28,22 +28,25 @@ jobs:
           python-version: "3.11"
           cache: "pip"
 
-      - name: Get changed files
-        id: changed-files
+      - name: Get all changed files
+        id: all-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
 
-      - name: Install LaTeX dependencies
-        run: |
+      - name: Check for notebooks that require LaTeX
+        id: latex-changed-files
+        uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
+        with:
           # Add your notebook to this list if it needs latex to run
-          NEEDS_LATEX="docs/build/circuit-visualization.ipynb"
-          for FILE in $NEEDS_LATEX; do
-            if [[ "${{ steps.changed-files.outputs.all_changed_files }}" = *"$FILE"* ]]; then
-              sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils
-              break
-            fi
-          done
+          files: |
+            docs/build/circuit-visualization.ipynb
 
-      - name: Install Qiskit IBM Runtime to save account
+      - name: Install LaTeX dependencies
+        if: steps.latex-changed-files.outputs.any_changed == 'true'
+        run: |
+          sudo apt-get update
+          sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils
+
+      - name: Install Qiskit IBM Runtime (to save account)
         # This is to save our account in the next step. Note that the
         # package will be re-installed during the "Run tox" step.
         run: pip install qiskit-ibm-runtime
@@ -65,4 +68,4 @@ jobs:
         with:
           python-version: "3.11"
           tox-envs: "py311"
-          tox-posargs: ${{ steps.changed-files.outputs.all_changed_files }}
+          tox-posargs: ${{ steps.all-changed-files.outputs.all_changed_files }}
