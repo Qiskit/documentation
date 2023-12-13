@@ -11,7 +11,7 @@
 // that they have been altered from the originals.
 
 import { describe, expect, test } from "@jest/globals";
-import { updateLinks } from "./updateLinks";
+import { updateLinks, updateUrl } from "./updateLinks";
 import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
 import { last } from "lodash";
 
@@ -135,6 +135,60 @@ describe("updateLinks", () => {
           },
           "url": "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         },
+      ]
+    `);
+  });
+});
+
+describe("updateUrl", () => {
+  test("update url", async () => {
+    const urls = [
+      `qiskit_ibm_runtime.RuntimeJob`,
+      `qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob`,
+      `qiskit_ibm_runtime.RuntimeJob.job#wut`,
+      `../stubs/qiskit_ibm_runtime.RuntimeJob`,
+      `../apidocs/qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob`,
+      `qiskit_ibm_runtime.RuntimeJob`,
+      `#qiskit_ibm_runtime.RuntimeJob.job`,
+      `qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.run`,
+      `stubs/qiskit_ibm_runtime.RuntimeJob`,
+    ];
+    const resultsByName: { [key: string]: SphinxToMdResultWithUrl } = {
+      "qiskit_ibm_runtime.RuntimeJob": {
+        markdown: "",
+        meta: {
+          python_api_type: "class",
+          python_api_name: "qiskit_ibm_runtime.RuntimeJob",
+        },
+        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
+        images: [],
+        isReleaseNotes: false,
+      },
+      "qiskit_ibm_runtime.Sampler": {
+        markdown: "",
+        meta: {
+          python_api_type: "class",
+          python_api_name: "qiskit_ibm_runtime.Sampler",
+        },
+        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
+        images: [],
+        isReleaseNotes: false,
+      },
+    };
+    const itemNames = new Set(["qiskit_ibm_runtime.RuntimeJob"]);
+
+    const newUrls = urls.map((url) => updateUrl(url, resultsByName, itemNames));
+    expect(newUrls).toMatchInlineSnapshot(`
+      [
+        "qiskit_ibm_runtime.RuntimeJob",
+        "qiskit_ibm_runtime.RuntimeJob",
+        "qiskit_ibm_runtime.RuntimeJob#job",
+        "qiskit_ibm_runtime.RuntimeJob",
+        "qiskit_ibm_runtime.RuntimeJob",
+        "qiskit_ibm_runtime.RuntimeJob",
+        "#qiskit_ibm_runtime.RuntimeJob.job",
+        "qiskit_ibm_runtime.RuntimeJob#run",
+        "qiskit_ibm_runtime.RuntimeJob",
       ]
     `);
   });
