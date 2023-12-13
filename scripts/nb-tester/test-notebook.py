@@ -68,6 +68,7 @@ def _execute_notebook(filepath: Path, options: ExecuteOptions) -> None:
     nb = nbformat.read(filepath, as_version=4)
 
     processor = nbconvert.preprocessors.ExecutePreprocessor(
+        # If submitting jobs, we want to wait forever (-1 means no timeout)
         timeout=-1 if options.submit_jobs else 100,
         kernel_name="python3",
     )
@@ -103,6 +104,13 @@ def cancel_trailing_jobs(start_time: datetime) -> bool:
     """
     Cancel any runtime jobs created after `start_time`.
     Return True if non exist, False otherwise.
+
+    Notebooks should not submit jobs during a normal test run. If they do, the
+    cell will time out and this function will cancel the job to avoid wasting
+    device time.
+
+    If a notebook submits a job but does not wait for the result, this check
+    will also catch it and cancel the job.
     """
     service = QiskitRuntimeService()
     jobs = [j for j in service.jobs(created_after=start_time) if not j.in_final_state()]
