@@ -313,7 +313,7 @@ To use an `Admonition`, use the following syntax
 
 Available types are `note, tip, info, caution, danger`
 
-By default, the title is the `type` capitalized. You can customize it by using the `title` prop
+By default, the title is the `type` capitalized. You can customize it by using the `title` prop:
 
 ```mdx
 <Admonition type="note" title="Custom title">
@@ -353,7 +353,7 @@ u2(0, 0) q[0];
 
 ### Tabs
 
-To use a `Tabs` component, use the following syntax
+To use a `Tabs` component, use the following syntax:
 
 ```mdx
 <Tabs>
@@ -381,7 +381,7 @@ By default, the first tab is selected. You can change that by using the `default
 </Tabs>
 ```
 
-There are situation where you want to repeat the same tabs in several part of the page. In this situation, you can use the prop `group` to synchronize the selected tab in all usages.
+There are situations where you want to repeat the same tabs in several part of the page. In this situation, you can use the prop `group` to synchronize the selected tab in all usages.
 
 ```mdx
 <Tabs group="my-group">
@@ -395,7 +395,7 @@ There are situation where you want to repeat the same tabs in several part of th
 </Tabs>
 ```
 
-There is a specific use case where you want to show instructions for different operating systems. In this situation, you can replace the `Tabs` component by a `OperatingSystemTabs`. The default value of the tab will be selected based on the users operating system.
+There is a specific use case where you want to show instructions for different operating systems. In this situation, you can replace the `Tabs` component by a `OperatingSystemTabs`. The default value of the tab will be selected based on the user's operating system.
 
 ```mdx
 <OperatingSystemTabs>
@@ -417,7 +417,7 @@ There is a specific use case where you want to show instructions for different o
 
 ### CircuitTabs
 
-This component show tabs with the Composer and the OpenQasm code. It also shows an Open in Composer link at the bottom.
+This component show tabs with the Composer and the OpenQASM code. It also shows an Open in Composer link at the bottom.
 
 ```mdx
 <CircuitTabs name="Bell" qasm={`
@@ -438,7 +438,7 @@ measure q[1] -> c[1];
 
 ### Operation
 
-To display a qasm operation (like a not gate), you can use the `Operation` component
+To display a qasm operation (like a not gate), you can use the `Operation` component:
 
 ```mdx
 <Operation name="x" />
