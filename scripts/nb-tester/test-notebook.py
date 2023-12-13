@@ -54,8 +54,6 @@ def execute_notebook(path: str, options: ExecuteOptions) -> bool:
     except possible_exceptions as err:
         print("\r❌\n")
         print(err)
-        with open("latex_error.log") as f:
-            print(f.read())
         return False
     print("\r✅")
     return True
