@@ -44,7 +44,7 @@ expectation values.
 | 0                | No mitigation                                                                                         | None                                                                      | None                                   |
 | 1 [Default]      | Minimal mitigation costs: Mitigate error associated with readout errors                               | Twirled Readout Error eXtinction  (TREX)                                  | Matrix-free Measurement Mitigation (M3)|
 | 2                | Medium mitigation costs. Typically reduces bias in estimators, but is not guaranteed to be zero-bias. | Zero Noise Extrapolation (ZNE)                                            | -                                      |
-| 3                | Heavy mitigation with layer sampling. Theoretically expected to deliver zero-bias estimators.         | Probabilistic Error cancelation (PEC)                                     | -                                      |
+| 3                | Heavy mitigation with layer sampling. Theoretically expected to deliver zero-bias estimators.         | Probabilistic Error Cancellation (PEC)                                     | -                                      |
 
 
 <Admonition type="info" title="Attention">
@@ -311,3 +311,9 @@ job = estimator.run(circuits=[psi1], observables=[H1], parameter_values=[theta1]
 psi1_H1 = job.result()
 ```
 
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  - Walk through an example that uses error mitigation in the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
+  - Learn more about [Q-CTRL](https://docs.q-ctrl.com/q-ctrl-embedded).
+</Admonition>

@@ -93,13 +93,17 @@ You need access credentials to use cloud-based IBM Quantum systems.
 1. Test your setup.  Run a simple circuit using Sampler to ensure that your environment is set up properly:
 
    ```python
-   from qiskit.test.reference_circuits import ReferenceCircuits
-   from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+    from qiskit import QuantumCircuit
+    from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+
+    # Create empty circuit
+    example_circuit = QuantumCircuit(2)
+    example_circuit.measure_all()
 
     # You'll need to specify the credentials when initializing QiskitRuntimeService, if they were not previously saved.
     service = QiskitRuntimeService()
     backend = service.backend("ibmq_qasm_simulator")
-    job = Sampler(backend).run(ReferenceCircuits.bell())
+    job = Sampler(backend).run(example_circuit)
     print(f"job id: {job.job_id()}")
     result = job.result()
     print(result)
@@ -164,13 +168,17 @@ You need access credentials to use cloud-based IBM Quantum systems.
  1. Test your setup.  Run a simple circuit using Sampler to ensure that your environment is set up properly:
 
    ```python
-   from qiskit.test.reference_circuits import ReferenceCircuits
-   from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+    from qiskit import QuantumCircuit
+    from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+
+    # Create empty circuit
+    example_circuit = QuantumCircuit(2)
+    example_circuit.measure_all()
 
     # You'll need to specify the credentials when initializing QiskitRuntimeService, if they were not previously saved.
     service = QiskitRuntimeService()
     backend = service.backend("ibmq_qasm_simulator")
-    job = Sampler(backend).run(ReferenceCircuits.bell())
+    job = Sampler(backend).run(example_circuit)
     print(f"job id: {job.job_id()}")
     result = job.result()
     print(result)
