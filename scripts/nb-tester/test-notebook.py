@@ -160,7 +160,7 @@ def create_argument_parser() -> argparse.ArgumentParser:
 if __name__ == "__main__":
     args = create_argument_parser().parse_args()
 
-    paths = map(Path, args.filenames or find_notebooks(args.submit_jobs))
+    paths = map(Path, args.filenames or find_notebooks(submit_jobs=args.submit_jobs))
 
     # Execute notebooks
     start_time = datetime.now()
