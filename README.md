@@ -121,6 +121,15 @@ pipx install tox
   tox -- optional/paths/to/notebooks.ipynb --write
   ```
 
+> [!NOTE]
+> If your notebook submits hardware jobs to IBM Quantum, you must add it to the
+> ignore list in `scripts/nb-tester/test-notebooks.py`. This is not needed if
+> you only retrieve information.
+>
+> If your notebook uses the latex circuit drawer (`qc.draw("latex")`), you must
+> add it to the "Check for notebooks that require LaTeX" step in
+> `.github/workflows/notebook-test.yml`.
+
 ## Check for broken links
 
 CI will check for broken links. You can also check locally:
