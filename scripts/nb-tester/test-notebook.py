@@ -27,7 +27,6 @@ NOTEBOOKS_EXCLUDE = [
     "**/.ipynb_checkpoints/**",
     # Following notebooks are broken
     "docs/transpile/transpiler-stages.ipynb",
-    "docs/run/get-backend-information.ipynb",
 ]
 NOTEBOOKS_THAT_SUBMIT_JOBS = [
     "docs/start/hello-world.ipynb",
