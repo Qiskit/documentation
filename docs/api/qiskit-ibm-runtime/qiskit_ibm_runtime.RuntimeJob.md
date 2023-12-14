@@ -335,6 +335,26 @@ Job metrics, which includes timestamp information.
 
 **IBMRuntimeError** – If a network error occurred.
 
+### properties
+
+<span id="qiskit_ibm_runtime.RuntimeJob.properties" />
+
+`properties(refresh=False)`
+
+Return the backend properties for this job.
+
+**Parameters**
+
+**refresh** (`bool`) – If `True`, re-query the server for the backend properties. Otherwise, return a cached version.
+
+**Return type**
+
+`Optional`\[`BackendProperties`]
+
+**Returns**
+
+The backend properties used for this job, at the time the job was run, or `None` if properties are not available.
+
 ### result
 
 <span id="qiskit_ibm_runtime.RuntimeJob.result" />

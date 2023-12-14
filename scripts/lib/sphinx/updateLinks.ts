@@ -23,14 +23,54 @@ import remarkMath from "remark-math";
 import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
+import { Link } from "../sharedTypes";
 
-export async function updateLinks<T extends SphinxToMdResultWithUrl>(
-  results: T[],
-  transformLink?: (
-    url: string,
-    text?: string,
-  ) => { url: string; text?: string } | undefined,
-): Promise<T[]> {
+export function updateUrl(
+  url: string,
+  resultsByName: { [key: string]: SphinxToMdResultWithUrl },
+  itemNames: Set<string>,
+): string {
+  if (isAbsoluteUrl(url)) return url;
+  if (url.startsWith("/")) return url;
+
+  url = removePart(url, "/", ["stubs", "apidocs", "apidoc", ".."]);
+
+  const urlParts = url.split("/");
+  const initialUrlParts = initial(urlParts);
+  const [path, hash] = last(urlParts)!.split("#") as [
+    string,
+    string | undefined,
+  ];
+
+  // qiskit_ibm_runtime.RuntimeJob
+  // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob
+  if (itemNames.has(path)) {
+    if (hash === path) {
+      return [...initialUrlParts, path].join("/");
+    }
+
+    // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.job -> qiskit_ibm_runtime.RuntimeJob#job
+    if (hash?.startsWith(`${path}.`)) {
+      const member = removePrefix(hash, `${path}.`);
+      return [...initialUrlParts, path].join("/") + `#${member}`;
+    }
+  }
+
+  // qiskit_ibm_runtime.QiskitRuntimeService.job -> qiskit_ibm_runtime.QiskitRuntimeService#job
+  const pathParts = path.split(".");
+  const member = last(pathParts);
+  const initialPathParts = initial(pathParts);
+  const parentName = initialPathParts.join(".");
+  if ("class" === resultsByName[parentName]?.meta.python_api_type) {
+    return [...initialUrlParts, parentName].join("/") + "#" + member;
+  }
+  return url;
+}
+
+export async function updateLinks(
+  results: SphinxToMdResultWithUrl[],
+  transformLink?: (link: Link) => Link | undefined,
+): Promise<void> {
   const resultsByName = keyBy(
     results,
     (result) => result.meta.python_api_name!,
@@ -51,7 +91,10 @@ export async function updateLinks<T extends SphinxToMdResultWithUrl>(
                 node.children?.[0]?.type === "text"
                   ? node.children?.[0]
                   : undefined;
-              const transformedLink = transformLink(node.url, textNode?.value);
+              const transformedLink = transformLink({
+                url: node.url,
+                text: textNode?.value,
+              });
               if (transformedLink) {
                 node.url = transformedLink.url;
                 if (textNode && transformedLink.text) {
@@ -60,49 +103,7 @@ export async function updateLinks<T extends SphinxToMdResultWithUrl>(
                 return;
               }
             }
-
-            if (isAbsoluteUrl(node.url)) return;
-            if (node.url.startsWith("/")) return;
-
-            node.url = removePart(node.url, "/", [
-              "stubs",
-              "apidocs",
-              "apidoc",
-              "..",
-            ]);
-
-            const urlParts = node.url.split("/");
-            const initialUrlParts = initial(urlParts);
-            const [path, hash] = last(urlParts)!.split("#") as [
-              string,
-              string | undefined,
-            ];
-
-            // qiskit_ibm_runtime.RuntimeJob
-            // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob
-            if (itemNames.has(path)) {
-              if (hash === path) {
-                node.url = [...initialUrlParts, path].join("/");
-                return;
-              }
-
-              // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.job -> qiskit_ibm_runtime.RuntimeJob#job
-              if (hash?.startsWith(`${path}.`)) {
-                const member = removePrefix(hash, `${path}.`);
-                node.url = [...initialUrlParts, path].join("/") + `#${member}`;
-                return;
-              }
-            }
-
-            // qiskit_ibm_runtime.QiskitRuntimeService.job -> qiskit_ibm_runtime.QiskitRuntimeService#job
-            const pathParts = path.split(".");
-            const member = last(pathParts);
-            const initialPathParts = initial(pathParts);
-            const parentName = initialPathParts.join(".");
-            if ("class" === resultsByName[parentName]?.meta.python_api_type) {
-              node.url =
-                [...initialUrlParts, parentName].join("/") + "#" + member;
-            }
+            node.url = updateUrl(node.url, resultsByName, itemNames);
           });
         };
       })
@@ -111,6 +112,4 @@ export async function updateLinks<T extends SphinxToMdResultWithUrl>(
 
     result.markdown = output?.toString();
   }
-
-  return results;
 }

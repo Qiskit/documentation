@@ -13,6 +13,7 @@ python_api_name: qiskit
 *   [Quantum Circuits (`qiskit.circuit`)](circuit)
 *   [Circuit Library (`qiskit.circuit.library`)](circuit_library)
 *   [Classical expressions (`qiskit.circuit.classical`)](circuit_classical)
+*   [Singleton instructions (`qiskit.circuit.singleton`)](circuit_singleton)
 *   [Compilation Routines (`qiskit.compiler`)](compiler)
 *   [Executing Experiments (`qiskit.execute_function`)](execute)
 *   [Visualizations (`qiskit.visualization`)](visualization)
@@ -21,6 +22,7 @@ python_api_name: qiskit
 *   [Circuit and Schedule Assembler (`qiskit.assembler`)](assembler)
 *   [DAG Circuits (`qiskit.dagcircuit`)](dagcircuit)
 *   [Quantum Circuit Extensions (`qiskit.extensions`)](extensions)
+*   [Passmanager (`qiskit.passmanager`)](passmanager)
 *   [BasicAer: Python-based Simulators (`qiskit.providers.basicaer`)](providers_basicaer)
 *   [Providers Interface (`qiskit.providers`)](providers)
 *   [Writing a New Provider](providers#writing-a-new-provider)
@@ -48,7 +50,14 @@ python_api_name: qiskit
 *   [Built-in Transpiler Synthesis Plugins](transpiler_builtin_plugins)
 *   [Utilities (`qiskit.utils`)](utils)
 *   [Measurement Mitigation Utils (`qiskit.utils.mitigation`)](utils_mitigation)
-*   [Operators (`qiskit.opflow`)](opflow)
-*   [Algorithms (`qiskit.algorithms`)](algorithms)
 *   [Top-level exceptions (`qiskit.exceptions`)](exceptions)
+
+## Deprecated Modules
+
+<Admonition title="Warning" type="caution">
+  These modules are going to be removed in Qiskit 1.0. Consider pinning `qiskit~=0.45` in your dependencies if you need them.
+</Admonition>
+
+*   [Algorithms (`qiskit.algorithms`)](algorithms)
+*   [Operators (`qiskit.opflow`)](opflow)
 

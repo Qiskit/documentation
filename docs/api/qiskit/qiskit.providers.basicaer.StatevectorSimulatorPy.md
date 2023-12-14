@@ -30,8 +30,6 @@ Initialize a backend class
 
 In addition to the public abstract methods, subclasses should also implement the following private methods:
 
-<span id="undefined" />
-
 `classmethod _default_options()`
 
 Return the default options
@@ -162,17 +160,13 @@ the Provider responsible for the backend.
 
 <span id="qiskit.providers.basicaer.StatevectorSimulatorPy.run" />
 
-`run(qobj, **backend_options)`
+`run(run_input, **backend_options)`
 
-Run qobj asynchronously.
-
-<Admonition title="Deprecated since version 0.22.0_pending" type="danger">
-  Using a qobj for the first argument to QasmSimulatorPy.run() is pending deprecation as of qiskit-terra 0.22.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date.
-</Admonition>
+Run on the backend.
 
 **Parameters**
 
-*   **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
+*   **run\_input** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *or*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – payload of the experiment
 *   **backend\_options** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – backend options
 
 **Returns**
@@ -189,7 +183,7 @@ derived from BaseJob
 
 *   “initial\_statevector”: vector\_like
 
-The “initial\_statevector” option specifies a custom initial initial statevector for the simulator to be used instead of the all zero state. This size of this vector must be correct for the number of qubits in all experiments in the qobj.
+The “initial\_statevector” option specifies a custom initial initial statevector for the simulator to be used instead of the all zero state. This size of this vector must be correct for the number of qubits in `run_input` parameter.
 
 Example:
 
@@ -209,7 +203,7 @@ Run an experiment (circuit) and return a single experiment result.
 
 **Parameters**
 
-**experiment** (*QobjExperiment*) – experiment from qobj experiments list
+**experiment** ([*QasmQobjExperiment*](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment")) – experiment from qobj experiments list
 
 **Returns**
 

@@ -1,0 +1,113 @@
+# CG
+
+
+
+`CG(maxiter=20, disp=False, gtol=1e-05, tol=None, eps=1.4901161193847656e-08)`
+
+Bases: `qiskit.aqua.components.optimizers.optimizer.Optimizer`
+
+Conjugate Gradient optimizer.
+
+CG is an algorithm for the numerical solution of systems of linear equations whose matrices are symmetric and positive-definite. It is an *iterative algorithm* in that it uses an initial guess to generate a sequence of improving approximate solutions for a problem, in which each approximation is derived from the previous ones. It is often used to solve unconstrained optimization problems, such as energy minimization.
+
+Uses scipy.optimize.minimize CG. For further detail, please refer to [https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html](https://docs.scipy.org/doc/scipy/reference/generated/scipy.optimize.minimize.html)
+
+**Parameters**
+
+*   **maxiter** (`int`) – Maximum number of iterations to perform.
+*   **disp** (`bool`) – Set to True to print convergence messages.
+*   **gtol** (`float`) – Gradient norm must be less than gtol before successful termination.
+*   **tol** (`Optional`\[`float`]) – Tolerance for termination.
+*   **eps** (`float`) – If jac is approximated, use this value for the step size.
+
+## Methods
+
+|                                                                                                                                                                                                               |                                                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| [`get_support_level`](qiskit.aqua.components.optimizers.CG.get_support_level#qiskit.aqua.components.optimizers.CG.get_support_level "qiskit.aqua.components.optimizers.CG.get_support_level")                 | Return support level dictionary                                                                           |
+| [`gradient_num_diff`](qiskit.aqua.components.optimizers.CG.gradient_num_diff#qiskit.aqua.components.optimizers.CG.gradient_num_diff "qiskit.aqua.components.optimizers.CG.gradient_num_diff")                 | We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center. |
+| [`optimize`](qiskit.aqua.components.optimizers.CG.optimize#qiskit.aqua.components.optimizers.CG.optimize "qiskit.aqua.components.optimizers.CG.optimize")                                                     | Perform optimization.                                                                                     |
+| [`print_options`](qiskit.aqua.components.optimizers.CG.print_options#qiskit.aqua.components.optimizers.CG.print_options "qiskit.aqua.components.optimizers.CG.print_options")                                 | Print algorithm-specific options.                                                                         |
+| [`set_max_evals_grouped`](qiskit.aqua.components.optimizers.CG.set_max_evals_grouped#qiskit.aqua.components.optimizers.CG.set_max_evals_grouped "qiskit.aqua.components.optimizers.CG.set_max_evals_grouped") | Set max evals grouped                                                                                     |
+| [`set_options`](qiskit.aqua.components.optimizers.CG.set_options#qiskit.aqua.components.optimizers.CG.set_options "qiskit.aqua.components.optimizers.CG.set_options")                                         | Sets or updates values in the options dictionary.                                                         |
+| [`wrap_function`](qiskit.aqua.components.optimizers.CG.wrap_function#qiskit.aqua.components.optimizers.CG.wrap_function "qiskit.aqua.components.optimizers.CG.wrap_function")                                 | Wrap the function to implicitly inject the args at the call of the function.                              |
+
+## Attributes
+
+
+
+### bounds\_support\_level
+
+Returns bounds support level
+
+
+
+### gradient\_support\_level
+
+Returns gradient support level
+
+
+
+### initial\_point\_support\_level
+
+Returns initial point support level
+
+
+
+### is\_bounds\_ignored
+
+Returns is bounds ignored
+
+
+
+### is\_bounds\_required
+
+Returns is bounds required
+
+
+
+### is\_bounds\_supported
+
+Returns is bounds supported
+
+
+
+### is\_gradient\_ignored
+
+Returns is gradient ignored
+
+
+
+### is\_gradient\_required
+
+Returns is gradient required
+
+
+
+### is\_gradient\_supported
+
+Returns is gradient supported
+
+
+
+### is\_initial\_point\_ignored
+
+Returns is initial point ignored
+
+
+
+### is\_initial\_point\_required
+
+Returns is initial point required
+
+
+
+### is\_initial\_point\_supported
+
+Returns is initial point supported
+
+
+
+### setting
+
+Return setting

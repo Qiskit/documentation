@@ -13,6 +13,7 @@
 import { isEmpty, keyBy, keys, orderBy } from "lodash";
 import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { PythonObjectMeta } from "./PythonObjectMeta";
+import { Pkg } from "../sharedTypes";
 
 type TocEntry = {
   title: string;
@@ -27,21 +28,12 @@ type Toc = {
   collapsed?: boolean;
 };
 
-export function generateToc(options: {
-  pkg: {
-    title: string;
-    name: string;
-    version: string;
-    changelogUrl: string;
-    tocOptions?: {
-      collapsed?: boolean;
-      nestModule?(id: string): boolean;
-    };
-  };
-  results: Array<{ meta: PythonObjectMeta; url: string }>;
-}) {
-  const { pkg, results } = options;
-  const nestModule = options.pkg.tocOptions?.nestModule ?? (() => true);
+export function generateToc(
+  pkg: Pkg,
+  results: Array<{ meta: PythonObjectMeta; url: string }>,
+) {
+  const releaseNotesUrl = `/api/${pkg.name}/release-notes`;
+  const nestModule = pkg.tocOptions?.nestModule ?? (() => true);
   const resultsWithName = results.filter(
     (result) => !isEmpty(result.meta.python_api_name),
   );
@@ -62,7 +54,8 @@ export function generateToc(options: {
     const tocModules = modules.map(
       (module): TocEntry => ({
         title: module.meta.python_api_name!,
-        url: module.url,
+        // Remove the final /index from the url
+        url: module.url.replace(/\/index$/, ""),
       }),
     );
     const tocModulesByTitle = keyBy(tocModules, (toc) => toc.title);
@@ -125,14 +118,18 @@ export function generateToc(options: {
     tocChildren.push(...orderEntriesByTitle(nestedTocModules));
   }
 
-  tocChildren.push({
-    title: "Changelog",
-    url: pkg.changelogUrl,
-  });
+  const releaseNotesEntry: TocEntry = {
+    title: "Release notes",
+  };
+  if (pkg.releaseNoteEntries.length) {
+    releaseNotesEntry.children = pkg.releaseNoteEntries;
+  } else {
+    releaseNotesEntry.url = releaseNotesUrl;
+  }
+  tocChildren.push(releaseNotesEntry);
 
   const toc: Toc = {
     title: pkg.title,
-    subtitle: `v${pkg.version}`,
     children: tocChildren,
   };
   if (pkg.tocOptions?.collapsed) {

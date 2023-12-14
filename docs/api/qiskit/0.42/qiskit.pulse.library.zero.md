@@ -1,0 +1,31 @@
+---
+title: zero
+description: API reference for qiskit.pulse.library.zero
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.library.zero
+---
+
+# qiskit.pulse.library.zero[¶](#qiskit-pulse-library-zero "Permalink to this headline")
+
+<span id="qiskit.pulse.library.zero" />
+
+`zero(duration, name=None)`
+
+Generates zero-sampled [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
+
+Samples from the function:
+
+$$
+f(x) = 0
+$$
+
+**Parameters**
+
+*   **duration** (`int`) – Duration of pulse. Must be greater than zero.
+*   **name** (`Optional`\[`str`]) – Name of pulse.
+
+**Return type**
+
+[`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
+

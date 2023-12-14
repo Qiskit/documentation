@@ -95,7 +95,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 ### global\_phase
 
-Return the global phase of the circuit in radians.
+Return the global phase of the current circuit scope in radians.
 
 <span id="qiskit.circuit.library.LinearPauliRotations.header" />
 
@@ -107,7 +107,7 @@ Return the global phase of the circuit in radians.
 
 ### instances
 
-`= 187`
+`= 219`
 
 <span id="qiskit.circuit.library.LinearPauliRotations.layout" />
 
