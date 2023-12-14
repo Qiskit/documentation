@@ -24,6 +24,7 @@ import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
 import { Link } from "../sharedTypes";
+import { ObjectsInv } from "./objectsInv";
 
 export function updateUrl(
   url: string,
@@ -69,6 +70,7 @@ export function updateUrl(
 
 export async function updateLinks(
   results: SphinxToMdResultWithUrl[],
+  objectsInv: ObjectsInv,
   transformLink?: (link: Link) => Link | undefined,
 ): Promise<void> {
   const resultsByName = keyBy(
@@ -112,4 +114,8 @@ export async function updateLinks(
 
     result.markdown = output?.toString();
   }
+
+  objectsInv.updateUris((uri: string) =>
+    updateUrl(uri, resultsByName, itemNames),
+  );
 }

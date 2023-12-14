@@ -13,7 +13,8 @@
 import { $ } from "zx";
 import { zxMain } from "../lib/zx";
 import { pathExists, getRoot } from "../lib/fs";
-import { readFile, writeFile, readdir } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
+import { Readable } from "stream";
 import { globby } from "globby";
 import { join, parse, relative } from "path";
 import { sphinxHtmlToMarkdown } from "../lib/sphinx/sphinxHtmlToMarkdown";
@@ -36,6 +37,7 @@ import { Pkg, PkgInfo, Link } from "../lib/sharedTypes";
 import transformLinks from "transform-markdown-links";
 import { downloadCIArtifact } from "../lib/downloadArtifacts";
 import { startWebServer, closeWebServer } from "../lib/webServer";
+import { ObjectsInv } from "../lib/sphinx/objectsInv";
 import {
   findLegacyReleaseNotes,
   addNewReleaseNotes,
@@ -43,6 +45,7 @@ import {
   generateReleaseNotesIndex,
   updateHistoricalTocFiles,
 } from "../lib/releaseNotes";
+import { createWriteStream } from "fs";
 
 interface Arguments {
   [x: string]: unknown;
@@ -243,6 +246,15 @@ async function saveHtml(options: {
     },
   });
   await crawler.run();
+  // Copy over objects.inv
+  const objectsInvResponse = await fetch(join(baseUrl, "objects.inv"));
+  if (objectsInvResponse.ok) {
+    // `write(body.text())` does not work here because the file is compressed
+    // TODO: Fix typescript warnings
+    Readable.fromWeb(objectsInvResponse.body!).pipe(
+      createWriteStream(join(destination, "objects.inv")),
+    );
+  }
   console.log(`Download summary from ${baseUrl}`, {
     success: successCount,
     error: errorCount,
@@ -255,6 +267,7 @@ async function convertHtmlToMarkdown(
   baseSourceUrl: string,
   pkg: Pkg,
 ) {
+  const objectsInv = await ObjectsInv.fromFile(join(htmlPath, "objects.inv"));
   const files = await globby(
     [
       "apidocs/**.html",
@@ -312,10 +325,11 @@ async function convertHtmlToMarkdown(
   results = await mergeClassMembers(results);
   flatFolders(results);
   renameUrls(results);
-  await updateLinks(results, pkg.transformLink);
+  await updateLinks(results, objectsInv, pkg.transformLink);
   await dedupeResultIds(results);
   addFrontMatter(results, pkg);
 
+  await objectsInv.write(join(markdownPath, "objects.inv"));
   for (const result of results) {
     let path = urlToPath(result.url);
     if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
