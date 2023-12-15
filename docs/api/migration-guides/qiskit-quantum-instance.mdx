@@ -47,7 +47,7 @@ The remainder of this guide focused on the [`qiskit.utils.QuantumInstance.execut
   - *Reference primitives* -  [`qiskit.primitives.Sampler`](../qiskit/qiskit.primitives.Sampler) and [`qiskit.primitives.Estimator`](../qiskit/qiskit.primitives.Estimator) are reference implementations that come with Qiskit.
   - *Aer primitives* - The [Aer](https://qiskit.org/ecosystem/aer) primitive implementations [`qiskit_aer.primitives.Sampler`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Sampler.html) and [`qiskit_aer.primitives.Estimator`](https://qiskit.org/ecosystem/aer/stubs/qiskit_aer.primitives.Estimator.html).
   - *Qiskit Runtime primitives* - The IBM Qiskit Runtime primitive implementations [`qiskit_ibm_runtime.Sampler`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler) and [`qiskit_ibm_runtime.Estimator`](../qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator).
-  - *Backend primitives* - Instances of [`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator). These allow any backend to implement primitive interfaces.
+  - *`Backend` primitives* - Instances of [`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) and [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator). These allow any system to implement primitive interfaces.
 
 </Admonition>
 
@@ -79,17 +79,17 @@ yourself two questions:
 2. How do you want to run your circuits?
 
    This question is not new. In the legacy algorithm workflow, you would set up a
-   [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance) with either a real backend from a provider, or a simulator.
-   For this migration, this "backend selection" process is translated to **where** do you import your primitives from:
+   [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance) with either a real system from a provider, or a simulator.
+   For this migration, this "system selection" process is translated to **where** do you import your primitives from:
    
    * Using **local** statevector simulators for quick prototyping: **Reference primitives**
    * Using **local** noisy simulations for finer algorithm tuning: **Aer primitives**
-   * Accessing **runtime-enabled backends** (or cloud simulators): **Qiskit Runtime primitives**
-   * Accessing **non runtime-enabled backends** : **Backend primitives**
+   * Accessing **runtime-enabled systems** (or cloud simulators): **Qiskit Runtime primitives**
+   * Accessing **non runtime-enabled systems** : **`Backend` primitives**
 
 Arguably, the `Sampler` is the closest primitive to [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance), as they
 both execute circuits and provide a result. However, with the [`qiskit.utils.QuantumInstance`](../qiskit/0.44/qiskit.utils.QuantumInstance),
-the result data was backend dependent (it could be a counts `dict`, a `numpy.array` for
+the result data was system dependent (it could be a counts `dict`, a `numpy.array` for
 statevector simulations, and so on), while `Sampler` normalizes its `SamplerResult` to 
 return a [`qiskit.result.QuasiDistribution`](../qiskit/qiskit.result.QuasiDistribution) object with the resulting quasi-probability distribution.
 
@@ -110,7 +110,7 @@ primitives expose a similar setting through their interface:
   refer to the API reference or source code of the desired primitive implementation.
 </Admonition>
 
-| QuantumInstance | Reference Primitives | Aer Primitives | Qiskit Runtime Primitives | Backend Primitives |
+| QuantumInstance | Reference Primitives | Aer Primitives | Qiskit Runtime Primitives | `Backend` Primitives |
 | --- | --- | --- | --- | --- |
 | Select `backend` | No | No | Yes | Yes |
 | Set `shots` | Yes | Yes | Yes | Yes |
@@ -133,7 +133,7 @@ primitives expose a similar setting through their interface:
 
 **QuantumInstance**
 
-The only option for local simulations using the quantum instance was using an Aer simulator backend.
+The only option for local simulations using the quantum instance was using an Aer simulator.
 If no simulation method is specified, the Aer simulator defaults to an exact simulation
 (statevector/stabilizer), if shots are specified, it adds shot noise.
 Note that `QuantumInstance.execute()` returned the counts in hexadecimal format.
@@ -337,7 +337,7 @@ print(expectation_value)
 [-0.04101562]
 ```
 
-### Example 3: Circuit sampling on IBM backend with error mitigation
+### Example 3: Circuit sampling on IBM system with error mitigation
 
 **QuantumInstance**
 
@@ -425,7 +425,7 @@ QuantumInstance **did not** manage parameter bindings on parametrized quantum ci
 When using the primitives:
 
 * You cannot explicitly access their transpilation routine.
-* The mechanism to apply custom transpilation passes to the Aer, Runtime, and Backend primitives is to pre-transpile
+* The mechanism to apply custom transpilation passes to the Aer, Runtime, and `Backend` primitives is to pre-transpile
     locally and set `skip_transpilation=True` in the corresponding primitive.
 * The only primitives that accept a custom **bound** transpiler pass manager are instances of [`qiskit.primitives.BackendSampler`](../qiskit/qiskit.primitives.BackendSampler) or [`qiskit.primitives.BackendEstimator`](../qiskit/qiskit.primitives.BackendEstimator).
     If a `bound_pass_manager` is defined, the `skip_transpilation=True` option does **not** skip this bound pass.
@@ -514,7 +514,7 @@ Quasi-dists: {'11': 0.443359375, '10': 0.21875, '01': 0.189453125, '00': 0.14843
 
 **Primitives**
 
-Let's see how the workflow changes with the Backend Sampler:
+Let's see how the workflow changes with the `Backend` Sampler:
 
 ```python
 from qiskit.circuit.library.standard_gates.equivalence_library import StandardEquivalenceLibrary as std_eqlib
