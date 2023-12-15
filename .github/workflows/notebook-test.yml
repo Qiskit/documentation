@@ -76,6 +76,9 @@ jobs:
         uses: peter-evans/create-pull-request@5b5eb8d8d0d7f95a473039666b7a2ee417ab24e1
         with:
           title: '[Bot] Execute notebooks'
+          commit-message: Re-run all notebooks
+          branch: ACTIONS/${{ github.run_id }}
+          delete-branch: true
           body: |
             Executes notebooks.
 
