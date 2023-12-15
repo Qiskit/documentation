@@ -134,7 +134,8 @@ When you make a pull request with a changed notebook, you can get an version of
 that notebook that was executed in a uniform environment from CI. To do this,
 click "Show all checks" in the info box at the bottom of the pull request page
 on GitHub, then choose "Details" for the "Test notebooks" job. From the job
-page, download the artifacts.
+page, click "Summary", then download "Executed notebooks".
+
 
 ## Check for broken links
 
