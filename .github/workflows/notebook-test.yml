@@ -29,10 +29,12 @@ jobs:
           cache: "pip"
 
       - name: Get all changed files
+        if: github.event_name == 'pull_request' 
         id: all-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
 
       - name: Check for notebooks that require LaTeX
+        if: github.event_name == 'pull_request' 
         id: latex-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
         with:
@@ -69,8 +71,13 @@ jobs:
           path: ".tox"
           key: ${{ hashFiles('scripts/nb-tester/requirements.txt') }}
 
-      - name: Run tox
+      - name: Run tox on changed files
+        if: github.event_name == 'pull_request' 
         run: tox -- ${{ steps.all-changed-files.outputs.all_changed_files }}
+
+      - name: Run tox on all files
+        if: github.event_name == 'workflow_dispatch' 
+        run: tox -- --write
 
       - name: Create pull request
         uses: peter-evans/create-pull-request@5b5eb8d8d0d7f95a473039666b7a2ee417ab24e1
