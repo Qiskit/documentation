@@ -110,6 +110,7 @@ def cancel_trailing_jobs(start_time: datetime) -> bool:
     If a notebook submits a job but does not wait for the result, this check
     will also catch it and cancel the job.
     """
+    # QiskitRuntimeService().jobs() includes qiskit-ibm-provider jobs too
     service = QiskitRuntimeService()
     jobs = [j for j in service.jobs(created_after=start_time) if not j.in_final_state()]
     if not jobs:
