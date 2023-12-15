@@ -20,7 +20,6 @@ import nbclient
 import nbconvert
 import nbformat
 from qiskit_ibm_runtime import QiskitRuntimeService
-from qiskit_ibm_provider import IBMProvider
 
 NOTEBOOKS_GLOB = "docs/**/*.ipynb"
 NOTEBOOKS_EXCLUDE = [
@@ -112,9 +111,7 @@ def cancel_trailing_jobs(start_time: datetime) -> bool:
     will also catch it and cancel the job.
     """
     service = QiskitRuntimeService()
-    provider = IBMProvider()
-    jobs = service.jobs(created_after=start_time) + provider.jobs(start_datetime=start_time)
-    active_jobs = [j for j in service.jobs(created_after=start_time) if not j.in_final_state()]
+    jobs = [j for j in service.jobs(created_after=start_time) if not j.in_final_state()]
     if not jobs:
         return True
 
