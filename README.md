@@ -136,7 +136,6 @@ click "Show all checks" in the info box at the bottom of the pull request page
 on GitHub, then choose "Details" for the "Test notebooks" job. From the job
 page, click "Summary", then download "Executed notebooks".
 
-
 ## Check for broken links
 
 CI will check for broken links. You can also check locally:
