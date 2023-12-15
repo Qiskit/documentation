@@ -41,7 +41,7 @@ jobs:
             docs/build/circuit-visualization.ipynb
 
       - name: Install LaTeX dependencies
-        if: steps.latex-changed-files.outputs.any_changed == 'true'
+        if: github.event_name == 'workflow_dispatch' || steps.latex-changed-files.outputs.any_changed == 'true'
         run: |
           sudo apt-get update
           sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils
@@ -52,7 +52,7 @@ jobs:
         run: pip install qiskit-ibm-runtime tox
 
       - name: Save IBM Quantum account
-        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+        if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
         shell: python
         run: |
           from qiskit_ibm_runtime import QiskitRuntimeService
@@ -71,3 +71,13 @@ jobs:
 
       - name: Run tox
         run: tox -- ${{ steps.all-changed-files.outputs.all_changed_files }}
+
+      - name: Create pull request
+        uses: peter-evans/create-pull-request@5b5eb8d8d0d7f95a473039666b7a2ee417ab24e1
+        with:
+          title: '[Bot] Execute notebooks'
+          body: |
+            Executes notebooks.
+
+            > [!NOTE]
+            > This pull request was created by a GitHub action.
