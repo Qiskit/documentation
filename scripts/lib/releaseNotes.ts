@@ -153,25 +153,32 @@ function addNewReleaseNoteToc(releaseNotesNode: any, newVersion: string) {
 }
 
 /**
- * Defines the order of the release notes patches
+ * Sorts the release notes dictionary by the patch version
  */
-export function sortOrderReleaseNotesVersions(
-  version1: string,
-  version2: string,
-) {
-  const versionPath1 = version1.split("rc").slice(0, 1)[0];
-  const versionPath2 = version2.split("rc").slice(0, 1)[0];
-  const comparison = version1.localeCompare(version2);
+export function sortReleaseNotesVersions(markdownByPatchVersion: {
+  [id: string]: string;
+}) {
+  const markdownByPathEntries = Object.entries(markdownByPatchVersion);
 
-  if (versionPath1 == versionPath2) {
-    // The release candidates should appear first
-    if (version1.length < version2.length) {
-      return 1;
-    } else if (version1.length > version2.length) {
-      return -1;
-    }
-  }
-  return comparison;
+  const markdownByPatchSortedArray = markdownByPathEntries.sort(
+    ([version1], [version2]) => {
+      const versionPath1 = version1.split("rc").slice(0, 1)[0];
+      const versionPath2 = version2.split("rc").slice(0, 1)[0];
+      const comparison = version1.localeCompare(version2);
+
+      if (versionPath1 == versionPath2) {
+        // The release candidates should appear first
+        if (version1.length < version2.length) {
+          return 1;
+        } else if (version1.length > version2.length) {
+          return -1;
+        }
+      }
+      return comparison;
+    },
+  );
+
+  return Object.fromEntries(markdownByPatchSortedArray);
 }
 
 /**
@@ -242,13 +249,8 @@ export async function writeReleaseNotes(pkg: Pkg, releaseNoteMarkdown: string) {
     }
   }
 
-  // Sort all the release notes entries by patch
-  const markdownByPathEntries = Object.entries(markdownByPatchVersion);
-  const markdownByPatchSortedArray = markdownByPathEntries.sort(([a], [b]) =>
-    sortOrderReleaseNotesVersions(a, b),
-  );
-  const markdownByPatchVersionSorted = Object.fromEntries(
-    markdownByPatchSortedArray,
+  const markdownByPatchVersionSorted = sortReleaseNotesVersions(
+    markdownByPatchVersion,
   );
 
   // Generate the modified release notes files

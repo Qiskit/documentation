@@ -12,65 +12,121 @@
 
 import { describe, expect, test } from "@jest/globals";
 import {
-  sortOrderReleaseNotesVersions,
+  sortReleaseNotesVersions,
   extractMarkdownReleaseNotesPatches,
 } from "./releaseNotes";
 
-describe("sortOrderReleaseNotesVersions", () => {
+describe("sortReleaseNotesVersions", () => {
   test("Sort smaller version and bigger version", () => {
-    const version1 = "0.25.1";
-    const version2 = "0.26.1";
+    const markdownByVersionPatch = {
+      "0.25.1": "test",
+      "0.26.1": "test",
+    };
 
-    expect(sortOrderReleaseNotesVersions(version1, version2)).toEqual(-1);
+    expect(
+      Object.entries(sortReleaseNotesVersions(markdownByVersionPatch)),
+    ).toEqual([
+      ["0.25.1", "test"],
+      ["0.26.1", "test"],
+    ]);
   });
 
   test("Sort bigger version and smaller version", () => {
-    const version1 = "0.26.0";
-    const version2 = "0.25.1";
+    const markdownByVersionPatch = {
+      "0.26.1": "test",
+      "0.25.1": "test",
+    };
 
-    expect(sortOrderReleaseNotesVersions(version1, version2)).toEqual(1);
+    expect(
+      Object.entries(sortReleaseNotesVersions(markdownByVersionPatch)),
+    ).toEqual([
+      ["0.25.1", "test"],
+      ["0.26.1", "test"],
+    ]);
   });
 
   test("Sort smaller patch and bigger patch from the same version", () => {
-    const version1 = "0.25.0";
-    const version2 = "0.25.1";
+    const markdownByVersionPatch = {
+      "0.25.0": "test",
+      "0.25.1": "test",
+    };
 
-    expect(sortOrderReleaseNotesVersions(version1, version2)).toEqual(-1);
+    expect(
+      Object.entries(sortReleaseNotesVersions(markdownByVersionPatch)),
+    ).toEqual([
+      ["0.25.0", "test"],
+      ["0.25.1", "test"],
+    ]);
   });
 
   test("Sort bigger patch and smaller patch from the same version", () => {
-    const version1 = "0.25.1";
-    const version2 = "0.25.0";
+    const markdownByVersionPatch = {
+      "0.25.1": "test",
+      "0.25.0": "test",
+    };
 
-    expect(sortOrderReleaseNotesVersions(version1, version2)).toEqual(1);
+    expect(
+      Object.entries(sortReleaseNotesVersions(markdownByVersionPatch)),
+    ).toEqual([
+      ["0.25.0", "test"],
+      ["0.25.1", "test"],
+    ]);
   });
 
   test("Sort the release candidate version and its current version", () => {
-    const version1 = "0.25.0rc1";
-    const version2 = "0.25.0";
+    const markdownByVersionPatch = {
+      "0.25.0rc1": "test",
+      "0.25.0": "test",
+    };
 
-    expect(sortOrderReleaseNotesVersions(version1, version2)).toEqual(-1);
+    expect(
+      Object.entries(sortReleaseNotesVersions(markdownByVersionPatch)),
+    ).toEqual([
+      ["0.25.0rc1", "test"],
+      ["0.25.0", "test"],
+    ]);
   });
 
   test("Sort the current version and its release candidate", () => {
-    const version1 = "0.25.0";
-    const version2 = "0.25.0rc1";
+    const markdownByVersionPatch = {
+      "0.25.0": "test",
+      "0.25.0rc1": "test",
+    };
 
-    expect(sortOrderReleaseNotesVersions(version1, version2)).toEqual(1);
+    expect(
+      Object.entries(sortReleaseNotesVersions(markdownByVersionPatch)),
+    ).toEqual([
+      ["0.25.0rc1", "test"],
+      ["0.25.0", "test"],
+    ]);
   });
 
   test("Sort smaller release candidate and bigger release candidate", () => {
-    const version1 = "0.25.0rc1";
-    const version2 = "0.25.0rc2";
+    const markdownByVersionPatch = {
+      "0.25.0rc1": "test",
+      "0.25.0rc2": "test",
+    };
 
-    expect(sortOrderReleaseNotesVersions(version1, version2)).toEqual(-1);
+    expect(
+      Object.entries(sortReleaseNotesVersions(markdownByVersionPatch)),
+    ).toEqual([
+      ["0.25.0rc1", "test"],
+      ["0.25.0rc2", "test"],
+    ]);
   });
 
   test("Sort bigger release candidate and smaller release candidate", () => {
-    const version1 = "0.25.0rc2";
-    const version2 = "0.25.0rc1";
+    const markdownByVersionPatch = {
+      "0.25.0rc2": "test",
+      "0.25.0rc1": "test",
+    };
 
-    expect(sortOrderReleaseNotesVersions(version1, version2)).toEqual(1);
+    expect(
+      Object.entries(sortReleaseNotesVersions(markdownByVersionPatch)),
+    ).toEqual([
+      ["0.25.0rc1", "test"],
+      ["0.25.0rc2", "test"],
+    ]);
   });
 });
 
