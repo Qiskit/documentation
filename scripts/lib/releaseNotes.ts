@@ -186,7 +186,7 @@ export function sortOrderReleaseNotesVersions(
 export function extractMarkdownReleaseNotesPatches(
   markdown: string,
 ): [Set<string>, { [id: string]: string }] {
-  const sectionsSplit = markdown.split("\n## ");
+  const sectionsSplit = markdown.split(/\n## (?=[0-9])/);
   const sections: string[] = sectionsSplit.slice(1, sectionsSplit.length);
 
   const versionsModified = new Set<string>();
@@ -225,7 +225,7 @@ export async function writeReleaseNotes(pkg: Pkg, releaseNoteMarkdown: string) {
     }
 
     const currentMarkdown = await readFile(versionPath, "utf-8");
-    const fileHeader = currentMarkdown.split("\n## ").slice(0, 1)[0];
+    const fileHeader = currentMarkdown.split(/\n## (?=[0-9])/).slice(0, 1)[0];
     FilesHeaders[version] = fileHeader;
 
     const [_, markdownByPatchOldVersion] =
