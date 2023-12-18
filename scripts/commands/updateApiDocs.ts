@@ -39,9 +39,9 @@ import { startWebServer, closeWebServer } from "../lib/webServer";
 import {
   findLegacyReleaseNotes,
   addNewReleaseNotes,
-  currentReleaseNotesPath,
   generateReleaseNotesIndex,
   updateHistoricalTocFiles,
+  writeReleaseNotes,
 } from "../lib/releaseNotes";
 
 interface Arguments {
@@ -331,9 +331,10 @@ async function convertHtmlToMarkdown(
           : `/api/${pkg.name}/${link}`,
       );
 
-      path = currentReleaseNotesPath(pkg);
+      await writeReleaseNotes(pkg, result.markdown);
+    }else{
+      await writeFile(path, result.markdown);
     }
-    await writeFile(path, result.markdown);
   }
 
   console.log("Generating toc");
