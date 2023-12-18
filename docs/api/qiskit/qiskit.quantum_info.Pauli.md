@@ -67,7 +67,7 @@ $$
 P = (-i)^{q + z\cdot x} Z^z \cdot X^x.
 $$
 
-The $k`th qubit corresponds to the :math:`k`th entry in the :math:`z$ and $x$ arrays
+The $k'th$ qubit corresponds to the `k`th entry in the $z$ and $x$ arrays
 
 $$
 \begin{split}P &= P_{n-1} \otimes ... \otimes P_{0} \\
