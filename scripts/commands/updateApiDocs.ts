@@ -332,7 +332,7 @@ async function convertHtmlToMarkdown(
       );
 
       await writeReleaseNotes(pkg, result.markdown);
-    }else{
+    } else {
       await writeFile(path, result.markdown);
     }
   }

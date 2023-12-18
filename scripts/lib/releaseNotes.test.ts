@@ -11,9 +11,9 @@
 // that they have been altered from the originals.
 
 import { describe, expect, test } from "@jest/globals";
-import { 
-    sortOrderReleaseNotesVersions,
-    extractMarkdownReleaseNotesPatches,
+import {
+  sortOrderReleaseNotesVersions,
+  extractMarkdownReleaseNotesPatches,
 } from "./releaseNotes";
 
 describe("sortOrderReleaseNotesVersions", () => {
@@ -75,8 +75,8 @@ describe("sortOrderReleaseNotesVersions", () => {
 });
 
 describe("extractMarkdownReleaseNotesPatches", () => {
-    test("Divide the markdown into versions", () => {
-      const markdown = `
+  test("Divide the markdown into versions", () => {
+    const markdown = `
 ## 0.25.0
 This is a test for version 0.25.0
 ## 0.25.1
@@ -86,16 +86,27 @@ This is a test for version 0.45.0rc1
 ## 0.45.0
 This is a test for version 0.45.0`;
 
-      const [versionsFoundExpect, markdownByPatchVersionExpect] = extractMarkdownReleaseNotesPatches(markdown);
-  
-      const versionsFound: Set<string> = new Set<string>(['0.25', '0.45']);
-      const markdownByPatchVersion: {[id: string]: string;} = {};
-      markdownByPatchVersion['0.25.0'] = `## 0.25.0\nThis is a test for version 0.25.0`;
-      markdownByPatchVersion['0.25.1'] = `## 0.25.1\nThis is a test for version 0.25.1`;
-      markdownByPatchVersion['0.45.0rc1'] = `## 0.45.0rc1\nThis is a test for version 0.45.0rc1`;
-      markdownByPatchVersion['0.45.0'] = `## 0.45.0\nThis is a test for version 0.45.0`;
+    const [versionsFoundExpect, markdownByPatchVersionExpect] =
+      extractMarkdownReleaseNotesPatches(markdown);
 
-      expect([versionsFoundExpect, markdownByPatchVersionExpect]).toEqual([versionsFound, markdownByPatchVersion]);
-    });
-  
+    const versionsFound: Set<string> = new Set<string>(["0.25", "0.45"]);
+    const markdownByPatchVersion: { [id: string]: string } = {};
+    markdownByPatchVersion[
+      "0.25.0"
+    ] = `## 0.25.0\nThis is a test for version 0.25.0`;
+    markdownByPatchVersion[
+      "0.25.1"
+    ] = `## 0.25.1\nThis is a test for version 0.25.1`;
+    markdownByPatchVersion[
+      "0.45.0rc1"
+    ] = `## 0.45.0rc1\nThis is a test for version 0.45.0rc1`;
+    markdownByPatchVersion[
+      "0.45.0"
+    ] = `## 0.45.0\nThis is a test for version 0.45.0`;
+
+    expect([versionsFoundExpect, markdownByPatchVersionExpect]).toEqual([
+      versionsFound,
+      markdownByPatchVersion,
+    ]);
   });
+});
