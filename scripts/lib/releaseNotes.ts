@@ -16,6 +16,7 @@ import { parse } from "path";
 import { Pkg } from "./sharedTypes";
 import { readFile, writeFile, readdir } from "fs/promises";
 import transformLinks from "transform-markdown-links";
+import { version } from "yargs";
 
 interface releaseNoteEntry {
   title: string;
@@ -257,9 +258,10 @@ export async function writeReleaseNotes(pkg: Pkg, releaseNoteMarkdown: string) {
       const versionMinor = versionPatch.split(".").slice(0, 2).join(".");
 
       if (!markdownByMinorVersion.hasOwnProperty(versionMinor)) {
-        markdownByMinorVersion[versionMinor] = "";
+        markdownByMinorVersion[versionMinor] = markdown;
+      } else {
+        markdownByMinorVersion[versionMinor] += `\n${markdown}`;
       }
-      markdownByMinorVersion[versionMinor] += `${markdown}\n`;
     },
   );
 
