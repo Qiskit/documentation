@@ -133,6 +133,10 @@ describe("sortReleaseNotesVersions", () => {
 describe("extractMarkdownReleaseNotesPatches", () => {
   test("Divide the markdown into versions", () => {
     const markdown = `
+# Title
+This is a header
+## Subtitle header
+Extra information before all the versions
 ## 0.25.0
 This is a test for version 0.25.0
 ## 0.25.1

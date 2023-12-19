@@ -162,11 +162,11 @@ export function sortReleaseNotesVersions(markdownByPatchVersion: {
 
   const markdownByPatchSortedArray = markdownByPathEntries.sort(
     ([version1], [version2]) => {
-      const versionPath1 = version1.split("rc").slice(0, 1)[0];
-      const versionPath2 = version2.split("rc").slice(0, 1)[0];
+      const versionPatch1 = version1.split("rc").slice(0, 1)[0];
+      const versionPatch2 = version2.split("rc").slice(0, 1)[0];
       const comparison = version1.localeCompare(version2);
 
-      if (versionPath1 == versionPath2) {
+      if (versionPatch1 == versionPatch2) {
         // The release candidates should appear first
         if (version1.length < version2.length) {
           return 1;
@@ -196,19 +196,22 @@ export function extractMarkdownReleaseNotesPatches(
   const sectionsSplit = markdown.split(/\n## (?=[0-9])/);
   const sections: string[] = sectionsSplit.slice(1, sectionsSplit.length);
 
-  const versionsModified = new Set<string>();
+  const minorVersionsFound = new Set<string>();
   const markdownByPatchVersion: { [id: string]: string } = {};
 
   sections.forEach((section) => {
-    const version = section.split("\n").slice(0, 1)[0];
-    const versionMinor = version.split(".").slice(0, 2).join(".");
-    versionsModified.add(versionMinor);
+    const versionPatch = section.split("\n").slice(0, 1)[0];
+    const versionMinor = versionPatch.split(".").slice(0, 2).join(".");
+    minorVersionsFound.add(versionMinor);
+
     const content = section.split("\n");
     content.shift();
-    markdownByPatchVersion[version] = `## ${version}\n${content.join("\n")}`;
+    markdownByPatchVersion[versionPatch] = `## ${versionPatch}\n${content.join(
+      "\n",
+    )}`;
   });
 
-  return [versionsModified, markdownByPatchVersion];
+  return [minorVersionsFound, markdownByPatchVersion];
 }
 
 /**
@@ -216,6 +219,7 @@ export function extractMarkdownReleaseNotesPatches(
  * file.
  */
 export async function writeReleaseNotes(pkg: Pkg, releaseNoteMarkdown: string) {
+  // Dictionary to store the file header in case we have to reconstruct a historical file
   const FilesHeaders: { [id: string]: string } = {};
   const basePath = `${getRoot()}/docs/api/${pkg.name}/release-notes/`;
 
@@ -232,8 +236,9 @@ export async function writeReleaseNotes(pkg: Pkg, releaseNoteMarkdown: string) {
     }
 
     const currentMarkdown = await readFile(versionPath, "utf-8");
-    const fileHeader = currentMarkdown.split(/\n## (?=[0-9])/).slice(0, 1)[0];
-    FilesHeaders[version] = fileHeader;
+    FilesHeaders[version] = currentMarkdown
+      .split(/\n## (?=[0-9])/)
+      .slice(0, 1)[0];
 
     const [_, markdownByPatchOldVersion] =
       extractMarkdownReleaseNotesPatches(currentMarkdown);
