@@ -319,24 +319,24 @@ async function convertHtmlToMarkdown(
   for (const result of results) {
     let path = urlToPath(result.url);
 
-    if (!pkg.hasSeparateReleaseNotes || !path.endsWith("release-notes.md")) {
-      await writeFile(path, result.markdown);
-      continue;
-    }
-
     // Historical versions use the same release notes files as the current API
-    if (pkg.historical) {
+    if (pkg.historical && path.endsWith("release-notes.md")) {
       continue;
     }
 
-    // Convert the relative links to absolute links
-    result.markdown = transformLinks(result.markdown, (link, _) =>
-      link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
-        ? link
-        : `/api/${pkg.name}/${link}`,
-    );
+    if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
+      // Convert the relative links to absolute links
+      result.markdown = transformLinks(result.markdown, (link, _) =>
+        link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
+          ? link
+          : `/api/${pkg.name}/${link}`,
+      );
 
-    await writeSeparateReleaseNotes(pkg, result.markdown);
+      await writeSeparateReleaseNotes(pkg, result.markdown);
+      continue;
+    }
+
+    await writeFile(path, result.markdown);
   }
 
   console.log("Generating toc");
