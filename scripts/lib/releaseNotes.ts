@@ -225,7 +225,8 @@ export function extractMarkdownReleaseNotesPatches(
  * file.
  */
 export async function writeReleaseNotes(pkg: Pkg, releaseNoteMarkdown: string) {
-  // Dictionary to store the file header in case we have to reconstruct a historical file
+  // Dictionary to store the file header in case we need to reconstruct a file from a
+  // previous version
   const FilesHeaders: { [id: string]: string } = {};
   const basePath = `${getRoot()}/docs/api/${pkg.name}/release-notes/`;
 
