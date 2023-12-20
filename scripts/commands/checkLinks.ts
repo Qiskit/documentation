@@ -119,7 +119,7 @@ const FILES_TO_IGNORES: { [id: string]: string[] } = {
 // checker should assume that they exist in production.
 const SYNTHETIC_FILES: string[] = [
   "docs/errors.mdx",
-  "docs/api/runtime/tags/programs.mdx",
+  "docs/api/runtime/index.mdx",
 ];
 
 interface Arguments {
