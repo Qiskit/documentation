@@ -241,7 +241,7 @@ export async function writeSeparateReleaseNotes(
 
   // Dictionary to store the file header in case we need to reconstruct a file from a
   // previous version
-  const FilesHeaders: { [id: string]: string } = {};
+  const filesToInitialHeaders: { [id: string]: string } = {};
   const basePath = `${getRoot()}/docs/api/${pkg.name}/release-notes`;
 
   const [minorVersionsFound, markdownByPatchVersion] =
@@ -257,7 +257,7 @@ export async function writeSeparateReleaseNotes(
     }
 
     const currentMarkdown = await readFile(versionPath, "utf-8");
-    FilesHeaders[version] = currentMarkdown
+    filesToInitialHeaders[version] = currentMarkdown
       .split(/\n## (?=[0-9])/)
       .slice(0, 1)[0];
 
@@ -295,9 +295,9 @@ export async function writeSeparateReleaseNotes(
 
   // Write all the modified files
   for (let [versionMinor, markdown] of Object.entries(markdownByMinorVersion)) {
-    let fileHeader = FilesHeaders[versionMinor];
-    if (fileHeader == undefined) {
-      fileHeader = `---
+    let fileInitialHeader = filesToInitialHeaders[versionMinor];
+    if (fileInitialHeader == undefined) {
+      fileInitialHeader = `---
 title: Qiskit ${versionMinor} release notes
 description: New features and bug fixes
 ---
@@ -306,6 +306,6 @@ description: New features and bug fixes
     }
 
     const versionPath = `${basePath}/${versionMinor}.md`;
-    await writeFile(versionPath, `${fileHeader}\n${markdown}`);
+    await writeFile(versionPath, `${fileInitialHeader}\n${markdown}`);
   }
 }
