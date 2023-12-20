@@ -154,6 +154,10 @@ function addNewReleaseNoteToc(releaseNotesNode: any, newVersion: string) {
 
 /**
  * Sorts the release notes dictionary by the patch version
+ * in descending order, e.g. 0.25.2 then 0.25.1.
+ *
+ * Returns a dictionary with the corresponding markdown for
+ * each patch with the entries sorted by release.
  */
 export function sortReleaseNotesVersions(markdownByPatchVersion: {
   [id: string]: string;
@@ -221,21 +225,30 @@ export function extractMarkdownReleaseNotesPatches(
 }
 
 /**
- * Updates the release notes files by adding the notes to their corresponding version
+ * Updates the release notes folder by adding the notes to their corresponding version
  * file.
  */
-export async function writeReleaseNotes(pkg: Pkg, releaseNoteMarkdown: string) {
+export async function writeSeparateReleaseNotes(
+  pkg: Pkg,
+  releaseNoteMarkdown: string,
+): Promise<void> {
+  if (!pkg.hasSeparateReleaseNotes) {
+    throw new Error(
+      `The package ${pkg.name} doesn't have separate release notes`,
+    );
+  }
+
   // Dictionary to store the file header in case we need to reconstruct a file from a
   // previous version
   const FilesHeaders: { [id: string]: string } = {};
-  const basePath = `${getRoot()}/docs/api/${pkg.name}/release-notes/`;
+  const basePath = `${getRoot()}/docs/api/${pkg.name}/release-notes`;
 
   const [minorVersionsFound, markdownByPatchVersion] =
     extractMarkdownReleaseNotesPatches(releaseNoteMarkdown);
 
   // Read the current release notes for each version found
   for (let version of minorVersionsFound) {
-    const versionPath = `${basePath}${version}.md`;
+    const versionPath = `${basePath}/${version}.md`;
 
     if (!(await pathExists(versionPath))) {
       // We don't have any release note file for that version
@@ -291,7 +304,7 @@ description: New features and bug fixes
   `;
     }
 
-    const versionPath = `${basePath}${versionMinor}.md`;
+    const versionPath = `${basePath}/${versionMinor}.md`;
     await writeFile(versionPath, `${fileHeader}\n${markdown}`);
   }
 }

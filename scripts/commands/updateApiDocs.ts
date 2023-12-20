@@ -41,7 +41,7 @@ import {
   addNewReleaseNotes,
   generateReleaseNotesIndex,
   updateHistoricalTocFiles,
-  writeReleaseNotes,
+  writeSeparateReleaseNotes,
 } from "../lib/releaseNotes";
 
 interface Arguments {
@@ -318,23 +318,25 @@ async function convertHtmlToMarkdown(
 
   for (const result of results) {
     let path = urlToPath(result.url);
-    if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
-      // Historical versions use the same release notes files as the current API
-      if (pkg.historical) {
-        continue;
-      }
 
-      // Convert the relative links to absolute links
-      result.markdown = transformLinks(result.markdown, (link, _) =>
-        link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
-          ? link
-          : `/api/${pkg.name}/${link}`,
-      );
-
-      await writeReleaseNotes(pkg, result.markdown);
-    } else {
+    if (!pkg.hasSeparateReleaseNotes || !path.endsWith("release-notes.md")) {
       await writeFile(path, result.markdown);
+      continue;
     }
+
+    // Historical versions use the same release notes files as the current API
+    if (pkg.historical) {
+      continue;
+    }
+
+    // Convert the relative links to absolute links
+    result.markdown = transformLinks(result.markdown, (link, _) =>
+      link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
+        ? link
+        : `/api/${pkg.name}/${link}`,
+    );
+
+    await writeSeparateReleaseNotes(pkg, result.markdown);
   }
 
   console.log("Generating toc");
