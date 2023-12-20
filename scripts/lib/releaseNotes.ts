@@ -164,14 +164,14 @@ export function sortReleaseNotesVersions(markdownByPatchVersion: {
     ([version1], [version2]) => {
       const versionPatch1 = version1.split("rc").slice(0, 1)[0];
       const versionPatch2 = version2.split("rc").slice(0, 1)[0];
-      const comparison = version1.localeCompare(version2);
+      const comparison = version2.localeCompare(version1);
 
       if (versionPatch1 == versionPatch2) {
         // The release candidates should appear first
         if (version1.length < version2.length) {
-          return 1;
-        } else if (version1.length > version2.length) {
           return -1;
+        } else if (version1.length > version2.length) {
+          return 1;
         }
       }
       return comparison;
@@ -199,9 +199,15 @@ export function extractMarkdownReleaseNotesPatches(
   const minorVersionsFound = new Set<string>();
   const markdownByPatchVersion: { [id: string]: string } = {};
 
-  sections.forEach((section) => {
+  for (let section of sections) {
     const versionPatch = section.split("\n").slice(0, 1)[0];
     const versionMinor = versionPatch.split(".").slice(0, 2).join(".");
+
+    // Skip legacy release notes
+    if (+versionMinor < 0.45) {
+      continue;
+    }
+
     minorVersionsFound.add(versionMinor);
 
     const content = section.split("\n");
@@ -209,7 +215,7 @@ export function extractMarkdownReleaseNotesPatches(
     markdownByPatchVersion[versionPatch] = `## ${versionPatch}\n${content.join(
       "\n",
     )}`;
-  });
+  }
 
   return [minorVersionsFound, markdownByPatchVersion];
 }
