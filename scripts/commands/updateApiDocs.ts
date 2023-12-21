@@ -23,7 +23,6 @@ import { WebCrawler } from "../lib/WebCrawler";
 import { downloadImages } from "../lib/downloadImages";
 import { generateToc } from "../lib/sphinx/generateToc";
 import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
-import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
 import { flatFolders } from "../lib/sphinx/flatFolders";
 import { updateLinks } from "../lib/sphinx/updateLinks";
 import { renameUrls } from "../lib/sphinx/renameUrls";
@@ -309,7 +308,6 @@ async function convertHtmlToMarkdown(
     await mkdirp(dir);
   }
 
-  results = await mergeClassMembers(results);
   flatFolders(results);
   renameUrls(results);
   await updateLinks(results, pkg.transformLink);
