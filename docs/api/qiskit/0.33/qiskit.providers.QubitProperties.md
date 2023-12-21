@@ -1,7 +1,5 @@
 # QubitProperties
 
-
-
 `QubitProperties(t1=None, t2=None, frequency=None)`
 
 Bases: `object`
@@ -20,14 +18,8 @@ Create a new `QubitProperties` object
 
 ## Attributes
 
-
-
 ### frequency
 
-
-
 ### t1
-
-
 
 ### t2

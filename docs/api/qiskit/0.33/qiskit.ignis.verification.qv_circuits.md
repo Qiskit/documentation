@@ -1,7 +1,5 @@
 # qiskit.ignis.verification.qv\_circuits
 
-
-
 `qv_circuits(qubit_lists, ntrials=1, qr=None, cr=None, seed=None)`
 
 Return a list of square quantum volume circuits (depth=width)

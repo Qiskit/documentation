@@ -1,0 +1,64 @@
+# qiskit.ignis.verification.TomographyFitter.fit
+
+`TomographyFitter.fit(method='auto', standard_weights=True, beta=0.5, psd=True, trace=None, trace_preserving=False, **kwargs)`
+
+Reconstruct a quantum state using CVXPY convex optimization.
+
+**Fitter method**
+
+The `'cvx'` fitter method uses the CVXPY convex optimization package with a SDP solver. The `'lstsq'` method uses least-squares fitting. The `'auto'` method will use `'cvx'` if the both the CVXPY and a suitable SDP solver packages are found on the system, otherwise it will default to `'lstsq'`.
+
+**Objective function**
+
+This fitter solves the constrained least-squares minimization: minimize: $||a \cdot x - b ||_2$
+
+subject to:
+
+> *   $x \succeq 0$
+> *   $\text{trace}(x) = 1$
+
+where:
+
+> *   a is the matrix of measurement operators $a[i] = \text{vec}(M_i).H$
+> *   b is the vector of expectation value data for each projector $b[i] \sim \text{Tr}[M_i.H \cdot x] = (a \cdot x)[i]$
+> *   x is the vectorized density matrix to be fitted
+
+**PSD constraint**
+
+The PSD keyword constrains the fitted matrix to be postive-semidefinite. For the `lstsq` fitter method the fitted matrix is rescaled using the method proposed in Reference \[1]. For the `cvx` fitter method the convex constraint makes the optimization problem a SDP. If PSD=False the fitted matrix will still be constrained to be Hermitian, but not PSD. In this case the optimization problem becomes a SOCP.
+
+**Trace constraint**
+
+The trace keyword constrains the trace of the fitted matrix. If trace=None there will be no trace constraint on the fitted matrix. This constraint should not be used for process tomography and the trace preserving constraint should be used instead.
+
+**CVXPY Solvers:**
+
+Various solvers can be called in CVXPY using the solver keyword argument. If `psd=True` an SDP solver is required other an SOCP solver is required. See the [CVXPY documentation](https://www.cvxpy.org/tutorial/advanced/index.html#solve-method-options) for more information on solvers. Note that the default SDP solver (‘SCS’) distributed with CVXPY will not be used for the `'auto'` method due its reduced accuracy compared to other solvers. When using the `'cvx'` method we strongly recommend installing one of the other supported SDP solvers.
+
+References:
+
+## \[1] J Smolin, JM Gambetta, G Smith, Phys. Rev. Lett. 108, 070502
+
+(2012). Open access: [arXiv:1106.5458](https://arxiv.org/abs/1106.5458) \[quant-ph].
+
+**Parameters**
+
+*   **method** (`str`) – The fitter method ‘auto’, ‘cvx’ or ‘lstsq’.
+*   **standard\_weights** (`bool`) – (default: True) Apply weights to tomography data based on count probability
+*   **beta** (`float`) – hedging parameter for converting counts to probabilities
+*   **psd** (`bool`) – Enforced the fitted matrix to be positive semidefinite.
+*   **trace** (`Optional`\[`int`]) – trace constraint for the fitted matrix.
+*   **trace\_preserving** (`bool`) – Enforce the fitted matrix to be trace preserving when fitting a Choi-matrix in quantum process tomography. Note this method does not apply for ‘lstsq’ fitter method.
+*   **\*\*kwargs** – kwargs for fitter method.
+
+**Raises**
+
+**QiskitError** – In case the fitting method is unrecognized.
+
+**Return type**
+
+`array`
+
+**Returns**
+
+The fitted matrix rho that minimizes $||\text{basis_matrix} * \text{vec(rho)} - \text{data}||_2$.

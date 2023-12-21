@@ -1,7 +1,5 @@
 # AlignSequential
 
-
-
 `AlignSequential`
 
 Bases: `qiskit.pulse.transforms.alignments.AlignmentKind`
@@ -20,8 +18,6 @@ Create new context.
 | [`to_dict`](qiskit.pulse.transforms.AlignSequential.to_dict#qiskit.pulse.transforms.AlignSequential.to_dict "qiskit.pulse.transforms.AlignSequential.to_dict") | Returns dictionary to represent this alignment.  |
 
 ## Attributes
-
-
 
 ### is\_sequential
 

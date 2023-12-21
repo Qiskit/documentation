@@ -1,7 +1,5 @@
 # RuntimeDecoder
 
-
-
 `RuntimeDecoder(*args, **kwargs)`
 
 Bases: `json.decoder.JSONDecoder`

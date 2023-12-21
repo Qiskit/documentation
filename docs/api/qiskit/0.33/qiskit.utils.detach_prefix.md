@@ -1,7 +1,5 @@
 # qiskit.utils.detach\_prefix
 
-
-
 `detach_prefix(value, decimal=None)`
 
 Given a SI unit value, find the most suitable prefix to scale the value.

@@ -1,7 +1,5 @@
 # GroverOperator
 
-
-
 `GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')`
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
@@ -149,8 +147,6 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 ## Attributes
 
-
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -158,8 +154,6 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
-
-
 
 ### calibrations
 
@@ -173,8 +167,6 @@ Return calibration dictionary.
 
 `dict`
 
-
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -182,8 +174,6 @@ Returns a list of classical bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Clbit`]
-
-
 
 ### data
 
@@ -199,13 +189,9 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-
-
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-
 
 ### global\_phase
 
@@ -215,19 +201,13 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-
-
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
-
 ### instances
 
 `= 9`
-
-
 
 ### metadata
 
@@ -239,8 +219,6 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -248,8 +226,6 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
-
-
 
 ### num\_clbits
 
@@ -259,8 +235,6 @@ Return number of classical bits.
 
 `int`
 
-
-
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
@@ -268,8 +242,6 @@ Convenience function to get the number of parameter objects in the circuit.
 **Return type**
 
 `int`
-
-
 
 ### num\_qubits
 
@@ -279,13 +251,9 @@ Return number of qubits.
 
 `int`
 
-
-
 ### oracle
 
 The oracle implementing a reflection about the bad state.
-
-
 
 ### parameters
 
@@ -295,13 +263,9 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
-
-
 ### prefix
 
 `= 'circuit'`
-
-
 
 ### qubits
 
@@ -311,13 +275,9 @@ Returns a list of quantum bits in the order that the registers were added.
 
 `List`\[`Qubit`]
 
-
-
 ### reflection\_qubits
 
 Reflection qubits, on which S0 is applied (if S0 is not user-specified).
-
-
 
 ### state\_preparation
 
@@ -326,8 +286,6 @@ The subcircuit implementing the A operator or Hadamards.
 **Return type**
 
 `QuantumCircuit`
-
-
 
 ### zero\_reflection
 

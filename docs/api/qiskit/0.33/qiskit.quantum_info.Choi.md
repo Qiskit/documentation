@@ -1,7 +1,5 @@
 # Choi
 
-
-
 `Choi(data, input_dims=None, output_dims=None)`
 
 Bases: `qiskit.quantum_info.operators.channel.quantum_channel.QuantumChannel`
@@ -71,43 +69,29 @@ If the input or output dimensions are None, they will be automatically determine
 
 ## Attributes
 
-
-
 ### atol
 
 `= 1e-08`
-
-
 
 ### data
 
 Return data.
 
-
-
 ### dim
 
 Return tuple (input\_shape, output\_shape).
-
-
 
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-
-
 ### qargs
 
 Return the qargs for the operator.
 
-
-
 ### rtol
 
 `= 1e-05`
-
-
 
 ### settings
 

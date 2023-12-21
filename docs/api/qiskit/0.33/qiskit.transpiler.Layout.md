@@ -1,7 +1,5 @@
 # Layout
 
-
-
 `Layout(input_dict=None)`
 
 Bases: `object`

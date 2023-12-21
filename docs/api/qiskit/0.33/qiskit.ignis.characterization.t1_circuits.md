@@ -1,7 +1,5 @@
 # qiskit.ignis.characterization.t1\_circuits
 
-
-
 `t1_circuits(num_of_gates, gate_time, qubits)`
 
 Generate circuits for T1 measurement.

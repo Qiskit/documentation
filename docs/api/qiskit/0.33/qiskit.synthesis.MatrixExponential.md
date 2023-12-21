@@ -1,7 +1,5 @@
 # MatrixExponential
 
-
-
 `MatrixExponential`
 
 Bases: `qiskit.synthesis.evolution.evolution_synthesis.EvolutionSynthesis`
@@ -17,8 +15,6 @@ This class synthesis the exponential of operators by calculating their exponenti
 | [`synthesize`](qiskit.synthesis.MatrixExponential.synthesize#qiskit.synthesis.MatrixExponential.synthesize "qiskit.synthesis.MatrixExponential.synthesize") | Synthesize an `qiskit.circuit.library.PauliEvolutionGate`. |
 
 ## Attributes
-
-
 
 ### settings
 

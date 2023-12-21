@@ -1,7 +1,5 @@
 # Parameter
 
-
-
 `Parameter(name)`
 
 Bases: `qiskit.circuit.parameterexpression.ParameterExpression`
@@ -35,13 +33,9 @@ Create a new named [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Param
 
 ## Attributes
 
-
-
 ### name
 
 Returns the name of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter").
-
-
 
 ### parameters
 

@@ -1,7 +1,5 @@
 # EstimationProblem
 
-
-
 `EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)`
 
 Bases: `object`
@@ -26,8 +24,6 @@ This class contains all problem-specific information required to run an amplitud
 
 ## Attributes
 
-
-
 ### grover\_operator
 
 Get the $\mathcal{Q}$ operator, or Grover operator.
@@ -42,8 +38,6 @@ If the Grover operator is not set, we try to build it from the $\mathcal{A}$ ope
 
 The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
 
-
-
 ### is\_good\_state
 
 Checks whether a bitstring represents a good state.
@@ -55,8 +49,6 @@ Checks whether a bitstring represents a good state.
 **Returns**
 
 Handle to the `is_good_state` callable.
-
-
 
 ### objective\_qubits
 
@@ -70,8 +62,6 @@ Get the criterion for a measurement outcome to be in a ‘good’ state.
 
 The criterion as list of qubit indices.
 
-
-
 ### post\_processing
 
 Apply post processing to the input value.
@@ -83,8 +73,6 @@ Apply post processing to the input value.
 **Returns**
 
 A handle to the post processing function. Acts as identity by default.
-
-
 
 ### state\_preparation
 

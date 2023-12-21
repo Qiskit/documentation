@@ -1,7 +1,5 @@
 # IBMQJobManager
 
-
-
 `IBMQJobManager`
 
 Bases: `object`

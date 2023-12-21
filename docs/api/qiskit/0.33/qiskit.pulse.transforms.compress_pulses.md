@@ -1,7 +1,5 @@
 # qiskit.pulse.transforms.compress\_pulses
 
-
-
 `compress_pulses(schedules)`
 
 Optimization pass to replace identical pulses.

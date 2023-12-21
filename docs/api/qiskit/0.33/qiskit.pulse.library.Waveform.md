@@ -1,7 +1,5 @@
 # Waveform
 
-
-
 `Waveform(samples, name=None, epsilon=1e-07, limit_amplitude=None)`
 
 Bases: `qiskit.pulse.library.pulse.Pulse`
@@ -26,8 +24,6 @@ Create new sample pulse command.
 
 ## Attributes
 
-
-
 ### id
 
 Unique identifier for this pulse.
@@ -36,13 +32,9 @@ Unique identifier for this pulse.
 
 `int`
 
-
-
 ### limit\_amplitude
 
 `= True`
-
-
 
 ### parameters
 
@@ -51,8 +43,6 @@ Return a dictionary containing the pulse’s parameters.
 **Return type**
 
 `Dict`\[`str`, `Any`]
-
-
 
 ### samples
 

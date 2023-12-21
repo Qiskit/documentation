@@ -1,7 +1,5 @@
 # MatrixExpectation
 
-
-
 `MatrixExpectation`
 
 Bases: `qiskit.opflow.expectations.expectation_base.ExpectationBase`

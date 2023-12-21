@@ -1,7 +1,5 @@
 # QFIBase
 
-
-
 `QFIBase(qfi_method='lin_comb_full')`
 
 Bases: `qiskit.opflow.gradients.derivative_base.DerivativeBase`
@@ -23,8 +21,6 @@ The QFI is:
 **ValueError** – if `qfi_method` is neither a `CircuitQFI` object nor one of the predefined strings.
 
 ## Attributes
-
-
 
 ### qfi\_method
 

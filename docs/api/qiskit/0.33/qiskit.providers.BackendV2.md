@@ -1,7 +1,5 @@
 # BackendV2
 
-
-
 `BackendV2(provider=None, name=None, description=None, online_date=None, backend_version=None, **fields)`
 
 Bases: `qiskit.providers.backend.Backend`, `abc.ABC`
@@ -43,13 +41,9 @@ Initialize a BackendV2 based backend
 
 ## Attributes
 
-
-
 ### coupling\_map
 
 Return the [`CouplingMap`](qiskit.transpiler.CouplingMap#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object
-
-
 
 ### dt
 
@@ -64,8 +58,6 @@ The input signal timestep in seconds. If the backend doesn’t define `dt` `None
 **Return type**
 
 dt
-
-
 
 ### dtm
 
@@ -83,19 +75,13 @@ dtm
 
 **NotImplementedError** – if the backend doesn’t support querying the output signal timestep
 
-
-
 ### instruction\_durations
 
 Return the [`InstructionDurations`](qiskit.transpiler.InstructionDurations#qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations") object.
 
-
-
 ### instruction\_schedule\_map
 
 Return the [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap#qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") for the instructions defined in this backend’s target.
-
-
 
 ### instructions
 
@@ -105,15 +91,11 @@ A list of Instruction tuples on the backend of the form `(instruction, (qubits)`
 
 `List`\[`Tuple`\[`Instruction`, `Tuple`\[`int`]]]
 
-
-
 ### max\_circuits
 
 The maximum number of circuits (or Pulse schedules) that can be run in a single job.
 
 If there is no limit this will return None
-
-
 
 ### meas\_map
 
@@ -133,8 +115,6 @@ meas\_map
 
 **NotImplementedError** – if the backend doesn’t support querying the measurement mapping
 
-
-
 ### num\_qubits
 
 Return the number of qubits the backend has.
@@ -142,8 +122,6 @@ Return the number of qubits the backend has.
 **Return type**
 
 `int`
-
-
 
 ### operation\_names
 
@@ -153,8 +131,6 @@ A list of instruction names that the backend supports.
 
 `List`\[`str`]
 
-
-
 ### operations
 
 A list of [`Instruction`](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction") instances that the backend supports.
@@ -163,15 +139,11 @@ A list of [`Instruction`](qiskit.circuit.Instruction#qiskit.circuit.Instruction 
 
 `List`\[`Instruction`]
 
-
-
 ### options
 
 Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.BackendV2.run#qiskit.providers.BackendV2.run "qiskit.providers.BackendV2.run") method.
-
-
 
 ### target
 
@@ -180,8 +152,6 @@ A [`qiskit.transpiler.Target`](qiskit.transpiler.Target#qiskit.transpiler.Target
 **Return type**
 
 [Target](qiskit.transpiler.Target#qiskit.transpiler.Target "qiskit.transpiler.Target")
-
-
 
 ### version
 

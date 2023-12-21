@@ -1,7 +1,5 @@
 # Trotter
 
-
-
 `Trotter(reps=1)`
 
 Bases: `qiskit.opflow.evolutions.trotterizations.suzuki.Suzuki`
@@ -14,8 +12,6 @@ Simple Trotter expansion, composing the evolution circuits of each Operator in t
 
 ## Attributes
 
-
-
 ### order
 
 returns order
@@ -23,8 +19,6 @@ returns order
 **Return type**
 
 `int`
-
-
 
 ### reps
 

@@ -1,7 +1,5 @@
 # qiskit.ignis.verification.QOTPCorrectString
 
-
-
 `QOTPCorrectString(qotp_string, qotp_postp)`
 
 Corrects a measurement string, shifting the qotp

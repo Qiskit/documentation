@@ -1,7 +1,5 @@
 # Plotter
 
-
-
 `Plotter(label)`
 
 Bases: `object`

@@ -1,7 +1,5 @@
 # qiskit.ignis.mitigation.expectation\_value
 
-
-
 `expectation_value(counts, diagonal=None, qubits=None, clbits=None, meas_mitigator=None)`
 
 Compute the expectation value of a diagonal operator from counts.

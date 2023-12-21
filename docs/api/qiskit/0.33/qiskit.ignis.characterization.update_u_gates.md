@@ -1,7 +1,5 @@
 # qiskit.ignis.characterization.update\_u\_gates
 
-
-
 `update_u_gates(drag_params, pi2_pulse_schedules=None, qubits=None, inst_map=None, drives=None)`
 
 Update the cmd\_def with new single qubit gate values

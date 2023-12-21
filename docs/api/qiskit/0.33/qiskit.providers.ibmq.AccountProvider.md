@@ -1,7 +1,5 @@
 # AccountProvider
 
-
-
 `AccountProvider(credentials, factory)`
 
 Bases: `qiskit.providers.provider.ProviderV1`
@@ -72,8 +70,6 @@ AccountProvider constructor.
 
 ## Attributes
 
-
-
 ### backend
 
 Return the backend service.
@@ -85,8 +81,6 @@ Return the backend service.
 **Returns**
 
 The backend service instance.
-
-
 
 ### experiment
 
@@ -104,8 +98,6 @@ The experiment service instance.
 
 **IBMQNotAuthorizedError** – If the account is not authorized to use the experiment service.
 
-
-
 ### random
 
 Return the random number service.
@@ -122,8 +114,6 @@ The random number service instance.
 
 **IBMQNotAuthorizedError** – If the account is not authorized to use the service.
 
-
-
 ### runtime
 
 Return the runtime service.
@@ -139,8 +129,6 @@ The runtime service instance.
 **Raises**
 
 **IBMQNotAuthorizedError** – If the account is not authorized to use the service.
-
-
 
 ### version
 

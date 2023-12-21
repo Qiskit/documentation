@@ -1,7 +1,5 @@
 # qiskit.pulse.builder.shift\_frequency
 
-
-
 `shift_frequency(frequency, channel, name=None)`
 
 Shift the `frequency` of a pulse `channel`.

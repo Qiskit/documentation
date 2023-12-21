@@ -1,7 +1,5 @@
 # ExpectationFactory
 
-
-
 `ExpectationFactory`
 
 Bases: `object`

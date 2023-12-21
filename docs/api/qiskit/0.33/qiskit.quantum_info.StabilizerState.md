@@ -1,7 +1,5 @@
 # StabilizerState
 
-
-
 `StabilizerState(data, validate=True)`
 
 Bases: `qiskit.quantum_info.states.quantum_state.QuantumState`
@@ -70,19 +68,13 @@ Initialize a StabilizerState object.
 
 ## Attributes
 
-
-
 ### clifford
 
 Return StabilizerState Clifford data
 
-
-
 ### dim
 
 Return total state dimension.
-
-
 
 ### num\_qubits
 

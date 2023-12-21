@@ -1,7 +1,5 @@
 # Qasm
 
-
-
 `Qasm(filename=None, data=None)`
 
 Bases: `object`

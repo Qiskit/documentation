@@ -1,7 +1,5 @@
 # UnitarySynthesisPluginManager
 
-
-
 `UnitarySynthesisPluginManager`
 
 Bases: `object`

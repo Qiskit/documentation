@@ -1,7 +1,5 @@
 # IQDiscriminationFitter
 
-
-
 `IQDiscriminationFitter(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)`
 
 Bases: `qiskit.ignis.measurement.discriminator.discriminators.BaseDiscriminationFitter`
@@ -32,19 +30,13 @@ Abstract discriminator that implements the data formatting for IQ level 1 data.
 
 ## Attributes
 
-
-
 ### expected\_states
 
 Returns the expected states used to train the discriminator.
 
-
-
 ### fitted
 
 True if the discriminator has been fitted to calibration data.
-
-
 
 ### schedules
 

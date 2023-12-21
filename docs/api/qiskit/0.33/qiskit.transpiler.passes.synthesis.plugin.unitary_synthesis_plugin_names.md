@@ -1,7 +1,5 @@
 # qiskit.transpiler.passes.synthesis.plugin.unitary\_synthesis\_plugin\_names
 
-
-
 `unitary_synthesis_plugin_names()`
 
 Return a list of installed unitary synthesis plugin names

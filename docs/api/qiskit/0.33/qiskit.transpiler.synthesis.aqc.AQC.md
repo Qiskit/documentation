@@ -1,7 +1,5 @@
 # AQC
 
-
-
 `AQC(optimizer=None, seed=None)`
 
 Bases: `object`

@@ -1,7 +1,5 @@
 # qiskit.algorithms.AlgorithmError
 
-
-
 `AlgorithmError(*message)`
 
 For Algorithm specific errors.

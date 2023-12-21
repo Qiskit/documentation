@@ -1,7 +1,5 @@
 # PulseQobjExperiment
 
-
-
 `PulseQobjExperiment(instructions, config=None, header=None)`
 
 Bases: `object`

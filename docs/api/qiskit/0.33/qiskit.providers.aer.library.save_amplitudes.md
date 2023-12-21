@@ -1,7 +1,5 @@
 # qiskit.providers.aer.library.save\_amplitudes
 
-
-
 `save_amplitudes(self, params, label='amplitudes', pershot=False, conditional=False)`
 
 Save complex statevector amplitudes.
