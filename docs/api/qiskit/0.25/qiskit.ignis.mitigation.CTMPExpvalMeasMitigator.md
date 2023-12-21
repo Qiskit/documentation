@@ -1,7 +1,5 @@
 # qiskit.ignis.mitigation.CTMPExpvalMeasMitigator
 
-
-
 `CTMPExpvalMeasMitigator(generators, rates, num_qubits=None, seed=None)`
 
 N-qubit CTMP measurement error mitigator.
@@ -11,8 +9,6 @@ This class can be used with the [`qiskit.ignis.mitigation.expectation_value()`](
 For measurement mitigation to be applied the mitigator should be calibrated using the [`qiskit.ignis.mitigation.expval_meas_mitigator_circuits()`](qiskit.ignis.mitigation.expval_meas_mitigator_circuits#qiskit.ignis.mitigation.expval_meas_mitigator_circuits "qiskit.ignis.mitigation.expval_meas_mitigator_circuits") function and [`qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter`](qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter#qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter") class with the `'CTMP'` mitigation method.
 
 Initialize a TensorMeasurementMitigator
-
-
 
 `__init__(generators, rates, num_qubits=None, seed=None)`
 
@@ -36,8 +32,6 @@ Initialize a TensorMeasurementMitigator
 | [`seed`](#qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.seed "qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.seed")(\[value])                                                            | Set the seed for the quantum state RNG.                               |
 | [`stddev_upper_bound`](#qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.stddev_upper_bound "qiskit.ignis.mitigation.CTMPExpvalMeasMitigator.stddev_upper_bound")(\[shots, qubits])          | Return an upper bound on standard deviation of expval estimator.      |
 
-
-
 `assignment_fidelity(qubits=None)`
 
 Return the measurement assignment fidelity on the specified qubits.
@@ -56,8 +50,6 @@ the assignment fidelity.
 
 float
 
-
-
 `assignment_matrix(qubits=None)`
 
 Return the measurement assignment matrix for specified qubits.
@@ -75,8 +67,6 @@ the assignment matrix A.
 **Return type**
 
 np.ndarray
-
-
 
 `expectation_value(counts, diagonal=None, qubits=None, clbits=None)`
 
@@ -105,8 +95,6 @@ The diagonal observable $O$ is input using the `diagonal` kwarg as a list or Num
 
 The `clbits` kwarg is used to marginalize the input counts dictionary over the specified bit-values, and the `qubits` kwarg is used to specify which physical qubits these bit-values correspond to as `circuit.measure(qubits, clbits)`.
 
-
-
 `generator_matrix(qubits=None)`
 
 Return the generator matrix on the specified qubits.
@@ -124,8 +112,6 @@ the generator matrix $G$.
 **Return type**
 
 sps.coo\_matrix
-
-
 
 `mitigation_matrix(qubits=None)`
 
@@ -145,8 +131,6 @@ the measurement error mitigation matrix $A^{-1}$.
 
 np.ndarray
 
-
-
 `mitigation_overhead(qubits=None)`
 
 Return the mitigation overhead for expectation value estimation.
@@ -165,8 +149,6 @@ the mitigation overhead factor.
 
 int
 
-
-
 `noise_strength(qubits=None)`
 
 Return the noise strength $gamma$ on the specified qubits
@@ -174,8 +156,6 @@ Return the noise strength $gamma$ on the specified qubits
 **Return type**
 
 `float`
-
-
 
 `plot_assignment_matrix(qubits=None, ax=None)`
 
@@ -198,8 +178,6 @@ plt.axes
 
 **ImportError** – if matplotlib is not installed.
 
-
-
 `plot_mitigation_matrix(qubits=None, ax=None)`
 
 Matrix plot of the readout error mitigation matrix.
@@ -221,8 +199,6 @@ plt.axes
 
 **ImportError** – if matplotlib is not installed.
 
-
-
 `required_shots(delta, qubits=None)`
 
 Return the number of shots required for expectation value estimation.
@@ -242,13 +218,9 @@ the required shots.
 
 int
 
-
-
 `seed(value=None)`
 
 Set the seed for the quantum state RNG.
-
-
 
 `stddev_upper_bound(shots=1, qubits=None)`
 

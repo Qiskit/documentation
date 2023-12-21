@@ -1,7 +1,5 @@
 # qiskit.aqua.components.uncertainty\_models.UnivariateVariationalDistribution
 
-
-
 `UnivariateVariationalDistribution(num_qubits, var_form, params, low=0, high=1)`
 
 The Univariate Variational Distribution.
@@ -13,8 +11,6 @@ The Univariate Variational Distribution.
 *   **params** (`Union`\[`List`\[`float`], `ndarray`]) – Parameters for variational form
 *   **low** (`float`) – Lower bound
 *   **high** (`float`) – Upper bound
-
-
 
 `__init__(num_qubits, var_form, params, low=0, high=1)`
 
@@ -57,11 +53,7 @@ The Univariate Variational Distribution.
 | [`probabilities`](#qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.probabilities "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.probabilities")             | returns probabilities               |
 | [`values`](#qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.values "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.values")                                  | returns values                      |
 
-
-
 `build(qc, q, q_ancillas=None, params=None)`
-
-
 
 `build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
 
@@ -75,8 +67,6 @@ Adds corresponding controlled sub-circuit to given circuit
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
 
-
-
 `build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled inverse of corresponding sub-circuit to given circuit
@@ -89,19 +79,13 @@ Adds controlled inverse of corresponding sub-circuit to given circuit
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
 
-
-
 `build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-
-
 `build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-
 
 `build_inverse(qc, q, q_ancillas=None)`
 
@@ -113,55 +97,37 @@ Adds inverse of corresponding sub-circuit to given circuit
 *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 
-
-
 `build_inverse_power(qc, q, power, q_ancillas=None)`
 
 Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-
 
 `build_power(qc, q, power, q_ancillas=None)`
 
 Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-
-
 `get_num_qubits()`
 
 returns number of qubits
-
-
 
 `get_num_qubits_controlled()`
 
 returns number of qubits controlled
 
-
-
 `property high`
 
 returns high
-
-
 
 `property low`
 
 returns low
 
-
-
 `property num_target_qubits`
 
 Returns the number of target qubits
 
-
-
 `property num_values`
 
 returns number of values
-
-
 
 `static pdf_to_probabilities(pdf, low, high, num_values)`
 
@@ -182,25 +148,17 @@ array of probabilities
 
 list
 
-
-
 `property probabilities`
 
 returns probabilities
-
-
 
 `required_ancillas()`
 
 returns required ancillas
 
-
-
 `required_ancillas_controlled()`
 
 returns required ancillas controlled
-
-
 
 `set_probabilities(quantum_instance)`
 
@@ -209,8 +167,6 @@ Set Probabilities
 **Parameters**
 
 **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance#qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – Quantum instance
-
-
 
 `property values`
 

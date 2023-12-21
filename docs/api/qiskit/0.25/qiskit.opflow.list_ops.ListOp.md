@@ -1,7 +1,5 @@
 # qiskit.opflow\.list\_ops.ListOp
 
-
-
 `ListOp(oplist, combo_fn=<function ListOp.<lambda>>, coeff=1.0, abelian=False, grad_combo_fn=None)`
 
 A Class for manipulating List Operators, and parent class to `SummedOp`, `ComposedOp`, and `TensoredOp`.
@@ -20,8 +18,6 @@ The base `ListOp` class is particularly interesting, as its `combo_fn` is “the
 *   **that the default "recombination function" lambda above is essentially the** (*Note*) –
 *   **- it accepts the list of values** (*identity*) –
 *   **returns them in a list.** (*and*) –
-
-
 
 `__init__(oplist, combo_fn=<function ListOp.<lambda>>, coeff=1.0, abelian=False, grad_combo_fn=None)`
 
@@ -81,8 +77,6 @@ The base `ListOp` class is particularly interesting, as its `combo_fn` is “the
 | [`oplist`](#qiskit.opflow.list_ops.ListOp.oplist "qiskit.opflow.list_ops.ListOp.oplist")                      | The list of `OperatorBases` defining the underlying function of this Operator.                                             |
 | [`parameters`](#qiskit.opflow.list_ops.ListOp.parameters "qiskit.opflow.list_ops.ListOp.parameters")          | Return a set of Parameter objects contained in the Operator.                                                               |
 
-
-
 `property abelian`
 
 Whether the Operators in `oplist` are known to commute with one another.
@@ -94,8 +88,6 @@ Whether the Operators in `oplist` are known to commute with one another.
 **Returns**
 
 A bool indicating whether the `oplist` is Abelian.
-
-
 
 `add(other)`
 
@@ -113,8 +105,6 @@ Return Operator addition of self and other, overloaded by `+`.
 
 An `OperatorBase` equivalent to the sum of self and other.
 
-
-
 `adjoint()`
 
 Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
@@ -126,8 +116,6 @@ Return a new Operator equal to the Operator’s adjoint (conjugate transpose), o
 **Returns**
 
 An `OperatorBase` equivalent to the adjoint of self.
-
-
 
 `assign_parameters(param_dict)`
 
@@ -145,8 +133,6 @@ Binds scalar values to any Terra `Parameters` in the coefficients or primitives 
 
 The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
 
-
-
 `bind_parameters(param_dict)`
 
 Same as assign\_parameters, but maintained for consistency with QuantumCircuit in Terra (which has both assign\_parameters and bind\_parameters).
@@ -154,8 +140,6 @@ Same as assign\_parameters, but maintained for consistency with QuantumCircuit i
 **Return type**
 
 `OperatorBase`
-
-
 
 `property coeff`
 
@@ -169,8 +153,6 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
-
-
 `property combo_fn`
 
 The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. For example, SummedOp’s combination function is to add all of the Operators in `oplist`.
@@ -182,8 +164,6 @@ The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to p
 **Returns**
 
 The combination function.
-
-
 
 `compose(other, permutation=None, front=False)`
 
@@ -209,8 +189,6 @@ Because Terra prints circuits with the initial state at the left side of the cir
 
 An `OperatorBase` equivalent to the function composition of self and other.
 
-
-
 `copy()`
 
 Return a deep copy of the Operator.
@@ -218,8 +196,6 @@ Return a deep copy of the Operator.
 **Return type**
 
 `OperatorBase`
-
-
 
 `property distributive`
 
@@ -232,8 +208,6 @@ Indicates whether the ListOp or subclass is distributive under composition. List
 **Returns**
 
 A bool indicating whether the ListOp is distributive under composition.
-
-
 
 `equals(other)`
 
@@ -250,8 +224,6 @@ Evaluate Equality between Operators, overloaded by `==`. Only returns True if se
 **Returns**
 
 A bool equal to the equality of self and other.
-
-
 
 `eval(front=None)`
 
@@ -277,8 +249,6 @@ The output of the `oplist` Operators’ evaluation function, combined with the `
 *   **TypeError** – Operators with mixed hierarchies, such as a ListOp containing both PrimitiveOps and ListOps, are not supported.
 *   **NotImplementedError** – Attempting to call ListOp’s eval from a non-distributive subclass.
 
-
-
 `exp_i()`
 
 Return an `OperatorBase` equivalent to an exponentiation of self \* -i, e^(-i\*op).
@@ -286,8 +256,6 @@ Return an `OperatorBase` equivalent to an exponentiation of self \* -i, e^(-i\*o
 **Return type**
 
 `OperatorBase`
-
-
 
 `property grad_combo_fn`
 
@@ -297,8 +265,6 @@ The gradient of `combo_fn`.
 
 `Optional`\[`Callable`]
 
-
-
 `property instance_id`
 
 Return the unique instance id.
@@ -307,8 +273,6 @@ Return the unique instance id.
 
 `int`
 
-
-
 `log_i(massive=False)`
 
 Return a `MatrixOp` equivalent to log(H)/-i for this operator H. This function is the effective inverse of exp\_i, equivalent to finding the Hermitian Operator which produces self when exponentiated. For proper ListOps, applies `log_i` to all ops in oplist.
@@ -316,8 +280,6 @@ Return a `MatrixOp` equivalent to log(H)/-i for this operator H. This function i
 **Return type**
 
 `OperatorBase`
-
-
 
 `mul(scalar)`
 
@@ -335,8 +297,6 @@ Returns the scalar multiplication of the Operator, overloaded by `*`, including 
 
 An `OperatorBase` equivalent to product of self and scalar.
 
-
-
 `neg()`
 
 Return the Operator’s negation, effectively just multiplying by -1.0, overloaded by `-`.
@@ -348,8 +308,6 @@ Return the Operator’s negation, effectively just multiplying by -1.0, overload
 **Returns**
 
 An `OperatorBase` equivalent to the negation of self.
-
-
 
 `property num_qubits`
 
@@ -363,8 +321,6 @@ The number of qubits over which the Operator is defined. If `op.num_qubits == 5`
 
 The number of qubits accepted by the Operator’s underlying function.
 
-
-
 `property oplist`
 
 The list of `OperatorBases` defining the underlying function of this Operator.
@@ -377,13 +333,9 @@ The list of `OperatorBases` defining the underlying function of this Operator.
 
 The Operators defining the ListOp
 
-
-
 `property parameters`
 
 Return a set of Parameter objects contained in the Operator.
-
-
 
 `permute(permutation)`
 
@@ -405,8 +357,6 @@ A new ListOp representing the permuted operator.
 
 [**OpflowError**](qiskit.opflow.OpflowError#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if indices do not define a new index for each qubit.
 
-
-
 `power(exponent)`
 
 Return Operator composed with self multiple times, overloaded by `**`.
@@ -423,8 +373,6 @@ Return Operator composed with self multiple times, overloaded by `**`.
 
 An `OperatorBase` equivalent to self composed with itself exponent times.
 
-
-
 `primitive_strings()`
 
 Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
@@ -437,8 +385,6 @@ Return a set of strings describing the primitives contained in the Operator. For
 
 A set of strings describing the primitives contained within the Operator.
 
-
-
 `reduce()`
 
 Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
@@ -450,8 +396,6 @@ Try collapsing the Operator structure, usually after some type of conversion, e.
 **Returns**
 
 The reduced `OperatorBase`.
-
-
 
 `tensor(other)`
 
@@ -473,8 +417,6 @@ Because Terra prints circuits and results with qubit 0 at the end of the string 
 
 An `OperatorBase` equivalent to the tensor product of self and other.
 
-
-
 `tensorpower(other)`
 
 Return tensor product with self multiple times, overloaded by `^`.
@@ -491,8 +433,6 @@ Return tensor product with self multiple times, overloaded by `^`.
 
 An `OperatorBase` equivalent to the tensorpower of self by other.
 
-
-
 `to_circuit_op()`
 
 Returns an equivalent Operator composed of only QuantumCircuit-based primitives, such as `CircuitOp` and `CircuitStateFn`.
@@ -500,8 +440,6 @@ Returns an equivalent Operator composed of only QuantumCircuit-based primitives,
 **Return type**
 
 `OperatorBase`
-
-
 
 `to_matrix(massive=False)`
 
@@ -515,8 +453,6 @@ Return NumPy representation of the Operator. Represents the evaluation of the Op
 
 The NumPy `ndarray` equivalent to this Operator.
 
-
-
 `to_matrix_op(massive=False)`
 
 Returns an equivalent Operator composed of only NumPy-based primitives, such as `MatrixOp` and `VectorStateFn`.
@@ -525,8 +461,6 @@ Returns an equivalent Operator composed of only NumPy-based primitives, such as 
 
 `ListOp`
 
-
-
 `to_pauli_op(massive=False)`
 
 Returns an equivalent Operator composed of only Pauli-based primitives, such as `PauliOp`.
@@ -534,8 +468,6 @@ Returns an equivalent Operator composed of only Pauli-based primitives, such as 
 **Return type**
 
 `ListOp`
-
-
 
 `to_spmatrix()`
 
@@ -548,8 +480,6 @@ Returns SciPy sparse matrix representation of the Operator.
 **Returns**
 
 CSR sparse matrix representation of the Operator, or List thereof.
-
-
 
 `traverse(convert_fn, coeff=None)`
 

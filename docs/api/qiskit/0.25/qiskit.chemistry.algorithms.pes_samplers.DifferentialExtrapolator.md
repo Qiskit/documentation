@@ -1,7 +1,5 @@
 # qiskit.chemistry.algorithms.pes\_samplers.DifferentialExtrapolator
 
-
-
 `DifferentialExtrapolator(degree=1, model=None)`
 
 An extrapolator based on treating each param set as a point in space, and fitting a Hamiltonian which evolves each point to the next. The user specifies the type of regression model to perform fitting, and a degree which adds derivatives to the values in the point vector; serving as features for the regression model. WARNING: Should only be used with window. Using no window includes points after the point being extrapolated in the data window.
@@ -12,8 +10,6 @@ Constructor.
 
 *   **model** (`Union`\[`LinearRegression`, `Ridge`, `RidgeCV`, `SGDRegressor`, `None`]) – Regression model (from sklearn) to be used for fitting variational parameters. Currently supports the following models: LinearRegression(), Ridge(), RidgeCV(), and SGDRegressor().
 *   **degree** (`int`) – Specifies (degree -1) derivatives to be added as ‘features’ in regression model.
-
-
 
 `__init__(degree=1, model=None)`
 
@@ -32,8 +28,6 @@ Constructor.
 | [`extrapolate`](#qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.extrapolate "qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.extrapolate")(points, param\_dict) | Extrapolate at specified point of interest given a set of variational parameters. |
 | [`factory`](#qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.factory "qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.factory")(mode, \*\*kwargs)                | Factory method for constructing extrapolators.                                    |
 
-
-
 `extrapolate(points, param_dict)`
 
 Extrapolate at specified point of interest given a set of variational parameters. Each parameter list and list of numerical gradients is treated as a single point in vector space. The regression model tries to fit a Hamiltonian that describes the evolution from one parameter set (and its gradient features) at point r, to another parameter set at point, r + epsilon. The regression model is then used to predict the parameter set at the point of interest. Note that this extrapolation technique does not explicitly use the spacing of the points (step size) but rather infers it from the list of parameter values.
@@ -51,8 +45,6 @@ Extrapolate at specified point of interest given a set of variational parameters
 **Returns**
 
 Dictionary of variational parameters for extrapolated point(s).
-
-
 
 `static factory(mode, **kwargs)`
 

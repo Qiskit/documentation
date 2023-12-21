@@ -1,7 +1,5 @@
 # qiskit.opflow\.primitive\_ops.Z2Symmetries
 
-
-
 `Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None)`
 
 Z2 Symmetries
@@ -16,8 +14,6 @@ Z2 Symmetries
 **Raises**
 
 [**OpflowError**](qiskit.opflow.OpflowError#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – Invalid paulis
-
-
 
 `__init__(symmetries, sq_paulis, sq_list, tapering_values=None)`
 
@@ -53,13 +49,9 @@ Z2 Symmetries
 | [`symmetries`](#qiskit.opflow.primitive_ops.Z2Symmetries.symmetries "qiskit.opflow.primitive_ops.Z2Symmetries.symmetries")                | return symmetries                                                     |
 | [`tapering_values`](#qiskit.opflow.primitive_ops.Z2Symmetries.tapering_values "qiskit.opflow.primitive_ops.Z2Symmetries.tapering_values") | returns tapering values                                               |
 
-
-
 `property cliffords`
 
 Get clifford operators, build based on symmetries and single-qubit X. :rtype: `List`\[`PauliSumOp`] :returns: a list of unitaries used to diagonalize the Hamiltonian.
-
-
 
 `consistent_tapering(operator)`
 
@@ -81,13 +73,9 @@ The tapered operator
 
 [**OpflowError**](qiskit.opflow.OpflowError#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – The given operator does not commute with the symmetry
 
-
-
 `copy()`
 
 Get a copy of self. :rtype: `Z2Symmetries` :returns: copy
-
-
 
 `classmethod find_Z2_symmetries(operator)`
 
@@ -101,31 +89,21 @@ Finds Z2 Pauli-type symmetries of an Operator.
 
 a z2\_symmetries object contains symmetries, single-qubit X, single-qubit list.
 
-
-
 `is_empty()`
 
 Check the z2\_symmetries is empty or not. :rtype: `bool` :returns: Empty or not
-
-
 
 `property sq_list`
 
 returns sq list
 
-
-
 `property sq_paulis`
 
 returns sq paulis
 
-
-
 `property symmetries`
 
 return symmetries
-
-
 
 `taper(operator)`
 
@@ -146,8 +124,6 @@ If tapering\_values is None
 **Raises**
 
 [**OpflowError**](qiskit.opflow.OpflowError#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – Z2 symmetries, single qubit pauli and single qubit list cannot be empty
-
-
 
 `property tapering_values`
 

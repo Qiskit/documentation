@@ -1,12 +1,8 @@
 # qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult
 
-
-
 `MaximumLikelihoodAmplitudeEstimationResult`
 
 The `MaximumLikelihoodAmplitudeEstimation` result object.
-
-
 
 `__init__()`
 
@@ -37,8 +33,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`shots`](#qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.shots "qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.shots")                                                                         | Return the number of shots used.                                                    |
 | [`theta`](#qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.theta "qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult.theta")                                                                         | Return the estimate for the angle $\theta$.                                         |
 
-
-
 `property circuit_results`
 
 Return the circuit results. Can be a statevector or counts dictionary.
@@ -46,8 +40,6 @@ Return the circuit results. Can be a statevector or counts dictionary.
 **Return type**
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
-
-
 
 `combine(result)`
 
@@ -61,8 +53,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-
-
 `property confidence_interval`
 
 Return the confidence interval for the amplitude (95% interval by default).
@@ -70,8 +60,6 @@ Return the confidence interval for the amplitude (95% interval by default).
 **Return type**
 
 `Tuple`\[`float`, `float`]
-
-
 
 `property confidence_interval_processed`
 
@@ -81,8 +69,6 @@ Return the post-processed confidence interval (95% interval by default).
 
 `Tuple`\[`float`, `float`]
 
-
-
 `property estimation`
 
 Return the estimation for the amplitude in $[0, 1]$.
@@ -90,8 +76,6 @@ Return the estimation for the amplitude in $[0, 1]$.
 **Return type**
 
 `float`
-
-
 
 `property estimation_processed`
 
@@ -101,8 +85,6 @@ Return the estimation for the amplitude after the post-processing has been appli
 
 `float`
 
-
-
 `property evaluation_schedule`
 
 Return the evaluation schedule for the powers of the Grover operator.
@@ -110,8 +92,6 @@ Return the evaluation schedule for the powers of the Grover operator.
 **Return type**
 
 `List`\[`int`]
-
-
 
 `property fisher_information`
 
@@ -121,8 +101,6 @@ Return the Fisher information for the estimated amplitude.
 
 `float`
 
-
-
 `property good_counts`
 
 Return the percentage of good counts per circuit power.
@@ -130,8 +108,6 @@ Return the percentage of good counts per circuit power.
 **Return type**
 
 `List`\[`float`]
-
-
 
 `property minimizer`
 
@@ -141,8 +117,6 @@ Return the minimizer used for the search of the likelihood function.
 
 `callable`
 
-
-
 `property num_oracle_queries`
 
 Return the number of Grover oracle queries.
@@ -150,8 +124,6 @@ Return the number of Grover oracle queries.
 **Return type**
 
 `int`
-
-
 
 `property post_processing`
 
@@ -161,8 +133,6 @@ Return a handle to the post processing function.
 
 `Callable`\[\[`float`], `float`]
 
-
-
 `property shots`
 
 Return the number of shots used. Is 1 for statevector-based simulations.
@@ -170,8 +140,6 @@ Return the number of shots used. Is 1 for statevector-based simulations.
 **Return type**
 
 `int`
-
-
 
 `property theta`
 

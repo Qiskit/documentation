@@ -1,7 +1,5 @@
 # qiskit.aqua.components.eigs.EigsQPE
 
-
-
 `EigsQPE(operator, iqft, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=None, negative_evals=False, ne_qfts=None)`
 
 Eigenvalues using Quantum Phase Estimation.
@@ -19,8 +17,6 @@ Specifically, this class is based on PhaseEstimationCircuit with no measurements
 *   **evo\_time** (`Optional`\[`float`]) – An optional evolution time which should scale the eigenvalue onto the range $(0,1]$ (or $(-0.5,0.5]$ for negative eigenvalues). Defaults to `None` in which case a suitably estimated evolution time is internally computed.
 *   **negative\_evals** (`bool`) – Set `True` to indicate negative eigenvalues need to be handled
 *   **ne\_qfts** (`Optional`\[`List`]) – The QFT and IQFT circuits for handling negative eigenvalues
-
-
 
 `__init__(operator, iqft, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=None, negative_evals=False, ne_qfts=None)`
 
@@ -46,8 +42,6 @@ Specifically, this class is based on PhaseEstimationCircuit with no measurements
 | [`get_register_sizes`](#qiskit.aqua.components.eigs.EigsQPE.get_register_sizes "qiskit.aqua.components.eigs.EigsQPE.get_register_sizes")()               | get register sizes                                                    |
 | [`get_scaling`](#qiskit.aqua.components.eigs.EigsQPE.get_scaling "qiskit.aqua.components.eigs.EigsQPE.get_scaling")()                                    | get scaling                                                           |
 
-
-
 `construct_circuit(mode, register=None)`
 
 Construct the eigenvalues estimation using the PhaseEstimationCircuit
@@ -68,8 +62,6 @@ object for the constructed circuit
 **Raises**
 
 **ValueError** – QPE is only possible as a circuit not as a matrix
-
-
 
 `construct_inverse(mode, circuit)`
 
@@ -95,13 +87,9 @@ circuit.
 *   **NotImplementedError** – not implemented for matrix mode
 *   **ValueError** – Circuit was not constructed beforehand
 
-
-
 `get_register_sizes()`
 
 get register sizes
-
-
 
 `get_scaling()`
 

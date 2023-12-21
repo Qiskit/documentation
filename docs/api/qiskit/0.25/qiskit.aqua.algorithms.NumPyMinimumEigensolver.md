@@ -1,7 +1,5 @@
 # qiskit.aqua.algorithms.NumPyMinimumEigensolver
 
-
-
 `NumPyMinimumEigensolver(operator=None, aux_operators=None, filter_criterion=None)`
 
 The Numpy Minimum Eigensolver algorithm.
@@ -11,8 +9,6 @@ The Numpy Minimum Eigensolver algorithm.
 *   **operator** (`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]) – Operator instance
 *   **aux\_operators** (`Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]]]) – Auxiliary operators to be evaluated at minimum eigenvalue
 *   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
-
-
 
 `__init__(operator=None, aux_operators=None, filter_criterion=None)`
 
@@ -40,8 +36,6 @@ The Numpy Minimum Eigensolver algorithm.
 | [`operator`](#qiskit.aqua.algorithms.NumPyMinimumEigensolver.operator "qiskit.aqua.algorithms.NumPyMinimumEigensolver.operator")                         | Return the operator.                |
 | [`random`](#qiskit.aqua.algorithms.NumPyMinimumEigensolver.random "qiskit.aqua.algorithms.NumPyMinimumEigensolver.random")                               | Return a numpy random.              |
 
-
-
 `property aux_operators`
 
 Returns the auxiliary operators.
@@ -49,8 +43,6 @@ Returns the auxiliary operators.
 **Return type**
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
-
-
 
 `compute_minimum_eigenvalue(operator=None, aux_operators=None)`
 
@@ -69,8 +61,6 @@ Computes minimum eigenvalue. Operator and aux\_operators can be supplied here an
 
 MinimumEigensolverResult
 
-
-
 `property filter_criterion`
 
 returns the filter criterion if set
@@ -78,8 +68,6 @@ returns the filter criterion if set
 **Return type**
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
-
-
 
 `property operator`
 
@@ -89,13 +77,9 @@ Return the operator.
 
 `Optional`\[`OperatorBase`]
 
-
-
 `property random`
 
 Return a numpy random.
-
-
 
 `run()`
 
@@ -108,8 +92,6 @@ results of an algorithm.
 **Return type**
 
 dict
-
-
 
 `classmethod supports_aux_operators()`
 

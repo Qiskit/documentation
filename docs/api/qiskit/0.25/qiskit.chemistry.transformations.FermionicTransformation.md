@@ -1,7 +1,5 @@
 # qiskit.chemistry.transformations.FermionicTransformation
 
-
-
 `FermionicTransformation(transformation=<FermionicTransformationType.FULL: 'full'>, qubit_mapping=<FermionicQubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`
 
 A transformation from a fermionic problem, represented by a driver, to a qubit operator.
@@ -18,8 +16,6 @@ A transformation from a fermionic problem, represented by a driver, to a qubit o
 **Raises**
 
 [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid symmetry reduction
-
-
 
 `__init__(transformation=<FermionicTransformationType.FULL: 'full'>, qubit_mapping=<FermionicQubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`
 
@@ -55,8 +51,6 @@ A transformation from a fermionic problem, represented by a driver, to a qubit o
 | [`qubit_mapping`](#qiskit.chemistry.transformations.FermionicTransformation.qubit_mapping "qiskit.chemistry.transformations.FermionicTransformation.qubit_mapping")                | Getter of the qubit mapping.            |
 | [`untapered_qubit_op`](#qiskit.chemistry.transformations.FermionicTransformation.untapered_qubit_op "qiskit.chemistry.transformations.FermionicTransformation.untapered_qubit_op") | Getter for the untapered qubit operator |
 
-
-
 `build_hopping_operators(excitations='sd')`
 
 Builds the product of raising and lowering operators (basic excitation operators)
@@ -73,8 +67,6 @@ Builds the product of raising and lowering operators (basic excitation operators
 
 A tuple containing the hopping operators, the types of commutativities and the excitation indices.
 
-
-
 `property commutation_rule`
 
 Getter of the commutation rule
@@ -82,8 +74,6 @@ Getter of the commutation rule
 **Return type**
 
 `bool`
-
-
 
 `get_default_filter_criterion()`
 
@@ -94,8 +84,6 @@ In the fermionic case the default filter ensures that the number of particles is
 **Return type**
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
-
-
 
 `interpret(raw_result)`
 
@@ -113,8 +101,6 @@ Interprets an EigenstateResult in the context of this transformation.
 
 An electronic structure result.
 
-
-
 `property molecule_info`
 
 Getter of the molecule information.
@@ -123,8 +109,6 @@ Getter of the molecule information.
 
 `Dict`\[`str`, `Any`]
 
-
-
 `property qubit_mapping`
 
 Getter of the qubit mapping.
@@ -132,8 +116,6 @@ Getter of the qubit mapping.
 **Return type**
 
 `str`
-
-
 
 `transform(driver, aux_operators=None)`
 
@@ -151,8 +133,6 @@ Transformation from the `driver` to a qubit operator.
 **Returns**
 
 A qubit operator and a dictionary of auxiliary operators.
-
-
 
 `property untapered_qubit_op`
 

@@ -1,12 +1,8 @@
 # qiskit.chemistry.transformations.FermionicQubitMappingType
 
-
-
 `FermionicQubitMappingType(value)`
 
 FermionicQubitMappingType enum
-
-
 
 `__init__()`
 

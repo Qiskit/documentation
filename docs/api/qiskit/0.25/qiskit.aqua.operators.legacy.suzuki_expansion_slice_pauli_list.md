@@ -1,7 +1,5 @@
 # qiskit.aqua.operators.legacy.suzuki\_expansion\_slice\_pauli\_list
 
-
-
 `suzuki_expansion_slice_pauli_list(pauli_list, lam_coef, expansion_order)`
 
 Compute the list of pauli terms for a single slice of the suzuki expansion following the paper [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/quant-ph/0508139.pdf).

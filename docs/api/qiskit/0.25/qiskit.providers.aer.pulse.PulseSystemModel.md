@@ -1,7 +1,5 @@
 # qiskit.providers.aer.pulse.PulseSystemModel
 
-
-
 `PulseSystemModel(hamiltonian=None, u_channel_lo=None, control_channel_labels=None, subsystem_list=None, dt=None)`
 
 Physical model object for pulse simulator.
@@ -34,8 +32,6 @@ Initialize a PulseSystemModel.
 
 [**AerError**](qiskit.providers.aer.AerError#qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if hamiltonian is not None or a HamiltonianModel
 
-
-
 `__init__(hamiltonian=None, u_channel_lo=None, control_channel_labels=None, subsystem_list=None, dt=None)`
 
 Initialize a PulseSystemModel.
@@ -62,8 +58,6 @@ Initialize a PulseSystemModel.
 | [`from_backend`](#qiskit.providers.aer.pulse.PulseSystemModel.from_backend "qiskit.providers.aer.pulse.PulseSystemModel.from_backend")(backend\[, subsystem\_list])                                           | Returns a PulseSystemModel constructed from an OpenPulse enabled backend object. |
 | [`from_config`](#qiskit.providers.aer.pulse.PulseSystemModel.from_config "qiskit.providers.aer.pulse.PulseSystemModel.from_config")(configuration\[, subsystem\_list])                                        | Construct a model from configuration and defaults.                               |
 
-
-
 `calculate_channel_frequencies(qubit_lo_freq=None)`
 
 Calculate frequencies for each channel given qubit\_lo\_freq.
@@ -84,8 +78,6 @@ OrderedDict
 
 **ValueError** – If channel or u\_channel\_lo are invalid.
 
-
-
 `control_channel_index(label)`
 
 Return the index of the control channel with identifying label.
@@ -101,8 +93,6 @@ index of the ControlChannel
 **Return type**
 
 int or None
-
-
 
 `classmethod from_backend(backend, subsystem_list=None)`
 
@@ -124,8 +114,6 @@ the PulseSystemModel constructed from the backend.
 **Raises**
 
 [**AerError**](qiskit.providers.aer.AerError#qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – If channel or u\_channel\_lo are invalid.
-
-
 
 `classmethod from_config(configuration, subsystem_list=None)`
 

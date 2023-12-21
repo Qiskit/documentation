@@ -16,8 +16,6 @@ If we have the weights w\[i], the values v\[i] and the maximum weight W\_max. We
 | [`get_solution`](#qiskit.optimization.applications.ising.knapsack.get_solution "qiskit.optimization.applications.ising.knapsack.get_solution")(x, values)                                            | Get the solution to the knapsack problem from the bitstring that represents to the ground state of the Hamiltonian |
 | [`knapsack_value_weight`](#qiskit.optimization.applications.ising.knapsack.knapsack_value_weight "qiskit.optimization.applications.ising.knapsack.knapsack_value_weight")(solution, values, weights) | Get the total wight and value of the items taken in the knapsack.                                                  |
 
-
-
 `get_operator(values, weights, max_weight)`
 
 Generate Hamiltonian for the knapsack problem.
@@ -53,8 +51,6 @@ operator for the Hamiltonian float: a constant shift for the obj function.
 *   **ValueError** – All values are zero
 *   **ValueError** – max\_weight is negative
 
-
-
 `get_solution(x, values)`
 
 Get the solution to the knapsack problem from the bitstring that represents to the ground state of the Hamiltonian
@@ -73,8 +69,6 @@ corresponding to values that have been taken in the knapsack. i.e. if the soluti
 **Return type**
 
 numpy.ndarray
-
-
 
 `knapsack_value_weight(solution, values, weights)`
 

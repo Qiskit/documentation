@@ -1,7 +1,5 @@
 # qiskit.ignis.characterization.get\_single\_q\_pulse
 
-
-
 `get_single_q_pulse(inst_map, qubits)`
 
 Get the DRAG parameters for the single qubit pulse

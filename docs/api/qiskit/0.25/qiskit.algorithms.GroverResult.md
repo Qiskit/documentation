@@ -1,12 +1,8 @@
 # qiskit.algorithms.GroverResult
 
-
-
 `GroverResult`
 
 Grover Result.
-
-
 
 `__init__()`
 
@@ -30,8 +26,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`oracle_evaluation`](#qiskit.algorithms.GroverResult.oracle_evaluation "qiskit.algorithms.GroverResult.oracle_evaluation") | Whether the classical oracle evaluation of the top measurement was True or False. |
 | [`top_measurement`](#qiskit.algorithms.GroverResult.top_measurement "qiskit.algorithms.GroverResult.top_measurement")       | The most frequently measured output as bitstring.                                 |
 
-
-
 `property assignment`
 
 The post-processed value of the most likely bitstring.
@@ -44,8 +38,6 @@ The post-processed value of the most likely bitstring.
 
 The output of the `post_processing` function of the respective `AmplificationProblem`, where the input is the `top_measurement`. The type is the same as the return type of the post-processing function.
 
-
-
 `property circuit_results`
 
 Return the circuit results. Can be a statevector or counts dictionary.
@@ -53,8 +45,6 @@ Return the circuit results. Can be a statevector or counts dictionary.
 **Return type**
 
 `Union`\[`List`\[`ndarray`], `List`\[`Dict`\[`str`, `int`]], `None`]
-
-
 
 `combine(result)`
 
@@ -68,8 +58,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-
-
 `property iterations`
 
 All the powers of the Grover operator that have been tried.
@@ -82,8 +70,6 @@ All the powers of the Grover operator that have been tried.
 
 The powers of the Grover operator tested.
 
-
-
 `property max_probability`
 
 Return the maximum sampling probability.
@@ -91,8 +77,6 @@ Return the maximum sampling probability.
 **Return type**
 
 `float`
-
-
 
 `property oracle_evaluation`
 
@@ -105,8 +89,6 @@ Whether the classical oracle evaluation of the top measurement was True or False
 **Returns**
 
 The classical oracle evaluation of the top measurement.
-
-
 
 `property top_measurement`
 

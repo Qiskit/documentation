@@ -1,7 +1,5 @@
 # qiskit.circuit.random.random\_circuit
 
-
-
 `random_circuit(num_qubits, depth, max_operands=3, measure=False, conditional=False, reset=False, seed=None)`
 
 Generate random circuit of arbitrary size and form.

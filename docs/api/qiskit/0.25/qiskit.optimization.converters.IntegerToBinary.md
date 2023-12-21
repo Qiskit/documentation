@@ -1,7 +1,5 @@
 # qiskit.optimization.converters.IntegerToBinary
 
-
-
 `IntegerToBinary`
 
 Convert a [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram#qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.QuadraticProgram") into new one by encoding integer with binary variables.
@@ -25,8 +23,6 @@ This bounded-coefficient encoding used in this converted is proposed in \[1], Eq
 
 Annealers. arxiv.org:1706.01945.
 
-
-
 `__init__()`
 
 Initialize self. See help(type(self)) for accurate signature.
@@ -38,8 +34,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.optimization.converters.IntegerToBinary.__init__ "qiskit.optimization.converters.IntegerToBinary.__init__")()     | Initialize self.                                                                           |
 | [`convert`](#qiskit.optimization.converters.IntegerToBinary.convert "qiskit.optimization.converters.IntegerToBinary.convert")(problem) | Convert an integer problem into a new problem with binary variables.                       |
 | [`interpret`](#qiskit.optimization.converters.IntegerToBinary.interpret "qiskit.optimization.converters.IntegerToBinary.interpret")(x) | Convert back the converted problem (binary variables) to the original (integer variables). |
-
-
 
 `convert(problem)`
 
@@ -60,8 +54,6 @@ The converted problem, that contains no integer variables.
 **Raises**
 
 [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if variable or constraint type is not supported.
-
-
 
 `interpret(x)`
 

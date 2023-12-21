@@ -1,7 +1,5 @@
 # qiskit.algorithms.NumPyMinimumEigensolver
 
-
-
 `NumPyMinimumEigensolver(filter_criterion=None)`
 
 The Numpy Minimum Eigensolver algorithm.
@@ -9,8 +7,6 @@ The Numpy Minimum Eigensolver algorithm.
 **Parameters**
 
 **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
-
-
 
 `__init__(filter_criterion=None)`
 
@@ -32,8 +28,6 @@ The Numpy Minimum Eigensolver algorithm.
 | ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | [`filter_criterion`](#qiskit.algorithms.NumPyMinimumEigensolver.filter_criterion "qiskit.algorithms.NumPyMinimumEigensolver.filter_criterion") | returns the filter criterion if set |
 
-
-
 `compute_minimum_eigenvalue(operator, aux_operators=None)`
 
 Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
@@ -51,8 +45,6 @@ Computes minimum eigenvalue. Operator and aux\_operators can be supplied here an
 
 MinimumEigensolverResult
 
-
-
 `property filter_criterion`
 
 returns the filter criterion if set
@@ -60,8 +52,6 @@ returns the filter criterion if set
 **Return type**
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
-
-
 
 `classmethod supports_aux_operators()`
 

@@ -1,7 +1,5 @@
 # qiskit.pulse.builder.phase\_offset
 
-
-
 `phase_offset(phase, *channels)`
 
 Shift the phase of input channels on entry into context and undo on exit.

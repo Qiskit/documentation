@@ -1,7 +1,5 @@
 # qiskit.pulse.builder.acquire
 
-
-
 `acquire(duration, qubit_or_channel, register, **metadata)`
 
 Acquire for a `duration` on a `channel` and store the result in a `register`.

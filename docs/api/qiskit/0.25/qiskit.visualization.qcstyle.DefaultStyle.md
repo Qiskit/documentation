@@ -1,7 +1,5 @@
 # qiskit.visualization.qcstyle.DefaultStyle
 
-
-
 `DefaultStyle`
 
 Creates a Default Style dictionary
@@ -157,8 +155,6 @@ the form (gate\_color, text\_color). Colors can also be entered without the text
     'measure': ('#000000', '#FFFFFF'),
 }
 ```
-
-
 
 `__init__()`
 

@@ -1,7 +1,5 @@
 # qiskit.circuit.Parameter
 
-
-
 `Parameter(name)`
 
 Parameter Class for variable parameters.
@@ -11,8 +9,6 @@ Create a new named [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Param
 **Parameters**
 
 **name** (`str`) – name of the `Parameter`, used for visual representation. This can be any unicode string, e.g. “ϕ”.
-
-
 
 `__init__(name)`
 
@@ -48,25 +44,17 @@ Create a new named [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Param
 | [`name`](#qiskit.circuit.Parameter.name "qiskit.circuit.Parameter.name")                   | Returns the name of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter"). |
 | [`parameters`](#qiskit.circuit.Parameter.parameters "qiskit.circuit.Parameter.parameters") | Returns a set of the unbound Parameters in the expression.                                   |
 
-
-
 `arccos()`
 
 Arccos of a ParameterExpression
-
-
 
 `arcsin()`
 
 Arcsin of a ParameterExpression
 
-
-
 `arctan()`
 
 Arctan of a ParameterExpression
-
-
 
 `assign(parameter, value)`
 
@@ -84,8 +72,6 @@ Assign one parameter to a value, which can either be numeric or another paramete
 **Returns**
 
 A new expression parameterized by any parameters which were not bound by assignment.
-
-
 
 `bind(parameter_values)`
 
@@ -113,8 +99,6 @@ Binds the provided set of parameters to their corresponding values.
 
 A new expression parameterized by any parameters which were not bound by parameter\_values.
 
-
-
 `conjugate()`
 
 Return the conjugate.
@@ -123,19 +107,13 @@ Return the conjugate.
 
 `ParameterExpression`
 
-
-
 `cos()`
 
 Cosine of a ParameterExpression
 
-
-
 `exp()`
 
 Exponential of a ParameterExpression
-
-
 
 `gradient(param)`
 
@@ -153,19 +131,13 @@ Get the derivative of a parameter expression w\.r.t. a specified parameter expre
 
 ParameterExpression representing the gradient of param\_expr w\.r.t. param
 
-
-
 `log()`
 
 Logarithm of a ParameterExpression
 
-
-
 `property name`
 
 Returns the name of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter").
-
-
 
 `property parameters`
 
@@ -175,19 +147,13 @@ Returns a set of the unbound Parameters in the expression.
 
 `Set`
 
-
-
 `sin()`
 
 Sine of a ParameterExpression
 
-
-
 `subs(parameter_map)`
 
 Substitute self with the corresponding parameter in `parameter_map`.
-
-
 
 `tan()`
 

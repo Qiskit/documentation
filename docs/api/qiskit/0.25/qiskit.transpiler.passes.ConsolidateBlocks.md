@@ -1,7 +1,5 @@
 # qiskit.transpiler.passes.ConsolidateBlocks
 
-
-
 `ConsolidateBlocks(*args, **kwargs)`
 
 Replace each block of consecutive gates by a single Unitary node.
@@ -19,8 +17,6 @@ ConsolidateBlocks initializer.
 *   **kak\_basis\_gate** ([*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")) – Basis gate for KAK decomposition.
 *   **force\_consolidate** (*bool*) – Force block consolidation
 *   **basis\_gates** (*List(str)*) – Basis gates from which to choose a KAK gate.
-
-
 
 `__init__(kak_basis_gate=None, force_consolidate=False, basis_gates=None)`
 
@@ -47,15 +43,11 @@ ConsolidateBlocks initializer.
 | [`is_analysis_pass`](#qiskit.transpiler.passes.ConsolidateBlocks.is_analysis_pass "qiskit.transpiler.passes.ConsolidateBlocks.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.ConsolidateBlocks.is_transformation_pass "qiskit.transpiler.passes.ConsolidateBlocks.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-
-
 `property is_analysis_pass`
 
 Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-
 
 `property is_transformation_pass`
 
@@ -63,13 +55,9 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-
-
 `name()`
 
 Return the name of the pass.
-
-
 
 `run(dag)`
 

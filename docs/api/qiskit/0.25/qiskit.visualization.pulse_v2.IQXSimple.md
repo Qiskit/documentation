@@ -1,7 +1,5 @@
 # qiskit.visualization.pulse\_v2.IQXSimple
 
-
-
 `IQXSimple(**kwargs)`
 
 Simple pulse stylesheet without channel notation.
@@ -13,8 +11,6 @@ Simple pulse stylesheet without channel notation.
 *   Do not show snapshot and barrier.
 *   Do not show acquire channels.
 *   Channels are sorted by qubit index.
-
-
 
 `__init__(**kwargs)`
 
@@ -37,47 +33,29 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`update`](#qiskit.visualization.pulse_v2.IQXSimple.update "qiskit.visualization.pulse_v2.IQXSimple.update")(\[E, ]\*\*F)                 | If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k] |
 | [`values`](#qiskit.visualization.pulse_v2.IQXSimple.values "qiskit.visualization.pulse_v2.IQXSimple.values")()                            |                                                                                                                                                                                                                               |
 
-
-
 `clear() → None. Remove all items from D.`
 
-
-
 `copy() → a shallow copy of D`
-
-
 
 `fromkeys(value=None, /)`
 
 Create a new dictionary with keys from iterable and values set to value.
 
-
-
 `get(key, default=None, /)`
 
 Return the value for key if key is in the dictionary, else default.
 
-
-
 `items() → a set-like object providing a view on D’s items`
 
-
-
 `keys() → a set-like object providing a view on D’s keys`
-
-
 
 `pop(k[, d]) → v, remove specified key and return the corresponding value.`
 
 If key is not found, d is returned if given, otherwise KeyError is raised
 
-
-
 `popitem() → (k, v), remove and return some (key, value) pair as a`
 
 2-tuple; but raise KeyError if D is empty.
-
-
 
 `setdefault(key, default=None, /)`
 
@@ -85,12 +63,8 @@ Insert key with a value of default if key is not in the dictionary.
 
 Return the value for key if key is in the dictionary, else default.
 
-
-
 `update([E, ]**F) → None. Update D from dict/iterable E and F.`
 
 If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
-
-
 
 `values() → an object providing a view on D’s values`

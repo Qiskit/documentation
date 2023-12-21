@@ -1,7 +1,5 @@
 # qiskit.aqua.algorithms.NumPyLSsolver
 
-
-
 `NumPyLSsolver(matrix, vector)`
 
 The Numpy LinearSystem algorithm (classical).
@@ -14,8 +12,6 @@ This is a classical counterpart to the [`HHL`](qiskit.aqua.algorithms.HHL#qiskit
 
 *   **matrix** (`Union`\[`List`\[`List`\[`float`]], `ndarray`]) – The input matrix of linear system of equations
 *   **vector** (`Union`\[`List`\[`float`], `ndarray`]) – The input vector of linear system of equations
-
-
 
 `__init__(matrix, vector)`
 
@@ -37,13 +33,9 @@ This is a classical counterpart to the [`HHL`](qiskit.aqua.algorithms.HHL#qiskit
 | ------------------------------------------------------------------------------------------------------ | ---------------------- |
 | [`random`](#qiskit.aqua.algorithms.NumPyLSsolver.random "qiskit.aqua.algorithms.NumPyLSsolver.random") | Return a numpy random. |
 
-
-
 `property random`
 
 Return a numpy random.
-
-
 
 `run()`
 

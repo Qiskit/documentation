@@ -24,8 +24,6 @@ Note the sampling strategy use for all discrete pulses is `midpoint`.
 | [`triangle`](#qiskit.pulse.library.discrete.triangle "qiskit.pulse.library.discrete.triangle")(duration, amp\[, freq, phase, name])             | Generates triangle wave [`Waveform`](qiskit.pulse.Waveform#qiskit.pulse.Waveform "qiskit.pulse.Waveform").                                                       |
 | [`zero`](#qiskit.pulse.library.discrete.zero "qiskit.pulse.library.discrete.zero")(duration\[, name])                                           | Generates zero-sampled [`Waveform`](qiskit.pulse.Waveform#qiskit.pulse.Waveform "qiskit.pulse.Waveform").                                                        |
 
-
-
 `constant(duration, amp, name=None)`
 
 Generates constant-sampled [`Waveform`](qiskit.pulse.Waveform#qiskit.pulse.Waveform "qiskit.pulse.Waveform").
@@ -45,8 +43,6 @@ $$
 **Return type**
 
 `Waveform`
-
-
 
 `cos(duration, amp, freq=None, phase=0, name=None)`
 
@@ -69,8 +65,6 @@ $$
 **Return type**
 
 `Waveform`
-
-
 
 `drag(duration, amp, sigma, beta, name=None, zero_ends=True)`
 
@@ -102,8 +96,6 @@ If `zero_ends == True`, the samples from $g(x)$ are remapped as in [`gaussian()`
 **Return type**
 
 `Waveform`
-
-
 
 `gaussian(duration, amp, sigma, name=None, zero_ends=True)`
 
@@ -139,8 +131,6 @@ Integrated area under the full curve is `amp * np.sqrt(2*np.pi*sigma**2)`
 
 `Waveform`
 
-
-
 `gaussian_deriv(duration, amp, sigma, name=None)`
 
 Generates unnormalized gaussian derivative [`Waveform`](qiskit.pulse.Waveform#qiskit.pulse.Waveform "qiskit.pulse.Waveform").
@@ -163,8 +153,6 @@ i.e. the derivative of the Gaussian function, with center $\mu=$ `duration/2`.
 **Return type**
 
 `Waveform`
-
-
 
 `gaussian_square(duration, amp, sigma, risefall=None, width=None, name=None, zero_ends=True)`
 
@@ -201,8 +189,6 @@ If `zero_ends == True`, the samples for the Gaussian ramps are remapped as in [`
 **Return type**
 
 `Waveform`
-
-
 
 `sawtooth(duration, amp, freq=None, phase=0, name=None)`
 
@@ -248,8 +234,6 @@ plt.plot(range(duration), sawtooth_wave)
 
 `Waveform`
 
-
-
 `sech(duration, amp, sigma, name=None, zero_ends=True)`
 
 Generates unnormalized sech [`Waveform`](qiskit.pulse.Waveform#qiskit.pulse.Waveform "qiskit.pulse.Waveform").
@@ -282,8 +266,6 @@ where $y^*$ is the value of the endpoint samples. This sets the endpoints to $0$
 
 `Waveform`
 
-
-
 `sech_deriv(duration, amp, sigma, name=None)`
 
 Generates unnormalized sech derivative [`Waveform`](qiskit.pulse.Waveform#qiskit.pulse.Waveform "qiskit.pulse.Waveform").
@@ -307,8 +289,6 @@ i.e. the derivative of $\text{sech}$.
 
 `Waveform`
 
-
-
 `sin(duration, amp, freq=None, phase=0, name=None)`
 
 Generates sine wave [`Waveform`](qiskit.pulse.Waveform#qiskit.pulse.Waveform "qiskit.pulse.Waveform").
@@ -330,8 +310,6 @@ $$
 **Return type**
 
 `Waveform`
-
-
 
 `square(duration, amp, freq=None, phase=0, name=None)`
 
@@ -356,8 +334,6 @@ with the convention $\text{sign}(0) = 1$.
 **Return type**
 
 `Waveform`
-
-
 
 `triangle(duration, amp, freq=None, phase=0, name=None)`
 
@@ -402,8 +378,6 @@ plt.plot(range(duration), triangle_wave)
 **Return type**
 
 `Waveform`
-
-
 
 `zero(duration, name=None)`
 

@@ -1,7 +1,5 @@
 # qiskit.pulse.library.Gaussian
 
-
-
 `Gaussian(duration, amp, sigma, name=None)`
 
 A truncated pulse envelope shaped according to the Gaussian function whose mean is centered at the center of the pulse (duration / 2):
@@ -18,8 +16,6 @@ Initialize the gaussian pulse.
 *   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the Gaussian envelope.
 *   **sigma** (`Union`\[`float`, `ParameterExpression`]) – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
 *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
-
-
 
 `__init__(duration, amp, sigma, name=None)`
 
@@ -53,8 +49,6 @@ Initialize the gaussian pulse.
 | [`parameters`](#qiskit.pulse.library.Gaussian.parameters "qiskit.pulse.library.Gaussian.parameters") | Return a dictionary containing the pulse’s parameters. |
 | [`sigma`](#qiskit.pulse.library.Gaussian.sigma "qiskit.pulse.library.Gaussian.sigma")                | The Gaussian standard deviation of the pulse width.    |
 
-
-
 `property amp`
 
 The Gaussian amplitude.
@@ -63,8 +57,6 @@ The Gaussian amplitude.
 
 `Union`\[`complex`, `ParameterExpression`]
 
-
-
 `assign(parameter, value)`
 
 Assign one parameter to a value, which can either be numeric or another parameter expression.
@@ -72,8 +64,6 @@ Assign one parameter to a value, which can either be numeric or another paramete
 **Return type**
 
 `ParametricPulse`
-
-
 
 `assign_parameters(value_dict)`
 
@@ -90,8 +80,6 @@ Return a new ParametricPulse with parameters assigned.
 **Returns**
 
 New pulse with updated parameters.
-
-
 
 `draw(dt=None, style=None, filename=None, interp_method=None, scale=None, interactive=None, draw_title=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)`
 
@@ -139,8 +127,6 @@ Plot the interpolated envelope of pulse.
 
 Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
 
-
-
 `get_waveform()`
 
 Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
@@ -148,8 +134,6 @@ Return a Waveform with samples filled according to the formula that the pulse re
 **Return type**
 
 `Waveform`
-
-
 
 `property id`
 
@@ -159,8 +143,6 @@ Unique identifier for this pulse.
 
 `int`
 
-
-
 `is_parameterized()`
 
 Return True iff the instruction is parameterized.
@@ -168,8 +150,6 @@ Return True iff the instruction is parameterized.
 **Return type**
 
 `bool`
-
-
 
 `property parameters`
 
@@ -179,8 +159,6 @@ Return a dictionary containing the pulse’s parameters.
 
 `Dict`\[`str`, `Any`]
 
-
-
 `property sigma`
 
 The Gaussian standard deviation of the pulse width.
@@ -188,8 +166,6 @@ The Gaussian standard deviation of the pulse width.
 **Return type**
 
 `Union`\[`float`, `ParameterExpression`]
-
-
 
 `validate_parameters()`
 

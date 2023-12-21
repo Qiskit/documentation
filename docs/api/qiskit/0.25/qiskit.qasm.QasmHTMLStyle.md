@@ -1,12 +1,8 @@
 # qiskit.qasm.QasmHTMLStyle
 
-
-
 `QasmHTMLStyle`
 
 A style for OpenQasm in a HTML env (e.g. Jupyter widget).
-
-
 
 `__init__()`
 

@@ -1,7 +1,5 @@
 # qiskit.aqua.algorithms.BernsteinVazirani
 
-
-
 `BernsteinVazirani(oracle, quantum_instance=None)`
 
 The Bernstein-Vazirani algorithm.
@@ -12,8 +10,6 @@ The Bernstein-Vazirani algorithm is an extension / restriction of the Deutsch-Jo
 
 *   **oracle** (`Oracle`) – The oracle component
 *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
-
-
 
 `__init__(oracle, quantum_instance=None)`
 
@@ -39,8 +35,6 @@ The Bernstein-Vazirani algorithm is an extension / restriction of the Deutsch-Jo
 | [`quantum_instance`](#qiskit.aqua.algorithms.BernsteinVazirani.quantum_instance "qiskit.aqua.algorithms.BernsteinVazirani.quantum_instance") | Returns quantum instance. |
 | [`random`](#qiskit.aqua.algorithms.BernsteinVazirani.random "qiskit.aqua.algorithms.BernsteinVazirani.random")                               | Return a numpy random.    |
 
-
-
 `property backend`
 
 Returns backend.
@@ -48,8 +42,6 @@ Returns backend.
 **Return type**
 
 `Union`\[`Backend`, `BaseBackend`]
-
-
 
 `construct_circuit(measurement=False)`
 
@@ -67,8 +59,6 @@ the QuantumCircuit object for the constructed circuit
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-
-
 `property quantum_instance`
 
 Returns quantum instance.
@@ -77,13 +67,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 `property random`
 
 Return a numpy random.
-
-
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -105,8 +91,6 @@ dict
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-
 
 `set_backend(backend, **kwargs)`
 

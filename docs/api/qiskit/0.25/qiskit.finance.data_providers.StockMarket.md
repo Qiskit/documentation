@@ -1,12 +1,8 @@
 # qiskit.finance.data\_providers.StockMarket
 
-
-
 `StockMarket(value)`
 
 Stock Market enum
-
-
 
 `__init__()`
 

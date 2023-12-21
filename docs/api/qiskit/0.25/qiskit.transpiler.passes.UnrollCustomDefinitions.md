@@ -1,7 +1,5 @@
 # qiskit.transpiler.passes.UnrollCustomDefinitions
 
-
-
 `UnrollCustomDefinitions(*args, **kwargs)`
 
 Unrolls instructions with custom definitions.
@@ -12,8 +10,6 @@ Unrolls instructions with custom definitions.
 
 *   **equivalence\_library** ([*EquivalenceLibrary*](qiskit.circuit.EquivalenceLibrary#qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – The equivalence library which will be used by the BasisTranslator pass. (Instructions in this library will not be unrolled by this pass.)
 *   **basis\_gates** (*list\[str]*) – Target basis names to unroll to, e.g. \[‘u3’, ‘cx’].
-
-
 
 `__init__(equivalence_library, basis_gates)`
 
@@ -39,15 +35,11 @@ Unrolls instructions with custom definitions.
 | [`is_analysis_pass`](#qiskit.transpiler.passes.UnrollCustomDefinitions.is_analysis_pass "qiskit.transpiler.passes.UnrollCustomDefinitions.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.UnrollCustomDefinitions.is_transformation_pass "qiskit.transpiler.passes.UnrollCustomDefinitions.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-
-
 `property is_analysis_pass`
 
 Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-
 
 `property is_transformation_pass`
 
@@ -55,13 +47,9 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-
-
 `name()`
 
 Return the name of the pass.
-
-
 
 `run(dag)`
 

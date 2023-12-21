@@ -1,7 +1,5 @@
 # qiskit.chemistry.components.variational\_forms.UVCC
 
-
-
 `UVCC(num_qubits, basis, degrees, reps=1, excitations=None, initial_state=None, qubit_mapping='direct', num_time_slices=1, shallow_circuit_concat=True)`
 
 This trial wavefunction is a Unitary Vibrational Coupled-Cluster Single and Double excitations variational form. For more information, see Ollitrault Pauline J., Chemical science 11 (2020): 6842-6855.
@@ -17,8 +15,6 @@ This trial wavefunction is a Unitary Vibrational Coupled-Cluster Single and Doub
 *   **qubit\_mapping** (`str`) – the qubits mapping type. Only ‘direct’ is supported at the moment.
 *   **num\_time\_slices** (`int`) – parameters for dynamics.
 *   **shallow\_circuit\_concat** (`bool`) – indicate whether to use shallow (cheap) mode for circuit concatenation
-
-
 
 `__init__(num_qubits, basis, degrees, reps=1, excitations=None, initial_state=None, qubit_mapping='direct', num_time_slices=1, shallow_circuit_concat=True)`
 
@@ -56,8 +52,6 @@ This trial wavefunction is a Unitary Vibrational Coupled-Cluster Single and Doub
 | [`setting`](#qiskit.chemistry.components.variational_forms.UVCC.setting "qiskit.chemistry.components.variational_forms.UVCC.setting")                                                                   |                                                             |
 | [`support_parameterized_circuit`](#qiskit.chemistry.components.variational_forms.UVCC.support_parameterized_circuit "qiskit.chemistry.components.variational_forms.UVCC.support_parameterized_circuit") | Whether or not the sub-class support parameterized circuit. |
 
-
-
 `static compute_excitation_lists(basis, degrees)`
 
 Compute the list with all possible excitation for given orders
@@ -78,8 +72,6 @@ List of excitation indexes in terms of modes and modals
 **Raises**
 
 **ValueError** – If excitation degree is greater than size of basis
-
-
 
 `construct_circuit(parameters, q=None)`
 
@@ -103,8 +95,6 @@ Quantum Circuit a quantum circuit with given parameters
 *   **ValueError** – the number of parameters is incorrect.
 *   **ValueError** – if num\_qubits has not been set and is still None
 
-
-
 `excitations_in_qubit_format()`
 
 **Gives the list of excitation indexes in terms of qubit indexes rather**
@@ -119,13 +109,9 @@ than in modes and modals
 
 List of excitation indexes
 
-
-
 `static get_entangler_map(map_type, num_qubits, offset=0)`
 
 returns entangler map
-
-
 
 `property num_parameters`
 
@@ -139,8 +125,6 @@ An integer indicating the number of parameters.
 
 int
 
-
-
 `property num_qubits`
 
 Number of qubits of the variational form.
@@ -152,8 +136,6 @@ An integer indicating the number of qubits.
 **Return type**
 
 int
-
-
 
 `property parameter_bounds`
 
@@ -167,19 +149,13 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 list
 
-
-
 `property preferred_init_points`
 
 Return preferred init points.
 
 If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
 
-
-
 `property setting`
-
-
 
 `property support_parameterized_circuit`
 
@@ -192,8 +168,6 @@ indicate the sub-class support parameterized circuit
 **Return type**
 
 boolean
-
-
 
 `static validate_entangler_map(entangler_map, num_qubits)`
 

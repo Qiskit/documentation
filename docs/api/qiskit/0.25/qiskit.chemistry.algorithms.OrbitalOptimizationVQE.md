@@ -1,7 +1,5 @@
 # qiskit.chemistry.algorithms.OrbitalOptimizationVQE
 
-
-
 `OrbitalOptimizationVQE(transformation, solver, initial_point=None, orbital_rotation=None, bounds=None, iterative_oo=True, iterative_oo_iterations=2)`
 
 A ground state calculation employing the OOVQE algorithm. The Variational Quantum Eigensolver (VQE) algorithm enhanced with the Orbital Optimization (OO). The core of the approach resides in the optimization of orbitals through the AO-to-MO coefficients matrix C. In the usual VQE, the latter remains constant throughout the simulation. Here, its elements are modified according to C=Ce^(-kappa) where kappa is an anti-hermitian matrix. This transformation preserves the spectrum but modifies the amplitudes of the ground state of given operator such that in the end a given ansatz can be closest to that ground state, producing larger overlap and lower eigenvalue than conventional VQE. Kappa is parametrized and optimized inside the OOVQE in the same way as the gate angles. Therefore, at each step of OOVQE the coefficient matrix C is modified and the operator is recomputed, unlike usual VQE where operator remains constant. Iterative OO refers to optimization in two steps, first the wavefunction and then the orbitals. It allows for faster optimization as the operator is not recomputed when wavefunction is optimized. It is recommended to use the iterative method on real device/qasm simulator with noise to facilitate the convergence of the classical optimizer. For more details of this method refer to: [https://aip.scitation.org/doi/10.1063/1.5141835](https://aip.scitation.org/doi/10.1063/1.5141835)
@@ -19,8 +17,6 @@ A ground state calculation employing the OOVQE algorithm. The Variational Quantu
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the number of orbital optimization iterations is less or equal to zero.
-
-
 
 `__init__(transformation, solver, initial_point=None, orbital_rotation=None, bounds=None, iterative_oo=True, iterative_oo_iterations=2)`
 
@@ -54,8 +50,6 @@ A ground state calculation employing the OOVQE algorithm. The Variational Quantu
 | [`solver`](#qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solver "qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solver")                         | Returns the minimum eigensolver or factory.                                   |
 | [`transformation`](#qiskit.chemistry.algorithms.OrbitalOptimizationVQE.transformation "qiskit.chemistry.algorithms.OrbitalOptimizationVQE.transformation") | Returns the transformation used to obtain a qubit operator from the molecule. |
 
-
-
 `evaluate_operators(state, operators)`
 
 Evaluates additional operators at the given state.
@@ -73,8 +67,6 @@ Evaluates additional operators at the given state.
 
 The expectation value of the given operator(s). The return type will be identical to the format of the provided operators.
 
-
-
 `returns_groundstate()`
 
 Whether the eigensolver returns the ground state or only ground state energy.
@@ -82,8 +74,6 @@ Whether the eigensolver returns the ground state or only ground state energy.
 **Return type**
 
 `bool`
-
-
 
 `solve(driver, aux_operators=None)`
 
@@ -106,8 +96,6 @@ Compute Ground State properties.
 
 An eigenstate result. Depending on the transformation this can be an electronic structure or bosonic result.
 
-
-
 `property solver`
 
 Returns the minimum eigensolver or factory.
@@ -115,8 +103,6 @@ Returns the minimum eigensolver or factory.
 **Return type**
 
 `Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
-
-
 
 `property transformation`
 

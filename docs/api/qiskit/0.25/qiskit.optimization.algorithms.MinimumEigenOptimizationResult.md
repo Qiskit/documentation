@@ -1,7 +1,5 @@
 # qiskit.optimization.algorithms.MinimumEigenOptimizationResult
 
-
-
 `MinimumEigenOptimizationResult(x, fval, variables, status, samples=None, min_eigen_solver_result=None, raw_samples=None)`
 
 Minimum Eigen Optimizer Result.
@@ -15,8 +13,6 @@ Minimum Eigen Optimizer Result.
 *   **min\_eigen\_solver\_result** (`Optional`\[`MinimumEigensolverResult`]) – the result obtained from the underlying algorithm.
 *   **samples** (`Optional`\[`List`\[`SolutionSample`]]) – the x value, the objective function value of the original problem, the probability, and the status of sampling.
 *   **raw\_samples** (`Optional`\[`List`\[`SolutionSample`]]) – the x values of the QUBO, the objective function value of the QUBO, and the probability of sampling.
-
-
 
 `__init__(x, fval, variables, status, samples=None, min_eigen_solver_result=None, raw_samples=None)`
 
@@ -52,8 +48,6 @@ Minimum Eigen Optimizer Result.
 | [`variables_dict`](#qiskit.optimization.algorithms.MinimumEigenOptimizationResult.variables_dict "qiskit.optimization.algorithms.MinimumEigenOptimizationResult.variables_dict")                            | Returns the optimal value as a dictionary of the variable name and corresponding value. |
 | [`x`](#qiskit.optimization.algorithms.MinimumEigenOptimizationResult.x "qiskit.optimization.algorithms.MinimumEigenOptimizationResult.x")                                                                   | Returns the optimal value found in the optimization or None in case of FAILURE.         |
 
-
-
 `property fval`
 
 Returns the optimal function value.
@@ -66,8 +60,6 @@ Returns the optimal function value.
 
 The function value corresponding to the optimal value found in the optimization.
 
-
-
 `get_correlations()`
 
 Get \<Zi x Zj> correlation matrix from samples.
@@ -76,8 +68,6 @@ Get \<Zi x Zj> correlation matrix from samples.
 
 `ndarray`
 
-
-
 `property min_eigen_solver_result`
 
 Returns a result object obtained from the instance of `MinimumEigensolver`.
@@ -85,8 +75,6 @@ Returns a result object obtained from the instance of `MinimumEigensolver`.
 **Return type**
 
 `MinimumEigensolverResult`
-
-
 
 `property raw_results`
 
@@ -102,8 +90,6 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
-
-
 `property raw_samples`
 
 Returns the list of raw solution samples of `MinimumEigensolver`.
@@ -115,8 +101,6 @@ Returns the list of raw solution samples of `MinimumEigensolver`.
 **Returns**
 
 The list of raw solution samples of `MinimumEigensolver`.
-
-
 
 `property samples`
 
@@ -130,8 +114,6 @@ Returns the list of solution samples
 
 The list of solution samples.
 
-
-
 `property status`
 
 Returns the termination status of the optimization algorithm.
@@ -143,8 +125,6 @@ Returns the termination status of the optimization algorithm.
 **Returns**
 
 The termination status of the algorithm.
-
-
 
 `property variable_names`
 
@@ -158,8 +138,6 @@ Returns the list of variable names of the optimization problem.
 
 The list of variable names of the optimization problem.
 
-
-
 `property variables`
 
 Returns the list of variables of the optimization problem.
@@ -172,8 +150,6 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
-
-
 `property variables_dict`
 
 Returns the optimal value as a dictionary of the variable name and corresponding value.
@@ -185,8 +161,6 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 **Returns**
 
 The optimal value as a dictionary of the variable name and corresponding value.
-
-
 
 `property x`
 

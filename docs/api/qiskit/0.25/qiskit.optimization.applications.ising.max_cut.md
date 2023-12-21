@@ -12,8 +12,6 @@ Convert max-cut instances into Pauli list Deal with Gset format. See [https://we
 | [`get_operator`](#qiskit.optimization.applications.ising.max_cut.get_operator "qiskit.optimization.applications.ising.max_cut.get_operator")(weight\_matrix)      | Generate Hamiltonian for the max-cut problem of a graph. |
 | [`max_cut_value`](#qiskit.optimization.applications.ising.max_cut.max_cut_value "qiskit.optimization.applications.ising.max_cut.max_cut_value")(x, w)             | Compute the value of a cut.                              |
 
-
-
 `get_graph_solution(x)`
 
 Get graph solution from binary string.
@@ -30,8 +28,6 @@ graph solution as binary numpy array.
 
 numpy.ndarray
 
-
-
 `get_operator(weight_matrix)`
 
 Generate Hamiltonian for the max-cut problem of a graph.
@@ -47,8 +43,6 @@ operator for the Hamiltonian float: a constant shift for the obj function.
 **Return type**
 
 [WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
-
-
 
 `max_cut_value(x, w)`
 

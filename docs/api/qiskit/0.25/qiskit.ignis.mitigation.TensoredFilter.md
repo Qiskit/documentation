@@ -1,7 +1,5 @@
 # qiskit.ignis.mitigation.TensoredFilter
 
-
-
 `TensoredFilter(cal_matrices, substate_labels_list, mit_pattern)`
 
 Tensored measurement error mitigation filter.
@@ -15,8 +13,6 @@ Initialize a tensored measurement error mitigation filter using the cal\_matrice
 *   **cal\_matrices** (`matrix`) – the calibration matrices for applying the correction.
 *   **substate\_labels\_list** (`list`) – for each calibration matrix a list of the states (as strings, states in the subspace)
 *   **mit\_pattern** (`list`) – for each calibration matrix a list of the logical qubit indices (as int, states in the subspace)
-
-
 
 `__init__(cal_matrices, substate_labels_list, mit_pattern)`
 
@@ -45,8 +41,6 @@ Initialize a tensored measurement error mitigation filter using the cal\_matrice
 | [`nqubits`](#qiskit.ignis.mitigation.TensoredFilter.nqubits "qiskit.ignis.mitigation.TensoredFilter.nqubits")                                        | Return the number of qubits.    |
 | [`qubit_list_sizes`](#qiskit.ignis.mitigation.TensoredFilter.qubit_list_sizes "qiskit.ignis.mitigation.TensoredFilter.qubit_list_sizes")             | Return \_qubit\_list\_sizes.    |
 | [`substate_labels_list`](#qiskit.ignis.mitigation.TensoredFilter.substate_labels_list "qiskit.ignis.mitigation.TensoredFilter.substate_labels_list") | Return \_substate\_labels\_list |
-
-
 
 `apply(raw_data, method='least_squares', meas_layout=None)`
 
@@ -99,13 +93,9 @@ dict or [Result](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result
 
 **QiskitError** – if raw\_data is not in a one of the defined forms.
 
-
-
 `property cal_matrices`
 
 Return cal\_matrices.
-
-
 
 `compute_index_of_cal_mat(state, pos_qubits, indices)`
 
@@ -115,8 +105,6 @@ Return the index of (pseudo inverse) calibration matrix for the input quantum st
 
 `int`
 
-
-
 `flip_state(state, mat_index, flip_poses)`
 
 Flip the state according to the chosen qubit positions
@@ -125,19 +113,13 @@ Flip the state according to the chosen qubit positions
 
 `str`
 
-
-
 `property nqubits`
 
 Return the number of qubits. See also MeasurementFilter.apply()
 
-
-
 `property qubit_list_sizes`
 
 Return \_qubit\_list\_sizes.
-
-
 
 `property substate_labels_list`
 

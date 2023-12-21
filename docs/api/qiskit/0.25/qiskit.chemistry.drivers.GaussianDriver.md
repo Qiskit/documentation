@@ -1,7 +1,5 @@
 # qiskit.chemistry.drivers.GaussianDriver
 
-
-
 `GaussianDriver(config='# rhf/sto-3g scf(conventional)\\n\\nh2 molecule\\n\\n0 1\\nH 0.0 0.0 0.0\\nH 0.0 0.0 0.735\\n\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)`
 
 Qiskit chemistry driver using the Gaussian™ 16 program.
@@ -20,8 +18,6 @@ This driver uses the Gaussian open-source Gaussian 16 interfacing code in order 
 **Raises**
 
 [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
-
-
 
 `__init__(config='# rhf/sto-3g scf(conventional)\\n\\nh2 molecule\\n\\n0 1\\nH 0.0 0.0 0.0\\nH 0.0 0.0 0.735\\n\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)`
 
@@ -52,8 +48,6 @@ This driver uses the Gaussian open-source Gaussian 16 interfacing code in order 
 | [`molecule`](#qiskit.chemistry.drivers.GaussianDriver.molecule "qiskit.chemistry.drivers.GaussianDriver.molecule")                            | return molecule                                 |
 | [`supports_molecule`](#qiskit.chemistry.drivers.GaussianDriver.supports_molecule "qiskit.chemistry.drivers.GaussianDriver.supports_molecule") | True for derived classes that support Molecule. |
 
-
-
 `property basis`
 
 return basis
@@ -61,8 +55,6 @@ return basis
 **Return type**
 
 `str`
-
-
 
 `property hf_method`
 
@@ -72,8 +64,6 @@ return Hartree-Fock method
 
 `str`
 
-
-
 `property molecule`
 
 return molecule
@@ -81,8 +71,6 @@ return molecule
 **Return type**
 
 `Optional`\[`Molecule`]
-
-
 
 `run()`
 
@@ -95,8 +83,6 @@ Runs driver to produce a QMolecule output.
 **Returns**
 
 A QMolecule containing the molecular data.
-
-
 
 `property supports_molecule`
 

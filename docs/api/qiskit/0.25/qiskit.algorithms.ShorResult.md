@@ -1,12 +1,8 @@
 # qiskit.algorithms.ShorResult
 
-
-
 `ShorResult`
 
 Shor Result.
-
-
 
 `__init__()`
 
@@ -27,8 +23,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`successful_counts`](#qiskit.algorithms.ShorResult.successful_counts "qiskit.algorithms.ShorResult.successful_counts") | returns successful counts |
 | [`total_counts`](#qiskit.algorithms.ShorResult.total_counts "qiskit.algorithms.ShorResult.total_counts")                | returns total counts      |
 
-
-
 `combine(result)`
 
 Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
@@ -41,8 +35,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-
-
 `property factors`
 
 returns factors
@@ -51,8 +43,6 @@ returns factors
 
 `List`\[`List`\[`int`]]
 
-
-
 `property successful_counts`
 
 returns successful counts
@@ -60,8 +50,6 @@ returns successful counts
 **Return type**
 
 `int`
-
-
 
 `property total_counts`
 

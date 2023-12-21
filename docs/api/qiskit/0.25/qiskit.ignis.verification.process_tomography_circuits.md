@@ -1,7 +1,5 @@
 # qiskit.ignis.verification.process\_tomography\_circuits
 
-
-
 `process_tomography_circuits(circuit, measured_qubits, prepared_qubits=None, meas_labels='Pauli', meas_basis='Pauli', prep_labels='Pauli', prep_basis='Pauli')`
 
 Return a list of quantum process tomography circuits.

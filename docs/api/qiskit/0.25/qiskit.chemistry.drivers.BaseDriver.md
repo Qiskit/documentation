@@ -1,7 +1,5 @@
 # qiskit.chemistry.drivers.BaseDriver
 
-
-
 `BaseDriver(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)`
 
 Base class for Qiskit’s chemistry drivers.
@@ -16,8 +14,6 @@ Base class for Qiskit’s chemistry drivers.
 **Raises**
 
 [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Molecule passed but driver doesn’t support it.
-
-
 
 `abstract __init__(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)`
 
@@ -47,8 +43,6 @@ Base class for Qiskit’s chemistry drivers.
 | [`molecule`](#qiskit.chemistry.drivers.BaseDriver.molecule "qiskit.chemistry.drivers.BaseDriver.molecule")                            | return molecule                                 |
 | [`supports_molecule`](#qiskit.chemistry.drivers.BaseDriver.supports_molecule "qiskit.chemistry.drivers.BaseDriver.supports_molecule") | True for derived classes that support Molecule. |
 
-
-
 `property basis`
 
 return basis
@@ -56,8 +50,6 @@ return basis
 **Return type**
 
 `str`
-
-
 
 `property hf_method`
 
@@ -67,8 +59,6 @@ return Hartree-Fock method
 
 `str`
 
-
-
 `property molecule`
 
 return molecule
@@ -76,8 +66,6 @@ return molecule
 **Return type**
 
 `Optional`\[`Molecule`]
-
-
 
 `property supports_molecule`
 

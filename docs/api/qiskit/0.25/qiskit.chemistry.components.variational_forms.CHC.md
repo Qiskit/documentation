@@ -1,7 +1,5 @@
 # qiskit.chemistry.components.variational\_forms.CHC
 
-
-
 `CHC(num_qubits=None, reps=1, ladder=False, excitations=None, entanglement='full', initial_state=None)`
 
 This trial wavefunction is the Compact Heuristic for Chemistry.
@@ -20,8 +18,6 @@ The trial wavefunction is as defined in Ollitrault Pauline J., Chemical science 
 *   **excitations** (`Optional`\[`List`\[`List`\[`int`]]]) – indices corresponding to the excitations to include in the circuit
 *   **entanglement** (`Union`\[`str`, `List`\[`int`]]) – physical connections between the qubits
 *   **initial\_state** (`Union`\[`QuantumCircuit`, `InitialState`, `None`]) – an initial state to prepend to the variational form
-
-
 
 `__init__(num_qubits=None, reps=1, ladder=False, excitations=None, entanglement='full', initial_state=None)`
 
@@ -54,8 +50,6 @@ The trial wavefunction is as defined in Ollitrault Pauline J., Chemical science 
 | [`setting`](#qiskit.chemistry.components.variational_forms.CHC.setting "qiskit.chemistry.components.variational_forms.CHC.setting")                                                                   |                                                             |
 | [`support_parameterized_circuit`](#qiskit.chemistry.components.variational_forms.CHC.support_parameterized_circuit "qiskit.chemistry.components.variational_forms.CHC.support_parameterized_circuit") | Whether or not the sub-class support parameterized circuit. |
 
-
-
 `construct_circuit(parameters, q=None)`
 
 Construct the variational form, given its parameters.
@@ -79,13 +73,9 @@ a quantum circuit with given parameters
 *   **ValueError** – if num\_qubits has not been set and is still None
 *   **ValueError** – only supports single and double excitations at the moment.
 
-
-
 `static get_entangler_map(map_type, num_qubits, offset=0)`
 
 returns entangler map
-
-
 
 `property num_parameters`
 
@@ -99,8 +89,6 @@ An integer indicating the number of parameters.
 
 int
 
-
-
 `property num_qubits`
 
 Number of qubits of the variational form.
@@ -112,8 +100,6 @@ An integer indicating the number of qubits.
 **Return type**
 
 int
-
-
 
 `property parameter_bounds`
 
@@ -127,19 +113,13 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 list
 
-
-
 `property preferred_init_points`
 
 Return preferred init points.
 
 If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
 
-
-
 `property setting`
-
-
 
 `property support_parameterized_circuit`
 
@@ -152,8 +132,6 @@ indicate the sub-class support parameterized circuit
 **Return type**
 
 boolean
-
-
 
 `static validate_entangler_map(entangler_map, num_qubits)`
 

@@ -1,7 +1,5 @@
 # qiskit.pulse.builder.delay
 
-
-
 `delay(duration, channel, name=None)`
 
 Delay on a `channel` for a `duration`.

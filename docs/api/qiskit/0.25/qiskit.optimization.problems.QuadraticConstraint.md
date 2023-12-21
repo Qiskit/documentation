@@ -1,7 +1,5 @@
 # qiskit.optimization.problems.QuadraticConstraint
 
-
-
 `QuadraticConstraint(quadratic_program, name, linear, quadratic, sense, rhs)`
 
 Representation of a quadratic constraint.
@@ -16,8 +14,6 @@ Constructs a quadratic constraint, consisting of a linear and a quadratic term.
 *   **quadratic** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`]]) – The coefficients specifying the linear part of the constraint.
 *   **sense** (`ConstraintSense`) – The sense of the constraint.
 *   **rhs** (`float`) – The right-hand-side of the constraint.
-
-
 
 `__init__(quadratic_program, name, linear, quadratic, sense, rhs)`
 
@@ -50,13 +46,9 @@ Constructs a quadratic constraint, consisting of a linear and a quadratic term.
 | [`rhs`](#qiskit.optimization.problems.QuadraticConstraint.rhs "qiskit.optimization.problems.QuadraticConstraint.rhs")                                           | Returns the right-hand-side of the constraint.                                          |
 | [`sense`](#qiskit.optimization.problems.QuadraticConstraint.sense "qiskit.optimization.problems.QuadraticConstraint.sense")                                     | Returns the sense of the constraint.                                                    |
 
-
-
 ### Sense
 
 alias of `qiskit.optimization.problems.constraint.ConstraintSense`
-
-
 
 `evaluate(x)`
 
@@ -74,8 +66,6 @@ Evaluate the left-hand-side of the constraint.
 
 The left-hand-side of the constraint given the variable values.
 
-
-
 `property linear`
 
 Returns the linear expression corresponding to the left-hand-side of the constraint.
@@ -87,8 +77,6 @@ Returns the linear expression corresponding to the left-hand-side of the constra
 **Returns**
 
 The left-hand-side linear expression.
-
-
 
 `property name`
 
@@ -102,8 +90,6 @@ Returns the name of the constraint.
 
 The name of the constraint.
 
-
-
 `property quadratic`
 
 Returns the quadratic expression corresponding to the left-hand-side of the constraint.
@@ -115,8 +101,6 @@ Returns the quadratic expression corresponding to the left-hand-side of the cons
 **Returns**
 
 The left-hand-side quadratic expression.
-
-
 
 `property quadratic_program`
 
@@ -130,8 +114,6 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-
-
 `property rhs`
 
 Returns the right-hand-side of the constraint.
@@ -143,8 +125,6 @@ Returns the right-hand-side of the constraint.
 **Returns**
 
 The right-hand-side of the constraint.
-
-
 
 `property sense`
 

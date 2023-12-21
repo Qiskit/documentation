@@ -1,12 +1,8 @@
 # qiskit.aqua.operators.evolutions.TrotterizationFactory
 
-
-
 `TrotterizationFactory`
 
 A factory for conveniently creating TrotterizationBase instances.
-
-
 
 `__init__()`
 
@@ -18,8 +14,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
 | [`__init__`](#qiskit.aqua.operators.evolutions.TrotterizationFactory.__init__ "qiskit.aqua.operators.evolutions.TrotterizationFactory.__init__")()     | Initialize self.                                                  |
 | [`build`](#qiskit.aqua.operators.evolutions.TrotterizationFactory.build "qiskit.aqua.operators.evolutions.TrotterizationFactory.build")(\[mode, reps]) | A factory for conveniently creating TrotterizationBase instances. |
-
-
 
 `static build(mode='trotter', reps=1)`
 
