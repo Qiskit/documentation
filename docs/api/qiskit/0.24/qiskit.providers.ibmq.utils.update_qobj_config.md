@@ -2,8 +2,6 @@
 
 # qiskit.providers.ibmq.utils.update\_qobj\_config
 
-
-
 `update_qobj_config(qobj, backend_options=None, noise_model=None)`
 
 Update a `Qobj` configuration from backend options and a noise model.

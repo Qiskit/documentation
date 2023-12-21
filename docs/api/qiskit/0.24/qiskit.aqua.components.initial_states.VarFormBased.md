@@ -2,8 +2,6 @@
 
 # qiskit.aqua.components.initial\_states.VarFormBased
 
-
-
 `VarFormBased(var_form, params)`
 
 The variational form based initial state.
@@ -20,8 +18,6 @@ As an example this [notebook](https://github.com/Qiskit/qiskit-community-tutoria
 **Raises**
 
 **ValueError** – Invalid input
-
-
 
 `__init__(var_form, params)`
 
@@ -40,8 +36,6 @@ As an example this [notebook](https://github.com/Qiskit/qiskit-community-tutoria
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
 | [`__init__`](#qiskit.aqua.components.initial_states.VarFormBased.__init__ "qiskit.aqua.components.initial_states.VarFormBased.__init__")(var\_form, params)                            | **type var\_form**`Union`\[`VariationalForm`, `QuantumCircuit`] |
 | [`construct_circuit`](#qiskit.aqua.components.initial_states.VarFormBased.construct_circuit "qiskit.aqua.components.initial_states.VarFormBased.construct_circuit")(\[mode, register]) | Construct the statevector of desired initial state.             |
-
-
 
 `construct_circuit(mode='circuit', register=None)`
 

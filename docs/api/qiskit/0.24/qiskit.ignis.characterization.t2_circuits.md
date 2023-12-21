@@ -2,8 +2,6 @@
 
 # qiskit.ignis.characterization.t2\_circuits
 
-
-
 `t2_circuits(num_of_gates, gate_time, qubits, n_echos=1, phase_alt_echo=False)`
 
 Generate circuits for T2 (echo) measurement, by a CPMG sequence.

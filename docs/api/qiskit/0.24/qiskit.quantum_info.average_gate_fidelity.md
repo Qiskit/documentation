@@ -2,8 +2,6 @@
 
 # qiskit.quantum\_info.average\_gate\_fidelity
 
-
-
 `average_gate_fidelity(channel, target=None, require_cp=True, require_tp=False)`
 
 Return the average gate fidelity of a noisy quantum channel.

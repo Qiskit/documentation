@@ -2,8 +2,6 @@
 
 # qiskit.pulse.InstructionScheduleMap
 
-
-
 `InstructionScheduleMap`
 
 Mapping from [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") [`qiskit.circuit.Instruction`](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and qubits to [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") s. In particular, the mapping is formatted as type:
@@ -17,8 +15,6 @@ where the first key is the name of a circuit instruction (e.g. `'u1'`, `'measure
 These can usually be seen as gate calibrations.
 
 Initialize a circuit instruction to schedule mapper instance.
-
-
 
 `__init__()`
 
@@ -45,8 +41,6 @@ Initialize a circuit instruction to schedule mapper instance.
 | ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
 | [`instructions`](#qiskit.pulse.InstructionScheduleMap.instructions "qiskit.pulse.InstructionScheduleMap.instructions") | Return all instructions which have definitions. |
 
-
-
 `add(instruction, qubits, schedule)`
 
 Add a new known instruction for the given qubits and its mapping to a pulse schedule.
@@ -65,8 +59,6 @@ Add a new known instruction for the given qubits and its mapping to a pulse sche
 
 `None`
 
-
-
 `assert_has(instruction, qubits)`
 
 Error if the given instruction is not defined.
@@ -83,8 +75,6 @@ Error if the given instruction is not defined.
 **Return type**
 
 `None`
-
-
 
 `get(instruction, qubits, *params, **kwparams)`
 
@@ -105,8 +95,6 @@ Return the defined [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qis
 
 The Schedule defined for the input.
 
-
-
 `get_parameters(instruction, qubits)`
 
 Return the list of parameters taken by the given instruction on the given qubits.
@@ -123,8 +111,6 @@ Return the list of parameters taken by the given instruction on the given qubits
 **Returns**
 
 The names of the parameters required by the instruction.
-
-
 
 `has(instruction, qubits)`
 
@@ -143,8 +129,6 @@ Is the instruction defined for the given qubits?
 
 True iff the instruction is defined.
 
-
-
 `property instructions`
 
 Return all instructions which have definitions.
@@ -158,8 +142,6 @@ By default, these are typically the basis gates along with other instructions su
 **Returns**
 
 The names of all the circuit instructions which have Schedule definitions in this.
-
-
 
 `pop(instruction, qubits, *params, **kwparams)`
 
@@ -180,8 +162,6 @@ Remove and return the defined `Schedule` for the given instruction on the given 
 
 The Schedule defined for the input.
 
-
-
 `qubit_instructions(qubits)`
 
 Return a list of the instruction names that are defined by the backend for the given qubit or qubits.
@@ -199,8 +179,6 @@ Return a list of the instruction names that are defined by the backend for the g
 All the instructions which are defined on the qubits.
 
 For 1 qubit, all the 1Q instructions defined. For multiple qubits, all the instructions which apply to that whole set of qubits (e.g. `qubits=[0, 1]` may return `['cx']`).
-
-
 
 `qubits_with_instruction(instruction)`
 
@@ -221,8 +199,6 @@ Qubit indices which have the given instruction defined. This is a list of tuples
 **Raises**
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the instruction is not found.
-
-
 
 `remove(instruction, qubits)`
 

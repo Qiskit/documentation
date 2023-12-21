@@ -2,8 +2,6 @@
 
 # qiskit.ignis.logging.IgnisLogging
 
-
-
 `IgnisLogging(log_config_path=None)`
 
 Singleton class to configure file logging via IgnisLogger
@@ -22,8 +20,6 @@ max\_size: \<# bytes> - maximum size limit for a given log file. If not specifie
 
 max\_rotations: \<count> - maximum number of log files to rotate (oldest file is deleted in case count is reached)
 
-
-
 `__init__()`
 
 Initialize self. See help(type(self)) for accurate signature.
@@ -38,8 +34,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`get_log_file`](#qiskit.ignis.logging.IgnisLogging.get_log_file "qiskit.ignis.logging.IgnisLogging.get_log_file")()                         | Get the name of the log file                                  |
 | [`get_logger`](#qiskit.ignis.logging.IgnisLogging.get_logger "qiskit.ignis.logging.IgnisLogging.get_logger")(name)                           | Return an IgnisLogger object                                  |
 
-
-
 `default_datetime_fmt()`
 
 Get the default date time format used for writing log entries
@@ -51,8 +45,6 @@ Get the default date time format used for writing log entries
 **Returns**
 
 Default date time format
-
-
 
 `get_file_handler()`
 
@@ -66,8 +58,6 @@ The configured RotatingFileHandler object
 
 RotatingFileHandler
 
-
-
 `get_log_file()`
 
 Get the name of the log file
@@ -79,8 +69,6 @@ Get the name of the log file
 **Returns**
 
 Name of the log file
-
-
 
 `get_logger(name)`
 

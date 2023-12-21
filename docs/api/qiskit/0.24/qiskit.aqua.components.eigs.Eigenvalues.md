@@ -2,15 +2,11 @@
 
 # qiskit.aqua.components.eigs.Eigenvalues
 
-
-
 `Eigenvalues`
 
 Base class for eigenvalue estimation.
 
 This method should initialize the module and use an exception if a component of the module is not available.
-
-
 
 `abstract __init__()`
 
@@ -25,8 +21,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`construct_inverse`](#qiskit.aqua.components.eigs.Eigenvalues.construct_inverse "qiskit.aqua.components.eigs.Eigenvalues.construct_inverse")(mode, circuit)     | Construct the inverse eigenvalue estimation quantum circuit. |
 | [`get_register_sizes`](#qiskit.aqua.components.eigs.Eigenvalues.get_register_sizes "qiskit.aqua.components.eigs.Eigenvalues.get_register_sizes")()               | get register sizes                                           |
 | [`get_scaling`](#qiskit.aqua.components.eigs.Eigenvalues.get_scaling "qiskit.aqua.components.eigs.Eigenvalues.get_scaling")()                                    | get scaling                                                  |
-
-
 
 `abstract construct_circuit(mode, register=None)`
 
@@ -48,8 +42,6 @@ object for the eigenvalue estimation circuit.
 **Raises**
 
 **NotImplementedError** – not implemented
-
-
 
 `construct_inverse(mode, circuit)`
 
@@ -75,13 +67,9 @@ circuit.
 *   **NotImplementedError** – not implemented for matrix mode
 *   **ValueError** – Circuit was not constructed beforehand
 
-
-
 `abstract get_register_sizes()`
 
 get register sizes
-
-
 
 `abstract get_scaling()`
 

@@ -2,8 +2,6 @@
 
 # qiskit.aqua.utils.split\_dataset\_to\_data\_and\_labels
 
-
-
 `split_dataset_to_data_and_labels(dataset, class_names=None)`
 
 Split dataset to data and labels numpy array

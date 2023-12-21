@@ -2,8 +2,6 @@
 
 # qiskit.ignis.characterization.anglecal\_cx\_circuits
 
-
-
 `anglecal_cx_circuits(max_reps, qubits, control_qubits, angleerr=0.0)`
 
 Generates circuit for measuring the angle error of the cx gate

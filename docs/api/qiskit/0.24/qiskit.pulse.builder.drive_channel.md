@@ -2,8 +2,6 @@
 
 # qiskit.pulse.builder.drive\_channel
 
-
-
 `drive_channel(qubit)`
 
 Return `DriveChannel` for `qubit` on the active builder backend.

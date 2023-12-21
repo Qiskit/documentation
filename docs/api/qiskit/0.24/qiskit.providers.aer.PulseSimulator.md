@@ -2,8 +2,6 @@
 
 # qiskit.providers.aer.PulseSimulator
 
-
-
 `PulseSimulator(configuration=None, properties=None, defaults=None, provider=None, **backend_options)`
 
 Pulse schedule simulator backend.
@@ -83,8 +81,6 @@ This method should initialize the module and its configuration, and raise an exc
 
 [**AerError**](qiskit.providers.aer.AerError#qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
 
-
-
 `__init__(configuration=None, properties=None, defaults=None, provider=None, **backend_options)`
 
 Aer class for backends.
@@ -128,19 +124,13 @@ This method should initialize the module and its configuration, and raise an exc
 | ------------------------------------------------------------------------------------------------------- | ------------------------------------ |
 | [`options`](#qiskit.providers.aer.PulseSimulator.options "qiskit.providers.aer.PulseSimulator.options") | Return the current simulator options |
 
-
-
 `available_methods()`
 
 Return the available simulation methods.
 
-
-
 `clear_options()`
 
 Reset the simulator options to default values.
-
-
 
 `configuration()`
 
@@ -153,8 +143,6 @@ the configuration for the backend.
 **Return type**
 
 [BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
-
-
 
 `defaults()`
 
@@ -170,13 +158,9 @@ backend does not support pulse.
 
 [PulseDefaults](qiskit.providers.models.PulseDefaults#qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
 
-
-
 `classmethod from_backend(backend, **options)`
 
 Initialize simulator from backend.
-
-
 
 `name()`
 
@@ -190,13 +174,9 @@ the name of the backend.
 
 str
 
-
-
 `property options`
 
 Return the current simulator options
-
-
 
 `properties()`
 
@@ -212,8 +192,6 @@ backend does not have properties set.
 
 [BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
-
-
 `provider()`
 
 Return the backend Provider.
@@ -225,8 +203,6 @@ the Provider responsible for the backend.
 **Return type**
 
 [BaseProvider](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
-
-
 
 `run(qobj, *args, backend_options=None, validate=True, **run_options)`
 
@@ -252,13 +228,9 @@ The simulation job.
 *   kwarg options specified in `run_options` will override options of the same kwarg specified in the simulator options, the `backend_options` and the `Qobj.config`.
 *   The entries in the `backend_options` will be combined with the `Qobj.config` dictionary with the values of entries in `backend_options` taking precedence. This kwarg is deprecated and direct kwarg’s should be used for options to pass them to `run_options`.
 
-
-
 `set_options(**backend_options)`
 
 Set the simulator options
-
-
 
 `status()`
 
@@ -271,8 +243,6 @@ the status of the backend.
 **Return type**
 
 [BackendStatus](qiskit.providers.models.BackendStatus#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-
 
 `version()`
 

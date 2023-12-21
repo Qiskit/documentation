@@ -2,8 +2,6 @@
 
 # qiskit.ignis.verification.get\_ghz\_mqc
 
-
-
 `get_ghz_mqc(n, delta, full_measurement=True)`
 
 This function creates an MQC circuit with n qubits, where the middle phase rotation around the z axis is by delta

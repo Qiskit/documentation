@@ -2,8 +2,6 @@
 
 # qiskit.pulse.builder.call
 
-
-
 `call(target)`
 
 Call the `target` within the currently active builder context.

@@ -2,8 +2,6 @@
 
 # qiskit.chemistry.algorithms.pes\_samplers.PCAExtrapolator
 
-
-
 `PCAExtrapolator(extrapolator=None, kernel=None, window=2)`
 
 A wrapper extrapolator which reduces the points’ dimensionality with PCA, performs extrapolation in the transformed pca space, and inverse transforms the results before returning. A user specifies the kernel within how the PCA transformation should be done.
@@ -19,8 +17,6 @@ Constructor.
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if kernel is not defined in sklearn module.
-
-
 
 `__init__(extrapolator=None, kernel=None, window=2)`
 
@@ -44,8 +40,6 @@ Constructor.
 | [`extrapolate`](#qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator.extrapolate "qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator.extrapolate")(points, param\_dict)    | Extrapolate at specified point of interest given a set of variational parameters. |
 | [`factory`](#qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator.factory "qiskit.chemistry.algorithms.pes_samplers.PCAExtrapolator.factory")(mode, \*\*kwargs)                   | Factory method for constructing extrapolators.                                    |
 
-
-
 `extrapolate(points, param_dict)`
 
 Extrapolate at specified point of interest given a set of variational parameters. This method transforms the parameters in PCA space before performing the internal extrapolation. The parameters are transformed back to regular space after extrapolation.
@@ -63,8 +57,6 @@ Extrapolate at specified point of interest given a set of variational parameters
 **Returns**
 
 Dictionary of variational parameters for extrapolated point(s).
-
-
 
 `static factory(mode, **kwargs)`
 

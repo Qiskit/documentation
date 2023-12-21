@@ -2,8 +2,6 @@
 
 # qiskit.finance.components.uncertainty\_problems.FixedIncomeExpectedValue
 
-
-
 `FixedIncomeExpectedValue(uncertainty_model, A, b, cash_flow, c_approx, i_state=None, i_objective=None)`
 
 The Fixed Income Expected Value.
@@ -21,8 +19,6 @@ Constructor.
 *   **c\_approx** (`float`) – approximation scaling factor
 *   **i\_state** (`Union`\[`List`\[`int`], `ndarray`, `None`]) – indices of qubits that represent the state
 *   **i\_objective** (`Optional`\[`int`]) – index of target qubit to apply the rotation to
-
-
 
 `__init__(uncertainty_model, A, b, cash_flow, c_approx, i_state=None, i_objective=None)`
 
@@ -63,8 +59,6 @@ Constructor.
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
 | [`num_target_qubits`](#qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.num_target_qubits "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.num_target_qubits") | Returns the number of target qubits |
 
-
-
 `build(qc, q, q_ancillas=None, params=None)`
 
 Adds corresponding sub-circuit to given circuit
@@ -75,8 +69,6 @@ Adds corresponding sub-circuit to given circuit
 *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 *   **params** (*list*) – parameters for circuit
-
-
 
 `build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
 
@@ -90,8 +82,6 @@ Adds corresponding controlled sub-circuit to given circuit
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
 
-
-
 `build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled inverse of corresponding sub-circuit to given circuit
@@ -104,19 +94,13 @@ Adds controlled inverse of corresponding sub-circuit to given circuit
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
 
-
-
 `build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-
-
 `build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-
 
 `build_inverse(qc, q, q_ancillas=None)`
 
@@ -128,49 +112,33 @@ Adds inverse of corresponding sub-circuit to given circuit
 *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 
-
-
 `build_inverse_power(qc, q, power, q_ancillas=None)`
 
 Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-
 
 `build_power(qc, q, power, q_ancillas=None)`
 
 Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-
-
 `get_num_qubits()`
 
 returns number of qubits
-
-
 
 `get_num_qubits_controlled()`
 
 returns number of qubits controlled
 
-
-
 `property num_target_qubits`
 
 Returns the number of target qubits
-
-
 
 `required_ancillas()`
 
 returns required ancillas
 
-
-
 `required_ancillas_controlled()`
 
 returns required ancillas controlled
-
-
 
 `value_to_estimation(value)`
 

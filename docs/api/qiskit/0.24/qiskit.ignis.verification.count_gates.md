@@ -2,8 +2,6 @@
 
 # qiskit.ignis.verification.count\_gates
 
-
-
 `count_gates(qobj, basis, qubits)`
 
 Take a compiled qobj and output the number of gates in each circuit.

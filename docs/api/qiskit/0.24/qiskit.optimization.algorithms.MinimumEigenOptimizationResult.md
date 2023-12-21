@@ -2,8 +2,6 @@
 
 # qiskit.optimization.algorithms.MinimumEigenOptimizationResult
 
-
-
 `MinimumEigenOptimizationResult(x, fval, variables, status, samples, min_eigen_solver_result=None)`
 
 Minimum Eigen Optimizer Result.
@@ -16,8 +14,6 @@ Minimum Eigen Optimizer Result.
 *   **status** (`OptimizationResultStatus`) – the termination status of the optimization algorithm.
 *   **samples** (`List`\[`Tuple`\[`str`, `float`, `float`]]) – the basis state as bitstring, the QUBO value, and the probability of sampling.
 *   **min\_eigen\_solver\_result** (`Optional`\[`MinimumEigensolverResult`]) – the result obtained from the underlying algorithm.
-
-
 
 `__init__(x, fval, variables, status, samples, min_eigen_solver_result=None)`
 
@@ -51,8 +47,6 @@ Minimum Eigen Optimizer Result.
 | [`variables_dict`](#qiskit.optimization.algorithms.MinimumEigenOptimizationResult.variables_dict "qiskit.optimization.algorithms.MinimumEigenOptimizationResult.variables_dict")                            | Returns the optimal value as a dictionary of the variable name and corresponding value. |
 | [`x`](#qiskit.optimization.algorithms.MinimumEigenOptimizationResult.x "qiskit.optimization.algorithms.MinimumEigenOptimizationResult.x")                                                                   | Returns the optimal value found in the optimization or None in case of FAILURE.         |
 
-
-
 `property fval`
 
 Returns the optimal function value.
@@ -65,8 +59,6 @@ Returns the optimal function value.
 
 The function value corresponding to the optimal value found in the optimization.
 
-
-
 `get_correlations()`
 
 Get \<Zi x Zj> correlation matrix from samples.
@@ -75,8 +67,6 @@ Get \<Zi x Zj> correlation matrix from samples.
 
 `ndarray`
 
-
-
 `property min_eigen_solver_result`
 
 Returns a result object obtained from the instance of `MinimumEigensolver`.
@@ -84,8 +74,6 @@ Returns a result object obtained from the instance of `MinimumEigensolver`.
 **Return type**
 
 `MinimumEigensolverResult`
-
-
 
 `property raw_results`
 
@@ -101,8 +89,6 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
-
-
 `property samples`
 
 Returns samples.
@@ -110,8 +96,6 @@ Returns samples.
 **Return type**
 
 `List`\[`Tuple`\[`str`, `float`, `float`]]
-
-
 
 `property status`
 
@@ -125,8 +109,6 @@ Returns the termination status of the optimization algorithm.
 
 The termination status of the algorithm.
 
-
-
 `property variable_names`
 
 Returns the list of variable names of the optimization problem.
@@ -138,8 +120,6 @@ Returns the list of variable names of the optimization problem.
 **Returns**
 
 The list of variable names of the optimization problem.
-
-
 
 `property variables`
 
@@ -153,8 +133,6 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
-
-
 `property variables_dict`
 
 Returns the optimal value as a dictionary of the variable name and corresponding value.
@@ -166,8 +144,6 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 **Returns**
 
 The optimal value as a dictionary of the variable name and corresponding value.
-
-
 
 `property x`
 

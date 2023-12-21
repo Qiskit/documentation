@@ -2,8 +2,6 @@
 
 # qiskit.aqua.operators.primitive\_ops.MatrixOp
 
-
-
 `MatrixOp(primitive, coeff=1.0)`
 
 Class for Operators represented by matrices, backed by Terra’s `Operator` module.
@@ -17,8 +15,6 @@ Class for Operators represented by matrices, backed by Terra’s `Operator` modu
 
 *   **TypeError** – invalid parameters.
 *   **ValueError** – invalid parameters.
-
-
 
 `__init__(primitive, coeff=1.0)`
 
@@ -72,8 +68,6 @@ Class for Operators represented by matrices, backed by Terra’s `Operator` modu
 | [`parameters`](#qiskit.aqua.operators.primitive_ops.MatrixOp.parameters "qiskit.aqua.operators.primitive_ops.MatrixOp.parameters") | Return a set of Parameter objects contained in the Operator.    |
 | [`primitive`](#qiskit.aqua.operators.primitive_ops.MatrixOp.primitive "qiskit.aqua.operators.primitive_ops.MatrixOp.primitive")    | The primitive defining the underlying function of the Operator. |
 
-
-
 `add(other)`
 
 Return Operator addition of self and other, overloaded by `+`.
@@ -90,8 +84,6 @@ Return Operator addition of self and other, overloaded by `+`.
 
 An `OperatorBase` equivalent to the sum of self and other.
 
-
-
 `adjoint()`
 
 Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
@@ -103,8 +95,6 @@ Return a new Operator equal to the Operator’s adjoint (conjugate transpose), o
 **Returns**
 
 An `OperatorBase` equivalent to the adjoint of self.
-
-
 
 `assign_parameters(param_dict)`
 
@@ -122,8 +112,6 @@ Binds scalar values to any Terra `Parameters` in the coefficients or primitives 
 
 The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
 
-
-
 `bind_parameters(param_dict)`
 
 Same as assign\_parameters, but maintained for consistency with QuantumCircuit in Terra (which has both assign\_parameters and bind\_parameters).
@@ -131,8 +119,6 @@ Same as assign\_parameters, but maintained for consistency with QuantumCircuit i
 **Return type**
 
 `OperatorBase`
-
-
 
 `property coeff`
 
@@ -145,8 +131,6 @@ The scalar coefficient multiplying the Operator.
 **Returns**
 
 The coefficient.
-
-
 
 `compose(other, permutation=None, front=False)`
 
@@ -172,8 +156,6 @@ Because Terra prints circuits with the initial state at the left side of the cir
 
 An `OperatorBase` equivalent to the function composition of self and other.
 
-
-
 `equals(other)`
 
 Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
@@ -189,8 +171,6 @@ Evaluate Equality between Operators, overloaded by `==`. Only returns True if se
 **Returns**
 
 A bool equal to the equality of self and other.
-
-
 
 `eval(front=None)`
 
@@ -210,8 +190,6 @@ If `front` is None, the matrix-representation of the operator is returned.
 
 The output of the Operator’s evaluation function. If self is a `StateFn`, the result is a float or complex. If self is an Operator (`PrimitiveOp, ComposedOp, SummedOp, EvolvedOp,` etc.), the result is a StateFn. If `front` is None, the matrix-representation of the operator is returned, which is a `MatrixOp` for the operators and a `VectorStateFn` for state-functions. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
 
-
-
 `exp_i()`
 
 Return a `CircuitOp` equivalent to e^-iH for this operator H
@@ -220,8 +198,6 @@ Return a `CircuitOp` equivalent to e^-iH for this operator H
 
 `OperatorBase`
 
-
-
 `log_i(massive=False)`
 
 Return a `MatrixOp` equivalent to log(H)/-i for this operator H. This function is the effective inverse of exp\_i, equivalent to finding the Hermitian Operator which produces self when exponentiated.
@@ -229,8 +205,6 @@ Return a `MatrixOp` equivalent to log(H)/-i for this operator H. This function i
 **Return type**
 
 `OperatorBase`
-
-
 
 `mul(scalar)`
 
@@ -248,8 +222,6 @@ Returns the scalar multiplication of the Operator, overloaded by `*`, including 
 
 An `OperatorBase` equivalent to product of self and scalar.
 
-
-
 `neg()`
 
 Return the Operator’s negation, effectively just multiplying by -1.0, overloaded by `-`.
@@ -261,8 +233,6 @@ Return the Operator’s negation, effectively just multiplying by -1.0, overload
 **Returns**
 
 An `OperatorBase` equivalent to the negation of self.
-
-
 
 `property num_qubits`
 
@@ -276,13 +246,9 @@ The number of qubits over which the Operator is defined. If `op.num_qubits == 5`
 
 The number of qubits accepted by the Operator’s underlying function.
 
-
-
 `property parameters`
 
 Return a set of Parameter objects contained in the Operator.
-
-
 
 `permute(permutation=None)`
 
@@ -304,8 +270,6 @@ A new MatrixOp representing the permuted operator.
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if indices do not define a new index for each qubit.
 
-
-
 `power(exponent)`
 
 Return Operator composed with self multiple times, overloaded by `**`.
@@ -322,8 +286,6 @@ Return Operator composed with self multiple times, overloaded by `**`.
 
 An `OperatorBase` equivalent to self composed with itself exponent times.
 
-
-
 `property primitive`
 
 The primitive defining the underlying function of the Operator.
@@ -335,8 +297,6 @@ The primitive defining the underlying function of the Operator.
 **Returns**
 
 The primitive object.
-
-
 
 `primitive_strings()`
 
@@ -350,8 +310,6 @@ Return a set of strings describing the primitives contained in the Operator. For
 
 A set of strings describing the primitives contained within the Operator.
 
-
-
 `reduce()`
 
 Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
@@ -363,8 +321,6 @@ Try collapsing the Operator structure, usually after some type of conversion, e.
 **Returns**
 
 The reduced `OperatorBase`.
-
-
 
 `tensor(other)`
 
@@ -386,8 +342,6 @@ Because Terra prints circuits and results with qubit 0 at the end of the string 
 
 An `OperatorBase` equivalent to the tensor product of self and other.
 
-
-
 `tensorpower(other)`
 
 Return tensor product with self multiple times, overloaded by `^`.
@@ -404,8 +358,6 @@ Return tensor product with self multiple times, overloaded by `^`.
 
 An `OperatorBase` equivalent to the tensorpower of self by other.
 
-
-
 `to_circuit()`
 
 Returns a `QuantumCircuit` equivalent to this Operator.
@@ -413,8 +365,6 @@ Returns a `QuantumCircuit` equivalent to this Operator.
 **Return type**
 
 `QuantumCircuit`
-
-
 
 `to_circuit_op()`
 
@@ -424,8 +374,6 @@ Returns a `CircuitOp` equivalent to this Operator.
 
 `OperatorBase`
 
-
-
 `to_instruction()`
 
 Returns an `Instruction` equivalent to this Operator.
@@ -433,8 +381,6 @@ Returns an `Instruction` equivalent to this Operator.
 **Return type**
 
 `Instruction`
-
-
 
 `to_legacy_op(massive=False)`
 
@@ -454,8 +400,6 @@ The `LegacyBaseOperator` representing this Operator.
 
 **TypeError** – self is an Operator which cannot be represented by a `LegacyBaseOperator`, such as `StateFn`, proper (non-subclass) `ListOp`, or an Operator with an unbound coeff Parameter.
 
-
-
 `to_matrix(massive=False)`
 
 Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
@@ -468,8 +412,6 @@ Return NumPy representation of the Operator. Represents the evaluation of the Op
 
 The NumPy `ndarray` equivalent to this Operator.
 
-
-
 `to_matrix_op(massive=False)`
 
 Returns a `MatrixOp` equivalent to this Operator.
@@ -477,8 +419,6 @@ Returns a `MatrixOp` equivalent to this Operator.
 **Return type**
 
 `OperatorBase`
-
-
 
 `to_pauli_op(massive=False)`
 

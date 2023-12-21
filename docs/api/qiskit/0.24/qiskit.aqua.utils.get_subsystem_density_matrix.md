@@ -2,8 +2,6 @@
 
 # qiskit.aqua.utils.get\_subsystem\_density\_matrix
 
-
-
 `get_subsystem_density_matrix(statevector, trace_systems)`
 
 Compute the reduced density matrix of a quantum subsystem.

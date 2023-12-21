@@ -2,8 +2,6 @@
 
 # qiskit.providers.aer.noise.device.readout\_error\_values
 
-
-
 `readout_error_values(properties)`
 
 Return readout error values from a devices BackendProperties.

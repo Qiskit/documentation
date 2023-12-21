@@ -2,8 +2,6 @@
 
 # qiskit.pulse.builder.active\_backend
 
-
-
 `active_backend()`
 
 Get the backend of the currently active builder context.

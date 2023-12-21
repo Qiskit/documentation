@@ -2,8 +2,6 @@
 
 # qiskit.quantum\_info.random\_clifford
 
-
-
 `random_clifford(num_qubits, seed=None)`
 
 Return a random Clifford operator.

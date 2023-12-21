@@ -2,8 +2,6 @@
 
 # qiskit.providers.BaseBackend
 
-
-
 `BaseBackend(configuration, provider=None)`
 
 Legacy Base class for backends.
@@ -20,8 +18,6 @@ This method should initialize the module and its configuration, and raise an exc
 **Raises**
 
 **QiskitError** – if an error occurred when instantiating the backend.
-
-
 
 `abstract __init__(configuration, provider=None)`
 
@@ -51,8 +47,6 @@ This method should initialize the module and its configuration, and raise an exc
 | [`status`](#qiskit.providers.BaseBackend.status "qiskit.providers.BaseBackend.status")()                                 | Return the backend status.        |
 | [`version`](#qiskit.providers.BaseBackend.version "qiskit.providers.BaseBackend.version")()                              | Return the backend version.       |
 
-
-
 `configuration()`
 
 Return the backend configuration.
@@ -64,8 +58,6 @@ the configuration for the backend.
 **Return type**
 
 [BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
-
-
 
 `name()`
 
@@ -79,8 +71,6 @@ the name of the backend.
 
 str
 
-
-
 `properties()`
 
 Return the backend properties.
@@ -92,8 +82,6 @@ the configuration for the backend. If the backend does not support properties, i
 **Return type**
 
 [BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
-
-
 
 `provider()`
 
@@ -107,8 +95,6 @@ the Provider responsible for the backend.
 
 [BaseProvider](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
 
-
-
 `abstract run(qobj)`
 
 Run a Qobj on the the backend.
@@ -116,8 +102,6 @@ Run a Qobj on the the backend.
 **Parameters**
 
 **qobj** ([*Qobj*](qiskit.qobj.Qobj#qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – the Qobj to be executed.
-
-
 
 `status()`
 
@@ -130,8 +114,6 @@ the status of the backend.
 **Return type**
 
 [BackendStatus](qiskit.providers.models.BackendStatus#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-
 
 `version()`
 

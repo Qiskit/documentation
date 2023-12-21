@@ -2,8 +2,6 @@
 
 # qiskit.ignis.measurement.SklearnIQDiscriminator
 
-
-
 `SklearnIQDiscriminator(classifier, cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)`
 
 A generic discriminant analysis discriminator for IQ data that takes an sklearn classifier as an argument.
@@ -16,8 +14,6 @@ A generic discriminant analysis discriminator for IQ data that takes an sklearn 
 *   **expected\_states** (*List\[str]*) – a list that should have the same length as schedules. All results in cal\_results are used if schedules is None. expected\_states must have the corresponding length.
 *   **standardize** (*bool*) – if true the discriminator will standardize the xdata using the internal method \_scale\_data.
 *   **schedules** (*Union\[List\[str], List\[*[*Schedule*](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")*]]*) – The schedules or a subset of schedules in cal\_results used to train the discriminator. The user may also pass the name of the schedules instead of the schedules. If schedules is None, then all the schedules in cal\_results are used.
-
-
 
 `__init__(classifier, cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)`
 
@@ -53,8 +49,6 @@ A generic discriminant analysis discriminator for IQ data that takes an sklearn 
 | [`fitted`](#qiskit.ignis.measurement.SklearnIQDiscriminator.fitted "qiskit.ignis.measurement.SklearnIQDiscriminator.fitted")                            | True if the discriminator has been fitted to calibration data. |
 | [`schedules`](#qiskit.ignis.measurement.SklearnIQDiscriminator.schedules "qiskit.ignis.measurement.SklearnIQDiscriminator.schedules")                   | Returns the schedules with which the discriminator was fitted. |
 
-
-
 `add_data(result, expected_states, refit=True, schedules=None)`
 
 **Parameters**
@@ -63,8 +57,6 @@ A generic discriminant analysis discriminator for IQ data that takes an sklearn 
 *   **expected\_states** (`List`\[`str`]) – the expected states of the results in result.
 *   **refit** (`bool`) – refit the discriminator if True.
 *   **schedules** (`Union`\[`List`\[`str`], `List`\[`Schedule`], `None`]) – The schedules or a subset of schedules in cal\_results used to train the discriminator. The user may also pass the name of the schedules instead of the schedules. If schedules is None, then all the schedules in cal\_results are used.
-
-
 
 `discriminate(x_data)`
 
@@ -82,25 +74,17 @@ Applies the discriminator to x\_data.
 
 the discriminated x\_data as a list of labels.
 
-
-
 `property expected_states`
 
 Returns the expected states used to train the discriminator.
-
-
 
 `fit()`
 
 Fits the discriminator using self.\_xdata and self.\_ydata.
 
-
-
 `property fitted`
 
 True if the discriminator has been fitted to calibration data.
-
-
 
 `format_iq_data(iq_data)`
 
@@ -121,8 +105,6 @@ A list of shots where each entry is a list of IQ points.
 **Raises**
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – if the measurement return type is unknown
-
-
 
 `get_xdata(results, schedule_type_to_get, schedules=None)`
 
@@ -146,8 +128,6 @@ data as a list of features. Each feature is a list.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – if IQ data could not be found
 
-
-
 `get_ydata(results, schedule_type_to_get, schedules=None)`
 
 Retrieves the expected states (ydata) for the discriminator.
@@ -168,8 +148,6 @@ y data with the same length as the x data.
 
 list
 
-
-
 `is_calibration(result_name)`
 
 Identify if a name corresponds to a calibration name identified by the regex pattern self.\_cal\_pattern.
@@ -187,8 +165,6 @@ calibration result.
 **Return type**
 
 bool
-
-
 
 `plot(axs=None, show_boundary=False, show_fitting_data=True, flag_misclassified=False, qubits_to_plot=None, title=True)`
 
@@ -217,8 +193,6 @@ tuple
 
 **QiskitError** – If matplotlib is not installed, or there is invalid input
 
-
-
 `plot_xdata(axs, results, color=None)`
 
 Add the relevant IQ data from the Qiskit Result, or list thereof, to the given axes as a scatter plot.
@@ -232,8 +206,6 @@ Add the relevant IQ data from the Qiskit Result, or list thereof, to the given a
 **Raises**
 
 **QiskitError** – If not enough axis instances are provided
-
-
 
 `property schedules`
 

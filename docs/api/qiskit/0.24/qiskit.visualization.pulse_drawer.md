@@ -2,8 +2,6 @@
 
 # qiskit.visualization.pulse\_drawer
 
-
-
 `pulse_drawer(data, dt=1, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, plot_all=False, plot_range=None, interactive=False, table=False, label=False, framechange=True, channels=None, show_framechange_channels=True)`
 
 Plot the interpolated envelope of pulse and schedule.

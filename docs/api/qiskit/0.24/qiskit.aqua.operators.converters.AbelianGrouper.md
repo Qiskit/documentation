@@ -2,8 +2,6 @@
 
 # qiskit.aqua.operators.converters.AbelianGrouper
 
-
-
 `AbelianGrouper(traverse=True)`
 
 The AbelianGrouper converts SummedOps into a sum of Abelian sums.
@@ -13,8 +11,6 @@ Meaning, it will traverse the Operator, and when it finds a SummedOp, it will ev
 **Parameters**
 
 **traverse** (`bool`) – Whether to convert only the Operator passed to `convert`, or traverse down that Operator.
-
-
 
 `__init__(traverse=True)`
 
@@ -29,8 +25,6 @@ Meaning, it will traverse the Operator, and when it finds a SummedOp, it will ev
 | [`__init__`](#qiskit.aqua.operators.converters.AbelianGrouper.__init__ "qiskit.aqua.operators.converters.AbelianGrouper.__init__")(\[traverse])                            | **type traverse**`bool`                                                                                                                                                                                 |
 | [`convert`](#qiskit.aqua.operators.converters.AbelianGrouper.convert "qiskit.aqua.operators.converters.AbelianGrouper.convert")(operator)                                  | Check if operator is a SummedOp, in which case covert it into a sum of mutually commuting sums, or if the Operator contains sub-Operators and `traverse` is True, attempt to convert any sub-Operators. |
 | [`group_subops`](#qiskit.aqua.operators.converters.AbelianGrouper.group_subops "qiskit.aqua.operators.converters.AbelianGrouper.group_subops")(list\_op\[, fast, use\_nx]) | Given a ListOp, attempt to group into Abelian ListOps of the same type.                                                                                                                                 |
-
-
 
 `convert(operator)`
 
@@ -47,8 +41,6 @@ Check if operator is a SummedOp, in which case covert it into a sum of mutually 
 **Returns**
 
 The converted Operator.
-
-
 
 `classmethod group_subops(list_op, fast=None, use_nx=None)`
 

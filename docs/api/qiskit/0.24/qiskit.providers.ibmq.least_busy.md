@@ -2,8 +2,6 @@
 
 # qiskit.providers.ibmq.least\_busy
 
-
-
 `least_busy(backends, reservation_lookahead=60)`
 
 Return the least busy backend from a list.

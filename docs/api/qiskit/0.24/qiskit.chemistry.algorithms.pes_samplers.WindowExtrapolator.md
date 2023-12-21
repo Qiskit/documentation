@@ -2,8 +2,6 @@
 
 # qiskit.chemistry.algorithms.pes\_samplers.WindowExtrapolator
 
-
-
 `WindowExtrapolator(extrapolator=None, window=2)`
 
 An extrapolator which wraps another extrapolator, limiting the internal extrapolator’s ground truth parameter set to a fixed window size.
@@ -14,8 +12,6 @@ Constructor.
 
 *   **extrapolator** (`Union`\[`PolynomialExtrapolator`, `DifferentialExtrapolator`, `None`]) – ‘internal’ extrapolator that performs extrapolation on variational parameters based on data window
 *   **window** (`int`) – Number of previous points to use for extrapolation. A value of zero indicates that all previous points will be used for bootstrapping.
-
-
 
 `__init__(extrapolator=None, window=2)`
 
@@ -41,8 +37,6 @@ Constructor.
 | [`extrapolator`](#qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.extrapolator "qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.extrapolator") | Returns the internal extrapolator. |
 | [`window`](#qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.window "qiskit.chemistry.algorithms.pes_samplers.WindowExtrapolator.window")                   | Returns the size of the window.    |
 
-
-
 `extrapolate(points, param_dict)`
 
 Extrapolate at specified point of interest given a set of variational parameters. Based on the specified window, a subset of the data points will be used for extrapolation. A default window of 2 points is used, while a value of zero indicates that all previous points will be used for extrapolation. This method defines the data window before performing the internal extrapolation.
@@ -60,8 +54,6 @@ Extrapolate at specified point of interest given a set of variational parameters
 
 Dictionary of variational parameters for extrapolated point(s).
 
-
-
 `property extrapolator`
 
 Returns the internal extrapolator.
@@ -73,8 +65,6 @@ Returns the internal extrapolator.
 **Returns**
 
 The internal extrapolator.
-
-
 
 `static factory(mode, **kwargs)`
 
@@ -96,8 +86,6 @@ A newly created extrapolator instance.
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
-
-
 
 `property window`
 

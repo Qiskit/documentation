@@ -2,13 +2,9 @@
 
 # qiskit.aqua.algorithms.ClassicalAlgorithm
 
-
-
 `ClassicalAlgorithm`
 
 Base class for Classical Algorithms.
-
-
 
 `__init__()`
 
@@ -27,13 +23,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | ---------------------------------------------------------------------------------------------------------------- | ---------------------- |
 | [`random`](#qiskit.aqua.algorithms.ClassicalAlgorithm.random "qiskit.aqua.algorithms.ClassicalAlgorithm.random") | Return a numpy random. |
 
-
-
 `property random`
 
 Return a numpy random.
-
-
 
 `run()`
 

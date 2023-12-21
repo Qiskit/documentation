@@ -2,8 +2,6 @@
 
 # qiskit.pulse.instructions.Play
 
-
-
 `Play(pulse, channel, name=None)`
 
 This instruction is responsible for applying a pulse on a channel.
@@ -21,8 +19,6 @@ Create a new pulse instruction.
 **Raises**
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If pulse is not a Pulse type.
-
-
 
 `__init__(pulse, channel, name=None)`
 
@@ -70,8 +66,6 @@ Create a new pulse instruction.
 | [`stop_time`](#qiskit.pulse.instructions.Play.stop_time "qiskit.pulse.instructions.Play.stop_time")          | Relative end time of this instruction.                                                                                       |
 | [`timeslots`](#qiskit.pulse.instructions.Play.timeslots "qiskit.pulse.instructions.Play.timeslots")          | Occupied time slots by this instruction.                                                                                     |
 
-
-
 `append(schedule, name=None)`
 
 Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
@@ -84,8 +78,6 @@ Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pu
 **Return type**
 
 `Schedule`
-
-
 
 `assign_parameters(value_dict)`
 
@@ -103,8 +95,6 @@ Modify and return self with parameters assigned according to the input.
 
 Self with updated parameters.
 
-
-
 `ch_duration(*channels)`
 
 Return duration of the supplied channels in this Instruction.
@@ -116,8 +106,6 @@ Return duration of the supplied channels in this Instruction.
 **Return type**
 
 `int`
-
-
 
 `ch_start_time(*channels)`
 
@@ -131,8 +119,6 @@ Return minimum start time for supplied channels.
 
 `int`
 
-
-
 `ch_stop_time(*channels)`
 
 Return maximum start time for supplied channels.
@@ -145,8 +131,6 @@ Return maximum start time for supplied channels.
 
 `int`
 
-
-
 `property channel`
 
 Return the [`Channel`](qiskit.pulse.channels#Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
@@ -155,8 +139,6 @@ Return the [`Channel`](qiskit.pulse.channels#Channel "qiskit.pulse.channels.Chan
 
 [`PulseChannel`](qiskit.pulse.channels#PulseChannel "qiskit.pulse.channels.PulseChannel")
 
-
-
 `property channels`
 
 Returns channels that this schedule uses.
@@ -164,8 +146,6 @@ Returns channels that this schedule uses.
 **Return type**
 
 `Tuple`\[[`Channel`](qiskit.pulse.channels#Channel "qiskit.pulse.channels.Channel")]
-
-
 
 `property command`
 
@@ -178,8 +158,6 @@ The deprecated command if available.
 **Return type**
 
 [Command](qiskit.providers.models.Command#qiskit.providers.models.Command "qiskit.providers.models.Command")
-
-
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`
 
@@ -208,8 +186,6 @@ A matplotlib figure object of the pulse schedule
 
 matplotlib.figure
 
-
-
 `property duration`
 
 Duration of this instruction.
@@ -217,8 +193,6 @@ Duration of this instruction.
 **Return type**
 
 `int`
-
-
 
 `flatten()`
 
@@ -228,8 +202,6 @@ Return itself as already single instruction.
 
 `Instruction`
 
-
-
 `property id`
 
 Unique identifier for this instruction.
@@ -237,8 +209,6 @@ Unique identifier for this instruction.
 **Return type**
 
 `int`
-
-
 
 `insert(start_time, schedule, name=None)`
 
@@ -254,8 +224,6 @@ Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pu
 
 `Schedule`
 
-
-
 `property instructions`
 
 Iterable for getting instructions from Schedule tree.
@@ -263,8 +231,6 @@ Iterable for getting instructions from Schedule tree.
 **Return type**
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
-
-
 
 `property name`
 
@@ -274,8 +240,6 @@ Name of this instruction.
 
 `str`
 
-
-
 `property operands`
 
 Return instruction operands.
@@ -284,8 +248,6 @@ Return instruction operands.
 
 `Tuple`
 
-
-
 `property pulse`
 
 A description of the samples that will be played.
@@ -293,8 +255,6 @@ A description of the samples that will be played.
 **Return type**
 
 `Pulse`
-
-
 
 `shift(time, name=None)`
 
@@ -309,8 +269,6 @@ Return a new schedule shifted forward by time.
 
 `Schedule`
 
-
-
 `property start_time`
 
 Relative begin time of this instruction.
@@ -319,8 +277,6 @@ Relative begin time of this instruction.
 
 `int`
 
-
-
 `property stop_time`
 
 Relative end time of this instruction.
@@ -328,8 +284,6 @@ Relative end time of this instruction.
 **Return type**
 
 `int`
-
-
 
 `property timeslots`
 

@@ -2,8 +2,6 @@
 
 # qiskit.pulse.Waveform
 
-
-
 `Waveform(samples, name=None, epsilon=1e-07)`
 
 A pulse specified completely by complex-valued samples; each sample is played for the duration of the backend cycle-time, dt.
@@ -15,8 +13,6 @@ Create new sample pulse command.
 *   **samples** (`Union`\[`ndarray`, `List`\[`complex`]]) – Complex array of the samples in the pulse envelope.
 *   **name** (`Optional`\[`str`]) – Unique name to identify the pulse.
 *   **epsilon** (`float`) – Pulse sample norm tolerance for clipping. If any sample’s norm exceeds unity by less than or equal to epsilon it will be clipped to unit norm. If the sample norm is greater than 1+epsilon an error will be raised.
-
-
 
 `__init__(samples, name=None, epsilon=1e-07)`
 
@@ -43,8 +39,6 @@ Create new sample pulse command.
 | [`id`](#qiskit.pulse.Waveform.id "qiskit.pulse.Waveform.id")                | Unique identifier for this pulse. |
 | [`samples`](#qiskit.pulse.Waveform.samples "qiskit.pulse.Waveform.samples") | Return sample values.             |
 
-
-
 `assign_parameters(value_dict)`
 
 Return a new pulse with parameters assigned.
@@ -60,8 +54,6 @@ Return a new pulse with parameters assigned.
 **Returns**
 
 New pulse with updated parameters.
-
-
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False)`
 
@@ -84,8 +76,6 @@ A matplotlib figure object of the pulse envelope
 
 matplotlib.figure
 
-
-
 `property id`
 
 Unique identifier for this pulse.
@@ -93,8 +83,6 @@ Unique identifier for this pulse.
 **Return type**
 
 `int`
-
-
 
 `property samples`
 

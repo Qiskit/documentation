@@ -2,8 +2,6 @@
 
 # qiskit.providers.aer.noise.phase\_damping\_error
 
-
-
 `phase_damping_error(param_phase, canonical_kraus=True)`
 
 Return a single-qubit combined phase and amplitude damping quantum error channel.

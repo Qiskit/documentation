@@ -2,13 +2,9 @@
 
 # qiskit.chemistry.drivers.HFMethodType
 
-
-
 `HFMethodType(value)`
 
 HFMethodType Enum
-
-
 
 `__init__()`
 

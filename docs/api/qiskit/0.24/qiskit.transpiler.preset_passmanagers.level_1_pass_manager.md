@@ -2,8 +2,6 @@
 
 # qiskit.transpiler.preset\_passmanagers.level\_1\_pass\_manager
 
-
-
 `level_1_pass_manager(pass_manager_config)`
 
 Level 1 pass manager: light optimization by simple adjacent gate collapsing.

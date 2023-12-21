@@ -2,13 +2,9 @@
 
 # qiskit.providers.basicaer.BasicAerJob
 
-
-
 `BasicAerJob(backend, job_id, fn, qobj)`
 
 BasicAerJob class.
-
-
 
 ### \_executor
 
@@ -24,8 +20,6 @@ Initializes the asynchronous job.
 
 *   **backend** – the backend used to run the job.
 *   **job\_id** – a unique id in the context of the backend used to run the job.
-
-
 
 `__init__(backend, job_id, fn, qobj)`
 
@@ -54,19 +48,13 @@ Initializes the asynchronous job.
 | [`submit`](#qiskit.providers.basicaer.BasicAerJob.submit "qiskit.providers.basicaer.BasicAerJob.submit")()                                                                     | Submit the job to the backend for execution.                                        |
 | [`wait_for_final_state`](#qiskit.providers.basicaer.BasicAerJob.wait_for_final_state "qiskit.providers.basicaer.BasicAerJob.wait_for_final_state")(\[timeout, wait, callback]) | Poll the job status until it progresses to a final state such as `DONE` or `ERROR`. |
 
-
-
 `backend()`
 
 Return the instance of the backend used for this job.
 
-
-
 `cancel()`
 
 Attempt to cancel the job.
-
-
 
 `cancelled()`
 
@@ -76,8 +64,6 @@ Return whether the job has been cancelled.
 
 `bool`
 
-
-
 `done()`
 
 Return whether the job has successfully run.
@@ -85,8 +71,6 @@ Return whether the job has successfully run.
 **Return type**
 
 `bool`
-
-
 
 `in_final_state()`
 
@@ -96,8 +80,6 @@ Return whether the job is in a final job state.
 
 `bool`
 
-
-
 `job_id()`
 
 Return a unique id identifying the job.
@@ -105,8 +87,6 @@ Return a unique id identifying the job.
 **Return type**
 
 `str`
-
-
 
 `qobj()`
 
@@ -119,8 +99,6 @@ the Qobj submitted for this job.
 **Return type**
 
 [Qobj](qiskit.qobj.Qobj#qiskit.qobj.Qobj "qiskit.qobj.Qobj")
-
-
 
 `result(timeout=None)`
 
@@ -145,8 +123,6 @@ qiskit.Result
 *   **concurrent.futures.TimeoutError** – if timeout occurred.
 *   **concurrent.futures.CancelledError** – if job cancelled before completed.
 
-
-
 `running()`
 
 Return whether the job is actively running.
@@ -154,8 +130,6 @@ Return whether the job is actively running.
 **Return type**
 
 `bool`
-
-
 
 `status()`
 
@@ -174,8 +148,6 @@ The current JobStatus
 *   [**JobError**](qiskit.providers.JobError#qiskit.providers.JobError "qiskit.providers.JobError") – If the future is in unexpected state
 *   **concurrent.futures.TimeoutError** – if timeout occurred.
 
-
-
 `submit()`
 
 Submit the job to the backend for execution.
@@ -185,8 +157,6 @@ Submit the job to the backend for execution.
 *   **QobjValidationError** – if the JSON serialization of the Qobj passed
 *   **during construction does not validate against the Qobj schema.** –
 *   [**JobError**](qiskit.providers.JobError#qiskit.providers.JobError "qiskit.providers.JobError") – if trying to re-submit the job.
-
-
 
 `wait_for_final_state(timeout=None, wait=5, callback=None)`
 

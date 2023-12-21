@@ -2,8 +2,6 @@
 
 # qiskit.ignis.verification.expectation\_counts
 
-
-
 `expectation_counts(counts)`
 
 Converts count dict to an expectation counts dict.

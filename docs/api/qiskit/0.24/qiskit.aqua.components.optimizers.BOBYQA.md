@@ -2,8 +2,6 @@
 
 # qiskit.aqua.components.optimizers.BOBYQA
 
-
-
 `BOBYQA(maxiter=1000)`
 
 Bound Optimization BY Quadratic Approximation algorithm.
@@ -19,8 +17,6 @@ Uses skquant.opt installed with pip install scikit-quant. For further detail, pl
 **Raises**
 
 [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – scikit-quant not installed
-
-
 
 `__init__(maxiter=1000)`
 
@@ -63,19 +59,13 @@ Uses skquant.opt installed with pip install scikit-quant. For further detail, pl
 | [`is_initial_point_supported`](#qiskit.aqua.components.optimizers.BOBYQA.is_initial_point_supported "qiskit.aqua.components.optimizers.BOBYQA.is_initial_point_supported")    | Returns is initial point supported  |
 | [`setting`](#qiskit.aqua.components.optimizers.BOBYQA.setting "qiskit.aqua.components.optimizers.BOBYQA.setting")                                                             | Return setting                      |
 
-
-
 `property bounds_support_level`
 
 Returns bounds support level
 
-
-
 `get_support_level()`
 
 Returns support level dictionary.
-
-
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -96,91 +86,61 @@ the gradient computed
 
 grad
 
-
-
 `property gradient_support_level`
 
 Returns gradient support level
-
-
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-
-
 `property is_bounds_ignored`
 
 Returns is bounds ignored
-
-
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-
-
 `property is_bounds_supported`
 
 Returns is bounds supported
-
-
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-
-
 `property is_gradient_required`
 
 Returns is gradient required
-
-
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-
-
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
-
-
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-
-
 `property is_initial_point_supported`
 
 Returns is initial point supported
-
-
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
 Runs the optimization.
 
-
-
 `print_options()`
 
 Print algorithm-specific options.
 
-
-
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
-
-
 
 `set_options(**kwargs)`
 
@@ -192,13 +152,9 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-
-
 `property setting`
 
 Return setting
-
-
 
 `static wrap_function(function, args)`
 

@@ -2,8 +2,6 @@
 
 # qiskit.aqua.operators.converters.DictToCircuitSum
 
-
-
 `DictToCircuitSum(traverse=True, convert_dicts=True, convert_vectors=True)`
 
 Converts `DictStateFns` or `VectorStateFns` to equivalent `CircuitStateFns` or sums thereof. The behavior of this class can be mostly replicated by calling `to_circuit_op` on an Operator, but with the added control of choosing whether to convert only `DictStateFns` or `VectorStateFns`, rather than both.
@@ -13,8 +11,6 @@ Converts `DictStateFns` or `VectorStateFns` to equivalent `CircuitStateFns` or s
 *   **traverse** (`bool`) – Whether to recurse down into Operators with internal sub-operators for conversion.
 *   **convert\_dicts** (`bool`) – Whether to convert VectorStateFn.
 *   **convert\_vectors** (`bool`) – Whether to convert DictStateFns.
-
-
 
 `__init__(traverse=True, convert_dicts=True, convert_vectors=True)`
 
@@ -30,8 +26,6 @@ Converts `DictStateFns` or `VectorStateFns` to equivalent `CircuitStateFns` or s
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
 | [`__init__`](#qiskit.aqua.operators.converters.DictToCircuitSum.__init__ "qiskit.aqua.operators.converters.DictToCircuitSum.__init__")(\[traverse, convert\_dicts, …]) | **type traverse**`bool`                                                       |
 | [`convert`](#qiskit.aqua.operators.converters.DictToCircuitSum.convert "qiskit.aqua.operators.converters.DictToCircuitSum.convert")(operator)                          | Convert the Operator to `CircuitStateFns`, recursively if `traverse` is True. |
-
-
 
 `convert(operator)`
 

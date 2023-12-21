@@ -2,8 +2,6 @@
 
 # qiskit.visualization.plot\_bloch\_multivector
 
-
-
 `plot_bloch_multivector(state, title='', figsize=None, *, rho=None)`
 
 Plot the Bloch sphere.

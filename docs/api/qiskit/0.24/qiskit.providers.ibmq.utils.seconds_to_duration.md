@@ -2,8 +2,6 @@
 
 # qiskit.providers.ibmq.utils.seconds\_to\_duration
 
-
-
 `seconds_to_duration(seconds)`
 
 Converts seconds in a datetime delta to a duration.

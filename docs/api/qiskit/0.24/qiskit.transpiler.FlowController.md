@@ -2,15 +2,11 @@
 
 # qiskit.transpiler.FlowController
 
-
-
 `FlowController(passes, options, **partial_controller)`
 
 Base class for multiple types of working list.
 
 This class is a base class for multiple types of working list. When you iterate on it, it returns the next pass to run.
-
-
 
 `__init__(passes, options, **partial_controller)`
 
@@ -32,8 +28,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | ------------------------ | - |
 | `registered_controllers` |   |
 
-
-
 `classmethod add_flow_controller(name, controller)`
 
 Adds a flow controller.
@@ -42,8 +36,6 @@ Adds a flow controller.
 
 *   **name** (*string*) – Name of the controller to add.
 *   **controller** (*type(*[*FlowController*](#qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")*)*) – The class implementing a flow controller.
-
-
 
 `classmethod controller_factory(passes, options, **partial_controller)`
 
@@ -67,8 +59,6 @@ A FlowController instance.
 
 [FlowController](#qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")
 
-
-
 `dump_passes()`
 
 Fetches the passes added to this flow controller.
@@ -80,8 +70,6 @@ Fetches the passes added to this flow controller.
 **Return type**
 
 dict
-
-
 
 `classmethod remove_flow_controller(name)`
 

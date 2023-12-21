@@ -2,15 +2,11 @@
 
 # qiskit.chemistry.core.MolecularExcitedStatesResult
 
-
-
 `MolecularExcitedStatesResult(a_dict=None)`
 
 Molecular Excited States Result
 
 Energies are in Hartree and dipole moments in A.U unless otherwise stated.
-
-
 
 `__init__(a_dict=None)`
 
@@ -44,8 +40,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`nuclear_dipole_moment`](#qiskit.chemistry.core.MolecularExcitedStatesResult.nuclear_dipole_moment "qiskit.chemistry.core.MolecularExcitedStatesResult.nuclear_dipole_moment")          | Returns nuclear dipole moment X,Y,Z components in A.U when available from driver |
 | [`nuclear_repulsion_energy`](#qiskit.chemistry.core.MolecularExcitedStatesResult.nuclear_repulsion_energy "qiskit.chemistry.core.MolecularExcitedStatesResult.nuclear_repulsion_energy") | Returns nuclear repulsion energy when available from driver                      |
 
-
-
 `property algorithm_result`
 
 Returns raw algorithm result
@@ -54,15 +48,11 @@ Returns raw algorithm result
 
 `AlgorithmResult`
 
-
-
 `clear()`
 
 **Return type**
 
 `None`
-
-
 
 `combine(result)`
 
@@ -76,8 +66,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-
-
 `property energies`
 
 Returns ground state energy
@@ -86,11 +74,7 @@ Returns ground state energy
 
 `Tuple`
 
-
-
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
-
-
 
 `property hartree_fock_energy`
 
@@ -100,15 +84,9 @@ Returns Hartree-Fock energy
 
 `float`
 
-
-
 `items() → a set-like object providing a view on D’s items`
 
-
-
 `keys() → a set-like object providing a view on D’s keys`
-
-
 
 `property nuclear_dipole_moment`
 
@@ -118,8 +96,6 @@ Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
 
-
-
 `property nuclear_repulsion_energy`
 
 Returns nuclear repulsion energy when available from driver
@@ -127,8 +103,6 @@ Returns nuclear repulsion energy when available from driver
 **Return type**
 
 `Optional`\[`float`]
-
-
 
 `pop(key, default=None)`
 
@@ -138,8 +112,6 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 
 `object`
 
-
-
 `popitem()`
 
 as a 2-tuple; but raise KeyError if D is empty.
@@ -148,11 +120,7 @@ as a 2-tuple; but raise KeyError if D is empty.
 
 `Tuple`\[`object`, `object`]
 
-
-
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
-
-
 
 `update(*args, **kwargs)`
 
@@ -161,7 +129,5 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 **Return type**
 
 `None`
-
-
 
 `values() → an object providing a view on D’s values`

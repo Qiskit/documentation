@@ -2,8 +2,6 @@
 
 # qiskit.visualization.dag\_drawer
 
-
-
 `dag_drawer(dag, scale=0.7, filename=None, style='color')`
 
 Plot the directed acyclic graph (dag) to represent operation dependencies in a quantum circuit.

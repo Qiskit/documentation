@@ -2,8 +2,6 @@
 
 # qiskit.ignis.verification.calculate\_1q\_epc
 
-
-
 `calculate_1q_epc(gate_per_cliff, epg_1q, qubit)`
 
 Convert error per gate (EPG) into error per Clifford (EPC) of single qubit basis gates.

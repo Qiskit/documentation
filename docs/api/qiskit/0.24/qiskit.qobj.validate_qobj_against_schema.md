@@ -2,8 +2,6 @@
 
 # qiskit.qobj.validate\_qobj\_against\_schema
 
-
-
 `validate_qobj_against_schema(qobj)`
 
 Validates a QObj against the .json schema.

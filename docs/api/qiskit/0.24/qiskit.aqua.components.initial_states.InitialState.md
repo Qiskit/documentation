@@ -2,15 +2,11 @@
 
 # qiskit.aqua.components.initial\_states.InitialState
 
-
-
 `InitialState`
 
 Base class for InitialState.
 
 This method should initialize the module and use an exception if a component of the module is not available.
-
-
 
 `abstract __init__()`
 
@@ -29,11 +25,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | ---------------------------------------------------------------------------------------------------------------------------------- | - |
 | [`bitstr`](#qiskit.aqua.components.initial_states.InitialState.bitstr "qiskit.aqua.components.initial_states.InitialState.bitstr") |   |
 
-
-
 `property bitstr`
-
-
 
 `abstract construct_circuit(mode='circuit', register=None)`
 

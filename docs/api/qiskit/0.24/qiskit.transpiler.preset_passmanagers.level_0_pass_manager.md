@@ -2,8 +2,6 @@
 
 # qiskit.transpiler.preset\_passmanagers.level\_0\_pass\_manager
 
-
-
 `level_0_pass_manager(pass_manager_config)`
 
 Level 0 pass manager: no explicit optimization other than mapping to backend.

@@ -2,8 +2,6 @@
 
 # qiskit.assembler.disassemble
 
-
-
 `disassemble(qobj)`
 
 Disassemble a qobj and return the circuits or pulse schedules, run\_config, and user header.

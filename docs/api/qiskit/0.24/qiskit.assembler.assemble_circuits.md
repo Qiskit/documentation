@@ -2,8 +2,6 @@
 
 # qiskit.assembler.assemble\_circuits
 
-
-
 `assemble_circuits(circuits, run_config, qobj_id, qobj_header)`
 
 Assembles a list of circuits into a qobj that can be run on the backend.

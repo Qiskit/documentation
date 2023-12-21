@@ -2,8 +2,6 @@
 
 # qiskit.transpiler.passes.CrosstalkAdaptiveSchedule
 
-
-
 `CrosstalkAdaptiveSchedule(*args, **kwargs)`
 
 Crosstalk mitigation through adaptive instruction scheduling.
@@ -35,8 +33,6 @@ CrosstalkAdaptiveSchedule initializer.
 **Raises**
 
 **ImportError** – if unable to import z3 solver
-
-
 
 `__init__(backend_prop, crosstalk_prop, weight_factor=0.5, measured_qubits=None)`
 
@@ -109,109 +105,73 @@ CrosstalkAdaptiveSchedule initializer.
 | [`is_analysis_pass`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_analysis_pass "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_transformation_pass "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-
-
 `assign_gate_id(dag)`
 
 ID for each gate
-
-
 
 `basic_bounds()`
 
 Basic variable bounds for optimization
 
-
-
 `check_dag_dependency(gate1, gate2)`
 
 gate2 is a DAG dependent of gate1 if it is a descendant of gate1
-
-
 
 `check_xtalk_dependency(t_1, t_2)`
 
 Check if two gates have a crosstalk dependency. We do not consider crosstalk between pairs of single qubit gates.
 
-
-
 `coherence_constraints()`
 
 Set decoherence errors based on qubit lifetimes
-
-
 
 `create_updated_dag(layers, barriers)`
 
 Given a set of layers and barries, construct a new dag
 
-
-
 `create_z3_vars()`
 
 Setup the variables required for Z3 optimization
-
-
 
 `cx_tuple(gate)`
 
 Representation for two-qubit gate Note: current implementation assumes that the CX error rates and crosstalk behavior are independent of gate direction
 
-
-
 `enforce_schedule_on_dag(input_gate_times)`
 
 Z3 outputs start times for each gate. Some gates need to be serialized to implement the Z3 schedule. This function inserts barriers to implement those serializations
-
-
 
 `extract_crosstalk_relevant_sets()`
 
 Extract the set of program gates which potentially have crosstalk noise
 
-
-
 `extract_dag_overlap_sets(dag)`
 
 Gate A, B are overlapping if A is neither a descendant nor an ancestor of B. Currenty overlaps (A,B) are considered when A is a 2q gate and B is either 2q or 1q gate.
-
-
 
 `extract_solution()`
 
 Extract gate start and finish times from Z3 solution
 
-
-
 `fidelity_constraints()`
 
 Set gate fidelity based on gate overlap conditions
-
-
 
 `filter_candidates(candidates, layer, layer_id, triplet)`
 
 For a gate G and layer L, L is a candidate layer for G if no gate in L has a DAG dependency with G, and if Z3 allows gates in L and G to overlap.
 
-
-
 `find_layer(layers, triplet)`
 
 Find the appropriate layer for a gate
-
-
 
 `gate_tuple(gate)`
 
 Representation for gate
 
-
-
 `generate_barriers(layers)`
 
 For each gate g, see if a barrier is required to serialize it with some previously processed gate
-
-
 
 `property is_analysis_pass`
 
@@ -219,13 +179,9 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-
-
 `is_significant_xtalk(gate1, gate2)`
 
 Given two conditional gate error rates check if there is high crosstalk by comparing with independent error rates.
-
-
 
 `property is_transformation_pass`
 
@@ -233,61 +189,41 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-
-
 `name()`
 
 Return the name of the pass.
-
-
 
 `objective_function()`
 
 Objective function is a weighted combination of gate errors and decoherence errors
 
-
-
 `parse_backend_properties()`
 
 This function assumes that gate durations and coherence times are in seconds in backend.properties() This function converts gate durations and coherence times to nanoseconds.
-
-
 
 `powerset(iterable)`
 
 Finds the set of all subsets of the given iterable This function is used to generate constraints for the Z3 optimization
 
-
-
 `r2f(val)`
 
 Convert Z3 Real to Python float
-
-
 
 `reset()`
 
 Reset variables
 
-
-
 `run(dag)`
 
 Main scheduling function
-
-
 
 `scheduling_constraints()`
 
 DAG scheduling constraints optimization Sets overlap indicator variables
 
-
-
 `singleq_tuple(gate)`
 
 Representation for single-qubit gate
-
-
 
 `solve_optimization()`
 

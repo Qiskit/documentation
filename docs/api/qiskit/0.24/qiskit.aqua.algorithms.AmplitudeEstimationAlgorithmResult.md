@@ -2,13 +2,9 @@
 
 # qiskit.aqua.algorithms.AmplitudeEstimationAlgorithmResult
 
-
-
 `AmplitudeEstimationAlgorithmResult(a_dict=None)`
 
 AmplitudeEstimationAlgorithm Result.
-
-
 
 `__init__(a_dict=None)`
 
@@ -42,8 +38,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`estimation`](#qiskit.aqua.algorithms.AmplitudeEstimationAlgorithmResult.estimation "qiskit.aqua.algorithms.AmplitudeEstimationAlgorithmResult.estimation")                            | return estimation           |
 | [`num_oracle_queries`](#qiskit.aqua.algorithms.AmplitudeEstimationAlgorithmResult.num_oracle_queries "qiskit.aqua.algorithms.AmplitudeEstimationAlgorithmResult.num_oracle_queries")    | return num\_oracle\_queries |
 
-
-
 `property a_estimation`
 
 return a\_estimation
@@ -52,15 +46,11 @@ return a\_estimation
 
 `float`
 
-
-
 `clear()`
 
 **Return type**
 
 `None`
-
-
 
 `combine(result)`
 
@@ -74,8 +64,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-
-
 `property confidence_interval`
 
 return confidence\_interval
@@ -83,8 +71,6 @@ return confidence\_interval
 **Return type**
 
 `List`\[`float`]
-
-
 
 `property estimation`
 
@@ -94,8 +80,6 @@ return estimation
 
 `float`
 
-
-
 `static from_dict(a_dict)`
 
 create new object from a dictionary
@@ -104,19 +88,11 @@ create new object from a dictionary
 
 `AmplitudeEstimationAlgorithmResult`
 
-
-
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
-
-
 
 `items() → a set-like object providing a view on D’s items`
 
-
-
 `keys() → a set-like object providing a view on D’s keys`
-
-
 
 `property num_oracle_queries`
 
@@ -126,8 +102,6 @@ return num\_oracle\_queries
 
 `int`
 
-
-
 `pop(key, default=None)`
 
 If key is not found, d is returned if given, otherwise KeyError is raised.
@@ -135,8 +109,6 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 **Return type**
 
 `object`
-
-
 
 `popitem()`
 
@@ -146,11 +118,7 @@ as a 2-tuple; but raise KeyError if D is empty.
 
 `Tuple`\[`object`, `object`]
 
-
-
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
-
-
 
 `update(*args, **kwargs)`
 
@@ -159,7 +127,5 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 **Return type**
 
 `None`
-
-
 
 `values() → an object providing a view on D’s values`

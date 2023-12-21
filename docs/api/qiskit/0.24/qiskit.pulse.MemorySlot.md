@@ -2,8 +2,6 @@
 
 # qiskit.pulse.MemorySlot
 
-
-
 `MemorySlot(index)`
 
 Memory slot channels represent classical memory storage.
@@ -17,8 +15,6 @@ Channel class.
 **Raises**
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If `index` is not a nonnegative integer.
-
-
 
 `__init__(index)`
 
@@ -46,8 +42,6 @@ Channel class.
 | [`name`](#qiskit.pulse.MemorySlot.name "qiskit.pulse.MemorySlot.name")    | Return the shorthand alias for this channel, which is based on its type and index. |
 | `prefix`                                                                  |                                                                                    |
 
-
-
 `property index`
 
 Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
@@ -55,8 +49,6 @@ Return the index of this channel. The index is a label for a control signal line
 **Return type**
 
 `int`
-
-
 
 `property name`
 

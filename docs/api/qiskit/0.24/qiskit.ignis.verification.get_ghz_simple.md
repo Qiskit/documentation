@@ -2,8 +2,6 @@
 
 # qiskit.ignis.verification.get\_ghz\_simple
 
-
-
 `get_ghz_simple(n, measure=True, full_measurement=True)`
 
 Creates a linear GHZ state with the option of measurement

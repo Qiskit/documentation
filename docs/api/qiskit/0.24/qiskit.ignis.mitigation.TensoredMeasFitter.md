@@ -2,8 +2,6 @@
 
 # qiskit.ignis.mitigation.TensoredMeasFitter
 
-
-
 `TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')`
 
 Measurement correction fitter for a tensored calibration.
@@ -20,8 +18,6 @@ Initialize a measurement calibration matrix from the results of running the circ
 **Raises**
 
 **ValueError** – if the mit\_pattern doesn’t match the substate\_labels\_list
-
-
 
 `__init__(results, mit_pattern, substate_labels_list=None, circlabel='')`
 
@@ -56,8 +52,6 @@ Initialize a measurement calibration matrix from the results of running the circ
 | [`nqubits`](#qiskit.ignis.mitigation.TensoredMeasFitter.nqubits "qiskit.ignis.mitigation.TensoredMeasFitter.nqubits")                                        | Return \_qubit\_list\_sizes.                        |
 | [`substate_labels_list`](#qiskit.ignis.mitigation.TensoredMeasFitter.substate_labels_list "qiskit.ignis.mitigation.TensoredMeasFitter.substate_labels_list") | Return \_substate\_labels\_list.                    |
 
-
-
 `add_data(new_results, rebuild_cal_matrix=True)`
 
 Add measurement calibration data
@@ -67,25 +61,17 @@ Add measurement calibration data
 *   **new\_results** (*list or* [*qiskit.result.Result*](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result")) – a single result or list of Result objects.
 *   **rebuild\_cal\_matrix** (*bool*) – rebuild the calibration matrix
 
-
-
 `property cal_matrices`
 
 Return cal\_matrices.
-
-
 
 `property filter`
 
 Return a measurement filter using the cal matrices.
 
-
-
 `property nqubits`
 
 Return \_qubit\_list\_sizes.
-
-
 
 `plot_calibration(cal_index=0, ax=None, show_plot=True)`
 
@@ -101,8 +87,6 @@ Plot one of the calibration matrices (2D color grid plot).
 
 *   **QiskitError** – if \_cal\_matrices was not set.
 *   **ImportError** – if matplotlib was not installed.
-
-
 
 `readout_fidelity(cal_index=0, label_list=None)`
 
@@ -128,8 +112,6 @@ numpy.array
 **Additional Information:**
 
 The on-diagonal elements of the calibration matrices are the probabilities of measuring state ‘x’ given preparation of state ‘x’.
-
-
 
 `property substate_labels_list`
 

@@ -2,8 +2,6 @@
 
 # qiskit.chemistry.algorithms.pes\_samplers.MorsePotential
 
-
-
 `MorsePotential(molecule)`
 
 Implements a 1D Morse potential.
@@ -19,8 +17,6 @@ Initializes the potential to the zero-function. [`fit()`](#qiskit.chemistry.algo
 **Raises**
 
 **ValueError** – Only implemented for diatomic molecules
-
-
 
 `__init__(molecule)`
 
@@ -53,8 +49,6 @@ Initializes the potential to the zero-function. [`fit()`](#qiskit.chemistry.algo
 | [`vibrational_energy_level`](#qiskit.chemistry.algorithms.pes_samplers.MorsePotential.vibrational_energy_level "qiskit.chemistry.algorithms.pes_samplers.MorsePotential.vibrational_energy_level")(n)          | Returns the n-th vibrational energy level for the current fit (in Hartrees).                                               |
 | [`wave_number`](#qiskit.chemistry.algorithms.pes_samplers.MorsePotential.wave_number "qiskit.chemistry.algorithms.pes_samplers.MorsePotential.wave_number")()                                                  | Returns the wave number for the current fit (in cm^-1).                                                                    |
 
-
-
 `dissociation_energy(scaling=1.0)`
 
 Returns the calculated dissociation energy for the current fit.
@@ -70,8 +64,6 @@ Returns the calculated dissociation energy for the current fit.
 **Returns**
 
 calculated dissociation energy for the current fit
-
-
 
 `eval(x)`
 
@@ -89,8 +81,6 @@ After fitting the data to the fit function, predict the energy at a point x.
 
 value of surface in point x
 
-
-
 `fit(xdata, ydata, initial_vals=None, bounds_list=None)`
 
 Fits a potential to computed molecular energies.
@@ -105,8 +95,6 @@ Fits a potential to computed molecular energies.
 **Return type**
 
 `None`
-
-
 
 `static fit_function(x, d_e, alpha, r_0, m_shift)`
 
@@ -128,8 +116,6 @@ Functional form of the potential.
 
 potential functional form
 
-
-
 `fundamental_frequency()`
 
 Returns the fundamental frequency for the current fit (in s^-1).
@@ -141,8 +127,6 @@ Returns the fundamental frequency for the current fit (in s^-1).
 **Returns**
 
 fundamental frequency for the current fit
-
-
 
 `get_equilibrium_geometry(scaling=1.0)`
 
@@ -160,8 +144,6 @@ Returns the interatomic distance corresponding to minimal energy.
 
 interatomic distance corresponding to minimal energy
 
-
-
 `get_maximum_trusted_level(n=0)`
 
 Returns the maximum energy level for which the particular implementation still provides a good approximation of reality.
@@ -177,8 +159,6 @@ Returns the maximum energy level for which the particular implementation still p
 **Returns**
 
 maximum\_trusted\_level estimated
-
-
 
 `get_minimal_energy(scaling=1.0)`
 
@@ -196,8 +176,6 @@ Returns the smallest molecular energy for the current fit.
 
 smallest molecular energy for the current fit
 
-
-
 `get_num_modes()`
 
 This (1D) potential represents a single vibrational mode
@@ -206,8 +184,6 @@ This (1D) potential represents a single vibrational mode
 
 `int`
 
-
-
 `get_trust_region()`
 
 The potential will usually be well-defined (even if not useful) for arbitrary x so we return a fairly large interval here. Redefine in derived classes if needed.
@@ -215,8 +191,6 @@ The potential will usually be well-defined (even if not useful) for arbitrary x 
 **Return type**
 
 `Tuple`\[`float`, `float`]
-
-
 
 `update_molecule(molecule)`
 
@@ -234,8 +208,6 @@ Updates the underlying molecule.
 
 `None`
 
-
-
 `vibrational_energy_level(n)`
 
 Returns the n-th vibrational energy level for the current fit (in Hartrees).
@@ -251,8 +223,6 @@ Returns the n-th vibrational energy level for the current fit (in Hartrees).
 **Returns**
 
 vibrational energy level for the current fit
-
-
 
 `wave_number()`
 

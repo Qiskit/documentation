@@ -2,8 +2,6 @@
 
 # qiskit.aqua.operators.legacy.measure\_pauli\_z
 
-
-
 `measure_pauli_z(data, pauli)`
 
 Appropriate post-rotations on the state are assumed.

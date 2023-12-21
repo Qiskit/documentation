@@ -2,8 +2,6 @@
 
 # qiskit.quantum\_info.random\_state
 
-
-
 `random_state(dim, seed=None)`
 
 DEPRECATED Return a random quantum state.

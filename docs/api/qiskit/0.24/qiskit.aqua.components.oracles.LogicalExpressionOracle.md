@@ -2,8 +2,6 @@
 
 # qiskit.aqua.components.oracles.LogicalExpressionOracle
 
-
-
 `LogicalExpressionOracle(expression, optimization=False, mct_mode='basic')`
 
 The Logical Expression Quantum Oracle.
@@ -44,8 +42,6 @@ By default, the Logical Expression oracle will not try to apply any optimization
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
 
-
-
 `__init__(expression, optimization=False, mct_mode='basic')`
 
 **Parameters**
@@ -75,35 +71,23 @@ By default, the Logical Expression oracle will not try to apply any optimization
 | [`output_register`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.output_register "qiskit.aqua.components.oracles.LogicalExpressionOracle.output_register")          | returns output register    |
 | [`variable_register`](#qiskit.aqua.components.oracles.LogicalExpressionOracle.variable_register "qiskit.aqua.components.oracles.LogicalExpressionOracle.variable_register")    | returns variable register  |
 
-
-
 `property ancillary_register`
 
 returns ancillary register
 
-
-
 `property circuit`
-
-
 
 `construct_circuit()`
 
 construct circuit
 
-
-
 `evaluate_classically(measurement)`
 
 evaluate classically
 
-
-
 `property output_register`
 
 returns output register
-
-
 
 `property variable_register`
 

@@ -2,8 +2,6 @@
 
 # qiskit.aqua.operators.legacy.pauli\_measurement
 
-
-
 `pauli_measurement(circuit, pauli, qr, cr, barrier=False)`
 
 Add the proper post-rotation gate on the circuit.

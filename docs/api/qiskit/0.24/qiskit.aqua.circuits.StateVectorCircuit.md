@@ -2,8 +2,6 @@
 
 # qiskit.aqua.circuits.StateVectorCircuit
 
-
-
 `StateVectorCircuit(state_vector)`
 
 Arbitrary State-Vector Circuit.
@@ -17,8 +15,6 @@ Constructor.
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
-
-
 
 `__init__(state_vector)`
 
@@ -38,8 +34,6 @@ Constructor.
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | [`__init__`](#qiskit.aqua.circuits.StateVectorCircuit.__init__ "qiskit.aqua.circuits.StateVectorCircuit.__init__")(state\_vector)                                   | Constructor.                                                 |
 | [`construct_circuit`](#qiskit.aqua.circuits.StateVectorCircuit.construct_circuit "qiskit.aqua.circuits.StateVectorCircuit.construct_circuit")(\[circuit, register]) | Construct the circuit representing the desired state vector. |
-
-
 
 `construct_circuit(circuit=None, register=None)`
 

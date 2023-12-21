@@ -2,8 +2,6 @@
 
 # qiskit.chemistry.core.Hamiltonian
 
-
-
 `Hamiltonian(transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`
 
 A molecular Hamiltonian operator, representing the energy of the electrons and nuclei in a molecule.
@@ -20,8 +18,6 @@ A molecular Hamiltonian operator, representing the energy of the electrons and n
 **Raises**
 
 [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid symmetry reduction
-
-
 
 `__init__(transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`
 
@@ -56,13 +52,9 @@ A molecular Hamiltonian operator, representing the energy of the electrons and n
 | `INFO_Z2SYMMETRIES`                                                                                                   |                       |
 | [`molecule_info`](#qiskit.chemistry.core.Hamiltonian.molecule_info "qiskit.chemistry.core.Hamiltonian.molecule_info") | returns molecule info |
 
-
-
 `property molecule_info`
 
 returns molecule info
-
-
 
 `process_algorithm_result(algo_result)`
 
@@ -79,8 +71,6 @@ Takes the algorithm result and processes it as required, e.g. by combination of 
 **Returns**
 
 Final chemistry result computed from the algorithm result
-
-
 
 `run(qmolecule)`
 

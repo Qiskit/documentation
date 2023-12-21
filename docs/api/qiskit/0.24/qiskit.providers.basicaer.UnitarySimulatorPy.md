@@ -2,8 +2,6 @@
 
 # qiskit.providers.basicaer.UnitarySimulatorPy
 
-
-
 `UnitarySimulatorPy(configuration=None, provider=None)`
 
 Python implementation of a unitary simulator.
@@ -20,8 +18,6 @@ This method should initialize the module and its configuration, and raise an exc
 **Raises**
 
 **QiskitError** – if an error occurred when instantiating the backend.
-
-
 
 `__init__(configuration=None, provider=None)`
 
@@ -60,8 +56,6 @@ This method should initialize the module and its configuration, and raise an exc
 | `DEFAULT_OPTIONS`       |   |
 | `MAX_QUBITS_MEMORY`     |   |
 
-
-
 `configuration()`
 
 Return the backend configuration.
@@ -73,8 +67,6 @@ the configuration for the backend.
 **Return type**
 
 [BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
-
-
 
 `name()`
 
@@ -88,8 +80,6 @@ the name of the backend.
 
 str
 
-
-
 `properties()`
 
 Return the backend properties.
@@ -102,8 +92,6 @@ the configuration for the backend. If the backend does not support properties, i
 
 [BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
-
-
 `provider()`
 
 Return the backend Provider.
@@ -115,8 +103,6 @@ the Provider responsible for the backend.
 **Return type**
 
 [BaseProvider](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
-
-
 
 `run(qobj, backend_options=None)`
 
@@ -162,8 +148,6 @@ Example::
     }
 ```
 
-
-
 `run_experiment(experiment)`
 
 Run an experiment (circuit) and return a single experiment result.
@@ -201,8 +185,6 @@ dict
 *   [**BasicAerError**](qiskit.providers.basicaer.BasicAerError#qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if the number of qubits in the circuit is greater than 24.
 *   **Note that the practical qubit limit is much lower than 24.** –
 
-
-
 `status()`
 
 Return the backend status.
@@ -214,8 +196,6 @@ the status of the backend.
 **Return type**
 
 [BackendStatus](qiskit.providers.models.BackendStatus#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-
 
 `version()`
 

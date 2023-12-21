@@ -2,8 +2,6 @@
 
 # qiskit.pulse.instructions.Delay
 
-
-
 `Delay(duration, channel, name=None)`
 
 A blocking instruction with no other effect. The delay is used for aligning and scheduling other instructions.
@@ -29,8 +27,6 @@ No other instruction may be scheduled within a `Delay`.
 *   **duration** (`int`) – Length of time of the delay in terms of dt.
 *   **channel** ([`Channel`](qiskit.pulse.channels#Channel "qiskit.pulse.channels.Channel")) – The channel that will have the delay.
 *   **name** (`Optional`\[`str`]) – Name of the delay for display purposes.
-
-
 
 `__init__(duration, channel, name=None)`
 
@@ -75,8 +71,6 @@ No other instruction may be scheduled within a `Delay`.
 | [`stop_time`](#qiskit.pulse.instructions.Delay.stop_time "qiskit.pulse.instructions.Delay.stop_time")          | Relative end time of this instruction.                                                                                       |
 | [`timeslots`](#qiskit.pulse.instructions.Delay.timeslots "qiskit.pulse.instructions.Delay.timeslots")          | Occupied time slots by this instruction.                                                                                     |
 
-
-
 `append(schedule, name=None)`
 
 Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
@@ -89,8 +83,6 @@ Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pu
 **Return type**
 
 `Schedule`
-
-
 
 `assign_parameters(value_dict)`
 
@@ -108,8 +100,6 @@ Modify and return self with parameters assigned according to the input.
 
 Self with updated parameters.
 
-
-
 `ch_duration(*channels)`
 
 Return duration of the supplied channels in this Instruction.
@@ -121,8 +111,6 @@ Return duration of the supplied channels in this Instruction.
 **Return type**
 
 `int`
-
-
 
 `ch_start_time(*channels)`
 
@@ -136,8 +124,6 @@ Return minimum start time for supplied channels.
 
 `int`
 
-
-
 `ch_stop_time(*channels)`
 
 Return maximum start time for supplied channels.
@@ -150,8 +136,6 @@ Return maximum start time for supplied channels.
 
 `int`
 
-
-
 `property channel`
 
 Return the [`Channel`](qiskit.pulse.channels#Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
@@ -160,8 +144,6 @@ Return the [`Channel`](qiskit.pulse.channels#Channel "qiskit.pulse.channels.Chan
 
 [`Channel`](qiskit.pulse.channels#Channel "qiskit.pulse.channels.Channel")
 
-
-
 `property channels`
 
 Returns channels that this schedule uses.
@@ -169,8 +151,6 @@ Returns channels that this schedule uses.
 **Return type**
 
 `Tuple`\[[`Channel`](qiskit.pulse.channels#Channel "qiskit.pulse.channels.Channel")]
-
-
 
 `property command`
 
@@ -183,8 +163,6 @@ The deprecated command if available.
 **Return type**
 
 [Command](qiskit.providers.models.Command#qiskit.providers.models.Command "qiskit.providers.models.Command")
-
-
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`
 
@@ -213,8 +191,6 @@ A matplotlib figure object of the pulse schedule
 
 matplotlib.figure
 
-
-
 `property duration`
 
 Duration of this instruction.
@@ -222,8 +198,6 @@ Duration of this instruction.
 **Return type**
 
 `int`
-
-
 
 `flatten()`
 
@@ -233,8 +207,6 @@ Return itself as already single instruction.
 
 `Instruction`
 
-
-
 `property id`
 
 Unique identifier for this instruction.
@@ -242,8 +214,6 @@ Unique identifier for this instruction.
 **Return type**
 
 `int`
-
-
 
 `insert(start_time, schedule, name=None)`
 
@@ -259,8 +229,6 @@ Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pu
 
 `Schedule`
 
-
-
 `property instructions`
 
 Iterable for getting instructions from Schedule tree.
@@ -268,8 +236,6 @@ Iterable for getting instructions from Schedule tree.
 **Return type**
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
-
-
 
 `property name`
 
@@ -279,8 +245,6 @@ Name of this instruction.
 
 `str`
 
-
-
 `property operands`
 
 Return instruction operands.
@@ -288,8 +252,6 @@ Return instruction operands.
 **Return type**
 
 `Tuple`
-
-
 
 `shift(time, name=None)`
 
@@ -304,8 +266,6 @@ Return a new schedule shifted forward by time.
 
 `Schedule`
 
-
-
 `property start_time`
 
 Relative begin time of this instruction.
@@ -314,8 +274,6 @@ Relative begin time of this instruction.
 
 `int`
 
-
-
 `property stop_time`
 
 Relative end time of this instruction.
@@ -323,8 +281,6 @@ Relative end time of this instruction.
 **Return type**
 
 `int`
-
-
 
 `property timeslots`
 

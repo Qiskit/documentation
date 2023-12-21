@@ -2,8 +2,6 @@
 
 # qiskit.optimization.converters.QuadraticProgramToQubo
 
-
-
 `QuadraticProgramToQubo(penalty=None)`
 
 Convert a given optimization problem to a new problem that is a QUBO.
@@ -22,8 +20,6 @@ Convert a given optimization problem to a new problem that is a QUBO.
 **Parameters**
 
 **penalty** (`Optional`\[`float`]) – Penalty factor to scale equality constraints that are added to objective. If None is passed, penalty factor will be automatically calculated.
-
-
 
 `__init__(penalty=None)`
 
@@ -49,8 +45,6 @@ Convert a given optimization problem to a new problem that is a QUBO.
 | ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | [`penalty`](#qiskit.optimization.converters.QuadraticProgramToQubo.penalty "qiskit.optimization.converters.QuadraticProgramToQubo.penalty") | Returns the penalty factor used in conversion. |
 
-
-
 `convert(problem)`
 
 Convert a problem with linear equality constraints into new one with a QUBO form.
@@ -71,8 +65,6 @@ The problem converted in QUBO format.
 
 [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – In case of an incompatible problem.
 
-
-
 `decode(result)`
 
 DEPRECATED Decode a result into another form using the information of conversion.
@@ -81,8 +73,6 @@ DEPRECATED Decode a result into another form using the information of conversion
 
 `OptimizationResult`
 
-
-
 `encode(problem)`
 
 DEPRECATED Encode a QuadraticProgram into another form and keep the information required to decode the result.
@@ -90,8 +80,6 @@ DEPRECATED Encode a QuadraticProgram into another form and keep the information 
 **Return type**
 
 `QuadraticProgram`
-
-
 
 `static get_compatibility_msg(problem)`
 
@@ -111,8 +99,6 @@ Checks whether the given problem is compatible, i.e., whether the problem can be
 
 A message describing the incompatibility.
 
-
-
 `interpret(result)`
 
 Convert a result of a converted problem into that of the original problem.
@@ -129,8 +115,6 @@ Convert a result of a converted problem into that of the original problem.
 
 The result of the original problem.
 
-
-
 `is_compatible(problem)`
 
 Checks whether a given problem can be solved with the optimizer implementing this method.
@@ -146,8 +130,6 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 **Returns**
 
 Returns True if the problem is compatible, False otherwise.
-
-
 
 `property penalty`
 

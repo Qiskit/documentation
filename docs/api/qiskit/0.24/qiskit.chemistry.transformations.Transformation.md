@@ -2,13 +2,9 @@
 
 # qiskit.chemistry.transformations.Transformation
 
-
-
 `Transformation`
 
 Base class for transformation to qubit operators for chemistry problems
-
-
 
 `__init__()`
 
@@ -30,8 +26,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
 | [`commutation_rule`](#qiskit.chemistry.transformations.Transformation.commutation_rule "qiskit.chemistry.transformations.Transformation.commutation_rule") | Getter of the commutation rule |
 
-
-
 `abstract build_hopping_operators(excitations='sd')`
 
 Builds the product of raising and lowering operators (basic excitation operators)
@@ -46,8 +40,6 @@ Returns:
 
 `Tuple`\[`Dict`\[`str`, `WeightedPauliOperator`], `Dict`\[`str`, `List`\[`bool`]], `Dict`\[`str`, `List`\[`Any`]]]
 
-
-
 `abstract property commutation_rule`
 
 Getter of the commutation rule
@@ -56,8 +48,6 @@ Getter of the commutation rule
 
 `bool`
 
-
-
 `get_default_filter_criterion()`
 
 Returns a default filter criterion method to filter the eigenvalues computed by the eigen solver. For more information see also aqua.algorithms.eigen\_solvers.NumPyEigensolver.filter\_criterion.
@@ -65,8 +55,6 @@ Returns a default filter criterion method to filter the eigenvalues computed by 
 **Return type**
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
-
-
 
 `abstract interpret(raw_result)`
 
@@ -83,8 +71,6 @@ Interprets an EigenstateResult in the context of this transformation.
 **Returns**
 
 An “interpreted” eigenstate result.
-
-
 
 `abstract transform(driver, aux_operators=None)`
 

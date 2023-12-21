@@ -2,8 +2,6 @@
 
 # qiskit.quantum\_info.SparsePauliOp
 
-
-
 `SparsePauliOp(data, coeffs=None)`
 
 Sparse N-qubit operator in a Pauli basis representation.
@@ -24,8 +22,6 @@ Initialize an operator object.
 **Raises**
 
 **QiskitError** – If the input data or coeffs are invalid.
-
-
 
 `__init__(data, coeffs=None)`
 
@@ -85,8 +81,6 @@ Initialize an operator object.
 | [`size`](#qiskit.quantum_info.SparsePauliOp.size "qiskit.quantum_info.SparsePauliOp.size")                   | The number of Pauli of Pauli terms in the operator.                  |
 | [`table`](#qiskit.quantum_info.SparsePauliOp.table "qiskit.quantum_info.SparsePauliOp.table")                | Return the the PauliTable.                                           |
 
-
-
 `add(other)`
 
 Return the linear operator self + other.
@@ -105,25 +99,17 @@ the operator self + other.
 
 BaseOperator
 
-
-
 `adjoint()`
 
 Return the adjoint of the operator.
-
-
 
 `property atol`
 
 The default absolute tolerance parameter for float comparisons.
 
-
-
 `property coeffs`
 
 Return the Pauli coefficients.
-
-
 
 `compose(other, qargs=None, front=False)`
 
@@ -148,25 +134,17 @@ The composed operator.
 *   **QiskitError** – if other cannot be converted to an Operator or has
 *   **incompatible dimensions.** –
 
-
-
 `conjugate()`
 
 Return the conjugate of the operator.
-
-
 
 `copy()`
 
 Make a deep copy of current operator.
 
-
-
 `property dim`
 
 Return tuple (input\_shape, output\_shape).
-
-
 
 `dot(other, qargs=None)`
 
@@ -190,8 +168,6 @@ The composed operator.
 *   **QiskitError** – if other cannot be converted to an Operator or has
 *   **incompatible dimensions.** –
 
-
-
 `expand(other)`
 
 Return the tensor product operator other ⊗ self.
@@ -212,13 +188,9 @@ the tensor product operator other ⊗ self.
 
 **QiskitError** – if other cannot be converted to a SparsePauliOp operator.
 
-
-
 `static from_list(obj)`
 
 Construct from a list \[(pauli\_str, coeffs)]
-
-
 
 `static from_operator(obj, atol=None, rtol=None)`
 
@@ -244,13 +216,9 @@ the SparsePauliOp representation of the operator.
 
 **QiskitError** – if the input operator is not an N-qubit operator.
 
-
-
 `input_dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
-
-
 
 `is_unitary(atol=None, rtol=None)`
 
@@ -269,8 +237,6 @@ True if the operator is unitary, False otherwise.
 
 bool
 
-
-
 `label_iter()`
 
 Return a label representation iterator.
@@ -284,8 +250,6 @@ label iterator object for the PauliTable.
 **Return type**
 
 LabelIterator
-
-
 
 `matrix_iter(sparse=False)`
 
@@ -304,8 +268,6 @@ matrix iterator object for the PauliTable.
 **Return type**
 
 MatrixIterator
-
-
 
 `multiply(other)`
 
@@ -329,19 +291,13 @@ BaseOperator
 
 **NotImplementedError** – if subclass does not support multiplication.
 
-
-
 `property num_qubits`
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-
-
 `output_dims(qargs=None)`
 
 Return tuple of output dimension for specified subsystems.
-
-
 
 `power(n)`
 
@@ -363,13 +319,9 @@ BaseOperator
 
 **QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
 
-
-
 `property qargs`
 
 Return the qargs for the operator.
-
-
 
 `reshape(input_dims=None, output_dims=None)`
 
@@ -397,13 +349,9 @@ BaseOperator
 
 **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
 
-
-
 `property rtol`
 
 The relative tolerance parameter for float comparisons.
-
-
 
 `classmethod set_atol(value)`
 
@@ -411,15 +359,11 @@ Set the class default absolute tolerance parameter for float comparisons.
 
 DEPRECATED: use operator.atol = value instead
 
-
-
 `classmethod set_rtol(value)`
 
 Set the class default relative tolerance parameter for float comparisons.
 
 DEPRECATED: use operator.rtol = value instead
-
-
 
 `simplify(atol=None, rtol=None)`
 
@@ -438,13 +382,9 @@ the simplified SparsePauliOp operator.
 
 [SparsePauliOp](#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")
 
-
-
 `property size`
 
 The number of Pauli of Pauli terms in the operator.
-
-
 
 `subtract(other)`
 
@@ -464,13 +404,9 @@ the operator self - other.
 
 BaseOperator
 
-
-
 `property table`
 
 Return the the PauliTable.
-
-
 
 `tensor(other)`
 
@@ -492,8 +428,6 @@ the tensor product operator self ⊗ other.
 
 **QiskitError** – if other cannot be converted to a SparsePauliOp operator.
 
-
-
 `to_list(array=False)`
 
 Convert to a list Pauli string labels and coefficients.
@@ -512,8 +446,6 @@ List of pairs (label, coeff) for rows of the PauliTable.
 
 list or array
 
-
-
 `to_matrix(sparse=False)`
 
 Convert to a dense or sparse matrix.
@@ -530,13 +462,9 @@ A dense matrix if sparse=False. csr\_matrix: A sparse matrix in CSR format if sp
 
 array
 
-
-
 `to_operator()`
 
 Convert to a matrix Operator object
-
-
 
 `transpose()`
 

@@ -2,8 +2,6 @@
 
 # qiskit.ignis.characterization.ampcal\_cx\_circuits
 
-
-
 `ampcal_cx_circuits(max_reps, qubits, control_qubits)`
 
 Generates circuit for measuring the amplitude error of the cx gate

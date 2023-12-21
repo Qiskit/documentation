@@ -2,8 +2,6 @@
 
 # qiskit.aqua.operators.legacy.Z2Symmetries
 
-
-
 `Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None)`
 
 Z2 Symmetries
@@ -18,8 +16,6 @@ Z2 Symmetries
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid paulis
-
-
 
 `__init__(symmetries, sq_paulis, sq_list, tapering_values=None)`
 
@@ -56,8 +52,6 @@ Z2 Symmetries
 | [`symmetries`](#qiskit.aqua.operators.legacy.Z2Symmetries.symmetries "qiskit.aqua.operators.legacy.Z2Symmetries.symmetries")                | return symmetries                                                     |
 | [`tapering_values`](#qiskit.aqua.operators.legacy.Z2Symmetries.tapering_values "qiskit.aqua.operators.legacy.Z2Symmetries.tapering_values") | returns tapering values                                               |
 
-
-
 `property cliffords`
 
 Get clifford operators, build based on symmetries and single-qubit X.
@@ -69,8 +63,6 @@ a list of unitaries used to diagonalize the Hamiltonian.
 **Return type**
 
 list\[[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")]
-
-
 
 `consistent_tapering(operator)`
 
@@ -92,8 +84,6 @@ TaperedWeightedPauliOperator
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – The given operator does not commute with the symmetry
 
-
-
 `copy()`
 
 Get a copy of self.
@@ -105,8 +95,6 @@ Get a copy of self.
 **Returns**
 
 copy
-
-
 
 `classmethod find_Z2_symmetries(operator)`
 
@@ -120,8 +108,6 @@ Finds Z2 Pauli-type symmetries of an Operator.
 
 a z2\_symmetries object contains symmetries, single-qubit X, single-qubit list.
 
-
-
 `is_empty()`
 
 Check the z2\_symmetries is empty or not.
@@ -134,25 +120,17 @@ empty
 
 bool
 
-
-
 `property sq_list`
 
 returns sq list
-
-
 
 `property sq_paulis`
 
 returns sq paulis
 
-
-
 `property symmetries`
 
 return symmetries
-
-
 
 `taper(operator, tapering_values=None)`
 
@@ -177,13 +155,9 @@ list\[[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Z2 symmetries, single qubit pauli and single qubit list cannot be empty
 
-
-
 `property tapering_values`
 
 returns tapering values
-
-
 
 `static two_qubit_reduction(operator, num_particles)`
 

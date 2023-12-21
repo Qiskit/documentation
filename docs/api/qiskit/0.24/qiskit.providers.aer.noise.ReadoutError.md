@@ -2,8 +2,6 @@
 
 # qiskit.providers.aer.noise.ReadoutError
 
-
-
 `ReadoutError(probabilities, atol=1e-08)`
 
 Readout error class for Qiskit Aer noise model.
@@ -38,8 +36,6 @@ probabilities[3] = [P("00"|"11"), P("01"|"11"), P("10"|"11"), P("11"|"11")]
 
 *   **probabilities** (*matrix*) – List of outcome assignment probabilities.
 *   **atol** (*double*) – Threshold for checking probabilities are normalized (Default: 1e-8).
-
-
 
 `__init__(probabilities, atol=1e-08)`
 
@@ -100,13 +96,9 @@ probabilities[3] = [P("00"|"11"), P("01"|"11"), P("10"|"11"), P("11"|"11")]
 | [`probabilities`](#qiskit.providers.aer.noise.ReadoutError.probabilities "qiskit.providers.aer.noise.ReadoutError.probabilities")          | Return the readout error probabilities matrix.                  |
 | [`rtol`](#qiskit.providers.aer.noise.ReadoutError.rtol "qiskit.providers.aer.noise.ReadoutError.rtol")                                     | The relative tolerance parameter for float comparisons.         |
 
-
-
 `property atol`
 
 The default absolute tolerance parameter for float comparisons.
-
-
 
 `compose(other, front=False)`
 
@@ -132,13 +124,9 @@ The composition readout error.
 *   **NoiseError** – if other is not a ReadoutError or has incompatible
 *   **dimensions.** –
 
-
-
 `copy()`
 
 Make a copy of current ReadoutError.
-
-
 
 `dot(other)`
 
@@ -161,8 +149,6 @@ The composition readout error.
 *   **NoiseError** – if other is not a ReadoutError or has incompatible
 *   **dimensions.** –
 
-
-
 `expand(other)`
 
 Return the tensor product readout error self ⊗ other.
@@ -183,19 +169,13 @@ the tensor product readout error other ⊗ self.
 
 **NoiseError** – if other is not a ReadoutError.
 
-
-
 `ideal()`
 
 Return True if current error object is an identity
 
-
-
 `property number_of_qubits`
 
 Return the number of qubits for the error.
-
-
 
 `power(n)`
 
@@ -217,31 +197,21 @@ the n-times composition channel.
 
 **NoiseError** – if the power is not a positive integer.
 
-
-
 `property probabilities`
 
 Return the readout error probabilities matrix.
-
-
 
 `property rtol`
 
 The relative tolerance parameter for float comparisons.
 
-
-
 `classmethod set_atol(value)`
 
 Set the class default absolute tolerance parameter for float comparisons.
 
-
-
 `classmethod set_rtol(value)`
 
 Set the class default relative tolerance parameter for float comparisons.
-
-
 
 `tensor(other)`
 
@@ -263,13 +233,9 @@ the tensor product readout error self ⊗ other.
 
 **NoiseError** – if other is not a ReadoutError.
 
-
-
 `to_dict()`
 
 Return the current error as a dictionary.
-
-
 
 `to_instruction()`
 

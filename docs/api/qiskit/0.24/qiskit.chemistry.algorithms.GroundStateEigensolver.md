@@ -2,8 +2,6 @@
 
 # qiskit.chemistry.algorithms.GroundStateEigensolver
 
-
-
 `GroundStateEigensolver(transformation, solver)`
 
 Ground state computation using a minimum eigensolver.
@@ -12,8 +10,6 @@ Ground state computation using a minimum eigensolver.
 
 *   **transformation** (`Transformation`) – Qubit Operator Transformation
 *   **solver** (`Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]) – Minimum Eigensolver or MESFactory object, e.g. the VQEUCCSDFactory.
-
-
 
 `__init__(transformation, solver)`
 
@@ -38,8 +34,6 @@ Ground state computation using a minimum eigensolver.
 | [`solver`](#qiskit.chemistry.algorithms.GroundStateEigensolver.solver "qiskit.chemistry.algorithms.GroundStateEigensolver.solver")                         | Returns the minimum eigensolver or factory.                                   |
 | [`transformation`](#qiskit.chemistry.algorithms.GroundStateEigensolver.transformation "qiskit.chemistry.algorithms.GroundStateEigensolver.transformation") | Returns the transformation used to obtain a qubit operator from the molecule. |
 
-
-
 `evaluate_operators(state, operators)`
 
 Evaluates additional operators at the given state.
@@ -57,8 +51,6 @@ Evaluates additional operators at the given state.
 
 The expectation value of the given operator(s). The return type will be identical to the format of the provided operators.
 
-
-
 `returns_groundstate()`
 
 Whether the eigensolver returns the ground state or only ground state energy.
@@ -66,8 +58,6 @@ Whether the eigensolver returns the ground state or only ground state energy.
 **Return type**
 
 `bool`
-
-
 
 `solve(driver, aux_operators=None)`
 
@@ -90,8 +80,6 @@ Compute Ground State properties.
 
 An eigenstate result. Depending on the transformation this can be an electronic structure or bosonic result.
 
-
-
 `property solver`
 
 Returns the minimum eigensolver or factory.
@@ -99,8 +87,6 @@ Returns the minimum eigensolver or factory.
 **Return type**
 
 `Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
-
-
 
 `property transformation`
 

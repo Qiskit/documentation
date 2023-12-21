@@ -2,8 +2,6 @@
 
 # qiskit.aqua.algorithms.Simon
 
-
-
 `Simon(oracle, quantum_instance=None)`
 
 The Simon algorithm.
@@ -16,8 +14,6 @@ Note: the [`TruthTableOracle`](qiskit.aqua.components.oracles.TruthTableOracle#q
 
 *   **oracle** (`Oracle`) – The oracle component
 *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
-
-
 
 `__init__(oracle, quantum_instance=None)`
 
@@ -43,8 +39,6 @@ Note: the [`TruthTableOracle`](qiskit.aqua.components.oracles.TruthTableOracle#q
 | [`quantum_instance`](#qiskit.aqua.algorithms.Simon.quantum_instance "qiskit.aqua.algorithms.Simon.quantum_instance") | Returns quantum instance. |
 | [`random`](#qiskit.aqua.algorithms.Simon.random "qiskit.aqua.algorithms.Simon.random")                               | Return a numpy random.    |
 
-
-
 `property backend`
 
 Returns backend.
@@ -52,8 +46,6 @@ Returns backend.
 **Return type**
 
 `Union`\[`Backend`, `BaseBackend`]
-
-
 
 `construct_circuit(measurement=False)`
 
@@ -71,8 +63,6 @@ the QuantumCircuit object for the constructed circuit
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-
-
 `property quantum_instance`
 
 Returns quantum instance.
@@ -81,13 +71,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 `property random`
 
 Return a numpy random.
-
-
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -109,8 +95,6 @@ dict
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-
 
 `set_backend(backend, **kwargs)`
 

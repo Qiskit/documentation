@@ -2,8 +2,6 @@
 
 # qiskit.optimization.converters.IntegerToBinary
 
-
-
 `IntegerToBinary`
 
 Convert a [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram#qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.QuadraticProgram") into new one by encoding integer with binary variables.
@@ -27,8 +25,6 @@ This bounded-coefficient encoding used in this converted is proposed in \[1], Eq
 
 Annealers. arxiv.org:1706.01945.
 
-
-
 `__init__()`
 
 Initialize self. See help(type(self)) for accurate signature.
@@ -42,8 +38,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`decode`](#qiskit.optimization.converters.IntegerToBinary.decode "qiskit.optimization.converters.IntegerToBinary.decode")(result)          | DEPRECATED Decode a result into another form using the information of conversion.                              |
 | [`encode`](#qiskit.optimization.converters.IntegerToBinary.encode "qiskit.optimization.converters.IntegerToBinary.encode")(problem)         | DEPRECATED Encode a QuadraticProgram into another form and keep the information required to decode the result. |
 | [`interpret`](#qiskit.optimization.converters.IntegerToBinary.interpret "qiskit.optimization.converters.IntegerToBinary.interpret")(result) | Convert back the converted problem (binary variables) to the original (integer variables).                     |
-
-
 
 `convert(problem)`
 
@@ -65,8 +59,6 @@ The converted problem, that contains no integer variables.
 
 [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if variable or constraint type is not supported.
 
-
-
 `decode(result)`
 
 DEPRECATED Decode a result into another form using the information of conversion.
@@ -75,8 +67,6 @@ DEPRECATED Decode a result into another form using the information of conversion
 
 `OptimizationResult`
 
-
-
 `encode(problem)`
 
 DEPRECATED Encode a QuadraticProgram into another form and keep the information required to decode the result.
@@ -84,8 +74,6 @@ DEPRECATED Encode a QuadraticProgram into another form and keep the information 
 **Return type**
 
 `QuadraticProgram`
-
-
 
 `interpret(result)`
 

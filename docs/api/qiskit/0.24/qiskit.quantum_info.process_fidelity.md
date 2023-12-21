@@ -2,8 +2,6 @@
 
 # qiskit.quantum\_info.process\_fidelity
 
-
-
 `process_fidelity(channel, target=None, require_cp=True, require_tp=False, require_cptp=False)`
 
 Return the process fidelity of a noisy quantum channel.

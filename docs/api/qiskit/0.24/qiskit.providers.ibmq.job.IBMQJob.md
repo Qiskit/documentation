@@ -2,8 +2,6 @@
 
 # qiskit.providers.ibmq.job.IBMQJob
 
-
-
 `IBMQJob(backend, api_client, job_id, creation_date, status, kind=None, name=None, time_per_step=None, result=None, qobj=None, error=None, tags=None, run_mode=None, share_level=None, client_info=None, experiment_id=None, **kwargs)`
 
 Representation of a job that executes on an IBM Quantum Experience backend.
@@ -64,8 +62,6 @@ IBMQJob constructor.
 *   **client\_info** (`Optional`\[`Dict`\[`str`, `str`]]) – Client version.
 *   **experiment\_id** (`Optional`\[`str`]) – ID of the experiment this job is part of.
 *   **kwargs** (`Any`) – Additional job attributes.
-
-
 
 `__init__(backend, api_client, job_id, creation_date, status, kind=None, name=None, time_per_step=None, result=None, qobj=None, error=None, tags=None, run_mode=None, share_level=None, client_info=None, experiment_id=None, **kwargs)`
 
@@ -133,8 +129,6 @@ IBMQJob constructor.
 | [`experiment_id`](#qiskit.providers.ibmq.job.IBMQJob.experiment_id "qiskit.providers.ibmq.job.IBMQJob.experiment_id")    | Return the experiment ID.                       |
 | `version`                                                                                                                |                                                 |
 
-
-
 `backend()`
 
 Return the backend where this job was executed.
@@ -142,8 +136,6 @@ Return the backend where this job was executed.
 **Return type**
 
 `Backend`
-
-
 
 `backend_options()`
 
@@ -158,8 +150,6 @@ Options that are not applicable to the job execution are not returned. Some but 
 **Returns**
 
 Backend options used for this job. An empty dictionary is returned if the options cannot be retrieved.
-
-
 
 `cancel()`
 
@@ -181,8 +171,6 @@ Attempt to cancel the job.
 
 [**IBMQJobApiError**](qiskit.providers.ibmq.job.IBMQJobApiError#qiskit.providers.ibmq.job.IBMQJobApiError "qiskit.providers.ibmq.job.IBMQJobApiError") – If an unexpected error occurred when communicating with the server.
 
-
-
 `cancelled()`
 
 Return whether the job has been cancelled.
@@ -190,8 +178,6 @@ Return whether the job has been cancelled.
 **Return type**
 
 `bool`
-
-
 
 `circuits()`
 
@@ -204,8 +190,6 @@ Return the circuits or pulse schedules for this job.
 **Returns**
 
 The circuits or pulse schedules for this job. An empty list is returned if the circuits cannot be retrieved (for example, if the job uses an old format that is no longer supported).
-
-
 
 `property client_version`
 
@@ -221,8 +205,6 @@ Return version of the client used for this job.
 
 of the client and the value is the version.
 
-
-
 `creation_date()`
 
 Return job creation date, in local time.
@@ -235,8 +217,6 @@ Return job creation date, in local time.
 
 The job creation date as a datetime object, in local time.
 
-
-
 `done()`
 
 Return whether the job has successfully run.
@@ -244,8 +224,6 @@ Return whether the job has successfully run.
 **Return type**
 
 `bool`
-
-
 
 `error_message()`
 
@@ -259,8 +237,6 @@ Provide details about the reason of failure.
 
 An error report if the job failed or `None` otherwise.
 
-
-
 `property experiment_id`
 
 Return the experiment ID.
@@ -272,8 +248,6 @@ Return the experiment ID.
 **Returns**
 
 ID of the experiment this job is part of.
-
-
 
 `header()`
 
@@ -287,8 +261,6 @@ Return the user header specified for this job.
 
 User header specified for this job. An empty dictionary is returned if the header cannot be retrieved.
 
-
-
 `in_final_state()`
 
 Return whether the job is in a final job state such as `DONE` or `ERROR`.
@@ -296,8 +268,6 @@ Return whether the job is in a final job state such as `DONE` or `ERROR`.
 **Return type**
 
 `bool`
-
-
 
 `job_id()`
 
@@ -311,8 +281,6 @@ Return the job ID assigned by the server.
 
 Job ID.
 
-
-
 `name()`
 
 Return the name assigned to this job.
@@ -324,8 +292,6 @@ Return the name assigned to this job.
 **Returns**
 
 Job name or `None` if no name was assigned to this job.
-
-
 
 `properties()`
 
@@ -343,8 +309,6 @@ The backend properties used for this job, or `None` if properties are not availa
 
 [**IBMQJobApiError**](qiskit.providers.ibmq.job.IBMQJobApiError#qiskit.providers.ibmq.job.IBMQJobApiError "qiskit.providers.ibmq.job.IBMQJobApiError") – If an unexpected error occurred when communicating with the server.
 
-
-
 `qobj()`
 
 Return the Qobj for this job.
@@ -360,8 +324,6 @@ The Qobj for this job, or `None` if the job does not have a Qobj.
 **Raises**
 
 [**IBMQJobApiError**](qiskit.providers.ibmq.job.IBMQJobApiError#qiskit.providers.ibmq.job.IBMQJobApiError "qiskit.providers.ibmq.job.IBMQJobApiError") – If an unexpected error occurred when retrieving job information from the server.
-
-
 
 `queue_info()`
 
@@ -380,8 +342,6 @@ The queue information may include queue position, estimated start and end time, 
 **Returns**
 
 A [`QueueInfo`](qiskit.providers.ibmq.job.QueueInfo#qiskit.providers.ibmq.job.QueueInfo "qiskit.providers.ibmq.job.QueueInfo") instance that contains queue information for this job, or `None` if queue information is unknown or not applicable.
-
-
 
 `queue_position(refresh=False)`
 
@@ -403,8 +363,6 @@ Return the position of the job in the server queue.
 
 Position in the queue or `None` if position is unknown or not applicable.
 
-
-
 `refresh()`
 
 Obtain the latest job information from the server.
@@ -418,8 +376,6 @@ This method may add additional attributes to this job instance, if new informati
 **Return type**
 
 `None`
-
-
 
 `result(timeout=None, wait=5, partial=False, refresh=False)`
 
@@ -467,8 +423,6 @@ Job result.
 *   [**IBMQJobFailureError**](qiskit.providers.ibmq.job.IBMQJobFailureError#qiskit.providers.ibmq.job.IBMQJobFailureError "qiskit.providers.ibmq.job.IBMQJobFailureError") – If the job failed.
 *   [**IBMQJobApiError**](qiskit.providers.ibmq.job.IBMQJobApiError#qiskit.providers.ibmq.job.IBMQJobApiError "qiskit.providers.ibmq.job.IBMQJobApiError") – If an unexpected error occurred when communicating with the server.
 
-
-
 `running()`
 
 Return whether the job is actively running.
@@ -476,8 +430,6 @@ Return whether the job is actively running.
 **Return type**
 
 `bool`
-
-
 
 `scheduling_mode()`
 
@@ -495,8 +447,6 @@ This information is only available if the job status is `RUNNING` or `DONE`.
 
 The scheduling mode the job is in or `None` if the information is not available.
 
-
-
 `share_level()`
 
 Return the share level of the job.
@@ -510,8 +460,6 @@ The share level is one of `global`, `hub`, `group`, `project`, and `none`.
 **Returns**
 
 The share level of the job.
-
-
 
 `status()`
 
@@ -537,8 +485,6 @@ The status of the job.
 
 [**IBMQJobApiError**](qiskit.providers.ibmq.job.IBMQJobApiError#qiskit.providers.ibmq.job.IBMQJobApiError "qiskit.providers.ibmq.job.IBMQJobApiError") – If an unexpected error occurred when communicating with the server.
 
-
-
 `submit()`
 
 Unsupported method.
@@ -555,8 +501,6 @@ Unsupported method.
 
 `None`
 
-
-
 `tags()`
 
 Return the tags assigned to this job.
@@ -568,8 +512,6 @@ Return the tags assigned to this job.
 **Returns**
 
 Tags assigned to this job.
-
-
 
 `time_per_step()`
 
@@ -591,8 +533,6 @@ The output dictionary contains the date and time information on each step of the
 
 Date and time information on job processing steps, in local time, or `None` if the information is not yet available.
 
-
-
 `update_name(name)`
 
 Update the name associated with this job.
@@ -613,8 +553,6 @@ The new name associated with this job.
 
 *   [**IBMQJobApiError**](qiskit.providers.ibmq.job.IBMQJobApiError#qiskit.providers.ibmq.job.IBMQJobApiError "qiskit.providers.ibmq.job.IBMQJobApiError") – If an unexpected error occurred when communicating with the server or updating the job name.
 *   [**IBMQJobInvalidStateError**](qiskit.providers.ibmq.job.IBMQJobInvalidStateError#qiskit.providers.ibmq.job.IBMQJobInvalidStateError "qiskit.providers.ibmq.job.IBMQJobInvalidStateError") – If the input job name is not a string.
-
-
 
 `update_tags(replacement_tags=None, additional_tags=None, removal_tags=None)`
 
@@ -651,8 +589,6 @@ The new tags associated with this job.
 
 *   [**IBMQJobApiError**](qiskit.providers.ibmq.job.IBMQJobApiError#qiskit.providers.ibmq.job.IBMQJobApiError "qiskit.providers.ibmq.job.IBMQJobApiError") – If an unexpected error occurred when communicating with the server or updating the job tags.
 *   [**IBMQJobInvalidStateError**](qiskit.providers.ibmq.job.IBMQJobInvalidStateError#qiskit.providers.ibmq.job.IBMQJobInvalidStateError "qiskit.providers.ibmq.job.IBMQJobInvalidStateError") – If none of the input parameters are specified or if any of the input parameters are invalid.
-
-
 
 `wait_for_final_state(timeout=None, wait=None, callback=None)`
 

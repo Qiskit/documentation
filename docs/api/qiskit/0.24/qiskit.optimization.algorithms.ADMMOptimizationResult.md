@@ -2,8 +2,6 @@
 
 # qiskit.optimization.algorithms.ADMMOptimizationResult
 
-
-
 `ADMMOptimizationResult(x, fval, variables, state, status)`
 
 ADMMOptimization Result.
@@ -15,8 +13,6 @@ ADMMOptimization Result.
 *   **variables** (`List`\[`Variable`]) – the list of variables of the optimization problem.
 *   **state** (`ADMMState`) – the internal computation state of ADMM.
 *   **status** (`OptimizationResultStatus`) – Termination status of an optimization algorithm
-
-
 
 `__init__(x, fval, variables, state, status)`
 
@@ -47,8 +43,6 @@ ADMMOptimization Result.
 | [`variables_dict`](#qiskit.optimization.algorithms.ADMMOptimizationResult.variables_dict "qiskit.optimization.algorithms.ADMMOptimizationResult.variables_dict") | Returns the optimal value as a dictionary of the variable name and corresponding value. |
 | [`x`](#qiskit.optimization.algorithms.ADMMOptimizationResult.x "qiskit.optimization.algorithms.ADMMOptimizationResult.x")                                        | Returns the optimal value found in the optimization or None in case of FAILURE.         |
 
-
-
 `property fval`
 
 Returns the optimal function value.
@@ -60,8 +54,6 @@ Returns the optimal function value.
 **Returns**
 
 The function value corresponding to the optimal value found in the optimization.
-
-
 
 `property raw_results`
 
@@ -77,8 +69,6 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
-
-
 `property state`
 
 returns state
@@ -86,8 +76,6 @@ returns state
 **Return type**
 
 `ADMMState`
-
-
 
 `property status`
 
@@ -101,8 +89,6 @@ Returns the termination status of the optimization algorithm.
 
 The termination status of the algorithm.
 
-
-
 `property variable_names`
 
 Returns the list of variable names of the optimization problem.
@@ -114,8 +100,6 @@ Returns the list of variable names of the optimization problem.
 **Returns**
 
 The list of variable names of the optimization problem.
-
-
 
 `property variables`
 
@@ -129,8 +113,6 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
-
-
 `property variables_dict`
 
 Returns the optimal value as a dictionary of the variable name and corresponding value.
@@ -142,8 +124,6 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 **Returns**
 
 The optimal value as a dictionary of the variable name and corresponding value.
-
-
 
 `property x`
 

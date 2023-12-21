@@ -2,15 +2,11 @@
 
 # qiskit.aqua.components.neural\_networks.GenerativeNetwork
 
-
-
 `GenerativeNetwork`
 
 Base class for generative Quantum and Classical Neural Networks.
 
 This method should initialize the module, but raise an exception if a required component of the module is not available.
-
-
 
 `abstract __init__()`
 
@@ -25,8 +21,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`loss`](#qiskit.aqua.components.neural_networks.GenerativeNetwork.loss "qiskit.aqua.components.neural_networks.GenerativeNetwork.loss")()                                                   | Loss function used for optimization                                                 |
 | [`set_seed`](#qiskit.aqua.components.neural_networks.GenerativeNetwork.set_seed "qiskit.aqua.components.neural_networks.GenerativeNetwork.set_seed")(seed)                                   | Set seed.                                                                           |
 | [`train`](#qiskit.aqua.components.neural_networks.GenerativeNetwork.train "qiskit.aqua.components.neural_networks.GenerativeNetwork.train")(\[quantum\_instance, shots])                     | Perform one training step w\.r.t to the generator’s parameters                      |
-
-
 
 `abstract get_output(quantum_instance, params, shots)`
 
@@ -46,13 +40,9 @@ Neural network output
 
 **NotImplementedError** – not implemented
 
-
-
 `abstract loss()`
 
 Loss function used for optimization
-
-
 
 `abstract set_seed(seed)`
 
@@ -65,8 +55,6 @@ Set seed.
 **Raises**
 
 **NotImplementedError** – not implemented
-
-
 
 `abstract train(quantum_instance=None, shots=None)`
 

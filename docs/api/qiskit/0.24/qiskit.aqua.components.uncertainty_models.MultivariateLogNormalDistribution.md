@@ -2,8 +2,6 @@
 
 # qiskit.aqua.components.uncertainty\_models.MultivariateLogNormalDistribution
 
-
-
 `MultivariateLogNormalDistribution(num_qubits, low=None, high=None, mu=None, cov=None)`
 
 The Multivariate Log-Normal Distribution.
@@ -15,8 +13,6 @@ The Multivariate Log-Normal Distribution.
 *   **high** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – Upper bounds per dimension
 *   **mu** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – Expected values
 *   **cov** (`Union`\[`List`\[`float`], `ndarray`, `None`]) – Co-variance matrix
-
-
 
 `__init__(num_qubits, low=None, high=None, mu=None, cov=None)`
 
@@ -61,11 +57,7 @@ The Multivariate Log-Normal Distribution.
 | [`probabilities_vector`](#qiskit.aqua.components.uncertainty_models.MultivariateLogNormalDistribution.probabilities_vector "qiskit.aqua.components.uncertainty_models.MultivariateLogNormalDistribution.probabilities_vector") | returns probabilities vector        |
 | [`values`](#qiskit.aqua.components.uncertainty_models.MultivariateLogNormalDistribution.values "qiskit.aqua.components.uncertainty_models.MultivariateLogNormalDistribution.values")                                           | returns values                      |
 
-
-
 `build(qc, q, q_ancillas=None, params=None)`
-
-
 
 `build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
 
@@ -79,8 +71,6 @@ Adds corresponding controlled sub-circuit to given circuit
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
 
-
-
 `build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled inverse of corresponding sub-circuit to given circuit
@@ -93,19 +83,13 @@ Adds controlled inverse of corresponding sub-circuit to given circuit
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 *   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
 
-
-
 `build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-
-
 `build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
 
 Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-
 
 `build_inverse(qc, q, q_ancillas=None)`
 
@@ -117,97 +101,65 @@ Adds inverse of corresponding sub-circuit to given circuit
 *   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
 *   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
 
-
-
 `build_inverse_power(qc, q, power, q_ancillas=None)`
 
 Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-
 
 `build_power(qc, q, power, q_ancillas=None)`
 
 Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
 
-
-
 `property dimension`
 
 returns dimensions
-
-
 
 `get_num_qubits()`
 
 returns number of qubits
 
-
-
 `get_num_qubits_controlled()`
 
 returns number of qubits controlled
-
-
 
 `property high`
 
 returns high
 
-
-
 `property low`
 
 returns low
-
-
 
 `property num_qubits`
 
 returns num qubits
 
-
-
 `property num_target_qubits`
 
 Returns the number of target qubits
-
-
 
 `property num_values`
 
 returns number of values
 
-
-
 `static pdf_to_probabilities(pdf, low, high, num_values)`
 
 pdf to probabilities
-
-
 
 `property probabilities`
 
 returns probabilities
 
-
-
 `property probabilities_vector`
 
 returns probabilities vector
-
-
 
 `required_ancillas()`
 
 returns required ancillas
 
-
-
 `required_ancillas_controlled()`
 
 returns required ancillas controlled
-
-
 
 `property values`
 

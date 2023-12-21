@@ -2,8 +2,6 @@
 
 # qiskit.aqua.algorithms.IterativeAmplitudeEstimation
 
-
-
 `IterativeAmplitudeEstimation(epsilon, alpha, confint_method='beta', min_ratio=2, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, initial_state=None, quantum_instance=None)`
 
 The Iterative Amplitude Estimation algorithm.
@@ -43,8 +41,6 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the method to compute the confidence intervals is not supported
-
-
 
 `__init__(epsilon, alpha, confint_method='beta', min_ratio=2, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, initial_state=None, quantum_instance=None)`
 
@@ -96,8 +92,6 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 | [`random`](#qiskit.aqua.algorithms.IterativeAmplitudeEstimation.random "qiskit.aqua.algorithms.IterativeAmplitudeEstimation.random")                                  | Return a numpy random.                                                              |
 | [`state_preparation`](#qiskit.aqua.algorithms.IterativeAmplitudeEstimation.state_preparation "qiskit.aqua.algorithms.IterativeAmplitudeEstimation.state_preparation") | Get the $\mathcal{A}$ operator encoding the amplitude $a$.                          |
 
-
-
 `property a_factory`
 
 Get the A operator encoding the amplitude a that’s approximated, i.e.
@@ -114,8 +108,6 @@ the A operator as CircuitFactory
 
 [CircuitFactory](qiskit.aqua.utils.CircuitFactory#qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")
 
-
-
 `property backend`
 
 Returns backend.
@@ -123,8 +115,6 @@ Returns backend.
 **Return type**
 
 `Union`\[`Backend`, `BaseBackend`]
-
-
 
 `construct_circuit(k, measurement=False)`
 
@@ -145,8 +135,6 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 The circuit Q^k A |0>.
 
-
-
 `property grover_operator`
 
 Get the $\mathcal{Q}$ operator, or Grover operator.
@@ -160,8 +148,6 @@ If the Grover operator is not set, we try to build it from the $\mathcal{A}$ ope
 **Returns**
 
 The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
-
-
 
 `property i_objective`
 
@@ -180,8 +166,6 @@ the index of the objective qubit
 **Return type**
 
 int
-
-
 
 `is_good_state(measurement)`
 
@@ -203,8 +187,6 @@ True if the measurement corresponds to a good state, False otherwise.
 
 **ValueError** – If `self.objective_qubits` is not set.
 
-
-
 `property objective_qubits`
 
 Get the criterion for a measurement outcome to be in a ‘good’ state.
@@ -216,8 +198,6 @@ Get the criterion for a measurement outcome to be in a ‘good’ state.
 **Returns**
 
 The criterion as list of qubit indices.
-
-
 
 `post_processing(value)`
 
@@ -235,8 +215,6 @@ Post processing of the raw amplitude estimation output $0 \leq a \leq 1$.
 
 The value after post processing, usually mapping the interval $[0, 1]$ to the target interval.
 
-
-
 `property precision`
 
 Returns the target precision epsilon of the algorithm.
@@ -248,8 +226,6 @@ Returns the target precision epsilon of the algorithm.
 **Returns**
 
 The target precision (which is half the width of the confidence interval).
-
-
 
 `property q_factory`
 
@@ -271,8 +247,6 @@ returns the current Q factory of the algorithm
 
 QFactory
 
-
-
 `property quantum_instance`
 
 Returns quantum instance.
@@ -281,13 +255,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 `property random`
 
 Return a numpy random.
-
-
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -310,8 +280,6 @@ dict
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
-
-
 `set_backend(backend, **kwargs)`
 
 Sets backend with configuration.
@@ -319,8 +287,6 @@ Sets backend with configuration.
 **Return type**
 
 `None`
-
-
 
 `property state_preparation`
 

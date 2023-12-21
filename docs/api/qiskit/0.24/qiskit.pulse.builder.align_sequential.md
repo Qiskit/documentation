@@ -2,8 +2,6 @@
 
 # qiskit.pulse.builder.align\_sequential
 
-
-
 `align_sequential()`
 
 Sequential alignment pulse scheduling context.

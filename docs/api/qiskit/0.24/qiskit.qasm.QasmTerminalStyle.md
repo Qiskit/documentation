@@ -2,13 +2,9 @@
 
 # qiskit.qasm.QasmTerminalStyle
 
-
-
 `QasmTerminalStyle`
 
 A style for OpenQasm in a Terminal env (e.g. Jupyter print).
-
-
 
 `__init__()`
 

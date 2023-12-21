@@ -2,8 +2,6 @@
 
 # qiskit.qobj.QasmQobjExperiment
 
-
-
 `QasmQobjExperiment(config=None, header=None, instructions=None)`
 
 A QASM Qobj Experiment.
@@ -17,8 +15,6 @@ Instatiate a QasmQobjExperiment.
 *   **config** ([*QasmQobjExperimentConfig*](qiskit.qobj.QasmQobjExperimentConfig#qiskit.qobj.QasmQobjExperimentConfig "qiskit.qobj.QasmQobjExperimentConfig")) – A config object for the experiment
 *   **header** (*QasmQobjExperimentHeader*) – A header object for the experiment
 *   **instructions** (*list*) – A list of [`QasmQobjInstruction`](qiskit.qobj.QasmQobjInstruction#qiskit.qobj.QasmQobjInstruction "qiskit.qobj.QasmQobjInstruction") objects
-
-
 
 `__init__(config=None, header=None, instructions=None)`
 
@@ -38,8 +34,6 @@ Instatiate a QasmQobjExperiment.
 | [`from_dict`](#qiskit.qobj.QasmQobjExperiment.from_dict "qiskit.qobj.QasmQobjExperiment.from_dict")(data)                         | Create a new QasmQobjExperiment object from a dictionary.    |
 | [`to_dict`](#qiskit.qobj.QasmQobjExperiment.to_dict "qiskit.qobj.QasmQobjExperiment.to_dict")()                                   | Return a dictionary format representation of the Experiment. |
 
-
-
 `classmethod from_dict(data)`
 
 Create a new QasmQobjExperiment object from a dictionary.
@@ -55,8 +49,6 @@ The object from the input dictionary.
 **Return type**
 
 [QasmQobjExperiment](#qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment")
-
-
 
 `to_dict()`
 

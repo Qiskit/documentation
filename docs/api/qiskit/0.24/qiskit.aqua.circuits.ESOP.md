@@ -2,8 +2,6 @@
 
 # qiskit.aqua.circuits.ESOP
 
-
-
 `ESOP(ast, num_vars=None)`
 
 Class for constructing circuits for Exclusive Sum of Products
@@ -18,8 +16,6 @@ Constructor.
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
-
-
 
 `__init__(ast, num_vars=None)`
 
@@ -53,25 +49,17 @@ Constructor.
 | [`output_register`](#qiskit.aqua.circuits.ESOP.output_register "qiskit.aqua.circuits.ESOP.output_register")          | returns output register    |
 | [`variable_register`](#qiskit.aqua.circuits.ESOP.variable_register "qiskit.aqua.circuits.ESOP.variable_register")    | returns variable register  |
 
-
-
 `property ancillary_register`
 
 returns ancillary register
-
-
 
 `property clause_register`
 
 returns clause register
 
-
-
 `compute_num_ancillae(mct_mode='basic')`
 
 returns the number of ancillary qubits needed
-
-
 
 `construct_circuit(circuit=None, variable_register=None, output_register=None, output_idx=None, ancillary_register=None, mct_mode='basic')`
 
@@ -100,25 +88,17 @@ quantum circuit.
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
 
-
-
 `property num_clauses`
 
 returns num clauses
-
-
 
 `property num_variables`
 
 return num variables
 
-
-
 `property output_register`
 
 returns output register
-
-
 
 `property variable_register`
 

@@ -2,8 +2,6 @@
 
 # qiskit.aqua.components.optimizers.SPSA
 
-
-
 `SPSA(maxiter=1000, save_steps=1, last_avg=1, c0=0.6283185307179586, c1=0.1, c2=0.602, c3=0.101, c4=0, skip_calibration=False, max_trials=None)`
 
 Simultaneous Perturbation Stochastic Approximation (SPSA) optimizer.
@@ -36,8 +34,6 @@ For further details, please refer to [https://arxiv.org/pdf/1704.05018v2.pdf#sec
 *   **c4** (`float`) – The parameter used to control a as well.
 *   **skip\_calibration** (`bool`) – Skip calibration and use provided c(s) as is.
 *   **max\_trials** (`Optional`\[`int`]) – Deprecated, use maxiter.
-
-
 
 `__init__(maxiter=1000, save_steps=1, last_avg=1, c0=0.6283185307179586, c1=0.1, c2=0.602, c3=0.101, c4=0, skip_calibration=False, max_trials=None)`
 
@@ -85,19 +81,13 @@ For further details, please refer to [https://arxiv.org/pdf/1704.05018v2.pdf#sec
 | [`is_initial_point_supported`](#qiskit.aqua.components.optimizers.SPSA.is_initial_point_supported "qiskit.aqua.components.optimizers.SPSA.is_initial_point_supported")    | Returns is initial point supported  |
 | [`setting`](#qiskit.aqua.components.optimizers.SPSA.setting "qiskit.aqua.components.optimizers.SPSA.setting")                                                             | Return setting                      |
 
-
-
 `property bounds_support_level`
 
 Returns bounds support level
 
-
-
 `get_support_level()`
 
 return support level dictionary
-
-
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -118,73 +108,49 @@ the gradient computed
 
 grad
 
-
-
 `property gradient_support_level`
 
 Returns gradient support level
-
-
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-
-
 `property is_bounds_ignored`
 
 Returns is bounds ignored
-
-
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-
-
 `property is_bounds_supported`
 
 Returns is bounds supported
-
-
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-
-
 `property is_gradient_required`
 
 Returns is gradient required
-
-
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-
-
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
-
-
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-
-
 `property is_initial_point_supported`
 
 Returns is initial point supported
-
-
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -208,19 +174,13 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
-
-
 `print_options()`
 
 Print algorithm-specific options.
 
-
-
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
-
-
 
 `set_options(**kwargs)`
 
@@ -232,13 +192,9 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-
-
 `property setting`
 
 Return setting
-
-
 
 `static wrap_function(function, args)`
 

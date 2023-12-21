@@ -2,8 +2,6 @@
 
 # qiskit.aqua.operators.gradients.CircuitGradient
 
-
-
 `CircuitGradient`
 
 Circuit to gradient operator converter.
@@ -13,8 +11,6 @@ Converter for changing parameterized circuits into operators whose evaluation yi
 This is distinct from DerivativeBase converters which take gradients of composite operators and handle things like differentiating combo\_fn’s and enforcing product rules when operator coefficients are parameterized.
 
 CircuitGradient - uses quantum techniques to get derivatives of circuits DerivativeBase - uses classical techniques to differentiate operator flow data structures
-
-
 
 `__init__()`
 
@@ -26,8 +22,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
 | [`__init__`](#qiskit.aqua.operators.gradients.CircuitGradient.__init__ "qiskit.aqua.operators.gradients.CircuitGradient.__init__")()                 | Initialize self.                |
 | [`convert`](#qiskit.aqua.operators.gradients.CircuitGradient.convert "qiskit.aqua.operators.gradients.CircuitGradient.convert")(operator\[, params]) | **type operator**`OperatorBase` |
-
-
 
 `abstract convert(operator, params=None)`
 

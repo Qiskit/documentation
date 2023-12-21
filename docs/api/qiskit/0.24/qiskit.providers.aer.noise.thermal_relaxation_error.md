@@ -2,8 +2,6 @@
 
 # qiskit.providers.aer.noise.thermal\_relaxation\_error
 
-
-
 `thermal_relaxation_error(t1, t2, time, excited_state_population=0)`
 
 Return a single-qubit thermal relaxation quantum error channel.

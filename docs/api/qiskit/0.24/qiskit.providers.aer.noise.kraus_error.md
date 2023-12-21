@@ -2,8 +2,6 @@
 
 # qiskit.providers.aer.noise.kraus\_error
 
-
-
 `kraus_error(noise_ops, standard_gates=True, canonical_kraus=False)`
 
 Return a Kraus quantum error channel.

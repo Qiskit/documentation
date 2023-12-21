@@ -2,8 +2,6 @@
 
 # qiskit.optimization.algorithms.ADMMOptimizer
 
-
-
 `ADMMOptimizer(qubo_optimizer=None, continuous_optimizer=None, params=None)`
 
 An implementation of the ADMM-based heuristic.
@@ -21,8 +19,6 @@ Optimization on Classical and Quantum Computers. arXiv preprint arXiv:2001.02069
 *   **qubo\_optimizer** (`Optional`\[`OptimizationAlgorithm`]) – An instance of OptimizationAlgorithm that can effectively solve QUBO problems. If not specified then [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer#qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer") initialized with an instance of `NumPyMinimumEigensolver` will be used.
 *   **continuous\_optimizer** (`Optional`\[`OptimizationAlgorithm`]) – An instance of OptimizationAlgorithm that can solve continuous problems. If not specified then [`SlsqpOptimizer`](qiskit.optimization.algorithms.SlsqpOptimizer#qiskit.optimization.algorithms.SlsqpOptimizer "qiskit.optimization.algorithms.SlsqpOptimizer") will be used.
 *   **params** (`Optional`\[`ADMMParameters`]) – An instance of ADMMParameters.
-
-
 
 `__init__(qubo_optimizer=None, continuous_optimizer=None, params=None)`
 
@@ -47,8 +43,6 @@ Optimization on Classical and Quantum Computers. arXiv preprint arXiv:2001.02069
 | ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
 | [`parameters`](#qiskit.optimization.algorithms.ADMMOptimizer.parameters "qiskit.optimization.algorithms.ADMMOptimizer.parameters") | Returns current parameters of the optimizer. |
 
-
-
 `get_compatibility_msg(problem)`
 
 Checks whether a given problem can be solved with the optimizer implementing this method.
@@ -69,8 +63,6 @@ Returns True if the problem is compatible, otherwise raises an error.
 
 [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is not compatible with the ADMM optimizer.
 
-
-
 `is_compatible(problem)`
 
 Checks whether a given problem can be solved with the optimizer implementing this method.
@@ -87,8 +79,6 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 
 Returns True if the problem is compatible, False otherwise.
 
-
-
 `property parameters`
 
 Returns current parameters of the optimizer.
@@ -100,8 +90,6 @@ Returns current parameters of the optimizer.
 **Returns**
 
 The parameters.
-
-
 
 `solve(problem)`
 

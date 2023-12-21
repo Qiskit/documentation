@@ -2,8 +2,6 @@
 
 # qiskit.pulse.builder.align\_left
 
-
-
 `align_left()`
 
 Left alignment pulse scheduling context.

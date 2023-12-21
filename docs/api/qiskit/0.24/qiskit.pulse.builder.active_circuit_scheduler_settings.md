@@ -2,8 +2,6 @@
 
 # qiskit.pulse.builder.active\_circuit\_scheduler\_settings
 
-
-
 `active_circuit_scheduler_settings()`
 
 Return the current active builder context’s circuit scheduler settings.

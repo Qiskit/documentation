@@ -2,8 +2,6 @@
 
 # qiskit.chemistry.algorithms.GroundStateSolver
 
-
-
 `GroundStateSolver(transformation)`
 
 The ground state calculation interface
@@ -11,8 +9,6 @@ The ground state calculation interface
 **Parameters**
 
 **transformation** (`Transformation`) – transformation from driver to qubit operator (and aux. operators)
-
-
 
 `__init__(transformation)`
 
@@ -35,8 +31,6 @@ The ground state calculation interface
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
 | [`transformation`](#qiskit.chemistry.algorithms.GroundStateSolver.transformation "qiskit.chemistry.algorithms.GroundStateSolver.transformation") | Returns the transformation used to obtain a qubit operator from the molecule. |
 
-
-
 `abstract evaluate_operators(state, operators)`
 
 Evaluates additional operators at the given state.
@@ -54,8 +48,6 @@ Evaluates additional operators at the given state.
 
 The expectation value of the given operator(s). The return type will be identical to the format of the provided operators.
 
-
-
 `abstract returns_groundstate()`
 
 Whether this class returns only the ground state energy or also the ground state itself.
@@ -67,8 +59,6 @@ Whether this class returns only the ground state energy or also the ground state
 **Returns**
 
 True, if this class also returns the ground state in the results object. False otherwise.
-
-
 
 `abstract solve(driver, aux_operators=None)`
 
@@ -86,8 +76,6 @@ Compute the ground state energy of the molecule that was supplied via the driver
 **Returns**
 
 An eigenstate result.
-
-
 
 `property transformation`
 

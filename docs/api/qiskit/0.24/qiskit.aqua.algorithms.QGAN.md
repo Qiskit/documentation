@@ -2,8 +2,6 @@
 
 # qiskit.aqua.algorithms.QGAN
 
-
-
 `QGAN(data, bounds=None, num_qubits=None, batch_size=500, num_epochs=3000, seed=7, discriminator=None, generator=None, tol_rel_ent=None, snapshot_dir=None, quantum_instance=None)`
 
 The Quantum Generative Adversarial Network algorithm.
@@ -37,8 +35,6 @@ These networks are trained in alternating optimization steps, where the discrimi
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
-
-
 
 `__init__(data, bounds=None, num_qubits=None, batch_size=500, num_epochs=3000, seed=7, discriminator=None, generator=None, tol_rel_ent=None, snapshot_dir=None, quantum_instance=None)`
 
@@ -87,8 +83,6 @@ These networks are trained in alternating optimization steps, where the discrimi
 | [`seed`](#qiskit.aqua.algorithms.QGAN.seed "qiskit.aqua.algorithms.QGAN.seed")                                     | Returns random seed                                              |
 | [`tol_rel_ent`](#qiskit.aqua.algorithms.QGAN.tol_rel_ent "qiskit.aqua.algorithms.QGAN.tol_rel_ent")                | Returns tolerance for relative entropy                           |
 
-
-
 `property backend`
 
 Returns backend.
@@ -96,8 +90,6 @@ Returns backend.
 **Return type**
 
 `Union`\[`Backend`, `BaseBackend`]
-
-
 
 `property d_loss`
 
@@ -107,13 +99,9 @@ Returns discriminator loss
 
 `List`\[`float`]
 
-
-
 `property discriminator`
 
 Returns discriminator
-
-
 
 `property g_loss`
 
@@ -123,13 +111,9 @@ Returns generator loss
 
 `List`\[`float`]
 
-
-
 `property generator`
 
 Returns generator
-
-
 
 `get_rel_entr()`
 
@@ -139,8 +123,6 @@ Get relative entropy between target and trained distribution
 
 `float`
 
-
-
 `property quantum_instance`
 
 Returns quantum instance.
@@ -149,13 +131,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 `property random`
 
 Return a numpy random.
-
-
 
 `property rel_entr`
 
@@ -164,8 +142,6 @@ Returns relative entropy between target and trained distribution
 **Return type**
 
 `List`\[`float`]
-
-
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -188,13 +164,9 @@ dict
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
-
-
 `property seed`
 
 Returns random seed
-
-
 
 `set_backend(backend, **kwargs)`
 
@@ -204,8 +176,6 @@ Sets backend with configuration.
 
 `None`
 
-
-
 `set_discriminator(discriminator=None)`
 
 Initialize discriminator.
@@ -213,8 +183,6 @@ Initialize discriminator.
 **Parameters**
 
 **discriminator** (*Discriminator*) – discriminator
-
-
 
 `set_generator(generator_circuit=None, generator_init_params=None, generator_optimizer=None)`
 
@@ -226,13 +194,9 @@ Initialize generator.
 *   **generator\_init\_params** (`Optional`\[`ndarray`]) – initial parameters for the generator circuit
 *   **generator\_optimizer** (`Optional`\[`Optimizer`]) – optimizer to be used for the training of the generator
 
-
-
 `property tol_rel_ent`
 
 Returns tolerance for relative entropy
-
-
 
 `train()`
 

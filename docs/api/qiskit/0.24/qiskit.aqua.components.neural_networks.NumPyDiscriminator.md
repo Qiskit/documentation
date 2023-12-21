@@ -2,8 +2,6 @@
 
 # qiskit.aqua.components.neural\_networks.NumPyDiscriminator
 
-
-
 `NumPyDiscriminator(n_features=1, n_out=1)`
 
 Discriminator based on NumPy
@@ -12,8 +10,6 @@ Discriminator based on NumPy
 
 *   **n\_features** (`int`) – Dimension of input data vector.
 *   **n\_out** (`int`) – Dimension of the discriminator’s output vector.
-
-
 
 `__init__(n_features=1, n_out=1)`
 
@@ -40,8 +36,6 @@ Discriminator based on NumPy
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | [`discriminator_net`](#qiskit.aqua.components.neural_networks.NumPyDiscriminator.discriminator_net "qiskit.aqua.components.neural_networks.NumPyDiscriminator.discriminator_net") | Get discriminator |
 
-
-
 `property discriminator_net`
 
 Get discriminator
@@ -53,8 +47,6 @@ discriminator object
 **Return type**
 
 DiscriminatorNet
-
-
 
 `get_label(x, detach=False)`
 
@@ -73,8 +65,6 @@ Discriminator output, i.e. data label
 
 numpy.ndarray
 
-
-
 `load_model(load_dir)`
 
 Load discriminator model
@@ -82,8 +72,6 @@ Load discriminator model
 **Parameters**
 
 **load\_dir** (*str*) – file with stored pytorch discriminator model to be loaded
-
-
 
 `loss(x, y, weights=None)`
 
@@ -97,8 +85,6 @@ loss function
 
 float
 
-
-
 `save_model(snapshot_dir)`
 
 Save discriminator model
@@ -107,13 +93,9 @@ Save discriminator model
 
 **snapshot\_dir** (*str*) – directory path for saving the model
 
-
-
 `set_seed(seed)`
 
 Set seed. :param seed: seed :type seed: int
-
-
 
 `train(data, weights, penalty=False, quantum_instance=None, shots=None)`
 

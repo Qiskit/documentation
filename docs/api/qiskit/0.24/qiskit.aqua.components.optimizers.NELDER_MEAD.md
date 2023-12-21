@@ -2,8 +2,6 @@
 
 # qiskit.aqua.components.optimizers.NELDER\_MEAD
 
-
-
 `NELDER_MEAD(maxiter=None, maxfev=1000, disp=False, xatol=0.0001, tol=None, adaptive=False)`
 
 Nelder-Mead optimizer.
@@ -22,8 +20,6 @@ Uses scipy.optimize.minimize Nelder-Mead. For further detail, please refer to Se
 *   **xatol** (`float`) – Absolute error in xopt between iterations that is acceptable for convergence.
 *   **tol** (`Optional`\[`float`]) – Tolerance for termination.
 *   **adaptive** (`bool`) – Adapt algorithm parameters to dimensionality of problem.
-
-
 
 `__init__(maxiter=None, maxfev=1000, disp=False, xatol=0.0001, tol=None, adaptive=False)`
 
@@ -67,19 +63,13 @@ Uses scipy.optimize.minimize Nelder-Mead. For further detail, please refer to Se
 | [`is_initial_point_supported`](#qiskit.aqua.components.optimizers.NELDER_MEAD.is_initial_point_supported "qiskit.aqua.components.optimizers.NELDER_MEAD.is_initial_point_supported")    | Returns is initial point supported  |
 | [`setting`](#qiskit.aqua.components.optimizers.NELDER_MEAD.setting "qiskit.aqua.components.optimizers.NELDER_MEAD.setting")                                                             | Return setting                      |
 
-
-
 `property bounds_support_level`
 
 Returns bounds support level
 
-
-
 `get_support_level()`
 
 Return support level dictionary
-
-
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -100,73 +90,49 @@ the gradient computed
 
 grad
 
-
-
 `property gradient_support_level`
 
 Returns gradient support level
-
-
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-
-
 `property is_bounds_ignored`
 
 Returns is bounds ignored
-
-
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-
-
 `property is_bounds_supported`
 
 Returns is bounds supported
-
-
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-
-
 `property is_gradient_required`
 
 Returns is gradient required
-
-
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-
-
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
-
-
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-
-
 `property is_initial_point_supported`
 
 Returns is initial point supported
-
-
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -190,19 +156,13 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
-
-
 `print_options()`
 
 Print algorithm-specific options.
 
-
-
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
-
-
 
 `set_options(**kwargs)`
 
@@ -214,13 +174,9 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-
-
 `property setting`
 
 Return setting
-
-
 
 `static wrap_function(function, args)`
 

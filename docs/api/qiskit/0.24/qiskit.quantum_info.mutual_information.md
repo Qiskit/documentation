@@ -2,8 +2,6 @@
 
 # qiskit.quantum\_info.mutual\_information
 
-
-
 `mutual_information(state, base=2)`
 
 Calculate the mutual information of a bipartite state.

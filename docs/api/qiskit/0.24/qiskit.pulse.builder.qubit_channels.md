@@ -2,8 +2,6 @@
 
 # qiskit.pulse.builder.qubit\_channels
 
-
-
 `qubit_channels(qubit)`
 
 Returns the set of channels associated with a qubit.

@@ -2,15 +2,11 @@
 
 # qiskit.qobj.Qobj
 
-
-
 `Qobj(qobj_id=None, config=None, experiments=None, header=None)`
 
 A backwards compat alias for QasmQobj.
 
 Initialize a Qobj object.
-
-
 
 `__init__(qobj_id=None, config=None, experiments=None, header=None)`
 
@@ -23,8 +19,6 @@ Initialize a Qobj object.
 | [`__init__`](#qiskit.qobj.Qobj.__init__ "qiskit.qobj.Qobj.__init__")(\[qobj\_id, config, experiments, header]) | Initialize a Qobj object.                                   |
 | [`from_dict`](#qiskit.qobj.Qobj.from_dict "qiskit.qobj.Qobj.from_dict")(data)                                  | Create a new QASMQobj object from a dictionary.             |
 | [`to_dict`](#qiskit.qobj.Qobj.to_dict "qiskit.qobj.Qobj.to_dict")(\[validate])                                 | Return a dictionary format representation of the QASM Qobj. |
-
-
 
 `classmethod from_dict(data)`
 
@@ -41,8 +35,6 @@ The QasmQobj from the input dictionary.
 **Return type**
 
 [QasmQobj](qiskit.qobj.QasmQobj#qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj")
-
-
 
 `to_dict(validate=False)`
 

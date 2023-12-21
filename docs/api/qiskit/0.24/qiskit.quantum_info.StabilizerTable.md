@@ -2,8 +2,6 @@
 
 # qiskit.quantum\_info.StabilizerTable
 
-
-
 `StabilizerTable(data, phase=None)`
 
 Symplectic representation of a list Stabilizer matrices.
@@ -86,8 +84,6 @@ Initialize the StabilizerTable.
 
 The input array is not copied so multiple Pauli and Stabilizer tables can share the same underlying array.
 
-
-
 `__init__(data, phase=None)`
 
 Initialize the StabilizerTable.
@@ -158,19 +154,13 @@ The input array is not copied so multiple Pauli and Stabilizer tables can share 
 | [`shape`](#qiskit.quantum_info.StabilizerTable.shape "qiskit.quantum_info.StabilizerTable.shape")                | The full shape of the [`array()`](#qiskit.quantum_info.StabilizerTable.array "qiskit.quantum_info.StabilizerTable.array") |
 | [`size`](#qiskit.quantum_info.StabilizerTable.size "qiskit.quantum_info.StabilizerTable.size")                   | The number of Pauli rows in the table.                                                                                    |
 
-
-
 `property X`
 
 The X block of the [`array`](#qiskit.quantum_info.StabilizerTable.array "qiskit.quantum_info.StabilizerTable.array").
 
-
-
 `property Z`
 
 The Z block of the [`array`](#qiskit.quantum_info.StabilizerTable.array "qiskit.quantum_info.StabilizerTable.array").
-
-
 
 `add(other)`
 
@@ -190,13 +180,9 @@ the operator self + other.
 
 BaseOperator
 
-
-
 `adjoint()`
 
 Return the adjoint of the operator.
-
-
 
 `anticommutes_with_all(other)`
 
@@ -215,8 +201,6 @@ index array of the anti-commuting rows.
 **Return type**
 
 array
-
-
 
 `argsort(weight=False)`
 
@@ -238,19 +222,13 @@ the indices for sorting the table.
 
 array
 
-
-
 `property array`
 
 The underlying boolean array.
 
-
-
 `property atol`
 
 The default absolute tolerance parameter for float comparisons.
-
-
 
 `commutes(pauli)`
 
@@ -274,8 +252,6 @@ array
 
 **QiskitError** – if input is not a single Pauli row.
 
-
-
 `commutes_with_all(other)`
 
 Return indexes of rows that commute other.
@@ -293,8 +269,6 @@ index array of the commuting rows.
 **Return type**
 
 array
-
-
 
 `compose(other, qargs=None, front=False)`
 
@@ -345,19 +319,13 @@ the compose outer product table.
 
 **QiskitError** – if other cannot be converted to a StabilizerTable.
 
-
-
 `conjugate()`
 
 Not implemented.
 
-
-
 `copy()`
 
 Return a copy of the StabilizerTable.
-
-
 
 `delete(ind, qubit=False)`
 
@@ -382,13 +350,9 @@ the resulting table with the entries removed.
 
 **QiskitError** – if ind is out of bounds for the array size or number of qubits.
 
-
-
 `property dim`
 
 Return tuple (input\_shape, output\_shape).
-
-
 
 `dot(other, qargs=None)`
 
@@ -436,8 +400,6 @@ the dot outer product table.
 
 **QiskitError** – if other cannot be converted to a StabilizerTable.
 
-
-
 `expand(other)`
 
 Return the expand output product of two tables.
@@ -474,8 +436,6 @@ the expand outer product table.
 
 **QiskitError** – if other cannot be converted to a StabilizerTable.
 
-
-
 `classmethod from_labels(labels)`
 
 Construct a StabilizerTable from a list of Pauli stabilizer strings.
@@ -509,13 +469,9 @@ the constructed StabilizerTable.
 
 **QiskitError** – If the input list is empty or contains invalid Pauli stabilizer strings.
 
-
-
 `input_dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
-
-
 
 `insert(ind, value, qubit=False)`
 
@@ -541,8 +497,6 @@ the resulting table with the entries inserted.
 
 **QiskitError** – if the insertion index is invalid.
 
-
-
 `label_iter()`
 
 Return a label representation iterator.
@@ -556,8 +510,6 @@ label iterator object for the StabilizerTable.
 **Return type**
 
 LabelIterator
-
-
 
 `matrix_iter(sparse=False)`
 
@@ -576,8 +528,6 @@ matrix iterator object for the StabilizerTable.
 **Return type**
 
 MatrixIterator
-
-
 
 `multiply(other)`
 
@@ -601,31 +551,21 @@ BaseOperator
 
 **NotImplementedError** – if subclass does not support multiplication.
 
-
-
 `property num_qubits`
 
 Return the number of qubits if a N-qubit operator or None otherwise.
-
-
 
 `output_dims(qargs=None)`
 
 Return tuple of output dimension for specified subsystems.
 
-
-
 `property pauli`
 
 Return PauliTable
 
-
-
 `property phase`
 
 Return phase vector
-
-
 
 `power(n)`
 
@@ -647,13 +587,9 @@ BaseOperator
 
 **QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
 
-
-
 `property qargs`
 
 Return the qargs for the operator.
-
-
 
 `reshape(input_dims=None, output_dims=None)`
 
@@ -681,13 +617,9 @@ BaseOperator
 
 **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
 
-
-
 `property rtol`
 
 The relative tolerance parameter for float comparisons.
-
-
 
 `classmethod set_atol(value)`
 
@@ -695,27 +627,19 @@ Set the class default absolute tolerance parameter for float comparisons.
 
 DEPRECATED: use operator.atol = value instead
 
-
-
 `classmethod set_rtol(value)`
 
 Set the class default relative tolerance parameter for float comparisons.
 
 DEPRECATED: use operator.rtol = value instead
 
-
-
 `property shape`
 
 The full shape of the [`array()`](#qiskit.quantum_info.StabilizerTable.array "qiskit.quantum_info.StabilizerTable.array")
 
-
-
 `property size`
 
 The number of Pauli rows in the table.
-
-
 
 `sort(weight=False)`
 
@@ -774,8 +698,6 @@ a sorted copy of the original table.
 
 [StabilizerTable](#qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
 
-
-
 `subtract(other)`
 
 Return the linear operator self - other.
@@ -793,8 +715,6 @@ the operator self - other.
 **Return type**
 
 BaseOperator
-
-
 
 `tensor(other)`
 
@@ -832,8 +752,6 @@ the tensor outer product table.
 
 **QiskitError** – if other cannot be converted to a StabilizerTable.
 
-
-
 `to_labels(array=False)`
 
 Convert a StabilizerTable to a list Pauli stabilizer string labels.
@@ -862,8 +780,6 @@ The rows of the StabilizerTable in label form.
 **Return type**
 
 list or array
-
-
 
 `to_matrix(sparse=False, array=False)`
 
@@ -895,13 +811,9 @@ A list of dense Pauli matrices if array=False and sparse=False. list: A list of 
 
 list
 
-
-
 `transpose()`
 
 Not implemented.
-
-
 
 `unique(return_index=False, return_counts=False)`
 

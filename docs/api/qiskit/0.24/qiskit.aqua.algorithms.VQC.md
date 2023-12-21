@@ -2,8 +2,6 @@
 
 # qiskit.aqua.algorithms.VQC
 
-
-
 `VQC(optimizer, feature_map, var_form, training_dataset, test_dataset=None, datapoints=None, max_evals_grouped=1, minibatch_size=- 1, callback=None, quantum_instance=None)`
 
 The Variational Quantum Classifier algorithm.
@@ -34,8 +32,6 @@ Similar to [`QSVM`](qiskit.aqua.algorithms.QSVM#qiskit.aqua.algorithms.QSVM "qis
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Missing feature map or missing training dataset.
-
-
 
 `__init__(optimizer, feature_map, var_form, training_dataset, test_dataset=None, datapoints=None, max_evals_grouped=1, minibatch_size=- 1, callback=None, quantum_instance=None)`
 
@@ -102,8 +98,6 @@ Similar to [`QSVM`](qiskit.aqua.algorithms.QSVM#qiskit.aqua.algorithms.QSVM "qis
 | [`training_dataset`](#qiskit.aqua.algorithms.VQC.training_dataset "qiskit.aqua.algorithms.VQC.training_dataset") | returns training dataset   |
 | [`var_form`](#qiskit.aqua.algorithms.VQC.var_form "qiskit.aqua.algorithms.VQC.var_form")                         | Returns variational form   |
 
-
-
 `property backend`
 
 Returns backend.
@@ -112,25 +106,17 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-
-
 `batch_data(data, labels=None, minibatch_size=- 1)`
 
 batch data
-
-
 
 `property class_to_label`
 
 returns class to label
 
-
-
 `cleanup_parameterized_circuits()`
 
 set parameterized circuits to None
-
-
 
 `construct_circuit(x, theta, measurement=False)`
 
@@ -154,13 +140,9 @@ the circuit
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If `x` and `theta` share parameters with the same name.
 
-
-
 `property datapoints`
 
 return data points
-
-
 
 `property feature_map`
 
@@ -169,8 +151,6 @@ Return the feature map.
 **Return type**
 
 `Union`\[`FeatureMap`, `QuantumCircuit`, `None`]
-
-
 
 `find_minimum(initial_point=None, var_form=None, cost_fn=None, optimizer=None, gradient_fn=None)`
 
@@ -196,37 +176,25 @@ dict
 
 **ValueError** – invalid input
 
-
-
 `get_optimal_circuit()`
 
 get optimal circuit
-
-
 
 `get_optimal_cost()`
 
 get optimal cost
 
-
-
 `get_optimal_vector()`
 
 get optimal vector
-
-
 
 `get_prob_vector_for_params(construct_circuit_fn, params_s, quantum_instance, construct_circuit_args=None)`
 
 Helper function to get probability vectors for a set of params
 
-
-
 `get_probabilities_for_counts(counts)`
 
 get probabilities for counts
-
-
 
 `property initial_point`
 
@@ -236,31 +204,21 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
-
-
 `is_gradient_really_supported()`
 
 returns is gradient really supported
-
-
 
 `property label_to_class`
 
 returns label to class
 
-
-
 `load_model(file_path)`
 
 load model
 
-
-
 `property optimal_params`
 
 returns optimal parameters
-
-
 
 `property optimizer`
 
@@ -269,8 +227,6 @@ Returns optimizer
 **Return type**
 
 `Optional`\[`Optimizer`]
-
-
 
 `predict(data, quantum_instance=None, minibatch_size=- 1, params=None)`
 
@@ -291,8 +247,6 @@ for each data point, generates the predicted probability for each class list: fo
 
 list
 
-
-
 `property quantum_instance`
 
 Returns quantum instance.
@@ -301,19 +255,13 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 `property random`
 
 Return a numpy random.
 
-
-
 `property ret`
 
 returns result
-
-
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -336,13 +284,9 @@ dict
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
-
-
 `save_model(file_path)`
 
 save model
-
-
 
 `set_backend(backend, **kwargs)`
 
@@ -351,8 +295,6 @@ Sets backend with configuration.
 **Return type**
 
 `None`
-
-
 
 `test(data, labels, quantum_instance=None, minibatch_size=- 1, params=None)`
 
@@ -374,13 +316,9 @@ classification accuracy
 
 float
 
-
-
 `property test_dataset`
 
 returns test dataset
-
-
 
 `train(data, labels, quantum_instance=None, minibatch_size=- 1)`
 
@@ -393,13 +331,9 @@ Train the models, and save results.
 *   **quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance#qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – quantum backend with all setting
 *   **minibatch\_size** (*int*) – the size of each minibatched accuracy evaluation
 
-
-
 `property training_dataset`
 
 returns training dataset
-
-
 
 `property var_form`
 

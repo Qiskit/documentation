@@ -2,8 +2,6 @@
 
 # qiskit.aqua.operators.gradients.GradientBase
 
-
-
 `GradientBase(grad_method='param_shift', **kwargs)`
 
 Base class for first-order operator gradient.
@@ -18,8 +16,6 @@ Convert an operator expression to the first-order gradient.
 **Raises**
 
 **ValueError** – If method != `fin_diff` and `epsilon` is not None.
-
-
 
 `__init__(grad_method='param_shift', **kwargs)`
 
@@ -47,8 +43,6 @@ Convert an operator expression to the first-order gradient.
 | ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
 | [`grad_method`](#qiskit.aqua.operators.gradients.GradientBase.grad_method "qiskit.aqua.operators.gradients.GradientBase.grad_method") | Returns `CircuitGradient`. |
 
-
-
 `abstract convert(operator, params=None)`
 
 **Parameters**
@@ -68,8 +62,6 @@ An operator whose evaluation yields the gradient, Hessian or QFI.
 
 **ValueError** – If `params` contains a parameter not present in `operator`.
 
-
-
 `property grad_method`
 
 Returns `CircuitGradient`.
@@ -81,8 +73,6 @@ Returns `CircuitGradient`.
 **Returns**
 
 `CircuitGradient`.
-
-
 
 `gradient_wrapper(operator, bind_params, grad_params=None, backend=None)`
 
@@ -102,8 +92,6 @@ Function to compute a gradient, Hessian or QFI. The function takes an iterable a
 **Return type**
 
 callable(param\_values)
-
-
 
 `static parameter_expression_grad(param_expr, param)`
 

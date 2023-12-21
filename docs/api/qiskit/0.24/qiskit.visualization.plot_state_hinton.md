@@ -2,8 +2,6 @@
 
 # qiskit.visualization.plot\_state\_hinton
 
-
-
 `plot_state_hinton(state, title='', figsize=None, ax_real=None, ax_imag=None, *, rho=None)`
 
 Plot a hinton diagram for the density matrix of a quantum state.

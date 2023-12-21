@@ -2,8 +2,6 @@
 
 # qiskit.transpiler.PassManagerConfig
 
-
-
 `PassManagerConfig(initial_layout=None, basis_gates=None, coupling_map=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, backend_properties=None, seed_transpiler=None)`
 
 Pass Manager Configuration.
@@ -22,8 +20,6 @@ Initialize a PassManagerConfig object
 *   **instruction\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations#qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Dictionary of duration (in dt) for each instruction.
 *   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc.
 *   **seed\_transpiler** (*int*) – Sets random seed for the stochastic parts of the transpiler.
-
-
 
 `__init__(initial_layout=None, basis_gates=None, coupling_map=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, backend_properties=None, seed_transpiler=None)`
 

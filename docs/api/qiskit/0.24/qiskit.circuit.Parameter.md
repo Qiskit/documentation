@@ -2,8 +2,6 @@
 
 # qiskit.circuit.Parameter
 
-
-
 `Parameter(name)`
 
 Parameter Class for variable parameters.
@@ -13,8 +11,6 @@ Create a new named [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Param
 **Parameters**
 
 **name** (`str`) – name of the `Parameter`, used for visual representation. This can be any unicode string, e.g. “ϕ”.
-
-
 
 `__init__(name)`
 
@@ -41,8 +37,6 @@ Create a new named [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Param
 | [`name`](#qiskit.circuit.Parameter.name "qiskit.circuit.Parameter.name")                   | Returns the name of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter"). |
 | [`parameters`](#qiskit.circuit.Parameter.parameters "qiskit.circuit.Parameter.parameters") | Returns a set of the unbound Parameters in the expression.                                   |
 
-
-
 `assign(parameter, value)`
 
 Assign one parameter to a value, which can either be numeric or another parameter expression.
@@ -59,8 +53,6 @@ Assign one parameter to a value, which can either be numeric or another paramete
 **Returns**
 
 A new expression parameterized by any parameters which were not bound by assignment.
-
-
 
 `bind(parameter_values)`
 
@@ -88,8 +80,6 @@ Binds the provided set of parameters to their corresponding values.
 
 A new expression parameterized by any parameters which were not bound by parameter\_values.
 
-
-
 `conjugate()`
 
 Return the conjugate, which is the ParameterExpression itself, since it is real.
@@ -98,13 +88,9 @@ Return the conjugate, which is the ParameterExpression itself, since it is real.
 
 `ParameterExpression`
 
-
-
 `property name`
 
 Returns the name of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter").
-
-
 
 `property parameters`
 
@@ -113,8 +99,6 @@ Returns a set of the unbound Parameters in the expression.
 **Return type**
 
 `Set`
-
-
 
 `subs(parameter_map)`
 

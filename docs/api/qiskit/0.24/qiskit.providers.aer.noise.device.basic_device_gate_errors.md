@@ -2,8 +2,6 @@
 
 # qiskit.providers.aer.noise.device.basic\_device\_gate\_errors
 
-
-
 `basic_device_gate_errors(properties, gate_error=True, thermal_relaxation=True, gate_lengths=None, gate_length_units='ns', temperature=0, standard_gates=True, warnings=True)`
 
 Return QuantumErrors derived from a devices BackendProperties.

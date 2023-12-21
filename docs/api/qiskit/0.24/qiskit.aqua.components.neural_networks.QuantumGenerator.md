@@ -2,8 +2,6 @@
 
 # qiskit.aqua.components.neural\_networks.QuantumGenerator
 
-
-
 `QuantumGenerator(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, snapshot_dir=None)`
 
 Quantum Generator.
@@ -22,8 +20,6 @@ The quantum generator is a parametrized quantum circuit which can be trained wit
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Set multivariate variational distribution to represent multivariate data
-
-
 
 `__init__(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, snapshot_dir=None)`
 
@@ -52,8 +48,6 @@ The quantum generator is a parametrized quantum circuit which can be trained wit
 | [`set_seed`](#qiskit.aqua.components.neural_networks.QuantumGenerator.set_seed "qiskit.aqua.components.neural_networks.QuantumGenerator.set_seed")(seed)                                      | Set seed.                                                      |
 | [`train`](#qiskit.aqua.components.neural_networks.QuantumGenerator.train "qiskit.aqua.components.neural_networks.QuantumGenerator.train")(\[quantum\_instance, shots])                        | Perform one training step w\.r.t to the generator’s parameters |
 
-
-
 `construct_circuit(params=None)`
 
 Construct generator circuit.
@@ -69,8 +63,6 @@ construct the quantum circuit and return as gate
 **Return type**
 
 [Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-
 
 `get_output(quantum_instance, params=None, shots=None)`
 
@@ -90,8 +82,6 @@ generated samples, array: sample occurrence in percentage
 
 list
 
-
-
 `loss(x, weights)`
 
 Loss function for training the generator’s parameters.
@@ -109,8 +99,6 @@ loss function
 
 float
 
-
-
 `set_discriminator(discriminator)`
 
 Set discriminator network.
@@ -119,8 +107,6 @@ Set discriminator network.
 
 **discriminator** (*Discriminator*) – Discriminator used to compute the loss function.
 
-
-
 `set_seed(seed)`
 
 Set seed.
@@ -128,8 +114,6 @@ Set seed.
 **Parameters**
 
 **seed** (*int*) – seed
-
-
 
 `train(quantum_instance=None, shots=None)`
 

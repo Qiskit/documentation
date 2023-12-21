@@ -2,8 +2,6 @@
 
 # qiskit.providers.JobV1
 
-
-
 `JobV1(backend, job_id, **kwargs)`
 
 Class to handle jobs
@@ -17,8 +15,6 @@ Initializes the asynchronous job.
 *   **backend** (`Backend`) – the backend used to run the job.
 *   **job\_id** (`str`) – a unique id in the context of the backend used to run the job.
 *   **kwargs** – Any key value metadata to associate with this job.
-
-
 
 `__init__(backend, job_id, **kwargs)`
 
@@ -53,8 +49,6 @@ Initializes the asynchronous job.
 | --------- | - |
 | `version` |   |
 
-
-
 `backend()`
 
 Return the backend where this job was executed.
@@ -63,13 +57,9 @@ Return the backend where this job was executed.
 
 `Backend`
 
-
-
 `cancel()`
 
 Attempt to cancel the job.
-
-
 
 `cancelled()`
 
@@ -79,8 +69,6 @@ Return whether the job has been cancelled.
 
 `bool`
 
-
-
 `done()`
 
 Return whether the job has successfully run.
@@ -88,8 +76,6 @@ Return whether the job has successfully run.
 **Return type**
 
 `bool`
-
-
 
 `in_final_state()`
 
@@ -99,8 +85,6 @@ Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
 `bool`
 
-
-
 `job_id()`
 
 Return a unique id identifying the job.
@@ -109,13 +93,9 @@ Return a unique id identifying the job.
 
 `str`
 
-
-
 `abstract result()`
 
 Return the results of the job.
-
-
 
 `running()`
 
@@ -125,19 +105,13 @@ Return whether the job is actively running.
 
 `bool`
 
-
-
 `abstract status()`
 
 Return the status of the job, among the values of `JobStatus`.
 
-
-
 `abstract submit()`
 
 Submit the job to the backend for execution.
-
-
 
 `wait_for_final_state(timeout=None, wait=5, callback=None)`
 

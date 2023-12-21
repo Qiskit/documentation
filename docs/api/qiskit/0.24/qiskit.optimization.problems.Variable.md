@@ -2,8 +2,6 @@
 
 # qiskit.optimization.problems.Variable
 
-
-
 `Variable(quadratic_program, name, lowerbound=0, upperbound=1e+20, vartype=<VarType.CONTINUOUS: 0>)`
 
 Representation of a variable.
@@ -23,8 +21,6 @@ The variables is exposed by the top-level QuadraticProgram class in QuadraticPro
 **Raises**
 
 [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if lowerbound is greater than upperbound.
-
-
 
 `__init__(quadratic_program, name, lowerbound=0, upperbound=1e+20, vartype=<VarType.CONTINUOUS: 0>)`
 
@@ -61,13 +57,9 @@ The variables is exposed by the top-level QuadraticProgram class in QuadraticPro
 | [`upperbound`](#qiskit.optimization.problems.Variable.upperbound "qiskit.optimization.problems.Variable.upperbound")                      | Returns the upperbound of the variable. |
 | [`vartype`](#qiskit.optimization.problems.Variable.vartype "qiskit.optimization.problems.Variable.vartype")                               | Returns the type of the variable.       |
 
-
-
 ### Type
 
 alias of `VarType`
-
-
 
 `as_tuple()`
 
@@ -81,8 +73,6 @@ Returns a tuple corresponding to this variable.
 
 A tuple corresponding to this variable consisting of name, lowerbound, upperbound and variable type.
 
-
-
 `property lowerbound`
 
 Returns the lowerbound of the variable.
@@ -94,8 +84,6 @@ Returns the lowerbound of the variable.
 **Returns**
 
 The lower bound of the variable.
-
-
 
 `property name`
 
@@ -109,8 +97,6 @@ Returns the name of the variable.
 
 The name of the variable.
 
-
-
 `property quadratic_program`
 
 Returns the parent QuadraticProgram.
@@ -123,8 +109,6 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-
-
 `property upperbound`
 
 Returns the upperbound of the variable.
@@ -136,8 +120,6 @@ Returns the upperbound of the variable.
 **Returns**
 
 The upperbound of the variable.
-
-
 
 `property vartype`
 

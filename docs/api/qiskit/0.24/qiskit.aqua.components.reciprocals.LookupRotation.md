@@ -2,8 +2,6 @@
 
 # qiskit.aqua.components.reciprocals.LookupRotation
 
-
-
 `LookupRotation(pat_length=None, subpat_length=None, scale=0, negative_evals=False, evo_time=None, lambda_min=None)`
 
 The Lookup Rotation for Reciprocals.
@@ -20,8 +18,6 @@ A calculation of reciprocals of eigenvalues is performed and controlled rotation
 *   **negative\_evals** (`bool`) – Indicate if negative eigenvalues need to be handled
 *   **evo\_time** (`Optional`\[`float`]) – The evolution time. This parameter scales the Eigenvalues in the phase estimation onto the range (0,1] ( (-0.5,0.5] for negative Eigenvalues ).
 *   **lambda\_min** (`Optional`\[`float`]) – The smallest expected eigenvalue
-
-
 
 `__init__(pat_length=None, subpat_length=None, scale=0, negative_evals=False, evo_time=None, lambda_min=None)`
 
@@ -41,8 +37,6 @@ A calculation of reciprocals of eigenvalues is performed and controlled rotation
 | [`__init__`](#qiskit.aqua.components.reciprocals.LookupRotation.__init__ "qiskit.aqua.components.reciprocals.LookupRotation.__init__")(\[pat\_length, subpat\_length, scale, …]) | **type pat\_length**`Optional`\[`int`] |
 | [`construct_circuit`](#qiskit.aqua.components.reciprocals.LookupRotation.construct_circuit "qiskit.aqua.components.reciprocals.LookupRotation.construct_circuit")(mode, inreg)   | Construct the Lookup Rotation circuit. |
 | [`sv_to_resvec`](#qiskit.aqua.components.reciprocals.LookupRotation.sv_to_resvec "qiskit.aqua.components.reciprocals.LookupRotation.sv_to_resvec")(statevector, num\_q)          | Convert statevector to result vector.  |
-
-
 
 `construct_circuit(mode, inreg)`
 
@@ -64,8 +58,6 @@ QuantumCircuit
 **Raises:**
 
 NotImplementedError: mode not supported
-
-
 
 `sv_to_resvec(statevector, num_q)`
 

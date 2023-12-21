@@ -2,8 +2,6 @@
 
 # qiskit.pulse.builder.samples\_to\_seconds
 
-
-
 `samples_to_seconds(samples)`
 
 Obtain the time in seconds that will elapse for the input number of samples on the active backend.

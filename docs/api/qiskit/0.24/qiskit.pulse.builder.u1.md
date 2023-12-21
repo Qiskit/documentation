@@ -2,8 +2,6 @@
 
 # qiskit.pulse.builder.u1
 
-
-
 `u1(theta, qubit)`
 
 Call a `U1Gate` on the input physical qubit.

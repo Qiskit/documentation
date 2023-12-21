@@ -2,8 +2,6 @@
 
 # qiskit.aqua.QuantumInstance
 
-
-
 `QuantumInstance(backend, shots=1024, seed_simulator=None, max_credits=10, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None)`
 
 Quantum Backend including execution setting.
@@ -37,8 +35,6 @@ Quantum Instance holds a Qiskit Terra backend as well as configuration for circu
 *   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – the shots exceeds the maximum number of shots
 *   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – set noise model but the backend does not support that
 *   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – set backend\_options but the backend does not support that
-
-
 
 `__init__(backend, shots=1024, seed_simulator=None, max_credits=10, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None)`
 
@@ -105,8 +101,6 @@ Quantum Instance holds a Qiskit Terra backend as well as configuration for circu
 | [`run_config`](#qiskit.aqua.QuantumInstance.run_config "qiskit.aqua.QuantumInstance.run_config")                                                                         | Getter of run\_config.                                  |
 | [`skip_qobj_validation`](#qiskit.aqua.QuantumInstance.skip_qobj_validation "qiskit.aqua.QuantumInstance.skip_qobj_validation")                                           | checks if skip qobj validation                          |
 
-
-
 `assemble(circuits)`
 
 assemble circuits
@@ -115,31 +109,21 @@ assemble circuits
 
 [`Qobj`](qiskit.qobj.Qobj#qiskit.qobj.Qobj "qiskit.qobj.Qobj")
 
-
-
 `property backend`
 
 Return BaseBackend backend object.
-
-
 
 `property backend_config`
 
 Getter of backend\_config.
 
-
-
 `property backend_name`
 
 Return backend name.
 
-
-
 `property backend_options`
 
 Getter of backend\_options.
-
-
 
 `cals_matrix(qubit_index=None)`
 
@@ -161,25 +145,17 @@ is not None otherwise, return all matrices and their timestamp in a dictionary.
 
 tuple(np.ndarray, int)
 
-
-
 `property cals_matrix_refresh_period`
 
 returns matrix refresh period
-
-
 
 `property circuit_summary`
 
 Getter of circuit summary.
 
-
-
 `property compile_config`
 
 Getter of compile\_config.
-
-
 
 `execute(circuits, had_transpiled=False)`
 
@@ -202,25 +178,17 @@ Result object
 
 assembling to the qobj.
 
-
-
 `property is_local`
 
 Return True if backend is a local backend.
-
-
 
 `property is_simulator`
 
 Return True if backend is a simulator.
 
-
-
 `property is_statevector`
 
 Return True if backend is a statevector-type simulator.
-
-
 
 `maybe_refresh_cals_matrix(timestamp=None)`
 
@@ -234,49 +202,33 @@ whether or not refresh the cals\_matrix
 
 bool
 
-
-
 `property measurement_error_mitigation_cls`
 
 returns measurement error mitigation cls
-
-
 
 `property measurement_error_mitigation_shots`
 
 returns measurement error mitigation shots
 
-
-
 `property noise_config`
 
 Getter of noise\_config.
-
-
 
 `property qjob_config`
 
 Getter of qjob\_config.
 
-
-
 `property run_config`
 
 Getter of run\_config.
-
-
 
 `set_config(**kwargs)`
 
 Set configurations for the quantum instance.
 
-
-
 `property skip_qobj_validation`
 
 checks if skip qobj validation
-
-
 
 `transpile(circuits)`
 

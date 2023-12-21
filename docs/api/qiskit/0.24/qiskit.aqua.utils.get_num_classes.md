@@ -2,8 +2,6 @@
 
 # qiskit.aqua.utils.get\_num\_classes
 
-
-
 `get_num_classes(dataset)`
 
 Check number of classes in a given dataset

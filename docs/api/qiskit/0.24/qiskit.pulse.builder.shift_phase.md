@@ -2,8 +2,6 @@
 
 # qiskit.pulse.builder.shift\_phase
 
-
-
 `shift_phase(phase, channel)`
 
 Shift the `phase` of a pulse `channel`.

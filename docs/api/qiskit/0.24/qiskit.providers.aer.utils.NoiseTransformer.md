@@ -2,13 +2,9 @@
 
 # qiskit.providers.aer.utils.NoiseTransformer
 
-
-
 `NoiseTransformer`
 
 Transforms one quantum channel to another based on a specified criteria.
-
-
 
 `__init__()`
 
@@ -37,8 +33,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`transform_by_given_channel`](#qiskit.providers.aer.utils.NoiseTransformer.transform_by_given_channel "qiskit.providers.aer.utils.NoiseTransformer.transform_by_given_channel")(channel\_matrices, …)                                             | Transform by by quantum channels.                                                                                                                                                                                                                                               |
 | [`transform_by_operator_list`](#qiskit.providers.aer.utils.NoiseTransformer.transform_by_operator_list "qiskit.providers.aer.utils.NoiseTransformer.transform_by_operator_list")(…)                                                                | Transform input Kraus operators.                                                                                                                                                                                                                                                |
 
-
-
 `channel_matrix_representation(operators)`
 
 We convert the operators to a matrix by applying the channel to the four basis elements of the 2x2 matrix space representing density operators; this is standard linear algebra
@@ -55,8 +49,6 @@ The matrx representation of the operators
 
 sympy.Matrix
 
-
-
 `compute_P(As)`
 
 This method creates the matrix P in the f(x) = 1/2(x\*P\*x)+q\*x representation of the objective function :param As: list of symbolic matrices repersenting the channel matrices :type As: list
@@ -68,8 +60,6 @@ The matrix P for the description of the quadaric program
 **Return type**
 
 matrix
-
-
 
 `static compute_channel_operation(rho, operators)`
 
@@ -88,8 +78,6 @@ The result of applying the list of operators
 
 number
 
-
-
 `compute_q(As, C)`
 
 This method creates the vector q for the f(x) = 1/2(x\*P\*x)+q\*x representation of the objective function :param As: list of symbolic matrices repersenting the quadratic program :type As: list :param C: matrix representing the the constant channel matrix :type C: matrix
@@ -102,13 +90,9 @@ The vector q for the description of the quadaric program
 
 list
 
-
-
 `static fidelity(channel)`
 
 Calculates channel fidelity
-
-
 
 `static flatten_matrix(m)`
 
@@ -123,8 +107,6 @@ A row vector repesenting the flattened matrix
 **Return type**
 
 list
-
-
 
 `generate_channel_matrices(transform_channel_operators_list)`
 
@@ -164,8 +146,6 @@ A list of 4x4 complex matrices `([D1, D2, ..., Dn], E)` such that the matrix $x_
 
 list
 
-
-
 `generate_channel_quadratic_programming_matrices(channel, symbols)`
 
 Generate matrices for quadratic program.
@@ -182,8 +162,6 @@ A list of 4x4 complex matrices (\[D1, D2, …, Dn], E) such that: channel == x1\
 **Return type**
 
 list
-
-
 
 `static get_const_matrix_from_channel(channel, symbols)`
 
@@ -206,8 +184,6 @@ matrix
 
 Each entry of the 4x4 symbolic input channel matrix is assumed to be a polynomial of the form a1x1 + … + anxn + c. The corresponding entry in the output numeric matrix is c.
 
-
-
 `static get_matrix_from_channel(channel, symbol)`
 
 Extract the numeric parameter matrix.
@@ -229,8 +205,6 @@ matrix
 
 Each entry of the 4x4 symbolic input channel matrix is assumed to be a polynomial of the form a1x1 + … + anxn + c. The corresponding entry in the output numeric matrix is ai.
 
-
-
 `operator_circuit(operator)`
 
 Converts an operator representation to noise circuit.
@@ -246,8 +220,6 @@ The operator, converted to noise circuit representation.
 **Return type**
 
 List
-
-
 
 `operator_matrix(operator)`
 
@@ -265,8 +237,6 @@ the operator, converted to Kraus representation.
 
 [Kraus](qiskit.quantum_info.Kraus#qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")
 
-
-
 `static prepare_channel_operator_list(ops_list)`
 
 Prepares a list of channel operators.
@@ -283,8 +253,6 @@ The channel operator list
 
 List
 
-
-
 `prepare_honesty_constraint(transform_channel_operators_list)`
 
 Prepares the honesty constraint.
@@ -293,8 +261,6 @@ Prepares the honesty constraint.
 
 *   **transform\_channel\_operators\_list** (*list*) – A list of tuples of matrices which represent
 *   **operators.** ([*Kraus*](qiskit.quantum_info.Kraus#qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")) –
-
-
 
 `solve_quadratic_program(P, q)`
 
@@ -316,8 +282,6 @@ list
 
 This method is the only place in the code where we rely on the cvxpy library should we consider another library, only this method needs to change.
 
-
-
 `transform_by_given_channel(channel_matrices, const_channel_matrix)`
 
 Transform by by quantum channels.
@@ -338,8 +302,6 @@ a list of the optimal probabilities for the channel matrices, determined by the 
 **Return type**
 
 list
-
-
 
 `transform_by_operator_list(transform_channel_operators, noise_kraus_operators)`
 

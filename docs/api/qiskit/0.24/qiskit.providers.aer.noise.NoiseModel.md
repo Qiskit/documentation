@@ -2,8 +2,6 @@
 
 # qiskit.providers.aer.noise.NoiseModel
 
-
-
 `NoiseModel(basis_gates=None)`
 
 Noise model class for Qiskit Aer simulators.
@@ -54,8 +52,6 @@ Initialize an empty noise model.
 
 Additional Information: Errors added to the noise model will have their instruction appended to the noise model basis\_gates if the instruction is in the [`QasmSimulator`](qiskit.providers.aer.QasmSimulator#qiskit.providers.aer.QasmSimulator "qiskit.providers.aer.QasmSimulator") basis\_gates. If the instruction is not in the [`QasmSimulator`](qiskit.providers.aer.QasmSimulator#qiskit.providers.aer.QasmSimulator "qiskit.providers.aer.QasmSimulator") basis\_gates it is assumed to be a label for a standard gate, and that gate should be added to the NoiseModel basis\_gates either using the init method, or the [`add_basis_gates()`](#qiskit.providers.aer.noise.NoiseModel.add_basis_gates "qiskit.providers.aer.noise.NoiseModel.add_basis_gates") method.
 
-
-
 `__init__(basis_gates=None)`
 
 Initialize an empty noise model.
@@ -92,8 +88,6 @@ Additional Information: Errors added to the noise model will have their instruct
 | [`noise_instructions`](#qiskit.providers.aer.noise.NoiseModel.noise_instructions "qiskit.providers.aer.noise.NoiseModel.noise_instructions") | Return the set of noisy instructions for this noise model. |
 | [`noise_qubits`](#qiskit.providers.aer.noise.NoiseModel.noise_qubits "qiskit.providers.aer.noise.NoiseModel.noise_qubits")                   | Return the set of noisy qubits for this noise model.       |
 
-
-
 `add_all_qubit_quantum_error(error, instructions, warnings=True)`
 
 Add a quantum error to the noise model that applies to all qubits.
@@ -112,8 +106,6 @@ Add a quantum error to the noise model that applies to all qubits.
 
 If the error object is ideal it will not be added to the model.
 
-
-
 `add_all_qubit_readout_error(error, warnings=True)`
 
 Add a single-qubit readout error that applies measure on all qubits.
@@ -131,8 +123,6 @@ Add a single-qubit readout error that applies measure on all qubits.
 
 If the error object is ideal it will not be added to the model.
 
-
-
 `add_basis_gates(instructions, warnings=True)`
 
 Add additional gates to the noise model basis\_gates.
@@ -143,8 +133,6 @@ This should be used to add any gates that are identified by a custom gate label 
 
 *   \*\*(****list****\[****str****] \*\***or** (*instructions*) – list\[Instruction]): the instructions error applies to.
 *   **warnings** (*bool*) – display warning if instruction is not in QasmSimulator basis\_gates (Default: True).
-
-
 
 `add_nonlocal_quantum_error(error, instructions, qubits, noise_qubits, warnings=True)`
 
@@ -166,8 +154,6 @@ Add a non-local quantum error to the noise model.
 
 If the error object is ideal it will not be added to the model.
 
-
-
 `add_quantum_error(error, instructions, qubits, warnings=True)`
 
 Add a quantum error to the noise model.
@@ -187,8 +173,6 @@ Add a quantum error to the noise model.
 
 If the error object is ideal it will not be added to the model.
 
-
-
 `add_readout_error(error, qubits, warnings=True)`
 
 Add a readout error to the noise model.
@@ -207,13 +191,9 @@ Add a readout error to the noise model.
 
 If the error object is ideal it will not be added to the model.
 
-
-
 `property basis_gates`
 
 Return basis\_gates for compiling to the noise model.
-
-
 
 `classmethod from_backend(backend, gate_error=True, readout_error=True, thermal_relaxation=True, temperature=0, gate_lengths=None, gate_length_units='ns', standard_gates=True, warnings=True)`
 
@@ -275,8 +255,6 @@ An approximate noise model for the device backend.
 
 **NoiseError** – If the input backend is not valid.
 
-
-
 `static from_dict(noise_dict)`
 
 Load NoiseModel from a dictionary.
@@ -297,31 +275,21 @@ the noise model.
 
 **NoiseError** – if dict cannot be converted to NoiseModel.
 
-
-
 `is_ideal()`
 
 Return True if the noise model has no noise terms.
-
-
 
 `property noise_instructions`
 
 Return the set of noisy instructions for this noise model.
 
-
-
 `property noise_qubits`
 
 Return the set of noisy qubits for this noise model.
 
-
-
 `reset()`
 
 Reset the noise model.
-
-
 
 `set_x90_single_qubit_gates(instructions)`
 
@@ -334,8 +302,6 @@ Declares X90 based gates for noise model.
 **Raises**
 
 **NoiseError** – if the input instructions are not valid.
-
-
 
 `to_dict(serializable=False)`
 

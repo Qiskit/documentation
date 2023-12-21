@@ -2,8 +2,6 @@
 
 # qiskit.aqua.utils.get\_feature\_dimension
 
-
-
 `get_feature_dimension(dataset)`
 
 Check feature dimension of a given dataset

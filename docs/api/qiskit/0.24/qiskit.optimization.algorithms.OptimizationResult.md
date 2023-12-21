@@ -2,8 +2,6 @@
 
 # qiskit.optimization.algorithms.OptimizationResult
 
-
-
 `OptimizationResult(x, fval, variables, status, raw_results=None)`
 
 A base class for optimization results.
@@ -56,8 +54,6 @@ The optimization algorithms return an object of the type `OptimizationResult` wi
 
 [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if sizes of `x` and `variables` do not match.
 
-
-
 `__init__(x, fval, variables, status, raw_results=None)`
 
 **Parameters**
@@ -90,8 +86,6 @@ The optimization algorithms return an object of the type `OptimizationResult` wi
 | [`variables_dict`](#qiskit.optimization.algorithms.OptimizationResult.variables_dict "qiskit.optimization.algorithms.OptimizationResult.variables_dict") | Returns the optimal value as a dictionary of the variable name and corresponding value. |
 | [`x`](#qiskit.optimization.algorithms.OptimizationResult.x "qiskit.optimization.algorithms.OptimizationResult.x")                                        | Returns the optimal value found in the optimization or None in case of FAILURE.         |
 
-
-
 `property fval`
 
 Returns the optimal function value.
@@ -103,8 +97,6 @@ Returns the optimal function value.
 **Returns**
 
 The function value corresponding to the optimal value found in the optimization.
-
-
 
 `property raw_results`
 
@@ -120,8 +112,6 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
-
-
 `property status`
 
 Returns the termination status of the optimization algorithm.
@@ -133,8 +123,6 @@ Returns the termination status of the optimization algorithm.
 **Returns**
 
 The termination status of the algorithm.
-
-
 
 `property variable_names`
 
@@ -148,8 +136,6 @@ Returns the list of variable names of the optimization problem.
 
 The list of variable names of the optimization problem.
 
-
-
 `property variables`
 
 Returns the list of variables of the optimization problem.
@@ -162,8 +148,6 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
-
-
 `property variables_dict`
 
 Returns the optimal value as a dictionary of the variable name and corresponding value.
@@ -175,8 +159,6 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 **Returns**
 
 The optimal value as a dictionary of the variable name and corresponding value.
-
-
 
 `property x`
 

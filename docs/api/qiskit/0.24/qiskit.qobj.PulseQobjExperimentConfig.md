@@ -2,8 +2,6 @@
 
 # qiskit.qobj.PulseQobjExperimentConfig
 
-
-
 `PulseQobjExperimentConfig(qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`
 
 A config for a single Pulse experiment in the qobj.
@@ -15,8 +13,6 @@ Instantiate a PulseQobjExperimentConfig object.
 *   **qubit\_lo\_freq** (*list*) – List of frequencies (as floats) for the qubit driver LO’s in GHz.
 *   **meas\_lo\_freq** (*list*) – List of frequencies (as floats) for the’ measurement driver LO’s in GHz.
 *   **kwargs** – Additional free form key value fields to add to the configuration
-
-
 
 `__init__(qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`
 
@@ -36,8 +32,6 @@ Instantiate a PulseQobjExperimentConfig object.
 | [`from_dict`](#qiskit.qobj.PulseQobjExperimentConfig.from_dict "qiskit.qobj.PulseQobjExperimentConfig.from_dict")(data)                            | Create a new QobjHeader object from a dictionary.           |
 | [`to_dict`](#qiskit.qobj.PulseQobjExperimentConfig.to_dict "qiskit.qobj.PulseQobjExperimentConfig.to_dict")()                                      | Return a dictionary format representation of the QASM Qobj. |
 
-
-
 `classmethod from_dict(data)`
 
 Create a new QobjHeader object from a dictionary.
@@ -53,8 +47,6 @@ The QobjDictField from the input dictionary.
 **Return type**
 
 QobjDictFieldr
-
-
 
 `to_dict()`
 

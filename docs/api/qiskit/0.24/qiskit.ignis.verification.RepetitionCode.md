@@ -2,8 +2,6 @@
 
 # qiskit.ignis.verification.RepetitionCode
 
-
-
 `RepetitionCode(d, T=0)`
 
 Implementation of a distance d repetition code, implemented over T syndrome measurement rounds.
@@ -18,8 +16,6 @@ Creates the circuits corresponding to a logical 0 and 1 encoded using a repetiti
 **Additional information:**
 
 No measurements are added to the circuit if T=0. Otherwise T rounds are added, followed by measurement of the code qubits (corresponding to a logical measurement and final syndrome measurement round).
-
-
 
 `__init__(d, T=0)`
 
@@ -45,8 +41,6 @@ No measurements are added to the circuit if T=0. Otherwise T rounds are added, f
 | [`syndrome_measurement`](#qiskit.ignis.verification.RepetitionCode.syndrome_measurement "qiskit.ignis.verification.RepetitionCode.syndrome_measurement")(\[reset, barrier]) | Application of a syndrome measurement round.                                                                                                 |
 | [`x`](#qiskit.ignis.verification.RepetitionCode.x "qiskit.ignis.verification.RepetitionCode.x")(\[logs, barrier])                                                           | Applies a logical x to the circuits for the given logical values.                                                                            |
 
-
-
 `get_circuit_list()`
 
 **Returns**
@@ -56,8 +50,6 @@ self.circuit as a list, with circuit\_list\[0] = circuit\[‘0’] circuit\_list
 **Return type**
 
 circuit\_list
-
-
 
 `process_results(raw_results)`
 
@@ -79,13 +71,9 @@ results
 
 The circuits must be executed outside of this class, so that their is full freedom to compile, choose a backend, use a noise model, etc. The results from these executions should then be used to create the input for this method.
 
-
-
 `readout()`
 
 Readout of all code qubits, which corresponds to a logical measurement as well as allowing for a measurement of the syndrome to be inferred.
-
-
 
 `syndrome_measurement(reset=True, barrier=False)`
 
@@ -95,8 +83,6 @@ Application of a syndrome measurement round.
 
 *   **reset** (*bool*) – If set to true add a boolean at the end of each round
 *   **barrier** (*bool*) – Boolean denoting whether to include a barrier at the end.
-
-
 
 `x(logs=('0', '1'), barrier=False)`
 

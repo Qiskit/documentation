@@ -2,15 +2,11 @@
 
 # qiskit.aqua.algorithms.QuantumAlgorithm
 
-
-
 `QuantumAlgorithm(quantum_instance)`
 
 Base class for Quantum Algorithms.
 
 This method should initialize the module and use an exception if a component of the module is available.
-
-
 
 `abstract __init__(quantum_instance)`
 
@@ -32,8 +28,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`quantum_instance`](#qiskit.aqua.algorithms.QuantumAlgorithm.quantum_instance "qiskit.aqua.algorithms.QuantumAlgorithm.quantum_instance") | Returns quantum instance. |
 | [`random`](#qiskit.aqua.algorithms.QuantumAlgorithm.random "qiskit.aqua.algorithms.QuantumAlgorithm.random")                               | Return a numpy random.    |
 
-
-
 `property backend`
 
 Returns backend.
@@ -41,8 +35,6 @@ Returns backend.
 **Return type**
 
 `Union`\[`Backend`, `BaseBackend`]
-
-
 
 `property quantum_instance`
 
@@ -52,13 +44,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 `property random`
 
 Return a numpy random.
-
-
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -80,8 +68,6 @@ dict
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-
 
 `set_backend(backend, **kwargs)`
 

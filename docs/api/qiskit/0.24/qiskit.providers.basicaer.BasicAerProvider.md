@@ -2,13 +2,9 @@
 
 # qiskit.providers.basicaer.BasicAerProvider
 
-
-
 `BasicAerProvider(*args, **kwargs)`
 
 Provider for Basic Aer backends.
-
-
 
 `__init__(*args, **kwargs)`
 
@@ -21,8 +17,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.providers.basicaer.BasicAerProvider.__init__ "qiskit.providers.basicaer.BasicAerProvider.__init__")(\*args, \*\*kwargs) | Initialize self.                                            |
 | [`backends`](#qiskit.providers.basicaer.BasicAerProvider.backends "qiskit.providers.basicaer.BasicAerProvider.backends")(\[name, filters])   | Return a list of backends matching the specified filtering. |
 | [`get_backend`](#qiskit.providers.basicaer.BasicAerProvider.get_backend "qiskit.providers.basicaer.BasicAerProvider.get_backend")(\[name])   | Return a single backend matching the specified filtering.   |
-
-
 
 `backends(name=None, filters=None, **kwargs)`
 
@@ -42,8 +36,6 @@ criteria.
 **Return type**
 
 list\[[BaseBackend](qiskit.providers.BaseBackend#qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")]
-
-
 
 `get_backend(name=None, **kwargs)`
 

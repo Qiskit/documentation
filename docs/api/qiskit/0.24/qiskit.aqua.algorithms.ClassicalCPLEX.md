@@ -2,8 +2,6 @@
 
 # qiskit.aqua.algorithms.ClassicalCPLEX
 
-
-
 `ClassicalCPLEX(operator, timelimit=600, thread=1, display=2)`
 
 The Classical CPLEX algorithm (classical).
@@ -18,8 +16,6 @@ See these `installation instructions` if you need more information in that regar
 *   **timelimit** (`int`) – A time limit in seconds for the execution
 *   **thread** (`int`) – The number of threads that CPLEX uses. Setting this 0 lets CPLEX decide the number of threads to allocate, but this may not be ideal for small problems for which the default of 1 is more suitable.
 *   **display** (`int`) – Decides what CPLEX reports to the screen and records in a log during mixed integer optimization. This value must be between 0 and 5 where the amount of information displayed increases with increasing values of this parameter.
-
-
 
 `__init__(operator, timelimit=600, thread=1, display=2)`
 
@@ -44,13 +40,9 @@ See these `installation instructions` if you need more information in that regar
 | [`random`](#qiskit.aqua.algorithms.ClassicalCPLEX.random "qiskit.aqua.algorithms.ClassicalCPLEX.random")       | Return a numpy random. |
 | [`solution`](#qiskit.aqua.algorithms.ClassicalCPLEX.solution "qiskit.aqua.algorithms.ClassicalCPLEX.solution") | return solution        |
 
-
-
 `property random`
 
 Return a numpy random.
-
-
 
 `run()`
 
@@ -63,8 +55,6 @@ results of an algorithm.
 **Return type**
 
 dict
-
-
 
 `property solution`
 

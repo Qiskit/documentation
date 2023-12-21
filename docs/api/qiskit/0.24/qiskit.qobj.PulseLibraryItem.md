@@ -2,8 +2,6 @@
 
 # qiskit.qobj.PulseLibraryItem
 
-
-
 `PulseLibraryItem(name, samples)`
 
 An item in a pulse library.
@@ -14,8 +12,6 @@ Instantiate a pulse library item.
 
 *   **name** (*str*) – A name for the pulse.
 *   **samples** (*list\[complex]*) – A list of complex values defining pulse shape.
-
-
 
 `__init__(name, samples)`
 
@@ -34,8 +30,6 @@ Instantiate a pulse library item.
 | [`from_dict`](#qiskit.qobj.PulseLibraryItem.from_dict "qiskit.qobj.PulseLibraryItem.from_dict")(data)       | Create a new PulseLibraryItem object from a dictionary.              |
 | [`to_dict`](#qiskit.qobj.PulseLibraryItem.to_dict "qiskit.qobj.PulseLibraryItem.to_dict")()                 | Return a dictionary format representation of the pulse library item. |
 
-
-
 `classmethod from_dict(data)`
 
 Create a new PulseLibraryItem object from a dictionary.
@@ -51,8 +45,6 @@ The object from the input dictionary.
 **Return type**
 
 [PulseLibraryItem](#qiskit.qobj.PulseLibraryItem "qiskit.qobj.PulseLibraryItem")
-
-
 
 `to_dict()`
 

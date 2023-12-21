@@ -2,8 +2,6 @@
 
 # qiskit.aqua.components.neural\_networks.PyTorchDiscriminator
 
-
-
 `PyTorchDiscriminator(n_features=1, n_out=1)`
 
 Discriminator based on PyTorch
@@ -16,8 +14,6 @@ Discriminator based on PyTorch
 **Raises**
 
 [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – Pytorch not installed
-
-
 
 `__init__(n_features=1, n_out=1)`
 
@@ -49,8 +45,6 @@ Discriminator based on PyTorch
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
 | [`discriminator_net`](#qiskit.aqua.components.neural_networks.PyTorchDiscriminator.discriminator_net "qiskit.aqua.components.neural_networks.PyTorchDiscriminator.discriminator_net") | Get discriminator |
 
-
-
 `property discriminator_net`
 
 Get discriminator
@@ -62,8 +56,6 @@ discriminator object
 **Return type**
 
 object
-
-
 
 `get_label(x, detach=False)`
 
@@ -81,8 +73,6 @@ Discriminator output, i.e. data label
 **Return type**
 
 torch.Tensor
-
-
 
 `gradient_penalty(x, lambda_=5.0, k=0.01, c=1.0)`
 
@@ -103,8 +93,6 @@ Gradient penalty.
 
 torch.Tensor
 
-
-
 `load_model(load_dir)`
 
 Load discriminator model
@@ -112,8 +100,6 @@ Load discriminator model
 **Parameters**
 
 **load\_dir** (`str`) – file with stored pytorch discriminator model to be loaded
-
-
 
 `loss(x, y, weights=None)`
 
@@ -133,8 +119,6 @@ Loss w\.r.t to the generated data points.
 
 torch.Tensor
 
-
-
 `save_model(snapshot_dir)`
 
 Save discriminator model
@@ -143,8 +127,6 @@ Save discriminator model
 
 **snapshot\_dir** (`str`) – directory path for saving the model
 
-
-
 `set_seed(seed)`
 
 Set seed.
@@ -152,8 +134,6 @@ Set seed.
 **Parameters**
 
 **seed** (`int`) – seed
-
-
 
 `train(data, weights, penalty=True, quantum_instance=None, shots=None)`
 

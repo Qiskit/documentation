@@ -2,8 +2,6 @@
 
 # qiskit.pulse.Gaussian
 
-
-
 `Gaussian(duration, amp, sigma, name=None)`
 
 A truncated pulse envelope shaped according to the Gaussian function whose mean is centered at the center of the pulse (duration / 2):
@@ -20,8 +18,6 @@ Initialize the gaussian pulse.
 *   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the Gaussian envelope.
 *   **sigma** (`Union`\[`float`, `ParameterExpression`]) – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
 *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
-
-
 
 `__init__(duration, amp, sigma, name=None)`
 
@@ -54,8 +50,6 @@ Initialize the gaussian pulse.
 | [`parameters`](#qiskit.pulse.Gaussian.parameters "qiskit.pulse.Gaussian.parameters") | Return a dictionary containing the pulse’s parameters. |
 | [`sigma`](#qiskit.pulse.Gaussian.sigma "qiskit.pulse.Gaussian.sigma")                | The Gaussian standard deviation of the pulse width.    |
 
-
-
 `property amp`
 
 The Gaussian amplitude.
@@ -63,8 +57,6 @@ The Gaussian amplitude.
 **Return type**
 
 `Union`\[`complex`, `ParameterExpression`]
-
-
 
 `assign_parameters(value_dict)`
 
@@ -81,8 +73,6 @@ Return a new ParametricPulse with parameters assigned.
 **Returns**
 
 New pulse with updated parameters.
-
-
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False)`
 
@@ -105,8 +95,6 @@ A matplotlib figure object of the pulse envelope
 
 matplotlib.figure
 
-
-
 `get_sample_pulse()`
 
 Deprecated.
@@ -114,8 +102,6 @@ Deprecated.
 **Return type**
 
 `Waveform`
-
-
 
 `get_waveform()`
 
@@ -125,8 +111,6 @@ Return a Waveform with samples filled according to the formula that the pulse re
 
 `Waveform`
 
-
-
 `property id`
 
 Unique identifier for this pulse.
@@ -134,8 +118,6 @@ Unique identifier for this pulse.
 **Return type**
 
 `int`
-
-
 
 `property parameters`
 
@@ -145,8 +127,6 @@ Return a dictionary containing the pulse’s parameters.
 
 `Dict`\[`str`, `Any`]
 
-
-
 `property sigma`
 
 The Gaussian standard deviation of the pulse width.
@@ -154,8 +134,6 @@ The Gaussian standard deviation of the pulse width.
 **Return type**
 
 `Union`\[`float`, `ParameterExpression`]
-
-
 
 `validate_parameters()`
 

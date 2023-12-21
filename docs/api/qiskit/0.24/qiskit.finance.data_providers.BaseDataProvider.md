@@ -2,8 +2,6 @@
 
 # qiskit.finance.data\_providers.BaseDataProvider
 
-
-
 `BaseDataProvider`
 
 The abstract base class for data\_provider modules within Qiskit’s finance module.
@@ -11,8 +9,6 @@ The abstract base class for data\_provider modules within Qiskit’s finance mod
 To create add-on data\_provider module subclass the BaseDataProvider class in this module. Doing so requires that the required driver interface is implemented.
 
 To use the subclasses, please see [https://github.com/Qiskit/qiskit-tutorials/blob/master/legacy\_tutorials/aqua/finance/data\_providers/time\_series.ipynb](https://github.com/Qiskit/qiskit-tutorials/blob/master/legacy_tutorials/aqua/finance/data_providers/time_series.ipynb)
-
-
 
 `abstract __init__()`
 
@@ -31,8 +27,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`get_similarity_matrix`](#qiskit.finance.data_providers.BaseDataProvider.get_similarity_matrix "qiskit.finance.data_providers.BaseDataProvider.get_similarity_matrix")()                                           | Returns time-series similarity matrix computed using dynamic time warping. |
 | [`run`](#qiskit.finance.data_providers.BaseDataProvider.run "qiskit.finance.data_providers.BaseDataProvider.run")()                                                                                                 | Loads data.                                                                |
 
-
-
 `get_coordinates()`
 
 Returns random coordinates for visualisation purposes.
@@ -40,8 +34,6 @@ Returns random coordinates for visualisation purposes.
 **Return type**
 
 `Tuple`\[`float`, `float`]
-
-
 
 `get_covariance_matrix()`
 
@@ -59,8 +51,6 @@ an asset-to-asset covariance matrix.
 
 [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
-
-
 `get_mean_vector()`
 
 Returns a vector containing the mean value of each asset.
@@ -76,8 +66,6 @@ a per-asset mean vector.
 **Raises**
 
 [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
-
-
 
 `get_period_return_covariance_matrix()`
 
@@ -95,8 +83,6 @@ a per-asset mean vector.
 
 [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
-
-
 `get_period_return_mean_vector()`
 
 Returns a vector containing the mean value of each asset.
@@ -113,8 +99,6 @@ a per-asset mean vector.
 
 [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
-
-
 `get_similarity_matrix()`
 
 Returns time-series similarity matrix computed using dynamic time warping.
@@ -130,8 +114,6 @@ an asset-to-asset similarity matrix.
 **Raises**
 
 [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
-
-
 
 `abstract run()`
 

@@ -2,13 +2,9 @@
 
 # qiskit.circuit.ParameterVector
 
-
-
 `ParameterVector(name, length=0)`
 
 ParameterVector class to quickly generate lists of parameters.
-
-
 
 `__init__(name, length=0)`
 
@@ -28,19 +24,13 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`name`](#qiskit.circuit.ParameterVector.name "qiskit.circuit.ParameterVector.name")       | Returns the name of the ParameterVector.               |
 | [`params`](#qiskit.circuit.ParameterVector.params "qiskit.circuit.ParameterVector.params") | Returns the list of parameters in the ParameterVector. |
 
-
-
 `property name`
 
 Returns the name of the ParameterVector.
 
-
-
 `property params`
 
 Returns the list of parameters in the ParameterVector.
-
-
 
 `resize(length)`
 

@@ -2,13 +2,9 @@
 
 # qiskit.transpiler.FencedPropertySet
 
-
-
 `FencedPropertySet(property_set_instance)`
 
 A property set that cannot be written (via \_\_setitem\_\_)
-
-
 
 `__init__(property_set_instance)`
 

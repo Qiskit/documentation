@@ -2,8 +2,6 @@
 
 # qiskit.aqua.algorithms.SklearnSVM
 
-
-
 `SklearnSVM(training_dataset, test_dataset=None, datapoints=None, gamma=None, multiclass_extension=None)`
 
 The Sklearn SVM algorithm (classical).
@@ -23,8 +21,6 @@ Internally, this algorithm will run the binary classification or multiclass clas
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Multiclass extension not supplied when number of classes > 2
-
-
 
 `__init__(training_dataset, test_dataset=None, datapoints=None, gamma=None, multiclass_extension=None)`
 
@@ -67,19 +63,13 @@ Internally, this algorithm will run the binary classification or multiclass clas
 | [`random`](#qiskit.aqua.algorithms.SklearnSVM.random "qiskit.aqua.algorithms.SklearnSVM.random")                         | Return a numpy random. |
 | [`ret`](#qiskit.aqua.algorithms.SklearnSVM.ret "qiskit.aqua.algorithms.SklearnSVM.ret")                                  | returns result         |
 
-
-
 `property class_to_label`
 
 returns class to label
 
-
-
 `property label_to_class`
 
 returns label to class
-
-
 
 `load_model(file_path)`
 
@@ -88,8 +78,6 @@ Load a model from a file path.
 **Parameters**
 
 **file\_path** (*str*) – the path of the saved model.
-
-
 
 `predict(data)`
 
@@ -107,19 +95,13 @@ predicted labels, Nx1 array
 
 numpy.ndarray
 
-
-
 `property random`
 
 Return a numpy random.
 
-
-
 `property ret`
 
 returns result
-
-
 
 `run()`
 
@@ -133,8 +115,6 @@ results of an algorithm.
 
 dict
 
-
-
 `save_model(file_path)`
 
 Save the model to a file path.
@@ -142,8 +122,6 @@ Save the model to a file path.
 **Parameters**
 
 **file\_path** (*str*) – a path to save the model.
-
-
 
 `test(data, labels)`
 
@@ -161,8 +139,6 @@ accuracy
 **Return type**
 
 float
-
-
 
 `train(data, labels)`
 

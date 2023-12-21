@@ -2,8 +2,6 @@
 
 # qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer
 
-
-
 `RecursiveMinimumEigenOptimizer(min_eigen_optimizer, min_num_vars=1, min_num_vars_optimizer=None, penalty=None, history=<IntermediateResult.LAST_ITERATION: 1>, converters=None)`
 
 A meta-algorithm that applies a recursive optimization.
@@ -50,8 +48,6 @@ This initializer takes a `MinimumEigenOptimizer`, the parameters to specify unti
 *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – In case of invalid parameters (num\_min\_vars \< 1).
 *   **TypeError** – When there one of converters is an invalid type.
 
-
-
 `__init__(min_eigen_optimizer, min_num_vars=1, min_num_vars_optimizer=None, penalty=None, history=<IntermediateResult.LAST_ITERATION: 1>, converters=None)`
 
 Initializes the recursive minimum eigen optimizer.
@@ -81,8 +77,6 @@ This initializer takes a `MinimumEigenOptimizer`, the parameters to specify unti
 | [`is_compatible`](#qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.is_compatible "qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method. |
 | [`solve`](#qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.solve "qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.solve")(problem)                                                 | Tries to solve the given problem using the recursive optimizer.                           |
 
-
-
 `get_compatibility_msg(problem)`
 
 Checks whether a given problem can be solved with this optimizer.
@@ -101,8 +95,6 @@ Checks whether the given problem is compatible, i.e., whether the problem can be
 
 A message describing the incompatibility.
 
-
-
 `is_compatible(problem)`
 
 Checks whether a given problem can be solved with the optimizer implementing this method.
@@ -118,8 +110,6 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 **Returns**
 
 Returns True if the problem is compatible, False otherwise.
-
-
 
 `solve(problem)`
 

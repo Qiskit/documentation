@@ -2,13 +2,9 @@
 
 # qiskit.aqua.operators.evolutions.TrotterizationBase
 
-
-
 `TrotterizationBase(reps=1)`
 
 A base for Trotterization methods, algorithms for approximating exponentiations of operator sums by compositions of exponentiations.
-
-
 
 `__init__(reps=1)`
 
@@ -26,8 +22,6 @@ Initialize self. See help(type(self)) for accurate signature.
 |                                                                                                                                |                                                                                               |
 | ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
 | [`reps`](#qiskit.aqua.operators.evolutions.TrotterizationBase.reps "qiskit.aqua.operators.evolutions.TrotterizationBase.reps") | The number of repetitions to use in the Trotterization, improving the approximation accuracy. |
-
-
 
 `abstract convert(operator)`
 
@@ -48,8 +42,6 @@ The Operator approximating op\_sum’s evolution.
 **Raises**
 
 **TypeError** – A non-SummedOps Operator is passed into `convert`.
-
-
 
 `property reps`
 

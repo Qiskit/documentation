@@ -2,8 +2,6 @@
 
 # qiskit.aqua.utils.random\_non\_hermitian
 
-
-
 `random_non_hermitian(N, M=None, sings=None, K=None, srange=None, sparsity=None, trunc=None)`
 
 Generate random (sparse) matrix with given properties (singular values). Sparsity is achieved by truncating Pauli matrices. Sparsity settings alternate the singular values due to truncation.

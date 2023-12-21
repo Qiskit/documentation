@@ -2,8 +2,6 @@
 
 # qiskit.optimization.algorithms.MultiStartOptimizer
 
-
-
 `MultiStartOptimizer(trials=1, clip=100.0)`
 
 An abstract class that implements multi start optimization and should be sub-classed by other optimizers.
@@ -14,8 +12,6 @@ Constructs an instance of this optimizer.
 
 *   **trials** (`int`) – The number of trials for multi-start method. The first trial is solved with the initial guess of zero. If more than one trial is specified then initial guesses are uniformly drawn from `[lowerbound, upperbound]` with potential clipping.
 *   **clip** (`float`) – Clipping parameter for the initial guesses in the multi-start method. If a variable is unbounded then the lower bound and/or upper bound are replaced with the `-clip` or `clip` values correspondingly for the initial guesses.
-
-
 
 `__init__(trials=1, clip=100.0)`
 
@@ -43,8 +39,6 @@ Constructs an instance of this optimizer.
 | [`clip`](#qiskit.optimization.algorithms.MultiStartOptimizer.clip "qiskit.optimization.algorithms.MultiStartOptimizer.clip")       | Returns the clip value for this optimizer.       |
 | [`trials`](#qiskit.optimization.algorithms.MultiStartOptimizer.trials "qiskit.optimization.algorithms.MultiStartOptimizer.trials") | Returns the number of trials for this optimizer. |
 
-
-
 `property clip`
 
 Returns the clip value for this optimizer.
@@ -56,8 +50,6 @@ Returns the clip value for this optimizer.
 **Returns**
 
 The clip value.
-
-
 
 `abstract get_compatibility_msg(problem)`
 
@@ -75,8 +67,6 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 
 Returns the incompatibility message. If the message is empty no issues were found.
 
-
-
 `is_compatible(problem)`
 
 Checks whether a given problem can be solved with the optimizer implementing this method.
@@ -92,8 +82,6 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 **Returns**
 
 Returns True if the problem is compatible, False otherwise.
-
-
 
 `multi_start_solve(minimize, problem)`
 
@@ -111,8 +99,6 @@ Applies a multi start method given a local optimizer.
 **Returns**
 
 The result of the multi start algorithm applied to the problem.
-
-
 
 `abstract solve(problem)`
 
@@ -135,8 +121,6 @@ The result of the optimizer applied to the problem.
 **Raises**
 
 [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
-
-
 
 `property trials`
 

@@ -2,8 +2,6 @@
 
 # qiskit.pulse.library.Drag
 
-
-
 `Drag(duration, amp, sigma, beta, name=None)`
 
 The Derivative Removal by Adiabatic Gate (DRAG) pulse is a standard Gaussian pulse with an additional Gaussian derivative component. It is designed to reduce the frequency spectrum of a normal gaussian pulse near the $|1\rangle$ - $|2\rangle$ transition, reducing the chance of leakage to the $|2\rangle$ state.
@@ -34,8 +32,6 @@ Initialize the drag pulse.
 *   **sigma** (`Union`\[`float`, `ParameterExpression`]) – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
 *   **beta** (`Union`\[`float`, `ParameterExpression`]) – The correction amplitude.
 *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
-
-
 
 `__init__(duration, amp, sigma, beta, name=None)`
 
@@ -70,8 +66,6 @@ Initialize the drag pulse.
 | [`parameters`](#qiskit.pulse.library.Drag.parameters "qiskit.pulse.library.Drag.parameters") | Return a dictionary containing the pulse’s parameters.                     |
 | [`sigma`](#qiskit.pulse.library.Drag.sigma "qiskit.pulse.library.Drag.sigma")                | The Gaussian standard deviation of the pulse width.                        |
 
-
-
 `property amp`
 
 The Gaussian amplitude.
@@ -79,8 +73,6 @@ The Gaussian amplitude.
 **Return type**
 
 `Union`\[`complex`, `ParameterExpression`]
-
-
 
 `assign_parameters(value_dict)`
 
@@ -98,8 +90,6 @@ Return a new ParametricPulse with parameters assigned.
 
 New pulse with updated parameters.
 
-
-
 `property beta`
 
 The weighing factor for the Gaussian derivative component of the waveform.
@@ -107,8 +97,6 @@ The weighing factor for the Gaussian derivative component of the waveform.
 **Return type**
 
 `Union`\[`float`, `ParameterExpression`]
-
-
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False)`
 
@@ -131,8 +119,6 @@ A matplotlib figure object of the pulse envelope
 
 matplotlib.figure
 
-
-
 `get_sample_pulse()`
 
 Deprecated.
@@ -140,8 +126,6 @@ Deprecated.
 **Return type**
 
 `Waveform`
-
-
 
 `get_waveform()`
 
@@ -151,8 +135,6 @@ Return a Waveform with samples filled according to the formula that the pulse re
 
 `Waveform`
 
-
-
 `property id`
 
 Unique identifier for this pulse.
@@ -160,8 +142,6 @@ Unique identifier for this pulse.
 **Return type**
 
 `int`
-
-
 
 `property parameters`
 
@@ -171,8 +151,6 @@ Return a dictionary containing the pulse’s parameters.
 
 `Dict`\[`str`, `Any`]
 
-
-
 `property sigma`
 
 The Gaussian standard deviation of the pulse width.
@@ -180,8 +158,6 @@ The Gaussian standard deviation of the pulse width.
 **Return type**
 
 `Union`\[`float`, `ParameterExpression`]
-
-
 
 `validate_parameters()`
 

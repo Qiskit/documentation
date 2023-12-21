@@ -2,8 +2,6 @@
 
 # qiskit.visualization.pass\_manager\_drawer
 
-
-
 `pass_manager_drawer(pass_manager, filename=None, style=None, raw=False)`
 
 Draws the pass manager.

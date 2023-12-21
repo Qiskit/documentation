@@ -2,13 +2,9 @@
 
 # qiskit.chemistry.drivers.BasisType
 
-
-
 `BasisType(value)`
 
 Basis Type
-
-
 
 `__init__()`
 

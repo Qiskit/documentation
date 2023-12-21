@@ -2,8 +2,6 @@
 
 # qiskit.pulse.Constant
 
-
-
 `Constant(duration, amp, name=None)`
 
 A simple constant pulse, with an amplitude value and a duration:
@@ -20,8 +18,6 @@ Initialize the constant-valued pulse.
 *   **duration** (`int`) – Pulse length in terms of the the sampling period dt.
 *   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the constant square pulse.
 *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
-
-
 
 `__init__(duration, amp, name=None)`
 
@@ -52,8 +48,6 @@ Initialize the constant-valued pulse.
 | [`id`](#qiskit.pulse.Constant.id "qiskit.pulse.Constant.id")                         | Unique identifier for this pulse.                      |
 | [`parameters`](#qiskit.pulse.Constant.parameters "qiskit.pulse.Constant.parameters") | Return a dictionary containing the pulse’s parameters. |
 
-
-
 `property amp`
 
 The constant value amplitude.
@@ -61,8 +55,6 @@ The constant value amplitude.
 **Return type**
 
 `Union`\[`complex`, `ParameterExpression`]
-
-
 
 `assign_parameters(value_dict)`
 
@@ -79,8 +71,6 @@ Return a new ParametricPulse with parameters assigned.
 **Returns**
 
 New pulse with updated parameters.
-
-
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False)`
 
@@ -103,8 +93,6 @@ A matplotlib figure object of the pulse envelope
 
 matplotlib.figure
 
-
-
 `get_sample_pulse()`
 
 Deprecated.
@@ -112,8 +100,6 @@ Deprecated.
 **Return type**
 
 `Waveform`
-
-
 
 `get_waveform()`
 
@@ -123,8 +109,6 @@ Return a Waveform with samples filled according to the formula that the pulse re
 
 `Waveform`
 
-
-
 `property id`
 
 Unique identifier for this pulse.
@@ -133,8 +117,6 @@ Unique identifier for this pulse.
 
 `int`
 
-
-
 `property parameters`
 
 Return a dictionary containing the pulse’s parameters.
@@ -142,8 +124,6 @@ Return a dictionary containing the pulse’s parameters.
 **Return type**
 
 `Dict`\[`str`, `Any`]
-
-
 
 `validate_parameters()`
 

@@ -2,8 +2,6 @@
 
 # qiskit.quantum\_info.euler\_angles\_1q
 
-
-
 `euler_angles_1q(unitary_matrix)`
 
 DEPRECATED: Compute Euler angles for a single-qubit gate.

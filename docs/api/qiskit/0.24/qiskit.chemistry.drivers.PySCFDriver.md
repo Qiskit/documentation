@@ -2,8 +2,6 @@
 
 # qiskit.chemistry.drivers.PySCFDriver
 
-
-
 `PySCFDriver(atom='H 0.0 0.0 0.0; H 0.0 0.0 0.735', unit=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, spin=0, basis='sto3g', hf_method=<HFMethodType.RHF: 'rhf'>, conv_tol=1e-09, max_cycle=50, init_guess=<InitialGuess.MINAO: 'minao'>, max_memory=None, molecule=None)`
 
 Qiskit chemistry driver using the PySCF library.
@@ -27,8 +25,6 @@ See [https://sunqm.github.io/pyscf/](https://sunqm.github.io/pyscf/)
 **Raises**
 
 [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
-
-
 
 `__init__(atom='H 0.0 0.0 0.0; H 0.0 0.0 0.735', unit=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, spin=0, basis='sto3g', hf_method=<HFMethodType.RHF: 'rhf'>, conv_tol=1e-09, max_cycle=50, init_guess=<InitialGuess.MINAO: 'minao'>, max_memory=None, molecule=None)`
 
@@ -66,8 +62,6 @@ See [https://sunqm.github.io/pyscf/](https://sunqm.github.io/pyscf/)
 | [`molecule`](#qiskit.chemistry.drivers.PySCFDriver.molecule "qiskit.chemistry.drivers.PySCFDriver.molecule")                            | return molecule                                 |
 | [`supports_molecule`](#qiskit.chemistry.drivers.PySCFDriver.supports_molecule "qiskit.chemistry.drivers.PySCFDriver.supports_molecule") | True for derived classes that support Molecule. |
 
-
-
 `property basis`
 
 return basis
@@ -75,8 +69,6 @@ return basis
 **Return type**
 
 `str`
-
-
 
 `property hf_method`
 
@@ -86,8 +78,6 @@ return Hartree-Fock method
 
 `str`
 
-
-
 `property molecule`
 
 return molecule
@@ -95,8 +85,6 @@ return molecule
 **Return type**
 
 `Optional`\[`Molecule`]
-
-
 
 `run()`
 
@@ -109,8 +97,6 @@ Runs driver to produce a QMolecule output.
 **Returns**
 
 A QMolecule containing the molecular data.
-
-
 
 `property supports_molecule`
 

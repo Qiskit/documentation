@@ -2,8 +2,6 @@
 
 # qiskit.aqua.utils.get\_subsystems\_counts
 
-
-
 `get_subsystems_counts(complete_system_counts, post_select_index=None, post_select_flag=None)`
 
 Extract all subsystems’ counts from the single complete system count dictionary.

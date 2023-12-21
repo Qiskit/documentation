@@ -2,8 +2,6 @@
 
 # qiskit.ignis.characterization.anglecal\_1Q\_circuits
 
-
-
 `anglecal_1Q_circuits(max_reps, qubits, angleerr=0.0)`
 
 Generates circuit for measuring the angle error of the single qubit gate

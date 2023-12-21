@@ -2,8 +2,6 @@
 
 # qiskit.compiler.sequence
 
-
-
 `sequence(scheduled_circuits, backend=None, inst_map=None, meas_map=None, dt=None)`
 
 Schedule a scheduled circuit to a pulse `Schedule`, using the backend.

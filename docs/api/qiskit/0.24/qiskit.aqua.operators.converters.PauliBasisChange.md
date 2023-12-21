@@ -2,8 +2,6 @@
 
 # qiskit.aqua.operators.converters.PauliBasisChange
 
-
-
 `PauliBasisChange(destination_basis=None, traverse=True, replacement_fn=None)`
 
 Converter for changing Paulis into other bases. By default, the diagonal basis composed only of Pauli \{Z, I}^n is used as the destination basis to which to convert. Meaning, if a Pauli containing X or Y terms is passed in, which cannot be sampled or evolved natively on some Quantum hardware, the Pauli can be replaced by a composition of a change of basis circuit and a Pauli composed of only Z and I terms (diagonal), which can be evolved or sampled natively on the Quantum hardware.
@@ -24,8 +22,6 @@ This class uses the typical basis change method found in most Quantum Computing 
 
     > 1.  For StateFns (or Measurements): replacing the StateFn with ComposedOp(StateFn(d), c) where c is the conversion circuit and d is the destination Pauli, so the overall beginning and ending operators are equivalent.
     > 2.  For non-StateFn Operators: replacing the origin p with c·d·c†, where c is the conversion circuit and d is the destination, so the overall beginning and ending operators are equivalent.
-
-
 
 `__init__(destination_basis=None, traverse=True, replacement_fn=None)`
 
@@ -64,8 +60,6 @@ This class uses the typical basis change method found in most Quantum Computing 
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | [`destination`](#qiskit.aqua.operators.converters.PauliBasisChange.destination "qiskit.aqua.operators.converters.PauliBasisChange.destination") | The destination `PauliOp`, or `None` if using the default destination, the diagonal basis. |
 
-
-
 `construct_cnot_chain(diag_pauli_op1, diag_pauli_op2)`
 
 Construct a `CircuitOp` (or `PauliOp` if equal to the identity) which takes the eigenvectors of `diag_pauli_op1` to the eigenvectors of `diag_pauli_op2`, assuming both are diagonal (or performing this operation on their diagonalized Paulis implicitly if not). This works by the insight that the eigenvalue of a diagonal Pauli’s eigenvector is equal to or -1 if the parity is 1 and 1 if the parity is 0, or 1 - (2 \* parity). Therefore, using CNOTs, we can write the parity of diag\_pauli\_op1’s significant bits onto some qubit, and then write out that parity onto diag\_pauli\_op2’s significant bits.
@@ -83,8 +77,6 @@ Construct a `CircuitOp` (or `PauliOp` if equal to the identity) which takes the 
 
 The `PrimitiveOp` performs the mapping.
 
-
-
 `convert(operator)`
 
 Given a `PauliOp`, or an Operator containing `PauliOps` if `_traverse` is True, converts each Pauli into the basis specified by self.\_destination and a basis-change-circuit, calls `replacement_fn` with these two Operators, and replaces the `PauliOps` with the output of `replacement_fn`. For example, for the built-in `operator_replacement_fn` below, each PauliOp p will be replaced by the composition of the basis-change Clifford `CircuitOp` c with the destination PauliOp d and c†, such that p = c·d·c†, up to global phase.
@@ -101,8 +93,6 @@ Given a `PauliOp`, or an Operator containing `PauliOps` if `_traverse` is True, 
 
 The converted Operator.
 
-
-
 `property destination`
 
 The destination `PauliOp`, or `None` if using the default destination, the diagonal basis.
@@ -110,8 +100,6 @@ The destination `PauliOp`, or `None` if using the default destination, the diago
 **Return type**
 
 `Optional`\[`PauliOp`]
-
-
 
 `get_cob_circuit(origin)`
 
@@ -141,8 +129,6 @@ A tuple of a `PrimitiveOp` which equals the basis change mapping and a `PauliOp`
 *   **TypeError** – Attempting to convert from non-Pauli origin.
 *   **ValueError** – Attempting to change a non-identity Pauli to an identity Pauli, or vice versa.
 
-
-
 `get_diagonal_pauli_op(pauli_op)`
 
 Get the diagonal `PualiOp` to which `pauli_op` could be rotated with only single-qubit operations.
@@ -158,8 +144,6 @@ Get the diagonal `PualiOp` to which `pauli_op` could be rotated with only single
 **Returns**
 
 The diagonal `PauliOp`.
-
-
 
 `get_diagonalizing_clifford(pauli)`
 
@@ -179,8 +163,6 @@ Note, underlying Pauli bits are in Qiskit endianness, so we need to reverse befo
 
 The diagonalizing `CircuitOp`.
 
-
-
 `get_tpb_pauli(list_op)`
 
 Gets the Pauli (not `PauliOp`!) whose diagonalizing single-qubit rotations is a superset of the diagonalizing single-qubit rotations for each of the Paulis in `list_op`. TBP stands for Tensor Product Basis.
@@ -196,8 +178,6 @@ Gets the Pauli (not `PauliOp`!) whose diagonalizing single-qubit rotations is a 
 **Returns**
 
 The TBP Pauli.
-
-
 
 `static measurement_replacement_fn(cob_instr_op, dest_pauli_op)`
 
@@ -216,8 +196,6 @@ A built-in convenience replacement function which produces measurements isomorph
 
 The `~StateFn @ CircuitOp` composition equivalent to a measurement by the original `PauliOp`.
 
-
-
 `static operator_replacement_fn(cob_instr_op, dest_pauli_op)`
 
 A built-in convenience replacement function which produces Operators isomorphic to the origin `PauliOp`.
@@ -235,8 +213,6 @@ A built-in convenience replacement function which produces Operators isomorphic 
 
 The `~CircuitOp @ PauliOp @ CircuitOp` composition isomorphic to the original `PauliOp`.
 
-
-
 `pad_paulis_to_equal_length(pauli_op1, pauli_op2)`
 
 If `pauli_op1` and `pauli_op2` do not act over the same number of qubits, pad identities to the end of the shorter of the two so they are of equal length. Padding is applied to the end of the Paulis. Note that the Terra represents Paulis in big-endian order, so this will appear as padding to the beginning of the Pauli x and z bit arrays.
@@ -253,8 +229,6 @@ If `pauli_op1` and `pauli_op2` do not act over the same number of qubits, pad id
 **Returns**
 
 A tuple containing the padded PauliOps.
-
-
 
 `static statefn_replacement_fn(cob_instr_op, dest_pauli_op)`
 

@@ -2,8 +2,6 @@
 
 # qiskit.chemistry.transformations.BosonicTransformation
 
-
-
 `BosonicTransformation(qubit_mapping=<BosonicQubitMappingType.DIRECT: 'direct'>, transformation_type=<BosonicTransformationType.HARMONIC: 'harmonic'>, basis_size=2, truncation=3)`
 
 A vibronic Hamiltonian operator representing the energy of the nuclei in the molecule
@@ -14,8 +12,6 @@ A vibronic Hamiltonian operator representing the energy of the nuclei in the mol
 *   **transformation\_type** (`BosonicTransformationType`) – a string giving the modal basis. The Hamiltonian is expressed in this basis.
 *   **basis\_size** (`Union`\[`int`, `List`\[`int`]]) – define the number of modals per mode. If the number of modals is the same for each mode, then only an int is required. However, if the number of modals differ depending on the mode basis\_size should be a list of int, for example: \[3,4] means 2 modes: first mode has 3 modals, second mode has 4 modals.
 *   **truncation** (`int`) – where is the Hamiltonian expansion truncation (1 for having only 1-body terms, 2 for having on 1- and 2-body terms…)
-
-
 
 `__init__(qubit_mapping=<BosonicQubitMappingType.DIRECT: 'direct'>, transformation_type=<BosonicTransformationType.HARMONIC: 'harmonic'>, basis_size=2, truncation=3)`
 
@@ -45,8 +41,6 @@ A vibronic Hamiltonian operator representing the energy of the nuclei in the mol
 | [`num_modes`](#qiskit.chemistry.transformations.BosonicTransformation.num_modes "qiskit.chemistry.transformations.BosonicTransformation.num_modes")                            | the number of modes                           |
 | [`untapered_qubit_op`](#qiskit.chemistry.transformations.BosonicTransformation.untapered_qubit_op "qiskit.chemistry.transformations.BosonicTransformation.untapered_qubit_op") | Getter for the untapered qubit operator       |
 
-
-
 `property basis`
 
 returns the basis (number of modals per mode)
@@ -54,8 +48,6 @@ returns the basis (number of modals per mode)
 **Return type**
 
 `Union`\[`int`, `List`\[`int`]]
-
-
 
 `build_hopping_operators(excitations='sd')`
 
@@ -71,8 +63,6 @@ returns the basis (number of modals per mode)
 
 Dict of hopping operators, dict of commutativity types and dict of excitation indices
 
-
-
 `property commutation_rule`
 
 Getter of the commutation rule
@@ -81,8 +71,6 @@ Getter of the commutation rule
 
 `bool`
 
-
-
 `get_default_filter_criterion()`
 
 Returns a default filter criterion method to filter the eigenvalues computed by the eigen solver. For more information see also aqua.algorithms.eigen\_solvers.NumPyEigensolver.filter\_criterion. In the fermionic case the default filter ensures that the number of particles is being preserved.
@@ -90,8 +78,6 @@ Returns a default filter criterion method to filter the eigenvalues computed by 
 **Return type**
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
-
-
 
 `interpret(raw_result)`
 
@@ -109,8 +95,6 @@ Interprets an EigenstateResult in the context of this transformation.
 
 An vibronic structure result.
 
-
-
 `property num_modes`
 
 the number of modes
@@ -122,8 +106,6 @@ Returns
 **Return type**
 
 `int`
-
-
 
 `transform(driver, aux_operators=None)`
 
@@ -141,8 +123,6 @@ Transformation to qubit operator from the driver
 **Returns**
 
 qubit operator, auxiliary operators
-
-
 
 `property untapered_qubit_op`
 

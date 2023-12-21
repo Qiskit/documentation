@@ -2,8 +2,6 @@
 
 # qiskit.providers.basicaer.StatevectorSimulatorPy
 
-
-
 `StatevectorSimulatorPy(configuration=None, provider=None)`
 
 Python statevector simulator.
@@ -20,8 +18,6 @@ This method should initialize the module and its configuration, and raise an exc
 **Raises**
 
 **QiskitError** – if an error occurred when instantiating the backend.
-
-
 
 `__init__(configuration=None, provider=None)`
 
@@ -61,8 +57,6 @@ This method should initialize the module and its configuration, and raise an exc
 | `MAX_QUBITS_MEMORY`     |   |
 | `SHOW_FINAL_STATE`      |   |
 
-
-
 `configuration()`
 
 Return the backend configuration.
@@ -74,8 +68,6 @@ the configuration for the backend.
 **Return type**
 
 [BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
-
-
 
 `name()`
 
@@ -89,8 +81,6 @@ the name of the backend.
 
 str
 
-
-
 `properties()`
 
 Return the backend properties.
@@ -103,8 +93,6 @@ the configuration for the backend. If the backend does not support properties, i
 
 [BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
-
-
 `provider()`
 
 Return the backend Provider.
@@ -116,8 +104,6 @@ the Provider responsible for the backend.
 **Return type**
 
 [BaseProvider](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
-
-
 
 `run(qobj, backend_options=None)`
 
@@ -160,8 +146,6 @@ Example::
     }
 ```
 
-
-
 `run_experiment(experiment)`
 
 Run an experiment (circuit) and return a single experiment result.
@@ -198,8 +182,6 @@ dict
 
 [**BasicAerError**](qiskit.providers.basicaer.BasicAerError#qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if an error occurred.
 
-
-
 `status()`
 
 Return the backend status.
@@ -211,8 +193,6 @@ the status of the backend.
 **Return type**
 
 [BackendStatus](qiskit.providers.models.BackendStatus#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-
 
 `version()`
 

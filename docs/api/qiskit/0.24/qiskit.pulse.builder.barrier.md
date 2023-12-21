@@ -2,8 +2,6 @@
 
 # qiskit.pulse.builder.barrier
 
-
-
 `barrier(*channels_or_qubits)`
 
 Barrier directive for a set of channels and qubits.

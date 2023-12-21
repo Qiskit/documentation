@@ -2,8 +2,6 @@
 
 # qiskit.pulse.GaussianSquare
 
-
-
 `GaussianSquare(duration, amp, sigma, width, name=None)`
 
 A square pulse with a Gaussian shaped risefall on either side:
@@ -21,8 +19,6 @@ Initialize the gaussian square pulse.
 *   **sigma** (`Union`\[`float`, `ParameterExpression`]) – A measure of how wide or narrow the Gaussian risefall is; see the class docstring for more details.
 *   **width** (`Union`\[`float`, `ParameterExpression`]) – The duration of the embedded square pulse.
 *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
-
-
 
 `__init__(duration, amp, sigma, width, name=None)`
 
@@ -57,8 +53,6 @@ Initialize the gaussian square pulse.
 | [`sigma`](#qiskit.pulse.GaussianSquare.sigma "qiskit.pulse.GaussianSquare.sigma")                | The Gaussian standard deviation of the pulse width.    |
 | [`width`](#qiskit.pulse.GaussianSquare.width "qiskit.pulse.GaussianSquare.width")                | The width of the square portion of the pulse.          |
 
-
-
 `property amp`
 
 The Gaussian amplitude.
@@ -66,8 +60,6 @@ The Gaussian amplitude.
 **Return type**
 
 `Union`\[`complex`, `ParameterExpression`]
-
-
 
 `assign_parameters(value_dict)`
 
@@ -84,8 +76,6 @@ Return a new ParametricPulse with parameters assigned.
 **Returns**
 
 New pulse with updated parameters.
-
-
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False)`
 
@@ -108,8 +98,6 @@ A matplotlib figure object of the pulse envelope
 
 matplotlib.figure
 
-
-
 `get_sample_pulse()`
 
 Deprecated.
@@ -117,8 +105,6 @@ Deprecated.
 **Return type**
 
 `Waveform`
-
-
 
 `get_waveform()`
 
@@ -128,8 +114,6 @@ Return a Waveform with samples filled according to the formula that the pulse re
 
 `Waveform`
 
-
-
 `property id`
 
 Unique identifier for this pulse.
@@ -137,8 +121,6 @@ Unique identifier for this pulse.
 **Return type**
 
 `int`
-
-
 
 `property parameters`
 
@@ -148,8 +130,6 @@ Return a dictionary containing the pulse’s parameters.
 
 `Dict`\[`str`, `Any`]
 
-
-
 `property sigma`
 
 The Gaussian standard deviation of the pulse width.
@@ -157,8 +137,6 @@ The Gaussian standard deviation of the pulse width.
 **Return type**
 
 `Union`\[`float`, `ParameterExpression`]
-
-
 
 `validate_parameters()`
 
@@ -171,8 +149,6 @@ Validate parameters.
 **Return type**
 
 `None`
-
-
 
 `property width`
 

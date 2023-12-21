@@ -2,8 +2,6 @@
 
 # qiskit.converters.circuit\_to\_gate
 
-
-
 `circuit_to_gate(circuit, parameter_map=None, equivalence_library=None, label=None)`
 
 Build a `Gate` object from a `QuantumCircuit`.

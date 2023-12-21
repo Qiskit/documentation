@@ -2,8 +2,6 @@
 
 # qiskit.result.marginal\_counts
 
-
-
 `marginal_counts(result, indices=None, inplace=False)`
 
 Marginalize counts from an experiment over some indices of interest.

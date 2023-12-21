@@ -2,8 +2,6 @@
 
 # qiskit.aqua.components.initial\_states.Zero
 
-
-
 `Zero(num_qubits)`
 
 The zero (null/vacuum) state.
@@ -13,8 +11,6 @@ This is suitable for those situations in which the all-zeros state is the desire
 **Parameters**
 
 **num\_qubits** (`int`) – Number of qubits, has a minimum value of 1.
-
-
 
 `__init__(num_qubits)`
 
@@ -35,11 +31,7 @@ This is suitable for those situations in which the all-zeros state is the desire
 | ------------------------------------------------------------------------------------------------------------------ | - |
 | [`bitstr`](#qiskit.aqua.components.initial_states.Zero.bitstr "qiskit.aqua.components.initial_states.Zero.bitstr") |   |
 
-
-
 `property bitstr`
-
-
 
 `construct_circuit(mode='circuit', register=None)`
 

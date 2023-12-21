@@ -2,8 +2,6 @@
 
 # qiskit.pulse.builder.play
 
-
-
 `play(pulse, channel)`
 
 Play a `pulse` on a `channel`.

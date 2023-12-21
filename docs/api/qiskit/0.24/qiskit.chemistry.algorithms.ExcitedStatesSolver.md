@@ -2,13 +2,9 @@
 
 # qiskit.chemistry.algorithms.ExcitedStatesSolver
 
-
-
 `ExcitedStatesSolver`
 
 The excited states calculation interface
-
-
 
 `__init__()`
 
@@ -20,8 +16,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
 | [`__init__`](#qiskit.chemistry.algorithms.ExcitedStatesSolver.__init__ "qiskit.chemistry.algorithms.ExcitedStatesSolver.__init__")()                 | Initialize self.                                                                      |
 | [`solve`](#qiskit.chemistry.algorithms.ExcitedStatesSolver.solve "qiskit.chemistry.algorithms.ExcitedStatesSolver.solve")(driver\[, aux\_operators]) | Compute the excited states energies of the molecule that was supplied via the driver. |
-
-
 
 `abstract solve(driver, aux_operators=None)`
 

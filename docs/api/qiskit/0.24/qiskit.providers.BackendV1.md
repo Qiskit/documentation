@@ -2,8 +2,6 @@
 
 # qiskit.providers.BackendV1
 
-
-
 `BackendV1(configuration, provider=None, **fields)`
 
 Abstract class for Backends
@@ -23,8 +21,6 @@ Initialize a backend class
 **Raises**
 
 **AttributeError** – if input field not a valid options
-
-
 
 `__init__(configuration, provider=None, **fields)`
 
@@ -60,8 +56,6 @@ Initialize a backend class
 | [`options`](#qiskit.providers.BackendV1.options "qiskit.providers.BackendV1.options") | Return the options for the backend |
 | `version`                                                                             |                                    |
 
-
-
 `configuration()`
 
 Return the backend configuration.
@@ -73,8 +67,6 @@ the configuration for the backend.
 **Return type**
 
 [BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
-
-
 
 `name()`
 
@@ -88,15 +80,11 @@ the name of the backend.
 
 str
 
-
-
 `property options`
 
 Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.BackendV1.run "qiskit.providers.BackendV1.run") method.
-
-
 
 `properties()`
 
@@ -110,8 +98,6 @@ the configuration for the backend. If the backend does not support properties, i
 
 [BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
-
-
 `provider()`
 
 Return the backend Provider.
@@ -123,8 +109,6 @@ the Provider responsible for the backend.
 **Return type**
 
 [Provider](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")
-
-
 
 `abstract run(run_input, **options)`
 
@@ -145,8 +129,6 @@ The job object for the run
 
 [Job](qiskit.providers.Job#qiskit.providers.Job "qiskit.providers.Job")
 
-
-
 `set_options(**fields)`
 
 Set the options fields for the backend
@@ -160,8 +142,6 @@ This method is used to update the options of a backend. If you need to change an
 **Raises**
 
 **AttributeError** – If the field passed in is not part of the options
-
-
 
 `status()`
 

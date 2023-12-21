@@ -2,8 +2,6 @@
 
 # qiskit.optimization.algorithms.MinimumEigenOptimizer
 
-
-
 `MinimumEigenOptimizer(min_eigen_solver, penalty=None, converters=None)`
 
 A wrapper for minimum eigen solvers from Qiskit Aqua.
@@ -39,8 +37,6 @@ This initializer takes the minimum eigen solver to be used to approximate the gr
 *   **TypeError** – When one of converters has an invalid type.
 *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – When the minimum eigensolver does not return an eigenstate.
 
-
-
 `__init__(min_eigen_solver, penalty=None, converters=None)`
 
 This initializer takes the minimum eigen solver to be used to approximate the ground state of the resulting Hamiltonian as well as a optional penalty factor to scale penalty terms representing linear equality constraints. If no penalty factor is provided, a default is computed during the algorithm (TODO).
@@ -71,8 +67,6 @@ This initializer takes the minimum eigen solver to be used to approximate the gr
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
 | [`min_eigen_solver`](#qiskit.optimization.algorithms.MinimumEigenOptimizer.min_eigen_solver "qiskit.optimization.algorithms.MinimumEigenOptimizer.min_eigen_solver") | Returns the minimum eigensolver. |
 
-
-
 `get_compatibility_msg(problem)`
 
 Checks whether a given problem can be solved with this optimizer.
@@ -91,8 +85,6 @@ Checks whether the given problem is compatible, i.e., whether the problem can be
 
 A message describing the incompatibility.
 
-
-
 `is_compatible(problem)`
 
 Checks whether a given problem can be solved with the optimizer implementing this method.
@@ -109,8 +101,6 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 
 Returns True if the problem is compatible, False otherwise.
 
-
-
 `property min_eigen_solver`
 
 Returns the minimum eigensolver.
@@ -118,8 +108,6 @@ Returns the minimum eigensolver.
 **Return type**
 
 `MinimumEigensolver`
-
-
 
 `solve(problem)`
 

@@ -2,8 +2,6 @@
 
 # qiskit.aqua.operators.legacy.covariance
 
-
-
 `covariance(data, pauli_1, pauli_2, avg_1, avg_2)`
 
 Compute the covariance matrix element between two Paulis, given the measurement outcome. Appropriate post-rotations on the state are assumed.

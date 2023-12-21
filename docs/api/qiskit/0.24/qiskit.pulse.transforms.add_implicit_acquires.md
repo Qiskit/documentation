@@ -2,8 +2,6 @@
 
 # qiskit.pulse.transforms.add\_implicit\_acquires
 
-
-
 `add_implicit_acquires(schedule, meas_map)`
 
 Return a new schedule with implicit acquires from the measurement mapping replaced by explicit ones.

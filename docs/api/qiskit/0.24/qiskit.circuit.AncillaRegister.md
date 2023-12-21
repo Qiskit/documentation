@@ -2,15 +2,11 @@
 
 # qiskit.circuit.AncillaRegister
 
-
-
 `AncillaRegister(size, name=None)`
 
 Implement an ancilla register.
 
 Create a new generic register.
-
-
 
 `__init__(size, name=None)`
 
@@ -32,25 +28,17 @@ Create a new generic register.
 | `prefix`                                                                             |                        |
 | [`size`](#qiskit.circuit.AncillaRegister.size "qiskit.circuit.AncillaRegister.size") | Get the register size. |
 
-
-
 ### bit\_type
 
 alias of [`AncillaQubit`](qiskit.circuit.AncillaQubit#qiskit.circuit.AncillaQubit "qiskit.circuit.AncillaQubit")
-
-
 
 `property name`
 
 Get the register name.
 
-
-
 `qasm()`
 
 Return OPENQASM string for this register.
-
-
 
 `property size`
 

@@ -2,15 +2,11 @@
 
 # qiskit.aqua.components.neural\_networks.DiscriminativeNetwork
 
-
-
 `DiscriminativeNetwork`
 
 Base class for discriminative Quantum or Classical Neural Networks.
 
 This method should initialize the module but raise an exception if a required component of the module is not available.
-
-
 
 `abstract __init__()`
 
@@ -26,8 +22,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`set_seed`](#qiskit.aqua.components.neural_networks.DiscriminativeNetwork.set_seed "qiskit.aqua.components.neural_networks.DiscriminativeNetwork.set_seed")(seed)                | Set seed.                                                                                              |
 | [`train`](#qiskit.aqua.components.neural_networks.DiscriminativeNetwork.train "qiskit.aqua.components.neural_networks.DiscriminativeNetwork.train")(data, weights\[, penalty, …]) | Perform one training step w\.r.t to the discriminator’s parameters                                     |
 
-
-
 `abstract get_label(x)`
 
 Apply quantum/classical neural network to the given input sample and compute the respective data label
@@ -39,8 +33,6 @@ Apply quantum/classical neural network to the given input sample and compute the
 **Raises**
 
 **NotImplementedError** – not implemented
-
-
 
 `abstract loss(x, y, weights=None)`
 
@@ -60,8 +52,6 @@ Loss w\.r.t to the generated data points.
 
 **NotImplementedError** – not implemented
 
-
-
 `abstract set_seed(seed)`
 
 Set seed.
@@ -73,8 +63,6 @@ Set seed.
 **Raises**
 
 **NotImplementedError** – not implemented
-
-
 
 `abstract train(data, weights, penalty=False, quantum_instance=None, shots=None)`
 

@@ -2,8 +2,6 @@
 
 # qiskit.pulse.transforms.pad
 
-
-
 `pad(schedule, channels=None, until=None, inplace=False)`
 
 Pad the input Schedule with `Delay`s on all unoccupied timeslots until `schedule.duration` or `until` if not `None`.

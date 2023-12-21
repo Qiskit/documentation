@@ -2,8 +2,6 @@
 
 # qiskit.circuit.ParameterExpression
 
-
-
 `ParameterExpression(symbol_map, expr)`
 
 ParameterExpression class to enable creating expressions of Parameters.
@@ -16,8 +14,6 @@ Not intended to be called directly, but to be instantiated via operations on oth
 
 *   **symbol\_map** (*Dict\[*[*Parameter*](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter")*, \[*[*ParameterExpression*](#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*, float, or int]]*) – Mapping of [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter") instances to the `sympy.Symbol` serving as their placeholder in expr.
 *   **expr** (*sympy.Expr*) – Expression of `sympy.Symbol` s.
-
-
 
 `__init__(symbol_map, expr)`
 
@@ -46,8 +42,6 @@ Not intended to be called directly, but to be instantiated via operations on oth
 | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
 | [`parameters`](#qiskit.circuit.ParameterExpression.parameters "qiskit.circuit.ParameterExpression.parameters") | Returns a set of the unbound Parameters in the expression. |
 
-
-
 `assign(parameter, value)`
 
 Assign one parameter to a value, which can either be numeric or another parameter expression.
@@ -64,8 +58,6 @@ Assign one parameter to a value, which can either be numeric or another paramete
 **Returns**
 
 A new expression parameterized by any parameters which were not bound by assignment.
-
-
 
 `bind(parameter_values)`
 
@@ -93,8 +85,6 @@ Binds the provided set of parameters to their corresponding values.
 
 A new expression parameterized by any parameters which were not bound by parameter\_values.
 
-
-
 `conjugate()`
 
 Return the conjugate, which is the ParameterExpression itself, since it is real.
@@ -103,8 +93,6 @@ Return the conjugate, which is the ParameterExpression itself, since it is real.
 
 `ParameterExpression`
 
-
-
 `property parameters`
 
 Returns a set of the unbound Parameters in the expression.
@@ -112,8 +100,6 @@ Returns a set of the unbound Parameters in the expression.
 **Return type**
 
 `Set`
-
-
 
 `subs(parameter_map)`
 

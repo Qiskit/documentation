@@ -2,8 +2,6 @@
 
 # qiskit.pulse.builder.set\_frequency
 
-
-
 `set_frequency(frequency, channel)`
 
 Set the `frequency` of a pulse `channel`.

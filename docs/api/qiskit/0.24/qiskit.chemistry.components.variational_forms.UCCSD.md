@@ -2,8 +2,6 @@
 
 # qiskit.chemistry.components.variational\_forms.UCCSD
 
-
-
 `UCCSD(num_orbitals, num_particles, reps=1, active_occupied=None, active_unoccupied=None, initial_state=None, qubit_mapping='parity', two_qubit_reduction=True, num_time_slices=1, shallow_circuit_concat=True, z2_symmetries=None, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True, skip_commute_test=False)`
 
 This trial wavefunction is a Unitary Coupled-Cluster Single and Double excitations variational form. For more information, see [https://arxiv.org/abs/1805.04340](https://arxiv.org/abs/1805.04340) And for the singlet q-UCCD (full) and pair q-UCCD) see: [https://arxiv.org/abs/1911.10864](https://arxiv.org/abs/1911.10864)
@@ -51,8 +49,6 @@ Constructor.
     **Raises:**
 
     ValueError: Num particles list is not 2 entries
-
-
 
 `__init__(num_orbitals, num_particles, reps=1, active_occupied=None, active_unoccupied=None, initial_state=None, qubit_mapping='parity', two_qubit_reduction=True, num_time_slices=1, shallow_circuit_concat=True, z2_symmetries=None, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True, skip_commute_test=False)`
 
@@ -132,8 +128,6 @@ Constructor.
 | [`single_excitations`](#qiskit.chemistry.components.variational_forms.UCCSD.single_excitations "qiskit.chemistry.components.variational_forms.UCCSD.single_excitations")                                  | Getter of single excitation list :returns: single excitation list :rtype: list\[list\[int]] |
 | [`support_parameterized_circuit`](#qiskit.chemistry.components.variational_forms.UCCSD.support_parameterized_circuit "qiskit.chemistry.components.variational_forms.UCCSD.support_parameterized_circuit") | Whether or not the sub-class support parameterized circuit.                                 |
 
-
-
 `static compute_excitation_lists(num_particles, num_orbitals, active_occ_list=None, active_unocc_list=None, same_spin_doubles=True, method_singles='both', method_doubles='ucc', excitation_type='sd')`
 
 Computes single and double excitation lists.
@@ -162,8 +156,6 @@ list
 *   **ValueError** – invalid setting of number of particles
 *   **ValueError** – invalid setting of number of orbitals
 
-
-
 `static compute_excitation_lists_singlet(double_exc, num_orbitals)`
 
 Outputs the list of lists of grouped excitation. A single list inside is controlled by the same parameter theta.
@@ -180,8 +172,6 @@ de\_groups grouped excitations
 **Return type**
 
 list
-
-
 
 `construct_circuit(parameters, q=None)`
 
@@ -204,13 +194,9 @@ a quantum circuit with given parameters
 
 **ValueError** – the number of parameters is incorrect.
 
-
-
 `property double_excitations`
 
 Getter of double excitation list :returns: double excitation list :rtype: list\[list\[int]]
-
-
 
 `property excitation_pool`
 
@@ -220,13 +206,9 @@ Returns the full list of available excitations (called the pool).
 
 `List`\[`WeightedPauliOperator`]
 
-
-
 `static get_entangler_map(map_type, num_qubits, offset=0)`
 
 returns entangler map
-
-
 
 `static group_excitations(list_de, num_orbitals)`
 
@@ -245,8 +227,6 @@ list\_same\_ao\_group, list\_de\_temp, the grouped double\_exc (that involve sam
 
 tuple
 
-
-
 `static group_excitations_if_same_ao(list_de, num_orbitals)`
 
 Define that, given list of double excitations list\_de and number of spin-orbitals num\_orbitals, which excitations involve the same spatial orbitals for full singlet UCCSD.
@@ -264,13 +244,9 @@ grouped list of excitations
 
 list
 
-
-
 `manage_hopping_operators()`
 
 Triggers the adaptive behavior of this UCCSD instance. This function is used by the Adaptive VQE algorithm. It stores the full list of available hopping operators in a so called “excitation pool” and clears the previous list to be empty. Furthermore, the depth is asserted to be 1 which is required by the Adaptive VQE algorithm.
-
-
 
 `property num_parameters`
 
@@ -284,8 +260,6 @@ An integer indicating the number of parameters.
 
 int
 
-
-
 `property num_qubits`
 
 Number of qubits of the variational form.
@@ -297,8 +271,6 @@ An integer indicating the number of qubits.
 **Return type**
 
 int
-
-
 
 `static order_labels_for_hopping_ops(double_exc, gde)`
 
@@ -317,8 +289,6 @@ ordered\_labels to order hopping ops
 
 list
 
-
-
 `property parameter_bounds`
 
 Parameter bounds.
@@ -331,19 +301,13 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 list
 
-
-
 `pop_hopping_operator()`
 
 Pops the hopping operator that was added last.
 
-
-
 `property preferred_init_points`
 
 Getter of preferred initial points based on the given initial state.
-
-
 
 `push_hopping_operator(excitation)`
 
@@ -352,8 +316,6 @@ Pushes a new hopping operator.
 **Parameters**
 
 **excitation** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – the new hopping operator to be added
-
-
 
 `static same_ao_double_excitation_block_spin(de_1, de_2, num_orbitals)`
 
@@ -377,17 +339,11 @@ says if given excitation involves same spatial orbitals 1 = yes, 0 = no.
 
 int
 
-
-
 `property setting`
-
-
 
 `property single_excitations`
 
 Getter of single excitation list :returns: single excitation list :rtype: list\[list\[int]]
-
-
 
 `property support_parameterized_circuit`
 
@@ -400,8 +356,6 @@ indicate the sub-class support parameterized circuit
 **Return type**
 
 boolean
-
-
 
 `static validate_entangler_map(entangler_map, num_qubits)`
 

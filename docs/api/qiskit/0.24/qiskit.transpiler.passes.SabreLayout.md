@@ -2,8 +2,6 @@
 
 # qiskit.transpiler.passes.SabreLayout
 
-
-
 `SabreLayout(*args, **kwargs)`
 
 Choose a Layout via iterative bidirectional routing of the input circuit.
@@ -24,8 +22,6 @@ SabreLayout initializer.
 *   **routing\_pass** (*BasePass*) – the routing pass to use while iterating.
 *   **seed** (*int*) – seed for setting a random first trial layout.
 *   **max\_iterations** (*int*) – number of forward-backward iterations.
-
-
 
 `__init__(coupling_map, routing_pass=None, seed=None, max_iterations=3)`
 
@@ -53,15 +49,11 @@ SabreLayout initializer.
 | [`is_analysis_pass`](#qiskit.transpiler.passes.SabreLayout.is_analysis_pass "qiskit.transpiler.passes.SabreLayout.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.SabreLayout.is_transformation_pass "qiskit.transpiler.passes.SabreLayout.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-
-
 `property is_analysis_pass`
 
 Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-
 
 `property is_transformation_pass`
 
@@ -69,13 +61,9 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-
-
 `name()`
 
 Return the name of the pass.
-
-
 
 `run(dag)`
 

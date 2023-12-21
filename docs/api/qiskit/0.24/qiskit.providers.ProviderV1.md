@@ -2,13 +2,9 @@
 
 # qiskit.providers.ProviderV1
 
-
-
 `ProviderV1`
 
 Base class for a Backend Provider.
-
-
 
 `__init__()`
 
@@ -28,8 +24,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | --------- | - |
 | `version` |   |
 
-
-
 `abstract backends(name=None, **kwargs)`
 
 Return a list of backends matching the specified filtering.
@@ -48,8 +42,6 @@ criteria.
 **Return type**
 
 list\[[Backend](qiskit.providers.Backend#qiskit.providers.Backend "qiskit.providers.Backend")]
-
-
 
 `get_backend(name=None, **kwargs)`
 

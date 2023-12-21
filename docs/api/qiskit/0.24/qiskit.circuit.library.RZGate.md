@@ -2,8 +2,6 @@
 
 # qiskit.circuit.library.RZGate
 
-
-
 `RZGate(phi, label=None)`
 
 Single-qubit rotation about the Z axis.
@@ -39,8 +37,6 @@ $$
 </Admonition>
 
 Create new RZ gate.
-
-
 
 `__init__(phi, label=None)`
 
@@ -78,13 +74,9 @@ Create new RZ gate.
 | [`params`](#qiskit.circuit.library.RZGate.params "qiskit.circuit.library.RZGate.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.circuit.library.RZGate.unit "qiskit.circuit.library.RZGate.unit")                               | Get the time unit of duration.                                                |
 
-
-
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
-
-
 
 `assemble()`
 
@@ -93,8 +85,6 @@ Assemble a QasmQobjInstruction
 **Return type**
 
 `Instruction`
-
-
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -147,13 +137,9 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-
-
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
-
-
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
@@ -173,8 +159,6 @@ controlled version of this gate.
 
 [ControlledGate](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
-
-
 `copy(name=None)`
 
 Copy of the instruction.
@@ -193,25 +177,17 @@ updated if it was provided
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-
-
 `property duration`
 
 Get the duration.
-
-
 
 `inverse()`
 
@@ -219,13 +195,9 @@ Return inverted RZ gate
 
 $RZ(\lambda){\dagger} = RZ(-\lambda)$
 
-
-
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
-
-
 
 `property label`
 
@@ -234,8 +206,6 @@ Return gate label
 **Return type**
 
 `str`
-
-
 
 `mirror()`
 
@@ -251,13 +221,9 @@ reversed.
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `property params`
 
 return instruction params.
-
-
 
 `power(exponent)`
 
@@ -279,15 +245,11 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **CircuitError** – If Gate is not unitary
 
-
-
 `qasm()`
 
 Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-
 
 `repeat(n)`
 
@@ -309,8 +271,6 @@ Containing the definition.
 
 **CircuitError** – If n \< 1.
 
-
-
 `reverse_ops()`
 
 For a composite instruction, reverse the order of sub-instructions.
@@ -327,19 +287,13 @@ sub-instructions reversed.
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `to_matrix()`
 
 Return a numpy.array for the RZ gate.
 
-
-
 `property unit`
 
 Get the time unit of duration.
-
-
 
 `validate_parameter(parameter)`
 

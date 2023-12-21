@@ -2,15 +2,11 @@
 
 # qiskit.circuit.QuantumRegister
 
-
-
 `QuantumRegister(size, name=None)`
 
 Implement a quantum register.
 
 Create a new generic register.
-
-
 
 `__init__(size, name=None)`
 
@@ -32,25 +28,17 @@ Create a new generic register.
 | `prefix`                                                                             |                        |
 | [`size`](#qiskit.circuit.QuantumRegister.size "qiskit.circuit.QuantumRegister.size") | Get the register size. |
 
-
-
 ### bit\_type
 
 alias of [`Qubit`](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")
-
-
 
 `property name`
 
 Get the register name.
 
-
-
 `qasm()`
 
 Return OPENQASM string for this register.
-
-
 
 `property size`
 

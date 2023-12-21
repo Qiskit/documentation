@@ -2,13 +2,9 @@
 
 # qiskit.optimization.converters.QuadraticProgramConverter
 
-
-
 `QuadraticProgramConverter`
 
 An abstract class for converters of quadratic programs in Qiskit’s optimization module.
-
-
 
 `__init__()`
 
@@ -24,8 +20,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`encode`](#qiskit.optimization.converters.QuadraticProgramConverter.encode "qiskit.optimization.converters.QuadraticProgramConverter.encode")(problem)         | DEPRECATED Encode a QuadraticProgram into another form and keep the information required to decode the result. |
 | [`interpret`](#qiskit.optimization.converters.QuadraticProgramConverter.interpret "qiskit.optimization.converters.QuadraticProgramConverter.interpret")(result) | Interpret a result into another form using the information of conversion                                       |
 
-
-
 `abstract convert(problem)`
 
 Convert a QuadraticProgram into another form and keep the information required to interpret the result.
@@ -33,8 +27,6 @@ Convert a QuadraticProgram into another form and keep the information required t
 **Return type**
 
 `QuadraticProgram`
-
-
 
 `decode(result)`
 
@@ -44,8 +36,6 @@ DEPRECATED Decode a result into another form using the information of conversion
 
 `OptimizationResult`
 
-
-
 `encode(problem)`
 
 DEPRECATED Encode a QuadraticProgram into another form and keep the information required to decode the result.
@@ -53,8 +43,6 @@ DEPRECATED Encode a QuadraticProgram into another form and keep the information 
 **Return type**
 
 `QuadraticProgram`
-
-
 
 `abstract interpret(result)`
 

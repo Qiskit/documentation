@@ -2,15 +2,11 @@
 
 # qiskit.aqua.algorithms.Eigensolver
 
-
-
 `Eigensolver`
 
 The Eigensolver Interface.
 
 Algorithms that can compute eigenvalues for an operator may implement this interface to allow different algorithms to be used interchangeably.
-
-
 
 `__init__()`
 
@@ -31,8 +27,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`aux_operators`](#qiskit.aqua.algorithms.Eigensolver.aux_operators "qiskit.aqua.algorithms.Eigensolver.aux_operators") | Returns the auxiliary operators. |
 | [`operator`](#qiskit.aqua.algorithms.Eigensolver.operator "qiskit.aqua.algorithms.Eigensolver.operator")                | Return the operator.             |
 
-
-
 `abstract property aux_operators`
 
 Returns the auxiliary operators.
@@ -40,8 +34,6 @@ Returns the auxiliary operators.
 **Return type**
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
-
-
 
 `abstract compute_eigenvalues(operator=None, aux_operators=None)`
 
@@ -60,8 +52,6 @@ Computes eigenvalues. Operator and aux\_operators can be supplied here and if no
 
 EigensolverResult
 
-
-
 `abstract property operator`
 
 Return the operator.
@@ -69,8 +59,6 @@ Return the operator.
 **Return type**
 
 `Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]
-
-
 
 `classmethod supports_aux_operators()`
 

@@ -2,8 +2,6 @@
 
 # qiskit.aqua.algorithms.EOH
 
-
-
 `EOH(operator, initial_state, evo_operator, evo_time=1, num_time_slices=1, expansion_mode='trotter', expansion_order=1, quantum_instance=None)`
 
 The Quantum EOH (Evolution of Hamiltonian) algorithm.
@@ -20,8 +18,6 @@ EOH provides the lower-level building blocks for simulating universal quantum sy
 *   **expansion\_mode** (`str`) – Either `"trotter"` (Lloyd’s method) or `"suzuki"` (for Trotter-Suzuki expansion)
 *   **expansion\_order** (`int`) – The Trotter-Suzuki expansion order.
 *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
-
-
 
 `__init__(operator, initial_state, evo_operator, evo_time=1, num_time_slices=1, expansion_mode='trotter', expansion_order=1, quantum_instance=None)`
 
@@ -53,8 +49,6 @@ EOH provides the lower-level building blocks for simulating universal quantum sy
 | [`quantum_instance`](#qiskit.aqua.algorithms.EOH.quantum_instance "qiskit.aqua.algorithms.EOH.quantum_instance") | Returns quantum instance. |
 | [`random`](#qiskit.aqua.algorithms.EOH.random "qiskit.aqua.algorithms.EOH.random")                               | Return a numpy random.    |
 
-
-
 `property backend`
 
 Returns backend.
@@ -62,8 +56,6 @@ Returns backend.
 **Return type**
 
 `Union`\[`Backend`, `BaseBackend`]
-
-
 
 `construct_circuit()`
 
@@ -77,8 +69,6 @@ the circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-
-
 `property quantum_instance`
 
 Returns quantum instance.
@@ -87,13 +77,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 `property random`
 
 Return a numpy random.
-
-
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -115,8 +101,6 @@ dict
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-
 
 `set_backend(backend, **kwargs)`
 

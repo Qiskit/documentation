@@ -2,8 +2,6 @@
 
 # qiskit.aqua.operators.evolutions.Suzuki
 
-
-
 `Suzuki(reps=1, order=2)`
 
 Suzuki Trotter expansion, composing the evolution circuits of each Operator in the sum together by a recursive “bookends” strategy, repeating the whole composed circuit `reps` times.
@@ -14,8 +12,6 @@ Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/q
 
 *   **reps** (`int`) – The number of times to repeat the expansion circuit.
 *   **order** (`int`) – The order of the expansion to perform.
-
-
 
 `__init__(reps=1, order=2)`
 
@@ -38,8 +34,6 @@ Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/q
 | [`order`](#qiskit.aqua.operators.evolutions.Suzuki.order "qiskit.aqua.operators.evolutions.Suzuki.order") | returns order                                                                                 |
 | [`reps`](#qiskit.aqua.operators.evolutions.Suzuki.reps "qiskit.aqua.operators.evolutions.Suzuki.reps")    | The number of repetitions to use in the Trotterization, improving the approximation accuracy. |
 
-
-
 `convert(operator)`
 
 Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
@@ -60,8 +54,6 @@ The Operator approximating op\_sum’s evolution.
 
 **TypeError** – A non-SummedOps Operator is passed into `convert`.
 
-
-
 `property order`
 
 returns order
@@ -69,8 +61,6 @@ returns order
 **Return type**
 
 `int`
-
-
 
 `property reps`
 

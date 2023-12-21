@@ -2,8 +2,6 @@
 
 # qiskit.pulse.builder.measure\_all
 
-
-
 `measure_all()`
 
 Measure all qubits within the currently active builder context.

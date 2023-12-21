@@ -2,8 +2,6 @@
 
 # qiskit.optimization.converters.LinearEqualityToPenalty
 
-
-
 `LinearEqualityToPenalty(penalty=None)`
 
 Convert a problem with only equality constraints to unconstrained with penalty terms.
@@ -11,8 +9,6 @@ Convert a problem with only equality constraints to unconstrained with penalty t
 **Parameters**
 
 **penalty** (`Optional`\[`float`]) – Penalty factor to scale equality constraints that are added to objective. If None is passed, penalty factor will be automatically calculated.
-
-
 
 `__init__(penalty=None)`
 
@@ -36,8 +32,6 @@ Convert a problem with only equality constraints to unconstrained with penalty t
 | --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
 | [`penalty`](#qiskit.optimization.converters.LinearEqualityToPenalty.penalty "qiskit.optimization.converters.LinearEqualityToPenalty.penalty") | Returns the penalty factor used in conversion. |
 
-
-
 `convert(problem)`
 
 Convert a problem with equality constraints into an unconstrained problem.
@@ -58,8 +52,6 @@ The converted problem, that is an unconstrained problem.
 
 [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an inequality constraint exists.
 
-
-
 `decode(result)`
 
 DEPRECATED Decode a result into another form using the information of conversion.
@@ -68,8 +60,6 @@ DEPRECATED Decode a result into another form using the information of conversion
 
 `OptimizationResult`
 
-
-
 `encode(problem)`
 
 DEPRECATED Encode a QuadraticProgram into another form and keep the information required to decode the result.
@@ -77,8 +67,6 @@ DEPRECATED Encode a QuadraticProgram into another form and keep the information 
 **Return type**
 
 `QuadraticProgram`
-
-
 
 `interpret(result)`
 
@@ -99,8 +87,6 @@ The result of the original problem.
 **Raises**
 
 [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the number of variables in the result differs from that of the original problem.
-
-
 
 `property penalty`
 

@@ -2,8 +2,6 @@
 
 # qiskit.aqua.algorithms.NumPyEigensolver
 
-
-
 `NumPyEigensolver(operator=None, k=1, aux_operators=None, filter_criterion=None)`
 
 The NumPy Eigensolver algorithm.
@@ -20,8 +18,6 @@ NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued s
 *   **k** (`int`) – How many eigenvalues are to be computed, has a min. value of 1.
 *   **aux\_operators** (`Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]]]) – Auxiliary operators to be evaluated at each eigenvalue
 *   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates, only feasible eigenstates are returned in the results. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to keep this value in the final returned result or not. If the number of elements that satisfies the criterion is smaller than k then the returned list has fewer elements and can even be empty.
-
-
 
 `__init__(operator=None, k=1, aux_operators=None, filter_criterion=None)`
 
@@ -51,8 +47,6 @@ NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued s
 | [`operator`](#qiskit.aqua.algorithms.NumPyEigensolver.operator "qiskit.aqua.algorithms.NumPyEigensolver.operator")                         | Return the operator.                        |
 | [`random`](#qiskit.aqua.algorithms.NumPyEigensolver.random "qiskit.aqua.algorithms.NumPyEigensolver.random")                               | Return a numpy random.                      |
 
-
-
 `property aux_operators`
 
 Returns the auxiliary operators.
@@ -60,8 +54,6 @@ Returns the auxiliary operators.
 **Return type**
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
-
-
 
 `compute_eigenvalues(operator=None, aux_operators=None)`
 
@@ -80,8 +72,6 @@ Computes eigenvalues. Operator and aux\_operators can be supplied here and if no
 
 EigensolverResult
 
-
-
 `property filter_criterion`
 
 returns the filter criterion if set
@@ -89,8 +79,6 @@ returns the filter criterion if set
 **Return type**
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
-
-
 
 `property k`
 
@@ -100,8 +88,6 @@ returns k (number of eigenvalues requested)
 
 `int`
 
-
-
 `property operator`
 
 Return the operator.
@@ -110,13 +96,9 @@ Return the operator.
 
 `Optional`\[`OperatorBase`]
 
-
-
 `property random`
 
 Return a numpy random.
-
-
 
 `run()`
 
@@ -129,8 +111,6 @@ results of an algorithm.
 **Return type**
 
 dict
-
-
 
 `classmethod supports_aux_operators()`
 

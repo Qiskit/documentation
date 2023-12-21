@@ -2,8 +2,6 @@
 
 # qiskit.ignis.verification.postselection\_decoding
 
-
-
 `postselection_decoding(results)`
 
 Calculates the logical error probability using postselection decoding.

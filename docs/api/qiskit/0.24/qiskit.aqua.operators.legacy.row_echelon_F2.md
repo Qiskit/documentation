@@ -2,8 +2,6 @@
 
 # qiskit.aqua.operators.legacy.row\_echelon\_F2
 
-
-
 `row_echelon_F2(matrix_in)`
 
 Computes the row Echelon form of a binary matrix on the binary finite field

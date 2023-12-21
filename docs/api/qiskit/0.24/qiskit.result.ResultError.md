@@ -2,8 +2,6 @@
 
 # qiskit.result.ResultError
 
-
-
 `ResultError(error)`
 
 Exceptions raised due to errors in result output.
@@ -23,8 +21,6 @@ error = {'status': 403,
 ```
 
 Set the error message.
-
-
 
 `with_traceback()`
 

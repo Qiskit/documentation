@@ -2,13 +2,9 @@
 
 # qiskit.optimization.algorithms.OptimizationAlgorithm
 
-
-
 `OptimizationAlgorithm`
 
 An abstract class for optimization algorithms in Qiskit’s optimization module.
-
-
 
 `__init__()`
 
@@ -22,8 +18,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`get_compatibility_msg`](#qiskit.optimization.algorithms.OptimizationAlgorithm.get_compatibility_msg "qiskit.optimization.algorithms.OptimizationAlgorithm.get_compatibility_msg")(problem) | Checks whether a given problem can be solved with the optimizer implementing this method. |
 | [`is_compatible`](#qiskit.optimization.algorithms.OptimizationAlgorithm.is_compatible "qiskit.optimization.algorithms.OptimizationAlgorithm.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method. |
 | [`solve`](#qiskit.optimization.algorithms.OptimizationAlgorithm.solve "qiskit.optimization.algorithms.OptimizationAlgorithm.solve")(problem)                                                 | Tries to solves the given problem using the optimizer.                                    |
-
-
 
 `abstract get_compatibility_msg(problem)`
 
@@ -41,8 +35,6 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 
 Returns the incompatibility message. If the message is empty no issues were found.
 
-
-
 `is_compatible(problem)`
 
 Checks whether a given problem can be solved with the optimizer implementing this method.
@@ -58,8 +50,6 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 **Returns**
 
 Returns True if the problem is compatible, False otherwise.
-
-
 
 `abstract solve(problem)`
 

@@ -2,8 +2,6 @@
 
 # qiskit.extensions.UnitaryGate
 
-
-
 `UnitaryGate(data, label=None)`
 
 Class for representing unitary gates
@@ -18,8 +16,6 @@ Create a gate from a numeric unitary matrix.
 **Raises**
 
 **ExtensionError** – if input data is not an N-qubit unitary operator.
-
-
 
 `__init__(data, label=None)`
 
@@ -69,19 +65,13 @@ Create a gate from a numeric unitary matrix.
 | [`params`](#qiskit.extensions.UnitaryGate.params "qiskit.extensions.UnitaryGate.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.extensions.UnitaryGate.unit "qiskit.extensions.UnitaryGate.unit")                               | Get the time unit of duration.                                                |
 
-
-
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-
-
 `adjoint()`
 
 Return the adjoint of the unitary.
-
-
 
 `assemble()`
 
@@ -90,8 +80,6 @@ Assemble a QasmQobjInstruction
 **Return type**
 
 `Instruction`
-
-
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -144,19 +132,13 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-
-
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
-
-
 `conjugate()`
 
 Return the conjugate of the unitary.
-
-
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
@@ -181,8 +163,6 @@ controlled version of gate.
 *   **QiskitError** – Invalid ctrl\_state.
 *   **ExtensionError** – Non-unitary controlled unitary.
 
-
-
 `copy(name=None)`
 
 Copy of the instruction.
@@ -201,37 +181,25 @@ updated if it was provided
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-
-
 `property duration`
 
 Get the duration.
-
-
 
 `inverse()`
 
 Return the adjoint of the unitary.
 
-
-
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
-
-
 
 `property label`
 
@@ -240,8 +208,6 @@ Return gate label
 **Return type**
 
 `str`
-
-
 
 `mirror()`
 
@@ -257,13 +223,9 @@ reversed.
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `property params`
 
 return instruction params.
-
-
 
 `power(exponent)`
 
@@ -285,13 +247,9 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **CircuitError** – If Gate is not unitary
 
-
-
 `qasm()`
 
 The qasm for a custom unitary gate This is achieved by adding a custom gate that corresponds to the definition of this gate. It gives the gate a random name if one hasn’t been given to it.
-
-
 
 `repeat(n)`
 
@@ -313,8 +271,6 @@ Containing the definition.
 
 **CircuitError** – If n \< 1.
 
-
-
 `reverse_ops()`
 
 For a composite instruction, reverse the order of sub-instructions.
@@ -331,25 +287,17 @@ sub-instructions reversed.
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `to_matrix()`
 
 Return matrix for the unitary.
-
-
 
 `transpose()`
 
 Return the transpose of the unitary.
 
-
-
 `property unit`
 
 Get the time unit of duration.
-
-
 
 `validate_parameter(parameter)`
 

@@ -2,8 +2,6 @@
 
 # qiskit.quantum\_info.hellinger\_fidelity
 
-
-
 `hellinger_fidelity(dist_p, dist_q)`
 
 Computes the Hellinger fidelity between two counts distributions.

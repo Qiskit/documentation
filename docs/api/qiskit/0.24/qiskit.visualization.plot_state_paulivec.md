@@ -2,8 +2,6 @@
 
 # qiskit.visualization.plot\_state\_paulivec
 
-
-
 `plot_state_paulivec(state, title='', figsize=None, color=None, ax=None, *, rho=None)`
 
 Plot the paulivec representation of a quantum state.

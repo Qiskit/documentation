@@ -2,13 +2,9 @@
 
 # qiskit.chemistry.core.QubitMappingType
 
-
-
 `QubitMappingType(value)`
 
 QubitMappingType enum
-
-
 
 `__init__()`
 

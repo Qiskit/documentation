@@ -2,8 +2,6 @@
 
 # qiskit.pulse.builder.measure
 
-
-
 `measure(qubits, registers=None)`
 
 Measure a qubit within the currently active builder context.
