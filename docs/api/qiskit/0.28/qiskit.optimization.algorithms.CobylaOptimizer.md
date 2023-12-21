@@ -1,7 +1,5 @@
 # qiskit.optimization.algorithms.CobylaOptimizer
 
-
-
 `CobylaOptimizer(rhobeg=1.0, rhoend=0.0001, maxfun=1000, disp=None, catol=0.0002, trials=1, clip=100.0)`
 
 The SciPy COBYLA optimizer wrapped as an Qiskit [`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm#qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.OptimizationAlgorithm").
@@ -32,8 +30,6 @@ This initializer takes the algorithmic parameters of COBYLA and stores them for 
 *   **catol** (`float`) – Absolute tolerance for constraint violations.
 *   **trials** (`int`) – The number of trials for multi-start method. The first trial is solved with the initial guess of zero. If more than one trial is specified then initial guesses are uniformly drawn from `[lowerbound, upperbound]` with potential clipping.
 *   **clip** (`float`) – Clipping parameter for the initial guesses in the multi-start method. If a variable is unbounded then the lower bound and/or upper bound are replaced with the `-clip` or `clip` values correspondingly for the initial guesses.
-
-
 
 `__init__(rhobeg=1.0, rhoend=0.0001, maxfun=1000, disp=None, catol=0.0002, trials=1, clip=100.0)`
 
@@ -68,8 +64,6 @@ This initializer takes the algorithmic parameters of COBYLA and stores them for 
 | [`clip`](#qiskit.optimization.algorithms.CobylaOptimizer.clip "qiskit.optimization.algorithms.CobylaOptimizer.clip")       | Returns the clip value for this optimizer.       |
 | [`trials`](#qiskit.optimization.algorithms.CobylaOptimizer.trials "qiskit.optimization.algorithms.CobylaOptimizer.trials") | Returns the number of trials for this optimizer. |
 
-
-
 `property clip`
 
 Returns the clip value for this optimizer.
@@ -81,8 +75,6 @@ Returns the clip value for this optimizer.
 **Returns**
 
 The clip value.
-
-
 
 `get_compatibility_msg(problem)`
 
@@ -102,8 +94,6 @@ Checks whether the given problem is compatible, i.e., whether the problem contai
 
 Returns a string describing the incompatibility.
 
-
-
 `is_compatible(problem)`
 
 Checks whether a given problem can be solved with the optimizer implementing this method.
@@ -119,8 +109,6 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 **Returns**
 
 Returns True if the problem is compatible, False otherwise.
-
-
 
 `multi_start_solve(minimize, problem)`
 
@@ -138,8 +126,6 @@ Applies a multi start method given a local optimizer.
 **Returns**
 
 The result of the multi start algorithm applied to the problem.
-
-
 
 `solve(problem)`
 
@@ -162,8 +148,6 @@ The result of the optimizer applied to the problem.
 **Raises**
 
 [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
-
-
 
 `property trials`
 

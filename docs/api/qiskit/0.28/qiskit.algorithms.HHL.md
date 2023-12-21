@@ -1,7 +1,5 @@
 # qiskit.algorithms.HHL
 
-
-
 `HHL(epsilon=0.01, expectation=None, quantum_instance=None)`
 
 Systems of linear equations arise naturally in many real-life applications in a wide range of areas, such as in the solution of Partial Differential Equations, the calibration of financial models, fluid simulation or numerical field calculation. The problem can be defined as, given a matrix $A\in\mathbb{C}^{N\times N}$ and a vector $\vec{b}\in\mathbb{C}^{N}$, find $\vec{x}\in\mathbb{C}^{N}$ satisfying $A\vec{x}=\vec{b}$.
@@ -46,8 +44,6 @@ approx_result = solution.observable
 *   **expectation** (`Optional`\[`ExpectationBase`]) – The expectation converter applied to the expectation values before evaluation. If None then PauliExpectation is used.
 *   **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – Quantum Instance or Backend. If None, a Statevector calculation is done.
 
-
-
 `__init__(epsilon=0.01, expectation=None, quantum_instance=None)`
 
 **Parameters**
@@ -72,8 +68,6 @@ approx_result = solution.observable
 | [`quantum_instance`](#qiskit.algorithms.HHL.quantum_instance "qiskit.algorithms.HHL.quantum_instance") | Get the quantum instance.                                                                          |
 | [`scaling`](#qiskit.algorithms.HHL.scaling "qiskit.algorithms.HHL.scaling")                            | The scaling of the solution vector.                                                                |
 
-
-
 `construct_circuit(matrix, vector)`
 
 Construct the HHL circuit.
@@ -96,8 +90,6 @@ The HHL circuit.
 *   **ValueError** – If the input is not in the correct format.
 *   **ValueError** – If the type of the input matrix is not supported.
 
-
-
 `property expectation`
 
 The expectation value algorithm used to construct the expectation measurement from the observable.
@@ -105,8 +97,6 @@ The expectation value algorithm used to construct the expectation measurement fr
 **Return type**
 
 `ExpectationBase`
-
-
 
 `property quantum_instance`
 
@@ -120,8 +110,6 @@ Get the quantum instance.
 
 The quantum instance used to run this algorithm.
 
-
-
 `property scaling`
 
 The scaling of the solution vector.
@@ -129,8 +117,6 @@ The scaling of the solution vector.
 **Return type**
 
 `float`
-
-
 
 `solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`
 

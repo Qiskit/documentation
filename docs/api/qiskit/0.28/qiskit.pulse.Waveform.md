@@ -1,7 +1,5 @@
 # qiskit.pulse.Waveform
 
-
-
 `Waveform(samples, name=None, epsilon=1e-07, limit_amplitude=None)`
 
 A pulse specified completely by complex-valued samples; each sample is played for the duration of the backend cycle-time, dt.
@@ -14,8 +12,6 @@ Create new sample pulse command.
 *   **name** (`Optional`\[`str`]) – Unique name to identify the pulse.
 *   **epsilon** (`float`) – Pulse sample norm tolerance for clipping. If any sample’s norm exceeds unity by less than or equal to epsilon it will be clipped to unit norm. If the sample norm is greater than 1+epsilon an error will be raised.
 *   **limit\_amplitude** (`Optional`\[`bool`]) – Passed to parent Pulse
-
-
 
 `__init__(samples, name=None, epsilon=1e-07, limit_amplitude=None)`
 
@@ -46,8 +42,6 @@ Create new sample pulse command.
 | [`parameters`](#qiskit.pulse.Waveform.parameters "qiskit.pulse.Waveform.parameters") | Return a dictionary containing the pulse’s parameters. |
 | [`samples`](#qiskit.pulse.Waveform.samples "qiskit.pulse.Waveform.samples")          | Return sample values.                                  |
 
-
-
 `assign_parameters(value_dict)`
 
 Return a new pulse with parameters assigned.
@@ -63,8 +57,6 @@ Return a new pulse with parameters assigned.
 **Returns**
 
 New pulse with updated parameters.
-
-
 
 `draw(dt=None, style=None, filename=None, interp_method=None, scale=None, interactive=None, draw_title=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)`
 
@@ -112,8 +104,6 @@ Plot the interpolated envelope of pulse.
 
 Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
 
-
-
 `property id`
 
 Unique identifier for this pulse.
@@ -121,8 +111,6 @@ Unique identifier for this pulse.
 **Return type**
 
 `int`
-
-
 
 `is_parameterized()`
 
@@ -132,8 +120,6 @@ Return True iff the instruction is parameterized.
 
 `bool`
 
-
-
 `property parameters`
 
 Return a dictionary containing the pulse’s parameters.
@@ -141,8 +127,6 @@ Return a dictionary containing the pulse’s parameters.
 **Return type**
 
 `Dict`\[`str`, `Any`]
-
-
 
 `property samples`
 

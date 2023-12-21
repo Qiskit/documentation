@@ -1,7 +1,5 @@
 # qiskit.pulse.Call
 
-
-
 `Call(subroutine, value_dict=None, name=None)`
 
 Pulse `Call` instruction.
@@ -23,8 +21,6 @@ Define new subroutine.
 **Raises**
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If subroutine is not valid data format.
-
-
 
 `__init__(subroutine, value_dict=None, name=None)`
 
@@ -78,8 +74,6 @@ Define new subroutine.
 | [`stop_time`](#qiskit.pulse.Call.stop_time "qiskit.pulse.Call.stop_time")          | Relative end time of this instruction.                          |
 | [`subroutine`](#qiskit.pulse.Call.subroutine "qiskit.pulse.Call.subroutine")       | Return attached subroutine.                                     |
 
-
-
 `append(schedule, name=None)`
 
 Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
@@ -97,8 +91,6 @@ A new schedule with `schedule` a this instruction at t=0.
 
 [Schedule](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
-
-
 `property arguments`
 
 Parameters dictionary to be assigned to subroutine.
@@ -106,8 +98,6 @@ Parameters dictionary to be assigned to subroutine.
 **Return type**
 
 `Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]
-
-
 
 `assign_parameters(value_dict)`
 
@@ -127,8 +117,6 @@ Parameter values are not immediately assigned. The subroutine with parameters as
 
 Self with updated parameters.
 
-
-
 `assigned_subroutine()`
 
 Returns this subroutine with the parameters assigned.
@@ -145,8 +133,6 @@ Attached program.
 
 program (Union\[[Schedule](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule"), [ScheduleBlock](qiskit.pulse.ScheduleBlock#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")])
 
-
-
 `ch_duration(*channels)`
 
 Return duration of the supplied channels in this Instruction.
@@ -158,8 +144,6 @@ Return duration of the supplied channels in this Instruction.
 **Return type**
 
 `int`
-
-
 
 `ch_start_time(*channels)`
 
@@ -173,8 +157,6 @@ Return minimum start time for supplied channels.
 
 `int`
 
-
-
 `ch_stop_time(*channels)`
 
 Return maximum start time for supplied channels.
@@ -187,8 +169,6 @@ Return maximum start time for supplied channels.
 
 `int`
 
-
-
 `property channels`
 
 Returns the channels that this schedule uses.
@@ -196,8 +176,6 @@ Returns the channels that this schedule uses.
 **Return type**
 
 `Tuple`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
-
-
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`
 
@@ -226,8 +204,6 @@ A matplotlib figure object of the pulse schedule
 
 matplotlib.figure
 
-
-
 `property duration`
 
 Duration of this instruction.
@@ -235,8 +211,6 @@ Duration of this instruction.
 **Return type**
 
 `Union`\[`int`, `ParameterExpression`]
-
-
 
 `flatten()`
 
@@ -246,8 +220,6 @@ Return itself as already single instruction.
 
 `Instruction`
 
-
-
 `property id`
 
 Unique identifier for this instruction.
@@ -255,8 +227,6 @@ Unique identifier for this instruction.
 **Return type**
 
 `int`
-
-
 
 `insert(start_time, schedule, name=None)`
 
@@ -276,8 +246,6 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 [Schedule](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
-
-
 `property instructions`
 
 Iterable for getting instructions from Schedule tree.
@@ -285,8 +253,6 @@ Iterable for getting instructions from Schedule tree.
 **Return type**
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
-
-
 
 `is_parameterized()`
 
@@ -296,8 +262,6 @@ Return True iff the instruction is parameterized.
 
 `bool`
 
-
-
 `property name`
 
 Name of this instruction.
@@ -305,8 +269,6 @@ Name of this instruction.
 **Return type**
 
 `str`
-
-
 
 `property operands`
 
@@ -316,8 +278,6 @@ Return instruction operands.
 
 `Tuple`
 
-
-
 `property parameters`
 
 Unassigned parameters which determine the instruction behavior.
@@ -325,8 +285,6 @@ Unassigned parameters which determine the instruction behavior.
 **Return type**
 
 `Set`
-
-
 
 `shift(time, name=None)`
 
@@ -345,8 +303,6 @@ The shifted schedule.
 
 [Schedule](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
-
-
 `property start_time`
 
 Relative begin time of this instruction.
@@ -355,8 +311,6 @@ Relative begin time of this instruction.
 
 `int`
 
-
-
 `property stop_time`
 
 Relative end time of this instruction.
@@ -364,8 +318,6 @@ Relative end time of this instruction.
 **Return type**
 
 `int`
-
-
 
 `property subroutine`
 

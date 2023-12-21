@@ -1,7 +1,5 @@
 # qiskit.providers.aer.noise.mixed\_unitary\_error
 
-
-
 `mixed_unitary_error(noise_ops, standard_gates=True)`
 
 Return a mixed unitary quantum error channel.

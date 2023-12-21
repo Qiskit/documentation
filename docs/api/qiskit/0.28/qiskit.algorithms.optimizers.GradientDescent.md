@@ -1,7 +1,5 @@
 # qiskit.algorithms.optimizers.GradientDescent
 
-
-
 `GradientDescent(maxiter=100, learning_rate=0.01, tol=1e-07, callback=None, perturbation=None)`
 
 The gradient descent minimization routine.
@@ -30,8 +28,6 @@ An example where the learning rate is an iterator and we supply the analytic gra
 *   **learning\_rate** (`Union`\[`float`, `Callable`\[\[], `Iterator`]]) – A constant or generator yielding learning rates for the parameter updates. See the docstring for an example.
 *   **tol** (`float`) – If the norm of the parameter update is smaller than this threshold, the optimizer is converged.
 *   **perturbation** (`Optional`\[`float`]) – If no gradient is passed to `GradientDescent.optimize` the gradient is approximated with a symmetric finite difference scheme with `perturbation` perturbation in both directions (defaults to 1e-2 if required). Ignored if a gradient callable is passed to `GradientDescent.optimize`.
-
-
 
 `__init__(maxiter=100, learning_rate=0.01, tol=1e-07, callback=None, perturbation=None)`
 
@@ -74,19 +70,13 @@ An example where the learning rate is an iterator and we supply the analytic gra
 | [`setting`](#qiskit.algorithms.optimizers.GradientDescent.setting "qiskit.algorithms.optimizers.GradientDescent.setting")                                                             | Return setting                                 |
 | [`settings`](#qiskit.algorithms.optimizers.GradientDescent.settings "qiskit.algorithms.optimizers.GradientDescent.settings")                                                          | The optimizer settings in a dictionary format. |
 
-
-
 `property bounds_support_level`
 
 Returns bounds support level
 
-
-
 `get_support_level()`
 
 Get the support level dictionary.
-
-
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -107,73 +97,49 @@ the gradient computed
 
 grad
 
-
-
 `property gradient_support_level`
 
 Returns gradient support level
-
-
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-
-
 `property is_bounds_ignored`
 
 Returns is bounds ignored
-
-
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-
-
 `property is_bounds_supported`
 
 Returns is bounds supported
-
-
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-
-
 `property is_gradient_required`
 
 Returns is gradient required
-
-
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-
-
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
-
-
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-
-
 `property is_initial_point_supported`
 
 Returns is initial point supported
-
-
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -197,19 +163,13 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
-
-
 `print_options()`
 
 Print algorithm-specific options.
 
-
-
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
-
-
 
 `set_options(**kwargs)`
 
@@ -221,13 +181,9 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-
-
 `property setting`
 
 Return setting
-
-
 
 `property settings`
 
@@ -244,8 +200,6 @@ optimizer = OptimizerClass(**settings)
 **Return type**
 
 `Dict`\[`str`, `Any`]
-
-
 
 `static wrap_function(function, args)`
 

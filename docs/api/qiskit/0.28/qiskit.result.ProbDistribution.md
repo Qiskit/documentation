@@ -1,7 +1,5 @@
 # qiskit.result.ProbDistribution
 
-
-
 `ProbDistribution(data, shots=None)`
 
 A generic dict-like class for probability distributions.
@@ -24,8 +22,6 @@ Builds a probability distribution object.
 
 *   **TypeError** – If the input keys are not a string or int
 *   **ValueError** – If the string format of the keys is incorrect
-
-
 
 `__init__(data, shots=None)`
 
@@ -67,8 +63,6 @@ Builds a probability distribution object.
 | [`update`](#qiskit.result.ProbDistribution.update "qiskit.result.ProbDistribution.update")(\[E, ]\*\*F)                                            | If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k] |
 | [`values`](#qiskit.result.ProbDistribution.values "qiskit.result.ProbDistribution.values")()                                                       |                                                                                                                                                                                                                               |
 
-
-
 `binary_probabilities(num_bits=None)`
 
 Build a probabilities dictionary with binary string keys
@@ -87,27 +81,17 @@ Build a probabilities dictionary with binary string keys
 
 dict
 
-
-
 `clear() → None. Remove all items from D.`
 
-
-
 `copy() → a shallow copy of D`
-
-
 
 `fromkeys(value=None, /)`
 
 Create a new dictionary with keys from iterable and values set to value.
 
-
-
 `get(key, default=None, /)`
 
 Return the value for key if key is in the dictionary, else default.
-
-
 
 `hex_probabilities()`
 
@@ -123,27 +107,17 @@ format `"0x1a"`
 
 dict
 
-
-
 `items() → a set-like object providing a view on D’s items`
 
-
-
 `keys() → a set-like object providing a view on D’s keys`
-
-
 
 `pop(k[, d]) → v, remove specified key and return the corresponding value.`
 
 If key is not found, d is returned if given, otherwise KeyError is raised
 
-
-
 `popitem() → (k, v), remove and return some (key, value) pair as a`
 
 2-tuple; but raise KeyError if D is empty.
-
-
 
 `setdefault(key, default=None, /)`
 
@@ -151,12 +125,8 @@ Insert key with a value of default if key is not in the dictionary.
 
 Return the value for key if key is in the dictionary, else default.
 
-
-
 `update([E, ]**F) → None. Update D from dict/iterable E and F.`
 
 If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
-
-
 
 `values() → an object providing a view on D’s values`

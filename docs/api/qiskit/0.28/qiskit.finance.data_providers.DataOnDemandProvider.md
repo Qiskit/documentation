@@ -1,7 +1,5 @@
 # qiskit.finance.data\_providers.DataOnDemandProvider
 
-
-
 `DataOnDemandProvider(token, tickers, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0), verify=None)`
 
 NASDAQ Data on Demand data provider.
@@ -15,8 +13,6 @@ Please see: [https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/fi
 *   **start** (`datetime`) – first data point
 *   **end** (`datetime`) – last data point precedes this date
 *   **verify** (`Union`\[`str`, `bool`, `None`]) – if verify is None, certify certificates will be used (default); if this is False, no certificates will be checked; if this is a string, it should be pointing to a certificate for the HTTPS connection to NASDAQ (dataondemand.nasdaq.com), either in the form of a CA\_BUNDLE file or a directory wherein to look.
-
-
 
 `__init__(token, tickers, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0), verify=None)`
 
@@ -41,8 +37,6 @@ Please see: [https://github.com/Qiskit/qiskit-tutorials/blob/master/tutorials/fi
 | [`get_similarity_matrix`](#qiskit.finance.data_providers.DataOnDemandProvider.get_similarity_matrix "qiskit.finance.data_providers.DataOnDemandProvider.get_similarity_matrix")()                                           | Returns time-series similarity matrix computed using dynamic time warping.                               |
 | [`run`](#qiskit.finance.data_providers.DataOnDemandProvider.run "qiskit.finance.data_providers.DataOnDemandProvider.run")()                                                                                                 | Loads data, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class. |
 
-
-
 `get_coordinates()`
 
 Returns random coordinates for visualisation purposes.
@@ -50,8 +44,6 @@ Returns random coordinates for visualisation purposes.
 **Return type**
 
 `Tuple`\[`ndarray`, `ndarray`]
-
-
 
 `get_covariance_matrix()`
 
@@ -69,8 +61,6 @@ an asset-to-asset covariance matrix.
 
 [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
-
-
 `get_mean_vector()`
 
 Returns a vector containing the mean value of each asset.
@@ -86,8 +76,6 @@ a per-asset mean vector.
 **Raises**
 
 [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
-
-
 
 `get_period_return_covariance_matrix()`
 
@@ -105,8 +93,6 @@ a per-asset mean vector.
 
 [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
-
-
 `get_period_return_mean_vector()`
 
 Returns a vector containing the mean value of each asset.
@@ -123,8 +109,6 @@ a per-asset mean vector.
 
 [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
-
-
 `get_similarity_matrix()`
 
 Returns time-series similarity matrix computed using dynamic time warping.
@@ -140,8 +124,6 @@ an asset-to-asset similarity matrix.
 **Raises**
 
 [**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
-
-
 
 `run()`
 

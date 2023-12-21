@@ -1,7 +1,5 @@
 # qiskit.quantum\_info.StabilizerState
 
-
-
 `StabilizerState(data, validate=True)`
 
 StabilizerState class. Stabilizer simulator using the convention from reference \[1]. Based on the internal class [`Clifford`](qiskit.quantum_info.Clifford#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford").
@@ -42,8 +40,6 @@ Initialize a StabilizerState object.
 
 *   \*\*(****StabilizerState**** or ****Clifford**** or ****Pauli**** or \*\***QuantumCircuit or** (*data*) – qiskit.circuit.Instruction): Data from which the stabilizer state can be constructed.
 *   **validate** (*boolean*) – validate that the stabilizer state data is a valid Clifford.
-
-
 
 `__init__(data, validate=True)`
 
@@ -86,37 +82,25 @@ Initialize a StabilizerState object.
 | [`dim`](#qiskit.quantum_info.StabilizerState.dim "qiskit.quantum_info.StabilizerState.dim")                      | Return total state dimension.                                     |
 | [`num_qubits`](#qiskit.quantum_info.StabilizerState.num_qubits "qiskit.quantum_info.StabilizerState.num_qubits") | Return the number of qubits if a N-qubit state or None otherwise. |
 
-
-
 `property clifford`
 
 Return StabilizerState Clifford data
-
-
 
 `conjugate()`
 
 Return the conjugate of the operator.
 
-
-
 `copy()`
 
 Make a copy of current operator.
-
-
 
 `property dim`
 
 Return total state dimension.
 
-
-
 `dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
-
-
 
 `evolve(other, qargs=None)`
 
@@ -140,8 +124,6 @@ the output stabilizer state.
 *   **QiskitError** – if other is not a StabilizerState.
 *   **QiskitError** – if the operator dimension does not match the specified StabilizerState subsystem dimensions.
 
-
-
 `expand(other)`
 
 Return the tensor product stabilzier state other ⊗ self.
@@ -162,8 +144,6 @@ the tensor product operator other ⊗ self.
 
 **QiskitError** – if other is not a StabilizerState.
 
-
-
 `expectation_value(oper, qargs=None)`
 
 Compute the expectation value of an operator.
@@ -181,13 +161,9 @@ the expectation value (only 0 or 1 or -1).
 
 complex
 
-
-
 `is_valid(atol=None, rtol=None)`
 
 Return True if a valid StabilizerState.
-
-
 
 `measure(qargs=None)`
 
@@ -209,13 +185,9 @@ measurement outcome string label, and `state` is the collapsed post-measurement 
 
 tuple
 
-
-
 `property num_qubits`
 
 Return the number of qubits if a N-qubit state or None otherwise.
-
-
 
 `probabilities(qargs=None, decimals=None)`
 
@@ -235,8 +207,6 @@ The Numpy vector array of probabilities.
 **Return type**
 
 np.array
-
-
 
 `probabilities_dict(qargs=None, decimals=None)`
 
@@ -259,8 +229,6 @@ The measurement probabilities in dict (ket) form.
 
 dict
 
-
-
 `purity()`
 
 Return the purity of the quantum state, which equals to 1, since it is always a pure state.
@@ -276,8 +244,6 @@ double
 **Raises**
 
 **QiskitError** – if input is not a StabilizerState.
-
-
 
 `reset(qargs=None)`
 
@@ -298,8 +264,6 @@ the reset state.
 **Additional Information:**
 
 If all subsystems are reset this will return the ground state on all subsystems. If only some subsystems are reset this function will perform a measurement on those subsystems and evolve the subsystems so that the collapsed post-measurement states are rotated to the 0-state. The RNG seed for this sampling can be set using the [`seed()`](#qiskit.quantum_info.StabilizerState.seed "qiskit.quantum_info.StabilizerState.seed") method.
-
-
 
 `sample_counts(shots, qargs=None)`
 
@@ -324,8 +288,6 @@ Additional Information:
 >
 > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.StabilizerState.seed "qiskit.quantum_info.StabilizerState.seed") method.
 
-
-
 `sample_memory(shots, qargs=None)`
 
 Sample a list of qubit measurement outcomes in the computational basis.
@@ -349,13 +311,9 @@ Additional Information:
 >
 > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.StabilizerState.seed "qiskit.quantum_info.StabilizerState.seed") method.
 
-
-
 `seed(value=None)`
 
 Set the seed for the quantum state RNG.
-
-
 
 `tensor(other)`
 
@@ -377,13 +335,9 @@ the tensor product operator self ⊗ other.
 
 **QiskitError** – if other is not a StabilizerState.
 
-
-
 `to_operator()`
 
 Convert state to matrix operator class
-
-
 
 `trace()`
 

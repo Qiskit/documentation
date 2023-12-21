@@ -1,7 +1,5 @@
 # qiskit.pulse.DriveChannel
 
-
-
 `DriveChannel(index)`
 
 Drive channels transmit signals to qubits which enact gate operations.
@@ -11,8 +9,6 @@ Channel class.
 **Parameters**
 
 **index** (`int`) – Index of channel.
-
-
 
 `__init__(index)`
 
@@ -39,8 +35,6 @@ Channel class.
 | [`parameters`](#qiskit.pulse.DriveChannel.parameters "qiskit.pulse.DriveChannel.parameters") | Parameters which determine the channel index.                                      |
 | `prefix`                                                                                     |                                                                                    |
 
-
-
 `assign(parameter, value)`
 
 Return a new channel with the input Parameter assigned to value.
@@ -62,8 +56,6 @@ A new channel with updated parameters.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
-
-
 `property index`
 
 Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
@@ -71,8 +63,6 @@ Return the index of this channel. The index is a label for a control signal line
 **Return type**
 
 `Union`\[`int`, `ParameterExpression`]
-
-
 
 `is_parameterized()`
 
@@ -82,8 +72,6 @@ Return True iff the channel is parameterized.
 
 `bool`
 
-
-
 `property name`
 
 Return the shorthand alias for this channel, which is based on its type and index.
@@ -91,8 +79,6 @@ Return the shorthand alias for this channel, which is based on its type and inde
 **Return type**
 
 `str`
-
-
 
 `property parameters`
 

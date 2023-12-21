@@ -1,7 +1,5 @@
 # qiskit.circuit.Instruction
 
-
-
 `Instruction(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)`
 
 Generic quantum instruction.
@@ -21,8 +19,6 @@ Create a new instruction.
 **Raises**
 
 **CircuitError** – when the register is not in the correct format.
-
-
 
 `__init__(name, num_qubits, num_clbits, params, duration=None, unit='dt', label=None)`
 
@@ -72,19 +68,13 @@ Create a new instruction.
 | [`params`](#qiskit.circuit.Instruction.params "qiskit.circuit.Instruction.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.circuit.Instruction.unit "qiskit.circuit.Instruction.unit")                               | Get the time unit of duration.                                                |
 
-
-
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-
-
 `assemble()`
 
 Assemble a QasmQobjInstruction
-
-
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -103,13 +93,9 @@ Validation of the arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-
-
 `c_if(classical, val)`
 
 Add classical condition on register or cbit classical and value val.
-
-
 
 `copy(name=None)`
 
@@ -129,25 +115,17 @@ updated if it was provided
 
 [qiskit.circuit.Instruction](#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-
-
 `property duration`
 
 Get the duration.
-
-
 
 `inverse()`
 
@@ -169,13 +147,9 @@ a fresh instruction for the inverse
 
 **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
 
-
-
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
-
-
 
 `property label`
 
@@ -184,8 +158,6 @@ Return instruction label
 **Return type**
 
 `str`
-
-
 
 `mirror()`
 
@@ -201,21 +173,15 @@ reversed.
 
 [qiskit.circuit.Instruction](#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `property params`
 
 return instruction params.
-
-
 
 `qasm()`
 
 Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-
 
 `repeat(n)`
 
@@ -237,8 +203,6 @@ Containing the definition.
 
 **CircuitError** – If n \< 1.
 
-
-
 `reverse_ops()`
 
 For a composite instruction, reverse the order of sub-instructions.
@@ -254,8 +218,6 @@ sub-instructions reversed.
 **Return type**
 
 [qiskit.circuit.Instruction](#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-
 
 `soft_compare(other)`
 
@@ -273,13 +235,9 @@ are self and other equal up to parameter expressions.
 
 bool
 
-
-
 `property unit`
 
 Get the time unit of duration.
-
-
 
 `validate_parameter(parameter)`
 

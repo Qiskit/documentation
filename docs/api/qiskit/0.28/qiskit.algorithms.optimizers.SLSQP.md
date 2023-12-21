@@ -1,7 +1,5 @@
 # qiskit.algorithms.optimizers.SLSQP
 
-
-
 `SLSQP(maxiter=100, disp=False, ftol=1e-06, tol=None, eps=1.4901161193847656e-08, options=None, max_evals_grouped=1, **kwargs)`
 
 Sequential Least SQuares Programming optimizer.
@@ -22,8 +20,6 @@ Uses scipy.optimize.minimize SLSQP. For further detail, please refer to See [htt
 *   **options** (`Optional`\[`dict`]) – A dictionary of solver options.
 *   **max\_evals\_grouped** (`int`) – Max number of default gradient evaluations performed simultaneously.
 *   **kwargs** – additional kwargs for scipy.optimize.minimize.
-
-
 
 `__init__(maxiter=100, disp=False, ftol=1e-06, tol=None, eps=1.4901161193847656e-08, options=None, max_evals_grouped=1, **kwargs)`
 
@@ -70,19 +66,13 @@ Uses scipy.optimize.minimize SLSQP. For further detail, please refer to See [htt
 | [`setting`](#qiskit.algorithms.optimizers.SLSQP.setting "qiskit.algorithms.optimizers.SLSQP.setting")                                                             | Return setting                                 |
 | [`settings`](#qiskit.algorithms.optimizers.SLSQP.settings "qiskit.algorithms.optimizers.SLSQP.settings")                                                          | The optimizer settings in a dictionary format. |
 
-
-
 `property bounds_support_level`
 
 Returns bounds support level
 
-
-
 `get_support_level()`
 
 Return support level dictionary
-
-
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -103,73 +93,49 @@ the gradient computed
 
 grad
 
-
-
 `property gradient_support_level`
 
 Returns gradient support level
-
-
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-
-
 `property is_bounds_ignored`
 
 Returns is bounds ignored
-
-
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-
-
 `property is_bounds_supported`
 
 Returns is bounds supported
-
-
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-
-
 `property is_gradient_required`
 
 Returns is gradient required
-
-
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-
-
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
-
-
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-
-
 `property is_initial_point_supported`
 
 Returns is initial point supported
-
-
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -193,19 +159,13 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
-
-
 `print_options()`
 
 Print algorithm-specific options.
 
-
-
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
-
-
 
 `set_options(**kwargs)`
 
@@ -217,13 +177,9 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-
-
 `property setting`
 
 Return setting
-
-
 
 `property settings`
 
@@ -240,8 +196,6 @@ optimizer = OptimizerClass(**settings)
 **Return type**
 
 `Dict`\[`str`, `Any`]
-
-
 
 `static wrap_function(function, args)`
 

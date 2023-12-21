@@ -1,12 +1,8 @@
 # qiskit.aqua.operators.expectations.ExpectationFactory
 
-
-
 `ExpectationFactory`
 
 A factory class for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value.
-
-
 
 `__init__()`
 
@@ -18,8 +14,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`__init__`](#qiskit.aqua.operators.expectations.ExpectationFactory.__init__ "qiskit.aqua.operators.expectations.ExpectationFactory.__init__")()                             | Initialize self.                                                                                                                                              |
 | [`build`](#qiskit.aqua.operators.expectations.ExpectationFactory.build "qiskit.aqua.operators.expectations.ExpectationFactory.build")(operator\[, backend, include\_custom]) | A factory method for convenient automatic selection of an Expectation based on the Operator to be converted and backend used to sample the expectation value. |
-
-
 
 `static build(operator, backend=None, include_custom=True)`
 

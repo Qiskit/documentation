@@ -1,7 +1,5 @@
 # qiskit.ignis.characterization.t2star\_circuits
 
-
-
 `t2star_circuits(num_of_gates, gate_time, qubits, nosc=0)`
 
 Generate circuits for T2\* measurement.

@@ -1,7 +1,5 @@
 # qiskit.algorithms.EstimationProblem
 
-
-
 `EstimationProblem(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)`
 
 The estimation problem is the input to amplitude estimation algorithm.
@@ -15,8 +13,6 @@ This class contains all problem-specific information required to run an amplitud
 *   **grover\_operator** (`Optional`\[`QuantumCircuit`]) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit.
 *   **post\_processing** (`Optional`\[`Callable`\[\[`float`], `float`]]) – A mapping applied to the result of the algorithm $0 \leq a \leq 1$, usually used to map the estimate to a target interval. Defaults to the identity.
 *   **is\_good\_state** (`Optional`\[`Callable`\[\[`str`], `bool`]]) – A function to check whether a string represents a good state. Defaults to all objective qubits being in state $|1\rangle$.
-
-
 
 `__init__(state_preparation, objective_qubits, grover_operator=None, post_processing=None, is_good_state=None)`
 
@@ -45,8 +41,6 @@ This class contains all problem-specific information required to run an amplitud
 | [`post_processing`](#qiskit.algorithms.EstimationProblem.post_processing "qiskit.algorithms.EstimationProblem.post_processing")       | Apply post processing to the input value.                            |
 | [`state_preparation`](#qiskit.algorithms.EstimationProblem.state_preparation "qiskit.algorithms.EstimationProblem.state_preparation") | Get the $\mathcal{A}$ operator encoding the amplitude $a$.           |
 
-
-
 `property grover_operator`
 
 Get the $\mathcal{Q}$ operator, or Grover operator.
@@ -61,8 +55,6 @@ If the Grover operator is not set, we try to build it from the $\mathcal{A}$ ope
 
 The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
 
-
-
 `property is_good_state`
 
 Checks whether a bitstring represents a good state.
@@ -74,8 +66,6 @@ Checks whether a bitstring represents a good state.
 **Returns**
 
 Handle to the `is_good_state` callable.
-
-
 
 `property objective_qubits`
 
@@ -89,8 +79,6 @@ Get the criterion for a measurement outcome to be in a ‘good’ state.
 
 The criterion as list of qubit indices.
 
-
-
 `property post_processing`
 
 Apply post processing to the input value.
@@ -102,8 +90,6 @@ Apply post processing to the input value.
 **Returns**
 
 A handle to the post processing function. Acts as identity by default.
-
-
 
 `rescale(scaling_factor)`
 
@@ -120,8 +106,6 @@ Rescale the good state amplitude in the estimation problem.
 **Returns**
 
 A rescaled estimation problem.
-
-
 
 `property state_preparation`
 

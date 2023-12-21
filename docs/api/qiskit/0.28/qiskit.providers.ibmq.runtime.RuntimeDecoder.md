@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.runtime.RuntimeDecoder
 
-
-
 `RuntimeDecoder(*args, **kwargs)`
 
 JSON Decoder used by runtime service.
@@ -17,8 +15,6 @@ JSON Decoder used by runtime service.
 `parse_constant`, if specified, will be called with one of the following strings: -Infinity, Infinity, NaN. This can be used to raise an exception if invalid JSON numbers are encountered.
 
 If `strict` is false (true is the default), then control characters will be allowed inside strings. Control characters in this context are those with character codes in the 0-31 range, including `'\t'` (tab), `'\n'`, `'\r'` and `'\0'`.
-
-
 
 `__init__(*args, **kwargs)`
 
@@ -43,13 +39,9 @@ If `strict` is false (true is the default), then control characters will be allo
 | [`object_hook`](#qiskit.providers.ibmq.runtime.RuntimeDecoder.object_hook "qiskit.providers.ibmq.runtime.RuntimeDecoder.object_hook")(obj)       | Called to decode object.                                                                                                                                                  |
 | [`raw_decode`](#qiskit.providers.ibmq.runtime.RuntimeDecoder.raw_decode "qiskit.providers.ibmq.runtime.RuntimeDecoder.raw_decode")(s\[, idx])    | Decode a JSON document from `s` (a `str` beginning with a JSON document) and return a 2-tuple of the Python representation and the index in `s` where the document ended. |
 
-
-
 `decode(s, _w=<built-in method match of re.Pattern object>)`
 
 Return the Python representation of `s` (a `str` instance containing a JSON document).
-
-
 
 `object_hook(obj)`
 
@@ -58,8 +50,6 @@ Called to decode object.
 **Return type**
 
 `Any`
-
-
 
 `raw_decode(s, idx=0)`
 

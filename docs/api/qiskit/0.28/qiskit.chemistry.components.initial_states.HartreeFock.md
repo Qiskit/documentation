@@ -1,7 +1,5 @@
 # qiskit.chemistry.components.initial\_states.HartreeFock
 
-
-
 `HartreeFock(num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, sq_list=None)`
 
 A Hartree-Fock initial state.
@@ -18,8 +16,6 @@ A Hartree-Fock initial state.
 
 *   **ValueError** – wrong setting in num\_particles and num\_orbitals.
 *   **ValueError** – wrong setting for computed num\_qubits and supplied num\_qubits.
-
-
 
 `__init__(num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, sq_list=None)`
 
@@ -49,13 +45,9 @@ A Hartree-Fock initial state.
 | ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------- |
 | [`bitstr`](#qiskit.chemistry.components.initial_states.HartreeFock.bitstr "qiskit.chemistry.components.initial_states.HartreeFock.bitstr") | Getter of the bit string represented the statevector. |
 
-
-
 `property bitstr`
 
 Getter of the bit string represented the statevector.
-
-
 
 `construct_circuit(mode='circuit', register=None)`
 

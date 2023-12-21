@@ -12,13 +12,9 @@ exact cover
 | [`get_operator`](#qiskit.optimization.applications.ising.exact_cover.get_operator "qiskit.optimization.applications.ising.exact_cover.get_operator")(list\_of\_subsets)                                         | Construct the Hamiltonian for the exact solver problem. |
 | [`get_solution`](#qiskit.optimization.applications.ising.exact_cover.get_solution "qiskit.optimization.applications.ising.exact_cover.get_solution")(x)                                                         | **param x**binary string as numpy array.                |
 
-
-
 `check_solution_satisfiability(sol, list_of_subsets)`
 
 check solution satisfiability
-
-
 
 `get_operator(list_of_subsets)`
 
@@ -45,8 +41,6 @@ operator for the Hamiltonian, a constant shift for the obj function.
 **Return type**
 
 tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
-
-
 
 `get_solution(x)`
 

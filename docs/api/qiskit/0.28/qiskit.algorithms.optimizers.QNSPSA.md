@@ -1,7 +1,5 @@
 # qiskit.algorithms.optimizers.QNSPSA
 
-
-
 `QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None)`
 
 The Quantum Natural SPSA (QN-SPSA) optimizer.
@@ -55,8 +53,6 @@ result = qnspsa.optimize(ansatz.num_parameters, loss, initial_point=initial_poin
 *   **lse\_solver** (`Optional`\[`Callable`\[\[`ndarray`, `ndarray`], `ndarray`]]) – The method to solve for the inverse of the Hessian. Per default an exact LSE solver is used, but can e.g. be overwritten by a minimization routine.
 *   **initial\_hessian** (`Optional`\[`ndarray`]) – The initial guess for the Hessian. By default the identity matrix is used.
 *   **callback** (`Optional`\[`Callable`\[\[`ndarray`, `float`, `float`, `int`, `bool`], `None`]]) – A callback function passed information in each iteration step. The information is, in this order: the parameters, the function value, the number of function evaluations, the stepsize, whether the step was accepted.
-
-
 
 `__init__(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None)`
 
@@ -112,13 +108,9 @@ result = qnspsa.optimize(ansatz.num_parameters, loss, initial_point=initial_poin
 | [`setting`](#qiskit.algorithms.optimizers.QNSPSA.setting "qiskit.algorithms.optimizers.QNSPSA.setting")                                                             | Return setting                                 |
 | [`settings`](#qiskit.algorithms.optimizers.QNSPSA.settings "qiskit.algorithms.optimizers.QNSPSA.settings")                                                          | The optimizer settings in a dictionary format. |
 
-
-
 `property bounds_support_level`
 
 Returns bounds support level
-
-
 
 `static calibrate(loss, initial_point, c=0.2, stability_constant=0, target_magnitude=None, alpha=0.602, gamma=0.101, modelspace=False)`
 
@@ -151,8 +143,6 @@ learning rate and the second one for the perturbation.
 
 tuple(generator, generator)
 
-
-
 `static estimate_stddev(loss, initial_point, avg=25)`
 
 Estimate the standard deviation of the loss function.
@@ -160,8 +150,6 @@ Estimate the standard deviation of the loss function.
 **Return type**
 
 `float`
-
-
 
 `static get_fidelity(circuit, backend=None, expectation=None)`
 
@@ -189,13 +177,9 @@ The output of this function can be used as input for the `fidelity` to the :clas
 
 A handle to the function $F$.
 
-
-
 `get_support_level()`
 
 Get the support level dictionary.
-
-
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -216,73 +200,49 @@ the gradient computed
 
 grad
 
-
-
 `property gradient_support_level`
 
 Returns gradient support level
-
-
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-
-
 `property is_bounds_ignored`
 
 Returns is bounds ignored
-
-
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-
-
 `property is_bounds_supported`
 
 Returns is bounds supported
-
-
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-
-
 `property is_gradient_required`
 
 Returns is gradient required
-
-
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-
-
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
-
-
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-
-
 `property is_initial_point_supported`
 
 Returns is initial point supported
-
-
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -306,19 +266,13 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
-
-
 `print_options()`
 
 Print algorithm-specific options.
 
-
-
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
-
-
 
 `set_options(**kwargs)`
 
@@ -330,13 +284,9 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-
-
 `property setting`
 
 Return setting
-
-
 
 `property settings`
 
@@ -349,8 +299,6 @@ The optimizer settings in a dictionary format.
 **Return type**
 
 `Dict`\[`str`, `Any`]
-
-
 
 `static wrap_function(function, args)`
 

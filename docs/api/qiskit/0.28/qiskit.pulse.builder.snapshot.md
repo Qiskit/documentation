@@ -1,7 +1,5 @@
 # qiskit.pulse.builder.snapshot
 
-
-
 `snapshot(label, snapshot_type='statevector')`
 
 Simulator snapshot.

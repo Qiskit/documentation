@@ -1,7 +1,5 @@
 # qiskit.qobj.QasmQobjExperimentConfig
 
-
-
 `QasmQobjExperimentConfig(calibrations=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`
 
 Configuration for a single QASM experiment in the qobj.
@@ -12,8 +10,6 @@ Configuration for a single QASM experiment in the qobj.
 *   **qubit\_lo\_freq** (*List\[float]*) – List of qubit LO frequencies in GHz.
 *   **meas\_lo\_freq** (*List\[float]*) – List of meas readout LO frequencies in GHz.
 *   **kwargs** – Additional free form key value fields to add to the configuration
-
-
 
 `__init__(calibrations=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`
 
@@ -32,8 +28,6 @@ Configuration for a single QASM experiment in the qobj.
 | [`from_dict`](#qiskit.qobj.QasmQobjExperimentConfig.from_dict "qiskit.qobj.QasmQobjExperimentConfig.from_dict")(data)                             | Create a new QobjHeader object from a dictionary.           |
 | [`to_dict`](#qiskit.qobj.QasmQobjExperimentConfig.to_dict "qiskit.qobj.QasmQobjExperimentConfig.to_dict")()                                       | Return a dictionary format representation of the QASM Qobj. |
 
-
-
 `classmethod from_dict(data)`
 
 Create a new QobjHeader object from a dictionary.
@@ -49,8 +43,6 @@ The QobjDictField from the input dictionary.
 **Return type**
 
 QobjDictFieldr
-
-
 
 `to_dict()`
 

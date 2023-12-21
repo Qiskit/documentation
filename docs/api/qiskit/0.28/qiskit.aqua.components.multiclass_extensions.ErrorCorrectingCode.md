@@ -1,7 +1,5 @@
 # qiskit.aqua.components.multiclass\_extensions.ErrorCorrectingCode
 
-
-
 `ErrorCorrectingCode(code_size=4)`
 
 The Error Correcting Code multiclass extension.
@@ -22,8 +20,6 @@ The table above shows a 6-bit ECC for a 3-class problem. Each class is assigned 
 
 **code\_size** (`int`) – Size of error correcting code
 
-
-
 `__init__(code_size=4)`
 
 **Parameters**
@@ -39,8 +35,6 @@ The table above shows a 6-bit ECC for a 3-class problem. Each class is assigned 
 | [`set_estimator`](#qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.set_estimator "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.set_estimator")(estimator\_cls\[, params]) | Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator |
 | [`test`](#qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test")(x, y)                                                 | Testing multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                  |
 | [`train`](#qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train")(x, y)                                              | Training multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                 |
-
-
 
 `predict(x)`
 
@@ -58,8 +52,6 @@ predicted labels, Nx1 array
 
 numpy.ndarray
 
-
-
 `set_estimator(estimator_cls, params=None)`
 
 Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator
@@ -67,8 +59,6 @@ Called internally to set `Estimator` and parameters :type estimator\_cls: `Calla
 **Return type**
 
 `None`
-
-
 
 `test(x, y)`
 
@@ -86,8 +76,6 @@ accuracy
 **Return type**
 
 float
-
-
 
 `train(x, y)`
 

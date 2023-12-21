@@ -1,12 +1,8 @@
 # qiskit.chemistry.algorithms.EigensolverFactory
 
-
-
 `EigensolverFactory`
 
 A factory to construct a eigensolver based on a qubit operator transformation.
-
-
 
 `__init__()`
 
@@ -18,8 +14,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
 | [`__init__`](#qiskit.chemistry.algorithms.EigensolverFactory.__init__ "qiskit.chemistry.algorithms.EigensolverFactory.__init__")()                     | Initialize self.                                                   |
 | [`get_solver`](#qiskit.chemistry.algorithms.EigensolverFactory.get_solver "qiskit.chemistry.algorithms.EigensolverFactory.get_solver")(transformation) | Returns a eigensolver, based on the qubit operator transformation. |
-
-
 
 `abstract get_solver(transformation)`
 

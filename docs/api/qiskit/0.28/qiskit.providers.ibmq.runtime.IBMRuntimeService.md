@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.runtime.IBMRuntimeService
 
-
-
 `IBMRuntimeService(provider)`
 
 Class for interacting with the Qiskit Runtime service.
@@ -55,8 +53,6 @@ IBMRuntimeService constructor.
 
 **provider** (`AccountProvider`) – IBM Quantum account provider.
 
-
-
 `__init__(provider)`
 
 IBMRuntimeService constructor.
@@ -82,8 +78,6 @@ IBMRuntimeService constructor.
 | [`set_program_visibility`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.set_program_visibility "qiskit.providers.ibmq.runtime.IBMRuntimeService.set_program_visibility")(program\_id, public) | Sets a program’s visibility.                               |
 | [`upload_program`](#qiskit.providers.ibmq.runtime.IBMRuntimeService.upload_program "qiskit.providers.ibmq.runtime.IBMRuntimeService.upload_program")(data\[, metadata, name, …])                  | Upload a runtime program.                                  |
 
-
-
 `delete_job(job_id)`
 
 Delete a runtime job.
@@ -103,8 +97,6 @@ Note that this operation cannot be reversed.
 
 `None`
 
-
-
 `delete_program(program_id)`
 
 Delete a runtime program.
@@ -121,8 +113,6 @@ Delete a runtime program.
 **Return type**
 
 `None`
-
-
 
 `job(job_id)`
 
@@ -145,8 +135,6 @@ Runtime job retrieved.
 *   **RuntimeJobNotFound** – If the job doesn’t exist.
 *   **QiskitRuntimeError** – If the request failed.
 
-
-
 `jobs(limit=10, skip=0, pending=None)`
 
 Retrieve all runtime jobs, subject to optional filtering.
@@ -165,8 +153,6 @@ Retrieve all runtime jobs, subject to optional filtering.
 
 A list of runtime jobs.
 
-
-
 `logout()`
 
 Clears authorization cache on the server.
@@ -181,8 +167,6 @@ For better performance, the runtime server caches each user’s authorization in
 
 `None`
 
-
-
 `pprint_programs(refresh=False)`
 
 Pretty print information about available runtime programs.
@@ -194,8 +178,6 @@ Pretty print information about available runtime programs.
 **Return type**
 
 `None`
-
-
 
 `program(program_id, refresh=False)`
 
@@ -221,8 +203,6 @@ Runtime program.
 *   **RuntimeProgramNotFound** – If the program does not exist.
 *   **QiskitRuntimeError** – If the request failed.
 
-
-
 `programs(refresh=False)`
 
 Return available runtime programs.
@@ -240,8 +220,6 @@ Currently only program metadata is returned.
 **Returns**
 
 A list of runtime programs.
-
-
 
 `run(program_id, options, inputs, callback=None, result_decoder=None)`
 
@@ -276,8 +254,6 @@ A `RuntimeJob` instance representing the execution.
 
 **IBMQInputValueError** – If input is invalid.
 
-
-
 `set_program_visibility(program_id, public)`
 
 Sets a program’s visibility.
@@ -295,8 +271,6 @@ Sets a program’s visibility.
 **Return type**
 
 `None`
-
-
 
 `upload_program(data, metadata=None, name=None, max_execution_time=None, description=None, version=None, backend_requirements=None, parameters=None, return_values=None, interim_results=None)`
 

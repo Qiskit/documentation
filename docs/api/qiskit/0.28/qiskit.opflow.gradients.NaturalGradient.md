@@ -1,7 +1,5 @@
 # qiskit.opflow\.gradients.NaturalGradient
 
-
-
 `NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`
 
 Convert an operator expression to the first-order gradient.
@@ -22,8 +20,6 @@ where R(x) represents the penalization term.
 *   **qfi\_method** (`Union`\[`str`, `CircuitQFI`]) – The method used to compute the QFI. Can be either `'lin_comb_full'` or `'overlap_block_diag'` or `'overlap_diag'`.
 *   **regularization** (`Optional`\[`str`]) – Use the following regularization with a least square method to solve the underlying system of linear equations Can be either None or `'ridge'` or `'lasso'` or `'perturb_diag'` `'ridge'` and `'lasso'` use an automatic optimal parameter search If regularization is None but the metric is ill-conditioned or singular then a least square solver is used without regularization
 *   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
-
-
 
 `__init__(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`
 
@@ -51,8 +47,6 @@ where R(x) represents the penalization term.
 | [`qfi_method`](#qiskit.opflow.gradients.NaturalGradient.qfi_method "qiskit.opflow.gradients.NaturalGradient.qfi_method")             | Returns `CircuitQFI`.              |
 | [`regularization`](#qiskit.opflow.gradients.NaturalGradient.regularization "qiskit.opflow.gradients.NaturalGradient.regularization") | Returns the regularization option. |
 
-
-
 `convert(operator, params=None)`
 
 **Parameters**
@@ -74,8 +68,6 @@ An operator whose evaluation yields the NaturalGradient.
 *   **ValueError** – If `params` contains a parameter not present in `operator`.
 *   **ValueError** – If `operator` is not parameterized.
 
-
-
 `property grad_method`
 
 Returns `CircuitGradient`.
@@ -87,8 +79,6 @@ Returns `CircuitGradient`.
 **Returns**
 
 `CircuitGradient`.
-
-
 
 `gradient_wrapper(operator, bind_params, grad_params=None, backend=None, expectation=None)`
 
@@ -110,8 +100,6 @@ Get a callable function which provides the respective gradient, Hessian or QFI f
 
 Function to compute a gradient, Hessian or QFI. The function takes an iterable as argument which holds the parameter values.
 
-
-
 `static parameter_expression_grad(param_expr, param)`
 
 Get the derivative of a parameter expression w\.r.t. the given parameter.
@@ -129,8 +117,6 @@ Get the derivative of a parameter expression w\.r.t. the given parameter.
 
 ParameterExpression representing the gradient of param\_expr w\.r.t. param
 
-
-
 `property qfi_method`
 
 Returns `CircuitQFI`.
@@ -140,8 +126,6 @@ Returns: `CircuitQFI`
 **Return type**
 
 `CircuitQFI`
-
-
 
 `property regularization`
 

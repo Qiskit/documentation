@@ -1,7 +1,5 @@
 # qiskit.optimization.problems.LinearExpression
 
-
-
 `LinearExpression(quadratic_program, coefficients)`
 
 Representation of a linear expression by its coefficients.
@@ -14,8 +12,6 @@ The linear expression can be defined via an array, a list, a sparse matrix, or a
 
 *   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
 *   **coefficients** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`]]) – The (sparse) representation of the coefficients.
-
-
 
 `__init__(quadratic_program, coefficients)`
 
@@ -45,8 +41,6 @@ The linear expression can be defined via an array, a list, a sparse matrix, or a
 | [`coefficients`](#qiskit.optimization.problems.LinearExpression.coefficients "qiskit.optimization.problems.LinearExpression.coefficients")                | Returns the coefficients of the linear expression. |
 | [`quadratic_program`](#qiskit.optimization.problems.LinearExpression.quadratic_program "qiskit.optimization.problems.LinearExpression.quadratic_program") | Returns the parent QuadraticProgram.               |
 
-
-
 `property coefficients`
 
 Returns the coefficients of the linear expression.
@@ -58,8 +52,6 @@ Returns the coefficients of the linear expression.
 **Returns**
 
 The coefficients of the linear expression.
-
-
 
 `evaluate(x)`
 
@@ -77,8 +69,6 @@ Evaluate the linear expression for given variables.
 
 The value of the linear expression given the variable values.
 
-
-
 `evaluate_gradient(x)`
 
 Evaluate the gradient of the linear expression for given variables.
@@ -95,8 +85,6 @@ Evaluate the gradient of the linear expression for given variables.
 
 The value of the gradient of the linear expression given the variable values.
 
-
-
 `property quadratic_program`
 
 Returns the parent QuadraticProgram.
@@ -109,8 +97,6 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-
-
 `to_array()`
 
 Returns the coefficients of the linear expression as array.
@@ -122,8 +108,6 @@ Returns the coefficients of the linear expression as array.
 **Returns**
 
 An array with the coefficients corresponding to the linear expression.
-
-
 
 `to_dict(use_name=False)`
 

@@ -1,7 +1,5 @@
 # qiskit.pulse.instructions.Snapshot
 
-
-
 `Snapshot(label, snapshot_type='statevector', name=None)`
 
 An instruction targeted for simulators, to capture a moment in the simulation.
@@ -17,8 +15,6 @@ Create new snapshot.
 **Raises**
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If snapshot label is invalid.
-
-
 
 `__init__(label, snapshot_type='statevector', name=None)`
 
@@ -67,8 +63,6 @@ Create new snapshot.
 | [`stop_time`](#qiskit.pulse.instructions.Snapshot.stop_time "qiskit.pulse.instructions.Snapshot.stop_time")          | Relative end time of this instruction.                                                                                                                                             |
 | [`type`](#qiskit.pulse.instructions.Snapshot.type "qiskit.pulse.instructions.Snapshot.type")                         | Type of snapshot.                                                                                                                                                                  |
 
-
-
 `append(schedule, name=None)`
 
 Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
@@ -86,8 +80,6 @@ A new schedule with `schedule` a this instruction at t=0.
 
 [Schedule](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
-
-
 `assign_parameters(value_dict)`
 
 Modify and return self with parameters assigned according to the input.
@@ -104,8 +96,6 @@ Modify and return self with parameters assigned according to the input.
 
 Self with updated parameters.
 
-
-
 `ch_duration(*channels)`
 
 Return duration of the supplied channels in this Instruction.
@@ -117,8 +107,6 @@ Return duration of the supplied channels in this Instruction.
 **Return type**
 
 `int`
-
-
 
 `ch_start_time(*channels)`
 
@@ -132,8 +120,6 @@ Return minimum start time for supplied channels.
 
 `int`
 
-
-
 `ch_stop_time(*channels)`
 
 Return maximum start time for supplied channels.
@@ -146,8 +132,6 @@ Return maximum start time for supplied channels.
 
 `int`
 
-
-
 `property channel`
 
 Return the [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on; trivially, a `SnapshotChannel`.
@@ -156,8 +140,6 @@ Return the [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qisk
 
 [`SnapshotChannel`](qiskit.pulse.channels#qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel")
 
-
-
 `property channels`
 
 Returns the channels that this schedule uses.
@@ -165,8 +147,6 @@ Returns the channels that this schedule uses.
 **Return type**
 
 `Tuple`\[[`SnapshotChannel`](qiskit.pulse.channels#qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel")]
-
-
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`
 
@@ -195,8 +175,6 @@ A matplotlib figure object of the pulse schedule
 
 matplotlib.figure
 
-
-
 `property duration`
 
 Duration of this instruction.
@@ -204,8 +182,6 @@ Duration of this instruction.
 **Return type**
 
 `int`
-
-
 
 `flatten()`
 
@@ -215,8 +191,6 @@ Return itself as already single instruction.
 
 `Instruction`
 
-
-
 `property id`
 
 Unique identifier for this instruction.
@@ -224,8 +198,6 @@ Unique identifier for this instruction.
 **Return type**
 
 `int`
-
-
 
 `insert(start_time, schedule, name=None)`
 
@@ -245,8 +217,6 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 [Schedule](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
-
-
 `property instructions`
 
 Iterable for getting instructions from Schedule tree.
@@ -254,8 +224,6 @@ Iterable for getting instructions from Schedule tree.
 **Return type**
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
-
-
 
 `is_parameterized()`
 
@@ -265,8 +233,6 @@ Return True iff the instruction is parameterized.
 
 `bool`
 
-
-
 `property label`
 
 Label of snapshot.
@@ -274,8 +240,6 @@ Label of snapshot.
 **Return type**
 
 `str`
-
-
 
 `property name`
 
@@ -285,8 +249,6 @@ Name of this instruction.
 
 `str`
 
-
-
 `property operands`
 
 Return instruction operands.
@@ -295,8 +257,6 @@ Return instruction operands.
 
 `Tuple`
 
-
-
 `property parameters`
 
 Parameters which determine the instruction behavior.
@@ -304,8 +264,6 @@ Parameters which determine the instruction behavior.
 **Return type**
 
 `Set`
-
-
 
 `shift(time, name=None)`
 
@@ -324,8 +282,6 @@ The shifted schedule.
 
 [Schedule](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
-
-
 `property start_time`
 
 Relative begin time of this instruction.
@@ -334,8 +290,6 @@ Relative begin time of this instruction.
 
 `int`
 
-
-
 `property stop_time`
 
 Relative end time of this instruction.
@@ -343,8 +297,6 @@ Relative end time of this instruction.
 **Return type**
 
 `int`
-
-
 
 `property type`
 

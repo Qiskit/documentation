@@ -1,14 +1,10 @@
 # qiskit.aqua.operators.legacy.LegacyBaseOperator
 
-
-
 `LegacyBaseOperator(basis=None, z2_symmetries=None, name=None)`
 
 Operators relevant for quantum applications.
 
 Constructor.
-
-
 
 `abstract __init__(basis=None, z2_symmetries=None, name=None)`
 
@@ -36,65 +32,43 @@ Constructor.
 | [`num_qubits`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.num_qubits "qiskit.aqua.operators.legacy.LegacyBaseOperator.num_qubits")          | Returns number of qubits for operator |
 | [`z2_symmetries`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.z2_symmetries "qiskit.aqua.operators.legacy.LegacyBaseOperator.z2_symmetries") | returns z2 symmetries                 |
 
-
-
 `property basis`
 
 returns basis
 
-
-
 `abstract chop(threshold, copy=False)`
-
-
 
 `abstract construct_evaluation_circuit(wave_function, statevector_mode, **kwargs)`
 
 Build circuits to compute the expectation w\.r.t the wavefunction.
 
-
-
 `abstract evaluate_with_result(result, statevector_mode, **kwargs)`
 
 Consume the result from the quantum computer to build the expectation, will be only used along with the [`construct_evaluation_circuit()`](#qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit "qiskit.aqua.operators.legacy.LegacyBaseOperator.construct_evaluation_circuit") method.
-
-
 
 `abstract evolve(state_in, evo_time, num_time_slices, expansion_mode, expansion_order, **kwargs)`
 
 Time evolution, exp^(-jt H).
 
-
-
 `abstract is_empty()`
 
 Check Operator is empty or not
-
-
 
 `property name`
 
 returns name
 
-
-
 `abstract property num_qubits`
 
 Returns number of qubits for operator
-
-
 
 `abstract print_details()`
 
 print details
 
-
-
 `abstract to_opflow()`
 
 Convert to new Operator format.
-
-
 
 `property z2_symmetries`
 

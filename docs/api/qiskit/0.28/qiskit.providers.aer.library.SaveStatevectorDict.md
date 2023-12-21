@@ -1,7 +1,5 @@
 # qiskit.providers.aer.library.SaveStatevectorDict
 
-
-
 `SaveStatevectorDict(num_qubits, label='statevector_dict', pershot=False, conditional=False)`
 
 Save statevector as ket-form dictionary.
@@ -18,8 +16,6 @@ Create new instruction to save the simulator statevector as a dict.
 <Admonition title="Note" type="note">
   This save instruction must always be performed on the full width of qubits in a circuit, otherwise an exception will be raised during simulation.
 </Admonition>
-
-
 
 `__init__(num_qubits, label='statevector_dict', pershot=False, conditional=False)`
 
@@ -66,19 +62,13 @@ Create new instruction to save the simulator statevector as a dict.
 | [`params`](#qiskit.providers.aer.library.SaveStatevectorDict.params "qiskit.providers.aer.library.SaveStatevectorDict.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.providers.aer.library.SaveStatevectorDict.unit "qiskit.providers.aer.library.SaveStatevectorDict.unit")                               | Get the time unit of duration.                                                |
 
-
-
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-
-
 `assemble()`
 
 Return the QasmQobjInstruction for the intructions.
-
-
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -97,13 +87,9 @@ Validation of the arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-
-
 `c_if(classical, val)`
 
 Add classical condition on register or cbit classical and value val.
-
-
 
 `copy(name=None)`
 
@@ -123,37 +109,25 @@ updated if it was provided
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-
-
 `property duration`
 
 Get the duration.
-
-
 
 `inverse()`
 
 Special case. Return self.
 
-
-
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
-
-
 
 `property label`
 
@@ -162,8 +136,6 @@ Return instruction label
 **Return type**
 
 `str`
-
-
 
 `mirror()`
 
@@ -179,21 +151,15 @@ reversed.
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `property params`
 
 return instruction params.
-
-
 
 `qasm()`
 
 Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-
 
 `repeat(n)`
 
@@ -215,8 +181,6 @@ Containing the definition.
 
 **CircuitError** – If n \< 1.
 
-
-
 `reverse_ops()`
 
 For a composite instruction, reverse the order of sub-instructions.
@@ -232,8 +196,6 @@ sub-instructions reversed.
 **Return type**
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-
 
 `soft_compare(other)`
 
@@ -251,13 +213,9 @@ are self and other equal up to parameter expressions.
 
 bool
 
-
-
 `property unit`
 
 Get the time unit of duration.
-
-
 
 `validate_parameter(parameter)`
 

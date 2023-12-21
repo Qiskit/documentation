@@ -1,7 +1,5 @@
 # qiskit.chemistry.drivers.GaussianLogResult
 
-
-
 `GaussianLogResult(log)`
 
 Result for Gaussian™ 16 log driver.
@@ -15,8 +13,6 @@ This result allows access to selected data from the log file that is not availab
 **Raises**
 
 **ValueError** – Invalid Input
-
-
 
 `__init__(log)`
 
@@ -45,8 +41,6 @@ This result allows access to selected data from the log file that is not availab
 | [`quadratic_force_constants`](#qiskit.chemistry.drivers.GaussianLogResult.quadratic_force_constants "qiskit.chemistry.drivers.GaussianLogResult.quadratic_force_constants") | Quadratic force constants.                                  |
 | [`quartic_force_constants`](#qiskit.chemistry.drivers.GaussianLogResult.quartic_force_constants "qiskit.chemistry.drivers.GaussianLogResult.quartic_force_constants")       | Quartic force constants.                                    |
 
-
-
 `property a_to_h_numbering`
 
 A to H numbering mapping.
@@ -59,8 +53,6 @@ A to H numbering mapping.
 
 Dictionary mapping string A numbering such as ‘1’, ‘3a’ etc from forces modes to H integer numbering
 
-
-
 `property cubic_force_constants`
 
 Cubic force constants. (3 indices, 3 values)
@@ -72,8 +64,6 @@ Cubic force constants. (3 indices, 3 values)
 **Returns**
 
 A list of tuples each with 3 index values and 3 constant values. An empty list is returned if no such data is present in the log.
-
-
 
 `get_watson_hamiltonian(normalize=True)`
 
@@ -91,8 +81,6 @@ Get the force constants as a WatsonHamiltonian
 
 A WatsonHamiltonian
 
-
-
 `property log`
 
 The complete Gaussian log in the form of a list of strings.
@@ -100,8 +88,6 @@ The complete Gaussian log in the form of a list of strings.
 **Return type**
 
 `List`\[`str`]
-
-
 
 `property quadratic_force_constants`
 
@@ -114,8 +100,6 @@ Quadratic force constants. (2 indices, 3 values)
 **Returns**
 
 A list of tuples each with 2 index values and 3 constant values. An empty list is returned if no such data is present in the log.
-
-
 
 `property quartic_force_constants`
 

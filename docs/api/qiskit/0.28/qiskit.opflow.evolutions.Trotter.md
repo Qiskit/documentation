@@ -1,7 +1,5 @@
 # qiskit.opflow\.evolutions.Trotter
 
-
-
 `Trotter(reps=1)`
 
 Simple Trotter expansion, composing the evolution circuits of each Operator in the sum together `reps` times and dividing the evolution time of each by `reps`.
@@ -9,8 +7,6 @@ Simple Trotter expansion, composing the evolution circuits of each Operator in t
 **Parameters**
 
 **reps** (`int`) – The number of times to repeat the Trotterization circuit.
-
-
 
 `__init__(reps=1)`
 
@@ -32,8 +28,6 @@ Simple Trotter expansion, composing the evolution circuits of each Operator in t
 | [`order`](#qiskit.opflow.evolutions.Trotter.order "qiskit.opflow.evolutions.Trotter.order") | returns order                                                                                 |
 | [`reps`](#qiskit.opflow.evolutions.Trotter.reps "qiskit.opflow.evolutions.Trotter.reps")    | The number of repetitions to use in the Trotterization, improving the approximation accuracy. |
 
-
-
 `convert(operator)`
 
 Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
@@ -54,8 +48,6 @@ The Operator approximating op\_sum’s evolution.
 
 **TypeError** – A non-SummedOps Operator is passed into `convert`.
 
-
-
 `property order`
 
 returns order
@@ -63,8 +55,6 @@ returns order
 **Return type**
 
 `int`
-
-
 
 `property reps`
 

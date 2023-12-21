@@ -1,12 +1,8 @@
 # qiskit.chemistry.results.ElectronicStructureResult
 
-
-
 `ElectronicStructureResult(a_dict=None)`
 
 The electronic structure result.
-
-
 
 `__init__(a_dict=None)`
 
@@ -65,8 +61,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`total_dipole_moment_in_debye`](#qiskit.chemistry.results.ElectronicStructureResult.total_dipole_moment_in_debye "qiskit.chemistry.results.ElectronicStructureResult.total_dipole_moment_in_debye")       | Returns total dipole of moment in Debye                                            |
 | [`total_energies`](#qiskit.chemistry.results.ElectronicStructureResult.total_energies "qiskit.chemistry.results.ElectronicStructureResult.total_energies")                                                 | Returns ground state energy if nuclear\_repulsion\_energy is available from driver |
 
-
-
 `property aux_operator_eigenvalues`
 
 return aux operator eigen values
@@ -75,15 +69,11 @@ return aux operator eigen values
 
 `Optional`\[`List`\[`float`]]
 
-
-
 `clear()`
 
 **Return type**
 
 `None`
-
-
 
 `combine(result)`
 
@@ -97,8 +87,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-
-
 `property computed_dipole_moment`
 
 Returns computed electronic part of dipole moment
@@ -106,8 +94,6 @@ Returns computed electronic part of dipole moment
 **Return type**
 
 `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
-
-
 
 `property computed_energies`
 
@@ -117,8 +103,6 @@ Returns computed electronic part of ground state energy
 
 `ndarray`
 
-
-
 `property dipole_moment`
 
 Returns dipole moment
@@ -126,8 +110,6 @@ Returns dipole moment
 **Return type**
 
 `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
-
-
 
 `property dipole_moment_in_debye`
 
@@ -137,8 +119,6 @@ Returns dipole moment in Debye
 
 `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
 
-
-
 `property eigenenergies`
 
 returns eigen energies
@@ -146,8 +126,6 @@ returns eigen energies
 **Return type**
 
 `Optional`\[`ndarray`]
-
-
 
 `property eigenstates`
 
@@ -157,8 +135,6 @@ returns eigen states
 
 `Optional`\[`List`\[`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]]]
 
-
-
 `property electronic_dipole_moment`
 
 Returns electronic dipole moment
@@ -166,8 +142,6 @@ Returns electronic dipole moment
 **Return type**
 
 `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
-
-
 
 `property electronic_energies`
 
@@ -177,8 +151,6 @@ Returns electronic part of ground state energy
 
 `ndarray`
 
-
-
 `property formatted`
 
 Formatted result as a list of strings
@@ -186,8 +158,6 @@ Formatted result as a list of strings
 **Return type**
 
 `List`\[`str`]
-
-
 
 `property frozen_extracted_dipole_moment`
 
@@ -197,8 +167,6 @@ Returns frozen extracted part of dipole moment
 
 `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
 
-
-
 `property frozen_extracted_energy`
 
 Returns frozen extracted part of ground state energy
@@ -207,11 +175,7 @@ Returns frozen extracted part of ground state energy
 
 `float`
 
-
-
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
-
-
 
 `property groundenergy`
 
@@ -221,8 +185,6 @@ returns ground energy
 
 `Optional`\[`float`]
 
-
-
 `property groundstate`
 
 returns ground state
@@ -230,8 +192,6 @@ returns ground state
 **Return type**
 
 `Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]
-
-
 
 `property hartree_fock_energy`
 
@@ -241,8 +201,6 @@ Returns Hartree-Fock energy
 
 `float`
 
-
-
 `has_dipole()`
 
 Returns whether dipole moment is present in result or not
@@ -251,21 +209,13 @@ Returns whether dipole moment is present in result or not
 
 `bool`
 
-
-
 `has_observables()`
 
 Returns whether result has aux op observables such as spin, num particles
 
-
-
 `items() → a set-like object providing a view on D’s items`
 
-
-
 `keys() → a set-like object providing a view on D’s keys`
-
-
 
 `property magnetization`
 
@@ -275,8 +225,6 @@ Returns measured magnetization
 
 `Optional`\[`List`\[`float`]]
 
-
-
 `property nuclear_dipole_moment`
 
 Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
@@ -284,8 +232,6 @@ Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
 **Return type**
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
-
-
 
 `property nuclear_repulsion_energy`
 
@@ -295,8 +241,6 @@ Returns nuclear repulsion energy when available from driver
 
 `Optional`\[`float`]
 
-
-
 `property num_particles`
 
 Returns measured number of particles
@@ -304,8 +248,6 @@ Returns measured number of particles
 **Return type**
 
 `Optional`\[`List`\[`float`]]
-
-
 
 `property ph_extracted_dipole_moment`
 
@@ -315,8 +257,6 @@ Returns particle hole extracted part of dipole moment
 
 `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
 
-
-
 `property ph_extracted_energy`
 
 Returns particle hole extracted part of ground state energy
@@ -324,8 +264,6 @@ Returns particle hole extracted part of ground state energy
 **Return type**
 
 `float`
-
-
 
 `pop(key, default=None)`
 
@@ -335,8 +273,6 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 
 `object`
 
-
-
 `popitem()`
 
 as a 2-tuple; but raise KeyError if D is empty.
@@ -344,8 +280,6 @@ as a 2-tuple; but raise KeyError if D is empty.
 **Return type**
 
 `Tuple`\[`object`, `object`]
-
-
 
 `property raw_result`
 
@@ -355,8 +289,6 @@ Returns the raw algorithm result.
 
 `Optional`\[`AlgorithmResult`]
 
-
-
 `property reverse_dipole_sign`
 
 Returns if electronic dipole moment sign should be reversed when adding to nuclear
@@ -365,11 +297,7 @@ Returns if electronic dipole moment sign should be reversed when adding to nucle
 
 `bool`
 
-
-
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
-
-
 
 `property spin`
 
@@ -379,8 +307,6 @@ Returns computed spin
 
 `Optional`\[`List`\[`float`]]
 
-
-
 `property total_angular_momentum`
 
 Returns total angular momentum (S^2)
@@ -388,8 +314,6 @@ Returns total angular momentum (S^2)
 **Return type**
 
 `Optional`\[`List`\[`float`]]
-
-
 
 `property total_dipole_moment`
 
@@ -399,8 +323,6 @@ Returns total dipole of moment
 
 `Optional`\[`List`\[`float`]]
 
-
-
 `property total_dipole_moment_in_debye`
 
 Returns total dipole of moment in Debye
@@ -408,8 +330,6 @@ Returns total dipole of moment in Debye
 **Return type**
 
 `Optional`\[`List`\[`float`]]
-
-
 
 `property total_energies`
 
@@ -419,8 +339,6 @@ Returns ground state energy if nuclear\_repulsion\_energy is available from driv
 
 `ndarray`
 
-
-
 `update(*args, **kwargs)`
 
 If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v
@@ -428,7 +346,5 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 **Return type**
 
 `None`
-
-
 
 `values() → an object providing a view on D’s values`

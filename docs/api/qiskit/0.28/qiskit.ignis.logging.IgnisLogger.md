@@ -1,7 +1,5 @@
 # qiskit.ignis.logging.IgnisLogger
 
-
-
 `IgnisLogger(name, level=0)`
 
 A logger class for Ignis
@@ -16,8 +14,6 @@ Initialize the IgnisLogger object
 
 *   **name** (`str`) – name of the logger. Usually set to package name using \_\_name\_\_
 *   **level** (*logging.NOTSET*) – Verbosity level (use logging package enums)
-
-
 
 `__init__(name, level=0)`
 
@@ -68,27 +64,19 @@ Initialize the IgnisLogger object
 | `manager` |   |
 | `root`    |   |
 
-
-
 `addFilter(filter)`
 
 Add the specified filter to this handler.
 
-
-
 `addHandler(hdlr)`
 
 Add the specified handler to this logger.
-
-
 
 `callHandlers(record)`
 
 Pass a record to all relevant handlers.
 
 Loop through all handlers for this logger and its parents in the logger hierarchy. If no handler was found, output a one-off error message to sys.stderr. Stop searching up the hierarchy whenever a logger with the “propagate” attribute set to zero is found - that will be the last logger whose handlers are called.
-
-
 
 `configure(sh, conf_file_exists)`
 
@@ -99,8 +87,6 @@ Internal configuration method of IgnisLogger. Should only be called by IgnisLogg
 *   **sh** (`StreamHandler`) – StreamHandler object
 *   **conf\_file\_exists** (`bool`) – Whether or not a file config exists
 
-
-
 `critical(msg, *args, **kwargs)`
 
 Log ‘msg % args’ with severity ‘CRITICAL’.
@@ -108,8 +94,6 @@ Log ‘msg % args’ with severity ‘CRITICAL’.
 To pass exception information, use the keyword argument exc\_info with a true value, e.g.
 
 logger.critical(“Houston, we have a %s”, “major disaster”, exc\_info=1)
-
-
 
 `debug(msg, *args, **kwargs)`
 
@@ -119,19 +103,13 @@ To pass exception information, use the keyword argument exc\_info with a true va
 
 logger.debug(“Houston, we have a %s”, “thorny problem”, exc\_info=1)
 
-
-
 `disable_file_logging()`
 
 Disable file logging for this logger object (note there is a single object for a given logger name
 
-
-
 `enable_file_logging()`
 
 Enable file logging for this logger object (note there is a single object for a given logger name
-
-
 
 `error(msg, *args, **kwargs)`
 
@@ -141,13 +119,9 @@ To pass exception information, use the keyword argument exc\_info with a true va
 
 logger.error(“Houston, we have a %s”, “major problem”, exc\_info=1)
 
-
-
 `exception(msg, *args, exc_info=True, **kwargs)`
 
 Convenience method for logging an ERROR with exception information.
-
-
 
 `fatal(msg, *args, **kwargs)`
 
@@ -157,8 +131,6 @@ To pass exception information, use the keyword argument exc\_info with a true va
 
 logger.critical(“Houston, we have a %s”, “major disaster”, exc\_info=1)
 
-
-
 `filter(record)`
 
 Determine if a record is loggable by consulting all the filters.
@@ -167,13 +139,9 @@ The default is to allow the record to be logged; any filter can veto this and th
 
 Changed in version 3.2: Allow filters to be just callables.
 
-
-
 `findCaller(stack_info=False)`
 
 Find the stack frame of the caller so that we can note the source file name, line number and function name.
-
-
 
 `getChild(suffix)`
 
@@ -189,15 +157,11 @@ logging.getLogger(‘abc.def.ghi’)
 
 It’s useful, for example, when the parent logger is named using \_\_name\_\_ rather than a literal string.
 
-
-
 `getEffectiveLevel()`
 
 Get the effective level for this logger.
 
 Loop through this logger and its parents in the logger hierarchy, looking for a non-zero logging level. Return the first one found.
-
-
 
 `handle(record)`
 
@@ -205,15 +169,11 @@ Call the handlers for the specified record.
 
 This method is used for unpickled records received from a socket, as well as those created locally. Logger-level filtering is applied.
 
-
-
 `hasHandlers()`
 
 See if this logger has any handlers configured.
 
 Loop through all handlers for this logger and its parents in the logger hierarchy. Return True if a handler was found, else False. Stop searching up the hierarchy whenever a logger with the “propagate” attribute set to zero is found - that will be the last logger which is checked for the existence of handlers.
-
-
 
 `info(msg, *args, **kwargs)`
 
@@ -223,13 +183,9 @@ To pass exception information, use the keyword argument exc\_info with a true va
 
 logger.info(“Houston, we have a %s”, “interesting problem”, exc\_info=1)
 
-
-
 `isEnabledFor(level)`
 
 Is this logger enabled for level ‘level’?
-
-
 
 `log(level, msg, *args, **kwargs)`
 
@@ -238,8 +194,6 @@ Log ‘msg % args’ with the integer severity ‘level’.
 To pass exception information, use the keyword argument exc\_info with a true value, e.g.
 
 logger.log(level, “We have a %s”, “mysterious problem”, exc\_info=1)
-
-
 
 `log_to_file(**kwargs)`
 
@@ -251,31 +205,21 @@ Note: Logger name in the log file is fixed (ignis\_logging)
 
 **kwargs** – key/value pairs to be logged, e.g t1=0.02, qubits=\[1,2,4]
 
-
-
 `makeRecord(name, level, fn, lno, msg, args, exc_info, func=None, extra=None, sinfo=None)`
 
 A factory method which can be overridden in subclasses to create specialized LogRecords.
-
-
 
 `removeFilter(filter)`
 
 Remove the specified filter from this handler.
 
-
-
 `removeHandler(hdlr)`
 
 Remove the specified handler from this logger.
 
-
-
 `setLevel(level)`
 
 Set the logging level of this logger. level must be an int or a str.
-
-
 
 `warning(msg, *args, **kwargs)`
 

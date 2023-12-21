@@ -1,7 +1,5 @@
 # qiskit.optimization.problems.QuadraticObjective
 
-
-
 `QuadraticObjective(quadratic_program, constant=0.0, linear=None, quadratic=None, sense=<ObjSense.MINIMIZE: 1>)`
 
 Representation of quadratic objective function of the form: constant + linear \* x + x \* quadratic \* x.
@@ -15,8 +13,6 @@ Constructs a quadratic objective function.
 *   **linear** (`Union`\[`ndarray`, `spmatrix`, `List`\[`float`], `Dict`\[`Union`\[`int`, `str`], `float`], `None`]) – The coefficients of the linear part of the objective.
 *   **quadratic** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`], `None`]) – The coefficients of the quadratic part of the objective.
 *   **sense** (`ObjSense`) – The optimization sense of the objective.
-
-
 
 `__init__(quadratic_program, constant=0.0, linear=None, quadratic=None, sense=<ObjSense.MINIMIZE: 1>)`
 
@@ -48,13 +44,9 @@ Constructs a quadratic objective function.
 | [`quadratic_program`](#qiskit.optimization.problems.QuadraticObjective.quadratic_program "qiskit.optimization.problems.QuadraticObjective.quadratic_program") | Returns the parent QuadraticProgram.                  |
 | [`sense`](#qiskit.optimization.problems.QuadraticObjective.sense "qiskit.optimization.problems.QuadraticObjective.sense")                                     | Returns the sense of the objective function.          |
 
-
-
 ### Sense
 
 alias of `ObjSense`
-
-
 
 `property constant`
 
@@ -67,8 +59,6 @@ Returns the constant part of the objective function.
 **Returns**
 
 The constant part of the objective function.
-
-
 
 `evaluate(x)`
 
@@ -86,8 +76,6 @@ Evaluate the quadratic objective for given variable values.
 
 The value of the quadratic objective given the variable values.
 
-
-
 `evaluate_gradient(x)`
 
 Evaluate the gradient of the quadratic objective for given variable values.
@@ -104,8 +92,6 @@ Evaluate the gradient of the quadratic objective for given variable values.
 
 The value of the gradient of the quadratic objective given the variable values.
 
-
-
 `property linear`
 
 Returns the linear part of the objective function.
@@ -117,8 +103,6 @@ Returns the linear part of the objective function.
 **Returns**
 
 The linear part of the objective function.
-
-
 
 `property quadratic`
 
@@ -132,8 +116,6 @@ Returns the quadratic part of the objective function.
 
 The quadratic part of the objective function.
 
-
-
 `property quadratic_program`
 
 Returns the parent QuadraticProgram.
@@ -145,8 +127,6 @@ Returns the parent QuadraticProgram.
 **Returns**
 
 The parent QuadraticProgram.
-
-
 
 `property sense`
 

@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.runtime.ParameterNamespace
 
-
-
 `ParameterNamespace(params)`
 
 A namespace for program parameters with validation.
@@ -13,8 +11,6 @@ ParameterNamespace constructor.
 **Parameters**
 
 **params** (`List`\[`ProgramParameter`]) – The program’s input parameters.
-
-
 
 `__init__(params)`
 
@@ -37,8 +33,6 @@ ParameterNamespace constructor.
 | ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------ |
 | [`metadata`](#qiskit.providers.ibmq.runtime.ParameterNamespace.metadata "qiskit.providers.ibmq.runtime.ParameterNamespace.metadata") | Returns the parameter metadata |
 
-
-
 `property metadata`
 
 Returns the parameter metadata
@@ -46,8 +40,6 @@ Returns the parameter metadata
 **Return type**
 
 `List`\[`ProgramParameter`]
-
-
 
 `validate()`
 

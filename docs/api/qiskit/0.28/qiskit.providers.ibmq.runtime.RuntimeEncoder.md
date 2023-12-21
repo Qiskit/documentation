@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.runtime.RuntimeEncoder
 
-
-
 `RuntimeEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)`
 
 JSON Encoder used by runtime service.
@@ -23,8 +21,6 @@ If indent is a non-negative integer, then JSON array elements and object members
 If specified, separators should be an (item\_separator, key\_separator) tuple. The default is (‘, ‘, ‘: ‘) if *indent* is `None` and (‘,’, ‘: ‘) otherwise. To get the most compact JSON representation, you should specify (‘,’, ‘:’) to eliminate whitespace.
 
 If specified, default is a function that gets called for objects that can’t otherwise be serialized. It should return a JSON encodable version of the object or raise a `TypeError`.
-
-
 
 `__init__(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)`
 
@@ -62,8 +58,6 @@ If specified, default is a function that gets called for objects that can’t ot
 | `item_separator` |   |
 | `key_separator`  |   |
 
-
-
 `default(obj)`
 
 Implement this method in a subclass such that it returns a serializable object for `o`, or calls the base implementation (to raise a `TypeError`).
@@ -86,8 +80,6 @@ def default(self, o):
 
 `Any`
 
-
-
 `encode(o)`
 
 Return a JSON string representation of a Python data structure.
@@ -97,8 +89,6 @@ Return a JSON string representation of a Python data structure.
 >>> JSONEncoder().encode({"foo": ["bar", "baz"]})
 '{"foo": ["bar", "baz"]}'
 ```
-
-
 
 `iterencode(o, _one_shot=False)`
 

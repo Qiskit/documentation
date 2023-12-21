@@ -1,7 +1,5 @@
 # qiskit.chemistry.algorithms.VQEUCCSDFactory
 
-
-
 `VQEUCCSDFactory(quantum_instance, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True)`
 
 A factory to construct a VQE minimum eigensolver with UCCSD ansatz wavefunction.
@@ -18,8 +16,6 @@ A factory to construct a VQE minimum eigensolver with UCCSD ansatz wavefunction.
 *   **method\_doubles** (`str`) – specify the single excitation considered. ‘ucc’ (conventional ucc), succ (singlet ucc), succ\_full (singlet ucc full), pucc (pair ucc).
 *   **excitation\_type** (`str`) – specify the excitation type ‘sd’, ‘s’, ‘d’ respectively for single and double, only single, only double excitations.
 *   **same\_spin\_doubles** (`bool`) – enable double excitations of the same spin.
-
-
 
 `__init__(quantum_instance, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True)`
 
@@ -59,8 +55,6 @@ A factory to construct a VQE minimum eigensolver with UCCSD ansatz wavefunction.
 | [`quantum_instance`](#qiskit.chemistry.algorithms.VQEUCCSDFactory.quantum_instance "qiskit.chemistry.algorithms.VQEUCCSDFactory.quantum_instance")    | Getter of the quantum instance.                                                |
 | [`same_spin_doubles`](#qiskit.chemistry.algorithms.VQEUCCSDFactory.same_spin_doubles "qiskit.chemistry.algorithms.VQEUCCSDFactory.same_spin_doubles") | Getter of the `same_spin_doubles` setting for the `same_spin_doubles` setting. |
 
-
-
 `property excitation_type`
 
 Getter of the `excitation_type` setting for the `excitation_type` setting.
@@ -69,8 +63,6 @@ Getter of the `excitation_type` setting for the `excitation_type` setting.
 
 `str`
 
-
-
 `property expectation`
 
 Getter of the expectation.
@@ -78,8 +70,6 @@ Getter of the expectation.
 **Return type**
 
 `ExpectationBase`
-
-
 
 `get_solver(transformation)`
 
@@ -101,8 +91,6 @@ A VQE suitable to compute the ground state of the molecule transformed by `trans
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – in case a Transformation of wrong type is given.
 
-
-
 `property gradient`
 
 Getter of the gradient function
@@ -110,8 +98,6 @@ Getter of the gradient function
 **Return type**
 
 `Union`\[`GradientBase`, `Callable`, `None`]
-
-
 
 `property include_custom`
 
@@ -121,8 +107,6 @@ Getter of the `include_custom` setting for the `expectation` setting.
 
 `bool`
 
-
-
 `property initial_point`
 
 Getter of the initial point.
@@ -130,8 +114,6 @@ Getter of the initial point.
 **Return type**
 
 `ndarray`
-
-
 
 `property method_doubles`
 
@@ -141,8 +123,6 @@ Getter of the `method_doubles` setting for the `method_doubles` setting.
 
 `str`
 
-
-
 `property method_singles`
 
 Getter of the `method_singles` setting for the `method_singles` setting.
@@ -150,8 +130,6 @@ Getter of the `method_singles` setting for the `method_singles` setting.
 **Return type**
 
 `str`
-
-
 
 `property optimizer`
 
@@ -161,8 +139,6 @@ Getter of the optimizer.
 
 `Optimizer`
 
-
-
 `property quantum_instance`
 
 Getter of the quantum instance.
@@ -171,8 +147,6 @@ Getter of the quantum instance.
 
 `QuantumInstance`
 
-
-
 `property same_spin_doubles`
 
 Getter of the `same_spin_doubles` setting for the `same_spin_doubles` setting.
@@ -180,8 +154,6 @@ Getter of the `same_spin_doubles` setting for the `same_spin_doubles` setting.
 **Return type**
 
 `bool`
-
-
 
 `supports_aux_operators()`
 

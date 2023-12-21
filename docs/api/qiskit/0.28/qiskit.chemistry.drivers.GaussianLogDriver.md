@@ -1,7 +1,5 @@
 # qiskit.chemistry.drivers.GaussianLogDriver
 
-
-
 `GaussianLogDriver(jcf)`
 
 Gaussian™ 16 log driver.
@@ -19,8 +17,6 @@ This driver does not use Gaussian 16 interfacing code, as certain data such as f
 **Raises**
 
 [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
-
-
 
 `__init__(jcf)`
 
@@ -48,8 +44,6 @@ This driver does not use Gaussian 16 interfacing code, as certain data such as f
 | [`molecule`](#qiskit.chemistry.drivers.GaussianLogDriver.molecule "qiskit.chemistry.drivers.GaussianLogDriver.molecule")                            | return molecule                                 |
 | [`supports_molecule`](#qiskit.chemistry.drivers.GaussianLogDriver.supports_molecule "qiskit.chemistry.drivers.GaussianLogDriver.supports_molecule") | True for derived classes that support Molecule. |
 
-
-
 `property basis`
 
 return basis
@@ -57,8 +51,6 @@ return basis
 **Return type**
 
 `str`
-
-
 
 `property hf_method`
 
@@ -68,8 +60,6 @@ return Hartree-Fock method
 
 `str`
 
-
-
 `property molecule`
 
 return molecule
@@ -77,8 +67,6 @@ return molecule
 **Return type**
 
 `Optional`\[`Molecule`]
-
-
 
 `run()`
 
@@ -95,8 +83,6 @@ A log file result.
 **Raises**
 
 [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Missing output log
-
-
 
 `property supports_molecule`
 

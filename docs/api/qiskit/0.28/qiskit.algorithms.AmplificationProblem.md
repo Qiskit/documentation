@@ -1,7 +1,5 @@
 # qiskit.algorithms.AmplificationProblem
 
-
-
 `AmplificationProblem(oracle, state_preparation=None, grover_operator=None, post_processing=None, objective_qubits=None, is_good_state=None)`
 
 The amplification problem is the input to amplitude amplification algorithms, like Grover.
@@ -20,8 +18,6 @@ This class contains all problem-specific information required to run an amplitud
 **Raises**
 
 **TypeError** – if `is_good_state` is not provided and is required
-
-
 
 `__init__(oracle, state_preparation=None, grover_operator=None, post_processing=None, objective_qubits=None, is_good_state=None)`
 
@@ -55,8 +51,6 @@ This class contains all problem-specific information required to run an amplitud
 | [`post_processing`](#qiskit.algorithms.AmplificationProblem.post_processing "qiskit.algorithms.AmplificationProblem.post_processing")       | Apply post processing to the input value.                  |
 | [`state_preparation`](#qiskit.algorithms.AmplificationProblem.state_preparation "qiskit.algorithms.AmplificationProblem.state_preparation") | Get the state preparation operator $\mathcal{A}$.          |
 
-
-
 `property grover_operator`
 
 Get the $\mathcal{Q}$ operator, or Grover operator.
@@ -71,8 +65,6 @@ If the Grover operator is not set, we try to build it from the $\mathcal{A}$ ope
 
 The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
 
-
-
 `property is_good_state`
 
 Check whether a provided bitstring is a good state or not.
@@ -84,8 +76,6 @@ Check whether a provided bitstring is a good state or not.
 **Returns**
 
 A callable that takes in a bitstring and returns True if the measurement is a good state, False otherwise.
-
-
 
 `property objective_qubits`
 
@@ -99,8 +89,6 @@ The indices of the objective qubits.
 
 The indices of the objective qubits as list of integers.
 
-
-
 `property oracle`
 
 Return the oracle.
@@ -113,8 +101,6 @@ Return the oracle.
 
 The oracle.
 
-
-
 `property post_processing`
 
 Apply post processing to the input value.
@@ -126,8 +112,6 @@ Apply post processing to the input value.
 **Returns**
 
 A handle to the post processing function. Acts as identity by default.
-
-
 
 `property state_preparation`
 

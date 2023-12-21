@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.runtime.RuntimeJob
 
-
-
 `RuntimeJob(backend, api_client, credentials, job_id, program_id, params=None, creation_date=None, user_callback=None, result_decoder=<class 'qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder'>)`
 
 Representation of a runtime program execution.
@@ -37,8 +35,6 @@ RuntimeJob constructor.
 *   **creation\_date** (`Optional`\[`str`]) – Job creation date, in UTC.
 *   **user\_callback** (`Optional`\[`Callable`]) – User callback function.
 *   **result\_decoder** (`Type`\[`ResultDecoder`]) – A [`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder#qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.ResultDecoder") subclass used to decode job results.
-
-
 
 `__init__(backend, api_client, credentials, job_id, program_id, params=None, creation_date=None, user_callback=None, result_decoder=<class 'qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder'>)`
 
@@ -80,8 +76,6 @@ RuntimeJob constructor.
 | [`inputs`](#qiskit.providers.ibmq.runtime.RuntimeJob.inputs "qiskit.providers.ibmq.runtime.RuntimeJob.inputs")                      | Job input parameters.            |
 | [`program_id`](#qiskit.providers.ibmq.runtime.RuntimeJob.program_id "qiskit.providers.ibmq.runtime.RuntimeJob.program_id")          | Program ID.                      |
 
-
-
 `backend()`
 
 Return the backend where this job was executed.
@@ -93,8 +87,6 @@ Return the backend where this job was executed.
 **Returns**
 
 Backend used for the job.
-
-
 
 `cancel()`
 
@@ -109,8 +101,6 @@ Cancel the job.
 
 `None`
 
-
-
 `cancel_result_streaming()`
 
 Cancel result streaming.
@@ -118,8 +108,6 @@ Cancel result streaming.
 **Return type**
 
 `None`
-
-
 
 `property creation_date`
 
@@ -133,8 +121,6 @@ Job creation date in local time.
 
 The job creation date as a datetime object, in local time, or `None` if creation date is not available.
 
-
-
 `error_message()`
 
 Returns the reason if the job failed.
@@ -146,8 +132,6 @@ Returns the reason if the job failed.
 **Returns**
 
 Error message string or `None`.
-
-
 
 `property inputs`
 
@@ -161,8 +145,6 @@ Job input parameters.
 
 Input parameters used in this job.
 
-
-
 `job_id()`
 
 Return a unique ID identifying the job.
@@ -174,8 +156,6 @@ Return a unique ID identifying the job.
 **Returns**
 
 Job ID.
-
-
 
 `logs()`
 
@@ -197,8 +177,6 @@ Job logs, including standard output and error.
 
 **QiskitRuntimeError** – If a network error occurred.
 
-
-
 `property program_id`
 
 Program ID.
@@ -210,8 +188,6 @@ Program ID.
 **Returns**
 
 ID of the program this job is for.
-
-
 
 `result(timeout=None, wait=5, decoder=None)`
 
@@ -235,8 +211,6 @@ Runtime job result.
 
 **RuntimeJobFailureError** – If the job failed.
 
-
-
 `status()`
 
 Return the status of the job.
@@ -248,8 +222,6 @@ Return the status of the job.
 **Returns**
 
 Status of this job.
-
-
 
 `stream_results(callback, decoder=None)`
 
@@ -273,8 +245,6 @@ Start streaming job results.
 **Return type**
 
 `None`
-
-
 
 `wait_for_final_state(timeout=None, wait=5)`
 

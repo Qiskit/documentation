@@ -1,7 +1,5 @@
 # qiskit.algorithms.optimizers.ADAM
 
-
-
 `ADAM(maxiter=10000, tol=1e-06, lr=0.001, beta_1=0.9, beta_2=0.99, noise_factor=1e-08, eps=1e-10, amsgrad=False, snapshot_dir=None)`
 
 Adam and AMSGRAD optimizers.
@@ -35,8 +33,6 @@ On the Convergence of Adam and Beyond. [arXiv:1904.09237](https://arxiv.org/abs/
 *   **eps** (`float`) – Value >=0, Epsilon to be used for finite differences if no analytic gradient method is given.
 *   **amsgrad** (`bool`) – True to use AMSGRAD, False if not
 *   **snapshot\_dir** (`Optional`\[`str`]) – If not None save the optimizer’s parameter after every step to the given directory
-
-
 
 `__init__(maxiter=10000, tol=1e-06, lr=0.001, beta_1=0.9, beta_2=0.99, noise_factor=1e-08, eps=1e-10, amsgrad=False, snapshot_dir=None)`
 
@@ -87,19 +83,13 @@ On the Convergence of Adam and Beyond. [arXiv:1904.09237](https://arxiv.org/abs/
 | [`setting`](#qiskit.algorithms.optimizers.ADAM.setting "qiskit.algorithms.optimizers.ADAM.setting")                                                             | Return setting                                 |
 | [`settings`](#qiskit.algorithms.optimizers.ADAM.settings "qiskit.algorithms.optimizers.ADAM.settings")                                                          | The optimizer settings in a dictionary format. |
 
-
-
 `property bounds_support_level`
 
 Returns bounds support level
 
-
-
 `get_support_level()`
 
 Return support level dictionary
-
-
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -120,73 +110,49 @@ the gradient computed
 
 grad
 
-
-
 `property gradient_support_level`
 
 Returns gradient support level
-
-
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-
-
 `property is_bounds_ignored`
 
 Returns is bounds ignored
-
-
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-
-
 `property is_bounds_supported`
 
 Returns is bounds supported
-
-
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-
-
 `property is_gradient_required`
 
 Returns is gradient required
-
-
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-
-
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
-
-
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-
-
 `property is_initial_point_supported`
 
 Returns is initial point supported
-
-
 
 `load_params(load_dir)`
 
@@ -199,8 +165,6 @@ Load iteration parameters for a file called `adam_params.csv`.
 **Return type**
 
 `None`
-
-
 
 `minimize(objective_function, initial_point, gradient_function)`
 
@@ -219,8 +183,6 @@ Run the minimization.
 **Returns**
 
 A tuple of (optimal parameters, optimal value, number of iterations).
-
-
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -248,13 +210,9 @@ A tuple (point, value, nfev) where
 >
 > nfev: is the number of objective function calls
 
-
-
 `print_options()`
 
 Print algorithm-specific options.
-
-
 
 `save_params(snapshot_dir)`
 
@@ -272,13 +230,9 @@ Save the current iteration parameters to a file called `adam_params.csv`.
 
 `None`
 
-
-
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
-
-
 
 `set_options(**kwargs)`
 
@@ -290,13 +244,9 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-
-
 `property setting`
 
 Return setting
-
-
 
 `property settings`
 
@@ -313,8 +263,6 @@ optimizer = OptimizerClass(**settings)
 **Return type**
 
 `Dict`\[`str`, `Any`]
-
-
 
 `static wrap_function(function, args)`
 

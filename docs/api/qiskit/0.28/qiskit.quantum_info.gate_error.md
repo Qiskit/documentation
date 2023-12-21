@@ -1,7 +1,5 @@
 # qiskit.quantum\_info.gate\_error
 
-
-
 `gate_error(channel, target=None, require_cp=True, require_tp=False)`
 
 Return the gate error of a noisy quantum channel.

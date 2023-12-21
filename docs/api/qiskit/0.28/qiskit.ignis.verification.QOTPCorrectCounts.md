@@ -1,7 +1,5 @@
 # qiskit.ignis.verification.QOTPCorrectCounts
 
-
-
 `QOTPCorrectCounts(qotp_counts, qotp_postp)`
 
 Corrects a dictionary of results, shifting the qotp

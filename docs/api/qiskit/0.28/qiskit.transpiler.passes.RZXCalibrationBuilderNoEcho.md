@@ -1,7 +1,5 @@
 # qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho
 
-
-
 `RZXCalibrationBuilderNoEcho(backend)`
 
 Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate.
@@ -17,8 +15,6 @@ Initializes a RZXGate calibration builder.
 **Raises**
 
 **QiskitError** – if open pulse is not supported by the backend.
-
-
 
 `__init__(backend)`
 
@@ -50,8 +46,6 @@ Initializes a RZXGate calibration builder.
 | [`is_analysis_pass`](#qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.is_analysis_pass "qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.is_transformation_pass "qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-
-
 `get_calibration(params, qubits)`
 
 Builds the calibration schedule for the RZXGate(theta) without echos.
@@ -73,15 +67,11 @@ schedule
 
 **QiskitError** – If the control and target qubits cannot be identified, or the backend does not support a cx gate between the qubits, or the backend does not natively support the specified direction of the cx.
 
-
-
 `property is_analysis_pass`
 
 Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-
 
 `property is_transformation_pass`
 
@@ -89,13 +79,9 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-
-
 `name()`
 
 Return the name of the pass.
-
-
 
 `static rescale_cr_inst(instruction, theta, sample_mult=16)`
 
@@ -119,8 +105,6 @@ GaussianSquare pulse.
 
 **QiskitError** – if the pulses are not GaussianSquare.
 
-
-
 `run(dag)`
 
 Run the calibration adder pass on dag.
@@ -136,8 +120,6 @@ A DAG with calibrations added to it.
 **Return type**
 
 [DAGCircuit](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
-
-
 
 `supported(node_op)`
 

@@ -1,7 +1,5 @@
 # qiskit.chemistry.FermionicOperator
 
-
-
 `FermionicOperator(h1, h2=None, ph_trans_shift=None)`
 
 A set of functions to map fermionic Hamiltonians to qubit Hamiltonians.
@@ -33,8 +31,6 @@ The [`QMolecule`](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule "qiskit.
 *   **h1** (*numpy.ndarray*) – second-quantized fermionic one-body operator, a 2-D (NxN) tensor
 *   **h2** (*numpy.ndarray*) – second-quantized fermionic two-body operator, a 4-D (NxNxNxN) tensor
 *   **ph\_trans\_shift** (*float*) – energy shift caused by particle hole transformation
-
-
 
 `__init__(h1, h2=None, ph_trans_shift=None)`
 
@@ -80,8 +76,6 @@ The [`QMolecule`](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule "qiskit.
 | [`h2`](#qiskit.chemistry.FermionicOperator.h2 "qiskit.chemistry.FermionicOperator.h2")          | Getter of two body integral tensor. |
 | [`modes`](#qiskit.chemistry.FermionicOperator.modes "qiskit.chemistry.FermionicOperator.modes") | Getter of modes.                    |
 
-
-
 `fermion_mode_elimination(fermion_mode_array)`
 
 Eliminate modes.
@@ -99,8 +93,6 @@ Fermionic Hamiltonian
 **Return type**
 
 [FermionicOperator](#qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
-
-
 
 `fermion_mode_freezing(fermion_mode_array)`
 
@@ -120,19 +112,13 @@ Fermionic Hamiltonian and energy of frozen modes
 
 tuple([FermionicOperator](#qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator"), float)
 
-
-
 `property h1`
 
 Getter of one body integral tensor.
 
-
-
 `property h2`
 
 Getter of two body integral tensor.
-
-
 
 `mapping(map_type, threshold=1e-08)`
 
@@ -157,13 +143,9 @@ create an Operator object in Paulis form.
 
 [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – if the map\_type can not be recognized.
 
-
-
 `property modes`
 
 Getter of modes.
-
-
 
 `particle_hole_transformation(num_particles)`
 
@@ -181,8 +163,6 @@ new\_fer\_op, energy\_shift
 
 tuple
 
-
-
 `total_angular_momentum()`
 
 Total angular momentum.
@@ -197,8 +177,6 @@ Fermionic Hamiltonian
 
 [FermionicOperator](#qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
 
-
-
 `total_magnetization()`
 
 A data\_preprocess\_helper fermionic operator which can be used to evaluate the magnetization of the given eigenstate.
@@ -211,8 +189,6 @@ Fermionic Hamiltonian
 
 [FermionicOperator](#qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
 
-
-
 `total_particle_number()`
 
 A data\_preprocess\_helper fermionic operator which can be used to evaluate the number of particle of the given eigenstate.
@@ -224,8 +200,6 @@ Fermionic Hamiltonian
 **Return type**
 
 [FermionicOperator](#qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
-
-
 
 `transform(unitary_matrix)`
 

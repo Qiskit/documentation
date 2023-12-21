@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.runtime.RuntimeProgram
 
-
-
 `RuntimeProgram(program_name, program_id, description, parameters=None, return_values=None, interim_results=None, max_execution_time=0, version='0', backend_requirements=None, creation_date='', is_public=False)`
 
 Class representing program metadata.
@@ -38,8 +36,6 @@ RuntimeProgram constructor.
 *   **backend\_requirements** (`Optional`\[`Dict`]) – Backend requirements.
 *   **creation\_date** (`str`) – Program creation date.
 *   **is\_public** (`bool`) – `True` if program is visible to all. `False` if it’s only visible to you.
-
-
 
 `__init__(program_name, program_id, description, parameters=None, return_values=None, interim_results=None, max_execution_time=0, version='0', backend_requirements=None, creation_date='', is_public=False)`
 
@@ -82,8 +78,6 @@ RuntimeProgram constructor.
 | [`return_values`](#qiskit.providers.ibmq.runtime.RuntimeProgram.return_values "qiskit.providers.ibmq.runtime.RuntimeProgram.return_values")                      | Program return value definitions.      |
 | [`version`](#qiskit.providers.ibmq.runtime.RuntimeProgram.version "qiskit.providers.ibmq.runtime.RuntimeProgram.version")                                        | Program version.                       |
 
-
-
 `property backend_requirements`
 
 Backend requirements.
@@ -95,8 +89,6 @@ Backend requirements.
 **Returns**
 
 Backend requirements for this program.
-
-
 
 `property creation_date`
 
@@ -110,8 +102,6 @@ Program creation date.
 
 Program creation date.
 
-
-
 `property description`
 
 Program description.
@@ -123,8 +113,6 @@ Program description.
 **Returns**
 
 Program description.
-
-
 
 `property interim_results`
 
@@ -138,8 +126,6 @@ Program interim result definitions.
 
 Interim result definitions for this program.
 
-
-
 `property is_public`
 
 Whether the program is visible to all.
@@ -151,8 +137,6 @@ Whether the program is visible to all.
 **Returns**
 
 Whether the program is public.
-
-
 
 `property max_execution_time`
 
@@ -168,8 +152,6 @@ A program execution exceeding this time will be forcibly terminated.
 
 Maximum execution time.
 
-
-
 `property name`
 
 Program name.
@@ -181,8 +163,6 @@ Program name.
 **Returns**
 
 Program name.
-
-
 
 `parameters()`
 
@@ -200,8 +180,6 @@ Note that each call to this method returns a new namespace instance and does not
 
 Program parameter namespace.
 
-
-
 `property program_id`
 
 Program ID.
@@ -213,8 +191,6 @@ Program ID.
 **Returns**
 
 Program ID.
-
-
 
 `property return_values`
 
@@ -228,8 +204,6 @@ Program return value definitions.
 
 Return value definitions for this program.
 
-
-
 `to_dict()`
 
 Convert program metadata to dictionary format.
@@ -241,8 +215,6 @@ Convert program metadata to dictionary format.
 **Returns**
 
 Program metadata in dictionary format.
-
-
 
 `property version`
 

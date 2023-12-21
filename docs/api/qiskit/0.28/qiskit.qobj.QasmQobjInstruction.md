@@ -1,7 +1,5 @@
 # qiskit.qobj.QasmQobjInstruction
 
-
-
 `QasmQobjInstruction(name, params=None, qubits=None, register=None, memory=None, condition=None, conditional=None, label=None, mask=None, relation=None, val=None, snapshot_type=None)`
 
 A class representing a single instruction in an QasmQobj Experiment.
@@ -22,8 +20,6 @@ Instantiate a new QasmQobjInstruction object.
 *   **relation** (*str*) – Relational operator for comparing the masked register to the `val` kwarg. Can be either `==` (equals) or `!=` (not equals).
 *   **val** (*int*) – Value to which to compare the masked register. In other words, the output of the function is `(register AND mask)`
 *   **snapshot\_type** (*str*) – For snapshot instructions the type of snapshot to use
-
-
 
 `__init__(name, params=None, qubits=None, register=None, memory=None, condition=None, conditional=None, label=None, mask=None, relation=None, val=None, snapshot_type=None)`
 
@@ -52,8 +48,6 @@ Instantiate a new QasmQobjInstruction object.
 | [`from_dict`](#qiskit.qobj.QasmQobjInstruction.from_dict "qiskit.qobj.QasmQobjInstruction.from_dict")(data)                              | Create a new QasmQobjInstruction object from a dictionary.    |
 | [`to_dict`](#qiskit.qobj.QasmQobjInstruction.to_dict "qiskit.qobj.QasmQobjInstruction.to_dict")()                                        | Return a dictionary format representation of the Instruction. |
 
-
-
 `classmethod from_dict(data)`
 
 Create a new QasmQobjInstruction object from a dictionary.
@@ -69,8 +63,6 @@ The object from the input dictionary.
 **Return type**
 
 [QasmQobjInstruction](#qiskit.qobj.QasmQobjInstruction "qiskit.qobj.QasmQobjInstruction")
-
-
 
 `to_dict()`
 

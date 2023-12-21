@@ -1,7 +1,5 @@
 # qiskit.chemistry.MP2Info
 
-
-
 `MP2Info(qmolecule, threshold=1e-12)`
 
 A utility class for Moller-Plesset 2nd order (MP2) information
@@ -24,8 +22,6 @@ A utility class for MP2 info
 
 *   **qmolecule** ([*QMolecule*](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule")) – QMolecule from chemistry driver
 *   **threshold** (*float*) – Computed coefficients and energy deltas will be set to zero if their value is below this threshold
-
-
 
 `__init__(qmolecule, threshold=1e-12)`
 
@@ -51,8 +47,6 @@ A utility class for MP2 info
 | [`mp2_delta`](#qiskit.chemistry.MP2Info.mp2_delta "qiskit.chemistry.MP2Info.mp2_delta")    | Get the MP2 delta energy correction for the molecule |
 | [`mp2_energy`](#qiskit.chemistry.MP2Info.mp2_energy "qiskit.chemistry.MP2Info.mp2_energy") | Get the MP2 energy for the molecule                  |
 
-
-
 `property mp2_delta`
 
 Get the MP2 delta energy correction for the molecule
@@ -65,8 +59,6 @@ The MP2 delta energy
 
 float
 
-
-
 `property mp2_energy`
 
 Get the MP2 energy for the molecule
@@ -78,8 +70,6 @@ The MP2 energy
 **Return type**
 
 float
-
-
 
 `mp2_get_term_info(excitation_list, freeze_core=False, orbital_reduction=None)`
 
@@ -102,8 +92,6 @@ Tuple(list, list)
 **Raises**
 
 **ValueError** – Excitation not present in mp2 terms
-
-
 
 `mp2_terms(freeze_core=False, orbital_reduction=None)`
 

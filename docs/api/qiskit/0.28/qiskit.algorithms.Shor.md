@@ -1,7 +1,5 @@
 # qiskit.algorithms.Shor
 
-
-
 `Shor(quantum_instance=None)`
 
 Shor’s factoring algorithm.
@@ -15,8 +13,6 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 **Parameters**
 
 **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – Quantum Instance or Backend
-
-
 
 `__init__(quantum_instance=None)`
 
@@ -39,8 +35,6 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 | -------------------------------------------------------------------------------------------------------- | ------------------------- |
 | [`quantum_instance`](#qiskit.algorithms.Shor.quantum_instance "qiskit.algorithms.Shor.quantum_instance") | Returns quantum instance. |
 
-
-
 `construct_circuit(N, a=2, measurement=False)`
 
 Construct quantum part of the algorithm.
@@ -58,8 +52,6 @@ Construct quantum part of the algorithm.
 **Returns**
 
 Quantum circuit.
-
-
 
 `factor(N, a=2)`
 
@@ -85,8 +77,6 @@ results of the algorithm.
 *   **ValueError** – Invalid input
 *   [**AlgorithmError**](qiskit.algorithms.AlgorithmError#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If a quantum instance or backend has not been provided
 
-
-
 `static modinv(a, m)`
 
 Returns the modular multiplicative inverse of a with respect to the modulus m.
@@ -94,8 +84,6 @@ Returns the modular multiplicative inverse of a with respect to the modulus m.
 **Return type**
 
 `int`
-
-
 
 `property quantum_instance`
 

@@ -1,7 +1,5 @@
 # qiskit.ignis.mitigation.MeasurementFilter
 
-
-
 `MeasurementFilter(cal_matrix, state_labels)`
 
 Measurement error mitigation filter.
@@ -14,8 +12,6 @@ Initialize a measurement error mitigation filter using the cal\_matrix from a me
 
 *   **cal\_matrix** (`matrix`) – the calibration matrix for applying the correction
 *   **state\_labels** (`list`) – the states for the ordering of the cal matrix
-
-
 
 `__init__(cal_matrix, state_labels)`
 
@@ -39,8 +35,6 @@ Initialize a measurement error mitigation filter using the cal\_matrix from a me
 | ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
 | [`cal_matrix`](#qiskit.ignis.mitigation.MeasurementFilter.cal_matrix "qiskit.ignis.mitigation.MeasurementFilter.cal_matrix")       | Return cal\_matrix.                               |
 | [`state_labels`](#qiskit.ignis.mitigation.MeasurementFilter.state_labels "qiskit.ignis.mitigation.MeasurementFilter.state_labels") | return the state label ordering of the cal matrix |
-
-
 
 `apply(raw_data, method='least_squares')`
 
@@ -80,13 +74,9 @@ dict or list
 
 **QiskitError** – if raw\_data is not an integer multiple of the number of calibrated states.
 
-
-
 `property cal_matrix`
 
 Return cal\_matrix.
-
-
 
 `property state_labels`
 

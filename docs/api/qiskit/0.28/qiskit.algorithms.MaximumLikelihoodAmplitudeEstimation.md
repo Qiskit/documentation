@@ -1,7 +1,5 @@
 # qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
 
-
-
 `MaximumLikelihoodAmplitudeEstimation(evaluation_schedule, minimizer=None, quantum_instance=None)`
 
 The Maximum Likelihood Amplitude Estimation algorithm.
@@ -27,8 +25,6 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 **Raises**
 
 **ValueError** – If the number of oracle circuits is smaller than 1.
-
-
 
 `__init__(evaluation_schedule, minimizer=None, quantum_instance=None)`
 
@@ -58,8 +54,6 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------- |
 | [`quantum_instance`](#qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.quantum_instance "qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.quantum_instance") | Get the quantum instance. |
 
-
-
 `static compute_confidence_interval(result, alpha, kind='fisher', apply_post_processing=False)`
 
 Compute the alpha confidence interval using the method kind.
@@ -86,8 +80,6 @@ The specified confidence interval.
 *   [**AlgorithmError**](qiskit.algorithms.AlgorithmError#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If run() hasn’t been called yet.
 *   **NotImplementedError** – If the method kind is not supported.
 
-
-
 `compute_mle(circuit_results, estimation_problem, num_state_qubits=None, return_counts=False)`
 
 Compute the MLE via a grid-search.
@@ -109,8 +101,6 @@ This is a stable approach if sufficient gridpoints are used.
 
 The MLE for the provided result object.
 
-
-
 `construct_circuits(estimation_problem, measurement=False)`
 
 Construct the Amplitude Estimation w/o QPE quantum circuits.
@@ -128,8 +118,6 @@ Construct the Amplitude Estimation w/o QPE quantum circuits.
 
 A list with the QuantumCircuit objects for the algorithm.
 
-
-
 `estimate(estimation_problem)`
 
 Run the amplitude estimation algorithm.
@@ -141,8 +129,6 @@ Run the amplitude estimation algorithm.
 **Return type**
 
 `MaximumLikelihoodAmplitudeEstimationResult`
-
-
 
 `property quantum_instance`
 

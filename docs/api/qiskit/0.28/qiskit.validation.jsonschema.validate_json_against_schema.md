@@ -1,7 +1,5 @@
 # qiskit.validation.jsonschema.validate\_json\_against\_schema
 
-
-
 `validate_json_against_schema(json_dict, schema, err_msg=None)`
 
 Validates JSON dict against a schema.

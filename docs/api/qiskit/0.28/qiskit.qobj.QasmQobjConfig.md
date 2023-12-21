@@ -1,7 +1,5 @@
 # qiskit.qobj.QasmQobjConfig
 
-
-
 `QasmQobjConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, meas_level=None, meas_return=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`
 
 A configuration for a QASM Qobj.
@@ -25,8 +23,6 @@ Model for RunConfig.
 *   **qubit\_lo\_freq** (*list*) – List of frequencies (as floats) for the qubit driver LO’s in GHz.
 *   **meas\_lo\_freq** (*list*) – List of frequencies (as floats) for the measurement driver LO’s in GHz.
 *   **kwargs** – Additional free form key value fields to add to the configuration.
-
-
 
 `__init__(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, meas_level=None, meas_return=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`
 
@@ -58,8 +54,6 @@ Model for RunConfig.
 | [`from_dict`](#qiskit.qobj.QasmQobjConfig.from_dict "qiskit.qobj.QasmQobjConfig.from_dict")(data)                   | Create a new QasmQobjConfig object from a dictionary.              |
 | [`to_dict`](#qiskit.qobj.QasmQobjConfig.to_dict "qiskit.qobj.QasmQobjConfig.to_dict")()                             | Return a dictionary format representation of the QASM Qobj config. |
 
-
-
 `classmethod from_dict(data)`
 
 Create a new QasmQobjConfig object from a dictionary.
@@ -75,8 +69,6 @@ The object from the input dictionary.
 **Return type**
 
 [QasmQobjConfig](#qiskit.qobj.QasmQobjConfig "qiskit.qobj.QasmQobjConfig")
-
-
 
 `to_dict()`
 

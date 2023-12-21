@@ -1,7 +1,5 @@
 # qiskit.opflow\.gradients.DerivativeBase
 
-
-
 `DerivativeBase`
 
 Base class for differentiating opflow objects.
@@ -11,8 +9,6 @@ Converter for differentiating opflow objects and handling things like properly d
 This is distinct from CircuitGradient converters which use quantum techniques such as parameter shifts and linear combination of unitaries to compute derivatives of circuits.
 
 CircuitGradient - uses quantum techniques to get derivatives of circuits DerivativeBase - uses classical techniques to differentiate opflow data structures
-
-
 
 `__init__()`
 
@@ -26,8 +22,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`convert`](#qiskit.opflow.gradients.DerivativeBase.convert "qiskit.opflow.gradients.DerivativeBase.convert")(operator\[, params])                                                      | **type operator**`OperatorBase`                                                                            |
 | [`gradient_wrapper`](#qiskit.opflow.gradients.DerivativeBase.gradient_wrapper "qiskit.opflow.gradients.DerivativeBase.gradient_wrapper")(operator, bind\_params\[, …])                  | Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. |
 | [`parameter_expression_grad`](#qiskit.opflow.gradients.DerivativeBase.parameter_expression_grad "qiskit.opflow.gradients.DerivativeBase.parameter_expression_grad")(param\_expr, param) | Get the derivative of a parameter expression w\.r.t.                                                       |
-
-
 
 `abstract convert(operator, params=None)`
 
@@ -48,8 +42,6 @@ An operator whose evaluation yields the gradient, Hessian or QFI.
 
 **ValueError** – If `params` contains a parameter not present in `operator`.
 
-
-
 `gradient_wrapper(operator, bind_params, grad_params=None, backend=None, expectation=None)`
 
 Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. This callable can be used as gradient function for optimizers.
@@ -69,8 +61,6 @@ Get a callable function which provides the respective gradient, Hessian or QFI f
 **Returns**
 
 Function to compute a gradient, Hessian or QFI. The function takes an iterable as argument which holds the parameter values.
-
-
 
 `static parameter_expression_grad(param_expr, param)`
 

@@ -1,7 +1,5 @@
 # qiskit.converters.dagdependency\_to\_circuit
 
-
-
 `dagdependency_to_circuit(dagdependency)`
 
 Build a `QuantumCircuit` object from a `DAGDependency`.

@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.IBMQBackendService
 
-
-
 `IBMQBackendService(provider)`
 
 Backend namespace for an IBM Quantum Experience account provider.
@@ -31,8 +29,6 @@ IBMQBackendService constructor.
 
 **provider** (`AccountProvider`) – IBM Quantum Experience account provider.
 
-
-
 `__init__(provider)`
 
 IBMQBackendService constructor.
@@ -50,8 +46,6 @@ IBMQBackendService constructor.
 | [`jobs`](#qiskit.providers.ibmq.IBMQBackendService.jobs "qiskit.providers.ibmq.IBMQBackendService.jobs")(\[limit, skip, backend\_name, status, …]) | Return a list of jobs, subject to optional filtering.                            |
 | [`my_reservations`](#qiskit.providers.ibmq.IBMQBackendService.my_reservations "qiskit.providers.ibmq.IBMQBackendService.my_reservations")()        | Return your upcoming reservations.                                               |
 | [`retrieve_job`](#qiskit.providers.ibmq.IBMQBackendService.retrieve_job "qiskit.providers.ibmq.IBMQBackendService.retrieve_job")(job\_id)          | Return a single job.                                                             |
-
-
 
 `backends(name=None, filters=None, timeout=None, min_num_qubits=None, input_allowed=None, **kwargs)`
 
@@ -91,8 +85,6 @@ Return all backends accessible via this provider, subject to optional filtering.
 **Returns**
 
 The list of available backends that match the filter.
-
-
 
 `jobs(limit=10, skip=0, backend_name=None, status=None, job_name=None, start_datetime=None, end_datetime=None, job_tags=None, job_tags_operator='OR', experiment_id=None, descending=True, db_filter=None)`
 
@@ -159,8 +151,6 @@ A list of `IBMQJob` instances.
 *   [**IBMQBackendValueError**](qiskit.providers.ibmq.IBMQBackendValueError#qiskit.providers.ibmq.IBMQBackendValueError "qiskit.providers.ibmq.IBMQBackendValueError") – If a keyword value is not recognized.
 *   **TypeError** – If the input start\_datetime or end\_datetime parameter value is not valid.
 
-
-
 `my_reservations()`
 
 Return your upcoming reservations.
@@ -172,8 +162,6 @@ Return your upcoming reservations.
 **Returns**
 
 A list of your upcoming reservations.
-
-
 
 `retrieve_job(job_id)`
 

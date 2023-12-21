@@ -1,7 +1,5 @@
 # qiskit.transpiler.passes.BIPMapping
 
-
-
 `BIPMapping(*args, **kwargs)`
 
 Map a DAGCircuit onto a given `coupling_map`, allocating qubits and adding swap gates.
@@ -48,8 +46,6 @@ BIPMapping initializer.
 
 [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – if cplex or docplex are not installed.
 
-
-
 `__init__(coupling_map, objective='depth', backend_prop=None, time_limit=30, threads=None, max_swaps_inbetween_layers=None)`
 
 BIPMapping initializer.
@@ -93,15 +89,11 @@ BIPMapping initializer.
 | [`is_analysis_pass`](#qiskit.transpiler.passes.BIPMapping.is_analysis_pass "qiskit.transpiler.passes.BIPMapping.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.BIPMapping.is_transformation_pass "qiskit.transpiler.passes.BIPMapping.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-
-
 `property is_analysis_pass`
 
 Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-
 
 `property is_transformation_pass`
 
@@ -109,13 +101,9 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-
-
 `name()`
 
 Return the name of the pass.
-
-
 
 `run(dag)`
 

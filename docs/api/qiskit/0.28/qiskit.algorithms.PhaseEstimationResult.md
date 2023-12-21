@@ -1,7 +1,5 @@
 # qiskit.algorithms.PhaseEstimationResult
 
-
-
 `PhaseEstimationResult(num_evaluation_qubits, circuit_result, phases)`
 
 Store and manipulate results from running PhaseEstimation.
@@ -15,8 +13,6 @@ The canonical phase satisfying the `PhaseEstimator` interface, returned by the a
 *   **num\_evaluation\_qubits** (`int`) – number of qubits in phase-readout register.
 *   **circuit\_result** (`Result`) – result object returned by method running circuit.
 *   **phases** (`Union`\[`ndarray`, `Dict`\[`str`, `float`]]) – ndarray or dict of phases and frequencies determined by QPE.
-
-
 
 `__init__(num_evaluation_qubits, circuit_result, phases)`
 
@@ -43,8 +39,6 @@ The canonical phase satisfying the `PhaseEstimator` interface, returned by the a
 | [`phase`](#qiskit.algorithms.PhaseEstimationResult.phase "qiskit.algorithms.PhaseEstimationResult.phase")                                     | Return the most likely phase as a number in $[0.0, 1.0)$.                                |
 | [`phases`](#qiskit.algorithms.PhaseEstimationResult.phases "qiskit.algorithms.PhaseEstimationResult.phases")                                  | Return all phases and their frequencies computed by QPE.                                 |
 
-
-
 `property circuit_result`
 
 Return the result object returned by running the QPE circuit (on hardware or simulator).
@@ -54,8 +48,6 @@ This is useful for inspecting and troubleshooting the QPE algorithm.
 **Return type**
 
 `Result`
-
-
 
 `combine(result)`
 
@@ -68,8 +60,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 **Return type**
 
 `None`
-
-
 
 `filter_phases(cutoff=0.0, as_float=True)`
 
@@ -90,8 +80,6 @@ Only phases with frequencies (counts) larger than cutoff are included. It is ass
 
 A filtered dict of phases (keys) and frequencies (values).
 
-
-
 `property most_likely_phase`
 
 DEPRECATED - Return the most likely phase as a number in $[0.0, 1.0)$.
@@ -102,8 +90,6 @@ DEPRECATED - Return the most likely phase as a number in $[0.0, 1.0)$.
 
 `float`
 
-
-
 `property phase`
 
 Return the most likely phase as a number in $[0.0, 1.0)$.
@@ -113,8 +99,6 @@ Return the most likely phase as a number in $[0.0, 1.0)$.
 **Return type**
 
 `float`
-
-
 
 `property phases`
 

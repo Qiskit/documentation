@@ -1,7 +1,5 @@
 # qiskit.aqua.operators.legacy.kernel\_F2
 
-
-
 `kernel_F2(matrix_in)`
 
 Computes the kernel of a binary matrix on the binary finite field

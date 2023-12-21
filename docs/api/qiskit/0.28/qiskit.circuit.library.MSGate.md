@@ -1,7 +1,5 @@
 # qiskit.circuit.library.MSGate
 
-
-
 `MSGate(num_qubits, theta, label=None)`
 
 MSGate has been deprecated. Please use `GMS` in `qiskit.circuit.generalized_gates` instead.
@@ -13,8 +11,6 @@ The Mølmer–Sørensen gate is native to ion-trap systems. The global MS can be
 In the two-qubit case, this is equivalent to an XX(theta) interaction, and is thus reduced to the RXXGate.
 
 Create new MS gate.
-
-
 
 `__init__(num_qubits, theta, label=None)`
 
@@ -53,19 +49,13 @@ Create new MS gate.
 | [`params`](#qiskit.circuit.library.MSGate.params "qiskit.circuit.library.MSGate.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.circuit.library.MSGate.unit "qiskit.circuit.library.MSGate.unit")                               | Get the time unit of duration.                                                |
 
-
-
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-
-
 `assemble()`
 
 Assemble a QasmQobjInstruction
-
-
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -118,13 +108,9 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-
-
 `c_if(classical, val)`
 
 Add classical condition on register or cbit classical and value val.
-
-
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
@@ -148,8 +134,6 @@ Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 anci
 
 **QiskitError** – unrecognized mode or invalid ctrl\_state
 
-
-
 `copy(name=None)`
 
 Copy of the instruction.
@@ -168,25 +152,17 @@ updated if it was provided
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
-
-
 `property duration`
 
 Get the duration.
-
-
 
 `inverse()`
 
@@ -208,13 +184,9 @@ a fresh instruction for the inverse
 
 **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
 
-
-
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
-
-
 
 `property label`
 
@@ -223,8 +195,6 @@ Return instruction label
 **Return type**
 
 `str`
-
-
 
 `mirror()`
 
@@ -240,13 +210,9 @@ reversed.
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `property params`
 
 return instruction params.
-
-
 
 `power(exponent)`
 
@@ -268,15 +234,11 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **CircuitError** – If Gate is not unitary
 
-
-
 `qasm()`
 
 Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-
 
 `repeat(n)`
 
@@ -298,8 +260,6 @@ Containing the definition.
 
 **CircuitError** – If n \< 1.
 
-
-
 `reverse_ops()`
 
 For a composite instruction, reverse the order of sub-instructions.
@@ -315,8 +275,6 @@ sub-instructions reversed.
 **Return type**
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-
 
 `soft_compare(other)`
 
@@ -334,8 +292,6 @@ are self and other equal up to parameter expressions.
 
 bool
 
-
-
 `to_matrix()`
 
 Return a Numpy.array for the gate unitary matrix.
@@ -352,13 +308,9 @@ np.ndarray
 
 **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
 
-
-
 `property unit`
 
 Get the time unit of duration.
-
-
 
 `validate_parameter(parameter)`
 

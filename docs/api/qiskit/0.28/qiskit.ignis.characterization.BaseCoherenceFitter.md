@@ -1,7 +1,5 @@
 # qiskit.ignis.characterization.BaseCoherenceFitter
 
-
-
 `BaseCoherenceFitter(description, backend_result, xdata, qubits, fit_fun, fit_p0, fit_bounds, circuit_names, series=None, expected_state='0', time_index=0, time_unit='micro-seconds')`
 
 Base class for fitters of characteristic times
@@ -20,8 +18,6 @@ Base class for fitters of characteristic times
 *   **expected\_state** (`str`) – is the circuit supposed to end up in ‘0’ or ‘1’?
 *   **time\_index** (`int`) – among parameters of fit\_fun, which one is the characteristic time.
 *   **time\_unit** (`str`) – unit of delay times in xdata.
-
-
 
 `__init__(description, backend_result, xdata, qubits, fit_fun, fit_p0, fit_bounds, circuit_names, series=None, expected_state='0', time_index=0, time_unit='micro-seconds')`
 
@@ -52,8 +48,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`xdata`](#qiskit.ignis.characterization.BaseCoherenceFitter.xdata "qiskit.ignis.characterization.BaseCoherenceFitter.xdata")                               | Return the data points on the x-axis, the independenet parameter which is fit against |
 | [`ydata`](#qiskit.ignis.characterization.BaseCoherenceFitter.ydata "qiskit.ignis.characterization.BaseCoherenceFitter.ydata")                               | Return the data points on the y-axis                                                  |
 
-
-
 `add_data(results, recalc=True, refit=True)`
 
 Add new execution results to previous execution results
@@ -64,8 +58,6 @@ Add new execution results to previous execution results
 *   **recalc** (`bool`) – whether tp recalculate the data
 *   **refit** (`bool`) – whether to refit the data
 
-
-
 `property backend_result`
 
 Return the execution results
@@ -74,8 +66,6 @@ Return the execution results
 
 `Union`\[`Result`, `List`\[`Result`]]
 
-
-
 `property description`
 
 Return the fitter’s purpose, e.g. ‘T1’
@@ -83,8 +73,6 @@ Return the fitter’s purpose, e.g. ‘T1’
 **Return type**
 
 `str`
-
-
 
 `fit_data(qid=- 1, p0=None, bounds=None, series=None)`
 
@@ -99,8 +87,6 @@ Compute self.\_params and self.\_params\_err
 *   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
 *   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
 
-
-
 `property fit_fun`
 
 Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
@@ -108,8 +94,6 @@ Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
 **Return type**
 
 `Callable`
-
-
 
 `property measured_qubits`
 
@@ -119,8 +103,6 @@ Return the indices of the qubits to be characterized
 
 `List`\[`int`]
 
-
-
 `property params`
 
 Return the fit function parameters that were calculated by curve\_fit
@@ -129,8 +111,6 @@ Return the fit function parameters that were calculated by curve\_fit
 
 `List`\[`float`]
 
-
-
 `property params_err`
 
 Return the error of the fit function parameters
@@ -138,8 +118,6 @@ Return the error of the fit function parameters
 **Return type**
 
 `List`\[`float`]
-
-
 
 `plot(qind, series, ax=None, show_plot=True)`
 
@@ -164,8 +142,6 @@ Axes
 
 **ImportError** – if matplotlib is not installed
 
-
-
 `property series`
 
 Return the list of series for the data
@@ -173,8 +149,6 @@ Return the list of series for the data
 **Return type**
 
 `Optional`\[`List`\[`str`]]
-
-
 
 `time(qid=- 1, series='0')`
 
@@ -193,8 +167,6 @@ Return the characteristic time for the given qubit and series
 
 The characteristic time of the qubit, or all qubits
 
-
-
 `time_err(qid=- 1, series='0')`
 
 Return the error of characteristic time for the given qubit and series
@@ -212,8 +184,6 @@ Return the error of characteristic time for the given qubit and series
 
 The error of the characteristic time of the qubit, or all qubits
 
-
-
 `property xdata`
 
 Return the data points on the x-axis, the independenet parameter which is fit against
@@ -221,8 +191,6 @@ Return the data points on the x-axis, the independenet parameter which is fit ag
 **Return type**
 
 `Union`\[`List`\[`float`], `array`]
-
-
 
 `property ydata`
 

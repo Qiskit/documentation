@@ -1,7 +1,5 @@
 # qiskit.utils.deprecate\_function
 
-
-
 `deprecate_function(msg, stacklevel=2)`
 
 Emit a warning prior to calling decorated function.

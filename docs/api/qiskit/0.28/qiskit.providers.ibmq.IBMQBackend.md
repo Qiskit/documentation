@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.IBMQBackend
 
-
-
 `IBMQBackend(configuration, provider, credentials, api_client)`
 
 Backend class interfacing with an IBM Quantum Experience device.
@@ -48,8 +46,6 @@ IBMQBackend constructor.
 *   **credentials** (`Credentials`) – IBM Quantum Experience credentials.
 *   **api\_client** (`AccountClient`) – IBM Quantum Experience client used to communicate with the server.
 
-
-
 `__init__(configuration, provider, credentials, api_client)`
 
 IBMQBackend constructor.
@@ -90,8 +86,6 @@ IBMQBackend constructor.
 | `qobj_warning_issued`                                                                               |                                    |
 | `version`                                                                                           |                                    |
 
-
-
 `active_jobs(limit=10)`
 
 Return the unfinished jobs submitted to this backend.
@@ -110,8 +104,6 @@ Return the jobs submitted to this backend, with this provider, that are currentl
 
 A list of the unfinished jobs for this backend on this provider.
 
-
-
 `configuration()`
 
 Return the backend configuration.
@@ -127,8 +119,6 @@ The schema for backend configuration can be found in [Qiskit/ibm-quantum-schemas
 **Returns**
 
 The configuration for the backend.
-
-
 
 `defaults(refresh=False)`
 
@@ -147,8 +137,6 @@ The schema for default pulse configuration can be found in [Qiskit/ibm-quantum-s
 **Returns**
 
 The backend pulse defaults or `None` if the backend does not support pulse.
-
-
 
 `job_limit()`
 
@@ -181,8 +169,6 @@ The job limit for the backend, with this provider.
 **Raises**
 
 [**IBMQBackendApiProtocolError**](qiskit.providers.ibmq.IBMQBackendApiProtocolError#qiskit.providers.ibmq.IBMQBackendApiProtocolError "qiskit.providers.ibmq.IBMQBackendApiProtocolError") – If an unexpected value is received from the server.
-
-
 
 `jobs(limit=10, skip=0, status=None, job_name=None, start_datetime=None, end_datetime=None, job_tags=None, job_tags_operator='OR', experiment_id=None, descending=True, db_filter=None)`
 
@@ -246,8 +232,6 @@ A list of jobs that match the criteria.
 
 [**IBMQBackendValueError**](qiskit.providers.ibmq.IBMQBackendValueError#qiskit.providers.ibmq.IBMQBackendValueError "qiskit.providers.ibmq.IBMQBackendValueError") – If a keyword value is not recognized.
 
-
-
 `name()`
 
 Return the backend name.
@@ -260,15 +244,11 @@ the name of the backend.
 
 str
 
-
-
 `property options`
 
 Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.ibmq.IBMQBackend.run "qiskit.providers.ibmq.IBMQBackend.run") method.
-
-
 
 `properties(refresh=False, datetime=None)`
 
@@ -295,8 +275,6 @@ The backend properties or `None` if the backend properties are not currently ava
 
 **TypeError** – If an input argument is not of the correct type.
 
-
-
 `provider()`
 
 Return the backend Provider.
@@ -308,8 +286,6 @@ the Provider responsible for the backend.
 **Return type**
 
 [Provider](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")
-
-
 
 `remaining_jobs_count()`
 
@@ -333,8 +309,6 @@ The remaining number of jobs a user could submit to the backend, with this provi
 
 [**IBMQBackendApiProtocolError**](qiskit.providers.ibmq.IBMQBackendApiProtocolError#qiskit.providers.ibmq.IBMQBackendApiProtocolError "qiskit.providers.ibmq.IBMQBackendApiProtocolError") – If an unexpected value is received from the server.
 
-
-
 `reservations(start_datetime=None, end_datetime=None)`
 
 Return backend reservations.
@@ -356,8 +330,6 @@ Some of the reservation information is only available if you are the owner of th
 
 A list of reservations that match the criteria.
 
-
-
 `retrieve_job(job_id)`
 
 Return a single job submitted to this backend.
@@ -377,8 +349,6 @@ The job with the given ID.
 **Raises**
 
 [**IBMQBackendError**](qiskit.providers.ibmq.IBMQBackendError#qiskit.providers.ibmq.IBMQBackendError "qiskit.providers.ibmq.IBMQBackendError") – If job retrieval failed.
-
-
 
 `run(circuits, job_name=None, job_share_level=None, job_tags=None, experiment_id=None, validate_qobj=None, header=None, shots=None, memory=None, qubit_lo_freq=None, meas_lo_freq=None, schedule_los=None, meas_level=None, meas_return=None, memory_slots=None, memory_slot_size=None, rep_time=None, rep_delay=None, init_qubits=None, parameter_binds=None, use_measure_esp=None, **run_config)`
 
@@ -469,8 +439,6 @@ The job to be executed.
 
     *   If an input parameter value is not valid. - If ESP readout is used and the backend does not support this.
 
-
-
 `set_options(**fields)`
 
 Set the options fields for the backend
@@ -484,8 +452,6 @@ This method is used to update the options of a backend. If you need to change an
 **Raises**
 
 **AttributeError** – If the field passed in is not part of the options
-
-
 
 `status()`
 

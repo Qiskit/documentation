@@ -1,7 +1,5 @@
 # qiskit.quantum\_info.Pauli
 
-
-
 `Pauli(data=None, x=None, *, z=None, label=None)`
 
 N-qubit Pauli operator.
@@ -93,8 +91,6 @@ When using the symplectic array input data both z and x arguments must be provid
 
 **QiskitError** – if input array is invalid shape.
 
-
-
 `__init__(data=None, x=None, *, z=None, label=None)`
 
 Initialize the Pauli.
@@ -164,13 +160,9 @@ When using the symplectic array input data both z and x arguments must be provid
 | [`x`](#qiskit.quantum_info.Pauli.x "qiskit.quantum_info.Pauli.x")                            | The x vector for the Pauli.                                          |
 | [`z`](#qiskit.quantum_info.Pauli.z "qiskit.quantum_info.Pauli.z")                            | The z vector for the Pauli.                                          |
 
-
-
 `adjoint()`
 
 Return the adjoint of the Operator.
-
-
 
 `anticommutes(other, qargs=None)`
 
@@ -189,8 +181,6 @@ True if Pauli’s anticommute, False if they commute.
 
 bool
 
-
-
 `append_paulis(paulis=None, pauli_labels=None)`
 
 DEPRECATED: Append pauli at the end.
@@ -208,8 +198,6 @@ self
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
-
-
 `commutes(other, qargs=None)`
 
 Return True if the Pauli commutes with other.
@@ -226,8 +214,6 @@ True if Pauli’s commute, False if they anti-commute.
 **Return type**
 
 bool
-
-
 
 `compose(other, qargs=None, front=False, inplace=False)`
 
@@ -258,19 +244,13 @@ The composed Pauli.
   Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](#qiskit.quantum_info.Pauli.dot "qiskit.quantum_info.Pauli.dot") method `A.dot(B) == A.compose(B, front=True)`.
 </Admonition>
 
-
-
 `conjugate()`
 
 Return the conjugate of each Pauli in the list.
 
-
-
 `copy()`
 
 Make a deep copy of current operator.
-
-
 
 `delete(qubits)`
 
@@ -292,8 +272,6 @@ the resulting Pauli with the specified qubits removed.
 
 **QiskitError** – if ind is out of bounds for the array size or number of qubits.
 
-
-
 `delete_qubits(indices)`
 
 DEPRECATED: Delete pauli at the indices.
@@ -312,13 +290,9 @@ self
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
-
-
 `property dim`
 
 Return tuple (input\_shape, output\_shape).
-
-
 
 `dot(other, qargs=None, inplace=False)`
 
@@ -338,8 +312,6 @@ The operator self \* other.
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
-
-
 `equiv(other)`
 
 Return True if Pauli’s are equivalent up to group phase.
@@ -355,8 +327,6 @@ True if the Pauli’s are equivalent up to group phase.
 **Return type**
 
 bool
-
-
 
 `evolve(other, qargs=None)`
 
@@ -381,8 +351,6 @@ the Pauli $C^\dagger.P.C$.
 
 **QiskitError** – if the Clifford number of qubits and qargs don’t match.
 
-
-
 `expand(other)`
 
 Return the reverse-order tensor product with another Pauli.
@@ -400,8 +368,6 @@ is the current Pauli, and $b$ is the other Pauli.
 **Return type**
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
-
-
 
 `static from_label(*args, **kwargs)`
 
@@ -426,13 +392,9 @@ the constructed Pauli.
 *   **QiskitError** – If the input list is empty or contains invalid
 *   **Pauli strings.** –
 
-
-
 `input_dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
-
-
 
 `insert(qubits, value)`
 
@@ -454,8 +416,6 @@ the resulting Pauli with the entries inserted.
 **Raises**
 
 **QiskitError** – if the insertion qubits are invalid.
-
-
 
 `insert_paulis(indices=None, paulis=None, pauli_labels=None)`
 
@@ -487,13 +447,9 @@ self
 
 **QiskitError** – provide both paulis and pauli\_labels at the same time
 
-
-
 `inverse()`
 
 Return the inverse of the Pauli.
-
-
 
 `kron(other)`
 
@@ -515,19 +471,13 @@ self
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
-
-
 `property num_qubits`
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-
-
 `output_dims(qargs=None)`
 
 Return tuple of output dimension for specified subsystems.
-
-
 
 `classmethod pauli_single(num_qubits, index, pauli_label)`
 
@@ -547,13 +497,9 @@ single qubit pauli
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
-
-
 `property phase`
 
 Return the group phase exponent for the Pauli.
-
-
 
 `power(n)`
 
@@ -575,13 +521,9 @@ the n-times composed operator.
 
 **QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
 
-
-
 `property qargs`
 
 Return the qargs for the operator.
-
-
 
 `classmethod random(num_qubits, seed=None)`
 
@@ -601,8 +543,6 @@ the random pauli
 **Return type**
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
-
-
 
 `reshape(input_dims=None, output_dims=None, num_qubits=None)`
 
@@ -626,8 +566,6 @@ BaseOperator
 
 **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
 
-
-
 `classmethod set_truncation(val)`
 
 Set the max number of Pauli characters to display before truncation/
@@ -640,8 +578,6 @@ Set the max number of Pauli characters to display before truncation/
   Truncation will be disabled if the truncation value is set to 0.
 </Admonition>
 
-
-
 `property settings`
 
 Return settings.
@@ -649,8 +585,6 @@ Return settings.
 **Return type**
 
 `Dict`
-
-
 
 `static sgn_prod(*args, **kwargs)`
 
@@ -672,8 +606,6 @@ the multiplied pauli (without phase) complex: the sign of the multiplication, 1,
 **Return type**
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
-
-
 
 `tensor(other)`
 
@@ -697,13 +629,9 @@ is the current Pauli, and $b$ is the other Pauli.
   The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
 </Admonition>
 
-
-
 `to_instruction()`
 
 Convert to Pauli circuit instruction.
-
-
 
 `to_label()`
 
@@ -721,8 +649,6 @@ the Pauli string label.
 
 str
 
-
-
 `to_matrix(sparse=False)`
 
 Convert to a Numpy array or sparse CSR matrix.
@@ -739,8 +665,6 @@ The Pauli matrix.
 
 array
 
-
-
 `to_spmatrix()`
 
 DEPRECATED Convert Pauli to a sparse matrix representation (CSR format).
@@ -755,13 +679,9 @@ a sparse matrix with CSR format that represents the pauli.
 
 scipy.sparse.csr\_matrix
 
-
-
 `transpose()`
 
 Return the transpose of each Pauli in the list.
-
-
 
 `update_x(x, indices=None)`
 
@@ -786,8 +706,6 @@ self
 
 **QiskitError** – when updating whole x, the number of qubits must be the same.
 
-
-
 `update_z(z, indices=None)`
 
 DEPRECATED: Update partial or entire z.
@@ -811,13 +729,9 @@ self
 
 **QiskitError** – when updating whole z, the number of qubits must be the same.
 
-
-
 `property x`
 
 The x vector for the Pauli.
-
-
 
 `property z`
 

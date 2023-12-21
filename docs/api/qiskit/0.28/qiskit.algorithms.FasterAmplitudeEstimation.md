@@ -1,7 +1,5 @@
 # qiskit.algorithms.FasterAmplitudeEstimation
 
-
-
 `FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None)`
 
 The Faster Amplitude Estimation algorithm.
@@ -35,8 +33,6 @@ Due to the iterative version of the QPE, this algorithm does not require any add
   This algorithm overwrites the number of shots set in the `quantum_instance` argument, but will reset them to the initial number after running.
 </Admonition>
 
-
-
 `__init__(delta, maxiter, rescale=True, quantum_instance=None)`
 
 **Parameters**
@@ -64,8 +60,6 @@ Due to the iterative version of the QPE, this algorithm does not require any add
 | -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | [`quantum_instance`](#qiskit.algorithms.FasterAmplitudeEstimation.quantum_instance "qiskit.algorithms.FasterAmplitudeEstimation.quantum_instance") | Get the quantum instance. |
 
-
-
 `construct_circuit(estimation_problem, k, measurement=False)`
 
 Construct the circuit $Q^k X |0\rangle>$.
@@ -86,8 +80,6 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 The circuit $Q^k X |0\rangle$.
 
-
-
 `estimate(estimation_problem)`
 
 Run the amplitude estimation algorithm.
@@ -99,8 +91,6 @@ Run the amplitude estimation algorithm.
 **Return type**
 
 `FasterAmplitudeEstimationResult`
-
-
 
 `property quantum_instance`
 

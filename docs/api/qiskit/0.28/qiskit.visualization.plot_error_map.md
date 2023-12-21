@@ -1,7 +1,5 @@
 # qiskit.visualization.plot\_error\_map
 
-
-
 `plot_error_map(backend, figsize=(12, 9), show_title=True)`
 
 Plots the error map of a given backend.

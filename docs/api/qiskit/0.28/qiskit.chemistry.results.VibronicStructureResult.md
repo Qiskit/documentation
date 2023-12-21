@@ -1,12 +1,8 @@
 # qiskit.chemistry.results.VibronicStructureResult
 
-
-
 `VibronicStructureResult(a_dict=None)`
 
 The vibronic structure result.
-
-
 
 `__init__(a_dict=None)`
 
@@ -45,8 +41,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`num_occupied_modals_per_mode`](#qiskit.chemistry.results.VibronicStructureResult.num_occupied_modals_per_mode "qiskit.chemistry.results.VibronicStructureResult.num_occupied_modals_per_mode") | Returns the number of occupied modal per mode           |
 | [`raw_result`](#qiskit.chemistry.results.VibronicStructureResult.raw_result "qiskit.chemistry.results.VibronicStructureResult.raw_result")                                                       | Returns the raw algorithm result.                       |
 
-
-
 `property algorithm_result`
 
 Returns raw algorithm result
@@ -54,8 +48,6 @@ Returns raw algorithm result
 **Return type**
 
 `AlgorithmResult`
-
-
 
 `property aux_operator_eigenvalues`
 
@@ -65,15 +57,11 @@ return aux operator eigen values
 
 `Optional`\[`List`\[`float`]]
 
-
-
 `clear()`
 
 **Return type**
 
 `None`
-
-
 
 `combine(result)`
 
@@ -87,8 +75,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-
-
 `property computed_vibronic_energies`
 
 Returns computed electronic part of ground state energy
@@ -96,8 +82,6 @@ Returns computed electronic part of ground state energy
 **Return type**
 
 `ndarray`
-
-
 
 `property eigenenergies`
 
@@ -107,8 +91,6 @@ returns eigen energies
 
 `Optional`\[`ndarray`]
 
-
-
 `property eigenstates`
 
 returns eigen states
@@ -116,8 +98,6 @@ returns eigen states
 **Return type**
 
 `Optional`\[`List`\[`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]]]
-
-
 
 `property formatted`
 
@@ -127,11 +107,7 @@ Formatted result as a list of strings
 
 `List`\[`str`]
 
-
-
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
-
-
 
 `property groundenergy`
 
@@ -141,8 +117,6 @@ returns ground energy
 
 `Optional`\[`float`]
 
-
-
 `property groundstate`
 
 returns ground state
@@ -151,15 +125,9 @@ returns ground state
 
 `Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]
 
-
-
 `items() → a set-like object providing a view on D’s items`
 
-
-
 `keys() → a set-like object providing a view on D’s keys`
-
-
 
 `property num_occupied_modals_per_mode`
 
@@ -169,8 +137,6 @@ Returns the number of occupied modal per mode
 
 `Optional`\[`List`\[`float`]]
 
-
-
 `pop(key, default=None)`
 
 If key is not found, d is returned if given, otherwise KeyError is raised.
@@ -178,8 +144,6 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 **Return type**
 
 `object`
-
-
 
 `popitem()`
 
@@ -189,8 +153,6 @@ as a 2-tuple; but raise KeyError if D is empty.
 
 `Tuple`\[`object`, `object`]
 
-
-
 `property raw_result`
 
 Returns the raw algorithm result.
@@ -199,11 +161,7 @@ Returns the raw algorithm result.
 
 `Optional`\[`AlgorithmResult`]
 
-
-
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
-
-
 
 `update(*args, **kwargs)`
 
@@ -212,7 +170,5 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 **Return type**
 
 `None`
-
-
 
 `values() → an object providing a view on D’s values`
