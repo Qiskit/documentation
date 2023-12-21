@@ -1,14 +1,10 @@
 # qiskit.ignis.logging.IgnisLogReader
 
-
-
 `IgnisLogReader`
 
 Class to read from Ignis log files
 
 Reads and constructs tabular representation of logged data based on date/time and key criteria
-
-
 
 `__init__()`
 
@@ -22,8 +18,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`get_log_files`](#qiskit.ignis.logging.IgnisLogReader.get_log_files "qiskit.ignis.logging.IgnisLogReader.get_log_files")()                 | Get Names of all log files (several may be present due to logging file rotation). |
 | [`read_values`](#qiskit.ignis.logging.IgnisLogReader.read_values "qiskit.ignis.logging.IgnisLogReader.read_values")(\[log\_files, keys, …]) | Retrieve log lines using key and date/time filtering criteria                     |
 
-
-
 `get_log_files()`
 
 Get Names of all log files (several may be present due to logging file rotation). File names are sorted by modification time.
@@ -35,8 +29,6 @@ list of all log file names
 **Return type**
 
 list
-
-
 
 `read_values(log_files=None, keys=None, from_datetime=None, from_datetime_format=None, to_datetime=None, to_datetime_format=None)`
 

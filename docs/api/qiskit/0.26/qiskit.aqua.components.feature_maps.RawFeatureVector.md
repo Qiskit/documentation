@@ -1,7 +1,5 @@
 # qiskit.aqua.components.feature\_maps.RawFeatureVector
 
-
-
 `RawFeatureVector(feature_dimension=2)`
 
 Raw Feature Vector feature map.
@@ -11,8 +9,6 @@ The Raw Feature Vector can be directly used as a feature map, where the raw feat
 **Parameters**
 
 **feature\_dimension** (`int`) – The feature dimension, has a minimum value of 1.
-
-
 
 `__init__(feature_dimension=2)`
 
@@ -37,8 +33,6 @@ The Raw Feature Vector can be directly used as a feature map, where the raw feat
 | [`num_qubits`](#qiskit.aqua.components.feature_maps.RawFeatureVector.num_qubits "qiskit.aqua.components.feature_maps.RawFeatureVector.num_qubits")                                                          | returns number of qubits                                           |
 | [`support_parameterized_circuit`](#qiskit.aqua.components.feature_maps.RawFeatureVector.support_parameterized_circuit "qiskit.aqua.components.feature_maps.RawFeatureVector.support_parameterized_circuit") | returns whether or not the sub-class support parameterized circuit |
 
-
-
 `construct_circuit(x, qr=None, inverse=False)`
 
 Construct the second order expansion based on given data.
@@ -62,31 +56,21 @@ a quantum circuit transform data x.
 *   **TypeError** – invalid input
 *   **ValueError** – invalid input
 
-
-
 `property feature_dimension`
 
 returns feature dimension
-
-
 
 `static get_entangler_map(map_type, num_qubits)`
 
 get entangle map
 
-
-
 `property num_qubits`
 
 returns number of qubits
 
-
-
 `property support_parameterized_circuit`
 
 returns whether or not the sub-class support parameterized circuit
-
-
 
 `static validate_entangler_map(entangler_map, num_qubits)`
 

@@ -1,12 +1,8 @@
 # qiskit.chemistry.algorithms.pes\_samplers.VibronicStructureBase
 
-
-
 `VibronicStructureBase(molecule)`
 
 Class to hold a molecular vibronic structure providing access to vibrational modes and energy levels.
-
-
 
 `__init__(molecule)`
 
@@ -21,8 +17,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`get_num_modes`](#qiskit.chemistry.algorithms.pes_samplers.VibronicStructureBase.get_num_modes "qiskit.chemistry.algorithms.pes_samplers.VibronicStructureBase.get_num_modes")()                                         | Returns the number of vibrational modes for the molecule.                                                                |
 | [`update_molecule`](#qiskit.chemistry.algorithms.pes_samplers.VibronicStructureBase.update_molecule "qiskit.chemistry.algorithms.pes_samplers.VibronicStructureBase.update_molecule")(molecule)                           | Wipe state if molecule changes, and check validity of molecule for potential.                                            |
 | [`vibrational_energy_level`](#qiskit.chemistry.algorithms.pes_samplers.VibronicStructureBase.vibrational_energy_level "qiskit.chemistry.algorithms.pes_samplers.VibronicStructureBase.vibrational_energy_level")(n)       | Returns the n-th vibrational energy level for a given mode.                                                              |
-
-
 
 `get_maximum_trusted_level(n=0)`
 
@@ -40,8 +34,6 @@ Returns the maximum energy level for which the particular implementation still p
 
 maximum\_trusted\_level setted
 
-
-
 `abstract get_num_modes()`
 
 Returns the number of vibrational modes for the molecule.
@@ -53,8 +45,6 @@ Returns the number of vibrational modes for the molecule.
 **Returns**
 
 the number of vibrational modes
-
-
 
 `update_molecule(molecule)`
 
@@ -71,8 +61,6 @@ Wipe state if molecule changes, and check validity of molecule for potential.
 **Returns**
 
 molecule used
-
-
 
 `abstract vibrational_energy_level(n)`
 

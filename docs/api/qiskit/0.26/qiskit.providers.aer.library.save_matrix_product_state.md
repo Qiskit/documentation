@@ -1,7 +1,5 @@
 # qiskit.providers.aer.library.save\_matrix\_product\_state
 
-
-
 `save_matrix_product_state(self, label='matrix_product_state', pershot=False, conditional=False)`
 
 Save the current simulator quantum state as a matrix product state.

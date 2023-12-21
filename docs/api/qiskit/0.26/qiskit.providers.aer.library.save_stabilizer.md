@@ -1,7 +1,5 @@
 # qiskit.providers.aer.library.save\_stabilizer
 
-
-
 `save_stabilizer(self, label='stabilizer', pershot=False, conditional=False)`
 
 Save the current stabilizer simulator quantum state as a Clifford.

@@ -1,7 +1,5 @@
 # qiskit.providers.basicaer.UnitarySimulatorPy
 
-
-
 `UnitarySimulatorPy(configuration=None, provider=None, **fields)`
 
 Python implementation of a unitary simulator.
@@ -17,8 +15,6 @@ Initialize a backend class
 **Raises**
 
 **AttributeError** – if input field not a valid options
-
-
 
 `__init__(configuration=None, provider=None, **fields)`
 
@@ -58,8 +54,6 @@ Initialize a backend class
 | [`options`](#qiskit.providers.basicaer.UnitarySimulatorPy.options "qiskit.providers.basicaer.UnitarySimulatorPy.options") | Return the options for the backend |
 | `version`                                                                                                                 |                                    |
 
-
-
 `configuration()`
 
 Return the backend configuration.
@@ -71,8 +65,6 @@ the configuration for the backend.
 **Return type**
 
 [BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
-
-
 
 `name()`
 
@@ -86,15 +78,11 @@ the name of the backend.
 
 str
 
-
-
 `property options`
 
 Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.basicaer.UnitarySimulatorPy.run "qiskit.providers.basicaer.UnitarySimulatorPy.run") method.
-
-
 
 `properties()`
 
@@ -108,8 +96,6 @@ the configuration for the backend. If the backend does not support properties, i
 
 [BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
-
-
 `provider()`
 
 Return the backend Provider.
@@ -121,8 +107,6 @@ the Provider responsible for the backend.
 **Return type**
 
 [Provider](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")
-
-
 
 `run(qobj, **backend_options)`
 
@@ -168,8 +152,6 @@ Example::
     }
 ```
 
-
-
 `run_experiment(experiment)`
 
 Run an experiment (circuit) and return a single experiment result.
@@ -207,8 +189,6 @@ dict
 *   [**BasicAerError**](qiskit.providers.basicaer.BasicAerError#qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if the number of qubits in the circuit is greater than 24.
 *   **Note that the practical qubit limit is much lower than 24.** –
 
-
-
 `set_options(**fields)`
 
 Set the options fields for the backend
@@ -222,8 +202,6 @@ This method is used to update the options of a backend. If you need to change an
 **Raises**
 
 **AttributeError** – If the field passed in is not part of the options
-
-
 
 `status()`
 

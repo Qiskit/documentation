@@ -13,8 +13,6 @@ Converts vehicle routing instances into a list of Paulis, and provides some rela
 | [`get_vehiclerouting_matrices`](#qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_matrices "qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_matrices")(instance, n, K)    | Constructs auxiliary matrices from a vehicle routing instance,               |
 | [`get_vehiclerouting_solution`](#qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_solution "qiskit.optimization.applications.ising.vehicle_routing.get_vehiclerouting_solution")(instance, n, K, …) | Tries to obtain a feasible solution (in vector form) of an instance          |
 
-
-
 `get_operator(instance, n, K)`
 
 Converts an instance of a vehicle routing problem into a list of Paulis.
@@ -32,8 +30,6 @@ Converts an instance of a vehicle routing problem into a list of Paulis.
 **Returns**
 
 operator for the Hamiltonian.
-
-
 
 `get_vehiclerouting_cost(instance, n, K, x_sol)`
 
@@ -54,8 +50,6 @@ Computes the cost of a solution to an instance of a vehicle routing problem.
 
 objective function value.
 
-
-
 `get_vehiclerouting_matrices(instance, n, K)`
 
 ## Constructs auxiliary matrices from a vehicle routing instance,
@@ -75,8 +69,6 @@ which represent the encoding into a binary quadratic program. This is used in th
 **Returns**
 
 a matrix defining the interactions between variables. a matrix defining the contribution from the individual variables. the constant offset.
-
-
 
 `get_vehiclerouting_solution(instance, n, K, result)`
 

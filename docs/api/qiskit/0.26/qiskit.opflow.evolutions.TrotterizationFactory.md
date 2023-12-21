@@ -1,12 +1,8 @@
 # qiskit.opflow\.evolutions.TrotterizationFactory
 
-
-
 `TrotterizationFactory`
 
 A factory for conveniently creating TrotterizationBase instances.
-
-
 
 `__init__()`
 
@@ -18,8 +14,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | -------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
 | [`__init__`](#qiskit.opflow.evolutions.TrotterizationFactory.__init__ "qiskit.opflow.evolutions.TrotterizationFactory.__init__")()     | Initialize self.                                                  |
 | [`build`](#qiskit.opflow.evolutions.TrotterizationFactory.build "qiskit.opflow.evolutions.TrotterizationFactory.build")(\[mode, reps]) | A factory for conveniently creating TrotterizationBase instances. |
-
-
 
 `static build(mode='trotter', reps=1)`
 

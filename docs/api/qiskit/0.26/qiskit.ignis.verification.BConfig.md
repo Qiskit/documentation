@@ -1,12 +1,8 @@
 # qiskit.ignis.verification.BConfig
 
-
-
 `BConfig(backend, indicator=True)`
 
 This class is used to create a GHZ circuit with parallellized CNOT gates to increase fidelity
-
-
 
 `__init__(backend, indicator=True)`
 
@@ -26,8 +22,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`get_measurement_circ`](#qiskit.ignis.verification.BConfig.get_measurement_circ "qiskit.ignis.verification.BConfig.get_measurement_circ")(n, qregname, cregname) | Creates a measurement circuit that can toggle between measuring the control qubit or measuring all qubits.                                                                                                                                                                                                                         |
 | [`get_tier_dict`](#qiskit.ignis.verification.BConfig.get_tier_dict "qiskit.ignis.verification.BConfig.get_tier_dict")()                                           | Take the nodes of the BConfig to create a Tier Dictionary, where keys are the steps in the process, and the values are the connections following pattern of: \[controlled qubit, NOT qubit].                                                                                                                                       |
 
-
-
 `get_ghz_layout(n, transpiled=True, barriered=True)`
 
 Feeds the Tier Dict of the backend to create a basic qiskit GHZ circuit with no measurement; :type n: `int` :param n: number of qubits :type transpiled: `bool` :param transpiled: toggle on/off transpilation - useful for tomography :type barriered: `bool` :param barriered: yes/no whether to barrier each step of CNOT gates
@@ -39,8 +33,6 @@ Feeds the Tier Dict of the backend to create a basic qiskit GHZ circuit with no 
 **Returns**
 
 A GHZ Circuit and its initial GHZ layout
-
-
 
 `get_ghz_mqc(n, delta, full_measurement=True)`
 
@@ -60,8 +52,6 @@ This function creates an MQC circuit with n qubits, where the middle phase rotat
 
 The MQC circuit and the initial GHZ layout
 
-
-
 `get_ghz_mqc_para(n, full_measurement=True)`
 
 Get a parametrized MQC circuit. Remember that get\_counts() method accepts an index now, not a circuit
@@ -79,8 +69,6 @@ Get a parametrized MQC circuit. Remember that get\_counts() method accepts an in
 
 The MQC circuit, its delta parameter, and the initial GHZ layout
 
-
-
 `get_ghz_po(n, delta)`
 
 This function creates an Parity Oscillation circuit with n qubits, where the middle superposition rotation around the x and y axes is by delta
@@ -97,8 +85,6 @@ This function creates an Parity Oscillation circuit with n qubits, where the mid
 **Returns**
 
 The Parity Oscillation circuit and the initial GHZ layout
-
-
 
 `get_ghz_po_para(n)`
 
@@ -118,8 +104,6 @@ Get a parametrized PO circuit. Remember that get\_counts() method accepts an ind
 
 and the initial ghz layout
 
-
-
 `get_ghz_simple(n, full_measurement=True)`
 
 Get simple GHZ circuit with measurement
@@ -136,8 +120,6 @@ Get simple GHZ circuit with measurement
 **Returns**
 
 A GHZ Circuit, its measurement circle quantum register and the initial GHZ layout
-
-
 
 `get_measurement_circ(n, qregname, cregname, full_measurement=True)`
 
@@ -157,8 +139,6 @@ Creates a measurement circuit that can toggle between measuring the control qubi
 **Returns**
 
 The measurement circuit
-
-
 
 `get_tier_dict()`
 

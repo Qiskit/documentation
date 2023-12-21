@@ -1,7 +1,5 @@
 # qiskit.quantum\_info.DensityMatrix
 
-
-
 `DensityMatrix(data, dims=None)`
 
 DensityMatrix class
@@ -23,8 +21,6 @@ The `dims` kwarg can be None, an integer, or an iterable of integers.
 
 *   `Iterable` – the subsystem dimensions are the values in the list with the total number of subsystems given by the length of the list.
 *   `Int` or `None` – the leading dimension of the input matrix specifies the total dimension of the density matrix. If it is a power of two the state will be initialized as an N-qubit state. If it is not a power of two the state will have a single d-dimensional subsystem.
-
-
 
 `__init__(data, dims=None)`
 
@@ -87,43 +83,29 @@ The `dims` kwarg can be None, an integer, or an iterable of integers.
 | [`num_qubits`](#qiskit.quantum_info.DensityMatrix.num_qubits "qiskit.quantum_info.DensityMatrix.num_qubits") | Return the number of qubits if a N-qubit state or None otherwise. |
 | [`rtol`](#qiskit.quantum_info.DensityMatrix.rtol "qiskit.quantum_info.DensityMatrix.rtol")                   | Default relative tolerance parameter for float comparisons.       |
 
-
-
 `property atol`
 
 Default absolute tolerance parameter for float comparisons.
-
-
 
 `conjugate()`
 
 Return the conjugate of the density matrix.
 
-
-
 `copy()`
 
 Make a copy of current operator.
-
-
 
 `property data`
 
 Return data.
 
-
-
 `property dim`
 
 Return total state dimension.
 
-
-
 `dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
-
-
 
 `draw(output=None, **drawer_args)`
 
@@ -156,8 +138,6 @@ Return a visualization of the Statevector.
 
 **ValueError** – when an invalid output method is selected.
 
-
-
 `evolve(other, qargs=None)`
 
 Evolve a quantum state by an operator.
@@ -179,8 +159,6 @@ QuantumState
 
 **QiskitError** – if the operator dimension does not match the specified QuantumState subsystem dimensions.
 
-
-
 `expand(other)`
 
 Return the tensor product state other ⊗ self.
@@ -201,8 +179,6 @@ the tensor product state other ⊗ self.
 
 **QiskitError** – if other is not a quantum state.
 
-
-
 `expectation_value(oper, qargs=None)`
 
 Compute the expectation value of an operator.
@@ -219,8 +195,6 @@ the expectation value.
 **Return type**
 
 complex
-
-
 
 `classmethod from_instruction(instruction)`
 
@@ -243,8 +217,6 @@ the final density matrix.
 **Raises**
 
 **QiskitError** – if the instruction contains invalid instructions for density matrix simulation.
-
-
 
 `static from_int(i, dims)`
 
@@ -269,8 +241,6 @@ The `dims` kwarg can be an integer or an iterable of integers.
 
 *   `Iterable` – the subsystem dimensions are the values in the list with the total number of subsystems given by the length of the list.
 *   `Int` – the integer specifies the total dimension of the state. If it is a power of two the state will be initialized as an N-qubit state. If it is not a power of two the state will have a single d-dimensional subsystem.
-
-
 
 `classmethod from_label(label)`
 
@@ -301,13 +271,9 @@ The N-qubit basis state density matrix.
 
 **QiskitError** – if the label contains invalid characters, or the length of the label is larger than an explicitly specified num\_qubits.
 
-
-
 `is_valid(atol=None, rtol=None)`
 
 Return True if trace 1 and positive semidefinite.
-
-
 
 `measure(qargs=None)`
 
@@ -329,13 +295,9 @@ measurement outcome string label, and `state` is the collapsed post-measurement 
 
 tuple
 
-
-
 `property num_qubits`
 
 Return the number of qubits if a N-qubit state or None otherwise.
-
-
 
 `probabilities(qargs=None, decimals=None)`
 
@@ -406,8 +368,6 @@ probs: [0.5 0.  0.5 0. ]
 Swapped probs: [0.5 0.5 0.  0. ]
 ```
 
-
-
 `probabilities_dict(qargs=None, decimals=None)`
 
 Return the subsystem measurement probability dictionary.
@@ -429,13 +389,9 @@ The measurement probabilities in dict (ket) form.
 
 dict
 
-
-
 `purity()`
 
 Return the purity of the quantum state.
-
-
 
 `reset(qargs=None)`
 
@@ -457,8 +413,6 @@ the reset state.
 
 If all subsystems are reset this will return the ground state on all subsystems. If only a some subsystems are reset this function will perform evolution by the reset [`SuperOp`](qiskit.quantum_info.SuperOp#qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") of the reset subsystems.
 
-
-
 `reverse_qargs()`
 
 Return a DensityMatrix with reversed subsystem ordering.
@@ -473,13 +427,9 @@ the state with reversed subsystem order.
 
 [DensityMatrix](#qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")
 
-
-
 `property rtol`
 
 Default relative tolerance parameter for float comparisons.
-
-
 
 `sample_counts(shots, qargs=None)`
 
@@ -504,8 +454,6 @@ Additional Information:
 >
 > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.DensityMatrix.seed "qiskit.quantum_info.DensityMatrix.seed") method.
 
-
-
 `sample_memory(shots, qargs=None)`
 
 Sample a list of qubit measurement outcomes in the computational basis.
@@ -529,13 +477,9 @@ Additional Information:
 >
 > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.DensityMatrix.seed "qiskit.quantum_info.DensityMatrix.seed") method.
 
-
-
 `seed(value=None)`
 
 Set the seed for the quantum state RNG.
-
-
 
 `tensor(other)`
 
@@ -556,8 +500,6 @@ the tensor product operator self ⊗ other.
 **Raises**
 
 **QiskitError** – if other is not a quantum state.
-
-
 
 `to_dict(decimals=None)`
 
@@ -628,13 +570,9 @@ print(rho.to_dict())
 {'00|00': (0.5+0j), '91|91': (0.5+0j)}
 ```
 
-
-
 `to_operator()`
 
 Convert to Operator
-
-
 
 `to_statevector(atol=None, rtol=None)`
 
@@ -658,8 +596,6 @@ Corresponds to the eigenvector of the only non-zero eigenvalue.
 **Raises**
 
 **QiskitError** – if the state is not pure.
-
-
 
 `trace()`
 

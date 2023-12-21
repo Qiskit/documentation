@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.runtime.ProgramBackend
 
-
-
 `ProgramBackend(configuration, provider=None, **fields)`
 
 Base class for a program backend.
@@ -19,8 +17,6 @@ Initialize a backend class
 **Raises**
 
 **AttributeError** – if input field not a valid options
-
-
 
 `__init__(configuration, provider=None, **fields)`
 
@@ -56,8 +52,6 @@ Initialize a backend class
 | [`options`](#qiskit.providers.ibmq.runtime.ProgramBackend.options "qiskit.providers.ibmq.runtime.ProgramBackend.options") | Return the options for the backend |
 | `version`                                                                                                                 |                                    |
 
-
-
 `configuration()`
 
 Return the backend configuration.
@@ -69,8 +63,6 @@ the configuration for the backend.
 **Return type**
 
 [BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
-
-
 
 `name()`
 
@@ -84,15 +76,11 @@ the name of the backend.
 
 str
 
-
-
 `property options`
 
 Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.ibmq.runtime.ProgramBackend.run "qiskit.providers.ibmq.runtime.ProgramBackend.run") method.
-
-
 
 `properties()`
 
@@ -106,8 +94,6 @@ the configuration for the backend. If the backend does not support properties, i
 
 [BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
-
-
 `provider()`
 
 Return the backend Provider.
@@ -119,8 +105,6 @@ the Provider responsible for the backend.
 **Return type**
 
 [Provider](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")
-
-
 
 `abstract run(circuits, timeout=None, **run_config)`
 
@@ -148,8 +132,6 @@ The job to be executed.
 *   [**IBMQBackendApiProtocolError**](qiskit.providers.ibmq.IBMQBackendApiProtocolError#qiskit.providers.ibmq.IBMQBackendApiProtocolError "qiskit.providers.ibmq.IBMQBackendApiProtocolError") – If an unexpected value received from the server.
 *   [**IBMQBackendValueError**](qiskit.providers.ibmq.IBMQBackendValueError#qiskit.providers.ibmq.IBMQBackendValueError "qiskit.providers.ibmq.IBMQBackendValueError") – If an input parameter value is not valid.
 
-
-
 `set_options(**fields)`
 
 Set the options fields for the backend
@@ -163,8 +145,6 @@ This method is used to update the options of a backend. If you need to change an
 **Raises**
 
 **AttributeError** – If the field passed in is not part of the options
-
-
 
 `status()`
 

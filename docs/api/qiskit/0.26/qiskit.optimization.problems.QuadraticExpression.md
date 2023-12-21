@@ -1,7 +1,5 @@
 # qiskit.optimization.problems.QuadraticExpression
 
-
-
 `QuadraticExpression(quadratic_program, coefficients)`
 
 Representation of a quadratic expression by its coefficients.
@@ -14,8 +12,6 @@ The quadratic expression can be defined via an array, a list, a sparse matrix, o
 
 *   **quadratic\_program** (`Any`) – The parent QuadraticProgram.
 *   **coefficients** (`Union`\[`ndarray`, `spmatrix`, `List`\[`List`\[`float`]], `Dict`\[`Tuple`\[`Union`\[`int`, `str`], `Union`\[`int`, `str`]], `float`]]) – The (sparse) representation of the coefficients.
-
-
 
 `__init__(quadratic_program, coefficients)`
 
@@ -45,8 +41,6 @@ The quadratic expression can be defined via an array, a list, a sparse matrix, o
 | [`coefficients`](#qiskit.optimization.problems.QuadraticExpression.coefficients "qiskit.optimization.problems.QuadraticExpression.coefficients")                | Returns the coefficients of the quadratic expression. |
 | [`quadratic_program`](#qiskit.optimization.problems.QuadraticExpression.quadratic_program "qiskit.optimization.problems.QuadraticExpression.quadratic_program") | Returns the parent QuadraticProgram.                  |
 
-
-
 `property coefficients`
 
 Returns the coefficients of the quadratic expression.
@@ -58,8 +52,6 @@ Returns the coefficients of the quadratic expression.
 **Returns**
 
 The coefficients of the quadratic expression.
-
-
 
 `evaluate(x)`
 
@@ -77,8 +69,6 @@ Evaluate the quadratic expression for given variables: x \* Q \* x.
 
 The value of the quadratic expression given the variable values.
 
-
-
 `evaluate_gradient(x)`
 
 Evaluate the gradient of the quadratic expression for given variables.
@@ -95,8 +85,6 @@ Evaluate the gradient of the quadratic expression for given variables.
 
 The value of the gradient quadratic expression given the variable values.
 
-
-
 `property quadratic_program`
 
 Returns the parent QuadraticProgram.
@@ -108,8 +96,6 @@ Returns the parent QuadraticProgram.
 **Returns**
 
 The parent QuadraticProgram.
-
-
 
 `to_array(symmetric=False)`
 
@@ -126,8 +112,6 @@ Returns the coefficients of the quadratic expression as array.
 **Returns**
 
 An array with the coefficients corresponding to the quadratic expression.
-
-
 
 `to_dict(symmetric=False, use_name=False)`
 

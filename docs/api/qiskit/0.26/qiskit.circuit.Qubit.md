@@ -1,7 +1,5 @@
 # qiskit.circuit.Qubit
 
-
-
 `Qubit(register=None, index=None)`
 
 Implement a quantum bit.
@@ -16,8 +14,6 @@ Creates a qubit.
 **Raises**
 
 **CircuitError** – if the provided register is not a valid [`QuantumRegister`](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")
-
-
 
 `__init__(register=None, index=None)`
 
@@ -45,13 +41,9 @@ Creates a qubit.
 | [`index`](#qiskit.circuit.Qubit.index "qiskit.circuit.Qubit.index")          | Get bit’s index.    |
 | [`register`](#qiskit.circuit.Qubit.register "qiskit.circuit.Qubit.register") | Get bit’s register. |
 
-
-
 `property index`
 
 Get bit’s index.
-
-
 
 `property register`
 

@@ -1,7 +1,5 @@
 # qiskit.aqua.operators.legacy.commutator
 
-
-
 `commutator(op_a, op_b, op_c=None, sign=False, threshold=1e-12)`
 
 Compute commutator of op\_a and op\_b or the symmetric double commutator of op\_a, op\_b and op\_c.

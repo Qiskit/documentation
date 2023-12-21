@@ -1,7 +1,5 @@
 # qiskit.pulse.builder.align\_right
 
-
-
 `align_right()`
 
 Right alignment pulse scheduling context.

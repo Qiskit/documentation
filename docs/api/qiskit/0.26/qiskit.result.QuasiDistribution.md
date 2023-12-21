@@ -1,7 +1,5 @@
 # qiskit.result.QuasiDistribution
 
-
-
 `QuasiDistribution(data, shots=None)`
 
 A dict-like class for representing qasi-probabilities.
@@ -16,8 +14,6 @@ Builds a quasiprobability distribution object.
 
 *   **data** (*dict*) – Input quasiprobability data.
 *   **shots** (*int*) – Number of shots the distribution was derived from.
-
-
 
 `__init__(data, shots=None)`
 
@@ -46,35 +42,21 @@ Builds a quasiprobability distribution object.
 | [`update`](#qiskit.result.QuasiDistribution.update "qiskit.result.QuasiDistribution.update")(\[E, ]\*\*F)                                                                        | If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k] |
 | [`values`](#qiskit.result.QuasiDistribution.values "qiskit.result.QuasiDistribution.values")()                                                                                   |                                                                                                                                                                                                                               |
 
-
-
 `clear() → None. Remove all items from D.`
 
-
-
 `copy() → a shallow copy of D`
-
-
 
 `fromkeys(value=None, /)`
 
 Create a new dictionary with keys from iterable and values set to value.
 
-
-
 `get(key, default=None, /)`
 
 Return the value for key if key is in the dictionary, else default.
 
-
-
 `items() → a set-like object providing a view on D’s items`
 
-
-
 `keys() → a set-like object providing a view on D’s keys`
-
-
 
 `nearest_probability_distribution(return_distance=False)`
 
@@ -96,19 +78,13 @@ Nearest probability distribution. float: Euclidean (L2) distance of distribution
 
 Method from Smolin et al., Phys. Rev. Lett. 108, 070502 (2012).
 
-
-
 `pop(k[, d]) → v, remove specified key and return the corresponding value.`
 
 If key is not found, d is returned if given, otherwise KeyError is raised
 
-
-
 `popitem() → (k, v), remove and return some (key, value) pair as a`
 
 2-tuple; but raise KeyError if D is empty.
-
-
 
 `setdefault(key, default=None, /)`
 
@@ -116,12 +92,8 @@ Insert key with a value of default if key is not in the dictionary.
 
 Return the value for key if key is in the dictionary, else default.
 
-
-
 `update([E, ]**F) → None. Update D from dict/iterable E and F.`
 
 If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
-
-
 
 `values() → an object providing a view on D’s values`

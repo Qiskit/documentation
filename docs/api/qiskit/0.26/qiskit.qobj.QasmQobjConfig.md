@@ -1,7 +1,5 @@
 # qiskit.qobj.QasmQobjConfig
 
-
-
 `QasmQobjConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, meas_level=None, meas_return=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, **kwargs)`
 
 A configuration for a QASM Qobj.
@@ -23,8 +21,6 @@ Model for RunConfig.
 *   **calibrations** ([*QasmExperimentCalibrations*](qiskit.qobj.QasmExperimentCalibrations#qiskit.qobj.QasmExperimentCalibrations "qiskit.qobj.QasmExperimentCalibrations")) – Information required for Pulse gates.
 *   **rep\_delay** (*float*) – Delay between programs in sec. Only supported on certain backends (`backend.configuration().dynamic_reprate_enabled` ). Must be from the range supplied by the backend (`backend.configuration().rep_delay_range`). Default is `backend.configuration().default_rep_delay`.
 *   **kwargs** – Additional free form key value fields to add to the configuration.
-
-
 
 `__init__(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, meas_level=None, meas_return=None, memory_slots=None, n_qubits=None, pulse_library=None, calibrations=None, rep_delay=None, **kwargs)`
 
@@ -54,8 +50,6 @@ Model for RunConfig.
 | [`from_dict`](#qiskit.qobj.QasmQobjConfig.from_dict "qiskit.qobj.QasmQobjConfig.from_dict")(data)                   | Create a new QasmQobjConfig object from a dictionary.              |
 | [`to_dict`](#qiskit.qobj.QasmQobjConfig.to_dict "qiskit.qobj.QasmQobjConfig.to_dict")()                             | Return a dictionary format representation of the QASM Qobj config. |
 
-
-
 `classmethod from_dict(data)`
 
 Create a new QasmQobjConfig object from a dictionary.
@@ -71,8 +65,6 @@ The object from the input dictionary.
 **Return type**
 
 [QasmQobjConfig](#qiskit.qobj.QasmQobjConfig "qiskit.qobj.QasmQobjConfig")
-
-
 
 `to_dict()`
 

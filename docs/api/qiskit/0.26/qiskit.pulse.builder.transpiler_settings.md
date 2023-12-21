@@ -1,7 +1,5 @@
 # qiskit.pulse.builder.transpiler\_settings
 
-
-
 `transpiler_settings(**settings)`
 
 Set the currently active transpiler settings for this context.

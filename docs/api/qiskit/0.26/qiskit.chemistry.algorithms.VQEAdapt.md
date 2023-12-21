@@ -1,7 +1,5 @@
 # qiskit.chemistry.algorithms.VQEAdapt
 
-
-
 `VQEAdapt(operator, var_form_base, optimizer, initial_point=None, excitation_pool=None, threshold=1e-05, delta=1, max_iterations=None, max_evals_grouped=1, aux_operators=None, quantum_instance=None)`
 
 DEPRECATED. The Adaptive VQE algorithm.
@@ -26,8 +24,6 @@ See [https://arxiv.org/abs/1812.11173](https://arxiv.org/abs/1812.11173)
 
 *   **ValueError** – if var\_form\_base is not an instance of UCCSD.
 *   **See also** – qiskit/chemistry/components/variational\_forms/uccsd\_adapt.py
-
-
 
 `__init__(operator, var_form_base, optimizer, initial_point=None, excitation_pool=None, threshold=1e-05, delta=1, max_iterations=None, max_evals_grouped=1, aux_operators=None, quantum_instance=None)`
 
@@ -77,8 +73,6 @@ See [https://arxiv.org/abs/1812.11173](https://arxiv.org/abs/1812.11173)
 | [`random`](#qiskit.chemistry.algorithms.VQEAdapt.random "qiskit.chemistry.algorithms.VQEAdapt.random")                               | Return a numpy random.     |
 | [`var_form`](#qiskit.chemistry.algorithms.VQEAdapt.var_form "qiskit.chemistry.algorithms.VQEAdapt.var_form")                         | Returns variational form   |
 
-
-
 `property backend`
 
 Returns backend.
@@ -87,13 +81,9 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-
-
 `cleanup_parameterized_circuits()`
 
 set parameterized circuits to None
-
-
 
 `find_minimum(initial_point=None, var_form=None, cost_fn=None, optimizer=None, gradient_fn=None)`
 
@@ -119,37 +109,25 @@ dict
 
 **ValueError** – invalid input
 
-
-
 `get_optimal_circuit()`
 
 get optimal circuit
-
-
 
 `get_optimal_cost()`
 
 get optimal cost
 
-
-
 `get_optimal_vector()`
 
 get optimal vector
-
-
 
 `get_prob_vector_for_params(construct_circuit_fn, params_s, quantum_instance, construct_circuit_args=None)`
 
 Helper function to get probability vectors for a set of params
 
-
-
 `get_probabilities_for_counts(counts)`
 
 get probabilities for counts
-
-
 
 `property initial_point`
 
@@ -159,13 +137,9 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
-
-
 `property optimal_params`
 
 returns optimal parameters
-
-
 
 `property optimizer`
 
@@ -175,8 +149,6 @@ Returns optimizer
 
 `Optional`\[`Optimizer`]
 
-
-
 `property quantum_instance`
 
 Returns quantum instance.
@@ -185,13 +157,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 `property random`
 
 Return a numpy random.
-
-
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -214,8 +182,6 @@ dict
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
-
-
 `set_backend(backend, **kwargs)`
 
 Sets backend with configuration.
@@ -223,8 +189,6 @@ Sets backend with configuration.
 **Return type**
 
 `None`
-
-
 
 `property var_form`
 

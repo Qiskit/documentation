@@ -1,7 +1,5 @@
 # qiskit.providers.aer.extensions.SnapshotExpectationValue
 
-
-
 `SnapshotExpectationValue(label, op, single_shot=False, variance=False)`
 
 Snapshot instruction for supported methods of Qasm simulator.
@@ -22,8 +20,6 @@ Create an expectation value snapshot instruction.
 <Admonition title="Note" type="note">
   This instruction will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.SaveExpectationValue`](qiskit.providers.aer.library.SaveExpectationValue#qiskit.providers.aer.library.SaveExpectationValue "qiskit.providers.aer.library.SaveExpectationValue") and [`qiskit.providers.aer.library.SaveExpectationValueVariance`](qiskit.providers.aer.library.SaveExpectationValueVariance#qiskit.providers.aer.library.SaveExpectationValueVariance "qiskit.providers.aer.library.SaveExpectationValueVariance") instructions.
 </Admonition>
-
-
 
 `__init__(label, op, single_shot=False, variance=False)`
 
@@ -76,19 +72,13 @@ Create an expectation value snapshot instruction.
 | [`snapshot_type`](#qiskit.providers.aer.extensions.SnapshotExpectationValue.snapshot_type "qiskit.providers.aer.extensions.SnapshotExpectationValue.snapshot_type")    | Return snapshot type                                                          |
 | [`unit`](#qiskit.providers.aer.extensions.SnapshotExpectationValue.unit "qiskit.providers.aer.extensions.SnapshotExpectationValue.unit")                               | Get the time unit of duration.                                                |
 
-
-
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
-
-
 `assemble()`
 
 Assemble a QasmQobjInstruction for snapshot\_expectation\_value.
-
-
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -107,13 +97,9 @@ Validation of the arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-
-
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
-
-
 
 `copy(name=None)`
 
@@ -133,49 +119,33 @@ updated if it was provided
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 `static define_snapshot_register(circuit, label=None, qubits=None)`
 
 Defines qubits to snapshot for all snapshot methods
 
-
-
 `property definition`
 
 Return definition in terms of other basic gates.
-
-
 
 `property duration`
 
 Get the duration.
 
-
-
 `inverse()`
 
 Special case. Return self.
-
-
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
-
-
 `property label`
 
 Return snapshot label
-
-
 
 `mirror()`
 
@@ -191,21 +161,15 @@ reversed.
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `property params`
 
 return instruction params.
-
-
 
 `qasm()`
 
 Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-
 
 `repeat(n)`
 
@@ -227,8 +191,6 @@ Containing the definition.
 
 **CircuitError** – If n \< 1.
 
-
-
 `reverse_ops()`
 
 For a composite instruction, reverse the order of sub-instructions.
@@ -245,13 +207,9 @@ sub-instructions reversed.
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `property snapshot_type`
 
 Return snapshot type
-
-
 
 `soft_compare(other)`
 
@@ -269,13 +227,9 @@ are self and other equal up to parameter expressions.
 
 bool
 
-
-
 `property unit`
 
 Get the time unit of duration.
-
-
 
 `validate_parameter(parameter)`
 

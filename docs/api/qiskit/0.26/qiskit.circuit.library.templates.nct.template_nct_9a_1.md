@@ -1,7 +1,5 @@
 # qiskit.circuit.library.templates.nct.template\_nct\_9a\_1
 
-
-
 `template_nct_9a_1()`
 
 **Returns**

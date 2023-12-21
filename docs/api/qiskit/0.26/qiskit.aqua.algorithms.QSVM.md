@@ -1,7 +1,5 @@
 # qiskit.aqua.algorithms.QSVM
 
-
-
 `QSVM(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, lambda2=0.001, quantum_instance=None)`
 
 Quantum SVM algorithm.
@@ -27,8 +25,6 @@ See also [https://arxiv.org/abs/1804.11326](https://arxiv.org/abs/1804.11326)
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Multiclass extension not supplied when number of classes > 2
-
-
 
 `__init__(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, lambda2=0.001, quantum_instance=None)`
 
@@ -75,8 +71,6 @@ See also [https://arxiv.org/abs/1804.11326](https://arxiv.org/abs/1804.11326)
 | [`random`](#qiskit.aqua.algorithms.QSVM.random "qiskit.aqua.algorithms.QSVM.random")                               | Return a numpy random.    |
 | [`ret`](#qiskit.aqua.algorithms.QSVM.ret "qiskit.aqua.algorithms.QSVM.ret")                                        | returns result            |
 
-
-
 `property backend`
 
 Returns backend.
@@ -84,8 +78,6 @@ Returns backend.
 **Return type**
 
 `Union`\[`Backend`, `BaseBackend`]
-
-
 
 `construct_circuit(x1, x2, measurement=False)`
 
@@ -106,8 +98,6 @@ constructed circuit
 **Return type**
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-
 
 `construct_kernel_matrix(x1_vec, x2_vec=None, quantum_instance=None)`
 
@@ -135,8 +125,6 @@ numpy.ndarray
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Quantum instance is not present.
 
-
-
 `static get_kernel_matrix(quantum_instance, feature_map, x1_vec, x2_vec=None, enforce_psd=True)`
 
 Construct kernel matrix, if x2\_vec is None, self-innerproduct is conducted.
@@ -161,8 +149,6 @@ When using statevector\_simulator, we only build the circuits for Psi(x1)|0> rat
 
 numpy.ndarray
 
-
-
 `load_model(file_path)`
 
 Load a model from a file path.
@@ -170,8 +156,6 @@ Load a model from a file path.
 **Parameters**
 
 **file\_path** (*str*) – the path of the saved model.
-
-
 
 `predict(data, quantum_instance=None)`
 
@@ -194,8 +178,6 @@ numpy.ndarray
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Quantum instance is not present.
 
-
-
 `property quantum_instance`
 
 Returns quantum instance.
@@ -204,19 +186,13 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 `property random`
 
 Return a numpy random.
 
-
-
 `property ret`
 
 returns result
-
-
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -239,8 +215,6 @@ dict
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
-
-
 `save_model(file_path)`
 
 Save the model to a file path.
@@ -248,8 +222,6 @@ Save the model to a file path.
 **Parameters**
 
 **file\_path** (*str*) – a path to save the model.
-
-
 
 `set_backend(backend, **kwargs)`
 
@@ -259,8 +231,6 @@ Sets backend with configuration.
 
 `None`
 
-
-
 `setup_datapoint(datapoints)`
 
 Setup data points, if the data were there, they would be overwritten.
@@ -268,8 +238,6 @@ Setup data points, if the data were there, they would be overwritten.
 **Parameters**
 
 **datapoints** (*numpy.ndarray*) – prediction dataset.
-
-
 
 `setup_test_data(test_dataset)`
 
@@ -279,8 +247,6 @@ Setup test data, if the data were there, they would be overwritten.
 
 **test\_dataset** (*dict*) – test dataset.
 
-
-
 `setup_training_data(training_dataset)`
 
 Setup training data, if the data were there, they would be overwritten.
@@ -288,8 +254,6 @@ Setup training data, if the data were there, they would be overwritten.
 **Parameters**
 
 **training\_dataset** (*dict*) – training dataset.
-
-
 
 `test(data, labels, quantum_instance=None)`
 
@@ -312,8 +276,6 @@ float
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Quantum instance is not present.
-
-
 
 `train(data, labels, quantum_instance=None)`
 

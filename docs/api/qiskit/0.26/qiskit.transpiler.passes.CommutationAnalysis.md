@@ -1,7 +1,5 @@
 # qiskit.transpiler.passes.CommutationAnalysis
 
-
-
 `CommutationAnalysis(*args, **kwargs)`
 
 Analysis pass to find commutation relations between DAG nodes.
@@ -9,8 +7,6 @@ Analysis pass to find commutation relations between DAG nodes.
 Property\_set\[‘commutation\_set’] is a dictionary that describes the commutation relations on a given wire, all the gates on a wire are grouped into a set of gates that commute.
 
 TODO: the current pass determines commutativity through matrix multiplication. A rule-based analysis would be potentially faster, but more limited.
-
-
 
 `__init__()`
 
@@ -31,15 +27,11 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`is_analysis_pass`](#qiskit.transpiler.passes.CommutationAnalysis.is_analysis_pass "qiskit.transpiler.passes.CommutationAnalysis.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.CommutationAnalysis.is_transformation_pass "qiskit.transpiler.passes.CommutationAnalysis.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-
-
 `property is_analysis_pass`
 
 Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-
 
 `property is_transformation_pass`
 
@@ -47,13 +39,9 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-
-
 `name()`
 
 Return the name of the pass.
-
-
 
 `run(dag)`
 

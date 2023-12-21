@@ -1,14 +1,10 @@
 # qiskit.algorithms.MinimumEigensolver
 
-
-
 `MinimumEigensolver`
 
 The Minimum Eigensolver Interface.
 
 Algorithms that can compute a minimum eigenvalue for an operator may implement this interface to allow different algorithms to be used interchangeably.
-
-
 
 `__init__()`
 
@@ -21,8 +17,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.algorithms.MinimumEigensolver.__init__ "qiskit.algorithms.MinimumEigensolver.__init__")()                                                                     | Initialize self.                                                             |
 | [`compute_minimum_eigenvalue`](#qiskit.algorithms.MinimumEigensolver.compute_minimum_eigenvalue "qiskit.algorithms.MinimumEigensolver.compute_minimum_eigenvalue")(operator\[, …]) | Computes minimum eigenvalue.                                                 |
 | [`supports_aux_operators`](#qiskit.algorithms.MinimumEigensolver.supports_aux_operators "qiskit.algorithms.MinimumEigensolver.supports_aux_operators")()                           | Whether computing the expectation value of auxiliary operators is supported. |
-
-
 
 `abstract compute_minimum_eigenvalue(operator, aux_operators=None)`
 
@@ -40,8 +34,6 @@ Computes minimum eigenvalue. Operator and aux\_operators can be supplied here an
 **Returns**
 
 MinimumEigensolverResult
-
-
 
 `classmethod supports_aux_operators()`
 

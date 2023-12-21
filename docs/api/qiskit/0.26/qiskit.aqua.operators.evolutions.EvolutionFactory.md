@@ -1,12 +1,8 @@
 # qiskit.aqua.operators.evolutions.EvolutionFactory
 
-
-
 `EvolutionFactory`
 
 A factory class for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
-
-
 
 `__init__()`
 
@@ -18,8 +14,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | ------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------- |
 | [`__init__`](#qiskit.aqua.operators.evolutions.EvolutionFactory.__init__ "qiskit.aqua.operators.evolutions.EvolutionFactory.__init__")()   | Initialize self.                                                                                                     |
 | [`build`](#qiskit.aqua.operators.evolutions.EvolutionFactory.build "qiskit.aqua.operators.evolutions.EvolutionFactory.build")(\[operator]) | A factory method for convenient automatic selection of an Evolution algorithm based on the Operator to be converted. |
-
-
 
 `static build(operator=None)`
 

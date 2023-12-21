@@ -1,14 +1,10 @@
 # qiskit.providers.ibmq.runtime.UserMessenger
 
-
-
 `UserMessenger`
 
 Base class for handling communication with program users.
 
 This class can be used when writing a new Qiskit Runtime program.
-
-
 
 `__init__()`
 
@@ -20,8 +16,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------- |
 | [`__init__`](#qiskit.providers.ibmq.runtime.UserMessenger.__init__ "qiskit.providers.ibmq.runtime.UserMessenger.__init__")()                        | Initialize self. |
 | [`publish`](#qiskit.providers.ibmq.runtime.UserMessenger.publish "qiskit.providers.ibmq.runtime.UserMessenger.publish")(message\[, encoder, final]) | Publish message. |
-
-
 
 `publish(message, encoder=<class 'qiskit.providers.ibmq.runtime.utils.RuntimeEncoder'>, final=False)`
 

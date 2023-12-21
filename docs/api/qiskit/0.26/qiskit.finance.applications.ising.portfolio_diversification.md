@@ -12,8 +12,6 @@ portfolio diversification
 | [`get_portfoliodiversification_solution`](#qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_solution "qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_solution")(rho, …) | Tries to obtain a feasible solution (in vector form) of an instance of portfolio diversification from the results dictionary. |
 | [`get_portfoliodiversification_value`](#qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_value "qiskit.finance.applications.ising.portfolio_diversification.get_portfoliodiversification_value")(rho, n, …)       | Evaluates an objective function of an instance of portfolio diversification and its solution (in vector form).                |
 
-
-
 `get_operator(rho, n, q)`
 
 Converts an instance of portfolio optimization into a list of Paulis.
@@ -31,8 +29,6 @@ Converts an instance of portfolio optimization into a list of Paulis.
 **Returns**
 
 operator for the Hamiltonian
-
-
 
 `get_portfoliodiversification_solution(rho, n, q, result)`
 
@@ -52,8 +48,6 @@ Tries to obtain a feasible solution (in vector form) of an instance of portfolio
 **Returns**
 
 a vector describing the solution.
-
-
 
 `get_portfoliodiversification_value(rho, n, q, x_state)`
 

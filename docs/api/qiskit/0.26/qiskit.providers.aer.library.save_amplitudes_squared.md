@@ -1,7 +1,5 @@
 # qiskit.providers.aer.library.save\_amplitudes\_squared
 
-
-
 `save_amplitudes_squared(self, params, label='amplitudes_squared', unnormalized=False, pershot=False, conditional=False)`
 
 Save squared statevector amplitudes (probabilities).

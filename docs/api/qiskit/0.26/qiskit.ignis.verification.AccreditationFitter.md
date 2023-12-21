@@ -1,14 +1,10 @@
 # qiskit.ignis.verification.AccreditationFitter
 
-
-
 `AccreditationFitter`
 
 Class for fitters for accreditation
 
 Implementation follows the methods from Samuele Ferracin, Theodoros Kapourniotis and Animesh Datta New Journal of Physics, Volume 21, November 2019 [https://iopscience.iop.org/article/10.1088/1367-2630/ab4fd6](https://iopscience.iop.org/article/10.1088/1367-2630/ab4fd6)
-
-
 
 `__init__()`
 
@@ -35,8 +31,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | `num_traps`  |   |
 | `outputs`    |   |
 
-
-
 `bound_variation_distance(theta)`
 
 This function computes the bound on variation distance based and the confidence
@@ -44,8 +38,6 @@ This function computes the bound on variation distance based and the confidence
 **Parameters**
 
 **theta** (*float*) – number between 0 and 1
-
-
 
 `single_protocol_run(results, postp_list, v_zero)`
 

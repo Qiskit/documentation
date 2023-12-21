@@ -1,7 +1,5 @@
 # qiskit.visualization.plot\_gate\_map
 
-
-
 `plot_gate_map(backend, figsize=None, plot_directed=False, label_qubits=True, qubit_size=24, line_width=4, font_size=12, qubit_color=None, qubit_labels=None, line_color=None, font_color='w', ax=None)`
 
 Plots the gate map of a device.

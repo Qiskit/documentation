@@ -1,7 +1,5 @@
 # qiskit.chemistry.algorithms.pes\_samplers.SieveExtrapolator
 
-
-
 `SieveExtrapolator(extrapolator=None, window=2, filter_before=True, filter_after=True)`
 
 A wrapper extrapolator which clusters the parameter values - either before extrapolation, after, or both - into two large and small clusters, and sets the small clusters’ parameters to zero.
@@ -14,8 +12,6 @@ Constructor.
 *   **window** (`int`) – Number of previous points to use for extrapolation.
 *   **filter\_before** (`bool`) – Keyword to perform clustering before extrapolation.
 *   **filter\_after** (`bool`) – Keyword to perform clustering after extrapolation.
-
-
 
 `__init__(extrapolator=None, window=2, filter_before=True, filter_after=True)`
 
@@ -36,8 +32,6 @@ Constructor.
 | [`extrapolate`](#qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.extrapolate "qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.extrapolate")(points, param\_dict) | Extrapolate at specified point of interest given a set of variational parameters. |
 | [`factory`](#qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.factory "qiskit.chemistry.algorithms.pes_samplers.SieveExtrapolator.factory")(mode, \*\*kwargs)                | Factory method for constructing extrapolators.                                    |
 
-
-
 `extrapolate(points, param_dict)`
 
 Extrapolate at specified point of interest given a set of variational parameters. Based on the specified window, a subset of the data points will be used for extrapolation. A default window of 2 points is used, while a value of zero indicates that all previous points will be used for extrapolation. This method finds a cutoff distance based on the maximum average distance or ‘gap’ between the average values of the variational parameters. This cutoff distance is used as a criteria to divide the parameters into two clusters by setting all parameters that are below the cutoff distance to zero.
@@ -54,8 +48,6 @@ Extrapolate at specified point of interest given a set of variational parameters
 **Returns**
 
 Dictionary of variational parameters for extrapolated point(s).
-
-
 
 `static factory(mode, **kwargs)`
 

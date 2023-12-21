@@ -1,7 +1,5 @@
 # qiskit.quantum\_info.PTM
 
-
-
 `PTM(data, input_dims=None, output_dims=None)`
 
 Pauli Transfer Matrix (PTM) representation of a Quantum Channel.
@@ -43,8 +41,6 @@ Initialize a PTM quantum channel operator.
 **Additional Information:**
 
 If the input or output dimensions are None, they will be automatically determined from the input data. The PTM representation is only valid for N-qubit channels.
-
-
 
 `__init__(data, input_dims=None, output_dims=None)`
 
@@ -99,8 +95,6 @@ If the input or output dimensions are None, they will be automatically determine
 | [`qargs`](#qiskit.quantum_info.PTM.qargs "qiskit.quantum_info.PTM.qargs")                | Return the qargs for the operator.                                   |
 | [`rtol`](#qiskit.quantum_info.PTM.rtol "qiskit.quantum_info.PTM.rtol")                   | Default relative tolerance parameter for float comparisons.          |
 
-
-
 `adjoint()`
 
 Return the adjoint quantum channel.
@@ -109,13 +103,9 @@ Return the adjoint quantum channel.
   This is equivalent to the matrix Hermitian conjugate in the [`SuperOp`](qiskit.quantum_info.SuperOp#qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{E}$, the SuperOp of the adjoint channel $\mathcal{{E}}^\dagger$ is $S_{\mathcal{E}^\dagger} = S_{\mathcal{E}}^\dagger$.
 </Admonition>
 
-
-
 `property atol`
 
 Default absolute tolerance parameter for float comparisons.
-
-
 
 `compose(other, qargs=None, front=False)`
 
@@ -145,8 +135,6 @@ The composed PTM.
   Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](#qiskit.quantum_info.PTM.dot "qiskit.quantum_info.PTM.dot") method `A.dot(B) == A.compose(B, front=True)`.
 </Admonition>
 
-
-
 `conjugate()`
 
 Return the conjugate quantum channel.
@@ -155,25 +143,17 @@ Return the conjugate quantum channel.
   This is equivalent to the matrix complex conjugate in the [`SuperOp`](qiskit.quantum_info.SuperOp#qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{E}$, the SuperOp of the conjugate channel $\overline{{\mathcal{{E}}}}$ is $S_{\overline{\mathcal{E}^\dagger}} = \overline{S_{\mathcal{E}}}$.
 </Admonition>
 
-
-
 `copy()`
 
 Make a deep copy of current operator.
-
-
 
 `property data`
 
 Return data.
 
-
-
 `property dim`
 
 Return tuple (input\_shape, output\_shape).
-
-
 
 `dot(other, qargs=None)`
 
@@ -191,8 +171,6 @@ The right matrix multiplied Operator.
 **Return type**
 
 [Operator](qiskit.quantum_info.Operator#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
-
-
 
 `expand(other)`
 
@@ -212,49 +190,33 @@ is the current PTM, and $b$ is the other PTM.
 
 [PTM](#qiskit.quantum_info.PTM "qiskit.quantum_info.PTM")
 
-
-
 `input_dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
-
-
 
 `is_cp(atol=None, rtol=None)`
 
 Test if Choi-matrix is completely-positive (CP)
 
-
-
 `is_cptp(atol=None, rtol=None)`
 
 Return True if completely-positive trace-preserving (CPTP).
-
-
 
 `is_tp(atol=None, rtol=None)`
 
 Test if a channel is trace-preserving (TP)
 
-
-
 `is_unitary(atol=None, rtol=None)`
 
 Return True if QuantumChannel is a unitary channel.
-
-
 
 `property num_qubits`
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-
-
 `output_dims(qargs=None)`
 
 Return tuple of output dimension for specified subsystems.
-
-
 
 `power(n)`
 
@@ -280,13 +242,9 @@ the channel $\mathcal{{E}} ^n$.
   For non-positive or non-integer exponents the power is defined as the matrix power of the [`SuperOp`](qiskit.quantum_info.SuperOp#qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") representation ie. for a channel $\mathcal{{E}}$, the SuperOp of the powered channel $\mathcal{{E}}^\n$ is $S_{{\mathcal{{E}}^n}} = S_{{\mathcal{{E}}}}^n$.
 </Admonition>
 
-
-
 `property qargs`
 
 Return the qargs for the operator.
-
-
 
 `reshape(input_dims=None, output_dims=None, num_qubits=None)`
 
@@ -310,13 +268,9 @@ BaseOperator
 
 **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
 
-
-
 `property rtol`
 
 Default relative tolerance parameter for float comparisons.
-
-
 
 `tensor(other)`
 
@@ -340,8 +294,6 @@ is the current PTM, and $b$ is the other PTM.
   The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
 </Admonition>
 
-
-
 `to_instruction()`
 
 Convert to a Kraus or UnitaryGate circuit instruction.
@@ -360,13 +312,9 @@ A kraus instruction for the channel.
 
 **QiskitError** – if input data is not an N-qubit CPTP quantum channel.
 
-
-
 `to_operator()`
 
 Try to convert channel to a unitary representation Operator.
-
-
 
 `transpose()`
 

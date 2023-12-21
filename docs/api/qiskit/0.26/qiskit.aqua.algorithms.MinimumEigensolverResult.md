@@ -1,12 +1,8 @@
 # qiskit.aqua.algorithms.MinimumEigensolverResult
 
-
-
 `MinimumEigensolverResult(a_dict=None)`
 
 Minimum Eigensolver Result.
-
-
 
 `__init__(a_dict=None)`
 
@@ -39,8 +35,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`eigenstate`](#qiskit.aqua.algorithms.MinimumEigensolverResult.eigenstate "qiskit.aqua.algorithms.MinimumEigensolverResult.eigenstate")                                           | return eigen state               |
 | [`eigenvalue`](#qiskit.aqua.algorithms.MinimumEigensolverResult.eigenvalue "qiskit.aqua.algorithms.MinimumEigensolverResult.eigenvalue")                                           | returns eigen value              |
 
-
-
 `property aux_operator_eigenvalues`
 
 return aux operator eigen values
@@ -49,15 +43,11 @@ return aux operator eigen values
 
 `Optional`\[`ndarray`]
 
-
-
 `clear()`
 
 **Return type**
 
 `None`
-
-
 
 `combine(result)`
 
@@ -71,8 +61,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-
-
 `property eigenstate`
 
 return eigen state
@@ -80,8 +68,6 @@ return eigen state
 **Return type**
 
 `Optional`\[`ndarray`]
-
-
 
 `property eigenvalue`
 
@@ -91,8 +77,6 @@ returns eigen value
 
 `Optional`\[`complex`]
 
-
-
 `static from_dict(a_dict)`
 
 create new object from a dictionary
@@ -101,19 +85,11 @@ create new object from a dictionary
 
 `MinimumEigensolverResult`
 
-
-
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
-
-
 
 `items() → a set-like object providing a view on D’s items`
 
-
-
 `keys() → a set-like object providing a view on D’s keys`
-
-
 
 `pop(key, default=None)`
 
@@ -123,8 +99,6 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 
 `object`
 
-
-
 `popitem()`
 
 as a 2-tuple; but raise KeyError if D is empty.
@@ -133,11 +107,7 @@ as a 2-tuple; but raise KeyError if D is empty.
 
 `Tuple`\[`object`, `object`]
 
-
-
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
-
-
 
 `update(*args, **kwargs)`
 
@@ -146,7 +116,5 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 **Return type**
 
 `None`
-
-
 
 `values() → an object providing a view on D’s values`

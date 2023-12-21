@@ -1,7 +1,5 @@
 # qiskit.aqua.utils.random\_h2\_body
 
-
-
 `random_h2_body(N, M)`
 
 Generate a random two body integrals.

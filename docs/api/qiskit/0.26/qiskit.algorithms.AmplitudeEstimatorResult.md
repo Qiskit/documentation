@@ -1,12 +1,8 @@
 # qiskit.algorithms.AmplitudeEstimatorResult
 
-
-
 `AmplitudeEstimatorResult`
 
 The results object for amplitude estimation algorithms.
-
-
 
 `__init__()`
 
@@ -32,8 +28,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`post_processing`](#qiskit.algorithms.AmplitudeEstimatorResult.post_processing "qiskit.algorithms.AmplitudeEstimatorResult.post_processing")                                           | Return a handle to the post processing function.                                    |
 | [`shots`](#qiskit.algorithms.AmplitudeEstimatorResult.shots "qiskit.algorithms.AmplitudeEstimatorResult.shots")                                                                         | Return the number of shots used.                                                    |
 
-
-
 `property circuit_results`
 
 Return the circuit results. Can be a statevector or counts dictionary.
@@ -41,8 +35,6 @@ Return the circuit results. Can be a statevector or counts dictionary.
 **Return type**
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
-
-
 
 `combine(result)`
 
@@ -56,8 +48,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-
-
 `property confidence_interval`
 
 Return the confidence interval for the amplitude (95% interval by default).
@@ -65,8 +55,6 @@ Return the confidence interval for the amplitude (95% interval by default).
 **Return type**
 
 `Tuple`\[`float`, `float`]
-
-
 
 `property confidence_interval_processed`
 
@@ -76,8 +64,6 @@ Return the post-processed confidence interval (95% interval by default).
 
 `Tuple`\[`float`, `float`]
 
-
-
 `property estimation`
 
 Return the estimation for the amplitude in $[0, 1]$.
@@ -85,8 +71,6 @@ Return the estimation for the amplitude in $[0, 1]$.
 **Return type**
 
 `float`
-
-
 
 `property estimation_processed`
 
@@ -96,8 +80,6 @@ Return the estimation for the amplitude after the post-processing has been appli
 
 `float`
 
-
-
 `property num_oracle_queries`
 
 Return the number of Grover oracle queries.
@@ -106,8 +88,6 @@ Return the number of Grover oracle queries.
 
 `int`
 
-
-
 `property post_processing`
 
 Return a handle to the post processing function.
@@ -115,8 +95,6 @@ Return a handle to the post processing function.
 **Return type**
 
 `Callable`\[\[`float`], `float`]
-
-
 
 `property shots`
 

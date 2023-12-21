@@ -1,7 +1,5 @@
 # qiskit.qobj.PulseQobjExperiment
 
-
-
 `PulseQobjExperiment(instructions, config=None, header=None)`
 
 A Pulse Qobj Experiment.
@@ -15,8 +13,6 @@ Instantiate a PulseQobjExperiment.
 *   **config** ([*PulseQobjExperimentConfig*](qiskit.qobj.PulseQobjExperimentConfig#qiskit.qobj.PulseQobjExperimentConfig "qiskit.qobj.PulseQobjExperimentConfig")) – A config object for the experiment
 *   **header** (*PulseQobjExperimentHeader*) – A header object for the experiment
 *   **instructions** (*list*) – A list of [`PulseQobjInstruction`](qiskit.qobj.PulseQobjInstruction#qiskit.qobj.PulseQobjInstruction "qiskit.qobj.PulseQobjInstruction") objects
-
-
 
 `__init__(instructions, config=None, header=None)`
 
@@ -36,8 +32,6 @@ Instantiate a PulseQobjExperiment.
 | [`from_dict`](#qiskit.qobj.PulseQobjExperiment.from_dict "qiskit.qobj.PulseQobjExperiment.from_dict")(data)                         | Create a new PulseQobjExperiment object from a dictionary.   |
 | [`to_dict`](#qiskit.qobj.PulseQobjExperiment.to_dict "qiskit.qobj.PulseQobjExperiment.to_dict")()                                   | Return a dictionary format representation of the Experiment. |
 
-
-
 `classmethod from_dict(data)`
 
 Create a new PulseQobjExperiment object from a dictionary.
@@ -53,8 +47,6 @@ The object from the input dictionary.
 **Return type**
 
 [PulseQobjExperiment](#qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment")
-
-
 
 `to_dict()`
 

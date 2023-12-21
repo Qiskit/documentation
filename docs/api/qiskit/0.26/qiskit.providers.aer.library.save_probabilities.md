@@ -1,7 +1,5 @@
 # qiskit.providers.aer.library.save\_probabilities
 
-
-
 `save_probabilities(self, qubits=None, label='probabilities', unnormalized=False, pershot=False, conditional=False)`
 
 Save measurement outcome probabilities vector.

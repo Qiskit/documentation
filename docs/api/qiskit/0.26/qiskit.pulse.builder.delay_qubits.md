@@ -1,7 +1,5 @@
 # qiskit.pulse.builder.delay\_qubits
 
-
-
 `delay_qubits(duration, *qubits)`
 
 Insert delays on all of the `channels.Channel`s that correspond to the input `qubits` at the same time.

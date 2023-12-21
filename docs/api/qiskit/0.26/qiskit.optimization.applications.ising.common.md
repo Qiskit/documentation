@@ -15,8 +15,6 @@ common module
 | [`read_numbers_from_file`](#qiskit.optimization.applications.ising.common.read_numbers_from_file "qiskit.optimization.applications.ising.common.read_numbers_from_file")(filename)   | Read numbers from a file                                    |
 | [`sample_most_likely`](#qiskit.optimization.applications.ising.common.sample_most_likely "qiskit.optimization.applications.ising.common.sample_most_likely")(state\_vector)          | Compute the most likely binary string from state vector.    |
 
-
-
 `get_gset_result(x)`
 
 Get graph solution in Gset format from binary string.
@@ -33,8 +31,6 @@ graph solution in Gset format.
 
 Dict\[int, int]
 
-
-
 `parse_gset_format(filename)`
 
 Read graph in Gset format from file.
@@ -50,8 +46,6 @@ adjacency matrix as a 2D numpy array.
 **Return type**
 
 numpy.ndarray
-
-
 
 `random_graph(n, weight_range=10, edge_prob=0.3, negative_weight=True, savefile=None, seed=None)`
 
@@ -74,8 +68,6 @@ adjacency matrix (with weights).
 
 numpy.ndarray
 
-
-
 `random_number_list(n, weight_range=100, savefile=None, seed=None)`
 
 Generate a set of positive integers within the given range.
@@ -95,8 +87,6 @@ the list of integer numbers.
 
 numpy.ndarray
 
-
-
 `read_numbers_from_file(filename)`
 
 Read numbers from a file
@@ -112,8 +102,6 @@ list of numbers as a numpy.ndarray.
 **Return type**
 
 numpy.ndarray
-
-
 
 `sample_most_likely(state_vector)`
 

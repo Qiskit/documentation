@@ -1,7 +1,5 @@
 # qiskit.circuit.library.CHGate
 
-
-
 `CHGate(label=None, ctrl_state=None)`
 
 Controlled-Hadamard gate.
@@ -55,8 +53,6 @@ $$
 
 Create new CH gate.
 
-
-
 `__init__(label=None, ctrl_state=None)`
 
 Create new CH gate.
@@ -97,13 +93,9 @@ Create new CH gate.
 | [`params`](#qiskit.circuit.library.CHGate.params "qiskit.circuit.library.CHGate.params")                            | Get parameters from base\_gate.                                               |
 | [`unit`](#qiskit.circuit.library.CHGate.unit "qiskit.circuit.library.CHGate.unit")                                  | Get the time unit of duration.                                                |
 
-
-
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
-
-
 
 `assemble()`
 
@@ -112,8 +104,6 @@ Assemble a QasmQobjInstruction
 **Return type**
 
 `Instruction`
-
-
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -166,13 +156,9 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
-
-
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
-
-
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
@@ -196,8 +182,6 @@ Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 anci
 
 **QiskitError** – unrecognized mode or invalid ctrl\_state
 
-
-
 `copy(name=None)`
 
 Copy of the instruction.
@@ -216,8 +200,6 @@ updated if it was provided
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `property ctrl_state`
 
 Return the control state of the gate as a decimal integer.
@@ -226,13 +208,9 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
-
-
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 `property definition`
 
@@ -242,25 +220,17 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
-
-
 `property duration`
 
 Get the duration.
-
-
 
 `inverse()`
 
 Return inverted CH gate (itself).
 
-
-
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
-
-
 
 `property label`
 
@@ -269,8 +239,6 @@ Return gate label
 **Return type**
 
 `str`
-
-
 
 `mirror()`
 
@@ -286,8 +254,6 @@ reversed.
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `property name`
 
 Get name of gate. If the gate has open controls the gate name will become:
@@ -300,8 +266,6 @@ where \<original\_name> is the gate name for the default case of closed control 
 
 `str`
 
-
-
 `property num_ctrl_qubits`
 
 Get number of control qubits.
@@ -313,8 +277,6 @@ The number of control qubits for the gate.
 **Return type**
 
 int
-
-
 
 `property params`
 
@@ -331,8 +293,6 @@ list
 **Raises**
 
 **CircuitError** – Controlled gate does not define a base gate
-
-
 
 `power(exponent)`
 
@@ -354,15 +314,11 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **CircuitError** – If Gate is not unitary
 
-
-
 `qasm()`
 
 Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-
 
 `repeat(n)`
 
@@ -384,8 +340,6 @@ Containing the definition.
 
 **CircuitError** – If n \< 1.
 
-
-
 `reverse_ops()`
 
 For a composite instruction, reverse the order of sub-instructions.
@@ -401,8 +355,6 @@ sub-instructions reversed.
 **Return type**
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-
 
 `soft_compare(other)`
 
@@ -420,8 +372,6 @@ are self and other equal up to parameter expressions.
 
 bool
 
-
-
 `to_matrix()`
 
 Return a Numpy.array for the gate unitary matrix.
@@ -438,13 +388,9 @@ np.ndarray
 
 **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
 
-
-
 `property unit`
 
 Get the time unit of duration.
-
-
 
 `validate_parameter(parameter)`
 

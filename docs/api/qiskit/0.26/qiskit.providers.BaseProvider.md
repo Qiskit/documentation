@@ -1,12 +1,8 @@
 # qiskit.providers.BaseProvider
 
-
-
 `BaseProvider(*args, **kwargs)`
 
 Base class for a Backend Provider.
-
-
 
 `__init__(*args, **kwargs)`
 
@@ -19,8 +15,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.providers.BaseProvider.__init__ "qiskit.providers.BaseProvider.__init__")(\*args, \*\*kwargs) | Initialize self.                                            |
 | [`backends`](#qiskit.providers.BaseProvider.backends "qiskit.providers.BaseProvider.backends")(\[name])            | Return a list of backends matching the specified filtering. |
 | [`get_backend`](#qiskit.providers.BaseProvider.get_backend "qiskit.providers.BaseProvider.get_backend")(\[name])   | Return a single backend matching the specified filtering.   |
-
-
 
 `abstract backends(name=None, **kwargs)`
 
@@ -40,8 +34,6 @@ criteria.
 **Return type**
 
 list\[[BaseBackend](qiskit.providers.BaseBackend#qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")]
-
-
 
 `get_backend(name=None, **kwargs)`
 

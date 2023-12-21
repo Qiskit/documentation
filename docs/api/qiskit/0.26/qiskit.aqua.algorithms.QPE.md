@@ -1,7 +1,5 @@
 # qiskit.aqua.algorithms.QPE
 
-
-
 `QPE(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, shallow_circuit_concat=False, quantum_instance=None)`
 
 The Quantum Phase Estimation algorithm.
@@ -19,8 +17,6 @@ QPE (also sometimes abbreviated as PEA, for Phase Estimation Algorithm), has two
 *   **expansion\_order** (`int`) – The suzuki expansion order, has a min. value of 1.
 *   **shallow\_circuit\_concat** (`bool`) – Set True to use shallow (cheap) mode for circuit concatenation of evolution slices. By default this is False. See `qiskit.aqua.operators.common.evolution_instruction()` for more information.
 *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
-
-
 
 `__init__(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, shallow_circuit_concat=False, quantum_instance=None)`
 
@@ -57,8 +53,6 @@ QPE (also sometimes abbreviated as PEA, for Phase Estimation Algorithm), has two
 | [`quantum_instance`](#qiskit.aqua.algorithms.QPE.quantum_instance "qiskit.aqua.algorithms.QPE.quantum_instance") | Returns quantum instance. |
 | [`random`](#qiskit.aqua.algorithms.QPE.random "qiskit.aqua.algorithms.QPE.random")                               | Return a numpy random.    |
 
-
-
 `property aux_operators`
 
 Returns aux operators
@@ -67,8 +61,6 @@ Returns aux operators
 
 `Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`]]]
 
-
-
 `property backend`
 
 Returns backend.
@@ -76,8 +68,6 @@ Returns backend.
 **Return type**
 
 `Union`\[`Backend`, `BaseBackend`]
-
-
 
 `compute_minimum_eigenvalue(operator=None, aux_operators=None)`
 
@@ -96,8 +86,6 @@ Computes minimum eigenvalue. Operator and aux\_operators can be supplied here an
 
 MinimumEigensolverResult
 
-
-
 `construct_circuit(measurement=False)`
 
 Construct circuit.
@@ -114,8 +102,6 @@ quantum circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-
-
 `property operator`
 
 Returns operator
@@ -123,8 +109,6 @@ Returns operator
 **Return type**
 
 `Optional`\[`LegacyBaseOperator`]
-
-
 
 `property quantum_instance`
 
@@ -134,13 +118,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 `property random`
 
 Return a numpy random.
-
-
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -163,8 +143,6 @@ dict
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
-
-
 `set_backend(backend, **kwargs)`
 
 Sets backend with configuration.
@@ -172,8 +150,6 @@ Sets backend with configuration.
 **Return type**
 
 `None`
-
-
 
 `classmethod supports_aux_operators()`
 

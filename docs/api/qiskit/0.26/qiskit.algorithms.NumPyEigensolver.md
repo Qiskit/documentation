@@ -1,7 +1,5 @@
 # qiskit.algorithms.NumPyEigensolver
 
-
-
 `NumPyEigensolver(k=1, filter_criterion=None)`
 
 The NumPy Eigensolver algorithm.
@@ -16,8 +14,6 @@ NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued s
 
 *   **k** (`int`) – How many eigenvalues are to be computed, has a min. value of 1.
 *   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates, only feasible eigenstates are returned in the results. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to keep this value in the final returned result or not. If the number of elements that satisfies the criterion is smaller than k then the returned list has fewer elements and can even be empty.
-
-
 
 `__init__(k=1, filter_criterion=None)`
 
@@ -41,8 +37,6 @@ NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued s
 | [`filter_criterion`](#qiskit.algorithms.NumPyEigensolver.filter_criterion "qiskit.algorithms.NumPyEigensolver.filter_criterion") | returns the filter criterion if set         |
 | [`k`](#qiskit.algorithms.NumPyEigensolver.k "qiskit.algorithms.NumPyEigensolver.k")                                              | returns k (number of eigenvalues requested) |
 
-
-
 `compute_eigenvalues(operator, aux_operators=None)`
 
 Computes eigenvalues. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
@@ -60,8 +54,6 @@ Computes eigenvalues. Operator and aux\_operators can be supplied here and if no
 
 EigensolverResult
 
-
-
 `property filter_criterion`
 
 returns the filter criterion if set
@@ -70,8 +62,6 @@ returns the filter criterion if set
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
 
-
-
 `property k`
 
 returns k (number of eigenvalues requested)
@@ -79,8 +69,6 @@ returns k (number of eigenvalues requested)
 **Return type**
 
 `int`
-
-
 
 `classmethod supports_aux_operators()`
 

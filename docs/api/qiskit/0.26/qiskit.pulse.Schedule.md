@@ -1,7 +1,5 @@
 # qiskit.pulse.Schedule
 
-
-
 `Schedule(*schedules, name=None, metadata=None)`
 
 A quantum program *schedule* with exact time constraints for its instructions, operating over all input signal *channels* and supporting special syntaxes for building.
@@ -57,8 +55,6 @@ Create an empty schedule.
 
 **TypeError** – if metadata is not a dict.
 
-
-
 `__init__(*schedules, name=None, metadata=None)`
 
 Create an empty schedule.
@@ -109,8 +105,6 @@ Create an empty schedule.
 | [`stop_time`](#qiskit.pulse.Schedule.stop_time "qiskit.pulse.Schedule.stop_time")          | Stopping time of this schedule.                          |
 | [`timeslots`](#qiskit.pulse.Schedule.timeslots "qiskit.pulse.Schedule.timeslots")          | Time keeping attribute.                                  |
 
-
-
 `append(schedule, name=None, inplace=False)`
 
 Return a new schedule with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
@@ -130,8 +124,6 @@ $$
 
 `Schedule`
 
-
-
 `assign_parameters(value_dict, inplace=True)`
 
 Assign the parameters in this schedule according to the input.
@@ -149,8 +141,6 @@ Assign the parameters in this schedule according to the input.
 
 Schedule with updated parameters.
 
-
-
 `ch_duration(*channels)`
 
 Return the time of the end of the last instruction over the supplied channels.
@@ -162,8 +152,6 @@ Return the time of the end of the last instruction over the supplied channels.
 **Return type**
 
 `int`
-
-
 
 `ch_start_time(*channels)`
 
@@ -177,8 +165,6 @@ Return the time of the start of the first instruction over the supplied channels
 
 `int`
 
-
-
 `ch_stop_time(*channels)`
 
 Return maximum start time over supplied channels.
@@ -191,8 +177,6 @@ Return maximum start time over supplied channels.
 
 `int`
 
-
-
 `property channels`
 
 Returns channels that this schedule uses.
@@ -200,8 +184,6 @@ Returns channels that this schedule uses.
 **Return type**
 
 `Tuple`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
-
-
 
 `draw(dt=None, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, plot_all=None, plot_range=None, interactive=None, table=None, label=None, framechange=None, channels=None, show_framechange_channels=None, draw_title=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)`
 
@@ -273,8 +255,6 @@ Plot the schedule.
 
 Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
 
-
-
 `property duration`
 
 Duration of this schedule.
@@ -282,8 +262,6 @@ Duration of this schedule.
 **Return type**
 
 `int`
-
-
 
 `exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`
 
@@ -306,8 +284,6 @@ self.filter(args) | self.exclude(args) == self
 
 `Schedule`
 
-
-
 `filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`
 
 Return a new `Schedule` with only the instructions from this `Schedule` which pass though the provided filters; i.e. an instruction will be retained iff every function in `filter_funcs` returns `True`, the instruction occurs on a channel type contained in `channels`, the instruction type is contained in `instruction_types`, and the period over which the instruction operates is *fully* contained in one specified in `time_ranges` or `intervals`.
@@ -327,8 +303,6 @@ If no arguments are provided, `self` is returned.
 
 `Schedule`
 
-
-
 `flatten()`
 
 Deprecated.
@@ -336,8 +310,6 @@ Deprecated.
 **Return type**
 
 `Schedule`
-
-
 
 `get_parameters(parameter_name)`
 
@@ -357,8 +329,6 @@ Because different `Parameter` objects can have the same name, this method return
 
 Parameter objects that have corresponding name.
 
-
-
 `insert(start_time, schedule, name=None, inplace=False)`
 
 Return a new schedule with `schedule` inserted into `self` at `start_time`.
@@ -374,8 +344,6 @@ Return a new schedule with `schedule` inserted into `self` at `start_time`.
 
 `Schedule`
 
-
-
 `property instructions`
 
 Get the time-ordered instructions from self.
@@ -384,8 +352,6 @@ Get the time-ordered instructions from self.
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
-
-
 `is_parameterized()`
 
 Return True iff the instruction is parameterized.
@@ -393,8 +359,6 @@ Return True iff the instruction is parameterized.
 **Return type**
 
 `bool`
-
-
 
 `property metadata`
 
@@ -406,8 +370,6 @@ User provided `dict` of metadata for the schedule. The metadata contents do not 
 
 `Dict`\[`str`, `Any`]
 
-
-
 `property name`
 
 Name of this Schedule
@@ -416,8 +378,6 @@ Name of this Schedule
 
 `str`
 
-
-
 `property parameters`
 
 Parameters which determine the schedule behavior.
@@ -425,8 +385,6 @@ Parameters which determine the schedule behavior.
 **Return type**
 
 `Set`
-
-
 
 `replace(old, new, inplace=False)`
 
@@ -485,8 +443,6 @@ The modified schedule with `old` replaced by `new`.
 
 [**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the `Schedule` after replacements will has a timing overlap.
 
-
-
 `shift(time, name=None, inplace=False)`
 
 Return a schedule shifted forward by `time`.
@@ -501,8 +457,6 @@ Return a schedule shifted forward by `time`.
 
 `Schedule`
 
-
-
 `property start_time`
 
 Starting time of this schedule.
@@ -511,8 +465,6 @@ Starting time of this schedule.
 
 `int`
 
-
-
 `property stop_time`
 
 Stopping time of this schedule.
@@ -520,8 +472,6 @@ Stopping time of this schedule.
 **Return type**
 
 `int`
-
-
 
 `property timeslots`
 

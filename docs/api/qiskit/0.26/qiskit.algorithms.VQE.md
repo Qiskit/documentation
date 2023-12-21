@@ -1,7 +1,5 @@
 # qiskit.algorithms.VQE
 
-
-
 `VQE(ansatz=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)`
 
 The Variational Quantum Eigensolver algorithm.
@@ -29,8 +27,6 @@ The length of the *initial\_point* list value must match the number of the param
 *   **max\_evals\_grouped** (`int`) – Max number of evaluations performed simultaneously. Signals the given optimizer that more than one set of parameters can be supplied so that potentially the expectation values can be computed in parallel. Typically this is possible when a finite difference gradient is used by the optimizer such that multiple points to compute the gradient can be passed and if computed in parallel improve overall execution time. Deprecated if a gradient operator or function is given.
 *   **callback** (`Optional`\[`Callable`\[\[`int`, `ndarray`, `float`, `float`], `None`]]) – a callback that can access the intermediate data during the optimization. Four parameter values are passed to the callback as follows during each evaluation by the optimizer for its current set of parameters as it works towards the minimum. These are: the evaluation count, the optimizer parameters for the ansatz, the evaluated mean and the evaluated standard deviation.\`
 *   **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – Quantum Instance or Backend
-
-
 
 `__init__(ansatz=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)`
 
@@ -76,8 +72,6 @@ The length of the *initial\_point* list value must match the number of the param
 | [`quantum_instance`](#qiskit.algorithms.VQE.quantum_instance "qiskit.algorithms.VQE.quantum_instance") | Returns quantum instance.                                                                          |
 | [`setting`](#qiskit.algorithms.VQE.setting "qiskit.algorithms.VQE.setting")                            | Prepare the setting of VQE as a string.                                                            |
 
-
-
 `property ansatz`
 
 Returns the ansatz
@@ -86,13 +80,9 @@ Returns the ansatz
 
 `Optional`\[`QuantumCircuit`]
 
-
-
 `cleanup_parameterized_circuits()`
 
 set parameterized circuits to None
-
-
 
 `compute_minimum_eigenvalue(operator, aux_operators=None)`
 
@@ -111,8 +101,6 @@ Computes minimum eigenvalue. Operator and aux\_operators can be supplied here an
 
 MinimumEigensolverResult
 
-
-
 `construct_circuit(parameter, operator)`
 
 Return the circuits used to compute the expectation value.
@@ -129,8 +117,6 @@ Return the circuits used to compute the expectation value.
 **Returns**
 
 A list of the circuits used to compute the expectation value.
-
-
 
 `construct_expectation(parameter, operator)`
 
@@ -153,8 +139,6 @@ The Operator equalling the measurement of the ansatz `StateFn` by the Observable
 
 [**AlgorithmError**](qiskit.algorithms.AlgorithmError#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If no operator has been provided.
 
-
-
 `property expectation`
 
 The expectation value algorithm used to construct the expectation measurement from the observable.
@@ -162,8 +146,6 @@ The expectation value algorithm used to construct the expectation measurement fr
 **Return type**
 
 `ExpectationBase`
-
-
 
 `find_minimum(initial_point=None, ansatz=None, cost_fn=None, optimizer=None, gradient_fn=None)`
 
@@ -189,8 +171,6 @@ dict
 
 **ValueError** – invalid input
 
-
-
 `get_optimal_circuit()`
 
 Get the circuit with the optimal parameters.
@@ -198,8 +178,6 @@ Get the circuit with the optimal parameters.
 **Return type**
 
 `QuantumCircuit`
-
-
 
 `get_optimal_cost()`
 
@@ -209,8 +187,6 @@ Get the minimal cost or energy found by the VQE.
 
 `float`
 
-
-
 `get_optimal_vector()`
 
 Get the simulation outcome of the optimal circuit.
@@ -219,19 +195,13 @@ Get the simulation outcome of the optimal circuit.
 
 `Union`\[`List`\[`float`], `Dict`\[`str`, `int`]]
 
-
-
 `get_prob_vector_for_params(construct_circuit_fn, params_s, quantum_instance, construct_circuit_args=None)`
 
 Helper function to get probability vectors for a set of params
 
-
-
 `get_probabilities_for_counts(counts)`
 
 get probabilities for counts
-
-
 
 `property initial_point`
 
@@ -241,8 +211,6 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
-
-
 `property optimal_params`
 
 The optimal parameters for the ansatz.
@@ -251,8 +219,6 @@ The optimal parameters for the ansatz.
 
 `List`\[`float`]
 
-
-
 `property optimizer`
 
 Returns optimizer
@@ -260,8 +226,6 @@ Returns optimizer
 **Return type**
 
 `Optional`\[`Optimizer`]
-
-
 
 `print_settings()`
 
@@ -275,8 +239,6 @@ the formatted setting of VQE
 
 str
 
-
-
 `property quantum_instance`
 
 Returns quantum instance.
@@ -285,13 +247,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 `property setting`
 
 Prepare the setting of VQE as a string.
-
-
 
 `classmethod supports_aux_operators()`
 

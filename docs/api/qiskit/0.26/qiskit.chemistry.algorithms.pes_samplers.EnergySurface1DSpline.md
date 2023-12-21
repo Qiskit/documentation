@@ -1,7 +1,5 @@
 # qiskit.chemistry.algorithms.pes\_samplers.EnergySurface1DSpline
 
-
-
 `EnergySurface1DSpline`
 
 A simple cubic spline interpolation for the potential energy surface.
@@ -9,8 +7,6 @@ A simple cubic spline interpolation for the potential energy surface.
 A spline interpolation method for data fitting.
 
 This allows for fitting BOPES sampler results or potential energy surfaces.
-
-
 
 `__init__()`
 
@@ -29,8 +25,6 @@ This allows for fitting BOPES sampler results or potential energy surfaces.
 | [`get_minimal_energy`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_minimal_energy "qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_minimal_energy")(\[scaling])                   | Returns the value of the minimal energy (scaled by ‘scaling’) Default units (scaling=1.0) are J/mol.         |
 | [`get_trust_region`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_trust_region "qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_trust_region")()                                   | Get the trust region.                                                                                        |
 
-
-
 `eval(x)`
 
 After fitting the data to the fit function, predict the energy at a point x.
@@ -47,8 +41,6 @@ After fitting the data to the fit function, predict the energy at a point x.
 
 Value of surface fit in point x.
 
-
-
 `fit(xdata, ydata, initial_vals=None, bounds_list=None)`
 
 Fits surface to data.
@@ -64,8 +56,6 @@ Fits surface to data.
 
 `None`
 
-
-
 `get_equilibrium_geometry(scaling=1.0)`
 
 Returns the geometry for the minimal energy (scaled by ‘scaling’) Default units (scaling=1.0) are Angstroms. Scale by 1E-10 to get meters. :type scaling: `float` :param scaling: scaling factor
@@ -78,8 +68,6 @@ Returns the geometry for the minimal energy (scaled by ‘scaling’) Default un
 
 equilibrium geometry
 
-
-
 `get_minimal_energy(scaling=1.0)`
 
 Returns the value of the minimal energy (scaled by ‘scaling’) Default units (scaling=1.0) are J/mol. Scale appropriately for Hartrees. :type scaling: `float` :param scaling: scaling factor
@@ -91,8 +79,6 @@ Returns the value of the minimal energy (scaled by ‘scaling’) Default units 
 **Returns**
 
 minimum energy
-
-
 
 `get_trust_region()`
 
