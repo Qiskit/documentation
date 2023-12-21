@@ -309,7 +309,6 @@ async function convertHtmlToMarkdown(
     await mkdirp(dir);
   }
 
-  results = await mergeClassMembers(results);
   flatFolders(results);
   renameUrls(results);
   await updateLinks(results, pkg.transformLink);
