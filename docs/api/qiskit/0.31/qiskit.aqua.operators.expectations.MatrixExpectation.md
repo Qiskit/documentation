@@ -1,7 +1,5 @@
 # MatrixExpectation
 
-
-
 `MatrixExpectation`
 
 Bases: `qiskit.aqua.operators.expectations.expectation_base.ExpectationBase`

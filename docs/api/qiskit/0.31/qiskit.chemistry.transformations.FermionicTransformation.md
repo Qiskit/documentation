@@ -1,7 +1,5 @@
 # FermionicTransformation
 
-
-
 `FermionicTransformation(transformation=<FermionicTransformationType.FULL: 'full'>, qubit_mapping=<FermionicQubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`
 
 Bases: `qiskit.chemistry.transformations.transformation.Transformation`
@@ -32,8 +30,6 @@ A transformation from a fermionic problem, represented by a driver, to a qubit o
 
 ## Attributes
 
-
-
 ### commutation\_rule
 
 Getter of the commutation rule
@@ -41,8 +37,6 @@ Getter of the commutation rule
 **Return type**
 
 `bool`
-
-
 
 ### molecule\_info
 
@@ -52,8 +46,6 @@ Getter of the molecule information.
 
 `Dict`\[`str`, `Any`]
 
-
-
 ### qubit\_mapping
 
 Getter of the qubit mapping.
@@ -61,8 +53,6 @@ Getter of the qubit mapping.
 **Return type**
 
 `str`
-
-
 
 ### untapered\_qubit\_op
 

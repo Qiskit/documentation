@@ -1,7 +1,5 @@
 # MinimumEigensolverFactory
 
-
-
 `MinimumEigensolverFactory`
 
 Bases: `abc.ABC`

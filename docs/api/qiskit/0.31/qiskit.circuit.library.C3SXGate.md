@@ -1,7 +1,5 @@
 # C3SXGate
 
-
-
 `C3SXGate(label=None, ctrl_state=None, *, angle=None)`
 
 Bases: `qiskit.circuit.controlledgate.ControlledGate`
@@ -30,8 +28,6 @@ Create a new 3-qubit controlled sqrt-X gate.
 
 ## Attributes
 
-
-
 ### ctrl\_state
 
 Return the control state of the gate as a decimal integer.
@@ -40,13 +36,9 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
-
-
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 ### definition
 
@@ -56,13 +48,9 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
-
-
 ### duration
 
 Get the duration.
-
-
 
 ### label
 
@@ -71,8 +59,6 @@ Return instruction label
 **Return type**
 
 `str`
-
-
 
 ### name
 
@@ -86,8 +72,6 @@ where \<original\_name> is the gate name for the default case of closed control 
 
 `str`
 
-
-
 ### num\_ctrl\_qubits
 
 Get number of control qubits.
@@ -99,8 +83,6 @@ The number of control qubits for the gate.
 **Return type**
 
 int
-
-
 
 ### params
 
@@ -117,8 +99,6 @@ list
 **Raises**
 
 **CircuitError** – Controlled gate does not define a base gate
-
-
 
 ### unit
 

@@ -1,7 +1,5 @@
 # qiskit.utils.validate\_entangler\_map
 
-
-
 `validate_entangler_map(entangler_map, num_qubits, allow_double_entanglement=False)`
 
 Validate a user supplied entangler map and converts entries to ints.

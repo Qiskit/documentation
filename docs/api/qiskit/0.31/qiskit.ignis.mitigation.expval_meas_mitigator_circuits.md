@@ -1,7 +1,5 @@
 # qiskit.ignis.mitigation.expval\_meas\_mitigator\_circuits
 
-
-
 `expval_meas_mitigator_circuits(num_qubits, method='CTMP', labels=None)`
 
 Generate measurement error mitigator circuits and metadata.

@@ -1,7 +1,5 @@
 # NumPyEigensolverFactory
 
-
-
 `NumPyEigensolverFactory(filter_criterion=None, k=100, use_default_filter_criterion=False)`
 
 Bases: `qiskit.chemistry.algorithms.excited_states_solvers.eigensolver_factories.eigensolver_factory.EigensolverFactory`
@@ -23,8 +21,6 @@ A factory to construct a NumPyEigensolver.
 
 ## Attributes
 
-
-
 ### filter\_criterion
 
 returns filter criterion
@@ -33,8 +29,6 @@ returns filter criterion
 
 `Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]
 
-
-
 ### k
 
 returns k (number of eigenvalues requested)
@@ -42,8 +36,6 @@ returns k (number of eigenvalues requested)
 **Return type**
 
 `int`
-
-
 
 ### use\_default\_filter\_criterion
 

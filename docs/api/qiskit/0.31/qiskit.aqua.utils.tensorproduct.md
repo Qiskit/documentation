@@ -1,7 +1,5 @@
 # qiskit.aqua.utils.tensorproduct
 
-
-
 `tensorproduct(*args)`
 
 Calculate tensor product.

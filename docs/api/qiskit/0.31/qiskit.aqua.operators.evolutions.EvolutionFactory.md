@@ -1,7 +1,5 @@
 # EvolutionFactory
 
-
-
 `EvolutionFactory`
 
 Bases: `object`

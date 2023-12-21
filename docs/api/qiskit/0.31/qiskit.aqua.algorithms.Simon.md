@@ -1,7 +1,5 @@
 # Simon
 
-
-
 `Simon(oracle, quantum_instance=None)`
 
 Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`
@@ -27,8 +25,6 @@ Note: the [`TruthTableOracle`](qiskit.aqua.components.oracles.TruthTableOracle#q
 
 ## Attributes
 
-
-
 ### backend
 
 Returns backend.
@@ -37,8 +33,6 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-
-
 ### quantum\_instance
 
 Returns quantum instance.
@@ -46,8 +40,6 @@ Returns quantum instance.
 **Return type**
 
 `Optional`\[`QuantumInstance`]
-
-
 
 ### random
 

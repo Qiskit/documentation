@@ -1,7 +1,5 @@
 # ChemistryOperator
 
-
-
 `ChemistryOperator`
 
 Bases: `abc.ABC`
@@ -17,31 +15,21 @@ Base class for ChemistryOperator.
 
 ## Attributes
 
-
-
 ### INFO\_NUM\_ORBITALS
 
 `= 'num_orbitals'`
-
-
 
 ### INFO\_NUM\_PARTICLES
 
 `= 'num_particles'`
 
-
-
 ### INFO\_TWO\_QUBIT\_REDUCTION
 
 `= 'two_qubit_reduction'`
 
-
-
 ### INFO\_Z2SYMMETRIES
 
 `= 'z2symmetries'`
-
-
 
 ### molecule\_info
 

@@ -1,7 +1,5 @@
 # ElectronicStructureResult
 
-
-
 `ElectronicStructureResult(a_dict=None)`
 
 Bases: `qiskit.chemistry.results.eigenstate_result.EigenstateResult`
@@ -29,8 +27,6 @@ The electronic structure result.
 
 ## Attributes
 
-
-
 ### aux\_operator\_eigenvalues
 
 return aux operator eigen values
@@ -38,8 +34,6 @@ return aux operator eigen values
 **Return type**
 
 `Optional`\[`List`\[`float`]]
-
-
 
 ### computed\_dipole\_moment
 
@@ -49,8 +43,6 @@ Returns computed electronic part of dipole moment
 
 `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
 
-
-
 ### computed\_energies
 
 Returns computed electronic part of ground state energy
@@ -58,8 +50,6 @@ Returns computed electronic part of ground state energy
 **Return type**
 
 `ndarray`
-
-
 
 ### dipole\_moment
 
@@ -69,8 +59,6 @@ Returns dipole moment
 
 `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
 
-
-
 ### dipole\_moment\_in\_debye
 
 Returns dipole moment in Debye
@@ -78,8 +66,6 @@ Returns dipole moment in Debye
 **Return type**
 
 `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
-
-
 
 ### eigenenergies
 
@@ -89,8 +75,6 @@ returns eigen energies
 
 `Optional`\[`ndarray`]
 
-
-
 ### eigenstates
 
 returns eigen states
@@ -98,8 +82,6 @@ returns eigen states
 **Return type**
 
 `Optional`\[`List`\[`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]]]
-
-
 
 ### electronic\_dipole\_moment
 
@@ -109,8 +91,6 @@ Returns electronic dipole moment
 
 `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
 
-
-
 ### electronic\_energies
 
 Returns electronic part of ground state energy
@@ -118,8 +98,6 @@ Returns electronic part of ground state energy
 **Return type**
 
 `ndarray`
-
-
 
 ### formatted
 
@@ -129,8 +107,6 @@ Formatted result as a list of strings
 
 `List`\[`str`]
 
-
-
 ### frozen\_extracted\_dipole\_moment
 
 Returns frozen extracted part of dipole moment
@@ -138,8 +114,6 @@ Returns frozen extracted part of dipole moment
 **Return type**
 
 `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
-
-
 
 ### frozen\_extracted\_energy
 
@@ -149,8 +123,6 @@ Returns frozen extracted part of ground state energy
 
 `float`
 
-
-
 ### groundenergy
 
 returns ground energy
@@ -158,8 +130,6 @@ returns ground energy
 **Return type**
 
 `Optional`\[`float`]
-
-
 
 ### groundstate
 
@@ -169,8 +139,6 @@ returns ground state
 
 `Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]
 
-
-
 ### hartree\_fock\_energy
 
 Returns Hartree-Fock energy
@@ -178,8 +146,6 @@ Returns Hartree-Fock energy
 **Return type**
 
 `float`
-
-
 
 ### magnetization
 
@@ -189,8 +155,6 @@ Returns measured magnetization
 
 `Optional`\[`List`\[`float`]]
 
-
-
 ### nuclear\_dipole\_moment
 
 Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
@@ -198,8 +162,6 @@ Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
 **Return type**
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
-
-
 
 ### nuclear\_repulsion\_energy
 
@@ -209,8 +171,6 @@ Returns nuclear repulsion energy when available from driver
 
 `Optional`\[`float`]
 
-
-
 ### num\_particles
 
 Returns measured number of particles
@@ -218,8 +178,6 @@ Returns measured number of particles
 **Return type**
 
 `Optional`\[`List`\[`float`]]
-
-
 
 ### ph\_extracted\_dipole\_moment
 
@@ -229,8 +187,6 @@ Returns particle hole extracted part of dipole moment
 
 `Optional`\[`List`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]]
 
-
-
 ### ph\_extracted\_energy
 
 Returns particle hole extracted part of ground state energy
@@ -238,8 +194,6 @@ Returns particle hole extracted part of ground state energy
 **Return type**
 
 `float`
-
-
 
 ### raw\_result
 
@@ -249,8 +203,6 @@ Returns the raw algorithm result.
 
 `Optional`\[`AlgorithmResult`]
 
-
-
 ### reverse\_dipole\_sign
 
 Returns if electronic dipole moment sign should be reversed when adding to nuclear
@@ -258,8 +210,6 @@ Returns if electronic dipole moment sign should be reversed when adding to nucle
 **Return type**
 
 `bool`
-
-
 
 ### spin
 
@@ -269,8 +219,6 @@ Returns computed spin
 
 `Optional`\[`List`\[`float`]]
 
-
-
 ### total\_angular\_momentum
 
 Returns total angular momentum (S^2)
@@ -278,8 +226,6 @@ Returns total angular momentum (S^2)
 **Return type**
 
 `Optional`\[`List`\[`float`]]
-
-
 
 ### total\_dipole\_moment
 
@@ -289,8 +235,6 @@ Returns total dipole of moment
 
 `Optional`\[`List`\[`float`]]
 
-
-
 ### total\_dipole\_moment\_in\_debye
 
 Returns total dipole of moment in Debye
@@ -298,8 +242,6 @@ Returns total dipole of moment in Debye
 **Return type**
 
 `Optional`\[`List`\[`float`]]
-
-
 
 ### total\_energies
 

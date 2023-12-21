@@ -1,7 +1,5 @@
 # Grover
 
-
-
 `Grover(iterations=None, growth_rate=None, sample_from_iterations=False, quantum_instance=None)`
 
 Bases: `qiskit.algorithms.amplitude_amplifiers.amplitude_amplifier.AmplitudeAmplifier`
@@ -84,8 +82,6 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 | [`optimal_num_iterations`](qiskit.algorithms.Grover.optimal_num_iterations#qiskit.algorithms.Grover.optimal_num_iterations "qiskit.algorithms.Grover.optimal_num_iterations") | Return the optimal number of iterations, if the number of solutions is known. |
 
 ## Attributes
-
-
 
 ### quantum\_instance
 

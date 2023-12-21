@@ -1,7 +1,5 @@
 # HDF5Driver
 
-
-
 `HDF5Driver(hdf5_input='molecule.hdf5')`
 
 Bases: `qiskit.chemistry.drivers.fermionic_driver.FermionicDriver`
@@ -22,8 +20,6 @@ The HDF5 file is as saved from a [`QMolecule`](qiskit.chemistry.QMolecule#qiskit
 
 ## Attributes
 
-
-
 ### basis
 
 return basis
@@ -31,8 +27,6 @@ return basis
 **Return type**
 
 `str`
-
-
 
 ### hf\_method
 
@@ -42,8 +36,6 @@ return Hartree-Fock method
 
 `str`
 
-
-
 ### molecule
 
 return molecule
@@ -51,8 +43,6 @@ return molecule
 **Return type**
 
 `Optional`\[`Molecule`]
-
-
 
 ### supports\_molecule
 
@@ -65,8 +55,6 @@ True for derived classes that support Molecule.
 **Returns**
 
 True if Molecule is supported.
-
-
 
 ### work\_path
 

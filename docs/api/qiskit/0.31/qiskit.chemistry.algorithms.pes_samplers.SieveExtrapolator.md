@@ -1,7 +1,5 @@
 # SieveExtrapolator
 
-
-
 `SieveExtrapolator(extrapolator=None, window=2, filter_before=True, filter_after=True)`
 
 Bases: `qiskit.chemistry.algorithms.pes_samplers.extrapolator.Extrapolator`

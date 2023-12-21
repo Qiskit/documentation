@@ -1,7 +1,5 @@
 # Credentials
 
-
-
 `Credentials(token, url, websockets_url=None, hub=None, group=None, project=None, proxies=None, verify=True, services=None, access_token=None, preferences=None, default_provider=None)`
 
 Bases: `object`

@@ -1,7 +1,5 @@
 # UncertaintyProblem
 
-
-
 `UncertaintyProblem(num_qubits)`
 
 Bases: `qiskit.aqua.utils.circuit_factory.CircuitFactory`, `abc.ABC`
@@ -27,8 +25,6 @@ The abstract Uncertainty Problem component.
 | [`value_to_estimation`](qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.value_to_estimation#qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.value_to_estimation "qiskit.aqua.components.uncertainty_problems.UncertaintyProblem.value_to_estimation")                                             | value to estimate                                                     |
 
 ## Attributes
-
-
 
 ### num\_target\_qubits
 

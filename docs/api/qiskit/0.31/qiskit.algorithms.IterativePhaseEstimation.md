@@ -1,7 +1,5 @@
 # IterativePhaseEstimation
 
-
-
 `IterativePhaseEstimation(num_iterations, quantum_instance=None)`
 
 Bases: `qiskit.algorithms.phase_estimators.phase_estimator.PhaseEstimator`

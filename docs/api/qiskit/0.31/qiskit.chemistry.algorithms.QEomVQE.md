@@ -1,7 +1,5 @@
 # QEomVQE
 
-
-
 `QEomVQE(operator, var_form, optimizer, num_orbitals, num_particles, initial_point=None, max_evals_grouped=1, callback=None, qubit_mapping='parity', two_qubit_reduction=True, is_eom_matrix_symmetric=True, active_occupied=None, active_unoccupied=None, se_list=None, de_list=None, z2_symmetries=None, untapered_op=None, aux_operators=None, quantum_instance=None)`
 
 Bases: `qiskit.aqua.algorithms.minimum_eigen_solvers.vqe.VQE`
@@ -55,8 +53,6 @@ QEomVQE algorithm
 
 ## Attributes
 
-
-
 ### aux\_operators
 
 Returns aux operators
@@ -64,8 +60,6 @@ Returns aux operators
 **Return type**
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
-
-
 
 ### backend
 
@@ -75,8 +69,6 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-
-
 ### expectation
 
 The expectation value algorithm used to construct the expectation measurement from the observable.
@@ -84,8 +76,6 @@ The expectation value algorithm used to construct the expectation measurement fr
 **Return type**
 
 `ExpectationBase`
-
-
 
 ### initial\_point
 
@@ -95,8 +85,6 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
-
-
 ### operator
 
 Returns operator
@@ -104,8 +92,6 @@ Returns operator
 **Return type**
 
 `Optional`\[`OperatorBase`]
-
-
 
 ### optimal\_params
 
@@ -115,8 +101,6 @@ The optimal parameters for the variational form.
 
 `List`\[`float`]
 
-
-
 ### optimizer
 
 Returns optimizer
@@ -124,8 +108,6 @@ Returns optimizer
 **Return type**
 
 `Optional`\[`Optimizer`]
-
-
 
 ### quantum\_instance
 
@@ -135,19 +117,13 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 ### random
 
 Return a numpy random.
 
-
-
 ### setting
 
 Prepare the setting of VQE as a string.
-
-
 
 ### var\_form
 

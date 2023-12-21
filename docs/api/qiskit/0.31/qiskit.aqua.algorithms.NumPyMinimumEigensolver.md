@@ -1,7 +1,5 @@
 # NumPyMinimumEigensolver
 
-
-
 `NumPyMinimumEigensolver(operator=None, aux_operators=None, filter_criterion=None)`
 
 Bases: `qiskit.aqua.algorithms.classical_algorithm.ClassicalAlgorithm`, `qiskit.aqua.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver`
@@ -24,15 +22,11 @@ The Numpy Minimum Eigensolver algorithm.
 
 ## Attributes
 
-
-
 ### aux\_operators
 
 **Return type**
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
-
-
 
 ### filter\_criterion
 
@@ -42,15 +36,11 @@ returns the filter criterion if set
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
 
-
-
 ### operator
 
 **Return type**
 
 `Optional`\[`OperatorBase`]
-
-
 
 ### random
 

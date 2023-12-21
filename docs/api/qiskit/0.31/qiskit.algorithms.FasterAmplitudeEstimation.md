@@ -1,7 +1,5 @@
 # FasterAmplitudeEstimation
 
-
-
 `FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None)`
 
 Bases: `qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator`
@@ -45,8 +43,6 @@ Due to the iterative version of the QPE, this algorithm does not require any add
 | [`estimate`](qiskit.algorithms.FasterAmplitudeEstimation.estimate#qiskit.algorithms.FasterAmplitudeEstimation.estimate "qiskit.algorithms.FasterAmplitudeEstimation.estimate")                                     | Run the amplitude estimation algorithm. |              |
 
 ## Attributes
-
-
 
 ### quantum\_instance
 

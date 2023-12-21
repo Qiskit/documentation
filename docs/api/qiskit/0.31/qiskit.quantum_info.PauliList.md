@@ -1,7 +1,5 @@
 # PauliList
 
-
-
 `PauliList(data)`
 
 Bases: `qiskit.quantum_info.operators.symplectic.base_pauli.BasePauli`, `qiskit.quantum_info.operators.mixins.linear.LinearMixin`, `qiskit.quantum_info.operators.mixins.group.GroupMixin`
@@ -132,55 +130,37 @@ The input array is not copied so multiple Pauli tables can share the same underl
 
 ## Attributes
 
-
-
 ### dim
 
 Return tuple (input\_shape, output\_shape).
-
-
 
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-
-
 ### phase
 
 Return the phase exponent of the PauliList.
-
-
 
 ### qargs
 
 Return the qargs for the operator.
 
-
-
 ### settings
 
 Return operator settings.
-
-
 
 ### shape
 
 The full shape of the `array()`
 
-
-
 ### size
 
 The number of Pauli rows in the table.
 
-
-
 ### x
 
 The x array for the symplectic representation.
-
-
 
 ### z
 

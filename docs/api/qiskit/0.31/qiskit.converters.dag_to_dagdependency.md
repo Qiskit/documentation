@@ -1,7 +1,5 @@
 # qiskit.converters.dag\_to\_dagdependency
 
-
-
 `dag_to_dagdependency(dag)`
 
 Build a `DAGDependency` object from a `DAGCircuit`.

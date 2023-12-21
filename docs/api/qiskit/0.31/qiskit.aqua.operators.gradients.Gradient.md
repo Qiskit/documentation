@@ -1,7 +1,5 @@
 # Gradient
 
-
-
 `Gradient(grad_method='param_shift', **kwargs)`
 
 Bases: `qiskit.aqua.operators.gradients.gradient_base.GradientBase`
@@ -27,8 +25,6 @@ Convert an operator expression to the first-order gradient.
 | [`parameter_expression_grad`](qiskit.aqua.operators.gradients.Gradient.parameter_expression_grad#qiskit.aqua.operators.gradients.Gradient.parameter_expression_grad "qiskit.aqua.operators.gradients.Gradient.parameter_expression_grad") | Get the derivative of a parameter expression w\.r.t.                                                       |
 
 ## Attributes
-
-
 
 ### grad\_method
 

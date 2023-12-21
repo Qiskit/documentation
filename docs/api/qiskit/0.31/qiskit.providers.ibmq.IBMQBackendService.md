@@ -1,7 +1,5 @@
 # IBMQBackendService
 
-
-
 `IBMQBackendService(provider)`
 
 Bases: `object`

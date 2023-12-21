@@ -1,7 +1,5 @@
 # BosonicTransformationType
 
-
-
 `BosonicTransformationType(value)`
 
 Bases: `enum.Enum`
@@ -9,8 +7,6 @@ Bases: `enum.Enum`
 BosonicTransformationType enum
 
 ## Attributes
-
-
 
 ### HARMONIC
 

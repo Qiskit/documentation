@@ -1,7 +1,5 @@
 # SaveProbabilitiesDict
 
-
-
 `SaveProbabilitiesDict(num_qubits, label='probabilities_dict', unnormalized=False, pershot=False, conditional=False)`
 
 Bases: `qiskit.providers.aer.library.save_instructions.save_data.SaveAverageData`
@@ -38,25 +36,17 @@ Instruction to save measurement probabilities dict.
 
 ## Attributes
 
-
-
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
-
 ### duration
 
 Get the duration.
-
-
 
 ### label
 
@@ -66,13 +56,9 @@ Return instruction label
 
 `str`
 
-
-
 ### params
 
 return instruction params.
-
-
 
 ### unit
 

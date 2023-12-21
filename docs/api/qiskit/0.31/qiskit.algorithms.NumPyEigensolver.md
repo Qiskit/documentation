@@ -1,7 +1,5 @@
 # NumPyEigensolver
 
-
-
 `NumPyEigensolver(k=1, filter_criterion=None)`
 
 Bases: `qiskit.algorithms.eigen_solvers.eigen_solver.Eigensolver`
@@ -28,8 +26,6 @@ NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued s
 
 ## Attributes
 
-
-
 ### filter\_criterion
 
 returns the filter criterion if set
@@ -37,8 +33,6 @@ returns the filter criterion if set
 **Return type**
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
-
-
 
 ### k
 

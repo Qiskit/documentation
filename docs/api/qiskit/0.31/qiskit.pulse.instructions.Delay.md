@@ -1,7 +1,5 @@
 # Delay
 
-
-
 `Delay(duration, channel, name=None)`
 
 Bases: `qiskit.pulse.instructions.instruction.Instruction`
@@ -47,8 +45,6 @@ No other instruction may be scheduled within a `Delay`.
 
 ## Attributes
 
-
-
 ### channel
 
 Return the `Channel` that this instruction is scheduled on.
@@ -56,8 +52,6 @@ Return the `Channel` that this instruction is scheduled on.
 **Return type**
 
 `Channel`
-
-
 
 ### channels
 
@@ -67,8 +61,6 @@ Returns the channels that this schedule uses.
 
 `Tuple`\[`Channel`]
 
-
-
 ### duration
 
 Duration of this instruction.
@@ -76,8 +68,6 @@ Duration of this instruction.
 **Return type**
 
 `Union`\[`int`, `ParameterExpression`]
-
-
 
 ### id
 
@@ -87,8 +77,6 @@ Unique identifier for this instruction.
 
 `int`
 
-
-
 ### instructions
 
 Iterable for getting instructions from Schedule tree.
@@ -96,8 +84,6 @@ Iterable for getting instructions from Schedule tree.
 **Return type**
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
-
-
 
 ### name
 
@@ -107,8 +93,6 @@ Name of this instruction.
 
 `str`
 
-
-
 ### operands
 
 Return instruction operands.
@@ -116,8 +100,6 @@ Return instruction operands.
 **Return type**
 
 `Tuple`
-
-
 
 ### parameters
 
@@ -127,8 +109,6 @@ Parameters which determine the instruction behavior.
 
 `Set`
 
-
-
 ### start\_time
 
 Relative begin time of this instruction.
@@ -136,8 +116,6 @@ Relative begin time of this instruction.
 **Return type**
 
 `int`
-
-
 
 ### stop\_time
 

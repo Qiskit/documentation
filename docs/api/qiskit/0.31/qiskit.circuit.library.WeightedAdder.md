@@ -1,7 +1,5 @@
 # WeightedAdder
 
-
-
 `WeightedAdder(num_state_qubits=None, weights=None, name='adder')`
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
@@ -59,13 +57,9 @@ Computes the weighted sum controlled by state qubits.
 
 ## Attributes
 
-
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
-
-
 
 ### calibrations
 
@@ -75,49 +69,33 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
 
-
-
 ### data
-
-
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-
-
 ### global\_phase
 
 Return the global phase of the circuit in radians.
-
-
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
-
 ### instances
 
 `= 16`
-
-
 
 ### metadata
 
 The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
-
-
 
 ### num\_ancilla\_qubits
 
@@ -127,13 +105,9 @@ Deprecated. Use num\_ancillas instead.
 
 `int`
 
-
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
-
-
 
 ### num\_carry\_qubits
 
@@ -149,13 +123,9 @@ Note that this is not necessarily equal to the number of ancilla qubits, these c
 
 The number of carry qubits required to compute the sum.
 
-
-
 ### num\_clbits
 
 Return number of classical bits.
-
-
 
 ### num\_control\_qubits
 
@@ -171,21 +141,15 @@ Note that the total number of ancilla qubits can be obtained by calling the meth
 
 The number of additional control qubits required (0 or 1).
 
-
-
 ### num\_parameters
 
 **Return type**
 
 `int`
 
-
-
 ### num\_qubits
 
 Return number of qubits.
-
-
 
 ### num\_state\_qubits
 
@@ -199,8 +163,6 @@ The number of qubits to be summed.
 
 The number of state qubits.
 
-
-
 ### num\_sum\_qubits
 
 The number of sum qubits in the circuit.
@@ -213,33 +175,23 @@ The number of sum qubits in the circuit.
 
 The number of qubits needed to represent the weighted sum of the qubits.
 
-
-
 ### parameters
 
 **Return type**
 
 `ParameterView`
 
-
-
 ### prefix
 
 `= 'circuit'`
-
-
 
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-
-
 ### qubits
 
 Returns a list of quantum bits in the order that the registers were added.
-
-
 
 ### weights
 

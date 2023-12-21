@@ -1,7 +1,5 @@
 # PauliFeatureMap
 
-
-
 `PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')`
 
 Bases: `qiskit.circuit.library.n_local.n_local.NLocal`
@@ -107,8 +105,6 @@ Create a new Pauli expansion circuit.
 
 ## Attributes
 
-
-
 ### alpha
 
 The Pauli rotation factor (alpha).
@@ -121,13 +117,9 @@ The Pauli rotation factor (alpha).
 
 The Pauli rotation factor.
 
-
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
-
-
 
 ### calibrations
 
@@ -137,17 +129,11 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
 
-
-
 ### data
-
-
 
 ### entanglement
 
@@ -161,17 +147,11 @@ Get the entanglement strategy.
 
 The entanglement strategy, see `get_entangler_map()` for more detail on how the format is interpreted.
 
-
-
 ### entanglement\_blocks
-
-
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-
 
 ### feature\_dimension
 
@@ -185,19 +165,13 @@ Returns the feature dimension (which is equal to the number of qubits).
 
 The feature dimension of this feature map.
 
-
-
 ### global\_phase
 
 Return the global phase of the circuit in radians.
 
-
-
 ### header
 
 `= 'OPENQASM 2.0;'`
-
-
 
 ### initial\_state
 
@@ -211,8 +185,6 @@ Return the initial state that is added in front of the n-local circuit.
 
 The initial state.
 
-
-
 ### insert\_barriers
 
 If barriers are inserted in between the layers or not.
@@ -225,13 +197,9 @@ If barriers are inserted in between the layers or not.
 
 True, if barriers are inserted in between the layers, False if not.
 
-
-
 ### instances
 
 `= 16`
-
-
 
 ### metadata
 
@@ -239,19 +207,13 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
 
-
-
 ### num\_clbits
 
 Return number of classical bits.
-
-
 
 ### num\_layers
 
@@ -265,21 +227,15 @@ Return the number of layers in the n-local circuit.
 
 The number of layers in the circuit.
 
-
-
 ### num\_parameters
 
 **Return type**
 
 `int`
 
-
-
 ### num\_parameters\_settable
 
 The number of distinct parameters.
-
-
 
 ### num\_qubits
 
@@ -292,8 +248,6 @@ Returns the number of qubits in this circuit.
 **Returns**
 
 The number of qubits.
-
-
 
 ### ordered\_parameters
 
@@ -323,8 +277,6 @@ q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
 
 The parameters objects used in the circuit.
 
-
-
 ### parameter\_bounds
 
 The parameter bounds for the unbound parameters in the circuit.
@@ -337,15 +289,11 @@ The parameter bounds for the unbound parameters in the circuit.
 
 A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
 
-
-
 ### parameters
 
 **Return type**
 
 `ParameterView`
-
-
 
 ### paulis
 
@@ -359,8 +307,6 @@ The Pauli strings used in the entanglement of the qubits.
 
 The Pauli strings as list.
 
-
-
 ### preferred\_init\_points
 
 The initial points for the parameters. Can be stored as initial guess in optimization.
@@ -373,25 +319,17 @@ The initial points for the parameters. Can be stored as initial guess in optimiz
 
 The initial values for the parameters, or None, if none have been set.
 
-
-
 ### prefix
 
 `= 'circuit'`
-
-
 
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-
-
 ### qubits
 
 Returns a list of quantum bits in the order that the registers were added.
-
-
 
 ### reps
 
@@ -404,8 +342,6 @@ The number of times rotation and entanglement block are repeated.
 **Returns**
 
 The number of repetitions.
-
-
 
 ### rotation\_blocks
 

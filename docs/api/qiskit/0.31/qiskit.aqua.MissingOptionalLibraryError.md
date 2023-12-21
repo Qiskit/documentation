@@ -1,7 +1,5 @@
 # qiskit.aqua.MissingOptionalLibraryError
 
-
-
 `MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)`
 
 Raised when an optional library is missing.

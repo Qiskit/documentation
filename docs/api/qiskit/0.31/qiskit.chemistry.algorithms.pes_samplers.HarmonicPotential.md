@@ -1,7 +1,5 @@
 # HarmonicPotential
 
-
-
 `HarmonicPotential(molecule)`
 
 Bases: `qiskit.chemistry.algorithms.pes_samplers.potentials.potential_base.PotentialBase`

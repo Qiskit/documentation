@@ -1,7 +1,5 @@
 # QuadraticProgramToQubo
 
-
-
 `QuadraticProgramToQubo(penalty=None)`
 
 Bases: `qiskit.optimization.converters.quadratic_program_converter.QuadraticProgramConverter`
@@ -33,8 +31,6 @@ Convert a given optimization problem to a new problem that is a QUBO.
 | [`is_compatible`](qiskit.optimization.converters.QuadraticProgramToQubo.is_compatible#qiskit.optimization.converters.QuadraticProgramToQubo.is_compatible "qiskit.optimization.converters.QuadraticProgramToQubo.is_compatible")                                 | Checks whether a given problem can be solved with the optimizer implementing this method. |
 
 ## Attributes
-
-
 
 ### penalty
 

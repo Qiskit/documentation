@@ -1,14 +1,10 @@
 # Command
 
-
-
 `Command(name, qubits=None, sequence=None, **kwargs)`
 
 Bases: `object`
 
 Class representing a Command.
-
-
 
 ### name
 

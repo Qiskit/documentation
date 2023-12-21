@@ -1,7 +1,5 @@
 # SPSA
 
-
-
 `SPSA(maxiter=1000, save_steps=1, last_avg=1, c0=0.6283185307179586, c1=0.1, c2=0.602, c3=0.101, c4=0, skip_calibration=False, max_trials=None)`
 
 Bases: `qiskit.aqua.components.optimizers.optimizer.Optimizer`
@@ -51,79 +49,53 @@ For further details, please refer to [https://arxiv.org/pdf/1704.05018v2.pdf#sec
 
 ## Attributes
 
-
-
 ### bounds\_support\_level
 
 Returns bounds support level
-
-
 
 ### gradient\_support\_level
 
 Returns gradient support level
 
-
-
 ### initial\_point\_support\_level
 
 Returns initial point support level
-
-
 
 ### is\_bounds\_ignored
 
 Returns is bounds ignored
 
-
-
 ### is\_bounds\_required
 
 Returns is bounds required
-
-
 
 ### is\_bounds\_supported
 
 Returns is bounds supported
 
-
-
 ### is\_gradient\_ignored
 
 Returns is gradient ignored
-
-
 
 ### is\_gradient\_required
 
 Returns is gradient required
 
-
-
 ### is\_gradient\_supported
 
 Returns is gradient supported
-
-
 
 ### is\_initial\_point\_ignored
 
 Returns is initial point ignored
 
-
-
 ### is\_initial\_point\_required
 
 Returns is initial point required
 
-
-
 ### is\_initial\_point\_supported
 
 Returns is initial point supported
-
-
 
 ### setting
 

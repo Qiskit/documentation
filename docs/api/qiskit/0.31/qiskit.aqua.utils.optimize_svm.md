@@ -1,7 +1,5 @@
 # qiskit.aqua.utils.optimize\_svm
 
-
-
 `optimize_svm(kernel_matrix, y, scaling=None, maxiter=500, show_progress=False, max_iters=None, lambda2=0.001)`
 
 Solving quadratic programming problem for SVM; thus, some constraints are fixed.

@@ -1,7 +1,5 @@
 # GaussianConditionalIndependenceModel
 
-
-
 `GaussianConditionalIndependenceModel(n_normal, normal_max_value, p_zeros, rhos, i_normal=None, i_ps=None)`
 
 Bases: `qiskit.aqua.components.uncertainty_models.multivariate_distribution.MultivariateDistribution`
@@ -41,55 +39,37 @@ Dependency between individual risk variables and latent variable is approximated
 
 ## Attributes
 
-
-
 ### dimension
 
 returns dimensions
-
-
 
 ### high
 
 returns high
 
-
-
 ### low
 
 returns low
-
-
 
 ### num\_qubits
 
 returns num qubits
 
-
-
 ### num\_target\_qubits
 
 Returns the number of target qubits
-
-
 
 ### num\_values
 
 returns number of values
 
-
-
 ### probabilities
 
 returns probabilities
 
-
-
 ### probabilities\_vector
 
 returns probabilities vector
-
-
 
 ### values
 

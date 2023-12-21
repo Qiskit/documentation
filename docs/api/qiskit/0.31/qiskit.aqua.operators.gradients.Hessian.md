@@ -1,7 +1,5 @@
 # Hessian
 
-
-
 `Hessian(hess_method='param_shift', **kwargs)`
 
 Bases: `qiskit.aqua.operators.gradients.hessian_base.HessianBase`
@@ -27,8 +25,6 @@ Compute the Hessian of an expected value.
 | [`parameter_expression_grad`](qiskit.aqua.operators.gradients.Hessian.parameter_expression_grad#qiskit.aqua.operators.gradients.Hessian.parameter_expression_grad "qiskit.aqua.operators.gradients.Hessian.parameter_expression_grad") | Get the derivative of a parameter expression w\.r.t.                                                       |
 
 ## Attributes
-
-
 
 ### hess\_method
 

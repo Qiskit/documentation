@@ -1,7 +1,5 @@
 # qiskit.pulse.builder.active\_transpiler\_settings
 
-
-
 `active_transpiler_settings()`
 
 Return the current active builder context’s transpiler settings.

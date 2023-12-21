@@ -1,7 +1,5 @@
 # Molecule
 
-
-
 `Molecule(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)`
 
 Bases: `object`
@@ -35,8 +33,6 @@ This module implements an interface for a driver-independent, i.e. generic molec
 
 ## Attributes
 
-
-
 ### charge
 
 Get charge
@@ -44,8 +40,6 @@ Get charge
 **Return type**
 
 `int`
-
-
 
 ### geometry
 
@@ -55,8 +49,6 @@ Get geometry accounting for any perturbations
 
 `List`\[`Tuple`\[`str`, `List`\[`float`]]]
 
-
-
 ### masses
 
 Get masses
@@ -64,8 +56,6 @@ Get masses
 **Return type**
 
 `Optional`\[`List`\[`float`]]
-
-
 
 ### multiplicity
 
@@ -75,8 +65,6 @@ Get multiplicity
 
 `int`
 
-
-
 ### perturbations
 
 Get perturbations
@@ -84,8 +72,6 @@ Get perturbations
 **Return type**
 
 `Optional`\[`List`\[`float`]]
-
-
 
 ### units
 

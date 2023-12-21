@@ -1,7 +1,5 @@
 # qiskit.utils.get\_entangler\_map
 
-
-
 `get_entangler_map(map_type, num_qubits, offset=0)`
 
 Utility method to get an entangler map among qubits.

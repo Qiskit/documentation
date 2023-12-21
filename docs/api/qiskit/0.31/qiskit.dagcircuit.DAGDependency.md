@@ -1,7 +1,5 @@
 # DAGDependency
 
-
-
 `DAGDependency`
 
 Bases: `object`
@@ -61,8 +59,6 @@ Create an empty DAGDependency.
 
 ## Attributes
 
-
-
 ### calibrations
 
 Return calibration dictionary.
@@ -70,8 +66,6 @@ Return calibration dictionary.
 **The custom pulse definition of a given gate is of the form**
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
-
-
 
 ### global\_phase
 

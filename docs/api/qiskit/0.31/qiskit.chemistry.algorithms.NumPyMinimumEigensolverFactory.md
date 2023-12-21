@@ -1,7 +1,5 @@
 # NumPyMinimumEigensolverFactory
 
-
-
 `NumPyMinimumEigensolverFactory(filter_criterion=None, use_default_filter_criterion=False)`
 
 Bases: `qiskit.chemistry.algorithms.ground_state_solvers.minimum_eigensolver_factories.minimum_eigensolver_factory.MinimumEigensolverFactory`
@@ -22,8 +20,6 @@ A factory to construct a NumPyMinimumEigensolver.
 
 ## Attributes
 
-
-
 ### filter\_criterion
 
 returns filter criterion
@@ -31,8 +27,6 @@ returns filter criterion
 **Return type**
 
 `Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]
-
-
 
 ### use\_default\_filter\_criterion
 

@@ -1,7 +1,5 @@
 # VQEUCCSDFactory
 
-
-
 `VQEUCCSDFactory(quantum_instance, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True)`
 
 Bases: `qiskit.chemistry.algorithms.ground_state_solvers.minimum_eigensolver_factories.minimum_eigensolver_factory.MinimumEigensolverFactory`
@@ -30,8 +28,6 @@ A factory to construct a VQE minimum eigensolver with UCCSD ansatz wavefunction.
 
 ## Attributes
 
-
-
 ### excitation\_type
 
 Getter of the `excitation_type` setting for the `excitation_type` setting.
@@ -39,8 +35,6 @@ Getter of the `excitation_type` setting for the `excitation_type` setting.
 **Return type**
 
 `str`
-
-
 
 ### expectation
 
@@ -50,8 +44,6 @@ Getter of the expectation.
 
 `ExpectationBase`
 
-
-
 ### gradient
 
 Getter of the gradient function
@@ -59,8 +51,6 @@ Getter of the gradient function
 **Return type**
 
 `Union`\[`GradientBase`, `Callable`, `None`]
-
-
 
 ### include\_custom
 
@@ -70,8 +60,6 @@ Getter of the `include_custom` setting for the `expectation` setting.
 
 `bool`
 
-
-
 ### initial\_point
 
 Getter of the initial point.
@@ -79,8 +67,6 @@ Getter of the initial point.
 **Return type**
 
 `ndarray`
-
-
 
 ### method\_doubles
 
@@ -90,8 +76,6 @@ Getter of the `method_doubles` setting for the `method_doubles` setting.
 
 `str`
 
-
-
 ### method\_singles
 
 Getter of the `method_singles` setting for the `method_singles` setting.
@@ -99,8 +83,6 @@ Getter of the `method_singles` setting for the `method_singles` setting.
 **Return type**
 
 `str`
-
-
 
 ### optimizer
 
@@ -110,8 +92,6 @@ Getter of the optimizer.
 
 `Optimizer`
 
-
-
 ### quantum\_instance
 
 Getter of the quantum instance.
@@ -119,8 +99,6 @@ Getter of the quantum instance.
 **Return type**
 
 `QuantumInstance`
-
-
 
 ### same\_spin\_doubles
 

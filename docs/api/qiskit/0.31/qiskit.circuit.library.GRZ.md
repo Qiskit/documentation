@@ -1,7 +1,5 @@
 # GRZ
 
-
-
 `GRZ(num_qubits, phi)`
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
@@ -39,13 +37,9 @@ Create a new Global RZ (GRZ) gate.
 
 ## Attributes
 
-
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
-
-
 
 ### calibrations
 
@@ -55,13 +49,9 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
-
-
 
 ### data
 
@@ -77,31 +67,21 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-
-
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-
 
 ### global\_phase
 
 Return the global phase of the circuit in radians.
 
-
-
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
-
 ### instances
 
 `= 16`
-
-
 
 ### metadata
 
@@ -109,43 +89,29 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
-
-
 
 ### num\_clbits
 
 Return number of classical bits.
 
-
-
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
-
-
 
 ### num\_qubits
 
 Return number of qubits.
 
-
-
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
 
-
-
 ### prefix
 
 `= 'circuit'`
-
-
 
 ### qubits
 

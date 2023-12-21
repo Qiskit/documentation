@@ -1,7 +1,5 @@
 # MinimumEigensolverResult
 
-
-
 `MinimumEigensolverResult`
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
@@ -16,8 +14,6 @@ Minimum Eigensolver Result.
 
 ## Attributes
 
-
-
 ### aux\_operator\_eigenvalues
 
 return aux operator eigen values
@@ -26,8 +22,6 @@ return aux operator eigen values
 
 `Optional`\[`ndarray`]
 
-
-
 ### eigenstate
 
 return eigen state
@@ -35,8 +29,6 @@ return eigen state
 **Return type**
 
 `Optional`\[`ndarray`]
-
-
 
 ### eigenvalue
 

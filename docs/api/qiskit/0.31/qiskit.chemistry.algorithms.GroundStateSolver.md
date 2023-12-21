@@ -1,7 +1,5 @@
 # GroundStateSolver
 
-
-
 `GroundStateSolver(transformation)`
 
 Bases: `abc.ABC`
@@ -21,8 +19,6 @@ The ground state calculation interface
 | [`solve`](qiskit.chemistry.algorithms.GroundStateSolver.solve#qiskit.chemistry.algorithms.GroundStateSolver.solve "qiskit.chemistry.algorithms.GroundStateSolver.solve")                                                         | Compute the ground state energy of the molecule that was supplied via the driver.        |
 
 ## Attributes
-
-
 
 ### transformation
 

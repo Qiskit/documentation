@@ -1,7 +1,5 @@
 # Hessian
 
-
-
 `Hessian(hess_method='param_shift', **kwargs)`
 
 Bases: `qiskit.opflow.gradients.hessian_base.HessianBase`
@@ -25,8 +23,6 @@ Compute the Hessian of an expected value.
 | [`get_hessian`](qiskit.opflow.gradients.Hessian.get_hessian#qiskit.opflow.gradients.Hessian.get_hessian "qiskit.opflow.gradients.Hessian.get_hessian") | Get the Hessian for the given operator w\.r.t. |
 
 ## Attributes
-
-
 
 ### hess\_method
 

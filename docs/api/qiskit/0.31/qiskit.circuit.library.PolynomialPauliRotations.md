@@ -1,7 +1,5 @@
 # PolynomialPauliRotations
 
-
-
 `PolynomialPauliRotations(num_state_qubits=None, coeffs=None, basis='Y', reverse=False, name='poly')`
 
 Bases: `qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations`
@@ -40,13 +38,9 @@ Prepare an approximation to a state with amplitudes specified by a polynomial.
 
 ## Attributes
 
-
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
-
-
 
 ### basis
 
@@ -62,8 +56,6 @@ Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotatio
 
 The kind of Pauli rotation used in controlled rotation.
 
-
-
 ### calibrations
 
 Return calibration dictionary.
@@ -72,13 +64,9 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
-
-
 
 ### coeffs
 
@@ -94,11 +82,7 @@ The rotation angles are `slope * 2^0`, `slope * 2^1`, … , `slope * 2^(n-1)` wh
 
 The rotation angle common in all controlled rotations.
 
-
-
 ### data
-
-
 
 ### degree
 
@@ -112,31 +96,21 @@ Return the degree of the polynomial, equals to the number of coefficients minus 
 
 The degree of the polynomial. If the coefficients have not been set, return 0.
 
-
-
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-
 
 ### global\_phase
 
 Return the global phase of the circuit in radians.
 
-
-
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
-
 ### instances
 
 `= 16`
-
-
 
 ### metadata
 
@@ -144,25 +118,17 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-
-
 ### num\_ancilla\_qubits
 
 Deprecated. Use num\_ancillas instead.
-
-
 
 ### num\_ancillas
 
 Return the number of ancilla qubits.
 
-
-
 ### num\_clbits
 
 Return number of classical bits.
-
-
 
 ### num\_parameters
 
@@ -170,13 +136,9 @@ Return number of classical bits.
 
 `int`
 
-
-
 ### num\_qubits
 
 Return number of qubits.
-
-
 
 ### num\_state\_qubits
 
@@ -190,33 +152,23 @@ The number of state qubits representing the state $|x\rangle$.
 
 The number of state qubits.
 
-
-
 ### parameters
 
 **Return type**
 
 `ParameterView`
 
-
-
 ### prefix
 
 `= 'circuit'`
-
-
 
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-
-
 ### qubits
 
 Returns a list of quantum bits in the order that the registers were added.
-
-
 
 ### reverse
 

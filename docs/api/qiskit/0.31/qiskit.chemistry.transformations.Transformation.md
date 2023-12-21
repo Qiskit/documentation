@@ -1,7 +1,5 @@
 # Transformation
 
-
-
 `Transformation`
 
 Bases: `abc.ABC`
@@ -18,8 +16,6 @@ Base class for transformation to qubit operators for chemistry problems
 | [`transform`](qiskit.chemistry.transformations.Transformation.transform#qiskit.chemistry.transformations.Transformation.transform "qiskit.chemistry.transformations.Transformation.transform")                                                                             | Transformation from the `driver` to a qubit operator.                                             |
 
 ## Attributes
-
-
 
 ### commutation\_rule
 

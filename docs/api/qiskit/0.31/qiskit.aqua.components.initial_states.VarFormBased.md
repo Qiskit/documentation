@@ -1,7 +1,5 @@
 # VarFormBased
 
-
-
 `VarFormBased(var_form, params)`
 
 Bases: `object`

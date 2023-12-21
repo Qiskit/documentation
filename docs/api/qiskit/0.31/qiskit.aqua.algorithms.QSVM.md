@@ -1,7 +1,5 @@
 # QSVM
 
-
-
 `QSVM(feature_map, training_dataset=None, test_dataset=None, datapoints=None, multiclass_extension=None, lambda2=0.001, quantum_instance=None)`
 
 Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`
@@ -50,13 +48,9 @@ See also [https://arxiv.org/abs/1804.11326](https://arxiv.org/abs/1804.11326)
 
 ## Attributes
 
-
-
 ### BATCH\_SIZE
 
 `= 1000`
-
-
 
 ### backend
 
@@ -66,8 +60,6 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-
-
 ### quantum\_instance
 
 Returns quantum instance.
@@ -76,13 +68,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 ### random
 
 Return a numpy random.
-
-
 
 ### ret
 

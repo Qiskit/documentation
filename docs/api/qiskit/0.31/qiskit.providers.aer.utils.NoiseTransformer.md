@@ -1,7 +1,5 @@
 # NoiseTransformer
 
-
-
 `NoiseTransformer`
 
 Bases: `object`

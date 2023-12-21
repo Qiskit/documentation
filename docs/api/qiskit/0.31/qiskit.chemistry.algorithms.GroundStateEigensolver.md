@@ -1,7 +1,5 @@
 # GroundStateEigensolver
 
-
-
 `GroundStateEigensolver(transformation, solver)`
 
 Bases: `qiskit.chemistry.algorithms.ground_state_solvers.ground_state_solver.GroundStateSolver`
@@ -23,8 +21,6 @@ Ground state computation using a minimum eigensolver.
 
 ## Attributes
 
-
-
 ### solver
 
 Returns the minimum eigensolver or factory.
@@ -32,8 +28,6 @@ Returns the minimum eigensolver or factory.
 **Return type**
 
 `Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
-
-
 
 ### transformation
 

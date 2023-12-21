@@ -1,7 +1,5 @@
 # MeasurementFilter
 
-
-
 `MeasurementFilter(cal_matrix, state_labels)`
 
 Bases: `object`
@@ -25,13 +23,9 @@ Initialize a measurement error mitigation filter using the cal\_matrix from a me
 
 ## Attributes
 
-
-
 ### cal\_matrix
 
 Return cal\_matrix.
-
-
 
 ### state\_labels
 

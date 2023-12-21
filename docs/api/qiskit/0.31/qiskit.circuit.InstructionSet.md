@@ -1,7 +1,5 @@
 # InstructionSet
 
-
-
 `InstructionSet`
 
 Bases: `object`

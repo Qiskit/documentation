@@ -1,7 +1,5 @@
 # PrimitiveOp
 
-
-
 `PrimitiveOp(primitive=None, coeff=1.0)`
 
 Bases: `qiskit.aqua.operators.operator_base.OperatorBase`
@@ -46,19 +44,13 @@ Note that all mathematical methods are not in-place, meaning that they return a 
 
 ## Attributes
 
-
-
 ### ENABLE\_DEPRECATION
 
 `= True`
 
-
-
 ### INDENTATION
 
 `= ' '`
-
-
 
 ### coeff
 
@@ -72,19 +64,13 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
-
-
 ### num\_qubits
 
 **Return type**
 
 `int`
 
-
-
 ### parameters
-
-
 
 ### primitive
 

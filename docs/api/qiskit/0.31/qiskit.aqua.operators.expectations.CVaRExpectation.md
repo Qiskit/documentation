@@ -1,7 +1,5 @@
 # CVaRExpectation
 
-
-
 `CVaRExpectation(alpha, expectation=None)`
 
 Bases: `qiskit.aqua.operators.expectations.expectation_base.ExpectationBase`

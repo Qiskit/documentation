@@ -1,7 +1,5 @@
 # Zero
 
-
-
 `Zero(num_qubits)`
 
 Bases: `qiskit.aqua.components.initial_states.initial_state.InitialState`
@@ -21,7 +19,5 @@ This is suitable for those situations in which the all-zeros state is the desire
 | [`construct_circuit`](qiskit.aqua.components.initial_states.Zero.construct_circuit#qiskit.aqua.components.initial_states.Zero.construct_circuit "qiskit.aqua.components.initial_states.Zero.construct_circuit") | Construct the statevector of desired initial state. |
 
 ## Attributes
-
-
 
 ### bitstr

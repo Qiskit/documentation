@@ -1,0 +1,9 @@
+# qiskit.pulse.ShiftPhase.flatten
+
+`ShiftPhase.flatten()`
+
+Return itself as already single instruction.
+
+**Return type**
+
+`Instruction`

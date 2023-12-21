@@ -1,7 +1,5 @@
 # qiskit.aqua.utils.random\_unitary
 
-
-
 `random_unitary(N)`
 
 Generate a random unitary matrix with size NxN.

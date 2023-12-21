@@ -1,7 +1,5 @@
 # AbelianGrouper
 
-
-
 `AbelianGrouper(traverse=True)`
 
 Bases: `qiskit.aqua.operators.converters.converter_base.ConverterBase`

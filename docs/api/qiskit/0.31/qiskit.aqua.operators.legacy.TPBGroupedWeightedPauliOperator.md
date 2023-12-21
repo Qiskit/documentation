@@ -1,7 +1,5 @@
 # TPBGroupedWeightedPauliOperator
 
-
-
 `TPBGroupedWeightedPauliOperator(paulis, basis, z2_symmetries=None, atol=1e-12, name=None, grouping_func=None, kwargs=None)`
 
 Bases: `qiskit.aqua.operators.legacy.weighted_pauli_operator.WeightedPauliOperator`
@@ -51,43 +49,29 @@ TPB Grouped Weighted Pauli Operator
 
 ## Attributes
 
-
-
 ### atol
 
 get atol
-
-
 
 ### basis
 
 returns basis
 
-
-
 ### grouping\_func
 
 returns grouping function
-
-
 
 ### kwargs
 
 returns kwargs
 
-
-
 ### name
 
 returns name
 
-
-
 ### num\_groups
 
 returns number of groups
-
-
 
 ### num\_qubits
 
@@ -101,13 +85,9 @@ number of qubits
 
 int
 
-
-
 ### paulis
 
 get paulis
-
-
 
 ### z2\_symmetries
 

@@ -1,7 +1,5 @@
 # AerJobSet
 
-
-
 `AerJobSet(backend, job_id, fn, experiments, executor=None)`
 
 Bases: `qiskit.providers.job.JobV1`
@@ -42,8 +40,6 @@ AerJobSet constructor.
 | [`worker_results`](qiskit.providers.aer.jobs.AerJobSet.worker_results#qiskit.providers.aer.jobs.AerJobSet.worker_results "qiskit.providers.aer.jobs.AerJobSet.worker_results")                         | Return the result of the jobs specified with worker\_id.                            |
 
 ## Attributes
-
-
 
 ### version
 

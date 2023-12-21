@@ -1,7 +1,5 @@
 # FencedDAGCircuit
 
-
-
 `FencedDAGCircuit(dag_circuit_instance)`
 
 Bases: `qiskit.transpiler.fencedobjs.FencedObject`

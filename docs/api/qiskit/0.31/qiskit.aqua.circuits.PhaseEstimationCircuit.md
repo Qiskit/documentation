@@ -1,7 +1,5 @@
 # PhaseEstimationCircuit
 
-
-
 `PhaseEstimationCircuit(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, evo_time=6.283185307179586, state_in_circuit_factory=None, unitary_circuit_factory=None, shallow_circuit_concat=False, pauli_list=None)`
 
 Bases: `object`
@@ -36,19 +34,13 @@ Quantum Phase Estimation Circuit.
 
 ## Attributes
 
-
-
 ### ancillary\_register
 
 returns ancillary register
 
-
-
 ### auxiliary\_register
 
 returns auxiliary register
-
-
 
 ### state\_register
 

@@ -1,7 +1,5 @@
 # GaussianLogDriver
 
-
-
 `GaussianLogDriver(jcf)`
 
 Bases: `qiskit.chemistry.drivers.base_driver.BaseDriver`
@@ -30,8 +28,6 @@ This driver does not use Gaussian 16 interfacing code, as certain data such as f
 
 ## Attributes
 
-
-
 ### basis
 
 return basis
@@ -39,8 +35,6 @@ return basis
 **Return type**
 
 `str`
-
-
 
 ### hf\_method
 
@@ -50,8 +44,6 @@ return Hartree-Fock method
 
 `str`
 
-
-
 ### molecule
 
 return molecule
@@ -59,8 +51,6 @@ return molecule
 **Return type**
 
 `Optional`\[`Molecule`]
-
-
 
 ### supports\_molecule
 

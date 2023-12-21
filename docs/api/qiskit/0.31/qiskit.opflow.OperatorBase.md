@@ -1,7 +1,5 @@
 # OperatorBase
 
-
-
 `OperatorBase`
 
 Bases: `qiskit.opflow.mixins.star_algebra.StarAlgebraMixin`, `qiskit.opflow.mixins.tensor.TensorMixin`, `abc.ABC`
@@ -36,13 +34,9 @@ Operators can be used to construct complicated functions and computation, and se
 
 ## Attributes
 
-
-
 ### INDENTATION
 
 `= ' '`
-
-
 
 ### instance\_id
 
@@ -51,8 +45,6 @@ Return the unique instance id.
 **Return type**
 
 `int`
-
-
 
 ### num\_qubits
 
@@ -66,13 +58,9 @@ The number of qubits over which the Operator is defined. If `op.num_qubits == 5`
 
 The number of qubits accepted by the Operator’s underlying function.
 
-
-
 ### parameters
 
 Return a set of Parameter objects contained in the Operator.
-
-
 
 ### settings
 

@@ -1,0 +1,20 @@
+# qiskit.providers.aer.AerProvider.backends
+
+`AerProvider.backends(name=None, filters=None, **kwargs)`
+
+Return a list of backends matching the specified filtering.
+
+**Parameters**
+
+*   **name** (*str*) – name of the backend.
+*   **\*\*kwargs** – dict used for filtering.
+
+**Returns**
+
+**a list of Backends that match the filtering**
+
+criteria.
+
+**Return type**
+
+list\[[Backend](qiskit.providers.Backend#qiskit.providers.Backend "qiskit.providers.Backend")]

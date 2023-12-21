@@ -1,7 +1,5 @@
 # InequalityToEquality
 
-
-
 `InequalityToEquality(mode='auto')`
 
 Bases: `qiskit.optimization.converters.quadratic_program_converter.QuadraticProgramConverter`
@@ -41,8 +39,6 @@ To chose the type of slack variables. There are 3 options for mode.
 | [`interpret`](qiskit.optimization.converters.InequalityToEquality.interpret#qiskit.optimization.converters.InequalityToEquality.interpret "qiskit.optimization.converters.InequalityToEquality.interpret") | Convert a result of a converted problem into that of the original problem.             |
 
 ## Attributes
-
-
 
 ### mode
 

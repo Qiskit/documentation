@@ -1,7 +1,5 @@
 # StateFn
 
-
-
 `StateFn(primitive=None, coeff=1.0, is_measurement=False)`
 
 Bases: `qiskit.opflow.operator_base.OperatorBase`
@@ -46,13 +44,9 @@ NOTE: State functions here are not restricted to wave functions, as there is no 
 
 ## Attributes
 
-
-
 ### INDENTATION
 
 `= ' '`
-
-
 
 ### coeff
 
@@ -62,8 +56,6 @@ A coefficient by which the state function is multiplied.
 
 `Union`\[`complex`, `ParameterExpression`]
 
-
-
 ### instance\_id
 
 Return the unique instance id.
@@ -71,8 +63,6 @@ Return the unique instance id.
 **Return type**
 
 `int`
-
-
 
 ### is\_measurement
 
@@ -82,25 +72,17 @@ Whether the StateFn object is a measurement Operator.
 
 `bool`
 
-
-
 ### num\_qubits
 
 **Return type**
 
 `int`
 
-
-
 ### parameters
-
-
 
 ### primitive
 
 The primitive which defines the behavior of the underlying State function.
-
-
 
 ### settings
 

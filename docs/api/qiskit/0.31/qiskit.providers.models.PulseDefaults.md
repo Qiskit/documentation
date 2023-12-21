@@ -1,7 +1,5 @@
 # PulseDefaults
 
-
-
 `PulseDefaults(qubit_freq_est, meas_freq_est, buffer, pulse_library, cmd_def, meas_kernel=None, discriminator=None, **kwargs)`
 
 Bases: `object`

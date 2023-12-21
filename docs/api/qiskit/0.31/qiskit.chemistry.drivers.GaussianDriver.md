@@ -1,7 +1,5 @@
 # GaussianDriver
 
-
-
 `GaussianDriver(config='# rhf/sto-3g scf(conventional)\\n\\nh2 molecule\\n\\n0 1\\nH 0.0 0.0 0.0\\nH 0.0 0.0 0.735\\n\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)`
 
 Bases: `qiskit.chemistry.drivers.fermionic_driver.FermionicDriver`
@@ -31,8 +29,6 @@ This driver uses the Gaussian open-source Gaussian 16 interfacing code in order 
 
 ## Attributes
 
-
-
 ### basis
 
 return basis
@@ -40,8 +36,6 @@ return basis
 **Return type**
 
 `str`
-
-
 
 ### hf\_method
 
@@ -51,8 +45,6 @@ return Hartree-Fock method
 
 `str`
 
-
-
 ### molecule
 
 return molecule
@@ -60,8 +52,6 @@ return molecule
 **Return type**
 
 `Optional`\[`Molecule`]
-
-
 
 ### supports\_molecule
 

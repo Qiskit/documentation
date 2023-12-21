@@ -1,7 +1,5 @@
 # Play
 
-
-
 `Play(pulse, channel, name=None)`
 
 Bases: `qiskit.pulse.instructions.instruction.Instruction`
@@ -39,8 +37,6 @@ Create a new pulse instruction.
 
 ## Attributes
 
-
-
 ### channel
 
 Return the `Channel` that this instruction is scheduled on.
@@ -48,8 +44,6 @@ Return the `Channel` that this instruction is scheduled on.
 **Return type**
 
 `PulseChannel`
-
-
 
 ### channels
 
@@ -59,8 +53,6 @@ Returns the channels that this schedule uses.
 
 `Tuple`\[`PulseChannel`]
 
-
-
 ### duration
 
 Duration of this instruction.
@@ -68,8 +60,6 @@ Duration of this instruction.
 **Return type**
 
 `Union`\[`int`, `ParameterExpression`]
-
-
 
 ### id
 
@@ -79,8 +69,6 @@ Unique identifier for this instruction.
 
 `int`
 
-
-
 ### instructions
 
 Iterable for getting instructions from Schedule tree.
@@ -88,8 +76,6 @@ Iterable for getting instructions from Schedule tree.
 **Return type**
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
-
-
 
 ### name
 
@@ -99,8 +85,6 @@ Name of this instruction.
 
 `str`
 
-
-
 ### operands
 
 Return instruction operands.
@@ -108,8 +92,6 @@ Return instruction operands.
 **Return type**
 
 `Tuple`
-
-
 
 ### parameters
 
@@ -119,8 +101,6 @@ Parameters which determine the instruction behavior.
 
 `Set`
 
-
-
 ### pulse
 
 A description of the samples that will be played.
@@ -129,8 +109,6 @@ A description of the samples that will be played.
 
 `Pulse`
 
-
-
 ### start\_time
 
 Relative begin time of this instruction.
@@ -138,8 +116,6 @@ Relative begin time of this instruction.
 **Return type**
 
 `int`
-
-
 
 ### stop\_time
 

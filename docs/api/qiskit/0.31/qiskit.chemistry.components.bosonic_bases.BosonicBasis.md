@@ -1,7 +1,5 @@
 # BosonicBasis
 
-
-
 `BosonicBasis`
 
 Bases: `object`

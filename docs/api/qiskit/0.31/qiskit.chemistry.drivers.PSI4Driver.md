@@ -1,7 +1,5 @@
 # PSI4Driver
 
-
-
 `PSI4Driver(config='molecule h2 {\\n 0 1\\n H 0.0 0.0 0.0\\n H 0.0 0.0 0.735\\n}\\n\\nset {\\n basis sto-3g\\n scf_type pk\\n reference rhf\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)`
 
 Bases: `qiskit.chemistry.drivers.fermionic_driver.FermionicDriver`
@@ -29,8 +27,6 @@ See [http://www.psicode.org/](http://www.psicode.org/)
 
 ## Attributes
 
-
-
 ### basis
 
 return basis
@@ -38,8 +34,6 @@ return basis
 **Return type**
 
 `str`
-
-
 
 ### hf\_method
 
@@ -49,8 +43,6 @@ return Hartree-Fock method
 
 `str`
 
-
-
 ### molecule
 
 return molecule
@@ -58,8 +50,6 @@ return molecule
 **Return type**
 
 `Optional`\[`Molecule`]
-
-
 
 ### supports\_molecule
 

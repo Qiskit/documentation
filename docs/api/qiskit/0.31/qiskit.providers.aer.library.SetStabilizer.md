@@ -1,7 +1,5 @@
 # SetStabilizer
 
-
-
 `SetStabilizer(state)`
 
 Bases: `qiskit.circuit.instruction.Instruction`
@@ -38,25 +36,17 @@ Create new instruction to set the Clifford stabilizer state of the simulator.
 
 ## Attributes
 
-
-
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
-
 ### duration
 
 Get the duration.
-
-
 
 ### label
 
@@ -66,13 +56,9 @@ Return instruction label
 
 `str`
 
-
-
 ### params
 
 return instruction params.
-
-
 
 ### unit
 

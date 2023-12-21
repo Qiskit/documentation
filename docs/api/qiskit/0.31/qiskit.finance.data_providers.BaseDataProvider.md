@@ -1,7 +1,5 @@
 # BaseDataProvider
 
-
-
 `BaseDataProvider`
 
 Bases: `abc.ABC`

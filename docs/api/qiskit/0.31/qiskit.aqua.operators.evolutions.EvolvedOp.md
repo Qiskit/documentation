@@ -1,7 +1,5 @@
 # EvolvedOp
 
-
-
 `EvolvedOp(primitive, coeff=1.0)`
 
 Bases: `qiskit.aqua.operators.primitive_ops.primitive_op.PrimitiveOp`
@@ -44,19 +42,13 @@ Class for wrapping Operator Evolutions for compilation (`convert`) by an Evoluti
 
 ## Attributes
 
-
-
 ### ENABLE\_DEPRECATION
 
 `= True`
 
-
-
 ### INDENTATION
 
 `= ' '`
-
-
 
 ### coeff
 
@@ -70,19 +62,13 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
-
-
 ### num\_qubits
 
 **Return type**
 
 `int`
 
-
-
 ### parameters
-
-
 
 ### primitive
 

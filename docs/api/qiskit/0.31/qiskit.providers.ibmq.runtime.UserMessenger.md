@@ -1,7 +1,5 @@
 # UserMessenger
 
-
-
 `UserMessenger`
 
 Bases: `object`

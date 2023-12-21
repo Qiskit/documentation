@@ -1,7 +1,5 @@
 # BernsteinVazirani
 
-
-
 `BernsteinVazirani(oracle, quantum_instance=None)`
 
 Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`
@@ -25,8 +23,6 @@ The Bernstein-Vazirani algorithm is an extension / restriction of the Deutsch-Jo
 
 ## Attributes
 
-
-
 ### backend
 
 Returns backend.
@@ -35,8 +31,6 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-
-
 ### quantum\_instance
 
 Returns quantum instance.
@@ -44,8 +38,6 @@ Returns quantum instance.
 **Return type**
 
 `Optional`\[`QuantumInstance`]
-
-
 
 ### random
 

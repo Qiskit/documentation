@@ -1,7 +1,5 @@
 # ListOp
 
-
-
 `ListOp(oplist, combo_fn=<function ListOp.<lambda>>, coeff=1.0, abelian=False, grad_combo_fn=None)`
 
 Bases: `qiskit.aqua.operators.operator_base.OperatorBase`
@@ -54,19 +52,13 @@ The base `ListOp` class is particularly interesting, as its `combo_fn` is “the
 
 ## Attributes
 
-
-
 ### ENABLE\_DEPRECATION
 
 `= True`
 
-
-
 ### INDENTATION
 
 `= ' '`
-
-
 
 ### abelian
 
@@ -80,8 +72,6 @@ Whether the Operators in `oplist` are known to commute with one another.
 
 A bool indicating whether the `oplist` is Abelian.
 
-
-
 ### coeff
 
 The scalar coefficient multiplying the Operator.
@@ -93,8 +83,6 @@ The scalar coefficient multiplying the Operator.
 **Returns**
 
 The coefficient.
-
-
 
 ### combo\_fn
 
@@ -108,8 +96,6 @@ The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to p
 
 The combination function.
 
-
-
 ### distributive
 
 Indicates whether the ListOp or subclass is distributive under composition. ListOp and SummedOp are, meaning that (opv @ op) = (opv\[0] @ op + opv\[1] @ op) (using plus for SummedOp, list for ListOp, etc.), while ComposedOp and TensoredOp do not behave this way.
@@ -122,8 +108,6 @@ Indicates whether the ListOp or subclass is distributive under composition. List
 
 A bool indicating whether the ListOp is distributive under composition.
 
-
-
 ### grad\_combo\_fn
 
 The gradient of `combo_fn`.
@@ -132,15 +116,11 @@ The gradient of `combo_fn`.
 
 `Optional`\[`Callable`]
 
-
-
 ### num\_qubits
 
 **Return type**
 
 `int`
-
-
 
 ### oplist
 
@@ -153,7 +133,5 @@ The list of `OperatorBases` defining the underlying function of this Operator.
 **Returns**
 
 The Operators defining the ListOp
-
-
 
 ### parameters

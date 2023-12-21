@@ -1,7 +1,5 @@
 # NumPyLSsolverResult
 
-
-
 `NumPyLSsolverResult(a_dict=None)`
 
 Bases: `qiskit.aqua.algorithms.linear_solvers.linear_solver_result.LinearsolverResult`
@@ -28,8 +26,6 @@ Numpy LinearSystem Result.
 
 ## Attributes
 
-
-
 ### eigvals
 
 return eigvals
@@ -37,8 +33,6 @@ return eigvals
 **Return type**
 
 `ndarray`
-
-
 
 ### solution
 

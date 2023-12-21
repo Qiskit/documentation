@@ -1,0 +1,22 @@
+# qiskit.ml.circuit.library.RawFeatureVector.save\_unitary
+
+`RawFeatureVector.save_unitary(label='unitary', pershot=False)`
+
+Save the current state of the unitary simulator.
+
+**Parameters**
+
+*   **label** (*str*) – the key for retrieving saved data from results.
+*   **pershot** (*bool*) – if True save a list of unitaries for each shot of the simulation \[Default: False].
+
+**Returns**
+
+with attached instruction.
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+<Admonition title="Note" type="note">
+  This instruction is always defined across all qubits in a circuit.
+</Admonition>
