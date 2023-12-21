@@ -1,7 +1,5 @@
 # ErrorCorrectingCode
 
-
-
 `ErrorCorrectingCode(code_size=4)`
 
 Bases: `qiskit.aqua.components.multiclass_extensions.multiclass_extension.MulticlassExtension`

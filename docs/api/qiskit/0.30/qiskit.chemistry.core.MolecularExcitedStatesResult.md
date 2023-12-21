@@ -1,7 +1,5 @@
 # MolecularExcitedStatesResult
 
-
-
 `MolecularExcitedStatesResult(a_dict=None)`
 
 Bases: `qiskit.chemistry.core.chemistry_operator.MolecularChemistryResult`
@@ -29,8 +27,6 @@ Energies are in Hartree and dipole moments in A.U unless otherwise stated.
 
 ## Attributes
 
-
-
 ### algorithm\_result
 
 Returns raw algorithm result
@@ -38,8 +34,6 @@ Returns raw algorithm result
 **Return type**
 
 `AlgorithmResult`
-
-
 
 ### energies
 
@@ -49,8 +43,6 @@ Returns ground state energy
 
 `Tuple`
 
-
-
 ### hartree\_fock\_energy
 
 Returns Hartree-Fock energy
@@ -59,8 +51,6 @@ Returns Hartree-Fock energy
 
 `float`
 
-
-
 ### nuclear\_dipole\_moment
 
 Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
@@ -68,8 +58,6 @@ Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
 **Return type**
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
-
-
 
 ### nuclear\_repulsion\_energy
 

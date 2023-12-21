@@ -1,7 +1,5 @@
 # UCCSD
 
-
-
 `UCCSD(num_orbitals, num_particles, reps=1, active_occupied=None, active_unoccupied=None, initial_state=None, qubit_mapping='parity', two_qubit_reduction=True, num_time_slices=1, shallow_circuit_concat=True, z2_symmetries=None, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True, skip_commute_test=False)`
 
 Bases: `qiskit.aqua.components.variational_forms.variational_form.VariationalForm`
@@ -71,13 +69,9 @@ Constructor.
 
 ## Attributes
 
-
-
 ### double\_excitations
 
 Getter of double excitation list :returns: double excitation list :rtype: list\[list\[int]]
-
-
 
 ### excitation\_pool
 
@@ -86,8 +80,6 @@ Returns the full list of available excitations (called the pool).
 **Return type**
 
 `List`\[`WeightedPauliOperator`]
-
-
 
 ### num\_parameters
 
@@ -101,8 +93,6 @@ An integer indicating the number of parameters.
 
 int
 
-
-
 ### num\_qubits
 
 Number of qubits of the variational form.
@@ -114,8 +104,6 @@ An integer indicating the number of qubits.
 **Return type**
 
 int
-
-
 
 ### parameter\_bounds
 
@@ -129,23 +117,15 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 list
 
-
-
 ### preferred\_init\_points
 
 Getter of preferred initial points based on the given initial state.
 
-
-
 ### setting
-
-
 
 ### single\_excitations
 
 Getter of single excitation list :returns: single excitation list :rtype: list\[list\[int]]
-
-
 
 ### support\_parameterized\_circuit
 

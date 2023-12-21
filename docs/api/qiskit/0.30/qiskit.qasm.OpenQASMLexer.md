@@ -1,7 +1,5 @@
 # OpenQASMLexer
 
-
-
 `OpenQASMLexer(*args, **kwds)`
 
 Bases: `pygments.lexer.RegexLexer`
@@ -19,55 +17,37 @@ A pygments lexer for OpenQasm.
 
 ## Attributes
 
-
-
 ### alias\_filenames
 
 `= []`
-
-
 
 ### aliases
 
 `= ['qasm']`
 
-
-
 ### filenames
 
 `= ['*.qasm']`
-
-
 
 ### flags
 
 `= 8`
 
-
-
 ### gates
 
 `= ['id', 'cx', 'x', 'y', 'z', 's', 'sdg', 'h', 't', 'tdg', 'ccx', 'c3x', 'c4x', 'c3sqrtx', 'rx', 'ry', 'rz', 'cz', 'cy', 'ch', 'swap', 'cswap', 'crx', 'cry', 'crz', 'cu1', 'cu3', 'rxx', 'rzz', 'rccx', 'rc3x', 'u1', 'u2', 'u3']`
-
-
 
 ### mimetypes
 
 `= []`
 
-
-
 ### name
 
 `= 'OpenQASM'`
 
-
-
 ### priority
 
 `= 0`
-
-
 
 ### tokens = \{'gate'
 

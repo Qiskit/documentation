@@ -1,7 +1,5 @@
 # qiskit.circuit.library.clifford\_6\_5
 
-
-
 `clifford_6_5()`
 
 **Returns**

@@ -1,7 +1,5 @@
 # qiskit.providers.aer.library.save\_statevector
 
-
-
 `save_statevector(self, label='statevector', pershot=False, conditional=False)`
 
 Save the current simulator quantum state as a statevector.

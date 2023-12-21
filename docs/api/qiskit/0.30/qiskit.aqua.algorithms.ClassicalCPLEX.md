@@ -1,7 +1,5 @@
 # ClassicalCPLEX
 
-
-
 `ClassicalCPLEX(operator, timelimit=600, thread=1, display=2)`
 
 Bases: `qiskit.aqua.algorithms.classical_algorithm.ClassicalAlgorithm`
@@ -27,13 +25,9 @@ See these `installation instructions` if you need more information in that regar
 
 ## Attributes
 
-
-
 ### random
 
 Return a numpy random.
-
-
 
 ### solution
 

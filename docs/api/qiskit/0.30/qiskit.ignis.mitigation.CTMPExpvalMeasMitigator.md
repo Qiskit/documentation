@@ -1,7 +1,5 @@
 # CTMPExpvalMeasMitigator
 
-
-
 `CTMPExpvalMeasMitigator(generators, rates, num_qubits=None, seed=None)`
 
 Bases: `qiskit.ignis.mitigation.expval.base_meas_mitigator.BaseExpvalMeasMitigator`

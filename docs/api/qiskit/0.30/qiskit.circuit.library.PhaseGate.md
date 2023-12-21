@@ -1,7 +1,5 @@
 # PhaseGate
 
-
-
 `PhaseGate(theta, label=None)`
 
 Bases: `qiskit.circuit.gate.Gate`
@@ -63,25 +61,17 @@ Create new Phase gate.
 
 ## Attributes
 
-
-
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
-
 ### duration
 
 Get the duration.
-
-
 
 ### label
 
@@ -91,13 +81,9 @@ Return instruction label
 
 `str`
 
-
-
 ### params
 
 return instruction params.
-
-
 
 ### unit
 

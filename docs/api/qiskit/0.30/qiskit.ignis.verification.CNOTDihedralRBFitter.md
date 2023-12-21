@@ -1,7 +1,5 @@
 # CNOTDihedralRBFitter
 
-
-
 `CNOTDihedralRBFitter(cnotdihedral_Z_result, cnotdihedral_X_result, elmnts_lengths, rb_pattern=None)`
 
 Bases: `qiskit.ignis.verification.randomized_benchmarking.fitters.RBFitterBase`
@@ -30,61 +28,41 @@ Derived from RBFitterBase class. Contains two RBFitter objects.
 
 ## Attributes
 
-
-
 ### cliff\_lengths
 
 Return group elements lengths.
-
-
 
 ### fit
 
 Return fit as a 2 element list.
 
-
-
 ### fit\_cnotdihedral
 
 Return cnotdihedral fit parameters.
-
-
 
 ### raw\_data
 
 Return raw\_data as 2 element list.
 
-
-
 ### rb\_fit\_fun
 
 Return the fit function rb\_fit\_fun.
-
-
 
 ### rbfit\_X
 
 Return the cnotdihedral X fitter.
 
-
-
 ### rbfit\_Z
 
 Return the cnotdihedral Z fitter.
-
-
 
 ### results
 
 Return all the results as a 2 element list.
 
-
-
 ### seeds
 
 Return the number of loaded seeds as a 2 element list.
-
-
 
 ### ydata
 

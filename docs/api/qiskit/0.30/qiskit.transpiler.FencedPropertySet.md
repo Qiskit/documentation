@@ -1,7 +1,5 @@
 # FencedPropertySet
 
-
-
 `FencedPropertySet(property_set_instance)`
 
 Bases: `qiskit.transpiler.fencedobjs.FencedObject`

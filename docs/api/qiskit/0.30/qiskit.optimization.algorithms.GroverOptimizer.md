@@ -1,7 +1,5 @@
 # GroverOptimizer
 
-
-
 `GroverOptimizer(num_value_qubits, num_iterations=3, quantum_instance=None, converters=None, penalty=None)`
 
 Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationAlgorithm`
@@ -29,8 +27,6 @@ Uses Grover Adaptive Search (GAS) to find the minimum of a QUBO function.
 | [`solve`](qiskit.optimization.algorithms.GroverOptimizer.solve#qiskit.optimization.algorithms.GroverOptimizer.solve "qiskit.optimization.algorithms.GroverOptimizer.solve")                                                                 | Tries to solves the given problem using the grover optimizer.                             |
 
 ## Attributes
-
-
 
 ### quantum\_instance
 

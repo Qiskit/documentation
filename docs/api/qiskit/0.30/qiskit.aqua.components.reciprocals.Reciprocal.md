@@ -1,7 +1,5 @@
 # Reciprocal
 
-
-
 `Reciprocal`
 
 Bases: `abc.ABC`

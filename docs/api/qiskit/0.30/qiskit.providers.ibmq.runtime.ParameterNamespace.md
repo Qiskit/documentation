@@ -1,7 +1,5 @@
 # ParameterNamespace
 
-
-
 `ParameterNamespace(params)`
 
 Bases: `types.SimpleNamespace`
@@ -23,8 +21,6 @@ ParameterNamespace constructor.
 | [`validate`](qiskit.providers.ibmq.runtime.ParameterNamespace.validate#qiskit.providers.ibmq.runtime.ParameterNamespace.validate "qiskit.providers.ibmq.runtime.ParameterNamespace.validate") | Validate program input values. |
 
 ## Attributes
-
-
 
 ### metadata
 

@@ -1,7 +1,5 @@
 # AccreditationFitter
 
-
-
 `AccreditationFitter`
 
 Bases: `object`
@@ -19,49 +17,33 @@ Implementation follows the methods from Samuele Ferracin, Theodoros Kapourniotis
 
 ## Attributes
 
-
-
 ### N\_acc
 
 `= 0`
-
-
 
 ### bound
 
 `= 1`
 
-
-
 ### confidence
 
 `= 1`
-
-
 
 ### flag
 
 `= 'accepted'`
 
-
-
 ### g\_num
 
 `= 1`
-
-
 
 ### num\_runs
 
 `= 0`
 
-
-
 ### num\_traps
 
 `= 0`
-
-
 
 ### outputs
 

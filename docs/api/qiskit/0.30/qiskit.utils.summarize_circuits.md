@@ -1,7 +1,5 @@
 # qiskit.utils.summarize\_circuits
 
-
-
 `summarize_circuits(circuits)`
 
 ## Summarize circuits based on QuantumCircuit, and five metrics are summarized.

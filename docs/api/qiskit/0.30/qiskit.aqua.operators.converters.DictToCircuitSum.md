@@ -1,7 +1,5 @@
 # DictToCircuitSum
 
-
-
 `DictToCircuitSum(traverse=True, convert_dicts=True, convert_vectors=True)`
 
 Bases: `qiskit.aqua.operators.converters.converter_base.ConverterBase`

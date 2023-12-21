@@ -1,7 +1,5 @@
 # LookupRotation
 
-
-
 `LookupRotation(pat_length=None, subpat_length=None, scale=0, negative_evals=False, evo_time=None, lambda_min=None)`
 
 Bases: `qiskit.aqua.components.reciprocals.reciprocal.Reciprocal`

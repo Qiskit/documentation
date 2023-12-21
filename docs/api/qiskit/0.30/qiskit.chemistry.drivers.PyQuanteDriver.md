@@ -1,7 +1,5 @@
 # PyQuanteDriver
 
-
-
 `PyQuanteDriver(atoms='H 0.0 0.0 0.0; H 0.0 0.0 0.735', units=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, multiplicity=1, basis=<BasisType.BSTO3G: 'sto3g'>, hf_method=<HFMethodType.RHF: 'rhf'>, tol=1e-08, maxiters=100, molecule=None)`
 
 Bases: `qiskit.chemistry.drivers.fermionic_driver.FermionicDriver`
@@ -34,8 +32,6 @@ See [https://github.com/rpmuller/pyquante2](https://github.com/rpmuller/pyquante
 
 ## Attributes
 
-
-
 ### basis
 
 return basis
@@ -43,8 +39,6 @@ return basis
 **Return type**
 
 `str`
-
-
 
 ### hf\_method
 
@@ -54,8 +48,6 @@ return Hartree-Fock method
 
 `str`
 
-
-
 ### molecule
 
 return molecule
@@ -63,8 +55,6 @@ return molecule
 **Return type**
 
 `Optional`\[`Molecule`]
-
-
 
 ### supports\_molecule
 

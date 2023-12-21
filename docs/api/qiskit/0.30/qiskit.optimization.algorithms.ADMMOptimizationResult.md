@@ -1,7 +1,5 @@
 # ADMMOptimizationResult
 
-
-
 `ADMMOptimizationResult(x, fval, variables, state, status)`
 
 Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationResult`
@@ -18,8 +16,6 @@ ADMMOptimization Result.
 
 ## Attributes
 
-
-
 ### fval
 
 Returns the optimal function value.
@@ -31,8 +27,6 @@ Returns the optimal function value.
 **Returns**
 
 The function value corresponding to the optimal value found in the optimization.
-
-
 
 ### raw\_results
 
@@ -48,8 +42,6 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
-
-
 ### samples
 
 Returns the list of solution samples
@@ -62,8 +54,6 @@ Returns the list of solution samples
 
 The list of solution samples.
 
-
-
 ### state
 
 returns state
@@ -71,8 +61,6 @@ returns state
 **Return type**
 
 `ADMMState`
-
-
 
 ### status
 
@@ -86,8 +74,6 @@ Returns the termination status of the optimization algorithm.
 
 The termination status of the algorithm.
 
-
-
 ### variable\_names
 
 Returns the list of variable names of the optimization problem.
@@ -99,8 +85,6 @@ Returns the list of variable names of the optimization problem.
 **Returns**
 
 The list of variable names of the optimization problem.
-
-
 
 ### variables
 
@@ -114,8 +98,6 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
-
-
 ### variables\_dict
 
 Returns the optimal value as a dictionary of the variable name and corresponding value.
@@ -127,8 +109,6 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 **Returns**
 
 The optimal value as a dictionary of the variable name and corresponding value.
-
-
 
 ### x
 

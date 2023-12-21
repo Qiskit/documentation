@@ -1,7 +1,5 @@
 # QuadraticProgramElement
 
-
-
 `QuadraticProgramElement(quadratic_program)`
 
 Bases: `object`
@@ -19,8 +17,6 @@ Initialize object with parent QuadraticProgram.
 **TypeError** – QuadraticProgram instance expected.
 
 ## Attributes
-
-
 
 ### quadratic\_program
 

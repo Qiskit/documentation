@@ -1,7 +1,5 @@
 # LinearConstraint
 
-
-
 `LinearConstraint(quadratic_program, name, linear, sense, rhs)`
 
 Bases: `qiskit.optimization.problems.constraint.Constraint`
@@ -24,8 +22,6 @@ Representation of a linear constraint.
 
 ## Attributes
 
-
-
 ### linear
 
 Returns the linear expression corresponding to the left-hand-side of the constraint.
@@ -37,8 +33,6 @@ Returns the linear expression corresponding to the left-hand-side of the constra
 **Returns**
 
 The left-hand-side linear expression.
-
-
 
 ### name
 
@@ -52,8 +46,6 @@ Returns the name of the constraint.
 
 The name of the constraint.
 
-
-
 ### quadratic\_program
 
 Returns the parent QuadraticProgram.
@@ -66,8 +58,6 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-
-
 ### rhs
 
 Returns the right-hand-side of the constraint.
@@ -79,8 +69,6 @@ Returns the right-hand-side of the constraint.
 **Returns**
 
 The right-hand-side of the constraint.
-
-
 
 ### sense
 

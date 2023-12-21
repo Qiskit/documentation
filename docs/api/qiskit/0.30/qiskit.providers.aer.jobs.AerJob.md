@@ -1,7 +1,5 @@
 # AerJob
 
-
-
 `AerJob(backend, job_id, fn, qobj, executor=None)`
 
 Bases: `qiskit.providers.job.JobV1`
@@ -37,8 +35,6 @@ Initializes the asynchronous job.
 | [`wait_for_final_state`](qiskit.providers.aer.jobs.AerJob.wait_for_final_state#qiskit.providers.aer.jobs.AerJob.wait_for_final_state "qiskit.providers.aer.jobs.AerJob.wait_for_final_state") | Poll the job status until it progresses to a final state such as `DONE` or `ERROR`. |
 
 ## Attributes
-
-
 
 ### version
 

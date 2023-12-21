@@ -1,7 +1,5 @@
 # ScheduleConfig
 
-
-
 `ScheduleConfig(inst_map, meas_map, dt)`
 
 Bases: `object`

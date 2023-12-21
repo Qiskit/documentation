@@ -1,7 +1,5 @@
 # HartreeFock
 
-
-
 `HartreeFock(num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, sq_list=None)`
 
 Bases: `qiskit.aqua.components.initial_states.initial_state.InitialState`
@@ -28,8 +26,6 @@ A Hartree-Fock initial state.
 | [`construct_circuit`](qiskit.chemistry.components.initial_states.HartreeFock.construct_circuit#qiskit.chemistry.components.initial_states.HartreeFock.construct_circuit "qiskit.chemistry.components.initial_states.HartreeFock.construct_circuit") | Construct the statevector of desired initial state. |
 
 ## Attributes
-
-
 
 ### bitstr
 

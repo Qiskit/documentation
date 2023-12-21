@@ -1,7 +1,5 @@
 # QasmQobj
 
-
-
 `QasmQobj(qobj_id=None, config=None, experiments=None, header=None)`
 
 Bases: `object`

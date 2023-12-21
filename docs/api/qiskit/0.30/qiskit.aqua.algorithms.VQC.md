@@ -1,7 +1,5 @@
 # VQC
 
-
-
 `VQC(optimizer, feature_map, var_form, training_dataset, test_dataset=None, datapoints=None, max_evals_grouped=1, minibatch_size=- 1, callback=None, use_sigmoid_cross_entropy=False, quantum_instance=None)`
 
 Bases: `qiskit.aqua.algorithms.vq_algorithm.VQAlgorithm`
@@ -60,8 +58,6 @@ Similar to [`QSVM`](qiskit.aqua.algorithms.QSVM#qiskit.aqua.algorithms.QSVM "qis
 
 ## Attributes
 
-
-
 ### backend
 
 Returns backend.
@@ -70,19 +66,13 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-
-
 ### class\_to\_label
 
 returns class to label
 
-
-
 ### datapoints
 
 return data points
-
-
 
 ### feature\_map
 
@@ -92,8 +82,6 @@ Return the feature map.
 
 `Union`\[`FeatureMap`, `QuantumCircuit`, `None`]
 
-
-
 ### initial\_point
 
 Returns initial point
@@ -102,19 +90,13 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
-
-
 ### label\_to\_class
 
 returns label to class
 
-
-
 ### optimal\_params
 
 returns optimal parameters
-
-
 
 ### optimizer
 
@@ -124,8 +106,6 @@ Returns optimizer
 
 `Optional`\[`Optimizer`]
 
-
-
 ### quantum\_instance
 
 Returns quantum instance.
@@ -134,31 +114,21 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 ### random
 
 Return a numpy random.
-
-
 
 ### ret
 
 returns result
 
-
-
 ### test\_dataset
 
 returns test dataset
 
-
-
 ### training\_dataset
 
 returns training dataset
-
-
 
 ### var\_form
 

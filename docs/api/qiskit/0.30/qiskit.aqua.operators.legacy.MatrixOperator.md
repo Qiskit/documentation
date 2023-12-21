@@ -1,7 +1,5 @@
 # MatrixOperator
 
-
-
 `MatrixOperator(matrix, basis=None, z2_symmetries=None, atol=1e-12, name=None)`
 
 Bases: `qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator`
@@ -38,43 +36,29 @@ Operators relevant for quantum applications
 
 ## Attributes
 
-
-
 ### atol
 
 return atol
-
-
 
 ### basis
 
 returns basis
 
-
-
 ### dense\_matrix
 
 Getter of matrix in dense matrix form.
-
-
 
 ### dia\_matrix
 
 diagonal matrix
 
-
-
 ### matrix
 
 Getter of matrix.
 
-
-
 ### name
 
 returns name
-
-
 
 ### num\_qubits
 
@@ -87,8 +71,6 @@ number of qubits
 **Return type**
 
 int
-
-
 
 ### z2\_symmetries
 

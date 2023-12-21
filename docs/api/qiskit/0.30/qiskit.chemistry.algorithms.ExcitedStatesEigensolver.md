@@ -1,7 +1,5 @@
 # ExcitedStatesEigensolver
 
-
-
 `ExcitedStatesEigensolver(transformation, solver)`
 
 Bases: `qiskit.chemistry.algorithms.excited_states_solvers.excited_states_solver.ExcitedStatesSolver`
@@ -21,8 +19,6 @@ The calculation of excited states via an Eigensolver algorithm
 
 ## Attributes
 
-
-
 ### solver
 
 Returns the minimum eigensolver or factory.
@@ -30,8 +26,6 @@ Returns the minimum eigensolver or factory.
 **Return type**
 
 `Union`\[`Eigensolver`, `EigensolverFactory`]
-
-
 
 ### transformation
 

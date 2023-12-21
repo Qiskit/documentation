@@ -1,7 +1,5 @@
 # LinearEqualityToPenalty
 
-
-
 `LinearEqualityToPenalty(penalty=None)`
 
 Bases: `qiskit.optimization.converters.quadratic_program_converter.QuadraticProgramConverter`
@@ -20,8 +18,6 @@ Convert a problem with only equality constraints to unconstrained with penalty t
 | [`interpret`](qiskit.optimization.converters.LinearEqualityToPenalty.interpret#qiskit.optimization.converters.LinearEqualityToPenalty.interpret "qiskit.optimization.converters.LinearEqualityToPenalty.interpret") | Convert the result of the converted problem back to that of the original problem |
 
 ## Attributes
-
-
 
 ### penalty
 

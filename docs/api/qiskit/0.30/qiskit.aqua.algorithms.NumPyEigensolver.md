@@ -1,7 +1,5 @@
 # NumPyEigensolver
 
-
-
 `NumPyEigensolver(operator=None, k=1, aux_operators=None, filter_criterion=None)`
 
 Bases: `qiskit.aqua.algorithms.classical_algorithm.ClassicalAlgorithm`, `qiskit.aqua.algorithms.eigen_solvers.eigen_solver.Eigensolver`
@@ -31,15 +29,11 @@ NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued s
 
 ## Attributes
 
-
-
 ### aux\_operators
 
 **Return type**
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
-
-
 
 ### filter\_criterion
 
@@ -49,8 +43,6 @@ returns the filter criterion if set
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
 
-
-
 ### k
 
 returns k (number of eigenvalues requested)
@@ -59,15 +51,11 @@ returns k (number of eigenvalues requested)
 
 `int`
 
-
-
 ### operator
 
 **Return type**
 
 `Optional`\[`OperatorBase`]
-
-
 
 ### random
 

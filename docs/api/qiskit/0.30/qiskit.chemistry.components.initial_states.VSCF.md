@@ -1,7 +1,5 @@
 # VSCF
 
-
-
 `VSCF(basis)`
 
 Bases: `qiskit.aqua.components.initial_states.initial_state.InitialState`
@@ -21,8 +19,6 @@ Creates an occupation number vector as defined in Ollitrault Pauline J., Chemica
 | [`construct_circuit`](qiskit.chemistry.components.initial_states.VSCF.construct_circuit#qiskit.chemistry.components.initial_states.VSCF.construct_circuit "qiskit.chemistry.components.initial_states.VSCF.construct_circuit") | Construct the statevector of desired initial state. |
 
 ## Attributes
-
-
 
 ### bitstr
 

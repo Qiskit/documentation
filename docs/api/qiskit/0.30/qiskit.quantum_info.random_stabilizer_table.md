@@ -1,7 +1,5 @@
 # qiskit.quantum\_info.random\_stabilizer\_table
 
-
-
 `random_stabilizer_table(num_qubits, size=1, seed=None)`
 
 Return a random StabilizerTable.

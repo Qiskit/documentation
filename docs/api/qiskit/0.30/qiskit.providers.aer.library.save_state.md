@@ -1,7 +1,5 @@
 # qiskit.providers.aer.library.save\_state
 
-
-
 `save_state(self, label=None, pershot=False, conditional=False)`
 
 Save the current simulator quantum state.

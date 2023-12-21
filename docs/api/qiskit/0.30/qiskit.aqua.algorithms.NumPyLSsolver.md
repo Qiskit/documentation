@@ -1,7 +1,5 @@
 # NumPyLSsolver
 
-
-
 `NumPyLSsolver(matrix, vector)`
 
 Bases: `qiskit.aqua.algorithms.classical_algorithm.ClassicalAlgorithm`
@@ -24,8 +22,6 @@ This is a classical counterpart to the [`HHL`](qiskit.aqua.algorithms.HHL#qiskit
 | [`run`](qiskit.aqua.algorithms.NumPyLSsolver.run#qiskit.aqua.algorithms.NumPyLSsolver.run "qiskit.aqua.algorithms.NumPyLSsolver.run") | Execute the classical algorithm. |
 
 ## Attributes
-
-
 
 ### random
 

@@ -1,7 +1,5 @@
 # DifferentialExtrapolator
 
-
-
 `DifferentialExtrapolator(degree=1, model=None)`
 
 Bases: `qiskit.chemistry.algorithms.pes_samplers.extrapolator.Extrapolator`

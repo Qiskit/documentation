@@ -1,7 +1,5 @@
 # OrbitalOptimizationVQE
 
-
-
 `OrbitalOptimizationVQE(transformation, solver, initial_point=None, orbital_rotation=None, bounds=None, iterative_oo=True, iterative_oo_iterations=2)`
 
 Bases: `qiskit.chemistry.algorithms.ground_state_solvers.ground_state_eigensolver.GroundStateEigensolver`
@@ -32,8 +30,6 @@ A ground state calculation employing the OOVQE algorithm. The Variational Quantu
 
 ## Attributes
 
-
-
 ### solver
 
 Returns the minimum eigensolver or factory.
@@ -41,8 +37,6 @@ Returns the minimum eigensolver or factory.
 **Return type**
 
 `Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
-
-
 
 ### transformation
 

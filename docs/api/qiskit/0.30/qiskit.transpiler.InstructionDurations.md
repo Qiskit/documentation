@@ -1,7 +1,5 @@
 # InstructionDurations
 
-
-
 `InstructionDurations(instruction_durations=None, dt=None)`
 
 Bases: `object`

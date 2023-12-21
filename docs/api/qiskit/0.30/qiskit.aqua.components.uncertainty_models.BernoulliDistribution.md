@@ -1,7 +1,5 @@
 # BernoulliDistribution
 
-
-
 `BernoulliDistribution(p, low=0, high=1)`
 
 Bases: `qiskit.aqua.components.uncertainty_models.univariate_distribution.UnivariateDistribution`
@@ -36,41 +34,27 @@ Distribution with only two values (low, high) and the corresponding probabilitie
 
 ## Attributes
 
-
-
 ### high
 
 returns high
-
-
 
 ### low
 
 returns low
 
-
-
 ### num\_target\_qubits
 
 Returns the number of target qubits
-
-
 
 ### num\_values
 
 returns number of values
 
-
-
 ### p
-
-
 
 ### probabilities
 
 returns probabilities
-
-
 
 ### values
 

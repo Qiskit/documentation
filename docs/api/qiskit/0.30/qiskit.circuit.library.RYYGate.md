@@ -1,7 +1,5 @@
 # RYYGate
 
-
-
 `RYYGate(theta)`
 
 Bases: `qiskit.circuit.gate.Gate`
@@ -62,25 +60,17 @@ Create new RYY gate.
 
 ## Attributes
 
-
-
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
-
 ### duration
 
 Get the duration.
-
-
 
 ### label
 
@@ -90,13 +80,9 @@ Return instruction label
 
 `str`
 
-
-
 ### params
 
 return instruction params.
-
-
 
 ### unit
 

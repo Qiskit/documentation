@@ -1,7 +1,5 @@
 # AdaptVQE
 
-
-
 `AdaptVQE(transformation, solver, threshold=1e-05, delta=1, max_iterations=None)`
 
 Bases: `qiskit.chemistry.algorithms.ground_state_solvers.ground_state_eigensolver.GroundStateEigensolver`
@@ -26,8 +24,6 @@ A ground state calculation employing the AdaptVQE algorithm.
 
 ## Attributes
 
-
-
 ### solver
 
 Returns the minimum eigensolver or factory.
@@ -35,8 +31,6 @@ Returns the minimum eigensolver or factory.
 **Return type**
 
 `Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
-
-
 
 ### transformation
 

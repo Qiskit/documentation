@@ -1,7 +1,5 @@
 # PolynomialExtrapolator
 
-
-
 `PolynomialExtrapolator(degree=1)`
 
 Bases: `qiskit.chemistry.algorithms.pes_samplers.extrapolator.Extrapolator`

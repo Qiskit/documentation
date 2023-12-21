@@ -1,7 +1,5 @@
 # QuantumGenerator
 
-
-
 `QuantumGenerator(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, gradient_function=None, snapshot_dir=None)`
 
 Bases: `qiskit.aqua.components.neural_networks.generative_network.GenerativeNetwork`
@@ -37,8 +35,6 @@ The quantum generator is a parametrized quantum circuit which can be trained wit
 
 ## Attributes
 
-
-
 ### discriminator
 
 Get discriminator.
@@ -47,8 +43,6 @@ Get discriminator.
 
 `DiscriminativeNetwork`
 
-
-
 ### optimizer
 
 Get optimizer.
@@ -56,8 +50,6 @@ Get optimizer.
 **Return type**
 
 `Optimizer`
-
-
 
 ### parameter\_values
 
@@ -70,8 +62,6 @@ Get parameter values from the quantum generator
 **Returns**
 
 Current parameter values
-
-
 
 ### seed
 

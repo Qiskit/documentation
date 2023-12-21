@@ -1,7 +1,5 @@
 # VQEAdapt
 
-
-
 `VQEAdapt(operator, var_form_base, optimizer, initial_point=None, excitation_pool=None, threshold=1e-05, delta=1, max_iterations=None, max_evals_grouped=1, aux_operators=None, quantum_instance=None)`
 
 Bases: `qiskit.aqua.algorithms.vq_algorithm.VQAlgorithm`
@@ -45,8 +43,6 @@ See [https://arxiv.org/abs/1812.11173](https://arxiv.org/abs/1812.11173)
 
 ## Attributes
 
-
-
 ### backend
 
 Returns backend.
@@ -54,8 +50,6 @@ Returns backend.
 **Return type**
 
 `Union`\[`Backend`, `BaseBackend`]
-
-
 
 ### initial\_point
 
@@ -65,11 +59,7 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
-
-
 ### optimal\_params
-
-
 
 ### optimizer
 
@@ -79,8 +69,6 @@ Returns optimizer
 
 `Optional`\[`Optimizer`]
 
-
-
 ### quantum\_instance
 
 Returns quantum instance.
@@ -89,13 +77,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 ### random
 
 Return a numpy random.
-
-
 
 ### var\_form
 

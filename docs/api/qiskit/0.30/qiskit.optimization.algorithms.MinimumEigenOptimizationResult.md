@@ -1,7 +1,5 @@
 # MinimumEigenOptimizationResult
 
-
-
 `MinimumEigenOptimizationResult(x, fval, variables, status, samples=None, min_eigen_solver_result=None, raw_samples=None)`
 
 Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationResult`
@@ -26,8 +24,6 @@ Minimum Eigen Optimizer Result.
 
 ## Attributes
 
-
-
 ### fval
 
 Returns the optimal function value.
@@ -40,8 +36,6 @@ Returns the optimal function value.
 
 The function value corresponding to the optimal value found in the optimization.
 
-
-
 ### min\_eigen\_solver\_result
 
 Returns a result object obtained from the instance of `MinimumEigensolver`.
@@ -49,8 +43,6 @@ Returns a result object obtained from the instance of `MinimumEigensolver`.
 **Return type**
 
 `MinimumEigensolverResult`
-
-
 
 ### raw\_results
 
@@ -66,8 +58,6 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
-
-
 ### raw\_samples
 
 Returns the list of raw solution samples of `MinimumEigensolver`.
@@ -79,8 +69,6 @@ Returns the list of raw solution samples of `MinimumEigensolver`.
 **Returns**
 
 The list of raw solution samples of `MinimumEigensolver`.
-
-
 
 ### samples
 
@@ -94,8 +82,6 @@ Returns the list of solution samples
 
 The list of solution samples.
 
-
-
 ### status
 
 Returns the termination status of the optimization algorithm.
@@ -107,8 +93,6 @@ Returns the termination status of the optimization algorithm.
 **Returns**
 
 The termination status of the algorithm.
-
-
 
 ### variable\_names
 
@@ -122,8 +106,6 @@ Returns the list of variable names of the optimization problem.
 
 The list of variable names of the optimization problem.
 
-
-
 ### variables
 
 Returns the list of variables of the optimization problem.
@@ -136,8 +118,6 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
-
-
 ### variables\_dict
 
 Returns the optimal value as a dictionary of the variable name and corresponding value.
@@ -149,8 +129,6 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 **Returns**
 
 The optimal value as a dictionary of the variable name and corresponding value.
-
-
 
 ### x
 

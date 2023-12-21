@@ -1,7 +1,5 @@
 # EuropeanCallExpectedValue
 
-
-
 `EuropeanCallExpectedValue(uncertainty_model, strike_price, c_approx, i_state=None, i_compare=None, i_objective=None)`
 
 Bases: `qiskit.aqua.components.uncertainty_problems.uncertainty_problem.UncertaintyProblem`
@@ -40,8 +38,6 @@ Constructor.
 | [`value_to_estimation`](qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.value_to_estimation#qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.value_to_estimation "qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.value_to_estimation")                                             | value to estimate                                                     |
 
 ## Attributes
-
-
 
 ### num\_target\_qubits
 

@@ -1,7 +1,5 @@
 # MultiStartOptimizer
 
-
-
 `MultiStartOptimizer(trials=1, clip=100.0)`
 
 Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationAlgorithm`, `abc.ABC`
@@ -26,8 +24,6 @@ Constructs an instance of this optimizer.
 
 ## Attributes
 
-
-
 ### clip
 
 Returns the clip value for this optimizer.
@@ -39,8 +35,6 @@ Returns the clip value for this optimizer.
 **Returns**
 
 The clip value.
-
-
 
 ### trials
 

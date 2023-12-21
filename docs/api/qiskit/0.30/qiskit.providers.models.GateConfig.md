@@ -1,26 +1,18 @@
 # GateConfig
 
-
-
 `GateConfig(name, parameters, qasm_def, coupling_map=None, latency_map=None, conditional=None, description=None)`
 
 Bases: `object`
 
 Class representing a Gate Configuration
 
-
-
 ### name
 
 the gate name as it will be referred to in Qasm.
 
-
-
 ### parameters
 
 variable names for the gate parameters (if any).
-
-
 
 ### qasm\_def
 

@@ -1,7 +1,5 @@
 # AerSimulator
 
-
-
 `AerSimulator(configuration=None, properties=None, provider=None, **backend_options)`
 
 Bases: `qiskit.providers.aer.backends.aerbackend.AerBackend`
@@ -168,15 +166,11 @@ This method should initialize the module and its configuration, and raise an exc
 
 ## Attributes
 
-
-
 ### options
 
 Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.aer.AerSimulator.run#qiskit.providers.aer.AerSimulator.run "qiskit.providers.aer.AerSimulator.run") method.
-
-
 
 ### version
 

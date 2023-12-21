@@ -1,7 +1,5 @@
 # BosonicTransformation
 
-
-
 `BosonicTransformation(qubit_mapping=<BosonicQubitMappingType.DIRECT: 'direct'>, transformation_type=<BosonicTransformationType.HARMONIC: 'harmonic'>, basis_size=2, truncation=3)`
 
 Bases: `qiskit.chemistry.transformations.transformation.Transformation`
@@ -26,8 +24,6 @@ A vibronic Hamiltonian operator representing the energy of the nuclei in the mol
 
 ## Attributes
 
-
-
 ### basis
 
 returns the basis (number of modals per mode)
@@ -36,8 +32,6 @@ returns the basis (number of modals per mode)
 
 `Union`\[`int`, `List`\[`int`]]
 
-
-
 ### commutation\_rule
 
 Getter of the commutation rule
@@ -45,8 +39,6 @@ Getter of the commutation rule
 **Return type**
 
 `bool`
-
-
 
 ### num\_modes
 
@@ -59,8 +51,6 @@ Returns
 **Return type**
 
 `int`
-
-
 
 ### untapered\_qubit\_op
 

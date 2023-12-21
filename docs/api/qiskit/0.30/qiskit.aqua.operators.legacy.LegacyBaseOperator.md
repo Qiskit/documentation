@@ -1,7 +1,5 @@
 # LegacyBaseOperator
 
-
-
 `LegacyBaseOperator(basis=None, z2_symmetries=None, name=None)`
 
 Bases: `abc.ABC`
@@ -24,25 +22,17 @@ Constructor.
 
 ## Attributes
 
-
-
 ### basis
 
 returns basis
-
-
 
 ### name
 
 returns name
 
-
-
 ### num\_qubits
 
 Returns number of qubits for operator
-
-
 
 ### z2\_symmetries
 

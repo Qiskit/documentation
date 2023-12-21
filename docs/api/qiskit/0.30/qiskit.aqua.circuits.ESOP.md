@@ -1,7 +1,5 @@
 # ESOP
 
-
-
 `ESOP(ast, num_vars=None)`
 
 Bases: `qiskit.aqua.circuits.boolean_logical_circuits.BooleanLogicNormalForm`
@@ -28,37 +26,25 @@ Constructor.
 
 ## Attributes
 
-
-
 ### ancillary\_register
 
 returns ancillary register
-
-
 
 ### clause\_register
 
 returns clause register
 
-
-
 ### num\_clauses
 
 returns num clauses
-
-
 
 ### num\_variables
 
 return num variables
 
-
-
 ### output\_register
 
 returns output register
-
-
 
 ### variable\_register
 

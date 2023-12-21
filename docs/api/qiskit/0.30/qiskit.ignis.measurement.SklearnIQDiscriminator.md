@@ -1,7 +1,5 @@
 # SklearnIQDiscriminator
 
-
-
 `SklearnIQDiscriminator(classifier, cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None)`
 
 Bases: `qiskit.ignis.measurement.discriminator.iq_discriminators.IQDiscriminationFitter`
@@ -33,19 +31,13 @@ A generic discriminant analysis discriminator for IQ data that takes an sklearn 
 
 ## Attributes
 
-
-
 ### expected\_states
 
 Returns the expected states used to train the discriminator.
 
-
-
 ### fitted
 
 True if the discriminator has been fitted to calibration data.
-
-
 
 ### schedules
 

@@ -1,7 +1,5 @@
 # UncertaintyModel
 
-
-
 `UncertaintyModel(num_target_qubits)`
 
 Bases: `qiskit.aqua.utils.circuit_factory.CircuitFactory`, `abc.ABC`
@@ -26,8 +24,6 @@ The abstract Uncertainty Model
 | [`required_ancillas_controlled`](qiskit.aqua.components.uncertainty_models.UncertaintyModel.required_ancillas_controlled#qiskit.aqua.components.uncertainty_models.UncertaintyModel.required_ancillas_controlled "qiskit.aqua.components.uncertainty_models.UncertaintyModel.required_ancillas_controlled")         | returns required ancillas controlled                                  |
 
 ## Attributes
-
-
 
 ### num\_target\_qubits
 

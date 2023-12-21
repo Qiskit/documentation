@@ -1,7 +1,5 @@
 # EnergySurfaceBase
 
-
-
 `EnergySurfaceBase`
 
 Bases: `abc.ABC`

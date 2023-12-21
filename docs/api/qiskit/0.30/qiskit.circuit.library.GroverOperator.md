@@ -1,7 +1,5 @@
 # GroverOperator
 
-
-
 `GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')`
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
@@ -149,13 +147,9 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 ## Attributes
 
-
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
-
-
 
 ### calibrations
 
@@ -165,13 +159,9 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
-
-
 
 ### data
 
@@ -187,31 +177,21 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-
-
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-
 
 ### global\_phase
 
 Return the global phase of the circuit in radians.
 
-
-
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
-
 ### instances
 
 `= 16`
-
-
 
 ### metadata
 
@@ -219,61 +199,41 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
-
-
 
 ### num\_clbits
 
 Return number of classical bits.
 
-
-
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
-
-
 
 ### num\_qubits
 
 Return number of qubits.
 
-
-
 ### oracle
 
 The oracle implementing a reflection about the bad state.
-
-
 
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
 
-
-
 ### prefix
 
 `= 'circuit'`
-
-
 
 ### qubits
 
 Returns a list of quantum bits in the order that the registers were added.
 
-
-
 ### reflection\_qubits
 
 Reflection qubits, on which S0 is applied (if S0 is not user-specified).
-
-
 
 ### state\_preparation
 
@@ -282,8 +242,6 @@ The subcircuit implementing the A operator or Hadamards.
 **Return type**
 
 `QuantumCircuit`
-
-
 
 ### zero\_reflection
 

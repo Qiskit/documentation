@@ -1,7 +1,5 @@
 # QuadraticObjective
 
-
-
 `QuadraticObjective(quadratic_program, constant=0.0, linear=None, quadratic=None, sense=<ObjSense.MINIMIZE: 1>)`
 
 Bases: `qiskit.optimization.problems.quadratic_program_element.QuadraticProgramElement`
@@ -27,8 +25,6 @@ Constructs a quadratic objective function.
 
 ## Attributes
 
-
-
 ### constant
 
 Returns the constant part of the objective function.
@@ -40,8 +36,6 @@ Returns the constant part of the objective function.
 **Returns**
 
 The constant part of the objective function.
-
-
 
 ### linear
 
@@ -55,8 +49,6 @@ Returns the linear part of the objective function.
 
 The linear part of the objective function.
 
-
-
 ### quadratic
 
 Returns the quadratic part of the objective function.
@@ -69,8 +61,6 @@ Returns the quadratic part of the objective function.
 
 The quadratic part of the objective function.
 
-
-
 ### quadratic\_program
 
 Returns the parent QuadraticProgram.
@@ -82,8 +72,6 @@ Returns the parent QuadraticProgram.
 **Returns**
 
 The parent QuadraticProgram.
-
-
 
 ### sense
 

@@ -1,7 +1,5 @@
 # AmplitudeEstimator
 
-
-
 `AmplitudeEstimator`
 
 Bases: `object`

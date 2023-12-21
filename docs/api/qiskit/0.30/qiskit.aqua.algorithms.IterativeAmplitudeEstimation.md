@@ -1,7 +1,5 @@
 # IterativeAmplitudeEstimation
 
-
-
 `IterativeAmplitudeEstimation(epsilon, alpha, confint_method='beta', min_ratio=2, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, initial_state=None, quantum_instance=None)`
 
 Bases: `qiskit.aqua.algorithms.amplitude_estimators.ae_algorithm.AmplitudeEstimationAlgorithm`
@@ -56,8 +54,6 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 ## Attributes
 
-
-
 ### a\_factory
 
 Get the A operator encoding the amplitude a that’s approximated, i.e.
@@ -74,8 +70,6 @@ the A operator as CircuitFactory
 
 [CircuitFactory](qiskit.aqua.utils.CircuitFactory#qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")
 
-
-
 ### backend
 
 Returns backend.
@@ -83,8 +77,6 @@ Returns backend.
 **Return type**
 
 `Union`\[`Backend`, `BaseBackend`]
-
-
 
 ### grover\_operator
 
@@ -99,8 +91,6 @@ If the Grover operator is not set, we try to build it from the $\mathcal{A}$ ope
 **Returns**
 
 The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
-
-
 
 ### i\_objective
 
@@ -120,8 +110,6 @@ the index of the objective qubit
 
 int
 
-
-
 ### objective\_qubits
 
 Get the criterion for a measurement outcome to be in a ‘good’ state.
@@ -134,8 +122,6 @@ Get the criterion for a measurement outcome to be in a ‘good’ state.
 
 The criterion as list of qubit indices.
 
-
-
 ### precision
 
 Returns the target precision epsilon of the algorithm.
@@ -147,8 +133,6 @@ Returns the target precision epsilon of the algorithm.
 **Returns**
 
 The target precision (which is half the width of the confidence interval).
-
-
 
 ### q\_factory
 
@@ -170,8 +154,6 @@ returns the current Q factory of the algorithm
 
 QFactory
 
-
-
 ### quantum\_instance
 
 Returns quantum instance.
@@ -180,13 +162,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 ### random
 
 Return a numpy random.
-
-
 
 ### state\_preparation
 

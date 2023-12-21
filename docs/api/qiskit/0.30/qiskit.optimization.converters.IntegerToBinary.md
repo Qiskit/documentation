@@ -1,7 +1,5 @@
 # IntegerToBinary
 
-
-
 `IntegerToBinary`
 
 Bases: `qiskit.optimization.converters.quadratic_program_converter.QuadraticProgramConverter`

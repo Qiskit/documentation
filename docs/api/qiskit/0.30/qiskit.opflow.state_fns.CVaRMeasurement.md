@@ -1,7 +1,5 @@
 # CVaRMeasurement
 
-
-
 `CVaRMeasurement(primitive=None, alpha=1.0, coeff=1.0)`
 
 Bases: `qiskit.opflow.state_fns.operator_state_fn.OperatorStateFn`
@@ -45,13 +43,9 @@ Used in `CVaRExpectation`, see there for more details.
 
 ## Attributes
 
-
-
 ### INDENTATION
 
 `= ' '`
-
-
 
 ### alpha
 
@@ -67,8 +61,6 @@ fraction of observed samples to include when computing the objective value. alph
 
 The parameter alpha which was given at initialization
 
-
-
 ### coeff
 
 A coefficient by which the state function is multiplied.
@@ -76,8 +68,6 @@ A coefficient by which the state function is multiplied.
 **Return type**
 
 `Union`\[`complex`, `ParameterExpression`]
-
-
 
 ### instance\_id
 
@@ -87,8 +77,6 @@ Return the unique instance id.
 
 `int`
 
-
-
 ### is\_measurement
 
 Whether the StateFn object is a measurement Operator.
@@ -97,27 +85,19 @@ Whether the StateFn object is a measurement Operator.
 
 `bool`
 
-
-
 ### num\_qubits
 
 **Return type**
 
 `int`
 
-
-
 ### parameters
-
-
 
 ### primitive
 
 `qiskit.opflow.operator_base.OperatorBase`
 
 The primitive which defines the behavior of the underlying State function.
-
-
 
 ### settings
 

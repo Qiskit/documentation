@@ -1,7 +1,5 @@
 # BOBYQA
 
-
-
 `BOBYQA(maxiter=1000)`
 
 Bases: `qiskit.algorithms.optimizers.optimizer.Optimizer`
@@ -34,85 +32,57 @@ Uses skquant.opt installed with pip install scikit-quant. For further detail, pl
 
 ## Attributes
 
-
-
 ### bounds\_support\_level
 
 Returns bounds support level
-
-
 
 ### gradient\_support\_level
 
 Returns gradient support level
 
-
-
 ### initial\_point\_support\_level
 
 Returns initial point support level
-
-
 
 ### is\_bounds\_ignored
 
 Returns is bounds ignored
 
-
-
 ### is\_bounds\_required
 
 Returns is bounds required
-
-
 
 ### is\_bounds\_supported
 
 Returns is bounds supported
 
-
-
 ### is\_gradient\_ignored
 
 Returns is gradient ignored
-
-
 
 ### is\_gradient\_required
 
 Returns is gradient required
 
-
-
 ### is\_gradient\_supported
 
 Returns is gradient supported
-
-
 
 ### is\_initial\_point\_ignored
 
 Returns is initial point ignored
 
-
-
 ### is\_initial\_point\_required
 
 Returns is initial point required
-
-
 
 ### is\_initial\_point\_supported
 
 Returns is initial point supported
 
-
-
 ### setting
 
 Return setting
-
-
 
 ### settings
 

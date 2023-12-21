@@ -1,7 +1,5 @@
 # BackendJobLimit
 
-
-
 `BackendJobLimit(maximum_jobs, running_jobs, **kwargs)`
 
 Bases: `object`
@@ -10,13 +8,9 @@ Job limit for a backend.
 
 Represent the job limit for a backend on a specific provider. This instance is returned by the [`IBMQBackend.job_limit()`](qiskit.providers.ibmq.IBMQBackend.job_limit#qiskit.providers.ibmq.IBMQBackend.job_limit "qiskit.providers.ibmq.IBMQBackend.job_limit") method.
 
-
-
 ### maximum\_jobs
 
 The maximum number of concurrent jobs this account is allowed to submit to this backend, with this provider.
-
-
 
 ### running\_jobs
 

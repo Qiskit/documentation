@@ -1,7 +1,5 @@
 # VectorStateFn
 
-
-
 `VectorStateFn(primitive=None, coeff=1.0, is_measurement=False)`
 
 Bases: `qiskit.aqua.operators.state_fns.state_fn.StateFn`
@@ -44,19 +42,13 @@ A class for state functions and measurements which are defined in vector represe
 
 ## Attributes
 
-
-
 ### ENABLE\_DEPRECATION
 
 `= True`
 
-
-
 ### INDENTATION
 
 `= ' '`
-
-
 
 ### coeff
 
@@ -66,8 +58,6 @@ A coefficient by which the state function is multiplied.
 
 `Union`\[`int`, `float`, `complex`, `ParameterExpression`]
 
-
-
 ### is\_measurement
 
 Whether the StateFn object is a measurement Operator.
@@ -76,19 +66,13 @@ Whether the StateFn object is a measurement Operator.
 
 `bool`
 
-
-
 ### num\_qubits
 
 **Return type**
 
 `int`
 
-
-
 ### parameters
-
-
 
 ### primitive
 

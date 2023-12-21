@@ -1,7 +1,5 @@
 # SummedOp
 
-
-
 `SummedOp(oplist, coeff=1.0, abelian=False)`
 
 Bases: `qiskit.opflow.list_ops.list_op.ListOp`
@@ -28,13 +26,9 @@ A class for lazily representing sums of Operators. Often Operators cannot be eff
 
 ## Attributes
 
-
-
 ### INDENTATION
 
 `= ' '`
-
-
 
 ### abelian
 
@@ -48,8 +42,6 @@ Whether the Operators in `oplist` are known to commute with one another.
 
 A bool indicating whether the `oplist` is Abelian.
 
-
-
 ### coeff
 
 The scalar coefficient multiplying the Operator.
@@ -61,8 +53,6 @@ The scalar coefficient multiplying the Operator.
 **Returns**
 
 The coefficient.
-
-
 
 ### combo\_fn
 
@@ -76,15 +66,11 @@ The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to p
 
 The combination function.
 
-
-
 ### distributive
 
 **Return type**
 
 `bool`
-
-
 
 ### grad\_combo\_fn
 
@@ -94,8 +80,6 @@ The gradient of `combo_fn`.
 
 `Optional`\[`Callable`]
 
-
-
 ### instance\_id
 
 Return the unique instance id.
@@ -104,15 +88,11 @@ Return the unique instance id.
 
 `int`
 
-
-
 ### num\_qubits
 
 **Return type**
 
 `int`
-
-
 
 ### oplist
 
@@ -126,11 +106,7 @@ The list of `OperatorBases` defining the underlying function of this Operator.
 
 The Operators defining the ListOp
 
-
-
 ### parameters
-
-
 
 ### settings
 

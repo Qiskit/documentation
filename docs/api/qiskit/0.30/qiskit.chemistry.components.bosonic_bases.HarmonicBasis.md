@@ -1,7 +1,5 @@
 # HarmonicBasis
 
-
-
 `HarmonicBasis(watson_hamiltonian, basis, truncation_order=3)`
 
 Bases: `qiskit.chemistry.components.bosonic_bases.bosonic_basis.BosonicBasis`

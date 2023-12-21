@@ -1,7 +1,5 @@
 # MinimumEigensolver
 
-
-
 `MinimumEigensolver`
 
 Bases: `abc.ABC`
@@ -19,8 +17,6 @@ Algorithms that can compute a minimum eigenvalue for an operator may implement t
 
 ## Attributes
 
-
-
 ### aux\_operators
 
 Returns the auxiliary operators.
@@ -28,8 +24,6 @@ Returns the auxiliary operators.
 **Return type**
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
-
-
 
 ### operator
 

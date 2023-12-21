@@ -1,7 +1,5 @@
 # CplexOptimizer
 
-
-
 `CplexOptimizer(disp=False)`
 
 Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationAlgorithm`
@@ -41,8 +39,6 @@ Initializes the CplexOptimizer.
 | [`solve`](qiskit.optimization.algorithms.CplexOptimizer.solve#qiskit.optimization.algorithms.CplexOptimizer.solve "qiskit.optimization.algorithms.CplexOptimizer.solve")                                                                 | Tries to solves the given problem using the optimizer.                                    |
 
 ## Attributes
-
-
 
 ### disp
 

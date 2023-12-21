@@ -1,7 +1,5 @@
 # StateVectorCircuit
 
-
-
 `StateVectorCircuit(state_vector)`
 
 Bases: `object`

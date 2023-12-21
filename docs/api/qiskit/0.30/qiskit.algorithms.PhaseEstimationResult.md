@@ -1,7 +1,5 @@
 # PhaseEstimationResult
 
-
-
 `PhaseEstimationResult(num_evaluation_qubits, circuit_result, phases)`
 
 Bases: `qiskit.algorithms.phase_estimators.phase_estimator.PhaseEstimatorResult`
@@ -27,8 +25,6 @@ The canonical phase satisfying the `PhaseEstimator` interface, returned by the a
 
 ## Attributes
 
-
-
 ### circuit\_result
 
 Return the result object returned by running the QPE circuit (on hardware or simulator).
@@ -38,8 +34,6 @@ This is useful for inspecting and troubleshooting the QPE algorithm.
 **Return type**
 
 `Result`
-
-
 
 ### most\_likely\_phase
 
@@ -51,8 +45,6 @@ DEPRECATED - Return the most likely phase as a number in $[0.0, 1.0)$.
 
 `float`
 
-
-
 ### phase
 
 Return the most likely phase as a number in $[0.0, 1.0)$.
@@ -62,8 +54,6 @@ Return the most likely phase as a number in $[0.0, 1.0)$.
 **Return type**
 
 `float`
-
-
 
 ### phases
 

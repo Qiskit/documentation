@@ -1,0 +1,9 @@
+# qiskit.aqua.algorithms.SklearnSVM.save\_model
+
+`SklearnSVM.save_model(file_path)`
+
+Save the model to a file path.
+
+**Parameters**
+
+**file\_path** (*str*) – a path to save the model.

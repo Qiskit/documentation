@@ -1,7 +1,5 @@
 # SlsqpOptimizationResult
 
-
-
 `SlsqpOptimizationResult(x, fval, variables, status, fx=None, its=None, imode=None, smode=None)`
 
 Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationResult`
@@ -23,8 +21,6 @@ Constructs a result object with properties specific to SLSQP.
 
 ## Attributes
 
-
-
 ### fval
 
 Returns the optimal function value.
@@ -37,8 +33,6 @@ Returns the optimal function value.
 
 The function value corresponding to the optimal value found in the optimization.
 
-
-
 ### fx
 
 Returns the final value of the objective function being actually optimized.
@@ -46,8 +40,6 @@ Returns the final value of the objective function being actually optimized.
 **Return type**
 
 `Optional`\[`ndarray`]
-
-
 
 ### imode
 
@@ -57,8 +49,6 @@ Returns the exit mode from the optimizer.
 
 `Optional`\[`int`]
 
-
-
 ### its
 
 Returns the number of iterations
@@ -66,8 +56,6 @@ Returns the number of iterations
 **Return type**
 
 `Optional`\[`int`]
-
-
 
 ### raw\_results
 
@@ -83,8 +71,6 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
-
-
 ### samples
 
 Returns the list of solution samples
@@ -97,8 +83,6 @@ Returns the list of solution samples
 
 The list of solution samples.
 
-
-
 ### smode
 
 Returns message describing the exit mode from the optimizer.
@@ -106,8 +90,6 @@ Returns message describing the exit mode from the optimizer.
 **Return type**
 
 `Optional`\[`str`]
-
-
 
 ### status
 
@@ -121,8 +103,6 @@ Returns the termination status of the optimization algorithm.
 
 The termination status of the algorithm.
 
-
-
 ### variable\_names
 
 Returns the list of variable names of the optimization problem.
@@ -134,8 +114,6 @@ Returns the list of variable names of the optimization problem.
 **Returns**
 
 The list of variable names of the optimization problem.
-
-
 
 ### variables
 
@@ -149,8 +127,6 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
-
-
 ### variables\_dict
 
 Returns the optimal value as a dictionary of the variable name and corresponding value.
@@ -162,8 +138,6 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 **Returns**
 
 The optimal value as a dictionary of the variable name and corresponding value.
-
-
 
 ### x
 

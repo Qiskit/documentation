@@ -1,7 +1,5 @@
 # HHLResult
 
-
-
 `HHLResult(a_dict=None)`
 
 Bases: `qiskit.aqua.algorithms.linear_solvers.linear_solver_result.LinearsolverResult`
@@ -28,8 +26,6 @@ HHL Result.
 
 ## Attributes
 
-
-
 ### circuit\_info
 
 return circuit info
@@ -37,8 +33,6 @@ return circuit info
 **Return type**
 
 `DAGCircuit`
-
-
 
 ### matrix
 
@@ -48,8 +42,6 @@ return matrix
 
 `ndarray`
 
-
-
 ### output
 
 return output
@@ -57,8 +49,6 @@ return output
 **Return type**
 
 `ndarray`
-
-
 
 ### probability\_result
 
@@ -68,8 +58,6 @@ return probability result
 
 `Union`\[`ndarray`, `float`]
 
-
-
 ### solution
 
 return solution
@@ -77,8 +65,6 @@ return solution
 **Return type**
 
 `ndarray`
-
-
 
 ### vector
 

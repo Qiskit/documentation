@@ -1,7 +1,5 @@
 # PropertySet
 
-
-
 `PropertySet`
 
 Bases: `dict`

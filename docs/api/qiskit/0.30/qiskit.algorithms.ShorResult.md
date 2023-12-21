@@ -1,7 +1,5 @@
 # ShorResult
 
-
-
 `ShorResult`
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
@@ -16,8 +14,6 @@ Shor Result.
 
 ## Attributes
 
-
-
 ### factors
 
 returns factors
@@ -26,8 +22,6 @@ returns factors
 
 `List`\[`List`\[`int`]]
 
-
-
 ### successful\_counts
 
 returns successful counts
@@ -35,8 +29,6 @@ returns successful counts
 **Return type**
 
 `int`
-
-
 
 ### total\_counts
 

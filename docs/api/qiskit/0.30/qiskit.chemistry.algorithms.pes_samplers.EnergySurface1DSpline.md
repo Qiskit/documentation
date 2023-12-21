@@ -1,7 +1,5 @@
 # EnergySurface1DSpline
 
-
-
 `EnergySurface1DSpline`
 
 Bases: `qiskit.chemistry.algorithms.pes_samplers.potentials.potential_base.EnergySurfaceBase`

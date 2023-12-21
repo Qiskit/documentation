@@ -1,7 +1,5 @@
 # MinimumEigenOptimizer
 
-
-
 `MinimumEigenOptimizer(min_eigen_solver, penalty=None, converters=None)`
 
 Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationAlgorithm`
@@ -48,8 +46,6 @@ This initializer takes the minimum eigen solver to be used to approximate the gr
 | [`solve`](qiskit.optimization.algorithms.MinimumEigenOptimizer.solve#qiskit.optimization.algorithms.MinimumEigenOptimizer.solve "qiskit.optimization.algorithms.MinimumEigenOptimizer.solve")                                                                 | Tries to solves the given problem using the optimizer.                                    |
 
 ## Attributes
-
-
 
 ### min\_eigen\_solver
 

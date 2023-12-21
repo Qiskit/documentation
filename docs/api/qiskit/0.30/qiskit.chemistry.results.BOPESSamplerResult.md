@@ -1,7 +1,5 @@
 # BOPESSamplerResult
 
-
-
 `BOPESSamplerResult(points, energies, raw_results)`
 
 Bases: `object`
@@ -18,8 +16,6 @@ Creates an new instance of the result. :type points: `List`\[`float`] :param poi
 
 ## Attributes
 
-
-
 ### energies
 
 returns list of energies.
@@ -28,8 +24,6 @@ returns list of energies.
 
 `List`\[`float`]
 
-
-
 ### points
 
 returns list of points.
@@ -37,8 +31,6 @@ returns list of points.
 **Return type**
 
 `List`\[`float`]
-
-
 
 ### raw\_results
 

@@ -1,7 +1,5 @@
 # ParameterExpression
 
-
-
 `ParameterExpression(symbol_map, expr)`
 
 Bases: `object`
@@ -37,8 +35,6 @@ Not intended to be called directly, but to be instantiated via operations on oth
 | [`tan`](qiskit.circuit.ParameterExpression.tan#qiskit.circuit.ParameterExpression.tan "qiskit.circuit.ParameterExpression.tan")                         | Tangent of a ParameterExpression                                                              |
 
 ## Attributes
-
-
 
 ### parameters
 

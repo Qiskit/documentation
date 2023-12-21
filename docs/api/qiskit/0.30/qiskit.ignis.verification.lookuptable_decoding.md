@@ -1,7 +1,5 @@
 # qiskit.ignis.verification.lookuptable\_decoding
 
-
-
 `lookuptable_decoding(training_results, real_results)`
 
 Calculates the logical error probability using postselection decoding. This postselects all results with trivial syndrome.

@@ -1,7 +1,5 @@
 # FeatureMap
 
-
-
 `FeatureMap`
 
 Bases: `abc.ABC`
@@ -20,19 +18,13 @@ This method should initialize the module and use an exception if a component of 
 
 ## Attributes
 
-
-
 ### feature\_dimension
 
 returns feature dimension
 
-
-
 ### num\_qubits
 
 returns number of qubits
-
-
 
 ### support\_parameterized\_circuit
 

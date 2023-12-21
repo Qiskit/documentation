@@ -1,7 +1,5 @@
 # QAOAAnsatz
 
-
-
 `QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA')`
 
 Bases: `qiskit.circuit.library.evolved_operator_ansatz.EvolvedOperatorAnsatz`
@@ -24,13 +22,9 @@ A generalized QAOA quantum circuit with a support of custom initial states and m
 
 ## Attributes
 
-
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
-
-
 
 ### calibrations
 
@@ -40,13 +34,9 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
-
-
 
 ### cost\_operator
 
@@ -60,11 +50,7 @@ cost operator.
 
 [OperatorBase](qiskit.aqua.operators.OperatorBase#qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase")
 
-
-
 ### data
-
-
 
 ### evolution
 
@@ -78,25 +64,17 @@ The evolution converter used to compute the evolution.
 
 [EvolutionBase](qiskit.aqua.operators.evolutions.EvolutionBase#qiskit.aqua.operators.evolutions.EvolutionBase "qiskit.aqua.operators.evolutions.EvolutionBase")
 
-
-
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-
 
 ### global\_phase
 
 Return the global phase of the circuit in radians.
 
-
-
 ### header
 
 `= 'OPENQASM 2.0;'`
-
-
 
 ### initial\_state
 
@@ -106,21 +84,15 @@ Returns an optional initial state as a circuit
 
 `Optional`\[`QuantumCircuit`]
 
-
-
 ### instances
 
 `= 16`
-
-
 
 ### metadata
 
 The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
-
-
 
 ### mixer\_operator
 
@@ -134,27 +106,19 @@ mixer operator or circuit.
 
 [OperatorBase](qiskit.aqua.operators.OperatorBase#qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase") or [QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), optional
 
-
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
 
-
-
 ### num\_clbits
 
 Return number of classical bits.
-
-
 
 ### num\_parameters
 
 **Return type**
 
 `int`
-
-
 
 ### num\_qubits
 
@@ -163,8 +127,6 @@ Return the number of qubits, specified by the size of the cost operator.
 **Return type**
 
 `int`
-
-
 
 ### operators
 
@@ -180,8 +142,6 @@ in this ansatz.
 
 List\[Union\[[OperatorBase](qiskit.aqua.operators.OperatorBase#qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase"), [QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]]
 
-
-
 ### parameter\_bounds
 
 Parameter bounds.
@@ -193,8 +153,6 @@ an unbounded parameter in the corresponding direction. If None is returned, prob
 **Return type**
 
 `List`\[`Tuple`\[`float`, `float`]]
-
-
 
 ### parameters
 
@@ -208,31 +166,21 @@ Get the [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.
 
 A set containing the unbound circuit parameters.
 
-
-
 ### preferred\_init\_points
 
 Getter of preferred initial points based on the given initial state.
-
-
 
 ### prefix
 
 `= 'circuit'`
 
-
-
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-
-
 ### qubits
 
 Returns a list of quantum bits in the order that the registers were added.
-
-
 
 ### reps
 

@@ -1,7 +1,5 @@
 # StateFn
 
-
-
 `StateFn(primitive=None, coeff=1.0, is_measurement=False)`
 
 Bases: `qiskit.aqua.operators.operator_base.OperatorBase`
@@ -48,19 +46,13 @@ NOTE: State functions here are not restricted to wave functions, as there is no 
 
 ## Attributes
 
-
-
 ### ENABLE\_DEPRECATION
 
 `= True`
 
-
-
 ### INDENTATION
 
 `= ' '`
-
-
 
 ### coeff
 
@@ -70,8 +62,6 @@ A coefficient by which the state function is multiplied.
 
 `Union`\[`int`, `float`, `complex`, `ParameterExpression`]
 
-
-
 ### is\_measurement
 
 Whether the StateFn object is a measurement Operator.
@@ -80,19 +70,13 @@ Whether the StateFn object is a measurement Operator.
 
 `bool`
 
-
-
 ### num\_qubits
 
 **Return type**
 
 `int`
 
-
-
 ### parameters
-
-
 
 ### primitive
 

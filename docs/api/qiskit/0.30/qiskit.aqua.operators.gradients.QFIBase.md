@@ -1,7 +1,5 @@
 # QFIBase
 
-
-
 `QFIBase(qfi_method='lin_comb_full')`
 
 Bases: `qiskit.aqua.operators.gradients.derivative_base.DerivativeBase`
@@ -31,8 +29,6 @@ The QFI is:
 | [`parameter_expression_grad`](qiskit.aqua.operators.gradients.QFIBase.parameter_expression_grad#qiskit.aqua.operators.gradients.QFIBase.parameter_expression_grad "qiskit.aqua.operators.gradients.QFIBase.parameter_expression_grad") | Get the derivative of a parameter expression w\.r.t.                                                       |
 
 ## Attributes
-
-
 
 ### qfi\_method
 

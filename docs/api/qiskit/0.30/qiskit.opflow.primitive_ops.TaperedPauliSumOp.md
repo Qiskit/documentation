@@ -1,7 +1,5 @@
 # TaperedPauliSumOp
 
-
-
 `TaperedPauliSumOp(primitive, z2_symmetries, coeff=1.0)`
 
 Bases: `qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp`
@@ -26,13 +24,9 @@ Class for PauliSumOp after tapering
 
 ## Attributes
 
-
-
 ### INDENTATION
 
 `= ' '`
-
-
 
 ### coeff
 
@@ -46,13 +40,9 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
-
-
 ### coeffs
 
 Return the Pauli coefficients.
-
-
 
 ### grouping\_type
 
@@ -66,8 +56,6 @@ Returns
 
 `str`
 
-
-
 ### instance\_id
 
 Return the unique instance id.
@@ -76,19 +64,13 @@ Return the unique instance id.
 
 `int`
 
-
-
 ### num\_qubits
 
 **Return type**
 
 `int`
 
-
-
 ### parameters
-
-
 
 ### primitive
 
@@ -104,8 +86,6 @@ The primitive defining the underlying function of the Operator.
 
 The primitive object.
 
-
-
 ### settings
 
 Return operator settings.
@@ -113,8 +93,6 @@ Return operator settings.
 **Return type**
 
 `Dict`
-
-
 
 ### z2\_symmetries
 

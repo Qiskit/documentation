@@ -1,7 +1,5 @@
 # EigensolverFactory
 
-
-
 `EigensolverFactory`
 
 Bases: `abc.ABC`

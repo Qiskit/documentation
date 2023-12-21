@@ -1,0 +1,5 @@
+# qiskit.quantum\_info.CNOTDihedral.copy
+
+`CNOTDihedral.copy()`
+
+Make a deep copy of current operator.

@@ -1,7 +1,5 @@
 # MaximumLikelihoodAmplitudeEstimation
 
-
-
 `MaximumLikelihoodAmplitudeEstimation(num_oracle_circuits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, likelihood_evals=None, quantum_instance=None)`
 
 Bases: `qiskit.aqua.algorithms.amplitude_estimators.ae_algorithm.AmplitudeEstimationAlgorithm`
@@ -46,8 +44,6 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 ## Attributes
 
-
-
 ### a\_factory
 
 Get the A operator encoding the amplitude a that’s approximated, i.e.
@@ -64,8 +60,6 @@ the A operator as CircuitFactory
 
 [CircuitFactory](qiskit.aqua.utils.CircuitFactory#qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")
 
-
-
 ### backend
 
 Returns backend.
@@ -73,8 +67,6 @@ Returns backend.
 **Return type**
 
 `Union`\[`Backend`, `BaseBackend`]
-
-
 
 ### grover\_operator
 
@@ -89,8 +81,6 @@ If the Grover operator is not set, we try to build it from the $\mathcal{A}$ ope
 **Returns**
 
 The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
-
-
 
 ### i\_objective
 
@@ -110,8 +100,6 @@ the index of the objective qubit
 
 int
 
-
-
 ### objective\_qubits
 
 Get the criterion for a measurement outcome to be in a ‘good’ state.
@@ -123,8 +111,6 @@ Get the criterion for a measurement outcome to be in a ‘good’ state.
 **Returns**
 
 The criterion as list of qubit indices.
-
-
 
 ### q\_factory
 
@@ -146,8 +132,6 @@ returns the current Q factory of the algorithm
 
 QFactory
 
-
-
 ### quantum\_instance
 
 Returns quantum instance.
@@ -156,13 +140,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 ### random
 
 Return a numpy random.
-
-
 
 ### state\_preparation
 

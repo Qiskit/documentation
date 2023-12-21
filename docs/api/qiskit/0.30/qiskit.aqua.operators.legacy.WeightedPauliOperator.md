@@ -1,7 +1,5 @@
 # WeightedPauliOperator
 
-
-
 `WeightedPauliOperator(paulis, basis=None, z2_symmetries=None, atol=1e-12, name=None)`
 
 Bases: `qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator`
@@ -47,25 +45,17 @@ Weighted Pauli Operator
 
 ## Attributes
 
-
-
 ### atol
 
 get atol
-
-
 
 ### basis
 
 returns basis
 
-
-
 ### name
 
 returns name
-
-
 
 ### num\_qubits
 
@@ -79,13 +69,9 @@ number of qubits
 
 int
 
-
-
 ### paulis
 
 get paulis
-
-
 
 ### z2\_symmetries
 

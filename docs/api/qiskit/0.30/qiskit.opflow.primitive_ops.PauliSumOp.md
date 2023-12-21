@@ -1,7 +1,5 @@
 # PauliSumOp
 
-
-
 `PauliSumOp(primitive, coeff=1.0, grouping_type='None')`
 
 Bases: `qiskit.opflow.primitive_ops.primitive_op.PrimitiveOp`
@@ -43,13 +41,9 @@ Class for Operators backend by Terra’s `SparsePauliOp` class.
 
 ## Attributes
 
-
-
 ### INDENTATION
 
 `= ' '`
-
-
 
 ### coeff
 
@@ -63,13 +57,9 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
-
-
 ### coeffs
 
 Return the Pauli coefficients.
-
-
 
 ### grouping\_type
 
@@ -83,8 +73,6 @@ Returns
 
 `str`
 
-
-
 ### instance\_id
 
 Return the unique instance id.
@@ -93,19 +81,13 @@ Return the unique instance id.
 
 `int`
 
-
-
 ### num\_qubits
 
 **Return type**
 
 `int`
 
-
-
 ### parameters
-
-
 
 ### primitive
 
@@ -120,8 +102,6 @@ The primitive defining the underlying function of the Operator.
 **Returns**
 
 The primitive object.
-
-
 
 ### settings
 

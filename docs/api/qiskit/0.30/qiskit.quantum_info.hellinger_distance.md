@@ -1,7 +1,5 @@
 # qiskit.quantum\_info.hellinger\_distance
 
-
-
 `hellinger_distance(dist_p, dist_q)`
 
 Computes the Hellinger distance between two counts distributions.

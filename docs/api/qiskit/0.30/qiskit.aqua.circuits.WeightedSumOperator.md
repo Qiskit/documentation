@@ -1,7 +1,5 @@
 # WeightedSumOperator
 
-
-
 `WeightedSumOperator(num_state_qubits, weights, i_state=None, i_sum=None)`
 
 Bases: `qiskit.aqua.utils.circuit_factory.CircuitFactory`
@@ -41,31 +39,21 @@ Computes the weighted sum controlled by state qubits
 
 ## Attributes
 
-
-
 ### num\_carry\_qubits
 
 returns num carry qubits
-
-
 
 ### num\_state\_qubits
 
 returns num state qubits
 
-
-
 ### num\_sum\_qubits
 
 returns num sum qubits
 
-
-
 ### num\_target\_qubits
 
 Returns the number of target qubits
-
-
 
 ### weights
 

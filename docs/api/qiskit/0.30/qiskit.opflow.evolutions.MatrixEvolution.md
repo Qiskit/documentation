@@ -1,7 +1,5 @@
 # MatrixEvolution
 
-
-
 `MatrixEvolution`
 
 Bases: `qiskit.opflow.evolutions.evolution_base.EvolutionBase`

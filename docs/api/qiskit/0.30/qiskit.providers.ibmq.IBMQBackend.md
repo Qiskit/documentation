@@ -1,7 +1,5 @@
 # IBMQBackend
 
-
-
 `IBMQBackend(configuration, provider, credentials, api_client)`
 
 Bases: `qiskit.providers.backend.BackendV1`
@@ -71,13 +69,9 @@ IBMQBackend constructor.
 
 ## Attributes
 
-
-
 ### id\_warning\_issued
 
 `= False`
-
-
 
 ### options
 
@@ -85,13 +79,9 @@ Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](qiskit.providers.ibmq.IBMQBackend.run#qiskit.providers.ibmq.IBMQBackend.run "qiskit.providers.ibmq.IBMQBackend.run") method.
 
-
-
 ### qobj\_warning\_issued
 
 `= False`
-
-
 
 ### version
 

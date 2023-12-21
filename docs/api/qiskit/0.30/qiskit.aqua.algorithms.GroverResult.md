@@ -1,7 +1,5 @@
 # GroverResult
 
-
-
 `GroverResult(a_dict=None)`
 
 Bases: `qiskit.aqua.algorithms.algorithm_result.AlgorithmResult`
@@ -28,8 +26,6 @@ Grover Result.
 
 ## Attributes
 
-
-
 ### assignment
 
 return assignment
@@ -37,8 +33,6 @@ return assignment
 **Return type**
 
 `List`\[`int`]
-
-
 
 ### circuit
 
@@ -48,8 +42,6 @@ return circuit
 
 `Optional`\[`QuantumCircuit`]
 
-
-
 ### measurement
 
 returns measurement
@@ -58,8 +50,6 @@ returns measurement
 
 `Optional`\[`Dict`\[`str`, `int`]]
 
-
-
 ### oracle\_evaluation
 
 return oracle evaluation
@@ -67,8 +57,6 @@ return oracle evaluation
 **Return type**
 
 `bool`
-
-
 
 ### top\_measurement
 

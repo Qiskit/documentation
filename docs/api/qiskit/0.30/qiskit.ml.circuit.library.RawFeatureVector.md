@@ -1,7 +1,5 @@
 # RawFeatureVector
 
-
-
 `RawFeatureVector(feature_dimension)`
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
@@ -198,13 +196,9 @@ print(bound.draw())
 
 ## Attributes
 
-
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
-
-
 
 ### calibrations
 
@@ -214,23 +208,15 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
 
-
-
 ### data
-
-
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-
 
 ### feature\_dimension
 
@@ -244,25 +230,17 @@ Return the feature dimension.
 
 The feature dimension, which is `2 ** num_qubits`.
 
-
-
 ### global\_phase
 
 Return the global phase of the circuit in radians.
-
-
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
-
 ### instances
 
 `= 16`
-
-
 
 ### metadata
 
@@ -270,27 +248,19 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
 
-
-
 ### num\_clbits
 
 Return number of classical bits.
-
-
 
 ### num\_parameters
 
 **Return type**
 
 `int`
-
-
 
 ### num\_qubits
 
@@ -304,8 +274,6 @@ Returns the number of qubits in this circuit.
 
 The number of qubits.
 
-
-
 ### ordered\_parameters
 
 Return the free parameters in the RawFeatureVector.
@@ -317,8 +285,6 @@ Return the free parameters in the RawFeatureVector.
 **Returns**
 
 A list of the free parameters.
-
-
 
 ### parameters
 
@@ -332,19 +298,13 @@ Return the free parameters in the RawFeatureVector.
 
 A set of the free parameters.
 
-
-
 ### prefix
 
 `= 'circuit'`
 
-
-
 ### qregs
 
 A list of the quantum registers associated with the circuit.
-
-
 
 ### qubits
 

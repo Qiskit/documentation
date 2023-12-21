@@ -1,7 +1,5 @@
 # TrotterizationFactory
 
-
-
 `TrotterizationFactory`
 
 Bases: `object`

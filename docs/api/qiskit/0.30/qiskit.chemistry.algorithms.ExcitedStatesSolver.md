@@ -1,7 +1,5 @@
 # ExcitedStatesSolver
 
-
-
 `ExcitedStatesSolver`
 
 Bases: `abc.ABC`

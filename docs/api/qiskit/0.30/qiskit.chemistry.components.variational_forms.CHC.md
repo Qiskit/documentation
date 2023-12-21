@@ -1,7 +1,5 @@
 # CHC
 
-
-
 `CHC(num_qubits=None, reps=1, ladder=False, excitations=None, entanglement='full', initial_state=None)`
 
 Bases: `qiskit.aqua.components.variational_forms.variational_form.VariationalForm`
@@ -33,8 +31,6 @@ The trial wavefunction is as defined in Ollitrault Pauline J., Chemical science 
 
 ## Attributes
 
-
-
 ### num\_parameters
 
 Number of parameters of the variational form.
@@ -46,8 +42,6 @@ An integer indicating the number of parameters.
 **Return type**
 
 int
-
-
 
 ### num\_qubits
 
@@ -61,8 +55,6 @@ An integer indicating the number of qubits.
 
 int
 
-
-
 ### parameter\_bounds
 
 Parameter bounds.
@@ -75,19 +67,13 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 list
 
-
-
 ### preferred\_init\_points
 
 Return preferred init points.
 
 If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
 
-
-
 ### setting
-
-
 
 ### support\_parameterized\_circuit
 

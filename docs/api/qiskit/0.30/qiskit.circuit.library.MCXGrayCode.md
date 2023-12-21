@@ -1,7 +1,5 @@
 # MCXGrayCode
 
-
-
 `MCXGrayCode(num_ctrl_qubits=None, label=None, ctrl_state=None)`
 
 Bases: `qiskit.circuit.library.standard_gates.x.MCXGate`
@@ -20,8 +18,6 @@ Create new MCX gate.
 
 ## Attributes
 
-
-
 ### ctrl\_state
 
 Return the control state of the gate as a decimal integer.
@@ -30,13 +26,9 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
-
-
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 ### definition
 
@@ -46,13 +38,9 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
-
-
 ### duration
 
 Get the duration.
-
-
 
 ### label
 
@@ -61,8 +49,6 @@ Return instruction label
 **Return type**
 
 `str`
-
-
 
 ### name
 
@@ -76,13 +62,9 @@ where \<original\_name> is the gate name for the default case of closed control 
 
 `str`
 
-
-
 ### num\_ancilla\_qubits
 
 The number of ancilla qubits.
-
-
 
 ### num\_ctrl\_qubits
 
@@ -95,8 +77,6 @@ The number of control qubits for the gate.
 **Return type**
 
 int
-
-
 
 ### params
 
@@ -113,8 +93,6 @@ list
 **Raises**
 
 **CircuitError** – Controlled gate does not define a base gate
-
-
 
 ### unit
 

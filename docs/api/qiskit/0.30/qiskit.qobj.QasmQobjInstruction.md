@@ -1,7 +1,5 @@
 # QasmQobjInstruction
 
-
-
 `QasmQobjInstruction(name, params=None, qubits=None, register=None, memory=None, condition=None, conditional=None, label=None, mask=None, relation=None, val=None, snapshot_type=None)`
 
 Bases: `object`

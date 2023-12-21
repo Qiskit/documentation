@@ -1,7 +1,5 @@
 # QuadraticProgram
 
-
-
 `QuadraticProgram(name='')`
 
 Bases: `object`
@@ -58,8 +56,6 @@ This representation supports inequality and equality constraints, as well as con
 
 ## Attributes
 
-
-
 ### linear\_constraints
 
 Returns the list of linear constraints of the quadratic program.
@@ -71,8 +67,6 @@ Returns the list of linear constraints of the quadratic program.
 **Returns**
 
 List of linear constraints.
-
-
 
 ### linear\_constraints\_index
 
@@ -86,8 +80,6 @@ Returns the dictionary that maps the name of a linear constraint to its index.
 
 The linear constraint index dictionary.
 
-
-
 ### name
 
 Returns the name of the quadratic program.
@@ -99,8 +91,6 @@ Returns the name of the quadratic program.
 **Returns**
 
 The name of the quadratic program.
-
-
 
 ### objective
 
@@ -114,8 +104,6 @@ Returns the quadratic objective.
 
 The quadratic objective.
 
-
-
 ### quadratic\_constraints
 
 Returns the list of quadratic constraints of the quadratic program.
@@ -127,8 +115,6 @@ Returns the list of quadratic constraints of the quadratic program.
 **Returns**
 
 List of quadratic constraints.
-
-
 
 ### quadratic\_constraints\_index
 
@@ -142,8 +128,6 @@ Returns the dictionary that maps the name of a quadratic constraint to its index
 
 The quadratic constraint index dictionary.
 
-
-
 ### status
 
 Status of the quadratic program. It can be infeasible due to variable substitution.
@@ -156,8 +140,6 @@ Status of the quadratic program. It can be infeasible due to variable substituti
 
 The status of the quadratic program
 
-
-
 ### variables
 
 Returns the list of variables of the quadratic program.
@@ -169,8 +151,6 @@ Returns the list of variables of the quadratic program.
 **Returns**
 
 List of variables.
-
-
 
 ### variables\_index
 

@@ -1,7 +1,5 @@
 # BaseBackend
 
-
-
 `BaseBackend(configuration, provider=None)`
 
 Bases: `abc.ABC`

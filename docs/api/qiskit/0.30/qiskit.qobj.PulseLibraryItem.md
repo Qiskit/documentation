@@ -1,7 +1,5 @@
 # PulseLibraryItem
 
-
-
 `PulseLibraryItem(name, samples)`
 
 Bases: `object`

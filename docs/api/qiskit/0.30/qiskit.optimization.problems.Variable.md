@@ -1,7 +1,5 @@
 # Variable
 
-
-
 `Variable(quadratic_program, name, lowerbound=0, upperbound=1e+20, vartype=<VarType.CONTINUOUS: 0>)`
 
 Bases: `qiskit.optimization.problems.quadratic_program_element.QuadraticProgramElement`
@@ -32,8 +30,6 @@ The variables is exposed by the top-level QuadraticProgram class in QuadraticPro
 
 ## Attributes
 
-
-
 ### lowerbound
 
 Returns the lowerbound of the variable.
@@ -45,8 +41,6 @@ Returns the lowerbound of the variable.
 **Returns**
 
 The lower bound of the variable.
-
-
 
 ### name
 
@@ -60,8 +54,6 @@ Returns the name of the variable.
 
 The name of the variable.
 
-
-
 ### quadratic\_program
 
 Returns the parent QuadraticProgram.
@@ -74,8 +66,6 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-
-
 ### upperbound
 
 Returns the upperbound of the variable.
@@ -87,8 +77,6 @@ Returns the upperbound of the variable.
 **Returns**
 
 The upperbound of the variable.
-
-
 
 ### vartype
 

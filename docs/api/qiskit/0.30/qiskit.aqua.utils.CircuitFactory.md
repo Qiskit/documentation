@@ -1,7 +1,5 @@
 # CircuitFactory
 
-
-
 `CircuitFactory(num_target_qubits)`
 
 Bases: `abc.ABC`
@@ -26,8 +24,6 @@ Base class for CircuitFactories
 | [`required_ancillas_controlled`](qiskit.aqua.utils.CircuitFactory.required_ancillas_controlled#qiskit.aqua.utils.CircuitFactory.required_ancillas_controlled "qiskit.aqua.utils.CircuitFactory.required_ancillas_controlled")         | returns required ancillas controlled                                  |
 
 ## Attributes
-
-
 
 ### num\_target\_qubits
 

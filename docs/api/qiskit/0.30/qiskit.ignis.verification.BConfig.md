@@ -1,7 +1,5 @@
 # BConfig
 
-
-
 `BConfig(backend, indicator=True)`
 
 Bases: `object`

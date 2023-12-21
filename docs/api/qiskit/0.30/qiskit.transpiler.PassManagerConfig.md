@@ -1,7 +1,5 @@
 # PassManagerConfig
 
-
-
 `PassManagerConfig(initial_layout=None, basis_gates=None, coupling_map=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, backend_properties=None, approximation_degree=None, seed_transpiler=None, timing_constraints=None)`
 
 Bases: `object`

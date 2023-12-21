@@ -1,7 +1,5 @@
 # SnapshotExpectationValue
 
-
-
 `SnapshotExpectationValue(label, op, single_shot=False, variance=False)`
 
 Bases: `qiskit.providers.aer.extensions.snapshot.Snapshot`
@@ -46,43 +44,29 @@ Create an expectation value snapshot instruction.
 
 ## Attributes
 
-
-
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
-
 ### duration
 
 Get the duration.
-
-
 
 ### label
 
 Return snapshot label
 
-
-
 ### params
 
 return instruction params.
 
-
-
 ### snapshot\_type
 
 Return snapshot type
-
-
 
 ### unit
 

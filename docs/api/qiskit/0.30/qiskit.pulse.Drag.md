@@ -1,7 +1,5 @@
 # Drag
 
-
-
 `Drag(duration, amp, sigma, beta, name=None)`
 
 Bases: `qiskit.pulse.library.parametric_pulses.ParametricPulse`
@@ -48,8 +46,6 @@ Initialize the drag pulse.
 
 ## Attributes
 
-
-
 ### amp
 
 The Gaussian amplitude.
@@ -57,8 +53,6 @@ The Gaussian amplitude.
 **Return type**
 
 `Union`\[`complex`, `ParameterExpression`]
-
-
 
 ### beta
 
@@ -68,8 +62,6 @@ The weighing factor for the Gaussian derivative component of the waveform.
 
 `Union`\[`float`, `ParameterExpression`]
 
-
-
 ### id
 
 Unique identifier for this pulse.
@@ -78,21 +70,15 @@ Unique identifier for this pulse.
 
 `int`
 
-
-
 ### limit\_amplitude
 
 `= True`
-
-
 
 ### parameters
 
 **Return type**
 
 `Dict`\[`str`, `Any`]
-
-
 
 ### sigma
 

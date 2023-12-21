@@ -1,7 +1,5 @@
 # Qobj
 
-
-
 `Qobj(qobj_id=None, config=None, experiments=None, header=None)`
 
 Bases: `qiskit.qobj.qasm_qobj.QasmQobj`

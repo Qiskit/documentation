@@ -1,7 +1,5 @@
 # DefaultStyle
 
-
-
 `DefaultStyle`
 
 Bases: `object`

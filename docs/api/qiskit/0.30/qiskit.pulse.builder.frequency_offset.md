@@ -1,7 +1,5 @@
 # qiskit.pulse.builder.frequency\_offset
 
-
-
 `frequency_offset(frequency, *channels, compensate_phase=False)`
 
 Shift the frequency of inputs channels on entry into context and undo on exit.

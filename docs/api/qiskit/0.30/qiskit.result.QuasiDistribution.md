@@ -1,7 +1,5 @@
 # QuasiDistribution
 
-
-
 `QuasiDistribution(data, shots=None)`
 
 Bases: `dict`

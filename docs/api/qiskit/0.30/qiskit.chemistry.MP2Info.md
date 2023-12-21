@@ -1,7 +1,5 @@
 # MP2Info
 
-
-
 `MP2Info(qmolecule, threshold=1e-12)`
 
 Bases: `object`
@@ -36,8 +34,6 @@ A utility class for MP2 info
 
 ## Attributes
 
-
-
 ### mp2\_delta
 
 Get the MP2 delta energy correction for the molecule
@@ -49,8 +45,6 @@ The MP2 delta energy
 **Return type**
 
 float
-
-
 
 ### mp2\_energy
 

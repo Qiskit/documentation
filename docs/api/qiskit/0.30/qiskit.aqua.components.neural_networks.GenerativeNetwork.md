@@ -1,7 +1,5 @@
 # GenerativeNetwork
 
-
-
 `GenerativeNetwork`
 
 Bases: `abc.ABC`
@@ -21,8 +19,6 @@ This method should initialize the module, but raise an exception if a required c
 | [`train`](qiskit.aqua.components.neural_networks.GenerativeNetwork.train#qiskit.aqua.components.neural_networks.GenerativeNetwork.train "qiskit.aqua.components.neural_networks.GenerativeNetwork.train")                                                 | Perform one training step w\.r.t to the generator’s parameters                      |
 
 ## Attributes
-
-
 
 ### parameter\_values
 

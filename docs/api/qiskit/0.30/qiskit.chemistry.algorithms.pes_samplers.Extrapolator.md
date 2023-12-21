@@ -1,7 +1,5 @@
 # Extrapolator
 
-
-
 `Extrapolator`
 
 Bases: `abc.ABC`

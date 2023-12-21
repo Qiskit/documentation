@@ -1,7 +1,5 @@
 # FermionicDriver
 
-
-
 `FermionicDriver(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)`
 
 Bases: `qiskit.chemistry.drivers.base_driver.BaseDriver`
@@ -27,8 +25,6 @@ Base class for Qiskit’s chemistry fermionic drivers.
 
 ## Attributes
 
-
-
 ### basis
 
 return basis
@@ -36,8 +32,6 @@ return basis
 **Return type**
 
 `str`
-
-
 
 ### hf\_method
 
@@ -47,8 +41,6 @@ return Hartree-Fock method
 
 `str`
 
-
-
 ### molecule
 
 return molecule
@@ -56,8 +48,6 @@ return molecule
 **Return type**
 
 `Optional`\[`Molecule`]
-
-
 
 ### supports\_molecule
 

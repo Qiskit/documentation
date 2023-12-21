@@ -1,7 +1,5 @@
 # PotentialBase
 
-
-
 `PotentialBase(molecule)`
 
 Bases: `qiskit.chemistry.algorithms.pes_samplers.potentials.potential_base.EnergySurfaceBase`, `qiskit.chemistry.algorithms.pes_samplers.potentials.potential_base.VibronicStructureBase`

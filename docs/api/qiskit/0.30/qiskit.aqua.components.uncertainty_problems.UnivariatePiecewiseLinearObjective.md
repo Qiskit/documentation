@@ -1,7 +1,5 @@
 # UnivariatePiecewiseLinearObjective
 
-
-
 `UnivariatePiecewiseLinearObjective(num_state_qubits, min_state_value, max_state_value, breakpoints, slopes, offsets, f_min, f_max, c_approx, i_state=None, i_objective=None)`
 
 Bases: `qiskit.aqua.utils.circuit_factory.CircuitFactory`
@@ -47,8 +45,6 @@ $$
 | [`value_to_estimation`](qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.value_to_estimation#qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.value_to_estimation "qiskit.aqua.components.uncertainty_problems.UnivariatePiecewiseLinearObjective.value_to_estimation")                                             | value to estimation                                                   |
 
 ## Attributes
-
-
 
 ### num\_target\_qubits
 
