@@ -1,7 +1,5 @@
 # RepetitionCode
 
-
-
 `RepetitionCode(d, T=0)`
 
 Bases: `object`

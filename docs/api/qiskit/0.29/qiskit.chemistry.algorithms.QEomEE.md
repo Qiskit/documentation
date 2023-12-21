@@ -1,7 +1,5 @@
 # QEomEE
 
-
-
 `QEomEE(operator, num_orbitals, num_particles, qubit_mapping='parity', two_qubit_reduction=True, active_occupied=None, active_unoccupied=None, is_eom_matrix_symmetric=True, se_list=None, de_list=None, z2_symmetries=None, untapered_op=None, aux_operators=None)`
 
 Bases: `qiskit.aqua.algorithms.minimum_eigen_solvers.numpy_minimum_eigen_solver.NumPyMinimumEigensolver`
@@ -38,15 +36,11 @@ QEomEE algorithm (classical)
 
 ## Attributes
 
-
-
 ### aux\_operators
 
 **Return type**
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
-
-
 
 ### filter\_criterion
 
@@ -56,15 +50,11 @@ returns the filter criterion if set
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
 
-
-
 ### operator
 
 **Return type**
 
 `Optional`\[`OperatorBase`]
-
-
 
 ### random
 

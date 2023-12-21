@@ -1,7 +1,5 @@
 # LogicalExpressionOracle
 
-
-
 `LogicalExpressionOracle(expression, optimization=False, mct_mode='basic')`
 
 Bases: `qiskit.aqua.components.oracles.oracle.Oracle`
@@ -53,23 +51,15 @@ By default, the Logical Expression oracle will not try to apply any optimization
 
 ## Attributes
 
-
-
 ### ancillary\_register
 
 returns ancillary register
 
-
-
 ### circuit
-
-
 
 ### output\_register
 
 returns output register
-
-
 
 ### variable\_register
 

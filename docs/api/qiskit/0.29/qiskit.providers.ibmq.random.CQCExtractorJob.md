@@ -1,7 +1,5 @@
 # CQCExtractorJob
 
-
-
 `CQCExtractorJob(job_id, client, parameters=None)`
 
 Bases: `object`
@@ -40,8 +38,6 @@ CQCExtractorJob constructor.
 
 ## Attributes
 
-
-
 ### extractor\_method
 
 Return the extractor method used.
@@ -53,8 +49,6 @@ Return the extractor method used.
 **Returns**
 
 Extractor method used.
-
-
 
 ### parameters
 

@@ -1,7 +1,5 @@
 # SlsqpOptimizer
 
-
-
 `SlsqpOptimizer(iter=100, acc=1e-06, iprint=0, trials=1, clip=100.0, full_output=False)`
 
 Bases: `qiskit.optimization.algorithms.multistart_optimizer.MultiStartOptimizer`
@@ -59,8 +57,6 @@ This initializer takes the algorithmic parameters of SLSQP and stores them for l
 
 ## Attributes
 
-
-
 ### clip
 
 Returns the clip value for this optimizer.
@@ -72,8 +68,6 @@ Returns the clip value for this optimizer.
 **Returns**
 
 The clip value.
-
-
 
 ### trials
 

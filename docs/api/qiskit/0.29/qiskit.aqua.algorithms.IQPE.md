@@ -1,7 +1,5 @@
 # IQPE
 
-
-
 `IQPE(operator=None, state_in=None, num_time_slices=1, num_iterations=1, expansion_mode='suzuki', expansion_order=2, shallow_circuit_concat=False, quantum_instance=None)`
 
 Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`, `qiskit.aqua.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver`
@@ -39,8 +37,6 @@ qubit benchmark, [arxiv/quant-ph/0610214](https://arxiv.org/abs/quant-ph/0610214
 
 ## Attributes
 
-
-
 ### aux\_operators
 
 Returns aux operators
@@ -48,8 +44,6 @@ Returns aux operators
 **Return type**
 
 `Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`]]]
-
-
 
 ### backend
 
@@ -59,8 +53,6 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-
-
 ### operator
 
 Returns operator
@@ -69,8 +61,6 @@ Returns operator
 
 `Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]
 
-
-
 ### quantum\_instance
 
 Returns quantum instance.
@@ -78,8 +68,6 @@ Returns quantum instance.
 **Return type**
 
 `Optional`\[`QuantumInstance`]
-
-
 
 ### random
 

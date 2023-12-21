@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.utils.to\_python\_identifier
 
-
-
 `to_python_identifier(name)`
 
 Convert a name to a valid Python identifier.

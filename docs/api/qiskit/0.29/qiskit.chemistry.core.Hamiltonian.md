@@ -1,7 +1,5 @@
 # Hamiltonian
 
-
-
 `Hamiltonian(transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`
 
 Bases: `qiskit.chemistry.core.chemistry_operator.ChemistryOperator`
@@ -30,31 +28,21 @@ A molecular Hamiltonian operator, representing the energy of the electrons and n
 
 ## Attributes
 
-
-
 ### INFO\_NUM\_ORBITALS
 
 `= 'num_orbitals'`
-
-
 
 ### INFO\_NUM\_PARTICLES
 
 `= 'num_particles'`
 
-
-
 ### INFO\_TWO\_QUBIT\_REDUCTION
 
 `= 'two_qubit_reduction'`
 
-
-
 ### INFO\_Z2SYMMETRIES
 
 `= 'z2symmetries'`
-
-
 
 ### molecule\_info
 

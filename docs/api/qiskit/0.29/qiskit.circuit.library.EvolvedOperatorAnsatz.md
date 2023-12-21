@@ -1,7 +1,5 @@
 # EvolvedOperatorAnsatz
 
-
-
 `EvolvedOperatorAnsatz(operators=None, reps=1, evolution=None, insert_barriers=False, name='EvolvedOps', initial_state=None)`
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
@@ -19,13 +17,9 @@ The evolved operator ansatz.
 
 ## Attributes
 
-
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
-
-
 
 ### calibrations
 
@@ -35,17 +29,11 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
 
-
-
 ### data
-
-
 
 ### evolution
 
@@ -59,25 +47,17 @@ The evolution converter used to compute the evolution.
 
 [EvolutionBase](qiskit.aqua.operators.evolutions.EvolutionBase#qiskit.aqua.operators.evolutions.EvolutionBase "qiskit.aqua.operators.evolutions.EvolutionBase")
 
-
-
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-
 
 ### global\_phase
 
 Return the global phase of the circuit in radians.
 
-
-
 ### header
 
 `= 'OPENQASM 2.0;'`
-
-
 
 ### initial\_state
 
@@ -87,13 +67,9 @@ The initial state.
 
 `QuantumCircuit`
 
-
-
 ### instances
 
 `= 16`
-
-
 
 ### metadata
 
@@ -101,19 +77,13 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
 
-
-
 ### num\_clbits
 
 Return number of classical bits.
-
-
 
 ### num\_parameters
 
@@ -121,13 +91,9 @@ Return number of classical bits.
 
 `int`
 
-
-
 ### num\_qubits
 
 Return number of qubits.
-
-
 
 ### operators
 
@@ -141,39 +107,27 @@ The operators to be evolved (and circuits) contained in this ansatz.
 
 list
 
-
-
 ### parameters
 
 **Return type**
 
 `ParameterView`
 
-
-
 ### preferred\_init\_points
 
 Getter of preferred initial points based on the given initial state.
-
-
 
 ### prefix
 
 `= 'circuit'`
 
-
-
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-
-
 ### qubits
 
 Returns a list of quantum bits in the order that the registers were added.
-
-
 
 ### reps
 

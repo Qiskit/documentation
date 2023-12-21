@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.IBMQAccountMultipleCredentialsFound
 
-
-
 `IBMQAccountMultipleCredentialsFound(*message)`
 
 Errors raised when multiple credentials are found.

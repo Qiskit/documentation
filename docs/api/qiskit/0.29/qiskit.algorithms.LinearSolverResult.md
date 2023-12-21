@@ -1,7 +1,5 @@
 # LinearSolverResult
 
-
-
 `LinearSolverResult`
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
@@ -18,8 +16,6 @@ The linear systems algorithms return an object of the type `LinearSystemsResult`
 
 ## Attributes
 
-
-
 ### circuit\_results
 
 return the results from the circuits
@@ -27,8 +23,6 @@ return the results from the circuits
 **Return type**
 
 `Union`\[`List`\[`float`], `List`\[`Result`]]
-
-
 
 ### euclidean\_norm
 
@@ -38,8 +32,6 @@ return the euclidean norm if the algorithm knows how to calculate it
 
 `float`
 
-
-
 ### observable
 
 return the (list of) calculated observable(s)
@@ -47,8 +39,6 @@ return the (list of) calculated observable(s)
 **Return type**
 
 `Union`\[`float`, `List`\[`float`]]
-
-
 
 ### state
 

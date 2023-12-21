@@ -1,7 +1,5 @@
 # PiecewisePolynomialPauliRotations
 
-
-
 `PiecewisePolynomialPauliRotations(num_state_qubits=None, breakpoints=None, coeffs=None, basis='Y', name='pw_poly')`
 
 Bases: `qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations`
@@ -82,13 +80,9 @@ Enhancing the Quantum Linear Systems Algorithm using Richardson Extrapolation. [
 
 ## Attributes
 
-
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
-
-
 
 ### basis
 
@@ -104,8 +98,6 @@ Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotatio
 
 The kind of Pauli rotation used in controlled rotation.
 
-
-
 ### breakpoints
 
 The breakpoints of the piecewise polynomial function.
@@ -120,8 +112,6 @@ The function is polynomial in the intervals `[point_i, point_{i+1}]` where the l
 
 The list of breakpoints.
 
-
-
 ### calibrations
 
 Return calibration dictionary.
@@ -130,13 +120,9 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
-
-
 
 ### coeffs
 
@@ -150,8 +136,6 @@ The coefficients of the polynomials.
 
 The polynomial coefficients per interval as nested lists.
 
-
-
 ### contains\_zero\_breakpoint
 
 Whether 0 is the first breakpoint.
@@ -164,35 +148,23 @@ Whether 0 is the first breakpoint.
 
 True, if 0 is the first breakpoint, otherwise False.
 
-
-
 ### data
-
-
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-
-
 ### global\_phase
 
 Return the global phase of the circuit in radians.
-
-
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
-
 ### instances
 
 `= 16`
-
-
 
 ### mapped\_coeffs
 
@@ -206,15 +178,11 @@ The coefficients mapped to the internal representation, since we only compare x>
 
 The mapped coefficients.
 
-
-
 ### metadata
 
 The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
-
-
 
 ### num\_ancilla\_qubits
 
@@ -228,19 +196,13 @@ The minimum number of ancilla qubits in the circuit.
 
 The minimal number of ancillas required.
 
-
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
 
-
-
 ### num\_clbits
 
 Return number of classical bits.
-
-
 
 ### num\_parameters
 
@@ -248,13 +210,9 @@ Return number of classical bits.
 
 `int`
 
-
-
 ### num\_qubits
 
 Return number of qubits.
-
-
 
 ### num\_state\_qubits
 
@@ -268,27 +226,19 @@ The number of state qubits representing the state $|x\rangle$.
 
 The number of state qubits.
 
-
-
 ### parameters
 
 **Return type**
 
 `ParameterView`
 
-
-
 ### prefix
 
 `= 'circuit'`
 
-
-
 ### qregs
 
 A list of the quantum registers associated with the circuit.
-
-
 
 ### qubits
 

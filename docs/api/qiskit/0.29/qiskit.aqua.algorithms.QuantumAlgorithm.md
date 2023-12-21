@@ -1,7 +1,5 @@
 # QuantumAlgorithm
 
-
-
 `QuantumAlgorithm(quantum_instance)`
 
 Bases: `abc.ABC`
@@ -19,8 +17,6 @@ This method should initialize the module and use an exception if a component of 
 
 ## Attributes
 
-
-
 ### backend
 
 Returns backend.
@@ -29,8 +25,6 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-
-
 ### quantum\_instance
 
 Returns quantum instance.
@@ -38,8 +32,6 @@ Returns quantum instance.
 **Return type**
 
 `Optional`\[`QuantumInstance`]
-
-
 
 ### random
 

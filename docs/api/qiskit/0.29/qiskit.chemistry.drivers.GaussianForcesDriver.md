@@ -1,7 +1,5 @@
 # GaussianForcesDriver
 
-
-
 `GaussianForcesDriver(jcf='\\n#p B3LYP/cc-pVTZ Freq=(Anharm) Int=Ultrafine SCF=VeryTight\\n\\nCO2 geometry optimization B3LYP/cc-pVTZ\\n\\n0 1\\nC -0.848629 2.067624 0.160992\\nO 0.098816 2.655801 -0.159738\\nO -1.796073 1.479446 0.481721\\n\\n', logfile=None, molecule=None, basis='sto-3g', normalize=True)`
 
 Bases: `qiskit.chemistry.drivers.bosonic_driver.BosonicDriver`
@@ -28,8 +26,6 @@ Gaussian™ 16 forces driver.
 
 ## Attributes
 
-
-
 ### basis
 
 return basis
@@ -37,8 +33,6 @@ return basis
 **Return type**
 
 `str`
-
-
 
 ### hf\_method
 
@@ -48,8 +42,6 @@ return Hartree-Fock method
 
 `str`
 
-
-
 ### molecule
 
 return molecule
@@ -57,8 +49,6 @@ return molecule
 **Return type**
 
 `Optional`\[`Molecule`]
-
-
 
 ### supports\_molecule
 

@@ -1,7 +1,5 @@
 # TwoQubitBasisDecomposer
 
-
-
 `TwoQubitBasisDecomposer(gate, basis_fidelity=1.0, euler_basis=None, pulse_optimize=None)`
 
 Bases: `object`

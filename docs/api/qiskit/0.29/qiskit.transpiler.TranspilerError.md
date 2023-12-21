@@ -1,7 +1,5 @@
 # qiskit.transpiler.TranspilerError
 
-
-
 `TranspilerError(*message)`
 
 Exceptions raised during transpilation.

@@ -1,7 +1,5 @@
 # Options
 
-
-
 `Options`
 
 Bases: `types.SimpleNamespace`

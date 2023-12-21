@@ -1,7 +1,5 @@
 # ADMMState
 
-
-
 `ADMMState(op, rho_initial)`
 
 Bases: `object`

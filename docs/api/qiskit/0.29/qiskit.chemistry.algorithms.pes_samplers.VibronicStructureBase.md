@@ -1,7 +1,5 @@
 # VibronicStructureBase
 
-
-
 `VibronicStructureBase(molecule)`
 
 Bases: `abc.ABC`

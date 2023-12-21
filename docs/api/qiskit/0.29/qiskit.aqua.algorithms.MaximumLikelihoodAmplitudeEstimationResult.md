@@ -1,7 +1,5 @@
 # MaximumLikelihoodAmplitudeEstimationResult
 
-
-
 `MaximumLikelihoodAmplitudeEstimationResult(a_dict=None)`
 
 Bases: `qiskit.aqua.algorithms.amplitude_estimators.ae_algorithm.AmplitudeEstimationAlgorithmResult`
@@ -28,8 +26,6 @@ MaximumLikelihoodAmplitudeEstimation Result.
 
 ## Attributes
 
-
-
 ### a\_estimation
 
 return a\_estimation
@@ -37,8 +33,6 @@ return a\_estimation
 **Return type**
 
 `float`
-
-
 
 ### circuit\_results
 
@@ -48,8 +42,6 @@ return circuit results
 
 `Union`\[`List`\[`ndarray`], `List`\[`Dict`\[`str`, `int`]], `None`]
 
-
-
 ### confidence\_interval
 
 return confidence\_interval
@@ -57,8 +49,6 @@ return confidence\_interval
 **Return type**
 
 `List`\[`float`]
-
-
 
 ### estimation
 
@@ -68,8 +58,6 @@ return estimation
 
 `float`
 
-
-
 ### fisher\_information
 
 return fisher\_information
@@ -78,8 +66,6 @@ return fisher\_information
 
 `float`
 
-
-
 ### num\_oracle\_queries
 
 return num\_oracle\_queries
@@ -87,8 +73,6 @@ return num\_oracle\_queries
 **Return type**
 
 `int`
-
-
 
 ### theta
 

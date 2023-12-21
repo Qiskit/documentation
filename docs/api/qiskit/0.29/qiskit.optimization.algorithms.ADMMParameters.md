@@ -1,7 +1,5 @@
 # ADMMParameters
 
-
-
 `ADMMParameters(rho_initial=10000, factor_c=100000, beta=1000, maxiter=10, tol=0.0001, max_time=inf, three_block=True, vary_rho=0, tau_incr=2, tau_decr=2, mu_res=10, mu_merit=1000, warm_start=False, max_iter=None)`
 
 Bases: `object`

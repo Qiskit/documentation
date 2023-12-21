@@ -1,7 +1,5 @@
 # qiskit.ignis.verification.marginal\_counts
 
-
-
 `marginal_counts(counts, meas_qubits=True, pad_zeros=False)`
 
 Compute marginal counts from a counts dictionary.

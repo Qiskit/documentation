@@ -1,7 +1,5 @@
 # QuadraticExpression
 
-
-
 `QuadraticExpression(quadratic_program, coefficients)`
 
 Bases: `qiskit.optimization.problems.quadratic_program_element.QuadraticProgramElement`
@@ -28,8 +26,6 @@ The quadratic expression can be defined via an array, a list, a sparse matrix, o
 
 ## Attributes
 
-
-
 ### coefficients
 
 Returns the coefficients of the quadratic expression.
@@ -41,8 +37,6 @@ Returns the coefficients of the quadratic expression.
 **Returns**
 
 The coefficients of the quadratic expression.
-
-
 
 ### quadratic\_program
 

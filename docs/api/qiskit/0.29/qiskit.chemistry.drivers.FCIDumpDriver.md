@@ -1,7 +1,5 @@
 # FCIDumpDriver
 
-
-
 `FCIDumpDriver(fcidump_input, atoms=None)`
 
 Bases: `qiskit.chemistry.drivers.fermionic_driver.FermionicDriver`
@@ -34,8 +32,6 @@ A determinant based full configuration interaction program, Computer Physics Com
 
 ## Attributes
 
-
-
 ### basis
 
 return basis
@@ -43,8 +39,6 @@ return basis
 **Return type**
 
 `str`
-
-
 
 ### hf\_method
 
@@ -54,8 +48,6 @@ return Hartree-Fock method
 
 `str`
 
-
-
 ### molecule
 
 return molecule
@@ -63,8 +55,6 @@ return molecule
 **Return type**
 
 `Optional`\[`Molecule`]
-
-
 
 ### supports\_molecule
 

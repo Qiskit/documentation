@@ -1,7 +1,5 @@
 # WatsonHamiltonian
 
-
-
 `WatsonHamiltonian(data, num_modes)`
 
 Bases: `object`
@@ -15,8 +13,6 @@ Watson Hamiltonian class containing the results of a driver’s anharmonic calcu
 
 ## Attributes
 
-
-
 ### data
 
 Returns the matrix elements of the Hamiltonian
@@ -24,8 +20,6 @@ Returns the matrix elements of the Hamiltonian
 **Return type**
 
 `List`\[`List`\[`Union`\[`int`, `float`]]]
-
-
 
 ### num\_modes
 

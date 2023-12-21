@@ -1,7 +1,5 @@
 # QuantumInstance
 
-
-
 `QuantumInstance(backend, shots=None, seed_simulator=None, max_credits=10, basis_gates=None, coupling_map=None, initial_layout=None, pass_manager=None, seed_transpiler=None, optimization_level=None, backend_options=None, noise_model=None, timeout=None, wait=5.0, skip_qobj_validation=True, measurement_error_mitigation_cls=None, cals_matrix_refresh_period=30, measurement_error_mitigation_shots=None, job_callback=None, mit_pattern=None)`
 
 Bases: `object`
@@ -53,103 +51,69 @@ Quantum Instance holds a Qiskit Terra backend as well as configuration for circu
 
 ## Attributes
 
-
-
 ### backend
 
 Return BaseBackend backend object.
-
-
 
 ### backend\_config
 
 Getter of backend\_config.
 
-
-
 ### backend\_name
 
 Return backend name.
-
-
 
 ### backend\_options
 
 Getter of backend\_options.
 
-
-
 ### cals\_matrix\_refresh\_period
 
 returns matrix refresh period
-
-
 
 ### circuit\_summary
 
 Getter of circuit summary.
 
-
-
 ### compile\_config
 
 Getter of compile\_config.
-
-
 
 ### is\_local
 
 Return True if backend is a local backend.
 
-
-
 ### is\_simulator
 
 Return True if backend is a simulator.
-
-
 
 ### is\_statevector
 
 Return True if backend is a statevector-type simulator.
 
-
-
 ### measurement\_error\_mitigation\_cls
 
 returns measurement error mitigation cls
-
-
 
 ### measurement\_error\_mitigation\_shots
 
 returns measurement error mitigation shots
 
-
-
 ### noise\_config
 
 Getter of noise\_config.
-
-
 
 ### qjob\_config
 
 Getter of qjob\_config.
 
-
-
 ### run\_config
 
 Getter of run\_config.
 
-
-
 ### skip\_qobj\_validation
 
 checks if skip qobj validation
-
-
 
 ### time\_taken
 

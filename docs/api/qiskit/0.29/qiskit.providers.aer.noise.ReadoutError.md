@@ -1,7 +1,5 @@
 # ReadoutError
 
-
-
 `ReadoutError(probabilities, atol=1e-08)`
 
 Bases: `object`
@@ -57,25 +55,17 @@ probabilities[3] = [P("00"|"11"), P("01"|"11"), P("10"|"11"), P("11"|"11")]
 
 ## Attributes
 
-
-
 ### atol
 
 The default absolute tolerance parameter for float comparisons.
-
-
 
 ### number\_of\_qubits
 
 Return the number of qubits for the error.
 
-
-
 ### probabilities
 
 Return the readout error probabilities matrix.
-
-
 
 ### rtol
 

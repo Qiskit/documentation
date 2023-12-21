@@ -1,7 +1,5 @@
 # AllPairs
 
-
-
 `AllPairs`
 
 Bases: `qiskit.aqua.components.multiclass_extensions.multiclass_extension.MulticlassExtension`

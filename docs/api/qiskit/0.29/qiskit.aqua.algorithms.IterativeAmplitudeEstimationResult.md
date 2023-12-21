@@ -1,7 +1,5 @@
 # IterativeAmplitudeEstimationResult
 
-
-
 `IterativeAmplitudeEstimationResult(a_dict=None)`
 
 Bases: `qiskit.aqua.algorithms.amplitude_estimators.ae_algorithm.AmplitudeEstimationAlgorithmResult`
@@ -28,8 +26,6 @@ IterativeAmplitudeEstimation Result.
 
 ## Attributes
 
-
-
 ### a\_estimation
 
 return a\_estimation
@@ -37,8 +33,6 @@ return a\_estimation
 **Return type**
 
 `float`
-
-
 
 ### a\_intervals
 
@@ -48,8 +42,6 @@ return a\_intervals
 
 `List`\[`List`\[`float`]]
 
-
-
 ### actual\_epsilon
 
 return mle
@@ -57,8 +49,6 @@ return mle
 **Return type**
 
 `float`
-
-
 
 ### alpha
 
@@ -68,8 +58,6 @@ return alpha
 
 `float`
 
-
-
 ### confidence\_interval
 
 return confidence\_interval
@@ -77,8 +65,6 @@ return confidence\_interval
 **Return type**
 
 `List`\[`float`]
-
-
 
 ### estimation
 
@@ -88,8 +74,6 @@ return estimation
 
 `float`
 
-
-
 ### num\_oracle\_queries
 
 return num\_oracle\_queries
@@ -97,8 +81,6 @@ return num\_oracle\_queries
 **Return type**
 
 `int`
-
-
 
 ### powers
 
@@ -108,8 +90,6 @@ return powers
 
 `List`\[`int`]
 
-
-
 ### ratios
 
 return ratios
@@ -118,8 +98,6 @@ return ratios
 
 `List`\[`float`]
 
-
-
 ### theta\_intervals
 
 return theta\_intervals
@@ -127,8 +105,6 @@ return theta\_intervals
 **Return type**
 
 `List`\[`List`\[`float`]]
-
-
 
 ### value\_confidence\_interval
 

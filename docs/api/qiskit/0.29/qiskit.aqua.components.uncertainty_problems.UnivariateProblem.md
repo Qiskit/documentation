@@ -1,7 +1,5 @@
 # UnivariateProblem
 
-
-
 `UnivariateProblem(uncertainty_model, univariate_objective, i_state=None, i_objective=None)`
 
 Bases: `qiskit.aqua.components.uncertainty_problems.uncertainty_problem.UncertaintyProblem`
@@ -36,8 +34,6 @@ Constructor.
 | [`value_to_estimation`](qiskit.aqua.components.uncertainty_problems.UnivariateProblem.value_to_estimation#qiskit.aqua.components.uncertainty_problems.UnivariateProblem.value_to_estimation "qiskit.aqua.components.uncertainty_problems.UnivariateProblem.value_to_estimation")                                             | value to estimate                                                     |
 
 ## Attributes
-
-
 
 ### num\_target\_qubits
 

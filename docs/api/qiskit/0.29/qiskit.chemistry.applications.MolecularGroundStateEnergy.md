@@ -1,7 +1,5 @@
 # MolecularGroundStateEnergy
 
-
-
 `MolecularGroundStateEnergy(driver, solver=None, transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`
 
 Bases: `object`
@@ -28,8 +26,6 @@ Molecular ground state energy chemistry application
 
 ## Attributes
 
-
-
 ### driver
 
 Returns chemistry driver
@@ -37,8 +33,6 @@ Returns chemistry driver
 **Return type**
 
 `FermionicDriver`
-
-
 
 ### solver
 

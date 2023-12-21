@@ -1,7 +1,5 @@
 # OperatorBase
 
-
-
 `OperatorBase`
 
 Bases: `abc.ABC`
@@ -34,19 +32,13 @@ Operators can be used to construct complicated functions and computation, and se
 
 ## Attributes
 
-
-
 ### ENABLE\_DEPRECATION
 
 `= True`
 
-
-
 ### INDENTATION
 
 `= ' '`
-
-
 
 ### num\_qubits
 
@@ -59,8 +51,6 @@ The number of qubits over which the Operator is defined. If `op.num_qubits == 5`
 **Returns**
 
 The number of qubits accepted by the Operator’s underlying function.
-
-
 
 ### parameters
 

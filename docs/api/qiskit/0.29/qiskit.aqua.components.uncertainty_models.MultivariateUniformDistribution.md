@@ -1,7 +1,5 @@
 # MultivariateUniformDistribution
 
-
-
 `MultivariateUniformDistribution(num_qubits, low=None, high=None)`
 
 Bases: `qiskit.aqua.components.uncertainty_models.multivariate_distribution.MultivariateDistribution`
@@ -36,55 +34,37 @@ Although this just results in a Hadamard gate on all involved qubits, the lower 
 
 ## Attributes
 
-
-
 ### dimension
 
 returns dimensions
-
-
 
 ### high
 
 returns high
 
-
-
 ### low
 
 returns low
-
-
 
 ### num\_qubits
 
 returns num qubits
 
-
-
 ### num\_target\_qubits
 
 Returns the number of target qubits
-
-
 
 ### num\_values
 
 returns number of values
 
-
-
 ### probabilities
 
 returns probabilities
 
-
-
 ### probabilities\_vector
 
 returns probabilities vector
-
-
 
 ### values
 

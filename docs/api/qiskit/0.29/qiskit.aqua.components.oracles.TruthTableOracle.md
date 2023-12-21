@@ -1,7 +1,5 @@
 # TruthTableOracle
 
-
-
 `TruthTableOracle(bitmaps, optimization=False, mct_mode='basic')`
 
 Bases: `qiskit.aqua.components.oracles.oracle.Oracle`
@@ -41,23 +39,15 @@ Regarding circuit optimization and mct usages, the truth table oracle is similar
 
 ## Attributes
 
-
-
 ### ancillary\_register
 
 returns ancillary register
 
-
-
 ### circuit
-
-
 
 ### output\_register
 
 returns output register
-
-
 
 ### variable\_register
 

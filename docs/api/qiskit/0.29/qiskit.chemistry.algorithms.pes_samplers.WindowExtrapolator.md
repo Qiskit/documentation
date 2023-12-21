@@ -1,7 +1,5 @@
 # WindowExtrapolator
 
-
-
 `WindowExtrapolator(extrapolator=None, window=2)`
 
 Bases: `qiskit.chemistry.algorithms.pes_samplers.extrapolator.Extrapolator`
@@ -24,8 +22,6 @@ Constructor.
 
 ## Attributes
 
-
-
 ### extrapolator
 
 Returns the internal extrapolator.
@@ -37,8 +33,6 @@ Returns the internal extrapolator.
 **Returns**
 
 The internal extrapolator.
-
-
 
 ### window
 

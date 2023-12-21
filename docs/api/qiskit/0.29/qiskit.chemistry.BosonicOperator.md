@@ -1,7 +1,5 @@
 # BosonicOperator
 
-
-
 `BosonicOperator(h, basis)`
 
 Bases: `object`

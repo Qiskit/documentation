@@ -1,7 +1,5 @@
 # Oracle
 
-
-
 `Oracle(*args, **kwargs)`
 
 Bases: `abc.ABC`
@@ -23,23 +21,15 @@ This method should initialize the module and use an exception if a component of 
 
 ## Attributes
 
-
-
 ### ancillary\_register
 
 returns ancillary register
 
-
-
 ### circuit
-
-
 
 ### output\_register
 
 returns output register
-
-
 
 ### variable\_register
 

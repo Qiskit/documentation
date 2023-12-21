@@ -1,7 +1,5 @@
 # TrotterizationBase
 
-
-
 `TrotterizationBase(reps=1)`
 
 Bases: `qiskit.aqua.operators.evolutions.evolution_base.EvolutionBase`
@@ -15,8 +13,6 @@ A base for Trotterization methods, algorithms for approximating exponentiations 
 | [`convert`](qiskit.aqua.operators.evolutions.TrotterizationBase.convert#qiskit.aqua.operators.evolutions.TrotterizationBase.convert "qiskit.aqua.operators.evolutions.TrotterizationBase.convert") | Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`. |
 
 ## Attributes
-
-
 
 ### reps
 

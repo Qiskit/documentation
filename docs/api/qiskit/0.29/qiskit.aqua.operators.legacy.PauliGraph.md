@@ -1,7 +1,5 @@
 # PauliGraph
 
-
-
 `PauliGraph(paulis, mode='largest-degree')`
 
 Bases: `object`
@@ -9,8 +7,6 @@ Bases: `object`
 Pauli Graph.
 
 ## Attributes
-
-
 
 ### grouped\_paulis
 

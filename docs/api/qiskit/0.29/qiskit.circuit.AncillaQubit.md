@@ -1,7 +1,5 @@
 # AncillaQubit
 
-
-
 `AncillaQubit(register=None, index=None)`
 
 Bases: `qiskit.circuit.quantumregister.Qubit`
@@ -21,13 +19,9 @@ Creates a qubit.
 
 ## Attributes
 
-
-
 ### index
 
 Get bit’s index.
-
-
 
 ### register
 

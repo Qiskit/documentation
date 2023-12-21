@@ -1,7 +1,5 @@
 # EigenstateResult
 
-
-
 `EigenstateResult(a_dict=None)`
 
 Bases: `qiskit.aqua.algorithms.algorithm_result.AlgorithmResult`
@@ -27,8 +25,6 @@ The eigenstate result interface.
 
 ## Attributes
 
-
-
 ### aux\_operator\_eigenvalues
 
 return aux operator eigen values
@@ -36,8 +32,6 @@ return aux operator eigen values
 **Return type**
 
 `Optional`\[`List`\[`float`]]
-
-
 
 ### eigenenergies
 
@@ -47,8 +41,6 @@ returns eigen energies
 
 `Optional`\[`ndarray`]
 
-
-
 ### eigenstates
 
 returns eigen states
@@ -56,8 +48,6 @@ returns eigen states
 **Return type**
 
 `Optional`\[`List`\[`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]]]
-
-
 
 ### groundenergy
 
@@ -67,8 +57,6 @@ returns ground energy
 
 `Optional`\[`float`]
 
-
-
 ### groundstate
 
 returns ground state
@@ -76,8 +64,6 @@ returns ground state
 **Return type**
 
 `Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]
-
-
 
 ### raw\_result
 

@@ -1,7 +1,5 @@
 # QPE
 
-
-
 `QPE(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, shallow_circuit_concat=False, quantum_instance=None)`
 
 Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`, `qiskit.aqua.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver`
@@ -34,8 +32,6 @@ QPE (also sometimes abbreviated as PEA, for Phase Estimation Algorithm), has two
 
 ## Attributes
 
-
-
 ### aux\_operators
 
 Returns aux operators
@@ -43,8 +39,6 @@ Returns aux operators
 **Return type**
 
 `Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`]]]
-
-
 
 ### backend
 
@@ -54,8 +48,6 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-
-
 ### operator
 
 Returns operator
@@ -64,8 +56,6 @@ Returns operator
 
 `Optional`\[`LegacyBaseOperator`]
 
-
-
 ### quantum\_instance
 
 Returns quantum instance.
@@ -73,8 +63,6 @@ Returns quantum instance.
 **Return type**
 
 `Optional`\[`QuantumInstance`]
-
-
 
 ### random
 

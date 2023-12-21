@@ -1,7 +1,5 @@
 # PulseQobjConfig
 
-
-
 `PulseQobjConfig(meas_level, meas_return, pulse_library, qubit_lo_freq, meas_lo_freq, memory_slot_size=None, rep_time=None, rep_delay=None, shots=None, max_credits=None, seed_simulator=None, memory_slots=None, **kwargs)`
 
 Bases: `qiskit.qobj.common.QobjDictField`

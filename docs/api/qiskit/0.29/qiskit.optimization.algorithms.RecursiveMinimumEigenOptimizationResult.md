@@ -1,7 +1,5 @@
 # RecursiveMinimumEigenOptimizationResult
 
-
-
 `RecursiveMinimumEigenOptimizationResult(x, fval, variables, status, replacements, history)`
 
 Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationResult`
@@ -21,8 +19,6 @@ Constructs an instance of the result class.
 
 ## Attributes
 
-
-
 ### fval
 
 Returns the optimal function value.
@@ -35,8 +31,6 @@ Returns the optimal function value.
 
 The function value corresponding to the optimal value found in the optimization.
 
-
-
 ### history
 
 Returns intermediate results. The first element is a list of `MinimumEigenOptimizerResult` obtained by invoking [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer#qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer") iteratively, the second element is an instance of `OptimizationResult` obtained at the last step via min\_num\_vars\_optimizer.
@@ -44,8 +38,6 @@ Returns intermediate results. The first element is a list of `MinimumEigenOptimi
 **Return type**
 
 `Tuple`\[`List`\[`MinimumEigenOptimizationResult`], `OptimizationResult`]
-
-
 
 ### raw\_results
 
@@ -61,8 +53,6 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
-
-
 ### replacements
 
 Returns a dictionary of substituted variables. Key is a variable being substituted, value is a tuple of substituting variable and a weight, either 1 or -1.
@@ -70,8 +60,6 @@ Returns a dictionary of substituted variables. Key is a variable being substitut
 **Return type**
 
 `Dict`\[`str`, `Tuple`\[`str`, `int`]]
-
-
 
 ### samples
 
@@ -85,8 +73,6 @@ Returns the list of solution samples
 
 The list of solution samples.
 
-
-
 ### status
 
 Returns the termination status of the optimization algorithm.
@@ -98,8 +84,6 @@ Returns the termination status of the optimization algorithm.
 **Returns**
 
 The termination status of the algorithm.
-
-
 
 ### variable\_names
 
@@ -113,8 +97,6 @@ Returns the list of variable names of the optimization problem.
 
 The list of variable names of the optimization problem.
 
-
-
 ### variables
 
 Returns the list of variables of the optimization problem.
@@ -127,8 +109,6 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
-
-
 ### variables\_dict
 
 Returns the optimal value as a dictionary of the variable name and corresponding value.
@@ -140,8 +120,6 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 **Returns**
 
 The optimal value as a dictionary of the variable name and corresponding value.
-
-
 
 ### x
 

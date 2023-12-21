@@ -1,7 +1,5 @@
 # AmplitudeEstimationResult
 
-
-
 `AmplitudeEstimationResult(a_dict=None)`
 
 Bases: `qiskit.aqua.algorithms.amplitude_estimators.ae_algorithm.AmplitudeEstimationAlgorithmResult`
@@ -28,8 +26,6 @@ AmplitudeEstimation Result.
 
 ## Attributes
 
-
-
 ### a\_estimation
 
 return a\_estimation
@@ -37,8 +33,6 @@ return a\_estimation
 **Return type**
 
 `float`
-
-
 
 ### a\_samples
 
@@ -48,8 +42,6 @@ return a\_samples
 
 `List`\[`Tuple`\[`float`, `float`]]
 
-
-
 ### circuit\_result
 
 return circuit result
@@ -57,8 +49,6 @@ return circuit result
 **Return type**
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
-
-
 
 ### confidence\_interval
 
@@ -68,8 +58,6 @@ return confidence\_interval
 
 `List`\[`float`]
 
-
-
 ### estimation
 
 return estimation
@@ -77,8 +65,6 @@ return estimation
 **Return type**
 
 `float`
-
-
 
 ### mapped\_a\_samples
 
@@ -88,8 +74,6 @@ return mapped\_a\_samples
 
 `List`\[`float`]
 
-
-
 ### mapped\_values
 
 return mapped\_values
@@ -97,8 +81,6 @@ return mapped\_values
 **Return type**
 
 `List`\[`float`]
-
-
 
 ### max\_probability
 
@@ -108,8 +90,6 @@ return max\_probability
 
 `float`
 
-
-
 ### ml\_value
 
 returns ml\_value
@@ -117,8 +97,6 @@ returns ml\_value
 **Return type**
 
 `float`
-
-
 
 ### mle
 
@@ -128,8 +106,6 @@ return mle
 
 `float`
 
-
-
 ### num\_oracle\_queries
 
 return num\_oracle\_queries
@@ -137,8 +113,6 @@ return num\_oracle\_queries
 **Return type**
 
 `int`
-
-
 
 ### probabilities
 
@@ -148,8 +122,6 @@ return probabilities
 
 `List`\[`float`]
 
-
-
 ### shots
 
 return shots
@@ -157,8 +129,6 @@ return shots
 **Return type**
 
 `int`
-
-
 
 ### y\_measurements
 

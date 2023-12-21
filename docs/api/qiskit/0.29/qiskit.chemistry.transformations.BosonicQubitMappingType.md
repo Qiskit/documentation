@@ -1,7 +1,5 @@
 # BosonicQubitMappingType
 
-
-
 `BosonicQubitMappingType(value)`
 
 Bases: `enum.Enum`
@@ -9,8 +7,6 @@ Bases: `enum.Enum`
 BosonicQubitMappingType enum
 
 ## Attributes
-
-
 
 ### DIRECT
 

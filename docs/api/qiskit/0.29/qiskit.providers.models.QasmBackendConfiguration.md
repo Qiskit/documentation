@@ -1,74 +1,50 @@
 # QasmBackendConfiguration
 
-
-
 `QasmBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, supported_instructions=None, dynamic_reprate_enabled=False, rep_delay_range=None, default_rep_delay=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, dt=None, dtm=None, processor_type=None, parametric_pulses=None, **kwargs)`
 
 Bases: `object`
 
 Class representing a Qasm Backend Configuration.
 
-
-
 ### backend\_name
 
 backend name.
-
-
 
 ### backend\_version
 
 backend version in the form X.Y.Z.
 
-
-
 ### n\_qubits
 
 number of qubits.
-
-
 
 ### basis\_gates
 
 list of basis gates names on the backend.
 
-
-
 ### gates
 
 list of basis gates on the backend.
-
-
 
 ### local
 
 backend is local or remote.
 
-
-
 ### simulator
 
 backend is a simulator.
-
-
 
 ### conditional
 
 backend supports conditional operations.
 
-
-
 ### open\_pulse
 
 backend supports open pulse.
 
-
-
 ### memory
 
 backend supports memory.
-
-
 
 ### max\_shots
 
@@ -154,8 +130,6 @@ Initialize a QasmBackendConfiguration Object
 | [`to_dict`](qiskit.providers.models.QasmBackendConfiguration.to_dict#qiskit.providers.models.QasmBackendConfiguration.to_dict "qiskit.providers.models.QasmBackendConfiguration.to_dict")         | Return a dictionary format representation of the GateConfig. |
 
 ## Attributes
-
-
 
 ### num\_qubits
 

@@ -1,7 +1,5 @@
 # qiskit.pulse.PulseError
 
-
-
 `PulseError(*message)`
 
 Errors raised by the pulse module.

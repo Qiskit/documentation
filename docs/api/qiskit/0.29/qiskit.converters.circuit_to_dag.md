@@ -1,7 +1,5 @@
 # qiskit.converters.circuit\_to\_dag
 
-
-
 `circuit_to_dag(circuit)`
 
 Build a `DAGCircuit` object from a `QuantumCircuit`.

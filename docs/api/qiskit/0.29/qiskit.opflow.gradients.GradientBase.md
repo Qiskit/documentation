@@ -1,7 +1,5 @@
 # GradientBase
 
-
-
 `GradientBase(grad_method='param_shift', **kwargs)`
 
 Bases: `qiskit.opflow.gradients.derivative_base.DerivativeBase`
@@ -20,8 +18,6 @@ Convert an operator expression to the first-order gradient.
 **ValueError** – If method != `fin_diff` and `epsilon` is not None.
 
 ## Attributes
-
-
 
 ### grad\_method
 

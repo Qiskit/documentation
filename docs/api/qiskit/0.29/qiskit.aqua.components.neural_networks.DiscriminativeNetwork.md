@@ -1,7 +1,5 @@
 # DiscriminativeNetwork
 
-
-
 `DiscriminativeNetwork`
 
 Bases: `abc.ABC`

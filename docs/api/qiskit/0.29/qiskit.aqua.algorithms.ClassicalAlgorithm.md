@@ -1,7 +1,5 @@
 # ClassicalAlgorithm
 
-
-
 `ClassicalAlgorithm`
 
 Bases: `abc.ABC`
@@ -15,8 +13,6 @@ Base class for Classical Algorithms.
 | [`run`](qiskit.aqua.algorithms.ClassicalAlgorithm.run#qiskit.aqua.algorithms.ClassicalAlgorithm.run "qiskit.aqua.algorithms.ClassicalAlgorithm.run") | Execute the classical algorithm. |
 
 ## Attributes
-
-
 
 ### random
 

@@ -1,7 +1,5 @@
 # QuantumError
 
-
-
 `QuantumError(noise_ops, number_of_qubits=None, standard_gates=True, atol=1e-08)`
 
 Bases: `object`
@@ -63,37 +61,25 @@ noise_ops = [np.sqrt(0.9) * np.array([[1, 0], [0, 1]]),
 
 ## Attributes
 
-
-
 ### atol
 
 The default absolute tolerance parameter for float comparisons.
-
-
 
 ### circuits
 
 Return the list of error circuits.
 
-
-
 ### number\_of\_qubits
 
 Return the number of qubits for the error.
-
-
 
 ### probabilities
 
 Return the list of error probabilities.
 
-
-
 ### rtol
 
 The relative tolerance parameter for float comparisons.
-
-
 
 ### size
 

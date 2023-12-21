@@ -1,7 +1,5 @@
 # qiskit.ignis.verification.composite\_pauli\_z
 
-
-
 `composite_pauli_z(qn)`
 
 Generates n tensored pauli z matrix upon input of qubit number

@@ -1,7 +1,5 @@
 # Qubit
 
-
-
 `Qubit(register=None, index=None)`
 
 Bases: `qiskit.circuit.bit.Bit`
@@ -21,13 +19,9 @@ Creates a qubit.
 
 ## Attributes
 
-
-
 ### index
 
 Get bit’s index.
-
-
 
 ### register
 

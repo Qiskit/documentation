@@ -1,7 +1,5 @@
 # NumPyDiscriminator
 
-
-
 `NumPyDiscriminator(n_features=1, n_out=1)`
 
 Bases: `qiskit.aqua.components.neural_networks.discriminative_network.DiscriminativeNetwork`
@@ -25,8 +23,6 @@ Discriminator based on NumPy
 | [`train`](qiskit.aqua.components.neural_networks.NumPyDiscriminator.train#qiskit.aqua.components.neural_networks.NumPyDiscriminator.train "qiskit.aqua.components.neural_networks.NumPyDiscriminator.train")                     | Perform one training step w\.r.t to the discriminator’s parameters                                                                                                                                                                        |
 
 ## Attributes
-
-
 
 ### discriminator\_net
 

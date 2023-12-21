@@ -1,7 +1,5 @@
 # VQEUVCCSDFactory
 
-
-
 `VQEUVCCSDFactory(quantum_instance, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False)`
 
 Bases: `qiskit.chemistry.algorithms.ground_state_solvers.minimum_eigensolver_factories.minimum_eigensolver_factory.MinimumEigensolverFactory`
@@ -26,8 +24,6 @@ A factory to construct a VQE minimum eigensolver with UVCCSD ansatz wavefunction
 
 ## Attributes
 
-
-
 ### expectation
 
 Getter of the expectation.
@@ -35,8 +31,6 @@ Getter of the expectation.
 **Return type**
 
 `ExpectationBase`
-
-
 
 ### gradient
 
@@ -46,8 +40,6 @@ Getter of the gradient function
 
 `Union`\[`GradientBase`, `Callable`, `None`]
 
-
-
 ### include\_custom
 
 Getter of the `include_custom` setting for the `expectation` setting.
@@ -55,8 +47,6 @@ Getter of the `include_custom` setting for the `expectation` setting.
 **Return type**
 
 `bool`
-
-
 
 ### initial\_point
 
@@ -66,8 +56,6 @@ Getter of the initial point.
 
 `ndarray`
 
-
-
 ### optimizer
 
 Getter of the optimizer.
@@ -75,8 +63,6 @@ Getter of the optimizer.
 **Return type**
 
 `Optimizer`
-
-
 
 ### quantum\_instance
 

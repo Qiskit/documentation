@@ -1,7 +1,5 @@
 # PyTorchDiscriminator
 
-
-
 `PyTorchDiscriminator(n_features=1, n_out=1)`
 
 Bases: `qiskit.aqua.components.neural_networks.discriminative_network.DiscriminativeNetwork`
@@ -30,8 +28,6 @@ Discriminator based on PyTorch
 | [`train`](qiskit.aqua.components.neural_networks.PyTorchDiscriminator.train#qiskit.aqua.components.neural_networks.PyTorchDiscriminator.train "qiskit.aqua.components.neural_networks.PyTorchDiscriminator.train")                                             | Perform one training step w\.r.t to the discriminator’s parameters |
 
 ## Attributes
-
-
 
 ### discriminator\_net
 

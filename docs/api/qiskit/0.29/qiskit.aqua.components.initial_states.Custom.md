@@ -1,7 +1,5 @@
 # Custom
 
-
-
 `Custom(num_qubits, state='zero', state_vector=None, circuit=None)`
 
 Bases: `qiskit.aqua.components.initial_states.initial_state.InitialState`
@@ -36,7 +34,5 @@ The custom initial state will be set from the *circuit*, the *state\_vector*, or
 | [`construct_circuit`](qiskit.aqua.components.initial_states.Custom.construct_circuit#qiskit.aqua.components.initial_states.Custom.construct_circuit "qiskit.aqua.components.initial_states.Custom.construct_circuit") | Construct the statevector of desired initial state. |
 
 ## Attributes
-
-
 
 ### bitstr

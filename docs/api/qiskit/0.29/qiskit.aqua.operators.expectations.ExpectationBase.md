@@ -1,7 +1,5 @@
 # ExpectationBase
 
-
-
 `ExpectationBase`
 
 Bases: `qiskit.aqua.operators.converters.converter_base.ConverterBase`

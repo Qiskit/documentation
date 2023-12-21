@@ -1,7 +1,5 @@
 # EigensolverResult
 
-
-
 `EigensolverResult(a_dict=None)`
 
 Bases: `qiskit.aqua.algorithms.algorithm_result.AlgorithmResult`
@@ -28,8 +26,6 @@ Eigensolver Result.
 
 ## Attributes
 
-
-
 ### aux\_operator\_eigenvalues
 
 return aux operator eigen values
@@ -38,8 +34,6 @@ return aux operator eigen values
 
 `Optional`\[`ndarray`]
 
-
-
 ### eigenstates
 
 return eigen states
@@ -47,8 +41,6 @@ return eigen states
 **Return type**
 
 `Optional`\[`ndarray`]
-
-
 
 ### eigenvalues
 

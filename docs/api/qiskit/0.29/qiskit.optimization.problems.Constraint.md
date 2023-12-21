@@ -1,7 +1,5 @@
 # Constraint
 
-
-
 `Constraint(quadratic_program, name, sense, rhs)`
 
 Bases: `qiskit.optimization.problems.quadratic_program_element.QuadraticProgramElement`
@@ -25,8 +23,6 @@ Initializes the constraint.
 
 ## Attributes
 
-
-
 ### name
 
 Returns the name of the constraint.
@@ -38,8 +34,6 @@ Returns the name of the constraint.
 **Returns**
 
 The name of the constraint.
-
-
 
 ### quadratic\_program
 
@@ -53,8 +47,6 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-
-
 ### rhs
 
 Returns the right-hand-side of the constraint.
@@ -66,8 +58,6 @@ Returns the right-hand-side of the constraint.
 **Returns**
 
 The right-hand-side of the constraint.
-
-
 
 ### sense
 

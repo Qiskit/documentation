@@ -1,7 +1,5 @@
 # QEOM
 
-
-
 `QEOM(ground_state_solver, excitations='sd')`
 
 Bases: `qiskit.chemistry.algorithms.excited_states_solvers.excited_states_solver.ExcitedStatesSolver`
@@ -20,8 +18,6 @@ The calculation of excited states via the qEOM algorithm
 | [`solve`](qiskit.chemistry.algorithms.QEOM.solve#qiskit.chemistry.algorithms.QEOM.solve "qiskit.chemistry.algorithms.QEOM.solve") | Run the excited-states calculation. |
 
 ## Attributes
-
-
 
 ### excitations
 

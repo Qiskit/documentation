@@ -1,7 +1,5 @@
 # qiskit.providers.aer.library.set\_stabilizer
 
-
-
 `set_stabilizer(self, state)`
 
 Set the Clifford stabilizer state of the simulator.

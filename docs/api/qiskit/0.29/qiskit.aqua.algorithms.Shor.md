@@ -1,7 +1,5 @@
 # Shor
 
-
-
 `Shor(N=15, a=2, quantum_instance=None)`
 
 Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`
@@ -41,8 +39,6 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 
 ## Attributes
 
-
-
 ### backend
 
 Returns backend.
@@ -51,8 +47,6 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-
-
 ### quantum\_instance
 
 Returns quantum instance.
@@ -60,8 +54,6 @@ Returns quantum instance.
 **Return type**
 
 `Optional`\[`QuantumInstance`]
-
-
 
 ### random
 

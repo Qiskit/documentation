@@ -1,7 +1,5 @@
 # Eigenvalues
 
-
-
 `Eigenvalues`
 
 Bases: `abc.ABC`

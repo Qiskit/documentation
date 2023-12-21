@@ -1,7 +1,5 @@
 # PauliExpectation
 
-
-
 `PauliExpectation(group_paulis=True)`
 
 Bases: `qiskit.aqua.operators.expectations.expectation_base.ExpectationBase`

@@ -1,7 +1,5 @@
 # CVaRMeasurement
 
-
-
 `CVaRMeasurement(primitive=None, alpha=1.0, coeff=1.0)`
 
 Bases: `qiskit.aqua.operators.state_fns.operator_state_fn.OperatorStateFn`
@@ -56,19 +54,13 @@ Used in `CVaRExpectation`, see there for more details.
 
 ## Attributes
 
-
-
 ### ENABLE\_DEPRECATION
 
 `= True`
 
-
-
 ### INDENTATION
 
 `= ' '`
-
-
 
 ### alpha
 
@@ -84,8 +76,6 @@ fraction of observed samples to include when computing the objective value. alph
 
 The parameter alpha which was given at initialization
 
-
-
 ### coeff
 
 A coefficient by which the state function is multiplied.
@@ -93,8 +83,6 @@ A coefficient by which the state function is multiplied.
 **Return type**
 
 `Union`\[`int`, `float`, `complex`, `ParameterExpression`]
-
-
 
 ### is\_measurement
 
@@ -104,19 +92,13 @@ Whether the StateFn object is a measurement Operator.
 
 `bool`
 
-
-
 ### num\_qubits
 
 **Return type**
 
 `int`
 
-
-
 ### parameters
-
-
 
 ### primitive
 

@@ -1,7 +1,5 @@
 # OptimizationAlgorithm
 
-
-
 `OptimizationAlgorithm`
 
 Bases: `abc.ABC`

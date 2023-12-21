@@ -1,7 +1,5 @@
 # InitialState
 
-
-
 `InitialState`
 
 Bases: `abc.ABC`
@@ -17,7 +15,5 @@ This method should initialize the module and use an exception if a component of 
 | [`construct_circuit`](qiskit.aqua.components.initial_states.InitialState.construct_circuit#qiskit.aqua.components.initial_states.InitialState.construct_circuit "qiskit.aqua.components.initial_states.InitialState.construct_circuit") | Construct the statevector of desired initial state. |
 
 ## Attributes
-
-
 
 ### bitstr

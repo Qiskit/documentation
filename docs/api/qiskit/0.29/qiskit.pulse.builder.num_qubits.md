@@ -1,7 +1,5 @@
 # qiskit.pulse.builder.num\_qubits
 
-
-
 `num_qubits()`
 
 Return number of qubits in the currently active backend.

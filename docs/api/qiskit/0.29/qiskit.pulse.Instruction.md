@@ -1,7 +1,5 @@
 # Instruction
 
-
-
 `Instruction(operands, duration=None, channels=None, name=None)`
 
 Bases: `abc.ABC`
@@ -39,8 +37,6 @@ Instruction initializer.
 
 ## Attributes
 
-
-
 ### channels
 
 Returns the channels that this schedule uses.
@@ -48,8 +44,6 @@ Returns the channels that this schedule uses.
 **Return type**
 
 `Tuple`\[`Channel`]
-
-
 
 ### duration
 
@@ -59,8 +53,6 @@ Duration of this instruction.
 
 `int`
 
-
-
 ### id
 
 Unique identifier for this instruction.
@@ -68,8 +60,6 @@ Unique identifier for this instruction.
 **Return type**
 
 `int`
-
-
 
 ### instructions
 
@@ -79,8 +69,6 @@ Iterable for getting instructions from Schedule tree.
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
-
-
 ### name
 
 Name of this instruction.
@@ -88,8 +76,6 @@ Name of this instruction.
 **Return type**
 
 `str`
-
-
 
 ### operands
 
@@ -99,8 +85,6 @@ Return instruction operands.
 
 `Tuple`
 
-
-
 ### parameters
 
 Parameters which determine the instruction behavior.
@@ -109,8 +93,6 @@ Parameters which determine the instruction behavior.
 
 `Set`
 
-
-
 ### start\_time
 
 Relative begin time of this instruction.
@@ -118,8 +100,6 @@ Relative begin time of this instruction.
 **Return type**
 
 `int`
-
-
 
 ### stop\_time
 

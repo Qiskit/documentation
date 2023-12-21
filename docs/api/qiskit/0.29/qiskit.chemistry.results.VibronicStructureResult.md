@@ -1,7 +1,5 @@
 # VibronicStructureResult
 
-
-
 `VibronicStructureResult(a_dict=None)`
 
 Bases: `qiskit.chemistry.results.eigenstate_result.EigenstateResult`
@@ -27,8 +25,6 @@ The vibronic structure result.
 
 ## Attributes
 
-
-
 ### algorithm\_result
 
 Returns raw algorithm result
@@ -36,8 +32,6 @@ Returns raw algorithm result
 **Return type**
 
 `AlgorithmResult`
-
-
 
 ### aux\_operator\_eigenvalues
 
@@ -47,8 +41,6 @@ return aux operator eigen values
 
 `Optional`\[`List`\[`float`]]
 
-
-
 ### computed\_vibronic\_energies
 
 Returns computed electronic part of ground state energy
@@ -56,8 +48,6 @@ Returns computed electronic part of ground state energy
 **Return type**
 
 `ndarray`
-
-
 
 ### eigenenergies
 
@@ -67,8 +57,6 @@ returns eigen energies
 
 `Optional`\[`ndarray`]
 
-
-
 ### eigenstates
 
 returns eigen states
@@ -76,8 +64,6 @@ returns eigen states
 **Return type**
 
 `Optional`\[`List`\[`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]]]
-
-
 
 ### formatted
 
@@ -87,8 +73,6 @@ Formatted result as a list of strings
 
 `List`\[`str`]
 
-
-
 ### groundenergy
 
 returns ground energy
@@ -96,8 +80,6 @@ returns ground energy
 **Return type**
 
 `Optional`\[`float`]
-
-
 
 ### groundstate
 
@@ -107,8 +89,6 @@ returns ground state
 
 `Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]
 
-
-
 ### num\_occupied\_modals\_per\_mode
 
 Returns the number of occupied modal per mode
@@ -116,8 +96,6 @@ Returns the number of occupied modal per mode
 **Return type**
 
 `Optional`\[`List`\[`float`]]
-
-
 
 ### raw\_result
 

@@ -1,7 +1,5 @@
 # SklearnSVM
 
-
-
 `SklearnSVM(training_dataset, test_dataset=None, datapoints=None, gamma=None, multiclass_extension=None)`
 
 Bases: `qiskit.aqua.algorithms.classical_algorithm.ClassicalAlgorithm`
@@ -37,25 +35,17 @@ Internally, this algorithm will run the binary classification or multiclass clas
 
 ## Attributes
 
-
-
 ### class\_to\_label
 
 returns class to label
-
-
 
 ### label\_to\_class
 
 returns label to class
 
-
-
 ### random
 
 Return a numpy random.
-
-
 
 ### ret
 

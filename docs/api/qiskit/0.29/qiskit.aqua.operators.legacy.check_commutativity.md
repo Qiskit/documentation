@@ -1,7 +1,5 @@
 # qiskit.aqua.operators.legacy.check\_commutativity
 
-
-
 `check_commutativity(op_1, op_2, anti=False)`
 
 Check the (anti-)commutativity between two operators.

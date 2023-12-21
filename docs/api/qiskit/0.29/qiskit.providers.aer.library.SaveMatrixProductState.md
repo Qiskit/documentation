@@ -1,7 +1,5 @@
 # SaveMatrixProductState
 
-
-
 `SaveMatrixProductState(num_qubits, label='matrix_product_state', pershot=False, conditional=False)`
 
 Bases: `qiskit.providers.aer.library.save_instructions.save_data.SaveSingleData`
@@ -41,25 +39,17 @@ Create new instruction to save the matrix product state.
 
 ## Attributes
 
-
-
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
-
 ### duration
 
 Get the duration.
-
-
 
 ### label
 
@@ -69,13 +59,9 @@ Return instruction label
 
 `str`
 
-
-
 ### params
 
 return instruction params.
-
-
 
 ### unit
 

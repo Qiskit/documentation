@@ -1,7 +1,5 @@
 # QGAN
 
-
-
 `QGAN(data, bounds=None, num_qubits=None, batch_size=500, num_epochs=3000, seed=7, discriminator=None, generator=None, tol_rel_ent=None, snapshot_dir=None, quantum_instance=None)`
 
 Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`
@@ -51,8 +49,6 @@ These networks are trained in alternating optimization steps, where the discrimi
 
 ## Attributes
 
-
-
 ### backend
 
 Returns backend.
@@ -60,8 +56,6 @@ Returns backend.
 **Return type**
 
 `Union`\[`Backend`, `BaseBackend`]
-
-
 
 ### d\_loss
 
@@ -71,13 +65,9 @@ Returns discriminator loss
 
 `List`\[`float`]
 
-
-
 ### discriminator
 
 Returns discriminator
-
-
 
 ### g\_loss
 
@@ -87,13 +77,9 @@ Returns generator loss
 
 `List`\[`float`]
 
-
-
 ### generator
 
 Returns generator
-
-
 
 ### quantum\_instance
 
@@ -103,13 +89,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 ### random
 
 Return a numpy random.
-
-
 
 ### rel\_entr
 
@@ -119,13 +101,9 @@ Returns relative entropy between target and trained distribution
 
 `List`\[`float`]
 
-
-
 ### seed
 
 Returns random seed
-
-
 
 ### tol\_rel\_ent
 

@@ -1,7 +1,5 @@
 # MulticlassExtension
 
-
-
 `MulticlassExtension`
 
 Bases: `abc.ABC`

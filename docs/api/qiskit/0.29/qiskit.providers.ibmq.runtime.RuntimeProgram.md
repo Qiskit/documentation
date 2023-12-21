@@ -1,7 +1,5 @@
 # RuntimeProgram
 
-
-
 `RuntimeProgram(program_name, program_id, description, parameters=None, return_values=None, interim_results=None, max_execution_time=0, version='0', backend_requirements=None, creation_date='', is_public=False)`
 
 Bases: `object`
@@ -50,8 +48,6 @@ RuntimeProgram constructor.
 
 ## Attributes
 
-
-
 ### backend\_requirements
 
 Backend requirements.
@@ -63,8 +59,6 @@ Backend requirements.
 **Returns**
 
 Backend requirements for this program.
-
-
 
 ### creation\_date
 
@@ -78,8 +72,6 @@ Program creation date.
 
 Program creation date.
 
-
-
 ### description
 
 Program description.
@@ -91,8 +83,6 @@ Program description.
 **Returns**
 
 Program description.
-
-
 
 ### interim\_results
 
@@ -106,8 +96,6 @@ Program interim result definitions.
 
 Interim result definitions for this program.
 
-
-
 ### is\_public
 
 Whether the program is visible to all.
@@ -119,8 +107,6 @@ Whether the program is visible to all.
 **Returns**
 
 Whether the program is public.
-
-
 
 ### max\_execution\_time
 
@@ -136,8 +122,6 @@ A program execution exceeding this time will be forcibly terminated.
 
 Maximum execution time.
 
-
-
 ### name
 
 Program name.
@@ -149,8 +133,6 @@ Program name.
 **Returns**
 
 Program name.
-
-
 
 ### program\_id
 
@@ -164,8 +146,6 @@ Program ID.
 
 Program ID.
 
-
-
 ### return\_values
 
 Program return value definitions.
@@ -177,8 +157,6 @@ Program return value definitions.
 **Returns**
 
 Return value definitions for this program.
-
-
 
 ### version
 

@@ -1,7 +1,5 @@
 # PauliBasisChange
 
-
-
 `PauliBasisChange(destination_basis=None, traverse=True, replacement_fn=None)`
 
 Bases: `qiskit.opflow.converters.converter_base.ConverterBase`
@@ -41,8 +39,6 @@ This class uses the typical basis change method found in most Quantum Computing 
 | [`statefn_replacement_fn`](qiskit.opflow.converters.PauliBasisChange.statefn_replacement_fn#qiskit.opflow.converters.PauliBasisChange.statefn_replacement_fn "qiskit.opflow.converters.PauliBasisChange.statefn_replacement_fn")                 | A built-in convenience replacement function which produces state functions isomorphic to an `OperatorStateFn` state function holding the origin `PauliOp`.                                                                                                                                       |
 
 ## Attributes
-
-
 
 ### destination
 

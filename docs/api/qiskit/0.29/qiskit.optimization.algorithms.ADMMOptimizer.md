@@ -1,7 +1,5 @@
 # ADMMOptimizer
 
-
-
 `ADMMOptimizer(qubo_optimizer=None, continuous_optimizer=None, params=None)`
 
 Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationAlgorithm`
@@ -31,8 +29,6 @@ Optimization on Classical and Quantum Computers. arXiv preprint arXiv:2001.02069
 | [`solve`](qiskit.optimization.algorithms.ADMMOptimizer.solve#qiskit.optimization.algorithms.ADMMOptimizer.solve "qiskit.optimization.algorithms.ADMMOptimizer.solve")                                                                 | Tries to solves the given problem using ADMM algorithm.                                   |
 
 ## Attributes
-
-
 
 ### parameters
 

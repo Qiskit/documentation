@@ -1,7 +1,5 @@
 # Grover
 
-
-
 `Grover(oracle, good_state=None, state_preparation=None, iterations=1, sample_from_iterations=False, post_processing=None, grover_operator=None, quantum_instance=None, init_state=None, incremental=False, num_iterations=None, lam=None, rotation_counts=None, mct_mode=None)`
 
 Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`
@@ -99,8 +97,6 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 ## Attributes
 
-
-
 ### backend
 
 Returns backend.
@@ -108,8 +104,6 @@ Returns backend.
 **Return type**
 
 `Union`\[`Backend`, `BaseBackend`]
-
-
 
 ### grover\_operator
 
@@ -119,8 +113,6 @@ Returns grover\_operator.
 
 `QuantumCircuit`
 
-
-
 ### quantum\_instance
 
 Returns quantum instance.
@@ -128,8 +120,6 @@ Returns quantum instance.
 **Return type**
 
 `Optional`\[`QuantumInstance`]
-
-
 
 ### random
 

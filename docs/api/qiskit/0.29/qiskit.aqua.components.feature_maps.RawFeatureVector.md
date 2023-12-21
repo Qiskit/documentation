@@ -1,7 +1,5 @@
 # RawFeatureVector
 
-
-
 `RawFeatureVector(feature_dimension=2)`
 
 Bases: `qiskit.aqua.components.feature_maps.feature_map.FeatureMap`
@@ -24,19 +22,13 @@ The Raw Feature Vector can be directly used as a feature map, where the raw feat
 
 ## Attributes
 
-
-
 ### feature\_dimension
 
 returns feature dimension
 
-
-
 ### num\_qubits
 
 returns number of qubits
-
-
 
 ### support\_parameterized\_circuit
 

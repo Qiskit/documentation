@@ -1,7 +1,5 @@
 # CustomCircuitOracle
 
-
-
 `CustomCircuitOracle(variable_register, output_register, circuit, ancillary_register=None, evaluate_classically_callback=None)`
 
 Bases: `qiskit.aqua.components.oracles.oracle.Oracle`
@@ -40,18 +38,10 @@ This class is provided for easy creation of oracles using custom circuits. It is
 
 ## Attributes
 
-
-
 ### ancillary\_register
-
-
 
 ### circuit
 
-
-
 ### output\_register
-
-
 
 ### variable\_register

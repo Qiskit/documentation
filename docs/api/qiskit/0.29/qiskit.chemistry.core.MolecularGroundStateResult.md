@@ -1,7 +1,5 @@
 # MolecularGroundStateResult
 
-
-
 `MolecularGroundStateResult(a_dict=None)`
 
 Bases: `qiskit.chemistry.core.chemistry_operator.MolecularChemistryResult`
@@ -31,8 +29,6 @@ Energies are in Hartree and dipole moments in A.U unless otherwise stated.
 
 ## Attributes
 
-
-
 ### algorithm\_result
 
 Returns raw algorithm result
@@ -40,8 +36,6 @@ Returns raw algorithm result
 **Return type**
 
 `AlgorithmResult`
-
-
 
 ### computed\_dipole\_moment
 
@@ -51,8 +45,6 @@ Returns computed electronic part of dipole moment
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
 
-
-
 ### computed\_electronic\_energy
 
 Returns computed electronic part of ground state energy
@@ -60,8 +52,6 @@ Returns computed electronic part of ground state energy
 **Return type**
 
 `float`
-
-
 
 ### dipole\_moment
 
@@ -71,8 +61,6 @@ Returns dipole moment
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
 
-
-
 ### dipole\_moment\_in\_debye
 
 Returns dipole moment in Debye
@@ -80,8 +68,6 @@ Returns dipole moment in Debye
 **Return type**
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
-
-
 
 ### electronic\_dipole\_moment
 
@@ -91,8 +77,6 @@ Returns electronic dipole moment
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
 
-
-
 ### electronic\_energy
 
 Returns electronic part of ground state energy
@@ -100,8 +84,6 @@ Returns electronic part of ground state energy
 **Return type**
 
 `float`
-
-
 
 ### energy
 
@@ -111,8 +93,6 @@ Returns ground state energy if nuclear\_repulsion\_energy is available from driv
 
 `Optional`\[`float`]
 
-
-
 ### formatted
 
 Formatted result as a list of strings
@@ -120,8 +100,6 @@ Formatted result as a list of strings
 **Return type**
 
 `List`\[`str`]
-
-
 
 ### frozen\_extracted\_dipole\_moment
 
@@ -131,8 +109,6 @@ Returns frozen extracted part of dipole moment
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
 
-
-
 ### frozen\_extracted\_energy
 
 Returns frozen extracted part of ground state energy
@@ -140,8 +116,6 @@ Returns frozen extracted part of ground state energy
 **Return type**
 
 `float`
-
-
 
 ### hartree\_fock\_energy
 
@@ -151,8 +125,6 @@ Returns Hartree-Fock energy
 
 `float`
 
-
-
 ### magnetization
 
 Returns measured magnetization
@@ -160,8 +132,6 @@ Returns measured magnetization
 **Return type**
 
 `Optional`\[`float`]
-
-
 
 ### nuclear\_dipole\_moment
 
@@ -171,8 +141,6 @@ Returns nuclear dipole moment X,Y,Z components in A.U when available from driver
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
 
-
-
 ### nuclear\_repulsion\_energy
 
 Returns nuclear repulsion energy when available from driver
@@ -180,8 +148,6 @@ Returns nuclear repulsion energy when available from driver
 **Return type**
 
 `Optional`\[`float`]
-
-
 
 ### num\_particles
 
@@ -191,8 +157,6 @@ Returns measured number of particles
 
 `Optional`\[`float`]
 
-
-
 ### ph\_extracted\_dipole\_moment
 
 Returns particle hole extracted part of dipole moment
@@ -200,8 +164,6 @@ Returns particle hole extracted part of dipole moment
 **Return type**
 
 `Optional`\[`Tuple`\[`Optional`\[`float`], `Optional`\[`float`], `Optional`\[`float`]]]
-
-
 
 ### ph\_extracted\_energy
 
@@ -211,8 +173,6 @@ Returns particle hole extracted part of ground state energy
 
 `float`
 
-
-
 ### reverse\_dipole\_sign
 
 Returns if electronic dipole moment sign should be reversed when adding to nuclear
@@ -220,8 +180,6 @@ Returns if electronic dipole moment sign should be reversed when adding to nucle
 **Return type**
 
 `bool`
-
-
 
 ### spin
 
@@ -231,8 +189,6 @@ Returns computed spin
 
 `Optional`\[`float`]
 
-
-
 ### total\_angular\_momentum
 
 Returns total angular momentum (S^2)
@@ -241,8 +197,6 @@ Returns total angular momentum (S^2)
 
 `Optional`\[`float`]
 
-
-
 ### total\_dipole\_moment
 
 Returns total dipole of moment
@@ -250,8 +204,6 @@ Returns total dipole of moment
 **Return type**
 
 `Optional`\[`float`]
-
-
 
 ### total\_dipole\_moment\_in\_debye
 

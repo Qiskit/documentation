@@ -1,7 +1,5 @@
 # QuadraticProgramConverter
 
-
-
 `QuadraticProgramConverter`
 
 Bases: `abc.ABC`

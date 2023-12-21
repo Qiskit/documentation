@@ -1,7 +1,5 @@
 # LinearsolverResult
 
-
-
 `LinearsolverResult(a_dict=None)`
 
 Bases: `qiskit.aqua.algorithms.algorithm_result.AlgorithmResult`
@@ -27,8 +25,6 @@ Linear solver Result.
 | [`values`](qiskit.aqua.algorithms.LinearsolverResult.values#qiskit.aqua.algorithms.LinearsolverResult.values "qiskit.aqua.algorithms.LinearsolverResult.values")                 |                                                                                                                                                                                                                      |
 
 ## Attributes
-
-
 
 ### solution
 

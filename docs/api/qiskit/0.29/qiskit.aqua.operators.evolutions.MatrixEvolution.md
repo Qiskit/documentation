@@ -1,7 +1,5 @@
 # MatrixEvolution
 
-
-
 `MatrixEvolution`
 
 Bases: `qiskit.aqua.operators.evolutions.evolution_base.EvolutionBase`

@@ -1,7 +1,5 @@
 # MultivariateDistribution
 
-
-
 `MultivariateDistribution(num_qubits, probabilities=None, low=None, high=None)`
 
 Bases: `qiskit.aqua.components.uncertainty_models.uncertainty_model.UncertaintyModel`, `abc.ABC`
@@ -35,55 +33,37 @@ This module contains the definition of a base class for multivariate distributio
 
 ## Attributes
 
-
-
 ### dimension
 
 returns dimensions
-
-
 
 ### high
 
 returns high
 
-
-
 ### low
 
 returns low
-
-
 
 ### num\_qubits
 
 returns num qubits
 
-
-
 ### num\_target\_qubits
 
 Returns the number of target qubits
-
-
 
 ### num\_values
 
 returns number of values
 
-
-
 ### probabilities
 
 returns probabilities
 
-
-
 ### probabilities\_vector
 
 returns probabilities vector
-
-
 
 ### values
 

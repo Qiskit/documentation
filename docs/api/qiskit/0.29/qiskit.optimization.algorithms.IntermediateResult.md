@@ -1,7 +1,5 @@
 # IntermediateResult
 
-
-
 `IntermediateResult(value)`
 
 Bases: `enum.Enum`
@@ -10,23 +8,17 @@ Defines whether the intermediate results of [`RecursiveMinimumEigenOptimizer`](q
 
 ## Attributes
 
-
-
 ### ALL\_ITERATIONS
 
 `= 2`
 
 All intermediate results are stored.
 
-
-
 ### LAST\_ITERATION
 
 `= 1`
 
 Only results from the last iteration are stored.
-
-
 
 ### NO\_ITERATIONS
 

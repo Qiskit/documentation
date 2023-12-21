@@ -1,7 +1,5 @@
 # QAOA
 
-
-
 `QAOA(operator=None, optimizer=None, p=1, initial_state=None, mixer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, aux_operators=None, callback=None, quantum_instance=None)`
 
 Bases: `qiskit.aqua.algorithms.minimum_eigen_solvers.vqe.VQE`
@@ -53,8 +51,6 @@ An initial state from Aqua’s [`initial_states`](qiskit.aqua.components.initial
 
 ## Attributes
 
-
-
 ### aux\_operators
 
 Returns aux operators
@@ -62,8 +58,6 @@ Returns aux operators
 **Return type**
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
-
-
 
 ### backend
 
@@ -73,8 +67,6 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-
-
 ### expectation
 
 The expectation value algorithm used to construct the expectation measurement from the observable.
@@ -82,8 +74,6 @@ The expectation value algorithm used to construct the expectation measurement fr
 **Return type**
 
 `ExpectationBase`
-
-
 
 ### initial\_point
 
@@ -93,8 +83,6 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
-
-
 ### initial\_state
 
 Returns: Returns the initial state.
@@ -102,8 +90,6 @@ Returns: Returns the initial state.
 **Return type**
 
 `Union`\[`QuantumCircuit`, `InitialState`, `None`]
-
-
 
 ### mixer
 
@@ -113,8 +99,6 @@ Returns: Returns the mixer.
 
 `Union`\[`QuantumCircuit`, `OperatorBase`, `LegacyBaseOperator`]
 
-
-
 ### operator
 
 Returns operator
@@ -122,8 +106,6 @@ Returns operator
 **Return type**
 
 `Optional`\[`OperatorBase`]
-
-
 
 ### optimal\_params
 
@@ -133,8 +115,6 @@ The optimal parameters for the variational form.
 
 `List`\[`float`]
 
-
-
 ### optimizer
 
 Returns optimizer
@@ -142,8 +122,6 @@ Returns optimizer
 **Return type**
 
 `Optional`\[`Optimizer`]
-
-
 
 ### quantum\_instance
 
@@ -153,19 +131,13 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 ### random
 
 Return a numpy random.
 
-
-
 ### setting
 
 Prepare the setting of VQE as a string.
-
-
 
 ### var\_form
 

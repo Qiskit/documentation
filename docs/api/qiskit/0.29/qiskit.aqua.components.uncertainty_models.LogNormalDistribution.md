@@ -1,7 +1,5 @@
 # LogNormalDistribution
 
-
-
 `LogNormalDistribution(num_target_qubits, mu=0, sigma=1, low=0, high=1)`
 
 Bases: `qiskit.aqua.components.uncertainty_models.univariate_distribution.UnivariateDistribution`
@@ -38,37 +36,25 @@ Log-normal distribution, truncated to lower and upper bound and discretized on a
 
 ## Attributes
 
-
-
 ### high
 
 returns high
-
-
 
 ### low
 
 returns low
 
-
-
 ### num\_target\_qubits
 
 Returns the number of target qubits
-
-
 
 ### num\_values
 
 returns number of values
 
-
-
 ### probabilities
 
 returns probabilities
-
-
 
 ### values
 

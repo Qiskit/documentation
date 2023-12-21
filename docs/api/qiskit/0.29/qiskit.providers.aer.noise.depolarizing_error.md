@@ -1,7 +1,5 @@
 # qiskit.providers.aer.noise.depolarizing\_error
 
-
-
 `depolarizing_error(param, num_qubits, standard_gates=True)`
 
 Return a depolarizing quantum error channel.

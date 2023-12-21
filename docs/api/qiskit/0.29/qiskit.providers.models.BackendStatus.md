@@ -1,7 +1,5 @@
 # BackendStatus
 
-
-
 `BackendStatus(backend_name, backend_version, operational, pending_jobs, status_msg)`
 
 Bases: `object`

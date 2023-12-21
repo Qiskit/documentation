@@ -1,7 +1,5 @@
 # MaximumLikelihoodAmplitudeEstimationResult
 
-
-
 `MaximumLikelihoodAmplitudeEstimationResult`
 
 Bases: `qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult`
@@ -16,8 +14,6 @@ The `MaximumLikelihoodAmplitudeEstimation` result object.
 
 ## Attributes
 
-
-
 ### circuit\_results
 
 Return the circuit results. Can be a statevector or counts dictionary.
@@ -25,8 +21,6 @@ Return the circuit results. Can be a statevector or counts dictionary.
 **Return type**
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
-
-
 
 ### confidence\_interval
 
@@ -36,8 +30,6 @@ Return the confidence interval for the amplitude (95% interval by default).
 
 `Tuple`\[`float`, `float`]
 
-
-
 ### confidence\_interval\_processed
 
 Return the post-processed confidence interval (95% interval by default).
@@ -45,8 +37,6 @@ Return the post-processed confidence interval (95% interval by default).
 **Return type**
 
 `Tuple`\[`float`, `float`]
-
-
 
 ### estimation
 
@@ -56,8 +46,6 @@ Return the estimation for the amplitude in $[0, 1]$.
 
 `float`
 
-
-
 ### estimation\_processed
 
 Return the estimation for the amplitude after the post-processing has been applied.
@@ -65,8 +53,6 @@ Return the estimation for the amplitude after the post-processing has been appli
 **Return type**
 
 `float`
-
-
 
 ### evaluation\_schedule
 
@@ -76,8 +62,6 @@ Return the evaluation schedule for the powers of the Grover operator.
 
 `List`\[`int`]
 
-
-
 ### fisher\_information
 
 Return the Fisher information for the estimated amplitude.
@@ -85,8 +69,6 @@ Return the Fisher information for the estimated amplitude.
 **Return type**
 
 `float`
-
-
 
 ### good\_counts
 
@@ -96,8 +78,6 @@ Return the percentage of good counts per circuit power.
 
 `List`\[`float`]
 
-
-
 ### minimizer
 
 Return the minimizer used for the search of the likelihood function.
@@ -105,8 +85,6 @@ Return the minimizer used for the search of the likelihood function.
 **Return type**
 
 `callable`
-
-
 
 ### num\_oracle\_queries
 
@@ -116,8 +94,6 @@ Return the number of Grover oracle queries.
 
 `int`
 
-
-
 ### post\_processing
 
 Return a handle to the post processing function.
@@ -126,8 +102,6 @@ Return a handle to the post processing function.
 
 `Callable`\[\[`float`], `float`]
 
-
-
 ### shots
 
 Return the number of shots used. Is 1 for statevector-based simulations.
@@ -135,8 +109,6 @@ Return the number of shots used. Is 1 for statevector-based simulations.
 **Return type**
 
 `int`
-
-
 
 ### theta
 

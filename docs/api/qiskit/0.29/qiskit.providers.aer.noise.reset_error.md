@@ -1,7 +1,5 @@
 # qiskit.providers.aer.noise.reset\_error
 
-
-
 `reset_error(prob0, prob1=0)`
 
 Return a single qubit reset quantum error channel.

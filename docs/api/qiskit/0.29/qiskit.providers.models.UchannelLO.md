@@ -1,20 +1,14 @@
 # UchannelLO
 
-
-
 `UchannelLO(q, scale)`
 
 Bases: `object`
 
 Class representing a U Channel LO
 
-
-
 ### q
 
 Qubit that scale corresponds too.
-
-
 
 ### scale
 

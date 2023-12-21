@@ -1,7 +1,5 @@
 # CircuitSampler
 
-
-
 `CircuitSampler(backend, statevector=None, param_qobj=False, attach_results=False)`
 
 Bases: `qiskit.aqua.operators.converters.converter_base.ConverterBase`
@@ -31,8 +29,6 @@ The CircuitSampler aggressively caches transpiled circuits to handle re-paramete
 
 ## Attributes
 
-
-
 ### backend
 
 Returns the backend.
@@ -44,8 +40,6 @@ Returns the backend.
 **Returns**
 
 The backend used by the CircuitSampler
-
-
 
 ### quantum\_instance
 

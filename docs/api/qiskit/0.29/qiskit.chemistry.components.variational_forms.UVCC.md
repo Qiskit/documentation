@@ -1,7 +1,5 @@
 # UVCC
 
-
-
 `UVCC(num_qubits, basis, degrees, reps=1, excitations=None, initial_state=None, qubit_mapping='direct', num_time_slices=1, shallow_circuit_concat=True)`
 
 Bases: `qiskit.aqua.components.variational_forms.variational_form.VariationalForm`
@@ -32,8 +30,6 @@ This trial wavefunction is a Unitary Vibrational Coupled-Cluster Single and Doub
 
 ## Attributes
 
-
-
 ### num\_parameters
 
 Number of parameters of the variational form.
@@ -45,8 +41,6 @@ An integer indicating the number of parameters.
 **Return type**
 
 int
-
-
 
 ### num\_qubits
 
@@ -60,8 +54,6 @@ An integer indicating the number of qubits.
 
 int
 
-
-
 ### parameter\_bounds
 
 Parameter bounds.
@@ -74,19 +66,13 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 list
 
-
-
 ### preferred\_init\_points
 
 Return preferred init points.
 
 If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
 
-
-
 ### setting
-
-
 
 ### support\_parameterized\_circuit
 

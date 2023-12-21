@@ -1,7 +1,5 @@
 # IBMQFactory
 
-
-
 `IBMQFactory`
 
 Bases: `object`

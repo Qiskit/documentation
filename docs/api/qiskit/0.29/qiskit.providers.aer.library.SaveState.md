@@ -1,7 +1,5 @@
 # SaveState
 
-
-
 `SaveState(num_qubits, label=None, pershot=False, conditional=False)`
 
 Bases: `qiskit.providers.aer.library.save_instructions.save_data.SaveSingleData`
@@ -45,25 +43,17 @@ The format of the saved state depends on the simulation method used.
 
 ## Attributes
 
-
-
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
-
 ### duration
 
 Get the duration.
-
-
 
 ### label
 
@@ -73,13 +63,9 @@ Return instruction label
 
 `str`
 
-
-
 ### params
 
 return instruction params.
-
-
 
 ### unit
 

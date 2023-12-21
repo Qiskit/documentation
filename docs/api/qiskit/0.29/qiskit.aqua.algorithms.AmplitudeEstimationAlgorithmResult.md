@@ -1,7 +1,5 @@
 # AmplitudeEstimationAlgorithmResult
 
-
-
 `AmplitudeEstimationAlgorithmResult(a_dict=None)`
 
 Bases: `qiskit.aqua.algorithms.algorithm_result.AlgorithmResult`
@@ -28,8 +26,6 @@ AmplitudeEstimationAlgorithm Result.
 
 ## Attributes
 
-
-
 ### a\_estimation
 
 return a\_estimation
@@ -37,8 +33,6 @@ return a\_estimation
 **Return type**
 
 `float`
-
-
 
 ### confidence\_interval
 
@@ -48,8 +42,6 @@ return confidence\_interval
 
 `List`\[`float`]
 
-
-
 ### estimation
 
 return estimation
@@ -57,8 +49,6 @@ return estimation
 **Return type**
 
 `float`
-
-
 
 ### num\_oracle\_queries
 

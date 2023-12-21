@@ -1,7 +1,5 @@
 # VQE
 
-
-
 `VQE(ansatz=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None, sort_parameters_by_name=None)`
 
 Bases: `qiskit.algorithms.variational_algorithm.VariationalAlgorithm`, `qiskit.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver`
@@ -49,8 +47,6 @@ The length of the *initial\_point* list value must match the number of the param
 
 ## Attributes
 
-
-
 ### ansatz
 
 Returns the ansatz.
@@ -58,8 +54,6 @@ Returns the ansatz.
 **Return type**
 
 `Optional`\[`QuantumCircuit`]
-
-
 
 ### expectation
 
@@ -69,8 +63,6 @@ The expectation value algorithm used to construct the expectation measurement fr
 
 `Optional`\[`ExpectationBase`]
 
-
-
 ### gradient
 
 Returns the gradient.
@@ -78,8 +70,6 @@ Returns the gradient.
 **Return type**
 
 `Union`\[`GradientBase`, `Callable`, `None`]
-
-
 
 ### initial\_point
 
@@ -89,8 +79,6 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
-
-
 ### optimal\_params
 
 The optimal parameters for the ansatz.
@@ -98,8 +86,6 @@ The optimal parameters for the ansatz.
 **Return type**
 
 `ndarray`
-
-
 
 ### optimizer
 
@@ -109,8 +95,6 @@ Returns optimizer
 
 `Optional`\[`Optimizer`]
 
-
-
 ### quantum\_instance
 
 Returns quantum instance.
@@ -118,8 +102,6 @@ Returns quantum instance.
 **Return type**
 
 `Optional`\[`QuantumInstance`]
-
-
 
 ### setting
 
