@@ -10,43 +10,40 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { describe, expect, test } from "@jest/globals";
+import { expect, test } from "@jest/globals";
 import {
   sortReleaseNotesVersions,
   extractMarkdownReleaseNotesPatches,
 } from "./releaseNotes";
 
-describe("sortReleaseNotesVersions", () => {
-  test("Test versions have the correct order", () => {
-    const markdownByVersionPatch = {
-      "0.45.0": "",
-      "0.45.1": "",
-      "0.45.1rc1": "",
-      "0.46.1": "",
-      "0.46.1rc1": "",
-      "0.46.1rc2": "",
-      "0.47.0": "",
-      "0.47.1": "",
-    };
+test("Test versions have the correct order", () => {
+  const markdownByVersionPatch = {
+    "0.45.0": "",
+    "0.45.1": "",
+    "0.45.1rc1": "",
+    "0.46.1": "",
+    "0.46.1rc1": "",
+    "0.46.1rc2": "",
+    "0.47.0": "",
+    "0.47.1": "",
+  };
 
-    expect(
-      Object.entries(sortReleaseNotesVersions(markdownByVersionPatch)),
-    ).toEqual([
-      ["0.47.1", ""],
-      ["0.47.0", ""],
-      ["0.46.1", ""],
-      ["0.46.1rc2", ""],
-      ["0.46.1rc1", ""],
-      ["0.45.1", ""],
-      ["0.45.1rc1", ""],
-      ["0.45.0", ""],
-    ]);
-  });
+  expect(
+    Object.entries(sortReleaseNotesVersions(markdownByVersionPatch)),
+  ).toEqual([
+    ["0.47.1", ""],
+    ["0.47.0", ""],
+    ["0.46.1", ""],
+    ["0.46.1rc2", ""],
+    ["0.46.1rc1", ""],
+    ["0.45.1", ""],
+    ["0.45.1rc1", ""],
+    ["0.45.0", ""],
+  ]);
 });
 
-describe("extractMarkdownReleaseNotesPatches", () => {
-  test("Divide the markdown into versions", () => {
-    const markdown = `
+test("Divide the markdown into versions", () => {
+  const markdown = `
 # Title
 This is a header
 
@@ -74,21 +71,20 @@ Example
 ## 0.45.0
 This is a test for version 0.45.0`;
 
-    const [versionsFound, markdownByPatchVersionExpect] =
-      extractMarkdownReleaseNotesPatches(markdown);
+  const [versionsFound, markdownByPatchVersionExpect] =
+    extractMarkdownReleaseNotesPatches(markdown);
 
-    const versionsFoundExpected = new Set(["0.45"]);
-    const markdownByPatchVersion: { [id: string]: string } = {};
-    markdownByPatchVersion[
-      "0.45.0rc1"
-    ] = `## 0.45.0rc1\nThis is a test for version 0.45.0rc1\n\n### New features\nExample\n`;
-    markdownByPatchVersion[
-      "0.45.0"
-    ] = `## 0.45.0\nThis is a test for version 0.45.0`;
+  const versionsFoundExpected = new Set(["0.45"]);
+  const markdownByPatchVersion: { [id: string]: string } = {};
+  markdownByPatchVersion[
+    "0.45.0rc1"
+  ] = `## 0.45.0rc1\nThis is a test for version 0.45.0rc1\n\n### New features\nExample\n`;
+  markdownByPatchVersion[
+    "0.45.0"
+  ] = `## 0.45.0\nThis is a test for version 0.45.0`;
 
-    expect([versionsFound, markdownByPatchVersionExpect]).toEqual([
-      versionsFoundExpected,
-      markdownByPatchVersion,
-    ]);
-  });
+  expect([versionsFound, markdownByPatchVersionExpect]).toEqual([
+    versionsFoundExpected,
+    markdownByPatchVersion,
+  ]);
 });

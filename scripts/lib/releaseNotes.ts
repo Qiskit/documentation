@@ -15,8 +15,6 @@ import { getRoot, pathExists } from "./fs";
 import { parse } from "path";
 import { Pkg } from "./sharedTypes";
 import { readFile, writeFile, readdir } from "fs/promises";
-import transformLinks from "transform-markdown-links";
-import { version } from "yargs";
 
 interface releaseNoteEntry {
   title: string;
@@ -161,28 +159,34 @@ function addNewReleaseNoteToc(releaseNotesNode: any, newVersion: string) {
  */
 export function sortReleaseNotesVersions(markdownByPatchVersion: {
   [id: string]: string;
-}) {
-  const markdownByPathEntries = Object.entries(markdownByPatchVersion);
-
-  const markdownByPatchSortedArray = markdownByPathEntries.sort(
+}): { [id: string]: string } {
+  // Sorts the entries of markdownByPathVersion by patch in descending order,
+  // returning an array with elements corresponding to the dictionary entries
+  // as arrays of two elements (key and value).
+  // e.g.
+  // makrdownByPathVersion = {"0.45.0": "test 1", "0.46.0": "test 2"}
+  // =>
+  // markdownByPatchSorted = [["0.46.0", "test 2"],["0.45.0", "test 1"]]
+  const markdownByPatchSorted = Object.entries(markdownByPatchVersion).sort(
     ([version1], [version2]) => {
       const versionPatch1 = version1.split("rc").slice(0, 1)[0];
       const versionPatch2 = version2.split("rc").slice(0, 1)[0];
-      const comparison = version2.localeCompare(version1);
 
       if (versionPatch1 == versionPatch2) {
-        // The release candidates should appear first
+        // The release candidates within the same patch should appear last.
+        // e.g. version 0.45.1rc1 should appear after version 0.45.1.
         if (version1.length < version2.length) {
           return -1;
         } else if (version1.length > version2.length) {
           return 1;
         }
       }
-      return comparison;
+
+      return version2.localeCompare(version1);
     },
   );
 
-  return Object.fromEntries(markdownByPatchSortedArray);
+  return Object.fromEntries(markdownByPatchSorted);
 }
 
 /**
