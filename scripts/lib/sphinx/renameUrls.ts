@@ -20,6 +20,7 @@ export function renameUrls(results: SphinxToMdResultWithUrl[]): void {
       // We can't fix their setup until qiskit.org is removed, so
       // instead we fix it here.
       .replace(/\/ibm_provider$/g, "/index")
-      .replace(/\/runtime_service$/g, "/index");
+      .replace(/\/runtime_service$/g, "/index")
+      .replace(/\/terra$/g, "/index");
   }
 }
