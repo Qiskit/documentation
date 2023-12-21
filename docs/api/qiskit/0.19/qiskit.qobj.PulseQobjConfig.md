@@ -33,39 +33,8 @@ Instantiate a PulseQobjConfig object.
 
 ## Methods
 
-### from\_dict
-
-<span id="qiskit.qobj.PulseQobjConfig.from_dict" />
-
-`classmethod PulseQobjConfig.from_dict(data)`
-
-Create a new PulseQobjConfig object from a dictionary.
-
-**Parameters**
-
-**data** (*dict*) – A dictionary for the config
-
-**Returns**
-
-The object from the input dictionary.
-
-**Return type**
-
-[PulseQobjConfig](qiskit.qobj.PulseQobjConfig "qiskit.qobj.PulseQobjConfig")
-
-### to\_dict
-
-<span id="qiskit.qobj.PulseQobjConfig.to_dict" />
-
-`PulseQobjConfig.to_dict()`
-
-Return a dictionary format representation of the Pulse Qobj config.
-
-**Returns**
-
-The dictionary form of the PulseQobjConfig.
-
-**Return type**
-
-dict
+|                                                                                                                    |                                                                     |
+| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| [`PulseQobjConfig.from_dict`](qiskit.qobj.PulseQobjConfig.from_dict "qiskit.qobj.PulseQobjConfig.from_dict")(data) | Create a new PulseQobjConfig object from a dictionary.              |
+| [`PulseQobjConfig.to_dict`](qiskit.qobj.PulseQobjConfig.to_dict "qiskit.qobj.PulseQobjConfig.to_dict")()           | Return a dictionary format representation of the Pulse Qobj config. |
 

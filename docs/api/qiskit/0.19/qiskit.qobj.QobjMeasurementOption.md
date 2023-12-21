@@ -23,39 +23,8 @@ Instantiate a new QobjMeasurementOption object.
 
 ## Methods
 
-### from\_dict
-
-<span id="qiskit.qobj.QobjMeasurementOption.from_dict" />
-
-`classmethod QobjMeasurementOption.from_dict(data)`
-
-Create a new QobjMeasurementOption object from a dictionary.
-
-**Parameters**
-
-**data** (*dict*) – A dictionary for the experiment config
-
-**Returns**
-
-The object from the input dictionary.
-
-**Return type**
-
-[QobjMeasurementOption](qiskit.qobj.QobjMeasurementOption "qiskit.qobj.QobjMeasurementOption")
-
-### to\_dict
-
-<span id="qiskit.qobj.QobjMeasurementOption.to_dict" />
-
-`QobjMeasurementOption.to_dict()`
-
-Return a dict format representation of the QobjMeasurementOption.
-
-**Returns**
-
-The dictionary form of the QasmMeasurementOption.
-
-**Return type**
-
-dict
+|                                                                                                                                      |                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
+| [`QobjMeasurementOption.from_dict`](qiskit.qobj.QobjMeasurementOption.from_dict "qiskit.qobj.QobjMeasurementOption.from_dict")(data) | Create a new QobjMeasurementOption object from a dictionary.      |
+| [`QobjMeasurementOption.to_dict`](qiskit.qobj.QobjMeasurementOption.to_dict "qiskit.qobj.QobjMeasurementOption.to_dict")()           | Return a dict format representation of the QobjMeasurementOption. |
 

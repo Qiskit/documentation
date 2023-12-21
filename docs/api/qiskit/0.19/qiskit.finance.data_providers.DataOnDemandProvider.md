@@ -31,119 +31,13 @@ Please see: [https://github.com/Qiskit/qiskit-tutorials/blob/stable/0.14.x/qiski
 
 ## Methods
 
-### get\_coordinates
-
-<span id="qiskit.finance.data_providers.DataOnDemandProvider.get_coordinates" />
-
-`DataOnDemandProvider.get_coordinates()`
-
-Returns random coordinates for visualisation purposes.
-
-### get\_covariance\_matrix
-
-<span id="qiskit.finance.data_providers.DataOnDemandProvider.get_covariance_matrix" />
-
-`DataOnDemandProvider.get_covariance_matrix()`
-
-Returns the covariance matrix.
-
-**Returns**
-
-an asset-to-asset covariance matrix.
-
-**Return type**
-
-numpy.ndarray
-
-**Raises**
-
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
-
-### get\_mean\_vector
-
-<span id="qiskit.finance.data_providers.DataOnDemandProvider.get_mean_vector" />
-
-`DataOnDemandProvider.get_mean_vector()`
-
-Returns a vector containing the mean value of each asset.
-
-**Returns**
-
-a per-asset mean vector.
-
-**Return type**
-
-numpy.ndarray
-
-**Raises**
-
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
-
-### get\_period\_return\_covariance\_matrix
-
-<span id="qiskit.finance.data_providers.DataOnDemandProvider.get_period_return_covariance_matrix" />
-
-`DataOnDemandProvider.get_period_return_covariance_matrix()`
-
-Returns a vector containing the mean value of each asset.
-
-**Returns**
-
-a per-asset mean vector.
-
-**Return type**
-
-numpy.ndarray
-
-**Raises**
-
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
-
-### get\_period\_return\_mean\_vector
-
-<span id="qiskit.finance.data_providers.DataOnDemandProvider.get_period_return_mean_vector" />
-
-`DataOnDemandProvider.get_period_return_mean_vector()`
-
-Returns a vector containing the mean value of each asset.
-
-**Returns**
-
-a per-asset mean vector.
-
-**Return type**
-
-numpy.ndarray
-
-**Raises**
-
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
-
-### get\_similarity\_matrix
-
-<span id="qiskit.finance.data_providers.DataOnDemandProvider.get_similarity_matrix" />
-
-`DataOnDemandProvider.get_similarity_matrix()`
-
-Returns time-series similarity matrix computed using dynamic time warping.
-
-**Returns**
-
-an asset-to-asset similarity matrix.
-
-**Return type**
-
-numpy.ndarray
-
-**Raises**
-
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
-
-### run
-
-<span id="qiskit.finance.data_providers.DataOnDemandProvider.run" />
-
-`DataOnDemandProvider.run()`
-
-Loads data, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.
+|                                                                                                                                                                                                                                                 |                                                                                                          |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |
+| [`DataOnDemandProvider.get_coordinates`](qiskit.finance.data_providers.DataOnDemandProvider.get_coordinates "qiskit.finance.data_providers.DataOnDemandProvider.get_coordinates")()                                                             | Returns random coordinates for visualisation purposes.                                                   |
+| [`DataOnDemandProvider.get_covariance_matrix`](qiskit.finance.data_providers.DataOnDemandProvider.get_covariance_matrix "qiskit.finance.data_providers.DataOnDemandProvider.get_covariance_matrix")()                                           | Returns the covariance matrix.                                                                           |
+| [`DataOnDemandProvider.get_mean_vector`](qiskit.finance.data_providers.DataOnDemandProvider.get_mean_vector "qiskit.finance.data_providers.DataOnDemandProvider.get_mean_vector")()                                                             | Returns a vector containing the mean value of each asset.                                                |
+| [`DataOnDemandProvider.get_period_return_covariance_matrix`](qiskit.finance.data_providers.DataOnDemandProvider.get_period_return_covariance_matrix "qiskit.finance.data_providers.DataOnDemandProvider.get_period_return_covariance_matrix")() | Returns a vector containing the mean value of each asset.                                                |
+| [`DataOnDemandProvider.get_period_return_mean_vector`](qiskit.finance.data_providers.DataOnDemandProvider.get_period_return_mean_vector "qiskit.finance.data_providers.DataOnDemandProvider.get_period_return_mean_vector")()                   | Returns a vector containing the mean value of each asset.                                                |
+| [`DataOnDemandProvider.get_similarity_matrix`](qiskit.finance.data_providers.DataOnDemandProvider.get_similarity_matrix "qiskit.finance.data_providers.DataOnDemandProvider.get_similarity_matrix")()                                           | Returns time-series similarity matrix computed using dynamic time warping.                               |
+| [`DataOnDemandProvider.run`](qiskit.finance.data_providers.DataOnDemandProvider.run "qiskit.finance.data_providers.DataOnDemandProvider.run")()                                                                                                 | Loads data, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class. |
 

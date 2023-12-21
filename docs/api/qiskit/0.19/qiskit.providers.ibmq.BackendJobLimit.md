@@ -14,7 +14,7 @@ python_api_name: qiskit.providers.ibmq.BackendJobLimit
 
 Job limit for a backend.
 
-Represent the job limit for a backend on a specific provider. This instance is returned by the [`IBMQBackend.job_limit()`](qiskit.providers.ibmq.IBMQBackend#job_limit "qiskit.providers.ibmq.IBMQBackend.job_limit") method.
+Represent the job limit for a backend on a specific provider. This instance is returned by the [`IBMQBackend.job_limit()`](qiskit.providers.ibmq.IBMQBackend.job_limit "qiskit.providers.ibmq.IBMQBackend.job_limit") method.
 
 <span id="qiskit.providers.ibmq.BackendJobLimit.maximum_jobs" />
 
@@ -37,4 +37,7 @@ BackendJobLimit constructor.
 *   **kwargs** (`Any`) – Additional attributes that will be added as instance members.
 
 ## Methods
+
+|   |
+| - |
 

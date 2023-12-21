@@ -25,89 +25,16 @@ Initializes the constraint.
 
 ## Attributes
 
-### name
-
-<span id="qiskit.optimization.problems.Constraint.name" />
-
-`str`
-
-Returns the name of the constraint.
-
-**Return type**
-
-`str`
-
-**Returns**
-
-The name of the constraint.
-
-### quadratic\_program
-
-<span id="qiskit.optimization.problems.Constraint.quadratic_program" />
-
-`Any`
-
-Returns the parent QuadraticProgram.
-
-**Return type**
-
-`Any`
-
-**Returns**
-
-The parent QuadraticProgram.
-
-### rhs
-
-<span id="qiskit.optimization.problems.Constraint.rhs" />
-
-`float`
-
-Returns the right-hand-side of the constraint.
-
-**Return type**
-
-`float`
-
-**Returns**
-
-The right-hand-side of the constraint.
-
-### sense
-
-<span id="qiskit.optimization.problems.Constraint.sense" />
-
-`qiskit.optimization.problems.constraint.ConstraintSense`
-
-Returns the sense of the constraint.
-
-**Return type**
-
-`ConstraintSense`
-
-**Returns**
-
-The sense of the constraint.
+|                                                                                                                                                         |                                                |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
+| [`Constraint.name`](qiskit.optimization.problems.Constraint.name "qiskit.optimization.problems.Constraint.name")                                        | Returns the name of the constraint.            |
+| [`Constraint.quadratic_program`](qiskit.optimization.problems.Constraint.quadratic_program "qiskit.optimization.problems.Constraint.quadratic_program") | Returns the parent QuadraticProgram.           |
+| [`Constraint.rhs`](qiskit.optimization.problems.Constraint.rhs "qiskit.optimization.problems.Constraint.rhs")                                           | Returns the right-hand-side of the constraint. |
+| [`Constraint.sense`](qiskit.optimization.problems.Constraint.sense "qiskit.optimization.problems.Constraint.sense")                                     | Returns the sense of the constraint.           |
 
 ## Methods
 
-### evaluate
-
-<span id="qiskit.optimization.problems.Constraint.evaluate" />
-
-`abstract Constraint.evaluate(x)`
-
-Evaluate left-hand-side of constraint for given values of variables.
-
-**Parameters**
-
-**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values to be used for the variables.
-
-**Return type**
-
-`float`
-
-**Returns**
-
-The left-hand-side of the constraint.
+|                                                                                                                                 |                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [`Constraint.evaluate`](qiskit.optimization.problems.Constraint.evaluate "qiskit.optimization.problems.Constraint.evaluate")(x) | Evaluate left-hand-side of constraint for given values of variables. |
 

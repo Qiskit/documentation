@@ -35,157 +35,21 @@ qubit benchmark, [arxiv/quant-ph/0610214](https://arxiv.org/abs/quant-ph/0610214
 
 ## Attributes
 
-### aux\_operators
-
-<span id="qiskit.aqua.algorithms.IQPE.aux_operators" />
-
-`Optional[List[Union[qiskit.aqua.operators.operator_base.OperatorBase, qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator]]]`
-
-Returns aux operators
-
-**Return type**
-
-`Optional`\[`List`\[`Union`\[[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase"), [`LegacyBaseOperator`](qiskit.aqua.operators.legacy.LegacyBaseOperator "qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator")]]]
-
-### backend
-
-<span id="qiskit.aqua.algorithms.IQPE.backend" />
-
-`qiskit.providers.basebackend.BaseBackend`
-
-Returns backend.
-
-**Return type**
-
-[`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
-
-### operator
-
-<span id="qiskit.aqua.algorithms.IQPE.operator" />
-
-`Optional[Union[qiskit.aqua.operators.operator_base.OperatorBase, qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator]]`
-
-Returns operator
-
-**Return type**
-
-`Union`\[[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase"), [`LegacyBaseOperator`](qiskit.aqua.operators.legacy.LegacyBaseOperator "qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator"), `None`]
-
-### quantum\_instance
-
-<span id="qiskit.aqua.algorithms.IQPE.quantum_instance" />
-
-`Union[None, qiskit.aqua.quantum_instance.QuantumInstance]`
-
-Returns quantum instance.
-
-**Return type**
-
-`Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
-
-### random
-
-Return a numpy random.
+|                                                                                                                        |                           |
+| ---------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| [`IQPE.aux_operators`](qiskit.aqua.algorithms.IQPE.aux_operators "qiskit.aqua.algorithms.IQPE.aux_operators")          | Returns aux operators     |
+| [`IQPE.backend`](qiskit.aqua.algorithms.IQPE.backend "qiskit.aqua.algorithms.IQPE.backend")                            | Returns backend.          |
+| [`IQPE.operator`](qiskit.aqua.algorithms.IQPE.operator "qiskit.aqua.algorithms.IQPE.operator")                         | Returns operator          |
+| [`IQPE.quantum_instance`](qiskit.aqua.algorithms.IQPE.quantum_instance "qiskit.aqua.algorithms.IQPE.quantum_instance") | Returns quantum instance. |
+| [`IQPE.random`](qiskit.aqua.algorithms.IQPE.random "qiskit.aqua.algorithms.IQPE.random")                               | Return a numpy random.    |
 
 ## Methods
 
-### compute\_minimum\_eigenvalue
-
-<span id="qiskit.aqua.algorithms.IQPE.compute_minimum_eigenvalue" />
-
-`IQPE.compute_minimum_eigenvalue(operator=None, aux_operators=None)`
-
-Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
-
-**Parameters**
-
-*   **operator** (`Union`\[[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase"), [`LegacyBaseOperator`](qiskit.aqua.operators.legacy.LegacyBaseOperator "qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator"), `None`]) – If not None replaces operator in algorithm
-*   **aux\_operators** (`Optional`\[`List`\[`Union`\[[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase"), [`LegacyBaseOperator`](qiskit.aqua.operators.legacy.LegacyBaseOperator "qiskit.aqua.operators.legacy.base_operator.LegacyBaseOperator")]]]) – If not None replaces aux\_operators in algorithm
-
-**Return type**
-
-[`MinimumEigensolverResult`](qiskit.aqua.algorithms.MinimumEigensolverResult "qiskit.aqua.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolverResult")
-
-**Returns**
-
-MinimumEigensolverResult
-
-### construct\_circuit
-
-<span id="qiskit.aqua.algorithms.IQPE.construct_circuit" />
-
-`IQPE.construct_circuit(k=None, omega=0, measurement=False)`
-
-Construct the kth iteration Quantum Phase Estimation circuit.
-
-For details of parameters, please see Fig. 2 in [https://arxiv.org/pdf/quant-ph/0610214.pdf](https://arxiv.org/pdf/quant-ph/0610214.pdf).
-
-**Parameters**
-
-*   **k** (`Optional`\[`int`]) – the iteration idx.
-*   **omega** (`float`) – the feedback angle.
-*   **measurement** (`bool`) – Boolean flag to indicate if measurement should be included in the circuit.
-
-**Returns**
-
-the quantum circuit per iteration
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-### run
-
-<span id="qiskit.aqua.algorithms.IQPE.run" />
-
-`IQPE.run(quantum_instance=None, **kwargs)`
-
-Execute the algorithm with selected backend.
-
-**Parameters**
-
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### set\_backend
-
-<span id="qiskit.aqua.algorithms.IQPE.set_backend" />
-
-`IQPE.set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
-
-### supports\_aux\_operators
-
-<span id="qiskit.aqua.algorithms.IQPE.supports_aux_operators" />
-
-`IQPE.supports_aux_operators()`
-
-Whether computing the expectation value of auxiliary operators is supported.
-
-If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if aux\_operator expectations can be evaluated, False otherwise
+|                                                                                                                                                                      |                                                                              |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [`IQPE.compute_minimum_eigenvalue`](qiskit.aqua.algorithms.IQPE.compute_minimum_eigenvalue "qiskit.aqua.algorithms.IQPE.compute_minimum_eigenvalue")(\[operator, …]) | Computes minimum eigenvalue.                                                 |
+| [`IQPE.construct_circuit`](qiskit.aqua.algorithms.IQPE.construct_circuit "qiskit.aqua.algorithms.IQPE.construct_circuit")(\[k, omega, measurement])                  | Construct the kth iteration Quantum Phase Estimation circuit.                |
+| [`IQPE.run`](qiskit.aqua.algorithms.IQPE.run "qiskit.aqua.algorithms.IQPE.run")(\[quantum\_instance])                                                                | Execute the algorithm with selected backend.                                 |
+| [`IQPE.set_backend`](qiskit.aqua.algorithms.IQPE.set_backend "qiskit.aqua.algorithms.IQPE.set_backend")(backend, \*\*kwargs)                                         | Sets backend with configuration.                                             |
+| [`IQPE.supports_aux_operators`](qiskit.aqua.algorithms.IQPE.supports_aux_operators "qiskit.aqua.algorithms.IQPE.supports_aux_operators")()                           | Whether computing the expectation value of auxiliary operators is supported. |
 

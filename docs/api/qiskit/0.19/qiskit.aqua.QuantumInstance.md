@@ -46,174 +46,40 @@ Quantum Instance holds a Qiskit Terra backend as well as configuration for circu
 
 ## Attributes
 
-### BACKEND\_OPTIONS\_QASM\_ONLY
-
-<span id="qiskit.aqua.QuantumInstance.BACKEND_OPTIONS_QASM_ONLY" />
-
-`= ['statevector_sample_measure_opt', 'max_parallel_shots']`
-
-### backend
-
-Return BaseBackend backend object.
-
-### backend\_config
-
-Getter of backend\_config.
-
-### backend\_name
-
-Return backend name.
-
-### backend\_options
-
-Getter of backend\_options.
-
-### cals\_matrix\_refresh\_period
-
-returns matrix refresh period
-
-### circuit\_summary
-
-Getter of circuit summary.
-
-### compile\_config
-
-Getter of compile\_config.
-
-### is\_local
-
-Return True if backend is a local backend.
-
-### is\_simulator
-
-Return True if backend is a simulator.
-
-### is\_statevector
-
-Return True if backend is a statevector-type simulator.
-
-### measurement\_error\_mitigation\_cls
-
-returns measurement error mitigation cls
-
-### measurement\_error\_mitigation\_shots
-
-returns measurement error mitigation shots
-
-### noise\_config
-
-Getter of noise\_config.
-
-### qjob\_config
-
-Getter of qjob\_config.
-
-### run\_config
-
-Getter of run\_config.
-
-### skip\_qobj\_validation
-
-checks if skip qobj validation
+|                                                                                                                                                                                         |                                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| [`QuantumInstance.BACKEND_CONFIG`](qiskit.aqua.QuantumInstance#BACKEND_CONFIG "qiskit.aqua.QuantumInstance.BACKEND_CONFIG")                                                             |                                                         |
+| [`QuantumInstance.BACKEND_OPTIONS`](qiskit.aqua.QuantumInstance#BACKEND_OPTIONS "qiskit.aqua.QuantumInstance.BACKEND_OPTIONS")                                                          |                                                         |
+| [`QuantumInstance.BACKEND_OPTIONS_QASM_ONLY`](qiskit.aqua.QuantumInstance.BACKEND_OPTIONS_QASM_ONLY "qiskit.aqua.QuantumInstance.BACKEND_OPTIONS_QASM_ONLY")                            |                                                         |
+| [`QuantumInstance.COMPILE_CONFIG`](qiskit.aqua.QuantumInstance.COMPILE_CONFIG "qiskit.aqua.QuantumInstance.COMPILE_CONFIG")                                                             |                                                         |
+| [`QuantumInstance.NOISE_CONFIG`](qiskit.aqua.QuantumInstance#NOISE_CONFIG "qiskit.aqua.QuantumInstance.NOISE_CONFIG")                                                                   |                                                         |
+| [`QuantumInstance.QJOB_CONFIG`](qiskit.aqua.QuantumInstance#QJOB_CONFIG "qiskit.aqua.QuantumInstance.QJOB_CONFIG")                                                                      |                                                         |
+| [`QuantumInstance.RUN_CONFIG`](qiskit.aqua.QuantumInstance.RUN_CONFIG "qiskit.aqua.QuantumInstance.RUN_CONFIG")                                                                         |                                                         |
+| [`QuantumInstance.backend`](qiskit.aqua.QuantumInstance.backend "qiskit.aqua.QuantumInstance.backend")                                                                                  | Return BaseBackend backend object.                      |
+| [`QuantumInstance.backend_config`](qiskit.aqua.QuantumInstance.backend_config "qiskit.aqua.QuantumInstance.backend_config")                                                             | Getter of backend\_config.                              |
+| [`QuantumInstance.backend_name`](qiskit.aqua.QuantumInstance.backend_name "qiskit.aqua.QuantumInstance.backend_name")                                                                   | Return backend name.                                    |
+| [`QuantumInstance.backend_options`](qiskit.aqua.QuantumInstance.backend_options "qiskit.aqua.QuantumInstance.backend_options")                                                          | Getter of backend\_options.                             |
+| [`QuantumInstance.cals_matrix_refresh_period`](qiskit.aqua.QuantumInstance.cals_matrix_refresh_period "qiskit.aqua.QuantumInstance.cals_matrix_refresh_period")                         | returns matrix refresh period                           |
+| [`QuantumInstance.circuit_summary`](qiskit.aqua.QuantumInstance.circuit_summary "qiskit.aqua.QuantumInstance.circuit_summary")                                                          | Getter of circuit summary.                              |
+| [`QuantumInstance.compile_config`](qiskit.aqua.QuantumInstance#compile_config "qiskit.aqua.QuantumInstance.compile_config")                                                             | Getter of compile\_config.                              |
+| [`QuantumInstance.is_local`](qiskit.aqua.QuantumInstance.is_local "qiskit.aqua.QuantumInstance.is_local")                                                                               | Return True if backend is a local backend.              |
+| [`QuantumInstance.is_simulator`](qiskit.aqua.QuantumInstance.is_simulator "qiskit.aqua.QuantumInstance.is_simulator")                                                                   | Return True if backend is a simulator.                  |
+| [`QuantumInstance.is_statevector`](qiskit.aqua.QuantumInstance.is_statevector "qiskit.aqua.QuantumInstance.is_statevector")                                                             | Return True if backend is a statevector-type simulator. |
+| [`QuantumInstance.measurement_error_mitigation_cls`](qiskit.aqua.QuantumInstance.measurement_error_mitigation_cls "qiskit.aqua.QuantumInstance.measurement_error_mitigation_cls")       | returns measurement error mitigation cls                |
+| [`QuantumInstance.measurement_error_mitigation_shots`](qiskit.aqua.QuantumInstance.measurement_error_mitigation_shots "qiskit.aqua.QuantumInstance.measurement_error_mitigation_shots") | returns measurement error mitigation shots              |
+| [`QuantumInstance.noise_config`](qiskit.aqua.QuantumInstance.noise_config "qiskit.aqua.QuantumInstance.noise_config")                                                                   | Getter of noise\_config.                                |
+| [`QuantumInstance.qjob_config`](qiskit.aqua.QuantumInstance.qjob_config "qiskit.aqua.QuantumInstance.qjob_config")                                                                      | Getter of qjob\_config.                                 |
+| [`QuantumInstance.run_config`](qiskit.aqua.QuantumInstance#run_config "qiskit.aqua.QuantumInstance.run_config")                                                                         | Getter of run\_config.                                  |
+| [`QuantumInstance.skip_qobj_validation`](qiskit.aqua.QuantumInstance.skip_qobj_validation "qiskit.aqua.QuantumInstance.skip_qobj_validation")                                           | checks if skip qobj validation                          |
 
 ## Methods
 
-### assemble
-
-<span id="qiskit.aqua.QuantumInstance.assemble" />
-
-`QuantumInstance.assemble(circuits)`
-
-assemble circuits
-
-### cals\_matrix
-
-<span id="qiskit.aqua.QuantumInstance.cals_matrix" />
-
-`QuantumInstance.cals_matrix(qubit_index=None)`
-
-Get the stored calibration matrices and its timestamp.
-
-**Parameters**
-
-*   **qubit\_index** (*list\[int]*) – the qubit index of corresponding calibration matrix.
-*   **None** (*If*) –
-*   **matrices.** (*return all stored calibration*) –
-
-**Returns**
-
-**the calibration matrix and the creation timestamp if qubit\_index**
-
-is not None otherwise, return all matrices and their timestamp in a dictionary.
-
-**Return type**
-
-tuple(np.ndarray, int)
-
-### execute
-
-<span id="qiskit.aqua.QuantumInstance.execute" />
-
-`QuantumInstance.execute(circuits, had_transpiled=False)`
-
-A wrapper to interface with quantum backend.
-
-**Parameters**
-
-*   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or list\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – circuits to execute
-*   **had\_transpiled** (*bool, optional*) – whether or not circuits had been transpiled
-
-**Returns**
-
-Result object
-
-**Return type**
-
-[Result](qiskit.result.Result "qiskit.result.Result")
-
-#### TODO: Maybe we can combine the circuits for the main ones and calibration circuits before
-
-assembling to the qobj.
-
-### maybe\_refresh\_cals\_matrix
-
-<span id="qiskit.aqua.QuantumInstance.maybe_refresh_cals_matrix" />
-
-`QuantumInstance.maybe_refresh_cals_matrix(timestamp=None)`
-
-Calculate the time difference from the query of last time.
-
-**Returns**
-
-whether or not refresh the cals\_matrix
-
-**Return type**
-
-bool
-
-### set\_config
-
-<span id="qiskit.aqua.QuantumInstance.set_config" />
-
-`QuantumInstance.set_config(**kwargs)`
-
-Set configurations for the quantum instance.
-
-### transpile
-
-<span id="qiskit.aqua.QuantumInstance.transpile" />
-
-`QuantumInstance.transpile(circuits)`
-
-A wrapper to transpile circuits to allow algorithm access the transpiled circuits. :param circuits: circuits to transpile :type circuits: QuantumCircuit or list\[QuantumCircuit]
-
-**Returns**
-
-**the transpiled circuits, it is always a list even though**
-
-the length is one.
-
-**Return type**
-
-list\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
+|                                                                                                                                                                    |                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------- |
+| [`QuantumInstance.assemble`](qiskit.aqua.QuantumInstance.assemble "qiskit.aqua.QuantumInstance.assemble")(circuits)                                                | assemble circuits                                                                  |
+| [`QuantumInstance.cals_matrix`](qiskit.aqua.QuantumInstance.cals_matrix "qiskit.aqua.QuantumInstance.cals_matrix")(\[qubit\_index])                                | Get the stored calibration matrices and its timestamp.                             |
+| [`QuantumInstance.execute`](qiskit.aqua.QuantumInstance.execute "qiskit.aqua.QuantumInstance.execute")(circuits\[, …])                                             | A wrapper to interface with quantum backend.                                       |
+| [`QuantumInstance.maybe_refresh_cals_matrix`](qiskit.aqua.QuantumInstance.maybe_refresh_cals_matrix "qiskit.aqua.QuantumInstance.maybe_refresh_cals_matrix")(\[…]) | Calculate the time difference from the query of last time.                         |
+| [`QuantumInstance.set_config`](qiskit.aqua.QuantumInstance.set_config "qiskit.aqua.QuantumInstance.set_config")(\*\*kwargs)                                        | Set configurations for the quantum instance.                                       |
+| [`QuantumInstance.transpile`](qiskit.aqua.QuantumInstance.transpile "qiskit.aqua.QuantumInstance.transpile")(circuits)                                             | A wrapper to transpile circuits to allow algorithm access the transpiled circuits. |
 

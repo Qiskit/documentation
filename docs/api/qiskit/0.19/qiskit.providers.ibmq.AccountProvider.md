@@ -16,22 +16,22 @@ Provider for a single IBM Quantum Experience account.
 
 The account provider class provides access to the IBM Quantum Experience backends available to this account.
 
-You can access a provider by enabling an account with the [`IBMQ.enable_account()`](qiskit.providers.ibmq.IBMQFactory#enable_account "qiskit.providers.ibmq.IBMQFactory.enable_account") method, which returns the default provider you have access to:
+You can access a provider by enabling an account with the [`IBMQ.enable_account()`](qiskit.providers.ibmq.IBMQFactory.enable_account "qiskit.providers.ibmq.IBMQFactory.enable_account") method, which returns the default provider you have access to:
 
 ```python
 from qiskit import IBMQ
 provider = IBMQ.enable_account(<INSERT_IBM_QUANTUM_EXPERIENCE_TOKEN>)
 ```
 
-To select a different provider, use the [`IBMQ.get_provider()`](qiskit.providers.ibmq.IBMQFactory#get_provider "qiskit.providers.ibmq.IBMQFactory.get_provider") method and specify the hub, group, or project name of the desired provider.
+To select a different provider, use the [`IBMQ.get_provider()`](qiskit.providers.ibmq.IBMQFactory.get_provider "qiskit.providers.ibmq.IBMQFactory.get_provider") method and specify the hub, group, or project name of the desired provider.
 
-The [`backends()`](qiskit.providers.ibmq.AccountProvider#backends "qiskit.providers.ibmq.AccountProvider.backends") method returns all the backends available to this account:
+The [`backends()`](qiskit.providers.ibmq.AccountProvider.backends "qiskit.providers.ibmq.AccountProvider.backends") method returns all the backends available to this account:
 
 ```python
 backends = provider.backends()
 ```
 
-The [`get_backend()`](qiskit.providers.ibmq.AccountProvider#get_backend "qiskit.providers.ibmq.AccountProvider.get_backend") method returns a backend that matches the filters passed as argument. An example of retrieving a backend that matches a specified name:
+The [`get_backend()`](qiskit.providers.ibmq.AccountProvider.get_backend "qiskit.providers.ibmq.AccountProvider.get_backend") method returns a backend that matches the filters passed as argument. An example of retrieving a backend that matches a specified name:
 
 ```python
 simulator_backend = provider.get_backend('ibmq_qasm_simulator')
@@ -56,40 +56,8 @@ AccountProvider constructor.
 
 ## Methods
 
-### backends
-
-<span id="qiskit.providers.ibmq.AccountProvider.backends" />
-
-`AccountProvider.backends(name=None, **kwargs)`
-
-Return all backends accessible via this provider, subject to optional filtering.
-
-**Return type**
-
-`List`\[[`IBMQBackend`](qiskit.providers.ibmq.IBMQBackend "qiskit.providers.ibmq.ibmqbackend.IBMQBackend")]
-
-### get\_backend
-
-<span id="qiskit.providers.ibmq.AccountProvider.get_backend" />
-
-`AccountProvider.get_backend(name=None, **kwargs)`
-
-Return a single backend matching the specified filtering.
-
-**Parameters**
-
-*   **name** (*str*) – name of the backend.
-*   **\*\*kwargs** – dict used for filtering.
-
-**Returns**
-
-a backend matching the filtering.
-
-**Return type**
-
-[BaseBackend](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")
-
-**Raises**
-
-[**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+|                                                                                                                                                 |                                                                                  |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| [`AccountProvider.backends`](qiskit.providers.ibmq.AccountProvider.backends "qiskit.providers.ibmq.AccountProvider.backends")(\[name])          | Return all backends accessible via this provider, subject to optional filtering. |
+| [`AccountProvider.get_backend`](qiskit.providers.ibmq.AccountProvider.get_backend "qiskit.providers.ibmq.AccountProvider.get_backend")(\[name]) | Return a single backend matching the specified filtering.                        |
 

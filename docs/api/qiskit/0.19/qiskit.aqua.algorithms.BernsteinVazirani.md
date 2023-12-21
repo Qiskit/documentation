@@ -23,90 +23,17 @@ The Bernstein-Vazirani algorithm is an extension / restriction of the Deutsch-Jo
 
 ## Attributes
 
-### backend
-
-<span id="qiskit.aqua.algorithms.BernsteinVazirani.backend" />
-
-`qiskit.providers.basebackend.BaseBackend`
-
-Returns backend.
-
-**Return type**
-
-[`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
-
-### quantum\_instance
-
-<span id="qiskit.aqua.algorithms.BernsteinVazirani.quantum_instance" />
-
-`Union[None, qiskit.aqua.quantum_instance.QuantumInstance]`
-
-Returns quantum instance.
-
-**Return type**
-
-`Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
-
-### random
-
-Return a numpy random.
+|                                                                                                                                                               |                           |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| [`BernsteinVazirani.backend`](qiskit.aqua.algorithms.BernsteinVazirani.backend "qiskit.aqua.algorithms.BernsteinVazirani.backend")                            | Returns backend.          |
+| [`BernsteinVazirani.quantum_instance`](qiskit.aqua.algorithms.BernsteinVazirani.quantum_instance "qiskit.aqua.algorithms.BernsteinVazirani.quantum_instance") | Returns quantum instance. |
+| [`BernsteinVazirani.random`](qiskit.aqua.algorithms.BernsteinVazirani.random "qiskit.aqua.algorithms.BernsteinVazirani.random")                               | Return a numpy random.    |
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.algorithms.BernsteinVazirani.construct_circuit" />
-
-`BernsteinVazirani.construct_circuit(measurement=False)`
-
-Construct the quantum circuit
-
-**Parameters**
-
-**measurement** (*bool*) – Boolean flag to indicate if measurement should be included in the circuit.
-
-**Returns**
-
-the QuantumCircuit object for the constructed circuit
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-### run
-
-<span id="qiskit.aqua.algorithms.BernsteinVazirani.run" />
-
-`BernsteinVazirani.run(quantum_instance=None, **kwargs)`
-
-Execute the algorithm with selected backend.
-
-**Parameters**
-
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### set\_backend
-
-<span id="qiskit.aqua.algorithms.BernsteinVazirani.set_backend" />
-
-`BernsteinVazirani.set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
+|                                                                                                                                                                        |                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [`BernsteinVazirani.construct_circuit`](qiskit.aqua.algorithms.BernsteinVazirani.construct_circuit "qiskit.aqua.algorithms.BernsteinVazirani.construct_circuit")(\[…]) | Construct the quantum circuit                |
+| [`BernsteinVazirani.run`](qiskit.aqua.algorithms.BernsteinVazirani.run "qiskit.aqua.algorithms.BernsteinVazirani.run")(\[quantum\_instance])                           | Execute the algorithm with selected backend. |
+| [`BernsteinVazirani.set_backend`](qiskit.aqua.algorithms.BernsteinVazirani.set_backend "qiskit.aqua.algorithms.BernsteinVazirani.set_backend")(backend, \*\*kwargs)    | Sets backend with configuration.             |
 

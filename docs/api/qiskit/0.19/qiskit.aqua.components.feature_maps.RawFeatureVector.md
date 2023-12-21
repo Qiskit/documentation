@@ -22,60 +22,17 @@ The Raw Feature Vector can be directly used as a feature map, where the raw feat
 
 ## Attributes
 
-### feature\_dimension
-
-returns feature dimension
-
-### num\_qubits
-
-returns number of qubits
-
-### support\_parameterized\_circuit
-
-returns whether or not the sub-class support parameterized circuit
+|                                                                                                                                                                                                                             |                                                                    |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| [`RawFeatureVector.feature_dimension`](qiskit.aqua.components.feature_maps.RawFeatureVector.feature_dimension "qiskit.aqua.components.feature_maps.RawFeatureVector.feature_dimension")                                     | returns feature dimension                                          |
+| [`RawFeatureVector.num_qubits`](qiskit.aqua.components.feature_maps.RawFeatureVector.num_qubits "qiskit.aqua.components.feature_maps.RawFeatureVector.num_qubits")                                                          | returns number of qubits                                           |
+| [`RawFeatureVector.support_parameterized_circuit`](qiskit.aqua.components.feature_maps.RawFeatureVector.support_parameterized_circuit "qiskit.aqua.components.feature_maps.RawFeatureVector.support_parameterized_circuit") | returns whether or not the sub-class support parameterized circuit |
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.components.feature_maps.RawFeatureVector.construct_circuit" />
-
-`RawFeatureVector.construct_circuit(x, qr=None, inverse=False)`
-
-Construct the second order expansion based on given data.
-
-**Parameters**
-
-*   **x** (*numpy.ndarray*) – 1-D to-be-encoded data.
-*   **qr** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – the QuantumRegister object for the circuit, if None, generate new registers with name q.
-*   **inverse** (*bool*) – inverse
-
-**Returns**
-
-a quantum circuit transform data x.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-*   **TypeError** – invalid input
-*   **ValueError** – invalid input
-
-### get\_entangler\_map
-
-<span id="qiskit.aqua.components.feature_maps.RawFeatureVector.get_entangler_map" />
-
-`static RawFeatureVector.get_entangler_map(map_type, num_qubits)`
-
-get entangle map
-
-### validate\_entangler\_map
-
-<span id="qiskit.aqua.components.feature_maps.RawFeatureVector.validate_entangler_map" />
-
-`static RawFeatureVector.validate_entangler_map(entangler_map, num_qubits)`
-
-validate entangler map
+|                                                                                                                                                                                                           |                                                           |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [`RawFeatureVector.construct_circuit`](qiskit.aqua.components.feature_maps.RawFeatureVector.construct_circuit "qiskit.aqua.components.feature_maps.RawFeatureVector.construct_circuit")(x\[, qr, …])      | Construct the second order expansion based on given data. |
+| [`RawFeatureVector.get_entangler_map`](qiskit.aqua.components.feature_maps.RawFeatureVector.get_entangler_map "qiskit.aqua.components.feature_maps.RawFeatureVector.get_entangler_map")(map\_type, …)     | get entangle map                                          |
+| [`RawFeatureVector.validate_entangler_map`](qiskit.aqua.components.feature_maps.RawFeatureVector.validate_entangler_map "qiskit.aqua.components.feature_maps.RawFeatureVector.validate_entangler_map")(…) | validate entangler map                                    |
 

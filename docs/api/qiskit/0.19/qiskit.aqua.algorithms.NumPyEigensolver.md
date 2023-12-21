@@ -28,73 +28,17 @@ NumPy Eigensolver computes up to the first $k$ eigenvalues of a complex-valued s
 
 ## Attributes
 
-### aux\_operators
-
-<span id="qiskit.aqua.algorithms.NumPyEigensolver.aux_operators" />
-
-`Optional[List[Optional[qiskit.aqua.operators.operator_base.OperatorBase]]]`
-
-returns aux operators
-
-**Return type**
-
-`Optional`\[`List`\[`Optional`\[[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")]]]
-
-### k
-
-<span id="qiskit.aqua.algorithms.NumPyEigensolver.k" />
-
-`int`
-
-returns k (number of eigenvalues requested)
-
-**Return type**
-
-`int`
-
-### operator
-
-<span id="qiskit.aqua.algorithms.NumPyEigensolver.operator" />
-
-`Optional[qiskit.aqua.operators.operator_base.OperatorBase]`
-
-returns operator
-
-**Return type**
-
-`Optional`\[[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")]
-
-### random
-
-Return a numpy random.
+|                                                                                                                                                   |                                             |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| [`NumPyEigensolver.aux_operators`](qiskit.aqua.algorithms.NumPyEigensolver.aux_operators "qiskit.aqua.algorithms.NumPyEigensolver.aux_operators") | returns aux operators                       |
+| [`NumPyEigensolver.k`](qiskit.aqua.algorithms.NumPyEigensolver.k "qiskit.aqua.algorithms.NumPyEigensolver.k")                                     | returns k (number of eigenvalues requested) |
+| [`NumPyEigensolver.operator`](qiskit.aqua.algorithms.NumPyEigensolver.operator "qiskit.aqua.algorithms.NumPyEigensolver.operator")                | returns operator                            |
+| [`NumPyEigensolver.random`](qiskit.aqua.algorithms.NumPyEigensolver.random "qiskit.aqua.algorithms.NumPyEigensolver.random")                      | Return a numpy random.                      |
 
 ## Methods
 
-### run
-
-<span id="qiskit.aqua.algorithms.NumPyEigensolver.run" />
-
-`NumPyEigensolver.run()`
-
-Execute the classical algorithm.
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-### supports\_aux\_operators
-
-<span id="qiskit.aqua.algorithms.NumPyEigensolver.supports_aux_operators" />
-
-`NumPyEigensolver.supports_aux_operators()`
-
-If will process auxiliary operators or not
-
-**Return type**
-
-`bool`
+|                                                                                                                                                                                |                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
+| [`NumPyEigensolver.run`](qiskit.aqua.algorithms.NumPyEigensolver.run "qiskit.aqua.algorithms.NumPyEigensolver.run")()                                                          | Execute the classical algorithm.           |
+| [`NumPyEigensolver.supports_aux_operators`](qiskit.aqua.algorithms.NumPyEigensolver.supports_aux_operators "qiskit.aqua.algorithms.NumPyEigensolver.supports_aux_operators")() | If will process auxiliary operators or not |
 

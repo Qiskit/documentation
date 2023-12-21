@@ -26,37 +26,14 @@ Channel class.
 
 ## Attributes
 
-### index
-
-<span id="qiskit.pulse.RegisterSlot.index" />
-
-`int`
-
-Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
-
-**Return type**
-
-`int`
-
-### name
-
-<span id="qiskit.pulse.RegisterSlot.name" />
-
-`str`
-
-Return the shorthand alias for this channel, which is based on its type and index.
-
-**Return type**
-
-`str`
-
-### prefix
-
-<span id="qiskit.pulse.RegisterSlot.prefix" />
-
-`= 'c'`
-
-A shorthand string prefix for characterizing the channel type.
+|                                                                                              |                                                                                    |
+| -------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------- |
+| [`RegisterSlot.index`](qiskit.pulse.RegisterSlot.index "qiskit.pulse.RegisterSlot.index")    | Return the index of this channel.                                                  |
+| [`RegisterSlot.name`](qiskit.pulse.RegisterSlot.name "qiskit.pulse.RegisterSlot.name")       | Return the shorthand alias for this channel, which is based on its type and index. |
+| [`RegisterSlot.prefix`](qiskit.pulse.RegisterSlot.prefix "qiskit.pulse.RegisterSlot.prefix") | A shorthand string prefix for characterizing the channel type.                     |
 
 ## Methods
+
+|   |
+| - |
 

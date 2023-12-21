@@ -35,60 +35,17 @@ Please refer to [`FirstOrderExpansion`](qiskit.aqua.components.feature_maps.Firs
 
 ## Attributes
 
-### feature\_dimension
-
-returns feature dimension
-
-### num\_qubits
-
-returns number of qubits
-
-### support\_parameterized\_circuit
-
-returns whether or not the sub-class support parameterized circuit
+|                                                                                                                                                                                                                       |                                                                    |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| [`PauliExpansion.feature_dimension`](qiskit.aqua.components.feature_maps.PauliExpansion.feature_dimension "qiskit.aqua.components.feature_maps.PauliExpansion.feature_dimension")                                     | returns feature dimension                                          |
+| [`PauliExpansion.num_qubits`](qiskit.aqua.components.feature_maps.PauliExpansion.num_qubits "qiskit.aqua.components.feature_maps.PauliExpansion.num_qubits")                                                          | returns number of qubits                                           |
+| [`PauliExpansion.support_parameterized_circuit`](qiskit.aqua.components.feature_maps.PauliExpansion.support_parameterized_circuit "qiskit.aqua.components.feature_maps.PauliExpansion.support_parameterized_circuit") | returns whether or not the sub-class support parameterized circuit |
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.components.feature_maps.PauliExpansion.construct_circuit" />
-
-`PauliExpansion.construct_circuit(x, qr=None, inverse=False)`
-
-Construct the second order expansion based on given data.
-
-**Parameters**
-
-*   **x** (*Union(numpy.ndarray, list\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*],* [*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")*)*) – 1-D to-be-transformed data.
-*   **qr** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*, optional*) – the QuantumRegister object for the circuit, if None, generate new registers with name q.
-*   **inverse** (*bool, optional*) – whether or not inverse the circuit
-
-**Returns**
-
-a quantum circuit transform data x.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-*   **TypeError** – invalid input
-*   **ValueError** – invalid input
-
-### get\_entangler\_map
-
-<span id="qiskit.aqua.components.feature_maps.PauliExpansion.get_entangler_map" />
-
-`static PauliExpansion.get_entangler_map(map_type, num_qubits)`
-
-get entangle map
-
-### validate\_entangler\_map
-
-<span id="qiskit.aqua.components.feature_maps.PauliExpansion.validate_entangler_map" />
-
-`static PauliExpansion.validate_entangler_map(entangler_map, num_qubits)`
-
-validate entangler map
+|                                                                                                                                                                                                     |                                                           |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [`PauliExpansion.construct_circuit`](qiskit.aqua.components.feature_maps.PauliExpansion.construct_circuit "qiskit.aqua.components.feature_maps.PauliExpansion.construct_circuit")(x\[, qr, …])      | Construct the second order expansion based on given data. |
+| [`PauliExpansion.get_entangler_map`](qiskit.aqua.components.feature_maps.PauliExpansion.get_entangler_map "qiskit.aqua.components.feature_maps.PauliExpansion.get_entangler_map")(map\_type, …)     | get entangle map                                          |
+| [`PauliExpansion.validate_entangler_map`](qiskit.aqua.components.feature_maps.PauliExpansion.validate_entangler_map "qiskit.aqua.components.feature_maps.PauliExpansion.validate_entangler_map")(…) | validate entangler map                                    |
 

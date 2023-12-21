@@ -32,101 +32,17 @@ The variables is exposed by the top-level QuadraticProgram class in QuadraticPro
 
 ## Attributes
 
-### lowerbound
-
-<span id="qiskit.optimization.problems.Variable.lowerbound" />
-
-`Union[float, int]`
-
-Returns the lowerbound of the variable.
-
-**Return type**
-
-`Union`\[`float`, `int`]
-
-**Returns**
-
-The lower bound of the variable.
-
-### name
-
-<span id="qiskit.optimization.problems.Variable.name" />
-
-`str`
-
-Returns the name of the variable.
-
-**Return type**
-
-`str`
-
-**Returns**
-
-The name of the variable.
-
-### quadratic\_program
-
-<span id="qiskit.optimization.problems.Variable.quadratic_program" />
-
-`Any`
-
-Returns the parent QuadraticProgram.
-
-**Return type**
-
-`Any`
-
-**Returns**
-
-The parent QuadraticProgram.
-
-### upperbound
-
-<span id="qiskit.optimization.problems.Variable.upperbound" />
-
-`Union[float, int]`
-
-Returns the upperbound of the variable.
-
-**Return type**
-
-`Union`\[`float`, `int`]
-
-**Returns**
-
-The upperbound of the variable.
-
-### vartype
-
-<span id="qiskit.optimization.problems.Variable.vartype" />
-
-`qiskit.optimization.problems.variable.VarType`
-
-Returns the type of the variable.
-
-**Return type**
-
-`VarType`
-
-**Returns**
-
-The variable type.
+|                                                                                                                                                   |                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| [`Variable.lowerbound`](qiskit.optimization.problems.Variable.lowerbound "qiskit.optimization.problems.Variable.lowerbound")                      | Returns the lowerbound of the variable. |
+| [`Variable.name`](qiskit.optimization.problems.Variable.name "qiskit.optimization.problems.Variable.name")                                        | Returns the name of the variable.       |
+| [`Variable.quadratic_program`](qiskit.optimization.problems.Variable.quadratic_program "qiskit.optimization.problems.Variable.quadratic_program") | Returns the parent QuadraticProgram.    |
+| [`Variable.upperbound`](qiskit.optimization.problems.Variable.upperbound "qiskit.optimization.problems.Variable.upperbound")                      | Returns the upperbound of the variable. |
+| [`Variable.vartype`](qiskit.optimization.problems.Variable.vartype "qiskit.optimization.problems.Variable.vartype")                               | Returns the type of the variable.       |
 
 ## Methods
 
-### as\_tuple
-
-<span id="qiskit.optimization.problems.Variable.as_tuple" />
-
-`Variable.as_tuple()`
-
-Returns a tuple corresponding to this variable.
-
-**Return type**
-
-`Tuple`\[`str`, `Union`\[`float`, `int`], `Union`\[`float`, `int`], `VarType`]
-
-**Returns**
-
-A tuple corresponding to this variable consisting of name, lowerbound, upperbound and variable type.
+|                                                                                                                          |                                                 |
+| ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
+| [`Variable.as_tuple`](qiskit.optimization.problems.Variable.as_tuple "qiskit.optimization.problems.Variable.as_tuple")() | Returns a tuple corresponding to this variable. |
 

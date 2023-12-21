@@ -25,59 +25,17 @@ Not intended to be called directly, but to be instantiated via operations on oth
 
 ## Attributes
 
-### name
-
-Returns the name of the Parameter.
-
-### parameters
-
-Returns a set of the unbound Parameters in the expression.
+|                                                                                                     |                                                            |
+| --------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| [`Parameter.name`](qiskit.circuit.Parameter.name "qiskit.circuit.Parameter.name")                   | Returns the name of the Parameter.                         |
+| [`Parameter.parameters`](qiskit.circuit.Parameter.parameters "qiskit.circuit.Parameter.parameters") | Returns a set of the unbound Parameters in the expression. |
 
 ## Methods
 
-### \_\_mul\_\_
-
-<span id="qiskit.circuit.Parameter.__mul__" />
-
-`Parameter.__mul__(other)`
-
-### bind
-
-<span id="qiskit.circuit.Parameter.bind" />
-
-`Parameter.bind(parameter_values)`
-
-Binds the provided set of parameters to their corresponding values.
-
-**Parameters**
-
-**parameter\_values** (*dict*) – Mapping of Parameter instances to the numeric value to which they will be bound.
-
-**Raises**
-
-*   **CircuitError** –
-
-    *   If parameter\_values contains Parameters outside those in self. - If a non-numeric value is passed in parameter\_values.
-
-*   **ZeroDivisionError** –
-
-    *   If binding the provided values requires division by zero.
-
-**Returns**
-
-**a new expression parameterized by any parameters**
-
-which were not bound by parameter\_values.
-
-**Return type**
-
-[ParameterExpression](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")
-
-### subs
-
-<span id="qiskit.circuit.Parameter.subs" />
-
-`Parameter.subs(parameter_map)`
-
-Substitute self with the corresponding parameter in parameter\_map.
+|                                                                                                      |                                                                     |
+| ---------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [`Parameter.__mul__`](qiskit.circuit.Parameter.__mul__ "qiskit.circuit.Parameter.__mul__")(other)    |                                                                     |
+| [`Parameter.bind`](qiskit.circuit.Parameter.bind "qiskit.circuit.Parameter.bind")(parameter\_values) | Binds the provided set of parameters to their corresponding values. |
+| [`Parameter.subs`](qiskit.circuit.Parameter.subs "qiskit.circuit.Parameter.subs")(parameter\_map)    | Substitute self with the corresponding parameter in parameter\_map. |
+| [`Parameter.__mul__`](qiskit.circuit.Parameter.__mul__ "qiskit.circuit.Parameter.__mul__")(other)    |                                                                     |
 

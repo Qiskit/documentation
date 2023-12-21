@@ -46,39 +46,8 @@ Initialize a GateConfig object
 
 ## Methods
 
-### from\_dict
-
-<span id="qiskit.providers.models.GateConfig.from_dict" />
-
-`classmethod GateConfig.from_dict(data)`
-
-Create a new GateConfig object from a dictionary.
-
-**Parameters**
-
-**data** (*dict*) – A dictionary representing the GateConfig to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.GateConfig#to_dict "qiskit.providers.models.GateConfig.to_dict").
-
-**Returns**
-
-The GateConfig from the input dictionary.
-
-**Return type**
-
-[GateConfig](qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
-
-### to\_dict
-
-<span id="qiskit.providers.models.GateConfig.to_dict" />
-
-`GateConfig.to_dict()`
-
-Return a dictionary format representation of the GateConfig.
-
-**Returns**
-
-The dictionary form of the GateConfig.
-
-**Return type**
-
-dict
+|                                                                                                                             |                                                              |
+| --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [`GateConfig.from_dict`](qiskit.providers.models.GateConfig.from_dict "qiskit.providers.models.GateConfig.from_dict")(data) | Create a new GateConfig object from a dictionary.            |
+| [`GateConfig.to_dict`](qiskit.providers.models.GateConfig.to_dict "qiskit.providers.models.GateConfig.to_dict")()           | Return a dictionary format representation of the GateConfig. |
 

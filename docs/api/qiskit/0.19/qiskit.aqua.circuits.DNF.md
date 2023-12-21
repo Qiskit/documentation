@@ -27,58 +27,18 @@ Constructor.
 
 ## Attributes
 
-### ancillary\_register
-
-returns ancillary register
-
-### clause\_register
-
-returns clause register
-
-### num\_clauses
-
-returns num clauses
-
-### num\_variables
-
-return num variables
-
-### output\_register
-
-returns output register
-
-### variable\_register
-
-returns variable register
+|                                                                                                                       |                            |
+| --------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| [`DNF.ancillary_register`](qiskit.aqua.circuits.DNF.ancillary_register "qiskit.aqua.circuits.DNF.ancillary_register") | returns ancillary register |
+| [`DNF.clause_register`](qiskit.aqua.circuits.DNF.clause_register "qiskit.aqua.circuits.DNF.clause_register")          | returns clause register    |
+| [`DNF.num_clauses`](qiskit.aqua.circuits.DNF.num_clauses "qiskit.aqua.circuits.DNF.num_clauses")                      | returns num clauses        |
+| [`DNF.num_variables`](qiskit.aqua.circuits.DNF.num_variables "qiskit.aqua.circuits.DNF.num_variables")                | return num variables       |
+| [`DNF.output_register`](qiskit.aqua.circuits.DNF.output_register "qiskit.aqua.circuits.DNF.output_register")          | returns output register    |
+| [`DNF.variable_register`](qiskit.aqua.circuits.DNF.variable_register "qiskit.aqua.circuits.DNF.variable_register")    | returns variable register  |
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.circuits.DNF.construct_circuit" />
-
-`DNF.construct_circuit(circuit=None, variable_register=None, clause_register=None, output_register=None, ancillary_register=None, mct_mode='basic')`
-
-Construct circuit.
-
-**Parameters**
-
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The optional circuit to extend from
-*   **variable\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The optional quantum register to use for problem variables
-*   **clause\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The optional quantum register to use for problem clauses
-*   **output\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The optional quantum register to use for holding the output
-*   **ancillary\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – The optional quantum register to use as ancilla
-*   **mct\_mode** (*str*) – The mode to use for building Multiple-Control Toffoli
-
-**Returns**
-
-quantum circuit.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – invalid input
+|                                                                                                                                   |                    |
+| --------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| [`DNF.construct_circuit`](qiskit.aqua.circuits.DNF.construct_circuit "qiskit.aqua.circuits.DNF.construct_circuit")(\[circuit, …]) | Construct circuit. |
 

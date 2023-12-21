@@ -32,69 +32,10 @@ The table above shows a 6-bit ECC for a 3-class problem. Each class is assigned 
 
 ## Methods
 
-### predict
-
-<span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.predict" />
-
-`ErrorCorrectingCode.predict(x)`
-
-Applying multiple estimators for prediction.
-
-**Parameters**
-
-**x** (*numpy.ndarray*) – NxD array
-
-**Returns**
-
-predicted labels, Nx1 array
-
-**Return type**
-
-numpy.ndarray
-
-### set\_estimator
-
-<span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.set_estimator" />
-
-`ErrorCorrectingCode.set_estimator(estimator_cls, params=None)`
-
-Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator
-
-**Return type**
-
-`None`
-
-### test
-
-<span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test" />
-
-`ErrorCorrectingCode.test(x, y)`
-
-Testing multiple estimators each for distinguishing a pair of classes.
-
-**Parameters**
-
-*   **x** (*numpy.ndarray*) – input points
-*   **y** (*numpy.ndarray*) – input labels
-
-**Returns**
-
-accuracy
-
-**Return type**
-
-float
-
-### train
-
-<span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train" />
-
-`ErrorCorrectingCode.train(x, y)`
-
-Training multiple estimators each for distinguishing a pair of classes.
-
-**Parameters**
-
-*   **x** (*numpy.ndarray*) – input points
-*   **y** (*numpy.ndarray*) – input labels
+|                                                                                                                                                                                                                        |                                                                                                                                                                                                                                         |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`ErrorCorrectingCode.predict`](qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.predict "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.predict")(x)                                | Applying multiple estimators for prediction.                                                                                                                                                                                            |
+| [`ErrorCorrectingCode.set_estimator`](qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.set_estimator "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.set_estimator")(estimator\_cls) | Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator |
+| [`ErrorCorrectingCode.test`](qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test")(x, y)                                      | Testing multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                  |
+| [`ErrorCorrectingCode.train`](qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train "qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train")(x, y)                                   | Training multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                 |
 

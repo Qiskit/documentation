@@ -28,282 +28,31 @@ Create a gate from a hamiltonian operator and evolution time parameter t
 
 ## Attributes
 
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-### definition
-
-Return definition in terms of other basic gates.
-
-### label
-
-<span id="qiskit.extensions.HamiltonianGate.label" />
-
-`str`
-
-Return gate label
-
-**Return type**
-
-`str`
-
-### params
-
-return instruction params.
+|                                                                                                                                         |                                                                               |
+| --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| [`HamiltonianGate.decompositions`](qiskit.extensions.HamiltonianGate.decompositions "qiskit.extensions.HamiltonianGate.decompositions") | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
+| [`HamiltonianGate.definition`](qiskit.extensions.HamiltonianGate.definition "qiskit.extensions.HamiltonianGate.definition")             | Return definition in terms of other basic gates.                              |
+| [`HamiltonianGate.label`](qiskit.extensions.HamiltonianGate.label "qiskit.extensions.HamiltonianGate.label")                            | Return gate label                                                             |
+| [`HamiltonianGate.params`](qiskit.extensions.HamiltonianGate.params "qiskit.extensions.HamiltonianGate.params")                         | return instruction params.                                                    |
 
 ## Methods
 
-### add\_decomposition
-
-<span id="qiskit.extensions.HamiltonianGate.add_decomposition" />
-
-`HamiltonianGate.add_decomposition(decomposition)`
-
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
-
-### adjoint
-
-<span id="qiskit.extensions.HamiltonianGate.adjoint" />
-
-`HamiltonianGate.adjoint()`
-
-Return the adjoint of the unitary.
-
-### assemble
-
-<span id="qiskit.extensions.HamiltonianGate.assemble" />
-
-`HamiltonianGate.assemble()`
-
-Assemble a QasmQobjInstruction
-
-**Return type**
-
-[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
-
-### broadcast\_arguments
-
-<span id="qiskit.extensions.HamiltonianGate.broadcast_arguments" />
-
-`HamiltonianGate.broadcast_arguments(qargs, cargs)`
-
-Validation and handling of the arguments and its relationship.
-
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
-
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
-
-The general broadcasting rules are:
-
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
-
-**Parameters**
-
-*   **qargs** (`List`) – List of quantum bit arguments.
-*   **cargs** (`List`) – List of classical bit arguments.
-
-**Return type**
-
-`Tuple`\[`List`, `List`]
-
-**Returns**
-
-A tuple with single arguments.
-
-**Raises**
-
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
-
-### c\_if
-
-<span id="qiskit.extensions.HamiltonianGate.c_if" />
-
-`HamiltonianGate.c_if(classical, val)`
-
-Add classical condition on register classical and value val.
-
-### conjugate
-
-<span id="qiskit.extensions.HamiltonianGate.conjugate" />
-
-`HamiltonianGate.conjugate()`
-
-Return the conjugate of the Hamiltonian.
-
-### control
-
-<span id="qiskit.extensions.HamiltonianGate.control" />
-
-`HamiltonianGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
-
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** (`Optional`\[`int`]) – number of controls to add to gate (default=1)
-*   **label** (`Optional`\[`str`]) – optional gate label
-*   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use 2\*\*num\_ctrl\_qubits-1.
-
-**Returns**
-
-Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 ancillae qubits so returns a gate of size num\_qubits + 2\*num\_ctrl\_qubits - 1.
-
-**Return type**
-
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-**Raises**
-
-**QiskitError** – unrecognized mode or invalid ctrl\_state
-
-### copy
-
-<span id="qiskit.extensions.HamiltonianGate.copy" />
-
-`HamiltonianGate.copy(name=None)`
-
-Copy of the instruction.
-
-**Parameters**
-
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
-
-**Returns**
-
-**a copy of the current instruction, with the name**
-
-updated if it was provided
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### inverse
-
-<span id="qiskit.extensions.HamiltonianGate.inverse" />
-
-`HamiltonianGate.inverse()`
-
-Return the adjoint of the unitary.
-
-### is\_parameterized
-
-<span id="qiskit.extensions.HamiltonianGate.is_parameterized" />
-
-`HamiltonianGate.is_parameterized()`
-
-Return True .IFF. instruction is parameterized else False
-
-### mirror
-
-<span id="qiskit.extensions.HamiltonianGate.mirror" />
-
-`HamiltonianGate.mirror()`
-
-For a composite instruction, reverse the order of sub-gates.
-
-This is done by recursively mirroring all sub-instructions. It does not invert any gate.
-
-**Returns**
-
-a fresh gate with sub-gates reversed
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### power
-
-<span id="qiskit.extensions.HamiltonianGate.power" />
-
-`HamiltonianGate.power(exponent)`
-
-Creates a unitary gate as gate^exponent.
-
-**Parameters**
-
-**exponent** (*float*) – Gate^exponent
-
-**Returns**
-
-To which to\_matrix is self.to\_matrix^exponent.
-
-**Return type**
-
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
-
-**Raises**
-
-**CircuitError** – If Gate is not unitary
-
-### qasm
-
-<span id="qiskit.extensions.HamiltonianGate.qasm" />
-
-`HamiltonianGate.qasm()`
-
-Raise an error, as QASM is not defined for the HamiltonianGate.
-
-### repeat
-
-<span id="qiskit.extensions.HamiltonianGate.repeat" />
-
-`HamiltonianGate.repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
-
-### to\_matrix
-
-<span id="qiskit.extensions.HamiltonianGate.to_matrix" />
-
-`HamiltonianGate.to_matrix()`
-
-Return matrix for the unitary.
-
-### transpose
-
-<span id="qiskit.extensions.HamiltonianGate.transpose" />
-
-`HamiltonianGate.transpose()`
-
-Return the transpose of the Hamiltonian.
+|                                                                                                                                                                      |                                                                          |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| [`HamiltonianGate.add_decomposition`](qiskit.extensions.HamiltonianGate.add_decomposition "qiskit.extensions.HamiltonianGate.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
+| [`HamiltonianGate.adjoint`](qiskit.extensions.HamiltonianGate.adjoint "qiskit.extensions.HamiltonianGate.adjoint")()                                                 | Return the adjoint of the unitary.                                       |
+| [`HamiltonianGate.assemble`](qiskit.extensions.HamiltonianGate.assemble "qiskit.extensions.HamiltonianGate.assemble")()                                              | Assemble a QasmQobjInstruction                                           |
+| [`HamiltonianGate.broadcast_arguments`](qiskit.extensions.HamiltonianGate.broadcast_arguments "qiskit.extensions.HamiltonianGate.broadcast_arguments")(qargs, cargs) | Validation and handling of the arguments and its relationship.           |
+| [`HamiltonianGate.c_if`](qiskit.extensions.HamiltonianGate.c_if "qiskit.extensions.HamiltonianGate.c_if")(classical, val)                                            | Add classical condition on register classical and value val.             |
+| [`HamiltonianGate.conjugate`](qiskit.extensions.HamiltonianGate.conjugate "qiskit.extensions.HamiltonianGate.conjugate")()                                           | Return the conjugate of the Hamiltonian.                                 |
+| [`HamiltonianGate.control`](qiskit.extensions.HamiltonianGate.control "qiskit.extensions.HamiltonianGate.control")(\[num\_ctrl\_qubits, …])                          | Return controlled version of gate.                                       |
+| [`HamiltonianGate.copy`](qiskit.extensions.HamiltonianGate.copy "qiskit.extensions.HamiltonianGate.copy")(\[name])                                                   | Copy of the instruction.                                                 |
+| [`HamiltonianGate.inverse`](qiskit.extensions.HamiltonianGate.inverse "qiskit.extensions.HamiltonianGate.inverse")()                                                 | Return the adjoint of the unitary.                                       |
+| [`HamiltonianGate.is_parameterized`](qiskit.extensions.HamiltonianGate.is_parameterized "qiskit.extensions.HamiltonianGate.is_parameterized")()                      | Return True .IFF.                                                        |
+| [`HamiltonianGate.mirror`](qiskit.extensions.HamiltonianGate.mirror "qiskit.extensions.HamiltonianGate.mirror")()                                                    | For a composite instruction, reverse the order of sub-gates.             |
+| [`HamiltonianGate.power`](qiskit.extensions.HamiltonianGate.power "qiskit.extensions.HamiltonianGate.power")(exponent)                                               | Creates a unitary gate as gate^exponent.                                 |
+| [`HamiltonianGate.qasm`](qiskit.extensions.HamiltonianGate.qasm "qiskit.extensions.HamiltonianGate.qasm")()                                                          | Raise an error, as QASM is not defined for the HamiltonianGate.          |
+| [`HamiltonianGate.repeat`](qiskit.extensions.HamiltonianGate.repeat "qiskit.extensions.HamiltonianGate.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.             |
+| [`HamiltonianGate.to_matrix`](qiskit.extensions.HamiltonianGate.to_matrix "qiskit.extensions.HamiltonianGate.to_matrix")()                                           | Return matrix for the unitary.                                           |
+| [`HamiltonianGate.transpose`](qiskit.extensions.HamiltonianGate.transpose "qiskit.extensions.HamiltonianGate.transpose")()                                           | Return the transpose of the Hamiltonian.                                 |
 

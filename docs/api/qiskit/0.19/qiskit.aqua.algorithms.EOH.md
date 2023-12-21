@@ -29,86 +29,17 @@ EOH provides the lower-level building blocks for simulating universal quantum sy
 
 ## Attributes
 
-### backend
-
-<span id="qiskit.aqua.algorithms.EOH.backend" />
-
-`qiskit.providers.basebackend.BaseBackend`
-
-Returns backend.
-
-**Return type**
-
-[`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
-
-### quantum\_instance
-
-<span id="qiskit.aqua.algorithms.EOH.quantum_instance" />
-
-`Union[None, qiskit.aqua.quantum_instance.QuantumInstance]`
-
-Returns quantum instance.
-
-**Return type**
-
-`Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
-
-### random
-
-Return a numpy random.
+|                                                                                                                     |                           |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| [`EOH.backend`](qiskit.aqua.algorithms.EOH.backend "qiskit.aqua.algorithms.EOH.backend")                            | Returns backend.          |
+| [`EOH.quantum_instance`](qiskit.aqua.algorithms.EOH.quantum_instance "qiskit.aqua.algorithms.EOH.quantum_instance") | Returns quantum instance. |
+| [`EOH.random`](qiskit.aqua.algorithms.EOH.random "qiskit.aqua.algorithms.EOH.random")                               | Return a numpy random.    |
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.algorithms.EOH.construct_circuit" />
-
-`EOH.construct_circuit()`
-
-Construct the circuit.
-
-**Returns**
-
-the circuit.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-### run
-
-<span id="qiskit.aqua.algorithms.EOH.run" />
-
-`EOH.run(quantum_instance=None, **kwargs)`
-
-Execute the algorithm with selected backend.
-
-**Parameters**
-
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### set\_backend
-
-<span id="qiskit.aqua.algorithms.EOH.set_backend" />
-
-`EOH.set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
+|                                                                                                                           |                                              |
+| ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [`EOH.construct_circuit`](qiskit.aqua.algorithms.EOH.construct_circuit "qiskit.aqua.algorithms.EOH.construct_circuit")()  | Construct the circuit.                       |
+| [`EOH.run`](qiskit.aqua.algorithms.EOH.run "qiskit.aqua.algorithms.EOH.run")(\[quantum\_instance])                        | Execute the algorithm with selected backend. |
+| [`EOH.set_backend`](qiskit.aqua.algorithms.EOH.set_backend "qiskit.aqua.algorithms.EOH.set_backend")(backend, \*\*kwargs) | Sets backend with configuration.             |
 

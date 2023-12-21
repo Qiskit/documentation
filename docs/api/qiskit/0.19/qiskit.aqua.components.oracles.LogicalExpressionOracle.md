@@ -52,35 +52,17 @@ By default, the Logical Expression oracle will not try to apply any optimization
 
 ## Attributes
 
-### ancillary\_register
-
-returns ancillary register
-
-### circuit
-
-### output\_register
-
-returns output register
-
-### variable\_register
-
-returns variable register
+|                                                                                                                                                                                                       |                            |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| [`LogicalExpressionOracle.ancillary_register`](qiskit.aqua.components.oracles.LogicalExpressionOracle.ancillary_register "qiskit.aqua.components.oracles.LogicalExpressionOracle.ancillary_register") | returns ancillary register |
+| [`LogicalExpressionOracle.circuit`](qiskit.aqua.components.oracles.LogicalExpressionOracle.circuit "qiskit.aqua.components.oracles.LogicalExpressionOracle.circuit")                                  |                            |
+| [`LogicalExpressionOracle.output_register`](qiskit.aqua.components.oracles.LogicalExpressionOracle.output_register "qiskit.aqua.components.oracles.LogicalExpressionOracle.output_register")          | returns output register    |
+| [`LogicalExpressionOracle.variable_register`](qiskit.aqua.components.oracles.LogicalExpressionOracle.variable_register "qiskit.aqua.components.oracles.LogicalExpressionOracle.variable_register")    | returns variable register  |
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle.construct_circuit" />
-
-`LogicalExpressionOracle.construct_circuit()`
-
-construct circuit
-
-### evaluate\_classically
-
-<span id="qiskit.aqua.components.oracles.LogicalExpressionOracle.evaluate_classically" />
-
-`LogicalExpressionOracle.evaluate_classically(measurement)`
-
-evaluate classically
+|                                                                                                                                                                                                                |                      |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------- |
+| [`LogicalExpressionOracle.construct_circuit`](qiskit.aqua.components.oracles.LogicalExpressionOracle.construct_circuit "qiskit.aqua.components.oracles.LogicalExpressionOracle.construct_circuit")()           | construct circuit    |
+| [`LogicalExpressionOracle.evaluate_classically`](qiskit.aqua.components.oracles.LogicalExpressionOracle.evaluate_classically "qiskit.aqua.components.oracles.LogicalExpressionOracle.evaluate_classically")(…) | evaluate classically |
 

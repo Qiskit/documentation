@@ -22,32 +22,13 @@ This is suitable for those situations in which the all-zeros state is the desire
 
 ## Attributes
 
-### bitstr
+|                                                                                                                        |   |
+| ---------------------------------------------------------------------------------------------------------------------- | - |
+| [`Zero.bitstr`](qiskit.aqua.components.initial_states.Zero.bitstr "qiskit.aqua.components.initial_states.Zero.bitstr") |   |
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.components.initial_states.Zero.construct_circuit" />
-
-`Zero.construct_circuit(mode='circuit', register=None)`
-
-Construct the statevector of desired initial state.
-
-**Parameters**
-
-*   **mode** – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
-*   **register** – qubits for circuit construction.
-
-**Returns**
-
-statevector.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
+|                                                                                                                                                                            |                                                     |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| [`Zero.construct_circuit`](qiskit.aqua.components.initial_states.Zero.construct_circuit "qiskit.aqua.components.initial_states.Zero.construct_circuit")(\[mode, register]) | Construct the statevector of desired initial state. |
 

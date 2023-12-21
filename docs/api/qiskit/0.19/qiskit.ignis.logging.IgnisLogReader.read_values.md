@@ -1,0 +1,36 @@
+---
+title: read_values
+description: API reference for qiskit.ignis.logging.IgnisLogReader.read_values
+in_page_toc_min_heading_level: 1
+python_api_type: method
+python_api_name: qiskit.ignis.logging.IgnisLogReader.read_values
+---
+
+# read\_values
+
+<span id="qiskit.ignis.logging.IgnisLogReader.read_values" />
+
+`IgnisLogReader.read_values(log_files=None, keys=None, from_datetime=None, from_datetime_format=None, to_datetime=None, to_datetime_format=None)`
+
+Retrieve log lines using key and date/time filtering criteria
+
+## Params:
+
+log\_files: List of log files to read from keys: Retrieve only key value pairs of corresponding to keys A row with no matching keys will not be retrieved. If not specified, all keys are retrieved (optional)
+
+from\_datetime(None): Retrieve only rows newer than the given date and time
+
+from\_datetime\_format(None): datetime format string. If not specified will assume “%Y/%m/%d %H:%M:%S”
+
+to\_datetime(None): Retrieve only rows older than the given date and time
+
+to\_datetime\_format(None): datetime format string. If not specified will assume “%Y/%m/%d %H:%M:%S”
+
+**Returns**
+
+A list containing the retrieved rows of key pair values
+
+**Return type**
+
+list
+

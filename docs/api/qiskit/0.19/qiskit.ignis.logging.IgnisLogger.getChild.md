@@ -1,0 +1,26 @@
+---
+title: getChild
+description: API reference for qiskit.ignis.logging.IgnisLogger.getChild
+in_page_toc_min_heading_level: 1
+python_api_type: method
+python_api_name: qiskit.ignis.logging.IgnisLogger.getChild
+---
+
+# getChild
+
+<span id="qiskit.ignis.logging.IgnisLogger.getChild" />
+
+`IgnisLogger.getChild(suffix)`
+
+Get a logger which is a descendant to this one.
+
+This is a convenience method, such that
+
+logging.getLogger(‘abc’).getChild(‘def.ghi’)
+
+is the same as
+
+logging.getLogger(‘abc.def.ghi’)
+
+It’s useful, for example, when the parent logger is named using \_\_name\_\_ rather than a literal string.
+

@@ -16,23 +16,7 @@ Converters take an Operator and return a new Operator, generally isomorphic in s
 
 ## Methods
 
-### convert
-
-<span id="qiskit.aqua.operators.converters.ConverterBase.convert" />
-
-`abstract ConverterBase.convert(operator)`
-
-Accept the Operator and return the converted Operator
-
-**Parameters**
-
-**operator** ([`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")) – The Operator to convert.
-
-**Return type**
-
-[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
-
-**Returns**
-
-The converted Operator.
+|                                                                                                                                                      |                                                       |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| [`ConverterBase.convert`](qiskit.aqua.operators.converters.ConverterBase.convert "qiskit.aqua.operators.converters.ConverterBase.convert")(operator) | Accept the Operator and return the converted Operator |
 

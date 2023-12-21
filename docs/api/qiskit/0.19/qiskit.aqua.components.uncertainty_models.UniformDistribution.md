@@ -24,168 +24,30 @@ Uniform distribution is defined by the number of qubits that should be used to r
 
 ## Attributes
 
-### high
-
-returns high
-
-### low
-
-returns low
-
-### num\_target\_qubits
-
-Returns the number of target qubits
-
-### num\_values
-
-returns number of values
-
-### probabilities
-
-returns probabilities
-
-### values
-
-returns values
+|                                                                                                                                                                                                              |                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------- |
+| [`UniformDistribution.high`](qiskit.aqua.components.uncertainty_models.UniformDistribution.high "qiskit.aqua.components.uncertainty_models.UniformDistribution.high")                                        | returns high                        |
+| [`UniformDistribution.low`](qiskit.aqua.components.uncertainty_models.UniformDistribution.low "qiskit.aqua.components.uncertainty_models.UniformDistribution.low")                                           | returns low                         |
+| [`UniformDistribution.num_target_qubits`](qiskit.aqua.components.uncertainty_models.UniformDistribution.num_target_qubits "qiskit.aqua.components.uncertainty_models.UniformDistribution.num_target_qubits") | Returns the number of target qubits |
+| [`UniformDistribution.num_values`](qiskit.aqua.components.uncertainty_models.UniformDistribution.num_values "qiskit.aqua.components.uncertainty_models.UniformDistribution.num_values")                      | returns number of values            |
+| [`UniformDistribution.probabilities`](qiskit.aqua.components.uncertainty_models.UniformDistribution.probabilities "qiskit.aqua.components.uncertainty_models.UniformDistribution.probabilities")             | returns probabilities               |
+| [`UniformDistribution.values`](qiskit.aqua.components.uncertainty_models.UniformDistribution.values "qiskit.aqua.components.uncertainty_models.UniformDistribution.values")                                  | returns values                      |
 
 ## Methods
 
-### build
-
-<span id="qiskit.aqua.components.uncertainty_models.UniformDistribution.build" />
-
-`UniformDistribution.build(qc, q, q_ancillas=None, params=None)`
-
-### build\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.UniformDistribution.build_controlled" />
-
-`UniformDistribution.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
-
-Adds corresponding controlled sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
-
-### build\_controlled\_inverse
-
-<span id="qiskit.aqua.components.uncertainty_models.UniformDistribution.build_controlled_inverse" />
-
-`UniformDistribution.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
-
-Adds controlled inverse of corresponding sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
-
-### build\_controlled\_inverse\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.UniformDistribution.build_controlled_inverse_power" />
-
-`UniformDistribution.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
-
-Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_controlled\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.UniformDistribution.build_controlled_power" />
-
-`UniformDistribution.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
-
-Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_inverse
-
-<span id="qiskit.aqua.components.uncertainty_models.UniformDistribution.build_inverse" />
-
-`UniformDistribution.build_inverse(qc, q, q_ancillas=None)`
-
-Adds inverse of corresponding sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-
-### build\_inverse\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.UniformDistribution.build_inverse_power" />
-
-`UniformDistribution.build_inverse_power(qc, q, power, q_ancillas=None)`
-
-Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.UniformDistribution.build_power" />
-
-`UniformDistribution.build_power(qc, q, power, q_ancillas=None)`
-
-Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### get\_num\_qubits
-
-<span id="qiskit.aqua.components.uncertainty_models.UniformDistribution.get_num_qubits" />
-
-`UniformDistribution.get_num_qubits()`
-
-returns number of qubits
-
-### get\_num\_qubits\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.UniformDistribution.get_num_qubits_controlled" />
-
-`UniformDistribution.get_num_qubits_controlled()`
-
-returns number of qubits controlled
-
-### pdf\_to\_probabilities
-
-<span id="qiskit.aqua.components.uncertainty_models.UniformDistribution.pdf_to_probabilities" />
-
-`static UniformDistribution.pdf_to_probabilities(pdf, low, high, num_values)`
-
-Takes a probability density function (pdf), and returns a truncated and discretized array of probabilities corresponding to it
-
-**Parameters**
-
-*   **pdf** (*function*) – probability density function
-*   **low** (*float*) – lower bound of equidistant grid
-*   **high** (*float*) – upper bound of equidistant grid
-*   **num\_values** (*int*) – number of grid points
-
-**Returns**
-
-array of probabilities
-
-**Return type**
-
-list
-
-### required\_ancillas
-
-<span id="qiskit.aqua.components.uncertainty_models.UniformDistribution.required_ancillas" />
-
-`UniformDistribution.required_ancillas()`
-
-returns required ancillas
-
-### required\_ancillas\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.UniformDistribution.required_ancillas_controlled" />
-
-`UniformDistribution.required_ancillas_controlled()`
-
-returns required ancillas controlled
+|                                                                                                                                                                                                                                                            |                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| [`UniformDistribution.build`](qiskit.aqua.components.uncertainty_models.UniformDistribution.build "qiskit.aqua.components.uncertainty_models.UniformDistribution.build")(qc, q\[, …])                                                                      |                                                                                                                                |
+| [`UniformDistribution.build_controlled`](qiskit.aqua.components.uncertainty_models.UniformDistribution.build_controlled "qiskit.aqua.components.uncertainty_models.UniformDistribution.build_controlled")(qc, q, …)                                        | Adds corresponding controlled sub-circuit to given circuit                                                                     |
+| [`UniformDistribution.build_controlled_inverse`](qiskit.aqua.components.uncertainty_models.UniformDistribution.build_controlled_inverse "qiskit.aqua.components.uncertainty_models.UniformDistribution.build_controlled_inverse")(qc, …)                   | Adds controlled inverse of corresponding sub-circuit to given circuit                                                          |
+| [`UniformDistribution.build_controlled_inverse_power`](qiskit.aqua.components.uncertainty_models.UniformDistribution.build_controlled_inverse_power "qiskit.aqua.components.uncertainty_models.UniformDistribution.build_controlled_inverse_power")(qc, …) | Adds controlled, inverse, power of corresponding circuit.                                                                      |
+| [`UniformDistribution.build_controlled_power`](qiskit.aqua.components.uncertainty_models.UniformDistribution.build_controlled_power "qiskit.aqua.components.uncertainty_models.UniformDistribution.build_controlled_power")(qc, …)                         | Adds controlled power of corresponding circuit.                                                                                |
+| [`UniformDistribution.build_inverse`](qiskit.aqua.components.uncertainty_models.UniformDistribution.build_inverse "qiskit.aqua.components.uncertainty_models.UniformDistribution.build_inverse")(qc, q\[, …])                                              | Adds inverse of corresponding sub-circuit to given circuit                                                                     |
+| [`UniformDistribution.build_inverse_power`](qiskit.aqua.components.uncertainty_models.UniformDistribution.build_inverse_power "qiskit.aqua.components.uncertainty_models.UniformDistribution.build_inverse_power")(qc, …)                                  | Adds inverse power of corresponding circuit.                                                                                   |
+| [`UniformDistribution.build_power`](qiskit.aqua.components.uncertainty_models.UniformDistribution.build_power "qiskit.aqua.components.uncertainty_models.UniformDistribution.build_power")(qc, q, power)                                                   | Adds power of corresponding circuit.                                                                                           |
+| [`UniformDistribution.get_num_qubits`](qiskit.aqua.components.uncertainty_models.UniformDistribution.get_num_qubits "qiskit.aqua.components.uncertainty_models.UniformDistribution.get_num_qubits")()                                                      | returns number of qubits                                                                                                       |
+| [`UniformDistribution.get_num_qubits_controlled`](qiskit.aqua.components.uncertainty_models.UniformDistribution.get_num_qubits_controlled "qiskit.aqua.components.uncertainty_models.UniformDistribution.get_num_qubits_controlled")()                     | returns number of qubits controlled                                                                                            |
+| [`UniformDistribution.pdf_to_probabilities`](qiskit.aqua.components.uncertainty_models.UniformDistribution.pdf_to_probabilities "qiskit.aqua.components.uncertainty_models.UniformDistribution.pdf_to_probabilities")(…)                                   | Takes a probability density function (pdf), and returns a truncated and discretized array of probabilities corresponding to it |
+| [`UniformDistribution.required_ancillas`](qiskit.aqua.components.uncertainty_models.UniformDistribution.required_ancillas "qiskit.aqua.components.uncertainty_models.UniformDistribution.required_ancillas")()                                             | returns required ancillas                                                                                                      |
+| [`UniformDistribution.required_ancillas_controlled`](qiskit.aqua.components.uncertainty_models.UniformDistribution.required_ancillas_controlled "qiskit.aqua.components.uncertainty_models.UniformDistribution.required_ancillas_controlled")()            | returns required ancillas controlled                                                                                           |
 

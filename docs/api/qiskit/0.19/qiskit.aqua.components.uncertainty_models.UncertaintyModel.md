@@ -16,134 +16,24 @@ The abstract Uncertainty Model
 
 ## Attributes
 
-### num\_target\_qubits
-
-Returns the number of target qubits
+|                                                                                                                                                                                                     |                                     |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| [`UncertaintyModel.num_target_qubits`](qiskit.aqua.components.uncertainty_models.UncertaintyModel.num_target_qubits "qiskit.aqua.components.uncertainty_models.UncertaintyModel.num_target_qubits") | Returns the number of target qubits |
 
 ## Methods
 
-### build
-
-<span id="qiskit.aqua.components.uncertainty_models.UncertaintyModel.build" />
-
-`abstract UncertaintyModel.build(qc, q, q_ancillas=None, params=None)`
-
-Adds corresponding sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **params** (*list*) – parameters for circuit
-
-### build\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_controlled" />
-
-`UncertaintyModel.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
-
-Adds corresponding controlled sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
-
-### build\_controlled\_inverse
-
-<span id="qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_controlled_inverse" />
-
-`UncertaintyModel.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
-
-Adds controlled inverse of corresponding sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
-
-### build\_controlled\_inverse\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_controlled_inverse_power" />
-
-`UncertaintyModel.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
-
-Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_controlled\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_controlled_power" />
-
-`UncertaintyModel.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
-
-Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_inverse
-
-<span id="qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_inverse" />
-
-`UncertaintyModel.build_inverse(qc, q, q_ancillas=None)`
-
-Adds inverse of corresponding sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-
-### build\_inverse\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_inverse_power" />
-
-`UncertaintyModel.build_inverse_power(qc, q, power, q_ancillas=None)`
-
-Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_power" />
-
-`UncertaintyModel.build_power(qc, q, power, q_ancillas=None)`
-
-Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### get\_num\_qubits
-
-<span id="qiskit.aqua.components.uncertainty_models.UncertaintyModel.get_num_qubits" />
-
-`UncertaintyModel.get_num_qubits()`
-
-returns number of qubits
-
-### get\_num\_qubits\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.UncertaintyModel.get_num_qubits_controlled" />
-
-`UncertaintyModel.get_num_qubits_controlled()`
-
-returns number of qubits controlled
-
-### required\_ancillas
-
-<span id="qiskit.aqua.components.uncertainty_models.UncertaintyModel.required_ancillas" />
-
-`UncertaintyModel.required_ancillas()`
-
-returns required ancillas
-
-### required\_ancillas\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.UncertaintyModel.required_ancillas_controlled" />
-
-`UncertaintyModel.required_ancillas_controlled()`
-
-returns required ancillas controlled
+|                                                                                                                                                                                                                                                   |                                                                       |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [`UncertaintyModel.build`](qiskit.aqua.components.uncertainty_models.UncertaintyModel.build "qiskit.aqua.components.uncertainty_models.UncertaintyModel.build")(qc, q\[, q\_ancillas, …])                                                         | Adds corresponding sub-circuit to given circuit                       |
+| [`UncertaintyModel.build_controlled`](qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_controlled "qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_controlled")(qc, q, …)                                        | Adds corresponding controlled sub-circuit to given circuit            |
+| [`UncertaintyModel.build_controlled_inverse`](qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_controlled_inverse "qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_controlled_inverse")(qc, …)                   | Adds controlled inverse of corresponding sub-circuit to given circuit |
+| [`UncertaintyModel.build_controlled_inverse_power`](qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_controlled_inverse_power "qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_controlled_inverse_power")(qc, …) | Adds controlled, inverse, power of corresponding circuit.             |
+| [`UncertaintyModel.build_controlled_power`](qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_controlled_power "qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_controlled_power")(qc, …)                         | Adds controlled power of corresponding circuit.                       |
+| [`UncertaintyModel.build_inverse`](qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_inverse "qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_inverse")(qc, q\[, …])                                              | Adds inverse of corresponding sub-circuit to given circuit            |
+| [`UncertaintyModel.build_inverse_power`](qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_inverse_power "qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_inverse_power")(qc, q, …)                               | Adds inverse power of corresponding circuit.                          |
+| [`UncertaintyModel.build_power`](qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_power "qiskit.aqua.components.uncertainty_models.UncertaintyModel.build_power")(qc, q, power\[, …])                                             | Adds power of corresponding circuit.                                  |
+| [`UncertaintyModel.get_num_qubits`](qiskit.aqua.components.uncertainty_models.UncertaintyModel.get_num_qubits "qiskit.aqua.components.uncertainty_models.UncertaintyModel.get_num_qubits")()                                                      | returns number of qubits                                              |
+| [`UncertaintyModel.get_num_qubits_controlled`](qiskit.aqua.components.uncertainty_models.UncertaintyModel.get_num_qubits_controlled "qiskit.aqua.components.uncertainty_models.UncertaintyModel.get_num_qubits_controlled")()                     | returns number of qubits controlled                                   |
+| [`UncertaintyModel.required_ancillas`](qiskit.aqua.components.uncertainty_models.UncertaintyModel.required_ancillas "qiskit.aqua.components.uncertainty_models.UncertaintyModel.required_ancillas")()                                             | returns required ancillas                                             |
+| [`UncertaintyModel.required_ancillas_controlled`](qiskit.aqua.components.uncertainty_models.UncertaintyModel.required_ancillas_controlled "qiskit.aqua.components.uncertainty_models.UncertaintyModel.required_ancillas_controlled")()            | returns required ancillas controlled                                  |
 

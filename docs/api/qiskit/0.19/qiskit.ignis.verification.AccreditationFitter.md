@@ -18,79 +18,21 @@ Implementation follows the methods from Samuele Ferracin, Theodoros Kapourniotis
 
 ## Attributes
 
-### N\_acc
-
-<span id="qiskit.ignis.verification.AccreditationFitter.N_acc" />
-
-`= 0`
-
-### bound
-
-<span id="qiskit.ignis.verification.AccreditationFitter.bound" />
-
-`= 1`
-
-### confidence
-
-<span id="qiskit.ignis.verification.AccreditationFitter.confidence" />
-
-`= 1`
-
-### flag
-
-<span id="qiskit.ignis.verification.AccreditationFitter.flag" />
-
-`= 'accepted'`
-
-### g\_num
-
-<span id="qiskit.ignis.verification.AccreditationFitter.g_num" />
-
-`= 1`
-
-### num\_runs
-
-<span id="qiskit.ignis.verification.AccreditationFitter.num_runs" />
-
-`= 0`
-
-### num\_traps
-
-<span id="qiskit.ignis.verification.AccreditationFitter.num_traps" />
-
-`= 0`
-
-### outputs
-
-<span id="qiskit.ignis.verification.AccreditationFitter.outputs" />
-
-`= []`
+|                                                                                                                                                         |   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------- | - |
+| [`AccreditationFitter.N_acc`](qiskit.ignis.verification.AccreditationFitter.N_acc "qiskit.ignis.verification.AccreditationFitter.N_acc")                |   |
+| [`AccreditationFitter.bound`](qiskit.ignis.verification.AccreditationFitter.bound "qiskit.ignis.verification.AccreditationFitter.bound")                |   |
+| [`AccreditationFitter.confidence`](qiskit.ignis.verification.AccreditationFitter.confidence "qiskit.ignis.verification.AccreditationFitter.confidence") |   |
+| [`AccreditationFitter.flag`](qiskit.ignis.verification.AccreditationFitter.flag "qiskit.ignis.verification.AccreditationFitter.flag")                   |   |
+| [`AccreditationFitter.g_num`](qiskit.ignis.verification.AccreditationFitter.g_num "qiskit.ignis.verification.AccreditationFitter.g_num")                |   |
+| [`AccreditationFitter.num_runs`](qiskit.ignis.verification.AccreditationFitter.num_runs "qiskit.ignis.verification.AccreditationFitter.num_runs")       |   |
+| [`AccreditationFitter.num_traps`](qiskit.ignis.verification.AccreditationFitter.num_traps "qiskit.ignis.verification.AccreditationFitter.num_traps")    |   |
+| [`AccreditationFitter.outputs`](qiskit.ignis.verification.AccreditationFitter.outputs "qiskit.ignis.verification.AccreditationFitter.outputs")          |   |
 
 ## Methods
 
-### bound\_variation\_distance
-
-<span id="qiskit.ignis.verification.AccreditationFitter.bound_variation_distance" />
-
-`AccreditationFitter.bound_variation_distance(theta)`
-
-This function computes the bound on variation distance based and the confidence
-
-**Parameters**
-
-**theta** (*float*) – number between 0 and 1
-
-### single\_protocol\_run
-
-<span id="qiskit.ignis.verification.AccreditationFitter.single_protocol_run" />
-
-`AccreditationFitter.single_protocol_run(results, postp_list, v_zero)`
-
-Single protocol run of accreditation protocol on simul backend
-
-**Parameters**
-
-*   **results** ([*Result*](qiskit.result.Result "qiskit.result.Result")) – results of the quantum job
-*   **postp\_list** (*list*) – list of strings used to post-process outputs
-*   **v\_zero** (*int*) – position of target
+|                                                                                                                                                                                                          |                                                                                 |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [`AccreditationFitter.bound_variation_distance`](qiskit.ignis.verification.AccreditationFitter.bound_variation_distance "qiskit.ignis.verification.AccreditationFitter.bound_variation_distance")(theta) | This function computes the bound on variation distance based and the confidence |
+| [`AccreditationFitter.single_protocol_run`](qiskit.ignis.verification.AccreditationFitter.single_protocol_run "qiskit.ignis.verification.AccreditationFitter.single_protocol_run")(…)                    | Single protocol run of accreditation protocol on simul backend                  |
 

@@ -14,7 +14,7 @@ python_api_name: qiskit.quantum_info.partial_trace
 
 Return reduced density matrix by tracing out part of quantum state.
 
-If all subsystems are traced over this returns the [`trace()`](qiskit.quantum_info.DensityMatrix#trace "qiskit.quantum_info.DensityMatrix.trace") of the input state.
+If all subsystems are traced over this returns the [`trace()`](qiskit.quantum_info.DensityMatrix.trace "qiskit.quantum_info.DensityMatrix.trace") of the input state.
 
 **Parameters**
 

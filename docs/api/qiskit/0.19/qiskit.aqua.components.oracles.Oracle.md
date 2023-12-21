@@ -23,43 +23,16 @@ This method should initialize the module and use an exception if a component of 
 
 ## Attributes
 
-### ancillary\_register
-
-<span id="qiskit.aqua.components.oracles.Oracle.ancillary_register" />
-
-`abstract property`
-
-returns ancillary register
-
-### circuit
-
-### output\_register
-
-<span id="qiskit.aqua.components.oracles.Oracle.output_register" />
-
-`abstract property`
-
-returns output register
-
-### variable\_register
-
-<span id="qiskit.aqua.components.oracles.Oracle.variable_register" />
-
-`abstract property`
-
-returns variable register
+|                                                                                                                                                    |                            |
+| -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| [`Oracle.ancillary_register`](qiskit.aqua.components.oracles.Oracle.ancillary_register "qiskit.aqua.components.oracles.Oracle.ancillary_register") | returns ancillary register |
+| [`Oracle.circuit`](qiskit.aqua.components.oracles.Oracle.circuit "qiskit.aqua.components.oracles.Oracle.circuit")                                  |                            |
+| [`Oracle.output_register`](qiskit.aqua.components.oracles.Oracle.output_register "qiskit.aqua.components.oracles.Oracle.output_register")          | returns output register    |
+| [`Oracle.variable_register`](qiskit.aqua.components.oracles.Oracle.variable_register "qiskit.aqua.components.oracles.Oracle.variable_register")    | returns variable register  |
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.components.oracles.Oracle.construct_circuit" />
-
-`abstract Oracle.construct_circuit()`
-
-Construct the oracle circuit.
-
-**Returns**
-
-A quantum circuit for the oracle.
+|                                                                                                                                                   |                               |
+| ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| [`Oracle.construct_circuit`](qiskit.aqua.components.oracles.Oracle.construct_circuit "qiskit.aqua.components.oracles.Oracle.construct_circuit")() | Construct the oracle circuit. |
 

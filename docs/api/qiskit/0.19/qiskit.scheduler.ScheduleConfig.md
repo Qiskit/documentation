@@ -23,3 +23,6 @@ Container for information needed to schedule a QuantumCircuit into a pulse Sched
 
 ## Methods
 
+|   |
+| - |
+

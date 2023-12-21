@@ -33,39 +33,8 @@ Instatiate a new QasmQobjInstruction object.
 
 ## Methods
 
-### from\_dict
-
-<span id="qiskit.qobj.QasmQobjInstruction.from_dict" />
-
-`classmethod QasmQobjInstruction.from_dict(data)`
-
-Create a new QasmQobjInstruction object from a dictionary.
-
-**Parameters**
-
-**data** (*dict*) – A dictionary for the experiment config
-
-**Returns**
-
-The object from the input dictionary.
-
-**Return type**
-
-[QasmQobjInstruction](qiskit.qobj.QasmQobjInstruction "qiskit.qobj.QasmQobjInstruction")
-
-### to\_dict
-
-<span id="qiskit.qobj.QasmQobjInstruction.to_dict" />
-
-`QasmQobjInstruction.to_dict()`
-
-Return a dictionary format representation of the Instruction.
-
-**Returns**
-
-The dictionary form of the QasmQobjInstruction.
-
-**Return type**
-
-dict
+|                                                                                                                                |                                                               |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------- |
+| [`QasmQobjInstruction.from_dict`](qiskit.qobj.QasmQobjInstruction.from_dict "qiskit.qobj.QasmQobjInstruction.from_dict")(data) | Create a new QasmQobjInstruction object from a dictionary.    |
+| [`QasmQobjInstruction.to_dict`](qiskit.qobj.QasmQobjInstruction.to_dict "qiskit.qobj.QasmQobjInstruction.to_dict")()           | Return a dictionary format representation of the Instruction. |
 

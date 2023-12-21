@@ -16,43 +16,8 @@ An Expectation converter for using Aer’s operator snapshot to take expectation
 
 ## Methods
 
-### compute\_variance
-
-<span id="qiskit.aqua.operators.expectations.AerPauliExpectation.compute_variance" />
-
-`AerPauliExpectation.compute_variance(exp_op)`
-
-Compute the variance of the expectation estimator. Because Aer takes this expectation with matrix multiplication, the estimation is exact and the variance is always 0, but we need to return those values in a way which matches the Operator’s structure.
-
-**Parameters**
-
-**exp\_op** ([`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")) – The full expectation value Operator after sampling.
-
-**Return type**
-
-`Union`\[`list`, `float`]
-
-**Returns**
-
-The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation, equal to 0.
-
-### convert
-
-<span id="qiskit.aqua.operators.expectations.AerPauliExpectation.convert" />
-
-`AerPauliExpectation.convert(operator)`
-
-Accept an Operator and return a new Operator with the Pauli measurements replaced by AerSnapshot-based expectation circuits.
-
-**Parameters**
-
-**operator** ([`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")) – The operator to convert.
-
-**Return type**
-
-[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
-
-**Returns**
-
-The converted operator.
+|                                                                                                                                                                                                      |                                                                                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------- |
+| [`AerPauliExpectation.compute_variance`](qiskit.aqua.operators.expectations.AerPauliExpectation.compute_variance "qiskit.aqua.operators.expectations.AerPauliExpectation.compute_variance")(exp\_op) | Compute the variance of the expectation estimator.                                                                           |
+| [`AerPauliExpectation.convert`](qiskit.aqua.operators.expectations.AerPauliExpectation.convert "qiskit.aqua.operators.expectations.AerPauliExpectation.convert")(operator)                           | Accept an Operator and return a new Operator with the Pauli measurements replaced by AerSnapshot-based expectation circuits. |
 

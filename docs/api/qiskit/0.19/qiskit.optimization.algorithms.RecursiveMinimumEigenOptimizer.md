@@ -57,72 +57,9 @@ TODO: add flag to store full history.
 
 ## Methods
 
-### get\_compatibility\_msg
-
-<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.get_compatibility_msg" />
-
-`RecursiveMinimumEigenOptimizer.get_compatibility_msg(problem)`
-
-Checks whether a given problem can be solved with this optimizer.
-
-Checks whether the given problem is compatible, i.e., whether the problem can be converted to a QUBO, and otherwise, returns a message explaining the incompatibility.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
-
-**Return type**
-
-`str`
-
-**Returns**
-
-A message describing the incompatibility.
-
-### is\_compatible
-
-<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.is_compatible" />
-
-`RecursiveMinimumEigenOptimizer.is_compatible(problem)`
-
-Checks whether a given problem can be solved with the optimizer implementing this method.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-Returns True if the problem is compatible, False otherwise.
-
-### solve
-
-<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.solve" />
-
-`RecursiveMinimumEigenOptimizer.solve(problem)`
-
-Tries to solve the given problem using the recursive optimizer.
-
-Runs the optimizer to try to solve the optimization problem.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved.
-
-**Return type**
-
-`OptimizationResult`
-
-**Returns**
-
-The result of the optimizer applied to the problem.
-
-**Raises**
-
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – Incompatible problem.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – Infeasible due to variable substitution
+|                                                                                                                                                                                                                                              |                                                                                           |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| [`RecursiveMinimumEigenOptimizer.get_compatibility_msg`](qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.get_compatibility_msg "qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.get_compatibility_msg")(problem) | Checks whether a given problem can be solved with this optimizer.                         |
+| [`RecursiveMinimumEigenOptimizer.is_compatible`](qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.is_compatible "qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method. |
+| [`RecursiveMinimumEigenOptimizer.solve`](qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.solve "qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.solve")(problem)                                                 | Tries to solve the given problem using the recursive optimizer.                           |
 

@@ -29,73 +29,18 @@ A molecular Hamiltonian operator, representing the energy of the electrons and n
 
 ## Attributes
 
-### INFO\_NUM\_ORBITALS
-
-<span id="qiskit.chemistry.core.Hamiltonian.INFO_NUM_ORBITALS" />
-
-`= 'num_orbitals'`
-
-### INFO\_NUM\_PARTICLES
-
-<span id="qiskit.chemistry.core.Hamiltonian.INFO_NUM_PARTICLES" />
-
-`= 'num_particles'`
-
-### INFO\_TWO\_QUBIT\_REDUCTION
-
-<span id="qiskit.chemistry.core.Hamiltonian.INFO_TWO_QUBIT_REDUCTION" />
-
-`= 'two_qubit_reduction'`
-
-### INFO\_Z2SYMMETRIES
-
-<span id="qiskit.chemistry.core.Hamiltonian.INFO_Z2SYMMETRIES" />
-
-`= 'z2symmetries'`
-
-### molecule\_info
-
-returns molecule info
+|                                                                                                                                                                   |                       |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------- |
+| [`Hamiltonian.INFO_NUM_ORBITALS`](qiskit.chemistry.core.Hamiltonian.INFO_NUM_ORBITALS "qiskit.chemistry.core.Hamiltonian.INFO_NUM_ORBITALS")                      |                       |
+| [`Hamiltonian.INFO_NUM_PARTICLES`](qiskit.chemistry.core.Hamiltonian.INFO_NUM_PARTICLES "qiskit.chemistry.core.Hamiltonian.INFO_NUM_PARTICLES")                   |                       |
+| [`Hamiltonian.INFO_TWO_QUBIT_REDUCTION`](qiskit.chemistry.core.Hamiltonian.INFO_TWO_QUBIT_REDUCTION "qiskit.chemistry.core.Hamiltonian.INFO_TWO_QUBIT_REDUCTION") |                       |
+| [`Hamiltonian.INFO_Z2SYMMETRIES`](qiskit.chemistry.core.Hamiltonian.INFO_Z2SYMMETRIES "qiskit.chemistry.core.Hamiltonian.INFO_Z2SYMMETRIES")                      |                       |
+| [`Hamiltonian.molecule_info`](qiskit.chemistry.core.Hamiltonian.molecule_info "qiskit.chemistry.core.Hamiltonian.molecule_info")                                  | returns molecule info |
 
 ## Methods
 
-### process\_algorithm\_result
-
-<span id="qiskit.chemistry.core.Hamiltonian.process_algorithm_result" />
-
-`Hamiltonian.process_algorithm_result(algo_result)`
-
-Takes the algorithm result and processes it as required, e.g. by combination of any parts that were classically computed, for the final result.
-
-**Parameters**
-
-**algo\_result** (`Union`\[`dict`, [`MinimumEigensolverResult`](qiskit.aqua.algorithms.MinimumEigensolverResult "qiskit.aqua.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolverResult"), `EigensolverResult`]) – Result from algorithm
-
-**Return type**
-
-`Union`\[`Tuple`\[`List`\[`str`], `dict`], [`MolecularGroundStateResult`](qiskit.chemistry.core.MolecularGroundStateResult "qiskit.chemistry.core.chemistry_operator.MolecularGroundStateResult"), [`MolecularExcitedStatesResult`](qiskit.chemistry.core.MolecularExcitedStatesResult "qiskit.chemistry.core.chemistry_operator.MolecularExcitedStatesResult")]
-
-**Returns**
-
-Final chemistry result computed from the algorithm result
-
-### run
-
-<span id="qiskit.chemistry.core.Hamiltonian.run" />
-
-`Hamiltonian.run(qmolecule)`
-
-Convert the qmolecule, according to the ChemistryOperator, into an Operator that can be given to a QuantumAlgorithm
-
-**Parameters**
-
-**qmolecule** ([*QMolecule*](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule")) – from a chemistry driver
-
-**Returns**
-
-(qubit\_op, aux\_ops)
-
-**Return type**
-
-Tuple
+|                                                                                                                                                                                 |                                                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------- |
+| [`Hamiltonian.process_algorithm_result`](qiskit.chemistry.core.Hamiltonian.process_algorithm_result "qiskit.chemistry.core.Hamiltonian.process_algorithm_result")(algo\_result) | Takes the algorithm result and processes it as required, e.g.                                                       |
+| [`Hamiltonian.run`](qiskit.chemistry.core.Hamiltonian.run "qiskit.chemistry.core.Hamiltonian.run")(qmolecule)                                                                   | Convert the qmolecule, according to the ChemistryOperator, into an Operator that can be given to a QuantumAlgorithm |
 

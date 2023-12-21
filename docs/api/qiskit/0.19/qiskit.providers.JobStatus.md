@@ -16,45 +16,13 @@ Class for job status enumerated type.
 
 ## Attributes
 
-### CANCELLED
-
-<span id="qiskit.providers.JobStatus.CANCELLED" />
-
-`= 'job has been cancelled'`
-
-### DONE
-
-<span id="qiskit.providers.JobStatus.DONE" />
-
-`= 'job has successfully run'`
-
-### ERROR
-
-<span id="qiskit.providers.JobStatus.ERROR" />
-
-`= 'job incurred error'`
-
-### INITIALIZING
-
-<span id="qiskit.providers.JobStatus.INITIALIZING" />
-
-`= 'job is being initialized'`
-
-### QUEUED
-
-<span id="qiskit.providers.JobStatus.QUEUED" />
-
-`= 'job is queued'`
-
-### RUNNING
-
-<span id="qiskit.providers.JobStatus.RUNNING" />
-
-`= 'job is actively running'`
-
-### VALIDATING
-
-<span id="qiskit.providers.JobStatus.VALIDATING" />
-
-`= 'job is being validated'`
+|                                                                                                               |   |
+| ------------------------------------------------------------------------------------------------------------- | - |
+| [`JobStatus.INITIALIZING`](qiskit.providers.JobStatus.INITIALIZING "qiskit.providers.JobStatus.INITIALIZING") |   |
+| [`JobStatus.QUEUED`](qiskit.providers.JobStatus.QUEUED "qiskit.providers.JobStatus.QUEUED")                   |   |
+| [`JobStatus.VALIDATING`](qiskit.providers.JobStatus.VALIDATING "qiskit.providers.JobStatus.VALIDATING")       |   |
+| [`JobStatus.RUNNING`](qiskit.providers.JobStatus.RUNNING "qiskit.providers.JobStatus.RUNNING")                |   |
+| [`JobStatus.CANCELLED`](qiskit.providers.JobStatus.CANCELLED "qiskit.providers.JobStatus.CANCELLED")          |   |
+| [`JobStatus.DONE`](qiskit.providers.JobStatus.DONE "qiskit.providers.JobStatus.DONE")                         |   |
+| [`JobStatus.ERROR`](qiskit.providers.JobStatus.ERROR "qiskit.providers.JobStatus.ERROR")                      |   |
 

@@ -29,168 +29,27 @@ Create a probability snapshot instruction.
 
 ## Attributes
 
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-### definition
-
-Return definition in terms of other basic gates.
-
-### label
-
-Return snapshot label
-
-### params
-
-return instruction params.
-
-### snapshot\_type
-
-Return snapshot type
+|                                                                                                                                                                                                |                                                                               |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| [`SnapshotExpectationValue.decompositions`](qiskit.providers.aer.extensions.SnapshotExpectationValue.decompositions "qiskit.providers.aer.extensions.SnapshotExpectationValue.decompositions") | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
+| [`SnapshotExpectationValue.definition`](qiskit.providers.aer.extensions.SnapshotExpectationValue.definition "qiskit.providers.aer.extensions.SnapshotExpectationValue.definition")             | Return definition in terms of other basic gates.                              |
+| [`SnapshotExpectationValue.label`](qiskit.providers.aer.extensions.SnapshotExpectationValue.label "qiskit.providers.aer.extensions.SnapshotExpectationValue.label")                            | Return snapshot label                                                         |
+| [`SnapshotExpectationValue.params`](qiskit.providers.aer.extensions.SnapshotExpectationValue.params "qiskit.providers.aer.extensions.SnapshotExpectationValue.params")                         | return instruction params.                                                    |
+| [`SnapshotExpectationValue.snapshot_type`](qiskit.providers.aer.extensions.SnapshotExpectationValue.snapshot_type "qiskit.providers.aer.extensions.SnapshotExpectationValue.snapshot_type")    | Return snapshot type                                                          |
 
 ## Methods
 
-### add\_decomposition
-
-<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.add_decomposition" />
-
-`SnapshotExpectationValue.add_decomposition(decomposition)`
-
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
-
-### assemble
-
-<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.assemble" />
-
-`SnapshotExpectationValue.assemble()`
-
-Assemble a QasmQobjInstruction for snapshot\_expectation\_value.
-
-### broadcast\_arguments
-
-<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.broadcast_arguments" />
-
-`SnapshotExpectationValue.broadcast_arguments(qargs, cargs)`
-
-Validation of the arguments.
-
-**Parameters**
-
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
-
-**Yields**
-
-*Tuple(List, List)* – A tuple with single arguments.
-
-**Raises**
-
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
-
-### c\_if
-
-<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.c_if" />
-
-`SnapshotExpectationValue.c_if(classical, val)`
-
-Add classical condition on register classical and value val.
-
-### copy
-
-<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.copy" />
-
-`SnapshotExpectationValue.copy(name=None)`
-
-Copy of the instruction.
-
-**Parameters**
-
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
-
-**Returns**
-
-**a copy of the current instruction, with the name**
-
-updated if it was provided
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### define\_snapshot\_register
-
-<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.define_snapshot_register" />
-
-`static SnapshotExpectationValue.define_snapshot_register(circuit, label, qubits=None)`
-
-Defines qubits to snapshot for all snapshot methods
-
-### inverse
-
-<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.inverse" />
-
-`SnapshotExpectationValue.inverse()`
-
-Special case. Return self.
-
-### is\_parameterized
-
-<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.is_parameterized" />
-
-`SnapshotExpectationValue.is_parameterized()`
-
-Return True .IFF. instruction is parameterized else False
-
-### mirror
-
-<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.mirror" />
-
-`SnapshotExpectationValue.mirror()`
-
-For a composite instruction, reverse the order of sub-gates.
-
-This is done by recursively mirroring all sub-instructions. It does not invert any gate.
-
-**Returns**
-
-a fresh gate with sub-gates reversed
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### qasm
-
-<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.qasm" />
-
-`SnapshotExpectationValue.qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.providers.aer.extensions.SnapshotExpectationValue.repeat" />
-
-`SnapshotExpectationValue.repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
+|                                                                                                                                                                                                                                 |                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| [`SnapshotExpectationValue.add_decomposition`](qiskit.providers.aer.extensions.SnapshotExpectationValue.add_decomposition "qiskit.providers.aer.extensions.SnapshotExpectationValue.add_decomposition")(…)                      | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
+| [`SnapshotExpectationValue.assemble`](qiskit.providers.aer.extensions.SnapshotExpectationValue.assemble "qiskit.providers.aer.extensions.SnapshotExpectationValue.assemble")()                                                  | Assemble a QasmQobjInstruction for snapshot\_expectation\_value.         |
+| [`SnapshotExpectationValue.broadcast_arguments`](qiskit.providers.aer.extensions.SnapshotExpectationValue.broadcast_arguments "qiskit.providers.aer.extensions.SnapshotExpectationValue.broadcast_arguments")(…)                | Validation of the arguments.                                             |
+| [`SnapshotExpectationValue.c_if`](qiskit.providers.aer.extensions.SnapshotExpectationValue.c_if "qiskit.providers.aer.extensions.SnapshotExpectationValue.c_if")(classical, val)                                                | Add classical condition on register classical and value val.             |
+| [`SnapshotExpectationValue.copy`](qiskit.providers.aer.extensions.SnapshotExpectationValue.copy "qiskit.providers.aer.extensions.SnapshotExpectationValue.copy")(\[name])                                                       | Copy of the instruction.                                                 |
+| [`SnapshotExpectationValue.define_snapshot_register`](qiskit.providers.aer.extensions.SnapshotExpectationValue.define_snapshot_register "qiskit.providers.aer.extensions.SnapshotExpectationValue.define_snapshot_register")(…) | Defines qubits to snapshot for all snapshot methods                      |
+| [`SnapshotExpectationValue.inverse`](qiskit.providers.aer.extensions.SnapshotExpectationValue.inverse "qiskit.providers.aer.extensions.SnapshotExpectationValue.inverse")()                                                     | Special case.                                                            |
+| [`SnapshotExpectationValue.is_parameterized`](qiskit.providers.aer.extensions.SnapshotExpectationValue.is_parameterized "qiskit.providers.aer.extensions.SnapshotExpectationValue.is_parameterized")()                          | Return True .IFF.                                                        |
+| [`SnapshotExpectationValue.mirror`](qiskit.providers.aer.extensions.SnapshotExpectationValue.mirror "qiskit.providers.aer.extensions.SnapshotExpectationValue.mirror")()                                                        | For a composite instruction, reverse the order of sub-gates.             |
+| [`SnapshotExpectationValue.qasm`](qiskit.providers.aer.extensions.SnapshotExpectationValue.qasm "qiskit.providers.aer.extensions.SnapshotExpectationValue.qasm")()                                                              | Return a default OpenQASM string for the instruction.                    |
+| [`SnapshotExpectationValue.repeat`](qiskit.providers.aer.extensions.SnapshotExpectationValue.repeat "qiskit.providers.aer.extensions.SnapshotExpectationValue.repeat")(n)                                                       | Creates an instruction with gate repeated n amount of times.             |
 

@@ -41,260 +41,28 @@ Create new Sdg gate.
 
 ## Attributes
 
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-### definition
-
-Return definition in terms of other basic gates.
-
-### label
-
-<span id="qiskit.circuit.library.SdgGate.label" />
-
-`str`
-
-Return gate label
-
-**Return type**
-
-`str`
-
-### params
-
-return instruction params.
+|                                                                                                                           |                                                                               |
+| ------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| [`SdgGate.decompositions`](qiskit.circuit.library.SdgGate.decompositions "qiskit.circuit.library.SdgGate.decompositions") | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
+| [`SdgGate.definition`](qiskit.circuit.library.SdgGate.definition "qiskit.circuit.library.SdgGate.definition")             | Return definition in terms of other basic gates.                              |
+| [`SdgGate.label`](qiskit.circuit.library.SdgGate.label "qiskit.circuit.library.SdgGate.label")                            | Return gate label                                                             |
+| [`SdgGate.params`](qiskit.circuit.library.SdgGate.params "qiskit.circuit.library.SdgGate.params")                         | return instruction params.                                                    |
 
 ## Methods
 
-### add\_decomposition
-
-<span id="qiskit.circuit.library.SdgGate.add_decomposition" />
-
-`SdgGate.add_decomposition(decomposition)`
-
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
-
-### assemble
-
-<span id="qiskit.circuit.library.SdgGate.assemble" />
-
-`SdgGate.assemble()`
-
-Assemble a QasmQobjInstruction
-
-**Return type**
-
-[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
-
-### broadcast\_arguments
-
-<span id="qiskit.circuit.library.SdgGate.broadcast_arguments" />
-
-`SdgGate.broadcast_arguments(qargs, cargs)`
-
-Validation and handling of the arguments and its relationship.
-
-For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
-
-```python
-in: [[q[0],q[1]], q[2]],[]
-outs: [q[0], q[2]], []
-      [q[1], q[2]], []
-```
-
-The general broadcasting rules are:
-
-> *   If len(qargs) == 1:
->
->     ```python
->     [q[0], q[1]] -> [q[0]],[q[1]]
->     ```
->
-> *   If len(qargs) == 2:
->
->     ```python
->     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
->     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
->     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
->     ```
->
-> *   If len(qargs) >= 3:
->
->     ```python
->     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
->     ```
-
-**Parameters**
-
-*   **qargs** (`List`) – List of quantum bit arguments.
-*   **cargs** (`List`) – List of classical bit arguments.
-
-**Return type**
-
-`Tuple`\[`List`, `List`]
-
-**Returns**
-
-A tuple with single arguments.
-
-**Raises**
-
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
-
-### c\_if
-
-<span id="qiskit.circuit.library.SdgGate.c_if" />
-
-`SdgGate.c_if(classical, val)`
-
-Add classical condition on register classical and value val.
-
-### control
-
-<span id="qiskit.circuit.library.SdgGate.control" />
-
-`SdgGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
-
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** (`Optional`\[`int`]) – number of controls to add to gate (default=1)
-*   **label** (`Optional`\[`str`]) – optional gate label
-*   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If None, use 2\*\*num\_ctrl\_qubits-1.
-
-**Returns**
-
-Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 ancillae qubits so returns a gate of size num\_qubits + 2\*num\_ctrl\_qubits - 1.
-
-**Return type**
-
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-**Raises**
-
-**QiskitError** – unrecognized mode or invalid ctrl\_state
-
-### copy
-
-<span id="qiskit.circuit.library.SdgGate.copy" />
-
-`SdgGate.copy(name=None)`
-
-Copy of the instruction.
-
-**Parameters**
-
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
-
-**Returns**
-
-**a copy of the current instruction, with the name**
-
-updated if it was provided
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### inverse
-
-<span id="qiskit.circuit.library.SdgGate.inverse" />
-
-`SdgGate.inverse()`
-
-Return inverse of Sdg (SGate).
-
-### is\_parameterized
-
-<span id="qiskit.circuit.library.SdgGate.is_parameterized" />
-
-`SdgGate.is_parameterized()`
-
-Return True .IFF. instruction is parameterized else False
-
-### mirror
-
-<span id="qiskit.circuit.library.SdgGate.mirror" />
-
-`SdgGate.mirror()`
-
-For a composite instruction, reverse the order of sub-gates.
-
-This is done by recursively mirroring all sub-instructions. It does not invert any gate.
-
-**Returns**
-
-a fresh gate with sub-gates reversed
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### power
-
-<span id="qiskit.circuit.library.SdgGate.power" />
-
-`SdgGate.power(exponent)`
-
-Creates a unitary gate as gate^exponent.
-
-**Parameters**
-
-**exponent** (*float*) – Gate^exponent
-
-**Returns**
-
-To which to\_matrix is self.to\_matrix^exponent.
-
-**Return type**
-
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
-
-**Raises**
-
-**CircuitError** – If Gate is not unitary
-
-### qasm
-
-<span id="qiskit.circuit.library.SdgGate.qasm" />
-
-`SdgGate.qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.circuit.library.SdgGate.repeat" />
-
-`SdgGate.repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
-
-### to\_matrix
-
-<span id="qiskit.circuit.library.SdgGate.to_matrix" />
-
-`SdgGate.to_matrix()`
-
-Return a numpy.array for the Sdg gate.
+|                                                                                                                                                        |                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| [`SdgGate.add_decomposition`](qiskit.circuit.library.SdgGate.add_decomposition "qiskit.circuit.library.SdgGate.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
+| [`SdgGate.assemble`](qiskit.circuit.library.SdgGate.assemble "qiskit.circuit.library.SdgGate.assemble")()                                              | Assemble a QasmQobjInstruction                                           |
+| [`SdgGate.broadcast_arguments`](qiskit.circuit.library.SdgGate.broadcast_arguments "qiskit.circuit.library.SdgGate.broadcast_arguments")(qargs, cargs) | Validation and handling of the arguments and its relationship.           |
+| [`SdgGate.c_if`](qiskit.circuit.library.SdgGate.c_if "qiskit.circuit.library.SdgGate.c_if")(classical, val)                                            | Add classical condition on register classical and value val.             |
+| [`SdgGate.control`](qiskit.circuit.library.SdgGate.control "qiskit.circuit.library.SdgGate.control")(\[num\_ctrl\_qubits, label, …])                   | Return controlled version of gate.                                       |
+| [`SdgGate.copy`](qiskit.circuit.library.SdgGate.copy "qiskit.circuit.library.SdgGate.copy")(\[name])                                                   | Copy of the instruction.                                                 |
+| [`SdgGate.inverse`](qiskit.circuit.library.SdgGate.inverse "qiskit.circuit.library.SdgGate.inverse")()                                                 | Return inverse of Sdg (SGate).                                           |
+| [`SdgGate.is_parameterized`](qiskit.circuit.library.SdgGate.is_parameterized "qiskit.circuit.library.SdgGate.is_parameterized")()                      | Return True .IFF.                                                        |
+| [`SdgGate.mirror`](qiskit.circuit.library.SdgGate.mirror "qiskit.circuit.library.SdgGate.mirror")()                                                    | For a composite instruction, reverse the order of sub-gates.             |
+| [`SdgGate.power`](qiskit.circuit.library.SdgGate.power "qiskit.circuit.library.SdgGate.power")(exponent)                                               | Creates a unitary gate as gate^exponent.                                 |
+| [`SdgGate.qasm`](qiskit.circuit.library.SdgGate.qasm "qiskit.circuit.library.SdgGate.qasm")()                                                          | Return a default OpenQASM string for the instruction.                    |
+| [`SdgGate.repeat`](qiskit.circuit.library.SdgGate.repeat "qiskit.circuit.library.SdgGate.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.             |
+| [`SdgGate.to_matrix`](qiskit.circuit.library.SdgGate.to_matrix "qiskit.circuit.library.SdgGate.to_matrix")()                                           | Return a numpy.array for the Sdg gate.                                   |
 

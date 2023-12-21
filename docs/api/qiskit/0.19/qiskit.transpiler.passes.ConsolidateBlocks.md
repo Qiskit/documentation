@@ -29,35 +29,15 @@ ConsolidateBlocks initializer.
 
 ## Attributes
 
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+|                                                                                                                                                                                     |                                             |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| [`ConsolidateBlocks.is_analysis_pass`](qiskit.transpiler.passes.ConsolidateBlocks.is_analysis_pass "qiskit.transpiler.passes.ConsolidateBlocks.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
+| [`ConsolidateBlocks.is_transformation_pass`](qiskit.transpiler.passes.ConsolidateBlocks.is_transformation_pass "qiskit.transpiler.passes.ConsolidateBlocks.is_transformation_pass") | Check if the pass is a transformation pass. |
 
 ## Methods
 
-### name
-
-<span id="qiskit.transpiler.passes.ConsolidateBlocks.name" />
-
-`ConsolidateBlocks.name()`
-
-Return the name of the pass.
-
-### run
-
-<span id="qiskit.transpiler.passes.ConsolidateBlocks.run" />
-
-`ConsolidateBlocks.run(dag)`
-
-Run the ConsolidateBlocks pass on dag.
-
-Iterate over each block and replace it with an equivalent Unitary on the same wires.
+|                                                                                                                                 |                                        |
+| ------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| [`ConsolidateBlocks.name`](qiskit.transpiler.passes.ConsolidateBlocks.name "qiskit.transpiler.passes.ConsolidateBlocks.name")() | Return the name of the pass.           |
+| [`ConsolidateBlocks.run`](qiskit.transpiler.passes.ConsolidateBlocks.run "qiskit.transpiler.passes.ConsolidateBlocks.run")(dag) | Run the ConsolidateBlocks pass on dag. |
 

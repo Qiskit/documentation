@@ -30,47 +30,14 @@ Initialize a BackendStatus object
 
 ## Attributes
 
-### version\_regex
-
-<span id="qiskit.providers.models.BackendStatus.version_regex" />
-
-`= re.compile('[0-9]+.[0-9]+.[0-9]+$')`
+|                                                                                                                                            |   |
+| ------------------------------------------------------------------------------------------------------------------------------------------ | - |
+| [`BackendStatus.version_regex`](qiskit.providers.models.BackendStatus.version_regex "qiskit.providers.models.BackendStatus.version_regex") |   |
 
 ## Methods
 
-### from\_dict
-
-<span id="qiskit.providers.models.BackendStatus.from_dict" />
-
-`classmethod BackendStatus.from_dict(data)`
-
-Create a new BackendStatus object from a dictionary.
-
-**Parameters**
-
-**data** (*dict*) – A dictionary representing the BaseBakend to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.BackendStatus#to_dict "qiskit.providers.models.BackendStatus.to_dict").
-
-**Returns**
-
-The BackendStatus from the input dictionary.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-### to\_dict
-
-<span id="qiskit.providers.models.BackendStatus.to_dict" />
-
-`BackendStatus.to_dict()`
-
-Return a dictionary format representation of the BackendStatus.
-
-**Returns**
-
-The dictionary form of the QobjHeader.
-
-**Return type**
-
-dict
+|                                                                                                                                      |                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------- |
+| [`BackendStatus.from_dict`](qiskit.providers.models.BackendStatus.from_dict "qiskit.providers.models.BackendStatus.from_dict")(data) | Create a new BackendStatus object from a dictionary.            |
+| [`BackendStatus.to_dict`](qiskit.providers.models.BackendStatus.to_dict "qiskit.providers.models.BackendStatus.to_dict")()           | Return a dictionary format representation of the BackendStatus. |
 

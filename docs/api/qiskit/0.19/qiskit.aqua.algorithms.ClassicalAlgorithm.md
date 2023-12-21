@@ -16,25 +16,13 @@ Base class for Classical Algorithms.
 
 ## Attributes
 
-### random
-
-Return a numpy random.
+|                                                                                                                                    |                        |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| [`ClassicalAlgorithm.random`](qiskit.aqua.algorithms.ClassicalAlgorithm.random "qiskit.aqua.algorithms.ClassicalAlgorithm.random") | Return a numpy random. |
 
 ## Methods
 
-### run
-
-<span id="qiskit.aqua.algorithms.ClassicalAlgorithm.run" />
-
-`ClassicalAlgorithm.run()`
-
-Execute the classical algorithm.
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
+|                                                                                                                             |                                  |
+| --------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| [`ClassicalAlgorithm.run`](qiskit.aqua.algorithms.ClassicalAlgorithm.run "qiskit.aqua.algorithms.ClassicalAlgorithm.run")() | Execute the classical algorithm. |
 

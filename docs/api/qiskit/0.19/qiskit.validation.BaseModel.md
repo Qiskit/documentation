@@ -22,23 +22,8 @@ BaseModel initializer.
 
 ## Methods
 
-### from\_dict
-
-<span id="qiskit.validation.BaseModel.from_dict" />
-
-`classmethod BaseModel.from_dict(dict_)`
-
-Deserialize a dict of simple types into an instance of this class.
-
-Note that this method requires that the model is bound with `@bind_schema`.
-
-### to\_dict
-
-<span id="qiskit.validation.BaseModel.to_dict" />
-
-`BaseModel.to_dict()`
-
-Serialize the model into a Python dict of simple types.
-
-Note that this method requires that the model is bound with `@bind_schema`.
+|                                                                                                                |                                                                    |
+| -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| [`BaseModel.from_dict`](qiskit.validation.BaseModel.from_dict "qiskit.validation.BaseModel.from_dict")(dict\_) | Deserialize a dict of simple types into an instance of this class. |
+| [`BaseModel.to_dict`](qiskit.validation.BaseModel.to_dict "qiskit.validation.BaseModel.to_dict")()             | Serialize the model into a Python dict of simple types.            |
 

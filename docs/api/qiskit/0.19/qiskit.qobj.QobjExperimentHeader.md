@@ -22,39 +22,8 @@ Instantiate a new Qobj dict field object.
 
 ## Methods
 
-### from\_dict
-
-<span id="qiskit.qobj.QobjExperimentHeader.from_dict" />
-
-`classmethod QobjExperimentHeader.from_dict(data)`
-
-Create a new QobjHeader object from a dictionary.
-
-**Parameters**
-
-**data** (*dict*) – A dictionary representing the QobjHeader to create. It will be in the same format as output by [`to_dict()`](qiskit.qobj.QobjExperimentHeader#to_dict "qiskit.qobj.QobjExperimentHeader.to_dict").
-
-**Returns**
-
-The QobjDictField from the input dictionary.
-
-**Return type**
-
-QobjDictFieldr
-
-### to\_dict
-
-<span id="qiskit.qobj.QobjExperimentHeader.to_dict" />
-
-`QobjExperimentHeader.to_dict()`
-
-Return a dictionary format representation of the QASM Qobj.
-
-**Returns**
-
-The dictionary form of the QobjHeader.
-
-**Return type**
-
-dict
+|                                                                                                                                   |                                                             |
+| --------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| [`QobjExperimentHeader.from_dict`](qiskit.qobj.QobjExperimentHeader.from_dict "qiskit.qobj.QobjExperimentHeader.from_dict")(data) | Create a new QobjHeader object from a dictionary.           |
+| [`QobjExperimentHeader.to_dict`](qiskit.qobj.QobjExperimentHeader.to_dict "qiskit.qobj.QobjExperimentHeader.to_dict")()           | Return a dictionary format representation of the QASM Qobj. |
 

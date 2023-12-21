@@ -25,25 +25,13 @@ This is a classical counterpart to the [`HHL`](qiskit.aqua.algorithms.HHL "qiski
 
 ## Attributes
 
-### random
-
-Return a numpy random.
+|                                                                                                                     |                        |
+| ------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| [`NumPyLSsolver.random`](qiskit.aqua.algorithms.NumPyLSsolver.random "qiskit.aqua.algorithms.NumPyLSsolver.random") | Return a numpy random. |
 
 ## Methods
 
-### run
-
-<span id="qiskit.aqua.algorithms.NumPyLSsolver.run" />
-
-`NumPyLSsolver.run()`
-
-Execute the classical algorithm.
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
+|                                                                                                              |                                  |
+| ------------------------------------------------------------------------------------------------------------ | -------------------------------- |
+| [`NumPyLSsolver.run`](qiskit.aqua.algorithms.NumPyLSsolver.run "qiskit.aqua.algorithms.NumPyLSsolver.run")() | Execute the classical algorithm. |
 

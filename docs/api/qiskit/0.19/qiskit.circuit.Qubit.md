@@ -27,13 +27,13 @@ Creates a qubit.
 
 ## Attributes
 
-### index
-
-Get bit’s index.
-
-### register
-
-Get bit’s register.
+|                                                                                   |                     |
+| --------------------------------------------------------------------------------- | ------------------- |
+| [`Qubit.index`](qiskit.circuit.Qubit.index "qiskit.circuit.Qubit.index")          | Get bit’s index.    |
+| [`Qubit.register`](qiskit.circuit.Qubit.register "qiskit.circuit.Qubit.register") | Get bit’s register. |
 
 ## Methods
+
+|   |
+| - |
 

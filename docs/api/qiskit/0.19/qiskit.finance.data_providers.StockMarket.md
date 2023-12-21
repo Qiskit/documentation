@@ -16,39 +16,12 @@ Stock Market enum
 
 ## Attributes
 
-### EURONEXT
-
-<span id="qiskit.finance.data_providers.StockMarket.EURONEXT" />
-
-`= 'XPAR'`
-
-### LONDON
-
-<span id="qiskit.finance.data_providers.StockMarket.LONDON" />
-
-`= 'XLON'`
-
-### NASDAQ
-
-<span id="qiskit.finance.data_providers.StockMarket.NASDAQ" />
-
-`= 'NASDAQ'`
-
-### NYSE
-
-<span id="qiskit.finance.data_providers.StockMarket.NYSE" />
-
-`= 'NYSE'`
-
-### RANDOM
-
-<span id="qiskit.finance.data_providers.StockMarket.RANDOM" />
-
-`= 'RANDOM'`
-
-### SINGAPORE
-
-<span id="qiskit.finance.data_providers.StockMarket.SINGAPORE" />
-
-`= 'XSES'`
+|                                                                                                                                      |   |
+| ------------------------------------------------------------------------------------------------------------------------------------ | - |
+| [`StockMarket.NASDAQ`](qiskit.finance.data_providers.StockMarket.NASDAQ "qiskit.finance.data_providers.StockMarket.NASDAQ")          |   |
+| [`StockMarket.NYSE`](qiskit.finance.data_providers.StockMarket.NYSE "qiskit.finance.data_providers.StockMarket.NYSE")                |   |
+| [`StockMarket.LONDON`](qiskit.finance.data_providers.StockMarket.LONDON "qiskit.finance.data_providers.StockMarket.LONDON")          |   |
+| [`StockMarket.EURONEXT`](qiskit.finance.data_providers.StockMarket.EURONEXT "qiskit.finance.data_providers.StockMarket.EURONEXT")    |   |
+| [`StockMarket.SINGAPORE`](qiskit.finance.data_providers.StockMarket.SINGAPORE "qiskit.finance.data_providers.StockMarket.SINGAPORE") |   |
+| [`StockMarket.RANDOM`](qiskit.finance.data_providers.StockMarket.RANDOM "qiskit.finance.data_providers.StockMarket.RANDOM")          |   |
 

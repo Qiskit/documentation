@@ -39,97 +39,16 @@ Initializes the CplexOptimizer.
 
 ## Attributes
 
-### disp
-
-<span id="qiskit.optimization.algorithms.CplexOptimizer.disp" />
-
-`bool`
-
-Returns the display setting.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-Whether to print CPLEX information or not.
+|                                                                                                                                  |                              |
+| -------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| [`CplexOptimizer.disp`](qiskit.optimization.algorithms.CplexOptimizer.disp "qiskit.optimization.algorithms.CplexOptimizer.disp") | Returns the display setting. |
 
 ## Methods
 
-### get\_compatibility\_msg
-
-<span id="qiskit.optimization.algorithms.CplexOptimizer.get_compatibility_msg" />
-
-`CplexOptimizer.get_compatibility_msg(problem)`
-
-Checks whether a given problem can be solved with this optimizer.
-
-Returns `''` since CPLEX accepts all problems that can be modeled using the `QuadraticProgram`. CPLEX may throw an exception in case the problem is determined to be non-convex.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
-
-**Return type**
-
-`str`
-
-**Returns**
-
-An empty string.
-
-### is\_compatible
-
-<span id="qiskit.optimization.algorithms.CplexOptimizer.is_compatible" />
-
-`CplexOptimizer.is_compatible(problem)`
-
-Checks whether a given problem can be solved with the optimizer implementing this method.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-Returns True if the problem is compatible, False otherwise.
-
-### is\_cplex\_installed
-
-<span id="qiskit.optimization.algorithms.CplexOptimizer.is_cplex_installed" />
-
-`static CplexOptimizer.is_cplex_installed()`
-
-Returns True if cplex is installed
-
-### solve
-
-<span id="qiskit.optimization.algorithms.CplexOptimizer.solve" />
-
-`CplexOptimizer.solve(problem)`
-
-Tries to solves the given problem using the optimizer.
-
-Runs the optimizer to try to solve the optimization problem. If problem is not convex, this optimizer may raise an exception due to incompatibility, depending on the settings.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved.
-
-**Return type**
-
-`OptimizationResult`
-
-**Returns**
-
-The result of the optimizer applied to the problem.
-
-**Raises**
-
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+|                                                                                                                                                                                              |                                                                                           |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| [`CplexOptimizer.get_compatibility_msg`](qiskit.optimization.algorithms.CplexOptimizer.get_compatibility_msg "qiskit.optimization.algorithms.CplexOptimizer.get_compatibility_msg")(problem) | Checks whether a given problem can be solved with this optimizer.                         |
+| [`CplexOptimizer.is_compatible`](qiskit.optimization.algorithms.CplexOptimizer.is_compatible "qiskit.optimization.algorithms.CplexOptimizer.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method. |
+| [`CplexOptimizer.is_cplex_installed`](qiskit.optimization.algorithms.CplexOptimizer.is_cplex_installed "qiskit.optimization.algorithms.CplexOptimizer.is_cplex_installed")()                 | Returns True if cplex is installed                                                        |
+| [`CplexOptimizer.solve`](qiskit.optimization.algorithms.CplexOptimizer.solve "qiskit.optimization.algorithms.CplexOptimizer.solve")(problem)                                                 | Tries to solves the given problem using the optimizer.                                    |
 

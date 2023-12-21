@@ -30,168 +30,27 @@ Create new snapshot instruction.
 
 ## Attributes
 
-### decompositions
-
-Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-### definition
-
-Return definition in terms of other basic gates.
-
-### label
-
-Return snapshot label
-
-### params
-
-return instruction params.
-
-### snapshot\_type
-
-Return snapshot type
+|                                                                                                                                                |                                                                               |
+| ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| [`Snapshot.decompositions`](qiskit.providers.aer.extensions.Snapshot.decompositions "qiskit.providers.aer.extensions.Snapshot.decompositions") | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
+| [`Snapshot.definition`](qiskit.providers.aer.extensions.Snapshot.definition "qiskit.providers.aer.extensions.Snapshot.definition")             | Return definition in terms of other basic gates.                              |
+| [`Snapshot.label`](qiskit.providers.aer.extensions.Snapshot.label "qiskit.providers.aer.extensions.Snapshot.label")                            | Return snapshot label                                                         |
+| [`Snapshot.params`](qiskit.providers.aer.extensions.Snapshot.params "qiskit.providers.aer.extensions.Snapshot.params")                         | return instruction params.                                                    |
+| [`Snapshot.snapshot_type`](qiskit.providers.aer.extensions.Snapshot.snapshot_type "qiskit.providers.aer.extensions.Snapshot.snapshot_type")    | Return snapshot type                                                          |
 
 ## Methods
 
-### add\_decomposition
-
-<span id="qiskit.providers.aer.extensions.Snapshot.add_decomposition" />
-
-`Snapshot.add_decomposition(decomposition)`
-
-Add a decomposition of the instruction to the SessionEquivalenceLibrary.
-
-### assemble
-
-<span id="qiskit.providers.aer.extensions.Snapshot.assemble" />
-
-`Snapshot.assemble()`
-
-Assemble a QasmQobjInstruction
-
-### broadcast\_arguments
-
-<span id="qiskit.providers.aer.extensions.Snapshot.broadcast_arguments" />
-
-`Snapshot.broadcast_arguments(qargs, cargs)`
-
-Validation of the arguments.
-
-**Parameters**
-
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
-
-**Yields**
-
-*Tuple(List, List)* – A tuple with single arguments.
-
-**Raises**
-
-**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
-
-### c\_if
-
-<span id="qiskit.providers.aer.extensions.Snapshot.c_if" />
-
-`Snapshot.c_if(classical, val)`
-
-Add classical condition on register classical and value val.
-
-### copy
-
-<span id="qiskit.providers.aer.extensions.Snapshot.copy" />
-
-`Snapshot.copy(name=None)`
-
-Copy of the instruction.
-
-**Parameters**
-
-**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
-
-**Returns**
-
-**a copy of the current instruction, with the name**
-
-updated if it was provided
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### define\_snapshot\_register
-
-<span id="qiskit.providers.aer.extensions.Snapshot.define_snapshot_register" />
-
-`static Snapshot.define_snapshot_register(circuit, label, qubits=None)`
-
-Defines qubits to snapshot for all snapshot methods
-
-### inverse
-
-<span id="qiskit.providers.aer.extensions.Snapshot.inverse" />
-
-`Snapshot.inverse()`
-
-Special case. Return self.
-
-### is\_parameterized
-
-<span id="qiskit.providers.aer.extensions.Snapshot.is_parameterized" />
-
-`Snapshot.is_parameterized()`
-
-Return True .IFF. instruction is parameterized else False
-
-### mirror
-
-<span id="qiskit.providers.aer.extensions.Snapshot.mirror" />
-
-`Snapshot.mirror()`
-
-For a composite instruction, reverse the order of sub-gates.
-
-This is done by recursively mirroring all sub-instructions. It does not invert any gate.
-
-**Returns**
-
-a fresh gate with sub-gates reversed
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-### qasm
-
-<span id="qiskit.providers.aer.extensions.Snapshot.qasm" />
-
-`Snapshot.qasm()`
-
-Return a default OpenQASM string for the instruction.
-
-Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
-
-### repeat
-
-<span id="qiskit.providers.aer.extensions.Snapshot.repeat" />
-
-`Snapshot.repeat(n)`
-
-Creates an instruction with gate repeated n amount of times.
-
-**Parameters**
-
-**n** (*int*) – Number of times to repeat the instruction
-
-**Returns**
-
-Containing the definition.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – If n \< 1.
+|                                                                                                                                                                                              |                                                                          |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| [`Snapshot.add_decomposition`](qiskit.providers.aer.extensions.Snapshot.add_decomposition "qiskit.providers.aer.extensions.Snapshot.add_decomposition")(decomposition)                       | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
+| [`Snapshot.assemble`](qiskit.providers.aer.extensions.Snapshot.assemble "qiskit.providers.aer.extensions.Snapshot.assemble")()                                                               | Assemble a QasmQobjInstruction                                           |
+| [`Snapshot.broadcast_arguments`](qiskit.providers.aer.extensions.Snapshot.broadcast_arguments "qiskit.providers.aer.extensions.Snapshot.broadcast_arguments")(qargs, cargs)                  | Validation of the arguments.                                             |
+| [`Snapshot.c_if`](qiskit.providers.aer.extensions.Snapshot.c_if "qiskit.providers.aer.extensions.Snapshot.c_if")(classical, val)                                                             | Add classical condition on register classical and value val.             |
+| [`Snapshot.copy`](qiskit.providers.aer.extensions.Snapshot.copy "qiskit.providers.aer.extensions.Snapshot.copy")(\[name])                                                                    | Copy of the instruction.                                                 |
+| [`Snapshot.define_snapshot_register`](qiskit.providers.aer.extensions.Snapshot.define_snapshot_register "qiskit.providers.aer.extensions.Snapshot.define_snapshot_register")(circuit, label) | Defines qubits to snapshot for all snapshot methods                      |
+| [`Snapshot.inverse`](qiskit.providers.aer.extensions.Snapshot.inverse "qiskit.providers.aer.extensions.Snapshot.inverse")()                                                                  | Special case.                                                            |
+| [`Snapshot.is_parameterized`](qiskit.providers.aer.extensions.Snapshot.is_parameterized "qiskit.providers.aer.extensions.Snapshot.is_parameterized")()                                       | Return True .IFF.                                                        |
+| [`Snapshot.mirror`](qiskit.providers.aer.extensions.Snapshot.mirror "qiskit.providers.aer.extensions.Snapshot.mirror")()                                                                     | For a composite instruction, reverse the order of sub-gates.             |
+| [`Snapshot.qasm`](qiskit.providers.aer.extensions.Snapshot.qasm "qiskit.providers.aer.extensions.Snapshot.qasm")()                                                                           | Return a default OpenQASM string for the instruction.                    |
+| [`Snapshot.repeat`](qiskit.providers.aer.extensions.Snapshot.repeat "qiskit.providers.aer.extensions.Snapshot.repeat")(n)                                                                    | Creates an instruction with gate repeated n amount of times.             |
 

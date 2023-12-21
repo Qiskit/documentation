@@ -29,39 +29,8 @@ Model for RunConfig.
 
 ## Methods
 
-### from\_dict
-
-<span id="qiskit.qobj.QasmQobjConfig.from_dict" />
-
-`classmethod QasmQobjConfig.from_dict(data)`
-
-Create a new QasmQobjConfig object from a dictionary.
-
-**Parameters**
-
-**data** (*dict*) – A dictionary for the config
-
-**Returns**
-
-The object from the input dictionary.
-
-**Return type**
-
-[QasmQobjConfig](qiskit.qobj.QasmQobjConfig "qiskit.qobj.QasmQobjConfig")
-
-### to\_dict
-
-<span id="qiskit.qobj.QasmQobjConfig.to_dict" />
-
-`QasmQobjConfig.to_dict()`
-
-Return a dictionary format representation of the QASM Qobj config.
-
-**Returns**
-
-The dictionary form of the QasmQobjConfig.
-
-**Return type**
-
-dict
+|                                                                                                                 |                                                                    |
+| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| [`QasmQobjConfig.from_dict`](qiskit.qobj.QasmQobjConfig.from_dict "qiskit.qobj.QasmQobjConfig.from_dict")(data) | Create a new QasmQobjConfig object from a dictionary.              |
+| [`QasmQobjConfig.to_dict`](qiskit.qobj.QasmQobjConfig.to_dict "qiskit.qobj.QasmQobjConfig.to_dict")()           | Return a dictionary format representation of the QASM Qobj config. |
 

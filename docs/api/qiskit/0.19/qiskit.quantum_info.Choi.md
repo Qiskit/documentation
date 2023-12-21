@@ -54,396 +54,44 @@ If the input or output dimensions are None, they will be automatically determine
 
 ## Attributes
 
-### atol
-
-The default absolute tolerance parameter for float comparisons.
-
-### data
-
-Return data.
-
-### dim
-
-Return tuple (input\_shape, output\_shape).
-
-### num\_qubits
-
-Return the number of qubits if a N-qubit operator or None otherwise.
-
-### qargs
-
-Return the qargs for the operator.
-
-### rtol
-
-The relative tolerance parameter for float comparisons.
+|                                                                                                |                                                                      |
+| ---------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [`Choi.atol`](qiskit.quantum_info.Choi.atol "qiskit.quantum_info.Choi.atol")                   | The default absolute tolerance parameter for float comparisons.      |
+| [`Choi.data`](qiskit.quantum_info.Choi.data "qiskit.quantum_info.Choi.data")                   | Return data.                                                         |
+| [`Choi.dim`](qiskit.quantum_info.Choi.dim "qiskit.quantum_info.Choi.dim")                      | Return tuple (input\_shape, output\_shape).                          |
+| [`Choi.num_qubits`](qiskit.quantum_info.Choi.num_qubits "qiskit.quantum_info.Choi.num_qubits") | Return the number of qubits if a N-qubit operator or None otherwise. |
+| [`Choi.qargs`](qiskit.quantum_info.Choi.qargs "qiskit.quantum_info.Choi.qargs")                | Return the qargs for the operator.                                   |
+| [`Choi.rtol`](qiskit.quantum_info.Choi.rtol "qiskit.quantum_info.Choi.rtol")                   | The relative tolerance parameter for float comparisons.              |
 
 ## Methods
 
-### \_\_call\_\_
-
-<span id="qiskit.quantum_info.Choi.__call__" />
-
-`Choi.__call__(qargs)`
-
-Return a clone with qargs set
-
-### \_\_mul\_\_
-
-<span id="qiskit.quantum_info.Choi.__mul__" />
-
-`Choi.__mul__(other)`
-
-### add
-
-<span id="qiskit.quantum_info.Choi.add" />
-
-`Choi.add(other)`
-
-Return the linear operator self + other.
-
-DEPRECATED: use `operator + other` instead.
-
-**Parameters**
-
-**other** (*BaseOperator*) – an operator object.
-
-**Returns**
-
-the operator self + other.
-
-**Return type**
-
-BaseOperator
-
-### adjoint
-
-<span id="qiskit.quantum_info.Choi.adjoint" />
-
-`Choi.adjoint()`
-
-Return the adjoint of the operator.
-
-### compose
-
-<span id="qiskit.quantum_info.Choi.compose" />
-
-`Choi.compose(other, qargs=None, front=False)`
-
-Return the composed quantum channel self @ other.
-
-**Parameters**
-
-*   **other** (*QuantumChannel*) – a quantum channel.
-*   **qargs** (*list or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems \[default: None].
-*   **front** (*bool*) – If True compose using right operator multiplication, instead of left multiplication \[default: False].
-
-**Returns**
-
-The quantum channel self @ other.
-
-**Return type**
-
-[Choi](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi")
-
-**Raises**
-
-**QiskitError** – if other has incompatible dimensions.
-
-#### Additional Information:
-
-Composition (`@`) is defined as left matrix multiplication for [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") matrices. That is that `A @ B` is equal to `B * A`. Setting `front=True` returns right matrix multiplication `A * B` and is equivalent to the [`dot()`](qiskit.quantum_info.Choi#dot "qiskit.quantum_info.Choi.dot") method.
-
-### conjugate
-
-<span id="qiskit.quantum_info.Choi.conjugate" />
-
-`Choi.conjugate()`
-
-Return the conjugate of the QuantumChannel.
-
-### copy
-
-<span id="qiskit.quantum_info.Choi.copy" />
-
-`Choi.copy()`
-
-Make a deep copy of current operator.
-
-### dot
-
-<span id="qiskit.quantum_info.Choi.dot" />
-
-`Choi.dot(other, qargs=None)`
-
-Return the right multiplied operator self \* other.
-
-**Parameters**
-
-*   **other** (*BaseOperator*) – an operator object.
-*   **qargs** (*list or None*) – a list of subsystem positions to apply other on. If None apply on all subsystems \[default: None].
-
-**Returns**
-
-The operator self \* other.
-
-**Return type**
-
-BaseOperator
-
-**Raises**
-
-**QiskitError** – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
-
-### expand
-
-<span id="qiskit.quantum_info.Choi.expand" />
-
-`Choi.expand(other)`
-
-Return the tensor product channel other ⊗ self.
-
-**Parameters**
-
-**other** (*QuantumChannel*) – a quantum channel.
-
-**Returns**
-
-the tensor product channel other ⊗ self as a Choi object.
-
-**Return type**
-
-[Choi](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi")
-
-**Raises**
-
-**QiskitError** – if other cannot be converted to a channel.
-
-### input\_dims
-
-<span id="qiskit.quantum_info.Choi.input_dims" />
-
-`Choi.input_dims(qargs=None)`
-
-Return tuple of input dimension for specified subsystems.
-
-### is\_cp
-
-<span id="qiskit.quantum_info.Choi.is_cp" />
-
-`Choi.is_cp(atol=None, rtol=None)`
-
-Test if Choi-matrix is completely-positive (CP)
-
-### is\_cptp
-
-<span id="qiskit.quantum_info.Choi.is_cptp" />
-
-`Choi.is_cptp(atol=None, rtol=None)`
-
-Return True if completely-positive trace-preserving (CPTP).
-
-### is\_tp
-
-<span id="qiskit.quantum_info.Choi.is_tp" />
-
-`Choi.is_tp(atol=None, rtol=None)`
-
-Test if a channel is completely-positive (CP)
-
-### is\_unitary
-
-<span id="qiskit.quantum_info.Choi.is_unitary" />
-
-`Choi.is_unitary(atol=None, rtol=None)`
-
-Return True if QuantumChannel is a unitary channel.
-
-### multiply
-
-<span id="qiskit.quantum_info.Choi.multiply" />
-
-`Choi.multiply(other)`
-
-Return the linear operator other \* self.
-
-DEPRECATED: use `other * operator` instead.
-
-**Parameters**
-
-**other** (*complex*) – a complex number.
-
-**Returns**
-
-the linear operator other \* self.
-
-**Return type**
-
-BaseOperator
-
-**Raises**
-
-**NotImplementedError** – if subclass does not support multiplication.
-
-### output\_dims
-
-<span id="qiskit.quantum_info.Choi.output_dims" />
-
-`Choi.output_dims(qargs=None)`
-
-Return tuple of output dimension for specified subsystems.
-
-### power
-
-<span id="qiskit.quantum_info.Choi.power" />
-
-`Choi.power(n)`
-
-The matrix power of the channel.
-
-**Parameters**
-
-**n** (*int*) – compute the matrix power of the superoperator matrix.
-
-**Returns**
-
-the matrix power of the SuperOp converted to a Choi channel.
-
-**Return type**
-
-[Choi](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi")
-
-**Raises**
-
-**QiskitError** – if the input and output dimensions of the QuantumChannel are not equal, or the power is not an integer.
-
-### reshape
-
-<span id="qiskit.quantum_info.Choi.reshape" />
-
-`Choi.reshape(input_dims=None, output_dims=None)`
-
-Return a shallow copy with reshaped input and output subsystem dimensions.
-
-#### Arg:
-
-#### input\_dims (None or tuple): new subsystem input dimensions.
-
-If None the original input dims will be preserved \[Default: None].
-
-#### output\_dims (None or tuple): new subsystem output dimensions.
-
-If None the original output dims will be preserved \[Default: None].
-
-**Returns**
-
-returns self with reshaped input and output dimensions.
-
-**Return type**
-
-BaseOperator
-
-**Raises**
-
-**QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
-
-### set\_atol
-
-<span id="qiskit.quantum_info.Choi.set_atol" />
-
-`classmethod Choi.set_atol(value)`
-
-Set the class default absolute tolerance parameter for float comparisons.
-
-### set\_rtol
-
-<span id="qiskit.quantum_info.Choi.set_rtol" />
-
-`classmethod Choi.set_rtol(value)`
-
-Set the class default relative tolerance parameter for float comparisons.
-
-### subtract
-
-<span id="qiskit.quantum_info.Choi.subtract" />
-
-`Choi.subtract(other)`
-
-Return the linear operator self - other.
-
-DEPRECATED: use `operator - other` instead.
-
-**Parameters**
-
-**other** (*BaseOperator*) – an operator object.
-
-**Returns**
-
-the operator self - other.
-
-**Return type**
-
-BaseOperator
-
-### tensor
-
-<span id="qiskit.quantum_info.Choi.tensor" />
-
-`Choi.tensor(other)`
-
-Return the tensor product channel self ⊗ other.
-
-**Parameters**
-
-**other** (*QuantumChannel*) – a quantum channel.
-
-**Returns**
-
-the tensor product channel self ⊗ other as a Choi object.
-
-**Return type**
-
-[Choi](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi")
-
-**Raises**
-
-**QiskitError** – if other cannot be converted to a channel.
-
-### to\_instruction
-
-<span id="qiskit.quantum_info.Choi.to_instruction" />
-
-`Choi.to_instruction()`
-
-Convert to a Kraus or UnitaryGate circuit instruction.
-
-If the channel is unitary it will be added as a unitary gate, otherwise it will be added as a kraus simulator instruction.
-
-**Returns**
-
-A kraus instruction for the channel.
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**QiskitError** – if input data is not an N-qubit CPTP quantum channel.
-
-### to\_operator
-
-<span id="qiskit.quantum_info.Choi.to_operator" />
-
-`Choi.to_operator()`
-
-Try to convert channel to a unitary representation Operator.
-
-### transpose
-
-<span id="qiskit.quantum_info.Choi.transpose" />
-
-`Choi.transpose()`
-
-Return the transpose of the QuantumChannel.
+|                                                                                                                     |                                                                            |
+| ------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| [`Choi.__call__`](qiskit.quantum_info.Choi.__call__ "qiskit.quantum_info.Choi.__call__")(qargs)                     | Return a clone with qargs set                                              |
+| [`Choi.__mul__`](qiskit.quantum_info.Choi.__mul__ "qiskit.quantum_info.Choi.__mul__")(other)                        |                                                                            |
+| [`Choi.add`](qiskit.quantum_info.Choi.add "qiskit.quantum_info.Choi.add")(other)                                    | Return the linear operator self + other.                                   |
+| [`Choi.adjoint`](qiskit.quantum_info.Choi.adjoint "qiskit.quantum_info.Choi.adjoint")()                             | Return the adjoint of the operator.                                        |
+| [`Choi.compose`](qiskit.quantum_info.Choi.compose "qiskit.quantum_info.Choi.compose")(other\[, qargs, front])       | Return the composed quantum channel self @ other.                          |
+| [`Choi.conjugate`](qiskit.quantum_info.Choi.conjugate "qiskit.quantum_info.Choi.conjugate")()                       | Return the conjugate of the QuantumChannel.                                |
+| [`Choi.copy`](qiskit.quantum_info.Choi.copy "qiskit.quantum_info.Choi.copy")()                                      | Make a deep copy of current operator.                                      |
+| [`Choi.dot`](qiskit.quantum_info.Choi.dot "qiskit.quantum_info.Choi.dot")(other\[, qargs])                          | Return the right multiplied operator self \* other.                        |
+| [`Choi.expand`](qiskit.quantum_info.Choi.expand "qiskit.quantum_info.Choi.expand")(other)                           | Return the tensor product channel other ⊗ self.                            |
+| [`Choi.input_dims`](qiskit.quantum_info.Choi.input_dims "qiskit.quantum_info.Choi.input_dims")(\[qargs])            | Return tuple of input dimension for specified subsystems.                  |
+| [`Choi.is_cp`](qiskit.quantum_info.Choi.is_cp "qiskit.quantum_info.Choi.is_cp")(\[atol, rtol])                      | Test if Choi-matrix is completely-positive (CP)                            |
+| [`Choi.is_cptp`](qiskit.quantum_info.Choi.is_cptp "qiskit.quantum_info.Choi.is_cptp")(\[atol, rtol])                | Return True if completely-positive trace-preserving (CPTP).                |
+| [`Choi.is_tp`](qiskit.quantum_info.Choi.is_tp "qiskit.quantum_info.Choi.is_tp")(\[atol, rtol])                      | Test if a channel is completely-positive (CP)                              |
+| [`Choi.is_unitary`](qiskit.quantum_info.Choi.is_unitary "qiskit.quantum_info.Choi.is_unitary")(\[atol, rtol])       | Return True if QuantumChannel is a unitary channel.                        |
+| [`Choi.multiply`](qiskit.quantum_info.Choi.multiply "qiskit.quantum_info.Choi.multiply")(other)                     | Return the linear operator other \* self.                                  |
+| [`Choi.output_dims`](qiskit.quantum_info.Choi.output_dims "qiskit.quantum_info.Choi.output_dims")(\[qargs])         | Return tuple of output dimension for specified subsystems.                 |
+| [`Choi.power`](qiskit.quantum_info.Choi.power "qiskit.quantum_info.Choi.power")(n)                                  | The matrix power of the channel.                                           |
+| [`Choi.reshape`](qiskit.quantum_info.Choi.reshape "qiskit.quantum_info.Choi.reshape")(\[input\_dims, output\_dims]) | Return a shallow copy with reshaped input and output subsystem dimensions. |
+| [`Choi.set_atol`](qiskit.quantum_info.Choi.set_atol "qiskit.quantum_info.Choi.set_atol")(value)                     | Set the class default absolute tolerance parameter for float comparisons.  |
+| [`Choi.set_rtol`](qiskit.quantum_info.Choi.set_rtol "qiskit.quantum_info.Choi.set_rtol")(value)                     | Set the class default relative tolerance parameter for float comparisons.  |
+| [`Choi.subtract`](qiskit.quantum_info.Choi.subtract "qiskit.quantum_info.Choi.subtract")(other)                     | Return the linear operator self - other.                                   |
+| [`Choi.tensor`](qiskit.quantum_info.Choi.tensor "qiskit.quantum_info.Choi.tensor")(other)                           | Return the tensor product channel self ⊗ other.                            |
+| [`Choi.to_instruction`](qiskit.quantum_info.Choi.to_instruction "qiskit.quantum_info.Choi.to_instruction")()        | Convert to a Kraus or UnitaryGate circuit instruction.                     |
+| [`Choi.to_operator`](qiskit.quantum_info.Choi.to_operator "qiskit.quantum_info.Choi.to_operator")()                 | Try to convert channel to a unitary representation Operator.               |
+| [`Choi.transpose`](qiskit.quantum_info.Choi.transpose "qiskit.quantum_info.Choi.transpose")()                       | Return the transpose of the QuantumChannel.                                |
+| [`Choi.__call__`](qiskit.quantum_info.Choi.__call__ "qiskit.quantum_info.Choi.__call__")(qargs)                     | Return a clone with qargs set                                              |
+| [`Choi.__mul__`](qiskit.quantum_info.Choi.__mul__ "qiskit.quantum_info.Choi.__mul__")(other)                        |                                                                            |
 

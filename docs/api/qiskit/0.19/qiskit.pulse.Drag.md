@@ -43,127 +43,21 @@ Initialize the drag pulse.
 
 ## Attributes
 
-### amp
-
-<span id="qiskit.pulse.Drag.amp" />
-
-`complex`
-
-The Gaussian amplitude.
-
-**Return type**
-
-`complex`
-
-### beta
-
-<span id="qiskit.pulse.Drag.beta" />
-
-`float`
-
-The weighing factor for the Gaussian derivative component of the waveform.
-
-**Return type**
-
-`float`
-
-### id
-
-<span id="qiskit.pulse.Drag.id" />
-
-`int`
-
-Unique identifier for this pulse.
-
-**Return type**
-
-`int`
-
-### parameters
-
-<span id="qiskit.pulse.Drag.parameters" />
-
-`Dict[str, Any]`
-
-Return a dictionary containing the pulse’s parameters.
-
-**Return type**
-
-`Dict`\[`str`, `Any`]
-
-### sigma
-
-<span id="qiskit.pulse.Drag.sigma" />
-
-`float`
-
-The Gaussian standard deviation of the pulse width.
-
-**Return type**
-
-`float`
+|                                                                                  |                                                                            |
+| -------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
+| [`Drag.amp`](qiskit.pulse.Drag.amp "qiskit.pulse.Drag.amp")                      | The Gaussian amplitude.                                                    |
+| [`Drag.beta`](qiskit.pulse.Drag.beta "qiskit.pulse.Drag.beta")                   | The weighing factor for the Gaussian derivative component of the waveform. |
+| [`Drag.id`](qiskit.pulse.Drag.id "qiskit.pulse.Drag.id")                         | Unique identifier for this pulse.                                          |
+| [`Drag.parameters`](qiskit.pulse.Drag.parameters "qiskit.pulse.Drag.parameters") | Return a dictionary containing the pulse’s parameters.                     |
+| [`Drag.sigma`](qiskit.pulse.Drag.sigma "qiskit.pulse.Drag.sigma")                | The Gaussian standard deviation of the pulse width.                        |
 
 ## Methods
 
-### \_\_call\_\_
-
-<span id="qiskit.pulse.Drag.__call__" />
-
-`Drag.__call__(channel)`
-
-Call self as a function.
-
-### draw
-
-<span id="qiskit.pulse.Drag.draw" />
-
-`Drag.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False, scaling=None)`
-
-Plot the pulse.
-
-**Parameters**
-
-*   **dt** (`float`) – Time interval of samples.
-*   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#qiskit.visualization.pulse.qcstyle.PulseStyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance
-*   **filename** (`Optional`\[`str`]) – Name required to save pulse image
-*   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation
-*   **scale** (`float`) – Relative visual scaling of waveform amplitudes
-*   **interactive** (`bool`) – When set true show the circuit in a new window (this depends on the matplotlib backend being used supporting this)
-*   **scaling** (`Optional`\[`float`]) – Deprecated, see scale
-
-**Returns**
-
-A matplotlib figure object of the pulse envelope
-
-**Return type**
-
-matplotlib.figure
-
-### get\_sample\_pulse
-
-<span id="qiskit.pulse.Drag.get_sample_pulse" />
-
-`Drag.get_sample_pulse()`
-
-Return a SamplePulse with samples filled according to the formula that the pulse represents and the parameter values it contains.
-
-**Return type**
-
-[`SamplePulse`](qiskit.pulse.pulse_lib.SamplePulse "qiskit.pulse.pulse_lib.sample_pulse.SamplePulse")
-
-### validate\_parameters
-
-<span id="qiskit.pulse.Drag.validate_parameters" />
-
-`Drag.validate_parameters()`
-
-Validate parameters.
-
-**Raises**
-
-[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
-
-**Return type**
-
-`None`
+|                                                                                                               |                                                                                                                                   |
+| ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
+| [`Drag.__call__`](qiskit.pulse.Drag.__call__ "qiskit.pulse.Drag.__call__")(channel)                           | Call self as a function.                                                                                                          |
+| [`Drag.draw`](qiskit.pulse.Drag.draw "qiskit.pulse.Drag.draw")(\[dt, style, filename, …])                     | Plot the pulse.                                                                                                                   |
+| [`Drag.get_sample_pulse`](qiskit.pulse.Drag.get_sample_pulse "qiskit.pulse.Drag.get_sample_pulse")()          | Return a SamplePulse with samples filled according to the formula that the pulse represents and the parameter values it contains. |
+| [`Drag.validate_parameters`](qiskit.pulse.Drag.validate_parameters "qiskit.pulse.Drag.validate_parameters")() | Validate parameters.                                                                                                              |
+| [`Drag.__call__`](qiskit.pulse.Drag.__call__ "qiskit.pulse.Drag.__call__")(channel)                           | Call self as a function.                                                                                                          |
 

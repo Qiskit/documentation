@@ -16,35 +16,16 @@ ParameterVector class to quickly generate lists of parameters.
 
 ## Attributes
 
-### name
-
-Returns the name of the ParameterVector.
-
-### params
-
-Returns the list of parameters in the ParameterVector.
+|                                                                                                           |                                                        |
+| --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
+| [`ParameterVector.name`](qiskit.circuit.ParameterVector.name "qiskit.circuit.ParameterVector.name")       | Returns the name of the ParameterVector.               |
+| [`ParameterVector.params`](qiskit.circuit.ParameterVector.params "qiskit.circuit.ParameterVector.params") | Returns the list of parameters in the ParameterVector. |
 
 ## Methods
 
-### \_\_getitem\_\_
-
-<span id="qiskit.circuit.ParameterVector.__getitem__" />
-
-`ParameterVector.__getitem__(key)`
-
-### \_\_len\_\_
-
-<span id="qiskit.circuit.ParameterVector.__len__" />
-
-`ParameterVector.__len__()`
-
-### resize
-
-<span id="qiskit.circuit.ParameterVector.resize" />
-
-`ParameterVector.resize(length)`
-
-Resize the parameter vector.
-
-If necessary, new elements are generated. If length is smaller than before, the previous elements are cached and not re-generated if the vector is enlargened again. This is to ensure that the parameter instances do not change.
+|                                                                                                                               |                              |
+| ----------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
+| [`ParameterVector.__getitem__`](qiskit.circuit.ParameterVector.__getitem__ "qiskit.circuit.ParameterVector.__getitem__")(key) |                              |
+| [`ParameterVector.__len__`](qiskit.circuit.ParameterVector.__len__ "qiskit.circuit.ParameterVector.__len__")()                |                              |
+| [`ParameterVector.resize`](qiskit.circuit.ParameterVector.resize "qiskit.circuit.ParameterVector.resize")(length)             | Resize the parameter vector. |
 

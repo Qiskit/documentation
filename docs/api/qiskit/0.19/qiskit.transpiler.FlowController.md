@@ -18,82 +18,16 @@ This class is a base class for multiple types of working list. When you iterate 
 
 ## Attributes
 
-### registered\_controllers
-
-<span id="qiskit.transpiler.FlowController.registered_controllers" />
-
-`= {'condition': , 'do_while': }`
+|                                                                                                                                                              |   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | - |
+| [`FlowController.registered_controllers`](qiskit.transpiler.FlowController.registered_controllers "qiskit.transpiler.FlowController.registered_controllers") |   |
 
 ## Methods
 
-### add\_flow\_controller
-
-<span id="qiskit.transpiler.FlowController.add_flow_controller" />
-
-`classmethod FlowController.add_flow_controller(name, controller)`
-
-Adds a flow controller.
-
-**Parameters**
-
-*   **name** (*string*) – Name of the controller to add.
-*   **controller** (*type(*[*FlowController*](qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")*)*) – The class implementing a flow controller.
-
-### controller\_factory
-
-<span id="qiskit.transpiler.FlowController.controller_factory" />
-
-`classmethod FlowController.controller_factory(passes, options, **partial_controller)`
-
-Constructs a flow controller based on the partially evaluated controller arguments.
-
-**Parameters**
-
-*   **passes** (*list\[BasePass]*) – passes to add to the flow controller.
-*   **options** (*dict*) – PassManager options.
-*   **\*\*partial\_controller** (*dict*) – Partially evaluated controller arguments in the form \{name:partial}
-
-**Raises**
-
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When partial\_controller is not well-formed.
-
-**Returns**
-
-A FlowController instance.
-
-**Return type**
-
-[FlowController](qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")
-
-### dump\_passes
-
-<span id="qiskit.transpiler.FlowController.dump_passes" />
-
-`FlowController.dump_passes()`
-
-Fetches the passes added to this flow controller.
-
-**Returns**
-
-\{‘options’: self.options, ‘passes’: \[passes], ‘type’: type(self)}
-
-**Return type**
-
-dict
-
-### remove\_flow\_controller
-
-<span id="qiskit.transpiler.FlowController.remove_flow_controller" />
-
-`classmethod FlowController.remove_flow_controller(name)`
-
-Removes a flow controller.
-
-**Parameters**
-
-**name** (*string*) – Name of the controller to remove.
-
-**Raises**
-
-**KeyError** – If the controller to remove was not registered.
+|                                                                                                                                                                    |                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| [`FlowController.add_flow_controller`](qiskit.transpiler.FlowController.add_flow_controller "qiskit.transpiler.FlowController.add_flow_controller")(name, …)       | Adds a flow controller.                                                             |
+| [`FlowController.controller_factory`](qiskit.transpiler.FlowController.controller_factory "qiskit.transpiler.FlowController.controller_factory")(passes, …)        | Constructs a flow controller based on the partially evaluated controller arguments. |
+| [`FlowController.dump_passes`](qiskit.transpiler.FlowController.dump_passes "qiskit.transpiler.FlowController.dump_passes")()                                      | Fetches the passes added to this flow controller.                                   |
+| [`FlowController.remove_flow_controller`](qiskit.transpiler.FlowController.remove_flow_controller "qiskit.transpiler.FlowController.remove_flow_controller")(name) | Removes a flow controller.                                                          |
 

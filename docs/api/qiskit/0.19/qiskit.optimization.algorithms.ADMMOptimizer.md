@@ -34,71 +34,9 @@ Optimization on Classical and Quantum Computers. arXiv preprint arXiv:2001.02069
 
 ## Methods
 
-### get\_compatibility\_msg
-
-<span id="qiskit.optimization.algorithms.ADMMOptimizer.get_compatibility_msg" />
-
-`ADMMOptimizer.get_compatibility_msg(problem)`
-
-Checks whether a given problem can be solved with the optimizer implementing this method.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
-
-**Return type**
-
-`Optional`\[`str`]
-
-**Returns**
-
-Returns True if the problem is compatible, otherwise raises an error.
-
-**Raises**
-
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is not compatible with the ADMM optimizer.
-
-### is\_compatible
-
-<span id="qiskit.optimization.algorithms.ADMMOptimizer.is_compatible" />
-
-`ADMMOptimizer.is_compatible(problem)`
-
-Checks whether a given problem can be solved with the optimizer implementing this method.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-Returns True if the problem is compatible, False otherwise.
-
-### solve
-
-<span id="qiskit.optimization.algorithms.ADMMOptimizer.solve" />
-
-`ADMMOptimizer.solve(problem)`
-
-Tries to solves the given problem using ADMM algorithm.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved.
-
-**Return type**
-
-`ADMMOptimizationResult`
-
-**Returns**
-
-The result of the optimizer applied to the problem.
-
-**Raises**
-
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is not compatible with the ADMM optimizer.
+|                                                                                                                                                                                           |                                                                                           |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| [`ADMMOptimizer.get_compatibility_msg`](qiskit.optimization.algorithms.ADMMOptimizer.get_compatibility_msg "qiskit.optimization.algorithms.ADMMOptimizer.get_compatibility_msg")(problem) | Checks whether a given problem can be solved with the optimizer implementing this method. |
+| [`ADMMOptimizer.is_compatible`](qiskit.optimization.algorithms.ADMMOptimizer.is_compatible "qiskit.optimization.algorithms.ADMMOptimizer.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method. |
+| [`ADMMOptimizer.solve`](qiskit.optimization.algorithms.ADMMOptimizer.solve "qiskit.optimization.algorithms.ADMMOptimizer.solve")(problem)                                                 | Tries to solves the given problem using ADMM algorithm.                                   |
 

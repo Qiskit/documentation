@@ -18,32 +18,13 @@ This method should initialize the module and use an exception if a component of 
 
 ## Attributes
 
-### bitstr
+|                                                                                                                                                |   |
+| ---------------------------------------------------------------------------------------------------------------------------------------------- | - |
+| [`InitialState.bitstr`](qiskit.aqua.components.initial_states.InitialState.bitstr "qiskit.aqua.components.initial_states.InitialState.bitstr") |   |
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.components.initial_states.InitialState.construct_circuit" />
-
-`abstract InitialState.construct_circuit(mode='circuit', register=None)`
-
-Construct the statevector of desired initial state.
-
-**Parameters**
-
-*   **mode** (`str`) – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
-*   **register** (`Optional`\[[`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister")]) – qubits for circuit construction.
-
-**Returns**
-
-statevector.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
+|                                                                                                                                                                                                    |                                                     |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| [`InitialState.construct_circuit`](qiskit.aqua.components.initial_states.InitialState.construct_circuit "qiskit.aqua.components.initial_states.InitialState.construct_circuit")(\[mode, register]) | Construct the statevector of desired initial state. |
 

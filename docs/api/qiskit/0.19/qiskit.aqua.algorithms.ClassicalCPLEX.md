@@ -27,29 +27,14 @@ See these `installation instructions` if you need more information in that regar
 
 ## Attributes
 
-### random
-
-Return a numpy random.
-
-### solution
-
-return solution
+|                                                                                                                              |                        |
+| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| [`ClassicalCPLEX.random`](qiskit.aqua.algorithms.ClassicalCPLEX.random "qiskit.aqua.algorithms.ClassicalCPLEX.random")       | Return a numpy random. |
+| [`ClassicalCPLEX.solution`](qiskit.aqua.algorithms.ClassicalCPLEX.solution "qiskit.aqua.algorithms.ClassicalCPLEX.solution") | return solution        |
 
 ## Methods
 
-### run
-
-<span id="qiskit.aqua.algorithms.ClassicalCPLEX.run" />
-
-`ClassicalCPLEX.run()`
-
-Execute the classical algorithm.
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
+|                                                                                                                 |                                  |
+| --------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| [`ClassicalCPLEX.run`](qiskit.aqua.algorithms.ClassicalCPLEX.run "qiskit.aqua.algorithms.ClassicalCPLEX.run")() | Execute the classical algorithm. |
 

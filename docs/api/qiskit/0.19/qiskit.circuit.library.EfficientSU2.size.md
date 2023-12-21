@@ -1,0 +1,24 @@
+---
+title: size
+description: API reference for qiskit.circuit.library.EfficientSU2.size
+in_page_toc_min_heading_level: 1
+python_api_type: method
+python_api_name: qiskit.circuit.library.EfficientSU2.size
+---
+
+# size
+
+<span id="qiskit.circuit.library.EfficientSU2.size" />
+
+`EfficientSU2.size()`
+
+Returns total number of gate operations in circuit.
+
+**Returns**
+
+Total number of gate operations.
+
+**Return type**
+
+int
+

@@ -16,15 +16,8 @@ Transformation Type enum
 
 ## Attributes
 
-### FULL
-
-<span id="qiskit.chemistry.core.TransformationType.FULL" />
-
-`= 'full'`
-
-### PARTICLE\_HOLE
-
-<span id="qiskit.chemistry.core.TransformationType.PARTICLE_HOLE" />
-
-`= 'particle_hole'`
+|                                                                                                                                                       |   |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------- | - |
+| [`TransformationType.FULL`](qiskit.chemistry.core.TransformationType.FULL "qiskit.chemistry.core.TransformationType.FULL")                            |   |
+| [`TransformationType.PARTICLE_HOLE`](qiskit.chemistry.core.TransformationType.PARTICLE_HOLE "qiskit.chemistry.core.TransformationType.PARTICLE_HOLE") |   |
 

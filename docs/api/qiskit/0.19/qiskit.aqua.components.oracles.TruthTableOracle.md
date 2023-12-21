@@ -40,35 +40,17 @@ Regarding circuit optimization and mct usages, the truth table oracle is similar
 
 ## Attributes
 
-### ancillary\_register
-
-returns ancillary register
-
-### circuit
-
-### output\_register
-
-returns output register
-
-### variable\_register
-
-returns variable register
+|                                                                                                                                                                                  |                            |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| [`TruthTableOracle.ancillary_register`](qiskit.aqua.components.oracles.TruthTableOracle.ancillary_register "qiskit.aqua.components.oracles.TruthTableOracle.ancillary_register") | returns ancillary register |
+| [`TruthTableOracle.circuit`](qiskit.aqua.components.oracles.TruthTableOracle.circuit "qiskit.aqua.components.oracles.TruthTableOracle.circuit")                                  |                            |
+| [`TruthTableOracle.output_register`](qiskit.aqua.components.oracles.TruthTableOracle.output_register "qiskit.aqua.components.oracles.TruthTableOracle.output_register")          | returns output register    |
+| [`TruthTableOracle.variable_register`](qiskit.aqua.components.oracles.TruthTableOracle.variable_register "qiskit.aqua.components.oracles.TruthTableOracle.variable_register")    | returns variable register  |
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.components.oracles.TruthTableOracle.construct_circuit" />
-
-`TruthTableOracle.construct_circuit()`
-
-construct circuit
-
-### evaluate\_classically
-
-<span id="qiskit.aqua.components.oracles.TruthTableOracle.evaluate_classically" />
-
-`TruthTableOracle.evaluate_classically(measurement)`
-
-evaluate classical
+|                                                                                                                                                                                           |                    |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
+| [`TruthTableOracle.construct_circuit`](qiskit.aqua.components.oracles.TruthTableOracle.construct_circuit "qiskit.aqua.components.oracles.TruthTableOracle.construct_circuit")()           | construct circuit  |
+| [`TruthTableOracle.evaluate_classically`](qiskit.aqua.components.oracles.TruthTableOracle.evaluate_classically "qiskit.aqua.components.oracles.TruthTableOracle.evaluate_classically")(…) | evaluate classical |
 

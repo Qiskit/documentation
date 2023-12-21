@@ -16,9 +16,8 @@ A dag circuit that cannot be modified (via remove\_op\_node)
 
 ## Methods
 
-### \_\_getitem\_\_
-
-<span id="qiskit.transpiler.FencedDAGCircuit.__getitem__" />
-
-`FencedDAGCircuit.__getitem__(key)`
+|                                                                                                                                        |   |
+| -------------------------------------------------------------------------------------------------------------------------------------- | - |
+| [`FencedDAGCircuit.__getitem__`](qiskit.transpiler.FencedDAGCircuit.__getitem__ "qiskit.transpiler.FencedDAGCircuit.__getitem__")(key) |   |
+| [`FencedDAGCircuit.__getitem__`](qiskit.transpiler.FencedDAGCircuit.__getitem__ "qiskit.transpiler.FencedDAGCircuit.__getitem__")(key) |   |
 

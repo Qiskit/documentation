@@ -25,33 +25,15 @@ Layout2qDistance initializer.
 
 ## Attributes
 
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+|                                                                                                                                                                                  |                                             |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| [`Layout2qDistance.is_analysis_pass`](qiskit.transpiler.passes.Layout2qDistance.is_analysis_pass "qiskit.transpiler.passes.Layout2qDistance.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
+| [`Layout2qDistance.is_transformation_pass`](qiskit.transpiler.passes.Layout2qDistance.is_transformation_pass "qiskit.transpiler.passes.Layout2qDistance.is_transformation_pass") | Check if the pass is a transformation pass. |
 
 ## Methods
 
-### name
-
-<span id="qiskit.transpiler.passes.Layout2qDistance.name" />
-
-`Layout2qDistance.name()`
-
-Return the name of the pass.
-
-### run
-
-<span id="qiskit.transpiler.passes.Layout2qDistance.run" />
-
-`Layout2qDistance.run(dag)`
-
-Run the Layout2qDistance pass on dag. :param dag: DAG to evaluate. :type dag: DAGCircuit
+|                                                                                                                              |                                       |
+| ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| [`Layout2qDistance.name`](qiskit.transpiler.passes.Layout2qDistance.name "qiskit.transpiler.passes.Layout2qDistance.name")() | Return the name of the pass.          |
+| [`Layout2qDistance.run`](qiskit.transpiler.passes.Layout2qDistance.run "qiskit.transpiler.passes.Layout2qDistance.run")(dag) | Run the Layout2qDistance pass on dag. |
 

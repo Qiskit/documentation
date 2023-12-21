@@ -1,0 +1,16 @@
+---
+title: inverse
+description: API reference for qiskit.circuit.library.RZXGate.inverse
+in_page_toc_min_heading_level: 1
+python_api_type: method
+python_api_name: qiskit.circuit.library.RZXGate.inverse
+---
+
+# inverse
+
+<span id="qiskit.circuit.library.RZXGate.inverse" />
+
+`RZXGate.inverse()`
+
+Return inverse RZX gate (i.e. with the negative rotation angle).
+

@@ -29,45 +29,8 @@ A calculation of reciprocals of eigenvalues is performed and controlled rotation
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.components.reciprocals.LookupRotation.construct_circuit" />
-
-`LookupRotation.construct_circuit(mode, inreg)`
-
-Construct the Lookup Rotation circuit.
-
-**Parameters**
-
-*   **mode** (*str*) – construction mode, ‘matrix’ not supported
-*   **inreg** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – input register, typically output register of Eigenvalues
-
-**Returns**
-
-containing the Lookup Rotation circuit.
-
-**Return type**
-
-QuantumCircuit
-
-**Raises:**
-
-NotImplementedError: mode not supported
-
-### sv\_to\_resvec
-
-<span id="qiskit.aqua.components.reciprocals.LookupRotation.sv_to_resvec" />
-
-`LookupRotation.sv_to_resvec(statevector, num_q)`
-
-Convert statevector to result vector.
-
-**Parameters**
-
-*   **statevector** (*list*) – The statevector from simulation.
-*   **num\_q** (*int*) – Number of qubits of result register.
-
-**Returns**
-
-The result vector.
+|                                                                                                                                                                                              |                                        |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| [`LookupRotation.construct_circuit`](qiskit.aqua.components.reciprocals.LookupRotation.construct_circuit "qiskit.aqua.components.reciprocals.LookupRotation.construct_circuit")(mode, inreg) | Construct the Lookup Rotation circuit. |
+| [`LookupRotation.sv_to_resvec`](qiskit.aqua.components.reciprocals.LookupRotation.sv_to_resvec "qiskit.aqua.components.reciprocals.LookupRotation.sv_to_resvec")(statevector, num\_q)        | Convert statevector to result vector.  |
 

@@ -23,7 +23,7 @@ This class contains model information required by the [`PulseSimulator`](qiskit.
 > *   `"subsystem_list"`: List of subsystems in the model.
 > *   `"dt"`: Sample width size for OpenPulse instructions.
 
-A model can be instantiated from the helper function [`duffing_system_model()`](qiskit.providers.aer.pulse.duffing_system_model "qiskit.providers.aer.pulse.duffing_system_model"), or using the [`PulseSystemModel.from_backend()`](qiskit.providers.aer.pulse.PulseSystemModel#from_backend "qiskit.providers.aer.pulse.PulseSystemModel.from_backend") constructor.
+A model can be instantiated from the helper function [`duffing_system_model()`](qiskit.providers.aer.pulse.duffing_system_model "qiskit.providers.aer.pulse.duffing_system_model"), or using the [`PulseSystemModel.from_backend()`](qiskit.providers.aer.pulse.PulseSystemModel.from_backend "qiskit.providers.aer.pulse.PulseSystemModel.from_backend") constructor.
 
 **Example**
 
@@ -47,72 +47,9 @@ Initialize a PulseSystemModel.
 
 ## Methods
 
-### calculate\_channel\_frequencies
-
-<span id="qiskit.providers.aer.pulse.PulseSystemModel.calculate_channel_frequencies" />
-
-`PulseSystemModel.calculate_channel_frequencies(qubit_lo_freq=None)`
-
-Calculate frequencies for each channel given qubit\_lo\_freq.
-
-**Parameters**
-
-**qubit\_lo\_freq** (*list or None*) – list of qubit linear oscillator drive frequencies. If None these will be calculated using self.\_qubit\_freq\_est.
-
-**Returns**
-
-a dictionary of channel frequencies.
-
-**Return type**
-
-OrderedDict
-
-**Raises**
-
-**ValueError** – If channel or u\_channel\_lo are invalid.
-
-### control\_channel\_index
-
-<span id="qiskit.providers.aer.pulse.PulseSystemModel.control_channel_index" />
-
-`PulseSystemModel.control_channel_index(label)`
-
-Return the index of the control channel with identifying label.
-
-**Parameters**
-
-**label** (*Any*) – label that identifies a control channel
-
-**Returns**
-
-index of the ControlChannel
-
-**Return type**
-
-int or None
-
-### from\_backend
-
-<span id="qiskit.providers.aer.pulse.PulseSystemModel.from_backend" />
-
-`classmethod PulseSystemModel.from_backend(backend, subsystem_list=None)`
-
-Returns a PulseSystemModel constructed from an OpenPulse enabled backend object.
-
-**Parameters**
-
-*   **backend** (*Backend*) – backend object to draw information from.
-*   **subsystem\_list** (*list*) – a list of ints for which qubits to include in the model.
-
-**Returns**
-
-the PulseSystemModel constructed from the backend.
-
-**Return type**
-
-[PulseSystemModel](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel")
-
-**Raises**
-
-[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – If channel or u\_channel\_lo are invalid.
+|                                                                                                                                                                                                                 |                                                                                  |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
+| [`PulseSystemModel.calculate_channel_frequencies`](qiskit.providers.aer.pulse.PulseSystemModel.calculate_channel_frequencies "qiskit.providers.aer.pulse.PulseSystemModel.calculate_channel_frequencies")(\[…]) | Calculate frequencies for each channel given qubit\_lo\_freq.                    |
+| [`PulseSystemModel.control_channel_index`](qiskit.providers.aer.pulse.PulseSystemModel.control_channel_index "qiskit.providers.aer.pulse.PulseSystemModel.control_channel_index")(label)                        | Return the index of the control channel with identifying label.                  |
+| [`PulseSystemModel.from_backend`](qiskit.providers.aer.pulse.PulseSystemModel.from_backend "qiskit.providers.aer.pulse.PulseSystemModel.from_backend")(backend\[, …])                                           | Returns a PulseSystemModel constructed from an OpenPulse enabled backend object. |
 

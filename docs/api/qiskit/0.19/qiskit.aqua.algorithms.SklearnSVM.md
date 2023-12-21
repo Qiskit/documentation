@@ -32,115 +32,21 @@ Internally, this algorithm will run the binary classification or multiclass clas
 
 ## Attributes
 
-### class\_to\_label
-
-returns class to label
-
-### label\_to\_class
-
-returns label to class
-
-### random
-
-Return a numpy random.
-
-### ret
-
-returns result
+|                                                                                                                                    |                        |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ---------------------- |
+| [`SklearnSVM.class_to_label`](qiskit.aqua.algorithms.SklearnSVM.class_to_label "qiskit.aqua.algorithms.SklearnSVM.class_to_label") | returns class to label |
+| [`SklearnSVM.label_to_class`](qiskit.aqua.algorithms.SklearnSVM.label_to_class "qiskit.aqua.algorithms.SklearnSVM.label_to_class") | returns label to class |
+| [`SklearnSVM.random`](qiskit.aqua.algorithms.SklearnSVM.random "qiskit.aqua.algorithms.SklearnSVM.random")                         | Return a numpy random. |
+| [`SklearnSVM.ret`](qiskit.aqua.algorithms.SklearnSVM.ret "qiskit.aqua.algorithms.SklearnSVM.ret")                                  | returns result         |
 
 ## Methods
 
-### load\_model
-
-<span id="qiskit.aqua.algorithms.SklearnSVM.load_model" />
-
-`SklearnSVM.load_model(file_path)`
-
-Load a model from a file path.
-
-**Parameters**
-
-**file\_path** (*str*) – the path of the saved model.
-
-### predict
-
-<span id="qiskit.aqua.algorithms.SklearnSVM.predict" />
-
-`SklearnSVM.predict(data)`
-
-Predict using the SVM
-
-**Parameters**
-
-**data** (*numpy.ndarray*) – NxD array, where N is the number of data, D is the feature dimension.
-
-**Returns**
-
-predicted labels, Nx1 array
-
-**Return type**
-
-numpy.ndarray
-
-### run
-
-<span id="qiskit.aqua.algorithms.SklearnSVM.run" />
-
-`SklearnSVM.run()`
-
-Execute the classical algorithm.
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-### save\_model
-
-<span id="qiskit.aqua.algorithms.SklearnSVM.save_model" />
-
-`SklearnSVM.save_model(file_path)`
-
-Save the model to a file path.
-
-**Parameters**
-
-**file\_path** (*str*) – a path to save the model.
-
-### test
-
-<span id="qiskit.aqua.algorithms.SklearnSVM.test" />
-
-`SklearnSVM.test(data, labels)`
-
-Test the SVM
-
-**Parameters**
-
-*   **data** (*numpy.ndarray*) – NxD array, where N is the number of data, D is the feature dimension.
-*   **labels** (*numpy.ndarray*) – Nx1 array, where N is the number of data
-
-**Returns**
-
-accuracy
-
-**Return type**
-
-float
-
-### train
-
-<span id="qiskit.aqua.algorithms.SklearnSVM.train" />
-
-`SklearnSVM.train(data, labels)`
-
-Train the SVM
-
-**Parameters**
-
-*   **data** (*numpy.ndarray*) – NxD array, where N is the number of data, D is the feature dimension.
-*   **labels** (*numpy.ndarray*) – Nx1 array, where N is the number of data
+|                                                                                                                                    |                                  |
+| ---------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| [`SklearnSVM.load_model`](qiskit.aqua.algorithms.SklearnSVM.load_model "qiskit.aqua.algorithms.SklearnSVM.load_model")(file\_path) | Load a model from a file path.   |
+| [`SklearnSVM.predict`](qiskit.aqua.algorithms.SklearnSVM.predict "qiskit.aqua.algorithms.SklearnSVM.predict")(data)                | Predict using the SVM            |
+| [`SklearnSVM.run`](qiskit.aqua.algorithms.SklearnSVM.run "qiskit.aqua.algorithms.SklearnSVM.run")()                                | Execute the classical algorithm. |
+| [`SklearnSVM.save_model`](qiskit.aqua.algorithms.SklearnSVM.save_model "qiskit.aqua.algorithms.SklearnSVM.save_model")(file\_path) | Save the model to a file path.   |
+| [`SklearnSVM.test`](qiskit.aqua.algorithms.SklearnSVM.test "qiskit.aqua.algorithms.SklearnSVM.test")(data, labels)                 | Test the SVM                     |
+| [`SklearnSVM.train`](qiskit.aqua.algorithms.SklearnSVM.train "qiskit.aqua.algorithms.SklearnSVM.train")(data, labels)              | Train the SVM                    |
 

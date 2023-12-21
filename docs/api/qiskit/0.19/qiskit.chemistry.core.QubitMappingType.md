@@ -16,21 +16,9 @@ QubitMappingType enum
 
 ## Attributes
 
-### BRAVYI\_KITAEV
-
-<span id="qiskit.chemistry.core.QubitMappingType.BRAVYI_KITAEV" />
-
-`= 'bravyi_kitaev'`
-
-### JORDAN\_WIGNER
-
-<span id="qiskit.chemistry.core.QubitMappingType.JORDAN_WIGNER" />
-
-`= 'jordan_wigner'`
-
-### PARITY
-
-<span id="qiskit.chemistry.core.QubitMappingType.PARITY" />
-
-`= 'parity'`
+|                                                                                                                                                 |   |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | - |
+| [`QubitMappingType.JORDAN_WIGNER`](qiskit.chemistry.core.QubitMappingType.JORDAN_WIGNER "qiskit.chemistry.core.QubitMappingType.JORDAN_WIGNER") |   |
+| [`QubitMappingType.PARITY`](qiskit.chemistry.core.QubitMappingType.PARITY "qiskit.chemistry.core.QubitMappingType.PARITY")                      |   |
+| [`QubitMappingType.BRAVYI_KITAEV`](qiskit.chemistry.core.QubitMappingType.BRAVYI_KITAEV "qiskit.chemistry.core.QubitMappingType.BRAVYI_KITAEV") |   |
 

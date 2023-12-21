@@ -28,3 +28,6 @@ Initialize a PassManagerConfig object
 
 ## Methods
 
+|   |
+| - |
+

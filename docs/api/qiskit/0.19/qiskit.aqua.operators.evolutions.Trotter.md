@@ -20,53 +20,14 @@ Simple Trotter expansion, composing the evolution circuits of each Operator in t
 
 ## Attributes
 
-### order
-
-<span id="qiskit.aqua.operators.evolutions.Trotter.order" />
-
-`int`
-
-returns order
-
-**Return type**
-
-`int`
-
-### reps
-
-<span id="qiskit.aqua.operators.evolutions.Trotter.reps" />
-
-`int`
-
-The number of repetitions to use in the Trotterization, improving the approximation accuracy.
-
-**Return type**
-
-`int`
+|                                                                                                                    |                                                                                               |
+| ------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
+| [`Trotter.order`](qiskit.aqua.operators.evolutions.Trotter.order "qiskit.aqua.operators.evolutions.Trotter.order") | returns order                                                                                 |
+| [`Trotter.reps`](qiskit.aqua.operators.evolutions.Trotter.reps "qiskit.aqua.operators.evolutions.Trotter.reps")    | The number of repetitions to use in the Trotterization, improving the approximation accuracy. |
 
 ## Methods
 
-### convert
-
-<span id="qiskit.aqua.operators.evolutions.Trotter.convert" />
-
-`Trotter.convert(operator)`
-
-Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
-
-**Parameters**
-
-**operator** ([`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")) – The `SummedOp` to evolve.
-
-**Return type**
-
-[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
-
-**Returns**
-
-The Operator approximating op\_sum’s evolution.
-
-**Raises**
-
-**TypeError** – A non-SummedOps Operator is passed into `convert`.
+|                                                                                                                                    |                                                                                                                 |
+| ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [`Trotter.convert`](qiskit.aqua.operators.evolutions.Trotter.convert "qiskit.aqua.operators.evolutions.Trotter.convert")(operator) | Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`. |
 

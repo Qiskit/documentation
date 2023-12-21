@@ -16,9 +16,8 @@ A property set that cannot be written (via \_\_setitem\_\_)
 
 ## Methods
 
-### \_\_getitem\_\_
-
-<span id="qiskit.transpiler.FencedPropertySet.__getitem__" />
-
-`FencedPropertySet.__getitem__(key)`
+|                                                                                                                                           |   |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | - |
+| [`FencedPropertySet.__getitem__`](qiskit.transpiler.FencedPropertySet.__getitem__ "qiskit.transpiler.FencedPropertySet.__getitem__")(key) |   |
+| [`FencedPropertySet.__getitem__`](qiskit.transpiler.FencedPropertySet.__getitem__ "qiskit.transpiler.FencedPropertySet.__getitem__")(key) |   |
 

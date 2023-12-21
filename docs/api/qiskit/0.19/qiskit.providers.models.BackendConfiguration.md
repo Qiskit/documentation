@@ -44,47 +44,14 @@ Initialize a QasmBackendConfiguration Object
 
 ## Attributes
 
-### num\_qubits
-
-Returns the number of qubits.
-
-In future, n\_qubits should be replaced in favor of num\_qubits for consistent use throughout Qiskit. Until this is properly refactored, this property serves as intermediate solution.
+|                                                                                                                                                        |                               |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
+| [`BackendConfiguration.num_qubits`](qiskit.providers.models.BackendConfiguration.num_qubits "qiskit.providers.models.BackendConfiguration.num_qubits") | Returns the number of qubits. |
 
 ## Methods
 
-### from\_dict
-
-<span id="qiskit.providers.models.BackendConfiguration.from_dict" />
-
-`classmethod BackendConfiguration.from_dict(data)`
-
-Create a new GateConfig object from a dictionary.
-
-**Parameters**
-
-**data** (*dict*) – A dictionary representing the GateConfig to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.BackendConfiguration#to_dict "qiskit.providers.models.BackendConfiguration.to_dict").
-
-**Returns**
-
-The GateConfig from the input dictionary.
-
-**Return type**
-
-[GateConfig](qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
-
-### to\_dict
-
-<span id="qiskit.providers.models.BackendConfiguration.to_dict" />
-
-`BackendConfiguration.to_dict()`
-
-Return a dictionary format representation of the GateConfig.
-
-**Returns**
-
-The dictionary form of the GateConfig.
-
-**Return type**
-
-dict
+|                                                                                                                                                           |                                                              |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [`BackendConfiguration.from_dict`](qiskit.providers.models.BackendConfiguration.from_dict "qiskit.providers.models.BackendConfiguration.from_dict")(data) | Create a new GateConfig object from a dictionary.            |
+| [`BackendConfiguration.to_dict`](qiskit.providers.models.BackendConfiguration.to_dict "qiskit.providers.models.BackendConfiguration.to_dict")()           | Return a dictionary format representation of the GateConfig. |
 

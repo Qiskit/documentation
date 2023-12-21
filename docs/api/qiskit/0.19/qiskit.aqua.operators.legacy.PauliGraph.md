@@ -16,9 +16,12 @@ Pauli Graph.
 
 ## Attributes
 
-### grouped\_paulis
-
-Getter of grouped Pauli list.
+|                                                                                                                                                |                               |
+| ---------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| [`PauliGraph.grouped_paulis`](qiskit.aqua.operators.legacy.PauliGraph.grouped_paulis "qiskit.aqua.operators.legacy.PauliGraph.grouped_paulis") | Getter of grouped Pauli list. |
 
 ## Methods
+
+|   |
+| - |
 

@@ -16,27 +16,10 @@ Data Type Enum
 
 ## Attributes
 
-### ASK
-
-<span id="qiskit.finance.data_providers.DataType.ASK" />
-
-`= 'Ask'`
-
-### BID
-
-<span id="qiskit.finance.data_providers.DataType.BID" />
-
-`= 'Bid'`
-
-### DAILY
-
-<span id="qiskit.finance.data_providers.DataType.DAILY" />
-
-`= 'Daily'`
-
-### DAILYADJUSTED
-
-<span id="qiskit.finance.data_providers.DataType.DAILYADJUSTED" />
-
-`= 'Daily (adj)'`
+|                                                                                                                                         |   |
+| --------------------------------------------------------------------------------------------------------------------------------------- | - |
+| [`DataType.DAILYADJUSTED`](qiskit.finance.data_providers.DataType.DAILYADJUSTED "qiskit.finance.data_providers.DataType.DAILYADJUSTED") |   |
+| [`DataType.DAILY`](qiskit.finance.data_providers.DataType.DAILY "qiskit.finance.data_providers.DataType.DAILY")                         |   |
+| [`DataType.BID`](qiskit.finance.data_providers.DataType.BID "qiskit.finance.data_providers.DataType.BID")                               |   |
+| [`DataType.ASK`](qiskit.finance.data_providers.DataType.ASK "qiskit.finance.data_providers.DataType.ASK")                               |   |
 

@@ -43,7 +43,7 @@ The simulator uses the `zvode` differential equation solver method through `scip
 
 **Other options**
 
-[`PulseSimulator.run()`](qiskit.providers.aer.PulseSimulator#run "qiskit.providers.aer.PulseSimulator.run") takes an additional `dict` argument `backend_options` for customization. Accepted keys:
+[`PulseSimulator.run()`](qiskit.providers.aer.PulseSimulator.run "qiskit.providers.aer.PulseSimulator.run") takes an additional `dict` argument `backend_options` for customization. Accepted keys:
 
 *   `'ode_options'`: A `dict` for `zvode` solver options. Accepted keys are `'atol'`, `'rtol'`, `'nsteps'`, `'max_step'`, `'num_cpus'`, `'norm_tol'`, and `'norm_steps'`.
 
@@ -64,146 +64,20 @@ This method should initialize the module and its configuration, and raise an exc
 
 ## Attributes
 
-### DEFAULT\_CONFIGURATION
-
-<span id="qiskit.providers.aer.PulseSimulator.DEFAULT_CONFIGURATION" />
-
-`= {'backend_name': 'pulse_simulator', 'backend_version': '0.5.2', 'basis_gates': [], 'conditional': True, 'coupling_map': None, 'description': 'A pulse-based Hamiltonian simulator for Pulse Qobj files', 'gates': [], 'local': True, 'max_shots': 1000000, 'meas_levels': [0, 1, 2], 'memory': False, 'n_qubits': 20, 'open_pulse': True, 'simulator': True, 'url': 'https://github.com/Qiskit/qiskit-aer'}`
+|                                                                                                                                                                 |   |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | - |
+| [`PulseSimulator.DEFAULT_CONFIGURATION`](qiskit.providers.aer.PulseSimulator.DEFAULT_CONFIGURATION "qiskit.providers.aer.PulseSimulator.DEFAULT_CONFIGURATION") |   |
 
 ## Methods
 
-### configuration
-
-<span id="qiskit.providers.aer.PulseSimulator.configuration" />
-
-`PulseSimulator.configuration()`
-
-Return the backend configuration.
-
-**Returns**
-
-the configuration for the backend.
-
-**Return type**
-
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
-
-### defaults
-
-<span id="qiskit.providers.aer.PulseSimulator.defaults" />
-
-`PulseSimulator.defaults()`
-
-Return defaults.
-
-**Returns**
-
-object for passing assemble.
-
-**Return type**
-
-[PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
-
-### name
-
-<span id="qiskit.providers.aer.PulseSimulator.name" />
-
-`PulseSimulator.name()`
-
-Return the backend name.
-
-**Returns**
-
-the name of the backend.
-
-**Return type**
-
-str
-
-### properties
-
-<span id="qiskit.providers.aer.PulseSimulator.properties" />
-
-`PulseSimulator.properties()`
-
-Return the backend properties.
-
-**Returns**
-
-the configuration for the backend. If the backend does not support properties, it returns `None`.
-
-**Return type**
-
-[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
-
-### provider
-
-<span id="qiskit.providers.aer.PulseSimulator.provider" />
-
-`PulseSimulator.provider()`
-
-Return the backend Provider.
-
-**Returns**
-
-the Provider responsible for the backend.
-
-**Return type**
-
-[BaseProvider](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
-
-### run
-
-<span id="qiskit.providers.aer.PulseSimulator.run" />
-
-`PulseSimulator.run(qobj, system_model, backend_options=None, validate=False)`
-
-Run a qobj on system\_model.
-
-**Parameters**
-
-*   **qobj** ([*PulseQobj*](qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj")) – Qobj for pulse Schedules to run
-*   **system\_model** ([*PulseSystemModel*](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel")) – Physical model to run simulation on
-*   **backend\_options** (*dict*) – Other options
-*   **validate** (*bool*) – Flag for validation checks
-
-**Returns**
-
-results of simulation
-
-**Return type**
-
-[Result](qiskit.result.Result "qiskit.result.Result")
-
-### status
-
-<span id="qiskit.providers.aer.PulseSimulator.status" />
-
-`PulseSimulator.status()`
-
-Return backend status.
-
-**Returns**
-
-the status of the backend.
-
-**Return type**
-
-[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
-
-### version
-
-<span id="qiskit.providers.aer.PulseSimulator.version" />
-
-`PulseSimulator.version()`
-
-Return the backend version.
-
-**Returns**
-
-the X.X.X version of the backend.
-
-**Return type**
-
-str
+|                                                                                                                                           |                                   |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
+| [`PulseSimulator.configuration`](qiskit.providers.aer.PulseSimulator.configuration "qiskit.providers.aer.PulseSimulator.configuration")() | Return the backend configuration. |
+| [`PulseSimulator.defaults`](qiskit.providers.aer.PulseSimulator.defaults "qiskit.providers.aer.PulseSimulator.defaults")()                | Return defaults.                  |
+| [`PulseSimulator.name`](qiskit.providers.aer.PulseSimulator.name "qiskit.providers.aer.PulseSimulator.name")()                            | Return the backend name.          |
+| [`PulseSimulator.properties`](qiskit.providers.aer.PulseSimulator.properties "qiskit.providers.aer.PulseSimulator.properties")()          | Return the backend properties.    |
+| [`PulseSimulator.provider`](qiskit.providers.aer.PulseSimulator.provider "qiskit.providers.aer.PulseSimulator.provider")()                | Return the backend Provider.      |
+| [`PulseSimulator.run`](qiskit.providers.aer.PulseSimulator.run "qiskit.providers.aer.PulseSimulator.run")(qobj, system\_model\[, …])      | Run a qobj on system\_model.      |
+| [`PulseSimulator.status`](qiskit.providers.aer.PulseSimulator.status "qiskit.providers.aer.PulseSimulator.status")()                      | Return backend status.            |
+| [`PulseSimulator.version`](qiskit.providers.aer.PulseSimulator.version "qiskit.providers.aer.PulseSimulator.version")()                   | Return the backend version.       |
 

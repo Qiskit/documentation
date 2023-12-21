@@ -22,90 +22,15 @@ Uses Grover Adaptive Search (GAS) to find the minimum of a QUBO function.
 
 ## Attributes
 
-### quantum\_instance
-
-<span id="qiskit.optimization.algorithms.GroverOptimizer.quantum_instance" />
-
-`qiskit.aqua.quantum_instance.QuantumInstance`
-
-The quantum instance to run the circuits.
-
-**Return type**
-
-[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")
-
-**Returns**
-
-The quantum instance used in the algorithm.
+|                                                                                                                                                                         |                                           |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| [`GroverOptimizer.quantum_instance`](qiskit.optimization.algorithms.GroverOptimizer.quantum_instance "qiskit.optimization.algorithms.GroverOptimizer.quantum_instance") | The quantum instance to run the circuits. |
 
 ## Methods
 
-### get\_compatibility\_msg
-
-<span id="qiskit.optimization.algorithms.GroverOptimizer.get_compatibility_msg" />
-
-`GroverOptimizer.get_compatibility_msg(problem)`
-
-Checks whether a given problem can be solved with this optimizer.
-
-Checks whether the given problem is compatible, i.e., whether the problem can be converted to a QUBO, and otherwise, returns a message explaining the incompatibility.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
-
-**Return type**
-
-`str`
-
-**Returns**
-
-A message describing the incompatibility.
-
-### is\_compatible
-
-<span id="qiskit.optimization.algorithms.GroverOptimizer.is_compatible" />
-
-`GroverOptimizer.is_compatible(problem)`
-
-Checks whether a given problem can be solved with the optimizer implementing this method.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-Returns True if the problem is compatible, False otherwise.
-
-### solve
-
-<span id="qiskit.optimization.algorithms.GroverOptimizer.solve" />
-
-`GroverOptimizer.solve(problem)`
-
-Tries to solves the given problem using the grover optimizer.
-
-Runs the optimizer to try to solve the optimization problem. If the problem cannot be, converted to a QUBO, this optimizer raises an exception due to incompatibility.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved.
-
-**Return type**
-
-`OptimizationResult`
-
-**Returns**
-
-The result of the optimizer applied to the problem.
-
-**Raises**
-
-*   **AttributeError** – If the quantum instance has not been set.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
+|                                                                                                                                                                                                 |                                                                                           |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| [`GroverOptimizer.get_compatibility_msg`](qiskit.optimization.algorithms.GroverOptimizer.get_compatibility_msg "qiskit.optimization.algorithms.GroverOptimizer.get_compatibility_msg")(problem) | Checks whether a given problem can be solved with this optimizer.                         |
+| [`GroverOptimizer.is_compatible`](qiskit.optimization.algorithms.GroverOptimizer.is_compatible "qiskit.optimization.algorithms.GroverOptimizer.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method. |
+| [`GroverOptimizer.solve`](qiskit.optimization.algorithms.GroverOptimizer.solve "qiskit.optimization.algorithms.GroverOptimizer.solve")(problem)                                                 | Tries to solves the given problem using the grover optimizer.                             |
 

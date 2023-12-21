@@ -35,102 +35,20 @@ See [`RY`](qiskit.aqua.components.variational_forms.RY "qiskit.aqua.components.v
 
 ## Attributes
 
-### num\_parameters
-
-Number of parameters of the variational form.
-
-**Returns**
-
-An integer indicating the number of parameters.
-
-**Return type**
-
-int
-
-### num\_qubits
-
-Number of qubits of the variational form.
-
-**Returns**
-
-An integer indicating the number of qubits.
-
-**Return type**
-
-int
-
-### parameter\_bounds
-
-Parameter bounds.
-
-**Returns**
-
-A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
-
-**Return type**
-
-list
-
-### preferred\_init\_points
-
-Return preferred init points.
-
-If an initial state is provided then the variational form may provide back this set of parameters which when used on the variational form should result in the overall state being that defined by the initial state
-
-### setting
-
-### support\_parameterized\_circuit
-
-Whether or not the sub-class support parameterized circuit.
-
-**Returns**
-
-indicate the sub-class support parameterized circuit
-
-**Return type**
-
-boolean
+|                                                                                                                                                                                                         |                                                             |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| [`SwapRZ.num_parameters`](qiskit.aqua.components.variational_forms.SwapRZ.num_parameters "qiskit.aqua.components.variational_forms.SwapRZ.num_parameters")                                              | Number of parameters of the variational form.               |
+| [`SwapRZ.num_qubits`](qiskit.aqua.components.variational_forms.SwapRZ.num_qubits "qiskit.aqua.components.variational_forms.SwapRZ.num_qubits")                                                          | Number of qubits of the variational form.                   |
+| [`SwapRZ.parameter_bounds`](qiskit.aqua.components.variational_forms.SwapRZ.parameter_bounds "qiskit.aqua.components.variational_forms.SwapRZ.parameter_bounds")                                        | Parameter bounds.                                           |
+| [`SwapRZ.preferred_init_points`](qiskit.aqua.components.variational_forms.SwapRZ.preferred_init_points "qiskit.aqua.components.variational_forms.SwapRZ.preferred_init_points")                         | Return preferred init points.                               |
+| [`SwapRZ.setting`](qiskit.aqua.components.variational_forms.SwapRZ.setting "qiskit.aqua.components.variational_forms.SwapRZ.setting")                                                                   |                                                             |
+| [`SwapRZ.support_parameterized_circuit`](qiskit.aqua.components.variational_forms.SwapRZ.support_parameterized_circuit "qiskit.aqua.components.variational_forms.SwapRZ.support_parameterized_circuit") | Whether or not the sub-class support parameterized circuit. |
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.components.variational_forms.SwapRZ.construct_circuit" />
-
-`SwapRZ.construct_circuit(parameters, q=None)`
-
-Construct the variational form, given its parameters.
-
-**Parameters**
-
-*   **parameters** (*Union(numpy.ndarray, list\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*],* [*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")*)*) – circuit parameters
-*   **q** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – Quantum Register for the circuit.
-
-**Returns**
-
-a quantum circuit with given parameters
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-**ValueError** – the number of parameters is incorrect.
-
-### get\_entangler\_map
-
-<span id="qiskit.aqua.components.variational_forms.SwapRZ.get_entangler_map" />
-
-`static SwapRZ.get_entangler_map(map_type, num_qubits, offset=0)`
-
-returns entangler map
-
-### validate\_entangler\_map
-
-<span id="qiskit.aqua.components.variational_forms.SwapRZ.validate_entangler_map" />
-
-`static SwapRZ.validate_entangler_map(entangler_map, num_qubits)`
-
-validate entangler map
+|                                                                                                                                                                                                       |                                                       |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| [`SwapRZ.construct_circuit`](qiskit.aqua.components.variational_forms.SwapRZ.construct_circuit "qiskit.aqua.components.variational_forms.SwapRZ.construct_circuit")(parameters\[, q])                 | Construct the variational form, given its parameters. |
+| [`SwapRZ.get_entangler_map`](qiskit.aqua.components.variational_forms.SwapRZ.get_entangler_map "qiskit.aqua.components.variational_forms.SwapRZ.get_entangler_map")(map\_type, num\_qubits)           | returns entangler map                                 |
+| [`SwapRZ.validate_entangler_map`](qiskit.aqua.components.variational_forms.SwapRZ.validate_entangler_map "qiskit.aqua.components.variational_forms.SwapRZ.validate_entangler_map")(entangler\_map, …) | validate entangler map                                |
 

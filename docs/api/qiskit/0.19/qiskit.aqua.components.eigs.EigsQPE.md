@@ -30,72 +30,10 @@ Specifically, this class is based on PhaseEstimationCircuit with no measurements
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.components.eigs.EigsQPE.construct_circuit" />
-
-`EigsQPE.construct_circuit(mode, register=None)`
-
-Construct the eigenvalues estimation using the PhaseEstimationCircuit
-
-**Parameters**
-
-*   **mode** (*str*) – construction mode, ‘matrix’ not supported
-*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – the register to use for the quantum state
-
-**Returns**
-
-object for the constructed circuit
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-**ValueError** – QPE is only possible as a circuit not as a matrix
-
-### construct\_inverse
-
-<span id="qiskit.aqua.components.eigs.EigsQPE.construct_inverse" />
-
-`EigsQPE.construct_inverse(mode, circuit)`
-
-Construct the inverse eigenvalue estimation quantum circuit.
-
-**Parameters**
-
-*   **mode** (*str*) – construction mode, ‘matrix’ not supported
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the quantum circuit to invert
-
-**Returns**
-
-**object for of the inverted eigenvalue estimation**
-
-circuit.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-*   **NotImplementedError** – not implemented for matrix mode
-*   **ValueError** – Circuit was not constructed beforehand
-
-### get\_register\_sizes
-
-<span id="qiskit.aqua.components.eigs.EigsQPE.get_register_sizes" />
-
-`EigsQPE.get_register_sizes()`
-
-get register sizes
-
-### get\_scaling
-
-<span id="qiskit.aqua.components.eigs.EigsQPE.get_scaling" />
-
-`EigsQPE.get_scaling()`
-
-get scaling
+|                                                                                                                                                                 |                                                                       |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [`EigsQPE.construct_circuit`](qiskit.aqua.components.eigs.EigsQPE.construct_circuit "qiskit.aqua.components.eigs.EigsQPE.construct_circuit")(mode\[, register]) | Construct the eigenvalues estimation using the PhaseEstimationCircuit |
+| [`EigsQPE.construct_inverse`](qiskit.aqua.components.eigs.EigsQPE.construct_inverse "qiskit.aqua.components.eigs.EigsQPE.construct_inverse")(mode, circuit)     | Construct the inverse eigenvalue estimation quantum circuit.          |
+| [`EigsQPE.get_register_sizes`](qiskit.aqua.components.eigs.EigsQPE.get_register_sizes "qiskit.aqua.components.eigs.EigsQPE.get_register_sizes")()               | get register sizes                                                    |
+| [`EigsQPE.get_scaling`](qiskit.aqua.components.eigs.EigsQPE.get_scaling "qiskit.aqua.components.eigs.EigsQPE.get_scaling")()                                    | get scaling                                                           |
 

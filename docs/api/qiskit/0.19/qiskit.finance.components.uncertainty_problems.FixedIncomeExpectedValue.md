@@ -30,142 +30,25 @@ Constructor.
 
 ## Attributes
 
-### num\_target\_qubits
-
-Returns the number of target qubits
+|                                                                                                                                                                                                                                       |                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| [`FixedIncomeExpectedValue.num_target_qubits`](qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.num_target_qubits "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.num_target_qubits") | Returns the number of target qubits |
 
 ## Methods
 
-### build
-
-<span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build" />
-
-`FixedIncomeExpectedValue.build(qc, q, q_ancillas=None, params=None)`
-
-Adds corresponding sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **params** (*list*) – parameters for circuit
-
-### build\_controlled
-
-<span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_controlled" />
-
-`FixedIncomeExpectedValue.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
-
-Adds corresponding controlled sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
-
-### build\_controlled\_inverse
-
-<span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_controlled_inverse" />
-
-`FixedIncomeExpectedValue.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
-
-Adds controlled inverse of corresponding sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
-
-### build\_controlled\_inverse\_power
-
-<span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_controlled_inverse_power" />
-
-`FixedIncomeExpectedValue.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
-
-Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_controlled\_power
-
-<span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_controlled_power" />
-
-`FixedIncomeExpectedValue.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
-
-Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_inverse
-
-<span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_inverse" />
-
-`FixedIncomeExpectedValue.build_inverse(qc, q, q_ancillas=None)`
-
-Adds inverse of corresponding sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-
-### build\_inverse\_power
-
-<span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_inverse_power" />
-
-`FixedIncomeExpectedValue.build_inverse_power(qc, q, power, q_ancillas=None)`
-
-Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_power
-
-<span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_power" />
-
-`FixedIncomeExpectedValue.build_power(qc, q, power, q_ancillas=None)`
-
-Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### get\_num\_qubits
-
-<span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.get_num_qubits" />
-
-`FixedIncomeExpectedValue.get_num_qubits()`
-
-returns number of qubits
-
-### get\_num\_qubits\_controlled
-
-<span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.get_num_qubits_controlled" />
-
-`FixedIncomeExpectedValue.get_num_qubits_controlled()`
-
-returns number of qubits controlled
-
-### required\_ancillas
-
-<span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.required_ancillas" />
-
-`FixedIncomeExpectedValue.required_ancillas()`
-
-returns required ancillas
-
-### required\_ancillas\_controlled
-
-<span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.required_ancillas_controlled" />
-
-`FixedIncomeExpectedValue.required_ancillas_controlled()`
-
-returns required ancillas controlled
-
-### value\_to\_estimation
-
-<span id="qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.value_to_estimation" />
-
-`FixedIncomeExpectedValue.value_to_estimation(value)`
-
-value to estimate
+|                                                                                                                                                                                                                                                                                     |                                                                       |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [`FixedIncomeExpectedValue.build`](qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build")(qc, q\[, …])                                                                      | Adds corresponding sub-circuit to given circuit                       |
+| [`FixedIncomeExpectedValue.build_controlled`](qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_controlled "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_controlled")(qc, …)                                           | Adds corresponding controlled sub-circuit to given circuit            |
+| [`FixedIncomeExpectedValue.build_controlled_inverse`](qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_controlled_inverse "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_controlled_inverse")(qc, …)                   | Adds controlled inverse of corresponding sub-circuit to given circuit |
+| [`FixedIncomeExpectedValue.build_controlled_inverse_power`](qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_controlled_inverse_power "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_controlled_inverse_power")(qc, …) | Adds controlled, inverse, power of corresponding circuit.             |
+| [`FixedIncomeExpectedValue.build_controlled_power`](qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_controlled_power "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_controlled_power")(qc, …)                         | Adds controlled power of corresponding circuit.                       |
+| [`FixedIncomeExpectedValue.build_inverse`](qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_inverse "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_inverse")(qc, q)                                                    | Adds inverse of corresponding sub-circuit to given circuit            |
+| [`FixedIncomeExpectedValue.build_inverse_power`](qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_inverse_power "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_inverse_power")(qc, …)                                  | Adds inverse power of corresponding circuit.                          |
+| [`FixedIncomeExpectedValue.build_power`](qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_power "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.build_power")(qc, q, …)                                                       | Adds power of corresponding circuit.                                  |
+| [`FixedIncomeExpectedValue.get_num_qubits`](qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.get_num_qubits "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.get_num_qubits")()                                                      | returns number of qubits                                              |
+| [`FixedIncomeExpectedValue.get_num_qubits_controlled`](qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.get_num_qubits_controlled "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.get_num_qubits_controlled")()                     | returns number of qubits controlled                                   |
+| [`FixedIncomeExpectedValue.required_ancillas`](qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.required_ancillas "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.required_ancillas")()                                             | returns required ancillas                                             |
+| [`FixedIncomeExpectedValue.required_ancillas_controlled`](qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.required_ancillas_controlled "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.required_ancillas_controlled")()            | returns required ancillas controlled                                  |
+| [`FixedIncomeExpectedValue.value_to_estimation`](qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.value_to_estimation "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue.value_to_estimation")(value)                                  | value to estimate                                                     |
 

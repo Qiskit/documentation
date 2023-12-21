@@ -32,35 +32,16 @@ This class is provided for easy creation of oracles using custom circuits. It is
 
 ## Attributes
 
-### ancillary\_register
-
-returns ancillary register
-
-### circuit
-
-### output\_register
-
-returns output register
-
-### variable\_register
-
-returns variable register
+|                                                                                                                                                                                           |                            |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
+| [`CustomCircuitOracle.ancillary_register`](qiskit.aqua.components.oracles.CustomCircuitOracle.ancillary_register "qiskit.aqua.components.oracles.CustomCircuitOracle.ancillary_register") | returns ancillary register |
+| [`CustomCircuitOracle.circuit`](qiskit.aqua.components.oracles.CustomCircuitOracle.circuit "qiskit.aqua.components.oracles.CustomCircuitOracle.circuit")                                  |                            |
+| [`CustomCircuitOracle.output_register`](qiskit.aqua.components.oracles.CustomCircuitOracle.output_register "qiskit.aqua.components.oracles.CustomCircuitOracle.output_register")          | returns output register    |
+| [`CustomCircuitOracle.variable_register`](qiskit.aqua.components.oracles.CustomCircuitOracle.variable_register "qiskit.aqua.components.oracles.CustomCircuitOracle.variable_register")    | returns variable register  |
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.components.oracles.CustomCircuitOracle.construct_circuit" />
-
-`CustomCircuitOracle.construct_circuit()`
-
-Construct the oracle circuit.
-
-**Returns**
-
-A quantum circuit for the oracle.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+|                                                                                                                                                                                          |                               |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| [`CustomCircuitOracle.construct_circuit`](qiskit.aqua.components.oracles.CustomCircuitOracle.construct_circuit "qiskit.aqua.components.oracles.CustomCircuitOracle.construct_circuit")() | Construct the oracle circuit. |
 

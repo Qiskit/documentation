@@ -27,13 +27,13 @@ Creates a classical bit.
 
 ## Attributes
 
-### index
-
-Get bit’s index.
-
-### register
-
-Get bit’s register.
+|                                                                                   |                     |
+| --------------------------------------------------------------------------------- | ------------------- |
+| [`Clbit.index`](qiskit.circuit.Clbit.index "qiskit.circuit.Clbit.index")          | Get bit’s index.    |
+| [`Clbit.register`](qiskit.circuit.Clbit.register "qiskit.circuit.Clbit.register") | Get bit’s register. |
 
 ## Methods
+
+|   |
+| - |
 

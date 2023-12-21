@@ -1,0 +1,16 @@
+---
+title: name
+description: API reference for qiskit.transpiler.passes.Depth.name
+in_page_toc_min_heading_level: 1
+python_api_type: method
+python_api_name: qiskit.transpiler.passes.Depth.name
+---
+
+# name
+
+<span id="qiskit.transpiler.passes.Depth.name" />
+
+`Depth.name()`
+
+Return the name of the pass.
+

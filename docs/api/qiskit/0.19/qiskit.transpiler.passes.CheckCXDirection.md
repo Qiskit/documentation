@@ -26,39 +26,15 @@ Checks if the CNOTs in DAGCircuit are in the allowed direction with respect to c
 
 ## Attributes
 
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+|                                                                                                                                                                                  |                                             |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| [`CheckCXDirection.is_analysis_pass`](qiskit.transpiler.passes.CheckCXDirection.is_analysis_pass "qiskit.transpiler.passes.CheckCXDirection.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
+| [`CheckCXDirection.is_transformation_pass`](qiskit.transpiler.passes.CheckCXDirection.is_transformation_pass "qiskit.transpiler.passes.CheckCXDirection.is_transformation_pass") | Check if the pass is a transformation pass. |
 
 ## Methods
 
-### name
-
-<span id="qiskit.transpiler.passes.CheckCXDirection.name" />
-
-`CheckCXDirection.name()`
-
-Return the name of the pass.
-
-### run
-
-<span id="qiskit.transpiler.passes.CheckCXDirection.run" />
-
-`CheckCXDirection.run(dag)`
-
-Run the CheckCXDirection pass on dag.
-
-If dag is mapped and the direction is correct the property is\_direction\_mapped is set to True (or to False otherwise).
-
-**Parameters**
-
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to check.
+|                                                                                                                              |                                       |
+| ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| [`CheckCXDirection.name`](qiskit.transpiler.passes.CheckCXDirection.name "qiskit.transpiler.passes.CheckCXDirection.name")() | Return the name of the pass.          |
+| [`CheckCXDirection.run`](qiskit.transpiler.passes.CheckCXDirection.run "qiskit.transpiler.passes.CheckCXDirection.run")(dag) | Run the CheckCXDirection pass on dag. |
 

@@ -1,0 +1,69 @@
+---
+title: sort
+description: API reference for qiskit.quantum_info.StabilizerTable.sort
+in_page_toc_min_heading_level: 1
+python_api_type: method
+python_api_name: qiskit.quantum_info.StabilizerTable.sort
+---
+
+# sort
+
+<span id="qiskit.quantum_info.StabilizerTable.sort" />
+
+`StabilizerTable.sort(weight=False)`
+
+Sort the rows of the table.
+
+The default sort method is lexicographic sorting by qubit number. By using the weight kwarg the output can additionally be sorted by the number of non-identity terms in the Pauli, where the set of all Pauli’s of a given weight are still ordered lexicographically.
+
+This does not sort based on phase values. It will preserve the original order of rows with the same Pauli’s but different phases.
+
+Consider sorting all a random ordering of all 2-qubit Paulis
+
+```python
+from numpy.random import shuffle
+from qiskit.quantum_info.operators import StabilizerTable
+
+# 2-qubit labels
+labels = ['+II', '+IX', '+IY', '+IZ', '+XI', '+XX', '+XY', '+XZ',
+          '+YI', '+YX', '+YY', '+YZ', '+ZI', '+ZX', '+ZY', '+ZZ',
+          '-II', '-IX', '-IY', '-IZ', '-XI', '-XX', '-XY', '-XZ',
+          '-YI', '-YX', '-YY', '-YZ', '-ZI', '-ZX', '-ZY', '-ZZ']
+# Shuffle Labels
+shuffle(labels)
+st = StabilizerTable.from_labels(labels)
+print('Initial Ordering')
+print(st)
+
+# Lexicographic Ordering
+srt = st.sort()
+print('Lexicographically sorted')
+print(srt)
+
+# Weight Ordering
+srt = st.sort(weight=True)
+print('Weight sorted')
+print(srt)
+```
+
+```python
+Initial Ordering
+StabilizerTable: ['+YY', '-YY', '-YZ', '+ZI', '-ZX', '+IX', '-II', '+ZZ', '-XI', '+ZX', '-XZ', '-ZY', '-IX', '+YX', '+XI', '-IZ', '+IY', '-XX', '+XX', '-ZZ', '+XZ', '+YZ', '+YI', '-ZI', '-YI', '-YX', '+IZ', '+XY', '-IY', '-XY', '+ZY', '+II']
+Lexicographically sorted
+StabilizerTable: ['-II', '+II', '+IX', '-IX', '+IY', '-IY', '-IZ', '+IZ', '-XI', '+XI', '-XX', '+XX', '+XY', '-XY', '-XZ', '+XZ', '+YI', '-YI', '+YX', '-YX', '+YY', '-YY', '-YZ', '+YZ', '+ZI', '-ZI', '-ZX', '+ZX', '-ZY', '+ZY', '+ZZ', '-ZZ']
+Weight sorted
+StabilizerTable: ['-II', '+II', '+IX', '-IX', '+IY', '-IY', '-IZ', '+IZ', '-XI', '+XI', '+YI', '-YI', '+ZI', '-ZI', '-XX', '+XX', '+XY', '-XY', '-XZ', '+XZ', '+YX', '-YX', '+YY', '-YY', '-YZ', '+YZ', '-ZX', '+ZX', '-ZY', '+ZY', '+ZZ', '-ZZ']
+```
+
+**Parameters**
+
+**weight** (*bool*) – optionally sort by weight if True (Default: False).
+
+**Returns**
+
+a sorted copy of the original table.
+
+**Return type**
+
+[StabilizerTable](qiskit.quantum_info.StabilizerTable "qiskit.quantum_info.StabilizerTable")
+

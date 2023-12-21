@@ -16,23 +16,7 @@ A base for Evolution converters. Evolutions are converters which traverse an Ope
 
 ## Methods
 
-### convert
-
-<span id="qiskit.aqua.operators.evolutions.EvolutionBase.convert" />
-
-`EvolutionBase.convert(operator)`
-
-Traverse the operator, replacing any `EvolutionOps` with their equivalent evolution `CircuitOps`.
-
-> #### Args:
->
-> operator: The Operator to convert.
-
-**Return type**
-
-[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
-
-**Returns**
-
-The converted Operator, with `EvolutionOps` replaced by `CircuitOps`.
+|                                                                                                                                                      |                                                                                                   |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
+| [`EvolutionBase.convert`](qiskit.aqua.operators.evolutions.EvolutionBase.convert "qiskit.aqua.operators.evolutions.EvolutionBase.convert")(operator) | Traverse the operator, replacing any `EvolutionOps` with their equivalent evolution `CircuitOps`. |
 

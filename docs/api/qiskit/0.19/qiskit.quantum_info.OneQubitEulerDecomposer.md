@@ -39,75 +39,15 @@ Supported bases are: ‘U3’, ‘U1X’, ‘RR’, ‘ZYZ’, ‘ZXZ’, ‘XYX
 
 ## Attributes
 
-### basis
-
-The decomposition basis.
+|                                                                                                                                          |                          |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ------------------------ |
+| [`OneQubitEulerDecomposer.basis`](qiskit.quantum_info.OneQubitEulerDecomposer.basis "qiskit.quantum_info.OneQubitEulerDecomposer.basis") | The decomposition basis. |
 
 ## Methods
 
-### \_\_call\_\_
-
-<span id="qiskit.quantum_info.OneQubitEulerDecomposer.__call__" />
-
-`OneQubitEulerDecomposer.__call__(unitary, simplify=True, atol=1e-12)`
-
-Decompose single qubit gate into a circuit.
-
-**Parameters**
-
-*   **unitary** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")  *or*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate") *or array*) – 1-qubit unitary matrix
-*   **simplify** (*bool*) – reduce gate count in decomposition \[Default: True].
-*   **atol** (*bool*) – absolute tolerance for checking angles when simplifing returnd circuit \[Default: 1e-12].
-
-**Returns**
-
-the decomposed single-qubit gate circuit
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-**QiskitError** – if input is invalid or synthesis fails.
-
-### angles
-
-<span id="qiskit.quantum_info.OneQubitEulerDecomposer.angles" />
-
-`OneQubitEulerDecomposer.angles(unitary)`
-
-Return the Euler angles for input array.
-
-**Parameters**
-
-**unitary** (*np.ndarray*) – 2x2 unitary matrix.
-
-**Returns**
-
-(theta, phi, lambda).
-
-**Return type**
-
-tuple
-
-### angles\_and\_phase
-
-<span id="qiskit.quantum_info.OneQubitEulerDecomposer.angles_and_phase" />
-
-`OneQubitEulerDecomposer.angles_and_phase(unitary)`
-
-Return the Euler angles and phase for input array.
-
-**Parameters**
-
-**unitary** (*np.ndarray*) – 2x2 unitary matrix.
-
-**Returns**
-
-(theta, phi, lambda, phase).
-
-**Return type**
-
-tuple
+|                                                                                                                                                                                    |                                                    |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| [`OneQubitEulerDecomposer.__call__`](qiskit.quantum_info.OneQubitEulerDecomposer.__call__ "qiskit.quantum_info.OneQubitEulerDecomposer.__call__")(unitary\[, …])                   | Decompose single qubit gate into a circuit.        |
+| [`OneQubitEulerDecomposer.angles`](qiskit.quantum_info.OneQubitEulerDecomposer.angles "qiskit.quantum_info.OneQubitEulerDecomposer.angles")(unitary)                               | Return the Euler angles for input array.           |
+| [`OneQubitEulerDecomposer.angles_and_phase`](qiskit.quantum_info.OneQubitEulerDecomposer.angles_and_phase "qiskit.quantum_info.OneQubitEulerDecomposer.angles_and_phase")(unitary) | Return the Euler angles and phase for input array. |
 

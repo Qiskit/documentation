@@ -39,47 +39,15 @@ Quantum Phase Estimation Circuit.
 
 ## Attributes
 
-### ancillary\_register
-
-returns ancillary register
-
-### auxiliary\_register
-
-returns auxiliary register
-
-### state\_register
-
-returns state register
+|                                                                                                                                                                                |                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------- |
+| [`PhaseEstimationCircuit.ancillary_register`](qiskit.aqua.circuits.PhaseEstimationCircuit.ancillary_register "qiskit.aqua.circuits.PhaseEstimationCircuit.ancillary_register") | returns ancillary register |
+| [`PhaseEstimationCircuit.auxiliary_register`](qiskit.aqua.circuits.PhaseEstimationCircuit.auxiliary_register "qiskit.aqua.circuits.PhaseEstimationCircuit.auxiliary_register") | returns auxiliary register |
+| [`PhaseEstimationCircuit.state_register`](qiskit.aqua.circuits.PhaseEstimationCircuit.state_register "qiskit.aqua.circuits.PhaseEstimationCircuit.state_register")             | returns state register     |
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.circuits.PhaseEstimationCircuit.construct_circuit" />
-
-`PhaseEstimationCircuit.construct_circuit(state_register=None, ancillary_register=None, auxiliary_register=None, measurement=False)`
-
-Construct the Phase Estimation circuit
-
-**Parameters**
-
-*   **state\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – the optional register to use for the quantum state
-*   **ancillary\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – the optional register to use for
-*   **qubits** (*the ancillary measurement*) –
-*   **auxiliary\_register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – an optional auxiliary quantum register
-*   **measurement** (*bool*) – Boolean flag to indicate if measurement should be included
-*   **circuit.** (*in the*) –
-
-**Returns**
-
-the QuantumCircuit object for the constructed circuit
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-*   **RuntimeError** – Multiple identity pauli terms are present
-*   **ValueError** – invalid mode
+|                                                                                                                                                                                   |                                        |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
+| [`PhaseEstimationCircuit.construct_circuit`](qiskit.aqua.circuits.PhaseEstimationCircuit.construct_circuit "qiskit.aqua.circuits.PhaseEstimationCircuit.construct_circuit")(\[…]) | Construct the Phase Estimation circuit |
 

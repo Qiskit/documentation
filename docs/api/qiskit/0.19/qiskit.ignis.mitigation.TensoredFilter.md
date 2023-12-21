@@ -25,58 +25,16 @@ Initialize a tensored measurement error mitigation filter using the cal\_matrice
 
 ## Attributes
 
-### cal\_matrices
-
-Return cal\_matrices.
-
-### nqubits
-
-Return the number of qubits. See also MeasurementFilter.apply()
-
-### qubit\_list\_sizes
-
-Return \_qubit\_list\_sizes.
-
-### substate\_labels\_list
-
-Return \_substate\_labels\_list
+|                                                                                                                                                                    |                                 |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
+| [`TensoredFilter.cal_matrices`](qiskit.ignis.mitigation.TensoredFilter.cal_matrices "qiskit.ignis.mitigation.TensoredFilter.cal_matrices")                         | Return cal\_matrices.           |
+| [`TensoredFilter.nqubits`](qiskit.ignis.mitigation.TensoredFilter.nqubits "qiskit.ignis.mitigation.TensoredFilter.nqubits")                                        | Return the number of qubits.    |
+| [`TensoredFilter.qubit_list_sizes`](qiskit.ignis.mitigation.TensoredFilter.qubit_list_sizes "qiskit.ignis.mitigation.TensoredFilter.qubit_list_sizes")             | Return \_qubit\_list\_sizes.    |
+| [`TensoredFilter.substate_labels_list`](qiskit.ignis.mitigation.TensoredFilter.substate_labels_list "qiskit.ignis.mitigation.TensoredFilter.substate_labels_list") | Return \_substate\_labels\_list |
 
 ## Methods
 
-### apply
-
-<span id="qiskit.ignis.mitigation.TensoredFilter.apply" />
-
-`TensoredFilter.apply(raw_data, method='least_squares')`
-
-Apply the calibration matrices to results.
-
-**Parameters**
-
-*   **raw\_data** (*dict or* [*Result*](qiskit.result.Result "qiskit.result.Result")) –
-
-    The data to be corrected. Can be in one of two forms:
-
-    *   A counts dictionary from results.get\_counts
-    *   A Qiskit Result
-
-*   **method** (*str*) –
-
-    fitting method. The following methods are supported:
-
-    *   ’pseudo\_inverse’: direct inversion of the cal matrices.
-    *   ’least\_squares’: constrained to have physical probabilities.
-    *   If None, ‘least\_squares’ is used.
-
-**Returns**
-
-The corrected data in the same form as raw\_data
-
-**Return type**
-
-dict or [Result](qiskit.result.Result "qiskit.result.Result")
-
-**Raises**
-
-**QiskitError** – if raw\_data is not in a one of the defined forms.
+|                                                                                                                                             |                                            |
+| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| [`TensoredFilter.apply`](qiskit.ignis.mitigation.TensoredFilter.apply "qiskit.ignis.mitigation.TensoredFilter.apply")(raw\_data\[, method]) | Apply the calibration matrices to results. |
 

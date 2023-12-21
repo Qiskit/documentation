@@ -40,52 +40,15 @@ LookaheadSwap initializer.
 
 ## Attributes
 
-### is\_analysis\_pass
-
-Check if the pass is an analysis pass.
-
-If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-### is\_transformation\_pass
-
-Check if the pass is a transformation pass.
-
-If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+|                                                                                                                                                                         |                                             |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
+| [`LookaheadSwap.is_analysis_pass`](qiskit.transpiler.passes.LookaheadSwap.is_analysis_pass "qiskit.transpiler.passes.LookaheadSwap.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
+| [`LookaheadSwap.is_transformation_pass`](qiskit.transpiler.passes.LookaheadSwap.is_transformation_pass "qiskit.transpiler.passes.LookaheadSwap.is_transformation_pass") | Check if the pass is a transformation pass. |
 
 ## Methods
 
-### name
-
-<span id="qiskit.transpiler.passes.LookaheadSwap.name" />
-
-`LookaheadSwap.name()`
-
-Return the name of the pass.
-
-### run
-
-<span id="qiskit.transpiler.passes.LookaheadSwap.run" />
-
-`LookaheadSwap.run(dag)`
-
-Run the LookaheadSwap pass on dag.
-
-**Parameters**
-
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the directed acyclic graph to be mapped
-
-**Returns**
-
-**A dag mapped to be compatible with the coupling\_map in**
-
-the property\_set.
-
-**Return type**
-
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
-
-**Raises**
-
-*   [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the coupling map or the layout are not
-*   **compatible with the DAG** –
+|                                                                                                                     |                                    |
+| ------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
+| [`LookaheadSwap.name`](qiskit.transpiler.passes.LookaheadSwap.name "qiskit.transpiler.passes.LookaheadSwap.name")() | Return the name of the pass.       |
+| [`LookaheadSwap.run`](qiskit.transpiler.passes.LookaheadSwap.run "qiskit.transpiler.passes.LookaheadSwap.run")(dag) | Run the LookaheadSwap pass on dag. |
 

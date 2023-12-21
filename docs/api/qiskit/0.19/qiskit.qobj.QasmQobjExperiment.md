@@ -26,39 +26,8 @@ Instatiate a QasmQobjExperiment.
 
 ## Methods
 
-### from\_dict
-
-<span id="qiskit.qobj.QasmQobjExperiment.from_dict" />
-
-`classmethod QasmQobjExperiment.from_dict(data)`
-
-Create a new QasmQobjExperiment object from a dictionary.
-
-**Parameters**
-
-**data** (*dict*) – A dictionary for the experiment config
-
-**Returns**
-
-The object from the input dictionary.
-
-**Return type**
-
-[QasmQobjExperiment](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment")
-
-### to\_dict
-
-<span id="qiskit.qobj.QasmQobjExperiment.to_dict" />
-
-`QasmQobjExperiment.to_dict()`
-
-Return a dictionary format representation of the Experiment.
-
-**Returns**
-
-The dictionary form of the QasmQObjExperiment.
-
-**Return type**
-
-dict
+|                                                                                                                             |                                                              |
+| --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [`QasmQobjExperiment.from_dict`](qiskit.qobj.QasmQobjExperiment.from_dict "qiskit.qobj.QasmQobjExperiment.from_dict")(data) | Create a new QasmQobjExperiment object from a dictionary.    |
+| [`QasmQobjExperiment.to_dict`](qiskit.qobj.QasmQobjExperiment.to_dict "qiskit.qobj.QasmQobjExperiment.to_dict")()           | Return a dictionary format representation of the Experiment. |
 

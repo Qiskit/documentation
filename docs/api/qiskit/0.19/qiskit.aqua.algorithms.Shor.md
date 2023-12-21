@@ -38,90 +38,17 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 
 ## Attributes
 
-### backend
-
-<span id="qiskit.aqua.algorithms.Shor.backend" />
-
-`qiskit.providers.basebackend.BaseBackend`
-
-Returns backend.
-
-**Return type**
-
-[`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
-
-### quantum\_instance
-
-<span id="qiskit.aqua.algorithms.Shor.quantum_instance" />
-
-`Union[None, qiskit.aqua.quantum_instance.QuantumInstance]`
-
-Returns quantum instance.
-
-**Return type**
-
-`Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
-
-### random
-
-Return a numpy random.
+|                                                                                                                        |                           |
+| ---------------------------------------------------------------------------------------------------------------------- | ------------------------- |
+| [`Shor.backend`](qiskit.aqua.algorithms.Shor.backend "qiskit.aqua.algorithms.Shor.backend")                            | Returns backend.          |
+| [`Shor.quantum_instance`](qiskit.aqua.algorithms.Shor.quantum_instance "qiskit.aqua.algorithms.Shor.quantum_instance") | Returns quantum instance. |
+| [`Shor.random`](qiskit.aqua.algorithms.Shor.random "qiskit.aqua.algorithms.Shor.random")                               | Return a numpy random.    |
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.algorithms.Shor.construct_circuit" />
-
-`Shor.construct_circuit(measurement=False)`
-
-Construct circuit.
-
-**Parameters**
-
-**measurement** (`bool`) – Boolean flag to indicate if measurement should be included in the circuit.
-
-**Return type**
-
-[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
-
-**Returns**
-
-Quantum circuit.
-
-### run
-
-<span id="qiskit.aqua.algorithms.Shor.run" />
-
-`Shor.run(quantum_instance=None, **kwargs)`
-
-Execute the algorithm with selected backend.
-
-**Parameters**
-
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### set\_backend
-
-<span id="qiskit.aqua.algorithms.Shor.set_backend" />
-
-`Shor.set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
+|                                                                                                                                           |                                              |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [`Shor.construct_circuit`](qiskit.aqua.algorithms.Shor.construct_circuit "qiskit.aqua.algorithms.Shor.construct_circuit")(\[measurement]) | Construct circuit.                           |
+| [`Shor.run`](qiskit.aqua.algorithms.Shor.run "qiskit.aqua.algorithms.Shor.run")(\[quantum\_instance])                                     | Execute the algorithm with selected backend. |
+| [`Shor.set_backend`](qiskit.aqua.algorithms.Shor.set_backend "qiskit.aqua.algorithms.Shor.set_backend")(backend, \*\*kwargs)              | Sets backend with configuration.             |
 

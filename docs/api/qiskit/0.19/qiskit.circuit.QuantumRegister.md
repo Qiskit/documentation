@@ -18,64 +18,20 @@ Create a new generic register.
 
 ## Attributes
 
-### instances\_counter
-
-<span id="qiskit.circuit.QuantumRegister.instances_counter" />
-
-`= count(0)`
-
-### name
-
-Get the register name.
-
-### prefix
-
-<span id="qiskit.circuit.QuantumRegister.prefix" />
-
-`= 'q'`
-
-### size
-
-Get the register size.
+|                                                                                                                                            |                        |
+| ------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------- |
+| [`QuantumRegister.instances_counter`](qiskit.circuit.QuantumRegister.instances_counter "qiskit.circuit.QuantumRegister.instances_counter") |                        |
+| [`QuantumRegister.name`](qiskit.circuit.QuantumRegister.name "qiskit.circuit.QuantumRegister.name")                                        | Get the register name. |
+| [`QuantumRegister.prefix`](qiskit.circuit.QuantumRegister.prefix "qiskit.circuit.QuantumRegister.prefix")                                  |                        |
+| [`QuantumRegister.size`](qiskit.circuit.QuantumRegister.size "qiskit.circuit.QuantumRegister.size")                                        | Get the register size. |
 
 ## Methods
 
-### \_\_getitem\_\_
-
-<span id="qiskit.circuit.QuantumRegister.__getitem__" />
-
-`QuantumRegister.__getitem__(key)`
-
-#### Arg:
-
-bit\_type (Qubit or Clbit): a constructor type return element/s. key (int or slice or list): index of the clbit to be retrieved.
-
-**Returns**
-
-a Qubit or Clbit instance if key is int. If key is a slice, returns a list of these instances.
-
-**Return type**
-
-[Qubit](qiskit.circuit.Qubit "qiskit.circuit.Qubit") or [Clbit](qiskit.circuit.Clbit "qiskit.circuit.Clbit") or list([Qubit](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) or list([Clbit](qiskit.circuit.Clbit "qiskit.circuit.Clbit"))
-
-**Raises**
-
-*   **CircuitError** – if the key is not an integer.
-*   **QiskitIndexError** – if the key is not in the range (0, self.size).
-
-### \_\_len\_\_
-
-<span id="qiskit.circuit.QuantumRegister.__len__" />
-
-`QuantumRegister.__len__()`
-
-Return register size.
-
-### qasm
-
-<span id="qiskit.circuit.QuantumRegister.qasm" />
-
-`QuantumRegister.qasm()`
-
-Return OPENQASM string for this register.
+|                                                                                                                               |                                           |
+| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
+| [`QuantumRegister.__getitem__`](qiskit.circuit.QuantumRegister.__getitem__ "qiskit.circuit.QuantumRegister.__getitem__")(key) | Arg:                                      |
+| [`QuantumRegister.__len__`](qiskit.circuit.QuantumRegister.__len__ "qiskit.circuit.QuantumRegister.__len__")()                | Return register size.                     |
+| [`QuantumRegister.qasm`](qiskit.circuit.QuantumRegister.qasm "qiskit.circuit.QuantumRegister.qasm")()                         | Return OPENQASM string for this register. |
+| [`QuantumRegister.__len__`](qiskit.circuit.QuantumRegister.__len__ "qiskit.circuit.QuantumRegister.__len__")()                | Return register size.                     |
+| [`QuantumRegister.__getitem__`](qiskit.circuit.QuantumRegister.__getitem__ "qiskit.circuit.QuantumRegister.__getitem__")(key) | Arg:                                      |
 

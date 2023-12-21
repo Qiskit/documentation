@@ -23,53 +23,14 @@ Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/q
 
 ## Attributes
 
-### order
-
-<span id="qiskit.aqua.operators.evolutions.Suzuki.order" />
-
-`int`
-
-returns order
-
-**Return type**
-
-`int`
-
-### reps
-
-<span id="qiskit.aqua.operators.evolutions.Suzuki.reps" />
-
-`int`
-
-The number of repetitions to use in the Trotterization, improving the approximation accuracy.
-
-**Return type**
-
-`int`
+|                                                                                                                 |                                                                                               |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
+| [`Suzuki.order`](qiskit.aqua.operators.evolutions.Suzuki.order "qiskit.aqua.operators.evolutions.Suzuki.order") | returns order                                                                                 |
+| [`Suzuki.reps`](qiskit.aqua.operators.evolutions.Suzuki.reps "qiskit.aqua.operators.evolutions.Suzuki.reps")    | The number of repetitions to use in the Trotterization, improving the approximation accuracy. |
 
 ## Methods
 
-### convert
-
-<span id="qiskit.aqua.operators.evolutions.Suzuki.convert" />
-
-`Suzuki.convert(operator)`
-
-Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
-
-**Parameters**
-
-**operator** ([`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")) – The `SummedOp` to evolve.
-
-**Return type**
-
-[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
-
-**Returns**
-
-The Operator approximating op\_sum’s evolution.
-
-**Raises**
-
-**TypeError** – A non-SummedOps Operator is passed into `convert`.
+|                                                                                                                                 |                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [`Suzuki.convert`](qiskit.aqua.operators.evolutions.Suzuki.convert "qiskit.aqua.operators.evolutions.Suzuki.convert")(operator) | Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`. |
 

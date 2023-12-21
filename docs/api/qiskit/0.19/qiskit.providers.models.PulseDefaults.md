@@ -29,53 +29,16 @@ Validate and reformat transport layer inputs to initialize.
 
 ## Attributes
 
-### circuit\_instruction\_map
-
-Deprecated property, use `instruction_schedule_map` instead.
-
-### meas\_freq\_est
-
-Measurement frequencies in Hertz.
-
-### qubit\_freq\_est
-
-Qubit frequencies in Hertz.
+|                                                                                                                                                                          |                                                              |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
+| [`PulseDefaults.circuit_instruction_map`](qiskit.providers.models.PulseDefaults.circuit_instruction_map "qiskit.providers.models.PulseDefaults.circuit_instruction_map") | Deprecated property, use `instruction_schedule_map` instead. |
+| [`PulseDefaults.qubit_freq_est`](qiskit.providers.models.PulseDefaults.qubit_freq_est "qiskit.providers.models.PulseDefaults.qubit_freq_est")                            | Qubit frequencies in Hertz.                                  |
+| [`PulseDefaults.meas_freq_est`](qiskit.providers.models.PulseDefaults.meas_freq_est "qiskit.providers.models.PulseDefaults.meas_freq_est")                               | Measurement frequencies in Hertz.                            |
 
 ## Methods
 
-### from\_dict
-
-<span id="qiskit.providers.models.PulseDefaults.from_dict" />
-
-`classmethod PulseDefaults.from_dict(data)`
-
-Create a new PulseDefaults object from a dictionary.
-
-**Parameters**
-
-**data** (*dict*) – A dictionary representing the PulseDefaults to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.PulseDefaults#to_dict "qiskit.providers.models.PulseDefaults.to_dict").
-
-**Returns**
-
-The PulseDefaults from the input dictionary.
-
-**Return type**
-
-[PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
-
-### to\_dict
-
-<span id="qiskit.providers.models.PulseDefaults.to_dict" />
-
-`PulseDefaults.to_dict()`
-
-Return a dictionary format representation of the PulseDefaults.
-
-**Returns**
-
-The dictionary form of the PulseDefaults.
-
-**Return type**
-
-dict
+|                                                                                                                                      |                                                                 |
+| ------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------- |
+| [`PulseDefaults.from_dict`](qiskit.providers.models.PulseDefaults.from_dict "qiskit.providers.models.PulseDefaults.from_dict")(data) | Create a new PulseDefaults object from a dictionary.            |
+| [`PulseDefaults.to_dict`](qiskit.providers.models.PulseDefaults.to_dict "qiskit.providers.models.PulseDefaults.to_dict")()           | Return a dictionary format representation of the PulseDefaults. |
 

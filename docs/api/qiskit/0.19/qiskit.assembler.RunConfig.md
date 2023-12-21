@@ -77,39 +77,8 @@ Initialize a RunConfig object
 
 ## Methods
 
-### from\_dict
-
-<span id="qiskit.assembler.RunConfig.from_dict" />
-
-`classmethod RunConfig.from_dict(data)`
-
-Create a new RunConfig object from a dictionary.
-
-**Parameters**
-
-**data** (*dict*) – A dictionary representing the RunConfig to create. It will be in the same format as output by [`to_dict()`](qiskit.assembler.RunConfig#to_dict "qiskit.assembler.RunConfig.to_dict").
-
-**Returns**
-
-The RunConfig from the input dictionary.
-
-**Return type**
-
-[RunConfig](qiskit.assembler.RunConfig "qiskit.assembler.RunConfig")
-
-### to\_dict
-
-<span id="qiskit.assembler.RunConfig.to_dict" />
-
-`RunConfig.to_dict()`
-
-Return a dictionary format representation of the RunConfig
-
-**Returns**
-
-The dictionary form of the RunConfig.
-
-**Return type**
-
-dict
+|                                                                                                            |                                                            |
+| ---------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
+| [`RunConfig.from_dict`](qiskit.assembler.RunConfig.from_dict "qiskit.assembler.RunConfig.from_dict")(data) | Create a new RunConfig object from a dictionary.           |
+| [`RunConfig.to_dict`](qiskit.assembler.RunConfig.to_dict "qiskit.assembler.RunConfig.to_dict")()           | Return a dictionary format representation of the RunConfig |
 

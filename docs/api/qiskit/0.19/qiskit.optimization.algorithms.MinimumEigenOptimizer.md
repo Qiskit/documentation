@@ -41,71 +41,9 @@ This initializer takes the minimum eigen solver to be used to approximate the gr
 
 ## Methods
 
-### get\_compatibility\_msg
-
-<span id="qiskit.optimization.algorithms.MinimumEigenOptimizer.get_compatibility_msg" />
-
-`MinimumEigenOptimizer.get_compatibility_msg(problem)`
-
-Checks whether a given problem can be solved with this optimizer.
-
-Checks whether the given problem is compatible, i.e., whether the problem can be converted to a QUBO, and otherwise, returns a message explaining the incompatibility.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
-
-**Return type**
-
-`str`
-
-**Returns**
-
-A message describing the incompatibility.
-
-### is\_compatible
-
-<span id="qiskit.optimization.algorithms.MinimumEigenOptimizer.is_compatible" />
-
-`MinimumEigenOptimizer.is_compatible(problem)`
-
-Checks whether a given problem can be solved with the optimizer implementing this method.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to check compatibility.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-Returns True if the problem is compatible, False otherwise.
-
-### solve
-
-<span id="qiskit.optimization.algorithms.MinimumEigenOptimizer.solve" />
-
-`MinimumEigenOptimizer.solve(problem)`
-
-Tries to solves the given problem using the optimizer.
-
-Runs the optimizer to try to solve the optimization problem.
-
-**Parameters**
-
-**problem** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved.
-
-**Return type**
-
-`MinimumEigenOptimizerResult`
-
-**Returns**
-
-The result of the optimizer applied to the problem.
-
-**Raises**
-
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If problem not compatible.
+|                                                                                                                                                                                                                   |                                                                                           |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| [`MinimumEigenOptimizer.get_compatibility_msg`](qiskit.optimization.algorithms.MinimumEigenOptimizer.get_compatibility_msg "qiskit.optimization.algorithms.MinimumEigenOptimizer.get_compatibility_msg")(problem) | Checks whether a given problem can be solved with this optimizer.                         |
+| [`MinimumEigenOptimizer.is_compatible`](qiskit.optimization.algorithms.MinimumEigenOptimizer.is_compatible "qiskit.optimization.algorithms.MinimumEigenOptimizer.is_compatible")(problem)                         | Checks whether a given problem can be solved with the optimizer implementing this method. |
+| [`MinimumEigenOptimizer.solve`](qiskit.optimization.algorithms.MinimumEigenOptimizer.solve "qiskit.optimization.algorithms.MinimumEigenOptimizer.solve")(problem)                                                 | Tries to solves the given problem using the optimizer.                                    |
 

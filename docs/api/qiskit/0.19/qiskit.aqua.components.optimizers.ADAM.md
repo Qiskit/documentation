@@ -44,191 +44,34 @@ AMSGRAD (a variant of ADAM) uses a ‘long-term memory’ of past gradients and,
 
 ## Attributes
 
-### bounds\_support\_level
-
-Returns bounds support level
-
-### gradient\_support\_level
-
-Returns gradient support level
-
-### initial\_point\_support\_level
-
-Returns initial point support level
-
-### is\_bounds\_ignored
-
-Returns is bounds ignored
-
-### is\_bounds\_required
-
-Returns is bounds required
-
-### is\_bounds\_supported
-
-Returns is bounds supported
-
-### is\_gradient\_ignored
-
-Returns is gradient ignored
-
-### is\_gradient\_required
-
-Returns is gradient required
-
-### is\_gradient\_supported
-
-Returns is gradient supported
-
-### is\_initial\_point\_ignored
-
-Returns is initial point ignored
-
-### is\_initial\_point\_required
-
-Returns is initial point required
-
-### is\_initial\_point\_supported
-
-Returns is initial point supported
-
-### setting
-
-Return setting
+|                                                                                                                                                                               |                                     |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| [`ADAM.bounds_support_level`](qiskit.aqua.components.optimizers.ADAM.bounds_support_level "qiskit.aqua.components.optimizers.ADAM.bounds_support_level")                      | Returns bounds support level        |
+| [`ADAM.gradient_support_level`](qiskit.aqua.components.optimizers.ADAM.gradient_support_level "qiskit.aqua.components.optimizers.ADAM.gradient_support_level")                | Returns gradient support level      |
+| [`ADAM.initial_point_support_level`](qiskit.aqua.components.optimizers.ADAM.initial_point_support_level "qiskit.aqua.components.optimizers.ADAM.initial_point_support_level") | Returns initial point support level |
+| [`ADAM.is_bounds_ignored`](qiskit.aqua.components.optimizers.ADAM.is_bounds_ignored "qiskit.aqua.components.optimizers.ADAM.is_bounds_ignored")                               | Returns is bounds ignored           |
+| [`ADAM.is_bounds_required`](qiskit.aqua.components.optimizers.ADAM.is_bounds_required "qiskit.aqua.components.optimizers.ADAM.is_bounds_required")                            | Returns is bounds required          |
+| [`ADAM.is_bounds_supported`](qiskit.aqua.components.optimizers.ADAM.is_bounds_supported "qiskit.aqua.components.optimizers.ADAM.is_bounds_supported")                         | Returns is bounds supported         |
+| [`ADAM.is_gradient_ignored`](qiskit.aqua.components.optimizers.ADAM.is_gradient_ignored "qiskit.aqua.components.optimizers.ADAM.is_gradient_ignored")                         | Returns is gradient ignored         |
+| [`ADAM.is_gradient_required`](qiskit.aqua.components.optimizers.ADAM.is_gradient_required "qiskit.aqua.components.optimizers.ADAM.is_gradient_required")                      | Returns is gradient required        |
+| [`ADAM.is_gradient_supported`](qiskit.aqua.components.optimizers.ADAM.is_gradient_supported "qiskit.aqua.components.optimizers.ADAM.is_gradient_supported")                   | Returns is gradient supported       |
+| [`ADAM.is_initial_point_ignored`](qiskit.aqua.components.optimizers.ADAM.is_initial_point_ignored "qiskit.aqua.components.optimizers.ADAM.is_initial_point_ignored")          | Returns is initial point ignored    |
+| [`ADAM.is_initial_point_required`](qiskit.aqua.components.optimizers.ADAM.is_initial_point_required "qiskit.aqua.components.optimizers.ADAM.is_initial_point_required")       | Returns is initial point required   |
+| [`ADAM.is_initial_point_supported`](qiskit.aqua.components.optimizers.ADAM.is_initial_point_supported "qiskit.aqua.components.optimizers.ADAM.is_initial_point_supported")    | Returns is initial point supported  |
+| [`ADAM.setting`](qiskit.aqua.components.optimizers.ADAM.setting "qiskit.aqua.components.optimizers.ADAM.setting")                                                             | Return setting                      |
 
 ## Methods
 
-### get\_support\_level
-
-<span id="qiskit.aqua.components.optimizers.ADAM.get_support_level" />
-
-`ADAM.get_support_level()`
-
-Return support level dictionary
-
-### gradient\_num\_diff
-
-<span id="qiskit.aqua.components.optimizers.ADAM.gradient_num_diff" />
-
-`static ADAM.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
-
-We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
-
-**Parameters**
-
-*   **x\_center** (*ndarray*) – point around which we compute the gradient
-*   **f** (*func*) – the function of which the gradient is to be computed.
-*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
-*   **max\_evals\_grouped** (*int*) – max evals grouped
-
-**Returns**
-
-the gradient computed
-
-**Return type**
-
-grad
-
-### load\_params
-
-<span id="qiskit.aqua.components.optimizers.ADAM.load_params" />
-
-`ADAM.load_params(load_dir)`
-
-load params
-
-### minimize
-
-<span id="qiskit.aqua.components.optimizers.ADAM.minimize" />
-
-`ADAM.minimize(objective_function, initial_point, gradient_function)`
-
-### optimize
-
-<span id="qiskit.aqua.components.optimizers.ADAM.optimize" />
-
-`ADAM.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
-
-Perform optimization.
-
-**Parameters**
-
-*   **num\_vars** (*int*) – number of parameters to be optimized.
-*   **objective\_function** (*callable*) – handle to a function that computes the objective function.
-*   **gradient\_function** (*callable*) – handle to a function that computes the gradient of the objective function, or None if not available.
-*   **variable\_bounds** (*list\[(float, float)]*) – deprecated
-*   **initial\_point** (*numpy.ndarray\[float]*) – initial point.
-
-**Returns**
-
-tuple has (point, value, nfev) where
-
-> point: is a 1D numpy.ndarray\[float] containing the solution
->
-> value: is a float with the objective function value
->
-> nfev: number of objective function calls made if available or None
-
-**Return type**
-
-tuple(numpy.ndarray, float, int)
-
-### print\_options
-
-<span id="qiskit.aqua.components.optimizers.ADAM.print_options" />
-
-`ADAM.print_options()`
-
-Print algorithm-specific options.
-
-### save\_params
-
-<span id="qiskit.aqua.components.optimizers.ADAM.save_params" />
-
-`ADAM.save_params(snapshot_dir)`
-
-save params
-
-### set\_max\_evals\_grouped
-
-<span id="qiskit.aqua.components.optimizers.ADAM.set_max_evals_grouped" />
-
-`ADAM.set_max_evals_grouped(limit)`
-
-Set max evals grouped
-
-### set\_options
-
-<span id="qiskit.aqua.components.optimizers.ADAM.set_options" />
-
-`ADAM.set_options(**kwargs)`
-
-Sets or updates values in the options dictionary.
-
-The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
-
-**Parameters**
-
-**kwargs** (*dict*) – options, given as name=value.
-
-### wrap\_function
-
-<span id="qiskit.aqua.components.optimizers.ADAM.wrap_function" />
-
-`static ADAM.wrap_function(function, args)`
-
-Wrap the function to implicitly inject the args at the call of the function.
-
-**Parameters**
-
-*   **function** (*func*) – the target function
-*   **args** (*tuple*) – the args to be injected
-
-**Returns**
-
-wrapper
-
-**Return type**
-
-function\_wrapper
+|                                                                                                                                                                        |                                                                                                           |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
+| [`ADAM.get_support_level`](qiskit.aqua.components.optimizers.ADAM.get_support_level "qiskit.aqua.components.optimizers.ADAM.get_support_level")()                      | Return support level dictionary                                                                           |
+| [`ADAM.gradient_num_diff`](qiskit.aqua.components.optimizers.ADAM.gradient_num_diff "qiskit.aqua.components.optimizers.ADAM.gradient_num_diff")(x\_center, f, epsilon) | We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center. |
+| [`ADAM.load_params`](qiskit.aqua.components.optimizers.ADAM.load_params "qiskit.aqua.components.optimizers.ADAM.load_params")(load\_dir)                               | load params                                                                                               |
+| [`ADAM.minimize`](qiskit.aqua.components.optimizers.ADAM.minimize "qiskit.aqua.components.optimizers.ADAM.minimize")(objective\_function, …)                           |                                                                                                           |
+| [`ADAM.optimize`](qiskit.aqua.components.optimizers.ADAM.optimize "qiskit.aqua.components.optimizers.ADAM.optimize")(num\_vars, objective\_function)                   | Perform optimization.                                                                                     |
+| [`ADAM.print_options`](qiskit.aqua.components.optimizers.ADAM.print_options "qiskit.aqua.components.optimizers.ADAM.print_options")()                                  | Print algorithm-specific options.                                                                         |
+| [`ADAM.save_params`](qiskit.aqua.components.optimizers.ADAM.save_params "qiskit.aqua.components.optimizers.ADAM.save_params")(snapshot\_dir)                           | save params                                                                                               |
+| [`ADAM.set_max_evals_grouped`](qiskit.aqua.components.optimizers.ADAM.set_max_evals_grouped "qiskit.aqua.components.optimizers.ADAM.set_max_evals_grouped")(limit)     | Set max evals grouped                                                                                     |
+| [`ADAM.set_options`](qiskit.aqua.components.optimizers.ADAM.set_options "qiskit.aqua.components.optimizers.ADAM.set_options")(\*\*kwargs)                              | Sets or updates values in the options dictionary.                                                         |
+| [`ADAM.wrap_function`](qiskit.aqua.components.optimizers.ADAM.wrap_function "qiskit.aqua.components.optimizers.ADAM.wrap_function")(function, args)                    | Wrap the function to implicitly inject the args at the call of the function.                              |
 

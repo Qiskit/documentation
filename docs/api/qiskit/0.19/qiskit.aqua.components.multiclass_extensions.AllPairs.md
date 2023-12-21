@@ -18,73 +18,10 @@ In the **all-pairs** reduction, one trains $k(k−1)/2$ binary classifiers for a
 
 ## Methods
 
-### predict
-
-<span id="qiskit.aqua.components.multiclass_extensions.AllPairs.predict" />
-
-`AllPairs.predict(x)`
-
-Applying multiple estimators for prediction.
-
-**Parameters**
-
-**x** (*numpy.ndarray*) – NxD array
-
-**Returns**
-
-predicted labels, Nx1 array
-
-**Return type**
-
-numpy.ndarray
-
-### set\_estimator
-
-<span id="qiskit.aqua.components.multiclass_extensions.AllPairs.set_estimator" />
-
-`AllPairs.set_estimator(estimator_cls, params=None)`
-
-Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator
-
-**Return type**
-
-`None`
-
-### test
-
-<span id="qiskit.aqua.components.multiclass_extensions.AllPairs.test" />
-
-`AllPairs.test(x, y)`
-
-Testing multiple estimators each for distinguishing a pair of classes.
-
-**Parameters**
-
-*   **x** (*numpy.ndarray*) – input points
-*   **y** (*numpy.ndarray*) – input labels
-
-**Returns**
-
-accuracy
-
-**Return type**
-
-float
-
-### train
-
-<span id="qiskit.aqua.components.multiclass_extensions.AllPairs.train" />
-
-`AllPairs.train(x, y)`
-
-Training multiple estimators each for distinguishing a pair of classes.
-
-**Parameters**
-
-*   **x** (*numpy.ndarray*) – input points
-*   **y** (*numpy.ndarray*) – input labels
-
-**Raises**
-
-**ValueError** – can not be fit when only one class is present.
+|                                                                                                                                                                                                  |                                                                                                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`AllPairs.predict`](qiskit.aqua.components.multiclass_extensions.AllPairs.predict "qiskit.aqua.components.multiclass_extensions.AllPairs.predict")(x)                                           | Applying multiple estimators for prediction.                                                                                                                                                                                            |
+| [`AllPairs.set_estimator`](qiskit.aqua.components.multiclass_extensions.AllPairs.set_estimator "qiskit.aqua.components.multiclass_extensions.AllPairs.set_estimator")(estimator\_cls\[, params]) | Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator |
+| [`AllPairs.test`](qiskit.aqua.components.multiclass_extensions.AllPairs.test "qiskit.aqua.components.multiclass_extensions.AllPairs.test")(x, y)                                                 | Testing multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                  |
+| [`AllPairs.train`](qiskit.aqua.components.multiclass_extensions.AllPairs.train "qiskit.aqua.components.multiclass_extensions.AllPairs.train")(x, y)                                              | Training multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                 |
 

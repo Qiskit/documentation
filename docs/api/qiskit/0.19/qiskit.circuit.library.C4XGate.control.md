@@ -1,0 +1,30 @@
+---
+title: control
+description: API reference for qiskit.circuit.library.C4XGate.control
+in_page_toc_min_heading_level: 1
+python_api_type: method
+python_api_name: qiskit.circuit.library.C4XGate.control
+---
+
+# control
+
+<span id="qiskit.circuit.library.C4XGate.control" />
+
+`C4XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+
+Controlled version of this gate.
+
+**Parameters**
+
+*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+*   **label** (*str or None*) – An optional label for the gate \[Default: None]
+*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+
+**Returns**
+
+controlled version of this gate.
+
+**Return type**
+
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+

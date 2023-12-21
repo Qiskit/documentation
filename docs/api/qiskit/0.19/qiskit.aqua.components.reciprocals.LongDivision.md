@@ -30,46 +30,8 @@ It finds the reciprocal with long division method and rotates the ancillary qubi
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.components.reciprocals.LongDivision.construct_circuit" />
-
-`LongDivision.construct_circuit(mode, register=None, circuit=None)`
-
-Construct the Long Division Rotation circuit.
-
-**Parameters**
-
-*   **mode** (*str*) – construction mode, ‘matrix’ not supported
-*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – input register, typically output register of Eigenvalues
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Quantum Circuit or None
-
-**Returns**
-
-containing the Long Division Rotation circuit.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-**Raises**
-
-**NotImplementedError** – mode not supported
-
-### sv\_to\_resvec
-
-<span id="qiskit.aqua.components.reciprocals.LongDivision.sv_to_resvec" />
-
-`LongDivision.sv_to_resvec(statevector, num_q)`
-
-Convert statevector to result vector.
-
-**Parameters**
-
-*   **statevector** (*list*) – The statevector from simulation.
-*   **num\_q** (*int*) – Number of qubits of result register.
-
-**Returns**
-
-The result vector.
+|                                                                                                                                                                                       |                                               |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| [`LongDivision.construct_circuit`](qiskit.aqua.components.reciprocals.LongDivision.construct_circuit "qiskit.aqua.components.reciprocals.LongDivision.construct_circuit")(mode\[, …]) | Construct the Long Division Rotation circuit. |
+| [`LongDivision.sv_to_resvec`](qiskit.aqua.components.reciprocals.LongDivision.sv_to_resvec "qiskit.aqua.components.reciprocals.LongDivision.sv_to_resvec")(statevector, num\_q)       | Convert statevector to result vector.         |
 

@@ -35,48 +35,8 @@ Annealers. arxiv.org:1706.01945.
 
 ## Methods
 
-### decode
-
-<span id="qiskit.optimization.converters.IntegerToBinary.decode" />
-
-`IntegerToBinary.decode(result)`
-
-Convert the encoded problem (binary variables) back to the original (integer variables).
-
-**Parameters**
-
-**result** (`OptimizationResult`) – The result of the converted problem.
-
-**Return type**
-
-`OptimizationResult`
-
-**Returns**
-
-The result of the original problem.
-
-### encode
-
-<span id="qiskit.optimization.converters.IntegerToBinary.encode" />
-
-`IntegerToBinary.encode(op, name=None)`
-
-Convert an integer problem into a new problem with binary variables.
-
-**Parameters**
-
-*   **op** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The problem to be solved, that may contain integer variables.
-*   **name** (`Optional`\[`str`]) – The name of the converted problem. If not provided, the name of the input problem is used.
-
-**Return type**
-
-[`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")
-
-**Returns**
-
-The converted problem, that contains no integer variables.
-
-**Raises**
-
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if variable or constraint type is not supported.
+|                                                                                                                                                        |                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| [`IntegerToBinary.decode`](qiskit.optimization.converters.IntegerToBinary.decode "qiskit.optimization.converters.IntegerToBinary.decode")(result)      | Convert the encoded problem (binary variables) back to the original (integer variables). |
+| [`IntegerToBinary.encode`](qiskit.optimization.converters.IntegerToBinary.encode "qiskit.optimization.converters.IntegerToBinary.encode")(op\[, name]) | Convert an integer problem into a new problem with binary variables.                     |
 

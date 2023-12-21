@@ -41,94 +41,18 @@ For example the [`LogicalExpressionOracle`](qiskit.aqua.components.oracles.Logic
 
 ## Attributes
 
-### backend
-
-<span id="qiskit.aqua.algorithms.Grover.backend" />
-
-`qiskit.providers.basebackend.BaseBackend`
-
-Returns backend.
-
-**Return type**
-
-[`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend")
-
-### qc\_amplitude\_amplification\_iteration
-
-qc amplitude amplification iteration
-
-### quantum\_instance
-
-<span id="qiskit.aqua.algorithms.Grover.quantum_instance" />
-
-`Union[None, qiskit.aqua.quantum_instance.QuantumInstance]`
-
-Returns quantum instance.
-
-**Return type**
-
-`Optional`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance")]
-
-### random
-
-Return a numpy random.
+|                                                                                                                                                                                          |                                      |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| [`Grover.backend`](qiskit.aqua.algorithms.Grover.backend "qiskit.aqua.algorithms.Grover.backend")                                                                                        | Returns backend.                     |
+| [`Grover.qc_amplitude_amplification_iteration`](qiskit.aqua.algorithms.Grover.qc_amplitude_amplification_iteration "qiskit.aqua.algorithms.Grover.qc_amplitude_amplification_iteration") | qc amplitude amplification iteration |
+| [`Grover.quantum_instance`](qiskit.aqua.algorithms.Grover.quantum_instance "qiskit.aqua.algorithms.Grover.quantum_instance")                                                             | Returns quantum instance.            |
+| [`Grover.random`](qiskit.aqua.algorithms.Grover.random "qiskit.aqua.algorithms.Grover.random")                                                                                           | Return a numpy random.               |
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.aqua.algorithms.Grover.construct_circuit" />
-
-`Grover.construct_circuit(measurement=False)`
-
-Construct the quantum circuit
-
-**Parameters**
-
-**measurement** (*bool*) – Boolean flag to indicate if measurement should be included in the circuit.
-
-**Returns**
-
-the QuantumCircuit object for the constructed circuit
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
-### run
-
-<span id="qiskit.aqua.algorithms.Grover.run" />
-
-`Grover.run(quantum_instance=None, **kwargs)`
-
-Execute the algorithm with selected backend.
-
-**Parameters**
-
-*   **quantum\_instance** (`Union`\[[`QuantumInstance`](qiskit.aqua.QuantumInstance "qiskit.aqua.quantum_instance.QuantumInstance"), [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.basebackend.BaseBackend"), `None`]) – the experimental setting.
-*   **kwargs** (*dict*) – kwargs
-
-**Returns**
-
-results of an algorithm.
-
-**Return type**
-
-dict
-
-**Raises**
-
-[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-### set\_backend
-
-<span id="qiskit.aqua.algorithms.Grover.set_backend" />
-
-`Grover.set_backend(backend, **kwargs)`
-
-Sets backend with configuration.
-
-**Return type**
-
-`None`
+|                                                                                                                                                 |                                              |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [`Grover.construct_circuit`](qiskit.aqua.algorithms.Grover.construct_circuit "qiskit.aqua.algorithms.Grover.construct_circuit")(\[measurement]) | Construct the quantum circuit                |
+| [`Grover.run`](qiskit.aqua.algorithms.Grover.run "qiskit.aqua.algorithms.Grover.run")(\[quantum\_instance])                                     | Execute the algorithm with selected backend. |
+| [`Grover.set_backend`](qiskit.aqua.algorithms.Grover.set_backend "qiskit.aqua.algorithms.Grover.set_backend")(backend, \*\*kwargs)              | Sets backend with configuration.             |
 

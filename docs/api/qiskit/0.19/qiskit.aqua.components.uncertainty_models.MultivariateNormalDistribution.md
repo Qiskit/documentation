@@ -26,165 +26,33 @@ Provides a discretized and truncated normal distribution loaded into a quantum s
 
 ## Attributes
 
-### dimension
-
-returns dimensions
-
-### high
-
-returns high
-
-### low
-
-returns low
-
-### num\_qubits
-
-returns num qubits
-
-### num\_target\_qubits
-
-Returns the number of target qubits
-
-### num\_values
-
-returns number of values
-
-### probabilities
-
-returns probabilities
-
-### probabilities\_vector
-
-returns probabilities vector
-
-### values
-
-returns values
+|                                                                                                                                                                                                                                                        |                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------- |
+| [`MultivariateNormalDistribution.dimension`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.dimension "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.dimension")                                  | returns dimensions                  |
+| [`MultivariateNormalDistribution.high`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.high "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.high")                                                 | returns high                        |
+| [`MultivariateNormalDistribution.low`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.low "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.low")                                                    | returns low                         |
+| [`MultivariateNormalDistribution.num_qubits`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.num_qubits "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.num_qubits")                               | returns num qubits                  |
+| [`MultivariateNormalDistribution.num_target_qubits`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.num_target_qubits "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.num_target_qubits")          | Returns the number of target qubits |
+| [`MultivariateNormalDistribution.num_values`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.num_values "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.num_values")                               | returns number of values            |
+| [`MultivariateNormalDistribution.probabilities`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.probabilities "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.probabilities")                      | returns probabilities               |
+| [`MultivariateNormalDistribution.probabilities_vector`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.probabilities_vector "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.probabilities_vector") | returns probabilities vector        |
+| [`MultivariateNormalDistribution.values`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.values "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.values")                                           | returns values                      |
 
 ## Methods
 
-### build
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build" />
-
-`MultivariateNormalDistribution.build(qc, q, q_ancillas=None, params=None)`
-
-### build\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_controlled" />
-
-`MultivariateNormalDistribution.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
-
-Adds corresponding controlled sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
-
-### build\_controlled\_inverse
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_controlled_inverse" />
-
-`MultivariateNormalDistribution.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
-
-Adds controlled inverse of corresponding sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
-
-### build\_controlled\_inverse\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_controlled_inverse_power" />
-
-`MultivariateNormalDistribution.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
-
-Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_controlled\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_controlled_power" />
-
-`MultivariateNormalDistribution.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
-
-Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_inverse
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_inverse" />
-
-`MultivariateNormalDistribution.build_inverse(qc, q, q_ancillas=None)`
-
-Adds inverse of corresponding sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-
-### build\_inverse\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_inverse_power" />
-
-`MultivariateNormalDistribution.build_inverse_power(qc, q, power, q_ancillas=None)`
-
-Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_power" />
-
-`MultivariateNormalDistribution.build_power(qc, q, power, q_ancillas=None)`
-
-Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### get\_num\_qubits
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.get_num_qubits" />
-
-`MultivariateNormalDistribution.get_num_qubits()`
-
-returns number of qubits
-
-### get\_num\_qubits\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.get_num_qubits_controlled" />
-
-`MultivariateNormalDistribution.get_num_qubits_controlled()`
-
-returns number of qubits controlled
-
-### pdf\_to\_probabilities
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.pdf_to_probabilities" />
-
-`static MultivariateNormalDistribution.pdf_to_probabilities(pdf, low, high, num_values)`
-
-pdf to probabilities
-
-### required\_ancillas
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.required_ancillas" />
-
-`MultivariateNormalDistribution.required_ancillas()`
-
-returns required ancillas
-
-### required\_ancillas\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.required_ancillas_controlled" />
-
-`MultivariateNormalDistribution.required_ancillas_controlled()`
-
-returns required ancillas controlled
+|                                                                                                                                                                                                                                                                                             |                                                                       |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [`MultivariateNormalDistribution.build`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build")(qc, q)                                                                            |                                                                       |
+| [`MultivariateNormalDistribution.build_controlled`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_controlled "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_controlled")(qc, …)                                           | Adds corresponding controlled sub-circuit to given circuit            |
+| [`MultivariateNormalDistribution.build_controlled_inverse`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_controlled_inverse "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_controlled_inverse")(qc, …)                   | Adds controlled inverse of corresponding sub-circuit to given circuit |
+| [`MultivariateNormalDistribution.build_controlled_inverse_power`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_controlled_inverse_power "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_controlled_inverse_power")(qc, …) | Adds controlled, inverse, power of corresponding circuit.             |
+| [`MultivariateNormalDistribution.build_controlled_power`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_controlled_power "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_controlled_power")(qc, …)                         | Adds controlled power of corresponding circuit.                       |
+| [`MultivariateNormalDistribution.build_inverse`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_inverse "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_inverse")(qc, q)                                                    | Adds inverse of corresponding sub-circuit to given circuit            |
+| [`MultivariateNormalDistribution.build_inverse_power`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_inverse_power "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_inverse_power")(qc, …)                                  | Adds inverse power of corresponding circuit.                          |
+| [`MultivariateNormalDistribution.build_power`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_power "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.build_power")(qc, …)                                                          | Adds power of corresponding circuit.                                  |
+| [`MultivariateNormalDistribution.get_num_qubits`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.get_num_qubits "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.get_num_qubits")()                                                      | returns number of qubits                                              |
+| [`MultivariateNormalDistribution.get_num_qubits_controlled`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.get_num_qubits_controlled "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.get_num_qubits_controlled")()                     | returns number of qubits controlled                                   |
+| [`MultivariateNormalDistribution.pdf_to_probabilities`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.pdf_to_probabilities "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.pdf_to_probabilities")(…)                                   | pdf to probabilities                                                  |
+| [`MultivariateNormalDistribution.required_ancillas`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.required_ancillas "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.required_ancillas")()                                             | returns required ancillas                                             |
+| [`MultivariateNormalDistribution.required_ancillas_controlled`](qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.required_ancillas_controlled "qiskit.aqua.components.uncertainty_models.MultivariateNormalDistribution.required_ancillas_controlled")()            | returns required ancillas controlled                                  |
 

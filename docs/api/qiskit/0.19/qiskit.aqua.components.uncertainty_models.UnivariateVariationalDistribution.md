@@ -24,180 +24,31 @@ The Univariate Variational Distribution.
 
 ## Attributes
 
-### high
-
-returns high
-
-### low
-
-returns low
-
-### num\_target\_qubits
-
-Returns the number of target qubits
-
-### num\_values
-
-returns number of values
-
-### probabilities
-
-returns probabilities
-
-### values
-
-returns values
+|                                                                                                                                                                                                                                                        |                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------- |
+| [`UnivariateVariationalDistribution.high`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.high "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.high")                                        | returns high                        |
+| [`UnivariateVariationalDistribution.low`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.low "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.low")                                           | returns low                         |
+| [`UnivariateVariationalDistribution.num_target_qubits`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.num_target_qubits "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.num_target_qubits") | Returns the number of target qubits |
+| [`UnivariateVariationalDistribution.num_values`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.num_values "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.num_values")                      | returns number of values            |
+| [`UnivariateVariationalDistribution.probabilities`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.probabilities "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.probabilities")             | returns probabilities               |
+| [`UnivariateVariationalDistribution.values`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.values "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.values")                                  | returns values                      |
 
 ## Methods
 
-### build
-
-<span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build" />
-
-`UnivariateVariationalDistribution.build(qc, q, q_ancillas=None, params=None)`
-
-### build\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_controlled" />
-
-`UnivariateVariationalDistribution.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
-
-Adds corresponding controlled sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
-
-### build\_controlled\_inverse
-
-<span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_controlled_inverse" />
-
-`UnivariateVariationalDistribution.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
-
-Adds controlled inverse of corresponding sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
-
-### build\_controlled\_inverse\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_controlled_inverse_power" />
-
-`UnivariateVariationalDistribution.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
-
-Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_controlled\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_controlled_power" />
-
-`UnivariateVariationalDistribution.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
-
-Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_inverse
-
-<span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_inverse" />
-
-`UnivariateVariationalDistribution.build_inverse(qc, q, q_ancillas=None)`
-
-Adds inverse of corresponding sub-circuit to given circuit
-
-**Parameters**
-
-*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
-*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
-*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
-
-### build\_inverse\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_inverse_power" />
-
-`UnivariateVariationalDistribution.build_inverse_power(qc, q, power, q_ancillas=None)`
-
-Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### build\_power
-
-<span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_power" />
-
-`UnivariateVariationalDistribution.build_power(qc, q, power, q_ancillas=None)`
-
-Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
-
-### get\_num\_qubits
-
-<span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.get_num_qubits" />
-
-`UnivariateVariationalDistribution.get_num_qubits()`
-
-returns number of qubits
-
-### get\_num\_qubits\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.get_num_qubits_controlled" />
-
-`UnivariateVariationalDistribution.get_num_qubits_controlled()`
-
-returns number of qubits controlled
-
-### pdf\_to\_probabilities
-
-<span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.pdf_to_probabilities" />
-
-`static UnivariateVariationalDistribution.pdf_to_probabilities(pdf, low, high, num_values)`
-
-Takes a probability density function (pdf), and returns a truncated and discretized array of probabilities corresponding to it
-
-**Parameters**
-
-*   **pdf** (*function*) – probability density function
-*   **low** (*float*) – lower bound of equidistant grid
-*   **high** (*float*) – upper bound of equidistant grid
-*   **num\_values** (*int*) – number of grid points
-
-**Returns**
-
-array of probabilities
-
-**Return type**
-
-list
-
-### required\_ancillas
-
-<span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.required_ancillas" />
-
-`UnivariateVariationalDistribution.required_ancillas()`
-
-returns required ancillas
-
-### required\_ancillas\_controlled
-
-<span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.required_ancillas_controlled" />
-
-`UnivariateVariationalDistribution.required_ancillas_controlled()`
-
-returns required ancillas controlled
-
-### set\_probabilities
-
-<span id="qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.set_probabilities" />
-
-`UnivariateVariationalDistribution.set_probabilities(quantum_instance)`
-
-Set Probabilities
-
-**Parameters**
-
-**quantum\_instance** ([*QuantumInstance*](qiskit.aqua.QuantumInstance "qiskit.aqua.QuantumInstance")) – Quantum instance
+|                                                                                                                                                                                                                                                                                                      |                                                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
+| [`UnivariateVariationalDistribution.build`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build")(qc, q)                                                                            |                                                                                                                                |
+| [`UnivariateVariationalDistribution.build_controlled`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_controlled "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_controlled")(qc, …)                                           | Adds corresponding controlled sub-circuit to given circuit                                                                     |
+| [`UnivariateVariationalDistribution.build_controlled_inverse`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_controlled_inverse "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_controlled_inverse")(qc, …)                   | Adds controlled inverse of corresponding sub-circuit to given circuit                                                          |
+| [`UnivariateVariationalDistribution.build_controlled_inverse_power`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_controlled_inverse_power "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_controlled_inverse_power")(qc, …) | Adds controlled, inverse, power of corresponding circuit.                                                                      |
+| [`UnivariateVariationalDistribution.build_controlled_power`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_controlled_power "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_controlled_power")(qc, …)                         | Adds controlled power of corresponding circuit.                                                                                |
+| [`UnivariateVariationalDistribution.build_inverse`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_inverse "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_inverse")(qc, q)                                                    | Adds inverse of corresponding sub-circuit to given circuit                                                                     |
+| [`UnivariateVariationalDistribution.build_inverse_power`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_inverse_power "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_inverse_power")(qc, …)                                  | Adds inverse power of corresponding circuit.                                                                                   |
+| [`UnivariateVariationalDistribution.build_power`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_power "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.build_power")(qc, …)                                                          | Adds power of corresponding circuit.                                                                                           |
+| [`UnivariateVariationalDistribution.get_num_qubits`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.get_num_qubits "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.get_num_qubits")()                                                      | returns number of qubits                                                                                                       |
+| [`UnivariateVariationalDistribution.get_num_qubits_controlled`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.get_num_qubits_controlled "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.get_num_qubits_controlled")()                     | returns number of qubits controlled                                                                                            |
+| [`UnivariateVariationalDistribution.pdf_to_probabilities`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.pdf_to_probabilities "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.pdf_to_probabilities")(…)                                   | Takes a probability density function (pdf), and returns a truncated and discretized array of probabilities corresponding to it |
+| [`UnivariateVariationalDistribution.required_ancillas`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.required_ancillas "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.required_ancillas")()                                             | returns required ancillas                                                                                                      |
+| [`UnivariateVariationalDistribution.required_ancillas_controlled`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.required_ancillas_controlled "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.required_ancillas_controlled")()            | returns required ancillas controlled                                                                                           |
+| [`UnivariateVariationalDistribution.set_probabilities`](qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.set_probabilities "qiskit.aqua.components.uncertainty_models.UnivariateVariationalDistribution.set_probabilities")(…)                                            | Set Probabilities                                                                                                              |
 

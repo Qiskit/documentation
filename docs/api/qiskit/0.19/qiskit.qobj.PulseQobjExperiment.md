@@ -26,39 +26,8 @@ Instantiate a PulseQobjExperiment.
 
 ## Methods
 
-### from\_dict
-
-<span id="qiskit.qobj.PulseQobjExperiment.from_dict" />
-
-`classmethod PulseQobjExperiment.from_dict(data)`
-
-Create a new PulseQobjExperiment object from a dictionary.
-
-**Parameters**
-
-**data** (*dict*) – A dictionary for the experiment config
-
-**Returns**
-
-The object from the input dictionary.
-
-**Return type**
-
-[PulseQobjExperiment](qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment")
-
-### to\_dict
-
-<span id="qiskit.qobj.PulseQobjExperiment.to_dict" />
-
-`PulseQobjExperiment.to_dict()`
-
-Return a dictionary format representation of the Experiment.
-
-**Returns**
-
-The dictionary form of the PulseQobjExperiment.
-
-**Return type**
-
-dict
+|                                                                                                                                |                                                              |
+| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
+| [`PulseQobjExperiment.from_dict`](qiskit.qobj.PulseQobjExperiment.from_dict "qiskit.qobj.PulseQobjExperiment.from_dict")(data) | Create a new PulseQobjExperiment object from a dictionary.   |
+| [`PulseQobjExperiment.to_dict`](qiskit.qobj.PulseQobjExperiment.to_dict "qiskit.qobj.PulseQobjExperiment.to_dict")()           | Return a dictionary format representation of the Experiment. |
 

@@ -20,43 +20,11 @@ The context (qargs and cargs that each instruction is attached to) is also store
 
 ## Methods
 
-### \_\_getitem\_\_
-
-<span id="qiskit.circuit.InstructionSet.__getitem__" />
-
-`InstructionSet.__getitem__(i)`
-
-Return instruction at index
-
-### \_\_len\_\_
-
-<span id="qiskit.circuit.InstructionSet.__len__" />
-
-`InstructionSet.__len__()`
-
-Return number of instructions in set
-
-### add
-
-<span id="qiskit.circuit.InstructionSet.add" />
-
-`InstructionSet.add(gate, qargs, cargs)`
-
-Add an instruction and its context (where it is attached).
-
-### c\_if
-
-<span id="qiskit.circuit.InstructionSet.c_if" />
-
-`InstructionSet.c_if(classical, val)`
-
-Add condition on classical register to all instructions.
-
-### inverse
-
-<span id="qiskit.circuit.InstructionSet.inverse" />
-
-`InstructionSet.inverse()`
-
-Invert all instructions.
+|                                                                                                                          |                                                            |
+| ------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------- |
+| [`InstructionSet.__getitem__`](qiskit.circuit.InstructionSet.__getitem__ "qiskit.circuit.InstructionSet.__getitem__")(i) | Return instruction at index                                |
+| [`InstructionSet.__len__`](qiskit.circuit.InstructionSet.__len__ "qiskit.circuit.InstructionSet.__len__")()              | Return number of instructions in set                       |
+| [`InstructionSet.add`](qiskit.circuit.InstructionSet.add "qiskit.circuit.InstructionSet.add")(gate, qargs, cargs)        | Add an instruction and its context (where it is attached). |
+| [`InstructionSet.c_if`](qiskit.circuit.InstructionSet.c_if "qiskit.circuit.InstructionSet.c_if")(classical, val)         | Add condition on classical register to all instructions.   |
+| [`InstructionSet.inverse`](qiskit.circuit.InstructionSet.inverse "qiskit.circuit.InstructionSet.inverse")()              | Invert all instructions.                                   |
 

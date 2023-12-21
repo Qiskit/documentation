@@ -18,53 +18,10 @@ This method should initialize the module and use an exception if a component of 
 
 ## Methods
 
-### predict
-
-<span id="qiskit.aqua.components.multiclass_extensions.MulticlassExtension.predict" />
-
-`abstract MulticlassExtension.predict(x)`
-
-Applying multiple estimators for prediction.
-
-**Parameters**
-
-**x** (*numpy.ndarray*) – input points
-
-### set\_estimator
-
-<span id="qiskit.aqua.components.multiclass_extensions.MulticlassExtension.set_estimator" />
-
-`MulticlassExtension.set_estimator(estimator_cls, params=None)`
-
-Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator
-
-**Return type**
-
-`None`
-
-### test
-
-<span id="qiskit.aqua.components.multiclass_extensions.MulticlassExtension.test" />
-
-`abstract MulticlassExtension.test(x, y)`
-
-Testing multiple estimators each for distinguishing a pair of classes.
-
-**Parameters**
-
-*   **x** (*numpy.ndarray*) – input points
-*   **y** (*numpy.ndarray*) – input labels
-
-### train
-
-<span id="qiskit.aqua.components.multiclass_extensions.MulticlassExtension.train" />
-
-`abstract MulticlassExtension.train(x, y)`
-
-Training multiple estimators each for distinguishing a pair of classes.
-
-**Parameters**
-
-*   **x** (*numpy.ndarray*) – input points
-*   **y** (*numpy.ndarray*) – input labels
+|                                                                                                                                                                                                                        |                                                                                                                                                                                                                                         |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`MulticlassExtension.predict`](qiskit.aqua.components.multiclass_extensions.MulticlassExtension.predict "qiskit.aqua.components.multiclass_extensions.MulticlassExtension.predict")(x)                                | Applying multiple estimators for prediction.                                                                                                                                                                                            |
+| [`MulticlassExtension.set_estimator`](qiskit.aqua.components.multiclass_extensions.MulticlassExtension.set_estimator "qiskit.aqua.components.multiclass_extensions.MulticlassExtension.set_estimator")(estimator\_cls) | Called internally to set `Estimator` and parameters :type estimator\_cls: `Callable`\[\[`List`], `Estimator`] :param estimator\_cls: An `Estimator` class :type params: `Optional`\[`List`] :param params: Parameters for the estimator |
+| [`MulticlassExtension.test`](qiskit.aqua.components.multiclass_extensions.MulticlassExtension.test "qiskit.aqua.components.multiclass_extensions.MulticlassExtension.test")(x, y)                                      | Testing multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                  |
+| [`MulticlassExtension.train`](qiskit.aqua.components.multiclass_extensions.MulticlassExtension.train "qiskit.aqua.components.multiclass_extensions.MulticlassExtension.train")(x, y)                                   | Training multiple estimators each for distinguishing a pair of classes.                                                                                                                                                                 |
 

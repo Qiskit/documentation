@@ -18,28 +18,7 @@ Initialize the internal data structure.
 
 ## Methods
 
-### encode
-
-<span id="qiskit.optimization.converters.QuadraticProgramToIsing.encode" />
-
-`QuadraticProgramToIsing.encode(op)`
-
-Convert a problem into a qubit operator
-
-**Parameters**
-
-**op** ([`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.quadratic_program.QuadraticProgram")) – The optimization problem to be converted. Must be an unconstrained problem with binary variables only.
-
-**Return type**
-
-`Tuple`\[[`WeightedPauliOperator`](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.weighted_pauli_operator.WeightedPauliOperator"), `float`]
-
-**Returns**
-
-The qubit operator of the problem and the shift value.
-
-**Raises**
-
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If a variable type is not binary.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If constraints exist in the problem.
+|                                                                                                                                                                       |                                         |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
+| [`QuadraticProgramToIsing.encode`](qiskit.optimization.converters.QuadraticProgramToIsing.encode "qiskit.optimization.converters.QuadraticProgramToIsing.encode")(op) | Convert a problem into a qubit operator |
 

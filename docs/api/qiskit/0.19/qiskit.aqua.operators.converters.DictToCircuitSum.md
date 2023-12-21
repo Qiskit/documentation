@@ -22,23 +22,7 @@ Converts `DictStateFns` or `VectorStateFns` to equivalent `CircuitStateFns` or s
 
 ## Methods
 
-### convert
-
-<span id="qiskit.aqua.operators.converters.DictToCircuitSum.convert" />
-
-`DictToCircuitSum.convert(operator)`
-
-Convert the Operator to `CircuitStateFns`, recursively if `traverse` is True.
-
-**Parameters**
-
-**operator** ([`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")) – The Operator to convert
-
-**Return type**
-
-[`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.operator_base.OperatorBase")
-
-**Returns**
-
-The converted Operator.
+|                                                                                                                                                               |                                                                               |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
+| [`DictToCircuitSum.convert`](qiskit.aqua.operators.converters.DictToCircuitSum.convert "qiskit.aqua.operators.converters.DictToCircuitSum.convert")(operator) | Convert the Operator to `CircuitStateFns`, recursively if `traverse` is True. |
 

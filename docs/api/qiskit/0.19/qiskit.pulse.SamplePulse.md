@@ -24,63 +24,15 @@ Create new sample pulse command.
 
 ## Attributes
 
-### id
-
-<span id="qiskit.pulse.SamplePulse.id" />
-
-`int`
-
-Unique identifier for this pulse.
-
-**Return type**
-
-`int`
-
-### samples
-
-<span id="qiskit.pulse.SamplePulse.samples" />
-
-`numpy.ndarray`
-
-Return sample values.
-
-**Return type**
-
-`ndarray`
+|                                                                                              |                                   |
+| -------------------------------------------------------------------------------------------- | --------------------------------- |
+| [`SamplePulse.id`](qiskit.pulse.SamplePulse.id "qiskit.pulse.SamplePulse.id")                | Unique identifier for this pulse. |
+| [`SamplePulse.samples`](qiskit.pulse.SamplePulse.samples "qiskit.pulse.SamplePulse.samples") | Return sample values.             |
 
 ## Methods
 
-### \_\_call\_\_
-
-<span id="qiskit.pulse.SamplePulse.__call__" />
-
-`SamplePulse.__call__(channel)`
-
-Call self as a function.
-
-### draw
-
-<span id="qiskit.pulse.SamplePulse.draw" />
-
-`SamplePulse.draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False, scaling=None)`
-
-Plot the interpolated envelope of pulse.
-
-**Parameters**
-
-*   **dt** (`float`) – Time interval of samples.
-*   **style** (*Optional\[*[*PulseStyle*](qiskit.visualization.pulse.qcstyle#qiskit.visualization.pulse.qcstyle.PulseStyle "qiskit.visualization.pulse.qcstyle.PulseStyle")*]*) – A style sheet to configure plot appearance.
-*   **filename** (`Optional`\[`str`]) – Name required to save pulse image.
-*   **interp\_method** (`Optional`\[`Callable`]) – A function for interpolation.
-*   **scale** (`float`) – Relative visual scaling of waveform amplitudes.
-*   **interactive** (`bool`) – When set true show the circuit in a new window. (This depends on the matplotlib backend being used.)
-*   **scaling** (`Optional`\[`float`]) – Deprecated, see scale,
-
-**Returns**
-
-A matplotlib figure object of the pulse envelope
-
-**Return type**
-
-matplotlib.figure
+|                                                                                                                |                                          |
+| -------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| [`SamplePulse.__call__`](qiskit.pulse.SamplePulse.__call__ "qiskit.pulse.SamplePulse.__call__")(channel)       | Call self as a function.                 |
+| [`SamplePulse.draw`](qiskit.pulse.SamplePulse.draw "qiskit.pulse.SamplePulse.draw")(\[dt, style, filename, …]) | Plot the interpolated envelope of pulse. |
 

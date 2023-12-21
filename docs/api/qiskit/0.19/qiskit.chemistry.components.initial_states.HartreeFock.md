@@ -29,34 +29,13 @@ A Hartree-Fock initial state.
 
 ## Attributes
 
-### bitstr
-
-Getter of the bit string represented the statevector.
+|                                                                                                                                                       |                                                       |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| [`HartreeFock.bitstr`](qiskit.chemistry.components.initial_states.HartreeFock.bitstr "qiskit.chemistry.components.initial_states.HartreeFock.bitstr") | Getter of the bit string represented the statevector. |
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.chemistry.components.initial_states.HartreeFock.construct_circuit" />
-
-`HartreeFock.construct_circuit(mode='circuit', register=None)`
-
-Construct the statevector of desired initial state.
-
-**Parameters**
-
-*   **mode** (*string*) – vector or circuit. The vector mode produces the vector. While the circuit constructs the quantum circuit corresponding that vector.
-*   **register** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – register for circuit construction.
-
-**Returns**
-
-statevector.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
-
-**Raises**
-
-**ValueError** – when mode is not ‘vector’ or ‘circuit’.
+|                                                                                                                                                                                                           |                                                     |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| [`HartreeFock.construct_circuit`](qiskit.chemistry.components.initial_states.HartreeFock.construct_circuit "qiskit.chemistry.components.initial_states.HartreeFock.construct_circuit")(\[mode, register]) | Construct the statevector of desired initial state. |
 
