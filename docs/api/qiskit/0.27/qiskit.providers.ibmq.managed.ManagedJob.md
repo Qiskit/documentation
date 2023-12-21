@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.managed.ManagedJob
 
-
-
 `ManagedJob(start_index, experiments_count, job=None)`
 
 Job managed by the Job Manager.
@@ -13,8 +11,6 @@ ManagedJob constructor.
 *   **start\_index** (`int`) – Starting index of the experiment set.
 *   **experiments\_count** (`int`) – Number of experiments.
 *   **job** (`Optional`\[`IBMQJob`]) – Job to be managed, or `None` if not already known.
-
-
 
 `__init__(start_index, experiments_count, job=None)`
 
@@ -38,8 +34,6 @@ ManagedJob constructor.
 | [`status`](#qiskit.providers.ibmq.managed.ManagedJob.status "qiskit.providers.ibmq.managed.ManagedJob.status")()                                               | Query the server for job status.             |
 | [`submit`](#qiskit.providers.ibmq.managed.ManagedJob.submit "qiskit.providers.ibmq.managed.ManagedJob.submit")(circuits, job\_name, backend, …\[, …])          | Submit the job.                              |
 
-
-
 `cancel()`
 
 Attempt to cancel the job.
@@ -47,8 +41,6 @@ Attempt to cancel the job.
 **Return type**
 
 `None`
-
-
 
 `error_message()`
 
@@ -62,8 +54,6 @@ Provide details about the reason of failure.
 
 An error report if the job failed or `None` otherwise.
 
-
-
 `qobj()`
 
 Return the Qobj for this job.
@@ -75,8 +65,6 @@ Return the Qobj for this job.
 **Returns**
 
 The Qobj for this job or `None` if the Qobj could not be retrieved.
-
-
 
 `result(timeout=None, partial=False, refresh=False)`
 
@@ -100,8 +88,6 @@ Job result or `None` if result could not be retrieved.
 
 [**IBMQJobTimeoutError**](qiskit.providers.ibmq.job.IBMQJobTimeoutError#qiskit.providers.ibmq.job.IBMQJobTimeoutError "qiskit.providers.ibmq.job.IBMQJobTimeoutError") – If the job does not return results before a specified timeout.
 
-
-
 `status()`
 
 Query the server for job status.
@@ -113,8 +99,6 @@ Query the server for job status.
 **Returns**
 
 Current job status, or `None` if an error occurred.
-
-
 
 `submit(circuits, job_name, backend, executor, submit_lock, job_share_level, job_tags=None, **run_config)`
 

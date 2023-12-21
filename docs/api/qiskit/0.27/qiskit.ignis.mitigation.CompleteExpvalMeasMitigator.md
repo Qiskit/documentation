@@ -1,7 +1,5 @@
 # qiskit.ignis.mitigation.CompleteExpvalMeasMitigator
 
-
-
 `CompleteExpvalMeasMitigator(amat)`
 
 N-qubit measurement error mitigator.
@@ -15,8 +13,6 @@ Initialize a TensorMeasurementMitigator
 **Parameters**
 
 **amat** (*np.array*) – readout error assignment matrix.
-
-
 
 `__init__(amat)`
 
@@ -41,8 +37,6 @@ Initialize a TensorMeasurementMitigator
 | [`required_shots`](#qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.required_shots "qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.required_shots")(delta\[, qubits])                      | Return the number of shots required for expectation value estimation. |
 | [`stddev_upper_bound`](#qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.stddev_upper_bound "qiskit.ignis.mitigation.CompleteExpvalMeasMitigator.stddev_upper_bound")(\[shots, qubits])          | Return an upper bound on standard deviation of expval estimator.      |
 
-
-
 `assignment_fidelity(qubits=None)`
 
 Return the measurement assignment fidelity on the specified qubits.
@@ -61,8 +55,6 @@ the assignment fidelity.
 
 float
 
-
-
 `assignment_matrix(qubits=None)`
 
 Return the measurement assignment matrix for specified qubits.
@@ -80,8 +72,6 @@ the assignment matrix A.
 **Return type**
 
 np.ndarray
-
-
 
 `expectation_value(counts, diagonal=None, qubits=None, clbits=None)`
 
@@ -114,8 +104,6 @@ The diagonal observable $O$ is input using the `diagonal` kwarg as a list or Num
 
 The `clbits` kwarg is used to marginalize the input counts dictionary over the specified bit-values, and the `qubits` kwarg is used to specify which physical qubits these bit-values correspond to as `circuit.measure(qubits, clbits)`.
 
-
-
 `mitigation_matrix(qubits=None)`
 
 Return the measurement mitigation matrix for the specified qubits.
@@ -134,8 +122,6 @@ the measurement error mitigation matrix $A^{-1}$.
 
 np.ndarray
 
-
-
 `mitigation_overhead(qubits=None)`
 
 Return the mitigation overhead for expectation value estimation.
@@ -153,8 +139,6 @@ the mitigation overhead factor.
 **Return type**
 
 int
-
-
 
 `plot_assignment_matrix(qubits=None, ax=None)`
 
@@ -177,8 +161,6 @@ plt.axes
 
 **ImportError** – if matplotlib is not installed.
 
-
-
 `plot_mitigation_matrix(qubits=None, ax=None)`
 
 Matrix plot of the readout error mitigation matrix.
@@ -200,8 +182,6 @@ plt.axes
 
 **ImportError** – if matplotlib is not installed.
 
-
-
 `required_shots(delta, qubits=None)`
 
 Return the number of shots required for expectation value estimation.
@@ -220,8 +200,6 @@ the required shots.
 **Return type**
 
 int
-
-
 
 `stddev_upper_bound(shots=1, qubits=None)`
 

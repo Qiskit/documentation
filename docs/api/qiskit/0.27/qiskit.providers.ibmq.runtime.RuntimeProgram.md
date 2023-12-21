@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.runtime.RuntimeProgram
 
-
-
 `RuntimeProgram(program_name, program_id, description, parameters=None, return_values=None, interim_results=None, max_execution_time=0, version='0', backend_requirements=None, creation_date='')`
 
 Class representing program metadata.
@@ -37,8 +35,6 @@ RuntimeProgram constructor.
 *   **version** (`str`) – Program version.
 *   **backend\_requirements** (`Optional`\[`Dict`]) – Backend requirements.
 *   **creation\_date** (`str`) – Program creation date.
-
-
 
 `__init__(program_name, program_id, description, parameters=None, return_values=None, interim_results=None, max_execution_time=0, version='0', backend_requirements=None, creation_date='')`
 
@@ -79,8 +75,6 @@ RuntimeProgram constructor.
 | [`return_values`](#qiskit.providers.ibmq.runtime.RuntimeProgram.return_values "qiskit.providers.ibmq.runtime.RuntimeProgram.return_values")                      | Program return value definitions.   |
 | [`version`](#qiskit.providers.ibmq.runtime.RuntimeProgram.version "qiskit.providers.ibmq.runtime.RuntimeProgram.version")                                        | Program version.                    |
 
-
-
 `property backend_requirements`
 
 Backend requirements.
@@ -92,8 +86,6 @@ Backend requirements.
 **Returns**
 
 Backend requirements for this program.
-
-
 
 `property creation_date`
 
@@ -107,8 +99,6 @@ Program creation date.
 
 Program creation date.
 
-
-
 `property description`
 
 Program description.
@@ -121,8 +111,6 @@ Program description.
 
 Program description.
 
-
-
 `property interim_results`
 
 Program interim result definitions.
@@ -134,8 +122,6 @@ Program interim result definitions.
 **Returns**
 
 Interim result definitions for this program.
-
-
 
 `property max_execution_time`
 
@@ -151,8 +137,6 @@ A program execution exceeding this time will be forcibly terminated.
 
 Maximum execution time.
 
-
-
 `property name`
 
 Program name.
@@ -164,8 +148,6 @@ Program name.
 **Returns**
 
 Program name.
-
-
 
 `property parameters`
 
@@ -179,8 +161,6 @@ Program parameter definitions.
 
 Parameter definitions for this program.
 
-
-
 `property program_id`
 
 Program ID.
@@ -192,8 +172,6 @@ Program ID.
 **Returns**
 
 Program ID.
-
-
 
 `property return_values`
 
@@ -207,8 +185,6 @@ Program return value definitions.
 
 Return value definitions for this program.
 
-
-
 `to_dict()`
 
 Convert program metadata to dictionary format.
@@ -220,8 +196,6 @@ Convert program metadata to dictionary format.
 **Returns**
 
 Program metadata in dictionary format.
-
-
 
 `property version`
 

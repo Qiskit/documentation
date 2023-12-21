@@ -1,7 +1,5 @@
 # qiskit.quantum\_info.CNOTDihedral
 
-
-
 `CNOTDihedral(data=None, num_qubits=None, validate=True)`
 
 An N-qubit operator from the CNOT-Dihedral group.
@@ -63,8 +61,6 @@ Initialize a CNOTDihedral operator object.
 *   **QiskitError** – if the type is invalid.
 *   **QiskitError** – if validate=True and the CNOTDihedral element is invalid.
 
-
-
 `__init__(data=None, num_qubits=None, validate=True)`
 
 Initialize a CNOTDihedral operator object.
@@ -110,13 +106,9 @@ Initialize a CNOTDihedral operator object.
 | [`num_qubits`](#qiskit.quantum_info.CNOTDihedral.num_qubits "qiskit.quantum_info.CNOTDihedral.num_qubits") | Return the number of qubits if a N-qubit operator or None otherwise. |
 | [`qargs`](#qiskit.quantum_info.CNOTDihedral.qargs "qiskit.quantum_info.CNOTDihedral.qargs")                | Return the qargs for the operator.                                   |
 
-
-
 `adjoint()`
 
 Return the adjoint of the Operator.
-
-
 
 `compose(other, qargs=None, front=False)`
 
@@ -146,25 +138,17 @@ The composed CNOTDihedral.
   Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](#qiskit.quantum_info.CNOTDihedral.dot "qiskit.quantum_info.CNOTDihedral.dot") method `A.dot(B) == A.compose(B, front=True)`.
 </Admonition>
 
-
-
 `conjugate()`
 
 Return the conjugate of the CNOTDihedral.
-
-
 
 `copy()`
 
 Make a deep copy of current operator.
 
-
-
 `property dim`
 
 Return tuple (input\_shape, output\_shape).
-
-
 
 `dot(other, qargs=None)`
 
@@ -182,8 +166,6 @@ The right matrix multiplied Operator.
 **Return type**
 
 [Operator](qiskit.quantum_info.Operator#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
-
-
 
 `expand(other)`
 
@@ -203,25 +185,17 @@ is the current CNOTDihedral, and $b$ is the other CNOTDihedral.
 
 [CNOTDihedral](qiskit.ignis.verification.CNOTDihedral#qiskit.ignis.verification.CNOTDihedral "qiskit.ignis.verification.CNOTDihedral")
 
-
-
 `input_dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
-
-
 
 `property num_qubits`
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
-
-
 `output_dims(qargs=None)`
 
 Return tuple of output dimension for specified subsystems.
-
-
 
 `power(n)`
 
@@ -243,13 +217,9 @@ the n-times composed operator.
 
 **QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
 
-
-
 `property qargs`
 
 Return the qargs for the operator.
-
-
 
 `reshape(input_dims=None, output_dims=None, num_qubits=None)`
 
@@ -273,8 +243,6 @@ BaseOperator
 
 **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
 
-
-
 `tensor(other)`
 
 Return the tensor product with another CNOTDihedral.
@@ -297,8 +265,6 @@ is the current CNOTDihedral, and $b$ is the other CNOTDihedral.
   The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
 </Admonition>
 
-
-
 `to_circuit()`
 
 Return a QuantumCircuit implementing the CNOT-Dihedral element.
@@ -316,25 +282,17 @@ a circuit implementation of the CNOTDihedral object.
 1.  Shelly Garion and Andrew W. Cross, *Synthesis of CNOT-Dihedral circuits with optimal number of two qubit gates*, [Quantum 4(369), 2020](https://quantum-journal.org/papers/q-2020-12-07-369/)
 2.  Andrew W. Cross, Easwar Magesan, Lev S. Bishop, John A. Smolin and Jay M. Gambetta, *Scalable randomised benchmarking of non-Clifford gates*, npj Quantum Inf 2, 16012 (2016).
 
-
-
 `to_instruction()`
 
 Return a Gate instruction implementing the CNOTDihedral object.
-
-
 
 `to_matrix()`
 
 Convert operator to Numpy matrix.
 
-
-
 `to_operator()`
 
 Convert to an Operator object.
-
-
 
 `transpose()`
 

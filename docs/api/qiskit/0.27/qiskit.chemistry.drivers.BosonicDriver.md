@@ -1,7 +1,5 @@
 # qiskit.chemistry.drivers.BosonicDriver
 
-
-
 `BosonicDriver(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)`
 
 Base class for Qiskit’s chemistry bosonic drivers.
@@ -16,8 +14,6 @@ Base class for Qiskit’s chemistry bosonic drivers.
 **Raises**
 
 [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Molecule passed but driver doesn’t support it.
-
-
 
 `abstract __init__(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)`
 
@@ -48,8 +44,6 @@ Base class for Qiskit’s chemistry bosonic drivers.
 | [`molecule`](#qiskit.chemistry.drivers.BosonicDriver.molecule "qiskit.chemistry.drivers.BosonicDriver.molecule")                            | return molecule                                 |
 | [`supports_molecule`](#qiskit.chemistry.drivers.BosonicDriver.supports_molecule "qiskit.chemistry.drivers.BosonicDriver.supports_molecule") | True for derived classes that support Molecule. |
 
-
-
 `property basis`
 
 return basis
@@ -57,8 +51,6 @@ return basis
 **Return type**
 
 `str`
-
-
 
 `property hf_method`
 
@@ -68,8 +60,6 @@ return Hartree-Fock method
 
 `str`
 
-
-
 `property molecule`
 
 return molecule
@@ -77,8 +67,6 @@ return molecule
 **Return type**
 
 `Optional`\[`Molecule`]
-
-
 
 `abstract run()`
 
@@ -91,8 +79,6 @@ Runs driver to produce a WatsonHamiltonian output.
 **Returns**
 
 A WatsonHamiltonian comprising the bosonic data.
-
-
 
 `property supports_molecule`
 

@@ -1,7 +1,5 @@
 # qiskit.optimization.algorithms.CplexOptimizer
 
-
-
 `CplexOptimizer(disp=False)`
 
 The CPLEX optimizer wrapped as an Qiskit [`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm#qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.OptimizationAlgorithm").
@@ -28,8 +26,6 @@ Initializes the CplexOptimizer.
 **Raises**
 
 [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – CPLEX is not installed.
-
-
 
 `__init__(disp=False)`
 
@@ -59,8 +55,6 @@ Initializes the CplexOptimizer.
 | ------------------------------------------------------------------------------------------------------------------ | ---------------------------- |
 | [`disp`](#qiskit.optimization.algorithms.CplexOptimizer.disp "qiskit.optimization.algorithms.CplexOptimizer.disp") | Returns the display setting. |
 
-
-
 `property disp`
 
 Returns the display setting.
@@ -72,8 +66,6 @@ Returns the display setting.
 **Returns**
 
 Whether to print CPLEX information or not.
-
-
 
 `get_compatibility_msg(problem)`
 
@@ -93,8 +85,6 @@ Returns `''` since CPLEX accepts all problems that can be modeled using the `Qua
 
 An empty string.
 
-
-
 `is_compatible(problem)`
 
 Checks whether a given problem can be solved with the optimizer implementing this method.
@@ -111,13 +101,9 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 
 Returns True if the problem is compatible, False otherwise.
 
-
-
 `static is_cplex_installed()`
 
 Returns True if cplex is installed
-
-
 
 `solve(problem)`
 

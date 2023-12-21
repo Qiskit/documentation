@@ -1,7 +1,5 @@
 # qiskit.transpiler.PassManager
 
-
-
 `PassManager(passes=None, max_iteration=1000)`
 
 Manager for a set of Passes and their scheduling during transpilation.
@@ -12,8 +10,6 @@ Initialize an empty PassManager object (with no passes scheduled).
 
 *   **passes** (`Union`\[`BasePass`, `List`\[`BasePass`], `None`]) – A pass set (as defined in [`qiskit.transpiler.PassManager.append()`](#qiskit.transpiler.PassManager.append "qiskit.transpiler.PassManager.append")) to be added to the pass manager schedule.
 *   **max\_iteration** (`int`) – The maximum number of iterations the schedule will be looped if the condition is not met.
-
-
 
 `__init__(passes=None, max_iteration=1000)`
 
@@ -36,8 +32,6 @@ Initialize an empty PassManager object (with no passes scheduled).
 | [`replace`](#qiskit.transpiler.PassManager.replace "qiskit.transpiler.PassManager.replace")(index, passes\[, max\_iteration]) | Replace a particular pass in the scheduler.                        |
 | [`run`](#qiskit.transpiler.PassManager.run "qiskit.transpiler.PassManager.run")(circuits\[, output\_name, callback])          | Run all the passes on the specified `circuits`.                    |
 
-
-
 `append(passes, max_iteration=None, **flow_controller_conditions)`
 
 Append a Pass Set to the schedule of passes.
@@ -59,8 +53,6 @@ Append a Pass Set to the schedule of passes.
 **Return type**
 
 `None`
-
-
 
 `draw(filename=None, style=None, raw=False)`
 
@@ -86,8 +78,6 @@ Optional\[[PassManager](#qiskit.transpiler.PassManager "qiskit.transpiler.PassMa
 
 **ImportError** – when nxpd or pydot not installed.
 
-
-
 `passes()`
 
 Return a list structure of the appended passes and its options.
@@ -99,8 +89,6 @@ Return a list structure of the appended passes and its options.
 **Returns**
 
 A list of pass sets, as defined in `append()`.
-
-
 
 `remove(index)`
 
@@ -117,8 +105,6 @@ Removes a particular pass in the scheduler.
 **Return type**
 
 `None`
-
-
 
 `replace(index, passes, max_iteration=None, **flow_controller_conditions)`
 
@@ -142,8 +128,6 @@ Replace a particular pass in the scheduler.
 **Return type**
 
 `None`
-
-
 
 `run(circuits, output_name=None, callback=None)`
 

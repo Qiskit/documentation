@@ -1,12 +1,8 @@
 # qiskit.chemistry.results.EigenstateResult
 
-
-
 `EigenstateResult(a_dict=None)`
 
 The eigenstate result interface.
-
-
 
 `__init__(a_dict=None)`
 
@@ -41,8 +37,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`groundstate`](#qiskit.chemistry.results.EigenstateResult.groundstate "qiskit.chemistry.results.EigenstateResult.groundstate")                                        | returns ground state              |
 | [`raw_result`](#qiskit.chemistry.results.EigenstateResult.raw_result "qiskit.chemistry.results.EigenstateResult.raw_result")                                           | Returns the raw algorithm result. |
 
-
-
 `property aux_operator_eigenvalues`
 
 return aux operator eigen values
@@ -51,15 +45,11 @@ return aux operator eigen values
 
 `Optional`\[`List`\[`float`]]
 
-
-
 `clear()`
 
 **Return type**
 
 `None`
-
-
 
 `combine(result)`
 
@@ -73,8 +63,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-
-
 `property eigenenergies`
 
 returns eigen energies
@@ -82,8 +70,6 @@ returns eigen energies
 **Return type**
 
 `Optional`\[`ndarray`]
-
-
 
 `property eigenstates`
 
@@ -93,11 +79,7 @@ returns eigen states
 
 `Optional`\[`List`\[`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]]]
 
-
-
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
-
-
 
 `property groundenergy`
 
@@ -107,8 +89,6 @@ returns ground energy
 
 `Optional`\[`float`]
 
-
-
 `property groundstate`
 
 returns ground state
@@ -117,15 +97,9 @@ returns ground state
 
 `Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`, `None`]
 
-
-
 `items() → a set-like object providing a view on D’s items`
 
-
-
 `keys() → a set-like object providing a view on D’s keys`
-
-
 
 `pop(key, default=None)`
 
@@ -135,8 +109,6 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 
 `object`
 
-
-
 `popitem()`
 
 as a 2-tuple; but raise KeyError if D is empty.
@@ -144,8 +116,6 @@ as a 2-tuple; but raise KeyError if D is empty.
 **Return type**
 
 `Tuple`\[`object`, `object`]
-
-
 
 `property raw_result`
 
@@ -155,11 +125,7 @@ Returns the raw algorithm result.
 
 `Optional`\[`AlgorithmResult`]
 
-
-
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
-
-
 
 `update(*args, **kwargs)`
 
@@ -168,7 +134,5 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 **Return type**
 
 `None`
-
-
 
 `values() → an object providing a view on D’s values`

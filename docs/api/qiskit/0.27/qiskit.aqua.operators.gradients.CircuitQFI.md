@@ -1,7 +1,5 @@
 # qiskit.aqua.operators.gradients.CircuitQFI
 
-
-
 `CircuitQFI`
 
 Circuit to Quantum Fisher Information operator converter.
@@ -11,8 +9,6 @@ Converter for changing parameterized circuits into operators whose evaluation yi
 This is distinct from DerivativeBase converters which take gradients of composite operators and handle things like differentiating combo\_fn’s and enforcing product rules when operator coefficients are parameterized.
 
 CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase - uses classical techniques to differentiate opflow data structures
-
-
 
 `__init__()`
 
@@ -24,8 +20,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
 | [`__init__`](#qiskit.aqua.operators.gradients.CircuitQFI.__init__ "qiskit.aqua.operators.gradients.CircuitQFI.__init__")()                 | Initialize self.                |
 | [`convert`](#qiskit.aqua.operators.gradients.CircuitQFI.convert "qiskit.aqua.operators.gradients.CircuitQFI.convert")(operator\[, params]) | **type operator**`OperatorBase` |
-
-
 
 `abstract convert(operator, params=None)`
 

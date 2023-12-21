@@ -1,7 +1,5 @@
 # qiskit.pulse.builder.pad
 
-
-
 `pad(*chs)`
 
 Pad all available timeslots with delays upon exiting context.

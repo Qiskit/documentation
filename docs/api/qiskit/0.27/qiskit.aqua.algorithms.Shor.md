@@ -1,7 +1,5 @@
 # qiskit.aqua.algorithms.Shor
 
-
-
 `Shor(N=15, a=2, quantum_instance=None)`
 
 Shor’s factoring algorithm.
@@ -27,8 +25,6 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
     **Raises:**
 
     ValueError: Invalid input
-
-
 
 `__init__(N=15, a=2, quantum_instance=None)`
 
@@ -64,8 +60,6 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 | [`quantum_instance`](#qiskit.aqua.algorithms.Shor.quantum_instance "qiskit.aqua.algorithms.Shor.quantum_instance") | Returns quantum instance. |
 | [`random`](#qiskit.aqua.algorithms.Shor.random "qiskit.aqua.algorithms.Shor.random")                               | Return a numpy random.    |
 
-
-
 `property backend`
 
 Returns backend.
@@ -73,8 +67,6 @@ Returns backend.
 **Return type**
 
 `Union`\[`Backend`, `BaseBackend`]
-
-
 
 `construct_circuit(measurement=False)`
 
@@ -92,8 +84,6 @@ Construct circuit.
 
 Quantum circuit.
 
-
-
 `static modinv(a, m)`
 
 Returns the modular multiplicative inverse of a with respect to the modulus m.
@@ -101,8 +91,6 @@ Returns the modular multiplicative inverse of a with respect to the modulus m.
 **Return type**
 
 `int`
-
-
 
 `property quantum_instance`
 
@@ -112,13 +100,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 `property random`
 
 Return a numpy random.
-
-
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -140,8 +124,6 @@ dict
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
-
-
 
 `set_backend(backend, **kwargs)`
 

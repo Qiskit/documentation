@@ -1,7 +1,5 @@
 # qiskit.providers.aer.noise.device.gate\_length\_values
 
-
-
 `gate_length_values(properties)`
 
 Return gate length values from a devices BackendProperties.

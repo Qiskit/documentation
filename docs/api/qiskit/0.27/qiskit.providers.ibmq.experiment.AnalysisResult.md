@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.experiment.AnalysisResult
 
-
-
 `AnalysisResult(experiment_uuid, device_components, result_type, fit=None, chisq=None, quality=<ResultQuality.UNKNOWN: 'No Information'>, tags=None, result_uuid=None, backend_name=None, verified=False)`
 
 Class representing an analysis result for an experiment.
@@ -24,8 +22,6 @@ AnalysisResult constructor.
 **Raises**
 
 **IBMQInputValueError** – If an input argument is invalid.
-
-
 
 `__init__(experiment_uuid, device_components, result_type, fit=None, chisq=None, quality=<ResultQuality.UNKNOWN: 'No Information'>, tags=None, result_uuid=None, backend_name=None, verified=False)`
 
@@ -65,8 +61,6 @@ AnalysisResult constructor.
 | [`updated_datetime`](#qiskit.providers.ibmq.experiment.AnalysisResult.updated_datetime "qiskit.providers.ibmq.experiment.AnalysisResult.updated_datetime")    | Return the timestamp when the experiment was last updated. |
 | [`uuid`](#qiskit.providers.ibmq.experiment.AnalysisResult.uuid "qiskit.providers.ibmq.experiment.AnalysisResult.uuid")                                        | Return UUID of this analysis result.                       |
 
-
-
 `property creation_datetime`
 
 Return the timestamp when the experiment was created.
@@ -74,8 +68,6 @@ Return the timestamp when the experiment was created.
 **Return type**
 
 `datetime`
-
-
 
 `classmethod from_remote_data(remote_data)`
 
@@ -93,8 +85,6 @@ Create an instance of this class from remote data.
 
 An instance of this class.
 
-
-
 `property quality`
 
 Return the analysis result quality.
@@ -102,8 +92,6 @@ Return the analysis result quality.
 **Return type**
 
 `ResultQuality`
-
-
 
 `update_from_remote_data(remote_data)`
 
@@ -117,8 +105,6 @@ Update the attributes of this instance using remote data.
 
 `None`
 
-
-
 `property updated_datetime`
 
 Return the timestamp when the experiment was last updated.
@@ -126,8 +112,6 @@ Return the timestamp when the experiment was last updated.
 **Return type**
 
 `datetime`
-
-
 
 `property uuid`
 

@@ -1,7 +1,5 @@
 # qiskit.chemistry.components.initial\_states.VSCF
 
-
-
 `VSCF(basis)`
 
 Initial state for vibrational modes.
@@ -11,8 +9,6 @@ Creates an occupation number vector as defined in Ollitrault Pauline J., Chemica
 **Parameters**
 
 **basis** (`List`\[`int`]) – Is a list defining the number of modals per mode. E.g. for a 3 modes system with 4 modals per mode basis = \[4,4,4]
-
-
 
 `__init__(basis)`
 
@@ -33,13 +29,9 @@ Creates an occupation number vector as defined in Ollitrault Pauline J., Chemica
 | ---------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
 | [`bitstr`](#qiskit.chemistry.components.initial_states.VSCF.bitstr "qiskit.chemistry.components.initial_states.VSCF.bitstr") | Getter of the bit string represented the statevector. |
 
-
-
 `property bitstr`
 
 Getter of the bit string represented the statevector.
-
-
 
 `construct_circuit(mode='circuit', register=None)`
 

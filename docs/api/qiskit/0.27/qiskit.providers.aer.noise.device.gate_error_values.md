@@ -1,7 +1,5 @@
 # qiskit.providers.aer.noise.device.gate\_error\_values
 
-
-
 `gate_error_values(properties)`
 
 Return gate error values from a devices BackendProperties.

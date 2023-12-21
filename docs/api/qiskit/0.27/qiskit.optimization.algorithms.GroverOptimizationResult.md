@@ -1,7 +1,5 @@
 # qiskit.optimization.algorithms.GroverOptimizationResult
 
-
-
 `GroverOptimizationResult(x, fval, variables, operation_counts, n_input_qubits, n_output_qubits, intermediate_fval, threshold, status)`
 
 A result object for Grover Optimization methods.
@@ -19,8 +17,6 @@ Constructs a result object with the specific Grover properties.
 *   **intermediate\_fval** (`float`) – The intermediate value of the objective function of the solution, that is expected to be identical with `fval`.
 *   **threshold** (`float`) – The threshold of Grover algorithm.
 *   **status** (`OptimizationResultStatus`) – the termination status of the optimization algorithm.
-
-
 
 `__init__(x, fval, variables, operation_counts, n_input_qubits, n_output_qubits, intermediate_fval, threshold, status)`
 
@@ -62,8 +58,6 @@ Constructs a result object with the specific Grover properties.
 | [`variables_dict`](#qiskit.optimization.algorithms.GroverOptimizationResult.variables_dict "qiskit.optimization.algorithms.GroverOptimizationResult.variables_dict")          | Returns the optimal value as a dictionary of the variable name and corresponding value. |
 | [`x`](#qiskit.optimization.algorithms.GroverOptimizationResult.x "qiskit.optimization.algorithms.GroverOptimizationResult.x")                                                 | Returns the optimal value found in the optimization or None in case of FAILURE.         |
 
-
-
 `property fval`
 
 Returns the optimal function value.
@@ -75,8 +69,6 @@ Returns the optimal function value.
 **Returns**
 
 The function value corresponding to the optimal value found in the optimization.
-
-
 
 `property intermediate_fval`
 
@@ -90,8 +82,6 @@ Getter of the intermediate fval
 
 The intermediate value of fval before interpret.
 
-
-
 `property n_input_qubits`
 
 Getter of n\_input\_qubits
@@ -103,8 +93,6 @@ Getter of n\_input\_qubits
 **Returns**
 
 The number of qubits used to represent the input.
-
-
 
 `property n_output_qubits`
 
@@ -118,8 +106,6 @@ Getter of n\_output\_qubits
 
 The number of qubits used to represent the output.
 
-
-
 `property operation_counts`
 
 Get the operation counts.
@@ -131,8 +117,6 @@ Get the operation counts.
 **Returns**
 
 The counts of each operation performed per iteration.
-
-
 
 `property raw_results`
 
@@ -148,8 +132,6 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
-
-
 `property samples`
 
 Returns the list of solution samples
@@ -161,8 +143,6 @@ Returns the list of solution samples
 **Returns**
 
 The list of solution samples.
-
-
 
 `property status`
 
@@ -176,8 +156,6 @@ Returns the termination status of the optimization algorithm.
 
 The termination status of the algorithm.
 
-
-
 `property threshold`
 
 Getter of the threshold of Grover algorithm.
@@ -189,8 +167,6 @@ Getter of the threshold of Grover algorithm.
 **Returns**
 
 The threshold of Grover algorithm.
-
-
 
 `property variable_names`
 
@@ -204,8 +180,6 @@ Returns the list of variable names of the optimization problem.
 
 The list of variable names of the optimization problem.
 
-
-
 `property variables`
 
 Returns the list of variables of the optimization problem.
@@ -218,8 +192,6 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
-
-
 `property variables_dict`
 
 Returns the optimal value as a dictionary of the variable name and corresponding value.
@@ -231,8 +203,6 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 **Returns**
 
 The optimal value as a dictionary of the variable name and corresponding value.
-
-
 
 `property x`
 

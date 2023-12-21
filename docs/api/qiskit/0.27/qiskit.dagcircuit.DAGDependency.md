@@ -1,7 +1,5 @@
 # qiskit.dagcircuit.DAGDependency
 
-
-
 `DAGDependency`
 
 Object to represent a quantum circuit as a directed acyclic graph via operation dependencies (i.e. lack of commutation).
@@ -29,8 +27,6 @@ The dependency DAG for the above circuit is represented by two nodes. The first 
 \[1] Iten, R., Moyard, R., Metger, T., Sutter, D. and Woerner, S., 2020. Exact and practical pattern matching for quantum circuit optimization. [arXiv:1909.05270](https://arxiv.org/abs/1909.05270)
 
 Create an empty DAGDependency.
-
-
 
 `__init__()`
 
@@ -71,19 +67,13 @@ Create an empty DAGDependency.
 | [`calibrations`](#qiskit.dagcircuit.DAGDependency.calibrations "qiskit.dagcircuit.DAGDependency.calibrations") | Return calibration dictionary.          |
 | [`global_phase`](#qiskit.dagcircuit.DAGDependency.global_phase "qiskit.dagcircuit.DAGDependency.global_phase") | Return the global phase of the circuit. |
 
-
-
 `add_clbits(clbits)`
 
 Add individual clbit wires.
 
-
-
 `add_creg(creg)`
 
 Add clbits in a classical register.
-
-
 
 `add_op_node(operation, qargs, cargs)`
 
@@ -95,19 +85,13 @@ Add a DAGDepNode to the graph and update the edges.
 *   **qargs** (*list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of qubits on which the operation acts
 *   **cargs** (*list\[*[*Clbit*](qiskit.circuit.Clbit#qiskit.circuit.Clbit "qiskit.circuit.Clbit")*]*) – list of classical wires to attach to.
 
-
-
 `add_qreg(qreg)`
 
 Add qubits in a quantum register.
 
-
-
 `add_qubits(qubits)`
 
 Add individual qubit wires.
-
-
 
 `property calibrations`
 
@@ -117,19 +101,13 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-
-
 `copy()`
 
 Function to copy a DAGDependency object. :returns: a copy of a DAGDependency object. :rtype: DAGDependency
 
-
-
 `depth()`
 
 Return the circuit depth. :returns: the circuit depth :rtype: int
-
-
 
 `direct_predecessors(node_id)`
 
@@ -147,8 +125,6 @@ direct predecessors id as a sorted list
 
 List
 
-
-
 `direct_successors(node_id)`
 
 Direct successors id of a given node as sorted list.
@@ -164,8 +140,6 @@ direct successors id as a sorted list
 **Return type**
 
 List
-
-
 
 `draw(scale=0.7, filename=None, style='color')`
 
@@ -189,8 +163,6 @@ otherwise None.
 
 Ipython.display.Image
 
-
-
 `get_all_edges()`
 
 Enumeration of all edges.
@@ -202,8 +174,6 @@ corresponding to the label.
 **Return type**
 
 List
-
-
 
 `get_edges(src_id, dest_id)`
 
@@ -222,8 +192,6 @@ corresponding to all edges between the two nodes.
 
 List
 
-
-
 `get_in_edges(node_id)`
 
 Enumeration of all incoming edges for a given node.
@@ -240,8 +208,6 @@ corresponding incoming edges data.
 
 List
 
-
-
 `get_node(node_id)`
 
 **Parameters**
@@ -256,8 +222,6 @@ corresponding to the label.
 
 node
 
-
-
 `get_nodes()`
 
 **Returns**
@@ -267,8 +231,6 @@ iterator over all the nodes.
 **Return type**
 
 generator(dict)
-
-
 
 `get_out_edges(node_id)`
 
@@ -286,13 +248,9 @@ corresponding outgoing edges data.
 
 List
 
-
-
 `property global_phase`
 
 Return the global phase of the circuit.
-
-
 
 `predecessors(node_id)`
 
@@ -310,13 +268,9 @@ all predecessors id as a sorted list
 
 List
 
-
-
 `size()`
 
 Returns the number of gates in the circuit
-
-
 
 `successors(node_id)`
 
@@ -334,19 +288,13 @@ all successors id as a sorted list
 
 List
 
-
-
 `to_networkx()`
 
 Returns a copy of the DAGDependency in networkx format.
 
-
-
 `to_retworkx()`
 
 Returns the DAGDependency in retworkx format.
-
-
 
 `topological_nodes()`
 

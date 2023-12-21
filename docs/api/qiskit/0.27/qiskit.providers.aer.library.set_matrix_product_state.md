@@ -1,7 +1,5 @@
 # qiskit.providers.aer.library.set\_matrix\_product\_state
 
-
-
 `set_matrix_product_state(self, state)`
 
 Set the matrix product state of the simulator.

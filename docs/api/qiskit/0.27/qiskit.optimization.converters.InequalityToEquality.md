@@ -1,7 +1,5 @@
 # qiskit.optimization.converters.InequalityToEquality
 
-
-
 `InequalityToEquality(mode='auto')`
 
 Convert inequality constraints into equality constraints by introducing slack variables.
@@ -30,8 +28,6 @@ To chose the type of slack variables. There are 3 options for mode.
 *   **’auto’: Try to use integer variables but if it’s not possible,**
 
     use continuous variables
-
-
 
 `__init__(mode='auto')`
 
@@ -63,8 +59,6 @@ To chose the type of slack variables. There are 3 options for mode.
 | ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------- |
 | [`mode`](#qiskit.optimization.converters.InequalityToEquality.mode "qiskit.optimization.converters.InequalityToEquality.mode") | Returns the mode of the converter |
 
-
-
 `convert(problem)`
 
 Convert a problem with inequality constraints into one with only equality constraints.
@@ -87,8 +81,6 @@ The converted problem, that contain only equality constraints.
 *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an unsupported mode is selected.
 *   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If an unsupported sense is specified.
 
-
-
 `interpret(x)`
 
 Convert a result of a converted problem into that of the original problem.
@@ -104,8 +96,6 @@ Convert a result of a converted problem into that of the original problem.
 **Returns**
 
 The result of the original problem.
-
-
 
 `property mode`
 

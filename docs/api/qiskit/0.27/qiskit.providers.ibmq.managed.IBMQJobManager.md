@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.managed.IBMQJobManager
 
-
-
 `IBMQJobManager`
 
 Job Manager for IBM Quantum Experience.
@@ -47,8 +45,6 @@ retrieved_foo = job_manager.retrieve_job_set(job_set_id=job_set_id, provider=pro
 
 IBMQJobManager constructor.
 
-
-
 `__init__()`
 
 IBMQJobManager constructor.
@@ -62,8 +58,6 @@ IBMQJobManager constructor.
 | [`report`](#qiskit.providers.ibmq.managed.IBMQJobManager.report "qiskit.providers.ibmq.managed.IBMQJobManager.report")(\[detailed])                                                      | Return a report on the statuses of all jobs managed by this Job Manager.      |
 | [`retrieve_job_set`](#qiskit.providers.ibmq.managed.IBMQJobManager.retrieve_job_set "qiskit.providers.ibmq.managed.IBMQJobManager.retrieve_job_set")(job\_set\_id, provider\[, refresh]) | Retrieve a previously submitted job set.                                      |
 | [`run`](#qiskit.providers.ibmq.managed.IBMQJobManager.run "qiskit.providers.ibmq.managed.IBMQJobManager.run")(experiments, backend\[, name, …])                                          | Execute a set of circuits or pulse schedules on a backend.                    |
-
-
 
 `job_sets(name=None)`
 
@@ -81,8 +75,6 @@ Return job sets being managed in this session, subject to optional filtering.
 
 A list of managed job sets that match the filter.
 
-
-
 `report(detailed=True)`
 
 Return a report on the statuses of all jobs managed by this Job Manager.
@@ -98,8 +90,6 @@ Return a report on the statuses of all jobs managed by this Job Manager.
 **Returns**
 
 A report on job statuses.
-
-
 
 `retrieve_job_set(job_set_id, provider, refresh=False)`
 
@@ -123,8 +113,6 @@ Retrieved job set.
 
 *   [**IBMQJobManagerUnknownJobSet**](qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet#qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet "qiskit.providers.ibmq.managed.IBMQJobManagerUnknownJobSet") – If the job set cannot be found.
 *   [**IBMQJobManagerInvalidStateError**](qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError#qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError "qiskit.providers.ibmq.managed.IBMQJobManagerInvalidStateError") – If jobs for this job set are found but have unexpected attributes.
-
-
 
 `run(experiments, backend, name=None, max_experiments_per_job=None, job_share_level=None, job_tags=None, **run_config)`
 

@@ -1,14 +1,10 @@
 # qiskit.dagcircuit.DAGDepNode
 
-
-
 `DAGDepNode(type=None, op=None, name=None, qargs=None, cargs=None, condition=None, successors=None, predecessors=None, reachable=None, matchedwith=None, successorstovisit=None, isblocked=None, qindices=None, cindices=None, nid=- 1)`
 
 Object to represent the information at a node in the DAGDependency().
 
 It is used as the return value from \*\_nodes() functions and can be supplied to functions that take a node.
-
-
 
 `__init__(type=None, op=None, name=None, qargs=None, cargs=None, condition=None, successors=None, predecessors=None, reachable=None, matchedwith=None, successorstovisit=None, isblocked=None, qindices=None, cindices=None, nid=- 1)`
 
@@ -43,25 +39,17 @@ Initialize self. See help(type(self)) for accurate signature.
 | `successorstovisit`                                                                 |                                                                                |
 | `type`                                                                              |                                                                                |
 
-
-
 `copy()`
 
 Function to copy a DAGDepNode object. :returns: a copy of a DAGDepNode object. :rtype: DAGDepNode
-
-
 
 `property op`
 
 Returns the Instruction object corresponding to the op for the node, else None
 
-
-
 `property qargs`
 
 Returns list of Qubit, else an empty list.
-
-
 
 `static semantic_eq(node1, node2)`
 

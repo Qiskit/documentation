@@ -1,7 +1,5 @@
 # qiskit.optimization.algorithms.GroverOptimizer
 
-
-
 `GroverOptimizer(num_value_qubits, num_iterations=3, quantum_instance=None, converters=None, penalty=None)`
 
 Uses Grover Adaptive Search (GAS) to find the minimum of a QUBO function.
@@ -17,8 +15,6 @@ Uses Grover Adaptive Search (GAS) to find the minimum of a QUBO function.
 **Raises**
 
 **TypeError** – When there one of converters is an invalid type.
-
-
 
 `__init__(num_value_qubits, num_iterations=3, quantum_instance=None, converters=None, penalty=None)`
 
@@ -49,8 +45,6 @@ Uses Grover Adaptive Search (GAS) to find the minimum of a QUBO function.
 | -------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
 | [`quantum_instance`](#qiskit.optimization.algorithms.GroverOptimizer.quantum_instance "qiskit.optimization.algorithms.GroverOptimizer.quantum_instance") | The quantum instance to run the circuits. |
 
-
-
 `get_compatibility_msg(problem)`
 
 Checks whether a given problem can be solved with this optimizer.
@@ -69,8 +63,6 @@ Checks whether the given problem is compatible, i.e., whether the problem can be
 
 A message describing the incompatibility.
 
-
-
 `is_compatible(problem)`
 
 Checks whether a given problem can be solved with the optimizer implementing this method.
@@ -87,8 +79,6 @@ Checks whether a given problem can be solved with the optimizer implementing thi
 
 Returns True if the problem is compatible, False otherwise.
 
-
-
 `property quantum_instance`
 
 The quantum instance to run the circuits.
@@ -100,8 +90,6 @@ The quantum instance to run the circuits.
 **Returns**
 
 The quantum instance used in the algorithm.
-
-
 
 `solve(problem)`
 

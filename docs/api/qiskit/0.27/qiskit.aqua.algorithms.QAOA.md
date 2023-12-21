@@ -1,7 +1,5 @@
 # qiskit.aqua.algorithms.QAOA
 
-
-
 `QAOA(operator=None, optimizer=None, p=1, initial_state=None, mixer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, aux_operators=None, callback=None, quantum_instance=None)`
 
 The Quantum Approximate Optimization Algorithm.
@@ -29,8 +27,6 @@ An initial state from Aqua’s [`initial_states`](qiskit.aqua.components.initial
 *   **aux\_operators** (`Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]]]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
 *   **callback** (`Optional`\[`Callable`\[\[`int`, `ndarray`, `float`, `float`], `None`]]) – a callback that can access the intermediate data during the optimization. Four parameter values are passed to the callback as follows during each evaluation by the optimizer for its current set of parameters as it works towards the minimum. These are: the evaluation count, the optimizer parameters for the variational form, the evaluated mean and the evaluated standard deviation.
 *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
-
-
 
 `__init__(operator=None, optimizer=None, p=1, initial_state=None, mixer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, aux_operators=None, callback=None, quantum_instance=None)`
 
@@ -88,8 +84,6 @@ An initial state from Aqua’s [`initial_states`](qiskit.aqua.components.initial
 | [`setting`](#qiskit.aqua.algorithms.QAOA.setting "qiskit.aqua.algorithms.QAOA.setting")                            | Prepare the setting of VQE as a string.                                                            |
 | [`var_form`](#qiskit.aqua.algorithms.QAOA.var_form "qiskit.aqua.algorithms.QAOA.var_form")                         | Returns variational form                                                                           |
 
-
-
 `property aux_operators`
 
 Returns aux operators
@@ -97,8 +91,6 @@ Returns aux operators
 **Return type**
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
-
-
 
 `property backend`
 
@@ -108,13 +100,9 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-
-
 `cleanup_parameterized_circuits()`
 
 set parameterized circuits to None
-
-
 
 `compute_minimum_eigenvalue(operator=None, aux_operators=None)`
 
@@ -133,8 +121,6 @@ Computes minimum eigenvalue. Operator and aux\_operators can be supplied here an
 
 MinimumEigensolverResult
 
-
-
 `construct_circuit(parameter)`
 
 Return the circuits used to compute the expectation value.
@@ -150,8 +136,6 @@ Return the circuits used to compute the expectation value.
 **Returns**
 
 A list of the circuits used to compute the expectation value.
-
-
 
 `construct_expectation(parameter)`
 
@@ -173,8 +157,6 @@ The Operator equalling the measurement of the ansatz `StateFn` by the Observable
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If no operator has been provided.
 
-
-
 `property expectation`
 
 The expectation value algorithm used to construct the expectation measurement from the observable.
@@ -182,8 +164,6 @@ The expectation value algorithm used to construct the expectation measurement fr
 **Return type**
 
 `ExpectationBase`
-
-
 
 `find_minimum(initial_point=None, var_form=None, cost_fn=None, optimizer=None, gradient_fn=None)`
 
@@ -209,8 +189,6 @@ dict
 
 **ValueError** – invalid input
 
-
-
 `get_optimal_circuit()`
 
 Get the circuit with the optimal parameters.
@@ -218,8 +196,6 @@ Get the circuit with the optimal parameters.
 **Return type**
 
 `QuantumCircuit`
-
-
 
 `get_optimal_cost()`
 
@@ -229,8 +205,6 @@ Get the minimal cost or energy found by the VQE.
 
 `float`
 
-
-
 `get_optimal_vector()`
 
 Get the simulation outcome of the optimal circuit.
@@ -239,19 +213,13 @@ Get the simulation outcome of the optimal circuit.
 
 `Union`\[`List`\[`float`], `Dict`\[`str`, `int`]]
 
-
-
 `get_prob_vector_for_params(construct_circuit_fn, params_s, quantum_instance, construct_circuit_args=None)`
 
 Helper function to get probability vectors for a set of params
 
-
-
 `get_probabilities_for_counts(counts)`
 
 get probabilities for counts
-
-
 
 `property initial_point`
 
@@ -261,8 +229,6 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
-
-
 `property initial_state`
 
 Returns: Returns the initial state.
@@ -270,8 +236,6 @@ Returns: Returns the initial state.
 **Return type**
 
 `Union`\[`QuantumCircuit`, `InitialState`, `None`]
-
-
 
 `property mixer`
 
@@ -281,8 +245,6 @@ Returns: Returns the mixer.
 
 `Union`\[`QuantumCircuit`, `OperatorBase`, `LegacyBaseOperator`]
 
-
-
 `property operator`
 
 Returns operator
@@ -290,8 +252,6 @@ Returns operator
 **Return type**
 
 `Optional`\[`OperatorBase`]
-
-
 
 `property optimal_params`
 
@@ -301,8 +261,6 @@ The optimal parameters for the variational form.
 
 `List`\[`float`]
 
-
-
 `property optimizer`
 
 Returns optimizer
@@ -310,8 +268,6 @@ Returns optimizer
 **Return type**
 
 `Optional`\[`Optimizer`]
-
-
 
 `print_settings()`
 
@@ -325,8 +281,6 @@ the formatted setting of VQE
 
 str
 
-
-
 `property quantum_instance`
 
 Returns quantum instance.
@@ -335,13 +289,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
-
 `property random`
 
 Return a numpy random.
-
-
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -364,8 +314,6 @@ dict
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
-
-
 `set_backend(backend, **kwargs)`
 
 Sets backend with configuration.
@@ -374,13 +322,9 @@ Sets backend with configuration.
 
 `None`
 
-
-
 `property setting`
 
 Prepare the setting of VQE as a string.
-
-
 
 `classmethod supports_aux_operators()`
 
@@ -395,8 +339,6 @@ If the minimum eigensolver computes an eigenstate of the main operator then it c
 **Returns**
 
 True if aux\_operator expectations can be evaluated, False otherwise
-
-
 
 `property var_form`
 

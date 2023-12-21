@@ -22,31 +22,21 @@ Convert symmetric TSP instances into Pauli list Deal with TSPLIB format. It supp
 | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
 | [`TspData`](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")(name, dim, coord, w) | Create new instance of TspData(name, dim, coord, w) |
 
-
-
 `TspData(name, dim, coord, w)`
 
 Create new instance of TspData(name, dim, coord, w)
-
-
 
 `property coord`
 
 Alias for field number 2
 
-
-
 `count(value, /)`
 
 Return number of occurrences of value.
 
-
-
 `property dim`
 
 Alias for field number 1
-
-
 
 `index(value, start=0, stop=9223372036854775807, /)`
 
@@ -54,25 +44,17 @@ Return first index of value.
 
 Raises ValueError if the value is not present.
 
-
-
 `property name`
 
 Alias for field number 0
-
-
 
 `property w`
 
 Alias for field number 3
 
-
-
 `calc_distance(coord, name='tmp')`
 
 calculate distance
-
-
 
 `get_operator(ins, penalty=100000.0)`
 
@@ -90,8 +72,6 @@ operator for the Hamiltonian and a constant shift for the obj function.
 **Return type**
 
 tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
-
-
 
 `get_tsp_solution(x)`
 
@@ -115,8 +95,6 @@ list\[int]
 
 Instance data of TSP
 
-
-
 `parse_tsplib_format(filename)`
 
 Read graph in TSPLIB format from file.
@@ -132,8 +110,6 @@ instance data.
 **Return type**
 
 [TspData](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")
-
-
 
 `random_tsp(n, low=0, high=100, savefile=None, seed=None, name='tmp')`
 
@@ -156,8 +132,6 @@ instance data.
 
 [TspData](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")
 
-
-
 `tsp_feasible(x)`
 
 Check whether a solution is feasible or not.
@@ -173,8 +147,6 @@ feasible or not.
 **Return type**
 
 bool
-
-
 
 `tsp_value(z, w)`
 

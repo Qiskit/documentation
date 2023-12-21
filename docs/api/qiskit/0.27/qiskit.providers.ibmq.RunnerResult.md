@@ -1,12 +1,8 @@
 # qiskit.providers.ibmq.RunnerResult
 
-
-
 `RunnerResult(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)`
 
 Result class for Qiskit Runtime program circuit-runner.
-
-
 
 `__init__(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)`
 
@@ -26,8 +22,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`get_statevector`](#qiskit.providers.ibmq.RunnerResult.get_statevector "qiskit.providers.ibmq.RunnerResult.get_statevector")(\[experiment, decimals])            | Get the final statevector of an experiment.                                                                                                                                              |
 | [`get_unitary`](#qiskit.providers.ibmq.RunnerResult.get_unitary "qiskit.providers.ibmq.RunnerResult.get_unitary")(\[experiment, decimals])                        | Get the final unitary of an experiment.                                                                                                                                                  |
 | [`to_dict`](#qiskit.providers.ibmq.RunnerResult.to_dict "qiskit.providers.ibmq.RunnerResult.to_dict")()                                                           | Return a dictionary format representation of the Result                                                                                                                                  |
-
-
 
 `data(experiment=None)`
 
@@ -59,8 +53,6 @@ dict
 
 **QiskitError** – if data for the experiment could not be retrieved.
 
-
-
 `classmethod decode(data)`
 
 Decoding for results from Qiskit runtime jobs.
@@ -68,8 +60,6 @@ Decoding for results from Qiskit runtime jobs.
 **Return type**
 
 `RunnerResult`
-
-
 
 `classmethod from_dict(data)`
 
@@ -86,8 +76,6 @@ The `Result` object from the input dictionary.
 **Return type**
 
 [Result](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result")
-
-
 
 `get_counts(experiment=None)`
 
@@ -110,8 +98,6 @@ dict\[str
 **Raises**
 
 **QiskitError** – if there are no counts for the experiment.
-
-
 
 `get_memory(experiment=None)`
 
@@ -143,8 +129,6 @@ List\[str] or np.ndarray
 
 **QiskitError** – if there is no memory data for the circuit.
 
-
-
 `get_quasiprobabilities(experiment=None)`
 
 Get quasiprobabilites associated with one or more experiments.
@@ -164,8 +148,6 @@ A single distribution or a list of distributions.
 **Raises**
 
 **QiskitError** – If experiment result doesn’t contain quasiprobabilities.
-
-
 
 `get_statevector(experiment=None, decimals=None)`
 
@@ -187,8 +169,6 @@ list\[complex]
 **Raises**
 
 **QiskitError** – if there is no statevector for the experiment.
-
-
 
 `get_unitary(experiment=None, decimals=None)`
 
@@ -212,8 +192,6 @@ list\[list\[complex]]
 **Raises**
 
 **QiskitError** – if there is no unitary for the experiment.
-
-
 
 `to_dict()`
 

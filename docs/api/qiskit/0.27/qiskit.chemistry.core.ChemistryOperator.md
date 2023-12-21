@@ -1,12 +1,8 @@
 # qiskit.chemistry.core.ChemistryOperator
 
-
-
 `ChemistryOperator`
 
 Base class for ChemistryOperator.
-
-
 
 `abstract __init__()`
 
@@ -30,13 +26,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | `INFO_Z2SYMMETRIES`                                                                                                               |                       |
 | [`molecule_info`](#qiskit.chemistry.core.ChemistryOperator.molecule_info "qiskit.chemistry.core.ChemistryOperator.molecule_info") | returns molecule info |
 
-
-
 `property molecule_info`
 
 returns molecule info
-
-
 
 `process_algorithm_result(algo_result)`
 
@@ -53,8 +45,6 @@ Takes the algorithm result and processes it as required, e.g. by combination of 
 **Returns**
 
 Final chemistry result computed from the algorithm result
-
-
 
 `abstract run(qmolecule)`
 

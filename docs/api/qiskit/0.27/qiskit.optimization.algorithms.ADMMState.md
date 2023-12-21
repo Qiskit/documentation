@@ -1,7 +1,5 @@
 # qiskit.optimization.algorithms.ADMMState
 
-
-
 `ADMMState(op, rho_initial)`
 
 Internal computation state of the ADMM implementation.
@@ -12,8 +10,6 @@ The state keeps track of various variables are stored that are being updated dur
 
 *   **op** (`QuadraticProgram`) – The optimization problem being solved.
 *   **rho\_initial** (`float`) – Initial value of the rho parameter.
-
-
 
 `__init__(op, rho_initial)`
 

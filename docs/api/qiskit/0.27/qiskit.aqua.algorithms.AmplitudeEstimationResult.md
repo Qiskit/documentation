@@ -1,12 +1,8 @@
 # qiskit.aqua.algorithms.AmplitudeEstimationResult
 
-
-
 `AmplitudeEstimationResult(a_dict=None)`
 
 AmplitudeEstimation Result.
-
-
 
 `__init__(a_dict=None)`
 
@@ -50,8 +46,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`shots`](#qiskit.aqua.algorithms.AmplitudeEstimationResult.shots "qiskit.aqua.algorithms.AmplitudeEstimationResult.shots")                                           | return shots                |
 | [`y_measurements`](#qiskit.aqua.algorithms.AmplitudeEstimationResult.y_measurements "qiskit.aqua.algorithms.AmplitudeEstimationResult.y_measurements")                | return y\_measurements      |
 
-
-
 `property a_estimation`
 
 return a\_estimation
@@ -59,8 +53,6 @@ return a\_estimation
 **Return type**
 
 `float`
-
-
 
 `property a_samples`
 
@@ -70,8 +62,6 @@ return a\_samples
 
 `List`\[`Tuple`\[`float`, `float`]]
 
-
-
 `property circuit_result`
 
 return circuit result
@@ -80,15 +70,11 @@ return circuit result
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
 
-
-
 `clear()`
 
 **Return type**
 
 `None`
-
-
 
 `combine(result)`
 
@@ -102,8 +88,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-
-
 `property confidence_interval`
 
 return confidence\_interval
@@ -111,8 +95,6 @@ return confidence\_interval
 **Return type**
 
 `List`\[`float`]
-
-
 
 `property estimation`
 
@@ -122,8 +104,6 @@ return estimation
 
 `float`
 
-
-
 `static from_dict(a_dict)`
 
 create new object from a dictionary
@@ -132,19 +112,11 @@ create new object from a dictionary
 
 `AmplitudeEstimationResult`
 
-
-
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
-
-
 
 `items() → a set-like object providing a view on D’s items`
 
-
-
 `keys() → a set-like object providing a view on D’s keys`
-
-
 
 `property mapped_a_samples`
 
@@ -154,8 +126,6 @@ return mapped\_a\_samples
 
 `List`\[`float`]
 
-
-
 `property mapped_values`
 
 return mapped\_values
@@ -163,8 +133,6 @@ return mapped\_values
 **Return type**
 
 `List`\[`float`]
-
-
 
 `property max_probability`
 
@@ -174,8 +142,6 @@ return max\_probability
 
 `float`
 
-
-
 `property ml_value`
 
 returns ml\_value
@@ -183,8 +149,6 @@ returns ml\_value
 **Return type**
 
 `float`
-
-
 
 `property mle`
 
@@ -194,8 +158,6 @@ return mle
 
 `float`
 
-
-
 `property num_oracle_queries`
 
 return num\_oracle\_queries
@@ -203,8 +165,6 @@ return num\_oracle\_queries
 **Return type**
 
 `int`
-
-
 
 `pop(key, default=None)`
 
@@ -214,8 +174,6 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 
 `object`
 
-
-
 `popitem()`
 
 as a 2-tuple; but raise KeyError if D is empty.
@@ -223,8 +181,6 @@ as a 2-tuple; but raise KeyError if D is empty.
 **Return type**
 
 `Tuple`\[`object`, `object`]
-
-
 
 `property probabilities`
 
@@ -234,11 +190,7 @@ return probabilities
 
 `List`\[`float`]
 
-
-
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
-
-
 
 `property shots`
 
@@ -248,8 +200,6 @@ return shots
 
 `int`
 
-
-
 `update(*args, **kwargs)`
 
 If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v
@@ -258,11 +208,7 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 
 `None`
 
-
-
 `values() → an object providing a view on D’s values`
-
-
 
 `property y_measurements`
 

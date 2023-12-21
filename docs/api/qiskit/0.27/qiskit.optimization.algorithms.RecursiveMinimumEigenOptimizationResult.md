@@ -1,7 +1,5 @@
 # qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult
 
-
-
 `RecursiveMinimumEigenOptimizationResult(x, fval, variables, status, replacements, history)`
 
 Recursive Eigen Optimizer Result.
@@ -16,8 +14,6 @@ Constructs an instance of the result class.
 *   **status** (`OptimizationResultStatus`) – the termination status of the optimization algorithm.
 *   **replacements** (`Dict`\[`str`, `Tuple`\[`str`, `int`]]) – a dictionary of substituted variables. Key is a variable being substituted, value is a tuple of substituting variable and a weight, either 1 or -1.
 *   **history** (`Tuple`\[`List`\[`MinimumEigenOptimizationResult`], `OptimizationResult`]) – a tuple containing intermediate results. The first element is a list of `MinimumEigenOptimizerResult` obtained by invoking [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer#qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer") iteratively, the second element is an instance of `OptimizationResult` obtained at the last step via min\_num\_vars\_optimizer.
-
-
 
 `__init__(x, fval, variables, status, replacements, history)`
 
@@ -53,8 +49,6 @@ Constructs an instance of the result class.
 | [`variables_dict`](#qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.variables_dict "qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.variables_dict") | Returns the optimal value as a dictionary of the variable name and corresponding value. |
 | [`x`](#qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.x "qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizationResult.x")                                        | Returns the optimal value found in the optimization or None in case of FAILURE.         |
 
-
-
 `property fval`
 
 Returns the optimal function value.
@@ -67,8 +61,6 @@ Returns the optimal function value.
 
 The function value corresponding to the optimal value found in the optimization.
 
-
-
 `property history`
 
 Returns intermediate results. The first element is a list of `MinimumEigenOptimizerResult` obtained by invoking [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer#qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer") iteratively, the second element is an instance of `OptimizationResult` obtained at the last step via min\_num\_vars\_optimizer.
@@ -76,8 +68,6 @@ Returns intermediate results. The first element is a list of `MinimumEigenOptimi
 **Return type**
 
 `Tuple`\[`List`\[`MinimumEigenOptimizationResult`], `OptimizationResult`]
-
-
 
 `property raw_results`
 
@@ -93,8 +83,6 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
-
-
 `property replacements`
 
 Returns a dictionary of substituted variables. Key is a variable being substituted, value is a tuple of substituting variable and a weight, either 1 or -1.
@@ -102,8 +90,6 @@ Returns a dictionary of substituted variables. Key is a variable being substitut
 **Return type**
 
 `Dict`\[`str`, `Tuple`\[`str`, `int`]]
-
-
 
 `property samples`
 
@@ -117,8 +103,6 @@ Returns the list of solution samples
 
 The list of solution samples.
 
-
-
 `property status`
 
 Returns the termination status of the optimization algorithm.
@@ -130,8 +114,6 @@ Returns the termination status of the optimization algorithm.
 **Returns**
 
 The termination status of the algorithm.
-
-
 
 `property variable_names`
 
@@ -145,8 +127,6 @@ Returns the list of variable names of the optimization problem.
 
 The list of variable names of the optimization problem.
 
-
-
 `property variables`
 
 Returns the list of variables of the optimization problem.
@@ -159,8 +139,6 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
-
-
 `property variables_dict`
 
 Returns the optimal value as a dictionary of the variable name and corresponding value.
@@ -172,8 +150,6 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 **Returns**
 
 The optimal value as a dictionary of the variable name and corresponding value.
-
-
 
 `property x`
 

@@ -1,12 +1,8 @@
 # qiskit.algorithms.FasterAmplitudeEstimationResult
 
-
-
 `FasterAmplitudeEstimationResult`
 
 The result object for the Faster Amplitude Estimation algorithm.
-
-
 
 `__init__()`
 
@@ -36,8 +32,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`success_probability`](#qiskit.algorithms.FasterAmplitudeEstimationResult.success_probability "qiskit.algorithms.FasterAmplitudeEstimationResult.success_probability")                               | Return the success probability of the algorithm.                                    |
 | [`theta_intervals`](#qiskit.algorithms.FasterAmplitudeEstimationResult.theta_intervals "qiskit.algorithms.FasterAmplitudeEstimationResult.theta_intervals")                                           | Return the confidence intervals for the angles in each iteration.                   |
 
-
-
 `property circuit_results`
 
 Return the circuit results. Can be a statevector or counts dictionary.
@@ -45,8 +39,6 @@ Return the circuit results. Can be a statevector or counts dictionary.
 **Return type**
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
-
-
 
 `combine(result)`
 
@@ -60,8 +52,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-
-
 `property confidence_interval`
 
 Return the confidence interval for the amplitude (95% interval by default).
@@ -69,8 +59,6 @@ Return the confidence interval for the amplitude (95% interval by default).
 **Return type**
 
 `Tuple`\[`float`, `float`]
-
-
 
 `property confidence_interval_processed`
 
@@ -80,8 +68,6 @@ Return the post-processed confidence interval (95% interval by default).
 
 `Tuple`\[`float`, `float`]
 
-
-
 `property estimation`
 
 Return the estimation for the amplitude in $[0, 1]$.
@@ -89,8 +75,6 @@ Return the estimation for the amplitude in $[0, 1]$.
 **Return type**
 
 `float`
-
-
 
 `property estimation_processed`
 
@@ -100,8 +84,6 @@ Return the estimation for the amplitude after the post-processing has been appli
 
 `float`
 
-
-
 `property num_first_state_steps`
 
 Return the number of steps taken in the first step of algorithm.
@@ -109,8 +91,6 @@ Return the number of steps taken in the first step of algorithm.
 **Return type**
 
 `int`
-
-
 
 `property num_oracle_queries`
 
@@ -120,8 +100,6 @@ Return the number of Grover oracle queries.
 
 `int`
 
-
-
 `property num_steps`
 
 Return the total number of steps taken in the algorithm.
@@ -129,8 +107,6 @@ Return the total number of steps taken in the algorithm.
 **Return type**
 
 `int`
-
-
 
 `property post_processing`
 
@@ -140,8 +116,6 @@ Return a handle to the post processing function.
 
 `Callable`\[\[`float`], `float`]
 
-
-
 `property shots`
 
 Return the number of shots used. Is 1 for statevector-based simulations.
@@ -150,8 +124,6 @@ Return the number of shots used. Is 1 for statevector-based simulations.
 
 `int`
 
-
-
 `property success_probability`
 
 Return the success probability of the algorithm.
@@ -159,8 +131,6 @@ Return the success probability of the algorithm.
 **Return type**
 
 `int`
-
-
 
 `property theta_intervals`
 

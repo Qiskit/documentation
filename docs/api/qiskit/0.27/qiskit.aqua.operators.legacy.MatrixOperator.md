@@ -1,7 +1,5 @@
 # qiskit.aqua.operators.legacy.MatrixOperator
 
-
-
 `MatrixOperator(matrix, basis=None, z2_symmetries=None, atol=1e-12, name=None)`
 
 Operators relevant for quantum applications
@@ -17,8 +15,6 @@ Operators relevant for quantum applications
 *   **z2\_symmetries** ([*Z2Symmetries*](qiskit.aqua.operators.legacy.Z2Symmetries#qiskit.aqua.operators.legacy.Z2Symmetries "qiskit.aqua.operators.legacy.Z2Symmetries")) – represent the Z2 symmetries
 *   **atol** (*float*) – atol
 *   **name** (*str*) – name
-
-
 
 `__init__(matrix, basis=None, z2_symmetries=None, atol=1e-12, name=None)`
 
@@ -60,23 +56,15 @@ Operators relevant for quantum applications
 | [`num_qubits`](#qiskit.aqua.operators.legacy.MatrixOperator.num_qubits "qiskit.aqua.operators.legacy.MatrixOperator.num_qubits")          | number of qubits required for the operator. |
 | [`z2_symmetries`](#qiskit.aqua.operators.legacy.MatrixOperator.z2_symmetries "qiskit.aqua.operators.legacy.MatrixOperator.z2_symmetries") | returns z2 symmetries                       |
 
-
-
 `add(other, copy=False)`
-
-
 
 `property atol`
 
 return atol
 
-
-
 `property basis`
 
 returns basis
-
-
 
 `chop(threshold=None, copy=False)`
 
@@ -94,8 +82,6 @@ self or copy
 **Return type**
 
 [MatrixOperator](#qiskit.aqua.operators.legacy.MatrixOperator "qiskit.aqua.operators.legacy.MatrixOperator")
-
-
 
 `construct_evaluation_circuit(wave_function, statevector_mode=True, use_simulator_snapshot_mode=None, circuit_name_prefix='')`
 
@@ -118,25 +104,17 @@ the wavefunction evaluation.
 
 list\[[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
 
-
-
 `copy()`
 
 Get a copy of self.
-
-
 
 `property dense_matrix`
 
 Getter of matrix in dense matrix form.
 
-
-
 `property dia_matrix`
 
 diagonal matrix
-
-
 
 `evaluate_with_result(result, statevector_mode=True, use_simulator_snapshot_mode=None, circuit_name_prefix='')`
 
@@ -161,8 +139,6 @@ float
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
 
-
-
 `evaluate_with_statevector(quantum_state)`
 
 **Parameters**
@@ -180,8 +156,6 @@ float
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
-
-
 
 `evolve(state_in, evo_time=0, num_time_slices=0, expansion_mode='trotter', expansion_order=1)`
 
@@ -208,8 +182,6 @@ numpy.array
 *   **ValueError** – Invalid arguments
 *   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
 
-
-
 `is_empty()`
 
 Check Operator is empty or not.
@@ -222,19 +194,13 @@ is empty?
 
 bool
 
-
-
 `property matrix`
 
 Getter of matrix.
 
-
-
 `property name`
 
 returns name
-
-
 
 `property num_qubits`
 
@@ -248,8 +214,6 @@ number of qubits
 
 int
 
-
-
 `print_details()`
 
 **Returns**
@@ -260,17 +224,11 @@ a formatted operator.
 
 str
 
-
-
 `sub(other, copy=False)`
-
-
 
 `to_opflow()`
 
 to op flow
-
-
 
 `property z2_symmetries`
 

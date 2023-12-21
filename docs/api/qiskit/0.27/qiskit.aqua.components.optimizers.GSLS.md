@@ -1,7 +1,5 @@
 # qiskit.aqua.components.optimizers.GSLS
 
-
-
 `GSLS(maxiter=10000, max_eval=10000, disp=False, sampling_radius=1e-06, sample_size_factor=1, initial_step_size=0.01, min_step_size=1e-10, step_size_multiplier=0.4, armijo_parameter=0.1, min_gradient_norm=1e-08, max_failed_rejection_sampling=50, max_iter=None)`
 
 Gaussian-smoothed Line Search.
@@ -22,8 +20,6 @@ An implementation of the line search algorithm described in [https://arxiv.org/p
 *   **min\_gradient\_norm** (`float`) – If the gradient norm is below this threshold, the algorithm stops.
 *   **max\_failed\_rejection\_sampling** (`int`) – Maximum number of attempts to sample points within bounds.
 *   **max\_iter** (`Optional`\[`int`]) – Deprecated, use maxiter.
-
-
 
 `__init__(maxiter=10000, max_eval=10000, disp=False, sampling_radius=1e-06, sample_size_factor=1, initial_step_size=0.01, min_step_size=1e-10, step_size_multiplier=0.4, armijo_parameter=0.1, min_gradient_norm=1e-08, max_failed_rejection_sampling=50, max_iter=None)`
 
@@ -77,13 +73,9 @@ An implementation of the line search algorithm described in [https://arxiv.org/p
 | [`is_initial_point_supported`](#qiskit.aqua.components.optimizers.GSLS.is_initial_point_supported "qiskit.aqua.components.optimizers.GSLS.is_initial_point_supported")    | Returns is initial point supported  |
 | [`setting`](#qiskit.aqua.components.optimizers.GSLS.setting "qiskit.aqua.components.optimizers.GSLS.setting")                                                             | Return setting                      |
 
-
-
 `property bounds_support_level`
 
 Returns bounds support level
-
-
 
 `get_support_level()`
 
@@ -96,8 +88,6 @@ Return support level dictionary.
 **Returns**
 
 A dictionary containing the support levels for different options.
-
-
 
 `gradient_approximation(n, x, x_value, directions, sample_set_x, sample_set_y)`
 
@@ -120,8 +110,6 @@ Construct gradient approximation from given sample.
 
 Gradient approximation at x, as a 1D array.
 
-
-
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
 We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
@@ -141,73 +129,49 @@ the gradient computed
 
 grad
 
-
-
 `property gradient_support_level`
 
 Returns gradient support level
-
-
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
-
-
 `property is_bounds_ignored`
 
 Returns is bounds ignored
-
-
 
 `property is_bounds_required`
 
 Returns is bounds required
 
-
-
 `property is_bounds_supported`
 
 Returns is bounds supported
-
-
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
-
-
 `property is_gradient_required`
 
 Returns is gradient required
-
-
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
-
-
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
-
-
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
-
-
 `property is_initial_point_supported`
 
 Returns is initial point supported
-
-
 
 `ls_optimize(n, obj_fun, initial_point, var_lb, var_ub)`
 
@@ -232,8 +196,6 @@ Final iterate as a vector, corresponding objective function value, number of eva
 **Raises**
 
 **ValueError** – If the number of dimensions mismatches the size of the initial point or the length of the lower or upper bound.
-
-
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -261,13 +223,9 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
-
-
 `print_options()`
 
 Print algorithm-specific options.
-
-
 
 `sample_points(n, x, num_points)`
 
@@ -288,8 +246,6 @@ The radius of the sphere is `self._options['sampling_radius']`.
 **Returns**
 
 A tuple containing the sampling points and the directions.
-
-
 
 `sample_set(n, x, var_lb, var_ub, num_points)`
 
@@ -315,13 +271,9 @@ Matrices of (unit-norm) sample directions and sample points, one per row. Both m
 
 **RuntimeError** – If not enough samples could be generated within the bounds.
 
-
-
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
-
-
 
 `set_options(**kwargs)`
 
@@ -333,13 +285,9 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
-
-
 `property setting`
 
 Return setting
-
-
 
 `static wrap_function(function, args)`
 

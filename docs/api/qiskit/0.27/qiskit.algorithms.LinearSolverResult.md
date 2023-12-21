@@ -1,14 +1,10 @@
 # qiskit.algorithms.LinearSolverResult
 
-
-
 `LinearSolverResult`
 
 A base class for linear systems results.
 
 The linear systems algorithms return an object of the type `LinearSystemsResult` with the information about the solution obtained.
-
-
 
 `__init__()`
 
@@ -30,8 +26,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`observable`](#qiskit.algorithms.LinearSolverResult.observable "qiskit.algorithms.LinearSolverResult.observable")                | return the (list of) calculated observable(s)                                    |
 | [`state`](#qiskit.algorithms.LinearSolverResult.state "qiskit.algorithms.LinearSolverResult.state")                               | return either the circuit that prepares the solution or the solution as a vector |
 
-
-
 `property circuit_results`
 
 return the results from the circuits
@@ -39,8 +33,6 @@ return the results from the circuits
 **Return type**
 
 `Union`\[`List`\[`float`], `List`\[`Result`]]
-
-
 
 `combine(result)`
 
@@ -54,8 +46,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-
-
 `property euclidean_norm`
 
 return the euclidean norm if the algorithm knows how to calculate it
@@ -64,8 +54,6 @@ return the euclidean norm if the algorithm knows how to calculate it
 
 `float`
 
-
-
 `property observable`
 
 return the (list of) calculated observable(s)
@@ -73,8 +61,6 @@ return the (list of) calculated observable(s)
 **Return type**
 
 `Union`\[`float`, `List`\[`float`]]
-
-
 
 `property state`
 

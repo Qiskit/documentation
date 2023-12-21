@@ -1,7 +1,5 @@
 # qiskit.chemistry.QMolecule
 
-
-
 `QMolecule(filename=None)`
 
 Molecule data class containing driver result.
@@ -11,8 +9,6 @@ When one of the chemistry [`drivers`](qiskit.chemistry.drivers#module-qiskit.che
 Note that values here, for the same input molecule to each driver, may be vary across the drivers underlying code implementation. Also some drivers may not provide certain fields such as dipole integrals in the case of [`PyQuanteDriver`](qiskit.chemistry.drivers.PyQuanteDriver#qiskit.chemistry.drivers.PyQuanteDriver "qiskit.chemistry.drivers.PyQuanteDriver").
 
 This class provides methods to save it and load it again from an HDF5 file
-
-
 
 `__init__(filename=None)`
 
@@ -51,11 +47,7 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`y_dipole_integrals`](#qiskit.chemistry.QMolecule.y_dipole_integrals "qiskit.chemistry.QMolecule.y_dipole_integrals") | returns y\_dipole\_integrals             |
 | [`z_dipole_integrals`](#qiskit.chemistry.QMolecule.z_dipole_integrals "qiskit.chemistry.QMolecule.z_dipole_integrals") | returns z\_dipole\_integrals             |
 
-
-
 `Z(natom)`
-
-
 
 `property core_orbitals`
 
@@ -65,37 +57,25 @@ Returns: A list of core orbital indices.
 
 `List`\[`int`]
 
-
-
 `property filename`
 
 returns temp file path
-
-
 
 `has_dipole_integrals()`
 
 Check if dipole integrals are present.
 
-
-
 `load()`
 
 loads info saved.
-
-
 
 `log()`
 
 log properties
 
-
-
 `property one_body_integrals`
 
 Returns one body electron integrals.
-
-
 
 `static onee_to_spin(mohij, mohij_b=None, threshold=1e-12)`
 
@@ -117,8 +97,6 @@ One body integrals in spin orbitals
 
 numpy.ndarray
 
-
-
 `static oneeints2mo(ints, moc)`
 
 Converts one-body integrals from AO to MO basis
@@ -138,25 +116,17 @@ integrals in MO basis
 
 numpy.ndarray
 
-
-
 `remove_file(file_name=None)`
 
 remove file
-
-
 
 `save(file_name=None)`
 
 Saves the info from the driver.
 
-
-
 `property two_body_integrals`
 
 Returns two body electron integrals.
-
-
 
 `static twoe_to_spin(mohijkl, mohijkl_bb=None, mohijkl_ba=None, threshold=1e-12)`
 
@@ -179,8 +149,6 @@ Two body integrals in spin orbitals
 
 numpy.ndarray
 
-
-
 `static twoeints2mo(ints, moc)`
 
 Converts two-body integrals from AO to MO basis
@@ -200,23 +168,15 @@ integrals in MO basis
 
 numpy.ndarray
 
-
-
 `static twoeints2mo_general(ints, moc1, moc2, moc3, moc4)`
-
-
 
 `property x_dipole_integrals`
 
 returns x\_dipole\_integrals
 
-
-
 `property y_dipole_integrals`
 
 returns y\_dipole\_integrals
-
-
 
 `property z_dipole_integrals`
 

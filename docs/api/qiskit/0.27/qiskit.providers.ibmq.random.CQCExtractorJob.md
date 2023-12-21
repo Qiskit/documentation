@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.random.CQCExtractorJob
 
-
-
 `CQCExtractorJob(job_id, client, parameters=None)`
 
 Representation of an asynchronous call to the CQC extractor.
@@ -29,8 +27,6 @@ CQCExtractorJob constructor.
 *   **client** (`RandomClient`) – Object for connecting to the server.
 *   **parameters** (`Optional`\[`Dict`]) – Parameters used for this job.
 
-
-
 `__init__(job_id, client, parameters=None)`
 
 CQCExtractorJob constructor.
@@ -56,8 +52,6 @@ CQCExtractorJob constructor.
 | [`extractor_method`](#qiskit.providers.ibmq.random.CQCExtractorJob.extractor_method "qiskit.providers.ibmq.random.CQCExtractorJob.extractor_method") | Return the extractor method used.              |
 | [`parameters`](#qiskit.providers.ibmq.random.CQCExtractorJob.parameters "qiskit.providers.ibmq.random.CQCExtractorJob.parameters")                   | Return the parameters passed to the extractor. |
 
-
-
 `block_until_ready(timeout=None, wait=10)`
 
 Wait for the job to finish and return the result.
@@ -79,8 +73,6 @@ Extractor output.
 
 [**JobTimeoutError**](qiskit.providers.JobTimeoutError#qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError") – If the job does not finish before the specified timeout.
 
-
-
 `property extractor_method`
 
 Return the extractor method used.
@@ -93,8 +85,6 @@ Return the extractor method used.
 
 Extractor method used.
 
-
-
 `property parameters`
 
 Return the parameters passed to the extractor.
@@ -106,8 +96,6 @@ Return the parameters passed to the extractor.
 **Returns**
 
 Parameters passed to the extractor.
-
-
 
 `status()`
 

@@ -1,7 +1,5 @@
 # qiskit.quantum\_info.diamond\_norm
 
-
-
 `diamond_norm(choi, **kwargs)`
 
 Return the diamond norm of the input quantum channel object.

@@ -1,14 +1,10 @@
 # qiskit.aqua.components.feature\_maps.FeatureMap
 
-
-
 `FeatureMap`
 
 Base class for FeatureMap.
 
 This method should initialize the module and use an exception if a component of the module is not available.
-
-
 
 `abstract __init__()`
 
@@ -31,8 +27,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`num_qubits`](#qiskit.aqua.components.feature_maps.FeatureMap.num_qubits "qiskit.aqua.components.feature_maps.FeatureMap.num_qubits")                                                          | returns number of qubits                                           |
 | [`support_parameterized_circuit`](#qiskit.aqua.components.feature_maps.FeatureMap.support_parameterized_circuit "qiskit.aqua.components.feature_maps.FeatureMap.support_parameterized_circuit") | returns whether or not the sub-class support parameterized circuit |
 
-
-
 `abstract construct_circuit(x, qr=None, inverse=False)`
 
 Construct the variational form, given its parameters.
@@ -51,31 +45,21 @@ a quantum circuit.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-
-
 `property feature_dimension`
 
 returns feature dimension
-
-
 
 `static get_entangler_map(map_type, num_qubits)`
 
 get entangle map
 
-
-
 `property num_qubits`
 
 returns number of qubits
 
-
-
 `property support_parameterized_circuit`
 
 returns whether or not the sub-class support parameterized circuit
-
-
 
 `static validate_entangler_map(entangler_map, num_qubits)`
 

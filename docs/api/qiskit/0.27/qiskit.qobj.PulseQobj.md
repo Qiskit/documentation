@@ -1,7 +1,5 @@
 # qiskit.qobj.PulseQobj
 
-
-
 `PulseQobj(qobj_id, config, experiments, header=None)`
 
 A Pulse Qobj.
@@ -16,8 +14,6 @@ Each Pulse Qobj object is used to represent a single payload that will be passed
 *   **config** ([*PulseQobjConfig*](qiskit.qobj.PulseQobjConfig#qiskit.qobj.PulseQobjConfig "qiskit.qobj.PulseQobjConfig")) – A config for the entire run
 *   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader#qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
 *   **experiments** (*list*) – A list of lists of [`PulseQobjExperiment`](qiskit.qobj.PulseQobjExperiment#qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment") objects representing an experiment
-
-
 
 `__init__(qobj_id, config, experiments, header=None)`
 
@@ -40,8 +36,6 @@ Each Pulse Qobj object is used to represent a single payload that will be passed
 | [`from_dict`](#qiskit.qobj.PulseQobj.from_dict "qiskit.qobj.PulseQobj.from_dict")(data)                                  | Create a new PulseQobj object from a dictionary.             |
 | [`to_dict`](#qiskit.qobj.PulseQobj.to_dict "qiskit.qobj.PulseQobj.to_dict")(\[validate])                                 | Return a dictionary format representation of the Pulse Qobj. |
 
-
-
 `classmethod from_dict(data)`
 
 Create a new PulseQobj object from a dictionary.
@@ -57,8 +51,6 @@ The PulseQobj from the input dictionary.
 **Return type**
 
 [PulseQobj](#qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj")
-
-
 
 `to_dict(validate=False)`
 

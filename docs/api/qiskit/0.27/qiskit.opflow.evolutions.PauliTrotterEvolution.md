@@ -1,7 +1,5 @@
 # qiskit.opflow\.evolutions.PauliTrotterEvolution
 
-
-
 `PauliTrotterEvolution(trotter_mode='trotter', reps=1)`
 
 An Evolution algorithm replacing exponentiated sums of Paulis by changing them each to the Z basis, rotating with an rZ, changing back, and Trotterizing.
@@ -17,8 +15,6 @@ More specifically, we compute basis change circuits for each Pauli into a single
 *   **sub-groups** (*#*) –
 *   **a single diagonalization circuit can be used for each group** (*so*) –
 *   **rather than each Pauli.** (*#*) –
-
-
 
 `__init__(trotter_mode='trotter', reps=1)`
 
@@ -47,8 +43,6 @@ More specifically, we compute basis change circuits for each Pauli into a single
 | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
 | [`trotter`](#qiskit.opflow.evolutions.PauliTrotterEvolution.trotter "qiskit.opflow.evolutions.PauliTrotterEvolution.trotter") | TrotterizationBase used to evolve SummedOps. |
 
-
-
 `convert(operator)`
 
 Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing Trotterized evolutions equalling the exponentiation of -i \* operator.
@@ -65,8 +59,6 @@ Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing Trott
 
 The converted operator.
 
-
-
 `evolution_for_abelian_paulisum(op_sum)`
 
 Evolution for abelian pauli sum
@@ -74,8 +66,6 @@ Evolution for abelian pauli sum
 **Return type**
 
 `PrimitiveOp`
-
-
 
 `evolution_for_pauli(pauli_op)`
 
@@ -92,8 +82,6 @@ Compute evolution Operator for a single Pauli using a `PauliBasisChange`.
 **Returns**
 
 A `PrimitiveOp`, either the evolution `CircuitOp` or a `PauliOp` equal to the identity if pauli\_op is the identity.
-
-
 
 `property trotter`
 

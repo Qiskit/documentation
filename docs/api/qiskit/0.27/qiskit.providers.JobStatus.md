@@ -1,12 +1,8 @@
 # qiskit.providers.JobStatus
 
-
-
 `JobStatus(value)`
 
 Class for job status enumerated type.
-
-
 
 `__init__()`
 

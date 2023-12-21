@@ -1,12 +1,8 @@
 # qiskit.assembler.RunConfig
 
-
-
 `RunConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, **kwargs)`
 
 Class for Run Configuration.
-
-
 
 ### shots
 
@@ -16,8 +12,6 @@ the number of shots
 
 int
 
-
-
 ### max\_credits
 
 the max\_credits to use on the IBM Q public devices
@@ -25,8 +19,6 @@ the max\_credits to use on the IBM Q public devices
 **Type**
 
 int
-
-
 
 ### seed\_simulator
 
@@ -36,8 +28,6 @@ the seed to use in the simulator
 
 int
 
-
-
 ### memory
 
 whether to request memory from backend (per-shot readouts)
@@ -45,8 +35,6 @@ whether to request memory from backend (per-shot readouts)
 **Type**
 
 bool
-
-
 
 ### parameter\_binds
 
@@ -66,8 +54,6 @@ Initialize a RunConfig object
 *   **memory** (*bool*) – whether to request memory from backend (per-shot readouts)
 *   **parameter\_binds** (*list\[dict]*) – List of parameter bindings
 *   **\*\*kwargs** – optional fields
-
-
 
 `__init__(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, **kwargs)`
 
@@ -90,8 +76,6 @@ Initialize a RunConfig object
 | [`from_dict`](#qiskit.assembler.RunConfig.from_dict "qiskit.assembler.RunConfig.from_dict")(data)                   | Create a new RunConfig object from a dictionary.           |
 | [`to_dict`](#qiskit.assembler.RunConfig.to_dict "qiskit.assembler.RunConfig.to_dict")()                             | Return a dictionary format representation of the RunConfig |
 
-
-
 `classmethod from_dict(data)`
 
 Create a new RunConfig object from a dictionary.
@@ -107,8 +91,6 @@ The RunConfig from the input dictionary.
 **Return type**
 
 [RunConfig](#qiskit.assembler.RunConfig "qiskit.assembler.RunConfig")
-
-
 
 `to_dict()`
 

@@ -1,7 +1,5 @@
 # qiskit.aqua.components.oracles.TruthTableOracle
 
-
-
 `TruthTableOracle(bitmaps, optimization=False, mct_mode='basic')`
 
 The Truth Table-based Quantum Oracle.
@@ -29,8 +27,6 @@ Regarding circuit optimization and mct usages, the truth table oracle is similar
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
-
-
 
 `__init__(bitmaps, optimization=False, mct_mode='basic')`
 
@@ -61,35 +57,23 @@ Regarding circuit optimization and mct usages, the truth table oracle is similar
 | [`output_register`](#qiskit.aqua.components.oracles.TruthTableOracle.output_register "qiskit.aqua.components.oracles.TruthTableOracle.output_register")          | returns output register    |
 | [`variable_register`](#qiskit.aqua.components.oracles.TruthTableOracle.variable_register "qiskit.aqua.components.oracles.TruthTableOracle.variable_register")    | returns variable register  |
 
-
-
 `property ancillary_register`
 
 returns ancillary register
 
-
-
 `property circuit`
-
-
 
 `construct_circuit()`
 
 construct circuit
 
-
-
 `evaluate_classically(measurement)`
 
 evaluate classical
 
-
-
 `property output_register`
 
 returns output register
-
-
 
 `property variable_register`
 

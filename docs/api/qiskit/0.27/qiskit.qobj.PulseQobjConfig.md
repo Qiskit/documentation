@@ -1,7 +1,5 @@
 # qiskit.qobj.PulseQobjConfig
 
-
-
 `PulseQobjConfig(meas_level, meas_return, pulse_library, qubit_lo_freq, meas_lo_freq, memory_slot_size=None, rep_time=None, rep_delay=None, shots=None, max_credits=None, seed_simulator=None, memory_slots=None, **kwargs)`
 
 A configuration for a Pulse Qobj.
@@ -23,8 +21,6 @@ Instantiate a PulseQobjConfig object.
 *   **seed\_simulator** (*int*) – the seed to use in the simulator
 *   **memory\_slots** (*list*) – The number of memory slots on the device
 *   **kwargs** – Additional free form key value fields to add to the configuration
-
-
 
 `__init__(meas_level, meas_return, pulse_library, qubit_lo_freq, meas_lo_freq, memory_slot_size=None, rep_time=None, rep_delay=None, shots=None, max_credits=None, seed_simulator=None, memory_slots=None, **kwargs)`
 
@@ -54,8 +50,6 @@ Instantiate a PulseQobjConfig object.
 | [`from_dict`](#qiskit.qobj.PulseQobjConfig.from_dict "qiskit.qobj.PulseQobjConfig.from_dict")(data)                            | Create a new PulseQobjConfig object from a dictionary.              |
 | [`to_dict`](#qiskit.qobj.PulseQobjConfig.to_dict "qiskit.qobj.PulseQobjConfig.to_dict")()                                      | Return a dictionary format representation of the Pulse Qobj config. |
 
-
-
 `classmethod from_dict(data)`
 
 Create a new PulseQobjConfig object from a dictionary.
@@ -71,8 +65,6 @@ The object from the input dictionary.
 **Return type**
 
 [PulseQobjConfig](#qiskit.qobj.PulseQobjConfig "qiskit.qobj.PulseQobjConfig")
-
-
 
 `to_dict()`
 

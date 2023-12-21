@@ -1,7 +1,5 @@
 # qiskit.utils.apply\_prefix
 
-
-
 `apply_prefix(value, unit)`
 
 Given a SI unit prefix and value, apply the prefix to convert to standard SI unit.

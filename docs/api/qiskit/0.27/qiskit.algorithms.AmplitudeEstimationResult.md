@@ -1,12 +1,8 @@
 # qiskit.algorithms.AmplitudeEstimationResult
 
-
-
 `AmplitudeEstimationResult`
 
 The `AmplitudeEstimation` result object.
-
-
 
 `__init__()`
 
@@ -39,8 +35,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`samples_processed`](#qiskit.algorithms.AmplitudeEstimationResult.samples_processed "qiskit.algorithms.AmplitudeEstimationResult.samples_processed")                                     | Return the post-processed measurement samples with their measurement probability.   |
 | [`shots`](#qiskit.algorithms.AmplitudeEstimationResult.shots "qiskit.algorithms.AmplitudeEstimationResult.shots")                                                                         | Return the number of shots used.                                                    |
 
-
-
 `property circuit_results`
 
 Return the circuit results. Can be a statevector or counts dictionary.
@@ -48,8 +42,6 @@ Return the circuit results. Can be a statevector or counts dictionary.
 **Return type**
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
-
-
 
 `combine(result)`
 
@@ -63,8 +55,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-
-
 `property confidence_interval`
 
 Return the confidence interval for the amplitude (95% interval by default).
@@ -72,8 +62,6 @@ Return the confidence interval for the amplitude (95% interval by default).
 **Return type**
 
 `Tuple`\[`float`, `float`]
-
-
 
 `property confidence_interval_processed`
 
@@ -83,8 +71,6 @@ Return the post-processed confidence interval (95% interval by default).
 
 `Tuple`\[`float`, `float`]
 
-
-
 `property estimation`
 
 Return the estimation for the amplitude in $[0, 1]$.
@@ -92,8 +78,6 @@ Return the estimation for the amplitude in $[0, 1]$.
 **Return type**
 
 `float`
-
-
 
 `property estimation_processed`
 
@@ -103,8 +87,6 @@ Return the estimation for the amplitude after the post-processing has been appli
 
 `float`
 
-
-
 `property max_probability`
 
 Return the maximum sampling probability.
@@ -112,8 +94,6 @@ Return the maximum sampling probability.
 **Return type**
 
 `float`
-
-
 
 `property measurements`
 
@@ -123,8 +103,6 @@ Return the measurements as integers with their measurement probability.
 
 `Dict`\[`int`, `float`]
 
-
-
 `property mle`
 
 Return the MLE for the amplitude, in $\[0, 1]\$.
@@ -132,8 +110,6 @@ Return the MLE for the amplitude, in $\[0, 1]\$.
 **Return type**
 
 `float`
-
-
 
 `property mle_processed`
 
@@ -143,8 +119,6 @@ Return the post-processed MLE for the amplitude.
 
 `float`
 
-
-
 `property num_evaluation_qubits`
 
 Returns the number of evaluation qubits.
@@ -152,8 +126,6 @@ Returns the number of evaluation qubits.
 **Return type**
 
 `int`
-
-
 
 `property num_oracle_queries`
 
@@ -163,8 +135,6 @@ Return the number of Grover oracle queries.
 
 `int`
 
-
-
 `property post_processing`
 
 Return a handle to the post processing function.
@@ -172,8 +142,6 @@ Return a handle to the post processing function.
 **Return type**
 
 `Callable`\[\[`float`], `float`]
-
-
 
 `property samples`
 
@@ -183,8 +151,6 @@ Return the measurement samples with their measurement probability.
 
 `Dict`\[`float`, `float`]
 
-
-
 `property samples_processed`
 
 Return the post-processed measurement samples with their measurement probability.
@@ -192,8 +158,6 @@ Return the post-processed measurement samples with their measurement probability
 **Return type**
 
 `Dict`\[`float`, `float`]
-
-
 
 `property shots`
 

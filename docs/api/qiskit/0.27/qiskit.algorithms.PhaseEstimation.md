@@ -1,7 +1,5 @@
 # qiskit.algorithms.PhaseEstimation
 
-
-
 `PhaseEstimation(num_evaluation_qubits, quantum_instance=None)`
 
 Run the Quantum Phase Estimation (QPE) algorithm.
@@ -40,8 +38,6 @@ Quantum Computation and Quantum Information: 10th Anniversary Edition (10th ed.)
 *   **num\_evaluation\_qubits** (`int`) – The number of qubits used in estimating the phase. The phase will be estimated as a binary string with this many bits.
 *   **quantum\_instance** (`Union`\[`QuantumInstance`, `BaseBackend`, `Backend`, `None`]) – The quantum instance on which the circuit will be run.
 
-
-
 `__init__(num_evaluation_qubits, quantum_instance=None)`
 
 **Parameters**
@@ -57,8 +53,6 @@ Quantum Computation and Quantum Information: 10th Anniversary Edition (10th ed.)
 | [`construct_circuit`](#qiskit.algorithms.PhaseEstimation.construct_circuit "qiskit.algorithms.PhaseEstimation.construct_circuit")(unitary\[, state\_preparation]) | Return the circuit to be executed to estimate phases. |
 | [`estimate`](#qiskit.algorithms.PhaseEstimation.estimate "qiskit.algorithms.PhaseEstimation.estimate")(\[unitary, state\_preparation, …])                         | Run the the phase estimation algorithm.               |
 
-
-
 `construct_circuit(unitary, state_preparation=None)`
 
 Return the circuit to be executed to estimate phases.
@@ -68,8 +62,6 @@ This circuit includes as sub-circuits the core phase estimation circuit, with th
 **Return type**
 
 `QuantumCircuit`
-
-
 
 `estimate(unitary=None, state_preparation=None, pe_circuit=None, num_unitary_qubits=None)`
 

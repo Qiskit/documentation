@@ -1,14 +1,10 @@
 # qiskit.algorithms.Eigensolver
 
-
-
 `Eigensolver`
 
 The Eigensolver Interface.
 
 Algorithms that can compute eigenvalues for an operator may implement this interface to allow different algorithms to be used interchangeably.
-
-
 
 `__init__()`
 
@@ -21,8 +17,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.algorithms.Eigensolver.__init__ "qiskit.algorithms.Eigensolver.__init__")()                                                             | Initialize self.                                                             |
 | [`compute_eigenvalues`](#qiskit.algorithms.Eigensolver.compute_eigenvalues "qiskit.algorithms.Eigensolver.compute_eigenvalues")(operator\[, aux\_operators]) | Computes eigenvalues.                                                        |
 | [`supports_aux_operators`](#qiskit.algorithms.Eigensolver.supports_aux_operators "qiskit.algorithms.Eigensolver.supports_aux_operators")()                   | Whether computing the expectation value of auxiliary operators is supported. |
-
-
 
 `abstract compute_eigenvalues(operator, aux_operators=None)`
 
@@ -40,8 +34,6 @@ Computes eigenvalues. Operator and aux\_operators can be supplied here and if no
 **Returns**
 
 EigensolverResult
-
-
 
 `classmethod supports_aux_operators()`
 

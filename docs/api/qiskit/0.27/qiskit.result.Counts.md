@@ -1,7 +1,5 @@
 # qiskit.result.Counts
 
-
-
 `Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)`
 
 A class to store a counts result from a circuit execution.
@@ -29,8 +27,6 @@ Build a counts object
 
 *   **TypeError** – If the input key type is not an int or string
 *   **QiskitError** – If a dit string key is input with creg\_sizes and/or memory\_slots
-
-
 
 `__init__(data, time_taken=None, creg_sizes=None, memory_slots=None)`
 
@@ -84,27 +80,17 @@ Build a counts object
 | ----------------- | - |
 | `bitstring_regex` |   |
 
-
-
 `clear() → None. Remove all items from D.`
 
-
-
 `copy() → a shallow copy of D`
-
-
 
 `fromkeys(value=None, /)`
 
 Create a new dictionary with keys from iterable and values set to value.
 
-
-
 `get(key, default=None, /)`
 
 Return the value for key if key is in the dictionary, else default.
-
-
 
 `hex_outcomes()`
 
@@ -124,8 +110,6 @@ dict
 
 **QiskitError** – If the Counts object contains counts for dit strings
 
-
-
 `int_outcomes()`
 
 Build a counts dictionary with integer keys instead of count strings
@@ -142,15 +126,9 @@ dict
 
 **QiskitError** – If the Counts object contains counts for dit strings
 
-
-
 `items() → a set-like object providing a view on D’s items`
 
-
-
 `keys() → a set-like object providing a view on D’s keys`
-
-
 
 `most_frequent()`
 
@@ -168,19 +146,13 @@ str
 
 **QiskitError** – when there is >1 count with the same max counts, or an empty object.
 
-
-
 `pop(k[, d]) → v, remove specified key and return the corresponding value.`
 
 If key is not found, d is returned if given, otherwise KeyError is raised
 
-
-
 `popitem() → (k, v), remove and return some (key, value) pair as a`
 
 2-tuple; but raise KeyError if D is empty.
-
-
 
 `setdefault(key, default=None, /)`
 
@@ -188,12 +160,8 @@ Insert key with a value of default if key is not in the dictionary.
 
 Return the value for key if key is in the dictionary, else default.
 
-
-
 `update([E, ]**F) → None. Update D from dict/iterable E and F.`
 
 If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
-
-
 
 `values() → an object providing a view on D’s values`

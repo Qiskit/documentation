@@ -1,12 +1,8 @@
 # qiskit.opflow\.expectations.AerPauliExpectation
 
-
-
 `AerPauliExpectation`
 
 An Expectation converter for using Aer’s operator snapshot to take expectations of quantum state circuits over Pauli observables.
-
-
 
 `__init__()`
 
@@ -19,8 +15,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.opflow.expectations.AerPauliExpectation.__init__ "qiskit.opflow.expectations.AerPauliExpectation.__init__")()                                | Initialize self.                                                                                                             |
 | [`compute_variance`](#qiskit.opflow.expectations.AerPauliExpectation.compute_variance "qiskit.opflow.expectations.AerPauliExpectation.compute_variance")(exp\_op) | Compute the variance of the expectation estimator.                                                                           |
 | [`convert`](#qiskit.opflow.expectations.AerPauliExpectation.convert "qiskit.opflow.expectations.AerPauliExpectation.convert")(operator)                           | Accept an Operator and return a new Operator with the Pauli measurements replaced by AerSnapshot-based expectation circuits. |
-
-
 
 `compute_variance(exp_op)`
 
@@ -37,8 +31,6 @@ Compute the variance of the expectation estimator. Because Aer takes this expect
 **Returns**
 
 The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation, equal to 0.
-
-
 
 `convert(operator)`
 

@@ -1,12 +1,8 @@
 # qiskit.aqua.operators.expectations.ExpectationBase
 
-
-
 `ExpectationBase`
 
 A base for Expectation value converters. Expectations are converters which enable the computation of the expectation value of an Observable with respect to some state function. They traverse an Operator tree, replacing OperatorStateFn measurements with equivalent measurements which are more amenable to computation on quantum or classical hardware. For example, if one would like to measure the expectation value of an Operator `o` expressed as a sum of Paulis with respect to some state function, but only has access to diagonal measurements on Quantum hardware, we can create a measurement \~StateFn(o), use a `PauliExpectation` to convert it to a diagonal measurement and circuit pre-rotations to a append to the state, and sample this circuit on Quantum hardware with a CircuitSampler. All in all, this would be: `my_sampler.convert(my_expect.convert(~StateFn(o)) @ my_state).eval()`.
-
-
 
 `__init__()`
 
@@ -19,8 +15,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.aqua.operators.expectations.ExpectationBase.__init__ "qiskit.aqua.operators.expectations.ExpectationBase.__init__")()                                | Initialize self.                                                                                                                   |
 | [`compute_variance`](#qiskit.aqua.operators.expectations.ExpectationBase.compute_variance "qiskit.aqua.operators.expectations.ExpectationBase.compute_variance")(exp\_op) | Compute the variance of the expectation estimator.                                                                                 |
 | [`convert`](#qiskit.aqua.operators.expectations.ExpectationBase.convert "qiskit.aqua.operators.expectations.ExpectationBase.convert")(operator)                           | Accept an Operator and return a new Operator with the measurements replaced by alternate methods to compute the expectation value. |
-
-
 
 `abstract compute_variance(exp_op)`
 
@@ -37,8 +31,6 @@ Compute the variance of the expectation estimator.
 **Returns**
 
 The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation.
-
-
 
 `abstract convert(operator)`
 

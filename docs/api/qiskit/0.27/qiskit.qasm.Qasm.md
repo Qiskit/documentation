@@ -1,14 +1,10 @@
 # qiskit.qasm.Qasm
 
-
-
 `Qasm(filename=None, data=None)`
 
 OPENQASM circuit object.
 
 Create an OPENQASM circuit object.
-
-
 
 `__init__(filename=None, data=None)`
 
@@ -23,19 +19,13 @@ Create an OPENQASM circuit object.
 | [`parse`](#qiskit.qasm.Qasm.parse "qiskit.qasm.Qasm.parse")()                               | Parse the data.                    |
 | [`return_filename`](#qiskit.qasm.Qasm.return_filename "qiskit.qasm.Qasm.return_filename")() | Return the filename.               |
 
-
-
 `generate_tokens()`
 
 Returns a generator of the tokens.
 
-
-
 `parse()`
 
 Parse the data.
-
-
 
 `return_filename()`
 

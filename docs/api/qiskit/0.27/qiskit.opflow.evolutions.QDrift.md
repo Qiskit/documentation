@@ -1,7 +1,5 @@
 # qiskit.opflow\.evolutions.QDrift
 
-
-
 `QDrift(reps=1)`
 
 The QDrift Trotterization method, which selects each each term in the Trotterization randomly, with a probability proportional to its weight. Based on the work of Earl Campbell in [https://arxiv.org/abs/1811.08017](https://arxiv.org/abs/1811.08017).
@@ -9,8 +7,6 @@ The QDrift Trotterization method, which selects each each term in the Trotteriza
 **Parameters**
 
 **reps** (`int`) – The number of times to repeat the Trotterization circuit.
-
-
 
 `__init__(reps=1)`
 
@@ -31,8 +27,6 @@ The QDrift Trotterization method, which selects each each term in the Trotteriza
 | -------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
 | [`reps`](#qiskit.opflow.evolutions.QDrift.reps "qiskit.opflow.evolutions.QDrift.reps") | The number of repetitions to use in the Trotterization, improving the approximation accuracy. |
 
-
-
 `convert(operator)`
 
 Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
@@ -52,8 +46,6 @@ The Operator approximating op\_sum’s evolution.
 **Raises**
 
 **TypeError** – A non-SummedOps Operator is passed into `convert`.
-
-
 
 `property reps`
 

@@ -1,12 +1,8 @@
 # qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult
 
-
-
 `MaximumLikelihoodAmplitudeEstimationResult(a_dict=None)`
 
 MaximumLikelihoodAmplitudeEstimation Result.
-
-
 
 `__init__(a_dict=None)`
 
@@ -43,8 +39,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`num_oracle_queries`](#qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.num_oracle_queries "qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.num_oracle_queries")    | return num\_oracle\_queries |
 | [`theta`](#qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.theta "qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.theta")                                           | returns theta               |
 
-
-
 `property a_estimation`
 
 return a\_estimation
@@ -52,8 +46,6 @@ return a\_estimation
 **Return type**
 
 `float`
-
-
 
 `property circuit_results`
 
@@ -63,15 +55,11 @@ return circuit results
 
 `Union`\[`List`\[`ndarray`], `List`\[`Dict`\[`str`, `int`]], `None`]
 
-
-
 `clear()`
 
 **Return type**
 
 `None`
-
-
 
 `combine(result)`
 
@@ -85,8 +73,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
-
-
 `property confidence_interval`
 
 return confidence\_interval
@@ -94,8 +80,6 @@ return confidence\_interval
 **Return type**
 
 `List`\[`float`]
-
-
 
 `property estimation`
 
@@ -105,8 +89,6 @@ return estimation
 
 `float`
 
-
-
 `property fisher_information`
 
 return fisher\_information
@@ -114,8 +96,6 @@ return fisher\_information
 **Return type**
 
 `float`
-
-
 
 `static from_dict(a_dict)`
 
@@ -125,19 +105,11 @@ create new object from a dictionary
 
 `MaximumLikelihoodAmplitudeEstimationResult`
 
-
-
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
-
-
 
 `items() → a set-like object providing a view on D’s items`
 
-
-
 `keys() → a set-like object providing a view on D’s keys`
-
-
 
 `property num_oracle_queries`
 
@@ -147,8 +119,6 @@ return num\_oracle\_queries
 
 `int`
 
-
-
 `pop(key, default=None)`
 
 If key is not found, d is returned if given, otherwise KeyError is raised.
@@ -156,8 +126,6 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 **Return type**
 
 `object`
-
-
 
 `popitem()`
 
@@ -167,11 +135,7 @@ as a 2-tuple; but raise KeyError if D is empty.
 
 `Tuple`\[`object`, `object`]
 
-
-
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
-
-
 
 `property theta`
 
@@ -181,8 +145,6 @@ returns theta
 
 `float`
 
-
-
 `update(*args, **kwargs)`
 
 If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E present and lacks .keys() method, does: for (k, v) in E: D\[k] = v In either case, this is followed by: for k, v in F.items(): D\[k] = v
@@ -190,7 +152,5 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 **Return type**
 
 `None`
-
-
 
 `values() → an object providing a view on D’s values`

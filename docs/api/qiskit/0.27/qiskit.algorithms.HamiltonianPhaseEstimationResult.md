@@ -1,7 +1,5 @@
 # qiskit.algorithms.HamiltonianPhaseEstimationResult
 
-
-
 `HamiltonianPhaseEstimationResult(phase_estimation_result, phase_estimation_scale, id_coefficient)`
 
 Store and manipulate results from running HamiltonianPhaseEstimation.
@@ -15,8 +13,6 @@ This class is meant to be instantiated via HamiltonianPhaseEstimation.estimate.
 *   **phase\_estimation\_result** (`PhaseEstimationResult`) – The result object returned by PhaseEstimation.estimate.
 *   **phase\_estimation\_scale** (`PhaseEstimationScale`) – object used to scale phases to obtain eigenvalues.
 *   **id\_coefficient** (`float`) – The coefficient of the identity term in the Hamiltonian. Eigenvalues are computed without this term so that the coefficient must added to give correct eigenvalues. This is done automatically when retrieving eigenvalues.
-
-
 
 `__init__(phase_estimation_result, phase_estimation_scale, id_coefficient)`
 
@@ -41,8 +37,6 @@ This class is meant to be instantiated via HamiltonianPhaseEstimation.estimate.
 | [`most_likely_eigenvalue`](#qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_eigenvalue "qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_eigenvalue") | The most likely eigenvalue of the Hamiltonian.                         |
 | [`most_likely_phase`](#qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_phase "qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_phase")                | The most likely phase of the unitary corresponding to the Hamiltonian. |
 
-
-
 `combine(result)`
 
 Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
@@ -54,8 +48,6 @@ Any property from the argument that exists in the receiver is updated. :type res
 **Return type**
 
 `None`
-
-
 
 `filter_phases(cutoff=0.0, scaled=True, as_float=True)`
 
@@ -79,8 +71,6 @@ Filter phases as does PhaseEstimatorResult.filter\_phases, with the addition tha
 
 A dict of filtered phases.
 
-
-
 `property most_likely_eigenvalue`
 
 The most likely eigenvalue of the Hamiltonian.
@@ -94,8 +84,6 @@ This method calls most\_likely\_phase and scales the result to obtain an eigenva
 **Returns**
 
 The most likely eigenvalue of the Hamiltonian.
-
-
 
 `property most_likely_phase`
 

@@ -1,7 +1,5 @@
 # qiskit.providers.ibmq.experiment.Experiment
 
-
-
 `Experiment(provider, backend_name, experiment_type, extra=None, tags=None, start_datetime=None, end_datetime=None, experiment_uuid=None, plot_names=None, analysis_results=None, hub=None, group=None, project=None, share_level=None, owner=None, notes=None)`
 
 Class representing an experiment.
@@ -53,8 +51,6 @@ Experiment constructor.
 **Raises**
 
 **ExperimentError** – If the provider does not offer experiment services.
-
-
 
 `__init__(provider, backend_name, experiment_type, extra=None, tags=None, start_datetime=None, end_datetime=None, experiment_uuid=None, plot_names=None, analysis_results=None, hub=None, group=None, project=None, share_level=None, owner=None, notes=None)`
 
@@ -133,8 +129,6 @@ Experiment constructor.
 | [`updated_datetime`](#qiskit.providers.ibmq.experiment.Experiment.updated_datetime "qiskit.providers.ibmq.experiment.Experiment.updated_datetime")    | Return the timestamp when the experiment was last updated. |
 | [`uuid`](#qiskit.providers.ibmq.experiment.Experiment.uuid "qiskit.providers.ibmq.experiment.Experiment.uuid")                                        | Return the experiment’s uuid.                              |
 
-
-
 `property analysis_results`
 
 Return analysis results associated with this experiment.
@@ -142,8 +136,6 @@ Return analysis results associated with this experiment.
 **Return type**
 
 `List`
-
-
 
 `property backend_name`
 
@@ -153,8 +145,6 @@ Return the experiment’s backend name.
 
 `str`
 
-
-
 `property creation_datetime`
 
 Return the timestamp when the experiment was created.
@@ -163,8 +153,6 @@ Return the timestamp when the experiment was created.
 
 `Optional`\[`datetime`]
 
-
-
 `property end_datetime`
 
 Return the timestamp when the experiment ended.
@@ -172,8 +160,6 @@ Return the timestamp when the experiment ended.
 **Return type**
 
 `Optional`\[`datetime`]
-
-
 
 `classmethod from_remote_data(provider, remote_data)`
 
@@ -192,8 +178,6 @@ Create an instance of this class from remote data.
 
 An instance of this class.
 
-
-
 `property group`
 
 Return the experiment’s group.
@@ -201,8 +185,6 @@ Return the experiment’s group.
 **Return type**
 
 `str`
-
-
 
 `property hub`
 
@@ -212,8 +194,6 @@ Return the experiment’s hub.
 
 `str`
 
-
-
 `property owner`
 
 Return the experiment’s owner.
@@ -221,8 +201,6 @@ Return the experiment’s owner.
 **Return type**
 
 `str`
-
-
 
 `property plot_names`
 
@@ -232,8 +210,6 @@ Return names of plots associated with this experiment.
 
 `List`
 
-
-
 `property project`
 
 Return the experiment’s project.
@@ -241,8 +217,6 @@ Return the experiment’s project.
 **Return type**
 
 `str`
-
-
 
 `refresh()`
 
@@ -252,8 +226,6 @@ Update this experiment instance with remote data.
 
 `None`
 
-
-
 `property share_level`
 
 Return the experiment share\_level.
@@ -262,8 +234,6 @@ Return the experiment share\_level.
 
 `Optional`\[`ExperimentShareLevel`]
 
-
-
 `property start_datetime`
 
 Return the timestamp when the experiment started.
@@ -271,8 +241,6 @@ Return the timestamp when the experiment started.
 **Return type**
 
 `datetime`
-
-
 
 `update_from_remote_data(remote_data)`
 
@@ -286,8 +254,6 @@ Update the attributes of this instance using remote data.
 
 `None`
 
-
-
 `property updated_datetime`
 
 Return the timestamp when the experiment was last updated.
@@ -295,8 +261,6 @@ Return the timestamp when the experiment was last updated.
 **Return type**
 
 `Optional`\[`datetime`]
-
-
 
 `property uuid`
 

@@ -1,14 +1,10 @@
 # qiskit.ignis.characterization.AngleCalFitter
 
-
-
 `AngleCalFitter(backend_result, xdata, qubits, fit_p0, fit_bounds)`
 
 Amplitude error fitter
 
 See BaseFitter \_\_init\_\_
-
-
 
 `__init__(backend_result, xdata, qubits, fit_p0, fit_bounds)`
 
@@ -38,8 +34,6 @@ See BaseFitter \_\_init\_\_
 | [`xdata`](#qiskit.ignis.characterization.AngleCalFitter.xdata "qiskit.ignis.characterization.AngleCalFitter.xdata")                               | Return the data points on the x-axis, the independenet parameter which is fit against |
 | [`ydata`](#qiskit.ignis.characterization.AngleCalFitter.ydata "qiskit.ignis.characterization.AngleCalFitter.ydata")                               | Return the data points on the y-axis                                                  |
 
-
-
 `add_data(results, recalc=True, refit=True)`
 
 Add new execution results to previous execution results
@@ -49,8 +43,6 @@ Add new execution results to previous execution results
 *   **results** (`Union`\[`Result`, `List`\[`Result`]]) – new execution results
 *   **recalc** (`bool`) – whether tp recalculate the data
 *   **refit** (`bool`) – whether to refit the data
-
-
 
 `angle_err(qind=- 1)`
 
@@ -68,8 +60,6 @@ a list of errors
 
 list
 
-
-
 `property backend_result`
 
 Return the execution results
@@ -78,8 +68,6 @@ Return the execution results
 
 `Union`\[`Result`, `List`\[`Result`]]
 
-
-
 `property description`
 
 Return the fitter’s purpose, e.g. ‘T1’
@@ -87,8 +75,6 @@ Return the fitter’s purpose, e.g. ‘T1’
 **Return type**
 
 `str`
-
-
 
 `fit_data(qid=- 1, p0=None, bounds=None, series=None)`
 
@@ -103,8 +89,6 @@ Compute self.\_params and self.\_params\_err
 *   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
 *   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
 
-
-
 `property fit_fun`
 
 Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
@@ -112,8 +96,6 @@ Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
 **Return type**
 
 `Callable`
-
-
 
 `property measured_qubits`
 
@@ -123,8 +105,6 @@ Return the indices of the qubits to be characterized
 
 `List`\[`int`]
 
-
-
 `property params`
 
 Return the fit function parameters that were calculated by curve\_fit
@@ -133,8 +113,6 @@ Return the fit function parameters that were calculated by curve\_fit
 
 `List`\[`float`]
 
-
-
 `property params_err`
 
 Return the error of the fit function parameters
@@ -142,8 +120,6 @@ Return the error of the fit function parameters
 **Return type**
 
 `List`\[`float`]
-
-
 
 `plot(qind, series='0', ax=None, show_plot=False)`
 
@@ -168,8 +144,6 @@ Axes
 
 **ImportError** – if matplotlib is not installed
 
-
-
 `property series`
 
 Return the list of series for the data
@@ -178,8 +152,6 @@ Return the list of series for the data
 
 `Optional`\[`List`\[`str`]]
 
-
-
 `property xdata`
 
 Return the data points on the x-axis, the independenet parameter which is fit against
@@ -187,8 +159,6 @@ Return the data points on the x-axis, the independenet parameter which is fit ag
 **Return type**
 
 `Union`\[`List`\[`float`], `array`]
-
-
 
 `property ydata`
 

@@ -1,7 +1,5 @@
 # qiskit.algorithms.AmplitudeEstimation
 
-
-
 `AmplitudeEstimation(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None)`
 
 The Quantum Phase Estimation-based Amplitude Estimation algorithm.
@@ -37,8 +35,6 @@ Iterative Quantum Amplitude Estimation. [arXiv:1912.05559](https://arxiv.org/abs
 
 **ValueError** – If the number of evaluation qubits is smaller than 1.
 
-
-
 `__init__(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None)`
 
 **Parameters**
@@ -69,8 +65,6 @@ Iterative Quantum Amplitude Estimation. [arXiv:1912.05559](https://arxiv.org/abs
 | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
 | [`quantum_instance`](#qiskit.algorithms.AmplitudeEstimation.quantum_instance "qiskit.algorithms.AmplitudeEstimation.quantum_instance") | Get the quantum instance. |
 
-
-
 `static compute_confidence_interval(result, alpha=0.05, kind='likelihood_ratio')`
 
 Compute the (1 - alpha) confidence interval.
@@ -94,8 +88,6 @@ The (1 - alpha) confidence interval of the specified kind.
 *   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If ‘mle’ is not in self.\_ret.keys() (i.e. run was not called yet).
 *   **NotImplementedError** – If the confidence interval method kind is not implemented.
 
-
-
 `static compute_mle(result, apply_post_processing=False)`
 
 Compute the Maximum Likelihood Estimator (MLE).
@@ -113,8 +105,6 @@ Compute the Maximum Likelihood Estimator (MLE).
 
 The MLE for the provided result object.
 
-
-
 `construct_circuit(estimation_problem, measurement=False)`
 
 Construct the Amplitude Estimation quantum circuit.
@@ -131,8 +121,6 @@ Construct the Amplitude Estimation quantum circuit.
 **Returns**
 
 The QuantumCircuit object for the constructed circuit.
-
-
 
 `estimate(estimation_problem)`
 
@@ -154,8 +142,6 @@ An amplitude estimation results object.
 
 **ValueError** – If state\_preparation or objective\_qubits are not set in the estimation\_problem.
 
-
-
 `evaluate_measurements(circuit_results, threshold=1e-06)`
 
 Evaluate the results from the circuit simulation.
@@ -176,8 +162,6 @@ Given the probabilities from statevector simulation of the QAE circuit, compute 
 **Dictionaries containing the a gridpoints with respective probabilities and**
 
 y measurements with respective probabilities, in this order.
-
-
 
 `property quantum_instance`
 

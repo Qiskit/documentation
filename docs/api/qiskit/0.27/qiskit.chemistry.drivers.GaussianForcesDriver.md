@@ -1,7 +1,5 @@
 # qiskit.chemistry.drivers.GaussianForcesDriver
 
-
-
 `GaussianForcesDriver(jcf='\\n#p B3LYP/cc-pVTZ Freq=(Anharm) Int=Ultrafine SCF=VeryTight\\n\\nCO2 geometry optimization B3LYP/cc-pVTZ\\n\\n0 1\\nC -0.848629 2.067624 0.160992\\nO 0.098816 2.655801 -0.159738\\nO -1.796073 1.479446 0.481721\\n\\n', logfile=None, molecule=None, basis='sto-3g', normalize=True)`
 
 Gaussian™ 16 forces driver.
@@ -17,8 +15,6 @@ Gaussian™ 16 forces driver.
 **Raises**
 
 [**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If jcf or molecule given and Gaussian™ 16 executable cannot be located.
-
-
 
 `__init__(jcf='\\n#p B3LYP/cc-pVTZ Freq=(Anharm) Int=Ultrafine SCF=VeryTight\\n\\nCO2 geometry optimization B3LYP/cc-pVTZ\\n\\n0 1\\nC -0.848629 2.067624 0.160992\\nO 0.098816 2.655801 -0.159738\\nO -1.796073 1.479446 0.481721\\n\\n', logfile=None, molecule=None, basis='sto-3g', normalize=True)`
 
@@ -50,8 +46,6 @@ Gaussian™ 16 forces driver.
 | [`molecule`](#qiskit.chemistry.drivers.GaussianForcesDriver.molecule "qiskit.chemistry.drivers.GaussianForcesDriver.molecule")                            | return molecule                                 |
 | [`supports_molecule`](#qiskit.chemistry.drivers.GaussianForcesDriver.supports_molecule "qiskit.chemistry.drivers.GaussianForcesDriver.supports_molecule") | True for derived classes that support Molecule. |
 
-
-
 `property basis`
 
 return basis
@@ -59,8 +53,6 @@ return basis
 **Return type**
 
 `str`
-
-
 
 `property hf_method`
 
@@ -70,8 +62,6 @@ return Hartree-Fock method
 
 `str`
 
-
-
 `property molecule`
 
 return molecule
@@ -79,8 +69,6 @@ return molecule
 **Return type**
 
 `Optional`\[`Molecule`]
-
-
 
 `run()`
 
@@ -93,8 +81,6 @@ Runs driver to produce a WatsonHamiltonian output.
 **Returns**
 
 A WatsonHamiltonian comprising the bosonic data.
-
-
 
 `property supports_molecule`
 

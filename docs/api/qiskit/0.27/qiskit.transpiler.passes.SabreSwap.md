@@ -1,7 +1,5 @@
 # qiskit.transpiler.passes.SabreSwap
 
-
-
 `SabreSwap(*args, **kwargs)`
 
 Map input circuit onto a backend topology via insertion of SWAPs.
@@ -57,8 +55,6 @@ Additional Information:
 >     + W *\frac{1}{\left|{E}\right|} \sum_{gate \in E} D[\pi(gate.q_1)][\pi(gate.q2)]
 >     }\end{split}
 > $$
-
-
 
 `__init__(coupling_map, heuristic='basic', seed=None)`
 
@@ -117,15 +113,11 @@ Additional Information:
 | [`is_analysis_pass`](#qiskit.transpiler.passes.SabreSwap.is_analysis_pass "qiskit.transpiler.passes.SabreSwap.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.SabreSwap.is_transformation_pass "qiskit.transpiler.passes.SabreSwap.is_transformation_pass") | Check if the pass is a transformation pass. |
 
-
-
 `property is_analysis_pass`
 
 Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
-
-
 
 `property is_transformation_pass`
 
@@ -133,13 +125,9 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
-
-
 `name()`
 
 Return the name of the pass.
-
-
 
 `run(dag)`
 

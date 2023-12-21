@@ -1,7 +1,5 @@
 # qiskit.aqua.components.neural\_networks.QuantumGenerator
 
-
-
 `QuantumGenerator(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, gradient_function=None, snapshot_dir=None)`
 
 Quantum Generator.
@@ -21,8 +19,6 @@ The quantum generator is a parametrized quantum circuit which can be trained wit
 **Raises**
 
 [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Set multivariate variational distribution to represent multivariate data
-
-
 
 `__init__(bounds, num_qubits, generator_circuit=None, init_params=None, optimizer=None, gradient_function=None, snapshot_dir=None)`
 
@@ -61,8 +57,6 @@ The quantum generator is a parametrized quantum circuit which can be trained wit
 | [`parameter_values`](#qiskit.aqua.components.neural_networks.QuantumGenerator.parameter_values "qiskit.aqua.components.neural_networks.QuantumGenerator.parameter_values") | Get parameter values from the quantum generator |
 | [`seed`](#qiskit.aqua.components.neural_networks.QuantumGenerator.seed "qiskit.aqua.components.neural_networks.QuantumGenerator.seed")                                     | Get seed.                                       |
 
-
-
 `construct_circuit(params=None)`
 
 Construct generator circuit.
@@ -79,8 +73,6 @@ construct the quantum circuit and return as gate
 
 [Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-
-
 `property discriminator`
 
 Get discriminator.
@@ -88,8 +80,6 @@ Get discriminator.
 **Return type**
 
 `DiscriminativeNetwork`
-
-
 
 `get_output(quantum_instance, params=None, shots=None)`
 
@@ -109,8 +99,6 @@ generated samples, array: sample occurrence in percentage
 
 list
 
-
-
 `loss(x, weights)`
 
 Loss function for training the generator’s parameters.
@@ -128,8 +116,6 @@ loss function
 
 float
 
-
-
 `property optimizer`
 
 Get optimizer.
@@ -137,8 +123,6 @@ Get optimizer.
 **Return type**
 
 `Optimizer`
-
-
 
 `property parameter_values`
 
@@ -152,8 +136,6 @@ Get parameter values from the quantum generator
 
 Current parameter values
 
-
-
 `property seed`
 
 Get seed.
@@ -161,8 +143,6 @@ Get seed.
 **Return type**
 
 `int`
-
-
 
 `set_discriminator(discriminator)`
 
@@ -176,8 +156,6 @@ Set discriminator network.
 
 `None`
 
-
-
 `set_seed(seed)`
 
 Set seed.
@@ -189,8 +167,6 @@ Set seed.
 **Return type**
 
 `None`
-
-
 
 `train(quantum_instance=None, shots=None)`
 

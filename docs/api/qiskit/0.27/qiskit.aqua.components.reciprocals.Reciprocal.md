@@ -1,14 +1,10 @@
 # qiskit.aqua.components.reciprocals.Reciprocal
 
-
-
 `Reciprocal`
 
 Base class for reciprocal calculation.
 
 This method should initialize the module and use an exception if a component of the module is not available.
-
-
 
 `abstract __init__()`
 
@@ -21,8 +17,6 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.aqua.components.reciprocals.Reciprocal.__init__ "qiskit.aqua.components.reciprocals.Reciprocal.__init__")()                                                      | Initialize self.                      |
 | [`construct_circuit`](#qiskit.aqua.components.reciprocals.Reciprocal.construct_circuit "qiskit.aqua.components.reciprocals.Reciprocal.construct_circuit")(mode\[, register, circuit]) | Construct the initial state circuit.  |
 | [`sv_to_resvec`](#qiskit.aqua.components.reciprocals.Reciprocal.sv_to_resvec "qiskit.aqua.components.reciprocals.Reciprocal.sv_to_resvec")(statevector, num\_q)                       | Convert statevector to result vector. |
-
-
 
 `abstract construct_circuit(mode, register=None, circuit=None)`
 
@@ -37,8 +31,6 @@ Construct the initial state circuit.
 **Returns**
 
 The reciprocal circuit.
-
-
 
 `abstract sv_to_resvec(statevector, num_q)`
 
