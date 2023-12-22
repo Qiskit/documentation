@@ -126,7 +126,8 @@ const readArgs = (): Arguments => {
       alias: "a",
       type: "string",
       demandOption: true,
-      description: "The URL for the CI artifict to download. Must be from GitHub Actions.",
+      description:
+        "The URL for the CI artifict to download. Must be from GitHub Actions.",
     })
     .parseSync();
 };
