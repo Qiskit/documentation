@@ -319,7 +319,8 @@ async function convertHtmlToMarkdown(
   for (const result of results) {
     let path = urlToPath(result.url);
 
-    // Historical versions use the same release notes files as the current API
+    // Historical versions with a single release notes file should not
+    // modify the current API's file.
     if (
       !pkg.hasSeparateReleaseNotes &&
       pkg.historical &&
