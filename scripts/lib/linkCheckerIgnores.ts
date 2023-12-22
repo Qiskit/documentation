@@ -10,13 +10,16 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-// The links in the files are not searched to see if they are valid.
-// The files need a list of links to be ignored.
+// A mapping of files to lists of links that will not be searched.
 //
 // If all links in the file should be ignored, then modify GLOBS_TO_CHECK in checkLinks.ts, such
 // as adding '!docs/my_file.md` to the list. If other files link to the file,
 // then you may need to add it to GLOBS_TO_LOAD in checkLinks.ts.
-const FILES_TO_IGNORES: { [id: string]: string[] } = {
+type FilesToIgnores = { [id: string]: string[] };
+
+// These are legit problems that we had to punt on, usually because fixing the
+// problem requires fixing the original source documentation for API docs.
+const SHOULD_BE_FIXED: FilesToIgnores = {
   "docs/api/qiskit-ibm-provider/ibm-provider.md": ["ibm_provider"],
   "docs/api/qiskit-ibm-runtime/ibm-runtime.md": ["runtime_service"],
   "docs/api/qiskit/pulse.md": [
@@ -75,6 +78,11 @@ const FILES_TO_IGNORES: { [id: string]: string[] } = {
   "docs/api/qiskit/qiskit.algorithms.Grover.md": [
     "https://qiskit.org/textbook/ch-algorithms/grover.html",
   ],
+};
+
+// Issues that are okay, such as because the link checker times out
+// when trying to access the links.
+const EXPECTED: FilesToIgnores = {
   "docs/api/qiskit/qiskit.algorithms.optimizers.ISRES.md": [
     "https://notendur.hi.is/tpr/software/sres/Tec311r.pdf",
   ],
@@ -83,4 +91,4 @@ const FILES_TO_IGNORES: { [id: string]: string[] } = {
   ],
 };
 
-export default FILES_TO_IGNORES;
+export default { ...SHOULD_BE_FIXED, ...EXPECTED };
