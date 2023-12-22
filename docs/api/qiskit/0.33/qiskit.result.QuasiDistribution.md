@@ -1,7 +1,5 @@
 # QuasiDistribution
 
-
-
 `QuasiDistribution(data, shots=None, stddev_upper_bound=None)`
 
 Bases: `dict`
@@ -49,8 +47,6 @@ Builds a quasiprobability distribution object.
 | [`values`](qiskit.result.QuasiDistribution.values#qiskit.result.QuasiDistribution.values "qiskit.result.QuasiDistribution.values")                                                                                                         |                                                                                                                                                                                                                               |
 
 ## Attributes
-
-
 
 ### stddev\_upper\_bound
 

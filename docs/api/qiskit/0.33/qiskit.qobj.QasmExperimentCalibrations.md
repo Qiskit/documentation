@@ -1,7 +1,5 @@
 # QasmExperimentCalibrations
 
-
-
 `QasmExperimentCalibrations(gates)`
 
 Bases: `object`

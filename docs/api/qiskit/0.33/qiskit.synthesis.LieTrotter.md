@@ -1,7 +1,5 @@
 # LieTrotter
 
-
-
 `LieTrotter(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`
 
 Bases: `qiskit.synthesis.evolution.product_formula.ProductFormula`
@@ -38,8 +36,6 @@ $$
 | [`synthesize`](qiskit.synthesis.LieTrotter.synthesize#qiskit.synthesis.LieTrotter.synthesize "qiskit.synthesis.LieTrotter.synthesize") | Synthesize an `qiskit.circuit.library.PauliEvolutionGate`. |
 
 ## Attributes
-
-
 
 ### settings
 

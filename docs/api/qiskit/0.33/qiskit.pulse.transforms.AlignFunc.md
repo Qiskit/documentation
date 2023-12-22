@@ -1,7 +1,5 @@
 # AlignFunc
 
-
-
 `AlignFunc(duration, func)`
 
 Bases: `qiskit.pulse.transforms.alignments.AlignmentKind`
@@ -35,13 +33,9 @@ Create new equispaced context.
 
 ## Attributes
 
-
-
 ### duration
 
 Return context duration.
-
-
 
 ### is\_sequential
 

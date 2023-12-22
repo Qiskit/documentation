@@ -1,7 +1,5 @@
 # NumPyMinimumEigensolver
 
-
-
 `NumPyMinimumEigensolver(filter_criterion=None)`
 
 Bases: `qiskit.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver`
@@ -20,8 +18,6 @@ The Numpy Minimum Eigensolver algorithm.
 | [`supports_aux_operators`](qiskit.algorithms.NumPyMinimumEigensolver.supports_aux_operators#qiskit.algorithms.NumPyMinimumEigensolver.supports_aux_operators "qiskit.algorithms.NumPyMinimumEigensolver.supports_aux_operators")                 | Whether computing the expectation value of auxiliary operators is supported. |
 
 ## Attributes
-
-
 
 ### filter\_criterion
 

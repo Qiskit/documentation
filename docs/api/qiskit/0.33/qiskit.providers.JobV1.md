@@ -1,7 +1,5 @@
 # JobV1
 
-
-
 `JobV1(backend, job_id, **kwargs)`
 
 Bases: `qiskit.providers.job.Job`, `abc.ABC`
@@ -35,8 +33,6 @@ Initializes the asynchronous job.
 | [`wait_for_final_state`](qiskit.providers.JobV1.wait_for_final_state#qiskit.providers.JobV1.wait_for_final_state "qiskit.providers.JobV1.wait_for_final_state") | Poll the job status until it progresses to a final state such as `DONE` or `ERROR`. |
 
 ## Attributes
-
-
 
 ### version
 

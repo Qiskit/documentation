@@ -1,7 +1,5 @@
 # CompleteMeasFitter
 
-
-
 `CompleteMeasFitter(results, state_labels, qubit_list=None, circlabel='')`
 
 Bases: `object`
@@ -33,25 +31,17 @@ A wrapper for the tensored fitter
 
 ## Attributes
 
-
-
 ### cal\_matrix
 
 Return cal\_matrix.
-
-
 
 ### filter
 
 Return a measurement filter using the cal matrix.
 
-
-
 ### qubit\_list
 
 Return list of qubits.
-
-
 
 ### state\_labels
 

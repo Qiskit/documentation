@@ -1,7 +1,5 @@
 # Acquire
 
-
-
 `Acquire(duration, channel, mem_slot=None, reg_slot=None, kernel=None, discriminator=None, name=None)`
 
 Bases: `qiskit.pulse.instructions.instruction.Instruction`
@@ -45,8 +43,6 @@ Create a new Acquire instruction.
 
 ## Attributes
 
-
-
 ### acquire
 
 Acquire channel to acquire data. The `AcquireChannel` index maps trivially to qubit index.
@@ -54,8 +50,6 @@ Acquire channel to acquire data. The `AcquireChannel` index maps trivially to qu
 **Return type**
 
 [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel#qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
-
-
 
 ### channel
 
@@ -65,8 +59,6 @@ Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channel
 
 [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel#qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
 
-
-
 ### channels
 
 Returns the channels that this schedule uses.
@@ -74,8 +66,6 @@ Returns the channels that this schedule uses.
 **Return type**
 
 `Tuple`\[`Union`\[[`AcquireChannel`](qiskit.pulse.channels.AcquireChannel#qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel"), [`MemorySlot`](qiskit.pulse.channels.MemorySlot#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")]]
-
-
 
 ### discriminator
 
@@ -85,8 +75,6 @@ Return discrimination settings.
 
 `Discriminator`
 
-
-
 ### duration
 
 Duration of this instruction.
@@ -94,8 +82,6 @@ Duration of this instruction.
 **Return type**
 
 `Union`\[`int`, `ParameterExpression`]
-
-
 
 ### id
 
@@ -105,8 +91,6 @@ Unique identifier for this instruction.
 
 `int`
 
-
-
 ### instructions
 
 Iterable for getting instructions from Schedule tree.
@@ -114,8 +98,6 @@ Iterable for getting instructions from Schedule tree.
 **Return type**
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
-
-
 
 ### kernel
 
@@ -125,8 +107,6 @@ Return kernel settings.
 
 `Kernel`
 
-
-
 ### mem\_slot
 
 The classical memory slot which will store the classified readout result.
@@ -134,8 +114,6 @@ The classical memory slot which will store the classified readout result.
 **Return type**
 
 [`MemorySlot`](qiskit.pulse.channels.MemorySlot#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")
-
-
 
 ### name
 
@@ -145,8 +123,6 @@ Name of this instruction.
 
 `str`
 
-
-
 ### operands
 
 Return instruction operands.
@@ -154,8 +130,6 @@ Return instruction operands.
 **Return type**
 
 `Tuple`
-
-
 
 ### parameters
 
@@ -165,8 +139,6 @@ Parameters which determine the instruction behavior.
 
 `Set`
 
-
-
 ### reg\_slot
 
 The fast-access register slot which will store the classified readout result for fast-feedback computation.
@@ -175,8 +147,6 @@ The fast-access register slot which will store the classified readout result for
 
 [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")
 
-
-
 ### start\_time
 
 Relative begin time of this instruction.
@@ -184,8 +154,6 @@ Relative begin time of this instruction.
 **Return type**
 
 `int`
-
-
 
 ### stop\_time
 

@@ -1,7 +1,5 @@
 # qiskit.opflow\.OpflowError
 
-
-
 `OpflowError(*message)`
 
 For Opflow specific errors.

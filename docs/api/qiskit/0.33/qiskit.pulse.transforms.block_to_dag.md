@@ -1,7 +1,5 @@
 # qiskit.pulse.transforms.block\_to\_dag
 
-
-
 `block_to_dag(block)`
 
 Convert schedule block instruction into DAG.

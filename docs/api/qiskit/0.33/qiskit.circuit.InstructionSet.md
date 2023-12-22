@@ -1,7 +1,5 @@
 # InstructionSet
 
-
-
 `InstructionSet(circuit_cregs=None, *, resource_requester=None)`
 
 Bases: `object`
@@ -44,14 +42,8 @@ The context (qargs and cargs that each instruction is attached to) is also store
 
 ## Attributes
 
-
-
 ### cargs
 
-
-
 ### instructions
-
-
 
 ### qargs

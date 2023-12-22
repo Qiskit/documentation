@@ -1,7 +1,5 @@
 # ManagedResults
 
-
-
 `ManagedResults(job_set, backend_name, success)`
 
 Bases: `object`
@@ -18,13 +16,9 @@ ManagedResults constructor.
 *   **backend\_name** (`str`) – Name of the backend used to run the experiments.
 *   **success** (`bool`) – `True` if all experiments were successful and results available. `False` otherwise.
 
-
-
 ### backend\_name
 
 Name of the backend used to run the experiments.
-
-
 
 ### success
 

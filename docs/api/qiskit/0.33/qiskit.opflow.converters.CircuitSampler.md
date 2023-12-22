@@ -1,7 +1,5 @@
 # CircuitSampler
 
-
-
 `CircuitSampler(backend, statevector=None, param_qobj=False, attach_results=False, caching='last')`
 
 Bases: `qiskit.opflow.converters.converter_base.ConverterBase`
@@ -31,8 +29,6 @@ The CircuitSampler aggressively caches transpiled circuits to handle re-paramete
 | [`sample_circuits`](qiskit.opflow.converters.CircuitSampler.sample_circuits#qiskit.opflow.converters.CircuitSampler.sample_circuits "qiskit.opflow.converters.CircuitSampler.sample_circuits") | Samples the CircuitStateFns and returns a dict associating their `id()` values to their replacement DictStateFn or VectorStateFn. |
 
 ## Attributes
-
-
 
 ### quantum\_instance
 

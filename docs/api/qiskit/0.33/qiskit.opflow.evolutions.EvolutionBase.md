@@ -1,7 +1,5 @@
 # EvolutionBase
 
-
-
 `EvolutionBase`
 
 Bases: `qiskit.opflow.converters.converter_base.ConverterBase`, `abc.ABC`

@@ -1,7 +1,5 @@
 # qiskit.quantum\_info.random\_cnotdihedral
 
-
-
 `random_cnotdihedral(num_qubits, seed=None)`
 
 Return a random CNOTDihedral element.

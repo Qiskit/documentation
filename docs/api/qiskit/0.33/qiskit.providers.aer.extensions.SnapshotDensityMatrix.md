@@ -1,7 +1,5 @@
 # SnapshotDensityMatrix
 
-
-
 `SnapshotDensityMatrix(label, num_qubits)`
 
 Bases: `qiskit.providers.aer.extensions.snapshot.Snapshot`
@@ -44,8 +42,6 @@ Create a density matrix state snapshot instruction.
 
 ## Attributes
 
-
-
 ### condition\_bits
 
 Get Clbits in condition.
@@ -54,43 +50,29 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-
-
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
-
 ### duration
 
 Get the duration.
-
-
 
 ### label
 
 Return snapshot label
 
-
-
 ### params
 
 return instruction params.
 
-
-
 ### snapshot\_type
 
 Return snapshot type
-
-
 
 ### unit
 

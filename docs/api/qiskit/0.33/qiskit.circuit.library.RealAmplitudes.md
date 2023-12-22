@@ -1,7 +1,5 @@
 # RealAmplitudes
 
-
-
 `RealAmplitudes(num_qubits=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes')`
 
 Bases: `qiskit.circuit.library.n_local.two_local.TwoLocal`
@@ -99,8 +97,6 @@ Create a new RealAmplitudes 2-local circuit.
 
 ## Attributes
 
-
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -108,8 +104,6 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
-
-
 
 ### calibrations
 
@@ -123,8 +117,6 @@ Return calibration dictionary.
 
 `dict`
 
-
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -133,11 +125,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-
-
 ### data
-
-
 
 ### entanglement
 
@@ -151,8 +139,6 @@ Get the entanglement strategy.
 
 The entanglement strategy, see `get_entangler_map()` for more detail on how the format is interpreted.
 
-
-
 ### entanglement\_blocks
 
 The blocks in the entanglement layers.
@@ -165,13 +151,9 @@ The blocks in the entanglement layers.
 
 The blocks in the entanglement layers.
 
-
-
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-
 
 ### global\_phase
 
@@ -181,13 +163,9 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-
-
 ### header
 
 `= 'OPENQASM 2.0;'`
-
-
 
 ### initial\_state
 
@@ -201,8 +179,6 @@ Return the initial state that is added in front of the n-local circuit.
 
 The initial state.
 
-
-
 ### insert\_barriers
 
 If barriers are inserted in between the layers or not.
@@ -215,13 +191,9 @@ If barriers are inserted in between the layers or not.
 
 True, if barriers are inserted in between the layers, False if not.
 
-
-
 ### instances
 
 `= 9`
-
-
 
 ### metadata
 
@@ -233,8 +205,6 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -243,8 +213,6 @@ Return the number of ancilla qubits.
 
 `int`
 
-
-
 ### num\_clbits
 
 Return number of classical bits.
@@ -252,8 +220,6 @@ Return number of classical bits.
 **Return type**
 
 `int`
-
-
 
 ### num\_layers
 
@@ -267,15 +233,11 @@ Return the number of layers in the n-local circuit.
 
 The number of layers in the circuit.
 
-
-
 ### num\_parameters
 
 **Return type**
 
 `int`
-
-
 
 ### num\_parameters\_settable
 
@@ -295,8 +257,6 @@ The number of parameters originally available in the circuit.
   This quantity does not require the circuit to be built yet.
 </Admonition>
 
-
-
 ### num\_qubits
 
 Returns the number of qubits in this circuit.
@@ -308,8 +268,6 @@ Returns the number of qubits in this circuit.
 **Returns**
 
 The number of qubits.
-
-
 
 ### ordered\_parameters
 
@@ -339,8 +297,6 @@ q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
 
 The parameters objects used in the circuit.
 
-
-
 ### parameter\_bounds
 
 Return the parameter bounds.
@@ -353,15 +309,11 @@ Return the parameter bounds.
 
 The parameter bounds.
 
-
-
 ### parameters
 
 **Return type**
 
 `ParameterView`
-
-
 
 ### preferred\_init\_points
 
@@ -375,19 +327,13 @@ The initial points for the parameters. Can be stored as initial guess in optimiz
 
 The initial values for the parameters, or None, if none have been set.
 
-
-
 ### prefix
 
 `= 'circuit'`
 
-
-
 ### qregs
 
 A list of the quantum registers associated with the circuit.
-
-
 
 ### qubits
 
@@ -396,8 +342,6 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
-
-
 
 ### reps
 
@@ -410,8 +354,6 @@ The number of times rotation and entanglement block are repeated.
 **Returns**
 
 The number of repetitions.
-
-
 
 ### rotation\_blocks
 

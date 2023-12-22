@@ -1,7 +1,5 @@
 # qiskit.pulse.builder.measure\_channel
 
-
-
 `measure_channel(qubit)`
 
 Return `MeasureChannel` for `qubit` on the active builder backend.

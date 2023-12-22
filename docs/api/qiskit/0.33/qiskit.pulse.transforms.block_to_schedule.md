@@ -1,7 +1,5 @@
 # qiskit.pulse.transforms.block\_to\_schedule
 
-
-
 `block_to_schedule(block)`
 
 Convert `ScheduleBlock` to `Schedule`.

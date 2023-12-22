@@ -1,7 +1,5 @@
 # GroverResult
 
-
-
 `GroverResult`
 
 Bases: `qiskit.algorithms.amplitude_amplifiers.amplitude_amplifier.AmplitudeAmplifierResult`
@@ -16,8 +14,6 @@ Grover Result.
 
 ## Attributes
 
-
-
 ### assignment
 
 The post-processed value of the most likely bitstring.
@@ -30,8 +26,6 @@ The post-processed value of the most likely bitstring.
 
 The output of the `post_processing` function of the respective `AmplificationProblem`, where the input is the `top_measurement`. The type is the same as the return type of the post-processing function.
 
-
-
 ### circuit\_results
 
 Return the circuit results. Can be a statevector or counts dictionary.
@@ -39,8 +33,6 @@ Return the circuit results. Can be a statevector or counts dictionary.
 **Return type**
 
 `Union`\[`List`\[`ndarray`], `List`\[`Dict`\[`str`, `int`]], `None`]
-
-
 
 ### iterations
 
@@ -54,8 +46,6 @@ All the powers of the Grover operator that have been tried.
 
 The powers of the Grover operator tested.
 
-
-
 ### max\_probability
 
 Return the maximum sampling probability.
@@ -63,8 +53,6 @@ Return the maximum sampling probability.
 **Return type**
 
 `float`
-
-
 
 ### oracle\_evaluation
 
@@ -77,8 +65,6 @@ Whether the classical oracle evaluation of the top measurement was True or False
 **Returns**
 
 The classical oracle evaluation of the top measurement.
-
-
 
 ### top\_measurement
 

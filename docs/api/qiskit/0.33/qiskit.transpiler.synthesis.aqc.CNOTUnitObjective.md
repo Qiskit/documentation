@@ -1,7 +1,5 @@
 # CNOTUnitObjective
 
-
-
 `CNOTUnitObjective(num_qubits, cnots)`
 
 Bases: `qiskit.transpiler.synthesis.aqc.approximate.ApproximatingObjective`, `abc.ABC`
@@ -15,19 +13,13 @@ A base class for a problem definition based on CNOT unit. This class may have di
 
 ## Attributes
 
-
-
 ### num\_cnots
 
 Returns: A number of CNOT units to be used by the approximate circuit.
 
-
-
 ### num\_thetas
 
 Returns: Number of parameters (angles) of rotation gates in this circuit.
-
-
 
 ### target\_matrix
 

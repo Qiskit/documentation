@@ -1,7 +1,5 @@
 # Options
 
-
-
 `Options(**kwargs)`
 
 Bases: `object`
@@ -19,7 +17,5 @@ This class is the abstract class that all backend options are based on. The prop
 | [`update_options`](qiskit.providers.Options.update_options#qiskit.providers.Options.update_options "qiskit.providers.Options.update_options") | Update options with kwargs                           |
 
 ## Attributes
-
-
 
 ### validator

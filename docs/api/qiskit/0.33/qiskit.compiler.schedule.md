@@ -1,7 +1,5 @@
 # qiskit.compiler.schedule
 
-
-
 `schedule(circuits, backend=None, inst_map=None, meas_map=None, dt=None, method=None)`
 
 Schedule a circuit to a pulse `Schedule`, using the backend, according to any specified methods. Supported methods are documented in [`qiskit.scheduler.schedule_circuit`](qiskit.scheduler.schedule_circuit#module-qiskit.scheduler.schedule_circuit "qiskit.scheduler.schedule_circuit").

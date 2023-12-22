@@ -1,7 +1,5 @@
 # qiskit.ignis.verification.calculate\_2q\_epg
 
-
-
 `calculate_2q_epg(gate_per_cliff, epc_2q, qubit_pair, list_epgs_1q=None, two_qubit_name='cx')`
 
 Convert error per Clifford (EPC) into error per gate (EPG) of two qubit `cx` gates.

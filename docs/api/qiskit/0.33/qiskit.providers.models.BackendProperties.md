@@ -1,7 +1,5 @@
 # BackendProperties
 
-
-
 `BackendProperties(backend_name, backend_version, last_update_date, qubits, gates, general, **kwargs)`
 
 Bases: `object`

@@ -1,7 +1,5 @@
 # ManagedJob
 
-
-
 `ManagedJob(start_index, experiments_count, job=None)`
 
 Bases: `object`

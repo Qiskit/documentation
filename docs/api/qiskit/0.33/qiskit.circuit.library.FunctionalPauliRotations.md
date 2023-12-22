@@ -1,7 +1,5 @@
 # FunctionalPauliRotations
 
-
-
 `FunctionalPauliRotations(num_state_qubits=None, basis='Y', name='F')`
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`, `abc.ABC`
@@ -18,8 +16,6 @@ Create a new functional Pauli rotation circuit.
 
 ## Attributes
 
-
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -27,8 +23,6 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
-
-
 
 ### basis
 
@@ -44,8 +38,6 @@ Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotatio
 
 The kind of Pauli rotation used in controlled rotation.
 
-
-
 ### calibrations
 
 Return calibration dictionary.
@@ -58,8 +50,6 @@ Return calibration dictionary.
 
 `dict`
 
-
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -68,17 +58,11 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-
-
 ### data
-
-
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-
 
 ### global\_phase
 
@@ -88,19 +72,13 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-
-
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
-
 ### instances
 
 `= 9`
-
-
 
 ### metadata
 
@@ -111,8 +89,6 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 **Return type**
 
 `dict`
-
-
 
 ### num\_ancilla\_qubits
 
@@ -126,8 +102,6 @@ The minimum number of ancilla qubits in the circuit.
 
 The minimal number of ancillas required.
 
-
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -135,8 +109,6 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
-
-
 
 ### num\_clbits
 
@@ -146,15 +118,11 @@ Return number of classical bits.
 
 `int`
 
-
-
 ### num\_parameters
 
 **Return type**
 
 `int`
-
-
 
 ### num\_qubits
 
@@ -163,8 +131,6 @@ Return number of qubits.
 **Return type**
 
 `int`
-
-
 
 ### num\_state\_qubits
 
@@ -178,27 +144,19 @@ The number of state qubits representing the state $|x\rangle$.
 
 The number of state qubits.
 
-
-
 ### parameters
 
 **Return type**
 
 `ParameterView`
 
-
-
 ### prefix
 
 `= 'circuit'`
 
-
-
 ### qregs
 
 A list of the quantum registers associated with the circuit.
-
-
 
 ### qubits
 

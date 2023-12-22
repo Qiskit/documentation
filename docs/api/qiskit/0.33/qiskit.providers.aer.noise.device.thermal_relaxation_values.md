@@ -1,7 +1,5 @@
 # qiskit.providers.aer.noise.device.thermal\_relaxation\_values
 
-
-
 `thermal_relaxation_values(properties)`
 
 Return T1, T2 and frequency values from a devices BackendProperties.

@@ -1,7 +1,5 @@
 # TensoredMeasFitter
 
-
-
 `TensoredMeasFitter(results, mit_pattern, substate_labels_list=None, circlabel='')`
 
 Bases: `object`
@@ -34,25 +32,17 @@ Initialize a measurement calibration matrix from the results of running the circ
 
 ## Attributes
 
-
-
 ### cal\_matrices
 
 Return cal\_matrices.
-
-
 
 ### filter
 
 Return a measurement filter using the cal matrices.
 
-
-
 ### nqubits
 
 Return \_qubit\_list\_sizes.
-
-
 
 ### substate\_labels\_list
 

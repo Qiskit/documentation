@@ -1,7 +1,5 @@
 # Call
 
-
-
 `Call(subroutine, value_dict=None, name=None)`
 
 Bases: `qiskit.pulse.instructions.instruction.Instruction`
@@ -42,8 +40,6 @@ Define new subroutine.
 
 ## Attributes
 
-
-
 ### arguments
 
 Parameters dictionary to be assigned to subroutine.
@@ -51,8 +47,6 @@ Parameters dictionary to be assigned to subroutine.
 **Return type**
 
 `Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]
-
-
 
 ### channels
 
@@ -62,8 +56,6 @@ Returns the channels that this schedule uses.
 
 `Tuple`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
 
-
-
 ### duration
 
 Duration of this instruction.
@@ -71,8 +63,6 @@ Duration of this instruction.
 **Return type**
 
 `Union`\[`int`, `ParameterExpression`]
-
-
 
 ### id
 
@@ -82,8 +72,6 @@ Unique identifier for this instruction.
 
 `int`
 
-
-
 ### instructions
 
 Iterable for getting instructions from Schedule tree.
@@ -91,8 +79,6 @@ Iterable for getting instructions from Schedule tree.
 **Return type**
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
-
-
 
 ### name
 
@@ -102,8 +88,6 @@ Name of this instruction.
 
 `str`
 
-
-
 ### operands
 
 Return instruction operands.
@@ -111,8 +95,6 @@ Return instruction operands.
 **Return type**
 
 `Tuple`
-
-
 
 ### parameters
 
@@ -122,13 +104,9 @@ Unassigned parameters which determine the instruction behavior.
 
 `Set`
 
-
-
 ### prefix
 
 `= 'call'`
-
-
 
 ### start\_time
 
@@ -138,8 +116,6 @@ Relative begin time of this instruction.
 
 `int`
 
-
-
 ### stop\_time
 
 Relative end time of this instruction.
@@ -147,8 +123,6 @@ Relative end time of this instruction.
 **Return type**
 
 `int`
-
-
 
 ### subroutine
 

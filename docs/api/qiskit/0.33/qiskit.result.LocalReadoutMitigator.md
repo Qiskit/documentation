@@ -1,7 +1,5 @@
 # LocalReadoutMitigator
 
-
-
 `LocalReadoutMitigator(amats=None, qubits=None, backend=None)`
 
 Bases: `qiskit.result.mitigation.base_readout_mitigator.BaseReadoutMitigator`
@@ -33,8 +31,6 @@ Initialize a LocalReadoutMitigator
 | [`stddev_upper_bound`](qiskit.result.LocalReadoutMitigator.stddev_upper_bound#qiskit.result.LocalReadoutMitigator.stddev_upper_bound "qiskit.result.LocalReadoutMitigator.stddev_upper_bound")     | Return an upper bound on standard deviation of expval estimator.   |
 
 ## Attributes
-
-
 
 ### qubits
 

@@ -1,7 +1,5 @@
 # ProductFormula
 
-
-
 `ProductFormula(order, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`
 
 Bases: `qiskit.synthesis.evolution.evolution_synthesis.EvolutionSynthesis`
@@ -25,8 +23,6 @@ Product formula base class for the decomposition of non-commuting operator expon
 | [`synthesize`](qiskit.synthesis.ProductFormula.synthesize#qiskit.synthesis.ProductFormula.synthesize "qiskit.synthesis.ProductFormula.synthesize") | Synthesize an `qiskit.circuit.library.PauliEvolutionGate`. |
 
 ## Attributes
-
-
 
 ### settings
 

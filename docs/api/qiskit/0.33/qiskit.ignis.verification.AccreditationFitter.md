@@ -1,7 +1,5 @@
 # AccreditationFitter
 
-
-
 `AccreditationFitter`
 
 Bases: `object`

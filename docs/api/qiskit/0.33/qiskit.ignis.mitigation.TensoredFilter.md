@@ -1,7 +1,5 @@
 # TensoredFilter
 
-
-
 `TensoredFilter(cal_matrices, substate_labels_list, mit_pattern)`
 
 Bases: `object`
@@ -28,25 +26,17 @@ Initialize a tensored measurement error mitigation filter using the cal\_matrice
 
 ## Attributes
 
-
-
 ### cal\_matrices
 
 Return cal\_matrices.
-
-
 
 ### nqubits
 
 Return the number of qubits. See also MeasurementFilter.apply()
 
-
-
 ### qubit\_list\_sizes
 
 Return \_qubit\_list\_sizes.
-
-
 
 ### substate\_labels\_list
 

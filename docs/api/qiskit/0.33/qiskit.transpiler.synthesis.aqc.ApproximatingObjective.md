@@ -1,7 +1,5 @@
 # ApproximatingObjective
 
-
-
 `ApproximatingObjective`
 
 Bases: `abc.ABC`
@@ -17,8 +15,6 @@ A base class for an optimization problem definition. An implementing class must 
 
 ## Attributes
 
-
-
 ### num\_thetas
 
 Returns: the number of parameters in this optimization problem.
@@ -26,8 +22,6 @@ Returns: the number of parameters in this optimization problem.
 **Return type**
 
 `int`
-
-
 
 ### target\_matrix
 

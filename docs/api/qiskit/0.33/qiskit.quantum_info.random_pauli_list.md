@@ -1,7 +1,5 @@
 # qiskit.quantum\_info.random\_pauli\_list
 
-
-
 `random_pauli_list(num_qubits, size=1, seed=None, phase=True)`
 
 Return a random PauliList.

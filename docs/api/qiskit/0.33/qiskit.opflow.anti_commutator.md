@@ -1,7 +1,5 @@
 # qiskit.opflow\.anti\_commutator
 
-
-
 `anti_commutator(op_a, op_b)`
 
 Compute anti-commutator of op\_a and op\_b.

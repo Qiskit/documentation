@@ -1,7 +1,5 @@
 # PiecewiseLinearPauliRotations
 
-
-
 `PiecewiseLinearPauliRotations(num_state_qubits=None, breakpoints=None, slopes=None, offsets=None, basis='Y', name='pw_lin')`
 
 Bases: `qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations`
@@ -38,8 +36,6 @@ Construct piecewise-linearly-controlled Pauli rotations.
 
 ## Attributes
 
-
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -47,8 +43,6 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
-
-
 
 ### basis
 
@@ -64,8 +58,6 @@ Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotatio
 
 The kind of Pauli rotation used in controlled rotation.
 
-
-
 ### breakpoints
 
 The breakpoints of the piecewise linear function.
@@ -75,8 +67,6 @@ The function is linear in the intervals `[point_i, point_{i+1}]` where the last 
 **Return type**
 
 `List`\[`int`]
-
-
 
 ### calibrations
 
@@ -90,8 +80,6 @@ Return calibration dictionary.
 
 `dict`
 
-
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -99,8 +87,6 @@ Returns a list of classical bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Clbit`]
-
-
 
 ### contains\_zero\_breakpoint
 
@@ -114,17 +100,11 @@ Whether 0 is the first breakpoint.
 
 True, if 0 is the first breakpoint, otherwise False.
 
-
-
 ### data
-
-
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-
 
 ### global\_phase
 
@@ -134,19 +114,13 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-
-
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
-
 ### instances
 
 `= 9`
-
-
 
 ### mapped\_offsets
 
@@ -160,8 +134,6 @@ The offsets mapped to the internal representation.
 
 The mapped offsets.
 
-
-
 ### mapped\_slopes
 
 The slopes mapped to the internal representation.
@@ -174,8 +146,6 @@ The slopes mapped to the internal representation.
 
 The mapped slopes.
 
-
-
 ### metadata
 
 The user provided metadata associated with the circuit
@@ -186,13 +156,9 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-
-
 ### num\_ancilla\_qubits
 
 Deprecated. Use num\_ancillas instead.
-
-
 
 ### num\_ancillas
 
@@ -202,8 +168,6 @@ Return the number of ancilla qubits.
 
 `int`
 
-
-
 ### num\_clbits
 
 Return number of classical bits.
@@ -212,15 +176,11 @@ Return number of classical bits.
 
 `int`
 
-
-
 ### num\_parameters
 
 **Return type**
 
 `int`
-
-
 
 ### num\_qubits
 
@@ -229,8 +189,6 @@ Return number of qubits.
 **Return type**
 
 `int`
-
-
 
 ### num\_state\_qubits
 
@@ -244,8 +202,6 @@ The number of state qubits representing the state $|x\rangle$.
 
 The number of state qubits.
 
-
-
 ### offsets
 
 The breakpoints of the piecewise linear function.
@@ -256,27 +212,19 @@ The function is linear in the intervals `[point_i, point_{i+1}]` where the last 
 
 `List`\[`float`]
 
-
-
 ### parameters
 
 **Return type**
 
 `ParameterView`
 
-
-
 ### prefix
 
 `= 'circuit'`
 
-
-
 ### qregs
 
 A list of the quantum registers associated with the circuit.
-
-
 
 ### qubits
 
@@ -285,8 +233,6 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
-
-
 
 ### slopes
 

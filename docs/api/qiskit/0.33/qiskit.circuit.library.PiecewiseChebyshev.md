@@ -1,7 +1,5 @@
 # PiecewiseChebyshev
 
-
-
 `PiecewiseChebyshev(f_x, degree=None, breakpoints=None, num_state_qubits=None, name='pw_cheb')`
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
@@ -45,8 +43,6 @@ Optimizing Quantum Circuits for Arithmetic. [arXiv:1805.12445](http://arxiv.org/
 
 ## Attributes
 
-
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -54,8 +50,6 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
-
-
 
 ### breakpoints
 
@@ -69,8 +63,6 @@ The breakpoints for the piecewise approximation.
 
 The breakpoints for the piecewise approximation.
 
-
-
 ### calibrations
 
 Return calibration dictionary.
@@ -83,8 +75,6 @@ Return calibration dictionary.
 
 `dict`
 
-
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -93,11 +83,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-
-
 ### data
-
-
 
 ### degree
 
@@ -111,13 +97,9 @@ The degree of the polynomials.
 
 The degree of the polynomials.
 
-
-
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-
 
 ### f\_x
 
@@ -131,8 +113,6 @@ The function to be approximated.
 
 The function to be approximated.
 
-
-
 ### global\_phase
 
 Return the global phase of the circuit in radians.
@@ -141,19 +121,13 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-
-
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
-
 ### instances
 
 `= 9`
-
-
 
 ### metadata
 
@@ -165,8 +139,6 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -174,8 +146,6 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
-
-
 
 ### num\_clbits
 
@@ -185,15 +155,11 @@ Return number of classical bits.
 
 `int`
 
-
-
 ### num\_parameters
 
 **Return type**
 
 `int`
-
-
 
 ### num\_qubits
 
@@ -202,8 +168,6 @@ Return number of qubits.
 **Return type**
 
 `int`
-
-
 
 ### num\_state\_qubits
 
@@ -217,15 +181,11 @@ The number of state qubits representing the state $|x\rangle$.
 
 The number of state qubits.
 
-
-
 ### parameters
 
 **Return type**
 
 `ParameterView`
-
-
 
 ### polynomials
 
@@ -243,19 +203,13 @@ The polynomials for the piecewise approximation.
 
 **TypeError** – If the input function is not in the correct format.
 
-
-
 ### prefix
 
 `= 'circuit'`
 
-
-
 ### qregs
 
 A list of the quantum registers associated with the circuit.
-
-
 
 ### qubits
 

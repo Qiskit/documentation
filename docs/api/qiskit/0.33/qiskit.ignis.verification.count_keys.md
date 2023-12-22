@@ -1,7 +1,5 @@
 # qiskit.ignis.verification.count\_keys
 
-
-
 `count_keys(num_qubits)`
 
 Return ordered count keys.

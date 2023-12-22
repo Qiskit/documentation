@@ -1,7 +1,5 @@
 # Suzuki
 
-
-
 `Suzuki(reps=1, order=2)`
 
 Bases: `qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase`
@@ -23,8 +21,6 @@ Detailed in [https://arxiv.org/pdf/quant-ph/0508139.pdf](https://arxiv.org/pdf/q
 
 ## Attributes
 
-
-
 ### order
 
 returns order
@@ -32,8 +28,6 @@ returns order
 **Return type**
 
 `int`
-
-
 
 ### reps
 

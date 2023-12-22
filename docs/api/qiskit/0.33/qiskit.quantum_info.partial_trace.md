@@ -1,7 +1,5 @@
 # qiskit.quantum\_info.partial\_trace
 
-
-
 `partial_trace(state, qargs)`
 
 Return reduced density matrix by tracing out part of quantum state.
