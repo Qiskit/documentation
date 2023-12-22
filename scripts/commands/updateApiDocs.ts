@@ -120,13 +120,13 @@ const readArgs = (): Arguments => {
     .option("historical", {
       type: "boolean",
       default: false,
-      description: "Is this a prior release? Only works with `-p qiskit`.",
+      description: "Is this a prior release?",
     })
     .option("artifact", {
       alias: "a",
       type: "string",
       demandOption: true,
-      description: "Which artifact from CI to download",
+      description: "The URL for the CI artifict to download. Must be from GitHub Actions.",
     })
     .parseSync();
 };
@@ -166,14 +166,11 @@ zxMain(async () => {
   const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
     pkg.version
   }`;
-  const localWebServerDir = `${destination}/artifact`;
-  const listenPort = 8000;
-  startWebServer(localWebServerDir, listenPort);
 
   if (await pathExists(destination)) {
     console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
-    await downloadApiSources(pkg, artifactUrl, destination, listenPort);
+    await downloadApiSources(pkg, artifactUrl, destination, 8000);
   }
 
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${pkg.versionWithoutPatch}/`;
@@ -182,7 +179,7 @@ zxMain(async () => {
     : `${getRoot()}/docs/api/${pkg.name}`;
 
   if (pkg.historical && !(await pathExists(outputDir))) {
-    mkdirp(outputDir);
+    await mkdirp(outputDir);
   } else {
     await rmFilesInFolder(outputDir, `${pkg.name}:${pkg.versionWithoutPatch}`);
   }
@@ -193,7 +190,6 @@ zxMain(async () => {
     `Convert sphinx html to markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
   await convertHtmlToMarkdown(destination, outputDir, baseSourceUrl, pkg);
-  await closeWebServer(listenPort);
 });
 
 /**
@@ -383,6 +379,7 @@ async function downloadApiSources(
   destination: string,
   listenPort: number,
 ) {
+  await startWebServer(`${destination}/artifact`, listenPort);
   try {
     await downloadCIArtifact(pkg.name, artifactUrl, destination);
     await saveHtml({
@@ -390,8 +387,7 @@ async function downloadApiSources(
       initialUrl: pkg.initialUrl,
       destination,
     });
-  } catch (e) {
+  } finally {
     await closeWebServer(listenPort);
-    throw e;
   }
 }
