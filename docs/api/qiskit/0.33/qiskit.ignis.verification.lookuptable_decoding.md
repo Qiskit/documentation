@@ -1,4 +1,14 @@
+---
+title: lookuptable_decoding
+description: API reference for qiskit.ignis.verification.lookuptable_decoding
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.lookuptable_decoding
+---
+
 # qiskit.ignis.verification.lookuptable\_decoding
+
+<span id="qiskit.ignis.verification.lookuptable_decoding" />
 
 `lookuptable_decoding(training_results, real_results)`
 
@@ -22,3 +32,4 @@ dict
 ## Additional information:
 
 Given a two dictionaries of results, as produced by a code object, thelogical error probability is calculated for lookup table decoding. This is done using training\_results as a guide to which syndrome is most probable for each logical value, and the probability is calculated for the results in real\_results.
+

@@ -1,4 +1,14 @@
+---
+title: MCXGrayCode
+description: API reference for qiskit.circuit.library.MCXGrayCode
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.MCXGrayCode
+---
+
 # MCXGrayCode
+
+<span id="qiskit.circuit.library.MCXGrayCode" />
 
 `MCXGrayCode(num_ctrl_qubits, label=None, ctrl_state=None)`
 
@@ -12,11 +22,17 @@ Create new MCX gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                                 |                   |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| [`inverse`](qiskit.circuit.library.MCXGrayCode.inverse#qiskit.circuit.library.MCXGrayCode.inverse "qiskit.circuit.library.MCXGrayCode.inverse") | Invert this gate. |
+### inverse
+
+<span id="qiskit.circuit.library.MCXGrayCode.inverse" />
+
+`MCXGrayCode.inverse()`
+
+Invert this gate. The MCX is its own inverse.
 
 ## Attributes
+
+<span id="qiskit.circuit.library.MCXGrayCode.condition_bits" />
 
 ### condition\_bits
 
@@ -26,6 +42,8 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
+<span id="qiskit.circuit.library.MCXGrayCode.ctrl_state" />
+
 ### ctrl\_state
 
 Return the control state of the gate as a decimal integer.
@@ -34,9 +52,13 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
+<span id="qiskit.circuit.library.MCXGrayCode.decompositions" />
+
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+
+<span id="qiskit.circuit.library.MCXGrayCode.definition" />
 
 ### definition
 
@@ -46,9 +68,13 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
+<span id="qiskit.circuit.library.MCXGrayCode.duration" />
+
 ### duration
 
 Get the duration.
+
+<span id="qiskit.circuit.library.MCXGrayCode.label" />
 
 ### label
 
@@ -57,6 +83,8 @@ Return instruction label
 **Return type**
 
 `str`
+
+<span id="qiskit.circuit.library.MCXGrayCode.name" />
 
 ### name
 
@@ -70,9 +98,13 @@ where \<original\_name> is the gate name for the default case of closed control 
 
 `str`
 
+<span id="qiskit.circuit.library.MCXGrayCode.num_ancilla_qubits" />
+
 ### num\_ancilla\_qubits
 
 The number of ancilla qubits.
+
+<span id="qiskit.circuit.library.MCXGrayCode.num_ctrl_qubits" />
 
 ### num\_ctrl\_qubits
 
@@ -85,6 +117,8 @@ The number of control qubits for the gate.
 **Return type**
 
 int
+
+<span id="qiskit.circuit.library.MCXGrayCode.params" />
 
 ### params
 
@@ -102,6 +136,9 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
+<span id="qiskit.circuit.library.MCXGrayCode.unit" />
+
 ### unit
 
 Get the time unit of duration.
+

@@ -1,4 +1,14 @@
+---
+title: postselection_decoding
+description: API reference for qiskit.ignis.verification.postselection_decoding
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.postselection_decoding
+---
+
 # qiskit.ignis.verification.postselection\_decoding
+
+<span id="qiskit.ignis.verification.postselection_decoding" />
 
 `postselection_decoding(results)`
 
@@ -19,3 +29,4 @@ each of the encoded logical states whose results were given in the input.
 **Return type**
 
 dict
+

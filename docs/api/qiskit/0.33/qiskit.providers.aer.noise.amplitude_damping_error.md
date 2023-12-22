@@ -1,4 +1,14 @@
+---
+title: amplitude_damping_error
+description: API reference for qiskit.providers.aer.noise.amplitude_damping_error
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.noise.amplitude_damping_error
+---
+
 # qiskit.providers.aer.noise.amplitude\_damping\_error
+
+<span id="qiskit.providers.aer.noise.amplitude_damping_error" />
 
 `amplitude_damping_error(param_amp, excited_state_population=0, canonical_kraus=True)`
 
@@ -31,4 +41,5 @@ a quantum error object for a noise model.
 
 **Return type**
 
-[QuantumError](qiskit.providers.aer.noise.QuantumError#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+[QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+

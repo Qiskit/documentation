@@ -1,4 +1,14 @@
+---
+title: pad
+description: API reference for qiskit.pulse.transforms.pad
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.transforms.pad
+---
+
 # qiskit.pulse.transforms.pad
+
+<span id="qiskit.pulse.transforms.pad" />
 
 `pad(schedule, channels=None, until=None, inplace=False)`
 
@@ -18,3 +28,4 @@ Pad the input Schedule with `Delay``s on all unoccupied timeslots until ``schedu
 **Returns**
 
 The padded schedule.
+

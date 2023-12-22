@@ -1,4 +1,14 @@
+---
+title: PiecewiseLinearPauliRotations
+description: API reference for qiskit.circuit.library.PiecewiseLinearPauliRotations
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.PiecewiseLinearPauliRotations
+---
+
 # PiecewiseLinearPauliRotations
+
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations" />
 
 `PiecewiseLinearPauliRotations(num_state_qubits=None, breakpoints=None, slopes=None, offsets=None, basis='Y', name='pw_lin')`
 
@@ -30,11 +40,29 @@ Construct piecewise-linearly-controlled Pauli rotations.
 
 ## Methods Defined Here
 
-|                                                                                                                                                                                                           |                                                     |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| [`evaluate`](qiskit.circuit.library.PiecewiseLinearPauliRotations.evaluate#qiskit.circuit.library.PiecewiseLinearPauliRotations.evaluate "qiskit.circuit.library.PiecewiseLinearPauliRotations.evaluate") | Classically evaluate the piecewise linear rotation. |
+### evaluate
+
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.evaluate" />
+
+`PiecewiseLinearPauliRotations.evaluate(x)`
+
+Classically evaluate the piecewise linear rotation.
+
+**Parameters**
+
+**x** (`float`) – Value to be evaluated at.
+
+**Return type**
+
+`float`
+
+**Returns**
+
+Value of piecewise linear function at x.
 
 ## Attributes
+
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.ancillas" />
 
 ### ancillas
 
@@ -43,6 +71,8 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
+
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.basis" />
 
 ### basis
 
@@ -58,6 +88,8 @@ Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotatio
 
 The kind of Pauli rotation used in controlled rotation.
 
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.breakpoints" />
+
 ### breakpoints
 
 The breakpoints of the piecewise linear function.
@@ -67,6 +99,8 @@ The function is linear in the intervals `[point_i, point_{i+1}]` where the last 
 **Return type**
 
 `List`\[`int`]
+
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.calibrations" />
 
 ### calibrations
 
@@ -80,6 +114,8 @@ Return calibration dictionary.
 
 `dict`
 
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.clbits" />
+
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -87,6 +123,8 @@ Returns a list of classical bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Clbit`]
+
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.contains_zero_breakpoint" />
 
 ### contains\_zero\_breakpoint
 
@@ -100,11 +138,17 @@ Whether 0 is the first breakpoint.
 
 True, if 0 is the first breakpoint, otherwise False.
 
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.data" />
+
 ### data
+
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
+
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.global_phase" />
 
 ### global\_phase
 
@@ -114,13 +158,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.header" />
+
 ### header
 
 `= 'OPENQASM 2.0;'`
 
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.instances" />
+
 ### instances
 
 `= 9`
+
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mapped_offsets" />
 
 ### mapped\_offsets
 
@@ -134,6 +184,8 @@ The offsets mapped to the internal representation.
 
 The mapped offsets.
 
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.mapped_slopes" />
+
 ### mapped\_slopes
 
 The slopes mapped to the internal representation.
@@ -146,6 +198,8 @@ The slopes mapped to the internal representation.
 
 The mapped slopes.
 
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.metadata" />
+
 ### metadata
 
 The user provided metadata associated with the circuit
@@ -156,9 +210,13 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_ancilla_qubits" />
+
 ### num\_ancilla\_qubits
 
 Deprecated. Use num\_ancillas instead.
+
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_ancillas" />
 
 ### num\_ancillas
 
@@ -168,6 +226,8 @@ Return the number of ancilla qubits.
 
 `int`
 
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_clbits" />
+
 ### num\_clbits
 
 Return number of classical bits.
@@ -176,11 +236,15 @@ Return number of classical bits.
 
 `int`
 
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_parameters" />
+
 ### num\_parameters
 
 **Return type**
 
 `int`
+
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_qubits" />
 
 ### num\_qubits
 
@@ -189,6 +253,8 @@ Return number of qubits.
 **Return type**
 
 `int`
+
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.num_state_qubits" />
 
 ### num\_state\_qubits
 
@@ -202,6 +268,8 @@ The number of state qubits representing the state $|x\rangle$.
 
 The number of state qubits.
 
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.offsets" />
+
 ### offsets
 
 The breakpoints of the piecewise linear function.
@@ -212,19 +280,27 @@ The function is linear in the intervals `[point_i, point_{i+1}]` where the last 
 
 `List`\[`float`]
 
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.parameters" />
+
 ### parameters
 
 **Return type**
 
 `ParameterView`
 
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.prefix" />
+
 ### prefix
 
 `= 'circuit'`
 
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.qregs" />
+
 ### qregs
 
 A list of the quantum registers associated with the circuit.
+
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.qubits" />
 
 ### qubits
 
@@ -233,6 +309,8 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
+
+<span id="qiskit.circuit.library.PiecewiseLinearPauliRotations.slopes" />
 
 ### slopes
 
@@ -243,3 +321,4 @@ The function is linear in the intervals `[point_i, point_{i+1}]` where the last 
 **Return type**
 
 `List`\[`int`]
+

@@ -1,4 +1,14 @@
+---
+title: zz_circuits
+description: API reference for qiskit.ignis.characterization.zz_circuits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.characterization.zz_circuits
+---
+
 # qiskit.ignis.characterization.zz\_circuits
+
+<span id="qiskit.ignis.characterization.zz_circuits" />
 
 `zz_circuits(num_of_gates, gate_time, qubits, spectators, nosc=5)`
 
@@ -19,3 +29,4 @@ A list of QuantumCircuit xdata: a list of delay times osc\_freq: the induced osc
 **Raises**
 
 **ValueError** – If the number of qubits differs from the number of spectators
+

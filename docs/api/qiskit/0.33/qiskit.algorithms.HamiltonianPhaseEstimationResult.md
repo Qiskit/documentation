@@ -1,4 +1,14 @@
+---
+title: HamiltonianPhaseEstimationResult
+description: API reference for qiskit.algorithms.HamiltonianPhaseEstimationResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.HamiltonianPhaseEstimationResult
+---
+
 # HamiltonianPhaseEstimationResult
+
+<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult" />
 
 `HamiltonianPhaseEstimationResult(phase_estimation_result, phase_estimation_scale, id_coefficient)`
 
@@ -18,12 +28,51 @@ This class is meant to be instantiated via HamiltonianPhaseEstimation.estimate.
 
 ## Methods
 
-|                                                                                                                                                                                                                         |                                                                                                                                                           |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`combine`](qiskit.algorithms.HamiltonianPhaseEstimationResult.combine#qiskit.algorithms.HamiltonianPhaseEstimationResult.combine "qiskit.algorithms.HamiltonianPhaseEstimationResult.combine")                         | Any property from the argument that exists in the receiver is updated.                                                                                    |
-| [`filter_phases`](qiskit.algorithms.HamiltonianPhaseEstimationResult.filter_phases#qiskit.algorithms.HamiltonianPhaseEstimationResult.filter_phases "qiskit.algorithms.HamiltonianPhaseEstimationResult.filter_phases") | Filter phases as does PhaseEstimatorResult.filter\_phases, with the addition that phi is shifted and translated to return eigenvalues of the Hamiltonian. |
+### combine
+
+<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult.combine" />
+
+`HamiltonianPhaseEstimationResult.combine(result)`
+
+Any property from the argument that exists in the receiver is updated. :type result: `AlgorithmResult` :param result: Argument result with properties to be set.
+
+**Raises**
+
+**TypeError** – Argument is None
+
+**Return type**
+
+`None`
+
+### filter\_phases
+
+<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult.filter_phases" />
+
+`HamiltonianPhaseEstimationResult.filter_phases(cutoff=0.0, scaled=True, as_float=True)`
+
+Filter phases as does PhaseEstimatorResult.filter\_phases, with the addition that phi is shifted and translated to return eigenvalues of the Hamiltonian.
+
+**Parameters**
+
+*   **cutoff** (`float`) – Minimum weight of number of counts required to keep a bit string. The default value is 0.0.
+*   **scaled** (`bool`) – If False, return phi in $[0, 1)$ rather than the eigenvalues of the Hamiltonian.
+*   **as\_float** (`bool`) – If True, returned keys are floats in $[0.0, 1.0)$. If False returned keys are bit strings.
+
+**Raises**
+
+**ValueError** – if as\_float is False and scaled is True.
+
+**Return type**
+
+`Dict`\[`Union`\[`str`, `float`], `float`]
+
+**Returns**
+
+A dict of filtered phases.
 
 ## Attributes
+
+<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_eigenvalue" />
 
 ### most\_likely\_eigenvalue
 
@@ -39,6 +88,8 @@ This method calls most\_likely\_phase and scales the result to obtain an eigenva
 
 The most likely eigenvalue of the Hamiltonian.
 
+<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult.most_likely_phase" />
+
 ### most\_likely\_phase
 
 DEPRECATED - The most likely phase of the unitary corresponding to the Hamiltonian.
@@ -51,6 +102,8 @@ DEPRECATED - The most likely phase of the unitary corresponding to the Hamiltoni
 
 The most likely phase.
 
+<span id="qiskit.algorithms.HamiltonianPhaseEstimationResult.phase" />
+
 ### phase
 
 The most likely phase of the unitary corresponding to the Hamiltonian.
@@ -62,3 +115,4 @@ The most likely phase of the unitary corresponding to the Hamiltonian.
 **Returns**
 
 The most likely phase.
+

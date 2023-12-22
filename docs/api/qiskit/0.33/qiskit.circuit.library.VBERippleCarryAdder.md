@@ -1,4 +1,14 @@
+---
+title: VBERippleCarryAdder
+description: API reference for qiskit.circuit.library.VBERippleCarryAdder
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.VBERippleCarryAdder
+---
+
 # VBERippleCarryAdder
+
+<span id="qiskit.circuit.library.VBERippleCarryAdder" />
 
 `VBERippleCarryAdder(num_state_qubits, kind='full', name='VBERippleCarryAdder')`
 
@@ -44,6 +54,8 @@ Here *Carry* and *Sum* gates correspond to the gates introduced in \[1]. *Carry\
 
 ## Attributes
 
+<span id="qiskit.circuit.library.VBERippleCarryAdder.ancillas" />
+
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -51,6 +63,8 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
+
+<span id="qiskit.circuit.library.VBERippleCarryAdder.calibrations" />
 
 ### calibrations
 
@@ -64,6 +78,8 @@ Return calibration dictionary.
 
 `dict`
 
+<span id="qiskit.circuit.library.VBERippleCarryAdder.clbits" />
+
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -71,6 +87,8 @@ Returns a list of classical bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Clbit`]
+
+<span id="qiskit.circuit.library.VBERippleCarryAdder.data" />
 
 ### data
 
@@ -86,9 +104,13 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
+<span id="qiskit.circuit.library.VBERippleCarryAdder.extension_lib" />
+
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
+
+<span id="qiskit.circuit.library.VBERippleCarryAdder.global_phase" />
 
 ### global\_phase
 
@@ -98,13 +120,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
+<span id="qiskit.circuit.library.VBERippleCarryAdder.header" />
+
 ### header
 
 `= 'OPENQASM 2.0;'`
 
+<span id="qiskit.circuit.library.VBERippleCarryAdder.instances" />
+
 ### instances
 
 `= 9`
+
+<span id="qiskit.circuit.library.VBERippleCarryAdder.metadata" />
 
 ### metadata
 
@@ -116,6 +144,8 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
+<span id="qiskit.circuit.library.VBERippleCarryAdder.num_ancillas" />
+
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -123,6 +153,8 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
+
+<span id="qiskit.circuit.library.VBERippleCarryAdder.num_clbits" />
 
 ### num\_clbits
 
@@ -132,6 +164,8 @@ Return number of classical bits.
 
 `int`
 
+<span id="qiskit.circuit.library.VBERippleCarryAdder.num_parameters" />
+
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
@@ -140,6 +174,8 @@ Convenience function to get the number of parameter objects in the circuit.
 
 `int`
 
+<span id="qiskit.circuit.library.VBERippleCarryAdder.num_qubits" />
+
 ### num\_qubits
 
 Return number of qubits.
@@ -147,6 +183,8 @@ Return number of qubits.
 **Return type**
 
 `int`
+
+<span id="qiskit.circuit.library.VBERippleCarryAdder.num_state_qubits" />
 
 ### num\_state\_qubits
 
@@ -160,6 +198,8 @@ The number of state qubits, i.e. the number of bits in each input register.
 
 The number of state qubits.
 
+<span id="qiskit.circuit.library.VBERippleCarryAdder.parameters" />
+
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
@@ -168,9 +208,13 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
+<span id="qiskit.circuit.library.VBERippleCarryAdder.prefix" />
+
 ### prefix
 
 `= 'circuit'`
+
+<span id="qiskit.circuit.library.VBERippleCarryAdder.qubits" />
 
 ### qubits
 
@@ -179,3 +223,4 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
+

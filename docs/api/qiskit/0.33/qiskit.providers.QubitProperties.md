@@ -1,4 +1,14 @@
+---
+title: QubitProperties
+description: API reference for qiskit.providers.QubitProperties
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.QubitProperties
+---
+
 # QubitProperties
+
+<span id="qiskit.providers.QubitProperties" />
 
 `QubitProperties(t1=None, t2=None, frequency=None)`
 
@@ -18,8 +28,15 @@ Create a new `QubitProperties` object
 
 ## Attributes
 
+<span id="qiskit.providers.QubitProperties.frequency" />
+
 ### frequency
+
+<span id="qiskit.providers.QubitProperties.t1" />
 
 ### t1
 
+<span id="qiskit.providers.QubitProperties.t2" />
+
 ### t2
+

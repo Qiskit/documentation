@@ -1,4 +1,14 @@
+---
+title: QuantumVolume
+description: API reference for qiskit.circuit.library.QuantumVolume
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.QuantumVolume
+---
+
 # QuantumVolume
+
+<span id="qiskit.circuit.library.QuantumVolume" />
 
 `QuantumVolume(num_qubits, depth=None, seed=None, classical_permutation=True)`
 
@@ -31,6 +41,8 @@ Create quantum volume model circuit of size num\_qubits x depth.
 
 ## Attributes
 
+<span id="qiskit.circuit.library.QuantumVolume.ancillas" />
+
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -38,6 +50,8 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
+
+<span id="qiskit.circuit.library.QuantumVolume.calibrations" />
 
 ### calibrations
 
@@ -51,6 +65,8 @@ Return calibration dictionary.
 
 `dict`
 
+<span id="qiskit.circuit.library.QuantumVolume.clbits" />
+
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -58,6 +74,8 @@ Returns a list of classical bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Clbit`]
+
+<span id="qiskit.circuit.library.QuantumVolume.data" />
 
 ### data
 
@@ -73,9 +91,13 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
+<span id="qiskit.circuit.library.QuantumVolume.extension_lib" />
+
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
+
+<span id="qiskit.circuit.library.QuantumVolume.global_phase" />
 
 ### global\_phase
 
@@ -85,13 +107,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
+<span id="qiskit.circuit.library.QuantumVolume.header" />
+
 ### header
 
 `= 'OPENQASM 2.0;'`
 
+<span id="qiskit.circuit.library.QuantumVolume.instances" />
+
 ### instances
 
 `= 9`
+
+<span id="qiskit.circuit.library.QuantumVolume.metadata" />
 
 ### metadata
 
@@ -103,6 +131,8 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
+<span id="qiskit.circuit.library.QuantumVolume.num_ancillas" />
+
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -110,6 +140,8 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
+
+<span id="qiskit.circuit.library.QuantumVolume.num_clbits" />
 
 ### num\_clbits
 
@@ -119,6 +151,8 @@ Return number of classical bits.
 
 `int`
 
+<span id="qiskit.circuit.library.QuantumVolume.num_parameters" />
+
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
@@ -126,6 +160,8 @@ Convenience function to get the number of parameter objects in the circuit.
 **Return type**
 
 `int`
+
+<span id="qiskit.circuit.library.QuantumVolume.num_qubits" />
 
 ### num\_qubits
 
@@ -135,6 +171,8 @@ Return number of qubits.
 
 `int`
 
+<span id="qiskit.circuit.library.QuantumVolume.parameters" />
+
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
@@ -143,9 +181,13 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
+<span id="qiskit.circuit.library.QuantumVolume.prefix" />
+
 ### prefix
 
 `= 'circuit'`
+
+<span id="qiskit.circuit.library.QuantumVolume.qubits" />
 
 ### qubits
 
@@ -154,3 +196,4 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
+

@@ -1,4 +1,14 @@
+---
+title: MCMTVChain
+description: API reference for qiskit.circuit.library.MCMTVChain
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.MCMTVChain
+---
+
 # MCMTVChain
+
+<span id="qiskit.circuit.library.MCMTVChain" />
 
 `MCMTVChain(gate, num_ctrl_qubits, num_target_qubits, label=None)`
 
@@ -6,7 +16,7 @@ Bases: `qiskit.circuit.library.generalized_gates.mcmt.MCMT`
 
 The MCMT implementation using the CCX V-chain.
 
-This implementation requires ancillas but is decomposed into a much shallower circuit than the default implementation in [`MCMT`](qiskit.circuit.library.MCMT#qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT").
+This implementation requires ancillas but is decomposed into a much shallower circuit than the default implementation in [`MCMT`](qiskit.circuit.library.MCMT "qiskit.circuit.library.MCMT").
 
 **Expanded Circuit:**
 
@@ -61,11 +71,17 @@ Create a new multi-control multi-target gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                              |                                                   |
-| -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| [`inverse`](qiskit.circuit.library.MCMTVChain.inverse#qiskit.circuit.library.MCMTVChain.inverse "qiskit.circuit.library.MCMTVChain.inverse") | Return the inverse MCMT circuit, which is itself. |
+### inverse
+
+<span id="qiskit.circuit.library.MCMTVChain.inverse" />
+
+`MCMTVChain.inverse()`
+
+Return the inverse MCMT circuit, which is itself.
 
 ## Attributes
+
+<span id="qiskit.circuit.library.MCMTVChain.ancillas" />
 
 ### ancillas
 
@@ -74,6 +90,8 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
+
+<span id="qiskit.circuit.library.MCMTVChain.calibrations" />
 
 ### calibrations
 
@@ -87,6 +105,8 @@ Return calibration dictionary.
 
 `dict`
 
+<span id="qiskit.circuit.library.MCMTVChain.clbits" />
+
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -94,6 +114,8 @@ Returns a list of classical bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Clbit`]
+
+<span id="qiskit.circuit.library.MCMTVChain.data" />
 
 ### data
 
@@ -109,9 +131,13 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
+<span id="qiskit.circuit.library.MCMTVChain.extension_lib" />
+
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
+
+<span id="qiskit.circuit.library.MCMTVChain.global_phase" />
 
 ### global\_phase
 
@@ -121,17 +147,25 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
+<span id="qiskit.circuit.library.MCMTVChain.header" />
+
 ### header
 
 `= 'OPENQASM 2.0;'`
+
+<span id="qiskit.circuit.library.MCMTVChain.instances" />
 
 ### instances
 
 `= 9`
 
+<span id="qiskit.circuit.library.MCMTVChain.label" />
+
 ### label
 
 Get label.
+
+<span id="qiskit.circuit.library.MCMTVChain.metadata" />
 
 ### metadata
 
@@ -143,9 +177,13 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
+<span id="qiskit.circuit.library.MCMTVChain.num_ancilla_qubits" />
+
 ### num\_ancilla\_qubits
 
 Return the number of ancilla qubits required.
+
+<span id="qiskit.circuit.library.MCMTVChain.num_ancillas" />
 
 ### num\_ancillas
 
@@ -155,6 +193,8 @@ Return the number of ancilla qubits.
 
 `int`
 
+<span id="qiskit.circuit.library.MCMTVChain.num_clbits" />
+
 ### num\_clbits
 
 Return number of classical bits.
@@ -162,6 +202,8 @@ Return number of classical bits.
 **Return type**
 
 `int`
+
+<span id="qiskit.circuit.library.MCMTVChain.num_parameters" />
 
 ### num\_parameters
 
@@ -171,6 +213,8 @@ Convenience function to get the number of parameter objects in the circuit.
 
 `int`
 
+<span id="qiskit.circuit.library.MCMTVChain.num_qubits" />
+
 ### num\_qubits
 
 Return number of qubits.
@@ -178,6 +222,8 @@ Return number of qubits.
 **Return type**
 
 `int`
+
+<span id="qiskit.circuit.library.MCMTVChain.parameters" />
 
 ### parameters
 
@@ -187,9 +233,13 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
+<span id="qiskit.circuit.library.MCMTVChain.prefix" />
+
 ### prefix
 
 `= 'circuit'`
+
+<span id="qiskit.circuit.library.MCMTVChain.qubits" />
 
 ### qubits
 
@@ -198,3 +248,4 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
+

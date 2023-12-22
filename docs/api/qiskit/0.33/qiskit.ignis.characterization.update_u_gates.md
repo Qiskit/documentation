@@ -1,4 +1,14 @@
+---
+title: update_u_gates
+description: API reference for qiskit.ignis.characterization.update_u_gates
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.characterization.update_u_gates
+---
+
 # qiskit.ignis.characterization.update\_u\_gates
+
+<span id="qiskit.ignis.characterization.update_u_gates" />
 
 `update_u_gates(drag_params, pi2_pulse_schedules=None, qubits=None, inst_map=None, drives=None)`
 
@@ -11,5 +21,6 @@ Will update U2, U3
 *   **drag\_params** (*list*) – list of drag params
 *   **pi2\_pulse\_schedules** (*list*) – list of new pi/2 gate as a pulse schedule will use the drag\_params if this is None.
 *   **qubits** (*list*) – list of qubits to update
-*   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap#qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – InstructionScheduleMap providing circuit instruction to schedule definitions.
+*   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – InstructionScheduleMap providing circuit instruction to schedule definitions.
 *   **drives** (*list*) – List of drive chs
+

@@ -1,4 +1,14 @@
+---
+title: HessianBase
+description: API reference for qiskit.opflow.gradients.HessianBase
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.gradients.HessianBase
+---
+
 # HessianBase
+
+<span id="qiskit.opflow.gradients.HessianBase" />
 
 `HessianBase(hess_method='param_shift', **kwargs)`
 
@@ -17,6 +27,8 @@ Base class for the Hessian of an expected value.
 
 ## Attributes
 
+<span id="qiskit.opflow.gradients.HessianBase.hess_method" />
+
 ### hess\_method
 
 Returns `CircuitGradient`.
@@ -28,3 +40,4 @@ Returns `CircuitGradient`.
 **Returns**
 
 `CircuitGradient`.
+

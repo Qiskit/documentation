@@ -1,4 +1,14 @@
+---
+title: target_qobj_transform
+description: API reference for qiskit.pulse.transforms.target_qobj_transform
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.transforms.target_qobj_transform
+---
+
 # qiskit.pulse.transforms.target\_qobj\_transform
+
+<span id="qiskit.pulse.transforms.target_qobj_transform" />
 
 `target_qobj_transform(sched, remove_directives=True)`
 
@@ -16,3 +26,4 @@ A basic pulse program transformation for OpenPulse API execution.
 **Returns**
 
 Transformed program for execution.
+

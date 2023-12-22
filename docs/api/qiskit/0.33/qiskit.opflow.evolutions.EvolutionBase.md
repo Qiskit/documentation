@@ -1,4 +1,14 @@
+---
+title: EvolutionBase
+description: API reference for qiskit.opflow.evolutions.EvolutionBase
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.evolutions.EvolutionBase
+---
+
 # EvolutionBase
+
+<span id="qiskit.opflow.evolutions.EvolutionBase" />
 
 `EvolutionBase`
 
@@ -8,6 +18,23 @@ A base for Evolution converters. Evolutions are converters which traverse an Ope
 
 ## Methods Defined Here
 
-|                                                                                                                                                             |                                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| [`convert`](qiskit.opflow.evolutions.EvolutionBase.convert#qiskit.opflow.evolutions.EvolutionBase.convert "qiskit.opflow.evolutions.EvolutionBase.convert") | Traverse the operator, replacing any `EvolutionOps` with their equivalent evolution `CircuitOps`. |
+### convert
+
+<span id="qiskit.opflow.evolutions.EvolutionBase.convert" />
+
+`abstract EvolutionBase.convert(operator)`
+
+Traverse the operator, replacing any `EvolutionOps` with their equivalent evolution `CircuitOps`.
+
+> #### Args:
+>
+> operator: The Operator to convert.
+
+**Return type**
+
+`OperatorBase`
+
+**Returns**
+
+The converted Operator, with `EvolutionOps` replaced by `CircuitOps`.
+

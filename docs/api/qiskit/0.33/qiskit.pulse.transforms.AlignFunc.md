@@ -1,4 +1,14 @@
+---
+title: AlignFunc
+description: API reference for qiskit.pulse.transforms.AlignFunc
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.transforms.AlignFunc
+---
+
 # AlignFunc
+
+<span id="qiskit.pulse.transforms.AlignFunc" />
 
 `AlignFunc(duration, func)`
 
@@ -26,17 +36,55 @@ Create new equispaced context.
 
 ## Methods
 
-|                                                                                                                                              |                                                  |
-| -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
-| [`align`](qiskit.pulse.transforms.AlignFunc.align#qiskit.pulse.transforms.AlignFunc.align "qiskit.pulse.transforms.AlignFunc.align")         | Reallocate instructions according to the policy. |
-| [`to_dict`](qiskit.pulse.transforms.AlignFunc.to_dict#qiskit.pulse.transforms.AlignFunc.to_dict "qiskit.pulse.transforms.AlignFunc.to_dict") | Returns dictionary to represent this alignment.  |
+### align
+
+<span id="qiskit.pulse.transforms.AlignFunc.align" />
+
+`AlignFunc.align(schedule)`
+
+Reallocate instructions according to the policy.
+
+Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
+
+**Parameters**
+
+**schedule** (`Schedule`) – Schedule to align.
+
+**Return type**
+
+`Schedule`
+
+**Returns**
+
+Schedule with reallocated instructions.
+
+### to\_dict
+
+<span id="qiskit.pulse.transforms.AlignFunc.to_dict" />
+
+`AlignFunc.to_dict()`
+
+Returns dictionary to represent this alignment.
+
+<Admonition title="Note" type="note">
+  `func` is not presented in this dictionary. Just name.
+</Admonition>
+
+**Return type**
+
+`Dict`\[`str`, `Any`]
 
 ## Attributes
+
+<span id="qiskit.pulse.transforms.AlignFunc.duration" />
 
 ### duration
 
 Return context duration.
 
+<span id="qiskit.pulse.transforms.AlignFunc.is_sequential" />
+
 ### is\_sequential
 
 `= True`
+

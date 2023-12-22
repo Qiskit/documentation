@@ -1,4 +1,14 @@
+---
+title: CXGate
+description: API reference for qiskit.circuit.library.CXGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.CXGate
+---
+
 # CXGate
+
+<span id="qiskit.circuit.library.CXGate" />
 
 `CXGate(label=None, ctrl_state=None)`
 
@@ -60,12 +70,39 @@ Create new CX gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                  |                                                     |
-| -------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| [`control`](qiskit.circuit.library.CXGate.control#qiskit.circuit.library.CXGate.control "qiskit.circuit.library.CXGate.control") | Return a controlled-X gate with more control lines. |
-| [`inverse`](qiskit.circuit.library.CXGate.inverse#qiskit.circuit.library.CXGate.inverse "qiskit.circuit.library.CXGate.inverse") | Return inverted CX gate (itself).                   |
+### control
+
+<span id="qiskit.circuit.library.CXGate.control" />
+
+`CXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+
+Return a controlled-X gate with more control lines.
+
+**Parameters**
+
+*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+*   **label** (*str or None*) – An optional label for the gate \[Default: None]
+*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+
+**Returns**
+
+controlled version of this gate.
+
+**Return type**
+
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+
+### inverse
+
+<span id="qiskit.circuit.library.CXGate.inverse" />
+
+`CXGate.inverse()`
+
+Return inverted CX gate (itself).
 
 ## Attributes
+
+<span id="qiskit.circuit.library.CXGate.condition_bits" />
 
 ### condition\_bits
 
@@ -75,6 +112,8 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
+<span id="qiskit.circuit.library.CXGate.ctrl_state" />
+
 ### ctrl\_state
 
 Return the control state of the gate as a decimal integer.
@@ -83,9 +122,13 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
+<span id="qiskit.circuit.library.CXGate.decompositions" />
+
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+
+<span id="qiskit.circuit.library.CXGate.definition" />
 
 ### definition
 
@@ -95,9 +138,13 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
+<span id="qiskit.circuit.library.CXGate.duration" />
+
 ### duration
 
 Get the duration.
+
+<span id="qiskit.circuit.library.CXGate.label" />
 
 ### label
 
@@ -106,6 +153,8 @@ Return instruction label
 **Return type**
 
 `str`
+
+<span id="qiskit.circuit.library.CXGate.name" />
 
 ### name
 
@@ -119,6 +168,8 @@ where \<original\_name> is the gate name for the default case of closed control 
 
 `str`
 
+<span id="qiskit.circuit.library.CXGate.num_ctrl_qubits" />
+
 ### num\_ctrl\_qubits
 
 Get number of control qubits.
@@ -130,6 +181,8 @@ The number of control qubits for the gate.
 **Return type**
 
 int
+
+<span id="qiskit.circuit.library.CXGate.params" />
 
 ### params
 
@@ -147,6 +200,9 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
+<span id="qiskit.circuit.library.CXGate.unit" />
+
 ### unit
 
 Get the time unit of duration.
+

@@ -1,4 +1,14 @@
+---
+title: LinearPauliRotations
+description: API reference for qiskit.circuit.library.LinearPauliRotations
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.LinearPauliRotations
+---
+
 # LinearPauliRotations
+
+<span id="qiskit.circuit.library.LinearPauliRotations" />
 
 `LinearPauliRotations(num_state_qubits=None, slope=1, offset=0, basis='Y', name='LinRot')`
 
@@ -39,6 +49,8 @@ Create a new linear rotation circuit.
 
 ## Attributes
 
+<span id="qiskit.circuit.library.LinearPauliRotations.ancillas" />
+
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -46,6 +58,8 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
+
+<span id="qiskit.circuit.library.LinearPauliRotations.basis" />
 
 ### basis
 
@@ -61,6 +75,8 @@ Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotatio
 
 The kind of Pauli rotation used in controlled rotation.
 
+<span id="qiskit.circuit.library.LinearPauliRotations.calibrations" />
+
 ### calibrations
 
 Return calibration dictionary.
@@ -73,6 +89,8 @@ Return calibration dictionary.
 
 `dict`
 
+<span id="qiskit.circuit.library.LinearPauliRotations.clbits" />
+
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -81,11 +99,17 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
+<span id="qiskit.circuit.library.LinearPauliRotations.data" />
+
 ### data
+
+<span id="qiskit.circuit.library.LinearPauliRotations.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
+
+<span id="qiskit.circuit.library.LinearPauliRotations.global_phase" />
 
 ### global\_phase
 
@@ -95,13 +119,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
+<span id="qiskit.circuit.library.LinearPauliRotations.header" />
+
 ### header
 
 `= 'OPENQASM 2.0;'`
 
+<span id="qiskit.circuit.library.LinearPauliRotations.instances" />
+
 ### instances
 
 `= 9`
+
+<span id="qiskit.circuit.library.LinearPauliRotations.metadata" />
 
 ### metadata
 
@@ -112,6 +142,8 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 **Return type**
 
 `dict`
+
+<span id="qiskit.circuit.library.LinearPauliRotations.num_ancilla_qubits" />
 
 ### num\_ancilla\_qubits
 
@@ -125,6 +157,8 @@ The minimum number of ancilla qubits in the circuit.
 
 The minimal number of ancillas required.
 
+<span id="qiskit.circuit.library.LinearPauliRotations.num_ancillas" />
+
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -132,6 +166,8 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
+
+<span id="qiskit.circuit.library.LinearPauliRotations.num_clbits" />
 
 ### num\_clbits
 
@@ -141,11 +177,15 @@ Return number of classical bits.
 
 `int`
 
+<span id="qiskit.circuit.library.LinearPauliRotations.num_parameters" />
+
 ### num\_parameters
 
 **Return type**
 
 `int`
+
+<span id="qiskit.circuit.library.LinearPauliRotations.num_qubits" />
 
 ### num\_qubits
 
@@ -154,6 +194,8 @@ Return number of qubits.
 **Return type**
 
 `int`
+
+<span id="qiskit.circuit.library.LinearPauliRotations.num_state_qubits" />
 
 ### num\_state\_qubits
 
@@ -166,6 +208,8 @@ The number of state qubits representing the state $|x\rangle$.
 **Returns**
 
 The number of state qubits.
+
+<span id="qiskit.circuit.library.LinearPauliRotations.offset" />
 
 ### offset
 
@@ -181,19 +225,27 @@ Before applying the controlled rotations, a single rotation of angle `offset` is
 
 The offset angle.
 
+<span id="qiskit.circuit.library.LinearPauliRotations.parameters" />
+
 ### parameters
 
 **Return type**
 
 `ParameterView`
 
+<span id="qiskit.circuit.library.LinearPauliRotations.prefix" />
+
 ### prefix
 
 `= 'circuit'`
 
+<span id="qiskit.circuit.library.LinearPauliRotations.qregs" />
+
 ### qregs
 
 A list of the quantum registers associated with the circuit.
+
+<span id="qiskit.circuit.library.LinearPauliRotations.qubits" />
 
 ### qubits
 
@@ -202,6 +254,8 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
+
+<span id="qiskit.circuit.library.LinearPauliRotations.slope" />
 
 ### slope
 
@@ -216,3 +270,4 @@ The rotation angles are `slope * 2^0`, `slope * 2^1`, … , `slope * 2^(n-1)` wh
 **Returns**
 
 The rotation angle common in all controlled rotations.
+

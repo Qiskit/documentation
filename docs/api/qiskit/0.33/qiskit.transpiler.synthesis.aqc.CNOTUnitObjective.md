@@ -1,4 +1,14 @@
+---
+title: CNOTUnitObjective
+description: API reference for qiskit.transpiler.synthesis.aqc.CNOTUnitObjective
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.synthesis.aqc.CNOTUnitObjective
+---
+
 # CNOTUnitObjective
+
+<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitObjective" />
 
 `CNOTUnitObjective(num_qubits, cnots)`
 
@@ -13,13 +23,19 @@ A base class for a problem definition based on CNOT unit. This class may have di
 
 ## Attributes
 
+<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitObjective.num_cnots" />
+
 ### num\_cnots
 
 Returns: A number of CNOT units to be used by the approximate circuit.
 
+<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitObjective.num_thetas" />
+
 ### num\_thetas
 
 Returns: Number of parameters (angles) of rotation gates in this circuit.
+
+<span id="qiskit.transpiler.synthesis.aqc.CNOTUnitObjective.target_matrix" />
 
 ### target\_matrix
 
@@ -28,3 +44,4 @@ Returns: a matrix being approximated
 **Return type**
 
 `ndarray`
+

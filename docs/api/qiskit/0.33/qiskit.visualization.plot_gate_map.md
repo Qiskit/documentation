@@ -1,4 +1,14 @@
+---
+title: plot_gate_map
+description: API reference for qiskit.visualization.plot_gate_map
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_gate_map
+---
+
 # qiskit.visualization.plot\_gate\_map
+
+<span id="qiskit.visualization.plot_gate_map" />
 
 `plot_gate_map(backend, figsize=None, plot_directed=False, label_qubits=True, qubit_size=None, line_width=4, font_size=None, qubit_color=None, qubit_labels=None, line_color=None, font_color='w', ax=None, filename=None)`
 
@@ -6,7 +16,7 @@ Plots the gate map of a device.
 
 **Parameters**
 
-*   **backend** ([*BaseBackend*](qiskit.providers.BaseBackend#qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")) – The backend instance that will be used to plot the device gate map.
+*   **backend** ([*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")) – The backend instance that will be used to plot the device gate map.
 *   **figsize** (*tuple*) – Output figure size (wxh) in inches.
 *   **plot\_directed** (*bool*) – Plot directed coupling map.
 *   **label\_qubits** (*bool*) – Label the qubits.
@@ -47,3 +57,4 @@ plot_gate_map(backend)
 ```
 
 ![../\_images/qiskit.visualization.plot\_gate\_map\_1\_0.png](/images/api/qiskit/0.33/qiskit.visualization.plot_gate_map_1_0.png)
+

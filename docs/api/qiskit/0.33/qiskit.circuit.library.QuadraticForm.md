@@ -1,4 +1,14 @@
+---
+title: QuadraticForm
+description: API reference for qiskit.circuit.library.QuadraticForm
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.QuadraticForm
+---
+
 # QuadraticForm
+
+<span id="qiskit.circuit.library.QuadraticForm" />
 
 `QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)`
 
@@ -47,11 +57,31 @@ The implementation of this circuit is discussed in \[1], Fig. 6.
 
 ## Methods Defined Here
 
-|                                                                                                                                                                                                                   |                                           |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| [`required_result_qubits`](qiskit.circuit.library.QuadraticForm.required_result_qubits#qiskit.circuit.library.QuadraticForm.required_result_qubits "qiskit.circuit.library.QuadraticForm.required_result_qubits") | Get the number of required result qubits. |
+### required\_result\_qubits
+
+<span id="qiskit.circuit.library.QuadraticForm.required_result_qubits" />
+
+`static QuadraticForm.required_result_qubits(quadratic, linear, offset)`
+
+Get the number of required result qubits.
+
+**Parameters**
+
+*   **quadratic** (`Union`\[`ndarray`, `List`\[`List`\[`float`]]]) – A matrix containing the quadratic coefficients.
+*   **linear** (`Union`\[`ndarray`, `List`\[`float`]]) – An array containing the linear coefficients.
+*   **offset** (`float`) – A constant offset.
+
+**Return type**
+
+`int`
+
+**Returns**
+
+The number of qubits needed to represent the value of the quadratic form in twos complement.
 
 ## Attributes
+
+<span id="qiskit.circuit.library.QuadraticForm.ancillas" />
 
 ### ancillas
 
@@ -60,6 +90,8 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
+
+<span id="qiskit.circuit.library.QuadraticForm.calibrations" />
 
 ### calibrations
 
@@ -73,6 +105,8 @@ Return calibration dictionary.
 
 `dict`
 
+<span id="qiskit.circuit.library.QuadraticForm.clbits" />
+
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -80,6 +114,8 @@ Returns a list of classical bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Clbit`]
+
+<span id="qiskit.circuit.library.QuadraticForm.data" />
 
 ### data
 
@@ -95,9 +131,13 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
+<span id="qiskit.circuit.library.QuadraticForm.extension_lib" />
+
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
+
+<span id="qiskit.circuit.library.QuadraticForm.global_phase" />
 
 ### global\_phase
 
@@ -107,13 +147,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
+<span id="qiskit.circuit.library.QuadraticForm.header" />
+
 ### header
 
 `= 'OPENQASM 2.0;'`
 
+<span id="qiskit.circuit.library.QuadraticForm.instances" />
+
 ### instances
 
 `= 9`
+
+<span id="qiskit.circuit.library.QuadraticForm.metadata" />
 
 ### metadata
 
@@ -125,6 +171,8 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
+<span id="qiskit.circuit.library.QuadraticForm.num_ancillas" />
+
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -132,6 +180,8 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
+
+<span id="qiskit.circuit.library.QuadraticForm.num_clbits" />
 
 ### num\_clbits
 
@@ -141,6 +191,8 @@ Return number of classical bits.
 
 `int`
 
+<span id="qiskit.circuit.library.QuadraticForm.num_parameters" />
+
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
@@ -148,6 +200,8 @@ Convenience function to get the number of parameter objects in the circuit.
 **Return type**
 
 `int`
+
+<span id="qiskit.circuit.library.QuadraticForm.num_qubits" />
 
 ### num\_qubits
 
@@ -157,6 +211,8 @@ Return number of qubits.
 
 `int`
 
+<span id="qiskit.circuit.library.QuadraticForm.parameters" />
+
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
@@ -165,9 +221,13 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
+<span id="qiskit.circuit.library.QuadraticForm.prefix" />
+
 ### prefix
 
 `= 'circuit'`
+
+<span id="qiskit.circuit.library.QuadraticForm.qubits" />
 
 ### qubits
 
@@ -176,3 +236,4 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
+

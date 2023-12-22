@@ -1,4 +1,14 @@
+---
+title: mutual_information
+description: API reference for qiskit.quantum_info.mutual_information
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.quantum_info.mutual_information
+---
+
 # qiskit.quantum\_info.mutual\_information
+
+<span id="qiskit.quantum_info.mutual_information" />
 
 `mutual_information(state, base=2)`
 
@@ -14,7 +24,7 @@ where $\rho_A=Tr_B[\rho_{AB}], \rho_B=Tr_A[\rho_{AB}]$, are the reduced density 
 
 **Parameters**
 
-*   **state** ([*Statevector*](qiskit.quantum_info.Statevector#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix#qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a bipartite state.
+*   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a bipartite state.
 *   **base** (*int*) – the base of the logarithm \[Default: 2].
 
 **Returns**
@@ -29,3 +39,4 @@ float
 
 *   **QiskitError** – if the input state is not a valid QuantumState.
 *   **QiskitError** – if input is not a bipartite QuantumState.
+

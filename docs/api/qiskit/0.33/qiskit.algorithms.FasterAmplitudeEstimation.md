@@ -1,4 +1,14 @@
+---
+title: FasterAmplitudeEstimation
+description: API reference for qiskit.algorithms.FasterAmplitudeEstimation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.FasterAmplitudeEstimation
+---
+
 # FasterAmplitudeEstimation
+
+<span id="qiskit.algorithms.FasterAmplitudeEstimation" />
 
 `FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None)`
 
@@ -37,12 +47,49 @@ Due to the iterative version of the QPE, this algorithm does not require any add
 
 ## Methods
 
-|                                                                                                                                                                                                                    |                                         |              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------- | ------------ |
-| [`construct_circuit`](qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit#qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit "qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit") | Construct the circuit \$Q^k X           | 0\rangle>\$. |
-| [`estimate`](qiskit.algorithms.FasterAmplitudeEstimation.estimate#qiskit.algorithms.FasterAmplitudeEstimation.estimate "qiskit.algorithms.FasterAmplitudeEstimation.estimate")                                     | Run the amplitude estimation algorithm. |              |
+### construct\_circuit
+
+<span id="qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit" />
+
+`FasterAmplitudeEstimation.construct_circuit(estimation_problem, k, measurement=False)`
+
+Construct the circuit $Q^k X |0\rangle>$.
+
+The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
+
+**Parameters**
+
+*   **estimation\_problem** (`EstimationProblem`) – The estimation problem for which to construct the circuit.
+*   **k** (`int`) – The power of the Q operator.
+*   **measurement** (`bool`) – Boolean flag to indicate if measurements should be included in the circuits.
+
+**Return type**
+
+`Union`\[`QuantumCircuit`, `Tuple`\[`QuantumCircuit`, `List`\[`int`]]]
+
+**Returns**
+
+The circuit $Q^k X |0\rangle$.
+
+### estimate
+
+<span id="qiskit.algorithms.FasterAmplitudeEstimation.estimate" />
+
+`FasterAmplitudeEstimation.estimate(estimation_problem)`
+
+Run the amplitude estimation algorithm.
+
+**Parameters**
+
+**estimation\_problem** (`EstimationProblem`) – An `EstimationProblem` containing all problem-relevant information such as the state preparation and the objective qubits.
+
+**Return type**
+
+`FasterAmplitudeEstimationResult`
 
 ## Attributes
+
+<span id="qiskit.algorithms.FasterAmplitudeEstimation.quantum_instance" />
 
 ### quantum\_instance
 
@@ -55,3 +102,4 @@ Get the quantum instance.
 **Returns**
 
 The quantum instance used to run this algorithm.
+

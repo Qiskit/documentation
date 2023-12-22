@@ -1,4 +1,14 @@
+---
+title: local_hardware_info
+description: API reference for qiskit.utils.local_hardware_info
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.utils.local_hardware_info
+---
+
 # qiskit.utils.local\_hardware\_info
+
+<span id="qiskit.utils.local_hardware_info" />
 
 `local_hardware_info()`
 
@@ -13,3 +23,4 @@ The hardware information.
 **Return type**
 
 dict
+

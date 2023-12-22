@@ -1,4 +1,14 @@
+---
+title: marginal_counts
+description: API reference for qiskit.ignis.verification.marginal_counts
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.marginal_counts
+---
+
 # qiskit.ignis.verification.marginal\_counts
+
+<span id="qiskit.ignis.verification.marginal_counts" />
 
 `marginal_counts(counts, meas_qubits=True, pad_zeros=False)`
 
@@ -17,3 +27,4 @@ Compute marginal counts from a counts dictionary.
 **Returns**
 
 A counts dictionary for the specified qubits. The returned dictionary will have any whitespace trimmed from the input counts keys. Thus if meas\_qubits=True the returned dictionary will have the same values as the input dictionary, but with whitespace trimmed from the keys.
+

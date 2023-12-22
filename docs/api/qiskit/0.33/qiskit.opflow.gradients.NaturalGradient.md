@@ -1,4 +1,14 @@
+---
+title: NaturalGradient
+description: API reference for qiskit.opflow.gradients.NaturalGradient
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.gradients.NaturalGradient
+---
+
 # NaturalGradient
+
+<span id="qiskit.opflow.gradients.NaturalGradient" />
 
 `NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`
 
@@ -25,11 +35,34 @@ where R(x) represents the penalization term.
 
 ## Methods Defined Here
 
-|                                                                                                                                                                |                                 |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [`convert`](qiskit.opflow.gradients.NaturalGradient.convert#qiskit.opflow.gradients.NaturalGradient.convert "qiskit.opflow.gradients.NaturalGradient.convert") | **type operator**`OperatorBase` |
+### convert
+
+<span id="qiskit.opflow.gradients.NaturalGradient.convert" />
+
+`NaturalGradient.convert(operator, params=None)`
+
+**Parameters**
+
+*   **operator** (`OperatorBase`) – The operator we are taking the gradient of.
+*   **params** (`Union`\[`ParameterVector`, `ParameterExpression`, `List`\[`ParameterExpression`], `None`]) – The parameters we are taking the gradient with respect to. If not explicitly passed, they are inferred from the operator and sorted by name.
+
+**Return type**
+
+`OperatorBase`
+
+**Returns**
+
+An operator whose evaluation yields the NaturalGradient.
+
+**Raises**
+
+*   **TypeError** – If `operator` does not represent an expectation value or the quantum state is not `CircuitStateFn`.
+*   **ValueError** – If `params` contains a parameter not present in `operator`.
+*   **ValueError** – If `operator` is not parameterized.
 
 ## Attributes
+
+<span id="qiskit.opflow.gradients.NaturalGradient.grad_method" />
 
 ### grad\_method
 
@@ -43,6 +76,8 @@ Returns `CircuitGradient`.
 
 `CircuitGradient`.
 
+<span id="qiskit.opflow.gradients.NaturalGradient.qfi_method" />
+
 ### qfi\_method
 
 Returns `CircuitQFI`.
@@ -53,6 +88,8 @@ Returns: `CircuitQFI`
 
 `CircuitQFI`
 
+<span id="qiskit.opflow.gradients.NaturalGradient.regularization" />
+
 ### regularization
 
 Returns the regularization option.
@@ -62,3 +99,4 @@ Returns: the regularization option.
 **Return type**
 
 `Optional`\[`str`]
+

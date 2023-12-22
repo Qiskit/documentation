@@ -1,4 +1,14 @@
+---
+title: NoiseAdaptiveLayout
+description: API reference for qiskit.transpiler.passes.NoiseAdaptiveLayout
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.NoiseAdaptiveLayout
+---
+
 # NoiseAdaptiveLayout
+
+<span id="qiskit.transpiler.passes.NoiseAdaptiveLayout" />
 
 `NoiseAdaptiveLayout(*args, **kwargs)`
 
@@ -13,6 +23,10 @@ Choose a noise-adaptive Layout based on current calibration data for the backend
 `Ordering of edges`
 
 `Map qubits edge-by-edge in the order of decreasing frequency of occurrence in the program dag.`
+
+### Initialization
+
+<span id="qiskit.transpiler.passes.NoiseAdaptiveLayout.Initialization" />
 
 `Initialization()`
 
@@ -34,6 +48,10 @@ Choose a noise-adaptive Layout based on current calibration data for the backend
 
 `hardware qubit.`
 
+### Notes
+
+<span id="qiskit.transpiler.passes.NoiseAdaptiveLayout.Notes" />
+
 `Notes()`
 
 even though a layout is not strictly a property of the DAG, in the transpiler architecture it is best passed around between passes by being set in property\_set.
@@ -42,20 +60,33 @@ NoiseAdaptiveLayout initializer.
 
 **Parameters**
 
-**backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – backend properties object
+**backend\_prop** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – backend properties object
 
 **Raises**
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if invalid options
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if invalid options
 
 ## Methods
 
-|                                                                                                                                                                   |                                          |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| [`name`](qiskit.transpiler.passes.NoiseAdaptiveLayout.name#qiskit.transpiler.passes.NoiseAdaptiveLayout.name "qiskit.transpiler.passes.NoiseAdaptiveLayout.name") | Return the name of the pass.             |
-| [`run`](qiskit.transpiler.passes.NoiseAdaptiveLayout.run#qiskit.transpiler.passes.NoiseAdaptiveLayout.run "qiskit.transpiler.passes.NoiseAdaptiveLayout.run")     | Run the NoiseAdaptiveLayout pass on dag. |
+### name
+
+<span id="qiskit.transpiler.passes.NoiseAdaptiveLayout.name" />
+
+`NoiseAdaptiveLayout.name()`
+
+Return the name of the pass.
+
+### run
+
+<span id="qiskit.transpiler.passes.NoiseAdaptiveLayout.run" />
+
+`NoiseAdaptiveLayout.run(dag)`
+
+Run the NoiseAdaptiveLayout pass on dag.
 
 ## Attributes
+
+<span id="qiskit.transpiler.passes.NoiseAdaptiveLayout.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -63,8 +94,11 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
+<span id="qiskit.transpiler.passes.NoiseAdaptiveLayout.is_transformation_pass" />
+
 ### is\_transformation\_pass
 
 Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+

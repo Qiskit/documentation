@@ -1,4 +1,14 @@
+---
+title: active_transpiler_settings
+description: API reference for qiskit.pulse.builder.active_transpiler_settings
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.active_transpiler_settings
+---
+
 # qiskit.pulse.builder.active\_transpiler\_settings
+
+<span id="qiskit.pulse.builder.active_transpiler_settings" />
 
 `active_transpiler_settings()`
 
@@ -26,3 +36,4 @@ with pulse.build(backend,
 **Return type**
 
 `Dict`\[`str`, `Any`]
+

@@ -1,4 +1,14 @@
+---
+title: remove_trivial_barriers
+description: API reference for qiskit.pulse.transforms.remove_trivial_barriers
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.transforms.remove_trivial_barriers
+---
+
 # qiskit.pulse.transforms.remove\_trivial\_barriers
+
+<span id="qiskit.pulse.transforms.remove_trivial_barriers" />
 
 `remove_trivial_barriers(schedule)`
 
@@ -15,3 +25,4 @@ A schedule without trivial barriers
 **Return type**
 
 schedule
+
