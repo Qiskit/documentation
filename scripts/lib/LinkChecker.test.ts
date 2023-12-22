@@ -22,7 +22,12 @@ describe("Test the constructor of Link", () => {
       testLink.originFiles,
       testLink.isExternal,
     ];
-    const correct_values = ["/testpath", "", ["/testorigin.mdx"], false];
+    const correct_values = [
+      "/testpath",
+      "",
+      new Set(["/testorigin.mdx"]),
+      false,
+    ];
     expect(attributes).toEqual(correct_values);
   });
 
@@ -37,7 +42,7 @@ describe("Test the constructor of Link", () => {
     const correct_values = [
       "/testpath",
       "#testanchor",
-      ["/testorigin.mdx"],
+      new Set(["/testorigin.mdx"]),
       false,
     ];
     expect(attributes).toEqual(correct_values);
@@ -54,7 +59,7 @@ describe("Test the constructor of Link", () => {
     const correct_values = [
       "https://test.link.com",
       "",
-      ["/testorigin.mdx"],
+      new Set(["/testorigin.mdx"]),
       true,
     ];
     expect(attributes).toEqual(correct_values);
@@ -128,6 +133,8 @@ describe("Validate links", () => {
   test("Validate internal links with relative path and multiple origin files", async () => {
     let testLink = new Link("../testpath", [
       "docs/test/testorigin.mdx",
+      "docs/test/test2/testorigin.mdx",
+      // Duplicate of the above value to confirm we de-duplicate originFiles.
       "docs/test/test2/testorigin.mdx",
       "docs/test/test3/testorigin.mdx",
       "docs/test/test2/test4/testorigin.mdx",
