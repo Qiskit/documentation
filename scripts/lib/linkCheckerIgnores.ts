@@ -65,7 +65,7 @@ const SHOULD_BE_FIXED: FilesToIgnores = {
   ],
   "docs/api/qiskit-ibm-provider/release-notes.md": [
     "https://github.com/Qiskit/qiskit-ibm-provider/blob/main/docs/tutorials/Migration_Guide_from_qiskit-ibmq-provider.ipynb",
-  ]
+  ],
 };
 
 // Issues that are okay, such as because the link checker times out
@@ -79,7 +79,7 @@ const EXPECTED: FilesToIgnores = {
   ],
   "docs/api/qiskit/synthesis.md": [
     "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
-  ]
+  ],
 };
 
 export default { ...SHOULD_BE_FIXED, ...EXPECTED };
