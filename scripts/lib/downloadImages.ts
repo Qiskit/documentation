@@ -25,15 +25,19 @@ export async function downloadImages(
     images,
     async (img) => {
       if (await pathExists(img.dest)) return;
-      const response = await fetch(img.src);
-      if (response.ok) {
-        await mkdirp(dirname(img.dest));
-        const stream = createWriteStream(img.dest);
-        await finished(Readable.fromWeb(response.body as any).pipe(stream));
-      } else {
-        console.log(`Error downloading ${img.src} to ${img.dest}`);
-      }
+      downloadBlob(img.src, img.dest);
     },
     { concurrency: 4 },
   );
+}
+
+export async function downloadBlob(src: string, dest: string) {
+  const response = await fetch(src);
+  if (response.ok) {
+    await mkdirp(dirname(dest));
+    const stream = createWriteStream(dest);
+    await finished(Readable.fromWeb(response.body as any).pipe(stream));
+  } else {
+    console.log(`Error downloading ${src} to ${dest}`);
+  }
 }
