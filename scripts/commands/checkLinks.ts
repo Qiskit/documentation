@@ -10,9 +10,6 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readFile } from "fs/promises";
-import path from "node:path";
-
 import { globby } from "globby";
 import markdownLinkExtractor from "markdown-link-extractor";
 import { visit } from "unist-util-visit";
@@ -25,8 +22,9 @@ import remarkGfm from "remark-gfm";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
-import { Link, File } from "../lib/LinkChecker";
-import FILES_TO_IGNORES from "../lib/linkCheckerIgnores";
+import { Link, File } from "../lib/links/LinkChecker";
+import FILES_TO_IGNORES from "../lib/links/ignores";
+import { getMarkdownAndAnchors } from "../lib/links/markdown";
 
 const DOCS_GLOBS_TO_CHECK = [
   "docs/**/*.{ipynb,md,mdx}",
@@ -68,33 +66,6 @@ const readArgs = (): Arguments => {
     })
     .parseSync();
 };
-
-function markdownFromNotebook(source: string): string {
-  let markdown = "";
-  for (let cell of JSON.parse(source).cells) {
-    if (cell.cell_type === "markdown") {
-      cell.source.forEach((s: string) => (markdown += s + "\n"));
-    }
-  }
-  return markdown;
-}
-
-async function getMarkdownAndAnchors(
-  filePath: string,
-): Promise<[string, string[]]> {
-  const source = await readFile(filePath, { encoding: "utf8" });
-  const markdown =
-    path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
-
-  const anchors = markdownLinkExtractor(markdown).anchors;
-
-  // Get the anchors from HTML ids.
-  const id_anchors = markdown.match(/(?<=id=")(.*)(?=")/gm);
-  if (id_anchors != null) {
-    id_anchors.forEach((id) => anchors.push("#" + id));
-  }
-  return [markdown, anchors];
-}
 
 /**
  * Process the markdown and Jupyter notebook files.
