@@ -14,6 +14,17 @@ import { $ } from "zx";
 
 export async function startWebServer(directory: string, listenPort: number) {
   $`python3 -m http.server ${listenPort} -d ${directory} -b ::1 &`;
+
+  // Wait until the server is up and able to listen to the requests
+  while (true) {
+    try {
+      const response = await fetch(`http://localhost:${listenPort}`);
+      return;
+    } catch {
+      // Wait 5 ms for the next fetch
+      await new Promise((res) => setTimeout(res, 5));
+    }
+  }
 }
 
 export async function closeWebServer(listenPort: number) {
