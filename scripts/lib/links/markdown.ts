@@ -14,6 +14,13 @@ import { readFile } from "fs/promises";
 import path from "node:path";
 
 import markdownLinkExtractor from "markdown-link-extractor";
+import { visit } from "unist-util-visit";
+import { unified } from "unified";
+import remarkStringify from "remark-stringify";
+import { Root } from "remark-mdx";
+import rehypeRemark from "rehype-remark";
+import rehypeParse from "rehype-parse";
+import remarkGfm from "remark-gfm";
 
 interface JupyterCell {
   cell_type: string;
@@ -44,4 +51,35 @@ export async function getMarkdownAndAnchors(
   const markdown =
     path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
   return [markdown, parseAnchors(markdown)];
+}
+
+export async function addLinksToMap(
+  filePath: string,
+  markdown: string,
+  linksToOriginFiles: Map<string, string[]>,
+): Promise<void> {
+  const addLink = (link: string): void => {
+    const entry = linksToOriginFiles.get(link);
+    if (entry === undefined) {
+      linksToOriginFiles.set(link, [filePath]);
+    } else {
+      entry.push(filePath);
+    }
+  };
+
+  unified()
+    .use(rehypeParse)
+    .use(remarkGfm)
+    .use(rehypeRemark)
+    .use(() => (tree: Root) => {
+      visit(tree, "text", (TreeNode) => {
+        markdownLinkExtractor(String(TreeNode.value)).links.forEach((url) =>
+          addLink(url),
+        );
+      });
+      visit(tree, "link", (TreeNode) => addLink(TreeNode.url));
+      visit(tree, "image", (TreeNode) => addLink(TreeNode.url));
+    })
+    .use(remarkStringify)
+    .process(markdown);
 }

@@ -11,7 +11,7 @@
 // that they have been altered from the originals.
 
 import { expect, test } from "@jest/globals";
-import { markdownFromNotebook, parseAnchors } from "./markdown";
+import { markdownFromNotebook, parseAnchors, addLinksToMap } from "./markdown";
 
 test("markdownFromNotebook()", () => {
   const result = markdownFromNotebook(`
@@ -44,9 +44,9 @@ test("markdownFromNotebook()", () => {
         ],
         "metadata": {}
     }
-  `)
-  expect(result).toBe("Line 1.\nLine 2.\nLine 3.")
-})
+  `);
+  expect(result).toBe("Line 1.\nLine 2.\nLine 3.");
+});
 
 test("parseAnchors()", () => {
   const result = parseAnchors(`
@@ -70,4 +70,35 @@ test("parseAnchors()", () => {
     "#this-is-a-hardcoded-anchor",
     "#another_span",
   ]);
+});
+
+test("addLinksToMap()", async () => {
+  const linksToMap = new Map();
+  const markdown = `
+    # A header
+    Our [first link!](https://ibm.com) and, look, [another](./relative)!
+
+    ![](/images/my_image.png)
+
+    <a href="./explicit-anchor">Explicit anchor</a>
+    `;
+  await addLinksToMap("file1.md", markdown, linksToMap);
+  expect(linksToMap).toEqual(
+    new Map([
+      ["https://ibm.com", ["file1.md"]],
+      ["./explicit-anchor", ["file1.md"]],
+      ["./relative", ["file1.md"]],
+      ["/images/my_image.png", ["file1.md"]],
+    ]),
+  );
+
+  await addLinksToMap("file2.md", markdown, linksToMap);
+  expect(linksToMap).toEqual(
+    new Map([
+      ["https://ibm.com", ["file1.md", "file2.md"]],
+      ["./explicit-anchor", ["file1.md", "file2.md"]],
+      ["./relative", ["file1.md", "file2.md"]],
+      ["/images/my_image.png", ["file1.md", "file2.md"]],
+    ]),
+  );
 });
