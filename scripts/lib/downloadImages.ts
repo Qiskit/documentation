@@ -21,7 +21,7 @@ import { startWebServer, closeWebServer } from "../lib/webServer";
 
 export async function downloadImages(
   images: Array<{ src: string; dest: string }>,
-  imagesPath: string,
+  originalImagesFolderPath: string,
 ) {
   const missingImagesResults = await Promise.all(
     images.map(async (img) => {
@@ -38,7 +38,7 @@ export async function downloadImages(
     return;
   }
 
-  await startWebServer(`${imagesPath}/artifact`);
+  await startWebServer(originalImagesFolderPath);
   try {
     await pMap(
       missingImages,

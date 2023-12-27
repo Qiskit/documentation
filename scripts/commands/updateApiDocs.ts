@@ -364,7 +364,7 @@ async function convertHtmlToMarkdown(
       src: img.src,
       dest: `${getRoot()}/public${img.dest}`,
     })),
-    htmlPath,
+    `${htmlPath}/artifact`,
   );
 }
 

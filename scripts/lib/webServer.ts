@@ -19,14 +19,14 @@ export async function startWebServer(directory: string) {
 
   // Wait until the server is up and able to listen to the requests
   await new Promise((res) => setTimeout(res, 500));
-  while (true) {
-    try {
-      const response = await fetch(`http://localhost:${PORT}`);
-      return;
-    } catch {
-      // Wait 1 s for the next fetch
-      await new Promise((res) => setTimeout(res, 1000));
-    }
+
+  // First attempt to check if the web server is up
+  try {
+    await fetch(`http://localhost:${PORT}`);
+  } catch {
+    // Wait 1 s for the second attempt
+    await new Promise((res) => setTimeout(res, 1000));
+    await fetch(`http://localhost:${PORT}`);
   }
 }
 
