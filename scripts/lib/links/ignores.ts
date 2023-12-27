@@ -22,6 +22,10 @@ type FilesToIgnores = { [id: string]: string[] };
 const SHOULD_BE_FIXED: FilesToIgnores = {
   "docs/api/qiskit-ibm-provider/ibm-provider.md": ["ibm_provider"],
   "docs/api/qiskit-ibm-runtime/ibm-runtime.md": ["runtime_service"],
+  "docs/api/qiskit/algorithms.md": ["https://www.qiskit.org/terra"],
+  "docs/api/qiskit/qiskit.algorithms.Grover.md": [
+    "https://qiskit.org/textbook/ch-algorithms/grover.html",
+  ],
   "docs/api/qiskit/qiskit.algorithms.optimizers.NFT.md": ["#id2", "#id1"],
   "docs/api/qiskit/qiskit.algorithms.optimizers.ISRES.md": [
     "https://notendur.hi.is/tpr/software/sres/Tec311r.pdf",
@@ -54,15 +58,14 @@ const SHOULD_BE_FIXED: FilesToIgnores = {
     "#qiskit.utils.optionals.HAS_GRAPHVIZ",
     "#qiskit.utils.optionals.HAS_PYDOT",
   ],
+  "docs/api/qiskit/release-notes/0.45.md": [
+    "/api/qiskit/utils#qiskit.utils.optionals.HAS_PYGMENTS",
+  ],
   "docs/api/qiskit-ibm-provider/qiskit_ibm_provider.IBMProvider.md": [
     "https://auth.quantum-computing.ibm.com/api",
   ],
   "docs/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService.md": [
     "https://auth.quantum-computing.ibm.com/api",
-  ],
-  "docs/api/qiskit/algorithms.md": ["https://www.qiskit.org/terra"],
-  "docs/api/qiskit/qiskit.algorithms.Grover.md": [
-    "https://qiskit.org/textbook/ch-algorithms/grover.html",
   ],
   "docs/api/qiskit-ibm-provider/release-notes.md": [
     "https://github.com/Qiskit/qiskit-ibm-provider/blob/main/docs/tutorials/Migration_Guide_from_qiskit-ibmq-provider.ipynb",
