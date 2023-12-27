@@ -23,16 +23,14 @@ export async function downloadImages(
   images: Array<{ src: string; dest: string }>,
   originalImagesFolderPath: string,
 ) {
-  const missingImagesResults = await Promise.all(
-    images.map(async (img) => {
-      const exists = await pathExists(img.dest);
-      return exists ? null : img;
-    }),
-  );
-
-  const missingImages = missingImagesResults.filter(
-    (img): img is { src: string; dest: string } => img !== null,
-  );
+  const missingImages = (
+    await Promise.all(
+      images.map(async (img) => {
+        const exists = await pathExists(img.dest);
+        return exists ? [] : img;
+      }),
+    )
+  ).flat();
 
   if (missingImages.length == 0) {
     return;
