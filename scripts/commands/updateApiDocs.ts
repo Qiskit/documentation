@@ -171,7 +171,7 @@ zxMain(async () => {
   if (await pathExists(destination)) {
     console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
-    await downloadApiSources(pkg, artifactUrl, destination, 8000);
+    await downloadApiSources(pkg, artifactUrl, destination);
   }
 
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${pkg.versionWithoutPatch}/`;
@@ -364,6 +364,7 @@ async function convertHtmlToMarkdown(
       src: img.src,
       dest: `${getRoot()}/public${img.dest}`,
     })),
+    `${htmlPath}/artifact`,
   );
 }
 
@@ -378,9 +379,8 @@ async function downloadApiSources(
   pkg: Pkg,
   artifactUrl: string,
   destination: string,
-  listenPort: number,
 ) {
-  await startWebServer(`${destination}/artifact`, listenPort);
+  await startWebServer(`${destination}/artifact`);
   try {
     await downloadCIArtifact(pkg.name, artifactUrl, destination);
     await saveHtml({
@@ -389,6 +389,6 @@ async function downloadApiSources(
       destination,
     });
   } finally {
-    await closeWebServer(listenPort);
+    await closeWebServer();
   }
 }
