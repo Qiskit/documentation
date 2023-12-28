@@ -53,11 +53,8 @@ Extra information before all the versions
 ### Extra section before the notes
 Extra section
 
-## 0.25.0
-This is a test for version 0.25.0
-
-## 0.25.1
-This is a test for version 0.25.1
+## 0.45.2
+This is a test for version 0.45.2
 
 ### New features
 Example
@@ -76,6 +73,9 @@ This is a test for version 0.45.0`;
 
   const versionsFoundExpected = new Set(["0.45"]);
   const markdownByPatchVersion: { [id: string]: string } = {};
+  markdownByPatchVersion[
+    "0.45.2"
+  ] = `## 0.45.2\nThis is a test for version 0.45.2\n\n### New features\nExample\n`;
   markdownByPatchVersion[
     "0.45.0rc1"
   ] = `## 0.45.0rc1\nThis is a test for version 0.45.0rc1\n\n### New features\nExample\n`;
