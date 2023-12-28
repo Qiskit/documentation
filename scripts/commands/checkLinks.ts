@@ -10,23 +10,13 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { readFile } from "fs/promises";
-import path from "node:path";
-
 import { globby } from "globby";
-import markdownLinkExtractor from "markdown-link-extractor";
-import { visit } from "unist-util-visit";
-import { unified } from "unified";
-import remarkStringify from "remark-stringify";
-import { Root } from "remark-mdx";
-import rehypeRemark from "rehype-remark";
-import rehypeParse from "rehype-parse";
-import remarkGfm from "remark-gfm";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 
-import { Link, File } from "../lib/LinkChecker";
-import FILES_TO_IGNORES from "../lib/linkCheckerIgnores";
+import { Link, File } from "../lib/links/LinkChecker";
+import FILES_TO_IGNORES from "../lib/links/ignores";
+import { getMarkdownAndAnchors, addLinksToMap } from "../lib/links/markdown";
 
 const DOCS_GLOBS_TO_CHECK = [
   "docs/**/*.{ipynb,md,mdx}",
@@ -69,33 +59,6 @@ const readArgs = (): Arguments => {
     .parseSync();
 };
 
-function markdownFromNotebook(source: string): string {
-  let markdown = "";
-  for (let cell of JSON.parse(source).cells) {
-    if (cell.cell_type === "markdown") {
-      cell.source.forEach((s: string) => (markdown += s + "\n"));
-    }
-  }
-  return markdown;
-}
-
-async function getMarkdownAndAnchors(
-  filePath: string,
-): Promise<[string, string[]]> {
-  const source = await readFile(filePath, { encoding: "utf8" });
-  const markdown =
-    path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
-
-  const anchors = markdownLinkExtractor(markdown).anchors;
-
-  // Get the anchors from HTML ids.
-  const id_anchors = markdown.match(/(?<=id=")(.*)(?=")/gm);
-  if (id_anchors != null) {
-    id_anchors.forEach((id) => anchors.push("#" + id));
-  }
-  return [markdown, anchors];
-}
-
 /**
  * Process the markdown and Jupyter notebook files.
  *
@@ -119,61 +82,22 @@ async function processDocsFiles(
   filePathsToLoad: string[],
   filePathsToCheck: string[],
 ): Promise<[File[], Link[], Link[]]> {
-  const fileList: File[] = [];
+  const files: File[] = [];
   for (let filePath of filePathsToLoad) {
     const [_, anchors] = await getMarkdownAndAnchors(filePath);
-    fileList.push(new File(filePath, anchors, false));
+    files.push(new File(filePath, anchors, false));
   }
 
-  const internalLinkList: Link[] = [];
-  const externalLinkList: Link[] = [];
-  // This is a map to avoid link duplications.
-  const linkMap = new Map<string, string[]>();
-
-  for (let filePath of filePathsToCheck) {
+  const linksToOriginFiles = new Map<string, string[]>();
+  for (const filePath of filePathsToCheck) {
     const [markdown, anchors] = await getMarkdownAndAnchors(filePath);
-    fileList.push(new File(filePath, anchors, false));
-    unified()
-      .use(rehypeParse)
-      .use(remarkGfm)
-      .use(rehypeRemark)
-      .use(() => {
-        return function transform(tree: Root) {
-          visit(tree, "text", (TreeNode) => {
-            markdownLinkExtractor(String(TreeNode.value)).links.map(
-              (url: string) => {
-                let link = linkMap.get(url);
-                if (link != null) {
-                  link.push(filePath);
-                } else {
-                  linkMap.set(url, [filePath]);
-                }
-              },
-            );
-          });
-          visit(tree, "link", (TreeNode) => {
-            let link = linkMap.get(TreeNode.url);
-            if (link != null) {
-              link.push(filePath);
-            } else {
-              linkMap.set(TreeNode.url, [filePath]);
-            }
-          });
-          visit(tree, "image", (TreeNode) => {
-            let link = linkMap.get(TreeNode.url);
-            if (link != null) {
-              link.push(filePath);
-            } else {
-              linkMap.set(TreeNode.url, [filePath]);
-            }
-          });
-        };
-      })
-      .use(remarkStringify)
-      .process(markdown);
+    files.push(new File(filePath, anchors, false));
+    await addLinksToMap(filePath, markdown, linksToOriginFiles);
   }
 
-  for (let [linkPath, originFiles] of linkMap) {
+  const internalLinks: Link[] = [];
+  const externalLinks: Link[] = [];
+  for (let [linkPath, originFiles] of linksToOriginFiles) {
     originFiles = originFiles.filter(
       (originFile) =>
         FILES_TO_IGNORES[originFile] == null ||
@@ -182,13 +106,11 @@ async function processDocsFiles(
 
     if (originFiles.length > 0) {
       const link = new Link(linkPath, originFiles);
-      link.isExternal
-        ? externalLinkList.push(link)
-        : internalLinkList.push(link);
+      link.isExternal ? externalLinks.push(link) : internalLinks.push(link);
     }
   }
 
-  return [fileList, internalLinkList, externalLinkList];
+  return [files, internalLinks, externalLinks];
 }
 
 async function main() {

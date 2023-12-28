@@ -35,7 +35,7 @@ export class File {
 export class Link {
   readonly value: string;
   readonly anchor: string;
-  readonly originFiles: string[];
+  readonly originFiles: Set<string>;
   readonly isExternal: boolean;
 
   /**
@@ -46,7 +46,7 @@ export class Link {
     const splitLink = linkString.split("#", 2);
     this.value = splitLink[0];
     this.anchor = splitLink.length > 1 ? `#${splitLink[1]}` : "";
-    this.originFiles = originFiles;
+    this.originFiles = new Set(originFiles);
     this.isExternal = linkString.startsWith("http");
   }
 

@@ -12,10 +12,24 @@
 
 import { $ } from "zx";
 
-export async function startWebServer(directory: string, listenPort: number) {
-  $`python3 -m http.server ${listenPort} -d ${directory} -b ::1 &`;
+const PORT = 8000;
+
+export async function startWebServer(directory: string) {
+  $`python3 -m http.server ${PORT} -d ${directory} -b ::1 &`;
+
+  // Wait until the server is up and able to listen to the requests
+  await new Promise((res) => setTimeout(res, 500));
+
+  // First attempt to check if the web server is up
+  try {
+    await fetch(`http://localhost:${PORT}`);
+  } catch {
+    // Wait 1 s for the second attempt
+    await new Promise((res) => setTimeout(res, 1000));
+    await fetch(`http://localhost:${PORT}`);
+  }
 }
 
-export async function closeWebServer(listenPort: number) {
-  await $`lsof -nti:${listenPort} | xargs kill -TERM`;
+export async function closeWebServer() {
+  await $`lsof -nti:${PORT} | xargs kill -TERM`;
 }
