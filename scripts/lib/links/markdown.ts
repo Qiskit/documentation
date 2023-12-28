@@ -36,12 +36,9 @@ export function markdownFromNotebook(rawContent: string): string {
 }
 
 export function parseAnchors(markdown: string): string[] {
-  const result = markdownLinkExtractor(markdown).anchors;
-  const idAnchors = markdown.match(/(?<=id=")(.*)(?=")/gm);
-  if (idAnchors !== null) {
-    result.push(...idAnchors.map((id) => `#${id}`));
-  }
-  return result;
+  const mdAnchors = markdownLinkExtractor(markdown).anchors;
+  const idAnchors = markdown.match(/(?<=id=")(.*)(?=")/gm) || [];
+  return [...mdAnchors, ...idAnchors.map((id) => `#${id}`)];
 }
 
 export async function getMarkdownAndAnchors(
