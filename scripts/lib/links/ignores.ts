@@ -23,6 +23,9 @@ const SHOULD_BE_FIXED: FilesToIgnores = {
   "docs/api/qiskit-ibm-provider/ibm-provider.md": ["ibm_provider"],
   "docs/api/qiskit-ibm-runtime/ibm-runtime.md": ["runtime_service"],
   "docs/api/qiskit/qiskit.algorithms.optimizers.NFT.md": ["#id2", "#id1"],
+  "docs/api/qiskit/qiskit.algorithms.optimizers.ISRES.md": [
+    "https://notendur.hi.is/tpr/software/sres/Tec311r.pdf",
+  ],
   "docs/api/qiskit/qpy.md": [
     "circuit#qiskit.circuit.CASE_DEFAULT",
     "#id8",
@@ -53,11 +56,9 @@ const SHOULD_BE_FIXED: FilesToIgnores = {
   ],
   "docs/api/qiskit-ibm-provider/qiskit_ibm_provider.IBMProvider.md": [
     "https://auth.quantum-computing.ibm.com/api",
-    "https://docs.python-requests.org/en/latest/api/",
   ],
   "docs/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService.md": [
     "https://auth.quantum-computing.ibm.com/api",
-    "https://docs.python-requests.org/en/latest/api/",
   ],
   "docs/api/qiskit/algorithms.md": ["https://www.qiskit.org/terra"],
   "docs/api/qiskit/qiskit.algorithms.Grover.md": [
@@ -71,9 +72,6 @@ const SHOULD_BE_FIXED: FilesToIgnores = {
 // Issues that are okay, such as because the link checker times out
 // when trying to access the links.
 const EXPECTED: FilesToIgnores = {
-  "docs/api/qiskit/qiskit.algorithms.optimizers.ISRES.md": [
-    "https://notendur.hi.is/tpr/software/sres/Tec311r.pdf",
-  ],
   "docs/api/qiskit/qiskit.algorithms.optimizers.SPSA.md": [
     "https://ieeexplore.ieee.org/document/657661",
   ],
