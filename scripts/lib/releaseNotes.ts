@@ -211,12 +211,6 @@ export function extractMarkdownReleaseNotesPatches(
     const versionPatch = section.split("\n").slice(0, 1)[0];
     const versionMinor = versionPatch.split(".").slice(0, 2).join(".");
 
-    // TODO(https://github.com/Qiskit/qiskit/pull/11436). Remove if/when qiskit 0.45
-    // has been moved into a historical folder.
-    if (+versionMinor < 0.45) {
-      continue;
-    }
-
     minorVersionsFound.add(versionMinor);
 
     const content = section.split("\n");
