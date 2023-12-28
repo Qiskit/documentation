@@ -266,7 +266,7 @@ export async function writeSeparateReleaseNotes(
       markdownByPatchOldVersion,
     )) {
       // We keep the release notes for a patch if it hasn't been modified for the current release notes.
-      // Otherwise, we keep the modified version
+      // Otherwise, we use the modified version.
       if (!markdownByPatchVersion.hasOwnProperty(versionPatch)) {
         markdownByPatchVersion[versionPatch] = markdownPatch;
       }
