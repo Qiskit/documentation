@@ -62,8 +62,8 @@ async function main() {
   const args = readArgs();
 
   const fileBatch = await FileBatch.fromGlobs(
-    DOCS_GLOBS_TO_LOAD,
     DOCS_GLOBS_TO_CHECK,
+    DOCS_GLOBS_TO_LOAD,
   );
   const otherFiles = [
     ...(await globby("{public,docs}/**/*.{png,jpg,gif,svg}")).map(

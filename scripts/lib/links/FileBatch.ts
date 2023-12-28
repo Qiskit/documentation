@@ -80,7 +80,7 @@ export class FileBatch {
 
   /**
    * Check that all links in this file batch are valid.
-   * 
+   *
    * Logs the results to the console and returns `true` if there were no issues.
    */
   async check(externalLinks: boolean, otherFiles: File[]): Promise<boolean> {
