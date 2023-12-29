@@ -85,7 +85,7 @@ export async function sphinxHtmlToMarkdown(options: {
 
       $img.attr("src", dest);
 
-      if (isReleaseNotes && releaseNotesTitle) {
+      if (isReleaseNotes) {
         // Release notes links should point to the current version
         $img.attr("src", dest.replace(/[0-9].*\//, ""));
       }

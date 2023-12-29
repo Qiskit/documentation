@@ -258,19 +258,6 @@ export async function writeSeparateReleaseNotes(
     filesToInitialHeaders[version] = currentMarkdown
       .split(/\n## (?=[0-9])/)
       .slice(0, 1)[0];
-
-    const [_, markdownByPatchOldVersion] =
-      extractMarkdownReleaseNotesPatches(currentMarkdown);
-
-    for (let [versionPatch, markdownPatch] of Object.entries(
-      markdownByPatchOldVersion,
-    )) {
-      // We keep the release notes for a patch if it hasn't been modified for the current release notes.
-      // Otherwise, we use the modified version.
-      if (!markdownByPatchVersion.hasOwnProperty(versionPatch)) {
-        markdownByPatchVersion[versionPatch] = markdownPatch;
-      }
-    }
   }
 
   const markdownByPatchVersionSorted = sortReleaseNotesVersions(
