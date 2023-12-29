@@ -150,6 +150,10 @@ npm run check:links
 # Enable the validation of external links
 npm run check:links -- --external
 
+# By default, only the non-API docs are checked. You can add any of these
+# options to check API docs.
+npm run check:links -- --current-apis --qiskit-release-notes
+
 # Or, run all the checks
 npm run check
 ```
