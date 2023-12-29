@@ -75,7 +75,7 @@ export class ObjectsInv {
       if (entry.uri.endsWith("#$")) {
         // #$ is a shorthand for "anchor==name"; see "For illustration" in
         // https://sphobjinv.readthedocs.io/en/stable/syntax.html
-        entry.uri = removeSuffix(entry.uri, "$") + entry.name
+        entry.uri = removeSuffix(entry.uri, "$") + entry.name;
       }
       entry.uri = entry.uri.replace(/\.html(?=[^A-z]|$)/, "");
       entry.uri = transformLink(entry.uri);

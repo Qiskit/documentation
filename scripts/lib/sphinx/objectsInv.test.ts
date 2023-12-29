@@ -33,7 +33,7 @@ describe("objects.inv", () => {
       [88, "stubs/qiskit.algorithms.FasterAmplitudeEstimation.html#$"],
       [107, "stubs/qiskit.algorithms.Grover.html#$"],
       [1419, "apidoc/assembler.html#$"],
-      [24888, "index.html"]
+      [24888, "index.html"],
     ];
     for (const [index, value] of expectedUris) {
       expect(objectsInv.entries[index].uri).toMatch(value);
@@ -41,7 +41,7 @@ describe("objects.inv", () => {
     const expectedNames: [number, string][] = [
       [24888, "Qiskit 0.45 documentation"],
       [25464, "Circuits Deprecations"],
-    ]
+    ];
     for (const [index, value] of expectedNames) {
       expect(objectsInv.entries[index].dispname).toMatch(value);
     }
@@ -62,8 +62,8 @@ describe("objects.inv", () => {
   });
 
   test("URI transform works correctly", () => {
-    const preamble = `# Simple preamble\n`
-    const transformFunction = (x: string) => x.replaceAll("i", "a")
+    const preamble = `# Simple preamble\n`;
+    const transformFunction = (x: string) => x.replaceAll("i", "a");
     const uris: [ObjectsInvEntry, string][] = [
       [
         {
@@ -71,7 +71,7 @@ describe("objects.inv", () => {
           domainAndRole: "py:method",
           priority: "1",
           uri: "qiskit_ibm_runtime.RuntimeJob#$",
-          dispname: "-"
+          dispname: "-",
         },
         "qaskat_abm_runtame.RuntameJob#qaskat_abm_runtame.RuntameJob.job_ad",
       ],
@@ -81,7 +81,7 @@ describe("objects.inv", () => {
           domainAndRole: "py:method",
           priority: "1",
           uri: "qiskit_ibm_runtime.RuntimeJob#$",
-          dispname: "-"
+          dispname: "-",
         },
         "qaskat_abm_runtame.RuntameJob#$",
       ],
@@ -91,7 +91,7 @@ describe("objects.inv", () => {
           domainAndRole: "std:doc",
           priority: "-1",
           uri: "stubs/qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis.__call__.html",
-          dispname: "ASAPScheduleAnalysis.__call__"
+          dispname: "ASAPScheduleAnalysis.__call__",
         },
         "stubs/qaskat_abm_provader.transpaler.passes.schedulang.ASAPScheduleAnalysas.__call__",
       ],
@@ -101,7 +101,7 @@ describe("objects.inv", () => {
           domainAndRole: "std:label",
           priority: "-1",
           uri: "search.html",
-          dispname: "Search Page"
+          dispname: "Search Page",
         },
         "search",
       ],
@@ -111,7 +111,7 @@ describe("objects.inv", () => {
           domainAndRole: "std:label",
           priority: "-1",
           uri: "legacy_release_notes.html#release-notes-ignis-0-5-0",
-          dispname: "Ignis 0.5.0"
+          dispname: "Ignis 0.5.0",
         },
         "legacy_release_notes#release-notes-agnas-0-5-0",
       ],
@@ -121,15 +121,18 @@ describe("objects.inv", () => {
           domainAndRole: "std:doc",
           priority: "-1",
           uri: "index.html",
-          dispname: "Qiskit IBM Quantum Provider API docs preview"
+          dispname: "Qiskit IBM Quantum Provider API docs preview",
         },
         "andex",
       ],
-    ]
-    const objectsInv = new ObjectsInv(preamble, uris.map(([entry, _]) => entry))
-    objectsInv.updateUris(transformFunction)
-    for (let i=0; i < uris.length; i++) {
-      expect(objectsInv.entries[i].uri).toMatch(uris[i][1])
+    ];
+    const objectsInv = new ObjectsInv(
+      preamble,
+      uris.map(([entry, _]) => entry),
+    );
+    objectsInv.updateUris(transformFunction);
+    for (let i = 0; i < uris.length; i++) {
+      expect(objectsInv.entries[i].uri).toMatch(uris[i][1]);
     }
   });
 
