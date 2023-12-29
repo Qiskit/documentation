@@ -38,9 +38,9 @@ import { startWebServer, closeWebServer } from "../lib/webServer";
 import {
   findLegacyReleaseNotes,
   addNewReleaseNotes,
-  currentReleaseNotesPath,
   generateReleaseNotesIndex,
   updateHistoricalTocFiles,
+  writeSeparateReleaseNotes,
 } from "../lib/releaseNotes";
 
 interface Arguments {
@@ -313,12 +313,18 @@ async function convertHtmlToMarkdown(
 
   for (const result of results) {
     let path = urlToPath(result.url);
-    if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
-      // Historical versions use the same release notes files as the current API
-      if (pkg.historical) {
-        continue;
-      }
 
+    // Historical versions with a single release notes file should not
+    // modify the current API's file.
+    if (
+      !pkg.hasSeparateReleaseNotes &&
+      pkg.historical &&
+      path.endsWith("release-notes.md")
+    ) {
+      continue;
+    }
+
+    if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
       // Convert the relative links to absolute links
       result.markdown = transformLinks(result.markdown, (link, _) =>
         link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
@@ -326,8 +332,10 @@ async function convertHtmlToMarkdown(
           : `/api/${pkg.name}/${link}`,
       );
 
-      path = currentReleaseNotesPath(pkg);
+      await writeSeparateReleaseNotes(pkg, result.markdown);
+      continue;
     }
+
     await writeFile(path, result.markdown);
   }
 
