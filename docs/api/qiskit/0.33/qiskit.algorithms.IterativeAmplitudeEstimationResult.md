@@ -1,5 +1,7 @@
 # IterativeAmplitudeEstimationResult
 
+
+
 `IterativeAmplitudeEstimationResult`
 
 Bases: `qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult`
@@ -14,6 +16,8 @@ The `IterativeAmplitudeEstimation` result object.
 
 ## Attributes
 
+
+
 ### alpha
 
 Return the confidence level $\alpha$.
@@ -21,6 +25,8 @@ Return the confidence level $\alpha$.
 **Return type**
 
 `float`
+
+
 
 ### circuit\_results
 
@@ -30,6 +36,8 @@ Return the circuit results. Can be a statevector or counts dictionary.
 
 `Union`\[`ndarray`, `Dict`\[`str`, `int`], `None`]
 
+
+
 ### confidence\_interval
 
 Return the confidence interval for the amplitude (95% interval by default).
@@ -37,6 +45,8 @@ Return the confidence interval for the amplitude (95% interval by default).
 **Return type**
 
 `Tuple`\[`float`, `float`]
+
+
 
 ### confidence\_interval\_processed
 
@@ -46,6 +56,8 @@ Return the post-processed confidence interval.
 
 `Tuple`\[`float`, `float`]
 
+
+
 ### epsilon\_estimated
 
 Return the estimated half-width of the confidence interval.
@@ -53,6 +65,8 @@ Return the estimated half-width of the confidence interval.
 **Return type**
 
 `float`
+
+
 
 ### epsilon\_estimated\_processed
 
@@ -62,6 +76,8 @@ Return the post-processed estimated half-width of the confidence interval.
 
 `float`
 
+
+
 ### epsilon\_target
 
 Return the target half-width of the confidence interval.
@@ -69,6 +85,8 @@ Return the target half-width of the confidence interval.
 **Return type**
 
 `float`
+
+
 
 ### estimate\_intervals
 
@@ -78,6 +96,8 @@ Return the confidence intervals for the estimate in each iteration.
 
 `List`\[`List`\[`float`]]
 
+
+
 ### estimation
 
 Return the estimation for the amplitude in $[0, 1]$.
@@ -85,6 +105,8 @@ Return the estimation for the amplitude in $[0, 1]$.
 **Return type**
 
 `float`
+
+
 
 ### estimation\_processed
 
@@ -94,6 +116,8 @@ Return the estimation for the amplitude after the post-processing has been appli
 
 `float`
 
+
+
 ### num\_oracle\_queries
 
 Return the number of Grover oracle queries.
@@ -101,6 +125,8 @@ Return the number of Grover oracle queries.
 **Return type**
 
 `int`
+
+
 
 ### post\_processing
 
@@ -110,6 +136,8 @@ Return a handle to the post processing function.
 
 `Callable`\[\[`float`], `float`]
 
+
+
 ### powers
 
 Return the powers of the Grover operator in each iteration.
@@ -117,6 +145,8 @@ Return the powers of the Grover operator in each iteration.
 **Return type**
 
 `List`\[`int`]
+
+
 
 ### ratios
 
@@ -126,6 +156,8 @@ Return the ratios $K_{i+1}/K_{i}$ for each iteration $i$.
 
 `List`\[`float`]
 
+
+
 ### shots
 
 Return the number of shots used. Is 1 for statevector-based simulations.
@@ -133,6 +165,8 @@ Return the number of shots used. Is 1 for statevector-based simulations.
 **Return type**
 
 `int`
+
+
 
 ### theta\_intervals
 

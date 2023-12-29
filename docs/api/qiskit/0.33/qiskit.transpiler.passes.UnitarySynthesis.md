@@ -1,5 +1,7 @@
 # UnitarySynthesis
 
+
+
 `UnitarySynthesis(basis_gates, approximation_degree=1, coupling_map=None, backend_props=None, pulse_optimize=None, natural_direction=None, synth_gates=None, method='default', min_qubits=None, plugin_config=None)`
 
 Bases: `qiskit.transpiler.basepasses.TransformationPass`
@@ -32,11 +34,15 @@ This pass can approximate 2-qubit unitaries given some approximation closeness m
 
 ## Attributes
 
+
+
 ### is\_analysis\_pass
 
 Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+
+
 
 ### is\_transformation\_pass
 

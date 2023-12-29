@@ -1,5 +1,7 @@
 # qiskit.pulse.builder.circuit\_scheduler\_settings
 
+
+
 `circuit_scheduler_settings(**settings)`
 
 Set the currently active circuit scheduler settings for this context.

@@ -1,5 +1,7 @@
 # qiskit.providers.aer.library.set\_superop
 
+
+
 `set_superop(self, state)`
 
 Set the superop state of the simulator.

@@ -1,5 +1,7 @@
 # qiskit.pulse.builder.u2
 
+
+
 `u2(phi, lam, qubit)`
 
 Call a `U2Gate` on the input physical qubit.

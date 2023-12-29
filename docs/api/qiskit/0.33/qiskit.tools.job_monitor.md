@@ -1,5 +1,7 @@
 # qiskit.tools.job\_monitor
 
+
+
 `job_monitor(job, interval=None, quiet=False, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='UTF-8'>, line_discipline='\r')`
 
 Monitor the status of a IBMQJob instance.

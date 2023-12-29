@@ -1,5 +1,7 @@
 # qiskit.quantum\_info.pauli\_basis
 
+
+
 `pauli_basis(num_qubits, weight=False, pauli_list=False)`
 
 Return the ordered PauliTable or PauliList for the n-qubit Pauli basis.

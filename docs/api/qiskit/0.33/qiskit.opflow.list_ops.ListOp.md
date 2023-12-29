@@ -1,5 +1,7 @@
 # ListOp
 
+
+
 `ListOp(oplist, combo_fn=None, coeff=1.0, abelian=False, grad_combo_fn=None)`
 
 Bases: `qiskit.opflow.operator_base.OperatorBase`
@@ -50,9 +52,13 @@ The base `ListOp` class is particularly interesting, as its `combo_fn` is “the
 
 ## Attributes
 
+
+
 ### INDENTATION
 
 `= ' '`
+
+
 
 ### abelian
 
@@ -66,6 +72,8 @@ Whether the Operators in `oplist` are known to commute with one another.
 
 A bool indicating whether the `oplist` is Abelian.
 
+
+
 ### coeff
 
 The scalar coefficient multiplying the Operator.
@@ -78,6 +86,8 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
+
+
 ### coeffs
 
 Return a list of the coefficients of the operators listed. Raises exception for nested Listops.
@@ -85,6 +95,8 @@ Return a list of the coefficients of the operators listed. Raises exception for 
 **Return type**
 
 `List`\[`Union`\[`complex`, `ParameterExpression`]]
+
+
 
 ### combo\_fn
 
@@ -98,6 +110,8 @@ The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to p
 
 The combination function.
 
+
+
 ### distributive
 
 Indicates whether the ListOp or subclass is distributive under composition. ListOp and SummedOp are, meaning that (opv @ op) = (opv\[0] @ op + opv\[1] @ op) (using plus for SummedOp, list for ListOp, etc.), while ComposedOp and TensoredOp do not behave this way.
@@ -110,6 +124,8 @@ Indicates whether the ListOp or subclass is distributive under composition. List
 
 A bool indicating whether the ListOp is distributive under composition.
 
+
+
 ### grad\_combo\_fn
 
 The gradient of `combo_fn`.
@@ -117,6 +133,8 @@ The gradient of `combo_fn`.
 **Return type**
 
 `Optional`\[`Callable`]
+
+
 
 ### instance\_id
 
@@ -126,11 +144,15 @@ Return the unique instance id.
 
 `int`
 
+
+
 ### num\_qubits
 
 **Return type**
 
 `int`
+
+
 
 ### oplist
 
@@ -144,7 +166,11 @@ The list of `OperatorBases` defining the underlying function of this Operator.
 
 The Operators defining the ListOp
 
+
+
 ### parameters
+
+
 
 ### settings
 

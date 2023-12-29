@@ -1,5 +1,7 @@
 # PulseQobjInstruction
 
+
+
 `PulseQobjInstruction(name, t0, ch=None, conditional=None, val=None, phase=None, duration=None, qubits=None, memory_slot=None, register_slot=None, kernels=None, discriminators=None, label=None, type=None, pulse_shape=None, parameters=None, frequency=None)`
 
 Bases: `object`

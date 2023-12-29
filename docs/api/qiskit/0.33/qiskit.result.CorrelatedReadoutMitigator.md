@@ -1,5 +1,7 @@
 # CorrelatedReadoutMitigator
 
+
+
 `CorrelatedReadoutMitigator(amat, qubits=None)`
 
 Bases: `qiskit.result.mitigation.base_readout_mitigator.BaseReadoutMitigator`
@@ -30,6 +32,8 @@ Initialize a CorrelatedReadoutMitigator
 | [`stddev_upper_bound`](qiskit.result.CorrelatedReadoutMitigator.stddev_upper_bound#qiskit.result.CorrelatedReadoutMitigator.stddev_upper_bound "qiskit.result.CorrelatedReadoutMitigator.stddev_upper_bound")     | Return an upper bound on standard deviation of expval estimator.  |
 
 ## Attributes
+
+
 
 ### qubits
 

@@ -1,5 +1,7 @@
 # Snapshot
 
+
+
 `Snapshot(label, snapshot_type='statevector', name=None)`
 
 Bases: `qiskit.pulse.instructions.instruction.Instruction`
@@ -33,6 +35,8 @@ Create new snapshot.
 
 ## Attributes
 
+
+
 ### channel
 
 Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on; trivially, a `SnapshotChannel`.
@@ -40,6 +44,8 @@ Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channel
 **Return type**
 
 [`SnapshotChannel`](qiskit.pulse.channels.SnapshotChannel#qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel")
+
+
 
 ### channels
 
@@ -49,6 +55,8 @@ Returns the channels that this schedule uses.
 
 `Tuple`\[[`SnapshotChannel`](qiskit.pulse.channels.SnapshotChannel#qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel")]
 
+
+
 ### duration
 
 Duration of this instruction.
@@ -56,6 +64,8 @@ Duration of this instruction.
 **Return type**
 
 `int`
+
+
 
 ### id
 
@@ -65,6 +75,8 @@ Unique identifier for this instruction.
 
 `int`
 
+
+
 ### instructions
 
 Iterable for getting instructions from Schedule tree.
@@ -72,6 +84,8 @@ Iterable for getting instructions from Schedule tree.
 **Return type**
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
+
+
 
 ### label
 
@@ -81,6 +95,8 @@ Label of snapshot.
 
 `str`
 
+
+
 ### name
 
 Name of this instruction.
@@ -88,6 +104,8 @@ Name of this instruction.
 **Return type**
 
 `str`
+
+
 
 ### operands
 
@@ -97,6 +115,8 @@ Return instruction operands.
 
 `Tuple`
 
+
+
 ### parameters
 
 Parameters which determine the instruction behavior.
@@ -104,6 +124,8 @@ Parameters which determine the instruction behavior.
 **Return type**
 
 `Set`
+
+
 
 ### start\_time
 
@@ -113,6 +135,8 @@ Relative begin time of this instruction.
 
 `int`
 
+
+
 ### stop\_time
 
 Relative end time of this instruction.
@@ -120,6 +144,8 @@ Relative end time of this instruction.
 **Return type**
 
 `int`
+
+
 
 ### type
 

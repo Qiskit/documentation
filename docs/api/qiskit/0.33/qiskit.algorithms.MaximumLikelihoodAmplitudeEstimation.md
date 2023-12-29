@@ -1,5 +1,7 @@
 # MaximumLikelihoodAmplitudeEstimation
 
+
+
 `MaximumLikelihoodAmplitudeEstimation(evaluation_schedule, minimizer=None, quantum_instance=None)`
 
 Bases: `qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator`
@@ -38,6 +40,8 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 | [`estimate`](qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.estimate#qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.estimate "qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.estimate")                                                                             | Run the amplitude estimation algorithm.                      |
 
 ## Attributes
+
+
 
 ### quantum\_instance
 

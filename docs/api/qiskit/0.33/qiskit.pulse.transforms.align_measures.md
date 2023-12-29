@@ -1,5 +1,7 @@
 # qiskit.pulse.transforms.align\_measures
 
+
+
 `align_measures(schedules, inst_map=None, cal_gate='u3', max_calibration_duration=None, align_time=None, align_all=True)`
 
 Return new schedules where measurements occur at the same physical time.

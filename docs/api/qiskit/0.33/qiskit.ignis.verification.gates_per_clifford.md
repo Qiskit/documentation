@@ -1,5 +1,7 @@
 # qiskit.ignis.verification.gates\_per\_clifford
 
+
+
 `gates_per_clifford(transpiled_circuits_list, clifford_lengths, basis, qubits)`
 
 Take a list of transpiled `QuantumCircuit` and use these to calculate the number of gates per Clifford. Each `QuantumCircuit` should be transpiled into given `basis` set. The result can be used to convert a value of error per Clifford into error per basis gate under appropriate assumption.

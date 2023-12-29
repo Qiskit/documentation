@@ -1,5 +1,7 @@
 # qiskit.ignis.verification.randomized\_benchmarking\_seq
 
+
+
 `randomized_benchmarking_seq(nseeds=1, length_vector=None, rb_pattern=None, length_multiplier=1, seed_offset=0, align_cliffs=False, interleaved_gates=None, interleaved_elem=None, keep_original_interleaved_elem=True, is_purity=False, group_gates=None, rand_seed=None)`
 
 Generate generic randomized benchmarking (RB) sequences.

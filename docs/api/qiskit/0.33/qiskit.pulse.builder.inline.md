@@ -1,5 +1,7 @@
 # qiskit.pulse.builder.inline
 
+
+
 `inline()`
 
 Deprecated. Inline all instructions within this context into the parent context, inheriting the scheduling policy of the parent context.

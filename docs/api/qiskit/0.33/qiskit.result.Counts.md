@@ -1,5 +1,7 @@
 # Counts
 
+
+
 `Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)`
 
 Bases: `dict`
@@ -51,6 +53,8 @@ Build a counts object
 | [`values`](qiskit.result.Counts.values#qiskit.result.Counts.values "qiskit.result.Counts.values")                             |                                                                                                                                                                                                                               |
 
 ## Attributes
+
+
 
 ### bitstring\_regex
 

@@ -1,5 +1,7 @@
 # HHL
 
+
+
 `HHL(epsilon=0.01, expectation=None, quantum_instance=None)`
 
 Bases: `qiskit.algorithms.linear_solvers.linear_solver.LinearSolver`
@@ -55,6 +57,8 @@ approx_result = solution.observable
 
 ## Attributes
 
+
+
 ### expectation
 
 The expectation value algorithm used to construct the expectation measurement from the observable.
@@ -62,6 +66,8 @@ The expectation value algorithm used to construct the expectation measurement fr
 **Return type**
 
 `ExpectationBase`
+
+
 
 ### quantum\_instance
 
@@ -74,6 +80,8 @@ Get the quantum instance.
 **Returns**
 
 The quantum instance used to run this algorithm.
+
+
 
 ### scaling
 

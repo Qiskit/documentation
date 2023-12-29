@@ -1,5 +1,7 @@
 # qiskit.converters.circuit\_to\_instruction
 
+
+
 `circuit_to_instruction(circuit, parameter_map=None, equivalence_library=None, label=None)`
 
 Build an [`Instruction`](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction") object from a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").

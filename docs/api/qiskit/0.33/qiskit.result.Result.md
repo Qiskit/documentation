@@ -1,10 +1,14 @@
 # Result
 
+
+
 `Result(backend_name, backend_version, qobj_id, job_id, success, results, date=None, status=None, header=None, **kwargs)`
 
 Bases: `object`
 
 Model for Results.
+
+
 
 ### backend\_name
 
@@ -14,6 +18,8 @@ backend name.
 
 str
 
+
+
 ### backend\_version
 
 backend version, in the form X.Y.Z.
@@ -21,6 +27,8 @@ backend version, in the form X.Y.Z.
 **Type**
 
 str
+
+
 
 ### qobj\_id
 
@@ -30,6 +38,8 @@ user-generated Qobj id.
 
 str
 
+
+
 ### job\_id
 
 unique execution id from the backend.
@@ -38,6 +48,8 @@ unique execution id from the backend.
 
 str
 
+
+
 ### success
 
 True if complete input qobj executed correctly. (Implies each experiment success)
@@ -45,6 +57,8 @@ True if complete input qobj executed correctly. (Implies each experiment success
 **Type**
 
 bool
+
+
 
 ### results
 

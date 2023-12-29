@@ -1,5 +1,7 @@
 # qiskit.pulse.builder.cx
 
+
+
 `cx(control, target)`
 
 Call a `CXGate` on the input physical qubits.

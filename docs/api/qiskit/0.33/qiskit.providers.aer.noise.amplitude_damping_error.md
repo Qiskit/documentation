@@ -1,5 +1,7 @@
 # qiskit.providers.aer.noise.amplitude\_damping\_error
 
+
+
 `amplitude_damping_error(param_amp, excited_state_population=0, canonical_kraus=True)`
 
 Return a single-qubit generalized amplitude damping quantum error channel.

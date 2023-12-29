@@ -1,5 +1,7 @@
 # DAGOpNode
 
+
+
 `DAGOpNode(op, qargs=None, cargs=None)`
 
 Bases: `qiskit.dagcircuit.dagnode.DAGNode`
@@ -16,25 +18,41 @@ Create an Instruction node
 
 ## Attributes
 
+
+
 ### cargs
+
+
 
 ### condition
 
 Returns the condition of the node.op
 
+
+
 ### name
 
 Returns the Instruction name corresponding to the op for this node
 
+
+
 ### op
+
+
 
 ### qargs
 
+
+
 ### sort\_key
+
+
 
 ### type
 
 Returns the type object
+
+
 
 ### wire
 

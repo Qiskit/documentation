@@ -1,5 +1,7 @@
 # PiecewisePolynomialPauliRotations
 
+
+
 `PiecewisePolynomialPauliRotations(num_state_qubits=None, breakpoints=None, coeffs=None, basis='Y', name='pw_poly')`
 
 Bases: `qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations`
@@ -80,6 +82,8 @@ Enhancing the Quantum Linear Systems Algorithm using Richardson Extrapolation. [
 
 ## Attributes
 
+
+
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -87,6 +91,8 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
+
+
 
 ### basis
 
@@ -102,6 +108,8 @@ Set the basis to ‘X’, ‘Y’ or ‘Z’ for controlled-X, -Y, or -Z rotatio
 
 The kind of Pauli rotation used in controlled rotation.
 
+
+
 ### breakpoints
 
 The breakpoints of the piecewise polynomial function.
@@ -116,6 +124,8 @@ The function is polynomial in the intervals `[point_i, point_{i+1}]` where the l
 
 The list of breakpoints.
 
+
+
 ### calibrations
 
 Return calibration dictionary.
@@ -128,6 +138,8 @@ Return calibration dictionary.
 
 `dict`
 
+
+
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -135,6 +147,8 @@ Returns a list of classical bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Clbit`]
+
+
 
 ### coeffs
 
@@ -148,6 +162,8 @@ The coefficients of the polynomials.
 
 The polynomial coefficients per interval as nested lists.
 
+
+
 ### contains\_zero\_breakpoint
 
 Whether 0 is the first breakpoint.
@@ -160,11 +176,17 @@ Whether 0 is the first breakpoint.
 
 True, if 0 is the first breakpoint, otherwise False.
 
+
+
 ### data
+
+
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
+
+
 
 ### global\_phase
 
@@ -174,13 +196,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
+
+
 ### header
 
 `= 'OPENQASM 2.0;'`
 
+
+
 ### instances
 
 `= 9`
+
+
 
 ### mapped\_coeffs
 
@@ -194,6 +222,8 @@ The coefficients mapped to the internal representation, since we only compare x>
 
 The mapped coefficients.
 
+
+
 ### metadata
 
 The user provided metadata associated with the circuit
@@ -203,6 +233,8 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 **Return type**
 
 `dict`
+
+
 
 ### num\_ancilla\_qubits
 
@@ -216,6 +248,8 @@ The minimum number of ancilla qubits in the circuit.
 
 The minimal number of ancillas required.
 
+
+
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -223,6 +257,8 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
+
+
 
 ### num\_clbits
 
@@ -232,11 +268,15 @@ Return number of classical bits.
 
 `int`
 
+
+
 ### num\_parameters
 
 **Return type**
 
 `int`
+
+
 
 ### num\_qubits
 
@@ -245,6 +285,8 @@ Return number of qubits.
 **Return type**
 
 `int`
+
+
 
 ### num\_state\_qubits
 
@@ -258,19 +300,27 @@ The number of state qubits representing the state $|x\rangle$.
 
 The number of state qubits.
 
+
+
 ### parameters
 
 **Return type**
 
 `ParameterView`
 
+
+
 ### prefix
 
 `= 'circuit'`
 
+
+
 ### qregs
 
 A list of the quantum registers associated with the circuit.
+
+
 
 ### qubits
 

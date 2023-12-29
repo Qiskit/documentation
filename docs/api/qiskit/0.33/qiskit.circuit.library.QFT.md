@@ -1,5 +1,7 @@
 # QFT
 
+
+
 `QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)`
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
@@ -42,6 +44,8 @@ Construct a new QFT circuit.
 
 ## Attributes
 
+
+
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -49,6 +53,8 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
+
+
 
 ### approximation\_degree
 
@@ -62,6 +68,8 @@ The approximation degree of the QFT.
 
 The currently set approximation degree.
 
+
+
 ### calibrations
 
 Return calibration dictionary.
@@ -74,6 +82,8 @@ Return calibration dictionary.
 
 `dict`
 
+
+
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -82,7 +92,11 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
+
+
 ### data
+
+
 
 ### do\_swaps
 
@@ -96,9 +110,13 @@ Whether the final swaps of the QFT are applied or not.
 
 True, if the final swaps are applied, False if not.
 
+
+
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
+
+
 
 ### global\_phase
 
@@ -108,9 +126,13 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
+
+
 ### header
 
 `= 'OPENQASM 2.0;'`
+
+
 
 ### insert\_barriers
 
@@ -124,9 +146,13 @@ Whether barriers are inserted for better visualization or not.
 
 True, if barriers are inserted, False if not.
 
+
+
 ### instances
 
 `= 9`
+
+
 
 ### metadata
 
@@ -138,6 +164,8 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
+
+
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -145,6 +173,8 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
+
+
 
 ### num\_clbits
 
@@ -154,11 +184,15 @@ Return number of classical bits.
 
 `int`
 
+
+
 ### num\_parameters
 
 **Return type**
 
 `int`
+
+
 
 ### num\_qubits
 
@@ -172,19 +206,27 @@ The number of qubits in the QFT circuit.
 
 The number of qubits in the circuit.
 
+
+
 ### parameters
 
 **Return type**
 
 `ParameterView`
 
+
+
 ### prefix
 
 `= 'circuit'`
 
+
+
 ### qregs
 
 A list of the quantum registers associated with the circuit.
+
+
 
 ### qubits
 

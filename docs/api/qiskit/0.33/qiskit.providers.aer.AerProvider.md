@@ -1,5 +1,7 @@
 # AerProvider
 
+
+
 `AerProvider`
 
 Bases: `qiskit.providers.provider.ProviderV1`
@@ -14,6 +16,8 @@ Provider for Qiskit Aer backends.
 | [`get_backend`](qiskit.providers.aer.AerProvider.get_backend#qiskit.providers.aer.AerProvider.get_backend "qiskit.providers.aer.AerProvider.get_backend") | Return a single backend matching the specified filtering.   |
 
 ## Attributes
+
+
 
 ### version
 

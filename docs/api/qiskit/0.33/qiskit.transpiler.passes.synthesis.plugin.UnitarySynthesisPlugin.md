@@ -1,5 +1,7 @@
 # UnitarySynthesisPlugin
 
+
+
 `UnitarySynthesisPlugin`
 
 Bases: `abc.ABC`
@@ -16,17 +18,23 @@ This abstract class defines the interface for unitary synthesis plugins.
 
 ## Attributes
 
+
+
 ### max\_qubits
 
 Return the maximum number of qubits the unitary synthesis plugin supports.
 
 If the size of the unitary to be synthesized exceeds this value the `default` plugin will be used. If there is no upper bound return `None` and all unitaries (`>= min_qubits` if it’s defined) will be passed to this plugin when it’s enabled.
 
+
+
 ### min\_qubits
 
 Return the minimum number of qubits the unitary synthesis plugin supports.
 
 If the size of the unitary to be synthesized is below this value the `default` plugin will be used. If there is no lower bound return `None` and all unitaries (`<= max_qubits` if it’s defined) will be passed to this plugin when it’s enabled.
+
+
 
 ### supported\_bases
 
@@ -43,17 +51,23 @@ This is expected to return a dictionary where the key is a string basis and the 
 
 If a dictionary is returned by this method the run kwargs will be passed a parameter `matched_basis` which contains a list of the basis strings (i.e. keys in the dictionary) which match the target basis gate set for the transpilation. If no entry in the dictionary matches the target basis gate set then the `matched_basis` kwarg will be set to an empty list, and a plugin can choose how to deal with the target basis gate set not matching the plugin’s capabilities.
 
+
+
 ### supports\_basis\_gates
 
 Return whether the plugin supports taking `basis_gates`
 
 If this returns `True` the plugin’s `run()` method will be passed a `basis_gates` kwarg with a list of gate names the target backend supports. For example, `['sx', 'x', 'cx', 'id', 'rz']`.
 
+
+
 ### supports\_coupling\_map
 
 Return whether the plugin supports taking `coupling_map`
 
 If this returns `True` the plugin’s `run()` method will receive one kwarg `coupling_map`. The `coupling_map` kwarg will be set to a tuple with the first element being a [`CouplingMap`](qiskit.transpiler.CouplingMap#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object representing the qubit connectivity of the target backend, the second element will be a list of integers that represent the qubit indices in the coupling map that unitary is on. Note that if the target backend doesn’t have a coupling map set, the `coupling_map` kwarg’s value will be `(None, qubit_indices)`.
+
+
 
 ### supports\_gate\_errors
 
@@ -69,6 +83,8 @@ Return whether the plugin supports taking `gate_errors`
 ```
 
 Do note that this dictionary might not be complete or could be empty as it depends on the target backend reporting gate errors on every gate for each qubit. The gate error rates reported in `gate_errors` are provided by the target device `Backend` object and the exact meaning might be different depending on the backend.
+
+
 
 ### supports\_gate\_lengths
 
@@ -87,11 +103,15 @@ where the `length` value is in units of seconds.
 
 Do note that this dictionary might not be complete or could be empty as it depends on the target backend reporting gate lengths on every gate for each qubit.
 
+
+
 ### supports\_natural\_direction
 
 Return whether the plugin supports a toggle for considering directionality of 2-qubit gates as `natural_direction`.
 
 Refer to the documentation for [`UnitarySynthesis`](qiskit.transpiler.passes.UnitarySynthesis#qiskit.transpiler.passes.UnitarySynthesis "qiskit.transpiler.passes.UnitarySynthesis") for the possible values and meaning of these values.
+
+
 
 ### supports\_pulse\_optimize
 

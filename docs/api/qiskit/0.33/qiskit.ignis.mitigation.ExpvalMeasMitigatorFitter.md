@@ -1,5 +1,7 @@
 # ExpvalMeasMitigatorFitter
 
+
+
 `ExpvalMeasMitigatorFitter(result, metadata)`
 
 Bases: `object`
@@ -22,6 +24,8 @@ Fit a measurement error mitigator object from experiment data.
 | [`fit`](qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.fit#qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.fit "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter.fit") | Fit and return the Mitigator object from the calibration data. |
 
 ## Attributes
+
+
 
 ### mitigator
 

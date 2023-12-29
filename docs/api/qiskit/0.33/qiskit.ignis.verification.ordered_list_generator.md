@@ -1,5 +1,7 @@
 # qiskit.ignis.verification.ordered\_list\_generator
 
+
+
 `ordered_list_generator(counts_dictionary, qn)`
 
 For parity oscillations; just arranges dictionary of counts in bitwise binary order to compute dot products more easily

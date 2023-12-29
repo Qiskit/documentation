@@ -1,5 +1,7 @@
 # HamiltonianPhaseEstimation
 
+
+
 `HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None)`
 
 Bases: `object`

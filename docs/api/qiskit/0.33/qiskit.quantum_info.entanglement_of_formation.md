@@ -1,5 +1,7 @@
 # qiskit.quantum\_info.entanglement\_of\_formation
 
+
+
 `entanglement_of_formation(state)`
 
 Calculate the entanglement of formation of quantum state.

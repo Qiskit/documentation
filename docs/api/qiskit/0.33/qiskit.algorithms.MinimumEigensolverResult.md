@@ -1,5 +1,7 @@
 # MinimumEigensolverResult
 
+
+
 `MinimumEigensolverResult`
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
@@ -14,6 +16,8 @@ Minimum Eigensolver Result.
 
 ## Attributes
 
+
+
 ### aux\_operator\_eigenvalues
 
 Return aux operator expectation values.
@@ -24,6 +28,8 @@ These values are in fact tuples formatted as (mean, standard deviation).
 
 `Union`\[`List`\[`Optional`\[`Tuple`\[`complex`, `complex`]]], `Dict`\[`str`, `Tuple`\[`complex`, `complex`]], `None`]
 
+
+
 ### eigenstate
 
 return eigen state
@@ -31,6 +37,8 @@ return eigen state
 **Return type**
 
 `Optional`\[`ndarray`]
+
+
 
 ### eigenvalue
 

@@ -1,5 +1,7 @@
 # ClassicalFunction
 
+
+
 `ClassicalFunction(source, name=None)`
 
 Bases: `qiskit.circuit.classicalfunction.classical_element.ClassicalElement`
@@ -46,9 +48,13 @@ The code should be a single function with types.
 
 ## Attributes
 
+
+
 ### args
 
 Returns the classicalfunction arguments
+
+
 
 ### condition\_bits
 
@@ -58,17 +64,25 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
+
+
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+
+
 
 ### definition
 
 Return definition in terms of other basic gates.
 
+
+
 ### duration
 
 Get the duration.
+
+
 
 ### label
 
@@ -78,25 +92,37 @@ Return instruction label
 
 `str`
 
+
+
 ### network
 
 Returns the logical network
+
+
 
 ### params
 
 return instruction params.
 
+
+
 ### qregs
 
 The list of qregs used by the classicalfunction
+
+
 
 ### scopes
 
 Returns the scope dict
 
+
+
 ### truth\_table
 
 Returns (and computes) the truth table
+
+
 
 ### types
 
@@ -109,6 +135,8 @@ A list of scopes as dicts, where key is the variable name and value is its type.
 **Return type**
 
 list(dict)
+
+
 
 ### unit
 

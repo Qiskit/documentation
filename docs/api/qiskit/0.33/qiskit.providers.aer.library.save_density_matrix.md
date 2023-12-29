@@ -1,5 +1,7 @@
 # qiskit.providers.aer.library.save\_density\_matrix
 
+
+
 `save_density_matrix(self, qubits=None, label='density_matrix', unnormalized=False, pershot=False, conditional=False)`
 
 Save the current simulator quantum state as a density matrix.

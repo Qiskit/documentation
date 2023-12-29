@@ -1,5 +1,7 @@
 # InstructionProperties
 
+
+
 `InstructionProperties(duration=None, error=None, calibration=None)`
 
 Bases: `object`
@@ -18,8 +20,14 @@ Create a new `InstructionProperties` object
 
 ## Attributes
 
+
+
 ### calibration
 
+
+
 ### duration
+
+
 
 ### error

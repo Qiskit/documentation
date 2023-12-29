@@ -1,5 +1,7 @@
 # qiskit.quantum\_info.state\_fidelity
 
+
+
 `state_fidelity(state1, state2, validate=True)`
 
 Return the state fidelity between two quantum states.

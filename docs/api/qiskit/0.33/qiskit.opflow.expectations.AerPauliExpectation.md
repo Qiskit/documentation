@@ -1,5 +1,7 @@
 # AerPauliExpectation
 
+
+
 `AerPauliExpectation`
 
 Bases: `qiskit.opflow.expectations.expectation_base.ExpectationBase`

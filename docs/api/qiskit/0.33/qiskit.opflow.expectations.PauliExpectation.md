@@ -1,5 +1,7 @@
 # PauliExpectation
 
+
+
 `PauliExpectation(group_paulis=True)`
 
 Bases: `qiskit.opflow.expectations.expectation_base.ExpectationBase`

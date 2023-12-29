@@ -1,5 +1,7 @@
 # qiskit.providers.aer.library.set\_unitary
 
+
+
 `set_unitary(self, state)`
 
 Set the state state of the simulator.

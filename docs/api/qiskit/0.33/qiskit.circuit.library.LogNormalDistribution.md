@@ -1,5 +1,7 @@
 # LogNormalDistribution
 
+
+
 `LogNormalDistribution(num_qubits, mu=None, sigma=None, bounds=None, upto_diag=False, name='P(X)')`
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
@@ -61,6 +63,8 @@ Quantum Risk Analysis. [arXiv:1806.06893](http://arxiv.org/abs/1806.06893)
 
 ## Attributes
 
+
+
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -69,6 +73,8 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 `List`\[`AncillaQubit`]
 
+
+
 ### bounds
 
 Return the bounds of the probability distribution.
@@ -76,6 +82,8 @@ Return the bounds of the probability distribution.
 **Return type**
 
 `Union`\[`Tuple`\[`float`, `float`], `List`\[`Tuple`\[`float`, `float`]]]
+
+
 
 ### calibrations
 
@@ -89,6 +97,8 @@ Return calibration dictionary.
 
 `dict`
 
+
+
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -96,6 +106,8 @@ Returns a list of classical bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Clbit`]
+
+
 
 ### data
 
@@ -111,9 +123,13 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
+
+
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
+
+
 
 ### global\_phase
 
@@ -123,13 +139,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
+
+
 ### header
 
 `= 'OPENQASM 2.0;'`
 
+
+
 ### instances
 
 `= 9`
+
+
 
 ### metadata
 
@@ -141,6 +163,8 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
+
+
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -148,6 +172,8 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
+
+
 
 ### num\_clbits
 
@@ -157,6 +183,8 @@ Return number of classical bits.
 
 `int`
 
+
+
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
@@ -164,6 +192,8 @@ Convenience function to get the number of parameter objects in the circuit.
 **Return type**
 
 `int`
+
+
 
 ### num\_qubits
 
@@ -173,6 +203,8 @@ Return number of qubits.
 
 `int`
 
+
+
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
@@ -181,9 +213,13 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
+
+
 ### prefix
 
 `= 'circuit'`
+
+
 
 ### probabilities
 
@@ -193,6 +229,8 @@ Return the sampling probabilities for the values.
 
 `ndarray`
 
+
+
 ### qubits
 
 Returns a list of quantum bits in the order that the registers were added.
@@ -200,6 +238,8 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
+
+
 
 ### values
 

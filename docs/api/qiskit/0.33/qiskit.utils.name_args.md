@@ -1,5 +1,7 @@
 # qiskit.utils.name\_args
 
+
+
 `name_args(mapping, skip=0)`
 
 Decorator to convert unnamed arguments to named ones.

@@ -1,5 +1,7 @@
 # qiskit.quantum\_info.concurrence
 
+
+
 `concurrence(state)`
 
 Calculate the concurrence of a quantum state.

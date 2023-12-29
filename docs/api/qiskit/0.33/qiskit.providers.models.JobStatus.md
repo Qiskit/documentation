@@ -1,10 +1,14 @@
 # JobStatus
 
+
+
 `JobStatus(job_id, status, status_msg, **kwargs)`
 
 Bases: `object`
 
 Model for JobStatus.
+
+
 
 ### job\_id
 
@@ -14,6 +18,8 @@ backend job\_id.
 
 str
 
+
+
 ### status
 
 status of the job.
@@ -21,6 +27,8 @@ status of the job.
 **Type**
 
 str
+
+
 
 ### status\_msg
 

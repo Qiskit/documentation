@@ -1,5 +1,7 @@
 # qiskit.transpiler.preset\_passmanagers.level\_2\_pass\_manager
 
+
+
 `level_2_pass_manager(pass_manager_config)`
 
 Level 2 pass manager: medium optimization by initial layout selection and gate cancellation using commutativity rules.

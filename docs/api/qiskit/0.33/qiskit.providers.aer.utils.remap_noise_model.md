@@ -1,5 +1,7 @@
 # qiskit.providers.aer.utils.remap\_noise\_model
 
+
+
 `remap_noise_model(noise_model, remapping, discard_qubits=False, warnings=True)`
 
 Remap qubits in a noise model.

@@ -1,5 +1,7 @@
 # Reset
 
+
+
 `Reset`
 
 Bases: `qiskit.circuit.instruction.Instruction`
@@ -16,6 +18,8 @@ Create new reset instruction.
 
 ## Attributes
 
+
+
 ### condition\_bits
 
 Get Clbits in condition.
@@ -24,17 +28,25 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
+
+
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
+
+
 
 ### definition
 
 Return definition in terms of other basic gates.
 
+
+
 ### duration
 
 Get the duration.
+
+
 
 ### label
 
@@ -44,9 +56,13 @@ Return instruction label
 
 `str`
 
+
+
 ### params
 
 return instruction params.
+
+
 
 ### unit
 

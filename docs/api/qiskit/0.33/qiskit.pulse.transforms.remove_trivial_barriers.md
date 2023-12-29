@@ -1,5 +1,7 @@
 # qiskit.pulse.transforms.remove\_trivial\_barriers
 
+
+
 `remove_trivial_barriers(schedule)`
 
 Remove trivial barriers with 0 or 1 channels.

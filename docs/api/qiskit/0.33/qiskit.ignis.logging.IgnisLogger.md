@@ -1,5 +1,7 @@
 # IgnisLogger
 
+
+
 `IgnisLogger(name, level=0)`
 
 Bases: `logging.Logger`
@@ -51,9 +53,13 @@ Initialize the IgnisLogger object
 
 ## Attributes
 
+
+
 ### manager
 
 `=`
+
+
 
 ### root
 

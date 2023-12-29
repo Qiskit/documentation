@@ -1,5 +1,7 @@
 # qiskit.result.ResultError
 
+
+
 `ResultError(error)`
 
 Exceptions raised due to errors in result output.

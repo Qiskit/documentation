@@ -1,5 +1,7 @@
 # QuadraticIQDiscriminator
 
+
+
 `QuadraticIQDiscriminator(cal_results, qubit_mask, expected_states=None, standardize=False, schedules=None, discriminator_parameters=None)`
 
 Bases: `qiskit.ignis.measurement.discriminator.iq_discriminators.IQDiscriminationFitter`
@@ -35,13 +37,19 @@ Quadratic discriminant analysis discriminator for IQ data.
 
 ## Attributes
 
+
+
 ### expected\_states
 
 Returns the expected states used to train the discriminator.
 
+
+
 ### fitted
 
 True if the discriminator has been fitted to calibration data.
+
+
 
 ### schedules
 

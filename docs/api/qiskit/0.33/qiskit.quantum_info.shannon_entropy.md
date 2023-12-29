@@ -1,5 +1,7 @@
 # qiskit.quantum\_info.shannon\_entropy
 
+
+
 `shannon_entropy(pvec, base=2)`
 
 Compute the Shannon entropy of a probability vector.

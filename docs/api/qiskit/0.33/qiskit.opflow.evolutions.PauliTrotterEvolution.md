@@ -1,5 +1,7 @@
 # PauliTrotterEvolution
 
+
+
 `PauliTrotterEvolution(trotter_mode='trotter', reps=1)`
 
 Bases: `qiskit.opflow.evolutions.evolution_base.EvolutionBase`
@@ -27,6 +29,8 @@ More specifically, we compute basis change circuits for each Pauli into a single
 | [`evolution_for_pauli`](qiskit.opflow.evolutions.PauliTrotterEvolution.evolution_for_pauli#qiskit.opflow.evolutions.PauliTrotterEvolution.evolution_for_pauli "qiskit.opflow.evolutions.PauliTrotterEvolution.evolution_for_pauli")                                             | Compute evolution Operator for a single Pauli using a `PauliBasisChange`.                                                                         |
 
 ## Attributes
+
+
 
 ### trotter
 

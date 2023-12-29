@@ -1,5 +1,7 @@
 # AmplificationProblem
 
+
+
 `AmplificationProblem(oracle, state_preparation=None, grover_operator=None, post_processing=None, objective_qubits=None, is_good_state=None)`
 
 Bases: `object`
@@ -19,6 +21,8 @@ This class contains all problem-specific information required to run an amplitud
 
 ## Attributes
 
+
+
 ### grover\_operator
 
 Get the $\mathcal{Q}$ operator, or Grover operator.
@@ -33,6 +37,8 @@ If the Grover operator is not set, we try to build it from the $\mathcal{A}$ ope
 
 The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
 
+
+
 ### is\_good\_state
 
 Check whether a provided bitstring is a good state or not.
@@ -44,6 +50,8 @@ Check whether a provided bitstring is a good state or not.
 **Returns**
 
 A callable that takes in a bitstring and returns True if the measurement is a good state, False otherwise.
+
+
 
 ### objective\_qubits
 
@@ -57,6 +65,8 @@ The indices of the objective qubits.
 
 The indices of the objective qubits as list of integers.
 
+
+
 ### oracle
 
 Return the oracle.
@@ -69,6 +79,8 @@ Return the oracle.
 
 The oracle.
 
+
+
 ### post\_processing
 
 Apply post processing to the input value.
@@ -80,6 +92,8 @@ Apply post processing to the input value.
 **Returns**
 
 A handle to the post processing function. Acts as identity by default.
+
+
 
 ### state\_preparation
 

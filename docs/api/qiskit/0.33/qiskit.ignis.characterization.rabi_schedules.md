@@ -1,5 +1,7 @@
 # qiskit.ignis.characterization.rabi\_schedules
 
+
+
 `rabi_schedules(amp_list, qubits, pulse_width, pulse_sigma=None, width_sigma_ratio=4, drives=None, inst_map=None, meas_map=None)`
 
 Generates schedules for a rabi experiment using a Gaussian pulse

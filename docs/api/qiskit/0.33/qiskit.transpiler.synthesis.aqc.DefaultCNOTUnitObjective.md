@@ -1,5 +1,7 @@
 # DefaultCNOTUnitObjective
 
+
+
 `DefaultCNOTUnitObjective(num_qubits, cnots)`
 
 Bases: `qiskit.transpiler.synthesis.aqc.cnot_unit_objective.CNOTUnitObjective`
@@ -20,13 +22,19 @@ A naive implementation of the objective function based on CNOT units.
 
 ## Attributes
 
+
+
 ### num\_cnots
 
 Returns: A number of CNOT units to be used by the approximate circuit.
 
+
+
 ### num\_thetas
 
 Returns: Number of parameters (angles) of rotation gates in this circuit.
+
+
 
 ### target\_matrix
 

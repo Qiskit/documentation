@@ -1,5 +1,7 @@
 # Z2Symmetries
 
+
+
 `Z2Symmetries(symmetries, sq_paulis, sq_list, tapering_values=None)`
 
 Bases: `object`
@@ -29,9 +31,13 @@ Z2 Symmetries
 
 ## Attributes
 
+
+
 ### cliffords
 
 Get clifford operators, build based on symmetries and single-qubit X. :rtype: `List`\[`PauliSumOp`] :returns: a list of unitaries used to diagonalize the Hamiltonian.
+
+
 
 ### settings
 
@@ -41,17 +47,25 @@ Return operator settings.
 
 `Dict`
 
+
+
 ### sq\_list
 
 returns sq list
+
+
 
 ### sq\_paulis
 
 returns sq paulis
 
+
+
 ### symmetries
 
 return symmetries
+
+
 
 ### tapering\_values
 

@@ -1,5 +1,7 @@
 # qiskit.providers.aer.noise.device.basic\_device\_readout\_errors
 
+
+
 `basic_device_readout_errors(properties)`
 
 Return readout error parameters from a devices BackendProperties.

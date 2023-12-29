@@ -1,5 +1,7 @@
 # qiskit.quantum\_info.decompose\_clifford
 
+
+
 `decompose_clifford(clifford, method=None)`
 
 Decompose a Clifford operator into a QuantumCircuit.

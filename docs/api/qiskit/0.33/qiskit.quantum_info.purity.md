@@ -1,5 +1,7 @@
 # qiskit.quantum\_info.purity
 
+
+
 `purity(state, validate=True)`
 
 Calculate the purity of a quantum state.

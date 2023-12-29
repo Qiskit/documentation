@@ -64,6 +64,8 @@ An instruction can be added to a [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse
 
 These are all instances of the same base class:
 
+
+
 `Instruction(operands, name=None)`
 
 The smallest schedulable unit: a single instruction. It has a fixed duration and specified channels.
@@ -137,6 +139,8 @@ Novel channel types can often utilize the [`ControlChannel`](qiskit.pulse.channe
 
 All channels are children of the same abstract base class:
 
+
+
 `Channel(index)`
 
 Base class of channels. Channels provide a Qiskit-side label for typical quantum control hardware signal channels. The final label -> physical channel mapping is the responsibility of the hardware backend. For instance, `DriveChannel(0)` holds instructions which the backend should map to the signal line driving gate operations on the qubit labeled (indexed) 0.
@@ -185,6 +189,8 @@ The alignment transforms define alignment policies of instructions in [`Schedule
 | [`AlignSequential`](qiskit.pulse.transforms.AlignSequential#qiskit.pulse.transforms.AlignSequential "qiskit.pulse.transforms.AlignSequential")()         | Align instructions sequentially.                                         |
 
 These are all subtypes of the abstract base class [`AlignmentKind`](#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.AlignmentKind").
+
+
 
 `AlignmentKind`
 
@@ -625,6 +631,8 @@ There are 1e-06 seconds in 4500 samples.
 | [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap#qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")() | Mapping from [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") [`qiskit.circuit.Instruction`](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and qubits to [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") s. In particular, the mapping is formatted as type::. |
 
 ## Exceptions
+
+
 
 `PulseError(*message)`
 

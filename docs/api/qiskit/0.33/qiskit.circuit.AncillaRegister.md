@@ -1,5 +1,7 @@
 # AncillaRegister
 
+
+
 `AncillaRegister(size=None, name=None, bits=None)`
 
 Bases: `qiskit.circuit.quantumregister.QuantumRegister`
@@ -32,21 +34,31 @@ Either the `size` or the `bits` argument must be provided. If `size` is not None
 
 ## Attributes
 
+
+
 ### instances\_counter
 
 `= count(0)`
+
+
 
 ### name
 
 Get the register name.
 
+
+
 ### name\_format
 
 `= re.compile('[a-z][a-zA-Z0-9_]*')`
 
+
+
 ### prefix
 
 `= 'a'`
+
+
 
 ### size
 

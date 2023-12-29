@@ -1,5 +1,7 @@
 # qiskit.ignis.verification.get\_ghz\_po\_para
 
+
+
 `get_ghz_po_para(n)`
 
 This function creates a Parity Oscillation circuit with n qubits, where the middle superposition rotation around

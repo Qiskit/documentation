@@ -1,5 +1,7 @@
 # Pauli
 
+
+
 `Pauli(data=None, x=None, *, z=None, label=None)`
 
 Bases: `qiskit.quantum_info.operators.symplectic.base_pauli.BasePauli`
@@ -134,21 +136,31 @@ When using the symplectic array input data both z and x arguments must be provid
 
 ## Attributes
 
+
+
 ### dim
 
 Return tuple (input\_shape, output\_shape).
+
+
 
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
+
+
 ### phase
 
 Return the group phase exponent for the Pauli.
 
+
+
 ### qargs
 
 Return the qargs for the operator.
+
+
 
 ### settings
 
@@ -158,9 +170,13 @@ Return settings.
 
 `Dict`
 
+
+
 ### x
 
 The x vector for the Pauli.
+
+
 
 ### z
 

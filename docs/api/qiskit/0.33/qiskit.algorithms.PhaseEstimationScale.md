@@ -1,5 +1,7 @@
 # PhaseEstimationScale
 
+
+
 `PhaseEstimationScale(bound)`
 
 Bases: `object`
@@ -25,6 +27,8 @@ Increasing `bound` decreases the part of the interval $[0, 1)$ that is used to m
 | [`scale_phases`](qiskit.algorithms.PhaseEstimationScale.scale_phases#qiskit.algorithms.PhaseEstimationScale.scale_phases "qiskit.algorithms.PhaseEstimationScale.scale_phases")         | Convert a list or dict of phases to eigenvalues.                                     |
 
 ## Attributes
+
+
 
 ### scale
 

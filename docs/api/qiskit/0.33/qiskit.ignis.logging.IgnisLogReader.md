@@ -1,5 +1,7 @@
 # IgnisLogReader
 
+
+
 `IgnisLogReader`
 
 Bases: `object`

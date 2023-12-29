@@ -1,5 +1,7 @@
 # SuzukiTrotter
 
+
+
 `SuzukiTrotter(order=2, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`
 
 Bases: `qiskit.synthesis.evolution.product_formula.ProductFormula`
@@ -39,6 +41,8 @@ $$
 | [`synthesize`](qiskit.synthesis.SuzukiTrotter.synthesize#qiskit.synthesis.SuzukiTrotter.synthesize "qiskit.synthesis.SuzukiTrotter.synthesize") | Synthesize an `qiskit.circuit.library.PauliEvolutionGate`. |
 
 ## Attributes
+
+
 
 ### settings
 

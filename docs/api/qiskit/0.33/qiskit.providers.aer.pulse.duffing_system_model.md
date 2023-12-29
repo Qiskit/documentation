@@ -1,5 +1,7 @@
 # qiskit.providers.aer.pulse.duffing\_system\_model
 
+
+
 `duffing_system_model(dim_oscillators, oscillator_freqs, anharm_freqs, drive_strengths, coupling_dict, dt)`
 
 Returns a [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel#qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel") representing a physical model for a collection of Duffing oscillators.

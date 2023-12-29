@@ -1,5 +1,7 @@
 # DAGOutNode
 
+
+
 `DAGOutNode(wire)`
 
 Bases: `qiskit.dagcircuit.dagnode.DAGNode`
@@ -16,30 +18,46 @@ Create an outgoing node
 
 ## Attributes
 
+
+
 ### cargs
 
 Returns list of Clbit, else an empty list.
+
+
 
 ### condition
 
 Returns the condition of the node.op
 
+
+
 ### name
 
 Returns the Instruction name corresponding to the op for this node
+
+
 
 ### op
 
 Returns the Instruction object corresponding to the op for the node, else None
 
+
+
 ### qargs
 
 Returns list of Qubit, else an empty list.
 
+
+
 ### sort\_key
+
+
 
 ### type
 
 Returns the type object
+
+
 
 ### wire

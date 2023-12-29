@@ -1,5 +1,7 @@
 # Clbit
 
+
+
 `Clbit(register=None, index=None)`
 
 Bases: `qiskit.circuit.bit.Bit`
@@ -19,9 +21,13 @@ Creates a classical bit.
 
 ## Attributes
 
+
+
 ### index
 
 Get bit’s index.
+
+
 
 ### register
 

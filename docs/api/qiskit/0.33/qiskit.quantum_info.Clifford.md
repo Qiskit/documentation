@@ -1,5 +1,7 @@
 # Clifford
 
+
+
 `Clifford(data, validate=True)`
 
 Bases: `qiskit.quantum_info.operators.base_operator.BaseOperator`, `qiskit.quantum_info.operators.mixins.adjoint.AdjointMixin`
@@ -87,25 +89,37 @@ Initialize an operator object.
 
 ## Attributes
 
+
+
 ### destabilizer
 
 Return the destabilizer block of the StabilizerTable.
+
+
 
 ### dim
 
 Return tuple (input\_shape, output\_shape).
 
+
+
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
+
+
 
 ### qargs
 
 Return the qargs for the operator.
 
+
+
 ### stabilizer
 
 Return the stabilizer block of the StabilizerTable.
+
+
 
 ### table
 

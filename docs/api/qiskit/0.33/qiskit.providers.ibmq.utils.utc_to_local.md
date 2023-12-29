@@ -1,5 +1,7 @@
 # qiskit.providers.ibmq.utils.utc\_to\_local
 
+
+
 `utc_to_local(utc_dt)`
 
 Convert a UTC `datetime` object or string to a local timezone `datetime`.

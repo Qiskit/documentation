@@ -1,5 +1,7 @@
 # qiskit.pulse.builder.align\_equispaced
 
+
+
 `align_equispaced(duration)`
 
 Equispaced alignment pulse scheduling context.

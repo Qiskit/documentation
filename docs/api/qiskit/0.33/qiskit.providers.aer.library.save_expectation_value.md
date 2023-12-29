@@ -1,5 +1,7 @@
 # qiskit.providers.aer.library.save\_expectation\_value
 
+
+
 `save_expectation_value(self, operator, qubits, label='expectation_value', unnormalized=False, pershot=False, conditional=False)`
 
 Save the expectation value of a Hermitian operator.

@@ -1,5 +1,7 @@
 # InterleavedRBFitter
 
+
+
 `InterleavedRBFitter(original_result, interleaved_result, cliff_lengths, rb_pattern=None)`
 
 Bases: `qiskit.ignis.verification.randomized_benchmarking.fitters.RBFitterBase`
@@ -28,41 +30,61 @@ Contains two RBFitter objects: the original RBFitter and the interleaved RBFitte
 
 ## Attributes
 
+
+
 ### cliff\_lengths
 
 Return clifford lengths.
+
+
 
 ### fit
 
 Return fit as a 2 element list.
 
+
+
 ### fit\_int
 
 Return interleaved fit parameters.
+
+
 
 ### raw\_data
 
 Return raw\_data as a 2 element list.
 
+
+
 ### rb\_fit\_fun
 
 Return the fit function rb\_fit\_fun.
+
+
 
 ### rbfit\_int
 
 Return the interleaved RB fitter.
 
+
+
 ### rbfit\_std
 
 Return the original RB fitter.
+
+
 
 ### results
 
 Return all the results as a 2 element list.
 
+
+
 ### seeds
 
 Return the number of loaded seeds as a 2 element list.
+
+
 
 ### ydata
 

@@ -1,5 +1,7 @@
 # PrimitiveOp
 
+
+
 `PrimitiveOp(primitive, coeff=1.0)`
 
 Bases: `qiskit.opflow.operator_base.OperatorBase`
@@ -40,9 +42,13 @@ Note that all mathematical methods are not in-place, meaning that they return a 
 
 ## Attributes
 
+
+
 ### INDENTATION
 
 `= ' '`
+
+
 
 ### coeff
 
@@ -56,6 +62,8 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
+
+
 ### instance\_id
 
 Return the unique instance id.
@@ -64,13 +72,19 @@ Return the unique instance id.
 
 `int`
 
+
+
 ### num\_qubits
 
 **Return type**
 
 `int`
 
+
+
 ### parameters
+
+
 
 ### primitive
 
@@ -83,6 +97,8 @@ The primitive defining the underlying function of the Operator.
 **Returns**
 
 The primitive object.
+
+
 
 ### settings
 

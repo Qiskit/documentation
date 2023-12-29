@@ -1,5 +1,7 @@
 # TrotterizationBase
 
+
+
 `TrotterizationBase(reps=1)`
 
 Bases: `qiskit.opflow.evolutions.evolution_base.EvolutionBase`
@@ -13,6 +15,8 @@ A base for Trotterization methods, algorithms for approximating exponentiations 
 | [`convert`](qiskit.opflow.evolutions.TrotterizationBase.convert#qiskit.opflow.evolutions.TrotterizationBase.convert "qiskit.opflow.evolutions.TrotterizationBase.convert") | Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`. |
 
 ## Attributes
+
+
 
 ### reps
 

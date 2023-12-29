@@ -1,5 +1,7 @@
 # qiskit.providers.aer.noise.pauli\_error
 
+
+
 `pauli_error(noise_ops, standard_gates=True)`
 
 Return a mixed Pauli quantum error channel.

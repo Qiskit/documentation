@@ -1,5 +1,7 @@
 # qiskit.quantum\_info.random\_hermitian
 
+
+
 `random_hermitian(dims, traceless=False, seed=None)`
 
 Return a random hermitian Operator.

@@ -1,5 +1,7 @@
 # qiskit.tools.parallel\_map
 
+
+
 `parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=32)`
 
 Parallel execution of a mapping of values to the function task. This is functionally equivalent to:

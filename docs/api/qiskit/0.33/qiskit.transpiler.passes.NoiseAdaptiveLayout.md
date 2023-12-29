@@ -1,5 +1,7 @@
 # NoiseAdaptiveLayout
 
+
+
 `NoiseAdaptiveLayout(*args, **kwargs)`
 
 Bases: `qiskit.transpiler.basepasses.AnalysisPass`
@@ -10,29 +12,55 @@ Choose a noise-adaptive Layout based on current calibration data for the backend
 >
 > The pass implements the qubit mapping method from: Noise-Adaptive Compiler Mappings for Noisy Intermediate-Scale Quantum Computers Prakash Murali, Jonathan M. Baker, Ali Javadi-Abhari, Frederic T. Chong, Margaret R. Martonosi ASPLOS 2019 (arXiv:1901.11054).
 
+
+
 `Ordering of edges`
+
+
 
 `Map qubits edge-by-edge in the order of decreasing frequency of occurrence in the program dag.`
 
+
+
 `Initialization()`
+
+
 
 `If an edge exists with both endpoints unmapped,`
 
+
+
 `pick the best available hardware cx to execute this edge.`
+
+
 
 `Iterative step`
 
+
+
 `When an edge exists with one endpoint unmapped,`
+
+
 
 `map that endpoint to a location which allows`
 
+
+
 `maximum reliability for CNOTs with previously mapped qubits.`
+
+
 
 `In the end if there are unmapped qubits (which don't`
 
+
+
 `participate in any CNOT), map them to any available`
 
+
+
 `hardware qubit.`
+
+
 
 `Notes()`
 
@@ -57,11 +85,15 @@ NoiseAdaptiveLayout initializer.
 
 ## Attributes
 
+
+
 ### is\_analysis\_pass
 
 Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
+
+
 
 ### is\_transformation\_pass
 

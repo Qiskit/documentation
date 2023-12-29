@@ -1,5 +1,7 @@
 # ScheduleBlock
 
+
+
 `ScheduleBlock(name=None, metadata=None, alignment_context=None)`
 
 Bases: `object`
@@ -65,9 +67,13 @@ Create an empty schedule block.
 
 ## Attributes
 
+
+
 ### alignment\_context
 
 Return alignment instance that allocates block component to generate schedule.
+
+
 
 ### blocks
 
@@ -77,6 +83,8 @@ Get the time-ordered instructions from self.
 
 `Tuple`\[`Union`\[`ScheduleBlock`, `Instruction`]]
 
+
+
 ### channels
 
 Returns channels that this schedule clock uses.
@@ -84,6 +92,8 @@ Returns channels that this schedule clock uses.
 **Return type**
 
 `Tuple`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+
+
 
 ### duration
 
@@ -93,9 +103,13 @@ Duration of this schedule block.
 
 `int`
 
+
+
 ### instances\_counter
 
 `= count(0)`
+
+
 
 ### instructions
 
@@ -104,6 +118,8 @@ Get the time-ordered instructions from self.
 **Return type**
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
+
+
 
 ### metadata
 
@@ -115,6 +131,8 @@ User provided `dict` of metadata for the schedule. The metadata contents do not 
 
 `Dict`\[`str`, `Any`]
 
+
+
 ### name
 
 Name of this Schedule
@@ -123,6 +141,8 @@ Name of this Schedule
 
 `str`
 
+
+
 ### parameters
 
 Parameters which determine the schedule behavior.
@@ -130,6 +150,8 @@ Parameters which determine the schedule behavior.
 **Return type**
 
 `Set`
+
+
 
 ### prefix
 

@@ -1,5 +1,7 @@
 # qiskit.quantum\_info.pauli\_group
 
+
+
 `pauli_group(number_of_qubits, case='weight')`
 
 DEPRECATED: Return the Pauli group with 4^n elements.

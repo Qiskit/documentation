@@ -1,5 +1,7 @@
 # qiskit.visualization.array\_to\_latex
 
+
+
 `array_to_latex(array, precision=5, prefix='', source=False, max_size=8)`
 
 Latex representation of a complex numpy array (with dimension 1 or 2)

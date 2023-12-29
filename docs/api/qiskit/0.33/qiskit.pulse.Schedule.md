@@ -1,5 +1,7 @@
 # Schedule
 
+
+
 `Schedule(*schedules, name=None, metadata=None)`
 
 Bases: `object`
@@ -78,6 +80,8 @@ Create an empty schedule.
 
 ## Attributes
 
+
+
 ### channels
 
 Returns channels that this schedule uses.
@@ -85,6 +89,8 @@ Returns channels that this schedule uses.
 **Return type**
 
 `Tuple`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+
+
 
 ### children
 
@@ -102,6 +108,8 @@ Nested schedules are returned as-is. If you want to collect only instructions, u
 
 A tuple, where each element is a two-tuple containing the initial scheduled time of each `NamedValue` and the component itself.
 
+
+
 ### duration
 
 Duration of this schedule.
@@ -110,9 +118,13 @@ Duration of this schedule.
 
 `int`
 
+
+
 ### instances\_counter
 
 `= count(0)`
+
+
 
 ### instructions
 
@@ -121,6 +133,8 @@ Get the time-ordered instructions from self.
 **Return type**
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
+
+
 
 ### metadata
 
@@ -132,6 +146,8 @@ User provided `dict` of metadata for the schedule. The metadata contents do not 
 
 `Dict`\[`str`, `Any`]
 
+
+
 ### name
 
 Name of this Schedule
@@ -139,6 +155,8 @@ Name of this Schedule
 **Return type**
 
 `str`
+
+
 
 ### parameters
 
@@ -148,9 +166,13 @@ Parameters which determine the schedule behavior.
 
 `Set`
 
+
+
 ### prefix
 
 `= 'sched'`
+
+
 
 ### start\_time
 
@@ -160,6 +182,8 @@ Starting time of this schedule.
 
 `int`
 
+
+
 ### stop\_time
 
 Stopping time of this schedule.
@@ -167,6 +191,8 @@ Stopping time of this schedule.
 **Return type**
 
 `int`
+
+
 
 ### timeslots
 

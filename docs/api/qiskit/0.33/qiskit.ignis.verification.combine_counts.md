@@ -1,5 +1,7 @@
 # qiskit.ignis.verification.combine\_counts
 
+
+
 `combine_counts(counts1, counts2)`
 
 Combine two counts dictionaries. :type counts1: `Dict`\[`str`, `int`] :param counts1: One of the count dictionaries to combine. :type counts2: `Dict`\[`str`, `int`] :param counts2: One of the count dictionaries to combine.

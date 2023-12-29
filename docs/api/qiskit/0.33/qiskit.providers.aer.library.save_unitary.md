@@ -1,5 +1,7 @@
 # qiskit.providers.aer.library.save\_unitary
 
+
+
 `save_unitary(self, label='unitary', pershot=False)`
 
 Save the current state of the unitary simulator.

@@ -1,5 +1,7 @@
 # RabiFitter
 
+
+
 `RabiFitter(backend_result, xdata, qubits, fit_p0, fit_bounds=None)`
 
 Bases: `qiskit.ignis.characterization.fitters.IQFitter`
@@ -23,6 +25,8 @@ fit\_po is \[amp, freq, phase, offset]
 
 ## Attributes
 
+
+
 ### backend\_result
 
 Return the execution results
@@ -30,6 +34,8 @@ Return the execution results
 **Return type**
 
 `Union`\[`Result`, `List`\[`Result`]]
+
+
 
 ### description
 
@@ -39,6 +45,8 @@ Return the fitter’s purpose, e.g. ‘T1’
 
 `str`
 
+
+
 ### fit\_fun
 
 Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
@@ -46,6 +54,8 @@ Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
 **Return type**
 
 `Callable`
+
+
 
 ### measured\_qubits
 
@@ -55,6 +65,8 @@ Return the indices of the qubits to be characterized
 
 `List`\[`int`]
 
+
+
 ### params
 
 Return the fit function parameters that were calculated by curve\_fit
@@ -62,6 +74,8 @@ Return the fit function parameters that were calculated by curve\_fit
 **Return type**
 
 `List`\[`float`]
+
+
 
 ### params\_err
 
@@ -71,6 +85,8 @@ Return the error of the fit function parameters
 
 `List`\[`float`]
 
+
+
 ### series
 
 Return the list of series for the data
@@ -79,6 +95,8 @@ Return the list of series for the data
 
 `Optional`\[`List`\[`str`]]
 
+
+
 ### xdata
 
 Return the data points on the x-axis, the independenet parameter which is fit against
@@ -86,6 +104,8 @@ Return the data points on the x-axis, the independenet parameter which is fit ag
 **Return type**
 
 `Union`\[`List`\[`float`], `array`]
+
+
 
 ### ydata
 

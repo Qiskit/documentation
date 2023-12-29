@@ -1,5 +1,7 @@
 # PauliTable
 
+
+
 `PauliTable(data)`
 
 Bases: `qiskit.quantum_info.operators.base_operator.BaseOperator`, `qiskit.quantum_info.operators.mixins.adjoint.AdjointMixin`
@@ -105,29 +107,43 @@ The input array is not copied so multiple Pauli tables can share the same underl
 
 ## Attributes
 
+
+
 ### X
 
 The X block of the [`array`](#qiskit.quantum_info.PauliTable.array "qiskit.quantum_info.PauliTable.array").
+
+
 
 ### Z
 
 The Z block of the [`array`](#qiskit.quantum_info.PauliTable.array "qiskit.quantum_info.PauliTable.array").
 
+
+
 ### array
 
 The underlying boolean array.
+
+
 
 ### dim
 
 Return tuple (input\_shape, output\_shape).
 
+
+
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
+
+
 ### qargs
 
 Return the qargs for the operator.
+
+
 
 ### settings
 
@@ -137,9 +153,13 @@ Return settings.
 
 `Dict`
 
+
+
 ### shape
 
 The full shape of the [`array()`](#qiskit.quantum_info.PauliTable.array "qiskit.quantum_info.PauliTable.array")
+
+
 
 ### size
 

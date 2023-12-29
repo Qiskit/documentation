@@ -1,5 +1,7 @@
 # AQCSynthesisPlugin
 
+
+
 `AQCSynthesisPlugin`
 
 Bases: [`qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin#qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")
@@ -44,37 +46,55 @@ Initial values of angles/parameters to start the optimization process from.
 
 ## Attributes
 
+
+
 ### max\_qubits
 
 Maximum number of supported qubits is `14`.
+
+
 
 ### min\_qubits
 
 Minimum number of supported qubits is `3`.
 
+
+
 ### supported\_bases
 
 The plugin does not support bases for synthesis.
+
+
 
 ### supports\_basis\_gates
 
 The plugin does not support basis gates and by default it synthesizes a circuit using `["rx", "ry", "rz", "cx"]` gate basis.
 
+
+
 ### supports\_coupling\_map
 
 The plugin does not support coupling maps.
+
+
 
 ### supports\_gate\_errors
 
 The plugin does not support gate errors.
 
+
+
 ### supports\_gate\_lengths
 
 The plugin does not support gate lengths.
 
+
+
 ### supports\_natural\_direction
 
 The plugin does not support natural direction, it assumes bidirectional two qubit gates.
+
+
 
 ### supports\_pulse\_optimize
 

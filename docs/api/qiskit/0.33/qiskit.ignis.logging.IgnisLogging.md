@@ -1,5 +1,7 @@
 # IgnisLogging
 
+
+
 `IgnisLogging(log_config_path=None)`
 
 Bases: `object`

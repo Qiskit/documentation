@@ -1,5 +1,7 @@
 # MeasureChannel
 
+
+
 `MeasureChannel(index)`
 
 Bases: `qiskit.pulse.channels.PulseChannel`
@@ -20,6 +22,8 @@ Channel class.
 
 ## Attributes
 
+
+
 ### index
 
 Return the index of this channel. The index is a label for a control signal line typically mapped trivially to a qubit index. For instance, `DriveChannel(0)` labels the signal line driving the qubit labeled with index 0.
@@ -27,6 +31,8 @@ Return the index of this channel. The index is a label for a control signal line
 **Return type**
 
 `Union`\[`int`, `ParameterExpression`]
+
+
 
 ### name
 
@@ -36,6 +42,8 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
+
+
 ### parameters
 
 Parameters which determine the channel index.
@@ -43,6 +51,8 @@ Parameters which determine the channel index.
 **Return type**
 
 `Set`
+
+
 
 ### prefix
 

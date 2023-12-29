@@ -1,5 +1,7 @@
 # qiskit.pulse.transforms.target\_qobj\_transform
 
+
+
 `target_qobj_transform(sched, remove_directives=True)`
 
 A basic pulse program transformation for OpenPulse API execution.

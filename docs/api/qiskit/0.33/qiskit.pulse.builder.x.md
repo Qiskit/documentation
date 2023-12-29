@@ -1,5 +1,7 @@
 # qiskit.pulse.builder.x
 
+
+
 `x(qubit)`
 
 Call a `XGate` on the input physical qubit.

@@ -1,5 +1,7 @@
 # qiskit.tools.backend\_monitor
 
+
+
 `backend_monitor(backend)`
 
 Monitor a single IBMQ backend.

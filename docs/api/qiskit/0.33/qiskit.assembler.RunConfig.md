@@ -1,10 +1,14 @@
 # RunConfig
 
+
+
 `RunConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, **kwargs)`
 
 Bases: `types.SimpleNamespace`
 
 Class for Run Configuration.
+
+
 
 ### shots
 
@@ -14,6 +18,8 @@ the number of shots
 
 int
 
+
+
 ### max\_credits
 
 the max\_credits to use on the IBM Q public devices
@@ -21,6 +27,8 @@ the max\_credits to use on the IBM Q public devices
 **Type**
 
 int
+
+
 
 ### seed\_simulator
 
@@ -30,6 +38,8 @@ the seed to use in the simulator
 
 int
 
+
+
 ### memory
 
 whether to request memory from backend (per-shot readouts)
@@ -37,6 +47,8 @@ whether to request memory from backend (per-shot readouts)
 **Type**
 
 bool
+
+
 
 ### parameter\_binds
 

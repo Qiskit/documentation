@@ -1,5 +1,7 @@
 # DensityMatrix
 
+
+
 `DensityMatrix(data, dims=None)`
 
 Bases: `qiskit.quantum_info.states.quantum_state.QuantumState`, `qiskit.quantum_info.operators.mixins.tolerances.TolerancesMixin`
@@ -56,25 +58,37 @@ The `dims` kwarg can be None, an integer, or an iterable of integers.
 
 ## Attributes
 
+
+
 ### atol
 
 `= 1e-08`
+
+
 
 ### data
 
 Return data.
 
+
+
 ### dim
 
 Return total state dimension.
+
+
 
 ### num\_qubits
 
 Return the number of qubits if a N-qubit state or None otherwise.
 
+
+
 ### rtol
 
 `= 1e-05`
+
+
 
 ### settings
 

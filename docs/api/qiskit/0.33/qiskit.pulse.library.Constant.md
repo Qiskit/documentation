@@ -1,5 +1,7 @@
 # Constant
 
+
+
 `Constant(duration, amp, name=None, limit_amplitude=None)`
 
 Bases: `qiskit.pulse.library.parametric_pulses.ParametricPulse`
@@ -31,6 +33,8 @@ Initialize the constant-valued pulse.
 
 ## Attributes
 
+
+
 ### amp
 
 The constant value amplitude.
@@ -38,6 +42,8 @@ The constant value amplitude.
 **Return type**
 
 `Union`\[`complex`, `ParameterExpression`]
+
+
 
 ### id
 
@@ -47,9 +53,13 @@ Unique identifier for this pulse.
 
 `int`
 
+
+
 ### limit\_amplitude
 
 `= True`
+
+
 
 ### parameters
 

@@ -1,5 +1,7 @@
 # ResultDecoder
 
+
+
 `ResultDecoder`
 
 Bases: `object`

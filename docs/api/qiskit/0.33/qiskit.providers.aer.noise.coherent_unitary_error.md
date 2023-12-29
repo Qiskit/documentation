@@ -1,5 +1,7 @@
 # qiskit.providers.aer.noise.coherent\_unitary\_error
 
+
+
 `coherent_unitary_error(unitary)`
 
 Return a coherent unitary quantum error channel.

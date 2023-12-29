@@ -1,5 +1,7 @@
 # RuntimeJob
 
+
+
 `RuntimeJob(backend, api_client, credentials, job_id, program_id, params=None, creation_date=None, user_callback=None, result_decoder=<class 'qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder'>, image='')`
 
 Bases: `object`
@@ -56,6 +58,8 @@ RuntimeJob constructor.
 
 ## Attributes
 
+
+
 ### creation\_date
 
 Job creation date in local time.
@@ -67,6 +71,8 @@ Job creation date in local time.
 **Returns**
 
 The job creation date as a datetime object, in local time, or `None` if creation date is not available.
+
+
 
 ### image
 
@@ -80,6 +86,8 @@ image\_name:tag or “” if the default image is used.
 
 Runtime image
 
+
+
 ### inputs
 
 Job input parameters.
@@ -91,6 +99,8 @@ Job input parameters.
 **Returns**
 
 Input parameters used in this job.
+
+
 
 ### program\_id
 

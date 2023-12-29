@@ -1,5 +1,7 @@
 # NoiseModel
 
+
+
 `NoiseModel(basis_gates=None)`
 
 Bases: `object`
@@ -70,13 +72,19 @@ Additional Information: Errors added to the noise model will have their instruct
 
 ## Attributes
 
+
+
 ### basis\_gates
 
 Return basis\_gates for compiling to the noise model.
 
+
+
 ### noise\_instructions
 
 Return the set of noisy instructions for this noise model.
+
+
 
 ### noise\_qubits
 

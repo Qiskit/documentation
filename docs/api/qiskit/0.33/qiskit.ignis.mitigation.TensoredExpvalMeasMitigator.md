@@ -1,5 +1,7 @@
 # TensoredExpvalMeasMitigator
 
+
+
 `TensoredExpvalMeasMitigator(amats)`
 
 Bases: `qiskit.ignis.mitigation.expval.base_meas_mitigator.BaseExpvalMeasMitigator`

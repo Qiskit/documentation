@@ -1,5 +1,7 @@
 # HamiltonianPhaseEstimationResult
 
+
+
 `HamiltonianPhaseEstimationResult(phase_estimation_result, phase_estimation_scale, id_coefficient)`
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
@@ -25,6 +27,8 @@ This class is meant to be instantiated via HamiltonianPhaseEstimation.estimate.
 
 ## Attributes
 
+
+
 ### most\_likely\_eigenvalue
 
 The most likely eigenvalue of the Hamiltonian.
@@ -39,6 +43,8 @@ This method calls most\_likely\_phase and scales the result to obtain an eigenva
 
 The most likely eigenvalue of the Hamiltonian.
 
+
+
 ### most\_likely\_phase
 
 DEPRECATED - The most likely phase of the unitary corresponding to the Hamiltonian.
@@ -50,6 +56,8 @@ DEPRECATED - The most likely phase of the unitary corresponding to the Hamiltoni
 **Returns**
 
 The most likely phase.
+
+
 
 ### phase
 

@@ -1,5 +1,7 @@
 # qiskit.visualization.VisualizationError
 
+
+
 `VisualizationError(*message)`
 
 For visualization specific errors.

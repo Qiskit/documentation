@@ -1,5 +1,7 @@
 # Gradient
 
+
+
 `Gradient(grad_method='param_shift', **kwargs)`
 
 Bases: `qiskit.opflow.gradients.gradient_base.GradientBase`
@@ -23,6 +25,8 @@ Convert an operator expression to the first-order gradient.
 | [`get_gradient`](qiskit.opflow.gradients.Gradient.get_gradient#qiskit.opflow.gradients.Gradient.get_gradient "qiskit.opflow.gradients.Gradient.get_gradient") | Get the gradient for the given operator w\.r.t. |
 
 ## Attributes
+
+
 
 ### grad\_method
 

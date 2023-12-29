@@ -1,5 +1,7 @@
 # SingleQubitUnitary
 
+
+
 `SingleQubitUnitary(unitary_matrix, mode='ZYZ', up_to_diagonal=False)`
 
 Bases: `qiskit.circuit.gate.Gate`
@@ -37,6 +39,8 @@ Create a new single qubit gate based on the unitary `u`.
 
 ## Attributes
 
+
+
 ### condition\_bits
 
 Get Clbits in condition.
@@ -45,13 +49,19 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
+
+
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
+
+
 ### definition
 
 Return definition in terms of other basic gates.
+
+
 
 ### diag
 
@@ -59,9 +69,13 @@ Returns the diagonal gate D up to which the single-qubit unitary u is implemente
 
 I.e. u=D.u’, where u’ is the unitary implemented by the found circuit.
 
+
+
 ### duration
 
 Get the duration.
+
+
 
 ### label
 
@@ -71,9 +85,13 @@ Return instruction label
 
 `str`
 
+
+
 ### params
 
 return instruction params.
+
+
 
 ### unit
 

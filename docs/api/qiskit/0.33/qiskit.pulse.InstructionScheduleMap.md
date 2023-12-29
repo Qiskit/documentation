@@ -1,5 +1,7 @@
 # InstructionScheduleMap
 
+
+
 `InstructionScheduleMap`
 
 Bases: `object`
@@ -32,6 +34,8 @@ Initialize a circuit instruction to schedule mapper instance.
 | [`remove`](qiskit.pulse.InstructionScheduleMap.remove#qiskit.pulse.InstructionScheduleMap.remove "qiskit.pulse.InstructionScheduleMap.remove")                                                                     | Remove the given instruction from the listing of instructions defined in self.                                                                                                                                                                               |
 
 ## Attributes
+
+
 
 ### instructions
 

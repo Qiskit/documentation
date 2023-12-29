@@ -1,5 +1,7 @@
 # qiskit.pulse.builder.acquire\_channel
 
+
+
 `acquire_channel(qubit)`
 
 Return `AcquireChannel` for `qubit` on the active builder backend.

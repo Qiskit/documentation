@@ -1,5 +1,7 @@
 # qiskit.quantum\_info.entropy
 
+
+
 `entropy(state, base=2)`
 
 Calculate the von-Neumann entropy of a quantum state.

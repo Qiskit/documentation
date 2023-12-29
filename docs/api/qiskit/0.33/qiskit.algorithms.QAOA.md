@@ -1,5 +1,7 @@
 # QAOA
 
+
+
 `QAOA(optimizer=None, reps=1, initial_state=None, mixer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)`
 
 Bases: `qiskit.algorithms.minimum_eigen_solvers.vqe.VQE`
@@ -48,6 +50,8 @@ An operator or a parameterized quantum circuit may optionally also be provided a
 
 ## Attributes
 
+
+
 ### ansatz
 
 Returns the ansatz.
@@ -55,6 +59,8 @@ Returns the ansatz.
 **Return type**
 
 `QuantumCircuit`
+
+
 
 ### callback
 
@@ -64,6 +70,8 @@ Returns callback
 
 `Optional`\[`Callable`\[\[`int`, `ndarray`, `float`, `float`], `None`]]
 
+
+
 ### expectation
 
 The expectation value algorithm used to construct the expectation measurement from the observable.
@@ -71,6 +79,8 @@ The expectation value algorithm used to construct the expectation measurement fr
 **Return type**
 
 `Optional`\[`ExpectationBase`]
+
+
 
 ### gradient
 
@@ -80,6 +90,8 @@ Returns the gradient.
 
 `Union`\[`GradientBase`, `Callable`, `None`]
 
+
+
 ### include\_custom
 
 Returns include\_custom
@@ -87,6 +99,8 @@ Returns include\_custom
 **Return type**
 
 `bool`
+
+
 
 ### initial\_point
 
@@ -96,6 +110,8 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
+
+
 ### initial\_state
 
 Returns: Returns the initial state.
@@ -103,6 +119,8 @@ Returns: Returns the initial state.
 **Return type**
 
 `Optional`\[`QuantumCircuit`]
+
+
 
 ### max\_evals\_grouped
 
@@ -112,6 +130,8 @@ Returns max\_evals\_grouped
 
 `int`
 
+
+
 ### mixer
 
 Returns: Returns the mixer.
@@ -119,6 +139,8 @@ Returns: Returns the mixer.
 **Return type**
 
 `Union`\[`QuantumCircuit`, `OperatorBase`]
+
+
 
 ### optimal\_params
 
@@ -128,6 +150,8 @@ The optimal parameters for the ansatz.
 
 `ndarray`
 
+
+
 ### optimizer
 
 Returns optimizer
@@ -136,6 +160,8 @@ Returns optimizer
 
 `Optimizer`
 
+
+
 ### quantum\_instance
 
 Returns quantum instance.
@@ -143,6 +169,8 @@ Returns quantum instance.
 **Return type**
 
 `Optional`\[`QuantumInstance`]
+
+
 
 ### setting
 

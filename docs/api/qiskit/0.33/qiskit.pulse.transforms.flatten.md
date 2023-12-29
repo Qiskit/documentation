@@ -1,5 +1,7 @@
 # qiskit.pulse.transforms.flatten
 
+
+
 `flatten(program)`
 
 Flatten (inline) any called nodes into a Schedule tree with no nested children.

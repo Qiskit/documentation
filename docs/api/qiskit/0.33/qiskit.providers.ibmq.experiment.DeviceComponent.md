@@ -1,5 +1,7 @@
 # DeviceComponent
 
+
+
 `DeviceComponent`
 
 Bases: `abc.ABC`

@@ -1,5 +1,7 @@
 # Gaussian
 
+
+
 `Gaussian(duration, amp, sigma, name=None, limit_amplitude=None)`
 
 Bases: `qiskit.pulse.library.parametric_pulses.ParametricPulse`
@@ -31,6 +33,8 @@ Initialize the gaussian pulse.
 
 ## Attributes
 
+
+
 ### amp
 
 The Gaussian amplitude.
@@ -38,6 +42,8 @@ The Gaussian amplitude.
 **Return type**
 
 `Union`\[`complex`, `ParameterExpression`]
+
+
 
 ### id
 
@@ -47,15 +53,21 @@ Unique identifier for this pulse.
 
 `int`
 
+
+
 ### limit\_amplitude
 
 `= True`
+
+
 
 ### parameters
 
 **Return type**
 
 `Dict`\[`str`, `Any`]
+
+
 
 ### sigma
 

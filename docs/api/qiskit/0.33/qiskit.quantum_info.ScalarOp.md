@@ -1,5 +1,7 @@
 # ScalarOp
 
+
+
 `ScalarOp(dims=None, coeff=1)`
 
 Bases: `qiskit.quantum_info.operators.linear_op.LinearOp`
@@ -41,25 +43,37 @@ Initialize an operator object.
 
 ## Attributes
 
+
+
 ### atol
 
 `= 1e-08`
+
+
 
 ### coeff
 
 Return the coefficient
 
+
+
 ### dim
 
 Return tuple (input\_shape, output\_shape).
+
+
 
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
+
+
 ### qargs
 
 Return the qargs for the operator.
+
+
 
 ### rtol
 

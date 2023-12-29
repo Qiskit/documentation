@@ -1,5 +1,7 @@
 # qiskit.ignis.characterization.zz\_circuits
 
+
+
 `zz_circuits(num_of_gates, gate_time, qubits, spectators, nosc=5)`
 
 Generates circuit for measuring ZZ. Two Ramsey experiments, the first with the spectator in the ground state, the second with the spectator in the excited state

@@ -1,5 +1,7 @@
 # qiskit.providers.aer.library.set\_density\_matrix
 
+
+
 `set_density_matrix(self, state)`
 
 Set the density matrix state of the simulator.

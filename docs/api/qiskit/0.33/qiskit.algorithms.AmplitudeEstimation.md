@@ -1,5 +1,7 @@
 # AmplitudeEstimation
 
+
+
 `AmplitudeEstimation(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None)`
 
 Bases: `qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator`
@@ -48,6 +50,8 @@ Iterative Quantum Amplitude Estimation. [arXiv:1912.05559](https://arxiv.org/abs
 | [`evaluate_measurements`](qiskit.algorithms.AmplitudeEstimation.evaluate_measurements#qiskit.algorithms.AmplitudeEstimation.evaluate_measurements "qiskit.algorithms.AmplitudeEstimation.evaluate_measurements")                         | Evaluate the results from the circuit simulation.                      |
 
 ## Attributes
+
+
 
 ### quantum\_instance
 

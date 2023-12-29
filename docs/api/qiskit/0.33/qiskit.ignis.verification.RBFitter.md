@@ -1,5 +1,7 @@
 # RBFitter
 
+
+
 `RBFitter(backend_result, cliff_lengths, rb_pattern=None)`
 
 Bases: `qiskit.ignis.verification.randomized_benchmarking.fitters.RBFitterBase`
@@ -25,29 +27,43 @@ Class for fitters for randomized benchmarking.
 
 ## Attributes
 
+
+
 ### cliff\_lengths
 
 Return clifford lengths.
+
+
 
 ### fit
 
 Return fit.
 
+
+
 ### raw\_data
 
 Return raw data.
+
+
 
 ### rb\_fit\_fun
 
 Return the fit function rb\_fit\_fun.
 
+
+
 ### results
 
 Return all the results.
 
+
+
 ### seeds
 
 Return the number of loaded seeds.
+
+
 
 ### ydata
 

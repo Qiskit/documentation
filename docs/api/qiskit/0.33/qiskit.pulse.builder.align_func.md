@@ -1,5 +1,7 @@
 # qiskit.pulse.builder.align\_func
 
+
+
 `align_func(duration, func)`
 
 Callback defined alignment pulse scheduling context.

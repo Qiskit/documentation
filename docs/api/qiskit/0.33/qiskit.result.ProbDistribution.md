@@ -1,5 +1,7 @@
 # ProbDistribution
 
+
+
 `ProbDistribution(data, shots=None)`
 
 Bases: `dict`

@@ -1,5 +1,7 @@
 # qiskit.quantum\_info.random\_unitary
 
+
+
 `random_unitary(dims, seed=None)`
 
 Return a random unitary Operator.

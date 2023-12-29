@@ -1,5 +1,7 @@
 # IQXSimple
 
+
+
 `IQXSimple(**kwargs)`
 
 Bases: `dict`

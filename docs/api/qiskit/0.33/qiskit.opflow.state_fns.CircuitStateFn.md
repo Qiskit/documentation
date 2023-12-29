@@ -1,5 +1,7 @@
 # CircuitStateFn
 
+
+
 `CircuitStateFn(primitive=None, coeff=1.0, is_measurement=False, from_operator=False)`
 
 Bases: `qiskit.opflow.state_fns.state_fn.StateFn`
@@ -41,9 +43,13 @@ A class for state functions and measurements which are defined by the action of 
 
 ## Attributes
 
+
+
 ### INDENTATION
 
 `= ' '`
+
+
 
 ### coeff
 
@@ -53,6 +59,8 @@ A coefficient by which the state function is multiplied.
 
 `Union`\[`complex`, `ParameterExpression`]
 
+
+
 ### instance\_id
 
 Return the unique instance id.
@@ -60,6 +68,8 @@ Return the unique instance id.
 **Return type**
 
 `int`
+
+
 
 ### is\_measurement
 
@@ -69,19 +79,27 @@ Whether the StateFn object is a measurement Operator.
 
 `bool`
 
+
+
 ### num\_qubits
 
 **Return type**
 
 `int`
 
+
+
 ### parameters
+
+
 
 ### primitive
 
 `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
 The primitive which defines the behavior of the underlying State function.
+
+
 
 ### settings
 

@@ -1,5 +1,7 @@
 # CouplingMap
 
+
+
 `CouplingMap(couplinglist=None, description=None)`
 
 Bases: `object`
@@ -43,19 +45,29 @@ Create coupling graph. By default, the generated coupling has no nodes.
 
 ## Attributes
 
+
+
 ### description
+
+
 
 ### distance\_matrix
 
 Return the distance matrix for the coupling map.
 
+
+
 ### graph
+
+
 
 ### is\_symmetric
 
 Test if the graph is symmetric.
 
 Return True if symmetric, False otherwise
+
+
 
 ### physical\_qubits
 

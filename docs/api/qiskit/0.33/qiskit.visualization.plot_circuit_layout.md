@@ -1,5 +1,7 @@
 # qiskit.visualization.plot\_circuit\_layout
 
+
+
 `plot_circuit_layout(circuit, backend, view='virtual')`
 
 Plot the layout of a circuit transpiled for a given target backend.

@@ -1,5 +1,7 @@
 # qiskit.utils.local\_hardware\_info
 
+
+
 `local_hardware_info()`
 
 Basic hardware information about the local machine.

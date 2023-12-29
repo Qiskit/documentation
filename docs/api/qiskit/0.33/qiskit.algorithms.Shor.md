@@ -1,5 +1,7 @@
 # Shor
 
+
+
 `Shor(quantum_instance=None)`
 
 Bases: `object`
@@ -25,6 +27,8 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 | [`modinv`](qiskit.algorithms.Shor.modinv#qiskit.algorithms.Shor.modinv "qiskit.algorithms.Shor.modinv")                                             | Returns the modular multiplicative inverse of a with respect to the modulus m. |
 
 ## Attributes
+
+
 
 ### quantum\_instance
 

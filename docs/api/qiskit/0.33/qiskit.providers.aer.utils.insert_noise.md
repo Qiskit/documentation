@@ -1,5 +1,7 @@
 # qiskit.providers.aer.utils.insert\_noise
 
+
+
 `insert_noise(circuits, noise_model, transpile=False)`
 
 Return a noisy version of a QuantumCircuit.

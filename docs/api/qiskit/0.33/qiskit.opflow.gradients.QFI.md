@@ -1,5 +1,7 @@
 # QFI
 
+
+
 `QFI(qfi_method='lin_comb_full')`
 
 Bases: `qiskit.opflow.gradients.qfi_base.QFIBase`
@@ -28,6 +30,8 @@ $$
 | [`convert`](qiskit.opflow.gradients.QFI.convert#qiskit.opflow.gradients.QFI.convert "qiskit.opflow.gradients.QFI.convert") | **type operator**`CircuitStateFn` |
 
 ## Attributes
+
+
 
 ### qfi\_method
 

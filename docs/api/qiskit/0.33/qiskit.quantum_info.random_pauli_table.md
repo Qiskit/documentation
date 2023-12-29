@@ -1,5 +1,7 @@
 # qiskit.quantum\_info.random\_pauli\_table
 
+
+
 `random_pauli_table(num_qubits, size=1, seed=None)`
 
 Return a random PauliTable.

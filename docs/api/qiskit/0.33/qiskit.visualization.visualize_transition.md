@@ -1,5 +1,7 @@
 # qiskit.visualization.visualize\_transition
 
+
+
 `visualize_transition(circuit, trace=False, saveas=None, fpg=100, spg=2)`
 
 Creates animation showing transitions between states of a single qubit by applying quantum gates.

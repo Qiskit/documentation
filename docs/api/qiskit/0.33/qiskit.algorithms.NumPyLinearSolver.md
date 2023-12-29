@@ -1,5 +1,7 @@
 # NumPyLinearSolver
 
+
+
 `NumPyLinearSolver`
 
 Bases: `qiskit.algorithms.linear_solvers.linear_solver.LinearSolver`

@@ -1,5 +1,7 @@
 # qiskit.opflow\.double\_commutator
 
+
+
 `double_commutator(op_a, op_b, op_c, sign=False)`
 
 Compute symmetric double commutator of op\_a, op\_b and op\_c. See McWeeny chapter 13.6 Equation of motion methods (page 479)

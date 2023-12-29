@@ -1,5 +1,7 @@
 # ShiftFrequency
 
+
+
 `ShiftFrequency(frequency, channel, name=None)`
 
 Bases: `qiskit.pulse.instructions.instruction.Instruction`
@@ -29,6 +31,8 @@ Creates a new shift frequency instruction.
 
 ## Attributes
 
+
+
 ### channel
 
 Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on.
@@ -36,6 +40,8 @@ Return the [`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channel
 **Return type**
 
 `PulseChannel`
+
+
 
 ### channels
 
@@ -45,6 +51,8 @@ Returns the channels that this schedule uses.
 
 `Tuple`\[`PulseChannel`]
 
+
+
 ### duration
 
 Duration of this instruction.
@@ -52,6 +60,8 @@ Duration of this instruction.
 **Return type**
 
 `int`
+
+
 
 ### frequency
 
@@ -61,6 +71,8 @@ Frequency shift from the set frequency.
 
 `Union`\[`float`, `ParameterExpression`]
 
+
+
 ### id
 
 Unique identifier for this instruction.
@@ -68,6 +80,8 @@ Unique identifier for this instruction.
 **Return type**
 
 `int`
+
+
 
 ### instructions
 
@@ -77,6 +91,8 @@ Iterable for getting instructions from Schedule tree.
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
+
+
 ### name
 
 Name of this instruction.
@@ -84,6 +100,8 @@ Name of this instruction.
 **Return type**
 
 `str`
+
+
 
 ### operands
 
@@ -93,6 +111,8 @@ Return instruction operands.
 
 `Tuple`
 
+
+
 ### parameters
 
 Parameters which determine the instruction behavior.
@@ -101,6 +121,8 @@ Parameters which determine the instruction behavior.
 
 `Set`
 
+
+
 ### start\_time
 
 Relative begin time of this instruction.
@@ -108,6 +130,8 @@ Relative begin time of this instruction.
 **Return type**
 
 `int`
+
+
 
 ### stop\_time
 

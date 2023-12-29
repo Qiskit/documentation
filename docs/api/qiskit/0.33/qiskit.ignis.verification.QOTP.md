@@ -1,5 +1,7 @@
 # qiskit.ignis.verification.QOTP
 
+
+
 `QOTP(circ, num, two_qubit_gate='cx', coupling_map=None, seed=None)`
 
 Performs a QOTP (or random compilation) on a generic circuit.

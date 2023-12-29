@@ -1,5 +1,7 @@
 # PassManager
 
+
+
 `PassManager(passes=None, max_iteration=1000)`
 
 Bases: `object`

@@ -1,5 +1,7 @@
 # GraphDecoder
 
+
+
 `GraphDecoder(code, S=None, brute=False)`
 
 Bases: `object`

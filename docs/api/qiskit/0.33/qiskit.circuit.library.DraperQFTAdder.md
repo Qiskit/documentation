@@ -1,5 +1,7 @@
 # DraperQFTAdder
 
+
+
 `DraperQFTAdder(num_state_qubits, kind='fixed', name='DraperQFTAdder')`
 
 Bases: `qiskit.circuit.library.arithmetic.adders.adder.Adder`
@@ -43,6 +45,8 @@ cout_0: ┤2     ├────────────────────
 
 ## Attributes
 
+
+
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -50,6 +54,8 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
+
+
 
 ### calibrations
 
@@ -63,6 +69,8 @@ Return calibration dictionary.
 
 `dict`
 
+
+
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -70,6 +78,8 @@ Returns a list of classical bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Clbit`]
+
+
 
 ### data
 
@@ -85,9 +95,13 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
+
+
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
+
+
 
 ### global\_phase
 
@@ -97,13 +111,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
+
+
 ### header
 
 `= 'OPENQASM 2.0;'`
 
+
+
 ### instances
 
 `= 9`
+
+
 
 ### metadata
 
@@ -115,6 +135,8 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
+
+
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -122,6 +144,8 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
+
+
 
 ### num\_clbits
 
@@ -131,6 +155,8 @@ Return number of classical bits.
 
 `int`
 
+
+
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
@@ -139,6 +165,8 @@ Convenience function to get the number of parameter objects in the circuit.
 
 `int`
 
+
+
 ### num\_qubits
 
 Return number of qubits.
@@ -146,6 +174,8 @@ Return number of qubits.
 **Return type**
 
 `int`
+
+
 
 ### num\_state\_qubits
 
@@ -159,6 +189,8 @@ The number of state qubits, i.e. the number of bits in each input register.
 
 The number of state qubits.
 
+
+
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
@@ -167,9 +199,13 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
+
+
 ### prefix
 
 `= 'circuit'`
+
+
 
 ### qubits
 

@@ -1,5 +1,7 @@
 # Target
 
+
+
 `Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, aquire_alignment=1)`
 
 Bases: `collections.abc.Mapping`
@@ -95,35 +97,59 @@ Create a new Target object
 
 ## Attributes
 
+
+
 ### aquire\_alignment
+
+
 
 ### description
 
+
+
 ### dt
 
+
+
 ### granularity
+
+
 
 ### instructions
 
 Get the list of tuples ``(:class:`~qiskit.circuit.Instruction`, (qargs))`` for the target
 
+
+
 ### min\_length
 
+
+
 ### num\_qubits
+
+
 
 ### operation\_names
 
 Get the operation names in the target.
 
+
+
 ### operations
 
 Get the operation class objects in the target.
+
+
 
 ### physical\_qubits
 
 Returns a sorted list of physical\_qubits
 
+
+
 ### pulse\_alignment
+
+
 
 ### qargs
 

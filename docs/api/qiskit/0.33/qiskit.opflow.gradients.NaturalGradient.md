@@ -1,5 +1,7 @@
 # NaturalGradient
 
+
+
 `NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`
 
 Bases: `qiskit.opflow.gradients.gradient_base.GradientBase`
@@ -31,6 +33,8 @@ where R(x) represents the penalization term.
 
 ## Attributes
 
+
+
 ### grad\_method
 
 Returns `CircuitGradient`.
@@ -43,6 +47,8 @@ Returns `CircuitGradient`.
 
 `CircuitGradient`.
 
+
+
 ### qfi\_method
 
 Returns `CircuitQFI`.
@@ -52,6 +58,8 @@ Returns: `CircuitQFI`
 **Return type**
 
 `CircuitQFI`
+
+
 
 ### regularization
 

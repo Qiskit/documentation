@@ -1,5 +1,7 @@
 # qiskit.visualization.plot\_bloch\_vector
 
+
+
 `plot_bloch_vector(bloch, title='', ax=None, figsize=None, coord_type='cartesian')`
 
 Plot the Bloch sphere.

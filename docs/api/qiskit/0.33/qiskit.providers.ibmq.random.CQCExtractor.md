@@ -1,5 +1,7 @@
 # CQCExtractor
 
+
+
 `CQCExtractor(name, provider, client, methods)`
 
 Bases: `qiskit.providers.ibmq.random.baserandomservice.BaseRandomService`

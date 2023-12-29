@@ -1,5 +1,7 @@
 # SparsePauliOp
 
+
+
 `SparsePauliOp(data, coeffs=None, *, ignore_pauli_phase=False, copy=True)`
 
 Bases: `qiskit.quantum_info.operators.linear_op.LinearOp`
@@ -63,33 +65,49 @@ Initialize an operator object.
 
 ## Attributes
 
+
+
 ### atol
 
 `= 1e-08`
+
+
 
 ### coeffs
 
 Return the Pauli coefficients.
 
+
+
 ### dim
 
 Return tuple (input\_shape, output\_shape).
+
+
 
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
+
+
 ### paulis
 
 Return the the PauliList.
+
+
 
 ### qargs
 
 Return the qargs for the operator.
 
+
+
 ### rtol
 
 `= 1e-05`
+
+
 
 ### settings
 
@@ -99,9 +117,13 @@ Return settings.
 
 `Dict`
 
+
+
 ### size
 
 The number of Pauli of Pauli terms in the operator.
+
+
 
 ### table
 

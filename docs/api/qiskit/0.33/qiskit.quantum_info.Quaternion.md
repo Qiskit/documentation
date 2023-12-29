@@ -1,5 +1,7 @@
 # Quaternion
 
+
+
 `Quaternion(data)`
 
 Bases: `object`

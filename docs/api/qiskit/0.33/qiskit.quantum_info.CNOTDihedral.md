@@ -1,5 +1,7 @@
 # CNOTDihedral
 
+
+
 `CNOTDihedral(data=None, num_qubits=None, validate=True)`
 
 Bases: `qiskit.quantum_info.operators.base_operator.BaseOperator`, `qiskit.quantum_info.operators.mixins.adjoint.AdjointMixin`
@@ -86,13 +88,19 @@ Initialize a CNOTDihedral operator object.
 
 ## Attributes
 
+
+
 ### dim
 
 Return tuple (input\_shape, output\_shape).
 
+
+
 ### num\_qubits
 
 Return the number of qubits if a N-qubit operator or None otherwise.
+
+
 
 ### qargs
 

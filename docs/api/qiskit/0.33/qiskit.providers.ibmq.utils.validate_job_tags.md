@@ -1,5 +1,7 @@
 # qiskit.providers.ibmq.utils.validate\_job\_tags
 
+
+
 `validate_job_tags(job_tags, exception)`
 
 Validates input job tags.
