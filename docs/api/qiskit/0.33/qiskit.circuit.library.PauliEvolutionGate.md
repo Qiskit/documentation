@@ -1,14 +1,4 @@
----
-title: PauliEvolutionGate
-description: API reference for qiskit.circuit.library.PauliEvolutionGate
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.circuit.library.PauliEvolutionGate
----
-
 # PauliEvolutionGate
-
-<span id="qiskit.circuit.library.PauliEvolutionGate" />
 
 `PauliEvolutionGate(operator, time=1.0, label=None, synthesis=None)`
 
@@ -43,45 +33,12 @@ $$
 
 ## Methods Defined Here
 
-### inverse
-
-<span id="qiskit.circuit.library.PauliEvolutionGate.inverse" />
-
-`PauliEvolutionGate.inverse()`
-
-Invert this instruction.
-
-If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
-
-Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
-
-**Returns**
-
-a fresh instruction for the inverse
-
-**Return type**
-
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
-
-**Raises**
-
-**CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
-
-### validate\_parameter
-
-<span id="qiskit.circuit.library.PauliEvolutionGate.validate_parameter" />
-
-`PauliEvolutionGate.validate_parameter(parameter)`
-
-Gate parameters should be int, float, or ParameterExpression
-
-**Return type**
-
-`Union`\[`float`, `ParameterExpression`]
+|                                                                                                                                                                                                                  |                                                              |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [`inverse`](qiskit.circuit.library.PauliEvolutionGate.inverse#qiskit.circuit.library.PauliEvolutionGate.inverse "qiskit.circuit.library.PauliEvolutionGate.inverse")                                             | Invert this instruction.                                     |
+| [`validate_parameter`](qiskit.circuit.library.PauliEvolutionGate.validate_parameter#qiskit.circuit.library.PauliEvolutionGate.validate_parameter "qiskit.circuit.library.PauliEvolutionGate.validate_parameter") | Gate parameters should be int, float, or ParameterExpression |
 
 ## Attributes
-
-<span id="qiskit.circuit.library.PauliEvolutionGate.condition_bits" />
 
 ### condition\_bits
 
@@ -91,25 +48,17 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-<span id="qiskit.circuit.library.PauliEvolutionGate.decompositions" />
-
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.circuit.library.PauliEvolutionGate.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-<span id="qiskit.circuit.library.PauliEvolutionGate.duration" />
-
 ### duration
 
 Get the duration.
-
-<span id="qiskit.circuit.library.PauliEvolutionGate.label" />
 
 ### label
 
@@ -119,13 +68,9 @@ Return instruction label
 
 `str`
 
-<span id="qiskit.circuit.library.PauliEvolutionGate.params" />
-
 ### params
 
 return instruction params.
-
-<span id="qiskit.circuit.library.PauliEvolutionGate.time" />
 
 ### time
 
@@ -139,9 +84,6 @@ Return the evolution time as stored in the gate parameters.
 
 The evolution time.
 
-<span id="qiskit.circuit.library.PauliEvolutionGate.unit" />
-
 ### unit
 
 Get the time unit of duration.
-

@@ -1,14 +1,4 @@
----
-title: C3XGate
-description: API reference for qiskit.circuit.library.C3XGate
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.circuit.library.C3XGate
----
-
 # C3XGate
-
-<span id="qiskit.circuit.library.C3XGate" />
 
 `C3XGate(angle=None, label=None, ctrl_state=None)`
 
@@ -22,39 +12,12 @@ Create a new 3-qubit controlled X gate.
 
 ## Methods Defined Here
 
-### control
-
-<span id="qiskit.circuit.library.C3XGate.control" />
-
-`C3XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
-
-Controlled version of this gate.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
-
-**Returns**
-
-controlled version of this gate.
-
-**Return type**
-
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-### inverse
-
-<span id="qiskit.circuit.library.C3XGate.inverse" />
-
-`C3XGate.inverse()`
-
-Invert this gate. The C4X is its own inverse.
+|                                                                                                                                     |                                  |
+| ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| [`control`](qiskit.circuit.library.C3XGate.control#qiskit.circuit.library.C3XGate.control "qiskit.circuit.library.C3XGate.control") | Controlled version of this gate. |
+| [`inverse`](qiskit.circuit.library.C3XGate.inverse#qiskit.circuit.library.C3XGate.inverse "qiskit.circuit.library.C3XGate.inverse") | Invert this gate.                |
 
 ## Attributes
-
-<span id="qiskit.circuit.library.C3XGate.condition_bits" />
 
 ### condition\_bits
 
@@ -64,8 +27,6 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-<span id="qiskit.circuit.library.C3XGate.ctrl_state" />
-
 ### ctrl\_state
 
 Return the control state of the gate as a decimal integer.
@@ -74,13 +35,9 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
-<span id="qiskit.circuit.library.C3XGate.decompositions" />
-
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.circuit.library.C3XGate.definition" />
 
 ### definition
 
@@ -90,13 +47,9 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
-<span id="qiskit.circuit.library.C3XGate.duration" />
-
 ### duration
 
 Get the duration.
-
-<span id="qiskit.circuit.library.C3XGate.label" />
 
 ### label
 
@@ -105,8 +58,6 @@ Return instruction label
 **Return type**
 
 `str`
-
-<span id="qiskit.circuit.library.C3XGate.name" />
 
 ### name
 
@@ -120,8 +71,6 @@ where \<original\_name> is the gate name for the default case of closed control 
 
 `str`
 
-<span id="qiskit.circuit.library.C3XGate.num_ctrl_qubits" />
-
 ### num\_ctrl\_qubits
 
 Get number of control qubits.
@@ -133,8 +82,6 @@ The number of control qubits for the gate.
 **Return type**
 
 int
-
-<span id="qiskit.circuit.library.C3XGate.params" />
 
 ### params
 
@@ -152,9 +99,6 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
-<span id="qiskit.circuit.library.C3XGate.unit" />
-
 ### unit
 
 Get the time unit of duration.
-

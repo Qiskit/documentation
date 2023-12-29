@@ -1,14 +1,4 @@
----
-title: combine_counts
-description: API reference for qiskit.ignis.verification.combine_counts
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.ignis.verification.combine_counts
----
-
 # qiskit.ignis.verification.combine\_counts
-
-<span id="qiskit.ignis.verification.combine_counts" />
 
 `combine_counts(counts1, counts2)`
 
@@ -30,4 +20,3 @@ A dict containing the **sum** of entries in counts1 and counts2 where a nonexist
 >>> combine_counts(counts1, counts2)
 {'00': 7, '01': 5, '10': 7}
 ```
-

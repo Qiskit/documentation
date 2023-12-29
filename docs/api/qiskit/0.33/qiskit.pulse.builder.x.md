@@ -1,14 +1,4 @@
----
-title: x
-description: API reference for qiskit.pulse.builder.x
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.pulse.builder.x
----
-
 # qiskit.pulse.builder.x
-
-<span id="qiskit.pulse.builder.x" />
 
 `x(qubit)`
 
@@ -29,4 +19,3 @@ backend = FakeOpenPulse2Q()
 with pulse.build(backend) as pulse_prog:
     pulse.x(0)
 ```
-

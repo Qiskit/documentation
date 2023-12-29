@@ -1,14 +1,4 @@
----
-title: pauli_error
-description: API reference for qiskit.providers.aer.noise.pauli_error
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.providers.aer.noise.pauli_error
----
-
 # qiskit.providers.aer.noise.pauli\_error
-
-<span id="qiskit.providers.aer.noise.pauli_error" />
 
 `pauli_error(noise_ops, standard_gates=True)`
 
@@ -18,7 +8,7 @@ The input should be a list of pairs `(P[j], p[j])`, where `P[j]` is a `Pauli` ob
 
 **Parameters**
 
-*   **noise\_ops** (*list\[pair\[*[*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*, double]]*) – Pauli error terms.
+*   **noise\_ops** (*list\[pair\[*[*Pauli*](qiskit.quantum_info.Pauli#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")*, double]]*) – Pauli error terms.
 *   **standard\_gates** (*bool*) – if True return the operators as standard qobj Pauli gate instructions. If false return as unitary matrix qobj instructions. (Default: True)
 
 **Returns**
@@ -27,9 +17,8 @@ The quantum error object.
 
 **Return type**
 
-[QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+[QuantumError](qiskit.providers.aer.noise.QuantumError#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
 
 **Raises**
 
 **NoiseError** – If depolarizing probability is less than 0 or greater than 1.
-

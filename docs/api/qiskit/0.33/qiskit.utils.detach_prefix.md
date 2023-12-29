@@ -1,14 +1,4 @@
----
-title: detach_prefix
-description: API reference for qiskit.utils.detach_prefix
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.utils.detach_prefix
----
-
 # qiskit.utils.detach\_prefix
-
-<span id="qiskit.utils.detach_prefix" />
 
 `detach_prefix(value, decimal=None)`
 
@@ -45,4 +35,3 @@ A tuple of scaled value and prefix.
 
 *   **ValueError** – If the `value` is out of range.
 *   **ValueError** – If the `value` is not real number.
-

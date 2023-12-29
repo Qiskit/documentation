@@ -1,14 +1,4 @@
----
-title: block_to_dag
-description: API reference for qiskit.pulse.transforms.block_to_dag
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.pulse.transforms.block_to_dag
----
-
 # qiskit.pulse.transforms.block\_to\_dag
-
-<span id="qiskit.pulse.transforms.block_to_dag" />
 
 `block_to_dag(block)`
 
@@ -55,4 +45,3 @@ In above program two `shift_phase` instructions can be cancelled out because the
 **Returns**
 
 Instructions in DAG representation.
-

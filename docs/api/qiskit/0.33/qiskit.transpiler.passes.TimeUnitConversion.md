@@ -1,14 +1,4 @@
----
-title: TimeUnitConversion
-description: API reference for qiskit.transpiler.passes.TimeUnitConversion
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.transpiler.passes.TimeUnitConversion
----
-
 # TimeUnitConversion
-
-<span id="qiskit.transpiler.passes.TimeUnitConversion" />
 
 `TimeUnitConversion(inst_durations)`
 
@@ -28,45 +18,16 @@ TimeUnitAnalysis initializer.
 
 **Parameters**
 
-**inst\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – A dictionary of durations of instructions.
+**inst\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations#qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – A dictionary of durations of instructions.
 
 ## Methods
 
-### name
-
-<span id="qiskit.transpiler.passes.TimeUnitConversion.name" />
-
-`TimeUnitConversion.name()`
-
-Return the name of the pass.
-
-### run
-
-<span id="qiskit.transpiler.passes.TimeUnitConversion.run" />
-
-`TimeUnitConversion.run(dag)`
-
-Run the TimeUnitAnalysis pass on dag.
-
-**Parameters**
-
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to be checked.
-
-**Returns**
-
-DAG with consistent timing and op nodes annotated with duration.
-
-**Return type**
-
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
-
-**Raises**
-
-[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the units are not unifiable
+|                                                                                                                                                                |                                       |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| [`name`](qiskit.transpiler.passes.TimeUnitConversion.name#qiskit.transpiler.passes.TimeUnitConversion.name "qiskit.transpiler.passes.TimeUnitConversion.name") | Return the name of the pass.          |
+| [`run`](qiskit.transpiler.passes.TimeUnitConversion.run#qiskit.transpiler.passes.TimeUnitConversion.run "qiskit.transpiler.passes.TimeUnitConversion.run")     | Run the TimeUnitAnalysis pass on dag. |
 
 ## Attributes
-
-<span id="qiskit.transpiler.passes.TimeUnitConversion.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -74,11 +35,8 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-<span id="qiskit.transpiler.passes.TimeUnitConversion.is_transformation_pass" />
-
 ### is\_transformation\_pass
 
 Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
-

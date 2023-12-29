@@ -1,14 +1,4 @@
----
-title: align_sequential
-description: API reference for qiskit.pulse.builder.align_sequential
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.pulse.builder.align_sequential
----
-
 # qiskit.pulse.builder.align\_sequential
-
-<span id="qiskit.pulse.builder.align_sequential" />
 
 `align_sequential()`
 
@@ -42,4 +32,3 @@ None
 **Return type**
 
 `AlignmentKind`
-

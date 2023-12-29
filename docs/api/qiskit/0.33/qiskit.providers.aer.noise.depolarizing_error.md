@@ -1,14 +1,4 @@
----
-title: depolarizing_error
-description: API reference for qiskit.providers.aer.noise.depolarizing_error
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.providers.aer.noise.depolarizing_error
----
-
 # qiskit.providers.aer.noise.depolarizing\_error
-
-<span id="qiskit.providers.aer.noise.depolarizing_error" />
 
 `depolarizing_error(param, num_qubits, standard_gates=True)`
 
@@ -40,9 +30,8 @@ The quantum error object.
 
 **Return type**
 
-[QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+[QuantumError](qiskit.providers.aer.noise.QuantumError#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
 
 **Raises**
 
 **NoiseError** – If noise parameters are invalid.
-

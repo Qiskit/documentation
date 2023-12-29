@@ -1,14 +1,4 @@
----
-title: MaximumLikelihoodAmplitudeEstimation
-description: API reference for qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation
----
-
 # MaximumLikelihoodAmplitudeEstimation
-
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation" />
 
 `MaximumLikelihoodAmplitudeEstimation(evaluation_schedule, minimizer=None, quantum_instance=None)`
 
@@ -40,101 +30,14 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 ## Methods
 
-### compute\_confidence\_interval
-
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_confidence_interval" />
-
-`static MaximumLikelihoodAmplitudeEstimation.compute_confidence_interval(result, alpha, kind='fisher', apply_post_processing=False)`
-
-Compute the alpha confidence interval using the method kind.
-
-The confidence level is (1 - alpha) and supported kinds are ‘fisher’, ‘likelihood\_ratio’ and ‘observed\_fisher’ with shorthand notations ‘fi’, ‘lr’ and ‘oi’, respectively.
-
-**Parameters**
-
-*   **result** (`MaximumLikelihoodAmplitudeEstimationResult`) – A maximum likelihood amplitude estimation result.
-*   **alpha** (`float`) – The confidence level.
-*   **kind** (`str`) – The method to compute the confidence interval. Defaults to ‘fisher’, which computes the theoretical Fisher information.
-*   **apply\_post\_processing** (`bool`) – If True, apply post-processing to the confidence interval.
-
-**Return type**
-
-`Tuple`\[`float`, `float`]
-
-**Returns**
-
-The specified confidence interval.
-
-**Raises**
-
-*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If run() hasn’t been called yet.
-*   **NotImplementedError** – If the method kind is not supported.
-
-### compute\_mle
-
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_mle" />
-
-`MaximumLikelihoodAmplitudeEstimation.compute_mle(circuit_results, estimation_problem, num_state_qubits=None, return_counts=False)`
-
-Compute the MLE via a grid-search.
-
-This is a stable approach if sufficient gridpoints are used.
-
-**Parameters**
-
-*   **circuit\_results** (`Union`\[`List`\[`Dict`\[`str`, `int`]], `List`\[`ndarray`]]) – A list of circuit outcomes. Can be counts or statevectors.
-*   **estimation\_problem** (`EstimationProblem`) – The estimation problem containing the evaluation schedule and the number of likelihood function evaluations used to find the minimum.
-*   **num\_state\_qubits** (`Optional`\[`int`]) – The number of state qubits, required for statevector simulations.
-*   **return\_counts** (`bool`) – If True, returns the good counts.
-
-**Return type**
-
-`Union`\[`float`, `Tuple`\[`float`, `List`\[`float`]]]
-
-**Returns**
-
-The MLE for the provided result object.
-
-### construct\_circuits
-
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits" />
-
-`MaximumLikelihoodAmplitudeEstimation.construct_circuits(estimation_problem, measurement=False)`
-
-Construct the Amplitude Estimation w/o QPE quantum circuits.
-
-**Parameters**
-
-*   **estimation\_problem** (`EstimationProblem`) – The estimation problem for which to construct the QAE circuit.
-*   **measurement** (`bool`) – Boolean flag to indicate if measurement should be included in the circuits.
-
-**Return type**
-
-`List`\[`QuantumCircuit`]
-
-**Returns**
-
-A list with the QuantumCircuit objects for the algorithm.
-
-### estimate
-
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.estimate" />
-
-`MaximumLikelihoodAmplitudeEstimation.estimate(estimation_problem)`
-
-Run the amplitude estimation algorithm.
-
-**Parameters**
-
-**estimation\_problem** (`EstimationProblem`) – An `EstimationProblem` containing all problem-relevant information such as the state preparation and the objective qubits.
-
-**Return type**
-
-`MaximumLikelihoodAmplitudeEstimationResult`
+|                                                                                                                                                                                                                                                                                             |                                                              |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [`compute_confidence_interval`](qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_confidence_interval#qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_confidence_interval "qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_confidence_interval") | Compute the alpha confidence interval using the method kind. |
+| [`compute_mle`](qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_mle#qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_mle "qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.compute_mle")                                                                 | Compute the MLE via a grid-search.                           |
+| [`construct_circuits`](qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits#qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits "qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits")                                     | Construct the Amplitude Estimation w/o QPE quantum circuits. |
+| [`estimate`](qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.estimate#qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.estimate "qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.estimate")                                                                             | Run the amplitude estimation algorithm.                      |
 
 ## Attributes
-
-<span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimation.quantum_instance" />
 
 ### quantum\_instance
 
@@ -147,4 +50,3 @@ Get the quantum instance.
 **Returns**
 
 The quantum instance used to run this algorithm.
-

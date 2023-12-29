@@ -1,14 +1,4 @@
----
-title: Trotter
-description: API reference for qiskit.opflow.evolutions.Trotter
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.opflow.evolutions.Trotter
----
-
 # Trotter
-
-<span id="qiskit.opflow.evolutions.Trotter" />
 
 `Trotter(reps=1)`
 
@@ -22,8 +12,6 @@ Simple Trotter expansion, composing the evolution circuits of each Operator in t
 
 ## Attributes
 
-<span id="qiskit.opflow.evolutions.Trotter.order" />
-
 ### order
 
 returns order
@@ -32,8 +20,6 @@ returns order
 
 `int`
 
-<span id="qiskit.opflow.evolutions.Trotter.reps" />
-
 ### reps
 
 The number of repetitions to use in the Trotterization, improving the approximation accuracy.
@@ -41,4 +27,3 @@ The number of repetitions to use in the Trotterization, improving the approximat
 **Return type**
 
 `int`
-

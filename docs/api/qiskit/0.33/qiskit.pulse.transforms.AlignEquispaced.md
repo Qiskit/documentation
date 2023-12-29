@@ -1,14 +1,4 @@
----
-title: AlignEquispaced
-description: API reference for qiskit.pulse.transforms.AlignEquispaced
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.pulse.transforms.AlignEquispaced
----
-
 # AlignEquispaced
-
-<span id="qiskit.pulse.transforms.AlignEquispaced" />
 
 `AlignEquispaced(duration)`
 
@@ -26,51 +16,17 @@ Create new equispaced context.
 
 ## Methods
 
-### align
-
-<span id="qiskit.pulse.transforms.AlignEquispaced.align" />
-
-`AlignEquispaced.align(schedule)`
-
-Reallocate instructions according to the policy.
-
-Only top-level sub-schedules are aligned. If sub-schedules are nested, nested schedules are not recursively aligned.
-
-**Parameters**
-
-**schedule** (`Schedule`) – Schedule to align.
-
-**Return type**
-
-`Schedule`
-
-**Returns**
-
-Schedule with reallocated instructions.
-
-### to\_dict
-
-<span id="qiskit.pulse.transforms.AlignEquispaced.to_dict" />
-
-`AlignEquispaced.to_dict()`
-
-Returns dictionary to represent this alignment.
-
-**Return type**
-
-`Dict`\[`str`, `Any`]
+|                                                                                                                                                                |                                                  |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| [`align`](qiskit.pulse.transforms.AlignEquispaced.align#qiskit.pulse.transforms.AlignEquispaced.align "qiskit.pulse.transforms.AlignEquispaced.align")         | Reallocate instructions according to the policy. |
+| [`to_dict`](qiskit.pulse.transforms.AlignEquispaced.to_dict#qiskit.pulse.transforms.AlignEquispaced.to_dict "qiskit.pulse.transforms.AlignEquispaced.to_dict") | Returns dictionary to represent this alignment.  |
 
 ## Attributes
-
-<span id="qiskit.pulse.transforms.AlignEquispaced.duration" />
 
 ### duration
 
 Return context duration.
 
-<span id="qiskit.pulse.transforms.AlignEquispaced.is_sequential" />
-
 ### is\_sequential
 
 `= True`
-

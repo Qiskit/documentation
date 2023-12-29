@@ -1,14 +1,4 @@
----
-title: WeightedAdder
-description: API reference for qiskit.circuit.library.WeightedAdder
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.circuit.library.WeightedAdder
----
-
 # WeightedAdder
-
-<span id="qiskit.circuit.library.WeightedAdder" />
 
 `WeightedAdder(num_state_qubits=None, weights=None, name='adder')`
 
@@ -67,8 +57,6 @@ Computes the weighted sum controlled by state qubits.
 
 ## Attributes
 
-<span id="qiskit.circuit.library.WeightedAdder.ancillas" />
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -76,8 +64,6 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
-
-<span id="qiskit.circuit.library.WeightedAdder.calibrations" />
 
 ### calibrations
 
@@ -91,8 +77,6 @@ Return calibration dictionary.
 
 `dict`
 
-<span id="qiskit.circuit.library.WeightedAdder.clbits" />
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -101,17 +85,11 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-<span id="qiskit.circuit.library.WeightedAdder.data" />
-
 ### data
-
-<span id="qiskit.circuit.library.WeightedAdder.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-<span id="qiskit.circuit.library.WeightedAdder.global_phase" />
 
 ### global\_phase
 
@@ -121,19 +99,13 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-<span id="qiskit.circuit.library.WeightedAdder.header" />
-
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="qiskit.circuit.library.WeightedAdder.instances" />
-
 ### instances
 
 `= 9`
-
-<span id="qiskit.circuit.library.WeightedAdder.metadata" />
 
 ### metadata
 
@@ -145,8 +117,6 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-<span id="qiskit.circuit.library.WeightedAdder.num_ancilla_qubits" />
-
 ### num\_ancilla\_qubits
 
 Deprecated. Use num\_ancillas instead.
@@ -155,8 +125,6 @@ Deprecated. Use num\_ancillas instead.
 
 `int`
 
-<span id="qiskit.circuit.library.WeightedAdder.num_ancillas" />
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -164,8 +132,6 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
-
-<span id="qiskit.circuit.library.WeightedAdder.num_carry_qubits" />
 
 ### num\_carry\_qubits
 
@@ -181,8 +147,6 @@ Note that this is not necessarily equal to the number of ancilla qubits, these c
 
 The number of carry qubits required to compute the sum.
 
-<span id="qiskit.circuit.library.WeightedAdder.num_clbits" />
-
 ### num\_clbits
 
 Return number of classical bits.
@@ -190,8 +154,6 @@ Return number of classical bits.
 **Return type**
 
 `int`
-
-<span id="qiskit.circuit.library.WeightedAdder.num_control_qubits" />
 
 ### num\_control\_qubits
 
@@ -207,15 +169,11 @@ Note that the total number of ancilla qubits can be obtained by calling the meth
 
 The number of additional control qubits required (0 or 1).
 
-<span id="qiskit.circuit.library.WeightedAdder.num_parameters" />
-
 ### num\_parameters
 
 **Return type**
 
 `int`
-
-<span id="qiskit.circuit.library.WeightedAdder.num_qubits" />
 
 ### num\_qubits
 
@@ -224,8 +182,6 @@ Return number of qubits.
 **Return type**
 
 `int`
-
-<span id="qiskit.circuit.library.WeightedAdder.num_state_qubits" />
 
 ### num\_state\_qubits
 
@@ -239,8 +195,6 @@ The number of qubits to be summed.
 
 The number of state qubits.
 
-<span id="qiskit.circuit.library.WeightedAdder.num_sum_qubits" />
-
 ### num\_sum\_qubits
 
 The number of sum qubits in the circuit.
@@ -253,27 +207,19 @@ The number of sum qubits in the circuit.
 
 The number of qubits needed to represent the weighted sum of the qubits.
 
-<span id="qiskit.circuit.library.WeightedAdder.parameters" />
-
 ### parameters
 
 **Return type**
 
 `ParameterView`
 
-<span id="qiskit.circuit.library.WeightedAdder.prefix" />
-
 ### prefix
 
 `= 'circuit'`
 
-<span id="qiskit.circuit.library.WeightedAdder.qregs" />
-
 ### qregs
 
 A list of the quantum registers associated with the circuit.
-
-<span id="qiskit.circuit.library.WeightedAdder.qubits" />
 
 ### qubits
 
@@ -282,8 +228,6 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
-
-<span id="qiskit.circuit.library.WeightedAdder.weights" />
 
 ### weights
 
@@ -296,4 +240,3 @@ The weights for the qubit states.
 **Returns**
 
 The weight for the qubit states.
-

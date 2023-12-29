@@ -1,14 +1,4 @@
----
-title: u1
-description: API reference for qiskit.pulse.builder.u1
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.pulse.builder.u1
----
-
 # qiskit.pulse.builder.u1
-
-<span id="qiskit.pulse.builder.u1" />
 
 `u1(theta, qubit)`
 
@@ -31,4 +21,3 @@ backend = FakeOpenPulse2Q()
 with pulse.build(backend) as pulse_prog:
     pulse.u1(math.pi, 1)
 ```
-

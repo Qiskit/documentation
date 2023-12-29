@@ -30,9 +30,9 @@ The only service currently provided is the Cambridge Quantum Computing (CQC) ext
 
 ## Classes
 
-|                                                                                                                                                  |                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
-| [`IBMQRandomService`](qiskit.providers.ibmq.random.IBMQRandomService "qiskit.providers.ibmq.random.IBMQRandomService")(provider)                 | Random number services for an IBM Quantum Experience account provider. |
-| [`CQCExtractor`](qiskit.providers.ibmq.random.CQCExtractor "qiskit.providers.ibmq.random.CQCExtractor")(name, provider, client, methods)         | Class for interfacing with a CQC remote extractor.                     |
-| [`CQCExtractorJob`](qiskit.providers.ibmq.random.CQCExtractorJob "qiskit.providers.ibmq.random.CQCExtractorJob")(job\_id, client\[, parameters]) | Representation of an asynchronous call to the CQC extractor.           |
+|                                                                                                                                                                                               |                                                                        |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| [`IBMQRandomService`](qiskit.providers.ibmq.random.IBMQRandomService#qiskit.providers.ibmq.random.IBMQRandomService "qiskit.providers.ibmq.random.IBMQRandomService")(provider)               | Random number services for an IBM Quantum Experience account provider. |
+| [`CQCExtractor`](qiskit.providers.ibmq.random.CQCExtractor#qiskit.providers.ibmq.random.CQCExtractor "qiskit.providers.ibmq.random.CQCExtractor")(name, provider, client, methods)            | Class for interfacing with a CQC remote extractor.                     |
+| [`CQCExtractorJob`](qiskit.providers.ibmq.random.CQCExtractorJob#qiskit.providers.ibmq.random.CQCExtractorJob "qiskit.providers.ibmq.random.CQCExtractorJob")(job\_id, client\[, parameters]) | Representation of an asynchronous call to the CQC extractor.           |
 

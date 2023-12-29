@@ -1,14 +1,4 @@
----
-title: job_monitor
-description: API reference for qiskit.providers.ibmq.job.job_monitor
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.providers.ibmq.job.job_monitor
----
-
 # qiskit.providers.ibmq.job.job\_monitor
-
-<span id="qiskit.providers.ibmq.job.job_monitor" />
 
 `job_monitor(job, interval=None, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='UTF-8'>)`
 
@@ -23,4 +13,3 @@ Monitor the status of an `IBMQJob` instance.
 **Return type**
 
 `None`
-

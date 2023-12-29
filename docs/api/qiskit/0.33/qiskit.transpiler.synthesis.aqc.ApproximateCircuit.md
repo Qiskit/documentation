@@ -1,14 +1,4 @@
----
-title: ApproximateCircuit
-description: API reference for qiskit.transpiler.synthesis.aqc.ApproximateCircuit
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.transpiler.synthesis.aqc.ApproximateCircuit
----
-
 # ApproximateCircuit
-
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit" />
 
 `ApproximateCircuit(num_qubits, name=None)`
 
@@ -23,27 +13,11 @@ A base class that represents an approximate circuit.
 
 ## Methods Defined Here
 
-### build
-
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.build" />
-
-`abstract ApproximateCircuit.build(thetas)`
-
-#### Constructs this circuit out of the parameters(thetas). Parameter values must be set before
-
-constructing the circuit.
-
-**Parameters**
-
-**thetas** (`ndarray`) – a vector of parameters to be set in this circuit.
-
-**Return type**
-
-`None`
+|                                                                                                                                                                                         |                                                                                            |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
+| [`build`](qiskit.transpiler.synthesis.aqc.ApproximateCircuit.build#qiskit.transpiler.synthesis.aqc.ApproximateCircuit.build "qiskit.transpiler.synthesis.aqc.ApproximateCircuit.build") | Constructs this circuit out of the parameters(thetas). Parameter values must be set before |
 
 ## Attributes
-
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.ancillas" />
 
 ### ancillas
 
@@ -52,8 +26,6 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
-
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.calibrations" />
 
 ### calibrations
 
@@ -67,8 +39,6 @@ Return calibration dictionary.
 
 `dict`
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.clbits" />
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -76,8 +46,6 @@ Returns a list of classical bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Clbit`]
-
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.data" />
 
 ### data
 
@@ -93,13 +61,9 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.extension_lib" />
-
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.global_phase" />
 
 ### global\_phase
 
@@ -109,19 +73,13 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.header" />
-
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.instances" />
-
 ### instances
 
 `= 9`
-
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.metadata" />
 
 ### metadata
 
@@ -133,8 +91,6 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.num_ancillas" />
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -142,8 +98,6 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
-
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.num_clbits" />
 
 ### num\_clbits
 
@@ -153,8 +107,6 @@ Return number of classical bits.
 
 `int`
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.num_parameters" />
-
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
@@ -162,8 +114,6 @@ Convenience function to get the number of parameter objects in the circuit.
 **Return type**
 
 `int`
-
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.num_qubits" />
 
 ### num\_qubits
 
@@ -173,8 +123,6 @@ Return number of qubits.
 
 `int`
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.parameters" />
-
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
@@ -183,13 +131,9 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.prefix" />
-
 ### prefix
 
 `= 'circuit'`
-
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.qubits" />
 
 ### qubits
 
@@ -198,8 +142,6 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
-
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.thetas" />
 
 ### thetas
 
@@ -212,4 +154,3 @@ The property is not implemented and raises a `NotImplementedException` exception
 **Returns**
 
 a vector of parameters of this circuit.
-

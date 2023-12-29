@@ -1,14 +1,4 @@
----
-title: PhaseEstimation
-description: API reference for qiskit.circuit.library.PhaseEstimation
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.circuit.library.PhaseEstimation
----
-
 # PhaseEstimation
-
-<span id="qiskit.circuit.library.PhaseEstimation" />
 
 `PhaseEstimation(num_evaluation_qubits, unitary, iqft=None, name='QPE')`
 
@@ -42,7 +32,7 @@ Quantum Computation and Quantum Information: 10th Anniversary Edition (10th ed.)
 
 *   **num\_evaluation\_qubits** (`int`) – The number of evaluation qubits.
 *   **unitary** (`QuantumCircuit`) – The unitary operation $U$ which will be repeated and controlled.
-*   **iqft** (`Optional`\[`QuantumCircuit`]) – A inverse Quantum Fourier Transform, per default the inverse of [`QFT`](qiskit.circuit.library.QFT "qiskit.circuit.library.QFT") is used. Note that the QFT should not include the usual swaps!
+*   **iqft** (`Optional`\[`QuantumCircuit`]) – A inverse Quantum Fourier Transform, per default the inverse of [`QFT`](qiskit.circuit.library.QFT#qiskit.circuit.library.QFT "qiskit.circuit.library.QFT") is used. Note that the QFT should not include the usual swaps!
 *   **name** (`str`) – The name of the circuit.
 
 <Admonition title="Note" type="note">
@@ -53,8 +43,6 @@ Quantum Computation and Quantum Information: 10th Anniversary Edition (10th ed.)
 
 ## Attributes
 
-<span id="qiskit.circuit.library.PhaseEstimation.ancillas" />
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -62,8 +50,6 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
-
-<span id="qiskit.circuit.library.PhaseEstimation.calibrations" />
 
 ### calibrations
 
@@ -77,8 +63,6 @@ Return calibration dictionary.
 
 `dict`
 
-<span id="qiskit.circuit.library.PhaseEstimation.clbits" />
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -86,8 +70,6 @@ Returns a list of classical bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Clbit`]
-
-<span id="qiskit.circuit.library.PhaseEstimation.data" />
 
 ### data
 
@@ -103,13 +85,9 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.PhaseEstimation.extension_lib" />
-
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-<span id="qiskit.circuit.library.PhaseEstimation.global_phase" />
 
 ### global\_phase
 
@@ -119,19 +97,13 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-<span id="qiskit.circuit.library.PhaseEstimation.header" />
-
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="qiskit.circuit.library.PhaseEstimation.instances" />
-
 ### instances
 
 `= 9`
-
-<span id="qiskit.circuit.library.PhaseEstimation.metadata" />
 
 ### metadata
 
@@ -143,8 +115,6 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-<span id="qiskit.circuit.library.PhaseEstimation.num_ancillas" />
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -152,8 +122,6 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
-
-<span id="qiskit.circuit.library.PhaseEstimation.num_clbits" />
 
 ### num\_clbits
 
@@ -163,8 +131,6 @@ Return number of classical bits.
 
 `int`
 
-<span id="qiskit.circuit.library.PhaseEstimation.num_parameters" />
-
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
@@ -172,8 +138,6 @@ Convenience function to get the number of parameter objects in the circuit.
 **Return type**
 
 `int`
-
-<span id="qiskit.circuit.library.PhaseEstimation.num_qubits" />
 
 ### num\_qubits
 
@@ -183,8 +147,6 @@ Return number of qubits.
 
 `int`
 
-<span id="qiskit.circuit.library.PhaseEstimation.parameters" />
-
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
@@ -193,13 +155,9 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
-<span id="qiskit.circuit.library.PhaseEstimation.prefix" />
-
 ### prefix
 
 `= 'circuit'`
-
-<span id="qiskit.circuit.library.PhaseEstimation.qubits" />
 
 ### qubits
 
@@ -208,4 +166,3 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
-

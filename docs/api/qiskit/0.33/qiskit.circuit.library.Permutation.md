@@ -1,14 +1,4 @@
----
-title: Permutation
-description: API reference for qiskit.circuit.library.Permutation
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.circuit.library.Permutation
----
-
 # Permutation
-
-<span id="qiskit.circuit.library.Permutation" />
 
 `Permutation(num_qubits, pattern=None, seed=None)`
 
@@ -36,8 +26,6 @@ Return an n\_qubit permutation circuit implemented using SWAPs.
 
 ## Attributes
 
-<span id="qiskit.circuit.library.Permutation.ancillas" />
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -45,8 +33,6 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
-
-<span id="qiskit.circuit.library.Permutation.calibrations" />
 
 ### calibrations
 
@@ -60,8 +46,6 @@ Return calibration dictionary.
 
 `dict`
 
-<span id="qiskit.circuit.library.Permutation.clbits" />
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -69,8 +53,6 @@ Returns a list of classical bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Clbit`]
-
-<span id="qiskit.circuit.library.Permutation.data" />
 
 ### data
 
@@ -86,13 +68,9 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.Permutation.extension_lib" />
-
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-<span id="qiskit.circuit.library.Permutation.global_phase" />
 
 ### global\_phase
 
@@ -102,19 +80,13 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-<span id="qiskit.circuit.library.Permutation.header" />
-
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="qiskit.circuit.library.Permutation.instances" />
-
 ### instances
 
 `= 9`
-
-<span id="qiskit.circuit.library.Permutation.metadata" />
 
 ### metadata
 
@@ -126,8 +98,6 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-<span id="qiskit.circuit.library.Permutation.num_ancillas" />
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -135,8 +105,6 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
-
-<span id="qiskit.circuit.library.Permutation.num_clbits" />
 
 ### num\_clbits
 
@@ -146,8 +114,6 @@ Return number of classical bits.
 
 `int`
 
-<span id="qiskit.circuit.library.Permutation.num_parameters" />
-
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
@@ -155,8 +121,6 @@ Convenience function to get the number of parameter objects in the circuit.
 **Return type**
 
 `int`
-
-<span id="qiskit.circuit.library.Permutation.num_qubits" />
 
 ### num\_qubits
 
@@ -166,8 +130,6 @@ Return number of qubits.
 
 `int`
 
-<span id="qiskit.circuit.library.Permutation.parameters" />
-
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
@@ -176,13 +138,9 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
-<span id="qiskit.circuit.library.Permutation.prefix" />
-
 ### prefix
 
 `= 'circuit'`
-
-<span id="qiskit.circuit.library.Permutation.qubits" />
 
 ### qubits
 
@@ -191,4 +149,3 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
-

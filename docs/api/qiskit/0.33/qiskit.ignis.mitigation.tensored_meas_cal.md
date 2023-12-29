@@ -1,14 +1,4 @@
----
-title: tensored_meas_cal
-description: API reference for qiskit.ignis.mitigation.tensored_meas_cal
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.ignis.mitigation.tensored_meas_cal
----
-
 # qiskit.ignis.mitigation.tensored\_meas\_cal
-
-<span id="qiskit.ignis.mitigation.tensored_meas_cal" />
 
 `tensored_meas_cal(mit_pattern=None, qr=None, cr=None, circlabel='')`
 
@@ -43,4 +33,3 @@ Pass the results of these circuits to the TensoredMeasurementFitter constructor.
 
 *   **QiskitError** – if both mit\_pattern and qr are None.
 *   **QiskitError** – if a qubit appears more than once in mit\_pattern.
-

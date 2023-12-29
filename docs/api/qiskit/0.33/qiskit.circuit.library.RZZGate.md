@@ -1,14 +1,4 @@
----
-title: RZZGate
-description: API reference for qiskit.circuit.library.RZZGate
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.circuit.library.RZZGate
----
-
 # RZZGate
-
-<span id="qiskit.circuit.library.RZZGate" />
 
 `RZZGate(theta, label=None)`
 
@@ -76,17 +66,11 @@ Create new RZZ gate.
 
 ## Methods Defined Here
 
-### inverse
-
-<span id="qiskit.circuit.library.RZZGate.inverse" />
-
-`RZZGate.inverse()`
-
-Return inverse RZZ gate (i.e. with the negative rotation angle).
+|                                                                                                                                     |                               |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
+| [`inverse`](qiskit.circuit.library.RZZGate.inverse#qiskit.circuit.library.RZZGate.inverse "qiskit.circuit.library.RZZGate.inverse") | Return inverse RZZ gate (i.e. |
 
 ## Attributes
-
-<span id="qiskit.circuit.library.RZZGate.condition_bits" />
 
 ### condition\_bits
 
@@ -96,25 +80,17 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-<span id="qiskit.circuit.library.RZZGate.decompositions" />
-
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.circuit.library.RZZGate.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-<span id="qiskit.circuit.library.RZZGate.duration" />
-
 ### duration
 
 Get the duration.
-
-<span id="qiskit.circuit.library.RZZGate.label" />
 
 ### label
 
@@ -124,15 +100,10 @@ Return instruction label
 
 `str`
 
-<span id="qiskit.circuit.library.RZZGate.params" />
-
 ### params
 
 return instruction params.
 
-<span id="qiskit.circuit.library.RZZGate.unit" />
-
 ### unit
 
 Get the time unit of duration.
-

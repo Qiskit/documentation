@@ -1,14 +1,4 @@
----
-title: name_args
-description: API reference for qiskit.utils.name_args
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.utils.name_args
----
-
 # qiskit.utils.name\_args
-
-<span id="qiskit.utils.name_args" />
 
 `name_args(mapping, skip=0)`
 
@@ -35,4 +25,3 @@ def new_f(a: TypeA, d: TypeD, b: TypeB=None, c: TypeC=None):
     if c is not None:
         # raise warning, this is deprecated!
 ```
-

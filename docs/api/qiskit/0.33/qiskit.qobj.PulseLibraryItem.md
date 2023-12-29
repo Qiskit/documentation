@@ -1,14 +1,4 @@
----
-title: PulseLibraryItem
-description: API reference for qiskit.qobj.PulseLibraryItem
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.qobj.PulseLibraryItem
----
-
 # PulseLibraryItem
-
-<span id="qiskit.qobj.PulseLibraryItem" />
 
 `PulseLibraryItem(name, samples)`
 
@@ -25,39 +15,7 @@ Instantiate a pulse library item.
 
 ## Methods
 
-### from\_dict
-
-<span id="qiskit.qobj.PulseLibraryItem.from_dict" />
-
-`classmethod PulseLibraryItem.from_dict(data)`
-
-Create a new PulseLibraryItem object from a dictionary.
-
-**Parameters**
-
-**data** (*dict*) – A dictionary for the experiment config
-
-**Returns**
-
-The object from the input dictionary.
-
-**Return type**
-
-[PulseLibraryItem](qiskit.qobj.PulseLibraryItem "qiskit.qobj.PulseLibraryItem")
-
-### to\_dict
-
-<span id="qiskit.qobj.PulseLibraryItem.to_dict" />
-
-`PulseLibraryItem.to_dict()`
-
-Return a dictionary format representation of the pulse library item.
-
-**Returns**
-
-The dictionary form of the PulseLibraryItem.
-
-**Return type**
-
-dict
-
+|                                                                                                                                       |                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
+| [`from_dict`](qiskit.qobj.PulseLibraryItem.from_dict#qiskit.qobj.PulseLibraryItem.from_dict "qiskit.qobj.PulseLibraryItem.from_dict") | Create a new PulseLibraryItem object from a dictionary.              |
+| [`to_dict`](qiskit.qobj.PulseLibraryItem.to_dict#qiskit.qobj.PulseLibraryItem.to_dict "qiskit.qobj.PulseLibraryItem.to_dict")         | Return a dictionary format representation of the pulse library item. |

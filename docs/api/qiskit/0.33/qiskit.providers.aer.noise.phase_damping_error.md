@@ -1,14 +1,4 @@
----
-title: phase_damping_error
-description: API reference for qiskit.providers.aer.noise.phase_damping_error
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.providers.aer.noise.phase_damping_error
----
-
 # qiskit.providers.aer.noise.phase\_damping\_error
-
-<span id="qiskit.providers.aer.noise.phase_damping_error" />
 
 `phase_damping_error(param_phase, canonical_kraus=True)`
 
@@ -40,5 +30,4 @@ a quantum error object for a noise model.
 
 **Return type**
 
-[QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
-
+[QuantumError](qiskit.providers.aer.noise.QuantumError#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")

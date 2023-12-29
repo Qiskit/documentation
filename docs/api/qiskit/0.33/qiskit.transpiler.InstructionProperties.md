@@ -1,14 +1,4 @@
----
-title: InstructionProperties
-description: API reference for qiskit.transpiler.InstructionProperties
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.transpiler.InstructionProperties
----
-
 # InstructionProperties
-
-<span id="qiskit.transpiler.InstructionProperties" />
 
 `InstructionProperties(duration=None, error=None, calibration=None)`
 
@@ -28,15 +18,8 @@ Create a new `InstructionProperties` object
 
 ## Attributes
 
-<span id="qiskit.transpiler.InstructionProperties.calibration" />
-
 ### calibration
-
-<span id="qiskit.transpiler.InstructionProperties.duration" />
 
 ### duration
 
-<span id="qiskit.transpiler.InstructionProperties.error" />
-
 ### error
-

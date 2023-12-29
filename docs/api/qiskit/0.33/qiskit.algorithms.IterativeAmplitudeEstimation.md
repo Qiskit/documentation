@@ -1,14 +1,4 @@
----
-title: IterativeAmplitudeEstimation
-description: API reference for qiskit.algorithms.IterativeAmplitudeEstimation
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.algorithms.IterativeAmplitudeEstimation
----
-
 # IterativeAmplitudeEstimation
-
-<span id="qiskit.algorithms.IterativeAmplitudeEstimation" />
 
 `IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None)`
 
@@ -42,56 +32,19 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 **Raises**
 
-*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – if the method to compute the confidence intervals is not supported
+*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – if the method to compute the confidence intervals is not supported
 *   **ValueError** – If the target epsilon is not in (0, 0.5]
 *   **ValueError** – If alpha is not in (0, 1)
 *   **ValueError** – If confint\_method is not supported
 
 ## Methods
 
-### construct\_circuit
-
-<span id="qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit" />
-
-`IterativeAmplitudeEstimation.construct_circuit(estimation_problem, k=0, measurement=False)`
-
-Construct the circuit $\mathcal{Q}^k \mathcal{A} |0\rangle$.
-
-The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
-
-**Parameters**
-
-*   **estimation\_problem** (`EstimationProblem`) – The estimation problem for which to construct the QAE circuit.
-*   **k** (`int`) – The power of the Q operator.
-*   **measurement** (`bool`) – Boolean flag to indicate if measurements should be included in the circuits.
-
-**Return type**
-
-`QuantumCircuit`
-
-**Returns**
-
-The circuit implementing $\mathcal{Q}^k \mathcal{A} |0\rangle$.
-
-### estimate
-
-<span id="qiskit.algorithms.IterativeAmplitudeEstimation.estimate" />
-
-`IterativeAmplitudeEstimation.estimate(estimation_problem)`
-
-Run the amplitude estimation algorithm.
-
-**Parameters**
-
-**estimation\_problem** (`EstimationProblem`) – An `EstimationProblem` containing all problem-relevant information such as the state preparation and the objective qubits.
-
-**Return type**
-
-`IterativeAmplitudeEstimationResult`
+|                                                                                                                                                                                                                             |                                                   |             |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- | ----------- |
+| [`construct_circuit`](qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit#qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit "qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit") | Construct the circuit \$\mathcal{Q}^k \mathcal{A} | 0\rangle\$. |
+| [`estimate`](qiskit.algorithms.IterativeAmplitudeEstimation.estimate#qiskit.algorithms.IterativeAmplitudeEstimation.estimate "qiskit.algorithms.IterativeAmplitudeEstimation.estimate")                                     | Run the amplitude estimation algorithm.           |             |
 
 ## Attributes
-
-<span id="qiskit.algorithms.IterativeAmplitudeEstimation.epsilon_target" />
 
 ### epsilon\_target
 
@@ -105,8 +58,6 @@ Returns the target precision `epsilon_target` of the algorithm.
 
 The target precision (which is half the width of the confidence interval).
 
-<span id="qiskit.algorithms.IterativeAmplitudeEstimation.quantum_instance" />
-
 ### quantum\_instance
 
 Get the quantum instance.
@@ -118,4 +69,3 @@ Get the quantum instance.
 **Returns**
 
 The quantum instance used to run this algorithm.
-

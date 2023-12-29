@@ -1,14 +1,4 @@
----
-title: GradientBase
-description: API reference for qiskit.opflow.gradients.GradientBase
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.opflow.gradients.GradientBase
----
-
 # GradientBase
-
-<span id="qiskit.opflow.gradients.GradientBase" />
 
 `GradientBase(grad_method='param_shift', **kwargs)`
 
@@ -29,8 +19,6 @@ Convert an operator expression to the first-order gradient.
 
 ## Attributes
 
-<span id="qiskit.opflow.gradients.GradientBase.grad_method" />
-
 ### grad\_method
 
 Returns `CircuitGradient`.
@@ -42,4 +30,3 @@ Returns `CircuitGradient`.
 **Returns**
 
 `CircuitGradient`.
-

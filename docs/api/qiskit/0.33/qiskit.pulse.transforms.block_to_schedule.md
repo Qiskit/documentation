@@ -1,14 +1,4 @@
----
-title: block_to_schedule
-description: API reference for qiskit.pulse.transforms.block_to_schedule
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.pulse.transforms.block_to_schedule
----
-
 # qiskit.pulse.transforms.block\_to\_schedule
-
-<span id="qiskit.pulse.transforms.block_to_schedule" />
 
 `block_to_schedule(block)`
 
@@ -34,4 +24,3 @@ Scheduled pulse program.
 <Admonition title="Note" type="note">
   This transform may insert barriers in between contexts.
 </Admonition>
-

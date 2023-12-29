@@ -1,14 +1,4 @@
----
-title: VQE
-description: API reference for qiskit.algorithms.VQE
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.algorithms.VQE
----
-
 # VQE
-
-<span id="qiskit.algorithms.VQE" />
 
 `VQE(ansatz=None, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)`
 
@@ -30,7 +20,7 @@ The length of the *initial\_point* list value must match the number of the param
 *   **optimizer** (`Optional`\[`Optimizer`]) – A classical optimizer.
 *   **initial\_point** (`Optional`\[`ndarray`]) – An optional initial point (i.e. initial parameter values) for the optimizer. If `None` then VQE will look to the ansatz for a preferred point and if not will simply compute a random one.
 *   **gradient** (`Union`\[`GradientBase`, `Callable`, `None`]) – An optional gradient function or operator for optimizer.
-*   **expectation** (`Optional`\[`ExpectationBase`]) – The Expectation converter for taking the average value of the Observable over the ansatz state function. When `None` (the default) an [`ExpectationFactory`](qiskit.opflow.expectations.ExpectationFactory "qiskit.opflow.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to `True` (defaults to `False`).
+*   **expectation** (`Optional`\[`ExpectationBase`]) – The Expectation converter for taking the average value of the Observable over the ansatz state function. When `None` (the default) an [`ExpectationFactory`](qiskit.opflow.expectations.ExpectationFactory#qiskit.opflow.expectations.ExpectationFactory "qiskit.opflow.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to `True` (defaults to `False`).
 *   **include\_custom** (`bool`) – When expectation parameter here is None setting this to `True` will allow the factory to include the custom Aer pauli expectation.
 *   **max\_evals\_grouped** (`int`) – Max number of evaluations performed simultaneously. Signals the given optimizer that more than one set of parameters can be supplied so that potentially the expectation values can be computed in parallel. Typically this is possible when a finite difference gradient is used by the optimizer such that multiple points to compute the gradient can be passed and if computed in parallel improve overall execution time. Deprecated if a gradient operator or function is given.
 *   **callback** (`Optional`\[`Callable`\[\[`int`, `ndarray`, `float`, `float`], `None`]]) – a callback that can access the intermediate data during the optimization. Four parameter values are passed to the callback as follows during each evaluation by the optimizer for its current set of parameters as it works towards the minimum. These are: the evaluation count, the optimizer parameters for the ansatz, the evaluated mean and the evaluated standard deviation.\`
@@ -38,227 +28,23 @@ The length of the *initial\_point* list value must match the number of the param
 
 ## Methods
 
-### cleanup\_parameterized\_circuits
-
-<span id="qiskit.algorithms.VQE.cleanup_parameterized_circuits" />
-
-`VQE.cleanup_parameterized_circuits()`
-
-set parameterized circuits to None
-
-### compute\_minimum\_eigenvalue
-
-<span id="qiskit.algorithms.VQE.compute_minimum_eigenvalue" />
-
-`VQE.compute_minimum_eigenvalue(operator, aux_operators=None)`
-
-Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
-
-**Parameters**
-
-*   **operator** (`OperatorBase`) – Qubit operator of the Observable
-*   **aux\_operators** (`Union`\[`List`\[`Optional`\[`OperatorBase`]], `Dict`\[`str`, `OperatorBase`], `None`]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
-
-**Return type**
-
-`MinimumEigensolverResult`
-
-**Returns**
-
-MinimumEigensolverResult
-
-### construct\_circuit
-
-<span id="qiskit.algorithms.VQE.construct_circuit" />
-
-`VQE.construct_circuit(parameter, operator)`
-
-Return the circuits used to compute the expectation value.
-
-**Parameters**
-
-*   **parameter** (`Union`\[`List`\[`float`], `List`\[`Parameter`], `ndarray`]) – Parameters for the ansatz circuit.
-*   **operator** (`OperatorBase`) – Qubit operator of the Observable
-
-**Return type**
-
-`List`\[`QuantumCircuit`]
-
-**Returns**
-
-A list of the circuits used to compute the expectation value.
-
-### construct\_expectation
-
-<span id="qiskit.algorithms.VQE.construct_expectation" />
-
-`VQE.construct_expectation(parameter, operator, return_expectation=False)`
-
-Generate the ansatz circuit and expectation value measurement, and return their runnable composition.
-
-**Parameters**
-
-*   **parameter** (`Union`\[`List`\[`float`], `List`\[`Parameter`], `ndarray`]) – Parameters for the ansatz circuit.
-*   **operator** (`OperatorBase`) – Qubit operator of the Observable
-*   **return\_expectation** (`bool`) – If True, return the `ExpectationBase` expectation converter used in the construction of the expectation value. Useful e.g. to compute the standard deviation of the expectation value.
-
-**Return type**
-
-`Union`\[`OperatorBase`, `Tuple`\[`OperatorBase`, `ExpectationBase`]]
-
-**Returns**
-
-The Operator equalling the measurement of the ansatz `StateFn` by the Observable’s expectation `StateFn`, and, optionally, the expectation converter.
-
-**Raises**
-
-*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If no operator has been provided.
-*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If no expectation is passed and None could be inferred via the ExpectationFactory.
-
-### find\_minimum
-
-<span id="qiskit.algorithms.VQE.find_minimum" />
-
-`VQE.find_minimum(initial_point=None, ansatz=None, cost_fn=None, optimizer=None, gradient_fn=None)`
-
-Optimize to find the minimum cost value.
-
-**Parameters**
-
-*   **initial\_point** (`Optional`\[`ndarray`]) – If not None will be used instead of any initial point supplied via constructor. If None and None was supplied to constructor then a random point will be used if the optimizer requires an initial point.
-*   **ansatz** (`Optional`\[`QuantumCircuit`]) – If not None will be used instead of any ansatz supplied via constructor.
-*   **cost\_fn** (`Optional`\[`Callable`]) – If not None will be used instead of any cost\_fn supplied via constructor.
-*   **optimizer** (`Optional`\[`Optimizer`]) – If not None will be used instead of any optimizer supplied via constructor.
-*   **gradient\_fn** (`Optional`\[`Callable`]) – Optional gradient function for optimizer
-
-**Returns**
-
-Optimized variational parameters, and corresponding minimum cost value.
-
-**Return type**
-
-dict
-
-**Raises**
-
-**ValueError** – invalid input
-
-### get\_energy\_evaluation
-
-<span id="qiskit.algorithms.VQE.get_energy_evaluation" />
-
-`VQE.get_energy_evaluation(operator, return_expectation=False)`
-
-Returns a function handle to evaluates the energy at given parameters for the ansatz.
-
-This is the objective function to be passed to the optimizer that is used for evaluation.
-
-**Parameters**
-
-*   **operator** (`OperatorBase`) – The operator whose energy to evaluate.
-*   **return\_expectation** (`bool`) – If True, return the `ExpectationBase` expectation converter used in the construction of the expectation value. Useful e.g. to evaluate other operators with the same expectation value converter.
-
-**Return type**
-
-`Callable`\[\[`ndarray`], `Union`\[`float`, `List`\[`float`]]]
-
-**Returns**
-
-Energy of the hamiltonian of each parameter, and, optionally, the expectation converter.
-
-**Raises**
-
-**RuntimeError** – If the circuit is not parameterized (i.e. has 0 free parameters).
-
-### get\_optimal\_circuit
-
-<span id="qiskit.algorithms.VQE.get_optimal_circuit" />
-
-`VQE.get_optimal_circuit()`
-
-Get the circuit with the optimal parameters.
-
-**Return type**
-
-`QuantumCircuit`
-
-### get\_optimal\_cost
-
-<span id="qiskit.algorithms.VQE.get_optimal_cost" />
-
-`VQE.get_optimal_cost()`
-
-Get the minimal cost or energy found by the VQE.
-
-**Return type**
-
-`float`
-
-### get\_optimal\_vector
-
-<span id="qiskit.algorithms.VQE.get_optimal_vector" />
-
-`VQE.get_optimal_vector()`
-
-Get the simulation outcome of the optimal circuit.
-
-**Return type**
-
-`Union`\[`List`\[`float`], `Dict`\[`str`, `int`]]
-
-### get\_prob\_vector\_for\_params
-
-<span id="qiskit.algorithms.VQE.get_prob_vector_for_params" />
-
-`VQE.get_prob_vector_for_params(construct_circuit_fn, params_s, quantum_instance, construct_circuit_args=None)`
-
-Helper function to get probability vectors for a set of params
-
-### get\_probabilities\_for\_counts
-
-<span id="qiskit.algorithms.VQE.get_probabilities_for_counts" />
-
-`VQE.get_probabilities_for_counts(counts)`
-
-get probabilities for counts
-
-### print\_settings
-
-<span id="qiskit.algorithms.VQE.print_settings" />
-
-`VQE.print_settings()`
-
-Preparing the setting of VQE into a string.
-
-**Returns**
-
-the formatted setting of VQE
-
-**Return type**
-
-str
-
-### supports\_aux\_operators
-
-<span id="qiskit.algorithms.VQE.supports_aux_operators" />
-
-`classmethod VQE.supports_aux_operators()`
-
-Whether computing the expectation value of auxiliary operators is supported.
-
-If the minimum eigensolver computes an eigenstate of the main operator then it can compute the expectation value of the aux\_operators for that state. Otherwise they will be ignored.
-
-**Return type**
-
-`bool`
-
-**Returns**
-
-True if aux\_operator expectations can be evaluated, False otherwise
+|                                                                                                                                                                                                      |                                                                                                       |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------- |
+| [`cleanup_parameterized_circuits`](qiskit.algorithms.VQE.cleanup_parameterized_circuits#qiskit.algorithms.VQE.cleanup_parameterized_circuits "qiskit.algorithms.VQE.cleanup_parameterized_circuits") | set parameterized circuits to None                                                                    |
+| [`compute_minimum_eigenvalue`](qiskit.algorithms.VQE.compute_minimum_eigenvalue#qiskit.algorithms.VQE.compute_minimum_eigenvalue "qiskit.algorithms.VQE.compute_minimum_eigenvalue")                 | Computes minimum eigenvalue.                                                                          |
+| [`construct_circuit`](qiskit.algorithms.VQE.construct_circuit#qiskit.algorithms.VQE.construct_circuit "qiskit.algorithms.VQE.construct_circuit")                                                     | Return the circuits used to compute the expectation value.                                            |
+| [`construct_expectation`](qiskit.algorithms.VQE.construct_expectation#qiskit.algorithms.VQE.construct_expectation "qiskit.algorithms.VQE.construct_expectation")                                     | Generate the ansatz circuit and expectation value measurement, and return their runnable composition. |
+| [`find_minimum`](qiskit.algorithms.VQE.find_minimum#qiskit.algorithms.VQE.find_minimum "qiskit.algorithms.VQE.find_minimum")                                                                         | Optimize to find the minimum cost value.                                                              |
+| [`get_energy_evaluation`](qiskit.algorithms.VQE.get_energy_evaluation#qiskit.algorithms.VQE.get_energy_evaluation "qiskit.algorithms.VQE.get_energy_evaluation")                                     | Returns a function handle to evaluates the energy at given parameters for the ansatz.                 |
+| [`get_optimal_circuit`](qiskit.algorithms.VQE.get_optimal_circuit#qiskit.algorithms.VQE.get_optimal_circuit "qiskit.algorithms.VQE.get_optimal_circuit")                                             | Get the circuit with the optimal parameters.                                                          |
+| [`get_optimal_cost`](qiskit.algorithms.VQE.get_optimal_cost#qiskit.algorithms.VQE.get_optimal_cost "qiskit.algorithms.VQE.get_optimal_cost")                                                         | Get the minimal cost or energy found by the VQE.                                                      |
+| [`get_optimal_vector`](qiskit.algorithms.VQE.get_optimal_vector#qiskit.algorithms.VQE.get_optimal_vector "qiskit.algorithms.VQE.get_optimal_vector")                                                 | Get the simulation outcome of the optimal circuit.                                                    |
+| [`get_prob_vector_for_params`](qiskit.algorithms.VQE.get_prob_vector_for_params#qiskit.algorithms.VQE.get_prob_vector_for_params "qiskit.algorithms.VQE.get_prob_vector_for_params")                 | Helper function to get probability vectors for a set of params                                        |
+| [`get_probabilities_for_counts`](qiskit.algorithms.VQE.get_probabilities_for_counts#qiskit.algorithms.VQE.get_probabilities_for_counts "qiskit.algorithms.VQE.get_probabilities_for_counts")         | get probabilities for counts                                                                          |
+| [`print_settings`](qiskit.algorithms.VQE.print_settings#qiskit.algorithms.VQE.print_settings "qiskit.algorithms.VQE.print_settings")                                                                 | Preparing the setting of VQE into a string.                                                           |
+| [`supports_aux_operators`](qiskit.algorithms.VQE.supports_aux_operators#qiskit.algorithms.VQE.supports_aux_operators "qiskit.algorithms.VQE.supports_aux_operators")                                 | Whether computing the expectation value of auxiliary operators is supported.                          |
 
 ## Attributes
-
-<span id="qiskit.algorithms.VQE.ansatz" />
 
 ### ansatz
 
@@ -268,8 +54,6 @@ Returns the ansatz.
 
 `QuantumCircuit`
 
-<span id="qiskit.algorithms.VQE.callback" />
-
 ### callback
 
 Returns callback
@@ -277,8 +61,6 @@ Returns callback
 **Return type**
 
 `Optional`\[`Callable`\[\[`int`, `ndarray`, `float`, `float`], `None`]]
-
-<span id="qiskit.algorithms.VQE.expectation" />
 
 ### expectation
 
@@ -288,8 +70,6 @@ The expectation value algorithm used to construct the expectation measurement fr
 
 `Optional`\[`ExpectationBase`]
 
-<span id="qiskit.algorithms.VQE.gradient" />
-
 ### gradient
 
 Returns the gradient.
@@ -297,8 +77,6 @@ Returns the gradient.
 **Return type**
 
 `Union`\[`GradientBase`, `Callable`, `None`]
-
-<span id="qiskit.algorithms.VQE.include_custom" />
 
 ### include\_custom
 
@@ -308,8 +86,6 @@ Returns include\_custom
 
 `bool`
 
-<span id="qiskit.algorithms.VQE.initial_point" />
-
 ### initial\_point
 
 Returns initial point
@@ -317,8 +93,6 @@ Returns initial point
 **Return type**
 
 `Optional`\[`ndarray`]
-
-<span id="qiskit.algorithms.VQE.max_evals_grouped" />
 
 ### max\_evals\_grouped
 
@@ -328,8 +102,6 @@ Returns max\_evals\_grouped
 
 `int`
 
-<span id="qiskit.algorithms.VQE.optimal_params" />
-
 ### optimal\_params
 
 The optimal parameters for the ansatz.
@@ -337,8 +109,6 @@ The optimal parameters for the ansatz.
 **Return type**
 
 `ndarray`
-
-<span id="qiskit.algorithms.VQE.optimizer" />
 
 ### optimizer
 
@@ -348,8 +118,6 @@ Returns optimizer
 
 `Optimizer`
 
-<span id="qiskit.algorithms.VQE.quantum_instance" />
-
 ### quantum\_instance
 
 Returns quantum instance.
@@ -358,9 +126,6 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-<span id="qiskit.algorithms.VQE.setting" />
-
 ### setting
 
 Prepare the setting of VQE as a string.
-

@@ -1,14 +1,4 @@
----
-title: dump
-description: API reference for qiskit.circuit.qpy_serialization.dump
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.circuit.qpy_serialization.dump
----
-
 # qiskit.circuit.qpy\_serialization.dump
-
-<span id="qiskit.circuit.qpy_serialization.dump" />
 
 `dump(circuits, file_obj)`
 
@@ -48,6 +38,5 @@ Which will save the qpy serialized circuit to the provided file.
 
 **Parameters**
 
-*   **circuits** (*list or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit object(s) to store in the specified file like object. This can either be a single QuantumCircuit object or a list of QuantumCircuits.
+*   **circuits** (*list or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit object(s) to store in the specified file like object. This can either be a single QuantumCircuit object or a list of QuantumCircuits.
 *   **file\_obj** (*file*) – The file like object to write the QPY data too
-

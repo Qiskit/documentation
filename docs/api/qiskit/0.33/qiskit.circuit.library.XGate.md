@@ -1,14 +1,4 @@
----
-title: XGate
-description: API reference for qiskit.circuit.library.XGate
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.circuit.library.XGate
----
-
 # XGate
-
-<span id="qiskit.circuit.library.XGate" />
 
 `XGate(label=None)`
 
@@ -58,41 +48,12 @@ Create new X gate.
 
 ## Methods Defined Here
 
-### control
-
-<span id="qiskit.circuit.library.XGate.control" />
-
-`XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
-
-Return a (multi-)controlled-X gate.
-
-One control returns a CX gate. Two controls returns a CCX gate.
-
-**Parameters**
-
-*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
-*   **label** (*str or None*) – An optional label for the gate \[Default: None]
-*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
-
-**Returns**
-
-controlled version of this gate.
-
-**Return type**
-
-[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
-
-### inverse
-
-<span id="qiskit.circuit.library.XGate.inverse" />
-
-`XGate.inverse()`
-
-Return inverted X gate (itself).
+|                                                                                                                               |                                     |
+| ----------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| [`control`](qiskit.circuit.library.XGate.control#qiskit.circuit.library.XGate.control "qiskit.circuit.library.XGate.control") | Return a (multi-)controlled-X gate. |
+| [`inverse`](qiskit.circuit.library.XGate.inverse#qiskit.circuit.library.XGate.inverse "qiskit.circuit.library.XGate.inverse") | Return inverted X gate (itself).    |
 
 ## Attributes
-
-<span id="qiskit.circuit.library.XGate.condition_bits" />
 
 ### condition\_bits
 
@@ -102,25 +63,17 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-<span id="qiskit.circuit.library.XGate.decompositions" />
-
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.circuit.library.XGate.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-<span id="qiskit.circuit.library.XGate.duration" />
-
 ### duration
 
 Get the duration.
-
-<span id="qiskit.circuit.library.XGate.label" />
 
 ### label
 
@@ -130,15 +83,10 @@ Return instruction label
 
 `str`
 
-<span id="qiskit.circuit.library.XGate.params" />
-
 ### params
 
 return instruction params.
 
-<span id="qiskit.circuit.library.XGate.unit" />
-
 ### unit
 
 Get the time unit of duration.
-

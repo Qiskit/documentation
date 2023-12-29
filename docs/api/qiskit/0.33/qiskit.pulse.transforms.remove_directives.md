@@ -1,14 +1,4 @@
----
-title: remove_directives
-description: API reference for qiskit.pulse.transforms.remove_directives
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.pulse.transforms.remove_directives
----
-
 # qiskit.pulse.transforms.remove\_directives
-
-<span id="qiskit.pulse.transforms.remove_directives" />
 
 `remove_directives(schedule)`
 
@@ -25,4 +15,3 @@ Remove directives.
 **Returns**
 
 A schedule without directives.
-

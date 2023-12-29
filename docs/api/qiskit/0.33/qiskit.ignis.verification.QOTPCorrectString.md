@@ -1,14 +1,4 @@
----
-title: QOTPCorrectString
-description: API reference for qiskit.ignis.verification.QOTPCorrectString
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.ignis.verification.QOTPCorrectString
----
-
 # qiskit.ignis.verification.QOTPCorrectString
-
-<span id="qiskit.ignis.verification.QOTPCorrectString" />
 
 `QOTPCorrectString(qotp_string, qotp_postp)`
 
@@ -26,4 +16,3 @@ the corrected counts dict
 **Return type**
 
 dict
-

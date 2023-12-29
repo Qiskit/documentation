@@ -1,14 +1,4 @@
----
-title: qubit_channels
-description: API reference for qiskit.pulse.builder.qubit_channels
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.pulse.builder.qubit_channels
----
-
 # qiskit.pulse.builder.qubit\_channels
-
-<span id="qiskit.pulse.builder.qubit_channels" />
 
 `qubit_channels(qubit)`
 
@@ -41,4 +31,3 @@ with pulse.build(backend):
 **Return type**
 
 `Set`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
-

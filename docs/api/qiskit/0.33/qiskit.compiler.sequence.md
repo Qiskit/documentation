@@ -1,14 +1,4 @@
----
-title: sequence
-description: API reference for qiskit.compiler.sequence
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.compiler.sequence
----
-
 # qiskit.compiler.sequence
-
-<span id="qiskit.compiler.sequence" />
 
 `sequence(scheduled_circuits, backend=None, inst_map=None, meas_map=None, dt=None)`
 
@@ -33,4 +23,3 @@ A pulse `Schedule` that implements the input circuit
 **Raises**
 
 **QiskitError** – If `inst_map` and `meas_map` are not passed and `backend` is not passed
-

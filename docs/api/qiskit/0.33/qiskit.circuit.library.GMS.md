@@ -1,14 +1,4 @@
----
-title: GMS
-description: API reference for qiskit.circuit.library.GMS
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.circuit.library.GMS
----
-
 # GMS
-
-<span id="qiskit.circuit.library.GMS" />
 
 `GMS(num_qubits, theta)`
 
@@ -54,8 +44,6 @@ Create a new Global Mølmer–Sørensen (GMS) gate.
 
 ## Attributes
 
-<span id="qiskit.circuit.library.GMS.ancillas" />
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -63,8 +51,6 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
-
-<span id="qiskit.circuit.library.GMS.calibrations" />
 
 ### calibrations
 
@@ -78,8 +64,6 @@ Return calibration dictionary.
 
 `dict`
 
-<span id="qiskit.circuit.library.GMS.clbits" />
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -87,8 +71,6 @@ Returns a list of classical bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Clbit`]
-
-<span id="qiskit.circuit.library.GMS.data" />
 
 ### data
 
@@ -104,13 +86,9 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.GMS.extension_lib" />
-
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-<span id="qiskit.circuit.library.GMS.global_phase" />
 
 ### global\_phase
 
@@ -120,19 +98,13 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-<span id="qiskit.circuit.library.GMS.header" />
-
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="qiskit.circuit.library.GMS.instances" />
-
 ### instances
 
 `= 9`
-
-<span id="qiskit.circuit.library.GMS.metadata" />
 
 ### metadata
 
@@ -144,8 +116,6 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-<span id="qiskit.circuit.library.GMS.num_ancillas" />
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -153,8 +123,6 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
-
-<span id="qiskit.circuit.library.GMS.num_clbits" />
 
 ### num\_clbits
 
@@ -164,8 +132,6 @@ Return number of classical bits.
 
 `int`
 
-<span id="qiskit.circuit.library.GMS.num_parameters" />
-
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
@@ -173,8 +139,6 @@ Convenience function to get the number of parameter objects in the circuit.
 **Return type**
 
 `int`
-
-<span id="qiskit.circuit.library.GMS.num_qubits" />
 
 ### num\_qubits
 
@@ -184,8 +148,6 @@ Return number of qubits.
 
 `int`
 
-<span id="qiskit.circuit.library.GMS.parameters" />
-
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
@@ -194,13 +156,9 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
-<span id="qiskit.circuit.library.GMS.prefix" />
-
 ### prefix
 
 `= 'circuit'`
-
-<span id="qiskit.circuit.library.GMS.qubits" />
 
 ### qubits
 
@@ -209,4 +167,3 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
-

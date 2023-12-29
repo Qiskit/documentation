@@ -1,14 +1,4 @@
----
-title: OR
-description: API reference for qiskit.circuit.library.OR
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.circuit.library.OR
----
-
 # OR
-
-<span id="qiskit.circuit.library.OR" />
 
 `OR(num_variable_qubits, flags=None, mcx_mode='noancilla')`
 
@@ -32,8 +22,6 @@ Create a new logical OR circuit.
 
 ## Attributes
 
-<span id="qiskit.circuit.library.OR.ancillas" />
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -41,8 +29,6 @@ Returns a list of ancilla bits in the order that the registers were added.
 **Return type**
 
 `List`\[`AncillaQubit`]
-
-<span id="qiskit.circuit.library.OR.calibrations" />
 
 ### calibrations
 
@@ -56,8 +42,6 @@ Return calibration dictionary.
 
 `dict`
 
-<span id="qiskit.circuit.library.OR.clbits" />
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -65,8 +49,6 @@ Returns a list of classical bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Clbit`]
-
-<span id="qiskit.circuit.library.OR.data" />
 
 ### data
 
@@ -82,13 +64,9 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.OR.extension_lib" />
-
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-<span id="qiskit.circuit.library.OR.global_phase" />
 
 ### global\_phase
 
@@ -98,19 +76,13 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-<span id="qiskit.circuit.library.OR.header" />
-
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="qiskit.circuit.library.OR.instances" />
-
 ### instances
 
 `= 9`
-
-<span id="qiskit.circuit.library.OR.metadata" />
 
 ### metadata
 
@@ -122,8 +94,6 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-<span id="qiskit.circuit.library.OR.num_ancillas" />
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -131,8 +101,6 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
-
-<span id="qiskit.circuit.library.OR.num_clbits" />
 
 ### num\_clbits
 
@@ -142,8 +110,6 @@ Return number of classical bits.
 
 `int`
 
-<span id="qiskit.circuit.library.OR.num_parameters" />
-
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
@@ -151,8 +117,6 @@ Convenience function to get the number of parameter objects in the circuit.
 **Return type**
 
 `int`
-
-<span id="qiskit.circuit.library.OR.num_qubits" />
 
 ### num\_qubits
 
@@ -162,8 +126,6 @@ Return number of qubits.
 
 `int`
 
-<span id="qiskit.circuit.library.OR.parameters" />
-
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
@@ -172,13 +134,9 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
-<span id="qiskit.circuit.library.OR.prefix" />
-
 ### prefix
 
 `= 'circuit'`
-
-<span id="qiskit.circuit.library.OR.qubits" />
 
 ### qubits
 
@@ -187,4 +145,3 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
-

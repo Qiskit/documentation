@@ -1,14 +1,4 @@
----
-title: LogNormalDistribution
-description: API reference for qiskit.circuit.library.LogNormalDistribution
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.circuit.library.LogNormalDistribution
----
-
 # LogNormalDistribution
-
-<span id="qiskit.circuit.library.LogNormalDistribution" />
 
 `LogNormalDistribution(num_qubits, mu=None, sigma=None, bounds=None, upto_diag=False, name='P(X)')`
 
@@ -71,8 +61,6 @@ Quantum Risk Analysis. [arXiv:1806.06893](http://arxiv.org/abs/1806.06893)
 
 ## Attributes
 
-<span id="qiskit.circuit.library.LogNormalDistribution.ancillas" />
-
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
@@ -81,8 +69,6 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 `List`\[`AncillaQubit`]
 
-<span id="qiskit.circuit.library.LogNormalDistribution.bounds" />
-
 ### bounds
 
 Return the bounds of the probability distribution.
@@ -90,8 +76,6 @@ Return the bounds of the probability distribution.
 **Return type**
 
 `Union`\[`Tuple`\[`float`, `float`], `List`\[`Tuple`\[`float`, `float`]]]
-
-<span id="qiskit.circuit.library.LogNormalDistribution.calibrations" />
 
 ### calibrations
 
@@ -105,8 +89,6 @@ Return calibration dictionary.
 
 `dict`
 
-<span id="qiskit.circuit.library.LogNormalDistribution.clbits" />
-
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
@@ -114,8 +96,6 @@ Returns a list of classical bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Clbit`]
-
-<span id="qiskit.circuit.library.LogNormalDistribution.data" />
 
 ### data
 
@@ -131,13 +111,9 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-<span id="qiskit.circuit.library.LogNormalDistribution.extension_lib" />
-
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
-
-<span id="qiskit.circuit.library.LogNormalDistribution.global_phase" />
 
 ### global\_phase
 
@@ -147,19 +123,13 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-<span id="qiskit.circuit.library.LogNormalDistribution.header" />
-
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-<span id="qiskit.circuit.library.LogNormalDistribution.instances" />
-
 ### instances
 
 `= 9`
-
-<span id="qiskit.circuit.library.LogNormalDistribution.metadata" />
 
 ### metadata
 
@@ -171,8 +141,6 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-<span id="qiskit.circuit.library.LogNormalDistribution.num_ancillas" />
-
 ### num\_ancillas
 
 Return the number of ancilla qubits.
@@ -180,8 +148,6 @@ Return the number of ancilla qubits.
 **Return type**
 
 `int`
-
-<span id="qiskit.circuit.library.LogNormalDistribution.num_clbits" />
 
 ### num\_clbits
 
@@ -191,8 +157,6 @@ Return number of classical bits.
 
 `int`
 
-<span id="qiskit.circuit.library.LogNormalDistribution.num_parameters" />
-
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
@@ -200,8 +164,6 @@ Convenience function to get the number of parameter objects in the circuit.
 **Return type**
 
 `int`
-
-<span id="qiskit.circuit.library.LogNormalDistribution.num_qubits" />
 
 ### num\_qubits
 
@@ -211,8 +173,6 @@ Return number of qubits.
 
 `int`
 
-<span id="qiskit.circuit.library.LogNormalDistribution.parameters" />
-
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
@@ -221,13 +181,9 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
-<span id="qiskit.circuit.library.LogNormalDistribution.prefix" />
-
 ### prefix
 
 `= 'circuit'`
-
-<span id="qiskit.circuit.library.LogNormalDistribution.probabilities" />
 
 ### probabilities
 
@@ -237,8 +193,6 @@ Return the sampling probabilities for the values.
 
 `ndarray`
 
-<span id="qiskit.circuit.library.LogNormalDistribution.qubits" />
-
 ### qubits
 
 Returns a list of quantum bits in the order that the registers were added.
@@ -247,8 +201,6 @@ Returns a list of quantum bits in the order that the registers were added.
 
 `List`\[`Qubit`]
 
-<span id="qiskit.circuit.library.LogNormalDistribution.values" />
-
 ### values
 
 Return the discretized points of the random variable.
@@ -256,4 +208,3 @@ Return the discretized points of the random variable.
 **Return type**
 
 `ndarray`
-

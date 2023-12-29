@@ -1,14 +1,4 @@
----
-title: align_func
-description: API reference for qiskit.pulse.builder.align_func
-in_page_toc_min_heading_level: 1
-python_api_type: function
-python_api_name: qiskit.pulse.builder.align_func
----
-
 # qiskit.pulse.builder.align\_func
-
-<span id="qiskit.pulse.builder.align_func" />
 
 `align_func(duration, func)`
 
@@ -59,4 +49,3 @@ The scheduling is performed for sub-schedules within the context rather than cha
 **Return type**
 
 `AlignmentKind`
-

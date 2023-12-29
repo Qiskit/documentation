@@ -1,14 +1,4 @@
----
-title: QasmQobjInstruction
-description: API reference for qiskit.qobj.QasmQobjInstruction
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.qobj.QasmQobjInstruction
----
-
 # QasmQobjInstruction
-
-<span id="qiskit.qobj.QasmQobjInstruction" />
 
 `QasmQobjInstruction(name, params=None, qubits=None, register=None, memory=None, condition=None, conditional=None, label=None, mask=None, relation=None, val=None, snapshot_type=None)`
 
@@ -35,39 +25,7 @@ Instantiate a new QasmQobjInstruction object.
 
 ## Methods
 
-### from\_dict
-
-<span id="qiskit.qobj.QasmQobjInstruction.from_dict" />
-
-`classmethod QasmQobjInstruction.from_dict(data)`
-
-Create a new QasmQobjInstruction object from a dictionary.
-
-**Parameters**
-
-**data** (*dict*) – A dictionary for the experiment config
-
-**Returns**
-
-The object from the input dictionary.
-
-**Return type**
-
-[QasmQobjInstruction](qiskit.qobj.QasmQobjInstruction "qiskit.qobj.QasmQobjInstruction")
-
-### to\_dict
-
-<span id="qiskit.qobj.QasmQobjInstruction.to_dict" />
-
-`QasmQobjInstruction.to_dict()`
-
-Return a dictionary format representation of the Instruction.
-
-**Returns**
-
-The dictionary form of the QasmQobjInstruction.
-
-**Return type**
-
-dict
-
+|                                                                                                                                                |                                                               |
+| ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| [`from_dict`](qiskit.qobj.QasmQobjInstruction.from_dict#qiskit.qobj.QasmQobjInstruction.from_dict "qiskit.qobj.QasmQobjInstruction.from_dict") | Create a new QasmQobjInstruction object from a dictionary.    |
+| [`to_dict`](qiskit.qobj.QasmQobjInstruction.to_dict#qiskit.qobj.QasmQobjInstruction.to_dict "qiskit.qobj.QasmQobjInstruction.to_dict")         | Return a dictionary format representation of the Instruction. |

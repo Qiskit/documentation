@@ -1,14 +1,4 @@
----
-title: RC3XGate
-description: API reference for qiskit.circuit.library.RC3XGate
-in_page_toc_min_heading_level: 1
-python_api_type: class
-python_api_name: qiskit.circuit.library.RC3XGate
----
-
 # RC3XGate
-
-<span id="qiskit.circuit.library.RC3XGate" />
 
 `RC3XGate(label=None)`
 
@@ -24,8 +14,6 @@ Create a new RC3X gate.
 
 ## Attributes
 
-<span id="qiskit.circuit.library.RC3XGate.condition_bits" />
-
 ### condition\_bits
 
 Get Clbits in condition.
@@ -34,25 +22,17 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-<span id="qiskit.circuit.library.RC3XGate.decompositions" />
-
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
-
-<span id="qiskit.circuit.library.RC3XGate.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-<span id="qiskit.circuit.library.RC3XGate.duration" />
-
 ### duration
 
 Get the duration.
-
-<span id="qiskit.circuit.library.RC3XGate.label" />
 
 ### label
 
@@ -62,15 +42,10 @@ Return instruction label
 
 `str`
 
-<span id="qiskit.circuit.library.RC3XGate.params" />
-
 ### params
 
 return instruction params.
 
-<span id="qiskit.circuit.library.RC3XGate.unit" />
-
 ### unit
 
 Get the time unit of duration.
-
