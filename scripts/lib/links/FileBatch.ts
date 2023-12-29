@@ -28,21 +28,27 @@ export class FileBatch {
    * so that links from other files to these files are recognized.
    */
   readonly toLoad: string[];
+  /**
+   * A short description of the batch to make logging more useful.
+   */
+  readonly description: string;
 
-  constructor(toCheck: string[], toLoad: string[]) {
+  constructor(toCheck: string[], toLoad: string[], description: string) {
     this.toCheck = toCheck;
     this.toLoad = toLoad;
+    this.description = description;
   }
 
   static async fromGlobs(
     toCheckGlobs: string[],
     toLoadGlobs: string[],
+    description: string,
   ): Promise<FileBatch> {
     const [toCheck, toLoad] = await Promise.all([
       globby(toCheckGlobs),
       globby(toLoadGlobs),
     ]);
-    return new FileBatch(toCheck, toLoad);
+    return new FileBatch(toCheck, toLoad, description);
   }
 
   /**
@@ -93,6 +99,8 @@ export class FileBatch {
    * Logs the results to the console and returns `true` if there were no issues.
    */
   async check(externalLinks: boolean, otherFiles: File[]): Promise<boolean> {
+    console.log(`\n\nChecking links for ${this.description}`);
+
     const [docsFiles, internalLinkList, externalLinkList] = await this.load();
     const existingFiles = docsFiles.concat(otherFiles);
 
