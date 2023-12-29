@@ -13,7 +13,6 @@
 import { readFile, writeFile } from "fs/promises";
 import { unzipSync, deflateSync } from "zlib";
 import { removeSuffix } from "../stringUtils";
-import { endsWith } from "lodash";
 
 export type ObjectsInvEntry = {
   name: string;
@@ -63,7 +62,7 @@ export class ObjectsInv {
         domainAndRole: parts[1],
         priority: parts[2],
         uri: parts[3],
-        dispname: parts[4],
+        dispname: parts.slice(4).join(" "),
       });
     }
 
@@ -73,12 +72,15 @@ export class ObjectsInv {
   updateUris(transformLink: Function) {
     // TODO: write test
     for (const entry of this.entries) {
-      const original = entry.uri;
+      if (entry.uri.endsWith("#$")) {
+        // #$ is a shorthand for "anchor==name"; see "For illustration" in
+        // https://sphobjinv.readthedocs.io/en/stable/syntax.html
+        entry.uri = removeSuffix(entry.uri, "$") + entry.name
+      }
       entry.uri = entry.uri.replace(/\.html(?=[^A-z]|$)/, "");
-      entry.uri = entry.uri.replace(/\$$/, "");
       entry.uri = transformLink(entry.uri);
-      if (original.endsWith("$")) {
-        entry.uri += "$";
+      if (entry.uri.endsWith("#" + entry.name)) {
+        entry.uri = removeSuffix(entry.uri, entry.name) + "$";
       }
     }
   }
