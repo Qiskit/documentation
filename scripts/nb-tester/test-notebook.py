@@ -27,7 +27,6 @@ NOTEBOOKS_EXCLUDE = [
     "**/.ipynb_checkpoints/**",
     # Following notebooks are broken
     "docs/transpile/transpiler-stages.ipynb",
-    "docs/run/get-backend-information.ipynb",
 ]
 NOTEBOOKS_THAT_SUBMIT_JOBS = [
     "docs/start/hello-world.ipynb",
@@ -110,6 +109,7 @@ def cancel_trailing_jobs(start_time: datetime) -> bool:
     If a notebook submits a job but does not wait for the result, this check
     will also catch it and cancel the job.
     """
+    # QiskitRuntimeService().jobs() includes qiskit-ibm-provider jobs too
     service = QiskitRuntimeService()
     jobs = [j for j in service.jobs(created_after=start_time) if not j.in_final_state()]
     if not jobs:
@@ -161,6 +161,8 @@ if __name__ == "__main__":
     args = create_argument_parser().parse_args()
 
     paths = map(Path, args.filenames or find_notebooks(submit_jobs=args.submit_jobs))
+    if not args.submit_jobs:
+        paths = [path for path in paths if not any(path.match(glob) for glob in NOTEBOOKS_THAT_SUBMIT_JOBS)]
 
     # Execute notebooks
     start_time = datetime.now()

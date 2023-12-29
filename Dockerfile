@@ -34,6 +34,7 @@
 FROM icr.io/quantum-computing/iqp-channel-docs-dev
 
 COPY docs/ /home/node/app/docs
+COPY translations/ /home/node/app/docs
 COPY public/images /home/node/app/public/images
 
 EXPOSE 3000 5001

@@ -25,7 +25,7 @@ export class File {
    *    path: Path to the file
    * anchors: Anchors available in the file
    */
-  constructor(path: string, anchors: string[], synthetic: boolean) {
+  constructor(path: string, anchors: string[], synthetic: boolean = false) {
     this.path = path;
     this.anchors = anchors;
     this.synthetic = synthetic;
@@ -35,7 +35,7 @@ export class File {
 export class Link {
   readonly value: string;
   readonly anchor: string;
-  readonly originFiles: string[];
+  readonly originFiles: Set<string>;
   readonly isExternal: boolean;
 
   /**
@@ -46,7 +46,7 @@ export class Link {
     const splitLink = linkString.split("#", 2);
     this.value = splitLink[0];
     this.anchor = splitLink.length > 1 ? `#${splitLink[1]}` : "";
-    this.originFiles = originFiles;
+    this.originFiles = new Set(originFiles);
     this.isExternal = linkString.startsWith("http");
   }
 

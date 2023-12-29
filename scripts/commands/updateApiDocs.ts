@@ -23,7 +23,6 @@ import { WebCrawler } from "../lib/WebCrawler";
 import { downloadBlob, downloadImages } from "../lib/downloadImages";
 import { generateToc } from "../lib/sphinx/generateToc";
 import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
-import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
 import { flatFolders } from "../lib/sphinx/flatFolders";
 import { updateLinks } from "../lib/sphinx/updateLinks";
 import { renameUrls } from "../lib/sphinx/renameUrls";
@@ -40,9 +39,9 @@ import { ObjectsInv } from "../lib/sphinx/objectsInv";
 import {
   findLegacyReleaseNotes,
   addNewReleaseNotes,
-  currentReleaseNotesPath,
   generateReleaseNotesIndex,
   updateHistoricalTocFiles,
+  writeSeparateReleaseNotes,
 } from "../lib/releaseNotes";
 
 interface Arguments {
@@ -122,13 +121,14 @@ const readArgs = (): Arguments => {
     .option("historical", {
       type: "boolean",
       default: false,
-      description: "Is this a prior release? Only works with `-p qiskit`.",
+      description: "Is this a prior release?",
     })
     .option("artifact", {
       alias: "a",
       type: "string",
       demandOption: true,
-      description: "Which artifact from CI to download",
+      description:
+        "The URL for the CI artifact to download. Must be from GitHub Actions.",
     })
     .parseSync();
 };
@@ -168,14 +168,11 @@ zxMain(async () => {
   const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
     pkg.version
   }`;
-  const localWebServerDir = `${destination}/artifact`;
-  const listenPort = 8000;
-  startWebServer(localWebServerDir, listenPort);
 
   if (await pathExists(destination)) {
     console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
-    await downloadApiSources(pkg, artifactUrl, destination, listenPort);
+    await downloadApiSources(pkg, artifactUrl, destination);
   }
 
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${pkg.versionWithoutPatch}/`;
@@ -184,7 +181,7 @@ zxMain(async () => {
     : `${getRoot()}/docs/api/${pkg.name}`;
 
   if (pkg.historical && !(await pathExists(outputDir))) {
-    mkdirp(outputDir);
+    await mkdirp(outputDir);
   } else {
     await rmFilesInFolder(outputDir, `${pkg.name}:${pkg.versionWithoutPatch}`);
   }
@@ -195,7 +192,6 @@ zxMain(async () => {
     `Convert sphinx html to markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
   await convertHtmlToMarkdown(destination, outputDir, baseSourceUrl, pkg);
-  await closeWebServer(listenPort);
 });
 
 /**
@@ -313,7 +309,6 @@ async function convertHtmlToMarkdown(
     await mkdirp(dir);
   }
 
-  results = await mergeClassMembers(results);
   flatFolders(results);
   renameUrls(results);
   await updateLinks(results, objectsInv, pkg.transformLink);
@@ -323,12 +318,18 @@ async function convertHtmlToMarkdown(
   await objectsInv.write(join(markdownPath, "objects.inv"));
   for (const result of results) {
     let path = urlToPath(result.url);
-    if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
-      // Historical versions use the same release notes files as the current API
-      if (pkg.historical) {
-        continue;
-      }
 
+    // Historical versions with a single release notes file should not
+    // modify the current API's file.
+    if (
+      !pkg.hasSeparateReleaseNotes &&
+      pkg.historical &&
+      path.endsWith("release-notes.md")
+    ) {
+      continue;
+    }
+
+    if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
       // Convert the relative links to absolute links
       result.markdown = transformLinks(result.markdown, (link, _) =>
         link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
@@ -336,8 +337,10 @@ async function convertHtmlToMarkdown(
           : `/api/${pkg.name}/${link}`,
       );
 
-      path = currentReleaseNotesPath(pkg);
+      await writeSeparateReleaseNotes(pkg, result.markdown);
+      continue;
     }
+
     await writeFile(path, result.markdown);
   }
 
@@ -374,6 +377,7 @@ async function convertHtmlToMarkdown(
       src: img.src,
       dest: `${getRoot()}/public${img.dest}`,
     })),
+    `${htmlPath}/artifact`,
   );
 }
 
@@ -388,8 +392,8 @@ async function downloadApiSources(
   pkg: Pkg,
   artifactUrl: string,
   destination: string,
-  listenPort: number,
 ) {
+  await startWebServer(`${destination}/artifact`);
   try {
     await downloadCIArtifact(pkg.name, artifactUrl, destination);
     await saveHtml({
@@ -397,8 +401,7 @@ async function downloadApiSources(
       initialUrl: pkg.initialUrl,
       destination,
     });
-  } catch (e) {
-    await closeWebServer(listenPort);
-    throw e;
+  } finally {
+    await closeWebServer();
   }
 }

@@ -84,6 +84,12 @@ export async function sphinxHtmlToMarkdown(options: {
       const dest = `${imageDestination}/${filename}`;
 
       $img.attr("src", dest);
+
+      if (isReleaseNotes) {
+        // Release notes links should point to the current version
+        $img.attr("src", dest.replace(/[0-9].*\//, ""));
+      }
+
       images.push({ src, dest: dest });
     });
 

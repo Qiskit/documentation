@@ -17,9 +17,11 @@ import { createWriteStream } from "node:fs";
 import { finished } from "stream/promises";
 import { Readable } from "stream";
 import pMap from "p-map";
+import { startWebServer, closeWebServer } from "../lib/webServer";
 
 export async function downloadImages(
   images: Array<{ src: string; dest: string }>,
+  originalImagesFolderPath: string,
 ) {
   await pMap(
     images,
@@ -29,6 +31,31 @@ export async function downloadImages(
     },
     { concurrency: 4 },
   );
+  const missingImages = (
+    await Promise.all(
+      images.map(async (img) => {
+        const exists = await pathExists(img.dest);
+        return exists ? [] : img;
+      }),
+    )
+  ).flat();
+
+  if (missingImages.length == 0) {
+    return;
+  }
+
+  await startWebServer(originalImagesFolderPath);
+  try {
+    await pMap(
+      missingImages,
+      async (img) => {
+        downloadBlob(img.src, img.dest);
+      },
+      { concurrency: 4 },
+    );
+  } finally {
+    await closeWebServer();
+  }
 }
 
 export async function downloadBlob(src: string, dest: string) {
