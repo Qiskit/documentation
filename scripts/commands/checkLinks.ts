@@ -140,22 +140,16 @@ async function determineCurrentDocsFileBatch(
 async function determineHistoricalFileBatches(
   projectName: string,
 ): Promise<FileBatch[]> {
-  const versionIndexPaths = await globby(
-    `docs/api/${projectName}/[0-9]*/index.md`,
-  );
-  versionIndexPaths.sort();
+  const historicalFolders = (
+    await readdir(`docs/api/${projectName}`, { withFileTypes: true })
+  ).filter((file) => file.isDirectory() && file.name.match(/[0-9].*/));
 
   const result = [];
-  for (const indexPath of versionIndexPaths) {
-    const versionMatch = indexPath.match(/(\d+\.\d+)/);
-    if (versionMatch === null) {
-      throw new Error(`Failed to determine version from ${indexPath}`);
-    }
-
+  for (const folder of historicalFolders) {
     const fileBatch = await FileBatch.fromGlobs(
-      [indexPath.replace("index.md", "*")],
+      [`docs/api/${projectName}/${folder.name}/*`],
       [],
-      `${projectName} v${versionMatch[0]}`,
+      `${projectName} v${folder.name}`,
     );
     result.push(fileBatch);
   }
