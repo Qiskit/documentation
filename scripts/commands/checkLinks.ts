@@ -28,6 +28,7 @@ interface Arguments {
   [x: string]: unknown;
   external: boolean;
   currentApis: boolean;
+  historicalApis: boolean;
   qiskitReleaseNotes: boolean;
 }
 
@@ -45,6 +46,13 @@ const readArgs = (): Arguments => {
       default: false,
       description: "Check the links in the current API docs.",
     })
+    .option("historical-apis", {
+      type: "boolean",
+      default: false,
+      description:
+        "Check the links in the historical API docs, e.g. `api/qiskit/0.44`. " +
+        "Warning: this is slow.",
+    })
     .option("qiskit-release-notes", {
       type: "boolean",
       default: false,
@@ -56,7 +64,7 @@ const readArgs = (): Arguments => {
 async function main() {
   const args = readArgs();
 
-  const fileBatch = await determineFileBatch(args);
+  const fileBatches = await determineFileBatches(args);
   const otherFiles = [
     ...(await globby("{public,docs}/**/*.{png,jpg,gif,svg}")).map(
       (fp) => new File(fp, []),
@@ -64,7 +72,14 @@ async function main() {
     ...SYNTHETIC_FILES.map((fp) => new File(fp, [], true)),
   ];
 
-  const allGood = await fileBatch.check(args.external, otherFiles);
+  let allGood = true;
+  for (const fileBatch of fileBatches) {
+    const allValidLinks = await fileBatch.check(args.external, otherFiles);
+    if (!allValidLinks) {
+      allGood = false;
+    }
+  }
+
   if (!allGood) {
     console.error("\nSome links appear broken 💔\n");
     process.exit(1);
@@ -72,7 +87,21 @@ async function main() {
   console.log("\nNo links appear broken ✅\n");
 }
 
-async function determineFileBatch(args: Arguments): Promise<FileBatch> {
+async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
+  const currentBatch = await determineCurrentDocsFileBatch(args);
+  if (!args.historicalApis) {
+    return [currentBatch];
+  }
+
+  const provider = await determineHistoricalFileBatches("qiskit-ibm-provider");
+  const runtime = await determineHistoricalFileBatches("qiskit-ibm-runtime");
+  const qiskit = await determineHistoricalFileBatches("qiskit");
+  return [currentBatch, ...provider, ...runtime, ...qiskit];
+}
+
+async function determineCurrentDocsFileBatch(
+  args: Arguments,
+): Promise<FileBatch> {
   const toCheck = [
     "docs/**/*.{ipynb,md,mdx}",
     // Ignore historical versions
@@ -94,7 +123,43 @@ async function determineFileBatch(args: Arguments): Promise<FileBatch> {
     toLoad.push("docs/api/qiskit/release-notes/index.md");
   }
 
-  return FileBatch.fromGlobs(toCheck, toLoad);
+  let description: string;
+  if (args.currentApis && args.qiskitReleaseNotes) {
+    description = "non-API docs, current API docs, and Qiskit release notes";
+  } else if (args.currentApis) {
+    description = "non-API docs and current API docs";
+  } else if (args.qiskitReleaseNotes) {
+    description = "non-API docs and Qiskit release notes";
+  } else {
+    description = "non-API docs";
+  }
+
+  return FileBatch.fromGlobs(toCheck, toLoad, description);
+}
+
+async function determineHistoricalFileBatches(
+  projectName: string,
+): Promise<FileBatch[]> {
+  const versionIndexPaths = await globby(
+    `docs/api/${projectName}/[0-9]*/index.md`,
+  );
+  versionIndexPaths.sort();
+
+  const result = [];
+  for (const indexPath of versionIndexPaths) {
+    const versionMatch = indexPath.match(/(\d+\.\d+)/);
+    if (versionMatch === null) {
+      throw new Error(`Failed to determine version from ${indexPath}`);
+    }
+
+    const fileBatch = await FileBatch.fromGlobs(
+      [indexPath.replace("index.md", "*")],
+      [],
+      `${projectName} v${versionMatch[0]}`,
+    );
+    result.push(fileBatch);
+  }
+  return result;
 }
 
 main().then(() => process.exit());
