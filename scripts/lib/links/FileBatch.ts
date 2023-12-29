@@ -17,7 +17,16 @@ import FILES_TO_IGNORES from "./ignores";
 import { getMarkdownAndAnchors, addLinksToMap } from "./markdown";
 
 export class FileBatch {
+  /**
+   * Files whose links should be validated. These files will also be loaded
+   * into memory so that links from other files to these files are recognized.
+   */
   readonly toCheck: string[];
+  /**
+   * Files that may be linked to from other files, but who should not have their
+   * own links checked for validity. These files need to be loaded into memory
+   * so that links from other files to these files are recognized.
+   */
   readonly toLoad: string[];
 
   constructor(toCheck: string[], toLoad: string[]) {
