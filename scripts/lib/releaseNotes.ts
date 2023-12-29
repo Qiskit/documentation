@@ -249,8 +249,10 @@ export async function writeSeparateReleaseNotes(
   for (let version of minorVersionsFound) {
     const versionPath = `${basePath}/${version}.md`;
 
+    // When we're adding a new version, its release note file will not yet exist, so we
+    // cannot read it here to determine the prior contents. Instead, skip the release
+    // note since we are going to add it at the end of this function.
     if (!(await pathExists(versionPath))) {
-      // We don't have any release note file for that version
       continue;
     }
 
