@@ -25,7 +25,7 @@ export class File {
    *    path: Path to the file
    * anchors: Anchors available in the file
    */
-  constructor(path: string, anchors: string[], synthetic: boolean) {
+  constructor(path: string, anchors: string[], synthetic: boolean = false) {
     this.path = path;
     this.anchors = anchors;
     this.synthetic = synthetic;
