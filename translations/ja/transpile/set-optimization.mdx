@@ -1,0 +1,169 @@
+---
+title: Set transpiler optimization level
+description: Learn how to set the optimization level
+---
+
+# Set the optimization level
+
+Decomposing quantum circuits into the basis gate set of the target device and the addition of SWAP gates needed to match hardware topology causes an increase in the depth and gate count of quantum circuits. To mitigate this increased complexity, you can set the `optimization_level`.  Setting this value calls an optimization routine that optimizes the transpilation process by combining or eliminating gates and by optionally using algorithms to find an optimal layout (depending on the level chosen). 
+
+In some cases these methods are so effective the output circuits have lower depth than the inputs. In other cases, not much can be done, and the computation may be difficult to perform on noisy devices. Choosing the best optimization level might take trial and error, as it depends heavily on the circuit being transpiled and the backend being targeted.
+
+Higher optimization levels generate more optimized circuits at the expense of longer compile times.  By default, `optimization_level=1` is used. 
+
+-   `optimization_level=0`: Trivial optimization, which maps the circuit to the backend with no explicit optimization.
+-   `optimization_level=1-3`: Increasingly complex optimization, with heuristic algorithms that are used to find a layout and insert SWAP gates, with the goal of improving the overall performance of the circuit.  The number of iterations that these algorithms run increases with higher optimization levels. 
+
+Because finding the best layout is an NP-hard problem, it is the most time-consuming part of the transpilation process.  However, Qiskit uses stochastic algorithms that have been refactored into Rust, resulting in significant speedup.  Therefore, optimization levels 1-3 all use the same layout algorithms.  There are some slight differences in how the circuits are translated into basis gates, as described in the following table:
+
+<Table>
+  <thead>
+    <Tr>
+      <Th>Optimization Level</Th>
+      <Th>Description</Th>
+    </Tr>
+  </thead>
+  <tbody>
+    <Tr>
+      <Td>0</Td>
+      <Td>
+        No optimization: typically used for hardware characterization
+        - Basic translation
+        - Layout/Routing: `TrivialLayout`, where it selects the same physical qubit numbers as virtual and inserts SWAPs to make it work (using `StochasticSwap`)
+      </Td>
+    </Tr>
+    <Tr>
+      <Td>1</Td>
+      <Td>
+        Light optimization (default):
+        -   Layout/Routing: Layout is first attempted with `TrivialLayout`. If additional SWAPs are required, a layout with a minimum number of SWAPs is found by using `SabreSWAP`, then it uses `VF2LayoutPostLayout` to try to select the best qubits in the graph.
+        -   InverseCancellelation
+        -   1Q gate optimization
+      </Td>
+    </Tr>
+    <Tr>
+      <Td>2</Td>
+      <Td>
+        Medium optimization:
+          - Layout/Routing: Optimization level 1 (without trivial) + heuristic optimized with greater
+        search depth and trials of optimization function.  Because `TrivialLayout` is not used, there is no attempt to use the same physical and virtual qubit numbers. 
+        -   Commutative cancelation
+      </Td>
+    </Tr>
+    <Tr>
+      <Td>3</Td>
+      <Td>
+        High Optimization:
+        - Optimization level 2 + heuristic optimized on layout/routing further with greater effort/trials
+        - Resynthesis of two-qubit blocks using [Cartan's KAK Decomposition](https://arxiv.org/abs/quant-ph/0507171). 
+        - Unitarity-breaking passes: 
+          * `OptimizeSwapBeforeMeasure`: Moves the measurements around to avoid SWAPs
+          * `RemoveDiagonalGatesBeforeMeasure`: Removes gates before measurements that would not effect the measurements
+      </Td>
+    </Tr>
+  </tbody>
+</Table>
+
+## Optimization level in action
+
+Since CX is the noisiest gate, we can quantify the transpilation's "hardware efficiency" by counting the CX gates in the resulting circuit. We will compare the default transpilation levels given the same circuit. 
+
+First, import the necessary libraries:
+
+```python
+from qiskit import transpile, QuantumCircuit
+from qiskit.circuit.library import UnitaryGate
+from qiskit.providers.fake_provider import FakeTokyo
+from qiskit.quantum_info import Operator, random_unitary
+from qiskit.quantum_info.synthesis.two_qubit_decompose import trace_to_fid
+
+import numpy as np
+```
+
+Next we build a quantum circuit consisting of a random unitary followed by a SWAP gate. The `random_unitary` method is seeded to ensure reproducible results.
+
+```python
+UU = random_unitary(4, seed=12345)
+rand_U = UnitaryGate(UU)
+
+qc = QuantumCircuit(2)
+qc.append(rand_U, range(2))
+qc.swap(0, 1)
+qc.draw('mpl')
+```
+
+![Original abstract circuit](/images/transpile/defaults-and-configuration-options/abstract-circ.png)
+
+We use `FakeTokyo` as the backend and transpile using `optimization_level=1` (the default). To avoid considering the effect of idle qubits, We override the backend's coupling map so that the transpiled circuit returns to a two-qubit circuit.
+
+```python
+backend = FakeTokyo()
+qc_t1_exact = transpile(qc, backend, optimization_level=1, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
+qc_t1_exact.draw('mpl', style='iqp')
+```
+
+![Circuit transpiled with optimization level 1](/images/transpile/defaults-and-configuration-options/circ-opt-level-1.png)
+
+The transpiled circuit has six CX gates and several `U3` gates, which have much lower error than CX's, so we don't need to count them. 
+
+Repeat for optimization level 2: 
+
+```python
+qc_t2_exact = transpile(qc, backend, optimization_level=2, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
+qc_t2_exact.draw('mpl', style='iqp')
+```
+
+![Circuit transpiled with optimization level 2](/images/transpile/defaults-and-configuration-options/circ-opt-level-2.png)
+
+This yields the same results as optimization level 1. Note that increasing the level of optimization does not always make a difference. 
+
+Repeat again, with optimization level 3:
+
+```python
+qc_t3_exact = transpile(qc, backend, optimization_level=3, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
+qc_t3_exact.draw('mpl', style='iqp')
+```
+
+![Circuit transpiled with optimization level 3](/images/transpile/defaults-and-configuration-options/circ-opt-level-3.png)
+
+Now there are only three CX gates. This is because with optimization level 3, Qiskit tries to re-synthesize two-qubit blocks of gates. Since any two-qubit gate requires at most three CX gates, we get the above result. We can get even fewer CX gates if we sacrifice the fidelity of this synthese by setting `approximation_degree` to a value less than 1:
+
+```python
+qc_t3_approx = transpile(qc, backend, optimization_level=3, approximation_degree=0.99, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
+qc_t3_approx.draw('mpl', style='iqp')
+```
+
+This circuit has only two CX gates. However, this is an approximate circuit, so we need to understand the difference in fidelity to the desired circuit with the incurred error from running on noisy qubits. We can calculate the fidelity of the approximate circuit:
+
+```python
+exact_fid = trace_to_fid(np.trace(np.dot(Operator(qc_t3_exact).adjoint().data, UU)))
+approx_fid = trace_to_fid(np.trace(np.dot(Operator(qc_t3_approx).adjoint().data, UU)))
+print(f'Synthesis fidelity\nExact: {exact_fid:.3f}\nApproximate: {approx_fid:.3f}')
+```
+
+```text
+Synthesis fidelity
+Exact: 1.000
+Approximate: 0.992
+```
+
+Adjusting the optimization level can change other aspects of the circuit too, not just the number of CX gates. For examples of how setting optimization level changes the layout, see [Representing quantum computers](representing_quantum_computers).
+
+## Next steps
+
+<Admonition type="tip" title="Recommendation">
+    - [Default options and configuration settings](defaults-and-configuration-options)
+    - [Commonly used parameters](common-parameters)
+    - Try the [Submit transpiled circuits](https://learning.quantum.ibm.com/tutorial/submit-transpiled-circuits) tutorial.
+
+</Admonition>
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - To learn how to use the `transpile` function, start with the [Transpilation default settings and configuration options](defaults-and-configuration-options) topic.
+    - Continue learning about transpilation with the [Transpiler stages](transpiler-stages) topic.
+    - Try the [Submit transpiled circuits](https://learning.quantum.ibm.com/tutorial/submit-transpiled-circuits) tutorial.
+    - Try the [Build repetition codes](https://learning.quantum.ibm.com/tutorial/build-repetition-codes) tutorial.
+    - See the [Transpile API documentation.](/api/qiskit/transpiler)
+</Admonition>

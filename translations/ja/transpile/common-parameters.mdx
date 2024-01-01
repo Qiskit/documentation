@@ -1,0 +1,109 @@
+---
+title: Commonly used parameters for transpilation
+description: Commonly used parameters such as approximation degree
+---
+
+# Commonly used parameters for transpilation
+
+Following are some of the more commonly used parameters for local transpilation using the `transpile()` method.
+
+<span id="approx-degree"></span>
+## Approximation degree
+
+You can use the approximation degree to specify how closely you want the resultant circuit to match the desired (input) circuit.  This is a float in the range (0.0 - 1.0), where 0.0 is maximum approximation and 1.0 (default) is no approximation. Smaller values trade output accuracy for ease of execution (that is, fewer gates).  The default value is 1.0.
+
+In two-qubit unitary synthesis (used in initial stages of all levels and for optimization stage with optimization level 3), this value specifies the target fidelity of the output decomposition. That is, how much error is introduced when a matrix representation of a circuit is converted to discrete gates. If the approximation degree is a lower value (more approximation), the output circuit from synthesis will differ more from the input matrix, but will also likely have fewer gates (because any arbitrary two-qubit operation can be decomposed perfectly with at most three CX gates) and is easier to run. 
+
+When the approximation degree is less than 1.0, circuits with one or two CX gates might be synthesized, leading to less error from the hardware, but more from the approximation. Since CX is the most expensive gate in terms of error, it might be beneficial to decrease the number of them at the cost of fidelity in synthesis (this technique was used to increase quantum volume on IBM devices: [Validating quantum computers using randomized model circuits](https://arxiv.org/abs/1811.12926)). 
+
+As an example, we generate a random 2-qubit `UnitaryGate` which will be synthesized in the initial stage. Setting the `approximation_degree` less than 1.0 might generate an approximate circuit. We must also specify the `basis_gates` to let the synthesis method know which gates it can use for the approximate synthesis.
+
+```python
+    UU = random_unitary(4, seed=12345)
+    rand_U = UnitaryGate(UU)
+
+    qc = QuantumCircuit(2)
+    qc.append(rand_U, range(2))
+    approx_qc = transpile(qc, approximation_degree=0.85, basis_gates=["sx", "rz", "cx"])
+    print(approx_qc.count_ops()["cx"])
+```
+
+This yields an output of `2` because the approximation requires fewer CX gates.
+
+<span id="seed"></span>
+## Seed transpiler
+
+The seed transpiler argument sets the random seed for the stochastic parts of the transpiler, used for reproducibility. Due to the stochastic nature of the transpiler if you run `transpile()` multiple times with the same configuration you are not guaranteed to get the same output each time. So if you are experimenting with transpilation and require the same transpiled output every time you can do so by setting the `seed_transpiler` argument.
+
+Example:
+
+```python
+    optimized_1 = transpile(qc, backend=backend, seed_transpiler=11, optimization_level=1)
+```
+
+<span id="init-layout"></span>
+## Initial layout
+
+Specifies the initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the `coupling_map` constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler might permute qubits through swaps or other means. Multiple formats are supported:
+
+````
+* Layout instance
+* Dict 
+  - virtual to physical:
+    ```python
+    {qr[0]: 0,
+    qr[1]: 3,
+    qr[2]: 5}
+    ```
+  - physical to virtual:
+    ```python
+    {0: qr[0],
+    3: qr[1],
+     5: qr[2]}
+    ```
+
+* List
+  - virtual to physical:
+    ```python
+    [0, 3, 5]  # virtual qubits are ordered (in addition to named)
+    ```
+  - physical to virtual:
+    ```python
+    [qr[0], None, None, qr[1], None, qr[2]]
+    ```
+````
+
+<span id="xx-method"></span>
+## *_method
+
+These options influence how the transpiler works and are used to try and get better, different, or specific output from the transpiler.
+
+-   `init_method` (str) - The plugin to use for the initialization stage. 
+
+-   `layout_method` (str) - The layout selection pass (`trivial`, `dense`, `noise_adaptive`, `sabre`). This can also be the external plugin name to use for the layout stage. 
+
+-   `optimization_method` (str) - The plugin to use for the optimization stage. 
+
+-   `routing_method` (str) - Name of routing pass (`basic`, `lookahead`, `stochastic`, `sabre`, `none`). This can also be the external plugin name to use for the routing stage.
+
+-   `scheduling_method` (str) - Name of scheduling pass. This can also be the external plugin name to use for the scheduling stage. 
+    -   `as_soon_as_possible`: Schedule instructions greedily: as early as possible on a qubit resource (alias: `asap`).
+    -   `as_late_as_possible`: Schedule instructions late.  That is, keep qubits in the ground state when possible (alias: `alap`).
+
+-   `translation_method` (str) - Name of translation pass (`unroller`, `translator`, `synthesis`). This can also be the external plugin name to use for the translation stage. 
+
+-   `unitary_synthesis_method` (str) - The name of the unitary synthesis method to use. By default `default` is used. 
+
+<Admonition>
+  To see a list of all installed plugins for a given stage you can run [`list_stage_plugins("stage_name")`](https://docs.quantum.ibm.com/api/qiskit/transpiler_plugins#plugin-api). For example if you want to see a list of all installed plugins for the routing stage run `list_stage_plugins(routing)`.
+</Admonition>
+
+## Next steps
+
+<Admonition type="tip" title="Recommendation">
+    - Review the [Default options and configuration settings](defaults-and-configuration-options) topic.
+    - Learn how to [Set the optimization level.](set-optimization)
+    - Try the [Submit transpiled circuits](https://learning.quantum.ibm.com/tutorial/submit-transpiled-circuits) tutorial.
+    - Review the [Transpile API documentation.](/api/qiskit/transpiler)
+
+</Admonition>
