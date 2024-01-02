@@ -23,6 +23,7 @@ import { WebCrawler } from "../lib/WebCrawler";
 import { downloadImages } from "../lib/downloadImages";
 import { generateToc } from "../lib/sphinx/generateToc";
 import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
+import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
 import { flatFolders } from "../lib/sphinx/flatFolders";
 import { updateLinks } from "../lib/sphinx/updateLinks";
 import { renameUrls } from "../lib/sphinx/renameUrls";
@@ -38,9 +39,9 @@ import { startWebServer, closeWebServer } from "../lib/webServer";
 import {
   findLegacyReleaseNotes,
   addNewReleaseNotes,
-  currentReleaseNotesPath,
   generateReleaseNotesIndex,
   updateHistoricalTocFiles,
+  writeSeparateReleaseNotes,
 } from "../lib/releaseNotes";
 
 interface Arguments {
@@ -171,7 +172,7 @@ zxMain(async () => {
   if (await pathExists(destination)) {
     console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
-    await downloadApiSources(pkg, artifactUrl, destination, 8000);
+    await downloadApiSources(pkg, artifactUrl, destination);
   }
 
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${pkg.versionWithoutPatch}/`;
@@ -305,6 +306,7 @@ async function convertHtmlToMarkdown(
     await mkdirp(dir);
   }
 
+  results = await mergeClassMembers(results);
   flatFolders(results);
   renameUrls(results);
   await updateLinks(results, pkg.transformLink);
@@ -313,12 +315,18 @@ async function convertHtmlToMarkdown(
 
   for (const result of results) {
     let path = urlToPath(result.url);
-    if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
-      // Historical versions use the same release notes files as the current API
-      if (pkg.historical) {
-        continue;
-      }
 
+    // Historical versions with a single release notes file should not
+    // modify the current API's file.
+    if (
+      !pkg.hasSeparateReleaseNotes &&
+      pkg.historical &&
+      path.endsWith("release-notes.md")
+    ) {
+      continue;
+    }
+
+    if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
       // Convert the relative links to absolute links
       result.markdown = transformLinks(result.markdown, (link, _) =>
         link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
@@ -326,8 +334,10 @@ async function convertHtmlToMarkdown(
           : `/api/${pkg.name}/${link}`,
       );
 
-      path = currentReleaseNotesPath(pkg);
+      await writeSeparateReleaseNotes(pkg, result.markdown);
+      continue;
     }
+
     await writeFile(path, result.markdown);
   }
 
@@ -364,6 +374,7 @@ async function convertHtmlToMarkdown(
       src: img.src,
       dest: `${getRoot()}/public${img.dest}`,
     })),
+    `${htmlPath}/artifact`,
   );
 }
 
@@ -378,9 +389,8 @@ async function downloadApiSources(
   pkg: Pkg,
   artifactUrl: string,
   destination: string,
-  listenPort: number,
 ) {
-  await startWebServer(`${destination}/artifact`, listenPort);
+  await startWebServer(`${destination}/artifact`);
   try {
     await downloadCIArtifact(pkg.name, artifactUrl, destination);
     await saveHtml({
@@ -389,6 +399,6 @@ async function downloadApiSources(
       destination,
     });
   } finally {
-    await closeWebServer(listenPort);
+    await closeWebServer();
   }
 }

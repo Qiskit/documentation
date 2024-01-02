@@ -22,20 +22,14 @@ type FilesToIgnores = { [id: string]: string[] };
 const SHOULD_BE_FIXED: FilesToIgnores = {
   "docs/api/qiskit-ibm-provider/ibm-provider.md": ["ibm_provider"],
   "docs/api/qiskit-ibm-runtime/ibm-runtime.md": ["runtime_service"],
-  "docs/api/qiskit/pulse.md": [
-    "qiskit.pulse.library.Constant_class.rst#qiskit.pulse.library.Constant",
-    "qiskit.pulse.library.Drag_class.rst#qiskit.pulse.library.Drag",
-    "qiskit.pulse.library.Drag_class.rst#qiskit.pulse.library.Drag",
-    "qiskit.pulse.library.Gaussian_class.rst#qiskit.pulse.library.Gaussian",
-    "qiskit.pulse.library.Gaussian_class.rst#qiskit.pulse.library.Gaussian",
-    "qiskit.pulse.library.Sin_class.rst#qiskit.pulse.library.Sin",
-    "qiskit.pulse.library.Cos_class.rst#qiskit.pulse.library.Cos",
-    "qiskit.pulse.library.Sawtooth_class.rst#qiskit.pulse.library.Sawtooth",
-    "qiskit.pulse.library.Triangle_class.rst#qiskit.pulse.library.Triangle",
-    "qiskit.pulse.library.Square_fun.rst#qiskit.pulse.library.Square",
-    "qiskit.pulse.library.Sech_fun.rst#qiskit.pulse.library.Sech",
+  "docs/api/qiskit/algorithms.md": ["https://www.qiskit.org/terra"],
+  "docs/api/qiskit/qiskit.algorithms.Grover.md": [
+    "https://qiskit.org/textbook/ch-algorithms/grover.html",
   ],
   "docs/api/qiskit/qiskit.algorithms.optimizers.NFT.md": ["#id2", "#id1"],
+  "docs/api/qiskit/qiskit.algorithms.optimizers.ISRES.md": [
+    "https://notendur.hi.is/tpr/software/sres/Tec311r.pdf",
+  ],
   "docs/api/qiskit/qpy.md": [
     "circuit#qiskit.circuit.CASE_DEFAULT",
     "#id8",
@@ -58,36 +52,34 @@ const SHOULD_BE_FIXED: FilesToIgnores = {
   "docs/api/qiskit/qiskit.circuit.SwitchCaseOp.md": [
     "circuit#qiskit.circuit.CASE_DEFAULT",
   ],
-  "docs/api/qiskit/qiskit.pulse.library.GaussianSquareDrag.md": [
-    "qiskit.pulse.library.Drag_class.rst#qiskit.pulse.library.Drag",
-    "qiskit.pulse.library.Gaussian_class.rst#qiskit.pulse.library.Gaussian",
-  ],
   "docs/api/qiskit/utils.md": [
     "https://github.com/python-constraint/python-constraint%3E__",
     "#qiskit.utils.optionals.HAS_TESTTOOLS",
     "#qiskit.utils.optionals.HAS_GRAPHVIZ",
     "#qiskit.utils.optionals.HAS_PYDOT",
   ],
+  "docs/api/qiskit/release-notes/0.45.md": [
+    "/api/qiskit/utils#qiskit.utils.optionals.HAS_PYGMENTS",
+  ],
   "docs/api/qiskit-ibm-provider/qiskit_ibm_provider.IBMProvider.md": [
-    "https://auth.quantum.ibm.com/api",
+    "https://auth.quantum-computing.ibm.com/api",
   ],
   "docs/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService.md": [
-    "https://auth.quantum.ibm.com/api",
+    "https://auth.quantum-computing.ibm.com/api",
   ],
-  "docs/api/qiskit/algorithms.md": ["https://www.qiskit.org/terra"],
-  "docs/api/qiskit/qiskit.algorithms.Grover.md": [
-    "https://qiskit.org/textbook/ch-algorithms/grover.html",
+  "docs/api/qiskit-ibm-provider/release-notes.md": [
+    "https://github.com/Qiskit/qiskit-ibm-provider/blob/main/docs/tutorials/Migration_Guide_from_qiskit-ibmq-provider.ipynb",
   ],
 };
 
 // Issues that are okay, such as because the link checker times out
 // when trying to access the links.
 const EXPECTED: FilesToIgnores = {
-  "docs/api/qiskit/qiskit.algorithms.optimizers.ISRES.md": [
-    "https://notendur.hi.is/tpr/software/sres/Tec311r.pdf",
-  ],
   "docs/api/qiskit/qiskit.algorithms.optimizers.SPSA.md": [
     "https://ieeexplore.ieee.org/document/657661",
+  ],
+  "docs/api/qiskit/synthesis.md": [
+    "https://www.cs.tau.ac.il/~nogaa/PDFS/r.pdf",
   ],
 };
 
