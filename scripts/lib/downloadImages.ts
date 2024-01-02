@@ -14,6 +14,7 @@ import { $ } from "zx";
 import { Pkg } from "./sharedTypes";
 import { pathExists } from "./fs";
 import { mkdirp } from "mkdirp";
+import pMap from "p-map";
 
 export async function saveImages(
   images: Array<{ src: string; dest: string }>,
@@ -27,15 +28,15 @@ export async function saveImages(
     await mkdirp(imagesDestinationFolder);
   }
 
-  for (const img of images) {
+  await pMap(images, async (img) => {
     const imgName = img.src.split("/").pop() || "";
 
     // The release notes images are only saved in the current version to
     // avoid having duplicate files.
     if (imgName.includes("release_notes") && pkg.historical) {
-      continue;
+      return;
     }
 
     await $`cp ${originalImagesFolderPath}/${imgName} public/${img.dest}`;
-  }
+  });
 }
