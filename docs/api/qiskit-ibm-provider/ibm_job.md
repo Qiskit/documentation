@@ -6,11 +6,11 @@ python_api_type: module
 python_api_name: qiskit_ibm_provider.job
 ---
 
+<span id="job-qiskit-ibm-provider-job" />
+
 <span id="module-qiskit_ibm_provider.job" />
 
 <span id="qiskit-ibm-provider-job" />
-
-<span id="job-qiskit-ibm-provider-job" />
 
 # Job
 
@@ -24,15 +24,15 @@ Modules representing IBM Quantum jobs.
 
 |                                                                                                                                         |                                                                         |
 | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [`IBMCircuitJob`](qiskit_ibm_provider.job.IBMCircuitJob "qiskit_ibm_provider.job.IBMCircuitJob")(backend, api\_client, job\_id\[, ...]) | Representation of a job that executes on an IBM Quantum backend.        |
-| [`IBMCompositeJob`](qiskit_ibm_provider.job.IBMCompositeJob "qiskit_ibm_provider.job.IBMCompositeJob")(backend, api\_client\[, ...])    | Representation of a set of jobs that execute on an IBM Quantum backend. |
-| [`QueueInfo`](qiskit_ibm_provider.job.QueueInfo "qiskit_ibm_provider.job.QueueInfo")(\[position\_in\_queue, status, ...])               | Queue information for a job.                                            |
+| [`IBMCircuitJob`](qiskit_ibm_provider.job.IBMCircuitJob "qiskit_ibm_provider.job.IBMCircuitJob")(backend, api\_client, job\_id\[, ...]) | Representation of a job that executes on an IBM Quantum backend.        |
+| [`IBMCompositeJob`](qiskit_ibm_provider.job.IBMCompositeJob "qiskit_ibm_provider.job.IBMCompositeJob")(backend, api\_client\[, ...])    | Representation of a set of jobs that execute on an IBM Quantum backend. |
+| [`QueueInfo`](qiskit_ibm_provider.job.QueueInfo "qiskit_ibm_provider.job.QueueInfo")(\[position\_in\_queue, status, ...])               | Queue information for a job.                                            |
 
 ## Functions
 
 |                                                                                                                      |                                             |
 | -------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| [`job_monitor`](qiskit_ibm_provider.job.job_monitor "qiskit_ibm_provider.job.job_monitor")(job\[, interval, output]) | Monitor the status of an `IBMJob` instance. |
+| [`job_monitor`](qiskit_ibm_provider.job.job_monitor "qiskit_ibm_provider.job.job_monitor")(job\[, interval, output]) | Monitor the status of an `IBMJob` instance. |
 
 ## Exception
 

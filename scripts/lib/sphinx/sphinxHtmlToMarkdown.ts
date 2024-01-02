@@ -199,7 +199,7 @@ export async function sphinxHtmlToMarkdown(options: {
       .map((child) => {
         const $child = $page(child);
         $child.find(".viewcode-link").closest("a").remove();
-        const id = $dl.find("dt.sig-object").attr("id") || "";
+        const id = $dl.find("dt").attr("id") || "";
 
         if (child.name === "dt" && $dl.hasClass("class")) {
           if (!meta.python_api_type) {
