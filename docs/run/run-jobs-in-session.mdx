@@ -48,9 +48,9 @@ with Session(service=service, backend="ibmq_qasm_simulator"):
   sampler = Sampler()
 ```
 
-When you start a session,  you must specify a backend. This can be done by specifying its name or by passing a backend object. 
+When you start a session,  you must specify a system or simulator. This can be done by specifying its name or by passing a `backend` object. 
 
-**Specify a backend by name**
+**Specify a system or simulator by name**
 
 ``` python
 service = QiskitRuntimeService()
@@ -58,7 +58,7 @@ with Session(service=service, backend="ibmq_qasm_simulator"):
     ...
 ```
 
-**Pass a backend object** 
+**Pass a `backend` object** 
 
 ``` python
 backend = service.get_backend("ibmq_qasm_simulator")
