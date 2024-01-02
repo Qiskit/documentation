@@ -1,0 +1,69 @@
+---
+title: Fair-share queue
+description: How the IBM Quantum fair-share queue determines order of jobs submitted to quantum systems
+---
+
+# Fair-share queue
+
+When you submit a job to a quantum system, it enters the scheduler for the specific system, joining the pool of jobs (from all users) that are waiting to be executed on that system. The order in which these jobs are executed is, by default, determined by a fair-share formula. As discussed below, this algorithm attempts to balance the workload between different [instances](instances) according to the allocated system access amount over a given time window. In practice, this means that jobs from various instances are interweaved in a non-trivial manner, and the order in which jobs complete is not necessarily the order in which they were submitted. Because the queue order is calculated dynamically as new jobs arrive, it is generally impossible to guarantee when a fair-share job will be executed.
+
+## Fair-share terms
+
+-   **Provider:** An entity providing access to quantum computing. IBM Quantum Platform and IBM Cloud® are providers of Qiskit Runtime services.
+-   **Instance:** A combination of hub/group/project.
+-   **Hub:** Represents the top level of an organization such as an academic, industry, or research partner.
+-   **Group:** A mid-level structure to which access shares can be allocated by the hub for one or more collections of users (projects).
+-   **Project:** The base-level construct to which shares are allocated from the overarching group, and to which users are directly assigned.
+-   **Access share:** (This documentation uses the simplified term “share”.) A relative amount of access to IBM Quantum computing services assigned to a specific hub, group and project. The portion of access is determined by the specific allotment of shares divided by the total number of shares distributed. IBM Quantum assigns to each hub a share of the overall computational capacity of the IBM Quantum Premium Plan. Hub administrators then assign fractions of their share pool to each of their groups. Finally, group administrators assign fractions (also called shares) of their share pool to each of their projects.
+-   **Scheduling window:** The fair-share algorithm accounts for usage over a rolling time window. Only execution time accumulated within that window is accounted for the purpose of fairness. The length of that window is currently 28 days. When the fair-share algorithm is invoked, it takes into account usage starting 28 days ago.
+-   **Time used:** For every group and project, during the scheduling window, we account for all usage on all the systems of the IBM Quantum Premium Plan. These include all successful jobs, as well as jobs returning known select errors. It does not account for canceled jobs, even when partially executed.
+-   **Fair-share algorithm:** For each group and project, the duration of the scheduling window is used to convert shares into an equivalent amount of time that an instance would receive under ideal conditions. The ratio between the time used and the shares equivalent time is used as the basis for scheduling jobs.
+
+## Shares and administration
+
+A hub’s entitlement determines its proportional share of the IBM Quantum Premium Plan computational capacity. IBM Quantum assigns shares to hubs. Hub administrators then decide what portion of these shares to assign to each of their groups. Similarly, group administrators will decide what portion of shares to assign to each of their projects.
+
+![Administrator user interface.](/images/migration/admin-UI1.png)
+
+Hub administration user interface. This is used to assign shares to groups. The entire hub share pool is distributed to the underlying groups, and the hub administrator can control the percent distribution by specifying a share value for each group. In this example, Group 5 receives 2 shares of their hub share pool, over a total of 5 shares across all groups. That means that Group 5 receives 40% of the shares pool that the hub was granted.
+
+The fair-share algorithm takes into consideration how these shares are distributed across groups and projects to determine job prioritization.
+
+The scheduling algorithm combines a group’s shares with the shares of its hub, to determine the total fraction of computational power allocated to that group.
+
+![Illustration of how allocation is computed.](/images/migration/allocation.png)
+
+To compute the 60% for Hub-A, start with the 3 shares of Hub-A and divide between all the shares at the hub level (3 + 2 = 5 shares in total). This results in 3/5 = 0.6 = 60%. When computing the fraction per group, repeat the calculation inside each hub; the fractions for Group-A and Group-B would therefore be 33% and 67%, then apply these percentages to the Hub-A fraction, which results in 20% and 40%.
+
+## How the fair-share queue works
+
+The fair-share scheduling algorithm select jobs to execute on a quantum system in a dynamic order so that no instance can monopolize the system. When a quantum system is ready for additional work, it requests the next job from the fair-share scheduler. The scheduler selects the next job by first identifying the group that has used the least amount of their share within the scheduling window. If the group has more than one project, and both have jobs waiting to be executed, then the scheduler identifies the project that has used the least of their share within the scheduling window. Finally, if the project has submitted more than one job, the scheduler will select the oldest job first. Thus, within a project, the scheduler works on a first-in-first-out (FIFO) basis.
+
+In the following example, we have seven instances arranged between two different hubs. As jobs flow through the system, each group and project consumes some fraction of its effective allotted share. The first image below describes the state at time t1. In between brackets we report the consumption as a fraction of the allotted shares. The fair-share algorithm first identifies the group with the smallest number in between brackets, then the project with the least number in the brackets, and finally it selects the oldest job submitted by that project.
+
+![Fair-share queue example.](/images/migration/fairshare3.png)
+
+A snapshot view of consumption (in brackets) relative to the assigned shares. This scenario has seven different H/G/Ps arranged into hubs, groups, and projects. The next selected group and or project is the one with the smallest consumed fraction of the assigned shares. In this example, the Hub-A/Group-1/Project-Y is selected, and the oldest job (first submitted) in the project is executed.
+
+When the system is ready for an additional job, it repeats the selection. In the following image we represent the state of the queue at time t2. Notice that Group A and Project B consumption were updated to account for the previous consumption accrued between t1 and t2.
+
+![Fair-share queue example two.](/images/migration/fairshare4.png)
+
+Recomputed fair-share priorities reflecting the previous job execution. A new H/G/P (Hub-B/Group-2/Project-N) is selected based on these updated values.
+
+Note that when a user sends jobs to a specific IBM Quantum system, the fair-share algorithm accounts takes into account usage across all systems available to the user in the IBM Quantum Premium Plan when determining fairness.
+
+## What is my job’s position in the queue?
+
+As described above, all jobs submitted to the scheduler through the same project will execute in FIFO order. However, global execution order is governed by the fair-share algorithm. Consequently, the time between job submission and job execution can fluctuate depending on usage pattern of the instances which have jobs actively waiting for the system.
+
+A wait-time estimate is provided through IBM Quantum Platform and via Qiskit. The computed time is the result of a scheduling simulation that predicts one possible execution pattern, given the current fair-share ordering of all the jobs waiting for that system and the approximate runtime of each job. The dynamic nature of the fair-share algorithm means that this estimated time is not fixed and can vary, sometimes dramatically. This wait time is also subject to limitations inherent in estimating the execution time for Qiskit Runtime jobs. For these jobs, where an accurate estimation of time is not feasible, the maximum allowed runtime is used as a proxy. In practice, this means that the duration for a Qiskit Runtime job can be over-estimated by up to eight hours, the maximum allowed Qiskit Runtime job duration for Premium Plan users.
+
+The job’s position in the queue is listed in the **Queue position** column on the [Jobs page](https://quantum.ibm.com/jobs).
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Try the [Grover's algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm) tutorial.
+    - Learn how to [Monitor a job](monitor-job).
+</Admonition>

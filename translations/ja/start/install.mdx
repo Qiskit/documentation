@@ -1,0 +1,337 @@
+---
+title: Install and set up
+description: Install and set up Qiskit and Qiskit Runtime on various operating systems
+---
+
+<span id="qiskit-install"></span>
+# Install and set up Qiskit
+
+Whether you will work locally or in a cloud environment, the first step for all users is to install Qiskit. For those wanting to run on a real backend, your next step is to choose one of two channels in order to access IBM Quantum systems: IBM Quantum Platform or IBM Cloud.
+
+<span id="local"></span>
+## Install and set up Qiskit with the Qiskit Runtime Client
+
+1.  Install Python. Check the requirements in the [setup.py](https://github.com/Qiskit/qiskit/blob/main/setup.py) file to determine which Python versions are supported.  For download instructions, see the [Python Beginners Guide.](https://wiki.python.org/moin/BeginnersGuide/Download)
+
+    We recommend that you use [Python virtual environments](https://docs.python.org/3.10/tutorial/venv.html) to separate Qiskit from other applications.  We also recommend that you use the [Jupyter](https://jupyter.org/install) development environment to interact with Qiskit.
+
+    1.  Create a minimal environment with only Python installed in it.
+
+        <OperatingSystemTabs>
+          <TabItem value="mac" label="macOS">
+            ```shell
+            python3 -m venv /path/to/virtual/environment
+            ```
+          </TabItem>
+
+        <TabItem value="linux" label="Linux">
+            ```shell
+            python3 -m venv /path/to/virtual/environment
+            ```
+          </TabItem>
+
+        <TabItem value="win" label="Windows">
+            ```text
+            python3 -m venv c:\path\to\virtual\environment
+            ```
+          </TabItem>
+         </OperatingSystemTabs>
+
+    2.  Activate your new environment.
+
+        <OperatingSystemTabs>
+           <TabItem value="mac" label="macOS">
+             ```shell
+             source /path/to/virtual/environment/bin/activate
+             ```
+           </TabItem>
+
+        <TabItem value="linux" label="Linux">
+             ```shell
+             source /path/to/virtual/environment/bin/activate
+             ```
+           </TabItem>
+
+        <TabItem value="win" label="Windows">
+             ```text
+             c:\path\to\virtual\environment\Scripts\Activate.ps1
+             ```
+           </TabItem>
+         </OperatingSystemTabs>
+
+2.  [Install pip](https://pip.pypa.io/en/stable/installation/).
+
+3.  Install the following packages.
+
+    <Admonition type="note">
+          Periodically rerun these commands or check the [Qiskit release notes](../api/qiskit/release-notes) and the [Qiskit Runtime release notes](../api/qiskit-ibm-runtime/release-notes) so that you always have the latest versions.
+      </Admonition>
+
+    ```shell
+    pip install qiskit
+    ```
+
+    ```shell
+    pip install qiskit-ibm-runtime
+    ```
+
+      Run `pip list` to see the active packages in your virtual environment.
+
+      If you intend to use visualization functionality or Jupyter notebooks, it is recommended to install Qiskit with the extra visualization support. Note that **zsh users** need to put `'qiskit[visualization]'` in single quotes.
+
+    ```shell
+    pip install qiskit[visualization]
+    ```
+
+      zsh users:
+
+    ```shell
+    pip install 'qiskit[visualization]'
+    ```
+
+If you are planning to work locally and use simulators built into Qiskit, then your installation is done. If you want to run jobs on IBM Quantum systems, next [select an access channel](setup-channel) and finish your setup.
+
+## Troubleshooting
+
+<details>
+  <summary>
+    "No Module 'qiskit'" error with Jupyter Notebook
+  </summary>
+  If you used ``pip install qiskit`` and set up your virtual environment in
+  Anaconda, then you may get the ``No Module 'qiskit'`` error when you run a tutorial
+  in Jupyter Notebook. If you have not installed Qiskit or set up your
+  virtual environment, you can follow the [installation](#qiskit-install) steps.
+
+  The error is caused when trying to import the Qiskit package in an
+  environment where Qiskit is not installed. If you launched Jupyter Notebook
+  from the Anaconda-Navigator, it is possible that Jupyter Notebook is running
+  in the base (root) environment, instead of in your virtual
+  environment. Choose a virtual environment in the Anaconda-Navigator from the
+  **Applications on** dropdown menu. In this menu, you can see
+  all of the virtual environments within Anaconda, and you can
+  select the environment where you have Qiskit installed to launch Jupyter
+  Notebook.
+
+</details>
+
+<details>
+  <summary>
+    Compilation errors during installation
+  </summary>
+  Qiskit depends on a number of other open-source Python packages, which
+  are automatically installed when doing ``pip install qiskit``. Depending on
+  your system's platform and Python version, it is possible that a particular
+  package does not provide pre-built binaries for your system. You can refer
+  to [Operating system support](#operating-system-support) for a list of platforms supported by Qiskit, some
+  of which may need an extra compiler. In cases where there are
+  no precompiled binaries available, ``pip`` will attempt to compile the package
+  from source, which in turn might require some extra dependencies that need to
+  be installed manually.
+
+  If the output of `pip install qiskit` contains similar lines to:
+
+```
+Failed building wheel for SOME_PACKAGE
+...
+build/temp.linux-x86_64-3.5/_openssl.c:498:30: fatal error
+compilation terminated.
+error: command 'x86_64-linux-gnu-gcc' failed with exit status 1
+```
+
+  please check the documentation of the package that failed to install (in the
+  example code, `SOME_PACKAGE`) for information on how to install the libraries
+  needed for compiling from source.
+
+</details>
+
+<span id="os-support"></span>
+## Operating system support
+
+Qiskit strives to support as many operating systems as possible, but due to limitations in available testing resources and operating system availability, not all operating systems can be supported. Operating system support for Qiskit is broken into three tiers with different levels of support for each tier. For operating systems outside these, Qiskit is probably still installable, but it is not tested and you will have to build Qiskit (and likely Qiskit’s dependencies) from source.
+
+Additionally, Qiskit only supports CPython. Running with other Python interpreters is not supported.
+
+<details>
+  <summary>
+    Tier 1
+  </summary>
+  Tier 1 operating systems are fully tested as part of the development processes to ensure any proposed change will function correctly. Pre-compiled binaries are built, tested, and published to PyPI as part of the release process. Typically, as long as there is a functioning Python environment installed, Qiskit can be installed on these operating systems without needing to install further dependencies.
+
+  Tier 1 operating systems:
+
+-   Linux x86_64 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification).
+-   macOS x86_64 (10.12 or later)
+-   Windows 64 bit
+    </details>
+
+<details>
+  <summary>
+    Tier 2
+  </summary>
+  Tier 2 operating systems are not tested as part of development process. However, pre-compiled binaries are built, tested, and published to PyPI as part of the release process and these packages can be expected to be installed with just a functioning Python environment.
+
+  Tier 2 operating systems:
+
+-   Linux AArch64 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
+    </details>
+
+<details>
+  <summary>
+    Tier 3
+  </summary>
+  Tier 3 operating systems are not tested as part of the development process. Pre-compiled binaries are built and published to PyPI as part of the release process but are not tested. They may not be installable with just a functioning Python environment and might require a C/C++ compiler or additional programs to build dependencies from source as part of the installation process. Support for these operating systems are best effort only.
+
+  Tier 3 operating systems:
+
+-   Linux ppc64le (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/)packaging specification)
+-   Linux s390x (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
+-   macOS ARM64 (10.15 or newer)
+-   Linux i686 (distributions compatible with the [manylinux 2014](https://www.python.org/dev/peps/pep-0599/) packaging specification)
+-   Windows 32 bit
+    </details>
+
+## Qiskit versioning
+
+  Qiskit version numbers follow [Semantic Versioning](https://semver.org/).
+  The version number is comprised of three primary components: the major, minor, and
+  patch versions. For a version number `X.Y.Z` where `X` is the major version,
+  `Y` is the minor version, and `Z` is the patch version.
+
+  Breaking API changes are reserved for major version releases. The **minimum**
+  period between major version releases is one year. Minor versions introduce
+  new features and bug fixes without breaking API compatibility, and are
+  periodically (currently every three months) published for **only** the
+  current major version. Patch versions provide fixes for bugs identified in
+  the most recent minor version of each actively supported release series (i.e.
+  major version). We support at most two release series at a time, which occurs
+  only during the period of overlap following anew major version release,
+  described in more detail below.
+
+<details>
+  <summary>
+    Release schedule
+  </summary>
+  A tentative release schedule is included below:
+
+  ![](/images/start/install/release_schedule.png)
+
+  For an up-to-date release schedule, refer to the Qiskit Github project's
+  [milestones list](https://github.com/Qiskit/qiskit/milestones), which will always
+  contain the current release plan.
+
+  With the release of a new major version, the previous major version is supported
+  for at least 6 months; only bug and security fixes will be accepted during this
+  time and only patch releases will be published for this major version. A final
+  patch version will be published when support is dropped, and that release will
+  also document the end of support for that major version series. A longer
+  support window is needed for the previous major version as this gives downstream
+  consumers of Qiskit a chance to migrate not only their code but also their
+  users. We do not recommended for a downstream library that
+  depends on Qiskit to bump its minimum Qiskit version to a new
+  major version release immediately because its user base will also need a chance
+  to migrate to the new API changes. Having an extended support window
+  for the previous major Qiskit version gives downstream projects time to fix
+  compatibility with the next major version. Downstream projects can provide
+  support for two release series at a time to give their users a migration path.
+
+  For the purposes of semantic versioning, the Qiskit public API is considered
+  any documented module, class, function, or method that is not marked as private
+  (with a `_` prefix). However, there can be explicit exceptions made in the case
+  of specific documented APIs. In such cases these APIs will be clearly documented
+  as not being considered stable interfaces yet, and a user-visible warning will be
+  actively emitted on any use of these unstable interfaces. Additionally, in some
+  situations an interface marked as private will be considered part of the public
+  API. Typically this only occurs in two cases: either an abstract interface
+  definition where subclasses are intended to override/implement a private method
+  as part of defining an implementation of the interface, or advanced-usage
+  low-level methods that have stable interfaces but are not considered safe to use,
+  as the burden is on the user to uphold the class/safety invariants themselves
+  (the canonical example of this is the `QuantumCircuit._append` method).
+
+  The supported Python versions, minimum supported Rust version (for building
+  Qiskit from source), and any Python package dependencies (including the minimum
+  supported versions of dependencies) used by Qiskit are not part of the backwards
+  compatibility guarantees and may change during any release. Only minor or major
+  version releases will raise minimum requirements for using or building Qiskit
+  (including adding new dependencies), but patch fixes might include support for
+  new versions of Python or other dependencies. Usually the minimum version of a
+  dependency is only increased when older dependency versions go out of support or
+  when it is not possible to maintain compatibility with the latest release of the
+  dependency and the older version.
+
+</details>
+
+<details>
+  <summary>
+  Upgrade strategy
+  </summary>
+  Whenever a new major version is released, the recommended upgrade path
+  is to first upgrade to use the most recent minor version on the previous major
+  version. Shortly before a new major version, a final minor version will
+  be published. This final minor version release `M.N+1.0` is equivalent to
+  `M.N.0` but with warnings and deprecations for any API changes that are
+  made on the new major version series.
+
+  For example, immediately proceeding the 1.0.0 release, a 0.46.0 release will be
+  published. The 0.46.0 release will be equivalent to the 0.45.0 release but with
+  additional deprecation warnings that document the API changes that were made as
+  part of the 1.0.0 release. This pattern will be used for any future major
+  version releases.
+
+  As a user of Qiskit, it's recommended that you first upgrade to this final minor
+  version first, so you can see any deprecation warnings and adjust your Qiskit
+  usage ahead of time before trying a potentially breaking release. The previous
+  major version will be supported for at least six months to give sufficient time
+  to upgrade. A typical pattern to manage this is to pin the max version to
+  avoid using the next major release series until you're sure of compatibility.
+  For example, specifying in a requirements file `qiskit<2` when the current
+  major Qiskit version is 1 will ensure that you're using a version of Qiskit
+  that won't have breaking API changes.
+
+  Pre-emptively capping the version less than the next major version is necessary
+  to ensure you get a chance to see deprecation warnings before a
+  major version release. The normal release schedule means the last minor
+  version release which includes any final deprecation warnings will be released
+  shortly before the next major version and `pip` will default to using
+  the newest version available unless the version cap is set.
+
+</details>
+
+<details>
+<summary>
+  Pre-releases
+</summary>
+  For each minor and major version release Qiskit will publish pre-releases that
+  are compatible with [PEP440](https://peps.python.org/pep-0440/). Typically
+  these are release candidates of the form `X.Y.0rc1`. The `rc` releases
+  will have a finalized API surface and are used to test a prospective release.
+
+  Note that when one of the PEP440 pre-release suffixes (such as `a`, `b`, or `pre`) are
+  published, it does not have the same guarantees as an `rc` release, and is
+  only a preview release. The API might change between these pre-releases
+  and the final release with that version number. For example, `1.0.0pre1` might have
+  a different final API than `1.0.0`.
+
+</details>
+
+<details>
+<summary>
+  Post-releases
+</summary>
+  If there are issues with the packaging of a given release, a post-release may be
+  issued to correct this. These will follow the form `X.Y.Z.1` where the fourth
+  integer is used to indicate it is the first post-release of the `X.Y.Z` release.
+  For example, the qiskit-terra (the legacy package name for Qiskit) 0.25.2
+  release had some issue with the sdist package publishing, and a post-release
+  0.25.2.1 was published that corrected this issue. The code was identical, and
+  0.25.2.1 only fixed the packaging issue for the release.
+</details>
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  -  [Select and set up an IBM Quantum channel.](setup-channel)
+  -  [Configure Qiskit locally.](configure-qiskit-local)
+  -  Follow the steps in [Hello world](hello-world) to write and run a quantum program.
+  -  Try one of the [workflow example tutorials.](https://learning.quantum.ibm.com/catalog/tutorials?category=workflow-example)
+</Admonition>

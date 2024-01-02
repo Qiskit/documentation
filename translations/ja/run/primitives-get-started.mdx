@@ -1,0 +1,142 @@
+---
+title: Get started with primitives
+description: Use Qiskit Runtime Estimator and Sampler
+---
+
+# Get started with primitives
+
+The steps in this topic describes how to set up  primitives, explore the options you can use to configure them, then invoke them in a program.
+
+<Admonition type="note">
+    These examples all use the primitives from Qiskit Runtime, but you could use the base primitives instead. 
+</Admonition>
+
+<span id="start-estimator"></span>
+## Get started with Estimator
+
+### 1.  Initialize the account
+
+Since Qiskit Runtime `Estimator` is a managed service, you will first need to initialize your account. You can then select the simulator or real backend you want to use to calculate the expectation value.
+
+Follow the steps in the [Install and set up topic](../start/install) if you don't already have an account.
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService()
+backend = service.backend("ibm_brisbane")
+```
+
+### 2.  Create a circuit and an observable
+
+Just like the section before, you will need at least one circuit and one observable as inputs to the `Estimator` primitive.
+
+```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.quantum_info import SparsePauliOp, random_hermitian
+
+n_qubits = 127
+
+mat = np.real(random_hermitian(n_qubits, seed=1234))
+circuit = IQP(mat)
+observable = SparsePauliOp("Z" * n_qubits)
+print(f">>> Observable: {observable.paulis}")
+```
+
+### 3.  Initialize the Qiskit Runtime Estimator
+
+Here we are initializing an instance of `qiskit_ibm_runtime.Estimator` instead of `qiskit.primitives.Estimator` to use Qiskit Runtime's implementation of the `Estimator`. 
+
+When you initialize the `Estimator`, you'll need to pass in the backend you previously selected as the target device (or simulator).  You could also do this within the `session` parameter. 
+
+```python
+from qiskit_ibm_runtime import Estimator
+
+estimator = Estimator(backend=backend)
+```
+
+### 4.  Invoke the Estimator and get results
+
+You can then invoke the `run()` method to calculate expectation values for the input circuits and observables.
+
+```python
+job = estimator.run(circuit, observable)
+print(f">>> Job ID: {job.job_id()}")
+print(f">>> Job Status: {job.status()}")
+```
+
+```python
+result = job.result()
+print(f">>> {result}")
+print(f"  > Expectation value: {result.values[0]}")
+print(f"  > Metadata: {result.metadata[0]}")
+```
+
+<span id="start-sampler"></span>
+## Get started with Sampler
+
+### 1.  Initialize the account
+
+Since Qiskit Runtime `Sampler` is a managed service, you will first need to initialize your account. You can then select the simulator or real backend you want to use to calculate the expectation value.
+
+Follow the steps in the [Install and set up topic](../start/install) if you don't already have an account set up.
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService()
+backend = service.backend("ibm_brisbane")
+```
+
+### 2.  Create a circuit
+
+Just like the section before, you will need at least one circuit as the input to the `Sampler` primitive.
+
+```python
+import numpy as np
+from qiskit.circuit.library import IQP
+from qiskit.quantum_info import random_hermitian
+
+n_qubits = 127
+
+mat = np.real(random_hermitian(n_qubits, seed=1234))
+circuit = IQP(mat)
+circuit.measure_all()
+```
+
+### 3.  Initialize the Qiskit Runtime Sampler
+
+Here we are initializing an instance of `qiskit_ibm_runtime.Sampler` instead of `qiskit.primitives.Sampler` to use Qiskit Runtime's implementation of the `Sampler`. 
+
+When you initialize the `Sampler`, you'll need to pass in the backend you previously selected as the target device (or simulator).  You could also do this within the `session` parameter. 
+
+```python
+from qiskit_ibm_runtime import Sampler
+
+sampler = Sampler(backend=backend)
+```
+
+### 4.  Invoke the Sampler and get results
+
+You can then invoke the `run()` method to generate a quasi-probability distribution for the input circuits and quantum states.
+
+```python
+job = sampler.run(circuit)
+print(f">>> Job ID: {job.job_id()}")
+print(f">>> Job Status: {job.status()}")
+```
+
+```python
+result = job.result()
+print(f">>> {result}")
+print(f"  > Quasi-probability distribution: {result.quasi_dists[0]}")
+print(f"  > Metadata: {result.metadata[0]}")
+```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Review detailed [primitives examples.](primitives-examples)
+    - Practice with primitives by working through the [Cost function lesson](https://learning.quantum.ibm.com/course/variational-algorithm-design/cost-functions#primitives) in IBM Quantum Learning.
+</Admonition>
