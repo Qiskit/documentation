@@ -20,11 +20,11 @@ Return the least busy available backend for those that have a `pending_jobs` in 
 
 **Parameters**
 
-**backends** (`List`\[[`Backend`](/api/qiskit/qiskit.providers.Backend "(in Qiskit v0.44)")]) – The backends to choose from.
+**backends** (`List`\[[`Backend`](/api/qiskit/qiskit.providers.Backend "(in Qiskit v0.45)")]) – The backends to choose from.
 
 **Return type**
 
-[`Backend`](/api/qiskit/qiskit.providers.Backend "(in Qiskit v0.44)")
+[`Backend`](/api/qiskit/qiskit.providers.Backend "(in Qiskit v0.45)")
 
 **Returns**
 

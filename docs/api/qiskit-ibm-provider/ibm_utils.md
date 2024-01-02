@@ -6,11 +6,11 @@ python_api_type: module
 python_api_name: qiskit_ibm_provider.utils
 ---
 
+<span id="utilities-qiskit-ibm-provider-utils" />
+
 <span id="module-qiskit_ibm_provider.utils" />
 
 <span id="qiskit-ibm-provider-utils" />
-
-<span id="utilities-qiskit-ibm-provider-utils" />
 
 # Utilities
 
@@ -32,5 +32,5 @@ Utility functions related to the IBM Quantum Provider.
 |                                                                                                                                        |                                              |
 | -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
 | [`to_python_identifier`](qiskit_ibm_provider.utils.to_python_identifier "qiskit_ibm_provider.utils.to_python_identifier")(name)        | Convert a name to a valid Python identifier. |
-| [`validate_job_tags`](qiskit_ibm_provider.utils.validate_job_tags "qiskit_ibm_provider.utils.validate_job_tags")(job\_tags, exception) | Validates input job tags.                    |
+| [`validate_job_tags`](qiskit_ibm_provider.utils.validate_job_tags "qiskit_ibm_provider.utils.validate_job_tags")(job\_tags, exception) | Validates input job tags.                    |
 
