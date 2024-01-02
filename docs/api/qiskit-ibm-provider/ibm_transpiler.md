@@ -6,11 +6,11 @@ python_api_type: module
 python_api_name: qiskit_ibm_provider.transpiler
 ---
 
+<span id="ibm-backend-transpiler-tools-qiskit-ibm-provider-transpiler" />
+
 <span id="module-qiskit_ibm_provider.transpiler" />
 
 <span id="qiskit-ibm-provider-transpiler" />
-
-<span id="ibm-backend-transpiler-tools-qiskit-ibm-provider-transpiler" />
 
 # IBM Backend Transpiler Tools
 
