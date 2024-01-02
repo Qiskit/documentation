@@ -14,7 +14,7 @@ import path from "node:path";
 import levenshtein from "fast-levenshtein";
 
 const DOCS_ROOT = "./docs";
-const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb"];
+const CONTENT_FILE_EXTENSIONS = [".md", ".mdx", ".ipynb", ".inv"];
 
 export class File {
   readonly path: string;

@@ -21,6 +21,8 @@ import { Root } from "remark-mdx";
 import rehypeRemark from "rehype-remark";
 import rehypeParse from "rehype-parse";
 import remarkGfm from "remark-gfm";
+import { ObjectsInv } from "../sphinx/objectsInv";
+import { removePrefix } from "../stringUtils";
 
 interface JupyterCell {
   cell_type: string;
@@ -63,6 +65,17 @@ export async function addLinksToMap(
       entry.push(filePath);
     }
   };
+
+  if (filePath.endsWith(".inv")) {
+    const objinv = await ObjectsInv.fromFile(filePath);
+    for (let entry of objinv.entries) {
+      // All URIs are relative to the objects.inv file
+      const dirname = removePrefix(path.dirname(filePath), "docs");
+      const link = path.join(dirname, entry.uri);
+      addLink(link);
+    }
+    return;
+  }
 
   unified()
     .use(rehypeParse)

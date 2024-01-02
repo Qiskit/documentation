@@ -12,15 +12,21 @@
 
 import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
 
-export function renameUrls(results: SphinxToMdResultWithUrl[]): void {
-  for (let result of results) {
-    result.url = result.url
-      .replace("release_notes", "release-notes")
+export function renameUrl(url: string): string {
+  return (
+    url
+      .replace(/\/release_notes$/g, "/release-notes")
       // The original API docs don't call their API index pages `/index`.
       // We can't fix their setup until qiskit.org is removed, so
       // instead we fix it here.
       .replace(/\/ibm_provider$/g, "/index")
       .replace(/\/runtime_service$/g, "/index")
-      .replace(/\/terra$/g, "/index");
+      .replace(/\/terra$/g, "/index")
+  );
+}
+
+export function renameUrls(results: SphinxToMdResultWithUrl[]): void {
+  for (let result of results) {
+    result.url = renameUrl(result.url);
   }
 }

@@ -13,6 +13,7 @@
 import { readFile, writeFile } from "fs/promises";
 import { unzipSync, deflateSync } from "zlib";
 import { removeSuffix } from "../stringUtils";
+import { renameUrl } from "./renameUrls";
 
 export type ObjectsInvEntry = {
   name: string;
@@ -70,7 +71,6 @@ export class ObjectsInv {
   }
 
   updateUris(transformLink: Function) {
-    // TODO: write test
     for (const entry of this.entries) {
       if (entry.uri.endsWith("#$")) {
         // #$ is a shorthand for "anchor==name"; see "For illustration" in
@@ -78,6 +78,13 @@ export class ObjectsInv {
         entry.uri = removeSuffix(entry.uri, "$") + entry.name;
       }
       entry.uri = entry.uri.replace(/\.html(?=[^A-z]|$)/, "");
+      if (entry.uri.includes("#")) {
+        // TODO: clean this up
+        entry.uri =
+          renameUrl(entry.uri.split("#")[0]) + "#" + entry.uri.split("#")[1];
+      } else {
+        entry.uri = renameUrl(entry.uri);
+      }
       entry.uri = transformLink(entry.uri);
       if (entry.uri.endsWith("#" + entry.name)) {
         entry.uri = removeSuffix(entry.uri, entry.name) + "$";

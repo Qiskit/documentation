@@ -64,12 +64,20 @@ export class FileBatch {
   async load(): Promise<[File[], Link[], Link[]]> {
     const files: File[] = [];
     for (let filePath of this.toLoad) {
+      if (filePath.endsWith(".inv")) {
+        continue;
+      }
       const [_, anchors] = await getMarkdownAndAnchors(filePath);
       files.push(new File(filePath, anchors));
     }
 
     const linksToOriginFiles = new Map<string, string[]>();
     for (const filePath of this.toCheck) {
+      if (filePath.endsWith(".inv")) {
+        console.log(filePath);
+        addLinksToMap(filePath, "", linksToOriginFiles);
+        continue;
+      }
       const [markdown, anchors] = await getMarkdownAndAnchors(filePath);
       files.push(new File(filePath, anchors));
       await addLinksToMap(filePath, markdown, linksToOriginFiles);
