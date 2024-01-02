@@ -13,14 +13,14 @@
 import { $ } from "zx";
 import { zxMain } from "../lib/zx";
 import { pathExists, getRoot } from "../lib/fs";
-import { readFile, writeFile, readdir } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
 import { globby } from "globby";
 import { join, parse, relative } from "path";
 import { sphinxHtmlToMarkdown } from "../lib/sphinx/sphinxHtmlToMarkdown";
 import { uniq, uniqBy } from "lodash";
 import { mkdirp } from "mkdirp";
 import { WebCrawler } from "../lib/WebCrawler";
-import { downloadImages } from "../lib/downloadImages";
+import { downloadBlob, downloadImages } from "../lib/downloadImages";
 import { generateToc } from "../lib/sphinx/generateToc";
 import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
 import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
@@ -36,6 +36,7 @@ import { Pkg, PkgInfo, Link } from "../lib/sharedTypes";
 import transformLinks from "transform-markdown-links";
 import { downloadCIArtifact } from "../lib/downloadArtifacts";
 import { startWebServer, closeWebServer } from "../lib/webServer";
+import { ObjectsInv } from "../lib/sphinx/objectsInv";
 import {
   findLegacyReleaseNotes,
   addNewReleaseNotes,
@@ -240,6 +241,8 @@ async function saveHtml(options: {
     },
   });
   await crawler.run();
+  // Copy over objects.inv
+  downloadBlob(join(baseUrl, "objects.inv"), join(destination, "objects.inv"));
   console.log(`Download summary from ${baseUrl}`, {
     success: successCount,
     error: errorCount,
@@ -252,6 +255,7 @@ async function convertHtmlToMarkdown(
   baseSourceUrl: string,
   pkg: Pkg,
 ) {
+  const objectsInv = await ObjectsInv.fromFile(join(htmlPath, "objects.inv"));
   const files = await globby(
     [
       "apidocs/**.html",
@@ -309,10 +313,11 @@ async function convertHtmlToMarkdown(
   results = await mergeClassMembers(results);
   flatFolders(results);
   renameUrls(results);
-  await updateLinks(results, pkg.transformLink);
+  await updateLinks(results, objectsInv, pkg.transformLink);
   await dedupeResultIds(results);
   addFrontMatter(results, pkg);
 
+  await objectsInv.write(join(markdownPath, "objects.inv"));
   for (const result of results) {
     let path = urlToPath(result.url);
 

@@ -13,6 +13,7 @@
 import { describe, expect, test } from "@jest/globals";
 import { updateLinks, updateUrl } from "./updateLinks";
 import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
+import { ObjectsInv, ObjectsInvEntry } from "./objectsInv";
 import { last } from "lodash";
 
 describe("updateLinks", () => {
@@ -50,7 +51,36 @@ describe("updateLinks", () => {
       },
     ];
 
-    await updateLinks(data);
+    const objectsInvEntries = [
+      "stubs/qiskit.algorithms.Eigensolver.html#$",
+      "stubs/qiskit.algorithms.Eigensolver.html#$",
+      "stubs/qiskit.algorithms.EigensolverResult.html#$",
+      "stubs/qiskit.algorithms.EstimationProblem.html#$",
+      "stubs/qiskit.algorithms.EvolutionProblem.html#$",
+      "stubs/qiskit.algorithms.EvolutionProblem.html#$",
+      "stubs/qiskit.algorithms.FasterAmplitudeEstimationResult.html#$",
+      "stubs/qiskit.algorithms.FasterAmplitudeEstimationResult.html#$",
+      "stubs/qiskit_ibm_runtime.QiskitRuntimeService.html",
+      "stubs/qiskit_ibm_runtime.RuntimeJob.html#qiskit_ibm_runtime.RuntimeJob.submit",
+      "stubs/qiskit_ibm_runtime.RuntimeEncoder.html#qiskit_ibm_runtime.RuntimeEncoder",
+      "stubs/qiskit_ibm_runtime.options.Options.html#options",
+      "tutorials/qaoa_with_primitives.html",
+      "tutorials/vqe_with_estimator.html#Step-1:-Map-classical-inputs-to-a-quantum-problem",
+    ].map((uri) => {
+      return {
+        name: "-",
+        domainAndRole: "-",
+        priority: "-",
+        uri,
+        dispname: "-",
+      };
+    });
+    const objectsInv = new ObjectsInv(
+      "# Here's a simple preamble",
+      objectsInvEntries,
+    );
+
+    await updateLinks(data, objectsInv);
     expect(data).toMatchInlineSnapshot(`
       [
         {
@@ -83,6 +113,24 @@ describe("updateLinks", () => {
         },
       ]
     `);
+    expect(objectsInv.entries.map((e) => e.uri)).toMatchInlineSnapshot(`
+      [
+        "qiskit.algorithms.Eigensolver#$",
+        "qiskit.algorithms.Eigensolver#$",
+        "qiskit.algorithms.EigensolverResult#$",
+        "qiskit.algorithms.EstimationProblem#$",
+        "qiskit.algorithms.EvolutionProblem#$",
+        "qiskit.algorithms.EvolutionProblem#$",
+        "qiskit.algorithms.FasterAmplitudeEstimationResult#$",
+        "qiskit.algorithms.FasterAmplitudeEstimationResult#$",
+        "qiskit_ibm_runtime.QiskitRuntimeService",
+        "qiskit_ibm_runtime.RuntimeJob#submit",
+        "qiskit_ibm_runtime.RuntimeEncoder#qiskit_ibm_runtime.RuntimeEncoder",
+        "qiskit_ibm_runtime.options.Options#options",
+        "tutorials/qaoa_with_primitives",
+        "tutorials/vqe_with_estimator#Step-1:-Map-classical-inputs-to-a-quantum-problem",
+      ]
+    `);
   });
 
   test("update links using a transform function", async () => {
@@ -105,7 +153,30 @@ describe("updateLinks", () => {
       },
     ];
 
-    await updateLinks(data, (link) => {
+    const objectsInvEntries = [
+      "stubs/qiskit.algorithms.Eigensolver.html#$",
+      "stubs/qiskit.algorithms.Eigensolver.html#$",
+      "stubs/qiskit.algorithms.EigensolverResult.html#$",
+      "stubs/qiskit.algorithms.EstimationProblem.html#$",
+      "stubs/qiskit.algorithms.EvolutionProblem.html#$",
+      "stubs/qiskit.algorithms.EvolutionProblem.html#$",
+      "stubs/qiskit.algorithms.FasterAmplitudeEstimationResult.html#$",
+      "stubs/qiskit.algorithms.FasterAmplitudeEstimationResult.html#$",
+    ].map((uri) => {
+      return {
+        name: "-",
+        domainAndRole: "-",
+        priority: "-",
+        uri,
+        dispname: "-",
+      };
+    });
+    const objectsInv = new ObjectsInv(
+      "# Here's a simple preamble",
+      objectsInvEntries,
+    );
+
+    await updateLinks(data, objectsInv, (link) => {
       let path = last(link.url.split("/"))!;
       if (path.includes("#")) {
         path = path.split("#").join(".html#");
@@ -137,6 +208,18 @@ describe("updateLinks", () => {
         },
       ]
     `);
+    expect(objectsInv.entries.map((e) => e.uri)).toMatchInlineSnapshot(`
+      [
+        "qiskit.algorithms.Eigensolver#$",
+        "qiskit.algorithms.Eigensolver#$",
+        "qiskit.algorithms.EigensolverResult#$",
+        "qiskit.algorithms.EstimationProblem#$",
+        "qiskit.algorithms.EvolutionProblem#$",
+        "qiskit.algorithms.EvolutionProblem#$",
+        "qiskit.algorithms.FasterAmplitudeEstimationResult#$",
+        "qiskit.algorithms.FasterAmplitudeEstimationResult#$",
+      ]
+   `);
   });
 });
 

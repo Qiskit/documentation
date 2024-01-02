@@ -23,6 +23,15 @@ export async function downloadImages(
   images: Array<{ src: string; dest: string }>,
   originalImagesFolderPath: string,
 ) {
+  await pMap(
+    // TODO: remove this to match main
+    images,
+    async (img) => {
+      if (await pathExists(img.dest)) return;
+      downloadBlob(img.src, img.dest);
+    },
+    { concurrency: 4 },
+  );
   const missingImages = (
     await Promise.all(
       images.map(async (img) => {
@@ -41,18 +50,22 @@ export async function downloadImages(
     await pMap(
       missingImages,
       async (img) => {
-        const response = await fetch(img.src);
-        if (response.ok) {
-          await mkdirp(dirname(img.dest));
-          const stream = createWriteStream(img.dest);
-          await finished(Readable.fromWeb(response.body as any).pipe(stream));
-        } else {
-          console.log(`Error downloading ${img.src} to ${img.dest}`);
-        }
+        downloadBlob(img.src, img.dest);
       },
       { concurrency: 4 },
     );
   } finally {
     await closeWebServer();
+  }
+}
+
+export async function downloadBlob(src: string, dest: string) {
+  const response = await fetch(src);
+  if (response.ok) {
+    await mkdirp(dirname(dest));
+    const stream = createWriteStream(dest);
+    await finished(Readable.fromWeb(response.body as any).pipe(stream));
+  } else {
+    console.log(`Error downloading ${src} to ${dest}`);
   }
 }
