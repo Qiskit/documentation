@@ -24,6 +24,7 @@ export async function downloadImages(
   originalImagesFolderPath: string,
 ) {
   await pMap(
+    // TODO: remove this to match main
     images,
     async (img) => {
       if (await pathExists(img.dest)) return;

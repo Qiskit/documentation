@@ -57,26 +57,49 @@ export class ObjectsInv {
     // Sort the strings into their parts
     const entries: ObjectsInvEntry[] = [];
     for (const line of lines) {
-      const parts = line.split(" ");
-      entries.push({
-        name: parts[0],
-        domainAndRole: parts[1],
-        priority: parts[2],
-        uri: parts[3],
-        dispname: parts.slice(4).join(" "),
-      });
+      // Regex from sphinx source
+      // https://github.com/sphinx-doc/sphinx/blob/2f60b44999d7e610d932529784f082fc1c6af989/sphinx/util/inventory.py#L115-L116
+      const parts = line.match(/(.+?)\s+(\S+)\s+(-?\d+)\s+?(\S*)\s+(.*)/);
+      if (parts == null || parts.length < 5) {
+        console.warn(`Error parsing line of objects.inv: ${line}`);
+        continue;
+      }
+      const entry = {
+        name: parts[1],
+        domainAndRole: parts[2],
+        priority: parts[3],
+        uri: parts[4],
+        dispname: parts[5],
+      };
+      entry.uri = ObjectsInv._expandUri(entry.uri, entry.name);
+      if (["genindex", "py-modindex", "search"].includes(entry.uri)) {
+        // We don't have this page in the ibm docs
+        continue;
+      }
+      entries.push(entry);
     }
 
     return new ObjectsInv(preamble, entries);
   }
 
+  static _expandUri(uri: string, name: string): string {
+    if (uri.includes("#") && uri.endsWith("$")) {
+      // #$ is a shorthand for "anchor==name"; see "For illustration" in
+      // https://sphobjinv.readthedocs.io/en/stable/syntax.html
+      uri = removeSuffix(uri, "$") + name;
+    }
+    return uri;
+  }
+
+  static _compressUri(uri: string, name: string): string {
+    if (uri.includes("#") && uri.endsWith(name)) {
+      uri = removeSuffix(uri, name) + "$";
+    }
+    return uri;
+  }
+
   updateUris(transformLink: Function) {
     for (const entry of this.entries) {
-      if (entry.uri.endsWith("#$")) {
-        // #$ is a shorthand for "anchor==name"; see "For illustration" in
-        // https://sphobjinv.readthedocs.io/en/stable/syntax.html
-        entry.uri = removeSuffix(entry.uri, "$") + entry.name;
-      }
       entry.uri = entry.uri.replace(/\.html(?=[^A-z]|$)/, "");
       if (entry.uri.includes("#")) {
         // TODO: clean this up
@@ -86,9 +109,6 @@ export class ObjectsInv {
         entry.uri = renameUrl(entry.uri);
       }
       entry.uri = transformLink(entry.uri);
-      if (entry.uri.endsWith("#" + entry.name)) {
-        entry.uri = removeSuffix(entry.uri, entry.name) + "$";
-      }
     }
   }
 
@@ -100,7 +120,13 @@ export class ObjectsInv {
     const lines: string[] = [];
     for (const e of this.entries) {
       lines.push(
-        [e.name, e.domainAndRole, e.priority, e.uri, e.dispname].join(" "),
+        [
+          e.name,
+          e.domainAndRole,
+          e.priority,
+          ObjectsInv._compressUri(e.uri, e.name),
+          e.dispname,
+        ].join(" "),
       );
     }
     return lines.join("\n");
