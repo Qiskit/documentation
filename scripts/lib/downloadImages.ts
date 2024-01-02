@@ -23,15 +23,6 @@ export async function downloadImages(
   images: Array<{ src: string; dest: string }>,
   originalImagesFolderPath: string,
 ) {
-  await pMap(
-    // TODO: remove this to match main
-    images,
-    async (img) => {
-      if (await pathExists(img.dest)) return;
-      downloadBlob(img.src, img.dest);
-    },
-    { concurrency: 4 },
-  );
   const missingImages = (
     await Promise.all(
       images.map(async (img) => {
