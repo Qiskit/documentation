@@ -1,0 +1,167 @@
+---
+title: Run workloads remotely with Quantum Serverless
+description: Run workloads remotely with Quantum Serverless
+---
+
+# Run workloads remotely with Quantum Serverless
+
+Premium users can build, deploy, and run their workloads remotely on classical compute made available through the IBM Quantum Platform.
+
+Try out the tutorials in [IBM Quantum Learning](https://learning.quantum.ibm.com/catalog/tutorials?topics=qiskit-patterns) (note: these are accessible in the Premium Plan once you have logged into your IBM Quantum account) and explore more of the features of Quantum Serverless in the [documentation](https://qiskit-extensions.github.io/quantum-serverless/).
+
+<Admonition type="note">
+    This is an experimental feature, subject to change.
+</Admonition>
+
+## Qiskit Patterns with Quantum Serverless
+
+Creating utility-scale quantum applications generally requires a variety of compute resource requirements. You can use Quantum Serverless to easily submit quantum workflows for remote, managed execution. These quantum workflows can typically be implemented within a common pattern, called a Qiskit Pattern. A Qiskit Pattern is an intuitive, repeatable set of steps for implementing a quantum computing workflow.
+
+Steps in a Qiskit Pattern:
+
+1.  Map classical inputs to a quantum problem
+2.  Optimize problem for quantum execution
+3.  Execute using Qiskit Runtime primitives
+4.  Post-process, return result in classical format
+
+Once you have built a Qiskit Pattern, you can use Quantum Serverless to deploy it and submit it for managed execution. Overall, the process of creating quantum software and submitting it for managed execution on a remote cluster can be broken down into three steps:
+
+1.  Build the Qiskit Pattern
+2.  Deploy to the Quantum Serverless
+3.  Run remotely on Quantum Serverless
+
+## Build a Qiskit Pattern
+
+Here is an example of computing the expectation value using the Qiskit Runtime Estimator primitive. This Python script should be saved in your working directory. (Warning! All contents of the working directory will be shipped to the cluster for execution.)
+
+```python
+# source_files/my_qiskit_pattern.py
+
+from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+from qiskit.circuit.random import random_circuit
+from qiskit.quantum_info import SparsePauliOp
+from qiskit_ibm_runtime import QiskitRuntimeService, Estimator
+from quantum_serverless import save_result
+
+service = QiskitRuntimeService()
+backend = service.least_busy(simulator=False)
+
+# Step 1: Map quantum circuits and operators
+abstract_circuit = random_circuit(2, 2, seed=1234)
+observable = SparsePauliOp("IY")
+
+# Step 2: Optimize the circuit for quantum execution
+pm = generate_preset_pass_manager(optimization_level=3, backend=backend)
+target_circuit = pm.run(abstract_circuit)
+target_observable = observable.apply_layout(target_circuit.layout)
+
+# Step 3: Execute the target circuit
+estimator = Estimator(backend)
+job = estimator.run(target_circuit, target_observable)
+result = job.result()
+
+# Step 4: Postprocess the results
+print(result)
+
+# save results of program execution
+# note: saved items must be serializable
+save_result(result.values)
+```
+
+Please refer to our guides on how to configure your pattern to [accept input arguments](https://qiskit-extensions.github.io/quantum-serverless/getting_started/basic/02_arguments_and_results.html) and [handle external python dependencies](https://qiskit-extensions.github.io/quantum-serverless/getting_started/basic/03_dependencies.html).
+
+After creating a workflow, authenticate to the `IBMServerlessProvider` with your IBM Quantum token, which can be obtained from your [IBM Quantum account](https://quantum.ibm.com/account), and upload the script.
+
+```python
+# Authenticate to the IBM serverless provider
+from quantum_serverless import IBMServerlessProvider
+serverless = IBMServerlessProvider("YOUR_IBM_QUANTUM_TOKEN")
+
+# Deploy the pattern
+from quantum_serverless import QiskitPattern
+serverless.upload(
+    QiskitPattern(
+        title="My-Qiskit-Pattern",
+        entrypoint="my_qiskit_pattern.py",
+        working_dir="./source_files/"
+    )
+)
+```
+
+## Run a Qiskit Pattern remotely on Quantum Serverless
+
+Finally, the pattern is ready to run remotely.
+
+```python
+# Run pattern remotely
+job = serverless.run("My-Qiskit-Pattern")
+
+# Retrieve status, logs, results
+job.status()
+job.logs()
+job.result()
+```
+
+## Migration guide
+
+Qiskit Runtime custom programs can be easily migrated to Quantum Serverless via this [migration guide](https://qiskit-extensions.github.io/quantum-serverless/migration/migration_from_qiskit_runtime_programs.html).
+
+## Resource management (alpha)
+
+Premium Plan users have access to an alpha release of resource management functionality through Quantum Serverless. This enables automatic selection of quantum hardware for your workloads.
+
+The example below demonstrates how to use `IBMQPUSelector` to automate the process of selecting which qubits will be used from a set of available backends. This illustrates how the selectors can be used within a four-step Qiskit Pattern. 
+
+Instead of manually selecting a backend, step 2 of the Qiskit Pattern optimizes the circuits for execution by using the QPU selectors from Quantum Serverless to automatically allocate a backend according to desired criteria. Here, `IBMLeastNoisyQPUSelector` finds the backend, among the ones available to you through your IBM Quantum account, that yields the least-noisy qubit subgraph for the input circuit. You can also use the `IBMLeastBusyQPUSelector` to find a backend that can support the circuit width but with the shortest queue.
+
+For each `IBMQPUSelector`, the context is set in the constructor. All `IBMQPUSelectors` require Qiskit Runtime credentials. The `IBMLeastNoisyQPUSelector` requires a circuit and transpile options specifying how the circuit should be optimized for each backend when determining the most optimal QPU and qubit layout. All `IBMQPUSelector`s implement a `get_backend` method, which retrieves the optimal backend with respect to the given context. The `get_backend` method also allows for additional filtering of the backends. It is implemented using the same interface as the [QiskitRuntimeService.backends method](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#backends).
+
+Then, in step 3 of the pattern, you execute the target circuit on the backend chosen by the selector. Since you optimized your circuit for the backend in step 2, you can skip transpilation in the primitives by setting `skip_transpilation=True`. 
+
+```python
+# source_files/my_qiskit_pattern_resource_management.py
+
+from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler, Options
+from qiskit.circuit.random import random_circuit
+from quantum_serverless_tools.selectors import IBMLeastNoisyQPUSelector
+
+service = QiskitRuntimeService()
+
+# Step 1: Map quantum circuits and operators
+abstract_circuit = random_circuit(
+    num_qubits=5, depth=4, measure=True, seed=1234
+)
+
+# Step 2: Optimize the circuit for quantum execution with automatically selected backend
+selector = IBMLeastNoisyQPUSelector(
+    service, circuit=abstract_circuit, transpile_options={"optimization_level": 3}
+)
+backend = selector.get_backend(min_num_qubits=127)
+target_circuit = selector.optimized_circuit
+
+## Alternatively, one can automatically select a backend according to most available:
+# from qiskit.transpiler.preset_passmanagers import generate_preset_pass_manager
+# from quantum_serverless_tools.selectors import IBMLeastBusyQPUSelector
+#
+# backend = IBMLeastBusyQPUSelector(service).get_backend(min_num_qubits=127)
+# pm = generate_preset_pass_manager(optimization_level=3, backend=backend)
+# target_circuit = pm.run(abstract_circuit)
+
+# Step 3: Execute the target circuit
+with Session(service, backend=backend) as session:
+    sampler = Sampler(
+        options=Options(
+            execution={"shots": 1024}, transpilation={"skip_transpilation": True}
+        )
+    )
+    result = sampler.run(target_circuit).result().quasi_dists[0]
+
+# Step 4: Postprocess the results
+print(result)
+
+# save results of program execution
+# note: saved items must be serializable
+save_result(result)
+```
+
+After creating this pattern, you can deploy and run it remotely with Quantum Serverless as described above.

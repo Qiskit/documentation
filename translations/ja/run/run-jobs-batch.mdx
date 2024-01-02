@@ -1,0 +1,37 @@
+---
+title: Run jobs in a batch
+description: How to run jobs in batch mode.
+---
+
+# Run jobs in a batch
+
+Batch mode can shorten processing time if all jobs can be provided at the outset. If you want to submit iterative jobs, use [sessions](sessions) instead.  Using batch mode has these benefits:
+
+-   The jobs' classical computation, such as compilation, is run in parallel. Thus, running multiple jobs in a batch is significantly faster than running them serially. 
+-   There is no delay between job, which can help avoid drift.
+
+<Admonition type="note">
+    When batching, jobs are not guaranteed to run in the order they are submitted.
+</Admonition>
+
+![Batch execution diagram.](/images/run/batch.png "Figure 1: Batch execution")
+
+The following example shows how you can divide up a long list of circuits into multiple jobs and run them as a batch to take advantage of the parallel processing.
+
+```python
+jobs = []
+with Batch(backend) as batch:
+    estimator = Estimator(batch)
+    # calls within this context are part of the batch.
+    for obs_set in observable_sets:
+        jobs.append(estimator.run(circuits, observables=obs_set))
+```
+
+For a full example, see the following tutorials:
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Try the [CHSH inequality](https://learning.quantum.ibm.com/tutorial/chsh-inequality) tutorial.
+    - Try the [Grover's algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm) tutorial.
+</Admonition>

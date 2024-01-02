@@ -1,0 +1,70 @@
+---
+title: Estimate job run time
+description: Estimate how long a job that uses a primitive will take to run
+---
+
+# Estimate job run time
+
+After submitting a job to the IBM Quantum channel, you can see an estimation for how much _quantum time_ the job will take to run by using `job.usage_estimation`.  Alternatively, you can [view this information on the IBM Quantum Platform user interface](#view-usage).
+
+Quantum time is the duration, in seconds, a quantum system is committed to fulfilling a user request.
+
+<Admonition type="note" title="Notes">
+    - This only applies to jobs that use primitives.
+    - This is not yet available on the IBM Qiskit Runtime on Cloud channel. 
+</Admonition>
+
+Example:
+
+```python
+from qiskit import QuantumCircuit
+from qiskit_ibm_runtime import QiskitRuntimeService, Sampler
+
+service = QiskitRuntimeService()
+
+# Create a new circuit with two qubits (first argument) and two classical
+# bits (second argument)
+qc = QuantumCircuit(2, 2)
+
+# Add a Hadamard gate to qubit 0
+qc.h(0)
+
+# Perform a controlled-X gate on qubit 1, controlled by qubit 0
+qc.cx(0, 1)
+
+# Measure qubit 0 to cbit 0, and qubit 1 to cbit 1
+qc.measure(0, 0)
+qc.measure(1, 1)
+
+# Run on the least-busy backend you have access to
+backend = service.least_busy(simulator=False,operational=True)
+
+# Create a Sampler object
+sampler = Sampler(backend)
+
+# Submit the circuit to the sampler
+job = sampler.run(qc)
+
+print(job.usage_estimation)
+```
+
+Output:
+
+```python
+{'quantum_seconds': 4.1058720028432445}
+```
+
+<span id="view-usage"></span>
+## View the estimated job usage on IBM Quantum Platform
+
+You can view the estimated usage (how much quantum time the job will take to run) in two places on IBM Quantum Platform:
+
+-   On the [Jobs table](https://quantum.ibm.com/jobs) in the Usage column.  From the Home page, click _View all_ on the Recent jobs table.  The Usage column shows the estimated usage for pending jobs, or actual usage for completed jobs. 
+-   On the job's details page. From the [Dashboard](https://quantum.ibm.com/) or [Jobs table](https://quantum.ibm.com/jobs), click the job ID to open the job details page.  The estimated usage is shown in the Status Timeline. 
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Review these tips: [Minimize job run time](minimize-time).
+    - Set the [Maximum execution time](max-execution-time).
+</Admonition>
