@@ -10,49 +10,32 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+import { $ } from "zx";
+import { Pkg } from "./sharedTypes";
 import { pathExists } from "./fs";
 import { mkdirp } from "mkdirp";
-import { dirname } from "path";
-import { createWriteStream } from "node:fs";
-import { finished } from "stream/promises";
-import { Readable } from "stream";
-import pMap from "p-map";
-import { startWebServer, closeWebServer } from "../lib/webServer";
 
-export async function downloadImages(
+export async function saveImages(
   images: Array<{ src: string; dest: string }>,
   originalImagesFolderPath: string,
+  pkg: Pkg,
 ) {
-  const missingImages = (
-    await Promise.all(
-      images.map(async (img) => {
-        const exists = await pathExists(img.dest);
-        return exists ? [] : img;
-      }),
-    )
-  ).flat();
-
-  if (missingImages.length == 0) {
-    return;
+  const imagesDestinationFolder = pkg.historical
+    ? `public/images/api/${pkg.name}/${pkg.versionWithoutPatch}`
+    : `public/images/api/${pkg.name}`;
+  if (!(await pathExists(imagesDestinationFolder))) {
+    await mkdirp(imagesDestinationFolder);
   }
 
-  await startWebServer(originalImagesFolderPath);
-  try {
-    await pMap(
-      missingImages,
-      async (img) => {
-        const response = await fetch(img.src);
-        if (response.ok) {
-          await mkdirp(dirname(img.dest));
-          const stream = createWriteStream(img.dest);
-          await finished(Readable.fromWeb(response.body as any).pipe(stream));
-        } else {
-          console.log(`Error downloading ${img.src} to ${img.dest}`);
-        }
-      },
-      { concurrency: 4 },
-    );
-  } finally {
-    await closeWebServer();
+  for (const img of images) {
+    const imgName = img.src.split("/").pop() || "";
+
+    // The release notes images are only saved in the current version to
+    // avoid having duplicate files.
+    if (imgName.includes("release_notes") && pkg.historical) {
+      continue;
+    }
+
+    await $`cp ${originalImagesFolderPath}/${imgName} public/${img.dest}`;
   }
 }

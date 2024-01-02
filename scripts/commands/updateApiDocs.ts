@@ -20,7 +20,7 @@ import { sphinxHtmlToMarkdown } from "../lib/sphinx/sphinxHtmlToMarkdown";
 import { uniq, uniqBy } from "lodash";
 import { mkdirp } from "mkdirp";
 import { WebCrawler } from "../lib/WebCrawler";
-import { downloadImages } from "../lib/downloadImages";
+import { saveImages } from "../lib/downloadImages";
 import { generateToc } from "../lib/sphinx/generateToc";
 import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
 import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
@@ -368,14 +368,8 @@ async function convertHtmlToMarkdown(
     JSON.stringify(pkg_json, null, 2) + "\n",
   );
 
-  console.log("Downloading images");
-  await downloadImages(
-    allImages.map((img) => ({
-      src: img.src,
-      dest: `${getRoot()}/public${img.dest}`,
-    })),
-    `${htmlPath}/artifact`,
-  );
+  console.log("Saving images");
+  await saveImages(allImages, `${htmlPath}/artifact/_images`, pkg);
 }
 
 function urlToPath(url: string) {
