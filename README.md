@@ -208,6 +208,20 @@ Ayyyyy, this is a fake description.
 
 If the word appears in multiple files, prefer the second approach to add it to `cSpell.json`.
 
+## Check that pages render
+
+It's possible to write broken pages that crash when loaded. This is usually due to syntax errors.
+
+To check that all the non-API docs render:
+
+1. Start up the local preview with `./start` by following the instructions at [Preview the docs locally](#preview-the-docs-locally)
+2. In a new tab, `npm run check-pages-render`
+
+You can also check that API docs and translations render by using any of these arguments: `npm run check-pages-render -- --qiskit-release-notes --current-apis --historical-apis --translations`. Warning that this is exponentially slower.
+
+CI will check on every PR that non-API docs correctly render. We also run a nightly cron job to check the API docs and
+translations.
+
 ## Format TypeScript files
 
 If you're working on our support code in `scripts/`, run `npm run fmt` to automatically format the files.

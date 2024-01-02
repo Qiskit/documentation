@@ -32,9 +32,14 @@ jobs:
         run: npm run check:spelling
       - name: Link checker
         run: npm run check:links -- --current-apis --qiskit-release-notes
-      - name: Formatting
+      - name: TypeScript formatting
         run: npm run check:fmt
       - name: Typecheck
         run: npm run typecheck
-      - name: Run infrastructure tests
+      - name: Infrastructure tests
         run: npm test
+      - name: Check that pages render
+        run: |
+          ./start &
+          sleep 30
+          npm run check-pages-render

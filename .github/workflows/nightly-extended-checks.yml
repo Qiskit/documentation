@@ -10,16 +10,16 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-# This Action validates all the links in the documentation, including
-# external links. This Action will be run at 00:00 (UTC) every day.
+# This Action runs every day at 00:00 UTC to check things that
+# we care about but would be too slow to check in every PR.
 
-name: Check external links
+name: Nightly extended checks
 on:
   schedule:
     - cron: "0 0 * * *"
 
 jobs:
-  external-link-checker:
+  nightly-extended-checks:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'Qiskit'
     steps:
@@ -33,3 +33,8 @@ jobs:
 
       - name: Check external links
         run: npm run check:links -- --current-apis --qiskit-release-notes --external
+      - name: Check API pages render
+        run: |
+          ./start &
+          sleep 30
+          npm run check-pages-render -- --qiskit-release-noets --current-apis --historical-apis --translations
