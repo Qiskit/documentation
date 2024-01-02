@@ -154,6 +154,10 @@ npm run check:links -- --external
 # below arguments to also check API docs and/or Qiskit release notes.
 npm run check:links -- --current-apis --historical-apis --qiskit-release-notes
 
+# However, `--historical-apis` currently has failing versions, so you may
+# want to add `--skip-broken-historical`.
+npm run check:links -- --historical-apis --skip-broken-historical
+
 # Or, run all the checks
 npm run check
 ```
