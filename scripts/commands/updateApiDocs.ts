@@ -13,13 +13,13 @@
 import { $ } from "zx";
 import { zxMain } from "../lib/zx";
 import { pathExists, getRoot } from "../lib/fs";
-import { readFile, writeFile, readdir } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
 import { globby } from "globby";
 import { join, parse, relative } from "path";
 import { sphinxHtmlToMarkdown } from "../lib/sphinx/sphinxHtmlToMarkdown";
 import { uniq, uniqBy } from "lodash";
 import { mkdirp } from "mkdirp";
-import { saveImages } from "../lib/downloadImages";
+import { saveImages } from "../lib/saveImages";
 import { generateToc } from "../lib/sphinx/generateToc";
 import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
 import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
@@ -244,6 +244,8 @@ async function convertHtmlToMarkdown(
       releaseNotesTitle: `${pkg.title} ${pkg.versionWithoutPatch} release notes`,
     });
 
+    // Avoid creating an empty markdown file for HTML files without content
+    // (e.g. HTML redirects)
     if (result.markdown == "") {
       continue;
     }

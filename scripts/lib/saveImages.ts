@@ -10,11 +10,11 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { $ } from "zx";
 import { Pkg } from "./sharedTypes";
 import { pathExists } from "./fs";
 import { mkdirp } from "mkdirp";
 import pMap from "p-map";
+import { copyFile } from "fs/promises";
 
 export async function saveImages(
   images: Array<{ src: string; dest: string }>,
@@ -29,7 +29,7 @@ export async function saveImages(
   }
 
   await pMap(images, async (img) => {
-    const imgName = img.src.split("/").pop() || "";
+    const imgName = img.src.split("/").pop()!;
 
     // The release notes images are only saved in the current version to
     // avoid having duplicate files.
@@ -37,6 +37,6 @@ export async function saveImages(
       return;
     }
 
-    await $`cp ${originalImagesFolderPath}/${imgName} public/${img.dest}`;
+    copyFile(`${originalImagesFolderPath}/${imgName}`, `public/${img.dest}`);
   });
 }
