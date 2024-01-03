@@ -39,9 +39,9 @@ jobs:
           ./start &
           sleep 20
       - name: Check API pages render
-        run: |
-          npm run check-pages-render -- \
-            --qiskit-release-noets \
-            --current-apis \
-            --historical-apis \
+        run: >
+          npm run check-pages-render --
+            --qiskit-release-notes
+            --current-apis
+            --historical-apis
             --translations
