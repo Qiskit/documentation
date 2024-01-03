@@ -63,40 +63,40 @@ Follow these steps to install Qiskit:
 
 1. Clone the Qiskit repository.
 
-```python
-  git clone https://github.com/Qiskit/qiskit.git
+```bash
+git clone https://github.com/Qiskit/qiskit.git
 ```
 
 2. Change to the `qiskit` directory. 
 
-```python
-  cd qiskit
+```bash
+cd qiskit
 ```
 
 3. (Optional) If you want to run tests or linting checks, install the developer requirements.
 
-```python
-  pip install -r requirements-dev.txt
+```bash
+pip install -r requirements-dev.txt
 ```
 
 4. Install `qiskit`. 
 
   * **Standard install**: 
 
-    ```python
-      pip install .
+    ```bash
+    pip install .
     ```
 
   * **Editable mode**: In this mode, you don't need to reinstall Qiskit when there are code changes to the project.
 
-    ```python
-      pip install -e .
+    ```bash
+    pip install -e .
     ```
 
     In editable mode, the compiled extensions are built in _debug mode_ without optimizations. This affects the runtime performance of the compiled code. To build the compiled extensions with optimizations enabled, run the following command to rebuild the binary in _release mode_:
 
-    ```python
-      python setup.py build_rust --release --inplace
+    ```bash
+    python setup.py build_rust --release --inplace
     ```
 
     <Admonition type="note">
@@ -109,46 +109,37 @@ Follow these steps if you want to install Qiskit Runtime:
 
 1. Clone the Qiskit Runtime repository.
 
-```python
-  git clone https://github.com/Qiskit/qiskit-ibm-runtime.git
+```bash
+git clone https://github.com/Qiskit/qiskit-ibm-runtime.git
 ```
 
 2. Change to the `qiskit_ibm_runtime` directory. 
 
-```python
-  cd qiskit_ibm_runtime
+```bash
+cd qiskit_ibm_runtime
 ```
 
 3. (Optional) If you want to run tests or linting checks, install the developer requirements.
 
-```python
-  pip install -r requirements-dev.txt
+```bash
+pip install -r requirements-dev.txt
 ```
 
 4. Install `qiskit-runtime`. 
 
   * **Standard install**: 
 
-    ```python
-      pip install .
+    ```bash
+    pip install .
     ```
 
   * **Editable mode**: In this mode, you don't need to reinstall Qiskit when there are code changes to the project.
 
-    ```python
-      pip install -e .
+    ```bash
+    pip install -e .
     ```
 
-    In editable mode, the compiled extensions are built in _debug mode_ without optimizations. This affects the runtime performance of the compiled code. To build the compiled extensions with optimizations enabled, run the following command to rebuild the binary in _release mode_:
-
-    ```python
-      python setup.py build_rust --release --inplace
-    ```
-
-    <Admonition type="note">
-    If you are working on Rust code in Qiskit, you need to rebuild the extension code every time you make a local change. In editable mode, the Rust extension is only built when the install command is run, so local changes you make to the Rust code are not reflected in the installed package unless you rebuild the extension by rerunning `build_rust` (with or without `--release`, depending on whether you want to build in release or debug mode).
-    </Admonition>
-
+    In editable mode, the compiled extensions are built in _debug mode_ without optimizations. This affects the runtime performance of the compiled code. 
 
 
 ## Next steps
