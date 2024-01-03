@@ -37,6 +37,9 @@ export async function saveImages(
       return;
     }
 
-    copyFile(`${originalImagesFolderPath}/${imgName}`, `public/${img.dest}`);
+    await copyFile(
+      `${originalImagesFolderPath}/${imgName}`,
+      `public/${img.dest}`,
+    );
   });
 }
