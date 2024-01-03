@@ -33,8 +33,15 @@ jobs:
 
       - name: Check external links
         run: npm run check:links -- --current-apis --qiskit-release-notes --external
-      - name: Check API pages render
+
+      - name: Start local Docker preview
         run: |
           ./start &
-          sleep 30
-          npm run check-pages-render -- --qiskit-release-noets --current-apis --historical-apis --translations
+          sleep 20
+      - name: Check API pages render
+        run: |
+          npm run check-pages-render -- \
+            --qiskit-release-noets \
+            --current-apis \
+            --historical-apis \
+            --translations
