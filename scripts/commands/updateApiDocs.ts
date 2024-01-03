@@ -23,17 +23,17 @@ import { saveImages } from "../lib/saveImages";
 import { generateToc } from "../lib/sphinx/generateToc";
 import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
 import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
-import { flatFolders } from "../lib/sphinx/flatFolders";
+import flattenFolders from "../lib/sphinx/flattenFolders";
 import { updateLinks } from "../lib/sphinx/updateLinks";
-import specialCaseResults from "../lib/sphinx/specialCaseResults";
-import { addFrontMatter } from "../lib/sphinx/addFrontMatter";
-import { dedupeResultIds } from "../lib/sphinx/dedupeIds";
+import { specialCaseResults } from "../lib/sphinx/specialCaseResults";
+import addFrontMatter from "../lib/sphinx/addFrontMatter";
+import { dedupeHtmlIdsFromResults } from "../lib/sphinx/dedupeHtmlIds";
 import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import { Pkg, PkgInfo, Link } from "../lib/sharedTypes";
 import transformLinks from "transform-markdown-links";
-import { downloadCIArtifact } from "../lib/downloadArtifacts";
+import { downloadCIArtifact } from "../lib/downloadCIArtifacts";
 import {
   findLegacyReleaseNotes,
   addNewReleaseNotes,
@@ -272,10 +272,10 @@ async function convertHtmlToMarkdown(
   }
 
   results = await mergeClassMembers(results);
-  flatFolders(results);
+  flattenFolders(results);
   specialCaseResults(results);
   await updateLinks(results, pkg.transformLink);
-  await dedupeResultIds(results);
+  await dedupeHtmlIdsFromResults(results);
   addFrontMatter(results, pkg);
 
   for (const result of results) {
