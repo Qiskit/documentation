@@ -28,18 +28,18 @@ describe("objects.inv", () => {
         "# The remainder of this file is compressed using zlib.\n",
     );
 
-    const uriIndices = [10, 107, 1419, 24888, 88];
+    const uriIndices = [10, 88, 107, 1419, 24694];
     expect(uriIndices.map((i) => objectsInv.entries[i].uri))
       .toMatchInlineSnapshot(`
       [
         "stubs/qiskit.algorithms.AlgorithmJob.html#qiskit.algorithms.AlgorithmJob.job_id",
+        "stubs/qiskit.algorithms.FasterAmplitudeEstimation.html#qiskit.algorithms.FasterAmplitudeEstimation.sampler",
         "stubs/qiskit.algorithms.Grover.html#qiskit.algorithms.Grover.quantum_instance",
         "apidoc/assembler.html#qiskit.assembler.disassemble",
         "index.html",
-        "stubs/qiskit.algorithms.FasterAmplitudeEstimation.html#qiskit.algorithms.FasterAmplitudeEstimation.sampler",
       ]
     `);
-    const nameIndices = [24888, 25464];
+    const nameIndices = [24694, 25270];
     expect(nameIndices.map((i) => objectsInv.entries[i].dispname))
       .toMatchInlineSnapshot(`
     [

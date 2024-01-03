@@ -15,6 +15,25 @@ import { unzipSync, deflateSync } from "zlib";
 import { removeSuffix } from "../stringUtils";
 import { renameUrl } from "./renameUrls";
 
+/** Some pages exist in the sphinx docs but not in our docs
+ * If any URIs match these cases, we remove their entries.
+ * */
+const ENTRIES_TO_EXCLUDE = [
+  /^genindex$/,
+  /^py-modindex$/,
+  /^search$/,
+  /^tutorials(\/|#|$)/,
+];
+
+function shouldExcludePage(uri: string): boolean {
+  for (let condition of ENTRIES_TO_EXCLUDE) {
+    if (uri.match(condition)) {
+      return true;
+    }
+  }
+  return false;
+}
+
 export type ObjectsInvEntry = {
   name: string;
   domainAndRole: string;
@@ -72,10 +91,10 @@ export class ObjectsInv {
         dispname: parts[5],
       };
       entry.uri = ObjectsInv._expandUri(entry.uri, entry.name);
-      if (["genindex", "py-modindex", "search"].includes(entry.uri)) {
-        // We don't have this page in the ibm docs
+      if (shouldExcludePage(entry.uri)) {
         continue;
       }
+
       entries.push(entry);
     }
 
