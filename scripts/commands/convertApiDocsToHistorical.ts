@@ -140,7 +140,7 @@ async function copyImages(pkgName: string, versionWithoutPatch: string) {
   const imageDirSource = `${getRoot()}/public/images/api/${pkgName}/`;
   const imageDirDest = `${getRoot()}/public/images/api/${pkgName}/${versionWithoutPatch}`;
   await mkdirp(imageDirDest);
-  await $`find ${imageDirSource}/* -maxdepth 0 -type f | xargs -I {} cp -a {} ${imageDirDest}`;
+  await $`find ${imageDirSource}/* -maxdepth 0 -type f | grep -v "release_notes" | xargs -I {} cp -a {} ${imageDirDest}`;
 }
 
 async function updateLinksFile(
