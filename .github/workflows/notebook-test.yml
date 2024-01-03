@@ -33,7 +33,6 @@ jobs:
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
         with:
           files: docs/**/*.ipynb
-          files_ignore: docs/api/**
           separator: "\n"
 
       - name: Check for notebooks that require LaTeX
@@ -79,7 +78,7 @@ jobs:
           import subprocess
           files = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
           args = ["tox", "--"] + files.split("\n") + ["--write"]
-          subprocess.run(args)
+          subprocess.run(args, check=True)
 
       - name: Upload executed notebooks
         uses: actions/upload-artifact@v4
