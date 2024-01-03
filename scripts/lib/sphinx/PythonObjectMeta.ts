@@ -20,4 +20,5 @@ export type PythonObjectMeta = {
     | "module"
     | "function"
     | "exception";
+  hardcoded_frontmatter?: string;
 };

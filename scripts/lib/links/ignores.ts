@@ -20,8 +20,6 @@ type FilesToIgnores = { [id: string]: string[] };
 // These are legit problems that we had to punt on, usually because fixing the
 // problem requires fixing the original source documentation for API docs.
 const SHOULD_BE_FIXED: FilesToIgnores = {
-  "docs/api/qiskit-ibm-provider/ibm-provider.md": ["ibm_provider"],
-  "docs/api/qiskit-ibm-runtime/ibm-runtime.md": ["runtime_service"],
   "docs/api/qiskit/algorithms.md": ["https://www.qiskit.org/terra"],
   "docs/api/qiskit/qiskit.algorithms.Grover.md": [
     "https://qiskit.org/textbook/ch-algorithms/grover.html",
