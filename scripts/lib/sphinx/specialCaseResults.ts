@@ -38,7 +38,7 @@ description: API documentation for qiskit-ibm-provider
       result.url = result.url.replace(/\/ibm-runtime$/g, "/index");
       result.meta = {
         hardcoded_frontmatter: `
-title: Qiskit Runtime API Docs
+title: Qiskit Runtime IBM Client API Docs
 description: API documentation for qiskit-ibm-runtime
 `,
       };
