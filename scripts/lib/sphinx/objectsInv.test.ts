@@ -28,23 +28,25 @@ describe("objects.inv", () => {
         "# The remainder of this file is compressed using zlib.\n",
     );
 
-    const expectedUris: [number, string][] = [
-      [10, "stubs/qiskit.algorithms.AlgorithmJob.html#$"],
-      [88, "stubs/qiskit.algorithms.FasterAmplitudeEstimation.html#$"],
-      [107, "stubs/qiskit.algorithms.Grover.html#$"],
-      [1419, "apidoc/assembler.html#$"],
-      [24888, "index.html"],
-    ];
-    for (const [index, value] of expectedUris) {
-      expect(objectsInv.entries[index].uri).toMatch(value);
-    }
-    const expectedNames: [number, string][] = [
-      [24888, "Qiskit 0.45 documentation"],
-      [25464, "Circuits Deprecations"],
-    ];
-    for (const [index, value] of expectedNames) {
-      expect(objectsInv.entries[index].dispname).toMatch(value);
-    }
+    const uriIndices = [10, 107, 1419, 24888, 88];
+    expect(uriIndices.map((i) => objectsInv.entries[i].uri))
+      .toMatchInlineSnapshot(`
+      [
+        "stubs/qiskit.algorithms.AlgorithmJob.html#qiskit.algorithms.AlgorithmJob.job_id",
+        "stubs/qiskit.algorithms.Grover.html#qiskit.algorithms.Grover.quantum_instance",
+        "apidoc/assembler.html#qiskit.assembler.disassemble",
+        "index.html",
+        "stubs/qiskit.algorithms.FasterAmplitudeEstimation.html#qiskit.algorithms.FasterAmplitudeEstimation.sampler",
+      ]
+    `);
+    const nameIndices = [24888, 25464];
+    expect(nameIndices.map((i) => objectsInv.entries[i].dispname))
+      .toMatchInlineSnapshot(`
+    [
+      "Qiskit 0.45 documentation",
+      "Circuits Deprecations",
+    ]
+    `);
   });
 
   test("write file and re-read matches original", async () => {
@@ -63,77 +65,65 @@ describe("objects.inv", () => {
 
   test("URI transform works correctly", () => {
     const preamble = `# Simple preamble\n`;
+    // Use nonsense transform function to check things are actually changing
     const transformFunction = (x: string) => x.replaceAll("i", "a");
-    const uris: [ObjectsInvEntry, string][] = [
-      [
-        {
-          name: "qiskat_ibm_runtime.RuntimeJob.job_id",
-          domainAndRole: "py:method",
-          priority: "1",
-          uri: "qiskit_ibm_runtime.RuntimeJob#$",
-          dispname: "-",
-        },
-        "qaskat_abm_runtame.RuntameJob#qaskat_abm_runtame.RuntameJob.job_ad",
-      ],
-      [
-        {
-          name: "qaskat_abm_runtame.RuntameJob.job_ad",
-          domainAndRole: "py:method",
-          priority: "1",
-          uri: "qiskit_ibm_runtime.RuntimeJob#$",
-          dispname: "-",
-        },
-        "qaskat_abm_runtame.RuntameJob#$",
-      ],
-      [
-        {
-          name: "stubs/qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis.__call__",
-          domainAndRole: "std:doc",
-          priority: "-1",
-          uri: "stubs/qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis.__call__.html",
-          dispname: "ASAPScheduleAnalysis.__call__",
-        },
-        "stubs/qaskat_abm_provader.transpaler.passes.schedulang.ASAPScheduleAnalysas.__call__",
-      ],
-      [
-        {
-          name: "search",
-          domainAndRole: "std:label",
-          priority: "-1",
-          uri: "search.html",
-          dispname: "Search Page",
-        },
-        "search",
-      ],
-      [
-        {
-          name: "release notes_ignis_0.5.0",
-          domainAndRole: "std:label",
-          priority: "-1",
-          uri: "legacy_release_notes.html#release-notes-ignis-0-5-0",
-          dispname: "Ignis 0.5.0",
-        },
-        "legacy_release_notes#release-notes-agnas-0-5-0",
-      ],
-      [
-        {
-          name: "index",
-          domainAndRole: "std:doc",
-          priority: "-1",
-          uri: "index.html",
-          dispname: "Qiskit IBM Quantum Provider API docs preview",
-        },
-        "andex",
-      ],
+    const entries: ObjectsInvEntry[] = [
+      {
+        name: "qiskat_ibm_runtime.RuntimeJob.job_id",
+        domainAndRole: "py:method",
+        priority: "1",
+        uri: "qiskit_ibm_runtime.RuntimeJob#$",
+        dispname: "-",
+      },
+      {
+        name: "qaskat_abm_runtame.RuntameJob.job_ad",
+        domainAndRole: "py:method",
+        priority: "1",
+        uri: "qiskit_ibm_runtime.RuntimeJob#$",
+        dispname: "-",
+      },
+      {
+        name: "stubs/qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis.__call__",
+        domainAndRole: "std:doc",
+        priority: "-1",
+        uri: "stubs/qiskit_ibm_provider.transpiler.passes.scheduling.ASAPScheduleAnalysis.__call__.html",
+        dispname: "ASAPScheduleAnalysis.__call__",
+      },
+      {
+        name: "search",
+        domainAndRole: "std:label",
+        priority: "-1",
+        uri: "search.html",
+        dispname: "Search Page",
+      },
+      {
+        name: "release notes_ignis_0.5.0",
+        domainAndRole: "std:label",
+        priority: "-1",
+        uri: "legacy_release_notes.html#release-notes-ignis-0-5-0",
+        dispname: "Ignis 0.5.0",
+      },
+      {
+        name: "index",
+        domainAndRole: "std:doc",
+        priority: "-1",
+        uri: "index.html",
+        dispname: "Qiskit IBM Quantum Provider API docs preview",
+      },
     ];
-    const objectsInv = new ObjectsInv(
-      preamble,
-      uris.map(([entry, _]) => entry),
-    );
+
+    const objectsInv = new ObjectsInv(preamble, entries);
     objectsInv.updateUris(transformFunction);
-    for (let i = 0; i < uris.length; i++) {
-      expect(objectsInv.entries[i].uri).toMatch(uris[i][1]);
-    }
+    expect(objectsInv.entries.map((i) => i.uri)).toMatchInlineSnapshot(`
+    [
+      "qaskat_abm_runtame.RuntameJob#$",
+      "qaskat_abm_runtame.RuntameJob#$",
+      "stubs/qaskat_abm_provader.transpaler.passes.schedulang.ASAPScheduleAnalysas.__call__",
+      "search",
+      "legacy_release_notes#release-notes-agnas-0-5-0",
+      "andex",
+    ]
+    `);
   });
 
   afterAll(async () => {
