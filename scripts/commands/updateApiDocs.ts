@@ -25,7 +25,7 @@ import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
 import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
 import { flatFolders } from "../lib/sphinx/flatFolders";
 import { updateLinks } from "../lib/sphinx/updateLinks";
-import { renameUrls } from "../lib/sphinx/renameUrls";
+import specialCaseResults from "../lib/sphinx/specialCaseResults";
 import { addFrontMatter } from "../lib/sphinx/addFrontMatter";
 import { dedupeResultIds } from "../lib/sphinx/dedupeIds";
 import { removePrefix, removeSuffix } from "../lib/stringUtils";
@@ -91,12 +91,6 @@ const PACKAGES: PkgInfo[] = [
     githubSlug: "qiskit/qiskit",
     initialUrl: `/apidoc/index.html`,
     hasSeparateReleaseNotes: true,
-    tocOptions: {
-      collapsed: true,
-      nestModule(id: string) {
-        return id.split(".").length > 2;
-      },
-    },
   },
 ];
 
@@ -279,7 +273,7 @@ async function convertHtmlToMarkdown(
 
   results = await mergeClassMembers(results);
   flatFolders(results);
-  renameUrls(results);
+  specialCaseResults(results);
   await updateLinks(results, pkg.transformLink);
   await dedupeResultIds(results);
   addFrontMatter(results, pkg);

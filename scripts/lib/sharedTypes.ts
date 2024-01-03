@@ -29,10 +29,6 @@ export type PkgInfo = {
   title: string;
   ignore?(id: string): boolean;
   hasSeparateReleaseNotes?: boolean;
-  tocOptions?: {
-    collapsed?: boolean;
-    nestModule?(id: string): boolean;
-  };
   transformLink?: (link: Link) => Link | undefined;
 };
 
