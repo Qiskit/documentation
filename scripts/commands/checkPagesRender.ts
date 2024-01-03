@@ -142,7 +142,7 @@ async function determineFilePaths(args: Arguments): Promise<string[]> {
   if (!args.qiskitReleaseNotes) {
     globs.push("!docs/api/qiskit/release-notes/*");
   }
-  if (args.translations) {
+  if (!args.translations) {
     globs.push("translations/**/*.{ipynb,md,mdx}");
   }
   return globby(globs);
