@@ -27,6 +27,17 @@ test("addFrontMatter()", () => {
       isReleaseNotes: false,
     },
     {
+      markdown: "# Hardcoded with python_api_name!",
+      meta: {
+        hardcoded_frontmatter:
+          "title: hardcoded with python_api_name\ndescription: Hello world!",
+        python_api_name: "quantum_software.MyClass",
+        python_api_type: "class",
+      },
+      images: [],
+      isReleaseNotes: true,
+    },
+    {
       markdown: "# Python API",
       meta: {
         python_api_name: "quantum_software.MyClass",
@@ -56,6 +67,13 @@ description: Hello world!
 ---
 
 # Hardcoded!
+`,
+    `---
+title: hardcoded with python_api_name
+description: Hello world!
+---
+
+# Hardcoded with python_api_name!
 `,
     `---
 title: MyClass
