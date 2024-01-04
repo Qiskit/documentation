@@ -10,28 +10,15 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { load } from "cheerio";
-import { unified } from "unified";
-import rehypeParse from "rehype-parse";
-import rehypeRemark from "rehype-remark";
-import remarkStringify from "remark-stringify";
-import remarkGfm from "remark-gfm";
-import { last, first, without, initial, tail } from "lodash";
+import { CheerioAPI, Cheerio, load } from "cheerio";
+import { last, without } from "lodash";
 import { defaultHandlers, Handle, toMdast, all } from "hast-util-to-mdast";
 import { toText } from "hast-util-to-text";
-import remarkMath from "remark-math";
-import remarkMdx from "remark-mdx";
 import { SphinxToMdResult } from "./SphinxToMdResult";
 import { PythonObjectMeta } from "./PythonObjectMeta";
-import {
-  getLastPartFromFullIdentifier,
-  removePrefix,
-  removeSuffix,
-} from "../stringUtils";
-import { remarkStringifyOptions } from "./unifiedParser";
+import { getLastPartFromFullIdentifier } from "../stringUtils";
+import { sphinxHtmlToMarkdownUnifiedPlugin } from "./unifiedParser";
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
-import { visit } from "unist-util-visit";
-import { Root } from "mdast";
 
 export async function sphinxHtmlToMarkdown(options: {
   html: string;
@@ -42,7 +29,6 @@ export async function sphinxHtmlToMarkdown(options: {
   baseSourceUrl?: string;
   releaseNotesTitle?: string;
 }): Promise<SphinxToMdResult> {
-  const images: Array<{ src: string; dest: string }> = [];
   const {
     html,
     url,
@@ -53,130 +39,12 @@ export async function sphinxHtmlToMarkdown(options: {
   const meta: PythonObjectMeta = {};
   const isReleaseNotes = url.endsWith("release_notes.html") ? true : false;
 
-  const $page = load(html);
-  const main = $page(`[role='main']`);
-  const $main = $page(main);
+  const $ = load(html);
+  const main = $(`[role='main']`);
+  const $main = $(main);
+  const images = loadImages($, $main, url, imageDestination, isReleaseNotes);
 
-  // remove html extensions in relative links
-  $main.find("a").each((_, link) => {
-    const $link = $page(link);
-    const href = $link.attr("href");
-    if (href && !href.startsWith("http")) {
-      $link.attr("href", href.replaceAll(".html", ""));
-    }
-  });
-
-  if (isReleaseNotes && releaseNotesTitle) {
-    // Replace heading with custom heading
-    $page("h1").html(releaseNotesTitle);
-  }
-
-  $main
-    .find("img")
-    .toArray()
-    .forEach((el) => {
-      const $img = $page(el);
-
-      const imageUrl = new URL($img.attr("src")!, url);
-      const src = imageUrl.toString();
-
-      const filename = last(src.split("/"));
-      const dest = `${imageDestination}/${filename}`;
-
-      $img.attr("src", dest);
-
-      if (isReleaseNotes) {
-        // Release notes links should point to the current version
-        $img.attr("src", dest.replace(/[0-9].*\//, ""));
-      }
-
-      images.push({ src, dest: dest });
-    });
-
-  // remove permalink links
-  $main.find('a[title="Permalink to this headline"]').remove();
-  $main.find('a[title="Permalink to this heading"]').remove();
-  $main.find('a[title="Permalink to this definition"]').remove();
-  $main.find('a[title="Link to this heading"]').remove();
-  $main.find('a[title="Link to this definition"]').remove();
-
-  // remove download source code
-  $main.find("p > a.reference.download.internal").closest("p").remove();
-
-  // handle tabs, use heading for the summary and remove the blockquote
-  $main.find(".sd-summary-title").each((_, quote) => {
-    const $quote = $page(quote);
-    $quote.replaceWith(`<h3>${$quote.html()}</h3>`);
-  });
-
-  $main.find(".sd-card-body blockquote").each((_, quote) => {
-    const $quote = $page(quote);
-    $quote.replaceWith($quote.children());
-  });
-
-  // add language class to code blocks
-  $main.find("pre").each((_, pre) => {
-    const $pre = $page(pre);
-    $pre.replaceWith(
-      `<pre><code class="language-python">${$pre.html()}</code></pre>`,
-    );
-  });
-
-  // replace source links
-  $main.find("a").each((_, a) => {
-    const $a = $page(a);
-    const href = $a.attr("href");
-    if (href?.startsWith("http:")) return;
-    if (href?.includes(`/_modules/`)) {
-      //_modules/qiskit_ibm_runtime/ibm_backend
-      const match = href?.match(/_modules\/(.*?)(#|$)/);
-      if (match) {
-        const newHref = `${baseSourceUrl ?? ""}${match[1]}.py`;
-        $a.attr("href", newHref);
-      }
-    }
-  });
-
-  // use titles for method and attribute headers
-  $main.find(".rubric").each((_, el) => {
-    const $el = $page(el);
-    $el.replaceWith(`<h2>${$el.html()}</h2>`);
-  });
-
-  // delete colons
-  $main.find(".colon").remove();
-
-  // translate type headings to titles
-  function findByText(selector: string, text: string) {
-    return $main
-      .find(selector)
-      .filter((i, el) => $page(el).text().trim() === text);
-  }
-
-  $main
-    .find("dl.field-list.simple")
-    .toArray()
-    .map((dl) => {
-      const $dl = $page(dl);
-
-      $dl
-        .find("dt")
-        .toArray()
-        .forEach((dt) => {
-          const $dt = $page(dt);
-          $dt.replaceWith(`<strong>${$dt.html()}</strong>`);
-        });
-
-      $dl
-        .find("dd")
-        .toArray()
-        .forEach((dd) => {
-          const $dd = $page(dd);
-          $dd.replaceWith(`<div>${$dd.html()}</div>`);
-        });
-
-      $dl.replaceWith(`<div>${$dl.html()}</div>`);
-    });
+  preprocessHtml($, $main, baseSourceUrl, isReleaseNotes, releaseNotesTitle);
 
   let continueMapMembers = true;
   while (continueMapMembers) {
@@ -192,12 +60,12 @@ export async function sphinxHtmlToMarkdown(options: {
       continue;
     }
 
-    const $dl = $page(dl);
+    const $dl = $(dl);
     const replacement = $dl
       .children()
       .toArray()
       .map((child) => {
-        const $child = $page(child);
+        const $child = $(child);
         $child.find(".viewcode-link").closest("a").remove();
         const id = $dl.find("dt").attr("id") || "";
 
@@ -207,7 +75,7 @@ export async function sphinxHtmlToMarkdown(options: {
             meta.python_api_name = id;
           }
 
-          findByText("em.property", "class").remove();
+          findByText($, $main, "em.property", "class").remove();
           return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
         } else if (child.name === "dt" && $dl.hasClass("property")) {
           if (!meta.python_api_type) {
@@ -219,7 +87,7 @@ export async function sphinxHtmlToMarkdown(options: {
             }
           }
 
-          findByText("em.property", "property").remove();
+          findByText($, $main, "em.property", "property").remove();
           const signature = $child.find("em").text()?.replace(/^:\s+/, "");
           if (signature.trim().length === 0) return;
           return `<span class="target" id='${id}'/><p><code>${signature}</code></p>`;
@@ -233,13 +101,13 @@ export async function sphinxHtmlToMarkdown(options: {
           } else {
             // Inline methods
             if (id) {
-              $page(
-                `<h3>${getLastPartFromFullIdentifier(id)}</h3>`,
-              ).insertBefore($dl);
+              $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore(
+                $dl,
+              );
             }
           }
 
-          findByText("em.property", "method").remove();
+          findByText($, $main, "em.property", "method").remove();
           return `<span class="target" id='${id}'/><p><code>${$child.html()}</code></p>`;
         } else if (child.name === "dt" && $dl.hasClass("attribute")) {
           if (!meta.python_api_type) {
@@ -250,7 +118,7 @@ export async function sphinxHtmlToMarkdown(options: {
               $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
             }
 
-            findByText("em.property", "attribute").remove();
+            findByText($, $main, "em.property", "attribute").remove();
             const signature = $child.find("em").text()?.replace(/^:\s+/, "");
             if (signature.trim().length === 0) return;
             return `<span class="target" id='${id}'/><p><code>${signature}</code></p>`;
@@ -289,7 +157,7 @@ export async function sphinxHtmlToMarkdown(options: {
             meta.python_api_type = "function";
             meta.python_api_name = id;
           }
-          findByText("em.property", "function").remove();
+          findByText($, $main, "em.property", "function").remove();
           return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
         } else if (child.name === "dt" && $dl.hasClass("exception")) {
           if (!meta.python_api_type) {
@@ -297,7 +165,7 @@ export async function sphinxHtmlToMarkdown(options: {
             meta.python_api_name = id;
           }
 
-          findByText("em.property", "exception").remove();
+          findByText($, $main, "em.property", "exception").remove();
           return `<span class="target" id='${id}'/><p><code>${$child.html()}</code></p>`;
         }
 
@@ -313,7 +181,7 @@ export async function sphinxHtmlToMarkdown(options: {
     .find("div.math")
     .toArray()
     .map((el) => {
-      const $el = $page(el);
+      const $el = $(el);
       $el.replaceWith(`<pre class="math">${$el.html()}</pre>`);
     });
 
@@ -322,7 +190,7 @@ export async function sphinxHtmlToMarkdown(options: {
   const moduleIdWithPrefix = $main
     .find("span, section")
     .toArray()
-    .map((el) => $page(el).attr("id"))
+    .map((el) => $(el).attr("id"))
     .find((id) => id?.startsWith(modulePrefix));
   if (moduleIdWithPrefix) {
     meta.python_api_type = "module";
@@ -335,8 +203,8 @@ export async function sphinxHtmlToMarkdown(options: {
       .find("h1,h2")
       .toArray()
       .forEach((el) => {
-        const $el = $page(el);
-        const $a = $page($el.find("a"));
+        const $el = $(el);
+        const $a = $($el.find("a"));
         const signature = $a.text();
         $a.remove();
 
@@ -351,8 +219,145 @@ export async function sphinxHtmlToMarkdown(options: {
   }
 
   // convert to markdown
-  const mainHtml = main.html()!;
+  const markdown = await generateMarkdownFile(main.html()!, meta);
 
+  return { markdown, meta, images, isReleaseNotes };
+}
+
+function loadImages(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+  url: string,
+  imageDestination: string,
+  isReleaseNotes: boolean,
+): Array<{ src: string; dest: string }> {
+  const images: Array<{ src: string; dest: string }> = [];
+  $main
+    .find("img")
+    .toArray()
+    .forEach((img) => {
+      const $img = $(img);
+
+      const imageUrl = new URL($img.attr("src")!, url);
+      const src = imageUrl.toString();
+
+      const filename = last(src.split("/"));
+      const dest = `${imageDestination}/${filename}`;
+
+      $img.attr("src", dest);
+
+      if (isReleaseNotes) {
+        // Release notes links should point to the current version
+        $img.attr("src", dest.replace(/[0-9].*\//, ""));
+      }
+
+      images.push({ src, dest: dest });
+    });
+
+  return images;
+}
+
+function preprocessHtml(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+  baseSourceUrl: string | undefined,
+  isReleaseNotes: boolean,
+  releaseNotesTitle: string | undefined,
+) {
+  // remove html extensions in relative links
+  $main.find("a").each((_, link) => {
+    const $link = $(link);
+    const href = $link.attr("href");
+    if (href && !href.startsWith("http")) {
+      $link.attr("href", href.replaceAll(".html", ""));
+    }
+  });
+
+  // Custom heading for release notes
+  if (isReleaseNotes && releaseNotesTitle) {
+    $("h1").html(releaseNotesTitle);
+  }
+
+  // remove permalink links
+  $main.find('a[title="Permalink to this headline"]').remove();
+  $main.find('a[title="Permalink to this heading"]').remove();
+  $main.find('a[title="Permalink to this definition"]').remove();
+  $main.find('a[title="Link to this heading"]').remove();
+  $main.find('a[title="Link to this definition"]').remove();
+
+  // remove download source code
+  $main.find("p > a.reference.download.internal").closest("p").remove();
+
+  // handle tabs, use heading for the summary and remove the blockquote
+  $main.find(".sd-summary-title").each((_, quote) => {
+    const $quote = $(quote);
+    $quote.replaceWith(`<h3>${$quote.html()}</h3>`);
+  });
+
+  $main.find(".sd-card-body blockquote").each((_, quote) => {
+    const $quote = $(quote);
+    $quote.replaceWith($quote.children());
+  });
+
+  // add language class to code blocks
+  $main.find("pre").each((_, pre) => {
+    const $pre = $(pre);
+    $pre.replaceWith(
+      `<pre><code class="language-python">${$pre.html()}</code></pre>`,
+    );
+  });
+
+  // replace source links
+  $main.find("a").each((_, a) => {
+    const $a = $(a);
+    const href = $a.attr("href");
+    if (href?.startsWith("http:")) return;
+    if (href?.includes(`/_modules/`)) {
+      //_modules/qiskit_ibm_runtime/ibm_backend
+      const match = href?.match(/_modules\/(.*?)(#|$)/);
+      if (match) {
+        const newHref = `${baseSourceUrl ?? ""}${match[1]}.py`;
+        $a.attr("href", newHref);
+      }
+    }
+  });
+
+  // use titles for method and attribute headers
+  $main.find(".rubric").each((_, el) => {
+    const $el = $(el);
+    $el.replaceWith(`<h2>${$el.html()}</h2>`);
+  });
+
+  // delete colons
+  $main.find(".colon").remove();
+
+  $main
+    .find("dl.field-list.simple")
+    .toArray()
+    .map((dl) => {
+      const $dl = $(dl);
+
+      $dl
+        .find("dt")
+        .toArray()
+        .forEach((dt) => {
+          const $dt = $(dt);
+          $dt.replaceWith(`<strong>${$dt.html()}</strong>`);
+        });
+
+      $dl
+        .find("dd")
+        .toArray()
+        .forEach((dd) => {
+          const $dd = $(dd);
+          $dd.replaceWith(`<div>${$dd.html()}</div>`);
+        });
+
+      $dl.replaceWith(`<div>${$dl.html()}</div>`);
+    });
+}
+
+async function generateMarkdownFile(mainHtml: string, meta: PythonObjectMeta) {
   const handlers: Record<string, Handle> = {
     br(h, node: any) {
       return all(h, node);
@@ -474,72 +479,9 @@ export async function sphinxHtmlToMarkdown(options: {
     },
   };
 
-  const mdFile = await unified()
-    .use(rehypeParse)
-    .use(remarkGfm)
-    .use(remarkMath)
-    .use(remarkMdx)
-    .use(rehypeRemark, {
-      handlers,
-    })
-    .use(remarkStringify, remarkStringifyOptions)
-    .use(() => {
-      return (root: Root) => {
-        // merge contiguous emphasis
-        visit(root, "emphasis", (node, index, parent) => {
-          if (index === null || parent === null) return;
-          let nextIndex = index + 1;
-          while (parent.children[nextIndex]?.type === "emphasis") {
-            node.children.push(
-              ...((parent.children[nextIndex] as any).children ?? []),
-            );
-            nextIndex++;
-          }
-          parent.children.splice(index + 1, nextIndex - (index + 1));
-        });
+  const mdFile = await sphinxHtmlToMarkdownUnifiedPlugin(mainHtml, handlers);
 
-        // remove initial and trailing spaces from emphasis
-        visit(root, "emphasis", (node, index, parent) => {
-          if (index === null || parent === null) return;
-          const firstChild = first(node.children);
-          if (firstChild?.type === "text") {
-            const match = firstChild.value.match(/^\s+/);
-            if (match) {
-              if (match[0] === firstChild.value) {
-                node.children = tail(node.children);
-              } else {
-                firstChild.value = removePrefix(firstChild.value, match[0]);
-              }
-              parent.children.splice(index, 0, {
-                type: "text",
-                value: match[0],
-              });
-            }
-          }
-          const lastChild = last(node.children);
-          if (lastChild?.type === "text") {
-            const match = lastChild.value.match(/\s+$/);
-            if (match) {
-              if (match[0] === lastChild.value) {
-                node.children = initial(node.children);
-              } else {
-                lastChild.value = removeSuffix(lastChild.value, match[0]);
-              }
-              parent.children.splice(index + 1, 0, {
-                type: "text",
-                value: match[0],
-              });
-            }
-          }
-        });
-      };
-    })
-    .process(mainHtml);
-
-  let markdown = mdFile.toString();
-  markdown = markdown.replaceAll(`<!---->`, "");
-
-  return { markdown, meta, images, isReleaseNotes };
+  return mdFile.toString().replaceAll(`<!---->`, "");
 }
 
 function buildAdmonition(options: {
@@ -580,4 +522,14 @@ function buildSpanId(id: string): MdxJsxFlowElement {
     ],
     children: [],
   };
+}
+
+// translate type headings to titles
+function findByText(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+  selector: string,
+  text: string,
+) {
+  return $main.find(selector).filter((i, el) => $(el).text().trim() === text);
 }
