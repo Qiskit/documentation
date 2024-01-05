@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.AlignMeasures
 ---
 
-# AlignMeasures[¶](#alignmeasures "Permalink to this headline")
+# AlignMeasures
 
 <span id="qiskit.transpiler.passes.AlignMeasures" />
 

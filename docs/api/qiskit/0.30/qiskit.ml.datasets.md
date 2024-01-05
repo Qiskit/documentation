@@ -20,13 +20,13 @@ Sample datasets suitable for machine learning problems
 
 # Datasets
 
-|                                                                                                                                             |                               |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| [`ad_hoc_data`](qiskit.ml.datasets.ad_hoc_data#qiskit.ml.datasets.ad_hoc_data "qiskit.ml.datasets.ad_hoc_data")                             | returns ad hoc dataset        |
-| [`sample_ad_hoc_data`](qiskit.ml.datasets.sample_ad_hoc_data#qiskit.ml.datasets.sample_ad_hoc_data "qiskit.ml.datasets.sample_ad_hoc_data") | returns sample ad hoc data    |
-| [`breast_cancer`](qiskit.ml.datasets.breast_cancer#qiskit.ml.datasets.breast_cancer "qiskit.ml.datasets.breast_cancer")                     | returns breast cancer dataset |
-| [`digits`](qiskit.ml.datasets.digits#qiskit.ml.datasets.digits "qiskit.ml.datasets.digits")                                                 | returns digits dataset        |
-| [`gaussian`](qiskit.ml.datasets.gaussian#qiskit.ml.datasets.gaussian "qiskit.ml.datasets.gaussian")                                         | returns gaussian dataset      |
-| [`iris`](qiskit.ml.datasets.iris#qiskit.ml.datasets.iris "qiskit.ml.datasets.iris")                                                         | returns iris dataset          |
-| [`wine`](qiskit.ml.datasets.wine#qiskit.ml.datasets.wine "qiskit.ml.datasets.wine")                                                         | returns wine dataset          |
+|                                                                                                       |                               |
+| ----------------------------------------------------------------------------------------------------- | ----------------------------- |
+| [`ad_hoc_data`](qiskit.ml.datasets.ad_hoc_data "qiskit.ml.datasets.ad_hoc_data")                      | returns ad hoc dataset        |
+| [`sample_ad_hoc_data`](qiskit.ml.datasets.sample_ad_hoc_data "qiskit.ml.datasets.sample_ad_hoc_data") | returns sample ad hoc data    |
+| [`breast_cancer`](qiskit.ml.datasets.breast_cancer "qiskit.ml.datasets.breast_cancer")                | returns breast cancer dataset |
+| [`digits`](qiskit.ml.datasets.digits "qiskit.ml.datasets.digits")                                     | returns digits dataset        |
+| [`gaussian`](qiskit.ml.datasets.gaussian "qiskit.ml.datasets.gaussian")                               | returns gaussian dataset      |
+| [`iris`](qiskit.ml.datasets.iris "qiskit.ml.datasets.iris")                                           | returns iris dataset          |
+| [`wine`](qiskit.ml.datasets.wine "qiskit.ml.datasets.wine")                                           | returns wine dataset          |
 

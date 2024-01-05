@@ -1,6 +1,14 @@
+---
+title: plot_state_paulivec
+description: API reference for qiskit.visualization.plot_state_paulivec
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_state_paulivec
+---
+
 # qiskit.visualization.plot\_state\_paulivec
 
-
+<span id="qiskit.visualization.plot_state_paulivec" />
 
 `plot_state_paulivec(state, title='', figsize=None, color=None, ax=None, *, rho=None)`
 
@@ -10,7 +18,7 @@ Plot a bargraph of the mixed state rho over the pauli matrices
 
 **Parameters**
 
-*   **state** ([*Statevector*](qiskit.quantum_info.Statevector#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix#qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
+*   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
 *   **title** (*str*) – a string that represents the plot title
 *   **figsize** (*tuple*) – Figure size in inches.
 *   **color** (*list or str*) – Color of the expectation value bars.
@@ -26,8 +34,8 @@ matplotlib.Figure
 
 **Raises**
 
-*   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – Requires matplotlib.
-*   [**VisualizationError**](qiskit.visualization.VisualizationError#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
+*   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – Requires matplotlib.
+*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 
 ## Example
 
@@ -47,3 +55,4 @@ plot_state_paulivec(state, color='midnightblue',
 ```
 
 ![../\_images/qiskit.visualization.plot\_state\_paulivec\_0\_0.png](/images/api/qiskit/0.30/qiskit.visualization.plot_state_paulivec_0_0.png)
+

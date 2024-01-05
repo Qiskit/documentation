@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.TrivialLayout
 ---
 
-# TrivialLayout[¶](#triviallayout "Permalink to this headline")
+# TrivialLayout
 
 <span id="qiskit.transpiler.passes.TrivialLayout" />
 

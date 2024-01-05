@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.ControlledGate
 ---
 
-# ControlledGate[¶](#controlledgate "Permalink to this headline")
+# ControlledGate
 
 <span id="qiskit.circuit.ControlledGate" />
 

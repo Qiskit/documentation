@@ -1,6 +1,14 @@
+---
+title: coherent_unitary_error
+description: API reference for qiskit.providers.aer.noise.coherent_unitary_error
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.noise.coherent_unitary_error
+---
+
 # qiskit.providers.aer.noise.coherent\_unitary\_error
 
-
+<span id="qiskit.providers.aer.noise.coherent_unitary_error" />
 
 `coherent_unitary_error(unitary)`
 
@@ -16,4 +24,5 @@ The quantum error object.
 
 **Return type**
 
-[QuantumError](qiskit.providers.aer.noise.QuantumError#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+[QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+

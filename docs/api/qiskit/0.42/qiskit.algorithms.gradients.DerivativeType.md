@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.DerivativeType
 ---
 
-# DerivativeType[¶](#derivativetype "Permalink to this headline")
+# DerivativeType
 
 <span id="qiskit.algorithms.gradients.DerivativeType" />
 

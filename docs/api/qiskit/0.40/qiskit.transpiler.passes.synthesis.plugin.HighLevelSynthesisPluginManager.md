@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager
 ---
 
-# HighLevelSynthesisPluginManager[¶](#highlevelsynthesispluginmanager "Permalink to this headline")
+# HighLevelSynthesisPluginManager
 
 <span id="qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPluginManager" />
 

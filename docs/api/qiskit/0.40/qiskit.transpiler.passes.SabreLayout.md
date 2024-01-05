@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.SabreLayout
 ---
 
-# SabreLayout[¶](#sabrelayout "Permalink to this headline")
+# SabreLayout
 
 <span id="qiskit.transpiler.passes.SabreLayout" />
 

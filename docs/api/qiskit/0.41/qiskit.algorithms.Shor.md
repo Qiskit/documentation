@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.Shor
 ---
 
-# Shor[¶](#shor "Permalink to this headline")
+# Shor
 
 <span id="qiskit.algorithms.Shor" />
 

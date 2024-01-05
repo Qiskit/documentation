@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.AmplificationProblem
 ---
 
-# AmplificationProblem[¶](#amplificationproblem "Permalink to this headline")
+# AmplificationProblem
 
 <span id="qiskit.algorithms.AmplificationProblem" />
 

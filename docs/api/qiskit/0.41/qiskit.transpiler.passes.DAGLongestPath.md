@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.DAGLongestPath
 ---
 
-# DAGLongestPath[¶](#daglongestpath "Permalink to this headline")
+# DAGLongestPath
 
 <span id="qiskit.transpiler.passes.DAGLongestPath" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.Optimize1qGatesDecomposition
 ---
 
-# Optimize1qGatesDecomposition[¶](#optimize1qgatesdecomposition "Permalink to this headline")
+# Optimize1qGatesDecomposition
 
 <span id="qiskit.transpiler.passes.Optimize1qGatesDecomposition" />
 

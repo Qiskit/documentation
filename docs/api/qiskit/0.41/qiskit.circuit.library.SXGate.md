@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.SXGate
 ---
 
-# SXGate[¶](#sxgate "Permalink to this headline")
+# SXGate
 
 <span id="qiskit.circuit.library.SXGate" />
 

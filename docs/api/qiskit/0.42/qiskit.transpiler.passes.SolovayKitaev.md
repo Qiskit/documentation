@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.SolovayKitaev
 ---
 
-# SolovayKitaev[¶](#solovaykitaev "Permalink to this headline")
+# SolovayKitaev
 
 <span id="qiskit.transpiler.passes.SolovayKitaev" />
 

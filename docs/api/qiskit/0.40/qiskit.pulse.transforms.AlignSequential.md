@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.transforms.AlignSequential
 ---
 
-# AlignSequential[¶](#alignsequential "Permalink to this headline")
+# AlignSequential
 
 <span id="qiskit.pulse.transforms.AlignSequential" />
 

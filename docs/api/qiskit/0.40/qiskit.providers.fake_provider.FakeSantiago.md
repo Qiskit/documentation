@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeSantiago
 ---
 
-# FakeSantiago[¶](#fakesantiago "Permalink to this headline")
+# FakeSantiago
 
 <span id="qiskit.providers.fake_provider.FakeSantiago" />
 

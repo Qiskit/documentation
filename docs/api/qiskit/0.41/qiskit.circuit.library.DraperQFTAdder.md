@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.DraperQFTAdder
 ---
 
-# DraperQFTAdder[¶](#draperqftadder "Permalink to this headline")
+# DraperQFTAdder
 
 <span id="qiskit.circuit.library.DraperQFTAdder" />
 

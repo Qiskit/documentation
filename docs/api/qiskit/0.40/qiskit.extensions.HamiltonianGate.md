@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.extensions.HamiltonianGate
 ---
 
-# HamiltonianGate[¶](#hamiltoniangate "Permalink to this headline")
+# HamiltonianGate
 
 <span id="qiskit.extensions.HamiltonianGate" />
 

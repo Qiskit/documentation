@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.models.PulseDefaults
 ---
 
-# PulseDefaults[¶](#pulsedefaults "Permalink to this headline")
+# PulseDefaults
 
 <span id="qiskit.providers.models.PulseDefaults" />
 

@@ -1,6 +1,14 @@
+---
+title: draw
+description: API reference for qiskit.visualization.pulse_v2.draw
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.pulse_v2.draw
+---
+
 # qiskit.visualization.pulse\_v2.draw
 
-
+<span id="qiskit.visualization.pulse_v2.draw" />
 
 `draw(program, style=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)`
 
@@ -8,7 +16,7 @@ Generate visualization data for pulse programs.
 
 **Parameters**
 
-*   **program** (`Union`\[`Waveform`, `ParametricPulse`, `Schedule`, `ScheduleBlock`]) – Program to visualize. This program can be arbitrary Qiskit Pulse program, such as `Waveform`, `ParametricPulse`, and [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule").
+*   **program** (`Union`\[`Waveform`, `ParametricPulse`, `Schedule`, `ScheduleBlock`]) – Program to visualize. This program can be arbitrary Qiskit Pulse program, such as `Waveform`, `ParametricPulse`, and [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule").
 
 *   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets. See also the stylesheet section for details of configuration keys.
 
@@ -307,4 +315,5 @@ In the same way as above, you can create custom generator or layout functions an
 **Raises**
 
 *   **MissingOptionalLibraryError** – When required visualization package is not installed.
-*   [**VisualizationError**](qiskit.visualization.VisualizationError#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When invalid plotter API or invalid time range is specified.
+*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – When invalid plotter API or invalid time range is specified.
+

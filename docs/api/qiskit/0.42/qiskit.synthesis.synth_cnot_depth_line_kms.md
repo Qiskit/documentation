@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.synthesis.synth_cnot_depth_line_kms
 ---
 
-# qiskit.synthesis.synth\_cnot\_depth\_line\_kms[¶](#qiskit-synthesis-synth-cnot-depth-line-kms "Permalink to this headline")
+# qiskit.synthesis.synth\_cnot\_depth\_line\_kms
 
 <span id="qiskit.synthesis.synth_cnot_depth_line_kms" />
 

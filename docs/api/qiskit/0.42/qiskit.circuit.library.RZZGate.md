@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.RZZGate
 ---
 
-# RZZGate[¶](#rzzgate "Permalink to this headline")
+# RZZGate
 
 <span id="qiskit.circuit.library.RZZGate" />
 

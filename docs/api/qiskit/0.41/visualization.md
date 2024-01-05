@@ -14,7 +14,7 @@ python_api_name: qiskit.visualization
 
 <span id="module-qiskit.visualization" />
 
-`qiskit.visualization¶`
+`qiskit.visualization`
 
 The visualization module contain functions that visualizes measurement outcome counts, quantum states, circuits, pulses, devices and more.
 
@@ -25,10 +25,6 @@ pip install 'qiskit[visualization]'
 ```
 
 ## Common Keyword Arguments
-
-<span id="module-qiskit.visualization" />
-
-`¶`
 
 Many of the figures created by visualization functions in this module are created by [Matplotlib](https://matplotlib.org/) and accept a subset of the following common arguments. Consult the individual documentation for exact details.
 
@@ -82,17 +78,13 @@ hist.savefig('new_hist.png')
 
 ## Counts Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 This section contains functions that visualize measurement outcome counts.
 
 |                                                                                                                             |                                        |
 | --------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
 | [`plot_histogram`](qiskit.visualization.plot_histogram "qiskit.visualization.plot_histogram")(data\[, figsize, color, ...]) | Plot a histogram of input counts data. |
 
-### Example Usage[¶](#example-usage "Permalink to this headline")
+### Example Usage
 
 Here is an example of using [`plot_histogram()`](qiskit.visualization.plot_histogram "qiskit.visualization.plot_histogram") to visualize measurement outcome counts:
 
@@ -109,10 +101,6 @@ The data can be a dictionary with bit string as key and counts as value, or more
 
 ## Distribution Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 This section contains functions that visualize sampled distributions.
 
 |                                                                                                                                      |                                              |
@@ -120,10 +108,6 @@ This section contains functions that visualize sampled distributions.
 | [`plot_distribution`](qiskit.visualization.plot_distribution "qiskit.visualization.plot_distribution")(data\[, figsize, color, ...]) | Plot a distribution from input sampled data. |
 
 ## State Visualizations
-
-<span id="module-qiskit.visualization" />
-
-`¶`
 
 This section contains functions that visualize quantum states.
 
@@ -136,7 +120,7 @@ This section contains functions that visualize quantum states.
 | [`plot_state_paulivec`](qiskit.visualization.plot_state_paulivec "qiskit.visualization.plot_state_paulivec")(state\[, title, figsize, ...]) | Plot the paulivec representation of a quantum state.             |
 | [`plot_state_qsphere`](qiskit.visualization.plot_state_qsphere "qiskit.visualization.plot_state_qsphere")(state\[, figsize, ax, ...])       | Plot the qsphere representation of a quantum state.              |
 
-### Example Usage[¶](#id1 "Permalink to this headline")
+### Example Usage
 
 Here is an example of using [`plot_state_city()`](qiskit.visualization.plot_state_city "qiskit.visualization.plot_state_city") to visualize a quantum state:
 
@@ -188,10 +172,6 @@ You can find code examples for each visualization functions on the individual fu
 
 ## Device Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                                        |                                                                     |
 | -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
 | [`plot_gate_map`](qiskit.visualization.plot_gate_map "qiskit.visualization.plot_gate_map")(backend\[, figsize, ...])                   | Plots the gate map of a device.                                     |
@@ -201,10 +181,6 @@ You can find code examples for each visualization functions on the individual fu
 
 ## Circuit Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                                 |                                    |
 | ------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
 | [`circuit_drawer`](qiskit.visualization.circuit_drawer "qiskit.visualization.circuit_drawer")(circuit\[, scale, filename, ...]) | Draw the quantum circuit.          |
@@ -212,29 +188,17 @@ You can find code examples for each visualization functions on the individual fu
 
 ## DAG Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                   |                                                                                                 |
 | ----------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------- |
 | [`dag_drawer`](qiskit.visualization.dag_drawer "qiskit.visualization.dag_drawer")(dag\[, scale, filename, style]) | Plot the directed acyclic graph (dag) to represent operation dependencies in a quantum circuit. |
 
 ## Pass Manager Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                                     |                         |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
 | [`pass_manager_drawer`](qiskit.visualization.pass_manager_drawer "qiskit.visualization.pass_manager_drawer")(pass\_manager\[, ...]) | Draws the pass manager. |
 
 ## Pulse Visualizations
-
-<span id="module-qiskit.visualization" />
-
-`¶`
 
 |                                                                                                                          |                                                   |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------- |
@@ -245,19 +209,11 @@ You can find code examples for each visualization functions on the individual fu
 
 ## Timeline Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                          |                                                             |
 | ------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
 | [`timeline_drawer`](qiskit.visualization.timeline_drawer "qiskit.visualization.timeline_drawer")(program\[, style, ...]) | Generate visualization data for scheduled circuit programs. |
 
 ## Single Qubit State Transition Visualizations
-
-<span id="module-qiskit.visualization" />
-
-`¶`
 
 |                                                                                                                                         |                                                                                                   |
 | --------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
@@ -265,19 +221,11 @@ You can find code examples for each visualization functions on the individual fu
 
 ## Array/Matrix Visualizations
 
-<span id="module-qiskit.visualization" />
-
-`¶`
-
 |                                                                                                                                 |                                                                       |
 | ------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
 | [`array_to_latex`](qiskit.visualization.array_to_latex "qiskit.visualization.array_to_latex")(array\[, precision, prefix, ...]) | Latex representation of a complex numpy array (with dimension 1 or 2) |
 
 ## Exceptions
-
-<span id="module-qiskit.visualization" />
-
-`¶`
 
 |                                                                                                                      |                                    |
 | -------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |

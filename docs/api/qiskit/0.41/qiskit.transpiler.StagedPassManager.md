@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.StagedPassManager
 ---
 
-# StagedPassManager[¶](#stagedpassmanager "Permalink to this headline")
+# StagedPassManager
 
 <span id="qiskit.transpiler.StagedPassManager" />
 

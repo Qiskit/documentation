@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.list_ops.ListOp
 ---
 
-# ListOp[¶](#listop "Permalink to this headline")
+# ListOp
 
 <span id="qiskit.opflow.list_ops.ListOp" />
 

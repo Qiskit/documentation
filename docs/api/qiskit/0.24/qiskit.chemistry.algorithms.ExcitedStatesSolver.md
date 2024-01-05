@@ -1,14 +1,24 @@
+---
+title: ExcitedStatesSolver
+description: API reference for qiskit.chemistry.algorithms.ExcitedStatesSolver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.ExcitedStatesSolver
+---
+
 <span id="qiskit-chemistry-algorithms-excitedstatessolver" />
 
 # qiskit.chemistry.algorithms.ExcitedStatesSolver
 
-
+<span id="qiskit.chemistry.algorithms.ExcitedStatesSolver" />
 
 `ExcitedStatesSolver`
 
 The excited states calculation interface
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.algorithms.ExcitedStatesSolver.__init__" />
 
 `__init__()`
 
@@ -16,12 +26,9 @@ Initialize self. See help(type(self)) for accurate signature.
 
 ## Methods
 
-|                                                                                                                                                      |                                                                                       |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.algorithms.ExcitedStatesSolver.__init__ "qiskit.chemistry.algorithms.ExcitedStatesSolver.__init__")()                 | Initialize self.                                                                      |
-| [`solve`](#qiskit.chemistry.algorithms.ExcitedStatesSolver.solve "qiskit.chemistry.algorithms.ExcitedStatesSolver.solve")(driver\[, aux\_operators]) | Compute the excited states energies of the molecule that was supplied via the driver. |
+### solve
 
-
+<span id="qiskit.chemistry.algorithms.ExcitedStatesSolver.solve" />
 
 `abstract solve(driver, aux_operators=None)`
 
@@ -39,3 +46,4 @@ Compute the excited states energies of the molecule that was supplied via the dr
 **Returns**
 
 an eigenstate result
+

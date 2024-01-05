@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit
 ---
 
-# CNOTUnitCircuit[¶](#cnotunitcircuit "Permalink to this headline")
+# CNOTUnitCircuit
 
 <span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit" />
 

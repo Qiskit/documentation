@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.acquire_channel
 ---
 
-# qiskit.pulse.builder.acquire\_channel[¶](#qiskit-pulse-builder-acquire-channel "Permalink to this headline")
+# qiskit.pulse.builder.acquire\_channel
 
 <span id="qiskit.pulse.builder.acquire_channel" />
 

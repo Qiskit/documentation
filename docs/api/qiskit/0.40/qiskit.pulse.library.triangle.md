@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.library.triangle
 ---
 
-# qiskit.pulse.library.triangle[¶](#qiskit-pulse-library-triangle "Permalink to this headline")
+# qiskit.pulse.library.triangle
 
 <span id="qiskit.pulse.library.triangle" />
 

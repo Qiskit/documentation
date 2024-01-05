@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.instructions.ShiftPhase
 ---
 
-# ShiftPhase[¶](#shiftphase "Permalink to this headline")
+# ShiftPhase
 
 <span id="qiskit.pulse.instructions.ShiftPhase" />
 

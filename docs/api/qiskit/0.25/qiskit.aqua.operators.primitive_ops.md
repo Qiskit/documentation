@@ -26,10 +26,10 @@ PrimitiveOps are the classes for representing basic Operators, backed by computa
 
 # Primitive Operators
 
-|                                                                                                                                                                    |                                                                                     |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
-| [`PrimitiveOp`](qiskit.aqua.operators.primitive_ops.PrimitiveOp#qiskit.aqua.operators.primitive_ops.PrimitiveOp "qiskit.aqua.operators.primitive_ops.PrimitiveOp") | A class for representing basic Operators, backed by Operator primitives from Terra. |
-| [`CircuitOp`](qiskit.aqua.operators.primitive_ops.CircuitOp#qiskit.aqua.operators.primitive_ops.CircuitOp "qiskit.aqua.operators.primitive_ops.CircuitOp")         | Class for Operators backed by Terra’s `QuantumCircuit` module.                      |
-| [`MatrixOp`](qiskit.aqua.operators.primitive_ops.MatrixOp#qiskit.aqua.operators.primitive_ops.MatrixOp "qiskit.aqua.operators.primitive_ops.MatrixOp")             | Class for Operators represented by matrices, backed by Terra’s `Operator` module.   |
-| [`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp#qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.PauliOp")                 | Class for Operators backed by Terra’s `Pauli` module.                               |
+|                                                                                                                    |                                                                                     |
+| ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
+| [`PrimitiveOp`](qiskit.aqua.operators.primitive_ops.PrimitiveOp "qiskit.aqua.operators.primitive_ops.PrimitiveOp") | A class for representing basic Operators, backed by Operator primitives from Terra. |
+| [`CircuitOp`](qiskit.aqua.operators.primitive_ops.CircuitOp "qiskit.aqua.operators.primitive_ops.CircuitOp")       | Class for Operators backed by Terra’s `QuantumCircuit` module.                      |
+| [`MatrixOp`](qiskit.aqua.operators.primitive_ops.MatrixOp "qiskit.aqua.operators.primitive_ops.MatrixOp")          | Class for Operators represented by matrices, backed by Terra’s `Operator` module.   |
+| [`PauliOp`](qiskit.aqua.operators.primitive_ops.PauliOp "qiskit.aqua.operators.primitive_ops.PauliOp")             | Class for Operators backed by Terra’s `Pauli` module.                               |
 

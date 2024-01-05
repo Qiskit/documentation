@@ -1,6 +1,14 @@
+---
+title: CircuitGradient
+description: API reference for qiskit.opflow.gradients.CircuitGradient
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.gradients.CircuitGradient
+---
+
 # qiskit.opflow\.gradients.CircuitGradient
 
-
+<span id="qiskit.opflow.gradients.CircuitGradient" />
 
 `CircuitGradient`
 
@@ -12,7 +20,9 @@ This is distinct from DerivativeBase converters which take gradients of composit
 
 CircuitGradient - uses quantum techniques to get derivatives of circuits DerivativeBase - uses classical techniques to differentiate operator flow data structures
 
+### \_\_init\_\_
 
+<span id="qiskit.opflow.gradients.CircuitGradient.__init__" />
 
 `__init__()`
 
@@ -20,12 +30,9 @@ Initialize self. See help(type(self)) for accurate signature.
 
 ## Methods
 
-|                                                                                                                                      |                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
-| [`__init__`](#qiskit.opflow.gradients.CircuitGradient.__init__ "qiskit.opflow.gradients.CircuitGradient.__init__")()                 | Initialize self.                |
-| [`convert`](#qiskit.opflow.gradients.CircuitGradient.convert "qiskit.opflow.gradients.CircuitGradient.convert")(operator\[, params]) | **type operator**`OperatorBase` |
+### convert
 
-
+<span id="qiskit.opflow.gradients.CircuitGradient.convert" />
 
 `abstract convert(operator, params=None)`
 
@@ -45,3 +52,4 @@ An operator whose evaluation yields the Gradient.
 **Raises**
 
 **ValueError** – If `params` contains a parameter not present in `operator`.
+

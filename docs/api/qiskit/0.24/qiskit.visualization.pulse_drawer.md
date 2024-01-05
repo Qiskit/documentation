@@ -1,8 +1,16 @@
+---
+title: pulse_drawer
+description: API reference for qiskit.visualization.pulse_drawer
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.pulse_drawer
+---
+
 <span id="qiskit-visualization-pulse-drawer" />
 
 # qiskit.visualization.pulse\_drawer
 
-
+<span id="qiskit.visualization.pulse_drawer" />
 
 `pulse_drawer(data, dt=1, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, plot_all=False, plot_range=None, interactive=False, table=False, label=False, framechange=True, channels=None, show_framechange_channels=True)`
 
@@ -102,5 +110,6 @@ qiskit.visualization.pulse_drawer(sched, style=my_style,
 
 **Raises**
 
-*   [**VisualizationError**](qiskit.visualization.VisualizationError#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when invalid data is given
+*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when invalid data is given
 *   **ImportError** – when matplotlib is not installed
+

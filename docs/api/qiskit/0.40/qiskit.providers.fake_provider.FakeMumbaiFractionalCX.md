@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeMumbaiFractionalCX
 ---
 
-# FakeMumbaiFractionalCX[¶](#fakemumbaifractionalcx "Permalink to this headline")
+# FakeMumbaiFractionalCX
 
 <span id="qiskit.providers.fake_provider.FakeMumbaiFractionalCX" />
 

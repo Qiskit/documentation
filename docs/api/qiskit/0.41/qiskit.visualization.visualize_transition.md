@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.visualize_transition
 ---
 
-# qiskit.visualization.visualize\_transition[¶](#qiskit-visualization-visualize-transition "Permalink to this headline")
+# qiskit.visualization.visualize\_transition
 
 <span id="qiskit.visualization.visualize_transition" />
 

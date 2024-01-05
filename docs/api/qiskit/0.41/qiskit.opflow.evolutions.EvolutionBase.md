@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.evolutions.EvolutionBase
 ---
 
-# EvolutionBase[¶](#evolutionbase "Permalink to this headline")
+# EvolutionBase
 
 <span id="qiskit.opflow.evolutions.EvolutionBase" />
 

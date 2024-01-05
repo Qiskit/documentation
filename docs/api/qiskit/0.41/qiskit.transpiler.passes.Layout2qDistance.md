@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.Layout2qDistance
 ---
 
-# Layout2qDistance[¶](#layout2qdistance "Permalink to this headline")
+# Layout2qDistance
 
 <span id="qiskit.transpiler.passes.Layout2qDistance" />
 

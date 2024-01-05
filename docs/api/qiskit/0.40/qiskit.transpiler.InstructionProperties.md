@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.InstructionProperties
 ---
 
-# InstructionProperties[¶](#instructionproperties "Permalink to this headline")
+# InstructionProperties
 
 <span id="qiskit.transpiler.InstructionProperties" />
 

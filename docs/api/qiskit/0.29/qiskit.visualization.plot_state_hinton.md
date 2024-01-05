@@ -1,6 +1,14 @@
+---
+title: plot_state_hinton
+description: API reference for qiskit.visualization.plot_state_hinton
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_state_hinton
+---
+
 # qiskit.visualization.plot\_state\_hinton
 
-
+<span id="qiskit.visualization.plot_state_hinton" />
 
 `plot_state_hinton(state, title='', figsize=None, ax_real=None, ax_imag=None, *, rho=None)`
 
@@ -8,7 +16,7 @@ Plot a hinton diagram for the density matrix of a quantum state.
 
 **Parameters**
 
-*   **state** ([*Statevector*](qiskit.quantum_info.Statevector#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix#qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – An N-qubit quantum state.
+*   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – An N-qubit quantum state.
 *   **title** (*str*) – a string that represents the plot title
 *   **figsize** (*tuple*) – Figure size in inches.
 *   **ax\_real** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. If this is specified without an ax\_imag only the real component plot will be generated. Additionally, if specified there will be no returned Figure since it is redundant.
@@ -24,8 +32,8 @@ matplotlib.Figure
 
 **Raises**
 
-*   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – Requires matplotlib.
-*   [**VisualizationError**](qiskit.visualization.VisualizationError#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
+*   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – Requires matplotlib.
+*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 
 ## Example
 
@@ -44,3 +52,4 @@ plot_state_hinton(state, title="New Hinton Plot")
 ```
 
 ![../\_images/qiskit.visualization.plot\_state\_hinton\_0\_0.png](/images/api/qiskit/0.29/qiskit.visualization.plot_state_hinton_0_0.png)
+

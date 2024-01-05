@@ -18,7 +18,7 @@ python_api_name: qiskit.providers
 
 `qiskit.providers`
 
-This module contains the classes used to build external providers for Terra. A provider is anything that provides an external service to Terra. The typical example of this is a Backend provider which provides [`Backend`](qiskit.providers.Backend#qiskit.providers.Backend "qiskit.providers.Backend") objects which can be used for executing `QuantumCircuit` and/or [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects. This module contains the abstract classes which are used to define the interface between a provider and terra.
+This module contains the classes used to build external providers for Terra. A provider is anything that provides an external service to Terra. The typical example of this is a Backend provider which provides [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend") objects which can be used for executing `QuantumCircuit` and/or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects. This module contains the abstract classes which are used to define the interface between a provider and terra.
 
 ## Version Support
 
@@ -38,30 +38,30 @@ It’s worth pointing out that Terra’s version support policy doesn’t mean p
 
 ### Provider
 
-|                                                                                                         |                                                               |
-| ------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| [`Provider`](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")()         | Base common type for all versioned Provider abstract classes. |
-| [`ProviderV1`](qiskit.providers.ProviderV1#qiskit.providers.ProviderV1 "qiskit.providers.ProviderV1")() | Base class for a Backend Provider.                            |
+|                                                                             |                                                               |
+| --------------------------------------------------------------------------- | ------------------------------------------------------------- |
+| [`Provider`](qiskit.providers.Provider "qiskit.providers.Provider")()       | Base common type for all versioned Provider abstract classes. |
+| [`ProviderV1`](qiskit.providers.ProviderV1 "qiskit.providers.ProviderV1")() | Base class for a Backend Provider.                            |
 
 ### Backend
 
-|                                                                                                                               |                                                              |
-| ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [`Backend`](qiskit.providers.Backend#qiskit.providers.Backend "qiskit.providers.Backend")()                                   | Base common type for all versioned Backend abstract classes. |
-| [`BackendV1`](qiskit.providers.BackendV1#qiskit.providers.BackendV1 "qiskit.providers.BackendV1")(configuration\[, provider]) | Abstract class for Backends                                  |
+|                                                                                                    |                                                              |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend")()                                 | Base common type for all versioned Backend abstract classes. |
+| [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")(configuration\[, provider]) | Abstract class for Backends                                  |
 
 ### Options
 
-|                                                                                           |                     |
-| ----------------------------------------------------------------------------------------- | ------------------- |
-| [`Options`](qiskit.providers.Options#qiskit.providers.Options "qiskit.providers.Options") | Base options object |
+|                                                                  |                     |
+| ---------------------------------------------------------------- | ------------------- |
+| [`Options`](qiskit.providers.Options "qiskit.providers.Options") | Base options object |
 
 ### Job
 
-|                                                                                                                 |                                                          |
-| --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| [`Job`](qiskit.providers.Job#qiskit.providers.Job "qiskit.providers.Job")()                                     | Base common type for all versioned Job abstract classes. |
-| [`JobV1`](qiskit.providers.JobV1#qiskit.providers.JobV1 "qiskit.providers.JobV1")(backend, job\_id, \*\*kwargs) | Class to handle jobs                                     |
+|                                                                                          |                                                          |
+| ---------------------------------------------------------------------------------------- | -------------------------------------------------------- |
+| [`Job`](qiskit.providers.Job "qiskit.providers.Job")()                                   | Base common type for all versioned Job abstract classes. |
+| [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1")(backend, job\_id, \*\*kwargs) | Class to handle jobs                                     |
 
 <span id="legacy-provider-interface-base-objects-qiskit-providers" />
 
@@ -73,24 +73,24 @@ It’s worth pointing out that Terra’s version support policy doesn’t mean p
 
 ## Base Objects
 
-|                                                                                                                                       |                                          |
-| ------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| [`BaseProvider`](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")(\*args, \*\*kwargs)     | Base class for a Backend Provider.       |
-| [`BaseBackend`](qiskit.providers.BaseBackend#qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")(configuration\[, provider]) | Legacy Base class for backends.          |
-| [`BaseJob`](qiskit.providers.BaseJob#qiskit.providers.BaseJob "qiskit.providers.BaseJob")(backend, job\_id)                           | Legacy Class to handle asynchronous jobs |
+|                                                                                                          |                                          |
+| -------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| [`BaseProvider`](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")(\*args, \*\*kwargs)      | Base class for a Backend Provider.       |
+| [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")(configuration\[, provider]) | Legacy Base class for backends.          |
+| [`BaseJob`](qiskit.providers.BaseJob "qiskit.providers.BaseJob")(backend, job\_id)                       | Legacy Class to handle asynchronous jobs |
 
 ## Job Status
 
-|                                                                                                          |                                       |
-| -------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| [`JobStatus`](qiskit.providers.JobStatus#qiskit.providers.JobStatus "qiskit.providers.JobStatus")(value) | Class for job status enumerated type. |
+|                                                                               |                                       |
+| ----------------------------------------------------------------------------- | ------------------------------------- |
+| [`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.JobStatus")(value) | Class for job status enumerated type. |
 
 ## Exceptions
 
-|                                                                                                                                                                                  |                                                                    |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| [`QiskitBackendNotFoundError`](qiskit.providers.QiskitBackendNotFoundError#qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError")(\*message) | Base class for errors raised while looking for a backend.          |
-| [`BackendPropertyError`](qiskit.providers.BackendPropertyError#qiskit.providers.BackendPropertyError "qiskit.providers.BackendPropertyError")(\*message)                         | Base class for errors raised while looking for a backend property. |
-| [`JobError`](qiskit.providers.JobError#qiskit.providers.JobError "qiskit.providers.JobError")(\*message)                                                                         | Base class for errors raised by Jobs.                              |
-| [`JobTimeoutError`](qiskit.providers.JobTimeoutError#qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError")(\*message)                                             | Base class for timeout errors raised by jobs.                      |
+|                                                                                                                                      |                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| [`QiskitBackendNotFoundError`](qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError")(\*message) | Base class for errors raised while looking for a backend.          |
+| [`BackendPropertyError`](qiskit.providers.BackendPropertyError "qiskit.providers.BackendPropertyError")(\*message)                   | Base class for errors raised while looking for a backend property. |
+| [`JobError`](qiskit.providers.JobError "qiskit.providers.JobError")(\*message)                                                       | Base class for errors raised by Jobs.                              |
+| [`JobTimeoutError`](qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError")(\*message)                                  | Base class for timeout errors raised by jobs.                      |
 

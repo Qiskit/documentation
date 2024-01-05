@@ -1,8 +1,16 @@
+---
+title: ResultError
+description: API reference for qiskit.result.ResultError
+in_page_toc_min_heading_level: 1
+python_api_type: exception
+python_api_name: qiskit.result.ResultError
+---
+
 <span id="qiskit-result-resulterror" />
 
 # qiskit.result.ResultError
 
-
+<span id="qiskit.result.ResultError" />
 
 `ResultError(error)`
 
@@ -24,8 +32,11 @@ error = {'status': 403,
 
 Set the error message.
 
+### with\_traceback
 
+<span id="qiskit.result.ResultError.with_traceback" />
 
 `with_traceback()`
 
 Exception.with\_traceback(tb) – set self.\_\_traceback\_\_ to tb and return self.
+

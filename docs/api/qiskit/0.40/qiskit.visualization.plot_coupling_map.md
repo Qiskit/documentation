@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.plot_coupling_map
 ---
 
-# qiskit.visualization.plot\_coupling\_map[¶](#qiskit-visualization-plot-coupling-map "Permalink to this headline")
+# qiskit.visualization.plot\_coupling\_map
 
 <span id="qiskit.visualization.plot_coupling_map" />
 

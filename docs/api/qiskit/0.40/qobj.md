@@ -14,13 +14,9 @@ python_api_name: qiskit.qobj
 
 <span id="module-qiskit.qobj" />
 
-`qiskit.qobj¶`
+`qiskit.qobj`
 
 ## Base
-
-<span id="module-qiskit.qobj" />
-
-`¶`
 
 |                                                                                                           |                                                                 |
 | --------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
@@ -29,10 +25,6 @@ python_api_name: qiskit.qobj
 | [`QobjHeader`](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")(\*\*kwargs)                               | A class used to represent a dictionary header in Qobj objects.  |
 
 ## Qasm
-
-<span id="module-qiskit.qobj" />
-
-`¶`
 
 |                                                                                                                                 |                                                                                                                           |
 | ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------- |
@@ -45,10 +37,6 @@ python_api_name: qiskit.qobj
 | [`GateCalibration`](qiskit.qobj.GateCalibration "qiskit.qobj.GateCalibration")(name, qubits, params, ...)                       | Each calibration specifies a unique gate by name, qubits and params, and contains the Pulse instructions to implement it. |
 
 ## Pulse
-
-<span id="module-qiskit.qobj" />
-
-`¶`
 
 |                                                                                                                                       |                                                                       |
 | ------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |

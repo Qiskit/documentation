@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CountOpsLongestPath
 ---
 
-# CountOpsLongestPath[¶](#countopslongestpath "Permalink to this headline")
+# CountOpsLongestPath
 
 <span id="qiskit.transpiler.passes.CountOpsLongestPath" />
 

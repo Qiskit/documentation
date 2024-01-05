@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.BIPMapping
 ---
 
-# BIPMapping[¶](#bipmapping "Permalink to this headline")
+# BIPMapping
 
 <span id="qiskit.transpiler.passes.BIPMapping" />
 

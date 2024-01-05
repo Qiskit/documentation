@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.managed.ManagedJobSet
 ---
 
-# ManagedJobSet[¶](#managedjobset "Permalink to this headline")
+# ManagedJobSet
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet" />
 

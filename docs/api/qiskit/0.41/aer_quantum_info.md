@@ -12,13 +12,9 @@ python_api_name: qiskit_aer.quantum_info
 
 <span id="module-qiskit_aer.quantum_info" />
 
-`qiskit_aer.quantum_info¶`
+`qiskit_aer.quantum_info`
 
 ## States
-
-<span id="module-qiskit_aer.quantum_info" />
-
-`¶`
 
 |                                                                                                                    |                      |
 | ------------------------------------------------------------------------------------------------------------------ | -------------------- |

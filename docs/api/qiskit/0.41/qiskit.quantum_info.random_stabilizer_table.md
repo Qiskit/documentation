@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.random_stabilizer_table
 ---
 
-# qiskit.quantum\_info.random\_stabilizer\_table[¶](#qiskit-quantum-info-random-stabilizer-table "Permalink to this headline")
+# qiskit.quantum\_info.random\_stabilizer\_table
 
 <span id="qiskit.quantum_info.random_stabilizer_table" />
 

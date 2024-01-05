@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.TranslateParameterizedGates
 ---
 
-# TranslateParameterizedGates[¶](#translateparameterizedgates "Permalink to this headline")
+# TranslateParameterizedGates
 
 <span id="qiskit.transpiler.passes.TranslateParameterizedGates" />
 

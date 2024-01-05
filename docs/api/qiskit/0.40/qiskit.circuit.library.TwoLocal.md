@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.TwoLocal
 ---
 
-# TwoLocal[¶](#twolocal "Permalink to this headline")
+# TwoLocal
 
 <span id="qiskit.circuit.library.TwoLocal" />
 

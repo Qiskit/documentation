@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.FlowController
 ---
 
-# FlowController[¶](#flowcontroller "Permalink to this headline")
+# FlowController
 
 <span id="qiskit.transpiler.FlowController" />
 

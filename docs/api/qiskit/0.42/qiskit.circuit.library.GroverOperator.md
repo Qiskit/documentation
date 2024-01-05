@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.GroverOperator
 ---
 
-# GroverOperator[¶](#groveroperator "Permalink to this headline")
+# GroverOperator
 
 <span id="qiskit.circuit.library.GroverOperator" />
 

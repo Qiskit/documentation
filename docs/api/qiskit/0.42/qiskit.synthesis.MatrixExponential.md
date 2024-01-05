@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.synthesis.MatrixExponential
 ---
 
-# MatrixExponential[¶](#matrixexponential "Permalink to this headline")
+# MatrixExponential
 
 <span id="qiskit.synthesis.MatrixExponential" />
 

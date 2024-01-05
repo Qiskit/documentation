@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit_aer.primitives.Sampler
 ---
 
-# Sampler[¶](#sampler "Permalink to this headline")
+# Sampler
 
 <span id="qiskit_aer.primitives.Sampler" />
 

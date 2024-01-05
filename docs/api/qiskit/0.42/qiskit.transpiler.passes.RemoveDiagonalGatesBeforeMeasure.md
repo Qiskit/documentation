@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.RemoveDiagonalGatesBeforeMeasure
 ---
 
-# RemoveDiagonalGatesBeforeMeasure[¶](#removediagonalgatesbeforemeasure "Permalink to this headline")
+# RemoveDiagonalGatesBeforeMeasure
 
 <span id="qiskit.transpiler.passes.RemoveDiagonalGatesBeforeMeasure" />
 

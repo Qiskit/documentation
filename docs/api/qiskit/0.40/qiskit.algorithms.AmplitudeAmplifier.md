@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.AmplitudeAmplifier
 ---
 
-# AmplitudeAmplifier[¶](#amplitudeamplifier "Permalink to this headline")
+# AmplitudeAmplifier
 
 <span id="qiskit.algorithms.AmplitudeAmplifier" />
 

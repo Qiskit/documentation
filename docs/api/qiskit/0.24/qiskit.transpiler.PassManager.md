@@ -1,8 +1,16 @@
+---
+title: PassManager
+description: API reference for qiskit.transpiler.PassManager
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.PassManager
+---
+
 <span id="qiskit-transpiler-passmanager" />
 
 # qiskit.transpiler.PassManager
 
-
+<span id="qiskit.transpiler.PassManager" />
 
 `PassManager(passes=None, max_iteration=1000, callback=None)`
 
@@ -20,7 +28,9 @@ Initialize an empty PassManager object (with no passes scheduled).
   The `callback` parameter is deprecated in favor of `PassManager.run(..., callback=callback, ...)`.
 </Admonition>
 
+### \_\_init\_\_
 
+<span id="qiskit.transpiler.PassManager.__init__" />
 
 `__init__(passes=None, max_iteration=1000, callback=None)`
 
@@ -38,17 +48,9 @@ Initialize an empty PassManager object (with no passes scheduled).
 
 ## Methods
 
-|                                                                                                                                     |                                                                    |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| [`__init__`](#qiskit.transpiler.PassManager.__init__ "qiskit.transpiler.PassManager.__init__")(\[passes, max\_iteration, callback]) | Initialize an empty PassManager object (with no passes scheduled). |
-| [`append`](#qiskit.transpiler.PassManager.append "qiskit.transpiler.PassManager.append")(passes\[, max\_iteration])                 | Append a Pass Set to the schedule of passes.                       |
-| [`draw`](#qiskit.transpiler.PassManager.draw "qiskit.transpiler.PassManager.draw")(\[filename, style, raw])                         | Draw the pass manager.                                             |
-| [`passes`](#qiskit.transpiler.PassManager.passes "qiskit.transpiler.PassManager.passes")()                                          | Return a list structure of the appended passes and its options.    |
-| [`remove`](#qiskit.transpiler.PassManager.remove "qiskit.transpiler.PassManager.remove")(index)                                     | Removes a particular pass in the scheduler.                        |
-| [`replace`](#qiskit.transpiler.PassManager.replace "qiskit.transpiler.PassManager.replace")(index, passes\[, max\_iteration])       | Replace a particular pass in the scheduler.                        |
-| [`run`](#qiskit.transpiler.PassManager.run "qiskit.transpiler.PassManager.run")(circuits\[, output\_name, callback])                | Run all the passes on the specified `circuits`.                    |
+### append
 
-
+<span id="qiskit.transpiler.PassManager.append" />
 
 `append(passes, max_iteration=None, **flow_controller_conditions)`
 
@@ -62,7 +64,7 @@ Append a Pass Set to the schedule of passes.
 
 **Raises**
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if a pass in passes is not a proper pass.
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if a pass in passes is not a proper pass.
 
 <Admonition title="See also" type="note">
   `RunningPassManager.add_flow_controller()` for more information about the control flow plugins.
@@ -72,7 +74,9 @@ Append a Pass Set to the schedule of passes.
 
 `None`
 
+### draw
 
+<span id="qiskit.transpiler.PassManager.draw" />
 
 `draw(filename=None, style=None, raw=False)`
 
@@ -98,7 +102,9 @@ Optional\[[PassManager](#qiskit.transpiler.PassManager "qiskit.transpiler.PassMa
 
 **ImportError** – when nxpd or pydot not installed.
 
+### passes
 
+<span id="qiskit.transpiler.PassManager.passes" />
 
 `passes()`
 
@@ -112,7 +118,9 @@ Return a list structure of the appended passes and its options.
 
 A list of pass sets, as defined in `append()`.
 
+### remove
 
+<span id="qiskit.transpiler.PassManager.remove" />
 
 `remove(index)`
 
@@ -124,13 +132,15 @@ Removes a particular pass in the scheduler.
 
 **Raises**
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the index is not found.
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the index is not found.
 
 **Return type**
 
 `None`
 
+### replace
 
+<span id="qiskit.transpiler.PassManager.replace" />
 
 `replace(index, passes, max_iteration=None, **flow_controller_conditions)`
 
@@ -145,7 +155,7 @@ Replace a particular pass in the scheduler.
 
 **Raises**
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if a pass in passes is not a proper pass or index not found.
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if a pass in passes is not a proper pass or index not found.
 
 <Admonition title="See also" type="note">
   `RunningPassManager.add_flow_controller()` for more information about the control flow plugins.
@@ -155,7 +165,9 @@ Replace a particular pass in the scheduler.
 
 `None`
 
+### run
 
+<span id="qiskit.transpiler.PassManager.run" />
 
 `run(circuits, output_name=None, callback=None)`
 
@@ -200,3 +212,4 @@ Run all the passes on the specified `circuits`.
 **Returns**
 
 The transformed circuit(s).
+

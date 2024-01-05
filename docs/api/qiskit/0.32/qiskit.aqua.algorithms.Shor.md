@@ -1,6 +1,14 @@
+---
+title: Shor
+description: API reference for qiskit.aqua.algorithms.Shor
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.Shor
+---
+
 # Shor
 
-
+<span id="qiskit.aqua.algorithms.Shor" />
 
 `Shor(N=15, a=2, quantum_instance=None)`
 
@@ -32,16 +40,78 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 
 ## Methods
 
-|                                                                                                                                                                    |                                                                                |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------ |
-| [`construct_circuit`](qiskit.aqua.algorithms.Shor.construct_circuit#qiskit.aqua.algorithms.Shor.construct_circuit "qiskit.aqua.algorithms.Shor.construct_circuit") | Construct circuit.                                                             |
-| [`modinv`](qiskit.aqua.algorithms.Shor.modinv#qiskit.aqua.algorithms.Shor.modinv "qiskit.aqua.algorithms.Shor.modinv")                                             | Returns the modular multiplicative inverse of a with respect to the modulus m. |
-| [`run`](qiskit.aqua.algorithms.Shor.run#qiskit.aqua.algorithms.Shor.run "qiskit.aqua.algorithms.Shor.run")                                                         | Execute the algorithm with selected backend.                                   |
-| [`set_backend`](qiskit.aqua.algorithms.Shor.set_backend#qiskit.aqua.algorithms.Shor.set_backend "qiskit.aqua.algorithms.Shor.set_backend")                         | Sets backend with configuration.                                               |
+### construct\_circuit
+
+<span id="qiskit.aqua.algorithms.Shor.construct_circuit" />
+
+`Shor.construct_circuit(measurement=False)`
+
+Construct circuit.
+
+**Parameters**
+
+**measurement** (`bool`) – Boolean flag to indicate if measurement should be included in the circuit.
+
+**Return type**
+
+`QuantumCircuit`
+
+**Returns**
+
+Quantum circuit.
+
+### modinv
+
+<span id="qiskit.aqua.algorithms.Shor.modinv" />
+
+`static Shor.modinv(a, m)`
+
+Returns the modular multiplicative inverse of a with respect to the modulus m.
+
+**Return type**
+
+`int`
+
+### run
+
+<span id="qiskit.aqua.algorithms.Shor.run" />
+
+`Shor.run(quantum_instance=None, **kwargs)`
+
+Execute the algorithm with selected backend.
+
+**Parameters**
+
+*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
+*   **kwargs** (*dict*) – kwargs
+
+**Returns**
+
+results of an algorithm.
+
+**Return type**
+
+dict
+
+**Raises**
+
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+
+### set\_backend
+
+<span id="qiskit.aqua.algorithms.Shor.set_backend" />
+
+`Shor.set_backend(backend, **kwargs)`
+
+Sets backend with configuration.
+
+**Return type**
+
+`None`
 
 ## Attributes
 
-
+<span id="qiskit.aqua.algorithms.Shor.backend" />
 
 ### backend
 
@@ -51,7 +121,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-
+<span id="qiskit.aqua.algorithms.Shor.quantum_instance" />
 
 ### quantum\_instance
 
@@ -61,8 +131,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
+<span id="qiskit.aqua.algorithms.Shor.random" />
 
 ### random
 
 Return a numpy random.
+

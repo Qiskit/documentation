@@ -1,8 +1,16 @@
+---
+title: kraus_error
+description: API reference for qiskit.providers.aer.noise.kraus_error
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.noise.kraus_error
+---
+
 <span id="qiskit-providers-aer-noise-kraus-error" />
 
 # qiskit.providers.aer.noise.kraus\_error
 
-
+<span id="qiskit.providers.aer.noise.kraus_error" />
 
 `kraus_error(noise_ops, standard_gates=True, canonical_kraus=False)`
 
@@ -20,8 +28,9 @@ The quantum error object.
 
 **Return type**
 
-[QuantumError](qiskit.providers.aer.noise.QuantumError#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+[QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
 
 **Raises**
 
 **NoiseError** – if error parameters are invalid.
+

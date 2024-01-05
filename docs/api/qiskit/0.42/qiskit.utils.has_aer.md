@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.utils.has_aer
 ---
 
-# qiskit.utils.has\_aer[¶](#qiskit-utils-has-aer "Permalink to this headline")
+# qiskit.utils.has\_aer
 
 <span id="qiskit.utils.has_aer" />
 

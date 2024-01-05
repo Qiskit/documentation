@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.LinearFunction
 ---
 
-# LinearFunction[¶](#linearfunction "Permalink to this headline")
+# LinearFunction
 
 <span id="qiskit.circuit.library.LinearFunction" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.QNSPSA
 ---
 
-# QNSPSA[¶](#qnspsa "Permalink to this headline")
+# QNSPSA
 
 <span id="qiskit.algorithms.optimizers.QNSPSA" />
 

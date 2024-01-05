@@ -1,6 +1,14 @@
+---
+title: OneQubitEulerDecomposer
+description: API reference for qiskit.quantum_info.OneQubitEulerDecomposer
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.quantum_info.OneQubitEulerDecomposer
+---
+
 # qiskit.quantum\_info.OneQubitEulerDecomposer
 
-
+<span id="qiskit.quantum_info.OneQubitEulerDecomposer" />
 
 `OneQubitEulerDecomposer(basis='U3')`
 
@@ -35,7 +43,9 @@ Supported bases are: ‘U’, ‘PSX’, ‘ZSXX’, ‘ZSX’, ‘U321’, ‘U
 
 **QiskitError** – If input basis is not recognized.
 
+### \_\_init\_\_
 
+<span id="qiskit.quantum_info.OneQubitEulerDecomposer.__init__" />
 
 `__init__(basis='U3')`
 
@@ -53,19 +63,11 @@ Supported bases are: ‘U’, ‘PSX’, ‘ZSXX’, ‘ZSX’, ‘U321’, ‘U
 
 ## Methods
 
-|                                                                                                                                                             |                                                    |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| [`__init__`](#qiskit.quantum_info.OneQubitEulerDecomposer.__init__ "qiskit.quantum_info.OneQubitEulerDecomposer.__init__")(\[basis])                        | Initialize decomposer                              |
-| [`angles`](#qiskit.quantum_info.OneQubitEulerDecomposer.angles "qiskit.quantum_info.OneQubitEulerDecomposer.angles")(unitary)                               | Return the Euler angles for input array.           |
-| [`angles_and_phase`](#qiskit.quantum_info.OneQubitEulerDecomposer.angles_and_phase "qiskit.quantum_info.OneQubitEulerDecomposer.angles_and_phase")(unitary) | Return the Euler angles and phase for input array. |
-
 ## Attributes
 
-|                                                                                                                   |                          |
-| ----------------------------------------------------------------------------------------------------------------- | ------------------------ |
-| [`basis`](#qiskit.quantum_info.OneQubitEulerDecomposer.basis "qiskit.quantum_info.OneQubitEulerDecomposer.basis") | The decomposition basis. |
+### angles
 
-
+<span id="qiskit.quantum_info.OneQubitEulerDecomposer.angles" />
 
 `angles(unitary)`
 
@@ -83,7 +85,9 @@ Return the Euler angles for input array.
 
 tuple
 
+### angles\_and\_phase
 
+<span id="qiskit.quantum_info.OneQubitEulerDecomposer.angles_and_phase" />
 
 `angles_and_phase(unitary)`
 
@@ -101,8 +105,11 @@ Return the Euler angles and phase for input array.
 
 tuple
 
+### basis
 
+<span id="qiskit.quantum_info.OneQubitEulerDecomposer.basis" />
 
 `property basis`
 
 The decomposition basis.
+

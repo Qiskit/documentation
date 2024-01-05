@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.Barrier
 ---
 
-# Barrier[¶](#barrier "Permalink to this headline")
+# Barrier
 
 <span id="qiskit.circuit.library.Barrier" />
 

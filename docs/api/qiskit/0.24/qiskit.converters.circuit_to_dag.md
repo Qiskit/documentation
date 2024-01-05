@@ -1,8 +1,16 @@
+---
+title: circuit_to_dag
+description: API reference for qiskit.converters.circuit_to_dag
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.converters.circuit_to_dag
+---
+
 <span id="qiskit-converters-circuit-to-dag" />
 
 # qiskit.converters.circuit\_to\_dag
 
-
+<span id="qiskit.converters.circuit_to_dag" />
 
 `circuit_to_dag(circuit)`
 
@@ -10,7 +18,7 @@ Build a `DAGCircuit` object from a `QuantumCircuit`.
 
 **Parameters**
 
-**circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
+**circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
 
 **Returns**
 
@@ -18,7 +26,7 @@ the DAG representing the input circuit.
 
 **Return type**
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
 ## Example
 
@@ -41,3 +49,4 @@ dag_drawer(dag)
 ```
 
 ![../\_images/qiskit.converters.circuit\_to\_dag\_0\_0.png](/images/api/qiskit/0.24/qiskit.converters.circuit_to_dag_0_0.png)
+

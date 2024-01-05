@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.qobj.QobjMeasurementOption
 ---
 
-# QobjMeasurementOption[¶](#qobjmeasurementoption "Permalink to this headline")
+# QobjMeasurementOption
 
 <span id="qiskit.qobj.QobjMeasurementOption" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.Diagonal
 ---
 
-# Diagonal[¶](#diagonal "Permalink to this headline")
+# Diagonal
 
 <span id="qiskit.circuit.library.Diagonal" />
 

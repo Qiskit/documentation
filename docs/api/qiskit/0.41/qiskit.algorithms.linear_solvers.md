@@ -1,8 +1,8 @@
 <span id="qiskit-algorithms-linear-solvers" />
 
-# qiskit.algorithms.linear\_solvers[¶](#module-qiskit.algorithms.linear_solvers "Permalink to this headline")
+# qiskit.algorithms.linear\_solvers
 
-## The deprecated Linear solvers ([`qiskit.algorithms.linear_solvers`](#module-qiskit.algorithms.linear_solvers "qiskit.algorithms.linear_solvers"))[¶](#the-deprecated-linear-solvers-qiskit-algorithms-linear-solvers "Permalink to this headline")
+## The deprecated Linear solvers ([`qiskit.algorithms.linear_solvers`](#module-qiskit.algorithms.linear_solvers "qiskit.algorithms.linear_solvers"))
 
 It contains classical and quantum algorithms to solve systems of linear equations such as `HHL`. Although the quantum algorithm accepts a general Hermitian matrix as input, Qiskit’s default Hamiltonian evolution is exponential in such cases and therefore the quantum linear solver will not achieve an exponential speedup. Furthermore, the quantum algorithm can find a solution exponentially faster in the size of the system than their classical counterparts (i.e. logarithmic complexity instead of polynomial), meaning that reading the full solution vector would kill such speedup (since this would take linear time in the size of the system). Therefore, to achieve an exponential speedup we can only compute functions from the solution vector (the so called observables) to learn information about the solution. Known efficient implementations of Hamiltonian evolutions or observables are contained in the following subfolders:
 
@@ -14,7 +14,7 @@ A placeholder for efficient implementations of the Hamiltonian evolution of part
 
 A placeholder for efficient implementations of functions that can be computed from the solution vector to a system of linear equations.
 
-## Linear Solvers[¶](#linear-solvers "Permalink to this headline")
+## Linear Solvers
 
 |                                                                                                                                   |                                                                                                                                                                                                                                                                      |
 | --------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -23,7 +23,7 @@ A placeholder for efficient implementations of functions that can be computed fr
 | [`HHL`](qiskit.algorithms.linear_solvers.HHL "qiskit.algorithms.linear_solvers.HHL")                                              | The deprecated systems of linear equations arise naturally in many real-life applications in a wide range of areas, such as in the solution of Partial Differential Equations, the calibration of financial models, fluid simulation or numerical field calculation. |
 | [`NumPyLinearSolver`](qiskit.algorithms.linear_solvers.NumPyLinearSolver "qiskit.algorithms.linear_solvers.NumPyLinearSolver")    | The deprecated Numpy Linear Solver algorithm (classical).                                                                                                                                                                                                            |
 
-## Matrices[¶](#matrices "Permalink to this headline")
+## Matrices
 
 |                                                                                                                                      |                                                                  |
 | ------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------- |
@@ -31,7 +31,7 @@ A placeholder for efficient implementations of functions that can be computed fr
 | [`NumPyMatrix`](qiskit.algorithms.linear_solvers.NumPyMatrix "qiskit.algorithms.linear_solvers.NumPyMatrix")                         | The deprecated class of matrices given as a numpy array.         |
 | [`TridiagonalToeplitz`](qiskit.algorithms.linear_solvers.TridiagonalToeplitz "qiskit.algorithms.linear_solvers.TridiagonalToeplitz") | The deprecated class of tridiagonal Toeplitz symmetric matrices. |
 
-## Observables[¶](#observables "Permalink to this headline")
+## Observables
 
 |                                                                                                                                                    |                                                                                              |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.instructions.ShiftFrequency
 ---
 
-# ShiftFrequency[¶](#shiftfrequency "Permalink to this headline")
+# ShiftFrequency
 
 <span id="qiskit.pulse.instructions.ShiftFrequency" />
 

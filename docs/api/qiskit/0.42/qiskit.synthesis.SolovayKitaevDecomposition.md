@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.synthesis.SolovayKitaevDecomposition
 ---
 
-# SolovayKitaevDecomposition[¶](#solovaykitaevdecomposition "Permalink to this headline")
+# SolovayKitaevDecomposition
 
 <span id="qiskit.synthesis.SolovayKitaevDecomposition" />
 

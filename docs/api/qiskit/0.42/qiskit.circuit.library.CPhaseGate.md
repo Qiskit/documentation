@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.CPhaseGate
 ---
 
-# CPhaseGate[¶](#cphasegate "Permalink to this headline")
+# CPhaseGate
 
 <span id="qiskit.circuit.library.CPhaseGate" />
 

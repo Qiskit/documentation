@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CheckCXDirection
 ---
 
-# CheckCXDirection[¶](#checkcxdirection "Permalink to this headline")
+# CheckCXDirection
 
 <span id="qiskit.transpiler.passes.CheckCXDirection" />
 

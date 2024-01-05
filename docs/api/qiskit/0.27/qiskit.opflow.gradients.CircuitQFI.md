@@ -1,6 +1,14 @@
+---
+title: CircuitQFI
+description: API reference for qiskit.opflow.gradients.CircuitQFI
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.gradients.CircuitQFI
+---
+
 # qiskit.opflow\.gradients.CircuitQFI
 
-
+<span id="qiskit.opflow.gradients.CircuitQFI" />
 
 `CircuitQFI`
 
@@ -12,7 +20,9 @@ This is distinct from DerivativeBase converters which take gradients of composit
 
 CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase - uses classical techniques to differentiate opflow data structures
 
+### \_\_init\_\_
 
+<span id="qiskit.opflow.gradients.CircuitQFI.__init__" />
 
 `__init__()`
 
@@ -20,12 +30,9 @@ Initialize self. See help(type(self)) for accurate signature.
 
 ## Methods
 
-|                                                                                                                         |                                 |
-| ----------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [`__init__`](#qiskit.opflow.gradients.CircuitQFI.__init__ "qiskit.opflow.gradients.CircuitQFI.__init__")()              | Initialize self.                |
-| [`convert`](#qiskit.opflow.gradients.CircuitQFI.convert "qiskit.opflow.gradients.CircuitQFI.convert")(operator, params) | **type operator**`OperatorBase` |
+### convert
 
-
+<span id="qiskit.opflow.gradients.CircuitQFI.convert" />
 
 `abstract convert(operator, params)`
 
@@ -45,3 +52,4 @@ An operator whose evaluation yields the QFI metric tensor.
 **Raises**
 
 **ValueError** – If `params` contains a parameter not present in `operator`.
+

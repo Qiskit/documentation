@@ -20,23 +20,23 @@ Transformations for both Fermionic and Bosonic operators to qubit operators. Tra
 
 # Base Transformation
 
-|                                                                                                                                                                       |                                                                         |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
-| [`Transformation`](qiskit.chemistry.transformations.Transformation#qiskit.chemistry.transformations.Transformation "qiskit.chemistry.transformations.Transformation") | Base class for transformation to qubit operators for chemistry problems |
+|                                                                                                                       |                                                                         |
+| --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
+| [`Transformation`](qiskit.chemistry.transformations.Transformation "qiskit.chemistry.transformations.Transformation") | Base class for transformation to qubit operators for chemistry problems |
 
 # Fermionic Transformation
 
-|                                                                                                                                                                                                                           |                                                                                          |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| [`FermionicTransformation`](qiskit.chemistry.transformations.FermionicTransformation#qiskit.chemistry.transformations.FermionicTransformation "qiskit.chemistry.transformations.FermionicTransformation")                 | A transformation from a fermionic problem, represented by a driver, to a qubit operator. |
-| [`FermionicQubitMappingType`](qiskit.chemistry.transformations.FermionicQubitMappingType#qiskit.chemistry.transformations.FermionicQubitMappingType "qiskit.chemistry.transformations.FermionicQubitMappingType")         | FermionicQubitMappingType enum                                                           |
-| [`FermionicTransformationType`](qiskit.chemistry.transformations.FermionicTransformationType#qiskit.chemistry.transformations.FermionicTransformationType "qiskit.chemistry.transformations.FermionicTransformationType") | Electronic Transformation Type enum                                                      |
+|                                                                                                                                                              |                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
+| [`FermionicTransformation`](qiskit.chemistry.transformations.FermionicTransformation "qiskit.chemistry.transformations.FermionicTransformation")             | A transformation from a fermionic problem, represented by a driver, to a qubit operator. |
+| [`FermionicQubitMappingType`](qiskit.chemistry.transformations.FermionicQubitMappingType "qiskit.chemistry.transformations.FermionicQubitMappingType")       | FermionicQubitMappingType enum                                                           |
+| [`FermionicTransformationType`](qiskit.chemistry.transformations.FermionicTransformationType "qiskit.chemistry.transformations.FermionicTransformationType") | Electronic Transformation Type enum                                                      |
 
 # Bosonic Transformation
 
-|                                                                                                                                                                                                                   |                                                                                       |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| [`BosonicTransformation`](qiskit.chemistry.transformations.BosonicTransformation#qiskit.chemistry.transformations.BosonicTransformation "qiskit.chemistry.transformations.BosonicTransformation")                 | A vibronic Hamiltonian operator representing the energy of the nuclei in the molecule |
-| [`BosonicQubitMappingType`](qiskit.chemistry.transformations.BosonicQubitMappingType#qiskit.chemistry.transformations.BosonicQubitMappingType "qiskit.chemistry.transformations.BosonicQubitMappingType")         | BosonicQubitMappingType enum                                                          |
-| [`BosonicTransformationType`](qiskit.chemistry.transformations.BosonicTransformationType#qiskit.chemistry.transformations.BosonicTransformationType "qiskit.chemistry.transformations.BosonicTransformationType") | BosonicTransformationType enum                                                        |
+|                                                                                                                                                        |                                                                                       |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------- |
+| [`BosonicTransformation`](qiskit.chemistry.transformations.BosonicTransformation "qiskit.chemistry.transformations.BosonicTransformation")             | A vibronic Hamiltonian operator representing the energy of the nuclei in the molecule |
+| [`BosonicQubitMappingType`](qiskit.chemistry.transformations.BosonicQubitMappingType "qiskit.chemistry.transformations.BosonicQubitMappingType")       | BosonicQubitMappingType enum                                                          |
+| [`BosonicTransformationType`](qiskit.chemistry.transformations.BosonicTransformationType "qiskit.chemistry.transformations.BosonicTransformationType") | BosonicTransformationType enum                                                        |
 

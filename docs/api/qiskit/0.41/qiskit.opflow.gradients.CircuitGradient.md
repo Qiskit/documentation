@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.gradients.CircuitGradient
 ---
 
-# CircuitGradient[¶](#circuitgradient "Permalink to this headline")
+# CircuitGradient
 
 <span id="qiskit.opflow.gradients.CircuitGradient" />
 

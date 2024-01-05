@@ -14,7 +14,7 @@ python_api_name: qiskit.scheduler
 
 <span id="module-qiskit.scheduler" />
 
-`qiskit.scheduler¶`
+`qiskit.scheduler`
 
 A circuit scheduler compiles a circuit program to a pulse program.
 

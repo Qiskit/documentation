@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.ReverseQGT
 ---
 
-# ReverseQGT[¶](#reverseqgt "Permalink to this headline")
+# ReverseQGT
 
 <span id="qiskit.algorithms.gradients.ReverseQGT" />
 

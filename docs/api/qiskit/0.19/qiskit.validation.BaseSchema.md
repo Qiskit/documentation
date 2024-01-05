@@ -29,8 +29,6 @@ class used to instantiate the instance. The
 
 type
 
-
-
 ### constructor is passed all named parameters from deserialization.
 
 ## Attributes

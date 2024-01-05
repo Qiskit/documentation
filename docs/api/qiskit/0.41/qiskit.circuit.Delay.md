@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.Delay
 ---
 
-# Delay[¶](#delay "Permalink to this headline")
+# Delay
 
 <span id="qiskit.circuit.Delay" />
 

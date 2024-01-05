@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.InverseCancellation
 ---
 
-# InverseCancellation[¶](#inversecancellation "Permalink to this headline")
+# InverseCancellation
 
 <span id="qiskit.transpiler.passes.InverseCancellation" />
 

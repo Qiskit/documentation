@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.CUGate
 ---
 
-# CUGate[¶](#cugate "Permalink to this headline")
+# CUGate
 
 <span id="qiskit.circuit.library.CUGate" />
 

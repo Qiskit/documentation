@@ -1,8 +1,8 @@
 <span id="qiskit-opflow-primitive-ops" />
 
-# qiskit.opflow\.primitive\_ops[¶](#module-qiskit.opflow.primitive_ops "Permalink to this headline")
+# qiskit.opflow\.primitive\_ops
 
-## Primitive Operators ([`qiskit.opflow.primitive_ops`](#module-qiskit.opflow.primitive_ops "qiskit.opflow.primitive_ops"))[¶](#primitive-operators-qiskit-opflow-primitive-ops "Permalink to this headline")
+## Primitive Operators ([`qiskit.opflow.primitive_ops`](#module-qiskit.opflow.primitive_ops "qiskit.opflow.primitive_ops"))
 
 Operators are defined to be functions which take State functions to State functions.
 
@@ -12,7 +12,7 @@ PrimitiveOps are the classes for representing basic Operators, backed by computa
   All mathematical methods are not in-place, meaning that they return a new object, but the underlying primitives are not copied.
 </Admonition>
 
-### Primitive Operators[¶](#primitive-operators "Permalink to this headline")
+### Primitive Operators
 
 |                                                                                                                                                 |                                                                                     |
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
@@ -23,7 +23,7 @@ PrimitiveOps are the classes for representing basic Operators, backed by computa
 | [`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")(primitive\[, coeff, grouping\_type])            | Class for Operators backed by Terra's `SparsePauliOp` class.                        |
 | [`TaperedPauliSumOp`](qiskit.opflow.primitive_ops.TaperedPauliSumOp "qiskit.opflow.primitive_ops.TaperedPauliSumOp")(primitive, z2\_symmetries) | Class for PauliSumOp after tapering                                                 |
 
-### Symmetries[¶](#symmetries "Permalink to this headline")
+### Symmetries
 
 |                                                                                                                                         |               |
 | --------------------------------------------------------------------------------------------------------------------------------------- | ------------- |

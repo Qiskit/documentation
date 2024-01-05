@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.VQE
 ---
 
-# VQE[¶](#vqe "Permalink to this headline")
+# VQE
 
 <span id="qiskit.algorithms.VQE" />
 

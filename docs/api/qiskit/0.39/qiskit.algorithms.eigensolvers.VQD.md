@@ -88,8 +88,6 @@ Beta parameters in the VQD paper. Should have length k - 1, with k the number of
 
 list\[float]
 
-
-
 ### initial point
 
 An optional initial point (i.e. initial parameter values) for the optimizer. If `None` then VQD will look to the ansatz for a preferred point and if not will simply compute a random one.

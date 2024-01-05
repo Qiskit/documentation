@@ -18,10 +18,10 @@ python_api_name: qiskit.scheduler
 
 A circuit scheduler compiles a circuit program to a pulse program.
 
-|                                                                                                                                                 |                                     |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| [`schedule_circuit`](qiskit.scheduler.schedule_circuit#module-qiskit.scheduler.schedule_circuit "qiskit.scheduler.schedule_circuit")            | QuantumCircuit to Pulse scheduler.  |
-| [`ScheduleConfig`](qiskit.scheduler.ScheduleConfig#qiskit.scheduler.ScheduleConfig "qiskit.scheduler.ScheduleConfig")(inst\_map, meas\_map, dt) | Configuration for pulse scheduling. |
+|                                                                                                                                      |                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------- |
+| [`schedule_circuit`](qiskit.scheduler.schedule_circuit#module-qiskit.scheduler.schedule_circuit "qiskit.scheduler.schedule_circuit") | QuantumCircuit to Pulse scheduler.  |
+| [`ScheduleConfig`](qiskit.scheduler.ScheduleConfig "qiskit.scheduler.ScheduleConfig")(inst\_map, meas\_map, dt)                      | Configuration for pulse scheduling. |
 
 <span id="module-qiskit.scheduler.methods" />
 

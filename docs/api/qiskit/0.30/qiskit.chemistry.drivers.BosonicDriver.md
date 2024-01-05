@@ -1,6 +1,14 @@
+---
+title: BosonicDriver
+description: API reference for qiskit.chemistry.drivers.BosonicDriver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.drivers.BosonicDriver
+---
+
 # BosonicDriver
 
-
+<span id="qiskit.chemistry.drivers.BosonicDriver" />
 
 `BosonicDriver(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)`
 
@@ -17,17 +25,29 @@ Base class for Qiskit’s chemistry bosonic drivers.
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Molecule passed but driver doesn’t support it.
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Molecule passed but driver doesn’t support it.
 
 ## Methods
 
-|                                                                                                                                             |                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| [`run`](qiskit.chemistry.drivers.BosonicDriver.run#qiskit.chemistry.drivers.BosonicDriver.run "qiskit.chemistry.drivers.BosonicDriver.run") | Runs driver to produce a WatsonHamiltonian output. |
+### run
+
+<span id="qiskit.chemistry.drivers.BosonicDriver.run" />
+
+`abstract BosonicDriver.run()`
+
+Runs driver to produce a WatsonHamiltonian output.
+
+**Return type**
+
+`WatsonHamiltonian`
+
+**Returns**
+
+A WatsonHamiltonian comprising the bosonic data.
 
 ## Attributes
 
-
+<span id="qiskit.chemistry.drivers.BosonicDriver.basis" />
 
 ### basis
 
@@ -37,7 +57,7 @@ return basis
 
 `str`
 
-
+<span id="qiskit.chemistry.drivers.BosonicDriver.hf_method" />
 
 ### hf\_method
 
@@ -47,7 +67,7 @@ return Hartree-Fock method
 
 `str`
 
-
+<span id="qiskit.chemistry.drivers.BosonicDriver.molecule" />
 
 ### molecule
 
@@ -57,7 +77,7 @@ return molecule
 
 `Optional`\[`Molecule`]
 
-
+<span id="qiskit.chemistry.drivers.BosonicDriver.supports_molecule" />
 
 ### supports\_molecule
 
@@ -70,3 +90,4 @@ True for derived classes that support Molecule.
 **Returns**
 
 True if Molecule is supported.
+

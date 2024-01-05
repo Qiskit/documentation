@@ -1,14 +1,22 @@
+---
+title: CQCExtractorJob
+description: API reference for qiskit.providers.ibmq.random.CQCExtractorJob
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.random.CQCExtractorJob
+---
+
 <span id="qiskit-providers-ibmq-random-cqcextractorjob" />
 
 # qiskit.providers.ibmq.random.CQCExtractorJob
 
-
+<span id="qiskit.providers.ibmq.random.CQCExtractorJob" />
 
 `CQCExtractorJob(job_id, client, parameters=None)`
 
 Representation of an asynchronous call to the CQC extractor.
 
-An instance of this class is returned when you call [`run_async_ext1()`](qiskit.providers.ibmq.random.CQCExtractor#qiskit.providers.ibmq.random.CQCExtractor.run_async_ext1 "qiskit.providers.ibmq.random.CQCExtractor.run_async_ext1"), [`run_async_ext2()`](qiskit.providers.ibmq.random.CQCExtractor#qiskit.providers.ibmq.random.CQCExtractor.run_async_ext2 "qiskit.providers.ibmq.random.CQCExtractor.run_async_ext2"), or [`retrieve_job()`](qiskit.providers.ibmq.random.CQCExtractor#qiskit.providers.ibmq.random.CQCExtractor.retrieve_job "qiskit.providers.ibmq.random.CQCExtractor.retrieve_job") method of the [`CQCExtractor`](qiskit.providers.ibmq.random.CQCExtractor#qiskit.providers.ibmq.random.CQCExtractor "qiskit.providers.ibmq.random.CQCExtractor") class.
+An instance of this class is returned when you call [`run_async_ext1()`](qiskit.providers.ibmq.random.CQCExtractor#run_async_ext1 "qiskit.providers.ibmq.random.CQCExtractor.run_async_ext1"), [`run_async_ext2()`](qiskit.providers.ibmq.random.CQCExtractor#run_async_ext2 "qiskit.providers.ibmq.random.CQCExtractor.run_async_ext2"), or [`retrieve_job()`](qiskit.providers.ibmq.random.CQCExtractor#retrieve_job "qiskit.providers.ibmq.random.CQCExtractor.retrieve_job") method of the [`CQCExtractor`](qiskit.providers.ibmq.random.CQCExtractor "qiskit.providers.ibmq.random.CQCExtractor") class.
 
 If the job is successfully submitted, you can inspect the job’s status by calling [`status()`](#qiskit.providers.ibmq.random.CQCExtractorJob.status "qiskit.providers.ibmq.random.CQCExtractorJob.status").
 
@@ -31,7 +39,9 @@ CQCExtractorJob constructor.
 *   **client** (`RandomClient`) – Object for connecting to the server.
 *   **parameters** (`Optional`\[`Dict`]) – Parameters used for this job.
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.ibmq.random.CQCExtractorJob.__init__" />
 
 `__init__(job_id, client, parameters=None)`
 
@@ -45,20 +55,11 @@ CQCExtractorJob constructor.
 
 ## Methods
 
-|                                                                                                                                                                           |                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| [`__init__`](#qiskit.providers.ibmq.random.CQCExtractorJob.__init__ "qiskit.providers.ibmq.random.CQCExtractorJob.__init__")(job\_id, client\[, parameters])              | CQCExtractorJob constructor.                      |
-| [`block_until_ready`](#qiskit.providers.ibmq.random.CQCExtractorJob.block_until_ready "qiskit.providers.ibmq.random.CQCExtractorJob.block_until_ready")(\[timeout, wait]) | Wait for the job to finish and return the result. |
-| [`status`](#qiskit.providers.ibmq.random.CQCExtractorJob.status "qiskit.providers.ibmq.random.CQCExtractorJob.status")()                                                  | Query the server for the latest job status.       |
-
 ## Attributes
 
-|                                                                                                                                                      |                                                |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| [`extractor_method`](#qiskit.providers.ibmq.random.CQCExtractorJob.extractor_method "qiskit.providers.ibmq.random.CQCExtractorJob.extractor_method") | Return the extractor method used.              |
-| [`parameters`](#qiskit.providers.ibmq.random.CQCExtractorJob.parameters "qiskit.providers.ibmq.random.CQCExtractorJob.parameters")                   | Return the parameters passed to the extractor. |
+### block\_until\_ready
 
-
+<span id="qiskit.providers.ibmq.random.CQCExtractorJob.block_until_ready" />
 
 `block_until_ready(timeout=None, wait=10)`
 
@@ -79,9 +80,11 @@ Extractor output.
 
 **Raises**
 
-[**JobTimeoutError**](qiskit.providers.JobTimeoutError#qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError") – If the job does not finish before the specified timeout.
+[**JobTimeoutError**](qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError") – If the job does not finish before the specified timeout.
 
+### extractor\_method
 
+<span id="qiskit.providers.ibmq.random.CQCExtractorJob.extractor_method" />
 
 `property extractor_method`
 
@@ -95,7 +98,9 @@ Return the extractor method used.
 
 Extractor method used.
 
+### parameters
 
+<span id="qiskit.providers.ibmq.random.CQCExtractorJob.parameters" />
 
 `property parameters`
 
@@ -109,7 +114,9 @@ Return the parameters passed to the extractor.
 
 Parameters passed to the extractor.
 
+### status
 
+<span id="qiskit.providers.ibmq.random.CQCExtractorJob.status" />
 
 `status()`
 
@@ -122,3 +129,4 @@ Query the server for the latest job status.
 **Returns**
 
 The status of the job.
+

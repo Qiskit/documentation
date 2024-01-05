@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.runtime.RuntimeOptions
 ---
 
-# RuntimeOptions[¶](#runtimeoptions "Permalink to this headline")
+# RuntimeOptions
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeOptions" />
 

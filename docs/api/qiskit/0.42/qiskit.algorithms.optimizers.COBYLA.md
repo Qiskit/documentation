@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.COBYLA
 ---
 
-# COBYLA[¶](#cobyla "Permalink to this headline")
+# COBYLA
 
 <span id="qiskit.algorithms.optimizers.COBYLA" />
 

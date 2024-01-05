@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.IQP
 ---
 
-# IQP[¶](#iqp "Permalink to this headline")
+# IQP
 
 <span id="qiskit.circuit.library.IQP" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CommutativeCancellation
 ---
 
-# CommutativeCancellation[¶](#commutativecancellation "Permalink to this headline")
+# CommutativeCancellation
 
 <span id="qiskit.transpiler.passes.CommutativeCancellation" />
 

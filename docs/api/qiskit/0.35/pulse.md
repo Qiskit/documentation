@@ -16,7 +16,7 @@ python_api_name: qiskit.pulse
 
 `qiskit.pulse`
 
-Qiskit-Pulse is a pulse-level quantum programming kit. This lower level of programming offers the user more control than programming with [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")s.
+Qiskit-Pulse is a pulse-level quantum programming kit. This lower level of programming offers the user more control than programming with [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")s.
 
 Extracting the greatest performance from quantum hardware requires real-time pulse-level instructions. Pulse answers that need: it enables the quantum physicist *user* to specify the exact time dynamics of an experiment. It is especially powerful for error mitigation techniques.
 
@@ -36,35 +36,35 @@ This is sufficient to allow the quantum physicist to explore and correct for noi
 
 The `instructions` module holds the various [`Instruction`](#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.Instruction")s which are supported by Qiskit Pulse. Instructions have operands, which typically include at least one [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") specifying where the instruction will be applied.
 
-Every instruction has a duration, whether explicitly included as an operand or implicitly defined. For instance, a [`ShiftPhase`](qiskit.pulse.instructions.ShiftPhase#qiskit.pulse.instructions.ShiftPhase "qiskit.pulse.instructions.ShiftPhase") instruction can be instantiated with operands *phase* and *channel*, for some float `phase` and a [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") `channel`:
+Every instruction has a duration, whether explicitly included as an operand or implicitly defined. For instance, a [`ShiftPhase`](qiskit.pulse.instructions.ShiftPhase "qiskit.pulse.instructions.ShiftPhase") instruction can be instantiated with operands *phase* and *channel*, for some float `phase` and a [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") `channel`:
 
 ```python
 ShiftPhase(phase, channel)
 ```
 
-The duration of this instruction is implicitly zero. On the other hand, the [`Delay`](qiskit.pulse.instructions.Delay#qiskit.pulse.instructions.Delay "qiskit.pulse.instructions.Delay") instruction takes an explicit duration:
+The duration of this instruction is implicitly zero. On the other hand, the [`Delay`](qiskit.pulse.instructions.Delay "qiskit.pulse.instructions.Delay") instruction takes an explicit duration:
 
 ```python
 Delay(duration, channel)
 ```
 
-An instruction can be added to a [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule"), which is a sequence of scheduled Pulse `Instruction` s over many channels. `Instruction` s and `Schedule` s implement the same interface.
+An instruction can be added to a [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule"), which is a sequence of scheduled Pulse `Instruction` s over many channels. `Instruction` s and `Schedule` s implement the same interface.
 
-|                                                                                                                                                                               |                                                                                                                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`Acquire`](qiskit.pulse.instructions.Acquire#qiskit.pulse.instructions.Acquire "qiskit.pulse.instructions.Acquire")(duration, channel\[, mem\_slot, …])                      | The Acquire instruction is used to trigger the ADC associated with a particular qubit; e.g.                                                                                   |
-| [`Call`](qiskit.pulse.instructions.Call#qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call")(subroutine\[, value\_dict, name])                                    | Pulse `Call` instruction.                                                                                                                                                     |
-| [`Delay`](qiskit.pulse.instructions.Delay#qiskit.pulse.instructions.Delay "qiskit.pulse.instructions.Delay")(duration, channel\[, name])                                      | A blocking instruction with no other effect.                                                                                                                                  |
-| [`Play`](qiskit.pulse.instructions.Play#qiskit.pulse.instructions.Play "qiskit.pulse.instructions.Play")(pulse, channel\[, name])                                             | This instruction is responsible for applying a pulse on a channel.                                                                                                            |
-| [`SetFrequency`](qiskit.pulse.instructions.SetFrequency#qiskit.pulse.instructions.SetFrequency "qiskit.pulse.instructions.SetFrequency")(frequency, channel\[, name])         | Set the channel frequency.                                                                                                                                                    |
-| [`ShiftFrequency`](qiskit.pulse.instructions.ShiftFrequency#qiskit.pulse.instructions.ShiftFrequency "qiskit.pulse.instructions.ShiftFrequency")(frequency, channel\[, name]) | Shift the channel frequency away from the current frequency.                                                                                                                  |
-| [`SetPhase`](qiskit.pulse.instructions.SetPhase#qiskit.pulse.instructions.SetPhase "qiskit.pulse.instructions.SetPhase")(phase, channel\[, name])                             | The set phase instruction sets the phase of the proceeding pulses on that channel to `phase` radians.                                                                         |
-| [`ShiftPhase`](qiskit.pulse.instructions.ShiftPhase#qiskit.pulse.instructions.ShiftPhase "qiskit.pulse.instructions.ShiftPhase")(phase, channel\[, name])                     | The shift phase instruction updates the modulation phase of proceeding pulses played on the same [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel"). |
-| [`Snapshot`](qiskit.pulse.instructions.Snapshot#qiskit.pulse.instructions.Snapshot "qiskit.pulse.instructions.Snapshot")(label\[, snapshot\_type, name])                      | An instruction targeted for simulators, to capture a moment in the simulation.                                                                                                |
+|                                                                                                                                      |                                                                                                                                                                               |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`Acquire`](qiskit.pulse.instructions.Acquire "qiskit.pulse.instructions.Acquire")(duration, channel\[, mem\_slot, …])               | The Acquire instruction is used to trigger the ADC associated with a particular qubit; e.g.                                                                                   |
+| [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call")(subroutine\[, value\_dict, name])                          | Pulse `Call` instruction.                                                                                                                                                     |
+| [`Delay`](qiskit.pulse.instructions.Delay "qiskit.pulse.instructions.Delay")(duration, channel\[, name])                             | A blocking instruction with no other effect.                                                                                                                                  |
+| [`Play`](qiskit.pulse.instructions.Play "qiskit.pulse.instructions.Play")(pulse, channel\[, name])                                   | This instruction is responsible for applying a pulse on a channel.                                                                                                            |
+| [`SetFrequency`](qiskit.pulse.instructions.SetFrequency "qiskit.pulse.instructions.SetFrequency")(frequency, channel\[, name])       | Set the channel frequency.                                                                                                                                                    |
+| [`ShiftFrequency`](qiskit.pulse.instructions.ShiftFrequency "qiskit.pulse.instructions.ShiftFrequency")(frequency, channel\[, name]) | Shift the channel frequency away from the current frequency.                                                                                                                  |
+| [`SetPhase`](qiskit.pulse.instructions.SetPhase "qiskit.pulse.instructions.SetPhase")(phase, channel\[, name])                       | The set phase instruction sets the phase of the proceeding pulses on that channel to `phase` radians.                                                                         |
+| [`ShiftPhase`](qiskit.pulse.instructions.ShiftPhase "qiskit.pulse.instructions.ShiftPhase")(phase, channel\[, name])                 | The shift phase instruction updates the modulation phase of proceeding pulses played on the same [`Channel`](#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel"). |
+| [`Snapshot`](qiskit.pulse.instructions.Snapshot "qiskit.pulse.instructions.Snapshot")(label\[, snapshot\_type, name])                | An instruction targeted for simulators, to capture a moment in the simulation.                                                                                                |
 
 These are all instances of the same base class:
 
-
+<span id="qiskit.pulse.instructions.Instruction" />
 
 `Instruction(operands, name=None)`
 
@@ -92,20 +92,20 @@ Instruction initializer.
 
 This library provides Pulse users with convenient methods to build Pulse waveforms.
 
-Arbitrary waveforms can be described with [`Waveform`](qiskit.pulse.library.Waveform#qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform")s.
+Arbitrary waveforms can be described with [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform")s.
 
-The [`discrete`](qiskit.pulse.library.discrete#module-qiskit.pulse.library.discrete "qiskit.pulse.library.discrete") module will generate [`Waveform`](qiskit.pulse.library.Waveform#qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform")s for common waveform envelopes.
+The [`discrete`](qiskit.pulse.library.discrete#module-qiskit.pulse.library.discrete "qiskit.pulse.library.discrete") module will generate [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform")s for common waveform envelopes.
 
-The parametric pulses, [`Gaussian`](qiskit.pulse.library.Gaussian#qiskit.pulse.library.Gaussian "qiskit.pulse.library.Gaussian"), [`GaussianSquare`](qiskit.pulse.library.GaussianSquare#qiskit.pulse.library.GaussianSquare "qiskit.pulse.library.GaussianSquare"), [`Drag`](qiskit.pulse.library.Drag#qiskit.pulse.library.Drag "qiskit.pulse.library.Drag") and [`Constant`](qiskit.pulse.library.Constant#qiskit.pulse.library.Constant "qiskit.pulse.library.Constant") will generate parameterized descriptions of those pulses, which can greatly reduce the size of the job sent to the backend.
+The parametric pulses, [`Gaussian`](qiskit.pulse.library.Gaussian "qiskit.pulse.library.Gaussian"), [`GaussianSquare`](qiskit.pulse.library.GaussianSquare "qiskit.pulse.library.GaussianSquare"), [`Drag`](qiskit.pulse.library.Drag "qiskit.pulse.library.Drag") and [`Constant`](qiskit.pulse.library.Constant "qiskit.pulse.library.Constant") will generate parameterized descriptions of those pulses, which can greatly reduce the size of the job sent to the backend.
 
-|                                                                                                                                                               |                                                                                                                                                          |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`discrete`](qiskit.pulse.library.discrete#module-qiskit.pulse.library.discrete "qiskit.pulse.library.discrete")                                              | Module for builtin discrete pulses.                                                                                                                      |
-| [`Waveform`](qiskit.pulse.library.Waveform#qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform")(samples\[, name, epsilon, …])                       | A pulse specified completely by complex-valued samples; each sample is played for the duration of the backend cycle-time, dt.                            |
-| [`Constant`](qiskit.pulse.library.Constant#qiskit.pulse.library.Constant "qiskit.pulse.library.Constant")(duration, amp\[, name, limit\_amplitude])           | A simple constant pulse, with an amplitude value and a duration:                                                                                         |
-| [`Drag`](qiskit.pulse.library.Drag#qiskit.pulse.library.Drag "qiskit.pulse.library.Drag")(duration, amp, sigma, beta\[, name, …])                             | The Derivative Removal by Adiabatic Gate (DRAG) pulse is a standard Gaussian pulse with an additional Gaussian derivative component and lifting applied. |
-| [`Gaussian`](qiskit.pulse.library.Gaussian#qiskit.pulse.library.Gaussian "qiskit.pulse.library.Gaussian")(duration, amp, sigma\[, name, …])                   | A lifted and truncated pulse envelope shaped according to the Gaussian function whose mean is centered at the center of the pulse (duration / 2):        |
-| [`GaussianSquare`](qiskit.pulse.library.GaussianSquare#qiskit.pulse.library.GaussianSquare "qiskit.pulse.library.GaussianSquare")(duration, amp, sigma\[, …]) | A square pulse with a Gaussian shaped risefall on both sides lifted such that its first sample is zero.                                                  |
+|                                                                                                                           |                                                                                                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`discrete`](qiskit.pulse.library.discrete#module-qiskit.pulse.library.discrete "qiskit.pulse.library.discrete")          | Module for builtin discrete pulses.                                                                                                                      |
+| [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform")(samples\[, name, epsilon, …])                 | A pulse specified completely by complex-valued samples; each sample is played for the duration of the backend cycle-time, dt.                            |
+| [`Constant`](qiskit.pulse.library.Constant "qiskit.pulse.library.Constant")(duration, amp\[, name, limit\_amplitude])     | A simple constant pulse, with an amplitude value and a duration:                                                                                         |
+| [`Drag`](qiskit.pulse.library.Drag "qiskit.pulse.library.Drag")(duration, amp, sigma, beta\[, name, …])                   | The Derivative Removal by Adiabatic Gate (DRAG) pulse is a standard Gaussian pulse with an additional Gaussian derivative component and lifting applied. |
+| [`Gaussian`](qiskit.pulse.library.Gaussian "qiskit.pulse.library.Gaussian")(duration, amp, sigma\[, name, …])             | A lifted and truncated pulse envelope shaped according to the Gaussian function whose mean is centered at the center of the pulse (duration / 2):        |
+| [`GaussianSquare`](qiskit.pulse.library.GaussianSquare "qiskit.pulse.library.GaussianSquare")(duration, amp, sigma\[, …]) | A square pulse with a Gaussian shaped risefall on both sides lifted such that its first sample is zero.                                                  |
 
 <span id="module-qiskit.pulse.channels" />
 
@@ -122,24 +122,24 @@ Pulse is meant to be agnostic to the underlying hardware implementation, while s
 Channels are characterized by their type and their index. Channels include:
 
 *   transmit channels, which should subclass `PulseChannel`
-*   receive channels, such as [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel#qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
-*   non-signal “channels” such as [`SnapshotChannel`](qiskit.pulse.channels.SnapshotChannel#qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel"), [`MemorySlot`](qiskit.pulse.channels.MemorySlot#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot") and `RegisterChannel`.
+*   receive channels, such as [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
+*   non-signal “channels” such as [`SnapshotChannel`](qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel"), [`MemorySlot`](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot") and `RegisterChannel`.
 
-Novel channel types can often utilize the [`ControlChannel`](qiskit.pulse.channels.ControlChannel#qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel"), but if this is not sufficient, new channel types can be created. Then, they must be supported in the PulseQobj schema and the assembler. Channels are characterized by their type and their index. See each channel type below to learn more.
+Novel channel types can often utilize the [`ControlChannel`](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel"), but if this is not sufficient, new channel types can be created. Then, they must be supported in the PulseQobj schema and the assembler. Channels are characterized by their type and their index. See each channel type below to learn more.
 
-|                                                                                                                                                              |                                                                                                |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------- |
-| [`DriveChannel`](qiskit.pulse.channels.DriveChannel#qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")(index)                          | Drive channels transmit signals to qubits which enact gate operations.                         |
-| [`MeasureChannel`](qiskit.pulse.channels.MeasureChannel#qiskit.pulse.channels.MeasureChannel "qiskit.pulse.channels.MeasureChannel")(index)                  | Measure channels transmit measurement stimulus pulses for readout.                             |
-| [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel#qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")(index)                  | Acquire channels are used to collect data.                                                     |
-| [`ControlChannel`](qiskit.pulse.channels.ControlChannel#qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")(index)                  | Control channels provide supplementary control over the qubit to the drive channel.            |
-| [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")(index)                          | Classical resister slot channels represent classical registers (low-latency classical memory). |
-| [`MemorySlot`](qiskit.pulse.channels.MemorySlot#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")(index)                                  | Memory slot channels represent classical memory storage.                                       |
-| [`SnapshotChannel`](qiskit.pulse.channels.SnapshotChannel#qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel")(\*args, \*\*kwargs) | Snapshot channels are used to specify instructions for simulators.                             |
+|                                                                                                                        |                                                                                                |
+| ---------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------- |
+| [`DriveChannel`](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")(index)                       | Drive channels transmit signals to qubits which enact gate operations.                         |
+| [`MeasureChannel`](qiskit.pulse.channels.MeasureChannel "qiskit.pulse.channels.MeasureChannel")(index)                 | Measure channels transmit measurement stimulus pulses for readout.                             |
+| [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")(index)                 | Acquire channels are used to collect data.                                                     |
+| [`ControlChannel`](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")(index)                 | Control channels provide supplementary control over the qubit to the drive channel.            |
+| [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")(index)                       | Classical resister slot channels represent classical registers (low-latency classical memory). |
+| [`MemorySlot`](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")(index)                             | Memory slot channels represent classical memory storage.                                       |
+| [`SnapshotChannel`](qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel")(\*args, \*\*kwargs) | Snapshot channels are used to specify instructions for simulators.                             |
 
 All channels are children of the same abstract base class:
 
-
+<span id="qiskit.pulse.channels.Channel" />
 
 `Channel(index)`
 
@@ -161,10 +161,10 @@ Channel class.
 
 Schedules are Pulse programs. They describe instruction sequences for the control hardware. The Schedule is one of the most fundamental objects to this pulse-level programming module. A `Schedule` is a representation of a *program* in Pulse. Each schedule tracks the time of each instruction occuring in parallel over multiple signal *channels*.
 
-|                                                                                                                             |                                                                                                                                                                         |
-| --------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")(\*schedules\[, name, metadata])           | A quantum program *schedule* with exact time constraints for its instructions, operating over all input signal *channels* and supporting special syntaxes for building. |
-| [`ScheduleBlock`](qiskit.pulse.ScheduleBlock#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")(\[name, metadata, …]) | A `ScheduleBlock` is a time-ordered sequence of instructions and transform macro to manage their relative timing.                                                       |
+|                                                                                                  |                                                                                                                                                                         |
+| ------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule")(\*schedules\[, name, metadata])      | A quantum program *schedule* with exact time constraints for its instructions, operating over all input signal *channels* and supporting special syntaxes for building. |
+| [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")(\[name, metadata, …]) | A `ScheduleBlock` is a time-ordered sequence of instructions and transform macro to manage their relative timing.                                                       |
 
 <span id="module-qiskit.pulse.transforms" />
 
@@ -178,19 +178,19 @@ The pulse transforms provide transformation routines to reallocate and optimize 
 
 ### Alignments
 
-The alignment transforms define alignment policies of instructions in [`ScheduleBlock`](qiskit.pulse.ScheduleBlock#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"). These transformations are called to create [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")s from [`ScheduleBlock`](qiskit.pulse.ScheduleBlock#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")s.
+The alignment transforms define alignment policies of instructions in [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"). These transformations are called to create [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule")s from [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")s.
 
-|                                                                                                                                                          |                                                                          |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`AlignEquispaced`](qiskit.pulse.transforms.AlignEquispaced#qiskit.pulse.transforms.AlignEquispaced "qiskit.pulse.transforms.AlignEquispaced")(duration) | Align instructions with equispaced interval within a specified duration. |
-| [`AlignFunc`](qiskit.pulse.transforms.AlignFunc#qiskit.pulse.transforms.AlignFunc "qiskit.pulse.transforms.AlignFunc")(duration, func)                   | Allocate instructions at position specified by callback function.        |
-| [`AlignLeft`](qiskit.pulse.transforms.AlignLeft#qiskit.pulse.transforms.AlignLeft "qiskit.pulse.transforms.AlignLeft")()                                 | Align instructions in as-soon-as-possible manner.                        |
-| [`AlignRight`](qiskit.pulse.transforms.AlignRight#qiskit.pulse.transforms.AlignRight "qiskit.pulse.transforms.AlignRight")()                             | Align instructions in as-late-as-possible manner.                        |
-| [`AlignSequential`](qiskit.pulse.transforms.AlignSequential#qiskit.pulse.transforms.AlignSequential "qiskit.pulse.transforms.AlignSequential")()         | Align instructions sequentially.                                         |
+|                                                                                                                  |                                                                          |
+| ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| [`AlignEquispaced`](qiskit.pulse.transforms.AlignEquispaced "qiskit.pulse.transforms.AlignEquispaced")(duration) | Align instructions with equispaced interval within a specified duration. |
+| [`AlignFunc`](qiskit.pulse.transforms.AlignFunc "qiskit.pulse.transforms.AlignFunc")(duration, func)             | Allocate instructions at position specified by callback function.        |
+| [`AlignLeft`](qiskit.pulse.transforms.AlignLeft "qiskit.pulse.transforms.AlignLeft")()                           | Align instructions in as-soon-as-possible manner.                        |
+| [`AlignRight`](qiskit.pulse.transforms.AlignRight "qiskit.pulse.transforms.AlignRight")()                        | Align instructions in as-late-as-possible manner.                        |
+| [`AlignSequential`](qiskit.pulse.transforms.AlignSequential "qiskit.pulse.transforms.AlignSequential")()         | Align instructions sequentially.                                         |
 
 These are all subtypes of the abstract base class [`AlignmentKind`](#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.AlignmentKind").
 
-
+<span id="qiskit.pulse.transforms.AlignmentKind" />
 
 `AlignmentKind`
 
@@ -202,33 +202,33 @@ Create new context.
 
 The canonicalization transforms convert schedules to a form amenable for execution on OpenPulse backends.
 
-|                                                                                                                                                                                             |                                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
-| [`add_implicit_acquires`](qiskit.pulse.transforms.add_implicit_acquires#qiskit.pulse.transforms.add_implicit_acquires "qiskit.pulse.transforms.add_implicit_acquires")(schedule, meas\_map) | Return a new schedule with implicit acquires from the measurement mapping replaced by explicit ones.                   |
-| [`align_measures`](qiskit.pulse.transforms.align_measures#qiskit.pulse.transforms.align_measures "qiskit.pulse.transforms.align_measures")(schedules\[, inst\_map, …])                      | Return new schedules where measurements occur at the same physical time.                                               |
-| [`block_to_schedule`](qiskit.pulse.transforms.block_to_schedule#qiskit.pulse.transforms.block_to_schedule "qiskit.pulse.transforms.block_to_schedule")(block)                               | Convert `ScheduleBlock` to `Schedule`.                                                                                 |
-| [`compress_pulses`](qiskit.pulse.transforms.compress_pulses#qiskit.pulse.transforms.compress_pulses "qiskit.pulse.transforms.compress_pulses")(schedules)                                   | Optimization pass to replace identical pulses.                                                                         |
-| [`flatten`](qiskit.pulse.transforms.flatten#qiskit.pulse.transforms.flatten "qiskit.pulse.transforms.flatten")(program)                                                                     | Flatten (inline) any called nodes into a Schedule tree with no nested children.                                        |
-| [`inline_subroutines`](qiskit.pulse.transforms.inline_subroutines#qiskit.pulse.transforms.inline_subroutines "qiskit.pulse.transforms.inline_subroutines")(program)                         | Recursively remove call instructions and inline the respective subroutine instructions.                                |
-| [`pad`](qiskit.pulse.transforms.pad#qiskit.pulse.transforms.pad "qiskit.pulse.transforms.pad")(schedule\[, channels, until, inplace])                                                       | Pad the input Schedule with `Delay``s on all unoccupied timeslots until ``schedule.duration` or `until` if not `None`. |
-| [`remove_directives`](qiskit.pulse.transforms.remove_directives#qiskit.pulse.transforms.remove_directives "qiskit.pulse.transforms.remove_directives")(schedule)                            | Remove directives.                                                                                                     |
-| [`remove_trivial_barriers`](qiskit.pulse.transforms.remove_trivial_barriers#qiskit.pulse.transforms.remove_trivial_barriers "qiskit.pulse.transforms.remove_trivial_barriers")(schedule)    | Remove trivial barriers with 0 or 1 channels.                                                                          |
+|                                                                                                                                               |                                                                                                                        |
+| --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
+| [`add_implicit_acquires`](qiskit.pulse.transforms.add_implicit_acquires "qiskit.pulse.transforms.add_implicit_acquires")(schedule, meas\_map) | Return a new schedule with implicit acquires from the measurement mapping replaced by explicit ones.                   |
+| [`align_measures`](qiskit.pulse.transforms.align_measures "qiskit.pulse.transforms.align_measures")(schedules\[, inst\_map, …])               | Return new schedules where measurements occur at the same physical time.                                               |
+| [`block_to_schedule`](qiskit.pulse.transforms.block_to_schedule "qiskit.pulse.transforms.block_to_schedule")(block)                           | Convert `ScheduleBlock` to `Schedule`.                                                                                 |
+| [`compress_pulses`](qiskit.pulse.transforms.compress_pulses "qiskit.pulse.transforms.compress_pulses")(schedules)                             | Optimization pass to replace identical pulses.                                                                         |
+| [`flatten`](qiskit.pulse.transforms.flatten "qiskit.pulse.transforms.flatten")(program)                                                       | Flatten (inline) any called nodes into a Schedule tree with no nested children.                                        |
+| [`inline_subroutines`](qiskit.pulse.transforms.inline_subroutines "qiskit.pulse.transforms.inline_subroutines")(program)                      | Recursively remove call instructions and inline the respective subroutine instructions.                                |
+| [`pad`](qiskit.pulse.transforms.pad "qiskit.pulse.transforms.pad")(schedule\[, channels, until, inplace])                                     | Pad the input Schedule with `Delay``s on all unoccupied timeslots until ``schedule.duration` or `until` if not `None`. |
+| [`remove_directives`](qiskit.pulse.transforms.remove_directives "qiskit.pulse.transforms.remove_directives")(schedule)                        | Remove directives.                                                                                                     |
+| [`remove_trivial_barriers`](qiskit.pulse.transforms.remove_trivial_barriers "qiskit.pulse.transforms.remove_trivial_barriers")(schedule)      | Remove trivial barriers with 0 or 1 channels.                                                                          |
 
 ### DAG
 
 The DAG transforms create DAG representation of input program. This can be used for optimization of instructions and equality checks.
 
-|                                                                                                                                           |                                              |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [`block_to_dag`](qiskit.pulse.transforms.block_to_dag#qiskit.pulse.transforms.block_to_dag "qiskit.pulse.transforms.block_to_dag")(block) | Convert schedule block instruction into DAG. |
+|                                                                                                      |                                              |
+| ---------------------------------------------------------------------------------------------------- | -------------------------------------------- |
+| [`block_to_dag`](qiskit.pulse.transforms.block_to_dag "qiskit.pulse.transforms.block_to_dag")(block) | Convert schedule block instruction into DAG. |
 
 ### Composite transform
 
 A sequence of transformations to generate a target code.
 
-|                                                                                                                                                                                                      |                                                                   |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| [`target_qobj_transform`](qiskit.pulse.transforms.target_qobj_transform#qiskit.pulse.transforms.target_qobj_transform "qiskit.pulse.transforms.target_qobj_transform")(sched\[, remove\_directives]) | A basic pulse program transformation for OpenPulse API execution. |
+|                                                                                                                                                        |                                                                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------- |
+| [`target_qobj_transform`](qiskit.pulse.transforms.target_qobj_transform "qiskit.pulse.transforms.target_qobj_transform")(sched\[, remove\_directives]) | A basic pulse program transformation for OpenPulse API execution. |
 
 <span id="module-qiskit.pulse.builder" />
 
@@ -240,7 +240,7 @@ Use the pulse builder DSL to write pulse programs with an imperative syntax.
   The pulse builder interface is still in active development. It may have breaking API changes without deprecation warnings in future releases until otherwise indicated.
 </Admonition>
 
-The pulse builder provides an imperative API for writing pulse programs with less difficulty than the [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") API. It contextually constructs a pulse schedule and then emits the schedule for execution. For example, to play a series of pulses on channels is as simple as:
+The pulse builder provides an imperative API for writing pulse programs with less difficulty than the [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") API. It contextually constructs a pulse schedule and then emits the schedule for execution. For example, to play a series of pulses on channels is as simple as:
 
 ```python
 from qiskit import pulse
@@ -260,7 +260,7 @@ pulse_prog.draw()
 
 ![../\_images/pulse\_0\_0.png](/images/api/qiskit/0.35/pulse_0_0.png)
 
-To begin pulse programming we must first initialize our program builder context with [`build()`](qiskit.pulse.builder.build#qiskit.pulse.builder.build "qiskit.pulse.builder.build"), after which we can begin adding program statements. For example, below we write a simple program that [`play()`](qiskit.pulse.builder.play#qiskit.pulse.builder.play "qiskit.pulse.builder.play")s a pulse:
+To begin pulse programming we must first initialize our program builder context with [`build()`](qiskit.pulse.builder.build "qiskit.pulse.builder.build"), after which we can begin adding program statements. For example, below we write a simple program that [`play()`](qiskit.pulse.builder.play "qiskit.pulse.builder.play")s a pulse:
 
 ```python
 from qiskit import execute, pulse
@@ -275,11 +275,11 @@ pulse_prog.draw()
 
 ![../\_images/pulse\_1\_0.png](/images/api/qiskit/0.35/pulse_1_0.png)
 
-The builder initializes a [`pulse.Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule"), `pulse_prog` and then begins to construct the program within the context. The output pulse schedule will survive after the context is exited and can be executed like a normal Qiskit schedule using `qiskit.execute(pulse_prog, backend)`.
+The builder initializes a [`pulse.Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule"), `pulse_prog` and then begins to construct the program within the context. The output pulse schedule will survive after the context is exited and can be executed like a normal Qiskit schedule using `qiskit.execute(pulse_prog, backend)`.
 
 Pulse programming has a simple imperative style. This leaves the programmer to worry about the raw experimental physics of pulse programming and not constructing cumbersome data structures.
 
-We can optionally pass a [`BaseBackend`](qiskit.providers.BaseBackend#qiskit.providers.BaseBackend "qiskit.providers.BaseBackend") to [`build()`](qiskit.pulse.builder.build#qiskit.pulse.builder.build "qiskit.pulse.builder.build") to enable enhanced functionality. Below, we prepare a Bell state by automatically compiling the required pulses from their gate-level representations, while simultaneously applying a long decoupling pulse to a neighboring qubit. We terminate the experiment with a measurement to observe the state we prepared. This program which mixes circuits and pulses will be automatically lowered to be run as a pulse program:
+We can optionally pass a [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend") to [`build()`](qiskit.pulse.builder.build "qiskit.pulse.builder.build") to enable enhanced functionality. Below, we prepare a Bell state by automatically compiling the required pulses from their gate-level representations, while simultaneously applying a long decoupling pulse to a neighboring qubit. We terminate the experiment with a measurement to observe the state we prepared. This program which mixes circuits and pulses will be automatically lowered to be run as a pulse program:
 
 ```python
 import math
@@ -420,9 +420,9 @@ with pulse.build(backend) as pulse_prog:
 
 The above is just a small taste of what is possible with the builder. See the rest of the module documentation for more information on its capabilities.
 
-|                                                                                                                              |                                                                          |
-| ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`build`](qiskit.pulse.builder.build#qiskit.pulse.builder.build "qiskit.pulse.builder.build")(\[backend, schedule, name, …]) | Create a context manager for launching the imperative pulse builder DSL. |
+|                                                                                                   |                                                                          |
+| ------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
+| [`build`](qiskit.pulse.builder.build "qiskit.pulse.builder.build")(\[backend, schedule, name, …]) | Create a context manager for launching the imperative pulse builder DSL. |
 
 ### Channels
 
@@ -443,12 +443,12 @@ with pulse.build(backend) as drive_sched:
 DriveChannel(0)
 ```
 
-|                                                                                                                                                     |                                                                    |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| [`acquire_channel`](qiskit.pulse.builder.acquire_channel#qiskit.pulse.builder.acquire_channel "qiskit.pulse.builder.acquire_channel")(qubit)        | Return `AcquireChannel` for `qubit` on the active builder backend. |
-| [`control_channels`](qiskit.pulse.builder.control_channels#qiskit.pulse.builder.control_channels "qiskit.pulse.builder.control_channels")(\*qubits) | Return `ControlChannel` for `qubit` on the active builder backend. |
-| [`drive_channel`](qiskit.pulse.builder.drive_channel#qiskit.pulse.builder.drive_channel "qiskit.pulse.builder.drive_channel")(qubit)                | Return `DriveChannel` for `qubit` on the active builder backend.   |
-| [`measure_channel`](qiskit.pulse.builder.measure_channel#qiskit.pulse.builder.measure_channel "qiskit.pulse.builder.measure_channel")(qubit)        | Return `MeasureChannel` for `qubit` on the active builder backend. |
+|                                                                                                               |                                                                    |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
+| [`acquire_channel`](qiskit.pulse.builder.acquire_channel "qiskit.pulse.builder.acquire_channel")(qubit)       | Return `AcquireChannel` for `qubit` on the active builder backend. |
+| [`control_channels`](qiskit.pulse.builder.control_channels "qiskit.pulse.builder.control_channels")(\*qubits) | Return `ControlChannel` for `qubit` on the active builder backend. |
+| [`drive_channel`](qiskit.pulse.builder.drive_channel "qiskit.pulse.builder.drive_channel")(qubit)             | Return `DriveChannel` for `qubit` on the active builder backend.   |
+| [`measure_channel`](qiskit.pulse.builder.measure_channel "qiskit.pulse.builder.measure_channel")(qubit)       | Return `MeasureChannel` for `qubit` on the active builder backend. |
 
 ### Instructions
 
@@ -483,22 +483,22 @@ drive_sched.draw()
 
 ![../\_images/pulse\_5\_0.png](/images/api/qiskit/0.35/pulse_5_0.png)
 
-|                                                                                                                                                                    |                                                                                                                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------- |
-| [`acquire`](qiskit.pulse.builder.acquire#qiskit.pulse.builder.acquire "qiskit.pulse.builder.acquire")(duration, qubit\_or\_channel, …)                             | Acquire for a `duration` on a `channel` and store the result in a `register`.                                                         |
-| [`barrier`](qiskit.pulse.builder.barrier#qiskit.pulse.builder.barrier "qiskit.pulse.builder.barrier")(\*channels\_or\_qubits\[, name])                             | Barrier directive for a set of channels and qubits.                                                                                   |
-| [`call`](qiskit.pulse.builder.call#qiskit.pulse.builder.call "qiskit.pulse.builder.call")(target\[, name, value\_dict])                                            | Call the `target` within the currently active builder context with arbitrary parameters which will be assigned to the target program. |
-| [`delay`](qiskit.pulse.builder.delay#qiskit.pulse.builder.delay "qiskit.pulse.builder.delay")(duration, channel\[, name])                                          | Delay on a `channel` for a `duration`.                                                                                                |
-| [`play`](qiskit.pulse.builder.play#qiskit.pulse.builder.play "qiskit.pulse.builder.play")(pulse, channel\[, name])                                                 | Play a `pulse` on a `channel`.                                                                                                        |
-| [`set_frequency`](qiskit.pulse.builder.set_frequency#qiskit.pulse.builder.set_frequency "qiskit.pulse.builder.set_frequency")(frequency, channel\[, name])         | Set the `frequency` of a pulse `channel`.                                                                                             |
-| [`set_phase`](qiskit.pulse.builder.set_phase#qiskit.pulse.builder.set_phase "qiskit.pulse.builder.set_phase")(phase, channel\[, name])                             | Set the `phase` of a pulse `channel`.                                                                                                 |
-| [`shift_frequency`](qiskit.pulse.builder.shift_frequency#qiskit.pulse.builder.shift_frequency "qiskit.pulse.builder.shift_frequency")(frequency, channel\[, name]) | Shift the `frequency` of a pulse `channel`.                                                                                           |
-| [`shift_phase`](qiskit.pulse.builder.shift_phase#qiskit.pulse.builder.shift_phase "qiskit.pulse.builder.shift_phase")(phase, channel\[, name])                     | Shift the `phase` of a pulse `channel`.                                                                                               |
-| [`snapshot`](qiskit.pulse.builder.snapshot#qiskit.pulse.builder.snapshot "qiskit.pulse.builder.snapshot")(label\[, snapshot\_type])                                | Simulator snapshot.                                                                                                                   |
+|                                                                                                                               |                                                                                                                                       |
+| ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------- |
+| [`acquire`](qiskit.pulse.builder.acquire "qiskit.pulse.builder.acquire")(duration, qubit\_or\_channel, …)                     | Acquire for a `duration` on a `channel` and store the result in a `register`.                                                         |
+| [`barrier`](qiskit.pulse.builder.barrier "qiskit.pulse.builder.barrier")(\*channels\_or\_qubits\[, name])                     | Barrier directive for a set of channels and qubits.                                                                                   |
+| [`call`](qiskit.pulse.builder.call "qiskit.pulse.builder.call")(target\[, name, value\_dict])                                 | Call the `target` within the currently active builder context with arbitrary parameters which will be assigned to the target program. |
+| [`delay`](qiskit.pulse.builder.delay "qiskit.pulse.builder.delay")(duration, channel\[, name])                                | Delay on a `channel` for a `duration`.                                                                                                |
+| [`play`](qiskit.pulse.builder.play "qiskit.pulse.builder.play")(pulse, channel\[, name])                                      | Play a `pulse` on a `channel`.                                                                                                        |
+| [`set_frequency`](qiskit.pulse.builder.set_frequency "qiskit.pulse.builder.set_frequency")(frequency, channel\[, name])       | Set the `frequency` of a pulse `channel`.                                                                                             |
+| [`set_phase`](qiskit.pulse.builder.set_phase "qiskit.pulse.builder.set_phase")(phase, channel\[, name])                       | Set the `phase` of a pulse `channel`.                                                                                                 |
+| [`shift_frequency`](qiskit.pulse.builder.shift_frequency "qiskit.pulse.builder.shift_frequency")(frequency, channel\[, name]) | Shift the `frequency` of a pulse `channel`.                                                                                           |
+| [`shift_phase`](qiskit.pulse.builder.shift_phase "qiskit.pulse.builder.shift_phase")(phase, channel\[, name])                 | Shift the `phase` of a pulse `channel`.                                                                                               |
+| [`snapshot`](qiskit.pulse.builder.snapshot "qiskit.pulse.builder.snapshot")(label\[, snapshot\_type])                         | Simulator snapshot.                                                                                                                   |
 
 ### Contexts
 
-Builder aware contexts that modify the construction of a pulse program. For example an alignment context like [`align_right()`](qiskit.pulse.builder.align_right#qiskit.pulse.builder.align_right "qiskit.pulse.builder.align_right") may be used to align all pulses as late as possible in a pulse program.
+Builder aware contexts that modify the construction of a pulse program. For example an alignment context like [`align_right()`](qiskit.pulse.builder.align_right "qiskit.pulse.builder.align_right") may be used to align all pulses as late as possible in a pulse program.
 
 ```python
 from qiskit import pulse
@@ -518,19 +518,19 @@ pulse_prog.draw()
 
 ![../\_images/pulse\_6\_0.png](/images/api/qiskit/0.35/pulse_6_0.png)
 
-|                                                                                                                                                                                                 |                                                                                |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| [`align_equispaced`](qiskit.pulse.builder.align_equispaced#qiskit.pulse.builder.align_equispaced "qiskit.pulse.builder.align_equispaced")(duration)                                             | Equispaced alignment pulse scheduling context.                                 |
-| [`align_func`](qiskit.pulse.builder.align_func#qiskit.pulse.builder.align_func "qiskit.pulse.builder.align_func")(duration, func)                                                               | Callback defined alignment pulse scheduling context.                           |
-| [`align_left`](qiskit.pulse.builder.align_left#qiskit.pulse.builder.align_left "qiskit.pulse.builder.align_left")()                                                                             | Left alignment pulse scheduling context.                                       |
-| [`align_right`](qiskit.pulse.builder.align_right#qiskit.pulse.builder.align_right "qiskit.pulse.builder.align_right")()                                                                         | Right alignment pulse scheduling context.                                      |
-| [`align_sequential`](qiskit.pulse.builder.align_sequential#qiskit.pulse.builder.align_sequential "qiskit.pulse.builder.align_sequential")()                                                     | Sequential alignment pulse scheduling context.                                 |
-| [`circuit_scheduler_settings`](qiskit.pulse.builder.circuit_scheduler_settings#qiskit.pulse.builder.circuit_scheduler_settings "qiskit.pulse.builder.circuit_scheduler_settings")(\*\*settings) | Set the currently active circuit scheduler settings for this context.          |
-| [`frequency_offset`](qiskit.pulse.builder.frequency_offset#qiskit.pulse.builder.frequency_offset "qiskit.pulse.builder.frequency_offset")(frequency, \*channels\[, …])                          | Shift the frequency of inputs channels on entry into context and undo on exit. |
-| [`inline`](qiskit.pulse.builder.inline#qiskit.pulse.builder.inline "qiskit.pulse.builder.inline")()                                                                                             | Deprecated.                                                                    |
-| [`pad`](qiskit.pulse.builder.pad#qiskit.pulse.builder.pad "qiskit.pulse.builder.pad")(\*chs)                                                                                                    | Deprecated.                                                                    |
-| [`phase_offset`](qiskit.pulse.builder.phase_offset#qiskit.pulse.builder.phase_offset "qiskit.pulse.builder.phase_offset")(phase, \*channels)                                                    | Shift the phase of input channels on entry into context and undo on exit.      |
-| [`transpiler_settings`](qiskit.pulse.builder.transpiler_settings#qiskit.pulse.builder.transpiler_settings "qiskit.pulse.builder.transpiler_settings")(\*\*settings)                             | Set the currently active transpiler settings for this context.                 |
+|                                                                                                                                                 |                                                                                |
+| ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
+| [`align_equispaced`](qiskit.pulse.builder.align_equispaced "qiskit.pulse.builder.align_equispaced")(duration)                                   | Equispaced alignment pulse scheduling context.                                 |
+| [`align_func`](qiskit.pulse.builder.align_func "qiskit.pulse.builder.align_func")(duration, func)                                               | Callback defined alignment pulse scheduling context.                           |
+| [`align_left`](qiskit.pulse.builder.align_left "qiskit.pulse.builder.align_left")()                                                             | Left alignment pulse scheduling context.                                       |
+| [`align_right`](qiskit.pulse.builder.align_right "qiskit.pulse.builder.align_right")()                                                          | Right alignment pulse scheduling context.                                      |
+| [`align_sequential`](qiskit.pulse.builder.align_sequential "qiskit.pulse.builder.align_sequential")()                                           | Sequential alignment pulse scheduling context.                                 |
+| [`circuit_scheduler_settings`](qiskit.pulse.builder.circuit_scheduler_settings "qiskit.pulse.builder.circuit_scheduler_settings")(\*\*settings) | Set the currently active circuit scheduler settings for this context.          |
+| [`frequency_offset`](qiskit.pulse.builder.frequency_offset "qiskit.pulse.builder.frequency_offset")(frequency, \*channels\[, …])                | Shift the frequency of inputs channels on entry into context and undo on exit. |
+| [`inline`](qiskit.pulse.builder.inline "qiskit.pulse.builder.inline")()                                                                         | Deprecated.                                                                    |
+| [`pad`](qiskit.pulse.builder.pad "qiskit.pulse.builder.pad")(\*chs)                                                                             | Deprecated.                                                                    |
+| [`phase_offset`](qiskit.pulse.builder.phase_offset "qiskit.pulse.builder.phase_offset")(phase, \*channels)                                      | Shift the phase of input channels on entry into context and undo on exit.      |
+| [`transpiler_settings`](qiskit.pulse.builder.transpiler_settings "qiskit.pulse.builder.transpiler_settings")(\*\*settings)                      | Set the currently active transpiler settings for this context.                 |
 
 ### Macros
 
@@ -551,15 +551,15 @@ with pulse.build(backend) as measure_sched:
 MemorySlot(0)
 ```
 
-|                                                                                                                                               |                                                                                                         |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
-| [`measure`](qiskit.pulse.builder.measure#qiskit.pulse.builder.measure "qiskit.pulse.builder.measure")(qubits\[, registers])                   | Measure a qubit within the currently active builder context.                                            |
-| [`measure_all`](qiskit.pulse.builder.measure_all#qiskit.pulse.builder.measure_all "qiskit.pulse.builder.measure_all")()                       | Measure all qubits within the currently active builder context.                                         |
-| [`delay_qubits`](qiskit.pulse.builder.delay_qubits#qiskit.pulse.builder.delay_qubits "qiskit.pulse.builder.delay_qubits")(duration, \*qubits) | Insert delays on all of the `channels.Channel`s that correspond to the input `qubits` at the same time. |
+|                                                                                                             |                                                                                                         |
+| ----------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------- |
+| [`measure`](qiskit.pulse.builder.measure "qiskit.pulse.builder.measure")(qubits\[, registers])              | Measure a qubit within the currently active builder context.                                            |
+| [`measure_all`](qiskit.pulse.builder.measure_all "qiskit.pulse.builder.measure_all")()                      | Measure all qubits within the currently active builder context.                                         |
+| [`delay_qubits`](qiskit.pulse.builder.delay_qubits "qiskit.pulse.builder.delay_qubits")(duration, \*qubits) | Insert delays on all of the `channels.Channel`s that correspond to the input `qubits` at the same time. |
 
 ### Circuit Gates
 
-To use circuit level gates within your pulse program call a circuit with [`call()`](qiskit.pulse.builder.call#qiskit.pulse.builder.call "qiskit.pulse.builder.call").
+To use circuit level gates within your pulse program call a circuit with [`call()`](qiskit.pulse.builder.call "qiskit.pulse.builder.call").
 
 <Admonition title="Warning" type="caution">
   These will be removed in future versions with the release of a circuit builder interface in which it will be possible to calibrate a gate in terms of pulses and use that gate in a circuit.
@@ -577,13 +577,13 @@ with pulse.build(backend) as u3_sched:
     pulse.u3(math.pi, 0, math.pi, 0)
 ```
 
-|                                                                                                           |                                               |
-| --------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| [`cx`](qiskit.pulse.builder.cx#qiskit.pulse.builder.cx "qiskit.pulse.builder.cx")(control, target)        | Call a `CXGate` on the input physical qubits. |
-| [`u1`](qiskit.pulse.builder.u1#qiskit.pulse.builder.u1 "qiskit.pulse.builder.u1")(theta, qubit)           | Call a `U1Gate` on the input physical qubit.  |
-| [`u2`](qiskit.pulse.builder.u2#qiskit.pulse.builder.u2 "qiskit.pulse.builder.u2")(phi, lam, qubit)        | Call a `U2Gate` on the input physical qubit.  |
-| [`u3`](qiskit.pulse.builder.u3#qiskit.pulse.builder.u3 "qiskit.pulse.builder.u3")(theta, phi, lam, qubit) | Call a `U3Gate` on the input physical qubit.  |
-| [`x`](qiskit.pulse.builder.x#qiskit.pulse.builder.x "qiskit.pulse.builder.x")(qubit)                      | Call a `XGate` on the input physical qubit.   |
+|                                                                                   |                                               |
+| --------------------------------------------------------------------------------- | --------------------------------------------- |
+| [`cx`](qiskit.pulse.builder.cx "qiskit.pulse.builder.cx")(control, target)        | Call a `CXGate` on the input physical qubits. |
+| [`u1`](qiskit.pulse.builder.u1 "qiskit.pulse.builder.u1")(theta, qubit)           | Call a `U1Gate` on the input physical qubit.  |
+| [`u2`](qiskit.pulse.builder.u2 "qiskit.pulse.builder.u2")(phi, lam, qubit)        | Call a `U2Gate` on the input physical qubit.  |
+| [`u3`](qiskit.pulse.builder.u3 "qiskit.pulse.builder.u3")(theta, phi, lam, qubit) | Call a `U3Gate` on the input physical qubit.  |
+| [`x`](qiskit.pulse.builder.x "qiskit.pulse.builder.x")(qubit)                     | Call a `XGate` on the input physical qubit.   |
 
 ### Utilities
 
@@ -614,25 +614,25 @@ There are 160 samples in 3.5555555555555554e-08 seconds
 There are 1e-06 seconds in 4500 samples.
 ```
 
-|                                                                                                                                                                                                                 |                                                                                                    |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| [`active_backend`](qiskit.pulse.builder.active_backend#qiskit.pulse.builder.active_backend "qiskit.pulse.builder.active_backend")()                                                                             | Get the backend of the currently active builder context.                                           |
-| [`active_transpiler_settings`](qiskit.pulse.builder.active_transpiler_settings#qiskit.pulse.builder.active_transpiler_settings "qiskit.pulse.builder.active_transpiler_settings")()                             | Return the current active builder context’s transpiler settings.                                   |
-| [`active_circuit_scheduler_settings`](qiskit.pulse.builder.active_circuit_scheduler_settings#qiskit.pulse.builder.active_circuit_scheduler_settings "qiskit.pulse.builder.active_circuit_scheduler_settings")() | Return the current active builder context’s circuit scheduler settings.                            |
-| [`num_qubits`](qiskit.pulse.builder.num_qubits#qiskit.pulse.builder.num_qubits "qiskit.pulse.builder.num_qubits")()                                                                                             | Return number of qubits in the currently active backend.                                           |
-| [`qubit_channels`](qiskit.pulse.builder.qubit_channels#qiskit.pulse.builder.qubit_channels "qiskit.pulse.builder.qubit_channels")(qubit)                                                                        | Returns the set of channels associated with a qubit.                                               |
-| [`samples_to_seconds`](qiskit.pulse.builder.samples_to_seconds#qiskit.pulse.builder.samples_to_seconds "qiskit.pulse.builder.samples_to_seconds")(samples)                                                      | Obtain the time in seconds that will elapse for the input number of samples on the active backend. |
-| [`seconds_to_samples`](qiskit.pulse.builder.seconds_to_samples#qiskit.pulse.builder.seconds_to_samples "qiskit.pulse.builder.seconds_to_samples")(seconds)                                                      | Obtain the number of samples that will elapse in `seconds` on the active backend.                  |
+|                                                                                                                                                          |                                                                                                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
+| [`active_backend`](qiskit.pulse.builder.active_backend "qiskit.pulse.builder.active_backend")()                                                          | Get the backend of the currently active builder context.                                           |
+| [`active_transpiler_settings`](qiskit.pulse.builder.active_transpiler_settings "qiskit.pulse.builder.active_transpiler_settings")()                      | Return the current active builder context’s transpiler settings.                                   |
+| [`active_circuit_scheduler_settings`](qiskit.pulse.builder.active_circuit_scheduler_settings "qiskit.pulse.builder.active_circuit_scheduler_settings")() | Return the current active builder context’s circuit scheduler settings.                            |
+| [`num_qubits`](qiskit.pulse.builder.num_qubits "qiskit.pulse.builder.num_qubits")()                                                                      | Return number of qubits in the currently active backend.                                           |
+| [`qubit_channels`](qiskit.pulse.builder.qubit_channels "qiskit.pulse.builder.qubit_channels")(qubit)                                                     | Returns the set of channels associated with a qubit.                                               |
+| [`samples_to_seconds`](qiskit.pulse.builder.samples_to_seconds "qiskit.pulse.builder.samples_to_seconds")(samples)                                       | Obtain the time in seconds that will elapse for the input number of samples on the active backend. |
+| [`seconds_to_samples`](qiskit.pulse.builder.seconds_to_samples "qiskit.pulse.builder.seconds_to_samples")(seconds)                                       | Obtain the number of samples that will elapse in `seconds` on the active backend.                  |
 
 ## Configuration
 
-|                                                                                                                                             |                                                                                                                                                                                                                                                                                                                                                                                                             |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap#qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")() | Mapping from [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") [`qiskit.circuit.Instruction`](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and qubits to [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") s. In particular, the mapping is formatted as type::. |
+|                                                                                                         |                                                                                                                                                                                                                                                                                                                              |
+| ------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")() | Mapping from [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") [`qiskit.circuit.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and qubits to [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") s. In particular, the mapping is formatted as type::. |
 
 ## Exceptions
 
-
+<span id="qiskit.pulse.PulseError" />
 
 `PulseError(*message)`
 

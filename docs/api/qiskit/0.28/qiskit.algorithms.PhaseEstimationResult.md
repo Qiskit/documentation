@@ -1,6 +1,14 @@
+---
+title: PhaseEstimationResult
+description: API reference for qiskit.algorithms.PhaseEstimationResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.PhaseEstimationResult
+---
+
 # qiskit.algorithms.PhaseEstimationResult
 
-
+<span id="qiskit.algorithms.PhaseEstimationResult" />
 
 `PhaseEstimationResult(num_evaluation_qubits, circuit_result, phases)`
 
@@ -16,7 +24,9 @@ The canonical phase satisfying the `PhaseEstimator` interface, returned by the a
 *   **circuit\_result** (`Result`) – result object returned by method running circuit.
 *   **phases** (`Union`\[`ndarray`, `Dict`\[`str`, `float`]]) – ndarray or dict of phases and frequencies determined by QPE.
 
+### \_\_init\_\_
 
+<span id="qiskit.algorithms.PhaseEstimationResult.__init__" />
 
 `__init__(num_evaluation_qubits, circuit_result, phases)`
 
@@ -28,22 +38,11 @@ The canonical phase satisfying the `PhaseEstimator` interface, returned by the a
 
 ## Methods
 
-|                                                                                                                                                         |                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.PhaseEstimationResult.__init__ "qiskit.algorithms.PhaseEstimationResult.__init__")(num\_evaluation\_qubits, …)          | **type num\_evaluation\_qubits**`int`                                  |
-| [`combine`](#qiskit.algorithms.PhaseEstimationResult.combine "qiskit.algorithms.PhaseEstimationResult.combine")(result)                                 | Any property from the argument that exists in the receiver is updated. |
-| [`filter_phases`](#qiskit.algorithms.PhaseEstimationResult.filter_phases "qiskit.algorithms.PhaseEstimationResult.filter_phases")(\[cutoff, as\_float]) | Return a filtered dict of phases (keys) and frequencies (values).      |
-
 ## Attributes
 
-|                                                                                                                                               |                                                                                          |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
-| [`circuit_result`](#qiskit.algorithms.PhaseEstimationResult.circuit_result "qiskit.algorithms.PhaseEstimationResult.circuit_result")          | Return the result object returned by running the QPE circuit (on hardware or simulator). |
-| [`most_likely_phase`](#qiskit.algorithms.PhaseEstimationResult.most_likely_phase "qiskit.algorithms.PhaseEstimationResult.most_likely_phase") | DEPRECATED - Return the most likely phase as a number in $[0.0, 1.0)$.                   |
-| [`phase`](#qiskit.algorithms.PhaseEstimationResult.phase "qiskit.algorithms.PhaseEstimationResult.phase")                                     | Return the most likely phase as a number in $[0.0, 1.0)$.                                |
-| [`phases`](#qiskit.algorithms.PhaseEstimationResult.phases "qiskit.algorithms.PhaseEstimationResult.phases")                                  | Return all phases and their frequencies computed by QPE.                                 |
+### circuit\_result
 
-
+<span id="qiskit.algorithms.PhaseEstimationResult.circuit_result" />
 
 `property circuit_result`
 
@@ -55,7 +54,9 @@ This is useful for inspecting and troubleshooting the QPE algorithm.
 
 `Result`
 
+### combine
 
+<span id="qiskit.algorithms.PhaseEstimationResult.combine" />
 
 `combine(result)`
 
@@ -69,7 +70,9 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
+### filter\_phases
 
+<span id="qiskit.algorithms.PhaseEstimationResult.filter_phases" />
 
 `filter_phases(cutoff=0.0, as_float=True)`
 
@@ -90,7 +93,9 @@ Only phases with frequencies (counts) larger than cutoff are included. It is ass
 
 A filtered dict of phases (keys) and frequencies (values).
 
+### most\_likely\_phase
 
+<span id="qiskit.algorithms.PhaseEstimationResult.most_likely_phase" />
 
 `property most_likely_phase`
 
@@ -102,7 +107,9 @@ DEPRECATED - Return the most likely phase as a number in $[0.0, 1.0)$.
 
 `float`
 
+### phase
 
+<span id="qiskit.algorithms.PhaseEstimationResult.phase" />
 
 `property phase`
 
@@ -114,7 +121,9 @@ Return the most likely phase as a number in $[0.0, 1.0)$.
 
 `float`
 
+### phases
 
+<span id="qiskit.algorithms.PhaseEstimationResult.phases" />
 
 `property phases`
 
@@ -125,3 +134,4 @@ This is an array or dict whose values correspond to weights on bit strings.
 **Return type**
 
 `Union`\[`ndarray`, `dict`]
+

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.ConvertConditionsToIfOps
 ---
 
-# ConvertConditionsToIfOps[¶](#convertconditionstoifops "Permalink to this headline")
+# ConvertConditionsToIfOps
 
 <span id="qiskit.transpiler.passes.ConvertConditionsToIfOps" />
 

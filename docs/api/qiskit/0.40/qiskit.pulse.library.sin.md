@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.library.sin
 ---
 
-# qiskit.pulse.library.sin[¶](#qiskit-pulse-library-sin "Permalink to this headline")
+# qiskit.pulse.library.sin
 
 <span id="qiskit.pulse.library.sin" />
 

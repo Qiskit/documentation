@@ -1,8 +1,16 @@
+---
+title: PauliExpectation
+description: API reference for qiskit.aqua.operators.expectations.PauliExpectation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.expectations.PauliExpectation
+---
+
 <span id="qiskit-aqua-operators-expectations-pauliexpectation" />
 
 # qiskit.aqua.operators.expectations.PauliExpectation
 
-
+<span id="qiskit.aqua.operators.expectations.PauliExpectation" />
 
 `PauliExpectation(group_paulis=True)`
 
@@ -12,7 +20,9 @@ An Expectation converter for Pauli-basis observables by changing Pauli measureme
 
 **group\_paulis** (`bool`) – Whether to group the Pauli measurements into commuting sums, which all have the same diagonalizing circuit.
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.operators.expectations.PauliExpectation.__init__" />
 
 `__init__(group_paulis=True)`
 
@@ -22,13 +32,9 @@ An Expectation converter for Pauli-basis observables by changing Pauli measureme
 
 ## Methods
 
-|                                                                                                                                                                             |                                                                                                                                                                                            |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.aqua.operators.expectations.PauliExpectation.__init__ "qiskit.aqua.operators.expectations.PauliExpectation.__init__")(\[group\_paulis])                | **type group\_paulis**`bool`                                                                                                                                                               |
-| [`compute_variance`](#qiskit.aqua.operators.expectations.PauliExpectation.compute_variance "qiskit.aqua.operators.expectations.PauliExpectation.compute_variance")(exp\_op) | Compute the variance of the expectation estimator.                                                                                                                                         |
-| [`convert`](#qiskit.aqua.operators.expectations.PauliExpectation.convert "qiskit.aqua.operators.expectations.PauliExpectation.convert")(operator)                           | Accepts an Operator and returns a new Operator with the Pauli measurements replaced by diagonal Pauli post-rotation based measurements so they can be evaluated by sampling and averaging. |
+### compute\_variance
 
-
+<span id="qiskit.aqua.operators.expectations.PauliExpectation.compute_variance" />
 
 `compute_variance(exp_op)`
 
@@ -46,7 +52,9 @@ Compute the variance of the expectation estimator.
 
 The variances or lists thereof (if exp\_op contains ListOps) of the expectation value estimation.
 
+### convert
 
+<span id="qiskit.aqua.operators.expectations.PauliExpectation.convert" />
 
 `convert(operator)`
 
@@ -63,3 +71,4 @@ Accepts an Operator and returns a new Operator with the Pauli measurements repla
 **Returns**
 
 The converted operator.
+

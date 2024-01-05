@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.PassManager
 ---
 
-# PassManager[¶](#passmanager "Permalink to this headline")
+# PassManager
 
 <span id="qiskit.transpiler.PassManager" />
 

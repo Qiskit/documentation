@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CheckMap
 ---
 
-# CheckMap[¶](#checkmap "Permalink to this headline")
+# CheckMap
 
 <span id="qiskit.transpiler.passes.CheckMap" />
 

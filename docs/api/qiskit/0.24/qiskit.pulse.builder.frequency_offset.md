@@ -1,8 +1,16 @@
+---
+title: frequency_offset
+description: API reference for qiskit.pulse.builder.frequency_offset
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.frequency_offset
+---
+
 <span id="qiskit-pulse-builder-frequency-offset" />
 
 # qiskit.pulse.builder.frequency\_offset
 
-
+<span id="qiskit.pulse.builder.frequency_offset" />
 
 `frequency_offset(frequency, *channels, compensate_phase=False)`
 
@@ -45,3 +53,4 @@ None
 **Return type**
 
 `AbstractContextManager`\[`None`]
+

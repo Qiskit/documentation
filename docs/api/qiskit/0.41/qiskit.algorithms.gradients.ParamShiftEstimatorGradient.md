@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.ParamShiftEstimatorGradient
 ---
 
-# ParamShiftEstimatorGradient[¶](#paramshiftestimatorgradient "Permalink to this headline")
+# ParamShiftEstimatorGradient
 
 <span id="qiskit.algorithms.gradients.ParamShiftEstimatorGradient" />
 

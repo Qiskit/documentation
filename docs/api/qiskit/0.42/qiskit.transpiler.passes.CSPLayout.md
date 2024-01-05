@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CSPLayout
 ---
 
-# CSPLayout[¶](#csplayout "Permalink to this headline")
+# CSPLayout
 
 <span id="qiskit.transpiler.passes.CSPLayout" />
 

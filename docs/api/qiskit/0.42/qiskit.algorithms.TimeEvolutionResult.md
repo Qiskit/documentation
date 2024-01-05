@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.TimeEvolutionResult
 ---
 
-# TimeEvolutionResult[¶](#timeevolutionresult "Permalink to this headline")
+# TimeEvolutionResult
 
 <span id="qiskit.algorithms.TimeEvolutionResult" />
 

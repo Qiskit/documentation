@@ -1,8 +1,16 @@
+---
+title: Waveform
+description: API reference for qiskit.pulse.library.Waveform
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.library.Waveform
+---
+
 <span id="qiskit-pulse-library-waveform" />
 
 # qiskit.pulse.library.Waveform
 
-
+<span id="qiskit.pulse.library.Waveform" />
 
 `Waveform(samples, name=None, epsilon=1e-07)`
 
@@ -16,7 +24,9 @@ Create new sample pulse command.
 *   **name** (`Optional`\[`str`]) – Unique name to identify the pulse.
 *   **epsilon** (`float`) – Pulse sample norm tolerance for clipping. If any sample’s norm exceeds unity by less than or equal to epsilon it will be clipped to unit norm. If the sample norm is greater than 1+epsilon an error will be raised.
 
+### \_\_init\_\_
 
+<span id="qiskit.pulse.library.Waveform.__init__" />
 
 `__init__(samples, name=None, epsilon=1e-07)`
 
@@ -30,20 +40,11 @@ Create new sample pulse command.
 
 ## Methods
 
-|                                                                                                                                        |                                              |
-| -------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [`__init__`](#qiskit.pulse.library.Waveform.__init__ "qiskit.pulse.library.Waveform.__init__")(samples\[, name, epsilon])              | Create new sample pulse command.             |
-| [`assign_parameters`](#qiskit.pulse.library.Waveform.assign_parameters "qiskit.pulse.library.Waveform.assign_parameters")(value\_dict) | Return a new pulse with parameters assigned. |
-| [`draw`](#qiskit.pulse.library.Waveform.draw "qiskit.pulse.library.Waveform.draw")(\[dt, style, filename, interp\_method, …])          | Plot the interpolated envelope of pulse.     |
-
 ## Attributes
 
-|                                                                                             |                                   |
-| ------------------------------------------------------------------------------------------- | --------------------------------- |
-| [`id`](#qiskit.pulse.library.Waveform.id "qiskit.pulse.library.Waveform.id")                | Unique identifier for this pulse. |
-| [`samples`](#qiskit.pulse.library.Waveform.samples "qiskit.pulse.library.Waveform.samples") | Return sample values.             |
+### assign\_parameters
 
-
+<span id="qiskit.pulse.library.Waveform.assign_parameters" />
 
 `assign_parameters(value_dict)`
 
@@ -61,7 +62,9 @@ Return a new pulse with parameters assigned.
 
 New pulse with updated parameters.
 
+### draw
 
+<span id="qiskit.pulse.library.Waveform.draw" />
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False)`
 
@@ -84,7 +87,9 @@ A matplotlib figure object of the pulse envelope
 
 matplotlib.figure
 
+### id
 
+<span id="qiskit.pulse.library.Waveform.id" />
 
 `property id`
 
@@ -94,7 +99,9 @@ Unique identifier for this pulse.
 
 `int`
 
+### samples
 
+<span id="qiskit.pulse.library.Waveform.samples" />
 
 `property samples`
 
@@ -103,3 +110,4 @@ Return sample values.
 **Return type**
 
 `ndarray`
+

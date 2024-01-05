@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.library.GaussianSquareDrag
 ---
 
-# qiskit.pulse.library.GaussianSquareDrag[¶](#qiskit-pulse-library-gaussiansquaredrag "Permalink to this headline")
+# qiskit.pulse.library.GaussianSquareDrag
 
 <span id="qiskit.pulse.library.GaussianSquareDrag" />
 

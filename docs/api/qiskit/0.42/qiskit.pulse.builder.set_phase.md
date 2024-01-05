@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.set_phase
 ---
 
-# qiskit.pulse.builder.set\_phase[¶](#qiskit-pulse-builder-set-phase "Permalink to this headline")
+# qiskit.pulse.builder.set\_phase
 
 <span id="qiskit.pulse.builder.set_phase" />
 

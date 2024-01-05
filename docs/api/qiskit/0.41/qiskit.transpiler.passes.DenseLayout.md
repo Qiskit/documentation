@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.DenseLayout
 ---
 
-# DenseLayout[¶](#denselayout "Permalink to this headline")
+# DenseLayout
 
 <span id="qiskit.transpiler.passes.DenseLayout" />
 

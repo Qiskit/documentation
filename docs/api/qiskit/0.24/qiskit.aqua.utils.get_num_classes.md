@@ -1,8 +1,16 @@
+---
+title: get_num_classes
+description: API reference for qiskit.aqua.utils.get_num_classes
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.aqua.utils.get_num_classes
+---
+
 <span id="qiskit-aqua-utils-get-num-classes" />
 
 # qiskit.aqua.utils.get\_num\_classes
 
-
+<span id="qiskit.aqua.utils.get_num_classes" />
 
 `get_num_classes(dataset)`
 
@@ -19,3 +27,4 @@ number of classes
 **Return type**
 
 int
+

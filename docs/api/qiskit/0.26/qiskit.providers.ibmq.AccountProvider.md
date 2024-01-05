@@ -1,6 +1,14 @@
+---
+title: AccountProvider
+description: API reference for qiskit.providers.ibmq.AccountProvider
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.AccountProvider
+---
+
 # qiskit.providers.ibmq.AccountProvider
 
-
+<span id="qiskit.providers.ibmq.AccountProvider" />
 
 `AccountProvider(credentials)`
 
@@ -8,14 +16,14 @@ Provider for a single IBM Quantum Experience account.
 
 The account provider class provides access to the IBM Quantum Experience services available to this account.
 
-You can access a provider by enabling an account with the [`IBMQ.enable_account()`](qiskit.providers.ibmq.IBMQFactory#qiskit.providers.ibmq.IBMQFactory.enable_account "qiskit.providers.ibmq.IBMQFactory.enable_account") method, which returns the default provider you have access to:
+You can access a provider by enabling an account with the [`IBMQ.enable_account()`](qiskit.providers.ibmq.IBMQFactory#enable_account "qiskit.providers.ibmq.IBMQFactory.enable_account") method, which returns the default provider you have access to:
 
 ```python
 from qiskit import IBMQ
 provider = IBMQ.enable_account(<INSERT_IBM_QUANTUM_EXPERIENCE_TOKEN>)
 ```
 
-To select a different provider, use the [`IBMQ.get_provider()`](qiskit.providers.ibmq.IBMQFactory#qiskit.providers.ibmq.IBMQFactory.get_provider "qiskit.providers.ibmq.IBMQFactory.get_provider") method and specify the hub, group, or project name of the desired provider.
+To select a different provider, use the [`IBMQ.get_provider()`](qiskit.providers.ibmq.IBMQFactory#get_provider "qiskit.providers.ibmq.IBMQFactory.get_provider") method and specify the hub, group, or project name of the desired provider.
 
 Each provider may offer different services. The main service, `IBMQBackendService`, is available to all providers and gives access to IBM Quantum Experience devices and simulators.
 
@@ -56,7 +64,9 @@ AccountProvider constructor.
 
 **credentials** (`Credentials`) – IBM Quantum Experience credentials.
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.ibmq.AccountProvider.__init__" />
 
 `__init__(credentials)`
 
@@ -68,27 +78,11 @@ AccountProvider constructor.
 
 ## Methods
 
-|                                                                                                                                                            |                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.providers.ibmq.AccountProvider.__init__ "qiskit.providers.ibmq.AccountProvider.__init__")(credentials)                                | AccountProvider constructor.                                                     |
-| [`backends`](#qiskit.providers.ibmq.AccountProvider.backends "qiskit.providers.ibmq.AccountProvider.backends")(\[name, filters])                           | Return all backends accessible via this provider, subject to optional filtering. |
-| [`get_backend`](#qiskit.providers.ibmq.AccountProvider.get_backend "qiskit.providers.ibmq.AccountProvider.get_backend")(\[name])                           | Return a single backend matching the specified filtering.                        |
-| [`has_service`](#qiskit.providers.ibmq.AccountProvider.has_service "qiskit.providers.ibmq.AccountProvider.has_service")(name)                              | Check if this provider has access to the service.                                |
-| [`run_circuits`](#qiskit.providers.ibmq.AccountProvider.run_circuits "qiskit.providers.ibmq.AccountProvider.run_circuits")(circuits, backend\[, shots, …]) | Execute the input circuit(s) on a backend using the runtime service.             |
-| [`service`](#qiskit.providers.ibmq.AccountProvider.service "qiskit.providers.ibmq.AccountProvider.service")(name)                                          | Return the specified service.                                                    |
-| [`services`](#qiskit.providers.ibmq.AccountProvider.services "qiskit.providers.ibmq.AccountProvider.services")()                                           | Return all available services.                                                   |
-
 ## Attributes
 
-|                                                                                                                      |                                   |
-| -------------------------------------------------------------------------------------------------------------------- | --------------------------------- |
-| [`backend`](#qiskit.providers.ibmq.AccountProvider.backend "qiskit.providers.ibmq.AccountProvider.backend")          | Return the backend service.       |
-| [`experiment`](#qiskit.providers.ibmq.AccountProvider.experiment "qiskit.providers.ibmq.AccountProvider.experiment") | Return the experiment service.    |
-| [`random`](#qiskit.providers.ibmq.AccountProvider.random "qiskit.providers.ibmq.AccountProvider.random")             | Return the random number service. |
-| [`runtime`](#qiskit.providers.ibmq.AccountProvider.runtime "qiskit.providers.ibmq.AccountProvider.runtime")          | Return the runtime service.       |
-| `version`                                                                                                            |                                   |
+### backend
 
-
+<span id="qiskit.providers.ibmq.AccountProvider.backend" />
 
 `property backend`
 
@@ -102,7 +96,9 @@ Return the backend service.
 
 The backend service instance.
 
+### backends
 
+<span id="qiskit.providers.ibmq.AccountProvider.backends" />
 
 `backends(name=None, filters=None, **kwargs)`
 
@@ -136,7 +132,9 @@ Return all backends accessible via this provider, subject to optional filtering.
 
 The list of available backends that match the filter.
 
+### experiment
 
+<span id="qiskit.providers.ibmq.AccountProvider.experiment" />
 
 `property experiment`
 
@@ -154,7 +152,9 @@ The experiment service instance.
 
 **IBMQNotAuthorizedError** – If the account is not authorized to use the experiment service.
 
+### get\_backend
 
+<span id="qiskit.providers.ibmq.AccountProvider.get_backend" />
 
 `get_backend(name=None, **kwargs)`
 
@@ -171,13 +171,15 @@ a backend matching the filtering.
 
 **Return type**
 
-[Backend](qiskit.providers.Backend#qiskit.providers.Backend "qiskit.providers.Backend")
+[Backend](qiskit.providers.Backend "qiskit.providers.Backend")
 
 **Raises**
 
-[**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError#qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
+[**QiskitBackendNotFoundError**](qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError") – if no backend could be found or more than one backend matches the filtering criteria.
 
+### has\_service
 
+<span id="qiskit.providers.ibmq.AccountProvider.has_service" />
 
 `has_service(name)`
 
@@ -199,7 +201,9 @@ Whether the provider has access to the service.
 
 **IBMQInputValueError** – If an unknown service name is specified.
 
+### random
 
+<span id="qiskit.providers.ibmq.AccountProvider.random" />
 
 `property random`
 
@@ -217,7 +221,9 @@ The random number service instance.
 
 **IBMQNotAuthorizedError** – If the account is not authorized to use the service.
 
+### run\_circuits
 
+<span id="qiskit.providers.ibmq.AccountProvider.run_circuits" />
 
 `run_circuits(circuits, backend, shots=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, seed_transpiler=None, optimization_level=None, init_qubits=True, rep_delay=None, transpiler_options=None, measurement_error_mitigation=False, **run_config)`
 
@@ -252,7 +258,9 @@ Execute the input circuit(s) on a backend using the runtime service.
 
 Runtime job.
 
+### runtime
 
+<span id="qiskit.providers.ibmq.AccountProvider.runtime" />
 
 `property runtime`
 
@@ -270,7 +278,9 @@ The runtime service instance.
 
 **IBMQNotAuthorizedError** – If the account is not authorized to use the service.
 
+### service
 
+<span id="qiskit.providers.ibmq.AccountProvider.service" />
 
 `service(name)`
 
@@ -293,7 +303,9 @@ The specified service.
 *   **IBMQInputValueError** – If an unknown service name is specified.
 *   **IBMQNotAuthorizedError** – If the account is not authorized to use the service.
 
+### services
 
+<span id="qiskit.providers.ibmq.AccountProvider.services" />
 
 `services()`
 
@@ -306,3 +318,4 @@ Return all available services.
 **Returns**
 
 All services available to this provider.
+

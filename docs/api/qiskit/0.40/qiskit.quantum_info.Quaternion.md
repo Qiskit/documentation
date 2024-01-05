@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.quantum_info.Quaternion
 ---
 
-# Quaternion[¶](#quaternion "Permalink to this headline")
+# Quaternion
 
 <span id="qiskit.quantum_info.Quaternion" />
 

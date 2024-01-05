@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.gradients.QFIBase
 ---
 
-# QFIBase[¶](#qfibase "Permalink to this headline")
+# QFIBase
 
 <span id="qiskit.opflow.gradients.QFIBase" />
 

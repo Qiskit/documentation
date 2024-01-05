@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit_aer.library.save_unitary
 ---
 
-# qiskit\_aer.library.save\_unitary[¶](#qiskit-aer-library-save-unitary "Permalink to this headline")
+# qiskit\_aer.library.save\_unitary
 
 <span id="qiskit_aer.library.save_unitary" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.FullAncillaAllocation
 ---
 
-# FullAncillaAllocation[¶](#fullancillaallocation "Permalink to this headline")
+# FullAncillaAllocation
 
 <span id="qiskit.transpiler.passes.FullAncillaAllocation" />
 

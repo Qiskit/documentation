@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.ContainsInstruction
 ---
 
-# ContainsInstruction[¶](#containsinstruction "Permalink to this headline")
+# ContainsInstruction
 
 <span id="qiskit.transpiler.passes.ContainsInstruction" />
 

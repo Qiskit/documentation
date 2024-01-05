@@ -1,8 +1,16 @@
+---
+title: optimize_svm
+description: API reference for qiskit.aqua.utils.optimize_svm
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.aqua.utils.optimize_svm
+---
+
 <span id="qiskit-aqua-utils-optimize-svm" />
 
 # qiskit.aqua.utils.optimize\_svm
 
-
+<span id="qiskit.aqua.utils.optimize_svm" />
 
 `optimize_svm(kernel_matrix, y, scaling=None, maxiter=500, show_progress=False, max_iters=None, lambda2=0.001)`
 
@@ -28,4 +36,5 @@ np.ndarray
 
 **Raises**
 
-[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If cvxpy is not installed
+[**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If cvxpy is not installed
+

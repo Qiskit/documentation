@@ -1,6 +1,14 @@
+---
+title: NLocal
+description: API reference for qiskit.circuit.library.NLocal
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.NLocal
+---
+
 # qiskit.circuit.library.NLocal
 
-
+<span id="qiskit.circuit.library.NLocal" />
 
 `NLocal(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal')`
 
@@ -59,7 +67,9 @@ TODO
 *   **ValueError** – If reps parameter is less than or equal to 0.
 *   **TypeError** – If reps parameter is not an int value.
 
+### \_\_init\_\_
 
+<span id="qiskit.circuit.library.NLocal.__init__" />
 
 `__init__(num_qubits=None, rotation_blocks=None, entanglement_blocks=None, entanglement=None, reps=1, insert_barriers=False, parameter_prefix='θ', overwrite_block_parameters=True, skip_final_rotation_layer=False, skip_unentangled_qubits=False, initial_state=None, name='nlocal')`
 
@@ -92,198 +102,19 @@ TODO
 
 ## Methods
 
-|                                                                                                                                                                                       |                                                                                                                                     |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.circuit.library.NLocal.__init__ "qiskit.circuit.library.NLocal.__init__")(\[num\_qubits, rotation\_blocks, …])                                                   | Create a new n-local circuit.                                                                                                       |
-| [`add_bits`](#qiskit.circuit.library.NLocal.add_bits "qiskit.circuit.library.NLocal.add_bits")(bits)                                                                                  | Add Bits to the circuit.                                                                                                            |
-| [`add_calibration`](#qiskit.circuit.library.NLocal.add_calibration "qiskit.circuit.library.NLocal.add_calibration")(gate, qubits, schedule\[, params])                                | Register a low-level, custom pulse definition for the given gate.                                                                   |
-| [`add_layer`](#qiskit.circuit.library.NLocal.add_layer "qiskit.circuit.library.NLocal.add_layer")(other\[, entanglement, front])                                                      | Append another layer to the NLocal.                                                                                                 |
-| [`add_register`](#qiskit.circuit.library.NLocal.add_register "qiskit.circuit.library.NLocal.add_register")(\*regs)                                                                    | Add registers.                                                                                                                      |
-| [`append`](#qiskit.circuit.library.NLocal.append "qiskit.circuit.library.NLocal.append")(instruction\[, qargs, cargs])                                                                | Append one or more instructions to the end of the circuit, modifying the circuit in place.                                          |
-| [`assign_parameters`](#qiskit.circuit.library.NLocal.assign_parameters "qiskit.circuit.library.NLocal.assign_parameters")(parameters\[, inplace, …])                                  | Assign parameters to the n-local circuit.                                                                                           |
-| [`barrier`](#qiskit.circuit.library.NLocal.barrier "qiskit.circuit.library.NLocal.barrier")(\*qargs)                                                                                  | Apply `Barrier`.                                                                                                                    |
-| [`bind_parameters`](#qiskit.circuit.library.NLocal.bind_parameters "qiskit.circuit.library.NLocal.bind_parameters")(values\[, value\_dict])                                           | Assign numeric parameters to values yielding a new circuit.                                                                         |
-| [`cast`](#qiskit.circuit.library.NLocal.cast "qiskit.circuit.library.NLocal.cast")(value, \_type)                                                                                     | Best effort to cast value to type.                                                                                                  |
-| [`cbit_argument_conversion`](#qiskit.circuit.library.NLocal.cbit_argument_conversion "qiskit.circuit.library.NLocal.cbit_argument_conversion")(clbit\_representation)                 | Converts several classical bit representations (such as indexes, range, etc.) into a list of classical bits.                        |
-| [`ccx`](#qiskit.circuit.library.NLocal.ccx "qiskit.circuit.library.NLocal.ccx")(control\_qubit1, control\_qubit2, target\_qubit)                                                      | Apply [`CCXGate`](qiskit.circuit.library.CCXGate#qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").                  |
-| [`ch`](#qiskit.circuit.library.NLocal.ch "qiskit.circuit.library.NLocal.ch")(control\_qubit, target\_qubit\[, label, …])                                                              | Apply [`CHGate`](qiskit.circuit.library.CHGate#qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate").                      |
-| [`cls_instances`](#qiskit.circuit.library.NLocal.cls_instances "qiskit.circuit.library.NLocal.cls_instances")()                                                                       | Return the current number of instances of this class, useful for auto naming.                                                       |
-| [`cls_prefix`](#qiskit.circuit.library.NLocal.cls_prefix "qiskit.circuit.library.NLocal.cls_prefix")()                                                                                | Return the prefix to use for auto naming.                                                                                           |
-| [`cnot`](#qiskit.circuit.library.NLocal.cnot "qiskit.circuit.library.NLocal.cnot")(control\_qubit, target\_qubit\[, label, …])                                                        | Apply [`CXGate`](qiskit.circuit.library.CXGate#qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").                      |
-| [`combine`](#qiskit.circuit.library.NLocal.combine "qiskit.circuit.library.NLocal.combine")(rhs)                                                                                      | DEPRECATED - Returns rhs appended to self if self contains compatible registers.                                                    |
-| [`compose`](#qiskit.circuit.library.NLocal.compose "qiskit.circuit.library.NLocal.compose")(other\[, qubits, clbits, front, …])                                                       | Compose circuit with `other` circuit or instruction, optionally permuting wires.                                                    |
-| [`control`](#qiskit.circuit.library.NLocal.control "qiskit.circuit.library.NLocal.control")(\[num\_ctrl\_qubits, label, ctrl\_state])                                                 | Control this circuit on `num_ctrl_qubits` qubits.                                                                                   |
-| [`copy`](#qiskit.circuit.library.NLocal.copy "qiskit.circuit.library.NLocal.copy")(\[name])                                                                                           | Copy the circuit.                                                                                                                   |
-| [`count_ops`](#qiskit.circuit.library.NLocal.count_ops "qiskit.circuit.library.NLocal.count_ops")()                                                                                   | Count each operation kind in the circuit.                                                                                           |
-| [`cp`](#qiskit.circuit.library.NLocal.cp "qiskit.circuit.library.NLocal.cp")(theta, control\_qubit, target\_qubit\[, …])                                                              | Apply [`CPhaseGate`](qiskit.circuit.library.CPhaseGate#qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate").      |
-| [`crx`](#qiskit.circuit.library.NLocal.crx "qiskit.circuit.library.NLocal.crx")(theta, control\_qubit, target\_qubit\[, …])                                                           | Apply [`CRXGate`](qiskit.circuit.library.CRXGate#qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate").                  |
-| [`cry`](#qiskit.circuit.library.NLocal.cry "qiskit.circuit.library.NLocal.cry")(theta, control\_qubit, target\_qubit\[, …])                                                           | Apply [`CRYGate`](qiskit.circuit.library.CRYGate#qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate").                  |
-| [`crz`](#qiskit.circuit.library.NLocal.crz "qiskit.circuit.library.NLocal.crz")(theta, control\_qubit, target\_qubit\[, …])                                                           | Apply [`CRZGate`](qiskit.circuit.library.CRZGate#qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate").                  |
-| [`cswap`](#qiskit.circuit.library.NLocal.cswap "qiskit.circuit.library.NLocal.cswap")(control\_qubit, target\_qubit1, …\[, …])                                                        | Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate#qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").          |
-| [`csx`](#qiskit.circuit.library.NLocal.csx "qiskit.circuit.library.NLocal.csx")(control\_qubit, target\_qubit\[, label, …])                                                           | Apply [`CSXGate`](qiskit.circuit.library.CSXGate#qiskit.circuit.library.CSXGate "qiskit.circuit.library.CSXGate").                  |
-| [`cu`](#qiskit.circuit.library.NLocal.cu "qiskit.circuit.library.NLocal.cu")(theta, phi, lam, gamma, control\_qubit, …)                                                               | Apply [`CUGate`](qiskit.circuit.library.CUGate#qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate").                      |
-| [`cu1`](#qiskit.circuit.library.NLocal.cu1 "qiskit.circuit.library.NLocal.cu1")(theta, control\_qubit, target\_qubit\[, …])                                                           | Apply [`CU1Gate`](qiskit.circuit.library.CU1Gate#qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate").                  |
-| [`cu3`](#qiskit.circuit.library.NLocal.cu3 "qiskit.circuit.library.NLocal.cu3")(theta, phi, lam, control\_qubit, target\_qubit)                                                       | Apply [`CU3Gate`](qiskit.circuit.library.CU3Gate#qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate").                  |
-| [`cx`](#qiskit.circuit.library.NLocal.cx "qiskit.circuit.library.NLocal.cx")(control\_qubit, target\_qubit\[, label, …])                                                              | Apply [`CXGate`](qiskit.circuit.library.CXGate#qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").                      |
-| [`cy`](#qiskit.circuit.library.NLocal.cy "qiskit.circuit.library.NLocal.cy")(control\_qubit, target\_qubit\[, label, …])                                                              | Apply [`CYGate`](qiskit.circuit.library.CYGate#qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate").                      |
-| [`cz`](#qiskit.circuit.library.NLocal.cz "qiskit.circuit.library.NLocal.cz")(control\_qubit, target\_qubit\[, label, …])                                                              | Apply [`CZGate`](qiskit.circuit.library.CZGate#qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate").                      |
-| [`dcx`](#qiskit.circuit.library.NLocal.dcx "qiskit.circuit.library.NLocal.dcx")(qubit1, qubit2)                                                                                       | Apply [`DCXGate`](qiskit.circuit.library.DCXGate#qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate").                  |
-| [`decompose`](#qiskit.circuit.library.NLocal.decompose "qiskit.circuit.library.NLocal.decompose")()                                                                                   | Call a decomposition pass on this circuit, to decompose one level (shallow decompose).                                              |
-| [`delay`](#qiskit.circuit.library.NLocal.delay "qiskit.circuit.library.NLocal.delay")(duration\[, qarg, unit])                                                                        | Apply [`Delay`](qiskit.circuit.Delay#qiskit.circuit.Delay "qiskit.circuit.Delay").                                                  |
-| [`depth`](#qiskit.circuit.library.NLocal.depth "qiskit.circuit.library.NLocal.depth")()                                                                                               | Return circuit depth (i.e., length of critical path).                                                                               |
-| [`diagonal`](#qiskit.circuit.library.NLocal.diagonal "qiskit.circuit.library.NLocal.diagonal")(diag, qubit)                                                                           | Attach a diagonal gate to a circuit.                                                                                                |
-| [`draw`](#qiskit.circuit.library.NLocal.draw "qiskit.circuit.library.NLocal.draw")(\[output, scale, filename, style, …])                                                              | Draw the quantum circuit.                                                                                                           |
-| [`ecr`](#qiskit.circuit.library.NLocal.ecr "qiskit.circuit.library.NLocal.ecr")(qubit1, qubit2)                                                                                       | Apply [`ECRGate`](qiskit.circuit.library.ECRGate#qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate").                  |
-| [`extend`](#qiskit.circuit.library.NLocal.extend "qiskit.circuit.library.NLocal.extend")(rhs)                                                                                         | DEPRECATED - Append QuantumCircuit to the RHS if it contains compatible registers.                                                  |
-| [`fredkin`](#qiskit.circuit.library.NLocal.fredkin "qiskit.circuit.library.NLocal.fredkin")(control\_qubit, target\_qubit1, …)                                                        | Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate#qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").          |
-| [`from_qasm_file`](#qiskit.circuit.library.NLocal.from_qasm_file "qiskit.circuit.library.NLocal.from_qasm_file")(path)                                                                | Take in a QASM file and generate a QuantumCircuit object.                                                                           |
-| [`from_qasm_str`](#qiskit.circuit.library.NLocal.from_qasm_str "qiskit.circuit.library.NLocal.from_qasm_str")(qasm\_str)                                                              | Take in a QASM string and generate a QuantumCircuit object.                                                                         |
-| [`get_entangler_map`](#qiskit.circuit.library.NLocal.get_entangler_map "qiskit.circuit.library.NLocal.get_entangler_map")(rep\_num, block\_num, …)                                    | Get the entangler map for in the repetition `rep_num` and the block `block_num`.                                                    |
-| [`get_instructions`](#qiskit.circuit.library.NLocal.get_instructions "qiskit.circuit.library.NLocal.get_instructions")(name)                                                          | Get instructions matching name.                                                                                                     |
-| [`get_unentangled_qubits`](#qiskit.circuit.library.NLocal.get_unentangled_qubits "qiskit.circuit.library.NLocal.get_unentangled_qubits")()                                            | Get the indices of unentangled qubits in a set.                                                                                     |
-| [`h`](#qiskit.circuit.library.NLocal.h "qiskit.circuit.library.NLocal.h")(qubit)                                                                                                      | Apply [`HGate`](qiskit.circuit.library.HGate#qiskit.circuit.library.HGate "qiskit.circuit.library.HGate").                          |
-| [`hamiltonian`](#qiskit.circuit.library.NLocal.hamiltonian "qiskit.circuit.library.NLocal.hamiltonian")(operator, time, qubits\[, label])                                             | Apply hamiltonian evolution to qubits.                                                                                              |
-| [`has_register`](#qiskit.circuit.library.NLocal.has_register "qiskit.circuit.library.NLocal.has_register")(register)                                                                  | Test if this circuit has the register r.                                                                                            |
-| [`i`](#qiskit.circuit.library.NLocal.i "qiskit.circuit.library.NLocal.i")(qubit)                                                                                                      | Apply [`IGate`](qiskit.circuit.library.IGate#qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").                          |
-| [`id`](#qiskit.circuit.library.NLocal.id "qiskit.circuit.library.NLocal.id")(qubit)                                                                                                   | Apply [`IGate`](qiskit.circuit.library.IGate#qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").                          |
-| [`initialize`](#qiskit.circuit.library.NLocal.initialize "qiskit.circuit.library.NLocal.initialize")(params\[, qubits])                                                               | Initialize qubits in a specific state.                                                                                              |
-| [`inverse`](#qiskit.circuit.library.NLocal.inverse "qiskit.circuit.library.NLocal.inverse")()                                                                                         | Invert (take adjoint of) this circuit.                                                                                              |
-| [`iso`](#qiskit.circuit.library.NLocal.iso "qiskit.circuit.library.NLocal.iso")(isometry, q\_input, q\_ancillas\_for\_output)                                                         | Attach an arbitrary isometry from m to n qubits to a circuit.                                                                       |
-| [`isometry`](#qiskit.circuit.library.NLocal.isometry "qiskit.circuit.library.NLocal.isometry")(isometry, q\_input, …\[, …])                                                           | Attach an arbitrary isometry from m to n qubits to a circuit.                                                                       |
-| [`iswap`](#qiskit.circuit.library.NLocal.iswap "qiskit.circuit.library.NLocal.iswap")(qubit1, qubit2)                                                                                 | Apply [`iSwapGate`](qiskit.circuit.library.iSwapGate#qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate").          |
-| [`mcp`](#qiskit.circuit.library.NLocal.mcp "qiskit.circuit.library.NLocal.mcp")(lam, control\_qubits, target\_qubit)                                                                  | Apply [`MCPhaseGate`](qiskit.circuit.library.MCPhaseGate#qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate").  |
-| [`mcrx`](#qiskit.circuit.library.NLocal.mcrx "qiskit.circuit.library.NLocal.mcrx")(theta, q\_controls, q\_target\[, …])                                                               | Apply Multiple-Controlled X rotation gate                                                                                           |
-| [`mcry`](#qiskit.circuit.library.NLocal.mcry "qiskit.circuit.library.NLocal.mcry")(theta, q\_controls, q\_target\[, …])                                                               | Apply Multiple-Controlled Y rotation gate                                                                                           |
-| [`mcrz`](#qiskit.circuit.library.NLocal.mcrz "qiskit.circuit.library.NLocal.mcrz")(lam, q\_controls, q\_target\[, …])                                                                 | Apply Multiple-Controlled Z rotation gate                                                                                           |
-| [`mct`](#qiskit.circuit.library.NLocal.mct "qiskit.circuit.library.NLocal.mct")(control\_qubits, target\_qubit\[, …])                                                                 | Apply [`MCXGate`](qiskit.circuit.library.MCXGate#qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate").                  |
-| [`mcu1`](#qiskit.circuit.library.NLocal.mcu1 "qiskit.circuit.library.NLocal.mcu1")(lam, control\_qubits, target\_qubit)                                                               | Apply `MCU1Gate`.                                                                                                                   |
-| [`mcx`](#qiskit.circuit.library.NLocal.mcx "qiskit.circuit.library.NLocal.mcx")(control\_qubits, target\_qubit\[, …])                                                                 | Apply [`MCXGate`](qiskit.circuit.library.MCXGate#qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate").                  |
-| [`measure`](#qiskit.circuit.library.NLocal.measure "qiskit.circuit.library.NLocal.measure")(qubit, cbit)                                                                              | Measure quantum bit into classical bit (tuples).                                                                                    |
-| [`measure_active`](#qiskit.circuit.library.NLocal.measure_active "qiskit.circuit.library.NLocal.measure_active")(\[inplace])                                                          | Adds measurement to all non-idle qubits.                                                                                            |
-| [`measure_all`](#qiskit.circuit.library.NLocal.measure_all "qiskit.circuit.library.NLocal.measure_all")(\[inplace])                                                                   | Adds measurement to all qubits.                                                                                                     |
-| [`ms`](#qiskit.circuit.library.NLocal.ms "qiskit.circuit.library.NLocal.ms")(theta, qubits)                                                                                           | Apply [`MSGate`](qiskit.circuit.library.MSGate#qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate").                      |
-| [`num_connected_components`](#qiskit.circuit.library.NLocal.num_connected_components "qiskit.circuit.library.NLocal.num_connected_components")(\[unitary\_only])                      | How many non-entangled subcircuits can the circuit be factored to.                                                                  |
-| [`num_nonlocal_gates`](#qiskit.circuit.library.NLocal.num_nonlocal_gates "qiskit.circuit.library.NLocal.num_nonlocal_gates")()                                                        | Return number of non-local gates (i.e.                                                                                              |
-| [`num_tensor_factors`](#qiskit.circuit.library.NLocal.num_tensor_factors "qiskit.circuit.library.NLocal.num_tensor_factors")()                                                        | Computes the number of tensor factors in the unitary (quantum) part of the circuit only.                                            |
-| [`num_unitary_factors`](#qiskit.circuit.library.NLocal.num_unitary_factors "qiskit.circuit.library.NLocal.num_unitary_factors")()                                                     | Computes the number of tensor factors in the unitary (quantum) part of the circuit only.                                            |
-| [`p`](#qiskit.circuit.library.NLocal.p "qiskit.circuit.library.NLocal.p")(theta, qubit)                                                                                               | Apply [`PhaseGate`](qiskit.circuit.library.PhaseGate#qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate").          |
-| [`pauli`](#qiskit.circuit.library.NLocal.pauli "qiskit.circuit.library.NLocal.pauli")(pauli\_string, qubits)                                                                          | Apply [`PauliGate`](qiskit.circuit.library.PauliGate#qiskit.circuit.library.PauliGate "qiskit.circuit.library.PauliGate").          |
-| [`power`](#qiskit.circuit.library.NLocal.power "qiskit.circuit.library.NLocal.power")(power\[, matrix\_power])                                                                        | Raise this circuit to the power of `power`.                                                                                         |
-| [`print_settings`](#qiskit.circuit.library.NLocal.print_settings "qiskit.circuit.library.NLocal.print_settings")()                                                                    | Returns information about the setting.                                                                                              |
-| [`qasm`](#qiskit.circuit.library.NLocal.qasm "qiskit.circuit.library.NLocal.qasm")(\[formatted, filename, encoding])                                                                  | Return OpenQASM string.                                                                                                             |
-| [`qbit_argument_conversion`](#qiskit.circuit.library.NLocal.qbit_argument_conversion "qiskit.circuit.library.NLocal.qbit_argument_conversion")(qubit\_representation)                 | Converts several qubit representations (such as indexes, range, etc.) into a list of qubits.                                        |
-| [`qubit_duration`](#qiskit.circuit.library.NLocal.qubit_duration "qiskit.circuit.library.NLocal.qubit_duration")(\*qubits)                                                            | Return the duration between the start and stop time of the first and last instructions, excluding delays, over the supplied qubits. |
-| [`qubit_start_time`](#qiskit.circuit.library.NLocal.qubit_start_time "qiskit.circuit.library.NLocal.qubit_start_time")(\*qubits)                                                      | Return the start time of the first instruction, excluding delays, over the supplied qubits.                                         |
-| [`qubit_stop_time`](#qiskit.circuit.library.NLocal.qubit_stop_time "qiskit.circuit.library.NLocal.qubit_stop_time")(\*qubits)                                                         | Return the stop time of the last instruction, excluding delays, over the supplied qubits.                                           |
-| [`r`](#qiskit.circuit.library.NLocal.r "qiskit.circuit.library.NLocal.r")(theta, phi, qubit)                                                                                          | Apply [`RGate`](qiskit.circuit.library.RGate#qiskit.circuit.library.RGate "qiskit.circuit.library.RGate").                          |
-| [`rcccx`](#qiskit.circuit.library.NLocal.rcccx "qiskit.circuit.library.NLocal.rcccx")(control\_qubit1, control\_qubit2, …)                                                            | Apply [`RC3XGate`](qiskit.circuit.library.RC3XGate#qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").              |
-| [`rccx`](#qiskit.circuit.library.NLocal.rccx "qiskit.circuit.library.NLocal.rccx")(control\_qubit1, control\_qubit2, …)                                                               | Apply [`RCCXGate`](qiskit.circuit.library.RCCXGate#qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate").              |
-| [`remove_final_measurements`](#qiskit.circuit.library.NLocal.remove_final_measurements "qiskit.circuit.library.NLocal.remove_final_measurements")(\[inplace])                         | Removes final measurement on all qubits if they are present.                                                                        |
-| [`repeat`](#qiskit.circuit.library.NLocal.repeat "qiskit.circuit.library.NLocal.repeat")(reps)                                                                                        | Repeat this circuit `reps` times.                                                                                                   |
-| [`reset`](#qiskit.circuit.library.NLocal.reset "qiskit.circuit.library.NLocal.reset")(qubit)                                                                                          | Reset q.                                                                                                                            |
-| [`reverse_bits`](#qiskit.circuit.library.NLocal.reverse_bits "qiskit.circuit.library.NLocal.reverse_bits")()                                                                          | Return a circuit with the opposite order of wires.                                                                                  |
-| [`reverse_ops`](#qiskit.circuit.library.NLocal.reverse_ops "qiskit.circuit.library.NLocal.reverse_ops")()                                                                             | Reverse the circuit by reversing the order of instructions.                                                                         |
-| [`rv`](#qiskit.circuit.library.NLocal.rv "qiskit.circuit.library.NLocal.rv")(vx, vy, vz, qubit)                                                                                       | Apply [`RVGate`](qiskit.circuit.library.RVGate#qiskit.circuit.library.RVGate "qiskit.circuit.library.RVGate").                      |
-| [`rx`](#qiskit.circuit.library.NLocal.rx "qiskit.circuit.library.NLocal.rx")(theta, qubit\[, label])                                                                                  | Apply [`RXGate`](qiskit.circuit.library.RXGate#qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").                      |
-| [`rxx`](#qiskit.circuit.library.NLocal.rxx "qiskit.circuit.library.NLocal.rxx")(theta, qubit1, qubit2)                                                                                | Apply [`RXXGate`](qiskit.circuit.library.RXXGate#qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").                  |
-| [`ry`](#qiskit.circuit.library.NLocal.ry "qiskit.circuit.library.NLocal.ry")(theta, qubit\[, label])                                                                                  | Apply [`RYGate`](qiskit.circuit.library.RYGate#qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate").                      |
-| [`ryy`](#qiskit.circuit.library.NLocal.ryy "qiskit.circuit.library.NLocal.ryy")(theta, qubit1, qubit2)                                                                                | Apply [`RYYGate`](qiskit.circuit.library.RYYGate#qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate").                  |
-| [`rz`](#qiskit.circuit.library.NLocal.rz "qiskit.circuit.library.NLocal.rz")(phi, qubit)                                                                                              | Apply [`RZGate`](qiskit.circuit.library.RZGate#qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").                      |
-| [`rzx`](#qiskit.circuit.library.NLocal.rzx "qiskit.circuit.library.NLocal.rzx")(theta, qubit1, qubit2)                                                                                | Apply [`RZXGate`](qiskit.circuit.library.RZXGate#qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate").                  |
-| [`rzz`](#qiskit.circuit.library.NLocal.rzz "qiskit.circuit.library.NLocal.rzz")(theta, qubit1, qubit2)                                                                                | Apply [`RZZGate`](qiskit.circuit.library.RZZGate#qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").                  |
-| [`s`](#qiskit.circuit.library.NLocal.s "qiskit.circuit.library.NLocal.s")(qubit)                                                                                                      | Apply [`SGate`](qiskit.circuit.library.SGate#qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").                          |
-| [`save_amplitudes`](#qiskit.circuit.library.NLocal.save_amplitudes "qiskit.circuit.library.NLocal.save_amplitudes")(params\[, label, pershot, …])                                     | Save complex statevector amplitudes.                                                                                                |
-| [`save_amplitudes_squared`](#qiskit.circuit.library.NLocal.save_amplitudes_squared "qiskit.circuit.library.NLocal.save_amplitudes_squared")(params\[, label, …])                      | Save squared statevector amplitudes (probabilities).                                                                                |
-| [`save_density_matrix`](#qiskit.circuit.library.NLocal.save_density_matrix "qiskit.circuit.library.NLocal.save_density_matrix")(\[qubits, label, …])                                  | Save the current simulator quantum state as a density matrix.                                                                       |
-| [`save_expectation_value`](#qiskit.circuit.library.NLocal.save_expectation_value "qiskit.circuit.library.NLocal.save_expectation_value")(operator, qubits\[, …])                      | Save the expectation value of a Hermitian operator.                                                                                 |
-| [`save_expectation_value_variance`](#qiskit.circuit.library.NLocal.save_expectation_value_variance "qiskit.circuit.library.NLocal.save_expectation_value_variance")(operator, qubits) | Save the expectation value of a Hermitian operator.                                                                                 |
-| [`save_matrix_product_state`](#qiskit.circuit.library.NLocal.save_matrix_product_state "qiskit.circuit.library.NLocal.save_matrix_product_state")(\[label, pershot, …])               | Save the current simulator quantum state as a matrix product state.                                                                 |
-| [`save_probabilities`](#qiskit.circuit.library.NLocal.save_probabilities "qiskit.circuit.library.NLocal.save_probabilities")(\[qubits, label, …])                                     | Save measurement outcome probabilities vector.                                                                                      |
-| [`save_probabilities_dict`](#qiskit.circuit.library.NLocal.save_probabilities_dict "qiskit.circuit.library.NLocal.save_probabilities_dict")(\[qubits, label, …])                      | Save measurement outcome probabilities vector.                                                                                      |
-| [`save_stabilizer`](#qiskit.circuit.library.NLocal.save_stabilizer "qiskit.circuit.library.NLocal.save_stabilizer")(\[label, pershot, conditional])                                   | Save the current stabilizer simulator quantum state as a Clifford.                                                                  |
-| [`save_state`](#qiskit.circuit.library.NLocal.save_state "qiskit.circuit.library.NLocal.save_state")(\[label, pershot, conditional])                                                  | Save the current simulator quantum state.                                                                                           |
-| [`save_statevector`](#qiskit.circuit.library.NLocal.save_statevector "qiskit.circuit.library.NLocal.save_statevector")(\[label, pershot, conditional])                                | Save the current simulator quantum state as a statevector.                                                                          |
-| [`save_statevector_dict`](#qiskit.circuit.library.NLocal.save_statevector_dict "qiskit.circuit.library.NLocal.save_statevector_dict")(\[label, pershot, …])                           | Save the current simulator quantum state as a statevector as a dict.                                                                |
-| [`save_superop`](#qiskit.circuit.library.NLocal.save_superop "qiskit.circuit.library.NLocal.save_superop")(\[label, pershot])                                                         | Save the current state of the superop simulator.                                                                                    |
-| [`save_unitary`](#qiskit.circuit.library.NLocal.save_unitary "qiskit.circuit.library.NLocal.save_unitary")(\[label, pershot])                                                         | Save the current state of the unitary simulator.                                                                                    |
-| [`sdg`](#qiskit.circuit.library.NLocal.sdg "qiskit.circuit.library.NLocal.sdg")(qubit)                                                                                                | Apply [`SdgGate`](qiskit.circuit.library.SdgGate#qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").                  |
-| [`set_density_matrix`](#qiskit.circuit.library.NLocal.set_density_matrix "qiskit.circuit.library.NLocal.set_density_matrix")(state)                                                   | Set the density matrix state of the simulator.                                                                                      |
-| [`set_matrix_product_state`](#qiskit.circuit.library.NLocal.set_matrix_product_state "qiskit.circuit.library.NLocal.set_matrix_product_state")(state)                                 | Set the matrix product state of the simulator.                                                                                      |
-| [`set_stabilizer`](#qiskit.circuit.library.NLocal.set_stabilizer "qiskit.circuit.library.NLocal.set_stabilizer")(state)                                                               | Set the Clifford stabilizer state of the simulator.                                                                                 |
-| [`set_statevector`](#qiskit.circuit.library.NLocal.set_statevector "qiskit.circuit.library.NLocal.set_statevector")(state)                                                            | Set the statevector state of the simulator.                                                                                         |
-| [`set_superop`](#qiskit.circuit.library.NLocal.set_superop "qiskit.circuit.library.NLocal.set_superop")(state)                                                                        | Set the superop state of the simulator.                                                                                             |
-| [`set_unitary`](#qiskit.circuit.library.NLocal.set_unitary "qiskit.circuit.library.NLocal.set_unitary")(state)                                                                        | Set the state state of the simulator.                                                                                               |
-| [`size`](#qiskit.circuit.library.NLocal.size "qiskit.circuit.library.NLocal.size")()                                                                                                  | Returns total number of gate operations in circuit.                                                                                 |
-| [`snapshot`](#qiskit.circuit.library.NLocal.snapshot "qiskit.circuit.library.NLocal.snapshot")(label\[, snapshot\_type, qubits, params])                                              | Take a statevector snapshot of the internal simulator representation.                                                               |
-| [`snapshot_density_matrix`](#qiskit.circuit.library.NLocal.snapshot_density_matrix "qiskit.circuit.library.NLocal.snapshot_density_matrix")(label\[, qubits])                         | Take a density matrix snapshot of simulator state.                                                                                  |
-| [`snapshot_expectation_value`](#qiskit.circuit.library.NLocal.snapshot_expectation_value "qiskit.circuit.library.NLocal.snapshot_expectation_value")(label, op, qubits)               | Take a snapshot of expectation value \<O> of an Operator.                                                                           |
-| [`snapshot_probabilities`](#qiskit.circuit.library.NLocal.snapshot_probabilities "qiskit.circuit.library.NLocal.snapshot_probabilities")(label, qubits\[, variance])                  | Take a probability snapshot of the simulator state.                                                                                 |
-| [`snapshot_stabilizer`](#qiskit.circuit.library.NLocal.snapshot_stabilizer "qiskit.circuit.library.NLocal.snapshot_stabilizer")(label)                                                | Take a stabilizer snapshot of the simulator state.                                                                                  |
-| [`snapshot_statevector`](#qiskit.circuit.library.NLocal.snapshot_statevector "qiskit.circuit.library.NLocal.snapshot_statevector")(label)                                             | Take a statevector snapshot of the simulator state.                                                                                 |
-| [`squ`](#qiskit.circuit.library.NLocal.squ "qiskit.circuit.library.NLocal.squ")(unitary\_matrix, qubit\[, mode, …])                                                                   | Decompose an arbitrary 2\*2 unitary into three rotation gates.                                                                      |
-| [`swap`](#qiskit.circuit.library.NLocal.swap "qiskit.circuit.library.NLocal.swap")(qubit1, qubit2)                                                                                    | Apply [`SwapGate`](qiskit.circuit.library.SwapGate#qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate").              |
-| [`sx`](#qiskit.circuit.library.NLocal.sx "qiskit.circuit.library.NLocal.sx")(qubit)                                                                                                   | Apply [`SXGate`](qiskit.circuit.library.SXGate#qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate").                      |
-| [`sxdg`](#qiskit.circuit.library.NLocal.sxdg "qiskit.circuit.library.NLocal.sxdg")(qubit)                                                                                             | Apply [`SXdgGate`](qiskit.circuit.library.SXdgGate#qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate").              |
-| [`t`](#qiskit.circuit.library.NLocal.t "qiskit.circuit.library.NLocal.t")(qubit)                                                                                                      | Apply [`TGate`](qiskit.circuit.library.TGate#qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").                          |
-| [`tdg`](#qiskit.circuit.library.NLocal.tdg "qiskit.circuit.library.NLocal.tdg")(qubit)                                                                                                | Apply [`TdgGate`](qiskit.circuit.library.TdgGate#qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate").                  |
-| [`tensor`](#qiskit.circuit.library.NLocal.tensor "qiskit.circuit.library.NLocal.tensor")(other\[, inplace])                                                                           | Tensor `self` with `other`.                                                                                                         |
-| [`to_gate`](#qiskit.circuit.library.NLocal.to_gate "qiskit.circuit.library.NLocal.to_gate")(\[parameter\_map, label])                                                                 | Create a Gate out of this circuit.                                                                                                  |
-| [`to_instruction`](#qiskit.circuit.library.NLocal.to_instruction "qiskit.circuit.library.NLocal.to_instruction")(\[parameter\_map, label])                                            | Create an Instruction out of this circuit.                                                                                          |
-| [`toffoli`](#qiskit.circuit.library.NLocal.toffoli "qiskit.circuit.library.NLocal.toffoli")(control\_qubit1, control\_qubit2, …)                                                      | Apply [`CCXGate`](qiskit.circuit.library.CCXGate#qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").                  |
-| [`u`](#qiskit.circuit.library.NLocal.u "qiskit.circuit.library.NLocal.u")(theta, phi, lam, qubit)                                                                                     | Apply [`UGate`](qiskit.circuit.library.UGate#qiskit.circuit.library.UGate "qiskit.circuit.library.UGate").                          |
-| [`u1`](#qiskit.circuit.library.NLocal.u1 "qiskit.circuit.library.NLocal.u1")(theta, qubit)                                                                                            | Apply [`U1Gate`](qiskit.circuit.library.U1Gate#qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate").                      |
-| [`u2`](#qiskit.circuit.library.NLocal.u2 "qiskit.circuit.library.NLocal.u2")(phi, lam, qubit)                                                                                         | Apply [`U2Gate`](qiskit.circuit.library.U2Gate#qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate").                      |
-| [`u3`](#qiskit.circuit.library.NLocal.u3 "qiskit.circuit.library.NLocal.u3")(theta, phi, lam, qubit)                                                                                  | Apply [`U3Gate`](qiskit.circuit.library.U3Gate#qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate").                      |
-| [`uc`](#qiskit.circuit.library.NLocal.uc "qiskit.circuit.library.NLocal.uc")(gate\_list, q\_controls, q\_target\[, …])                                                                | Attach a uniformly controlled gates (also called multiplexed gates) to a circuit.                                                   |
-| [`ucrx`](#qiskit.circuit.library.NLocal.ucrx "qiskit.circuit.library.NLocal.ucrx")(angle\_list, q\_controls, q\_target)                                                               | Attach a uniformly controlled (also called multiplexed) Rx rotation gate to a circuit.                                              |
-| [`ucry`](#qiskit.circuit.library.NLocal.ucry "qiskit.circuit.library.NLocal.ucry")(angle\_list, q\_controls, q\_target)                                                               | Attach a uniformly controlled (also called multiplexed) Ry rotation gate to a circuit.                                              |
-| [`ucrz`](#qiskit.circuit.library.NLocal.ucrz "qiskit.circuit.library.NLocal.ucrz")(angle\_list, q\_controls, q\_target)                                                               | Attach a uniformly controlled (also called multiplexed gates) Rz rotation gate to a circuit.                                        |
-| [`unitary`](#qiskit.circuit.library.NLocal.unitary "qiskit.circuit.library.NLocal.unitary")(obj, qubits\[, label])                                                                    | Apply unitary gate to q.                                                                                                            |
-| [`width`](#qiskit.circuit.library.NLocal.width "qiskit.circuit.library.NLocal.width")()                                                                                               | Return number of qubits plus clbits in circuit.                                                                                     |
-| [`x`](#qiskit.circuit.library.NLocal.x "qiskit.circuit.library.NLocal.x")(qubit\[, label])                                                                                            | Apply [`XGate`](qiskit.circuit.library.XGate#qiskit.circuit.library.XGate "qiskit.circuit.library.XGate").                          |
-| [`y`](#qiskit.circuit.library.NLocal.y "qiskit.circuit.library.NLocal.y")(qubit)                                                                                                      | Apply [`YGate`](qiskit.circuit.library.YGate#qiskit.circuit.library.YGate "qiskit.circuit.library.YGate").                          |
-| [`z`](#qiskit.circuit.library.NLocal.z "qiskit.circuit.library.NLocal.z")(qubit)                                                                                                      | Apply [`ZGate`](qiskit.circuit.library.ZGate#qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate").                          |
-
 ## Attributes
 
-|                                                                                                                                             |                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [`ancillas`](#qiskit.circuit.library.NLocal.ancillas "qiskit.circuit.library.NLocal.ancillas")                                              | Returns a list of ancilla bits in the order that the registers were added.   |
-| [`calibrations`](#qiskit.circuit.library.NLocal.calibrations "qiskit.circuit.library.NLocal.calibrations")                                  | Return calibration dictionary.                                               |
-| [`clbits`](#qiskit.circuit.library.NLocal.clbits "qiskit.circuit.library.NLocal.clbits")                                                    | Returns a list of classical bits in the order that the registers were added. |
-| [`data`](#qiskit.circuit.library.NLocal.data "qiskit.circuit.library.NLocal.data")                                                          | Return the circuit data (instructions and context).                          |
-| [`entanglement`](#qiskit.circuit.library.NLocal.entanglement "qiskit.circuit.library.NLocal.entanglement")                                  | Get the entanglement strategy.                                               |
-| [`entanglement_blocks`](#qiskit.circuit.library.NLocal.entanglement_blocks "qiskit.circuit.library.NLocal.entanglement_blocks")             | The blocks in the entanglement layers.                                       |
-| `extension_lib`                                                                                                                             |                                                                              |
-| [`global_phase`](#qiskit.circuit.library.NLocal.global_phase "qiskit.circuit.library.NLocal.global_phase")                                  | Return the global phase of the circuit in radians.                           |
-| `header`                                                                                                                                    |                                                                              |
-| [`initial_state`](#qiskit.circuit.library.NLocal.initial_state "qiskit.circuit.library.NLocal.initial_state")                               | Return the initial state that is added in front of the n-local circuit.      |
-| [`insert_barriers`](#qiskit.circuit.library.NLocal.insert_barriers "qiskit.circuit.library.NLocal.insert_barriers")                         | If barriers are inserted in between the layers or not.                       |
-| `instances`                                                                                                                                 |                                                                              |
-| [`metadata`](#qiskit.circuit.library.NLocal.metadata "qiskit.circuit.library.NLocal.metadata")                                              | The user provided metadata associated with the circuit                       |
-| [`num_ancillas`](#qiskit.circuit.library.NLocal.num_ancillas "qiskit.circuit.library.NLocal.num_ancillas")                                  | Return the number of ancilla qubits.                                         |
-| [`num_clbits`](#qiskit.circuit.library.NLocal.num_clbits "qiskit.circuit.library.NLocal.num_clbits")                                        | Return number of classical bits.                                             |
-| [`num_layers`](#qiskit.circuit.library.NLocal.num_layers "qiskit.circuit.library.NLocal.num_layers")                                        | Return the number of layers in the n-local circuit.                          |
-| [`num_parameters`](#qiskit.circuit.library.NLocal.num_parameters "qiskit.circuit.library.NLocal.num_parameters")                            | Convenience function to get the number of parameter objects in the circuit.  |
-| [`num_parameters_settable`](#qiskit.circuit.library.NLocal.num_parameters_settable "qiskit.circuit.library.NLocal.num_parameters_settable") | The number of total parameters that can be set to distinct values.           |
-| [`num_qubits`](#qiskit.circuit.library.NLocal.num_qubits "qiskit.circuit.library.NLocal.num_qubits")                                        | Returns the number of qubits in this circuit.                                |
-| [`ordered_parameters`](#qiskit.circuit.library.NLocal.ordered_parameters "qiskit.circuit.library.NLocal.ordered_parameters")                | The parameters used in the underlying circuit.                               |
-| [`parameter_bounds`](#qiskit.circuit.library.NLocal.parameter_bounds "qiskit.circuit.library.NLocal.parameter_bounds")                      | The parameter bounds for the unbound parameters in the circuit.              |
-| [`parameters`](#qiskit.circuit.library.NLocal.parameters "qiskit.circuit.library.NLocal.parameters")                                        | Convenience function to get the parameters defined in the parameter table.   |
-| [`preferred_init_points`](#qiskit.circuit.library.NLocal.preferred_init_points "qiskit.circuit.library.NLocal.preferred_init_points")       | The initial points for the parameters.                                       |
-| `prefix`                                                                                                                                    |                                                                              |
-| [`qregs`](#qiskit.circuit.library.NLocal.qregs "qiskit.circuit.library.NLocal.qregs")                                                       | A list of the quantum registers associated with the circuit.                 |
-| [`qubits`](#qiskit.circuit.library.NLocal.qubits "qiskit.circuit.library.NLocal.qubits")                                                    | Returns a list of quantum bits in the order that the registers were added.   |
-| [`reps`](#qiskit.circuit.library.NLocal.reps "qiskit.circuit.library.NLocal.reps")                                                          | The number of times rotation and entanglement block are repeated.            |
-| [`rotation_blocks`](#qiskit.circuit.library.NLocal.rotation_blocks "qiskit.circuit.library.NLocal.rotation_blocks")                         | The blocks in the rotation layers.                                           |
+### add\_bits
 
-
+<span id="qiskit.circuit.library.NLocal.add_bits" />
 
 `add_bits(bits)`
 
 Add Bits to the circuit.
 
+### add\_calibration
 
+<span id="qiskit.circuit.library.NLocal.add_calibration" />
 
 `add_calibration(gate, qubits, schedule, params=None)`
 
@@ -291,16 +122,18 @@ Register a low-level, custom pulse definition for the given gate.
 
 **Parameters**
 
-*   **gate** (*Union\[*[*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")*, str]*) – Gate information.
+*   **gate** (*Union\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*, str]*) – Gate information.
 *   **qubits** (*Union\[int, Tuple\[int]]*) – List of qubits to be measured.
-*   **schedule** ([*Schedule*](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule information.
-*   **params** (*Optional\[List\[Union\[float,* [*Parameter*](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
+*   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule information.
+*   **params** (*Optional\[List\[Union\[float,* [*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
 
 **Raises**
 
 **Exception** – if the gate is of type string and params is None.
 
+### add\_layer
 
+<span id="qiskit.circuit.library.NLocal.add_layer" />
 
 `add_layer(other, entanglement=None, front=False)`
 
@@ -324,19 +157,25 @@ self, such that chained composes are possible.
 
 **TypeError** – If other is not compatible, i.e. is no Instruction and does not have a to\_instruction method.
 
+### add\_register
 
+<span id="qiskit.circuit.library.NLocal.add_register" />
 
 `add_register(*regs)`
 
 Add registers.
 
+### ancillas
 
+<span id="qiskit.circuit.library.NLocal.ancillas" />
 
 `property ancillas`
 
 Returns a list of ancilla bits in the order that the registers were added.
 
+### append
 
+<span id="qiskit.circuit.library.NLocal.append" />
 
 `append(instruction, qargs=None, cargs=None)`
 
@@ -344,7 +183,7 @@ Append one or more instructions to the end of the circuit, modifying the circuit
 
 **Parameters**
 
-*   **instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – Instruction instance to append
+*   **instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – Instruction instance to append
 *   **qargs** (*list(argument)*) – qubits to attach instruction to
 *   **cargs** (*list(argument)*) – clbits to attach instruction to
 
@@ -354,14 +193,16 @@ a handle to the instruction that was just added
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 *   **CircuitError** – if object passed is a subclass of Instruction
 *   **CircuitError** – if object passed is neither subclass nor an instance of Instruction
 
+### assign\_parameters
 
+<span id="qiskit.circuit.library.NLocal.assign_parameters" />
 
 `assign_parameters(parameters, inplace=False, param_dict=None)`
 
@@ -381,13 +222,17 @@ A copy of the NLocal circuit with the specified parameters.
 
 **AttributeError** – If the parameters are given as list and do not match the number of parameters.
 
+### barrier
 
+<span id="qiskit.circuit.library.NLocal.barrier" />
 
 `barrier(*qargs)`
 
 Apply `Barrier`. If qargs is None, applies to all.
 
+### bind\_parameters
 
+<span id="qiskit.circuit.library.NLocal.bind_parameters" />
 
 `bind_parameters(values, value_dict=None)`
 
@@ -411,9 +256,11 @@ copy of self with assignment substitution.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### calibrations
 
+<span id="qiskit.circuit.library.NLocal.calibrations" />
 
 `property calibrations`
 
@@ -423,13 +270,17 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
+### cast
 
+<span id="qiskit.circuit.library.NLocal.cast" />
 
 `static cast(value, _type)`
 
 Best effort to cast value to type. Otherwise, returns the value.
 
+### cbit\_argument\_conversion
 
+<span id="qiskit.circuit.library.NLocal.cbit_argument_conversion" />
 
 `cbit_argument_conversion(clbit_representation)`
 
@@ -447,43 +298,57 @@ Where each tuple is a classical bit.
 
 List(tuple)
 
+### ccx
 
+<span id="qiskit.circuit.library.NLocal.ccx" />
 
 `ccx(control_qubit1, control_qubit2, target_qubit, ctrl_state=None)`
 
-Apply [`CCXGate`](qiskit.circuit.library.CCXGate#qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
+Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
 
+### ch
 
+<span id="qiskit.circuit.library.NLocal.ch" />
 
 `ch(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CHGate`](qiskit.circuit.library.CHGate#qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate").
+Apply [`CHGate`](qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate").
 
+### clbits
 
+<span id="qiskit.circuit.library.NLocal.clbits" />
 
 `property clbits`
 
 Returns a list of classical bits in the order that the registers were added.
 
+### cls\_instances
 
+<span id="qiskit.circuit.library.NLocal.cls_instances" />
 
 `classmethod cls_instances()`
 
 Return the current number of instances of this class, useful for auto naming.
 
+### cls\_prefix
 
+<span id="qiskit.circuit.library.NLocal.cls_prefix" />
 
 `classmethod cls_prefix()`
 
 Return the prefix to use for auto naming.
 
+### cnot
 
+<span id="qiskit.circuit.library.NLocal.cnot" />
 
 `cnot(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CXGate`](qiskit.circuit.library.CXGate#qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
+Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
 
+### combine
 
+<span id="qiskit.circuit.library.NLocal.combine" />
 
 `combine(rhs)`
 
@@ -495,7 +360,7 @@ Return self + rhs as a new object.
 
 **Parameters**
 
-**rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
+**rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
 
 **Returns**
 
@@ -503,13 +368,15 @@ Returns a new QuantumCircuit object
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the rhs circuit is not compatible
 
+### compose
 
+<span id="qiskit.circuit.library.NLocal.compose" />
 
 `compose(other, qubits=None, clbits=None, front=False, inplace=False, wrap=False)`
 
@@ -519,7 +386,7 @@ Compose circuit with `other` circuit or instruction, optionally permuting wires.
 
 **Parameters**
 
-*   **other** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or BaseOperator*) – (sub)circuit to compose onto self.
+*   **other** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or BaseOperator*) – (sub)circuit to compose onto self.
 *   **qubits** (*list\[Qubit|int]*) – qubits of self to compose onto.
 *   **clbits** (*list\[Clbit|int]*) – clbits of self to compose onto.
 *   **front** (*bool*) – If True, front composition will be performed (not implemented yet).
@@ -532,7 +399,7 @@ the composed circuit (returns None if inplace==True).
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
@@ -562,7 +429,9 @@ lhs.compose(rhs, qubits=[3, 2], inplace=True)
     lcr_1: 0 ═══════════                           lcr_1: 0 ═══════════════════════
 ```
 
+### control
 
+<span id="qiskit.circuit.library.NLocal.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
@@ -580,13 +449,15 @@ The controlled version of this circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **CircuitError** – If the circuit contains a non-unitary operation and cannot be controlled.
 
+### copy
 
+<span id="qiskit.circuit.library.NLocal.copy" />
 
 `copy(name=None)`
 
@@ -602,9 +473,11 @@ a deepcopy of the current circuit, with the specified name
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### count\_ops
 
+<span id="qiskit.circuit.library.NLocal.count_ops" />
 
 `count_ops()`
 
@@ -618,79 +491,105 @@ a breakdown of how many operations of each kind, sorted by amount.
 
 OrderedDict
 
+### cp
 
+<span id="qiskit.circuit.library.NLocal.cp" />
 
 `cp(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CPhaseGate`](qiskit.circuit.library.CPhaseGate#qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate").
+Apply [`CPhaseGate`](qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate").
 
+### crx
 
+<span id="qiskit.circuit.library.NLocal.crx" />
 
 `crx(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CRXGate`](qiskit.circuit.library.CRXGate#qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate").
+Apply [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate").
 
+### cry
 
+<span id="qiskit.circuit.library.NLocal.cry" />
 
 `cry(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CRYGate`](qiskit.circuit.library.CRYGate#qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate").
+Apply [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate").
 
+### crz
 
+<span id="qiskit.circuit.library.NLocal.crz" />
 
 `crz(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CRZGate`](qiskit.circuit.library.CRZGate#qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate").
+Apply [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate").
 
+### cswap
 
+<span id="qiskit.circuit.library.NLocal.cswap" />
 
 `cswap(control_qubit, target_qubit1, target_qubit2, label=None, ctrl_state=None)`
 
-Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate#qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
+Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
 
+### csx
 
+<span id="qiskit.circuit.library.NLocal.csx" />
 
 `csx(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CSXGate`](qiskit.circuit.library.CSXGate#qiskit.circuit.library.CSXGate "qiskit.circuit.library.CSXGate").
+Apply [`CSXGate`](qiskit.circuit.library.CSXGate "qiskit.circuit.library.CSXGate").
 
+### cu
 
+<span id="qiskit.circuit.library.NLocal.cu" />
 
 `cu(theta, phi, lam, gamma, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CUGate`](qiskit.circuit.library.CUGate#qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate").
+Apply [`CUGate`](qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate").
 
+### cu1
 
+<span id="qiskit.circuit.library.NLocal.cu1" />
 
 `cu1(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CU1Gate`](qiskit.circuit.library.CU1Gate#qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate").
+Apply [`CU1Gate`](qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate").
 
+### cu3
 
+<span id="qiskit.circuit.library.NLocal.cu3" />
 
 `cu3(theta, phi, lam, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CU3Gate`](qiskit.circuit.library.CU3Gate#qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate").
+Apply [`CU3Gate`](qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate").
 
+### cx
 
+<span id="qiskit.circuit.library.NLocal.cx" />
 
 `cx(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CXGate`](qiskit.circuit.library.CXGate#qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
+Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
 
+### cy
 
+<span id="qiskit.circuit.library.NLocal.cy" />
 
 `cy(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CYGate`](qiskit.circuit.library.CYGate#qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate").
+Apply [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate").
 
+### cz
 
+<span id="qiskit.circuit.library.NLocal.cz" />
 
 `cz(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CZGate`](qiskit.circuit.library.CZGate#qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate").
+Apply [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate").
 
+### data
 
+<span id="qiskit.circuit.library.NLocal.data" />
 
 `property data`
 
@@ -706,13 +605,17 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
+### dcx
 
+<span id="qiskit.circuit.library.NLocal.dcx" />
 
 `dcx(qubit1, qubit2)`
 
-Apply [`DCXGate`](qiskit.circuit.library.DCXGate#qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate").
+Apply [`DCXGate`](qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate").
 
+### decompose
 
+<span id="qiskit.circuit.library.NLocal.decompose" />
 
 `decompose()`
 
@@ -724,17 +627,19 @@ a circuit one level decomposed
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### delay
 
+<span id="qiskit.circuit.library.NLocal.delay" />
 
 `delay(duration, qarg=None, unit='dt')`
 
-Apply [`Delay`](qiskit.circuit.Delay#qiskit.circuit.Delay "qiskit.circuit.Delay"). If qarg is None, applies to all qubits. When applying to multiple qubits, delays with the same duration will be created.
+Apply [`Delay`](qiskit.circuit.Delay "qiskit.circuit.Delay"). If qarg is None, applies to all qubits. When applying to multiple qubits, delays with the same duration will be created.
 
 **Parameters**
 
-*   **duration** (*int or float or* [*ParameterExpression*](qiskit.circuit.ParameterExpression#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – duration of the delay.
+*   **duration** (*int or float or* [*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")) – duration of the delay.
 *   **qarg** (*Object*) – qubit argument to apply this delay.
 *   **unit** (*str*) – unit of the duration. Supported units: ‘s’, ‘ms’, ‘us’, ‘ns’, ‘ps’, ‘dt’. Default is `dt`, i.e. integer time unit depending on the target backend.
 
@@ -750,7 +655,9 @@ qiskit.Instruction
 
 **CircuitError** – if arguments have bad format.
 
+### depth
 
+<span id="qiskit.circuit.library.NLocal.depth" />
 
 `depth()`
 
@@ -768,7 +675,9 @@ int
 
 The circuit depth and the DAG depth need not be the same.
 
+### diagonal
 
+<span id="qiskit.circuit.library.NLocal.diagonal" />
 
 `diagonal(diag, qubit)`
 
@@ -787,13 +696,15 @@ the diagonal gate which was attached to the circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the list of the diagonal entries or the qubit list is in bad format; if the number of diagonal entries is not 2^k, where k denotes the number of qubits
 
+### draw
 
+<span id="qiskit.circuit.library.NLocal.draw" />
 
 `draw(output=None, scale=None, filename=None, style=None, interactive=False, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=True)`
 
@@ -812,7 +723,7 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 *   **output** (*str*) – select the output method to use for drawing the circuit. Valid choices are `text`, `mpl`, `latex`, `latex_source`. By default the text drawer is used unless the user config file (usually `~/.qiskit/settings.conf`) has an alternative backend set as the default. For example, `circuit_drawer = latex`. If the output kwarg is set, that backend will always be used over the default in the user config file.
 *   **scale** (*float*) – scale of image to draw (shrink if \< 1.0). Only used by the mpl, latex and latex\_source outputs. Defaults to 1.0.
 *   **filename** (*str*) – file path to save image to. Defaults to None.
-*   **style** (*dict or str*) – dictionary of style or file name of style json file. This option is only used by the mpl or latex output type. If style is a str, it is used as the path to a json file which contains a style dict. The file will be opened, parsed, and then any style elements in the dict will replace the default values in the input dict. A file to be loaded must end in `.json`, but the name entered here can omit `.json`. For example, `style='iqx.json'` or `style='iqx'`. If style is a dict and the `'name'` key is set, that name will be used to load a json file, followed by loading the other items in the style dict. For example, `style={'name': 'iqx'}`. If style is not a str and name is not a key in the style dict, then the default value from the user config file (usually `~/.qiskit/settings.conf`) will be used, for example, `circuit_mpl_style = iqx`. If none of these are set, the default style will be used. The search path for style json files can be specified in the user config, for example, `circuit_mpl_style_path = /home/user/styles:/home/user`. See: [`DefaultStyle`](qiskit.visualization.qcstyle.DefaultStyle#qiskit.visualization.qcstyle.DefaultStyle "qiskit.visualization.qcstyle.DefaultStyle") for more information on the contents.
+*   **style** (*dict or str*) – dictionary of style or file name of style json file. This option is only used by the mpl or latex output type. If style is a str, it is used as the path to a json file which contains a style dict. The file will be opened, parsed, and then any style elements in the dict will replace the default values in the input dict. A file to be loaded must end in `.json`, but the name entered here can omit `.json`. For example, `style='iqx.json'` or `style='iqx'`. If style is a dict and the `'name'` key is set, that name will be used to load a json file, followed by loading the other items in the style dict. For example, `style={'name': 'iqx'}`. If style is not a str and name is not a key in the style dict, then the default value from the user config file (usually `~/.qiskit/settings.conf`) will be used, for example, `circuit_mpl_style = iqx`. If none of these are set, the default style will be used. The search path for style json files can be specified in the user config, for example, `circuit_mpl_style_path = /home/user/styles:/home/user`. See: [`DefaultStyle`](qiskit.visualization.qcstyle.DefaultStyle "qiskit.visualization.qcstyle.DefaultStyle") for more information on the contents.
 *   **interactive** (*bool*) – when set to true, show the circuit in a new window (for mpl this depends on the matplotlib backend being used supporting this). Note when used with either the text or the latex\_source output type this has no effect and will be silently ignored. Defaults to False.
 *   **reverse\_bits** (*bool*) – when set to True, reverse the bit order inside registers for the output visualization. Defaults to False.
 *   **plot\_barriers** (*bool*) – enable/disable drawing barriers in the output circuit. Defaults to True.
@@ -847,7 +758,7 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 
 **Raises**
 
-*   [**VisualizationError**](qiskit.visualization.VisualizationError#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
+*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
 *   **ImportError** – when the output methods requires non-installed libraries.
 
 ## Example
@@ -865,13 +776,17 @@ qc.draw(output='mpl', style={'backgroundcolor': '#EEEEEE'})
 
 ![../\_images/qiskit.circuit.library.NLocal\_0\_0.png](/images/api/qiskit/0.28/qiskit.circuit.library.NLocal_0_0.png) ![../\_images/qiskit.circuit.library.NLocal\_0\_1.png](/images/api/qiskit/0.28/qiskit.circuit.library.NLocal_0_1.png)
 
+### ecr
 
+<span id="qiskit.circuit.library.NLocal.ecr" />
 
 `ecr(qubit1, qubit2)`
 
-Apply [`ECRGate`](qiskit.circuit.library.ECRGate#qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate").
+Apply [`ECRGate`](qiskit.circuit.library.ECRGate "qiskit.circuit.library.ECRGate").
 
+### entanglement
 
+<span id="qiskit.circuit.library.NLocal.entanglement" />
 
 `property entanglement`
 
@@ -885,7 +800,9 @@ Get the entanglement strategy.
 
 The entanglement strategy, see [`get_entangler_map()`](#qiskit.circuit.library.NLocal.get_entangler_map "qiskit.circuit.library.NLocal.get_entangler_map") for more detail on how the format is interpreted.
 
+### entanglement\_blocks
 
+<span id="qiskit.circuit.library.NLocal.entanglement_blocks" />
 
 `property entanglement_blocks`
 
@@ -899,7 +816,9 @@ The blocks in the entanglement layers.
 
 The blocks in the entanglement layers.
 
+### extend
 
+<span id="qiskit.circuit.library.NLocal.extend" />
 
 `extend(rhs)`
 
@@ -911,7 +830,7 @@ Modify and return self.
 
 **Parameters**
 
-**rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
+**rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
 
 **Returns**
 
@@ -919,19 +838,23 @@ Returns this QuantumCircuit object (which has been modified)
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the rhs circuit is not compatible
 
+### fredkin
 
+<span id="qiskit.circuit.library.NLocal.fredkin" />
 
 `fredkin(control_qubit, target_qubit1, target_qubit2)`
 
-Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate#qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
+Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
 
+### from\_qasm\_file
 
+<span id="qiskit.circuit.library.NLocal.from_qasm_file" />
 
 `static from_qasm_file(path)`
 
@@ -947,9 +870,11 @@ The QuantumCircuit object for the input QASM
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### from\_qasm\_str
 
+<span id="qiskit.circuit.library.NLocal.from_qasm_str" />
 
 `static from_qasm_str(qasm_str)`
 
@@ -965,9 +890,11 @@ The QuantumCircuit object for the input QASM
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### get\_entangler\_map
 
+<span id="qiskit.circuit.library.NLocal.get_entangler_map" />
 
 `get_entangler_map(rep_num, block_num, num_block_qubits)`
 
@@ -997,7 +924,9 @@ The entangler map for the current block in the current repetition.
 
 **ValueError** – If the value of `entanglement` could not be cast to a corresponding entangler map.
 
+### get\_instructions
 
+<span id="qiskit.circuit.library.NLocal.get_instructions" />
 
 `get_instructions(name)`
 
@@ -1015,7 +944,9 @@ list of (instruction, qargs, cargs).
 
 list(tuple)
 
+### get\_unentangled\_qubits
 
+<span id="qiskit.circuit.library.NLocal.get_unentangled_qubits" />
 
 `get_unentangled_qubits()`
 
@@ -1029,25 +960,33 @@ Get the indices of unentangled qubits in a set.
 
 The unentangled qubits.
 
+### global\_phase
 
+<span id="qiskit.circuit.library.NLocal.global_phase" />
 
 `property global_phase`
 
 Return the global phase of the circuit in radians.
 
+### h
 
+<span id="qiskit.circuit.library.NLocal.h" />
 
 `h(qubit)`
 
-Apply [`HGate`](qiskit.circuit.library.HGate#qiskit.circuit.library.HGate "qiskit.circuit.library.HGate").
+Apply [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate").
 
+### hamiltonian
 
+<span id="qiskit.circuit.library.NLocal.hamiltonian" />
 
 `hamiltonian(operator, time, qubits, label=None)`
 
 Apply hamiltonian evolution to qubits.
 
+### has\_register
 
+<span id="qiskit.circuit.library.NLocal.has_register" />
 
 `has_register(register)`
 
@@ -1065,19 +1004,25 @@ True if the register is contained in this circuit.
 
 bool
 
+### i
 
+<span id="qiskit.circuit.library.NLocal.i" />
 
 `i(qubit)`
 
-Apply [`IGate`](qiskit.circuit.library.IGate#qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
+Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
+### id
 
+<span id="qiskit.circuit.library.NLocal.id" />
 
 `id(qubit)`
 
-Apply [`IGate`](qiskit.circuit.library.IGate#qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
+Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
+### initial\_state
 
+<span id="qiskit.circuit.library.NLocal.initial_state" />
 
 `property initial_state`
 
@@ -1091,7 +1036,9 @@ Return the initial state that is added in front of the n-local circuit.
 
 The initial state.
 
+### initialize
 
+<span id="qiskit.circuit.library.NLocal.initialize" />
 
 `initialize(params, qubits=None)`
 
@@ -1113,7 +1060,7 @@ Qubit initialization is done by first resetting the qubits to $|0\rangle$ follow
 
         to |1>. Example: setting params to 5 would initialize qubit 0 and qubit 2 to |1> and qubit 1 to |0>.
 
-*   **qubits** ([*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or int*) –
+*   **qubits** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or int*) –
 
     *   QuantumRegister: A list of qubits to be initialized \[Default: None].
     *   int: Index of qubit to initialized \[Default: None].
@@ -1124,7 +1071,7 @@ a handle to the instruction that was just initialized
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 ## Examples
 
@@ -1207,7 +1154,9 @@ circuit.draw()
 
 └────────────────────────────────────┘
 
+### insert\_barriers
 
+<span id="qiskit.circuit.library.NLocal.insert_barriers" />
 
 `property insert_barriers`
 
@@ -1221,7 +1170,9 @@ If barriers are inserted in between the layers or not.
 
 True, if barriers are inserted in between the layers, False if not.
 
+### inverse
 
+<span id="qiskit.circuit.library.NLocal.inverse" />
 
 `inverse()`
 
@@ -1235,7 +1186,7 @@ the inverted circuit
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
@@ -1267,7 +1218,9 @@ the inverted circuit
 
 └───────────┘
 
+### iso
 
+<span id="qiskit.circuit.library.NLocal.iso" />
 
 `iso(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None, epsilon=1e-10)`
 
@@ -1276,10 +1229,10 @@ Attach an arbitrary isometry from m to n qubits to a circuit. In particular, thi
 **Parameters**
 
 *   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
-*   **q\_input** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
-*   **q\_ancillas\_for\_output** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
-*   **q\_ancillas\_zero** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
-*   **q\_ancillas\_dirty** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
+*   **q\_input** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
+*   **q\_ancillas\_for\_output** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
+*   **q\_ancillas\_zero** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
+*   **q\_ancillas\_dirty** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
 *   **epsilon** (*float*) – error tolerance of calculations. Default is epsilon = \_EPS.
 
 **Returns**
@@ -1288,13 +1241,15 @@ the isometry is attached to the quantum circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
 
+### isometry
 
+<span id="qiskit.circuit.library.NLocal.isometry" />
 
 `isometry(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None, epsilon=1e-10)`
 
@@ -1303,10 +1258,10 @@ Attach an arbitrary isometry from m to n qubits to a circuit. In particular, thi
 **Parameters**
 
 *   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
-*   **q\_input** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
-*   **q\_ancillas\_for\_output** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
-*   **q\_ancillas\_zero** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
-*   **q\_ancillas\_dirty** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
+*   **q\_input** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
+*   **q\_ancillas\_for\_output** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
+*   **q\_ancillas\_zero** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
+*   **q\_ancillas\_dirty** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
 *   **epsilon** (*float*) – error tolerance of calculations. Default is epsilon = \_EPS.
 
 **Returns**
@@ -1315,25 +1270,31 @@ the isometry is attached to the quantum circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
 
+### iswap
 
+<span id="qiskit.circuit.library.NLocal.iswap" />
 
 `iswap(qubit1, qubit2)`
 
-Apply [`iSwapGate`](qiskit.circuit.library.iSwapGate#qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate").
+Apply [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate").
 
+### mcp
 
+<span id="qiskit.circuit.library.NLocal.mcp" />
 
 `mcp(lam, control_qubits, target_qubit)`
 
-Apply [`MCPhaseGate`](qiskit.circuit.library.MCPhaseGate#qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate").
+Apply [`MCPhaseGate`](qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate").
 
+### mcrx
 
+<span id="qiskit.circuit.library.NLocal.mcrx" />
 
 `mcrx(theta, q_controls, q_target, use_basis_gates=False)`
 
@@ -1341,17 +1302,19 @@ Apply Multiple-Controlled X rotation gate
 
 **Parameters**
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrx gate on.
+*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrx gate on.
 *   **theta** (*float*) – angle theta
-*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
 *   **use\_basis\_gates** (*bool*) – use p, u, cx
 
 **Raises**
 
 **QiskitError** – parameter errors
 
+### mcry
 
+<span id="qiskit.circuit.library.NLocal.mcry" />
 
 `mcry(theta, q_controls, q_target, q_ancillae=None, mode=None, use_basis_gates=False)`
 
@@ -1359,11 +1322,11 @@ Apply Multiple-Controlled Y rotation gate
 
 **Parameters**
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcry gate on.
+*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcry gate on.
 *   **theta** (*float*) – angle theta
-*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
-*   **q\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or tuple(*[*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*, int)*) – The list of ancillary qubits.
+*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+*   **q\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or tuple(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*, int)*) – The list of ancillary qubits.
 *   **mode** (*string*) – The implementation mode to use
 *   **use\_basis\_gates** (*bool*) – use p, u, cx
 
@@ -1371,7 +1334,9 @@ Apply Multiple-Controlled Y rotation gate
 
 **QiskitError** – parameter errors
 
+### mcrz
 
+<span id="qiskit.circuit.library.NLocal.mcrz" />
 
 `mcrz(lam, q_controls, q_target, use_basis_gates=False)`
 
@@ -1379,37 +1344,45 @@ Apply Multiple-Controlled Z rotation gate
 
 **Parameters**
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrz gate on.
+*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrz gate on.
 *   **lam** (*float*) – angle lambda
-*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
 *   **use\_basis\_gates** (*bool*) – use p, u, cx
 
 **Raises**
 
 **QiskitError** – parameter errors
 
+### mct
 
+<span id="qiskit.circuit.library.NLocal.mct" />
 
 `mct(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`
 
-Apply [`MCXGate`](qiskit.circuit.library.MCXGate#qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate").
+Apply [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate").
 
+### mcu1
 
+<span id="qiskit.circuit.library.NLocal.mcu1" />
 
 `mcu1(lam, control_qubits, target_qubit)`
 
 Apply `MCU1Gate`.
 
+### mcx
 
+<span id="qiskit.circuit.library.NLocal.mcx" />
 
 `mcx(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`
 
-Apply [`MCXGate`](qiskit.circuit.library.MCXGate#qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate").
+Apply [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate").
 
 The multi-cX gate can be implemented using different techniques, which use different numbers of ancilla qubits and have varying circuit depth. These modes are: - ‘noancilla’: Requires 0 ancilla qubits. - ‘recursion’: Requires 1 ancilla qubit if more than 4 controls are used, otherwise 0. - ‘v-chain’: Requires 2 less ancillas than the number of control qubits. - ‘v-chain-dirty’: Same as for the clean ancillas (but the circuit will be longer).
 
+### measure
 
+<span id="qiskit.circuit.library.NLocal.measure" />
 
 `measure(qubit, cbit)`
 
@@ -1432,7 +1405,9 @@ qiskit.Instruction
 
 **CircuitError** – if qubit is not in this circuit or bad format; if cbit is not in this circuit or not creg.
 
+### measure\_active
 
+<span id="qiskit.circuit.library.NLocal.measure_active" />
 
 `measure_active(inplace=True)`
 
@@ -1450,9 +1425,11 @@ Returns circuit with measurements when inplace = False.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### measure\_all
 
+<span id="qiskit.circuit.library.NLocal.measure_all" />
 
 `measure_all(inplace=True)`
 
@@ -1470,9 +1447,11 @@ Returns circuit with measurements when inplace = False.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### metadata
 
+<span id="qiskit.circuit.library.NLocal.metadata" />
 
 `property metadata`
 
@@ -1480,25 +1459,33 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
+### ms
 
+<span id="qiskit.circuit.library.NLocal.ms" />
 
 `ms(theta, qubits)`
 
-Apply [`MSGate`](qiskit.circuit.library.MSGate#qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate").
+Apply [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate").
 
+### num\_ancillas
 
+<span id="qiskit.circuit.library.NLocal.num_ancillas" />
 
 `property num_ancillas`
 
 Return the number of ancilla qubits.
 
+### num\_clbits
 
+<span id="qiskit.circuit.library.NLocal.num_clbits" />
 
 `property num_clbits`
 
 Return number of classical bits.
 
+### num\_connected\_components
 
+<span id="qiskit.circuit.library.NLocal.num_connected_components" />
 
 `num_connected_components(unitary_only=False)`
 
@@ -1516,7 +1503,9 @@ Number of connected components in circuit.
 
 int
 
+### num\_layers
 
+<span id="qiskit.circuit.library.NLocal.num_layers" />
 
 `property num_layers`
 
@@ -1530,7 +1519,9 @@ Return the number of layers in the n-local circuit.
 
 The number of layers in the circuit.
 
+### num\_nonlocal\_gates
 
+<span id="qiskit.circuit.library.NLocal.num_nonlocal_gates" />
 
 `num_nonlocal_gates()`
 
@@ -1538,7 +1529,9 @@ Return number of non-local gates (i.e. involving 2+ qubits).
 
 Conditional nonlocal gates are also included.
 
+### num\_parameters
 
+<span id="qiskit.circuit.library.NLocal.num_parameters" />
 
 `property num_parameters`
 
@@ -1548,13 +1541,15 @@ Convenience function to get the number of parameter objects in the circuit.
 
 `int`
 
+### num\_parameters\_settable
 
+<span id="qiskit.circuit.library.NLocal.num_parameters_settable" />
 
 `property num_parameters_settable`
 
 The number of total parameters that can be set to distinct values.
 
-This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
+This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
 
 **Return type**
 
@@ -1568,7 +1563,9 @@ The number of parameters originally available in the circuit.
   This quantity does not require the circuit to be built yet.
 </Admonition>
 
+### num\_qubits
 
+<span id="qiskit.circuit.library.NLocal.num_qubits" />
 
 `property num_qubits`
 
@@ -1582,7 +1579,9 @@ Returns the number of qubits in this circuit.
 
 The number of qubits.
 
+### num\_tensor\_factors
 
+<span id="qiskit.circuit.library.NLocal.num_tensor_factors" />
 
 `num_tensor_factors()`
 
@@ -1592,13 +1591,17 @@ Computes the number of tensor factors in the unitary (quantum) part of the circu
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 
+### num\_unitary\_factors
 
+<span id="qiskit.circuit.library.NLocal.num_unitary_factors" />
 
 `num_unitary_factors()`
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
+### ordered\_parameters
 
+<span id="qiskit.circuit.library.NLocal.ordered_parameters" />
 
 `property ordered_parameters`
 
@@ -1628,13 +1631,17 @@ q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
 
 The parameters objects used in the circuit.
 
+### p
 
+<span id="qiskit.circuit.library.NLocal.p" />
 
 `p(theta, qubit)`
 
-Apply [`PhaseGate`](qiskit.circuit.library.PhaseGate#qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate").
+Apply [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate").
 
+### parameter\_bounds
 
+<span id="qiskit.circuit.library.NLocal.parameter_bounds" />
 
 `property parameter_bounds`
 
@@ -1648,7 +1655,9 @@ The parameter bounds for the unbound parameters in the circuit.
 
 A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
 
+### parameters
 
+<span id="qiskit.circuit.library.NLocal.parameters" />
 
 `property parameters`
 
@@ -1658,13 +1667,17 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
+### pauli
 
+<span id="qiskit.circuit.library.NLocal.pauli" />
 
 `pauli(pauli_string, qubits)`
 
-Apply [`PauliGate`](qiskit.circuit.library.PauliGate#qiskit.circuit.library.PauliGate "qiskit.circuit.library.PauliGate").
+Apply [`PauliGate`](qiskit.circuit.library.PauliGate "qiskit.circuit.library.PauliGate").
 
+### power
 
+<span id="qiskit.circuit.library.NLocal.power" />
 
 `power(power, matrix_power=False)`
 
@@ -1687,9 +1700,11 @@ A circuit implementing this circuit raised to the power of `power`.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### preferred\_init\_points
 
+<span id="qiskit.circuit.library.NLocal.preferred_init_points" />
 
 `property preferred_init_points`
 
@@ -1703,7 +1718,9 @@ The initial points for the parameters. Can be stored as initial guess in optimiz
 
 The initial values for the parameters, or None, if none have been set.
 
+### print\_settings
 
+<span id="qiskit.circuit.library.NLocal.print_settings" />
 
 `print_settings()`
 
@@ -1717,7 +1734,9 @@ Returns information about the setting.
 
 The class name and the attributes/parameters of the instance as `str`.
 
+### qasm
 
+<span id="qiskit.circuit.library.NLocal.qasm" />
 
 `qasm(formatted=False, filename=None, encoding=None)`
 
@@ -1739,10 +1758,12 @@ str
 
 **Raises**
 
-*   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If pygments is not installed and `formatted` is `True`.
-*   [**QasmError**](qiskit.qasm.QasmError#qiskit.qasm.QasmError "qiskit.qasm.QasmError") – If circuit has free parameters.
+*   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If pygments is not installed and `formatted` is `True`.
+*   [**QasmError**](qiskit.qasm.QasmError "qiskit.qasm.QasmError") – If circuit has free parameters.
 
+### qbit\_argument\_conversion
 
+<span id="qiskit.circuit.library.NLocal.qbit_argument_conversion" />
 
 `qbit_argument_conversion(qubit_representation)`
 
@@ -1760,13 +1781,17 @@ Where each tuple is a qubit.
 
 List(tuple)
 
+### qregs
 
+<span id="qiskit.circuit.library.NLocal.qregs" />
 
 `property qregs`
 
 A list of the quantum registers associated with the circuit.
 
+### qubit\_duration
 
+<span id="qiskit.circuit.library.NLocal.qubit_duration" />
 
 `qubit_duration(*qubits)`
 
@@ -1784,7 +1809,9 @@ Return the duration between the start and stop time of the first and last instru
 
 Return the duration between the first start and last stop time of non-delay instructions
 
+### qubit\_start\_time
 
+<span id="qiskit.circuit.library.NLocal.qubit_start_time" />
 
 `qubit_start_time(*qubits)`
 
@@ -1809,7 +1836,9 @@ Return the start time of the first instruction, excluding delays, over the qubit
 
 **CircuitError** – if `self` is a not-yet scheduled circuit.
 
+### qubit\_stop\_time
 
+<span id="qiskit.circuit.library.NLocal.qubit_stop_time" />
 
 `qubit_stop_time(*qubits)`
 
@@ -1834,31 +1863,41 @@ Return the stop time of the last instruction, excluding delays, over the qubits
 
 **CircuitError** – if `self` is a not-yet scheduled circuit.
 
+### qubits
 
+<span id="qiskit.circuit.library.NLocal.qubits" />
 
 `property qubits`
 
 Returns a list of quantum bits in the order that the registers were added.
 
+### r
 
+<span id="qiskit.circuit.library.NLocal.r" />
 
 `r(theta, phi, qubit)`
 
-Apply [`RGate`](qiskit.circuit.library.RGate#qiskit.circuit.library.RGate "qiskit.circuit.library.RGate").
+Apply [`RGate`](qiskit.circuit.library.RGate "qiskit.circuit.library.RGate").
 
+### rcccx
 
+<span id="qiskit.circuit.library.NLocal.rcccx" />
 
 `rcccx(control_qubit1, control_qubit2, control_qubit3, target_qubit)`
 
-Apply [`RC3XGate`](qiskit.circuit.library.RC3XGate#qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").
+Apply [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").
 
+### rccx
 
+<span id="qiskit.circuit.library.NLocal.rccx" />
 
 `rccx(control_qubit1, control_qubit2, target_qubit)`
 
-Apply [`RCCXGate`](qiskit.circuit.library.RCCXGate#qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate").
+Apply [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate").
 
+### remove\_final\_measurements
 
+<span id="qiskit.circuit.library.NLocal.remove_final_measurements" />
 
 `remove_final_measurements(inplace=True)`
 
@@ -1876,9 +1915,11 @@ Returns circuit with measurements removed when inplace = False.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### repeat
 
+<span id="qiskit.circuit.library.NLocal.repeat" />
 
 `repeat(reps)`
 
@@ -1894,9 +1935,11 @@ A circuit containing `reps` repetitions of this circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### reps
 
+<span id="qiskit.circuit.library.NLocal.reps" />
 
 `property reps`
 
@@ -1910,13 +1953,17 @@ The number of times rotation and entanglement block are repeated.
 
 The number of repetitions.
 
+### reset
 
+<span id="qiskit.circuit.library.NLocal.reset" />
 
 `reset(qubit)`
 
 Reset q.
 
+### reverse\_bits
 
+<span id="qiskit.circuit.library.NLocal.reverse_bits" />
 
 `reverse_bits()`
 
@@ -1932,7 +1979,7 @@ the circuit with reversed bit order.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 ## Examples
 
@@ -1960,7 +2007,9 @@ the circuit with reversed bit order.
 
 └───┘
 
+### reverse\_ops
 
+<span id="qiskit.circuit.library.NLocal.reverse_ops" />
 
 `reverse_ops()`
 
@@ -1974,7 +2023,7 @@ the reversed circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 ## Examples
 
@@ -2002,7 +2051,9 @@ the reversed circuit.
 
 └──────────┘
 
+### rotation\_blocks
 
+<span id="qiskit.circuit.library.NLocal.rotation_blocks" />
 
 `property rotation_blocks`
 
@@ -2016,61 +2067,81 @@ The blocks in the rotation layers.
 
 The blocks in the rotation layers.
 
+### rv
 
+<span id="qiskit.circuit.library.NLocal.rv" />
 
 `rv(vx, vy, vz, qubit)`
 
-Apply [`RVGate`](qiskit.circuit.library.RVGate#qiskit.circuit.library.RVGate "qiskit.circuit.library.RVGate").
+Apply [`RVGate`](qiskit.circuit.library.RVGate "qiskit.circuit.library.RVGate").
 
+### rx
 
+<span id="qiskit.circuit.library.NLocal.rx" />
 
 `rx(theta, qubit, label=None)`
 
-Apply [`RXGate`](qiskit.circuit.library.RXGate#qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").
+Apply [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").
 
+### rxx
 
+<span id="qiskit.circuit.library.NLocal.rxx" />
 
 `rxx(theta, qubit1, qubit2)`
 
-Apply [`RXXGate`](qiskit.circuit.library.RXXGate#qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
+Apply [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
 
+### ry
 
+<span id="qiskit.circuit.library.NLocal.ry" />
 
 `ry(theta, qubit, label=None)`
 
-Apply [`RYGate`](qiskit.circuit.library.RYGate#qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate").
+Apply [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate").
 
+### ryy
 
+<span id="qiskit.circuit.library.NLocal.ryy" />
 
 `ryy(theta, qubit1, qubit2)`
 
-Apply [`RYYGate`](qiskit.circuit.library.RYYGate#qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate").
+Apply [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate").
 
+### rz
 
+<span id="qiskit.circuit.library.NLocal.rz" />
 
 `rz(phi, qubit)`
 
-Apply [`RZGate`](qiskit.circuit.library.RZGate#qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").
+Apply [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").
 
+### rzx
 
+<span id="qiskit.circuit.library.NLocal.rzx" />
 
 `rzx(theta, qubit1, qubit2)`
 
-Apply [`RZXGate`](qiskit.circuit.library.RZXGate#qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate").
+Apply [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate").
 
+### rzz
 
+<span id="qiskit.circuit.library.NLocal.rzz" />
 
 `rzz(theta, qubit1, qubit2)`
 
-Apply [`RZZGate`](qiskit.circuit.library.RZZGate#qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
+Apply [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
 
+### s
 
+<span id="qiskit.circuit.library.NLocal.s" />
 
 `s(qubit)`
 
-Apply [`SGate`](qiskit.circuit.library.SGate#qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").
+Apply [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").
 
+### save\_amplitudes
 
+<span id="qiskit.circuit.library.NLocal.save_amplitudes" />
 
 `save_amplitudes(params, label='amplitudes', pershot=False, conditional=False)`
 
@@ -2089,13 +2160,15 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **ExtensionError** – if params is invalid for the specified number of qubits.
 
+### save\_amplitudes\_squared
 
+<span id="qiskit.circuit.library.NLocal.save_amplitudes_squared" />
 
 `save_amplitudes_squared(params, label='amplitudes_squared', unnormalized=False, pershot=False, conditional=False)`
 
@@ -2115,13 +2188,15 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **ExtensionError** – if params is invalid for the specified number of qubits.
 
+### save\_density\_matrix
 
+<span id="qiskit.circuit.library.NLocal.save_density_matrix" />
 
 `save_density_matrix(qubits=None, label='density_matrix', unnormalized=False, pershot=False, conditional=False)`
 
@@ -2141,9 +2216,11 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### save\_expectation\_value
 
+<span id="qiskit.circuit.library.NLocal.save_expectation_value" />
 
 `save_expectation_value(operator, qubits, label='expectation_value', unnormalized=False, pershot=False, conditional=False)`
 
@@ -2151,7 +2228,7 @@ Save the expectation value of a Hermitian operator.
 
 **Parameters**
 
-*   **operator** ([*Pauli*](qiskit.quantum_info.Pauli#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *or*[*Operator*](qiskit.quantum_info.Operator#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – a Hermitian operator.
+*   **operator** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *or*[*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – a Hermitian operator.
 *   **qubits** (*list*) – circuit qubits to apply instruction.
 *   **label** (*str*) – the key for retrieving saved data from results.
 *   **unnormalized** (*bool*) – If True return save the unnormalized accumulated or conditional accumulated expectation value over all shot \[Default: False].
@@ -2164,7 +2241,7 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
@@ -2174,7 +2251,9 @@ with attached instruction.
   This method appends a `SaveExpectationValue` instruction to the quantum circuit.
 </Admonition>
 
+### save\_expectation\_value\_variance
 
+<span id="qiskit.circuit.library.NLocal.save_expectation_value_variance" />
 
 `save_expectation_value_variance(operator, qubits, label='expectation_value_variance', unnormalized=False, pershot=False, conditional=False)`
 
@@ -2182,7 +2261,7 @@ Save the expectation value of a Hermitian operator.
 
 **Parameters**
 
-*   **operator** ([*Pauli*](qiskit.quantum_info.Pauli#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp#qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *or*[*Operator*](qiskit.quantum_info.Operator#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – a Hermitian operator.
+*   **operator** ([*Pauli*](qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*SparsePauliOp*](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.SparsePauliOp")  *or*[*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – a Hermitian operator.
 *   **qubits** (*list*) – circuit qubits to apply instruction.
 *   **label** (*str*) – the key for retrieving saved data from results.
 *   **unnormalized** (*bool*) – If True return save the unnormalized accumulated or conditional accumulated expectation value and variance over all shot \[Default: False].
@@ -2195,7 +2274,7 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
@@ -2205,7 +2284,9 @@ with attached instruction.
   This method appends a `SaveExpectationValueVariance` instruction to the quantum circuit.
 </Admonition>
 
+### save\_matrix\_product\_state
 
+<span id="qiskit.circuit.library.NLocal.save_matrix_product_state" />
 
 `save_matrix_product_state(label='matrix_product_state', pershot=False, conditional=False)`
 
@@ -2223,9 +2304,11 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### save\_probabilities
 
+<span id="qiskit.circuit.library.NLocal.save_probabilities" />
 
 `save_probabilities(qubits=None, label='probabilities', unnormalized=False, pershot=False, conditional=False)`
 
@@ -2245,9 +2328,11 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### save\_probabilities\_dict
 
+<span id="qiskit.circuit.library.NLocal.save_probabilities_dict" />
 
 `save_probabilities_dict(qubits=None, label='probabilities', unnormalized=False, pershot=False, conditional=False)`
 
@@ -2267,9 +2352,11 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### save\_stabilizer
 
+<span id="qiskit.circuit.library.NLocal.save_stabilizer" />
 
 `save_stabilizer(label='stabilizer', pershot=False, conditional=False)`
 
@@ -2287,13 +2374,15 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 <Admonition title="Note" type="note">
   This instruction is always defined across all qubits in a circuit.
 </Admonition>
 
+### save\_state
 
+<span id="qiskit.circuit.library.NLocal.save_state" />
 
 `save_state(label=None, pershot=False, conditional=False)`
 
@@ -2311,9 +2400,11 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### save\_statevector
 
+<span id="qiskit.circuit.library.NLocal.save_statevector" />
 
 `save_statevector(label='statevector', pershot=False, conditional=False)`
 
@@ -2331,13 +2422,15 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 <Admonition title="Note" type="note">
   This instruction is always defined across all qubits in a circuit.
 </Admonition>
 
+### save\_statevector\_dict
 
+<span id="qiskit.circuit.library.NLocal.save_statevector_dict" />
 
 `save_statevector_dict(label='statevector', pershot=False, conditional=False)`
 
@@ -2355,13 +2448,15 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 <Admonition title="Note" type="note">
   This instruction is always defined across all qubits in a circuit.
 </Admonition>
 
+### save\_superop
 
+<span id="qiskit.circuit.library.NLocal.save_superop" />
 
 `save_superop(label='superop', pershot=False)`
 
@@ -2378,13 +2473,15 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 <Admonition title="Note" type="note">
   This instruction is always defined across all qubits in a circuit.
 </Admonition>
 
+### save\_unitary
 
+<span id="qiskit.circuit.library.NLocal.save_unitary" />
 
 `save_unitary(label='unitary', pershot=False)`
 
@@ -2401,19 +2498,23 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 <Admonition title="Note" type="note">
   This instruction is always defined across all qubits in a circuit.
 </Admonition>
 
+### sdg
 
+<span id="qiskit.circuit.library.NLocal.sdg" />
 
 `sdg(qubit)`
 
-Apply [`SdgGate`](qiskit.circuit.library.SdgGate#qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").
+Apply [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").
 
+### set\_density\_matrix
 
+<span id="qiskit.circuit.library.NLocal.set_density_matrix" />
 
 `set_density_matrix(state)`
 
@@ -2421,7 +2522,7 @@ Set the density matrix state of the simulator.
 
 **Parameters**
 
-**state** ([*DensityMatrix*](qiskit.quantum_info.DensityMatrix#qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a density matrix.
+**state** ([*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")) – a density matrix.
 
 **Returns**
 
@@ -2429,13 +2530,15 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **ExtensionError** – If the density matrix is the incorrect size for the current circuit.
 
+### set\_matrix\_product\_state
 
+<span id="qiskit.circuit.library.NLocal.set_matrix_product_state" />
 
 `set_matrix_product_state(state)`
 
@@ -2451,13 +2554,15 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **ExtensionError** – If the structure of the state is incorrect
 
+### set\_stabilizer
 
+<span id="qiskit.circuit.library.NLocal.set_stabilizer" />
 
 `set_stabilizer(state)`
 
@@ -2465,7 +2570,7 @@ Set the Clifford stabilizer state of the simulator.
 
 **Parameters**
 
-**state** ([*Clifford*](qiskit.quantum_info.Clifford#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – A clifford operator.
+**state** ([*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – A clifford operator.
 
 **Returns**
 
@@ -2473,13 +2578,15 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **ExtensionError** – If the state is the incorrect size for the current circuit.
 
+### set\_statevector
 
+<span id="qiskit.circuit.library.NLocal.set_statevector" />
 
 `set_statevector(state)`
 
@@ -2487,7 +2594,7 @@ Set the statevector state of the simulator.
 
 **Parameters**
 
-**state** ([*Statevector*](qiskit.quantum_info.Statevector#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) – A state matrix.
+**state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")) – A state matrix.
 
 **Returns**
 
@@ -2495,13 +2602,15 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **ExtensionError** – If the state is the incorrect size for the current circuit.
 
+### set\_superop
 
+<span id="qiskit.circuit.library.NLocal.set_superop" />
 
 `set_superop(state)`
 
@@ -2517,14 +2626,16 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 *   **ExtensionError** – If the state is the incorrect size for the current circuit.
 *   **ExtensionError** – if the input QuantumChannel is not CPTP.
 
+### set\_unitary
 
+<span id="qiskit.circuit.library.NLocal.set_unitary" />
 
 `set_unitary(state)`
 
@@ -2532,7 +2643,7 @@ Set the state state of the simulator.
 
 **Parameters**
 
-**state** ([*Operator*](qiskit.quantum_info.Operator#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – A state matrix.
+**state** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – A state matrix.
 
 **Returns**
 
@@ -2540,14 +2651,16 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 *   **ExtensionError** – If the state is the incorrect size for the current circuit.
 *   **ExtensionError** – if the input matrix is not unitary.
 
+### size
 
+<span id="qiskit.circuit.library.NLocal.size" />
 
 `size()`
 
@@ -2561,7 +2674,9 @@ Total number of gate operations.
 
 int
 
+### snapshot
 
+<span id="qiskit.circuit.library.NLocal.snapshot" />
 
 `snapshot(label, snapshot_type='statevector', qubits=None, params=None)`
 
@@ -2573,13 +2688,15 @@ with attached command
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **ExtensionError** – malformed command
 
+### snapshot\_density\_matrix
 
+<span id="qiskit.circuit.library.NLocal.snapshot_density_matrix" />
 
 `snapshot_density_matrix(label, qubits=None)`
 
@@ -2596,17 +2713,19 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **ExtensionError** – if snapshot is invalid.
 
 <Admonition title="Note" type="note">
-  This method will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.save_density_matrix()`](qiskit.providers.aer.library.save_density_matrix#qiskit.providers.aer.library.save_density_matrix "qiskit.providers.aer.library.save_density_matrix") circuit method.
+  This method will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.save_density_matrix()`](qiskit.providers.aer.library.save_density_matrix "qiskit.providers.aer.library.save_density_matrix") circuit method.
 </Admonition>
 
+### snapshot\_expectation\_value
 
+<span id="qiskit.circuit.library.NLocal.snapshot_expectation_value" />
 
 `snapshot_expectation_value(label, op, qubits, single_shot=False, variance=False)`
 
@@ -2615,7 +2734,7 @@ Take a snapshot of expectation value \<O> of an Operator.
 **Parameters**
 
 *   **label** (*str*) – a snapshot label to report the result
-*   **op** ([*Operator*](qiskit.quantum_info.Operator#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – operator to snapshot
+*   **op** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – operator to snapshot
 *   **qubits** (*list*) – the qubits to snapshot.
 *   **single\_shot** (*bool*) – return list for each shot rather than average \[Default: False]
 *   **variance** (*bool*) – compute variance of values \[Default: False]
@@ -2626,17 +2745,19 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **ExtensionError** – if snapshot is invalid.
 
 <Admonition title="Note" type="note">
-  This method will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.save_expectation_value()`](qiskit.providers.aer.library.save_expectation_value#qiskit.providers.aer.library.save_expectation_value "qiskit.providers.aer.library.save_expectation_value") and [`qiskit.providers.aer.library.save_expectation_value_variance()`](qiskit.providers.aer.library.save_expectation_value_variance#qiskit.providers.aer.library.save_expectation_value_variance "qiskit.providers.aer.library.save_expectation_value_variance") circuit methods.
+  This method will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.save_expectation_value()`](qiskit.providers.aer.library.save_expectation_value "qiskit.providers.aer.library.save_expectation_value") and [`qiskit.providers.aer.library.save_expectation_value_variance()`](qiskit.providers.aer.library.save_expectation_value_variance "qiskit.providers.aer.library.save_expectation_value_variance") circuit methods.
 </Admonition>
 
+### snapshot\_probabilities
 
+<span id="qiskit.circuit.library.NLocal.snapshot_probabilities" />
 
 `snapshot_probabilities(label, qubits, variance=False)`
 
@@ -2654,17 +2775,19 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **ExtensionError** – if snapshot is invalid.
 
 <Admonition title="Note" type="note">
-  This method will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.save_probabilities()`](qiskit.providers.aer.library.save_probabilities#qiskit.providers.aer.library.save_probabilities "qiskit.providers.aer.library.save_probabilities") and [`qiskit.providers.aer.library.save_probabilities_dict()`](qiskit.providers.aer.library.save_probabilities_dict#qiskit.providers.aer.library.save_probabilities_dict "qiskit.providers.aer.library.save_probabilities_dict") circuit methods.
+  This method will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.save_probabilities()`](qiskit.providers.aer.library.save_probabilities "qiskit.providers.aer.library.save_probabilities") and [`qiskit.providers.aer.library.save_probabilities_dict()`](qiskit.providers.aer.library.save_probabilities_dict "qiskit.providers.aer.library.save_probabilities_dict") circuit methods.
 </Admonition>
 
+### snapshot\_stabilizer
 
+<span id="qiskit.circuit.library.NLocal.snapshot_stabilizer" />
 
 `snapshot_stabilizer(label)`
 
@@ -2680,7 +2803,7 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
@@ -2691,10 +2814,12 @@ with attached instruction.
 This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
 
 <Admonition title="Note" type="note">
-  This method will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.save_stabilizer()`](qiskit.providers.aer.library.save_stabilizer#qiskit.providers.aer.library.save_stabilizer "qiskit.providers.aer.library.save_stabilizer") circuit method.
+  This method will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.save_stabilizer()`](qiskit.providers.aer.library.save_stabilizer "qiskit.providers.aer.library.save_stabilizer") circuit method.
 </Admonition>
 
+### snapshot\_statevector
 
+<span id="qiskit.circuit.library.NLocal.snapshot_statevector" />
 
 `snapshot_statevector(label)`
 
@@ -2710,7 +2835,7 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
@@ -2721,10 +2846,12 @@ with attached instruction.
 This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
 
 <Admonition title="Note" type="note">
-  This method will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.save_statevector()`](qiskit.providers.aer.library.save_statevector#qiskit.providers.aer.library.save_statevector "qiskit.providers.aer.library.save_statevector") circuit method.
+  This method will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.save_statevector()`](qiskit.providers.aer.library.save_statevector "qiskit.providers.aer.library.save_statevector") circuit method.
 </Admonition>
 
+### squ
 
+<span id="qiskit.circuit.library.NLocal.squ" />
 
 `squ(unitary_matrix, qubit, mode='ZYZ', up_to_diagonal=False, *, u=None)`
 
@@ -2746,43 +2873,55 @@ The single-qubit unitary instruction attached to the circuit.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 **Raises**
 
 **QiskitError** – if the format is wrong; if the array u is not unitary
 
+### swap
 
+<span id="qiskit.circuit.library.NLocal.swap" />
 
 `swap(qubit1, qubit2)`
 
-Apply [`SwapGate`](qiskit.circuit.library.SwapGate#qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate").
+Apply [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate").
 
+### sx
 
+<span id="qiskit.circuit.library.NLocal.sx" />
 
 `sx(qubit)`
 
-Apply [`SXGate`](qiskit.circuit.library.SXGate#qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate").
+Apply [`SXGate`](qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate").
 
+### sxdg
 
+<span id="qiskit.circuit.library.NLocal.sxdg" />
 
 `sxdg(qubit)`
 
-Apply [`SXdgGate`](qiskit.circuit.library.SXdgGate#qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate").
+Apply [`SXdgGate`](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate").
 
+### t
 
+<span id="qiskit.circuit.library.NLocal.t" />
 
 `t(qubit)`
 
-Apply [`TGate`](qiskit.circuit.library.TGate#qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").
+Apply [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").
 
+### tdg
 
+<span id="qiskit.circuit.library.NLocal.tdg" />
 
 `tdg(qubit)`
 
-Apply [`TdgGate`](qiskit.circuit.library.TdgGate#qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate").
+Apply [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate").
 
+### tensor
 
+<span id="qiskit.circuit.library.NLocal.tensor" />
 
 `tensor(other, inplace=False)`
 
@@ -2800,7 +2939,7 @@ q_0: ┤ bottom ├ ⊗ q_0: ┤ top ├  = q_0: ─┤ top ├──
 
 **Parameters**
 
-*   **other** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The other circuit to tensor this circuit with.
+*   **other** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The other circuit to tensor this circuit with.
 *   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
 
 ## Examples
@@ -2831,9 +2970,11 @@ The tensored circuit (returns None if inplace==True).
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### to\_gate
 
+<span id="qiskit.circuit.library.NLocal.to_gate" />
 
 `to_gate(parameter_map=None, label=None)`
 
@@ -2850,9 +2991,11 @@ a composite gate encapsulating this circuit (can be decomposed back)
 
 **Return type**
 
-[Gate](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")
+[Gate](qiskit.circuit.Gate "qiskit.circuit.Gate")
 
+### to\_instruction
 
+<span id="qiskit.circuit.library.NLocal.to_instruction" />
 
 `to_instruction(parameter_map=None, label=None)`
 
@@ -2869,39 +3012,51 @@ a composite instruction encapsulating this circuit (can be decomposed back)
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### toffoli
 
+<span id="qiskit.circuit.library.NLocal.toffoli" />
 
 `toffoli(control_qubit1, control_qubit2, target_qubit)`
 
-Apply [`CCXGate`](qiskit.circuit.library.CCXGate#qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
+Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
 
+### u
 
+<span id="qiskit.circuit.library.NLocal.u" />
 
 `u(theta, phi, lam, qubit)`
 
-Apply [`UGate`](qiskit.circuit.library.UGate#qiskit.circuit.library.UGate "qiskit.circuit.library.UGate").
+Apply [`UGate`](qiskit.circuit.library.UGate "qiskit.circuit.library.UGate").
 
+### u1
 
+<span id="qiskit.circuit.library.NLocal.u1" />
 
 `u1(theta, qubit)`
 
-Apply [`U1Gate`](qiskit.circuit.library.U1Gate#qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate").
+Apply [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate").
 
+### u2
 
+<span id="qiskit.circuit.library.NLocal.u2" />
 
 `u2(phi, lam, qubit)`
 
-Apply [`U2Gate`](qiskit.circuit.library.U2Gate#qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate").
+Apply [`U2Gate`](qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate").
 
+### u3
 
+<span id="qiskit.circuit.library.NLocal.u3" />
 
 `u3(theta, phi, lam, qubit)`
 
-Apply [`U3Gate`](qiskit.circuit.library.U3Gate#qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate").
+Apply [`U3Gate`](qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate").
 
+### uc
 
+<span id="qiskit.circuit.library.NLocal.uc" />
 
 `uc(gate_list, q_controls, q_target, up_to_diagonal=False)`
 
@@ -2912,8 +3067,8 @@ The decomposition was introduced by Bergholm et al. in [https://arxiv.org/pdf/qu
 **Parameters**
 
 *   **gate\_list** (*list\[ndarray]*) – list of two qubit unitaries \[U\_0,…,U\_\{2^k-1}], where each single-qubit unitary U\_i is a given as a 2\*2 array
-*   **q\_controls** (*QuantumRegister|list\[(*[*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)]*) – list of k control qubits. The qubits are ordered according to their significance in the computational basis. For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the unitary U\_0 is performed if q\[1] and q\[2] are in the state zero, U\_1 is performed if q\[2] is in the state zero and q\[1] is in the state one, and so on
-*   **q\_target** (*QuantumRegister|(*[*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)*) – target qubit, where we act on with the single-qubit gates.
+*   **q\_controls** (*QuantumRegister|list\[(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)]*) – list of k control qubits. The qubits are ordered according to their significance in the computational basis. For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the unitary U\_0 is performed if q\[1] and q\[2] are in the state zero, U\_1 is performed if q\[2] is in the state zero and q\[1] is in the state one, and so on
+*   **q\_target** (*QuantumRegister|(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)*) – target qubit, where we act on with the single-qubit gates.
 *   **up\_to\_diagonal** (*bool*) – If set to True, the uniformly controlled gate is decomposed up to a diagonal gate, i.e. a unitary u’ is implemented such that there exists a diagonal gate d with u = d.dot(u’), where the unitary u describes the uniformly controlled gate
 
 **Returns**
@@ -2922,13 +3077,15 @@ the uniformly controlled gate is attached to the circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
 
+### ucrx
 
+<span id="qiskit.circuit.library.NLocal.ucrx" />
 
 `ucrx(angle_list, q_controls, q_target)`
 
@@ -2948,13 +3105,15 @@ the uniformly controlled rotation gate is attached to the circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
 
+### ucry
 
+<span id="qiskit.circuit.library.NLocal.ucry" />
 
 `ucry(angle_list, q_controls, q_target)`
 
@@ -2965,7 +3124,7 @@ The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https:
 **Parameters**
 
 *   **angle\_list** (*list\[numbers*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
-*   **q\_controls** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Ry(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Ry(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
+*   **q\_controls** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Ry(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Ry(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
 *   **q\_target** (*QuantumRegister|Qubit*) – target qubit, where we act on with the single-qubit rotation gates
 
 **Returns**
@@ -2974,13 +3133,15 @@ the uniformly controlled rotation gate is attached to the circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
 
+### ucrz
 
+<span id="qiskit.circuit.library.NLocal.ucrz" />
 
 `ucrz(angle_list, q_controls, q_target)`
 
@@ -2991,7 +3152,7 @@ The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https:
 **Parameters**
 
 *   **angle\_list** (*list\[numbers*) – list of (real) rotation angles \[a\_0,…,a\_\{2^k-1}]
-*   **q\_controls** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the rotation Rz(a\_0)is performed if q\[1] and q\[2] are in the state zero, the rotation Rz(a\_1) is performed if q\[1] is in the state one and q\[2] is in the state zero, and so on
+*   **q\_controls** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the rotation Rz(a\_0)is performed if q\[1] and q\[2] are in the state zero, the rotation Rz(a\_1) is performed if q\[1] is in the state one and q\[2] is in the state zero, and so on
 *   **q\_target** (*QuantumRegister|Qubit*) – target qubit, where we act on with the single-qubit rotation gates
 
 **Returns**
@@ -3000,19 +3161,23 @@ the uniformly controlled rotation gate is attached to the circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
 
+### unitary
 
+<span id="qiskit.circuit.library.NLocal.unitary" />
 
 `unitary(obj, qubits, label=None)`
 
 Apply unitary gate to q.
 
+### width
 
+<span id="qiskit.circuit.library.NLocal.width" />
 
 `width()`
 
@@ -3026,20 +3191,27 @@ Width of circuit.
 
 int
 
+### x
 
+<span id="qiskit.circuit.library.NLocal.x" />
 
 `x(qubit, label=None)`
 
-Apply [`XGate`](qiskit.circuit.library.XGate#qiskit.circuit.library.XGate "qiskit.circuit.library.XGate").
+Apply [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate").
 
+### y
 
+<span id="qiskit.circuit.library.NLocal.y" />
 
 `y(qubit)`
 
-Apply [`YGate`](qiskit.circuit.library.YGate#qiskit.circuit.library.YGate "qiskit.circuit.library.YGate").
+Apply [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate").
 
+### z
 
+<span id="qiskit.circuit.library.NLocal.z" />
 
 `z(qubit)`
 
-Apply [`ZGate`](qiskit.circuit.library.ZGate#qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate").
+Apply [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate").
+

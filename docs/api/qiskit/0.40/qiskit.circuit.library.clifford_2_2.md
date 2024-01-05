@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.circuit.library.clifford_2_2
 ---
 
-# qiskit.circuit.library.clifford\_2\_2[¶](#qiskit-circuit-library-clifford-2-2 "Permalink to this headline")
+# qiskit.circuit.library.clifford\_2\_2
 
 <span id="qiskit.circuit.library.clifford_2_2" />
 

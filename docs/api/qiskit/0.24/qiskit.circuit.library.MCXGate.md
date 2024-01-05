@@ -1,8 +1,16 @@
+---
+title: MCXGate
+description: API reference for qiskit.circuit.library.MCXGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.MCXGate
+---
+
 <span id="qiskit-circuit-library-mcxgate" />
 
 # qiskit.circuit.library.MCXGate
 
-
+<span id="qiskit.circuit.library.MCXGate" />
 
 `MCXGate(num_ctrl_qubits=None, label=None, ctrl_state=None)`
 
@@ -10,7 +18,9 @@ The general, multi-controlled X gate.
 
 Create new MCX gate.
 
+### \_\_init\_\_
 
+<span id="qiskit.circuit.library.MCXGate.__init__" />
 
 `__init__(num_ctrl_qubits, label=None, ctrl_state=None, _name='mcx')`
 
@@ -18,47 +28,19 @@ Create new MCX gate.
 
 ## Methods
 
-|                                                                                                                                                                        |                                                                            |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.circuit.library.MCXGate.__init__ "qiskit.circuit.library.MCXGate.__init__")(num\_ctrl\_qubits\[, label, …])                                       | Create new MCX gate.                                                       |
-| [`add_decomposition`](#qiskit.circuit.library.MCXGate.add_decomposition "qiskit.circuit.library.MCXGate.add_decomposition")(decomposition)                             | Add a decomposition of the instruction to the SessionEquivalenceLibrary.   |
-| [`assemble`](#qiskit.circuit.library.MCXGate.assemble "qiskit.circuit.library.MCXGate.assemble")()                                                                     | Assemble a QasmQobjInstruction                                             |
-| [`broadcast_arguments`](#qiskit.circuit.library.MCXGate.broadcast_arguments "qiskit.circuit.library.MCXGate.broadcast_arguments")(qargs, cargs)                        | Validation and handling of the arguments and its relationship.             |
-| [`c_if`](#qiskit.circuit.library.MCXGate.c_if "qiskit.circuit.library.MCXGate.c_if")(classical, val)                                                                   | Add classical condition on register classical and value val.               |
-| [`control`](#qiskit.circuit.library.MCXGate.control "qiskit.circuit.library.MCXGate.control")(\[num\_ctrl\_qubits, label, ctrl\_state])                                | Return a multi-controlled-X gate with more control lines.                  |
-| [`copy`](#qiskit.circuit.library.MCXGate.copy "qiskit.circuit.library.MCXGate.copy")(\[name])                                                                          | Copy of the instruction.                                                   |
-| [`get_num_ancilla_qubits`](#qiskit.circuit.library.MCXGate.get_num_ancilla_qubits "qiskit.circuit.library.MCXGate.get_num_ancilla_qubits")(num\_ctrl\_qubits\[, mode]) | Get the number of required ancilla qubits without instantiating the class. |
-| [`inverse`](#qiskit.circuit.library.MCXGate.inverse "qiskit.circuit.library.MCXGate.inverse")()                                                                        | Invert this gate.                                                          |
-| [`is_parameterized`](#qiskit.circuit.library.MCXGate.is_parameterized "qiskit.circuit.library.MCXGate.is_parameterized")()                                             | Return True .IFF.                                                          |
-| [`mirror`](#qiskit.circuit.library.MCXGate.mirror "qiskit.circuit.library.MCXGate.mirror")()                                                                           | DEPRECATED: use instruction.reverse\_ops().                                |
-| [`power`](#qiskit.circuit.library.MCXGate.power "qiskit.circuit.library.MCXGate.power")(exponent)                                                                      | Creates a unitary gate as gate^exponent.                                   |
-| [`qasm`](#qiskit.circuit.library.MCXGate.qasm "qiskit.circuit.library.MCXGate.qasm")()                                                                                 | Return a default OpenQASM string for the instruction.                      |
-| [`repeat`](#qiskit.circuit.library.MCXGate.repeat "qiskit.circuit.library.MCXGate.repeat")(n)                                                                          | Creates an instruction with gate repeated n amount of times.               |
-| [`reverse_ops`](#qiskit.circuit.library.MCXGate.reverse_ops "qiskit.circuit.library.MCXGate.reverse_ops")()                                                            | For a composite instruction, reverse the order of sub-instructions.        |
-| [`to_matrix`](#qiskit.circuit.library.MCXGate.to_matrix "qiskit.circuit.library.MCXGate.to_matrix")()                                                                  | Return a Numpy.array for the gate unitary matrix.                          |
-| [`validate_parameter`](#qiskit.circuit.library.MCXGate.validate_parameter "qiskit.circuit.library.MCXGate.validate_parameter")(parameter)                              | Gate parameters should be int, float, or ParameterExpression               |
-
 ## Attributes
 
-|                                                                                                                                |                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| [`ctrl_state`](#qiskit.circuit.library.MCXGate.ctrl_state "qiskit.circuit.library.MCXGate.ctrl_state")                         | Return the control state of the gate as a decimal integer.                    |
-| [`decompositions`](#qiskit.circuit.library.MCXGate.decompositions "qiskit.circuit.library.MCXGate.decompositions")             | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
-| [`definition`](#qiskit.circuit.library.MCXGate.definition "qiskit.circuit.library.MCXGate.definition")                         | Return definition in terms of other basic gates.                              |
-| [`duration`](#qiskit.circuit.library.MCXGate.duration "qiskit.circuit.library.MCXGate.duration")                               | Get the duration.                                                             |
-| [`label`](#qiskit.circuit.library.MCXGate.label "qiskit.circuit.library.MCXGate.label")                                        | Return gate label                                                             |
-| [`num_ancilla_qubits`](#qiskit.circuit.library.MCXGate.num_ancilla_qubits "qiskit.circuit.library.MCXGate.num_ancilla_qubits") | The number of ancilla qubits.                                                 |
-| [`num_ctrl_qubits`](#qiskit.circuit.library.MCXGate.num_ctrl_qubits "qiskit.circuit.library.MCXGate.num_ctrl_qubits")          | Get number of control qubits.                                                 |
-| [`params`](#qiskit.circuit.library.MCXGate.params "qiskit.circuit.library.MCXGate.params")                                     | Get parameters from base\_gate.                                               |
-| [`unit`](#qiskit.circuit.library.MCXGate.unit "qiskit.circuit.library.MCXGate.unit")                                           | Get the time unit of duration.                                                |
+### add\_decomposition
 
-
+<span id="qiskit.circuit.library.MCXGate.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
+### assemble
 
+<span id="qiskit.circuit.library.MCXGate.assemble" />
 
 `assemble()`
 
@@ -68,7 +50,9 @@ Assemble a QasmQobjInstruction
 
 `Instruction`
 
+### broadcast\_arguments
 
+<span id="qiskit.circuit.library.MCXGate.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -121,13 +105,17 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
+### c\_if
 
+<span id="qiskit.circuit.library.MCXGate.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
+### control
 
+<span id="qiskit.circuit.library.MCXGate.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
@@ -145,9 +133,11 @@ controlled version of this gate.
 
 **Return type**
 
-[ControlledGate](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
+### copy
 
+<span id="qiskit.circuit.library.MCXGate.copy" />
 
 `copy(name=None)`
 
@@ -165,9 +155,11 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### ctrl\_state
 
+<span id="qiskit.circuit.library.MCXGate.ctrl_state" />
 
 `property ctrl_state`
 
@@ -177,13 +169,17 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
+### decompositions
 
+<span id="qiskit.circuit.library.MCXGate.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
+### definition
 
+<span id="qiskit.circuit.library.MCXGate.definition" />
 
 `property definition`
 
@@ -193,13 +189,17 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
+### duration
 
+<span id="qiskit.circuit.library.MCXGate.duration" />
 
 `property duration`
 
 Get the duration.
 
+### get\_num\_ancilla\_qubits
 
+<span id="qiskit.circuit.library.MCXGate.get_num_ancilla_qubits" />
 
 `static get_num_ancilla_qubits(num_ctrl_qubits, mode='noancilla')`
 
@@ -207,19 +207,25 @@ Get the number of required ancilla qubits without instantiating the class.
 
 This staticmethod might be necessary to check the number of ancillas before creating the gate, or to use the number of ancillas in the initialization.
 
+### inverse
 
+<span id="qiskit.circuit.library.MCXGate.inverse" />
 
 `inverse()`
 
 Invert this gate. The MCX is its own inverse.
 
+### is\_parameterized
 
+<span id="qiskit.circuit.library.MCXGate.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
+### label
 
+<span id="qiskit.circuit.library.MCXGate.label" />
 
 `property label`
 
@@ -229,7 +235,9 @@ Return gate label
 
 `str`
 
+### mirror
 
+<span id="qiskit.circuit.library.MCXGate.mirror" />
 
 `mirror()`
 
@@ -243,15 +251,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### num\_ancilla\_qubits
 
+<span id="qiskit.circuit.library.MCXGate.num_ancilla_qubits" />
 
 `property num_ancilla_qubits`
 
 The number of ancilla qubits.
 
+### num\_ctrl\_qubits
 
+<span id="qiskit.circuit.library.MCXGate.num_ctrl_qubits" />
 
 `property num_ctrl_qubits`
 
@@ -265,7 +277,9 @@ The number of control qubits for the gate.
 
 int
 
+### params
 
+<span id="qiskit.circuit.library.MCXGate.params" />
 
 `property params`
 
@@ -283,7 +297,9 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
+### power
 
+<span id="qiskit.circuit.library.MCXGate.power" />
 
 `power(exponent)`
 
@@ -299,13 +315,15 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **Return type**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate#qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
 **Raises**
 
 **CircuitError** – If Gate is not unitary
 
+### qasm
 
+<span id="qiskit.circuit.library.MCXGate.qasm" />
 
 `qasm()`
 
@@ -313,7 +331,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
+### repeat
 
+<span id="qiskit.circuit.library.MCXGate.repeat" />
 
 `repeat(n)`
 
@@ -329,13 +349,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
+### reverse\_ops
 
+<span id="qiskit.circuit.library.MCXGate.reverse_ops" />
 
 `reverse_ops()`
 
@@ -351,9 +373,11 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### to\_matrix
 
+<span id="qiskit.circuit.library.MCXGate.to_matrix" />
 
 `to_matrix()`
 
@@ -367,14 +391,19 @@ Return a Numpy.array for the gate unitary matrix.
 
 `ndarray`
 
+### unit
 
+<span id="qiskit.circuit.library.MCXGate.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
+### validate\_parameter
 
+<span id="qiskit.circuit.library.MCXGate.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
+

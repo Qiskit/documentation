@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.AlgorithmJob
 ---
 
-# AlgorithmJob[¶](#algorithmjob "Permalink to this headline")
+# AlgorithmJob
 
 <span id="qiskit.algorithms.AlgorithmJob" />
 

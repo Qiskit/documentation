@@ -1,8 +1,16 @@
+---
+title: coherence_limit
+description: API reference for qiskit.ignis.verification.coherence_limit
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.coherence_limit
+---
+
 <span id="qiskit-ignis-verification-coherence-limit" />
 
 # qiskit.ignis.verification.coherence\_limit
 
-
+<span id="qiskit.ignis.verification.coherence_limit" />
 
 `coherence_limit(nQ=2, T1_list=None, T2_list=None, gatelen=0.1)`
 
@@ -26,3 +34,4 @@ float
 **Raises**
 
 **ValueError** – if there are invalid inputs
+

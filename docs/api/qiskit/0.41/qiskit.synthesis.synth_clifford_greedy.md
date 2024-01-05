@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.synthesis.synth_clifford_greedy
 ---
 
-# qiskit.synthesis.synth\_clifford\_greedy[¶](#qiskit-synthesis-synth-clifford-greedy "Permalink to this headline")
+# qiskit.synthesis.synth\_clifford\_greedy
 
 <span id="qiskit.synthesis.synth_clifford_greedy" />
 

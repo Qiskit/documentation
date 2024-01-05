@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.qobj.PulseQobj
 ---
 
-# PulseQobj[¶](#pulseqobj "Permalink to this headline")
+# PulseQobj
 
 <span id="qiskit.qobj.PulseQobj" />
 

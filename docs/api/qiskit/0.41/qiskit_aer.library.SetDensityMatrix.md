@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit_aer.library.SetDensityMatrix
 ---
 
-# SetDensityMatrix[¶](#setdensitymatrix "Permalink to this headline")
+# SetDensityMatrix
 
 <span id="qiskit_aer.library.SetDensityMatrix" />
 

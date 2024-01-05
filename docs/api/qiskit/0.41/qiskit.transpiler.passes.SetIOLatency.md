@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.SetIOLatency
 ---
 
-# SetIOLatency[¶](#setiolatency "Permalink to this headline")
+# SetIOLatency
 
 <span id="qiskit.transpiler.passes.SetIOLatency" />
 

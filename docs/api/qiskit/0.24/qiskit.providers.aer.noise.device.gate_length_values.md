@@ -1,8 +1,16 @@
+---
+title: gate_length_values
+description: API reference for qiskit.providers.aer.noise.device.gate_length_values
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.noise.device.gate_length_values
+---
+
 <span id="qiskit-providers-aer-noise-device-gate-length-values" />
 
 # qiskit.providers.aer.noise.device.gate\_length\_values
 
-
+<span id="qiskit.providers.aer.noise.device.gate_length_values" />
 
 `gate_length_values(properties)`
 
@@ -10,7 +18,7 @@ Return gate length values from a devices BackendProperties.
 
 **Parameters**
 
-**properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – device backend properties
+**properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – device backend properties
 
 **Returns**
 
@@ -23,3 +31,4 @@ list
 ## Additional Information:
 
 Gate length values are returned in nanosecond (ns) units.
+

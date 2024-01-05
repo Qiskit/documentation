@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.result.Counts
 ---
 
-# Counts[¶](#counts "Permalink to this headline")
+# Counts
 
 <span id="qiskit.result.Counts" />
 

@@ -1,8 +1,16 @@
+---
+title: RealAmplitudes
+description: API reference for qiskit.circuit.library.RealAmplitudes
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.RealAmplitudes
+---
+
 <span id="qiskit-circuit-library-realamplitudes" />
 
 # qiskit.circuit.library.RealAmplitudes
 
-
+<span id="qiskit.circuit.library.RealAmplitudes" />
 
 `RealAmplitudes(num_qubits=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None)`
 
@@ -22,7 +30,7 @@ For example a `RealAmplitudes` circuit with 2 repetitions on 3 qubits with `'ful
 └──────────┘ ░      └───┘└───┘ ░ └──────────┘ ░      └───┘└───┘ ░ └──────────┘
 ```
 
-The entanglement can be set using the `entanglement` keyword as string or a list of index-pairs. See the documentation of [`TwoLocal`](qiskit.circuit.library.TwoLocal#qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") and `NLocal` for more detail. Additional options that can be set include the number of repetitions, skipping rotation gates on qubits that are not entangled, leaving out the final rotation layer and inserting barriers in between the rotation and entanglement layers.
+The entanglement can be set using the `entanglement` keyword as string or a list of index-pairs. See the documentation of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") and `NLocal` for more detail. Additional options that can be set include the number of repetitions, skipping rotation gates on qubits that are not entangled, leaving out the final rotation layer and inserting barriers in between the rotation and entanglement layers.
 
 If some qubits are not entangled with other qubits it makes sense to not apply rotation gates on these qubits, since a sequence of $Y$ rotations can be reduced to a single $Y$ rotation with summed rotation angles.
 
@@ -89,15 +97,17 @@ Create a new RealAmplitudes 2-local circuit.
 
 *   **num\_qubits** (`Optional`\[`int`]) – The number of qubits of the RealAmplitudes circuit.
 *   **reps** (`int`) – Specifies how often the structure of a rotation layer followed by an entanglement layer is repeated.
-*   **entanglement** (`Union`\[`str`, `List`\[`List`\[`int`]], `Callable`\[\[`int`], `List`\[`int`]]]) – Specifies the entanglement structure. Can be a string (‘full’, ‘linear’ or ‘sca’), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. See the Examples section of [`TwoLocal`](qiskit.circuit.library.TwoLocal#qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") for more detail.
+*   **entanglement** (`Union`\[`str`, `List`\[`List`\[`int`]], `Callable`\[\[`int`], `List`\[`int`]]]) – Specifies the entanglement structure. Can be a string (‘full’, ‘linear’ or ‘sca’), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. See the Examples section of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") for more detail.
 *   **initial\_state** (`Optional`\[`Any`]) – An InitialState object to prepend to the circuit.
 *   **skip\_unentangled\_qubits** (`bool`) – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
 *   **skip\_unentangled\_qubits** – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
 *   **skip\_final\_rotation\_layer** (`bool`) – If False, a rotation layer is added at the end of the ansatz. If True, no rotation layer is added.
-*   **parameter\_prefix** (`str`) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](qiskit.circuit.ParameterVector#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
+*   **parameter\_prefix** (`str`) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
 *   **insert\_barriers** (`bool`) – If True, barriers are inserted in between each layer. If False, no barriers are inserted.
 
+### \_\_init\_\_
 
+<span id="qiskit.circuit.library.RealAmplitudes.__init__" />
 
 `__init__(num_qubits=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None)`
 
@@ -107,178 +117,21 @@ Create a new RealAmplitudes 2-local circuit.
 
 *   **num\_qubits** (`Optional`\[`int`]) – The number of qubits of the RealAmplitudes circuit.
 *   **reps** (`int`) – Specifies how often the structure of a rotation layer followed by an entanglement layer is repeated.
-*   **entanglement** (`Union`\[`str`, `List`\[`List`\[`int`]], `Callable`\[\[`int`], `List`\[`int`]]]) – Specifies the entanglement structure. Can be a string (‘full’, ‘linear’ or ‘sca’), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. See the Examples section of [`TwoLocal`](qiskit.circuit.library.TwoLocal#qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") for more detail.
+*   **entanglement** (`Union`\[`str`, `List`\[`List`\[`int`]], `Callable`\[\[`int`], `List`\[`int`]]]) – Specifies the entanglement structure. Can be a string (‘full’, ‘linear’ or ‘sca’), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. See the Examples section of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") for more detail.
 *   **initial\_state** (`Optional`\[`Any`]) – An InitialState object to prepend to the circuit.
 *   **skip\_unentangled\_qubits** (`bool`) – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
 *   **skip\_unentangled\_qubits** – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
 *   **skip\_final\_rotation\_layer** (`bool`) – If False, a rotation layer is added at the end of the ansatz. If True, no rotation layer is added.
-*   **parameter\_prefix** (`str`) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](qiskit.circuit.ParameterVector#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
+*   **parameter\_prefix** (`str`) – The parameterized gates require a parameter to be defined, for which we use [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector").
 *   **insert\_barriers** (`bool`) – If True, barriers are inserted in between each layer. If False, no barriers are inserted.
 
 ## Methods
 
-|                                                                                                                                                                                         |                                                                                                                                     |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.circuit.library.RealAmplitudes.__init__ "qiskit.circuit.library.RealAmplitudes.__init__")(\[num\_qubits, entanglement, reps, …])                                   | Create a new RealAmplitudes 2-local circuit.                                                                                        |
-| [`add_calibration`](#qiskit.circuit.library.RealAmplitudes.add_calibration "qiskit.circuit.library.RealAmplitudes.add_calibration")(gate, qubits, schedule\[, params])                  | Register a low-level, custom pulse definition for the given gate.                                                                   |
-| [`add_layer`](#qiskit.circuit.library.RealAmplitudes.add_layer "qiskit.circuit.library.RealAmplitudes.add_layer")(other\[, entanglement, front])                                        | Append another layer to the NLocal.                                                                                                 |
-| [`add_register`](#qiskit.circuit.library.RealAmplitudes.add_register "qiskit.circuit.library.RealAmplitudes.add_register")(\*regs)                                                      | Add registers.                                                                                                                      |
-| [`append`](#qiskit.circuit.library.RealAmplitudes.append "qiskit.circuit.library.RealAmplitudes.append")(instruction\[, qargs, cargs])                                                  | Append one or more instructions to the end of the circuit, modifying the circuit in place.                                          |
-| [`assign_parameters`](#qiskit.circuit.library.RealAmplitudes.assign_parameters "qiskit.circuit.library.RealAmplitudes.assign_parameters")(param\_dict\[, inplace])                      | Assign parameters to the n-local circuit.                                                                                           |
-| [`barrier`](#qiskit.circuit.library.RealAmplitudes.barrier "qiskit.circuit.library.RealAmplitudes.barrier")(\*qargs)                                                                    | Apply `Barrier`.                                                                                                                    |
-| [`bind_parameters`](#qiskit.circuit.library.RealAmplitudes.bind_parameters "qiskit.circuit.library.RealAmplitudes.bind_parameters")(value\_dict)                                        | Assign numeric parameters to values yielding a new circuit.                                                                         |
-| [`cast`](#qiskit.circuit.library.RealAmplitudes.cast "qiskit.circuit.library.RealAmplitudes.cast")(value, \_type)                                                                       | Best effort to cast value to type.                                                                                                  |
-| [`cbit_argument_conversion`](#qiskit.circuit.library.RealAmplitudes.cbit_argument_conversion "qiskit.circuit.library.RealAmplitudes.cbit_argument_conversion")(clbit\_representation)   | Converts several classical bit representations (such as indexes, range, etc.) into a list of classical bits.                        |
-| [`ccx`](#qiskit.circuit.library.RealAmplitudes.ccx "qiskit.circuit.library.RealAmplitudes.ccx")(control\_qubit1, control\_qubit2, target\_qubit)                                        | Apply [`CCXGate`](qiskit.circuit.library.CCXGate#qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").                  |
-| [`ch`](#qiskit.circuit.library.RealAmplitudes.ch "qiskit.circuit.library.RealAmplitudes.ch")(control\_qubit, target\_qubit\[, label, …])                                                | Apply [`CHGate`](qiskit.circuit.library.CHGate#qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate").                      |
-| [`cls_instances`](#qiskit.circuit.library.RealAmplitudes.cls_instances "qiskit.circuit.library.RealAmplitudes.cls_instances")()                                                         | Return the current number of instances of this class, useful for auto naming.                                                       |
-| [`cls_prefix`](#qiskit.circuit.library.RealAmplitudes.cls_prefix "qiskit.circuit.library.RealAmplitudes.cls_prefix")()                                                                  | Return the prefix to use for auto naming.                                                                                           |
-| [`cnot`](#qiskit.circuit.library.RealAmplitudes.cnot "qiskit.circuit.library.RealAmplitudes.cnot")(control\_qubit, target\_qubit\[, label, …])                                          | Apply [`CXGate`](qiskit.circuit.library.CXGate#qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").                      |
-| [`combine`](#qiskit.circuit.library.RealAmplitudes.combine "qiskit.circuit.library.RealAmplitudes.combine")(rhs)                                                                        | Append rhs to self if self contains compatible registers.                                                                           |
-| [`compose`](#qiskit.circuit.library.RealAmplitudes.compose "qiskit.circuit.library.RealAmplitudes.compose")(other\[, qubits, clbits, front, inplace])                                   | Compose circuit with `other` circuit or instruction, optionally permuting wires.                                                    |
-| [`control`](#qiskit.circuit.library.RealAmplitudes.control "qiskit.circuit.library.RealAmplitudes.control")(\[num\_ctrl\_qubits, label, ctrl\_state])                                   | Control this circuit on `num_ctrl_qubits` qubits.                                                                                   |
-| [`copy`](#qiskit.circuit.library.RealAmplitudes.copy "qiskit.circuit.library.RealAmplitudes.copy")(\[name])                                                                             | Copy the circuit.                                                                                                                   |
-| [`count_ops`](#qiskit.circuit.library.RealAmplitudes.count_ops "qiskit.circuit.library.RealAmplitudes.count_ops")()                                                                     | Count each operation kind in the circuit.                                                                                           |
-| [`cp`](#qiskit.circuit.library.RealAmplitudes.cp "qiskit.circuit.library.RealAmplitudes.cp")(theta, control\_qubit, target\_qubit\[, …])                                                | Apply [`CPhaseGate`](qiskit.circuit.library.CPhaseGate#qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate").      |
-| [`crx`](#qiskit.circuit.library.RealAmplitudes.crx "qiskit.circuit.library.RealAmplitudes.crx")(theta, control\_qubit, target\_qubit\[, …])                                             | Apply [`CRXGate`](qiskit.circuit.library.CRXGate#qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate").                  |
-| [`cry`](#qiskit.circuit.library.RealAmplitudes.cry "qiskit.circuit.library.RealAmplitudes.cry")(theta, control\_qubit, target\_qubit\[, …])                                             | Apply [`CRYGate`](qiskit.circuit.library.CRYGate#qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate").                  |
-| [`crz`](#qiskit.circuit.library.RealAmplitudes.crz "qiskit.circuit.library.RealAmplitudes.crz")(theta, control\_qubit, target\_qubit\[, …])                                             | Apply [`CRZGate`](qiskit.circuit.library.CRZGate#qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate").                  |
-| [`cswap`](#qiskit.circuit.library.RealAmplitudes.cswap "qiskit.circuit.library.RealAmplitudes.cswap")(control\_qubit, target\_qubit1, …\[, …])                                          | Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate#qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").          |
-| [`csx`](#qiskit.circuit.library.RealAmplitudes.csx "qiskit.circuit.library.RealAmplitudes.csx")(control\_qubit, target\_qubit\[, label, …])                                             | Apply [`CSXGate`](qiskit.circuit.library.CSXGate#qiskit.circuit.library.CSXGate "qiskit.circuit.library.CSXGate").                  |
-| [`cu`](#qiskit.circuit.library.RealAmplitudes.cu "qiskit.circuit.library.RealAmplitudes.cu")(theta, phi, lam, gamma, control\_qubit, …)                                                 | Apply [`CUGate`](qiskit.circuit.library.CUGate#qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate").                      |
-| [`cu1`](#qiskit.circuit.library.RealAmplitudes.cu1 "qiskit.circuit.library.RealAmplitudes.cu1")(theta, control\_qubit, target\_qubit\[, …])                                             | Apply [`CU1Gate`](qiskit.circuit.library.CU1Gate#qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate").                  |
-| [`cu3`](#qiskit.circuit.library.RealAmplitudes.cu3 "qiskit.circuit.library.RealAmplitudes.cu3")(theta, phi, lam, control\_qubit, target\_qubit)                                         | Apply [`CU3Gate`](qiskit.circuit.library.CU3Gate#qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate").                  |
-| [`cx`](#qiskit.circuit.library.RealAmplitudes.cx "qiskit.circuit.library.RealAmplitudes.cx")(control\_qubit, target\_qubit\[, label, …])                                                | Apply [`CXGate`](qiskit.circuit.library.CXGate#qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").                      |
-| [`cy`](#qiskit.circuit.library.RealAmplitudes.cy "qiskit.circuit.library.RealAmplitudes.cy")(control\_qubit, target\_qubit\[, label, …])                                                | Apply [`CYGate`](qiskit.circuit.library.CYGate#qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate").                      |
-| [`cz`](#qiskit.circuit.library.RealAmplitudes.cz "qiskit.circuit.library.RealAmplitudes.cz")(control\_qubit, target\_qubit\[, label, …])                                                | Apply [`CZGate`](qiskit.circuit.library.CZGate#qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate").                      |
-| [`dcx`](#qiskit.circuit.library.RealAmplitudes.dcx "qiskit.circuit.library.RealAmplitudes.dcx")(qubit1, qubit2)                                                                         | Apply [`DCXGate`](qiskit.circuit.library.DCXGate#qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate").                  |
-| [`decompose`](#qiskit.circuit.library.RealAmplitudes.decompose "qiskit.circuit.library.RealAmplitudes.decompose")()                                                                     | Call a decomposition pass on this circuit, to decompose one level (shallow decompose).                                              |
-| [`delay`](#qiskit.circuit.library.RealAmplitudes.delay "qiskit.circuit.library.RealAmplitudes.delay")(duration\[, qarg, unit])                                                          | Apply [`Delay`](qiskit.circuit.Delay#qiskit.circuit.Delay "qiskit.circuit.Delay").                                                  |
-| [`depth`](#qiskit.circuit.library.RealAmplitudes.depth "qiskit.circuit.library.RealAmplitudes.depth")()                                                                                 | Return circuit depth (i.e., length of critical path).                                                                               |
-| [`diag_gate`](#qiskit.circuit.library.RealAmplitudes.diag_gate "qiskit.circuit.library.RealAmplitudes.diag_gate")(diag, qubit)                                                          | Deprecated version of QuantumCircuit.diagonal.                                                                                      |
-| [`diagonal`](#qiskit.circuit.library.RealAmplitudes.diagonal "qiskit.circuit.library.RealAmplitudes.diagonal")(diag, qubit)                                                             | Attach a diagonal gate to a circuit.                                                                                                |
-| [`draw`](#qiskit.circuit.library.RealAmplitudes.draw "qiskit.circuit.library.RealAmplitudes.draw")(\[output, scale, filename, style, …])                                                | Draw the quantum circuit.                                                                                                           |
-| [`extend`](#qiskit.circuit.library.RealAmplitudes.extend "qiskit.circuit.library.RealAmplitudes.extend")(rhs)                                                                           | Append QuantumCircuit to the right hand side if it contains compatible registers.                                                   |
-| [`fredkin`](#qiskit.circuit.library.RealAmplitudes.fredkin "qiskit.circuit.library.RealAmplitudes.fredkin")(control\_qubit, target\_qubit1, …)                                          | Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate#qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").          |
-| [`from_qasm_file`](#qiskit.circuit.library.RealAmplitudes.from_qasm_file "qiskit.circuit.library.RealAmplitudes.from_qasm_file")(path)                                                  | Take in a QASM file and generate a QuantumCircuit object.                                                                           |
-| [`from_qasm_str`](#qiskit.circuit.library.RealAmplitudes.from_qasm_str "qiskit.circuit.library.RealAmplitudes.from_qasm_str")(qasm\_str)                                                | Take in a QASM string and generate a QuantumCircuit object.                                                                         |
-| [`get_entangler_map`](#qiskit.circuit.library.RealAmplitudes.get_entangler_map "qiskit.circuit.library.RealAmplitudes.get_entangler_map")(rep\_num, block\_num, …)                      | Overloading to handle the special case of 1 qubit where the entanglement are ignored.                                               |
-| [`get_unentangled_qubits`](#qiskit.circuit.library.RealAmplitudes.get_unentangled_qubits "qiskit.circuit.library.RealAmplitudes.get_unentangled_qubits")()                              | Get the indices of unentangled qubits in a set.                                                                                     |
-| [`h`](#qiskit.circuit.library.RealAmplitudes.h "qiskit.circuit.library.RealAmplitudes.h")(qubit)                                                                                        | Apply [`HGate`](qiskit.circuit.library.HGate#qiskit.circuit.library.HGate "qiskit.circuit.library.HGate").                          |
-| [`hamiltonian`](#qiskit.circuit.library.RealAmplitudes.hamiltonian "qiskit.circuit.library.RealAmplitudes.hamiltonian")(operator, time, qubits\[, label])                               | Apply hamiltonian evolution to to qubits.                                                                                           |
-| [`has_register`](#qiskit.circuit.library.RealAmplitudes.has_register "qiskit.circuit.library.RealAmplitudes.has_register")(register)                                                    | Test if this circuit has the register r.                                                                                            |
-| [`i`](#qiskit.circuit.library.RealAmplitudes.i "qiskit.circuit.library.RealAmplitudes.i")(qubit)                                                                                        | Apply [`IGate`](qiskit.circuit.library.IGate#qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").                          |
-| [`id`](#qiskit.circuit.library.RealAmplitudes.id "qiskit.circuit.library.RealAmplitudes.id")(qubit)                                                                                     | Apply [`IGate`](qiskit.circuit.library.IGate#qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").                          |
-| [`initialize`](#qiskit.circuit.library.RealAmplitudes.initialize "qiskit.circuit.library.RealAmplitudes.initialize")(params, qubits)                                                    | Apply initialize to circuit.                                                                                                        |
-| [`inverse`](#qiskit.circuit.library.RealAmplitudes.inverse "qiskit.circuit.library.RealAmplitudes.inverse")()                                                                           | Invert (take adjoint of) this circuit.                                                                                              |
-| [`iso`](#qiskit.circuit.library.RealAmplitudes.iso "qiskit.circuit.library.RealAmplitudes.iso")(isometry, q\_input, q\_ancillas\_for\_output)                                           | Attach an arbitrary isometry from m to n qubits to a circuit.                                                                       |
-| [`isometry`](#qiskit.circuit.library.RealAmplitudes.isometry "qiskit.circuit.library.RealAmplitudes.isometry")(isometry, q\_input, …\[, …])                                             | Attach an arbitrary isometry from m to n qubits to a circuit.                                                                       |
-| [`iswap`](#qiskit.circuit.library.RealAmplitudes.iswap "qiskit.circuit.library.RealAmplitudes.iswap")(qubit1, qubit2)                                                                   | Apply [`iSwapGate`](qiskit.circuit.library.iSwapGate#qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate").          |
-| [`mcmt`](#qiskit.circuit.library.RealAmplitudes.mcmt "qiskit.circuit.library.RealAmplitudes.mcmt")(gate, control\_qubits, target\_qubits\[, …])                                         | Apply a multi-control, multi-target using a generic gate.                                                                           |
-| [`mcp`](#qiskit.circuit.library.RealAmplitudes.mcp "qiskit.circuit.library.RealAmplitudes.mcp")(lam, control\_qubits, target\_qubit)                                                    | Apply [`MCPhaseGate`](qiskit.circuit.library.MCPhaseGate#qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate").  |
-| [`mcrx`](#qiskit.circuit.library.RealAmplitudes.mcrx "qiskit.circuit.library.RealAmplitudes.mcrx")(theta, q\_controls, q\_target\[, …])                                                 | Apply Multiple-Controlled X rotation gate                                                                                           |
-| [`mcry`](#qiskit.circuit.library.RealAmplitudes.mcry "qiskit.circuit.library.RealAmplitudes.mcry")(theta, q\_controls, q\_target, q\_ancillae)                                          | Apply Multiple-Controlled Y rotation gate                                                                                           |
-| [`mcrz`](#qiskit.circuit.library.RealAmplitudes.mcrz "qiskit.circuit.library.RealAmplitudes.mcrz")(lam, q\_controls, q\_target\[, …])                                                   | Apply Multiple-Controlled Z rotation gate                                                                                           |
-| [`mct`](#qiskit.circuit.library.RealAmplitudes.mct "qiskit.circuit.library.RealAmplitudes.mct")(control\_qubits, target\_qubit\[, …])                                                   | Apply [`MCXGate`](qiskit.circuit.library.MCXGate#qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate").                  |
-| [`mcu1`](#qiskit.circuit.library.RealAmplitudes.mcu1 "qiskit.circuit.library.RealAmplitudes.mcu1")(lam, control\_qubits, target\_qubit)                                                 | Apply `MCU1Gate`.                                                                                                                   |
-| [`mcx`](#qiskit.circuit.library.RealAmplitudes.mcx "qiskit.circuit.library.RealAmplitudes.mcx")(control\_qubits, target\_qubit\[, …])                                                   | Apply [`MCXGate`](qiskit.circuit.library.MCXGate#qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate").                  |
-| [`measure`](#qiskit.circuit.library.RealAmplitudes.measure "qiskit.circuit.library.RealAmplitudes.measure")(qubit, cbit)                                                                | Measure quantum bit into classical bit (tuples).                                                                                    |
-| [`measure_active`](#qiskit.circuit.library.RealAmplitudes.measure_active "qiskit.circuit.library.RealAmplitudes.measure_active")(\[inplace])                                            | Adds measurement to all non-idle qubits.                                                                                            |
-| [`measure_all`](#qiskit.circuit.library.RealAmplitudes.measure_all "qiskit.circuit.library.RealAmplitudes.measure_all")(\[inplace])                                                     | Adds measurement to all qubits.                                                                                                     |
-| [`mirror`](#qiskit.circuit.library.RealAmplitudes.mirror "qiskit.circuit.library.RealAmplitudes.mirror")()                                                                              | DEPRECATED: use circuit.reverse\_ops().                                                                                             |
-| [`ms`](#qiskit.circuit.library.RealAmplitudes.ms "qiskit.circuit.library.RealAmplitudes.ms")(theta, qubits)                                                                             | Apply [`MSGate`](qiskit.circuit.library.MSGate#qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate").                      |
-| [`num_connected_components`](#qiskit.circuit.library.RealAmplitudes.num_connected_components "qiskit.circuit.library.RealAmplitudes.num_connected_components")(\[unitary\_only])        | How many non-entangled subcircuits can the circuit be factored to.                                                                  |
-| [`num_nonlocal_gates`](#qiskit.circuit.library.RealAmplitudes.num_nonlocal_gates "qiskit.circuit.library.RealAmplitudes.num_nonlocal_gates")()                                          | Return number of non-local gates (i.e.                                                                                              |
-| [`num_tensor_factors`](#qiskit.circuit.library.RealAmplitudes.num_tensor_factors "qiskit.circuit.library.RealAmplitudes.num_tensor_factors")()                                          | Computes the number of tensor factors in the unitary (quantum) part of the circuit only.                                            |
-| [`num_unitary_factors`](#qiskit.circuit.library.RealAmplitudes.num_unitary_factors "qiskit.circuit.library.RealAmplitudes.num_unitary_factors")()                                       | Computes the number of tensor factors in the unitary (quantum) part of the circuit only.                                            |
-| [`p`](#qiskit.circuit.library.RealAmplitudes.p "qiskit.circuit.library.RealAmplitudes.p")(theta, qubit)                                                                                 | Apply [`PhaseGate`](qiskit.circuit.library.PhaseGate#qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate").          |
-| [`power`](#qiskit.circuit.library.RealAmplitudes.power "qiskit.circuit.library.RealAmplitudes.power")(power\[, matrix\_power])                                                          | Raise this circuit to the power of `power`.                                                                                         |
-| [`print_settings`](#qiskit.circuit.library.RealAmplitudes.print_settings "qiskit.circuit.library.RealAmplitudes.print_settings")()                                                      | Returns information about the setting.                                                                                              |
-| [`qasm`](#qiskit.circuit.library.RealAmplitudes.qasm "qiskit.circuit.library.RealAmplitudes.qasm")(\[formatted, filename])                                                              | Return OpenQASM string.                                                                                                             |
-| [`qbit_argument_conversion`](#qiskit.circuit.library.RealAmplitudes.qbit_argument_conversion "qiskit.circuit.library.RealAmplitudes.qbit_argument_conversion")(qubit\_representation)   | Converts several qubit representations (such as indexes, range, etc.) into a list of qubits.                                        |
-| [`qubit_duration`](#qiskit.circuit.library.RealAmplitudes.qubit_duration "qiskit.circuit.library.RealAmplitudes.qubit_duration")(\*qubits)                                              | Return the duration between the start and stop time of the first and last instructions, excluding delays, over the supplied qubits. |
-| [`qubit_start_time`](#qiskit.circuit.library.RealAmplitudes.qubit_start_time "qiskit.circuit.library.RealAmplitudes.qubit_start_time")(\*qubits)                                        | Return the start time of the first instruction, excluding delays, over the supplied qubits.                                         |
-| [`qubit_stop_time`](#qiskit.circuit.library.RealAmplitudes.qubit_stop_time "qiskit.circuit.library.RealAmplitudes.qubit_stop_time")(\*qubits)                                           | Return the stop time of the last instruction, excluding delays, over the supplied qubits.                                           |
-| [`r`](#qiskit.circuit.library.RealAmplitudes.r "qiskit.circuit.library.RealAmplitudes.r")(theta, phi, qubit)                                                                            | Apply `RGate`.                                                                                                                      |
-| [`rcccx`](#qiskit.circuit.library.RealAmplitudes.rcccx "qiskit.circuit.library.RealAmplitudes.rcccx")(control\_qubit1, control\_qubit2, …)                                              | Apply [`RC3XGate`](qiskit.circuit.library.RC3XGate#qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").              |
-| [`rccx`](#qiskit.circuit.library.RealAmplitudes.rccx "qiskit.circuit.library.RealAmplitudes.rccx")(control\_qubit1, control\_qubit2, …)                                                 | Apply [`RCCXGate`](qiskit.circuit.library.RCCXGate#qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate").              |
-| [`remove_final_measurements`](#qiskit.circuit.library.RealAmplitudes.remove_final_measurements "qiskit.circuit.library.RealAmplitudes.remove_final_measurements")(\[inplace])           | Removes final measurement on all qubits if they are present.                                                                        |
-| [`repeat`](#qiskit.circuit.library.RealAmplitudes.repeat "qiskit.circuit.library.RealAmplitudes.repeat")(reps)                                                                          | Repeat this circuit `reps` times.                                                                                                   |
-| [`reset`](#qiskit.circuit.library.RealAmplitudes.reset "qiskit.circuit.library.RealAmplitudes.reset")(qubit)                                                                            | Reset q.                                                                                                                            |
-| [`reverse_bits`](#qiskit.circuit.library.RealAmplitudes.reverse_bits "qiskit.circuit.library.RealAmplitudes.reverse_bits")()                                                            | Return a circuit with the opposite order of wires.                                                                                  |
-| [`reverse_ops`](#qiskit.circuit.library.RealAmplitudes.reverse_ops "qiskit.circuit.library.RealAmplitudes.reverse_ops")()                                                               | Reverse the circuit by reversing the order of instructions.                                                                         |
-| [`rx`](#qiskit.circuit.library.RealAmplitudes.rx "qiskit.circuit.library.RealAmplitudes.rx")(theta, qubit\[, label])                                                                    | Apply [`RXGate`](qiskit.circuit.library.RXGate#qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").                      |
-| [`rxx`](#qiskit.circuit.library.RealAmplitudes.rxx "qiskit.circuit.library.RealAmplitudes.rxx")(theta, qubit1, qubit2)                                                                  | Apply [`RXXGate`](qiskit.circuit.library.RXXGate#qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").                  |
-| [`ry`](#qiskit.circuit.library.RealAmplitudes.ry "qiskit.circuit.library.RealAmplitudes.ry")(theta, qubit\[, label])                                                                    | Apply [`RYGate`](qiskit.circuit.library.RYGate#qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate").                      |
-| [`ryy`](#qiskit.circuit.library.RealAmplitudes.ryy "qiskit.circuit.library.RealAmplitudes.ryy")(theta, qubit1, qubit2)                                                                  | Apply [`RYYGate`](qiskit.circuit.library.RYYGate#qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate").                  |
-| [`rz`](#qiskit.circuit.library.RealAmplitudes.rz "qiskit.circuit.library.RealAmplitudes.rz")(phi, qubit)                                                                                | Apply [`RZGate`](qiskit.circuit.library.RZGate#qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").                      |
-| [`rzx`](#qiskit.circuit.library.RealAmplitudes.rzx "qiskit.circuit.library.RealAmplitudes.rzx")(theta, qubit1, qubit2)                                                                  | Apply [`RZXGate`](qiskit.circuit.library.RZXGate#qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate").                  |
-| [`rzz`](#qiskit.circuit.library.RealAmplitudes.rzz "qiskit.circuit.library.RealAmplitudes.rzz")(theta, qubit1, qubit2)                                                                  | Apply [`RZZGate`](qiskit.circuit.library.RZZGate#qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").                  |
-| [`s`](#qiskit.circuit.library.RealAmplitudes.s "qiskit.circuit.library.RealAmplitudes.s")(qubit)                                                                                        | Apply [`SGate`](qiskit.circuit.library.SGate#qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").                          |
-| [`sdg`](#qiskit.circuit.library.RealAmplitudes.sdg "qiskit.circuit.library.RealAmplitudes.sdg")(qubit)                                                                                  | Apply [`SdgGate`](qiskit.circuit.library.SdgGate#qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").                  |
-| [`size`](#qiskit.circuit.library.RealAmplitudes.size "qiskit.circuit.library.RealAmplitudes.size")()                                                                                    | Returns total number of gate operations in circuit.                                                                                 |
-| [`snapshot`](#qiskit.circuit.library.RealAmplitudes.snapshot "qiskit.circuit.library.RealAmplitudes.snapshot")(label\[, snapshot\_type, qubits, params])                                | Take a statevector snapshot of the internal simulator representation.                                                               |
-| [`snapshot_density_matrix`](#qiskit.circuit.library.RealAmplitudes.snapshot_density_matrix "qiskit.circuit.library.RealAmplitudes.snapshot_density_matrix")(label\[, qubits])           | Take a density matrix snapshot of simulator state.                                                                                  |
-| [`snapshot_expectation_value`](#qiskit.circuit.library.RealAmplitudes.snapshot_expectation_value "qiskit.circuit.library.RealAmplitudes.snapshot_expectation_value")(label, op, qubits) | Take a snapshot of expectation value \<O> of an Operator.                                                                           |
-| [`snapshot_probabilities`](#qiskit.circuit.library.RealAmplitudes.snapshot_probabilities "qiskit.circuit.library.RealAmplitudes.snapshot_probabilities")(label, qubits\[, variance])    | Take a probability snapshot of the simulator state.                                                                                 |
-| [`snapshot_stabilizer`](#qiskit.circuit.library.RealAmplitudes.snapshot_stabilizer "qiskit.circuit.library.RealAmplitudes.snapshot_stabilizer")(label)                                  | Take a stabilizer snapshot of the simulator state.                                                                                  |
-| [`snapshot_statevector`](#qiskit.circuit.library.RealAmplitudes.snapshot_statevector "qiskit.circuit.library.RealAmplitudes.snapshot_statevector")(label)                               | Take a statevector snapshot of the simulator state.                                                                                 |
-| [`squ`](#qiskit.circuit.library.RealAmplitudes.squ "qiskit.circuit.library.RealAmplitudes.squ")(unitary\_matrix, qubit\[, mode, …])                                                     | Decompose an arbitrary 2\*2 unitary into three rotation gates.                                                                      |
-| [`swap`](#qiskit.circuit.library.RealAmplitudes.swap "qiskit.circuit.library.RealAmplitudes.swap")(qubit1, qubit2)                                                                      | Apply [`SwapGate`](qiskit.circuit.library.SwapGate#qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate").              |
-| [`sx`](#qiskit.circuit.library.RealAmplitudes.sx "qiskit.circuit.library.RealAmplitudes.sx")(qubit)                                                                                     | Apply [`SXGate`](qiskit.circuit.library.SXGate#qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate").                      |
-| [`sxdg`](#qiskit.circuit.library.RealAmplitudes.sxdg "qiskit.circuit.library.RealAmplitudes.sxdg")(qubit)                                                                               | Apply [`SXdgGate`](qiskit.circuit.library.SXdgGate#qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate").              |
-| [`t`](#qiskit.circuit.library.RealAmplitudes.t "qiskit.circuit.library.RealAmplitudes.t")(qubit)                                                                                        | Apply [`TGate`](qiskit.circuit.library.TGate#qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").                          |
-| [`tdg`](#qiskit.circuit.library.RealAmplitudes.tdg "qiskit.circuit.library.RealAmplitudes.tdg")(qubit)                                                                                  | Apply [`TdgGate`](qiskit.circuit.library.TdgGate#qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate").                  |
-| [`to_gate`](#qiskit.circuit.library.RealAmplitudes.to_gate "qiskit.circuit.library.RealAmplitudes.to_gate")(\[parameter\_map, label])                                                   | Create a Gate out of this circuit.                                                                                                  |
-| [`to_instruction`](#qiskit.circuit.library.RealAmplitudes.to_instruction "qiskit.circuit.library.RealAmplitudes.to_instruction")(\[parameter\_map])                                     | Create an Instruction out of this circuit.                                                                                          |
-| [`toffoli`](#qiskit.circuit.library.RealAmplitudes.toffoli "qiskit.circuit.library.RealAmplitudes.toffoli")(control\_qubit1, control\_qubit2, …)                                        | Apply [`CCXGate`](qiskit.circuit.library.CCXGate#qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").                  |
-| [`u`](#qiskit.circuit.library.RealAmplitudes.u "qiskit.circuit.library.RealAmplitudes.u")(theta, phi, lam, qubit)                                                                       | Apply [`UGate`](qiskit.circuit.library.UGate#qiskit.circuit.library.UGate "qiskit.circuit.library.UGate").                          |
-| [`u1`](#qiskit.circuit.library.RealAmplitudes.u1 "qiskit.circuit.library.RealAmplitudes.u1")(theta, qubit)                                                                              | Apply [`U1Gate`](qiskit.circuit.library.U1Gate#qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate").                      |
-| [`u2`](#qiskit.circuit.library.RealAmplitudes.u2 "qiskit.circuit.library.RealAmplitudes.u2")(phi, lam, qubit)                                                                           | Apply [`U2Gate`](qiskit.circuit.library.U2Gate#qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate").                      |
-| [`u3`](#qiskit.circuit.library.RealAmplitudes.u3 "qiskit.circuit.library.RealAmplitudes.u3")(theta, phi, lam, qubit)                                                                    | Apply [`U3Gate`](qiskit.circuit.library.U3Gate#qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate").                      |
-| [`uc`](#qiskit.circuit.library.RealAmplitudes.uc "qiskit.circuit.library.RealAmplitudes.uc")(gate\_list, q\_controls, q\_target\[, …])                                                  | Attach a uniformly controlled gates (also called multiplexed gates) to a circuit.                                                   |
-| [`ucrx`](#qiskit.circuit.library.RealAmplitudes.ucrx "qiskit.circuit.library.RealAmplitudes.ucrx")(angle\_list, q\_controls, q\_target)                                                 | Attach a uniformly controlled (also called multiplexed) Rx rotation gate to a circuit.                                              |
-| [`ucry`](#qiskit.circuit.library.RealAmplitudes.ucry "qiskit.circuit.library.RealAmplitudes.ucry")(angle\_list, q\_controls, q\_target)                                                 | Attach a uniformly controlled (also called multiplexed) Ry rotation gate to a circuit.                                              |
-| [`ucrz`](#qiskit.circuit.library.RealAmplitudes.ucrz "qiskit.circuit.library.RealAmplitudes.ucrz")(angle\_list, q\_controls, q\_target)                                                 | Attach a uniformly controlled (also called multiplexed gates) Rz rotation gate to a circuit.                                        |
-| [`unitary`](#qiskit.circuit.library.RealAmplitudes.unitary "qiskit.circuit.library.RealAmplitudes.unitary")(obj, qubits\[, label])                                                      | Apply unitary gate to q.                                                                                                            |
-| [`width`](#qiskit.circuit.library.RealAmplitudes.width "qiskit.circuit.library.RealAmplitudes.width")()                                                                                 | Return number of qubits plus clbits in circuit.                                                                                     |
-| [`x`](#qiskit.circuit.library.RealAmplitudes.x "qiskit.circuit.library.RealAmplitudes.x")(qubit\[, label])                                                                              | Apply [`XGate`](qiskit.circuit.library.XGate#qiskit.circuit.library.XGate "qiskit.circuit.library.XGate").                          |
-| [`y`](#qiskit.circuit.library.RealAmplitudes.y "qiskit.circuit.library.RealAmplitudes.y")(qubit)                                                                                        | Apply [`YGate`](qiskit.circuit.library.YGate#qiskit.circuit.library.YGate "qiskit.circuit.library.YGate").                          |
-| [`z`](#qiskit.circuit.library.RealAmplitudes.z "qiskit.circuit.library.RealAmplitudes.z")(qubit)                                                                                        | Apply [`ZGate`](qiskit.circuit.library.ZGate#qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate").                          |
-
 ## Attributes
 
-|                                                                                                                                                             |                                                                                                                             |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
-| [`ancillas`](#qiskit.circuit.library.RealAmplitudes.ancillas "qiskit.circuit.library.RealAmplitudes.ancillas")                                              | Returns a list of ancilla bits in the order that the registers were added.                                                  |
-| [`calibrations`](#qiskit.circuit.library.RealAmplitudes.calibrations "qiskit.circuit.library.RealAmplitudes.calibrations")                                  | Return calibration dictionary.                                                                                              |
-| [`clbits`](#qiskit.circuit.library.RealAmplitudes.clbits "qiskit.circuit.library.RealAmplitudes.clbits")                                                    | Returns a list of classical bits in the order that the registers were added.                                                |
-| [`data`](#qiskit.circuit.library.RealAmplitudes.data "qiskit.circuit.library.RealAmplitudes.data")                                                          | Return the circuit data (instructions and context).                                                                         |
-| [`entanglement`](#qiskit.circuit.library.RealAmplitudes.entanglement "qiskit.circuit.library.RealAmplitudes.entanglement")                                  | Get the entanglement strategy.                                                                                              |
-| [`entanglement_blocks`](#qiskit.circuit.library.RealAmplitudes.entanglement_blocks "qiskit.circuit.library.RealAmplitudes.entanglement_blocks")             | The blocks in the entanglement layers.                                                                                      |
-| `extension_lib`                                                                                                                                             |                                                                                                                             |
-| [`global_phase`](#qiskit.circuit.library.RealAmplitudes.global_phase "qiskit.circuit.library.RealAmplitudes.global_phase")                                  | Return the global phase of the circuit in radians.                                                                          |
-| `header`                                                                                                                                                    |                                                                                                                             |
-| [`initial_state`](#qiskit.circuit.library.RealAmplitudes.initial_state "qiskit.circuit.library.RealAmplitudes.initial_state")                               | Return the initial state that is added in front of the n-local circuit.                                                     |
-| [`insert_barriers`](#qiskit.circuit.library.RealAmplitudes.insert_barriers "qiskit.circuit.library.RealAmplitudes.insert_barriers")                         | If barriers are inserted in between the layers or not.                                                                      |
-| `instances`                                                                                                                                                 |                                                                                                                             |
-| [`num_ancillas`](#qiskit.circuit.library.RealAmplitudes.num_ancillas "qiskit.circuit.library.RealAmplitudes.num_ancillas")                                  | Return the number of ancilla qubits.                                                                                        |
-| [`num_clbits`](#qiskit.circuit.library.RealAmplitudes.num_clbits "qiskit.circuit.library.RealAmplitudes.num_clbits")                                        | Return number of classical bits.                                                                                            |
-| [`num_layers`](#qiskit.circuit.library.RealAmplitudes.num_layers "qiskit.circuit.library.RealAmplitudes.num_layers")                                        | Return the number of layers in the n-local circuit.                                                                         |
-| [`num_parameters`](#qiskit.circuit.library.RealAmplitudes.num_parameters "qiskit.circuit.library.RealAmplitudes.num_parameters")                            | Convenience function to get the number of parameter objects in the circuit.                                                 |
-| [`num_parameters_settable`](#qiskit.circuit.library.RealAmplitudes.num_parameters_settable "qiskit.circuit.library.RealAmplitudes.num_parameters_settable") | The number of total parameters that can be set to distinct values.                                                          |
-| [`num_qubits`](#qiskit.circuit.library.RealAmplitudes.num_qubits "qiskit.circuit.library.RealAmplitudes.num_qubits")                                        | Returns the number of qubits in this circuit.                                                                               |
-| [`ordered_parameters`](#qiskit.circuit.library.RealAmplitudes.ordered_parameters "qiskit.circuit.library.RealAmplitudes.ordered_parameters")                | The parameters used in the underlying circuit.                                                                              |
-| [`parameter_bounds`](#qiskit.circuit.library.RealAmplitudes.parameter_bounds "qiskit.circuit.library.RealAmplitudes.parameter_bounds")                      | Return the parameter bounds.                                                                                                |
-| [`parameters`](#qiskit.circuit.library.RealAmplitudes.parameters "qiskit.circuit.library.RealAmplitudes.parameters")                                        | Get the [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit. |
-| [`preferred_init_points`](#qiskit.circuit.library.RealAmplitudes.preferred_init_points "qiskit.circuit.library.RealAmplitudes.preferred_init_points")       | The initial points for the parameters.                                                                                      |
-| `prefix`                                                                                                                                                    |                                                                                                                             |
-| [`qregs`](#qiskit.circuit.library.RealAmplitudes.qregs "qiskit.circuit.library.RealAmplitudes.qregs")                                                       | A list of the quantum registers associated with the circuit.                                                                |
-| [`qubits`](#qiskit.circuit.library.RealAmplitudes.qubits "qiskit.circuit.library.RealAmplitudes.qubits")                                                    | Returns a list of quantum bits in the order that the registers were added.                                                  |
-| [`reps`](#qiskit.circuit.library.RealAmplitudes.reps "qiskit.circuit.library.RealAmplitudes.reps")                                                          | The number of times rotation and entanglement block are repeated.                                                           |
-| [`rotation_blocks`](#qiskit.circuit.library.RealAmplitudes.rotation_blocks "qiskit.circuit.library.RealAmplitudes.rotation_blocks")                         | The blocks in the rotation layers.                                                                                          |
+### add\_calibration
 
-
+<span id="qiskit.circuit.library.RealAmplitudes.add_calibration" />
 
 `add_calibration(gate, qubits, schedule, params=None)`
 
@@ -286,16 +139,18 @@ Register a low-level, custom pulse definition for the given gate.
 
 **Parameters**
 
-*   **gate** (*Union\[*[*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")*, str]*) – Gate information.
+*   **gate** (*Union\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*, str]*) – Gate information.
 *   **qubits** (*Union\[int, Tuple\[int]]*) – List of qubits to be measured.
-*   **schedule** ([*Schedule*](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule information.
-*   **params** (*Optional\[List\[Union\[float,* [*Parameter*](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
+*   **schedule** ([*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")) – Schedule information.
+*   **params** (*Optional\[List\[Union\[float,* [*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*]]]*) – A list of parameters.
 
 **Raises**
 
 **Exception** – if the gate is of type string and params is None.
 
+### add\_layer
 
+<span id="qiskit.circuit.library.RealAmplitudes.add_layer" />
 
 `add_layer(other, entanglement=None, front=False)`
 
@@ -319,19 +174,25 @@ self, such that chained composes are possible.
 
 **TypeError** – If other is not compatible, i.e. is no Instruction and does not have a to\_instruction method.
 
+### add\_register
 
+<span id="qiskit.circuit.library.RealAmplitudes.add_register" />
 
 `add_register(*regs)`
 
 Add registers.
 
+### ancillas
 
+<span id="qiskit.circuit.library.RealAmplitudes.ancillas" />
 
 `property ancillas`
 
 Returns a list of ancilla bits in the order that the registers were added.
 
+### append
 
+<span id="qiskit.circuit.library.RealAmplitudes.append" />
 
 `append(instruction, qargs=None, cargs=None)`
 
@@ -339,7 +200,7 @@ Append one or more instructions to the end of the circuit, modifying the circuit
 
 **Parameters**
 
-*   **instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – Instruction instance to append
+*   **instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – Instruction instance to append
 *   **qargs** (*list(argument)*) – qubits to attach instruction to
 *   **cargs** (*list(argument)*) – clbits to attach instruction to
 
@@ -349,14 +210,16 @@ a handle to the instruction that was just added
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 *   **CircuitError** – if object passed is a subclass of Instruction
 *   **CircuitError** – if object passed is neither subclass nor an instance of Instruction
 
+### assign\_parameters
 
+<span id="qiskit.circuit.library.RealAmplitudes.assign_parameters" />
 
 `assign_parameters(param_dict, inplace=False)`
 
@@ -376,13 +239,17 @@ A copy of the NLocal circuit with the specified parameters.
 
 **AttributeError** – If the parameters are given as list and do not match the number of parameters.
 
+### barrier
 
+<span id="qiskit.circuit.library.RealAmplitudes.barrier" />
 
 `barrier(*qargs)`
 
 Apply `Barrier`. If qargs is None, applies to all.
 
+### bind\_parameters
 
+<span id="qiskit.circuit.library.RealAmplitudes.bind_parameters" />
 
 `bind_parameters(value_dict)`
 
@@ -405,9 +272,11 @@ copy of self with assignment substitution.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### calibrations
 
+<span id="qiskit.circuit.library.RealAmplitudes.calibrations" />
 
 `property calibrations`
 
@@ -417,13 +286,17 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
+### cast
 
+<span id="qiskit.circuit.library.RealAmplitudes.cast" />
 
 `static cast(value, _type)`
 
 Best effort to cast value to type. Otherwise, returns the value.
 
+### cbit\_argument\_conversion
 
+<span id="qiskit.circuit.library.RealAmplitudes.cbit_argument_conversion" />
 
 `cbit_argument_conversion(clbit_representation)`
 
@@ -441,43 +314,57 @@ Where each tuple is a classical bit.
 
 List(tuple)
 
+### ccx
 
+<span id="qiskit.circuit.library.RealAmplitudes.ccx" />
 
 `ccx(control_qubit1, control_qubit2, target_qubit)`
 
-Apply [`CCXGate`](qiskit.circuit.library.CCXGate#qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
+Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
 
+### ch
 
+<span id="qiskit.circuit.library.RealAmplitudes.ch" />
 
 `ch(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CHGate`](qiskit.circuit.library.CHGate#qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate").
+Apply [`CHGate`](qiskit.circuit.library.CHGate "qiskit.circuit.library.CHGate").
 
+### clbits
 
+<span id="qiskit.circuit.library.RealAmplitudes.clbits" />
 
 `property clbits`
 
 Returns a list of classical bits in the order that the registers were added.
 
+### cls\_instances
 
+<span id="qiskit.circuit.library.RealAmplitudes.cls_instances" />
 
 `classmethod cls_instances()`
 
 Return the current number of instances of this class, useful for auto naming.
 
+### cls\_prefix
 
+<span id="qiskit.circuit.library.RealAmplitudes.cls_prefix" />
 
 `classmethod cls_prefix()`
 
 Return the prefix to use for auto naming.
 
+### cnot
 
+<span id="qiskit.circuit.library.RealAmplitudes.cnot" />
 
 `cnot(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CXGate`](qiskit.circuit.library.CXGate#qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
+Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
 
+### combine
 
+<span id="qiskit.circuit.library.RealAmplitudes.combine" />
 
 `combine(rhs)`
 
@@ -489,7 +376,7 @@ Return self + rhs as a new object.
 
 **Parameters**
 
-**rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
+**rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
 
 **Returns**
 
@@ -497,13 +384,15 @@ Returns a new QuantumCircuit object
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the rhs circuit is not compatible
 
+### compose
 
+<span id="qiskit.circuit.library.RealAmplitudes.compose" />
 
 `compose(other, qubits=None, clbits=None, front=False, inplace=False)`
 
@@ -513,7 +402,7 @@ Compose circuit with `other` circuit or instruction, optionally permuting wires.
 
 **Parameters**
 
-*   **other** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or BaseOperator*) – (sub)circuit to compose onto self.
+*   **other** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or BaseOperator*) – (sub)circuit to compose onto self.
 *   **qubits** (*list\[Qubit|int]*) – qubits of self to compose onto.
 *   **clbits** (*list\[Clbit|int]*) – clbits of self to compose onto.
 *   **front** (*bool*) – If True, front composition will be performed (not implemented yet).
@@ -525,7 +414,7 @@ the composed circuit (returns None if inplace==True).
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
@@ -555,7 +444,9 @@ lcr_0: 0 ═══════════                           lcr_0: 0 �
 lcr_1: 0 ═══════════                           lcr_1: 0 ═══════════════════════
 ```
 
+### control
 
+<span id="qiskit.circuit.library.RealAmplitudes.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
@@ -573,13 +464,15 @@ The controlled version of this circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **CircuitError** – If the circuit contains a non-unitary operation and cannot be controlled.
 
+### copy
 
+<span id="qiskit.circuit.library.RealAmplitudes.copy" />
 
 `copy(name=None)`
 
@@ -595,9 +488,11 @@ a deepcopy of the current circuit, with the specified name
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### count\_ops
 
+<span id="qiskit.circuit.library.RealAmplitudes.count_ops" />
 
 `count_ops()`
 
@@ -611,79 +506,105 @@ a breakdown of how many operations of each kind, sorted by amount.
 
 OrderedDict
 
+### cp
 
+<span id="qiskit.circuit.library.RealAmplitudes.cp" />
 
 `cp(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CPhaseGate`](qiskit.circuit.library.CPhaseGate#qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate").
+Apply [`CPhaseGate`](qiskit.circuit.library.CPhaseGate "qiskit.circuit.library.CPhaseGate").
 
+### crx
 
+<span id="qiskit.circuit.library.RealAmplitudes.crx" />
 
 `crx(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CRXGate`](qiskit.circuit.library.CRXGate#qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate").
+Apply [`CRXGate`](qiskit.circuit.library.CRXGate "qiskit.circuit.library.CRXGate").
 
+### cry
 
+<span id="qiskit.circuit.library.RealAmplitudes.cry" />
 
 `cry(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CRYGate`](qiskit.circuit.library.CRYGate#qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate").
+Apply [`CRYGate`](qiskit.circuit.library.CRYGate "qiskit.circuit.library.CRYGate").
 
+### crz
 
+<span id="qiskit.circuit.library.RealAmplitudes.crz" />
 
 `crz(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CRZGate`](qiskit.circuit.library.CRZGate#qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate").
+Apply [`CRZGate`](qiskit.circuit.library.CRZGate "qiskit.circuit.library.CRZGate").
 
+### cswap
 
+<span id="qiskit.circuit.library.RealAmplitudes.cswap" />
 
 `cswap(control_qubit, target_qubit1, target_qubit2, label=None, ctrl_state=None)`
 
-Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate#qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
+Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
 
+### csx
 
+<span id="qiskit.circuit.library.RealAmplitudes.csx" />
 
 `csx(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CSXGate`](qiskit.circuit.library.CSXGate#qiskit.circuit.library.CSXGate "qiskit.circuit.library.CSXGate").
+Apply [`CSXGate`](qiskit.circuit.library.CSXGate "qiskit.circuit.library.CSXGate").
 
+### cu
 
+<span id="qiskit.circuit.library.RealAmplitudes.cu" />
 
 `cu(theta, phi, lam, gamma, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CUGate`](qiskit.circuit.library.CUGate#qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate").
+Apply [`CUGate`](qiskit.circuit.library.CUGate "qiskit.circuit.library.CUGate").
 
+### cu1
 
+<span id="qiskit.circuit.library.RealAmplitudes.cu1" />
 
 `cu1(theta, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CU1Gate`](qiskit.circuit.library.CU1Gate#qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate").
+Apply [`CU1Gate`](qiskit.circuit.library.CU1Gate "qiskit.circuit.library.CU1Gate").
 
+### cu3
 
+<span id="qiskit.circuit.library.RealAmplitudes.cu3" />
 
 `cu3(theta, phi, lam, control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CU3Gate`](qiskit.circuit.library.CU3Gate#qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate").
+Apply [`CU3Gate`](qiskit.circuit.library.CU3Gate "qiskit.circuit.library.CU3Gate").
 
+### cx
 
+<span id="qiskit.circuit.library.RealAmplitudes.cx" />
 
 `cx(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CXGate`](qiskit.circuit.library.CXGate#qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
+Apply [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
 
+### cy
 
+<span id="qiskit.circuit.library.RealAmplitudes.cy" />
 
 `cy(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CYGate`](qiskit.circuit.library.CYGate#qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate").
+Apply [`CYGate`](qiskit.circuit.library.CYGate "qiskit.circuit.library.CYGate").
 
+### cz
 
+<span id="qiskit.circuit.library.RealAmplitudes.cz" />
 
 `cz(control_qubit, target_qubit, label=None, ctrl_state=None)`
 
-Apply [`CZGate`](qiskit.circuit.library.CZGate#qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate").
+Apply [`CZGate`](qiskit.circuit.library.CZGate "qiskit.circuit.library.CZGate").
 
+### data
 
+<span id="qiskit.circuit.library.RealAmplitudes.data" />
 
 `property data`
 
@@ -699,13 +620,17 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
+### dcx
 
+<span id="qiskit.circuit.library.RealAmplitudes.dcx" />
 
 `dcx(qubit1, qubit2)`
 
-Apply [`DCXGate`](qiskit.circuit.library.DCXGate#qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate").
+Apply [`DCXGate`](qiskit.circuit.library.DCXGate "qiskit.circuit.library.DCXGate").
 
+### decompose
 
+<span id="qiskit.circuit.library.RealAmplitudes.decompose" />
 
 `decompose()`
 
@@ -717,13 +642,15 @@ a circuit one level decomposed
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### delay
 
+<span id="qiskit.circuit.library.RealAmplitudes.delay" />
 
 `delay(duration, qarg=None, unit='dt')`
 
-Apply [`Delay`](qiskit.circuit.Delay#qiskit.circuit.Delay "qiskit.circuit.Delay"). If qarg is None, applies to all qubits. When applying to multiple qubits, delays with the same duration will be created.
+Apply [`Delay`](qiskit.circuit.Delay "qiskit.circuit.Delay"). If qarg is None, applies to all qubits. When applying to multiple qubits, delays with the same duration will be created.
 
 **Parameters**
 
@@ -743,7 +670,9 @@ qiskit.Instruction
 
 **CircuitError** – if arguments have bad format.
 
+### depth
 
+<span id="qiskit.circuit.library.RealAmplitudes.depth" />
 
 `depth()`
 
@@ -761,13 +690,17 @@ int
 
 The circuit depth and the DAG depth need not be the same.
 
+### diag\_gate
 
+<span id="qiskit.circuit.library.RealAmplitudes.diag_gate" />
 
 `diag_gate(diag, qubit)`
 
 Deprecated version of QuantumCircuit.diagonal.
 
+### diagonal
 
+<span id="qiskit.circuit.library.RealAmplitudes.diagonal" />
 
 `diagonal(diag, qubit)`
 
@@ -786,13 +719,15 @@ the diagonal gate which was attached to the circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the list of the diagonal entries or the qubit list is in bad format; if the number of diagonal entries is not 2^k, where k denotes the number of qubits
 
+### draw
 
+<span id="qiskit.circuit.library.RealAmplitudes.draw" />
 
 `draw(output=None, scale=None, filename=None, style=None, interactive=False, plot_barriers=True, reverse_bits=False, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=True)`
 
@@ -846,7 +781,7 @@ Draw the quantum circuit.
 
 **Raises**
 
-*   [**VisualizationError**](qiskit.visualization.VisualizationError#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
+*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
 *   **ImportError** – when the output methods require non-installed libraries
 
 **Style Dict Details**
@@ -975,7 +910,9 @@ The style dict kwarg contains numerous options that define the style of the outp
 
 *   **creglinestyle** (*str*) – The style of line to use for classical registers. Choices are ‘solid’, ‘doublet’, or any valid matplotlib linestyle kwarg value. Defaults to doublet
 
+### entanglement
 
+<span id="qiskit.circuit.library.RealAmplitudes.entanglement" />
 
 `property entanglement`
 
@@ -989,7 +926,9 @@ Get the entanglement strategy.
 
 The entanglement strategy, see [`get_entangler_map()`](#qiskit.circuit.library.RealAmplitudes.get_entangler_map "qiskit.circuit.library.RealAmplitudes.get_entangler_map") for more detail on how the format is interpreted.
 
+### entanglement\_blocks
 
+<span id="qiskit.circuit.library.RealAmplitudes.entanglement_blocks" />
 
 `property entanglement_blocks`
 
@@ -1003,7 +942,9 @@ The blocks in the entanglement layers.
 
 The blocks in the entanglement layers.
 
+### extend
 
+<span id="qiskit.circuit.library.RealAmplitudes.extend" />
 
 `extend(rhs)`
 
@@ -1015,7 +956,7 @@ Modify and return self.
 
 **Parameters**
 
-**rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
+**rhs** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit to append to the right hand side.
 
 **Returns**
 
@@ -1023,19 +964,23 @@ Returns this QuantumCircuit object (which has been modified)
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the rhs circuit is not compatible
 
+### fredkin
 
+<span id="qiskit.circuit.library.RealAmplitudes.fredkin" />
 
 `fredkin(control_qubit, target_qubit1, target_qubit2)`
 
-Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate#qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
+Apply [`CSwapGate`](qiskit.circuit.library.CSwapGate "qiskit.circuit.library.CSwapGate").
 
+### from\_qasm\_file
 
+<span id="qiskit.circuit.library.RealAmplitudes.from_qasm_file" />
 
 `static from_qasm_file(path)`
 
@@ -1051,9 +996,11 @@ The QuantumCircuit object for the input QASM
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### from\_qasm\_str
 
+<span id="qiskit.circuit.library.RealAmplitudes.from_qasm_str" />
 
 `static from_qasm_str(qasm_str)`
 
@@ -1069,9 +1016,11 @@ The QuantumCircuit object for the input QASM
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### get\_entangler\_map
 
+<span id="qiskit.circuit.library.RealAmplitudes.get_entangler_map" />
 
 `get_entangler_map(rep_num, block_num, num_block_qubits)`
 
@@ -1081,7 +1030,9 @@ Overloading to handle the special case of 1 qubit where the entanglement are ign
 
 `List`\[`List`\[`int`]]
 
+### get\_unentangled\_qubits
 
+<span id="qiskit.circuit.library.RealAmplitudes.get_unentangled_qubits" />
 
 `get_unentangled_qubits()`
 
@@ -1095,25 +1046,33 @@ Get the indices of unentangled qubits in a set.
 
 The unentangled qubits.
 
+### global\_phase
 
+<span id="qiskit.circuit.library.RealAmplitudes.global_phase" />
 
 `property global_phase`
 
 Return the global phase of the circuit in radians.
 
+### h
 
+<span id="qiskit.circuit.library.RealAmplitudes.h" />
 
 `h(qubit)`
 
-Apply [`HGate`](qiskit.circuit.library.HGate#qiskit.circuit.library.HGate "qiskit.circuit.library.HGate").
+Apply [`HGate`](qiskit.circuit.library.HGate "qiskit.circuit.library.HGate").
 
+### hamiltonian
 
+<span id="qiskit.circuit.library.RealAmplitudes.hamiltonian" />
 
 `hamiltonian(operator, time, qubits, label=None)`
 
 Apply hamiltonian evolution to to qubits.
 
+### has\_register
 
+<span id="qiskit.circuit.library.RealAmplitudes.has_register" />
 
 `has_register(register)`
 
@@ -1131,19 +1090,25 @@ True if the register is contained in this circuit.
 
 bool
 
+### i
 
+<span id="qiskit.circuit.library.RealAmplitudes.i" />
 
 `i(qubit)`
 
-Apply [`IGate`](qiskit.circuit.library.IGate#qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
+Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
+### id
 
+<span id="qiskit.circuit.library.RealAmplitudes.id" />
 
 `id(qubit)`
 
-Apply [`IGate`](qiskit.circuit.library.IGate#qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
+Apply [`IGate`](qiskit.circuit.library.IGate "qiskit.circuit.library.IGate").
 
+### initial\_state
 
+<span id="qiskit.circuit.library.RealAmplitudes.initial_state" />
 
 `property initial_state`
 
@@ -1157,13 +1122,17 @@ Return the initial state that is added in front of the n-local circuit.
 
 The initial state.
 
+### initialize
 
+<span id="qiskit.circuit.library.RealAmplitudes.initialize" />
 
 `initialize(params, qubits)`
 
 Apply initialize to circuit.
 
+### insert\_barriers
 
+<span id="qiskit.circuit.library.RealAmplitudes.insert_barriers" />
 
 `property insert_barriers`
 
@@ -1177,7 +1146,9 @@ If barriers are inserted in between the layers or not.
 
 True, if barriers are inserted in between the layers, False if not.
 
+### inverse
 
+<span id="qiskit.circuit.library.RealAmplitudes.inverse" />
 
 `inverse()`
 
@@ -1191,7 +1162,7 @@ the inverted circuit
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
@@ -1223,7 +1194,9 @@ the inverted circuit
 
 └───────────┘
 
+### iso
 
+<span id="qiskit.circuit.library.RealAmplitudes.iso" />
 
 `iso(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None)`
 
@@ -1232,10 +1205,10 @@ Attach an arbitrary isometry from m to n qubits to a circuit. In particular, thi
 **Parameters**
 
 *   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
-*   **q\_input** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
-*   **q\_ancillas\_for\_output** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
-*   **q\_ancillas\_zero** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
-*   **q\_ancillas\_dirty** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
+*   **q\_input** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
+*   **q\_ancillas\_for\_output** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
+*   **q\_ancillas\_zero** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
+*   **q\_ancillas\_dirty** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
 
 **Returns**
 
@@ -1243,13 +1216,15 @@ the isometry is attached to the quantum circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
 
+### isometry
 
+<span id="qiskit.circuit.library.RealAmplitudes.isometry" />
 
 `isometry(isometry, q_input, q_ancillas_for_output, q_ancillas_zero=None, q_ancillas_dirty=None)`
 
@@ -1258,10 +1233,10 @@ Attach an arbitrary isometry from m to n qubits to a circuit. In particular, thi
 **Parameters**
 
 *   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
-*   **q\_input** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
-*   **q\_ancillas\_for\_output** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
-*   **q\_ancillas\_zero** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
-*   **q\_ancillas\_dirty** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
+*   **q\_input** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
+*   **q\_ancillas\_for\_output** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
+*   **q\_ancillas\_zero** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
+*   **q\_ancillas\_dirty** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
 
 **Returns**
 
@@ -1269,19 +1244,23 @@ the isometry is attached to the quantum circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the array is not an isometry of the correct size corresponding to the provided number of qubits.
 
+### iswap
 
+<span id="qiskit.circuit.library.RealAmplitudes.iswap" />
 
 `iswap(qubit1, qubit2)`
 
-Apply [`iSwapGate`](qiskit.circuit.library.iSwapGate#qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate").
+Apply [`iSwapGate`](qiskit.circuit.library.iSwapGate "qiskit.circuit.library.iSwapGate").
 
+### mcmt
 
+<span id="qiskit.circuit.library.RealAmplitudes.mcmt" />
 
 `mcmt(gate, control_qubits, target_qubits, ancilla_qubits=None, mode='noancilla', *, single_control_gate_fun=None, q_controls=None, q_ancillae=None, q_targets=None)`
 
@@ -1289,13 +1268,17 @@ Apply a multi-control, multi-target using a generic gate.
 
 This can also be used to implement a generic multi-control gate, as the target could also be of length 1.
 
+### mcp
 
+<span id="qiskit.circuit.library.RealAmplitudes.mcp" />
 
 `mcp(lam, control_qubits, target_qubit)`
 
-Apply [`MCPhaseGate`](qiskit.circuit.library.MCPhaseGate#qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate").
+Apply [`MCPhaseGate`](qiskit.circuit.library.MCPhaseGate "qiskit.circuit.library.MCPhaseGate").
 
+### mcrx
 
+<span id="qiskit.circuit.library.RealAmplitudes.mcrx" />
 
 `mcrx(theta, q_controls, q_target, use_basis_gates=False)`
 
@@ -1303,17 +1286,19 @@ Apply Multiple-Controlled X rotation gate
 
 **Parameters**
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrx gate on.
+*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrx gate on.
 *   **theta** (*float*) – angle theta
-*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
 *   **use\_basis\_gates** (*bool*) – use p, u, cx
 
 **Raises**
 
 **QiskitError** – parameter errors
 
+### mcry
 
+<span id="qiskit.circuit.library.RealAmplitudes.mcry" />
 
 `mcry(theta, q_controls, q_target, q_ancillae, mode=None, use_basis_gates=False)`
 
@@ -1321,11 +1306,11 @@ Apply Multiple-Controlled Y rotation gate
 
 **Parameters**
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcry gate on.
+*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcry gate on.
 *   **theta** (*float*) – angle theta
-*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
-*   **q\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or tuple(*[*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*, int)*) – The list of ancillary qubits.
+*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+*   **q\_ancillae** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister") *or tuple(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*, int)*) – The list of ancillary qubits.
 *   **mode** (*string*) – The implementation mode to use
 *   **use\_basis\_gates** (*bool*) – use p, u, cx
 
@@ -1333,7 +1318,9 @@ Apply Multiple-Controlled Y rotation gate
 
 **QiskitError** – parameter errors
 
+### mcrz
 
+<span id="qiskit.circuit.library.RealAmplitudes.mcrz" />
 
 `mcrz(lam, q_controls, q_target, use_basis_gates=False)`
 
@@ -1341,37 +1328,45 @@ Apply Multiple-Controlled Z rotation gate
 
 **Parameters**
 
-*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrz gate on.
+*   **self** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The QuantumCircuit object to apply the mcrz gate on.
 *   **lam** (*float*) – angle lambda
-*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
-*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
+*   **q\_controls** (*list(*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*)*) – The list of control qubits
+*   **q\_target** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – The target qubit
 *   **use\_basis\_gates** (*bool*) – use p, u, cx
 
 **Raises**
 
 **QiskitError** – parameter errors
 
+### mct
 
+<span id="qiskit.circuit.library.RealAmplitudes.mct" />
 
 `mct(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`
 
-Apply [`MCXGate`](qiskit.circuit.library.MCXGate#qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate").
+Apply [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate").
 
+### mcu1
 
+<span id="qiskit.circuit.library.RealAmplitudes.mcu1" />
 
 `mcu1(lam, control_qubits, target_qubit)`
 
 Apply `MCU1Gate`.
 
+### mcx
 
+<span id="qiskit.circuit.library.RealAmplitudes.mcx" />
 
 `mcx(control_qubits, target_qubit, ancilla_qubits=None, mode='noancilla')`
 
-Apply [`MCXGate`](qiskit.circuit.library.MCXGate#qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate").
+Apply [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.MCXGate").
 
 The multi-cX gate can be implemented using different techniques, which use different numbers of ancilla qubits and have varying circuit depth. These modes are: - ‘no-ancilla’: Requires 0 ancilla qubits. - ‘recursion’: Requires 1 ancilla qubit if more than 4 controls are used, otherwise 0. - ‘v-chain’: Requires 2 less ancillas than the number of control qubits. - ‘v-chain-dirty’: Same as for the clean ancillas (but the circuit will be longer).
 
+### measure
 
+<span id="qiskit.circuit.library.RealAmplitudes.measure" />
 
 `measure(qubit, cbit)`
 
@@ -1394,7 +1389,9 @@ qiskit.Instruction
 
 **CircuitError** – if qubit is not in this circuit or bad format; if cbit is not in this circuit or not creg.
 
+### measure\_active
 
+<span id="qiskit.circuit.library.RealAmplitudes.measure_active" />
 
 `measure_active(inplace=True)`
 
@@ -1412,9 +1409,11 @@ Returns circuit with measurements when inplace = False.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### measure\_all
 
+<span id="qiskit.circuit.library.RealAmplitudes.measure_all" />
 
 `measure_all(inplace=True)`
 
@@ -1432,9 +1431,11 @@ Returns circuit with measurements when inplace = False.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### mirror
 
+<span id="qiskit.circuit.library.RealAmplitudes.mirror" />
 
 `mirror()`
 
@@ -1446,27 +1447,35 @@ the reversed circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### ms
 
+<span id="qiskit.circuit.library.RealAmplitudes.ms" />
 
 `ms(theta, qubits)`
 
-Apply [`MSGate`](qiskit.circuit.library.MSGate#qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate").
+Apply [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.MSGate").
 
+### num\_ancillas
 
+<span id="qiskit.circuit.library.RealAmplitudes.num_ancillas" />
 
 `property num_ancillas`
 
 Return the number of ancilla qubits.
 
+### num\_clbits
 
+<span id="qiskit.circuit.library.RealAmplitudes.num_clbits" />
 
 `property num_clbits`
 
 Return number of classical bits.
 
+### num\_connected\_components
 
+<span id="qiskit.circuit.library.RealAmplitudes.num_connected_components" />
 
 `num_connected_components(unitary_only=False)`
 
@@ -1484,7 +1493,9 @@ Number of connected components in circuit.
 
 int
 
+### num\_layers
 
+<span id="qiskit.circuit.library.RealAmplitudes.num_layers" />
 
 `property num_layers`
 
@@ -1498,7 +1509,9 @@ Return the number of layers in the n-local circuit.
 
 The number of layers in the circuit.
 
+### num\_nonlocal\_gates
 
+<span id="qiskit.circuit.library.RealAmplitudes.num_nonlocal_gates" />
 
 `num_nonlocal_gates()`
 
@@ -1506,19 +1519,23 @@ Return number of non-local gates (i.e. involving 2+ qubits).
 
 Conditional nonlocal gates are also included.
 
+### num\_parameters
 
+<span id="qiskit.circuit.library.RealAmplitudes.num_parameters" />
 
 `property num_parameters`
 
 Convenience function to get the number of parameter objects in the circuit.
 
+### num\_parameters\_settable
 
+<span id="qiskit.circuit.library.RealAmplitudes.num_parameters_settable" />
 
 `property num_parameters_settable`
 
 The number of total parameters that can be set to distinct values.
 
-This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
+This does not change when the parameters are bound or exchanged for same parameters, and therefore is different from `num_parameters` which counts the number of unique [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects currently in the circuit.
 
 **Return type**
 
@@ -1532,7 +1549,9 @@ The number of parameters originally available in the circuit.
   This quantity does not require the circuit to be built yet.
 </Admonition>
 
+### num\_qubits
 
+<span id="qiskit.circuit.library.RealAmplitudes.num_qubits" />
 
 `property num_qubits`
 
@@ -1546,7 +1565,9 @@ Returns the number of qubits in this circuit.
 
 The number of qubits.
 
+### num\_tensor\_factors
 
+<span id="qiskit.circuit.library.RealAmplitudes.num_tensor_factors" />
 
 `num_tensor_factors()`
 
@@ -1556,13 +1577,17 @@ Computes the number of tensor factors in the unitary (quantum) part of the circu
 
 This is here for backwards compatibility, and will be removed in a future release of Qiskit. You should call num\_unitary\_factors instead.
 
+### num\_unitary\_factors
 
+<span id="qiskit.circuit.library.RealAmplitudes.num_unitary_factors" />
 
 `num_unitary_factors()`
 
 Computes the number of tensor factors in the unitary (quantum) part of the circuit only.
 
+### ordered\_parameters
 
+<span id="qiskit.circuit.library.RealAmplitudes.ordered_parameters" />
 
 `property ordered_parameters`
 
@@ -1592,13 +1617,17 @@ q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
 
 The parameters objects used in the circuit.
 
+### p
 
+<span id="qiskit.circuit.library.RealAmplitudes.p" />
 
 `p(theta, qubit)`
 
-Apply [`PhaseGate`](qiskit.circuit.library.PhaseGate#qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate").
+Apply [`PhaseGate`](qiskit.circuit.library.PhaseGate "qiskit.circuit.library.PhaseGate").
 
+### parameter\_bounds
 
+<span id="qiskit.circuit.library.RealAmplitudes.parameter_bounds" />
 
 `property parameter_bounds`
 
@@ -1612,11 +1641,13 @@ Return the parameter bounds.
 
 The parameter bounds.
 
+### parameters
 
+<span id="qiskit.circuit.library.RealAmplitudes.parameters" />
 
 `property parameters`
 
-Get the [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
+Get the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit.
 
 **Return type**
 
@@ -1626,7 +1657,9 @@ Get the [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.
 
 A set containing the unbound circuit parameters.
 
+### power
 
+<span id="qiskit.circuit.library.RealAmplitudes.power" />
 
 `power(power, matrix_power=False)`
 
@@ -1649,9 +1682,11 @@ A circuit implementing this circuit raised to the power of `power`.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### preferred\_init\_points
 
+<span id="qiskit.circuit.library.RealAmplitudes.preferred_init_points" />
 
 `property preferred_init_points`
 
@@ -1665,7 +1700,9 @@ The initial points for the parameters. Can be stored as initial guess in optimiz
 
 The initial values for the parameters, or None, if none have been set.
 
+### print\_settings
 
+<span id="qiskit.circuit.library.RealAmplitudes.print_settings" />
 
 `print_settings()`
 
@@ -1679,7 +1716,9 @@ Returns information about the setting.
 
 The class name and the attributes/parameters of the instance as `str`.
 
+### qasm
 
+<span id="qiskit.circuit.library.RealAmplitudes.qasm" />
 
 `qasm(formatted=False, filename=None)`
 
@@ -1702,7 +1741,9 @@ str
 
 **ImportError** – If pygments is not installed and `formatted` is `True`.
 
+### qbit\_argument\_conversion
 
+<span id="qiskit.circuit.library.RealAmplitudes.qbit_argument_conversion" />
 
 `qbit_argument_conversion(qubit_representation)`
 
@@ -1720,13 +1761,17 @@ Where each tuple is a qubit.
 
 List(tuple)
 
+### qregs
 
+<span id="qiskit.circuit.library.RealAmplitudes.qregs" />
 
 `property qregs`
 
 A list of the quantum registers associated with the circuit.
 
+### qubit\_duration
 
+<span id="qiskit.circuit.library.RealAmplitudes.qubit_duration" />
 
 `qubit_duration(*qubits)`
 
@@ -1744,7 +1789,9 @@ Return the duration between the start and stop time of the first and last instru
 
 Return the duration between the first start and last stop time of non-delay instructions
 
+### qubit\_start\_time
 
+<span id="qiskit.circuit.library.RealAmplitudes.qubit_start_time" />
 
 `qubit_start_time(*qubits)`
 
@@ -1769,7 +1816,9 @@ Return the start time of the first instruction, excluding delays, over the qubit
 
 **CircuitError** – if `self` is a not-yet scheduled circuit.
 
+### qubit\_stop\_time
 
+<span id="qiskit.circuit.library.RealAmplitudes.qubit_stop_time" />
 
 `qubit_stop_time(*qubits)`
 
@@ -1794,31 +1843,41 @@ Return the stop time of the last instruction, excluding delays, over the qubits
 
 **CircuitError** – if `self` is a not-yet scheduled circuit.
 
+### qubits
 
+<span id="qiskit.circuit.library.RealAmplitudes.qubits" />
 
 `property qubits`
 
 Returns a list of quantum bits in the order that the registers were added.
 
+### r
 
+<span id="qiskit.circuit.library.RealAmplitudes.r" />
 
 `r(theta, phi, qubit)`
 
 Apply `RGate`.
 
+### rcccx
 
+<span id="qiskit.circuit.library.RealAmplitudes.rcccx" />
 
 `rcccx(control_qubit1, control_qubit2, control_qubit3, target_qubit)`
 
-Apply [`RC3XGate`](qiskit.circuit.library.RC3XGate#qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").
+Apply [`RC3XGate`](qiskit.circuit.library.RC3XGate "qiskit.circuit.library.RC3XGate").
 
+### rccx
 
+<span id="qiskit.circuit.library.RealAmplitudes.rccx" />
 
 `rccx(control_qubit1, control_qubit2, target_qubit)`
 
-Apply [`RCCXGate`](qiskit.circuit.library.RCCXGate#qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate").
+Apply [`RCCXGate`](qiskit.circuit.library.RCCXGate "qiskit.circuit.library.RCCXGate").
 
+### remove\_final\_measurements
 
+<span id="qiskit.circuit.library.RealAmplitudes.remove_final_measurements" />
 
 `remove_final_measurements(inplace=True)`
 
@@ -1836,9 +1895,11 @@ Returns circuit with measurements removed when inplace = False.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### repeat
 
+<span id="qiskit.circuit.library.RealAmplitudes.repeat" />
 
 `repeat(reps)`
 
@@ -1854,9 +1915,11 @@ A circuit containing `reps` repetitions of this circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### reps
 
+<span id="qiskit.circuit.library.RealAmplitudes.reps" />
 
 `property reps`
 
@@ -1870,13 +1933,17 @@ The number of times rotation and entanglement block are repeated.
 
 The number of repetitions.
 
+### reset
 
+<span id="qiskit.circuit.library.RealAmplitudes.reset" />
 
 `reset(qubit)`
 
 Reset q.
 
+### reverse\_bits
 
+<span id="qiskit.circuit.library.RealAmplitudes.reverse_bits" />
 
 `reverse_bits()`
 
@@ -1892,7 +1959,7 @@ the circuit with reversed bit order.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 ## Examples
 
@@ -1920,7 +1987,9 @@ the circuit with reversed bit order.
 
 └───┘
 
+### reverse\_ops
 
+<span id="qiskit.circuit.library.RealAmplitudes.reverse_ops" />
 
 `reverse_ops()`
 
@@ -1934,7 +2003,7 @@ the reversed circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 ## Examples
 
@@ -1962,7 +2031,9 @@ the reversed circuit.
 
 └──────────┘
 
+### rotation\_blocks
 
+<span id="qiskit.circuit.library.RealAmplitudes.rotation_blocks" />
 
 `property rotation_blocks`
 
@@ -1976,61 +2047,81 @@ The blocks in the rotation layers.
 
 The blocks in the rotation layers.
 
+### rx
 
+<span id="qiskit.circuit.library.RealAmplitudes.rx" />
 
 `rx(theta, qubit, label=None)`
 
-Apply [`RXGate`](qiskit.circuit.library.RXGate#qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").
+Apply [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate").
 
+### rxx
 
+<span id="qiskit.circuit.library.RealAmplitudes.rxx" />
 
 `rxx(theta, qubit1, qubit2)`
 
-Apply [`RXXGate`](qiskit.circuit.library.RXXGate#qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
+Apply [`RXXGate`](qiskit.circuit.library.RXXGate "qiskit.circuit.library.RXXGate").
 
+### ry
 
+<span id="qiskit.circuit.library.RealAmplitudes.ry" />
 
 `ry(theta, qubit, label=None)`
 
-Apply [`RYGate`](qiskit.circuit.library.RYGate#qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate").
+Apply [`RYGate`](qiskit.circuit.library.RYGate "qiskit.circuit.library.RYGate").
 
+### ryy
 
+<span id="qiskit.circuit.library.RealAmplitudes.ryy" />
 
 `ryy(theta, qubit1, qubit2)`
 
-Apply [`RYYGate`](qiskit.circuit.library.RYYGate#qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate").
+Apply [`RYYGate`](qiskit.circuit.library.RYYGate "qiskit.circuit.library.RYYGate").
 
+### rz
 
+<span id="qiskit.circuit.library.RealAmplitudes.rz" />
 
 `rz(phi, qubit)`
 
-Apply [`RZGate`](qiskit.circuit.library.RZGate#qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").
+Apply [`RZGate`](qiskit.circuit.library.RZGate "qiskit.circuit.library.RZGate").
 
+### rzx
 
+<span id="qiskit.circuit.library.RealAmplitudes.rzx" />
 
 `rzx(theta, qubit1, qubit2)`
 
-Apply [`RZXGate`](qiskit.circuit.library.RZXGate#qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate").
+Apply [`RZXGate`](qiskit.circuit.library.RZXGate "qiskit.circuit.library.RZXGate").
 
+### rzz
 
+<span id="qiskit.circuit.library.RealAmplitudes.rzz" />
 
 `rzz(theta, qubit1, qubit2)`
 
-Apply [`RZZGate`](qiskit.circuit.library.RZZGate#qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
+Apply [`RZZGate`](qiskit.circuit.library.RZZGate "qiskit.circuit.library.RZZGate").
 
+### s
 
+<span id="qiskit.circuit.library.RealAmplitudes.s" />
 
 `s(qubit)`
 
-Apply [`SGate`](qiskit.circuit.library.SGate#qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").
+Apply [`SGate`](qiskit.circuit.library.SGate "qiskit.circuit.library.SGate").
 
+### sdg
 
+<span id="qiskit.circuit.library.RealAmplitudes.sdg" />
 
 `sdg(qubit)`
 
-Apply [`SdgGate`](qiskit.circuit.library.SdgGate#qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").
+Apply [`SdgGate`](qiskit.circuit.library.SdgGate "qiskit.circuit.library.SdgGate").
 
+### size
 
+<span id="qiskit.circuit.library.RealAmplitudes.size" />
 
 `size()`
 
@@ -2044,7 +2135,9 @@ Total number of gate operations.
 
 int
 
+### snapshot
 
+<span id="qiskit.circuit.library.RealAmplitudes.snapshot" />
 
 `snapshot(label, snapshot_type='statevector', qubits=None, params=None)`
 
@@ -2056,13 +2149,15 @@ with attached command
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **ExtensionError** – malformed command
 
+### snapshot\_density\_matrix
 
+<span id="qiskit.circuit.library.RealAmplitudes.snapshot_density_matrix" />
 
 `snapshot_density_matrix(label, qubits=None)`
 
@@ -2079,13 +2174,15 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **ExtensionError** – if snapshot is invalid.
 
+### snapshot\_expectation\_value
 
+<span id="qiskit.circuit.library.RealAmplitudes.snapshot_expectation_value" />
 
 `snapshot_expectation_value(label, op, qubits, single_shot=False, variance=False)`
 
@@ -2094,7 +2191,7 @@ Take a snapshot of expectation value \<O> of an Operator.
 **Parameters**
 
 *   **label** (*str*) – a snapshot label to report the result
-*   **op** ([*Operator*](qiskit.quantum_info.Operator#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – operator to snapshot
+*   **op** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – operator to snapshot
 *   **qubits** (*list*) – the qubits to snapshot.
 *   **single\_shot** (*bool*) – return list for each shot rather than average \[Default: False]
 *   **variance** (*bool*) – compute variance of values \[Default: False]
@@ -2105,13 +2202,15 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **ExtensionError** – if snapshot is invalid.
 
+### snapshot\_probabilities
 
+<span id="qiskit.circuit.library.RealAmplitudes.snapshot_probabilities" />
 
 `snapshot_probabilities(label, qubits, variance=False)`
 
@@ -2129,13 +2228,15 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **ExtensionError** – if snapshot is invalid.
 
+### snapshot\_stabilizer
 
+<span id="qiskit.circuit.library.RealAmplitudes.snapshot_stabilizer" />
 
 `snapshot_stabilizer(label)`
 
@@ -2151,7 +2252,7 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
@@ -2161,7 +2262,9 @@ with attached instruction.
 
 This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
 
+### snapshot\_statevector
 
+<span id="qiskit.circuit.library.RealAmplitudes.snapshot_statevector" />
 
 `snapshot_statevector(label)`
 
@@ -2177,7 +2280,7 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
@@ -2187,7 +2290,9 @@ with attached instruction.
 
 This snapshot is always performed on all qubits in a circuit. The number of qubits parameter specifies the size of the instruction as a barrier and should be set to the number of qubits in the circuit.
 
+### squ
 
+<span id="qiskit.circuit.library.RealAmplitudes.squ" />
 
 `squ(unitary_matrix, qubit, mode='ZYZ', up_to_diagonal=False, *, u=None)`
 
@@ -2209,43 +2314,55 @@ The single-qubit unitary instruction attached to the circuit.
 
 **Return type**
 
-[InstructionSet](qiskit.circuit.InstructionSet#qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
 
 **Raises**
 
 **QiskitError** – if the format is wrong; if the array u is not unitary
 
+### swap
 
+<span id="qiskit.circuit.library.RealAmplitudes.swap" />
 
 `swap(qubit1, qubit2)`
 
-Apply [`SwapGate`](qiskit.circuit.library.SwapGate#qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate").
+Apply [`SwapGate`](qiskit.circuit.library.SwapGate "qiskit.circuit.library.SwapGate").
 
+### sx
 
+<span id="qiskit.circuit.library.RealAmplitudes.sx" />
 
 `sx(qubit)`
 
-Apply [`SXGate`](qiskit.circuit.library.SXGate#qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate").
+Apply [`SXGate`](qiskit.circuit.library.SXGate "qiskit.circuit.library.SXGate").
 
+### sxdg
 
+<span id="qiskit.circuit.library.RealAmplitudes.sxdg" />
 
 `sxdg(qubit)`
 
-Apply [`SXdgGate`](qiskit.circuit.library.SXdgGate#qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate").
+Apply [`SXdgGate`](qiskit.circuit.library.SXdgGate "qiskit.circuit.library.SXdgGate").
 
+### t
 
+<span id="qiskit.circuit.library.RealAmplitudes.t" />
 
 `t(qubit)`
 
-Apply [`TGate`](qiskit.circuit.library.TGate#qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").
+Apply [`TGate`](qiskit.circuit.library.TGate "qiskit.circuit.library.TGate").
 
+### tdg
 
+<span id="qiskit.circuit.library.RealAmplitudes.tdg" />
 
 `tdg(qubit)`
 
-Apply [`TdgGate`](qiskit.circuit.library.TdgGate#qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate").
+Apply [`TdgGate`](qiskit.circuit.library.TdgGate "qiskit.circuit.library.TdgGate").
 
+### to\_gate
 
+<span id="qiskit.circuit.library.RealAmplitudes.to_gate" />
 
 `to_gate(parameter_map=None, label=None)`
 
@@ -2262,9 +2379,11 @@ a composite gate encapsulating this circuit (can be decomposed back)
 
 **Return type**
 
-[Gate](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")
+[Gate](qiskit.circuit.Gate "qiskit.circuit.Gate")
 
+### to\_instruction
 
+<span id="qiskit.circuit.library.RealAmplitudes.to_instruction" />
 
 `to_instruction(parameter_map=None)`
 
@@ -2280,39 +2399,51 @@ a composite instruction encapsulating this circuit (can be decomposed back)
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### toffoli
 
+<span id="qiskit.circuit.library.RealAmplitudes.toffoli" />
 
 `toffoli(control_qubit1, control_qubit2, target_qubit)`
 
-Apply [`CCXGate`](qiskit.circuit.library.CCXGate#qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
+Apply [`CCXGate`](qiskit.circuit.library.CCXGate "qiskit.circuit.library.CCXGate").
 
+### u
 
+<span id="qiskit.circuit.library.RealAmplitudes.u" />
 
 `u(theta, phi, lam, qubit)`
 
-Apply [`UGate`](qiskit.circuit.library.UGate#qiskit.circuit.library.UGate "qiskit.circuit.library.UGate").
+Apply [`UGate`](qiskit.circuit.library.UGate "qiskit.circuit.library.UGate").
 
+### u1
 
+<span id="qiskit.circuit.library.RealAmplitudes.u1" />
 
 `u1(theta, qubit)`
 
-Apply [`U1Gate`](qiskit.circuit.library.U1Gate#qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate").
+Apply [`U1Gate`](qiskit.circuit.library.U1Gate "qiskit.circuit.library.U1Gate").
 
+### u2
 
+<span id="qiskit.circuit.library.RealAmplitudes.u2" />
 
 `u2(phi, lam, qubit)`
 
-Apply [`U2Gate`](qiskit.circuit.library.U2Gate#qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate").
+Apply [`U2Gate`](qiskit.circuit.library.U2Gate "qiskit.circuit.library.U2Gate").
 
+### u3
 
+<span id="qiskit.circuit.library.RealAmplitudes.u3" />
 
 `u3(theta, phi, lam, qubit)`
 
-Apply [`U3Gate`](qiskit.circuit.library.U3Gate#qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate").
+Apply [`U3Gate`](qiskit.circuit.library.U3Gate "qiskit.circuit.library.U3Gate").
 
+### uc
 
+<span id="qiskit.circuit.library.RealAmplitudes.uc" />
 
 `uc(gate_list, q_controls, q_target, up_to_diagonal=False)`
 
@@ -2323,8 +2454,8 @@ The decomposition was introduced by Bergholm et al. in [https://arxiv.org/pdf/qu
 **Parameters**
 
 *   **gate\_list** (*list\[ndarray]*) – list of two qubit unitaries \[U\_0,…,U\_\{2^k-1}], where each single-qubit unitary U\_i is a given as a 2\*2 array
-*   **q\_controls** (*QuantumRegister|list\[(*[*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)]*) – list of k control qubits. The qubits are ordered according to their significance in the computational basis. For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the unitary U\_0 is performed if q\[1] and q\[2] are in the state zero, U\_1 is performed if q\[2] is in the state zero and q\[1] is in the state one, and so on
-*   **q\_target** (*QuantumRegister|(*[*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)*) – target qubit, where we act on with the single-qubit gates.
+*   **q\_controls** (*QuantumRegister|list\[(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)]*) – list of k control qubits. The qubits are ordered according to their significance in the computational basis. For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the unitary U\_0 is performed if q\[1] and q\[2] are in the state zero, U\_1 is performed if q\[2] is in the state zero and q\[1] is in the state one, and so on
+*   **q\_target** (*QuantumRegister|(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)*) – target qubit, where we act on with the single-qubit gates.
 *   **up\_to\_diagonal** (*bool*) – If set to True, the uniformly controlled gate is decomposed up to a diagonal gate, i.e. a unitary u’ is implemented such that there exists a diagonal gate d with u = d.dot(u’), where the unitary u describes the uniformly controlled gate
 
 **Returns**
@@ -2333,13 +2464,15 @@ the uniformly controlled gate is attached to the circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
 
+### ucrx
 
+<span id="qiskit.circuit.library.RealAmplitudes.ucrx" />
 
 `ucrx(angle_list, q_controls, q_target)`
 
@@ -2359,13 +2492,15 @@ the uniformly controlled rotation gate is attached to the circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
 
+### ucry
 
+<span id="qiskit.circuit.library.RealAmplitudes.ucry" />
 
 `ucry(angle_list, q_controls, q_target)`
 
@@ -2376,7 +2511,7 @@ The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https:
 **Parameters**
 
 *   **angle\_list** (*list\[numbers*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
-*   **q\_controls** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Ry(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Ry(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
+*   **q\_controls** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Ry(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Ry(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
 *   **q\_target** (*QuantumRegister|Qubit*) – target qubit, where we act on with the single-qubit rotation gates
 
 **Returns**
@@ -2385,13 +2520,15 @@ the uniformly controlled rotation gate is attached to the circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
 
+### ucrz
 
+<span id="qiskit.circuit.library.RealAmplitudes.ucrz" />
 
 `ucrz(angle_list, q_controls, q_target)`
 
@@ -2402,7 +2539,7 @@ The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https:
 **Parameters**
 
 *   **angle\_list** (*list\[numbers*) – list of (real) rotation angles \[a\_0,…,a\_\{2^k-1}]
-*   **q\_controls** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit#qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the rotation Rz(a\_0)is performed if q\[1] and q\[2] are in the state zero, the rotation Rz(a\_1) is performed if q\[1] is in the state one and q\[2] is in the state zero, and so on
+*   **q\_controls** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the rotation Rz(a\_0)is performed if q\[1] and q\[2] are in the state zero, the rotation Rz(a\_1) is performed if q\[1] is in the state one and q\[2] is in the state zero, and so on
 *   **q\_target** (*QuantumRegister|Qubit*) – target qubit, where we act on with the single-qubit rotation gates
 
 **Returns**
@@ -2411,19 +2548,23 @@ the uniformly controlled rotation gate is attached to the circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **QiskitError** – if the list number of control qubits does not correspond to the provided number of single-qubit unitaries; if an input is of the wrong type
 
+### unitary
 
+<span id="qiskit.circuit.library.RealAmplitudes.unitary" />
 
 `unitary(obj, qubits, label=None)`
 
 Apply unitary gate to q.
 
+### width
 
+<span id="qiskit.circuit.library.RealAmplitudes.width" />
 
 `width()`
 
@@ -2437,20 +2578,27 @@ Width of circuit.
 
 int
 
+### x
 
+<span id="qiskit.circuit.library.RealAmplitudes.x" />
 
 `x(qubit, label=None)`
 
-Apply [`XGate`](qiskit.circuit.library.XGate#qiskit.circuit.library.XGate "qiskit.circuit.library.XGate").
+Apply [`XGate`](qiskit.circuit.library.XGate "qiskit.circuit.library.XGate").
 
+### y
 
+<span id="qiskit.circuit.library.RealAmplitudes.y" />
 
 `y(qubit)`
 
-Apply [`YGate`](qiskit.circuit.library.YGate#qiskit.circuit.library.YGate "qiskit.circuit.library.YGate").
+Apply [`YGate`](qiskit.circuit.library.YGate "qiskit.circuit.library.YGate").
 
+### z
 
+<span id="qiskit.circuit.library.RealAmplitudes.z" />
 
 `z(qubit)`
 
-Apply [`ZGate`](qiskit.circuit.library.ZGate#qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate").
+Apply [`ZGate`](qiskit.circuit.library.ZGate "qiskit.circuit.library.ZGate").
+

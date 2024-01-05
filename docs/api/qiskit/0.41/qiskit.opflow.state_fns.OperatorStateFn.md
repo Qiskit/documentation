@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.state_fns.OperatorStateFn
 ---
 
-# OperatorStateFn[¶](#operatorstatefn "Permalink to this headline")
+# OperatorStateFn
 
 <span id="qiskit.opflow.state_fns.OperatorStateFn" />
 

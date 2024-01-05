@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.EvolvedOperatorAnsatz
 ---
 
-# EvolvedOperatorAnsatz[¶](#evolvedoperatoransatz "Permalink to this headline")
+# EvolvedOperatorAnsatz
 
 <span id="qiskit.circuit.library.EvolvedOperatorAnsatz" />
 

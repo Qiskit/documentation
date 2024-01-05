@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.library.gaussian_deriv
 ---
 
-# qiskit.pulse.library.gaussian\_deriv[¶](#qiskit-pulse-library-gaussian-deriv "Permalink to this headline")
+# qiskit.pulse.library.gaussian\_deriv
 
 <span id="qiskit.pulse.library.gaussian_deriv" />
 

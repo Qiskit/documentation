@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.YGate
 ---
 
-# YGate[¶](#ygate "Permalink to this headline")
+# YGate
 
 <span id="qiskit.circuit.library.YGate" />
 

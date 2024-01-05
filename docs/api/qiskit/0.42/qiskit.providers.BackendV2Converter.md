@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.BackendV2Converter
 ---
 
-# BackendV2Converter[¶](#backendv2converter "Permalink to this headline")
+# BackendV2Converter
 
 <span id="qiskit.providers.BackendV2Converter" />
 

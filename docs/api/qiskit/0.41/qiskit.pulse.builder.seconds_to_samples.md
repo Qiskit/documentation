@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.seconds_to_samples
 ---
 
-# qiskit.pulse.builder.seconds\_to\_samples[¶](#qiskit-pulse-builder-seconds-to-samples "Permalink to this headline")
+# qiskit.pulse.builder.seconds\_to\_samples
 
 <span id="qiskit.pulse.builder.seconds_to_samples" />
 

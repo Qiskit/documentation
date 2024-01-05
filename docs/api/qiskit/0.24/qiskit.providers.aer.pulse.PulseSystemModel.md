@@ -1,14 +1,22 @@
+---
+title: PulseSystemModel
+description: API reference for qiskit.providers.aer.pulse.PulseSystemModel
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.pulse.PulseSystemModel
+---
+
 <span id="qiskit-providers-aer-pulse-pulsesystemmodel" />
 
 # qiskit.providers.aer.pulse.PulseSystemModel
 
-
+<span id="qiskit.providers.aer.pulse.PulseSystemModel" />
 
 `PulseSystemModel(hamiltonian=None, u_channel_lo=None, control_channel_labels=None, subsystem_list=None, dt=None)`
 
 Physical model object for pulse simulator.
 
-This class contains model information required by the [`PulseSimulator`](qiskit.providers.aer.PulseSimulator#qiskit.providers.aer.PulseSimulator "qiskit.providers.aer.PulseSimulator"). It contains:
+This class contains model information required by the [`PulseSimulator`](qiskit.providers.aer.PulseSimulator "qiskit.providers.aer.PulseSimulator"). It contains:
 
 > *   `"hamiltonian"`: a `HamiltonianModel` object representing the Hamiltonian of the system.
 > *   `"u_channel_lo"`: A description of `ControlChannel` local oscillator frequencies in terms of qubit local oscillator frequencies.
@@ -16,7 +24,7 @@ This class contains model information required by the [`PulseSimulator`](qiskit.
 > *   `"subsystem_list"`: List of subsystems in the model.
 > *   `"dt"`: Sample width size for OpenPulse instructions.
 
-A model can be instantiated from the helper function [`duffing_system_model()`](qiskit.providers.aer.pulse.duffing_system_model#qiskit.providers.aer.pulse.duffing_system_model "qiskit.providers.aer.pulse.duffing_system_model"), or using the [`PulseSystemModel.from_backend()`](#qiskit.providers.aer.pulse.PulseSystemModel.from_backend "qiskit.providers.aer.pulse.PulseSystemModel.from_backend") constructor.
+A model can be instantiated from the helper function [`duffing_system_model()`](qiskit.providers.aer.pulse.duffing_system_model "qiskit.providers.aer.pulse.duffing_system_model"), or using the [`PulseSystemModel.from_backend()`](#qiskit.providers.aer.pulse.PulseSystemModel.from_backend "qiskit.providers.aer.pulse.PulseSystemModel.from_backend") constructor.
 
 **Example**
 
@@ -34,9 +42,11 @@ Initialize a PulseSystemModel.
 
 **Raises**
 
-[**AerError**](qiskit.providers.aer.AerError#qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if hamiltonian is not None or a HamiltonianModel
+[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if hamiltonian is not None or a HamiltonianModel
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.aer.pulse.PulseSystemModel.__init__" />
 
 `__init__(hamiltonian=None, u_channel_lo=None, control_channel_labels=None, subsystem_list=None, dt=None)`
 
@@ -52,19 +62,13 @@ Initialize a PulseSystemModel.
 
 **Raises**
 
-[**AerError**](qiskit.providers.aer.AerError#qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if hamiltonian is not None or a HamiltonianModel
+[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if hamiltonian is not None or a HamiltonianModel
 
 ## Methods
 
-|                                                                                                                                                                                                               |                                                                                  |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.providers.aer.pulse.PulseSystemModel.__init__ "qiskit.providers.aer.pulse.PulseSystemModel.__init__")(\[hamiltonian, u\_channel\_lo, …])                                                 | Initialize a PulseSystemModel.                                                   |
-| [`calculate_channel_frequencies`](#qiskit.providers.aer.pulse.PulseSystemModel.calculate_channel_frequencies "qiskit.providers.aer.pulse.PulseSystemModel.calculate_channel_frequencies")(\[qubit\_lo\_freq]) | Calculate frequencies for each channel given qubit\_lo\_freq.                    |
-| [`control_channel_index`](#qiskit.providers.aer.pulse.PulseSystemModel.control_channel_index "qiskit.providers.aer.pulse.PulseSystemModel.control_channel_index")(label)                                      | Return the index of the control channel with identifying label.                  |
-| [`from_backend`](#qiskit.providers.aer.pulse.PulseSystemModel.from_backend "qiskit.providers.aer.pulse.PulseSystemModel.from_backend")(backend\[, subsystem\_list])                                           | Returns a PulseSystemModel constructed from an OpenPulse enabled backend object. |
-| [`from_config`](#qiskit.providers.aer.pulse.PulseSystemModel.from_config "qiskit.providers.aer.pulse.PulseSystemModel.from_config")(configuration\[, subsystem\_list])                                        | Construct a model from configuration and defaults.                               |
+### calculate\_channel\_frequencies
 
-
+<span id="qiskit.providers.aer.pulse.PulseSystemModel.calculate_channel_frequencies" />
 
 `calculate_channel_frequencies(qubit_lo_freq=None)`
 
@@ -86,7 +90,9 @@ OrderedDict
 
 **ValueError** – If channel or u\_channel\_lo are invalid.
 
+### control\_channel\_index
 
+<span id="qiskit.providers.aer.pulse.PulseSystemModel.control_channel_index" />
 
 `control_channel_index(label)`
 
@@ -104,7 +110,9 @@ index of the ControlChannel
 
 int or None
 
+### from\_backend
 
+<span id="qiskit.providers.aer.pulse.PulseSystemModel.from_backend" />
 
 `classmethod from_backend(backend, subsystem_list=None)`
 
@@ -112,7 +120,7 @@ Returns a PulseSystemModel constructed from an OpenPulse enabled backend object.
 
 **Parameters**
 
-*   **backend** ([*Backend*](qiskit.providers.Backend#qiskit.providers.Backend "qiskit.providers.Backend")) – backend object to draw information from.
+*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – backend object to draw information from.
 *   **subsystem\_list** (*list*) – a list of ints for which qubits to include in the model.
 
 **Returns**
@@ -125,10 +133,13 @@ the PulseSystemModel constructed from the backend.
 
 **Raises**
 
-[**AerError**](qiskit.providers.aer.AerError#qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – If channel or u\_channel\_lo are invalid.
+[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – If channel or u\_channel\_lo are invalid.
 
+### from\_config
 
+<span id="qiskit.providers.aer.pulse.PulseSystemModel.from_config" />
 
 `classmethod from_config(configuration, subsystem_list=None)`
 
 Construct a model from configuration and defaults.
+

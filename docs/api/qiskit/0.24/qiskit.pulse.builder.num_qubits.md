@@ -1,8 +1,16 @@
+---
+title: num_qubits
+description: API reference for qiskit.pulse.builder.num_qubits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.num_qubits
+---
+
 <span id="qiskit-pulse-builder-num-qubits" />
 
 # qiskit.pulse.builder.num\_qubits
 
-
+<span id="qiskit.pulse.builder.num_qubits" />
 
 `num_qubits()`
 
@@ -31,3 +39,4 @@ with pulse.build(backend):
 **Return type**
 
 `int`
+

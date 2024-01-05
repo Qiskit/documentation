@@ -20,8 +20,8 @@ Basis for bosonic operations.
 
 # Bosonic Basis
 
-|                                                                                                                                                                                              |                                                             |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| [`BosonicBasis`](qiskit.chemistry.components.bosonic_bases.BosonicBasis#qiskit.chemistry.components.bosonic_bases.BosonicBasis "qiskit.chemistry.components.bosonic_bases.BosonicBasis")     | Basis to express a second quantization Bosonic Hamiltonian. |
-| [`HarmonicBasis`](qiskit.chemistry.components.bosonic_bases.HarmonicBasis#qiskit.chemistry.components.bosonic_bases.HarmonicBasis "qiskit.chemistry.components.bosonic_bases.HarmonicBasis") | Basis in which the Watson Hamiltonian is expressed.         |
+|                                                                                                                                      |                                                             |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------- |
+| [`BosonicBasis`](qiskit.chemistry.components.bosonic_bases.BosonicBasis "qiskit.chemistry.components.bosonic_bases.BosonicBasis")    | Basis to express a second quantization Bosonic Hamiltonian. |
+| [`HarmonicBasis`](qiskit.chemistry.components.bosonic_bases.HarmonicBasis "qiskit.chemistry.components.bosonic_bases.HarmonicBasis") | Basis in which the Watson Hamiltonian is expressed.         |
 

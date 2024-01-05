@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.active_circuit_scheduler_settings
 ---
 
-# qiskit.pulse.builder.active\_circuit\_scheduler\_settings[¶](#qiskit-pulse-builder-active-circuit-scheduler-settings "Permalink to this headline")
+# qiskit.pulse.builder.active\_circuit\_scheduler\_settings
 
 <span id="qiskit.pulse.builder.active_circuit_scheduler_settings" />
 

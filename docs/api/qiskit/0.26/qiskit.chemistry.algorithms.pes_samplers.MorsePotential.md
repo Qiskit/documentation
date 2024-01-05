@@ -1,6 +1,14 @@
+---
+title: MorsePotential
+description: API reference for qiskit.chemistry.algorithms.pes_samplers.MorsePotential
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.pes_samplers.MorsePotential
+---
+
 # qiskit.chemistry.algorithms.pes\_samplers.MorsePotential
 
-
+<span id="qiskit.chemistry.algorithms.pes_samplers.MorsePotential" />
 
 `MorsePotential(molecule)`
 
@@ -18,7 +26,9 @@ Initializes the potential to the zero-function. [`fit()`](#qiskit.chemistry.algo
 
 **ValueError** – Only implemented for diatomic molecules
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.MorsePotential.__init__" />
 
 `__init__(molecule)`
 
@@ -34,24 +44,9 @@ Initializes the potential to the zero-function. [`fit()`](#qiskit.chemistry.algo
 
 ## Methods
 
-|                                                                                                                                                                                                                |                                                                                                                            |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.algorithms.pes_samplers.MorsePotential.__init__ "qiskit.chemistry.algorithms.pes_samplers.MorsePotential.__init__")(molecule)                                                   | Initializes the potential to the zero-function.                                                                            |
-| [`dissociation_energy`](#qiskit.chemistry.algorithms.pes_samplers.MorsePotential.dissociation_energy "qiskit.chemistry.algorithms.pes_samplers.MorsePotential.dissociation_energy")(\[scaling])                | Returns the calculated dissociation energy for the current fit.                                                            |
-| [`eval`](#qiskit.chemistry.algorithms.pes_samplers.MorsePotential.eval "qiskit.chemistry.algorithms.pes_samplers.MorsePotential.eval")(x)                                                                      | After fitting the data to the fit function, predict the energy at a point x.                                               |
-| [`fit`](#qiskit.chemistry.algorithms.pes_samplers.MorsePotential.fit "qiskit.chemistry.algorithms.pes_samplers.MorsePotential.fit")(xdata, ydata\[, initial\_vals, bounds\_list])                              | Fits a potential to computed molecular energies.                                                                           |
-| [`fit_function`](#qiskit.chemistry.algorithms.pes_samplers.MorsePotential.fit_function "qiskit.chemistry.algorithms.pes_samplers.MorsePotential.fit_function")(x, d\_e, alpha, r\_0, m\_shift)                 | Functional form of the potential.                                                                                          |
-| [`fundamental_frequency`](#qiskit.chemistry.algorithms.pes_samplers.MorsePotential.fundamental_frequency "qiskit.chemistry.algorithms.pes_samplers.MorsePotential.fundamental_frequency")()                    | Returns the fundamental frequency for the current fit (in s^-1).                                                           |
-| [`get_equilibrium_geometry`](#qiskit.chemistry.algorithms.pes_samplers.MorsePotential.get_equilibrium_geometry "qiskit.chemistry.algorithms.pes_samplers.MorsePotential.get_equilibrium_geometry")(\[scaling]) | Returns the interatomic distance corresponding to minimal energy.                                                          |
-| [`get_maximum_trusted_level`](#qiskit.chemistry.algorithms.pes_samplers.MorsePotential.get_maximum_trusted_level "qiskit.chemistry.algorithms.pes_samplers.MorsePotential.get_maximum_trusted_level")(\[n])    | Returns the maximum energy level for which the particular implementation still provides a good approximation of reality.   |
-| [`get_minimal_energy`](#qiskit.chemistry.algorithms.pes_samplers.MorsePotential.get_minimal_energy "qiskit.chemistry.algorithms.pes_samplers.MorsePotential.get_minimal_energy")(\[scaling])                   | Returns the smallest molecular energy for the current fit.                                                                 |
-| [`get_num_modes`](#qiskit.chemistry.algorithms.pes_samplers.MorsePotential.get_num_modes "qiskit.chemistry.algorithms.pes_samplers.MorsePotential.get_num_modes")()                                            | This (1D) potential represents a single vibrational mode                                                                   |
-| [`get_trust_region`](#qiskit.chemistry.algorithms.pes_samplers.MorsePotential.get_trust_region "qiskit.chemistry.algorithms.pes_samplers.MorsePotential.get_trust_region")()                                   | The potential will usually be well-defined (even if not useful) for arbitrary x so we return a fairly large interval here. |
-| [`update_molecule`](#qiskit.chemistry.algorithms.pes_samplers.MorsePotential.update_molecule "qiskit.chemistry.algorithms.pes_samplers.MorsePotential.update_molecule")(molecule)                              | Updates the underlying molecule.                                                                                           |
-| [`vibrational_energy_level`](#qiskit.chemistry.algorithms.pes_samplers.MorsePotential.vibrational_energy_level "qiskit.chemistry.algorithms.pes_samplers.MorsePotential.vibrational_energy_level")(n)          | Returns the n-th vibrational energy level for the current fit (in Hartrees).                                               |
-| [`wave_number`](#qiskit.chemistry.algorithms.pes_samplers.MorsePotential.wave_number "qiskit.chemistry.algorithms.pes_samplers.MorsePotential.wave_number")()                                                  | Returns the wave number for the current fit (in cm^-1).                                                                    |
+### dissociation\_energy
 
-
+<span id="qiskit.chemistry.algorithms.pes_samplers.MorsePotential.dissociation_energy" />
 
 `dissociation_energy(scaling=1.0)`
 
@@ -69,7 +64,9 @@ Returns the calculated dissociation energy for the current fit.
 
 calculated dissociation energy for the current fit
 
+### eval
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.MorsePotential.eval" />
 
 `eval(x)`
 
@@ -87,7 +84,9 @@ After fitting the data to the fit function, predict the energy at a point x.
 
 value of surface in point x
 
+### fit
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.MorsePotential.fit" />
 
 `fit(xdata, ydata, initial_vals=None, bounds_list=None)`
 
@@ -104,7 +103,9 @@ Fits a potential to computed molecular energies.
 
 `None`
 
+### fit\_function
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.MorsePotential.fit_function" />
 
 `static fit_function(x, d_e, alpha, r_0, m_shift)`
 
@@ -126,7 +127,9 @@ Functional form of the potential.
 
 potential functional form
 
+### fundamental\_frequency
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.MorsePotential.fundamental_frequency" />
 
 `fundamental_frequency()`
 
@@ -140,7 +143,9 @@ Returns the fundamental frequency for the current fit (in s^-1).
 
 fundamental frequency for the current fit
 
+### get\_equilibrium\_geometry
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.MorsePotential.get_equilibrium_geometry" />
 
 `get_equilibrium_geometry(scaling=1.0)`
 
@@ -158,7 +163,9 @@ Returns the interatomic distance corresponding to minimal energy.
 
 interatomic distance corresponding to minimal energy
 
+### get\_maximum\_trusted\_level
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.MorsePotential.get_maximum_trusted_level" />
 
 `get_maximum_trusted_level(n=0)`
 
@@ -176,7 +183,9 @@ Returns the maximum energy level for which the particular implementation still p
 
 maximum\_trusted\_level estimated
 
+### get\_minimal\_energy
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.MorsePotential.get_minimal_energy" />
 
 `get_minimal_energy(scaling=1.0)`
 
@@ -194,7 +203,9 @@ Returns the smallest molecular energy for the current fit.
 
 smallest molecular energy for the current fit
 
+### get\_num\_modes
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.MorsePotential.get_num_modes" />
 
 `get_num_modes()`
 
@@ -204,7 +215,9 @@ This (1D) potential represents a single vibrational mode
 
 `int`
 
+### get\_trust\_region
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.MorsePotential.get_trust_region" />
 
 `get_trust_region()`
 
@@ -214,7 +227,9 @@ The potential will usually be well-defined (even if not useful) for arbitrary x 
 
 `Tuple`\[`float`, `float`]
 
+### update\_molecule
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.MorsePotential.update_molecule" />
 
 `update_molecule(molecule)`
 
@@ -232,7 +247,9 @@ Updates the underlying molecule.
 
 `None`
 
+### vibrational\_energy\_level
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.MorsePotential.vibrational_energy_level" />
 
 `vibrational_energy_level(n)`
 
@@ -250,7 +267,9 @@ Returns the n-th vibrational energy level for the current fit (in Hartrees).
 
 vibrational energy level for the current fit
 
+### wave\_number
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.MorsePotential.wave_number" />
 
 `wave_number()`
 
@@ -263,3 +282,4 @@ Returns the wave number for the current fit (in cm^-1).
 **Returns**
 
 wave number for the current fit
+

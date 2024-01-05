@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.set_frequency
 ---
 
-# qiskit.pulse.builder.set\_frequency[¶](#qiskit-pulse-builder-set-frequency "Permalink to this headline")
+# qiskit.pulse.builder.set\_frequency
 
 <span id="qiskit.pulse.builder.set_frequency" />
 

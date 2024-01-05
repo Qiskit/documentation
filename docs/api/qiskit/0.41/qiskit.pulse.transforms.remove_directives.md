@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.transforms.remove_directives
 ---
 
-# qiskit.pulse.transforms.remove\_directives[¶](#qiskit-pulse-transforms-remove-directives "Permalink to this headline")
+# qiskit.pulse.transforms.remove\_directives
 
 <span id="qiskit.pulse.transforms.remove_directives" />
 

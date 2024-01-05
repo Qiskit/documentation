@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.qobj.QasmQobjExperimentConfig
 ---
 
-# QasmQobjExperimentConfig[¶](#qasmqobjexperimentconfig "Permalink to this headline")
+# QasmQobjExperimentConfig
 
 <span id="qiskit.qobj.QasmQobjExperimentConfig" />
 

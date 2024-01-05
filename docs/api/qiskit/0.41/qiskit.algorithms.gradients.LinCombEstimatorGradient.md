@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.LinCombEstimatorGradient
 ---
 
-# LinCombEstimatorGradient[¶](#lincombestimatorgradient "Permalink to this headline")
+# LinCombEstimatorGradient
 
 <span id="qiskit.algorithms.gradients.LinCombEstimatorGradient" />
 

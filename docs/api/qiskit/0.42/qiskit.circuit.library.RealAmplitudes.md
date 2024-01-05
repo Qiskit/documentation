@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.RealAmplitudes
 ---
 
-# RealAmplitudes[¶](#realamplitudes "Permalink to this headline")
+# RealAmplitudes
 
 <span id="qiskit.circuit.library.RealAmplitudes" />
 

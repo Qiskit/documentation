@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.ALAPScheduleAnalysis
 ---
 
-# ALAPScheduleAnalysis[¶](#alapscheduleanalysis "Permalink to this headline")
+# ALAPScheduleAnalysis
 
 <span id="qiskit.transpiler.passes.ALAPScheduleAnalysis" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.instructions.Call
 ---
 
-# Call[¶](#call "Permalink to this headline")
+# Call
 
 <span id="qiskit.pulse.instructions.Call" />
 

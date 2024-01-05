@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.StochasticSwap
 ---
 
-# StochasticSwap[¶](#stochasticswap "Permalink to this headline")
+# StochasticSwap
 
 <span id="qiskit.transpiler.passes.StochasticSwap" />
 

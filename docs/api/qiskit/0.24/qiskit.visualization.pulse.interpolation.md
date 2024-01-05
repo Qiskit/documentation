@@ -21,7 +21,7 @@ interpolation module for pulse visualization.
 | [`interp1d`](#qiskit.visualization.pulse.interpolation.interp1d "qiskit.visualization.pulse.interpolation.interp1d")(time, samples, nop\[, kind]) | Scipy interpolation wrapper.                  |
 | [`step_wise`](#qiskit.visualization.pulse.interpolation.step_wise "qiskit.visualization.pulse.interpolation.step_wise")(time, samples, nop)       | Keep uniform variation between sample values. |
 
-
+<span id="qiskit.visualization.pulse.interpolation.cubic_spline" />
 
 `cubic_spline(time: numpy.ndarray, samples: numpy.ndarray, nop: int, *, kind: str = 'cubic') → Tuple[numpy.ndarray, numpy.ndarray, numpy.ndarray]`
 
@@ -37,7 +37,7 @@ Apply cubic interpolation between sampling points.
 
 Interpolated time vector and real and imaginary part of waveform.
 
-
+<span id="qiskit.visualization.pulse.interpolation.interp1d" />
 
 `interp1d(time, samples, nop, kind='linear')`
 
@@ -58,7 +58,7 @@ Scipy interpolation wrapper.
 
 Interpolated time vector and real and imaginary part of waveform.
 
-
+<span id="qiskit.visualization.pulse.interpolation.linear" />
 
 `linear(time: numpy.ndarray, samples: numpy.ndarray, nop: int, *, kind: str = 'linear') → Tuple[numpy.ndarray, numpy.ndarray, numpy.ndarray]`
 
@@ -74,7 +74,7 @@ Apply linear interpolation between sampling points.
 
 Interpolated time vector and real and imaginary part of waveform.
 
-
+<span id="qiskit.visualization.pulse.interpolation.step_wise" />
 
 `step_wise(time, samples, nop)`
 

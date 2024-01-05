@@ -24,31 +24,31 @@ Convert portfolio optimization instances into Pauli list
 | [`portfolio_variance`](#qiskit.finance.applications.ising.portfolio.portfolio_variance "qiskit.finance.applications.ising.portfolio.portfolio_variance")(x, sigma)                | returns portfolio variance                                            |
 | [`random_model`](#qiskit.finance.applications.ising.portfolio.random_model "qiskit.finance.applications.ising.portfolio.random_model")(n\[, seed])                                | Generate random model (mu, sigma) for portfolio optimization problem. |
 
-
+<span id="qiskit.finance.applications.ising.portfolio.get_operator" />
 
 `get_operator(mu, sigma, q, budget, penalty)`
 
 get qubit op
 
-
+<span id="qiskit.finance.applications.ising.portfolio.portfolio_expected_value" />
 
 `portfolio_expected_value(x, mu)`
 
 returns portfolio expected value
 
-
+<span id="qiskit.finance.applications.ising.portfolio.portfolio_value" />
 
 `portfolio_value(x, mu, sigma, q, budget, penalty)`
 
 returns portfolio value
 
-
+<span id="qiskit.finance.applications.ising.portfolio.portfolio_variance" />
 
 `portfolio_variance(x, sigma)`
 
 returns portfolio variance
 
-
+<span id="qiskit.finance.applications.ising.portfolio.random_model" />
 
 `random_model(n, seed=None)`
 

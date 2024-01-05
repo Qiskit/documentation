@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.ACGSynthesisPermutation
 ---
 
-# ACGSynthesisPermutation[¶](#acgsynthesispermutation "Permalink to this headline")
+# ACGSynthesisPermutation
 
 <span id="qiskit.transpiler.passes.ACGSynthesisPermutation" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.classicalfunction.BooleanExpression
 ---
 
-# BooleanExpression[¶](#booleanexpression "Permalink to this headline")
+# BooleanExpression
 
 <span id="qiskit.circuit.classicalfunction.BooleanExpression" />
 

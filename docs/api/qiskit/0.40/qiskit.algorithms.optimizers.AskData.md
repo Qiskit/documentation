@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.AskData
 ---
 
-# AskData[¶](#askdata "Permalink to this headline")
+# AskData
 
 <span id="qiskit.algorithms.optimizers.AskData" />
 

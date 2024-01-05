@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.qobj.PulseLibraryItem
 ---
 
-# PulseLibraryItem[¶](#pulselibraryitem "Permalink to this headline")
+# PulseLibraryItem
 
 <span id="qiskit.qobj.PulseLibraryItem" />
 

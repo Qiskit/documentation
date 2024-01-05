@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit_aer.utils.approximate_quantum_error
 ---
 
-# qiskit\_aer.utils.approximate\_quantum\_error[¶](#qiskit-aer-utils-approximate-quantum-error "Permalink to this headline")
+# qiskit\_aer.utils.approximate\_quantum\_error
 
 <span id="qiskit_aer.utils.approximate_quantum_error" />
 

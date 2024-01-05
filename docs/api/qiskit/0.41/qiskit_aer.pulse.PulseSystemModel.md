@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit_aer.pulse.PulseSystemModel
 ---
 
-# PulseSystemModel[¶](#pulsesystemmodel "Permalink to this headline")
+# PulseSystemModel
 
 <span id="qiskit_aer.pulse.PulseSystemModel" />
 

@@ -14,7 +14,7 @@ python_api_name: qiskit.opflow
 
 <span id="module-qiskit.opflow" />
 
-`qiskit.opflow¶`
+`qiskit.opflow`
 
 Operators and State functions are the building blocks of Quantum Algorithms.
 
@@ -40,10 +40,6 @@ Below, you’ll find a base class for all Operators, some convenience immutable 
 
 ## Operator Base Class
 
-<span id="module-qiskit.opflow" />
-
-`¶`
-
 The OperatorBase serves as the base class for all Operators, State functions and measurements, and enforces the presence and consistency of methods to manipulate these objects conveniently.
 
 |                                                                             |                                                                       |
@@ -51,10 +47,6 @@ The OperatorBase serves as the base class for all Operators, State functions and
 | [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")() | A base class for all Operators: PrimitiveOps, StateFns, ListOps, etc. |
 
 ## Operator Globals
-
-<span id="module-qiskit.opflow" />
-
-`¶`
 
 The `operator_globals` is a set of immutable Operator instances that are convenient building blocks to reach for while working with the Operator flow.
 
@@ -72,11 +64,7 @@ The `operator_globals` is a set of immutable Operator instances that are conveni
 
 ## Submodules
 
-<span id="module-qiskit.opflow" />
-
-`¶`
-
-### Operators[¶](#operators "Permalink to this headline")
+### Operators
 
 The Operators submodules include the PrimitiveOp, ListOp, and StateFn class groups which represent the primary Operator modules.
 
@@ -86,7 +74,7 @@ The Operators submodules include the PrimitiveOp, ListOp, and StateFn class grou
 | [`list_ops`](qiskit.opflow.list_ops#module-qiskit.opflow.list_ops "qiskit.opflow.list_ops")                     | List Operators (qiskit.opflow\.list\_ops)           |
 | [`state_fns`](qiskit.opflow.state_fns#module-qiskit.opflow.state_fns "qiskit.opflow.state_fns")                 | State Functions (qiskit.opflow\.state\_fns)         |
 
-### Converters[¶](#converters "Permalink to this headline")
+### Converters
 
 The Converter submodules include objects which manipulate Operators, usually recursing over an Operator structure and changing certain Operators’ representation. For example, the [`PauliExpectation`](qiskit.opflow.expectations.PauliExpectation "qiskit.opflow.expectations.PauliExpectation") traverses an Operator structure, and replaces all of the [`OperatorStateFn`](qiskit.opflow.state_fns.OperatorStateFn "qiskit.opflow.state_fns.OperatorStateFn") measurements containing non-diagonal Pauli terms into diagonalizing circuits following by [`OperatorStateFn`](qiskit.opflow.state_fns.OperatorStateFn "qiskit.opflow.state_fns.OperatorStateFn") measurement containing only diagonal Paulis.
 
@@ -99,10 +87,6 @@ The Converter submodules include objects which manipulate Operators, usually rec
 
 ## Utility functions
 
-<span id="module-qiskit.opflow" />
-
-`¶`
-
 |                                                                                                                        |                                                                |
 | ---------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------- |
 | [`commutator`](qiskit.opflow.commutator "qiskit.opflow.commutator")(op\_a, op\_b)                                      | Compute commutator of op\_a and op\_b.                         |
@@ -110,10 +94,6 @@ The Converter submodules include objects which manipulate Operators, usually rec
 | [`double_commutator`](qiskit.opflow.double_commutator "qiskit.opflow.double_commutator")(op\_a, op\_b, op\_c\[, sign]) | Compute symmetric double commutator of op\_a, op\_b and op\_c. |
 
 ## Exceptions
-
-<span id="module-qiskit.opflow" />
-
-`¶`
 
 |                                                                                   |                             |
 | --------------------------------------------------------------------------------- | --------------------------- |

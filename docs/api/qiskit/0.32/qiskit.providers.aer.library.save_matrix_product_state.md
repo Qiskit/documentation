@@ -1,6 +1,14 @@
+---
+title: save_matrix_product_state
+description: API reference for qiskit.providers.aer.library.save_matrix_product_state
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.library.save_matrix_product_state
+---
+
 # qiskit.providers.aer.library.save\_matrix\_product\_state
 
-
+<span id="qiskit.providers.aer.library.save_matrix_product_state" />
 
 `save_matrix_product_state(self, label='matrix_product_state', pershot=False, conditional=False)`
 
@@ -18,4 +26,5 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+

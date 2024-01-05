@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.ResetAfterMeasureSimplification
 ---
 
-# ResetAfterMeasureSimplification[¶](#resetaftermeasuresimplification "Permalink to this headline")
+# ResetAfterMeasureSimplification
 
 <span id="qiskit.transpiler.passes.ResetAfterMeasureSimplification" />
 

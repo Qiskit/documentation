@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.ExcitationPreserving
 ---
 
-# ExcitationPreserving[¶](#excitationpreserving "Permalink to this headline")
+# ExcitationPreserving
 
 <span id="qiskit.circuit.library.ExcitationPreserving" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit_aer.library.SaveUnitary
 ---
 
-# SaveUnitary[¶](#saveunitary "Permalink to this headline")
+# SaveUnitary
 
 <span id="qiskit_aer.library.SaveUnitary" />
 

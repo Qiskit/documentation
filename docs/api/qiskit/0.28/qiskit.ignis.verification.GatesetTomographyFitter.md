@@ -1,6 +1,14 @@
+---
+title: GatesetTomographyFitter
+description: API reference for qiskit.ignis.verification.GatesetTomographyFitter
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.verification.GatesetTomographyFitter
+---
+
 # qiskit.ignis.verification.GatesetTomographyFitter
 
-
+<span id="qiskit.ignis.verification.GatesetTomographyFitter" />
 
 `GatesetTomographyFitter(result, circuits, gateset_basis='default')`
 
@@ -39,7 +47,9 @@ result_gates = fitter.fit()
 result_gate = result_gates[gate.name]
 ```
 
+### \_\_init\_\_
 
+<span id="qiskit.ignis.verification.GatesetTomographyFitter.__init__" />
 
 `__init__(result, circuits, gateset_basis='default')`
 
@@ -80,13 +90,9 @@ result_gate = result_gates[gate.name]
 
 ## Methods
 
-|                                                                                                                                                                             |                                                                      |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| [`__init__`](#qiskit.ignis.verification.GatesetTomographyFitter.__init__ "qiskit.ignis.verification.GatesetTomographyFitter.__init__")(result, circuits\[, gateset\_basis]) | Initialize gateset tomography fitter with experimental data.         |
-| [`fit`](#qiskit.ignis.verification.GatesetTomographyFitter.fit "qiskit.ignis.verification.GatesetTomographyFitter.fit")()                                                   | Reconstruct a gate set from measurement data using optimization.     |
-| [`linear_inversion`](#qiskit.ignis.verification.GatesetTomographyFitter.linear_inversion "qiskit.ignis.verification.GatesetTomographyFitter.linear_inversion")()            | Reconstruct a gate set from measurement data using linear inversion. |
+### fit
 
-
+<span id="qiskit.ignis.verification.GatesetTomographyFitter.fit" />
 
 `fit()`
 
@@ -104,7 +110,9 @@ For each gate in the gateset
 
 The gateset optimization process con/.sists of three phases: 1) Use linear inversion to obtain an initial approximation. 2) Use gauge optimization to ensure the linear inversion results are close enough to the expected optimization outcome to serve as a suitable starting point 3) Use MLE optimization to obtain the final outcome
 
+### linear\_inversion
 
+<span id="qiskit.ignis.verification.GatesetTomographyFitter.linear_inversion" />
 
 `linear_inversion()`
 
@@ -125,3 +133,4 @@ Given a gate set (G1,…,Gm) and SPAM circuits (F1,…,Fn) constructed from thos
 We have p\_ijk = self.probs\[(Fj, Gk, Fi)] since in self.probs (Fj, Gk, Fi) indicates first applying Fj, then Gk, then Fi.
 
 One constructs the Gram matrix g = (p\_ij)\_ij which can be described as a product g=AB where A = sum (i> \<E F\_i) and B=sum (F\_j rho>\<j) For each gate Gk one can also construct the matrix Mk=(pijk)\_ij which can be described as Mk=A\*Gk\*B Inverting g we obtain g^-1 = B^-1A^-1 and so g^1 \* Mk = B^-1 \* Gk \* B This gives us a matrix similiar to Gk’s representing matrix. However, it will not be the same as Gk, since the observable results cannot distinguish between (G1,…,Gm) and (B^-1\*G1\*B,…,B^-1\*Gm\*B) a further step of *Gauge optimization* is required on the results of the linear inversion stage. One can also use the linear inversion results as a starting point for a MLE optimization for finding a physical gateset, since unless the probabilities are accurate, the resulting gateset need not be physical.
+

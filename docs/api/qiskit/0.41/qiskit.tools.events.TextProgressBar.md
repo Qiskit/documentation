@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.tools.events.TextProgressBar
 ---
 
-# TextProgressBar[¶](#textprogressbar "Permalink to this headline")
+# TextProgressBar
 
 <span id="qiskit.tools.events.TextProgressBar" />
 

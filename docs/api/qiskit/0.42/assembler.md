@@ -14,13 +14,9 @@ python_api_name: qiskit.assembler
 
 <span id="module-qiskit.assembler" />
 
-`qiskit.assembler¶`
+`qiskit.assembler`
 
 ## Circuit Assembler
-
-<span id="module-qiskit.assembler" />
-
-`¶`
 
 |                                                                                                                            |                                                                          |
 | -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
@@ -28,29 +24,17 @@ python_api_name: qiskit.assembler
 
 ## Schedule Assembler
 
-<span id="module-qiskit.assembler" />
-
-`¶`
-
 |                                                                                                                             |                                                                           |
 | --------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
 | [`assemble_schedules`](qiskit.assembler.assemble_schedules "qiskit.assembler.assemble_schedules")(schedules, qobj\_id, ...) | Assembles a list of schedules into a qobj that can be run on the backend. |
 
 ## Disassembler
 
-<span id="module-qiskit.assembler" />
-
-`¶`
-
 |                                                                                    |                                                                                              |
 | ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
 | [`disassemble`](qiskit.assembler.disassemble "qiskit.assembler.disassemble")(qobj) | Disassemble a qobj and return the circuits or pulse schedules, run\_config, and user header. |
 
 ## RunConfig
-
-<span id="module-qiskit.assembler" />
-
-`¶`
 
 |                                                                                                     |                              |
 | --------------------------------------------------------------------------------------------------- | ---------------------------- |

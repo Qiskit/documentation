@@ -14,13 +14,9 @@ python_api_name: qiskit.compiler
 
 <span id="module-qiskit.compiler" />
 
-`qiskit.compiler¶`
+`qiskit.compiler`
 
 ## Circuit and Pulse Compilation Functions
-
-<span id="module-qiskit.compiler" />
-
-`¶`
 
 |                                                                                                               |                                                                                                  |
 | ------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------ |

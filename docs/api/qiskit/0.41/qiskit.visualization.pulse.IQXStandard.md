@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.visualization.pulse.IQXStandard
 ---
 
-# IQXStandard[¶](#iqxstandard "Permalink to this headline")
+# IQXStandard
 
 <span id="qiskit.visualization.pulse.IQXStandard" />
 

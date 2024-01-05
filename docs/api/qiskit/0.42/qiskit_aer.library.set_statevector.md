@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit_aer.library.set_statevector
 ---
 
-# qiskit\_aer.library.set\_statevector[¶](#qiskit-aer-library-set-statevector "Permalink to this headline")
+# qiskit\_aer.library.set\_statevector
 
 <span id="qiskit_aer.library.set_statevector" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit_aer.library.SaveExpectationValueVariance
 ---
 
-# SaveExpectationValueVariance[¶](#saveexpectationvaluevariance "Permalink to this headline")
+# SaveExpectationValueVariance
 
 <span id="qiskit_aer.library.SaveExpectationValueVariance" />
 

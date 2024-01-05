@@ -1,12 +1,20 @@
+---
+title: IntegerToBinary
+description: API reference for qiskit.optimization.converters.IntegerToBinary
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.converters.IntegerToBinary
+---
+
 <span id="qiskit-optimization-converters-integertobinary" />
 
 # qiskit.optimization.converters.IntegerToBinary
 
-
+<span id="qiskit.optimization.converters.IntegerToBinary" />
 
 `IntegerToBinary`
 
-Convert a [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram#qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.QuadraticProgram") into new one by encoding integer with binary variables.
+Convert a [`QuadraticProgram`](qiskit.optimization.problems.QuadraticProgram "qiskit.optimization.problems.QuadraticProgram") into new one by encoding integer with binary variables.
 
 This bounded-coefficient encoding used in this converted is proposed in \[1], Eq. (5).
 
@@ -27,7 +35,9 @@ This bounded-coefficient encoding used in this converted is proposed in \[1], Eq
 
 Annealers. arxiv.org:1706.01945.
 
+### \_\_init\_\_
 
+<span id="qiskit.optimization.converters.IntegerToBinary.__init__" />
 
 `__init__()`
 
@@ -35,15 +45,9 @@ Initialize self. See help(type(self)) for accurate signature.
 
 ## Methods
 
-|                                                                                                                                             |                                                                                                                |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.optimization.converters.IntegerToBinary.__init__ "qiskit.optimization.converters.IntegerToBinary.__init__")()          | Initialize self.                                                                                               |
-| [`convert`](#qiskit.optimization.converters.IntegerToBinary.convert "qiskit.optimization.converters.IntegerToBinary.convert")(problem)      | Convert an integer problem into a new problem with binary variables.                                           |
-| [`decode`](#qiskit.optimization.converters.IntegerToBinary.decode "qiskit.optimization.converters.IntegerToBinary.decode")(result)          | DEPRECATED Decode a result into another form using the information of conversion.                              |
-| [`encode`](#qiskit.optimization.converters.IntegerToBinary.encode "qiskit.optimization.converters.IntegerToBinary.encode")(problem)         | DEPRECATED Encode a QuadraticProgram into another form and keep the information required to decode the result. |
-| [`interpret`](#qiskit.optimization.converters.IntegerToBinary.interpret "qiskit.optimization.converters.IntegerToBinary.interpret")(result) | Convert back the converted problem (binary variables) to the original (integer variables).                     |
+### convert
 
-
+<span id="qiskit.optimization.converters.IntegerToBinary.convert" />
 
 `convert(problem)`
 
@@ -63,9 +67,11 @@ The converted problem, that contains no integer variables.
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if variable or constraint type is not supported.
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if variable or constraint type is not supported.
 
+### decode
 
+<span id="qiskit.optimization.converters.IntegerToBinary.decode" />
 
 `decode(result)`
 
@@ -75,7 +81,9 @@ DEPRECATED Decode a result into another form using the information of conversion
 
 `OptimizationResult`
 
+### encode
 
+<span id="qiskit.optimization.converters.IntegerToBinary.encode" />
 
 `encode(problem)`
 
@@ -85,7 +93,9 @@ DEPRECATED Encode a QuadraticProgram into another form and keep the information 
 
 `QuadraticProgram`
 
+### interpret
 
+<span id="qiskit.optimization.converters.IntegerToBinary.interpret" />
 
 `interpret(result)`
 
@@ -102,3 +112,4 @@ Convert back the converted problem (binary variables) to the original (integer v
 **Returns**
 
 The result of the original problem.
+

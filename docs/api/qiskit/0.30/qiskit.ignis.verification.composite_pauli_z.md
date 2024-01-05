@@ -1,6 +1,14 @@
+---
+title: composite_pauli_z
+description: API reference for qiskit.ignis.verification.composite_pauli_z
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.composite_pauli_z
+---
+
 # qiskit.ignis.verification.composite\_pauli\_z
 
-
+<span id="qiskit.ignis.verification.composite_pauli_z" />
 
 `composite_pauli_z(qn)`
 
@@ -17,3 +25,4 @@ Generates n tensored pauli z matrix upon input of qubit number
 **Returns**
 
 The tensored pauli z matrices
+

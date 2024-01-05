@@ -1,8 +1,16 @@
+---
+title: process_fidelity
+description: API reference for qiskit.quantum_info.process_fidelity
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.quantum_info.process_fidelity
+---
+
 <span id="qiskit-quantum-info-process-fidelity" />
 
 # qiskit.quantum\_info.process\_fidelity
 
-
+<span id="qiskit.quantum_info.process_fidelity" />
 
 `process_fidelity(channel, target=None, require_cp=True, require_tp=False, require_cptp=False)`
 
@@ -15,12 +23,12 @@ F_{\text{pro}}(\mathcal{E}, U)
     = \frac{Tr[S_U^\dagger S_{\mathcal{E}}]}{d^2}
 $$
 
-where $S_{\mathcal{E}}, S_{U}$ are the [`SuperOp`](qiskit.quantum_info.SuperOp#qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") matrices for the input quantum *channel* $\cal{E}$ and *target* unitary $U$ respectively, and $d$ is the dimension of the *channel*.
+where $S_{\mathcal{E}}, S_{U}$ are the [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") matrices for the input quantum *channel* $\cal{E}$ and *target* unitary $U$ respectively, and $d$ is the dimension of the *channel*.
 
 **Parameters**
 
 *   **channel** (*QuantumChannel*) – noisy quantum channel.
-*   **target** ([*Operator*](qiskit.quantum_info.Operator#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or None*) – target unitary operator. If None target is the identity operator \[Default: None].
+*   **target** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") *or None*) – target unitary operator. If None target is the identity operator \[Default: None].
 *   **require\_cp** (*bool*) – require channel to be completely-positive \[Default: True].
 *   **require\_tp** (*bool*) – require channel to be trace-preserving \[Default: False].
 *   **require\_cptp** (*bool*) – (DEPRECATED) require input channels to be CPTP \[Default: False].
@@ -37,3 +45,4 @@ float
 
 *   **QiskitError** – if the channel and target do not have the same dimensions, or have different input and output dimensions.
 *   **QiskitError** – if the channel and target or are not completely-positive (with `require_cp=True`) or not trace-preserving (with `require_tp=True`).
+

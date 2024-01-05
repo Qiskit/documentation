@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.LinCombQGT
 ---
 
-# LinCombQGT[¶](#lincombqgt "Permalink to this headline")
+# LinCombQGT
 
 <span id="qiskit.algorithms.gradients.LinCombQGT" />
 

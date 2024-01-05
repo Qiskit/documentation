@@ -1,4 +1,4 @@
-# qiskit.utils.algorithm\_globals[¶](#qiskit-utils-algorithm-globals "Permalink to this headline")
+# qiskit.utils.algorithm\_globals
 
 ## algorithm\_globals *= \<qiskit.utils.algorithm\_globals.QiskitAlgorithmGlobals object>*
 

@@ -1,8 +1,16 @@
+---
+title: Shor
+description: API reference for qiskit.aqua.algorithms.Shor
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.Shor
+---
+
 <span id="qiskit-aqua-algorithms-shor" />
 
 # qiskit.aqua.algorithms.Shor
 
-
+<span id="qiskit.aqua.algorithms.Shor" />
 
 `Shor(N=15, a=2, quantum_instance=None)`
 
@@ -30,7 +38,9 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 
     ValueError: Invalid input
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.algorithms.Shor.__init__" />
 
 `__init__(N=15, a=2, quantum_instance=None)`
 
@@ -50,23 +60,11 @@ See also [https://arxiv.org/abs/quant-ph/0205095](https://arxiv.org/abs/quant-ph
 
 ## Methods
 
-|                                                                                                                                       |                                                                                |
-| ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.aqua.algorithms.Shor.__init__ "qiskit.aqua.algorithms.Shor.__init__")(\[N, a, quantum\_instance])                | **type N**`int`                                                                |
-| [`construct_circuit`](#qiskit.aqua.algorithms.Shor.construct_circuit "qiskit.aqua.algorithms.Shor.construct_circuit")(\[measurement]) | Construct circuit.                                                             |
-| [`modinv`](#qiskit.aqua.algorithms.Shor.modinv "qiskit.aqua.algorithms.Shor.modinv")(a, m)                                            | Returns the modular multiplicative inverse of a with respect to the modulus m. |
-| [`run`](#qiskit.aqua.algorithms.Shor.run "qiskit.aqua.algorithms.Shor.run")(\[quantum\_instance])                                     | Execute the algorithm with selected backend.                                   |
-| [`set_backend`](#qiskit.aqua.algorithms.Shor.set_backend "qiskit.aqua.algorithms.Shor.set_backend")(backend, \*\*kwargs)              | Sets backend with configuration.                                               |
-
 ## Attributes
 
-|                                                                                                                    |                           |
-| ------------------------------------------------------------------------------------------------------------------ | ------------------------- |
-| [`backend`](#qiskit.aqua.algorithms.Shor.backend "qiskit.aqua.algorithms.Shor.backend")                            | Returns backend.          |
-| [`quantum_instance`](#qiskit.aqua.algorithms.Shor.quantum_instance "qiskit.aqua.algorithms.Shor.quantum_instance") | Returns quantum instance. |
-| [`random`](#qiskit.aqua.algorithms.Shor.random "qiskit.aqua.algorithms.Shor.random")                               | Return a numpy random.    |
+### backend
 
-
+<span id="qiskit.aqua.algorithms.Shor.backend" />
 
 `property backend`
 
@@ -76,7 +74,9 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
+### construct\_circuit
 
+<span id="qiskit.aqua.algorithms.Shor.construct_circuit" />
 
 `construct_circuit(measurement=False)`
 
@@ -94,7 +94,9 @@ Construct circuit.
 
 Quantum circuit.
 
+### modinv
 
+<span id="qiskit.aqua.algorithms.Shor.modinv" />
 
 `static modinv(a, m)`
 
@@ -104,7 +106,9 @@ Returns the modular multiplicative inverse of a with respect to the modulus m.
 
 `int`
 
+### quantum\_instance
 
+<span id="qiskit.aqua.algorithms.Shor.quantum_instance" />
 
 `property quantum_instance`
 
@@ -114,13 +118,17 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
+### random
 
+<span id="qiskit.aqua.algorithms.Shor.random" />
 
 `property random`
 
 Return a numpy random.
 
+### run
 
+<span id="qiskit.aqua.algorithms.Shor.run" />
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -141,9 +149,11 @@ dict
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
+### set\_backend
 
+<span id="qiskit.aqua.algorithms.Shor.set_backend" />
 
 `set_backend(backend, **kwargs)`
 
@@ -152,3 +162,4 @@ Sets backend with configuration.
 **Return type**
 
 `None`
+

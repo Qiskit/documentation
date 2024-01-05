@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.primitives.BackendEstimator
 ---
 
-# BackendEstimator[¶](#backendestimator "Permalink to this headline")
+# BackendEstimator
 
 <span id="qiskit.primitives.BackendEstimator" />
 

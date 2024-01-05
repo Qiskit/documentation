@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.instructions.Delay
 ---
 
-# Delay[¶](#delay "Permalink to this headline")
+# Delay
 
 <span id="qiskit.pulse.instructions.Delay" />
 

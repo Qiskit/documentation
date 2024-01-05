@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.DoWhileController
 ---
 
-# DoWhileController[¶](#dowhilecontroller "Permalink to this headline")
+# DoWhileController
 
 <span id="qiskit.transpiler.DoWhileController" />
 

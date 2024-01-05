@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.linear_solvers.AbsoluteAverage
 ---
 
-# AbsoluteAverage[¶](#absoluteaverage "Permalink to this headline")
+# AbsoluteAverage
 
 <span id="qiskit.algorithms.linear_solvers.AbsoluteAverage" />
 

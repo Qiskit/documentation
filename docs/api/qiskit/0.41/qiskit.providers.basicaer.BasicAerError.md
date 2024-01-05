@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.basicaer.BasicAerError
 ---
 
-# qiskit.providers.basicaer.BasicAerError[¶](#qiskit-providers-basicaer-basicaererror "Permalink to this headline")
+# qiskit.providers.basicaer.BasicAerError
 
 <span id="qiskit.providers.basicaer.BasicAerError" />
 

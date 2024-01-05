@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.delay_qubits
 ---
 
-# qiskit.pulse.builder.delay\_qubits[¶](#qiskit-pulse-builder-delay-qubits "Permalink to this headline")
+# qiskit.pulse.builder.delay\_qubits
 
 <span id="qiskit.pulse.builder.delay_qubits" />
 

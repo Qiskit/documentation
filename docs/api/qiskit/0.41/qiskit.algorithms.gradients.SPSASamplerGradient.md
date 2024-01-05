@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.SPSASamplerGradient
 ---
 
-# SPSASamplerGradient[¶](#spsasamplergradient "Permalink to this headline")
+# SPSASamplerGradient
 
 <span id="qiskit.algorithms.gradients.SPSASamplerGradient" />
 

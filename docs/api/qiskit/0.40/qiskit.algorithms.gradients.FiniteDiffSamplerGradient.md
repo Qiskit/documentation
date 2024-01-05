@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.FiniteDiffSamplerGradient
 ---
 
-# FiniteDiffSamplerGradient[¶](#finitediffsamplergradient "Permalink to this headline")
+# FiniteDiffSamplerGradient
 
 <span id="qiskit.algorithms.gradients.FiniteDiffSamplerGradient" />
 

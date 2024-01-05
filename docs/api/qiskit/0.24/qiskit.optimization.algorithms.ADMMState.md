@@ -1,8 +1,16 @@
+---
+title: ADMMState
+description: API reference for qiskit.optimization.algorithms.ADMMState
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.algorithms.ADMMState
+---
+
 <span id="qiskit-optimization-algorithms-admmstate" />
 
 # qiskit.optimization.algorithms.ADMMState
 
-
+<span id="qiskit.optimization.algorithms.ADMMState" />
 
 `ADMMState(op, rho_initial)`
 
@@ -15,7 +23,9 @@ The state keeps track of various variables are stored that are being updated dur
 *   **op** (`QuadraticProgram`) – The optimization problem being solved.
 *   **rho\_initial** (`float`) – Initial value of the rho parameter.
 
+### \_\_init\_\_
 
+<span id="qiskit.optimization.algorithms.ADMMState.__init__" />
 
 `__init__(op, rho_initial)`
 
@@ -26,6 +36,3 @@ The state keeps track of various variables are stored that are being updated dur
 
 ## Methods
 
-|                                                                                                                                        |                               |
-| -------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| [`__init__`](#qiskit.optimization.algorithms.ADMMState.__init__ "qiskit.optimization.algorithms.ADMMState.__init__")(op, rho\_initial) | **type op**`QuadraticProgram` |

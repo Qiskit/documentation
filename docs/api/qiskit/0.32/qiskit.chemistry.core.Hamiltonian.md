@@ -1,6 +1,14 @@
+---
+title: Hamiltonian
+description: API reference for qiskit.chemistry.core.Hamiltonian
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.core.Hamiltonian
+---
+
 # Hamiltonian
 
-
+<span id="qiskit.chemistry.core.Hamiltonian" />
 
 `Hamiltonian(transformation=<TransformationType.FULL: 'full'>, qubit_mapping=<QubitMappingType.PARITY: 'parity'>, two_qubit_reduction=True, freeze_core=False, orbital_reduction=None, z2symmetry_reduction=None)`
 
@@ -19,43 +27,71 @@ A molecular Hamiltonian operator, representing the energy of the electrons and n
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid symmetry reduction
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid symmetry reduction
 
 ## Methods
 
-|                                                                                                                                                                                                                  |                                                               |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| [`process_algorithm_result`](qiskit.chemistry.core.Hamiltonian.process_algorithm_result#qiskit.chemistry.core.Hamiltonian.process_algorithm_result "qiskit.chemistry.core.Hamiltonian.process_algorithm_result") | Takes the algorithm result and processes it as required, e.g. |
-| [`run`](qiskit.chemistry.core.Hamiltonian.run#qiskit.chemistry.core.Hamiltonian.run "qiskit.chemistry.core.Hamiltonian.run")                                                                                     | run method                                                    |
+### process\_algorithm\_result
+
+<span id="qiskit.chemistry.core.Hamiltonian.process_algorithm_result" />
+
+`Hamiltonian.process_algorithm_result(algo_result)`
+
+Takes the algorithm result and processes it as required, e.g. by combination of any parts that were classically computed, for the final result.
+
+**Parameters**
+
+**algo\_result** (`Union`\[`dict`, `MinimumEigensolverResult`, `EigensolverResult`]) – Result from algorithm
+
+**Return type**
+
+`Union`\[`Tuple`\[`List`\[`str`], `dict`], `MolecularGroundStateResult`, `MolecularExcitedStatesResult`]
+
+**Returns**
+
+Final chemistry result computed from the algorithm result
+
+### run
+
+<span id="qiskit.chemistry.core.Hamiltonian.run" />
+
+`Hamiltonian.run(qmolecule)`
+
+run method
+
+**Return type**
+
+`Tuple`\[`WeightedPauliOperator`, `List`\[`WeightedPauliOperator`]]
 
 ## Attributes
 
-
+<span id="qiskit.chemistry.core.Hamiltonian.INFO_NUM_ORBITALS" />
 
 ### INFO\_NUM\_ORBITALS
 
 `= 'num_orbitals'`
 
-
+<span id="qiskit.chemistry.core.Hamiltonian.INFO_NUM_PARTICLES" />
 
 ### INFO\_NUM\_PARTICLES
 
 `= 'num_particles'`
 
-
+<span id="qiskit.chemistry.core.Hamiltonian.INFO_TWO_QUBIT_REDUCTION" />
 
 ### INFO\_TWO\_QUBIT\_REDUCTION
 
 `= 'two_qubit_reduction'`
 
-
+<span id="qiskit.chemistry.core.Hamiltonian.INFO_Z2SYMMETRIES" />
 
 ### INFO\_Z2SYMMETRIES
 
 `= 'z2symmetries'`
 
-
+<span id="qiskit.chemistry.core.Hamiltonian.molecule_info" />
 
 ### molecule\_info
 
 returns molecule info
+

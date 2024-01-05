@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.XXPlusYYGate
 ---
 
-# XXPlusYYGate[¶](#xxplusyygate "Permalink to this headline")
+# XXPlusYYGate
 
 <span id="qiskit.circuit.library.XXPlusYYGate" />
 

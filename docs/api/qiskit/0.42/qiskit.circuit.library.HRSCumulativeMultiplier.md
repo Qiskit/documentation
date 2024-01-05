@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.HRSCumulativeMultiplier
 ---
 
-# HRSCumulativeMultiplier[¶](#hrscumulativemultiplier "Permalink to this headline")
+# HRSCumulativeMultiplier
 
 <span id="qiskit.circuit.library.HRSCumulativeMultiplier" />
 

@@ -1,3 +1,11 @@
+---
+title: TspData
+description: API reference for qiskit.optimization.applications.ising.tsp.TspData
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.applications.ising.tsp.TspData
+---
+
 <span id="qiskit-optimization-applications-ising-tsp" />
 
 # qiskit.optimization.applications.ising.tsp
@@ -22,31 +30,39 @@ Convert symmetric TSP instances into Pauli list Deal with TSPLIB format. It supp
 | ------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
 | [`TspData`](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")(name, dim, coord, w) | Create new instance of TspData(name, dim, coord, w) |
 
-
+<span id="qiskit.optimization.applications.ising.tsp.TspData" />
 
 `TspData(name, dim, coord, w)`
 
 Create new instance of TspData(name, dim, coord, w)
 
+### coord
 
+<span id="qiskit.optimization.applications.ising.tsp.TspData.coord" />
 
 `property coord`
 
 Alias for field number 2
 
+### count
 
+<span id="qiskit.optimization.applications.ising.tsp.TspData.count" />
 
 `count(value, /)`
 
 Return number of occurrences of value.
 
+### dim
 
+<span id="qiskit.optimization.applications.ising.tsp.TspData.dim" />
 
 `property dim`
 
 Alias for field number 1
 
+### index
 
+<span id="qiskit.optimization.applications.ising.tsp.TspData.index" />
 
 `index(value, start=0, stop=9223372036854775807, /)`
 
@@ -54,25 +70,29 @@ Return first index of value.
 
 Raises ValueError if the value is not present.
 
+### name
 
+<span id="qiskit.optimization.applications.ising.tsp.TspData.name" />
 
 `property name`
 
 Alias for field number 0
 
+### w
 
+<span id="qiskit.optimization.applications.ising.tsp.TspData.w" />
 
 `property w`
 
 Alias for field number 3
 
-
+<span id="qiskit.optimization.applications.ising.tsp.calc_distance" />
 
 `calc_distance(coord, name='tmp')`
 
 calculate distance
 
-
+<span id="qiskit.optimization.applications.ising.tsp.get_operator" />
 
 `get_operator(ins, penalty=100000.0)`
 
@@ -89,9 +109,9 @@ operator for the Hamiltonian and a constant shift for the obj function.
 
 **Return type**
 
-tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
 
-
+<span id="qiskit.optimization.applications.ising.tsp.get_tsp_solution" />
 
 `get_tsp_solution(x)`
 
@@ -115,7 +135,7 @@ list\[int]
 
 Instance data of TSP
 
-
+<span id="qiskit.optimization.applications.ising.tsp.parse_tsplib_format" />
 
 `parse_tsplib_format(filename)`
 
@@ -133,7 +153,7 @@ instance data.
 
 [TspData](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")
 
-
+<span id="qiskit.optimization.applications.ising.tsp.random_tsp" />
 
 `random_tsp(n, low=0, high=100, savefile=None, seed=None, name='tmp')`
 
@@ -156,7 +176,7 @@ instance data.
 
 [TspData](#qiskit.optimization.applications.ising.tsp.TspData "qiskit.optimization.applications.ising.tsp.TspData")
 
-
+<span id="qiskit.optimization.applications.ising.tsp.tsp_feasible" />
 
 `tsp_feasible(x)`
 
@@ -174,7 +194,7 @@ feasible or not.
 
 bool
 
-
+<span id="qiskit.optimization.applications.ising.tsp.tsp_value" />
 
 `tsp_value(z, w)`
 
@@ -192,3 +212,4 @@ value of the cut.
 **Return type**
 
 float
+

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.QAOA
 ---
 
-# QAOA[¶](#qaoa "Permalink to this headline")
+# QAOA
 
 <span id="qiskit.algorithms.QAOA" />
 

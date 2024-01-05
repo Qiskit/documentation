@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.qobj.QobjHeader
 ---
 
-# QobjHeader[¶](#qobjheader "Permalink to this headline")
+# QobjHeader
 
 <span id="qiskit.qobj.QobjHeader" />
 

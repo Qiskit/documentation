@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.XOR
 ---
 
-# XOR[¶](#xor "Permalink to this headline")
+# XOR
 
 <span id="qiskit.circuit.library.XOR" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.minimum_eigensolvers.SamplingVQE
 ---
 
-# SamplingVQE[¶](#samplingvqe "Permalink to this headline")
+# SamplingVQE
 
 <span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQE" />
 

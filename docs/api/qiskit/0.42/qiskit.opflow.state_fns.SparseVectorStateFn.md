@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.state_fns.SparseVectorStateFn
 ---
 
-# SparseVectorStateFn[¶](#sparsevectorstatefn "Permalink to this headline")
+# SparseVectorStateFn
 
 <span id="qiskit.opflow.state_fns.SparseVectorStateFn" />
 

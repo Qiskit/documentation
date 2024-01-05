@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.PadDelay
 ---
 
-# PadDelay[¶](#paddelay "Permalink to this headline")
+# PadDelay
 
 <span id="qiskit.transpiler.passes.PadDelay" />
 

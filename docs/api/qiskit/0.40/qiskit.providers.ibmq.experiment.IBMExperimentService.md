@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.experiment.IBMExperimentService
 ---
 
-# IBMExperimentService[¶](#ibmexperimentservice "Permalink to this headline")
+# IBMExperimentService
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentService" />
 

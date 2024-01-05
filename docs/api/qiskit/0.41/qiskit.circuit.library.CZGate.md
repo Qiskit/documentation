@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.CZGate
 ---
 
-# CZGate[¶](#czgate "Permalink to this headline")
+# CZGate
 
 <span id="qiskit.circuit.library.CZGate" />
 

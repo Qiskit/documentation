@@ -1,6 +1,14 @@
+---
+title: DynamicalDecoupling
+description: API reference for qiskit.transpiler.passes.DynamicalDecoupling
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.DynamicalDecoupling
+---
+
 # qiskit.transpiler.passes.DynamicalDecoupling
 
-
+<span id="qiskit.transpiler.passes.DynamicalDecoupling" />
 
 `DynamicalDecoupling(*args, **kwargs)`
 
@@ -69,13 +77,15 @@ Dynamical decoupling initializer.
 
 **Parameters**
 
-*   **durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations#qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Durations of instructions to be used in scheduling.
-*   **dd\_sequence** (*list\[*[*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – sequence of gates to apply in idle spots.
+*   **durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Durations of instructions to be used in scheduling.
+*   **dd\_sequence** (*list\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – sequence of gates to apply in idle spots.
 *   **qubits** (*list\[int]*) – physical qubits on which to apply DD. If None, all qubits will undergo DD (when possible).
 *   **spacing** (*list\[float]*) – a list of spacings between the DD gates. The available slack will be divided according to this. The list length must be one more than the length of dd\_sequence, and the elements must sum to 1. If None, a balanced spacing will be used \[d/2, d, d, …, d, d, d/2].
 *   **skip\_reset\_qubits** (*bool*) – if True, does not insert DD on idle periods that immediately follow initialized/reset qubits (as qubits in the ground state are less susceptile to decoherence).
 
+### \_\_init\_\_
 
+<span id="qiskit.transpiler.passes.DynamicalDecoupling.__init__" />
 
 `__init__(durations, dd_sequence, qubits=None, spacing=None, skip_reset_qubits=True)`
 
@@ -83,28 +93,19 @@ Dynamical decoupling initializer.
 
 **Parameters**
 
-*   **durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations#qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Durations of instructions to be used in scheduling.
-*   **dd\_sequence** (*list\[*[*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – sequence of gates to apply in idle spots.
+*   **durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – Durations of instructions to be used in scheduling.
+*   **dd\_sequence** (*list\[*[*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")*]*) – sequence of gates to apply in idle spots.
 *   **qubits** (*list\[int]*) – physical qubits on which to apply DD. If None, all qubits will undergo DD (when possible).
 *   **spacing** (*list\[float]*) – a list of spacings between the DD gates. The available slack will be divided according to this. The list length must be one more than the length of dd\_sequence, and the elements must sum to 1. If None, a balanced spacing will be used \[d/2, d, d, …, d, d, d/2].
 *   **skip\_reset\_qubits** (*bool*) – if True, does not insert DD on idle periods that immediately follow initialized/reset qubits (as qubits in the ground state are less susceptile to decoherence).
 
 ## Methods
 
-|                                                                                                                                                                     |                                          |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| [`__init__`](#qiskit.transpiler.passes.DynamicalDecoupling.__init__ "qiskit.transpiler.passes.DynamicalDecoupling.__init__")(durations, dd\_sequence\[, qubits, …]) | Dynamical decoupling initializer.        |
-| [`name`](#qiskit.transpiler.passes.DynamicalDecoupling.name "qiskit.transpiler.passes.DynamicalDecoupling.name")()                                                  | Return the name of the pass.             |
-| [`run`](#qiskit.transpiler.passes.DynamicalDecoupling.run "qiskit.transpiler.passes.DynamicalDecoupling.run")(dag)                                                  | Run the DynamicalDecoupling pass on dag. |
-
 ## Attributes
 
-|                                                                                                                                                                        |                                             |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| [`is_analysis_pass`](#qiskit.transpiler.passes.DynamicalDecoupling.is_analysis_pass "qiskit.transpiler.passes.DynamicalDecoupling.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
-| [`is_transformation_pass`](#qiskit.transpiler.passes.DynamicalDecoupling.is_transformation_pass "qiskit.transpiler.passes.DynamicalDecoupling.is_transformation_pass") | Check if the pass is a transformation pass. |
+### is\_analysis\_pass
 
-
+<span id="qiskit.transpiler.passes.DynamicalDecoupling.is_analysis_pass" />
 
 `property is_analysis_pass`
 
@@ -112,7 +113,9 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
+### is\_transformation\_pass
 
+<span id="qiskit.transpiler.passes.DynamicalDecoupling.is_transformation_pass" />
 
 `property is_transformation_pass`
 
@@ -120,13 +123,17 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
+### name
 
+<span id="qiskit.transpiler.passes.DynamicalDecoupling.name" />
 
 `name()`
 
 Return the name of the pass.
 
+### run
 
+<span id="qiskit.transpiler.passes.DynamicalDecoupling.run" />
 
 `run(dag)`
 
@@ -134,7 +141,7 @@ Run the DynamicalDecoupling pass on dag.
 
 **Parameters**
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – a scheduled DAG.
+**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – a scheduled DAG.
 
 **Returns**
 
@@ -144,8 +151,9 @@ where possible.
 
 **Return type**
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
 **Raises**
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the circuit is not mapped on physical qubits.
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the circuit is not mapped on physical qubits.
+

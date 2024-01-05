@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CollectMultiQBlocks
 ---
 
-# CollectMultiQBlocks[¶](#collectmultiqblocks "Permalink to this headline")
+# CollectMultiQBlocks
 
 <span id="qiskit.transpiler.passes.CollectMultiQBlocks" />
 

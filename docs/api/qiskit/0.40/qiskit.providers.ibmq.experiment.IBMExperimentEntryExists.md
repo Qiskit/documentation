@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.experiment.IBMExperimentEntryExists
 ---
 
-# qiskit.providers.ibmq.experiment.IBMExperimentEntryExists[¶](#qiskit-providers-ibmq-experiment-ibmexperimententryexists "Permalink to this headline")
+# qiskit.providers.ibmq.experiment.IBMExperimentEntryExists
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentEntryExists" />
 

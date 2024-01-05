@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.RemoveBarriers
 ---
 
-# RemoveBarriers[¶](#removebarriers "Permalink to this headline")
+# RemoveBarriers
 
 <span id="qiskit.transpiler.passes.RemoveBarriers" />
 

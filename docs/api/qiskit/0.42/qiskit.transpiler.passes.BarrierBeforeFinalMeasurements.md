@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.BarrierBeforeFinalMeasurements
 ---
 
-# BarrierBeforeFinalMeasurements[¶](#barrierbeforefinalmeasurements "Permalink to this headline")
+# BarrierBeforeFinalMeasurements
 
 <span id="qiskit.transpiler.passes.BarrierBeforeFinalMeasurements" />
 

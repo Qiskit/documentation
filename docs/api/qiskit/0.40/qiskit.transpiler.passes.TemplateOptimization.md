@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.TemplateOptimization
 ---
 
-# TemplateOptimization[¶](#templateoptimization "Permalink to this headline")
+# TemplateOptimization
 
 <span id="qiskit.transpiler.passes.TemplateOptimization" />
 

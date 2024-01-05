@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.SteppableOptimizer
 ---
 
-# SteppableOptimizer[¶](#steppableoptimizer "Permalink to this headline")
+# SteppableOptimizer
 
 <span id="qiskit.algorithms.optimizers.SteppableOptimizer" />
 

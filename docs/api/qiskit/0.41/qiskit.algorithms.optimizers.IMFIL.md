@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.IMFIL
 ---
 
-# IMFIL[¶](#imfil "Permalink to this headline")
+# IMFIL
 
 <span id="qiskit.algorithms.optimizers.IMFIL" />
 

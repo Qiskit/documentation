@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.PauliFeatureMap
 ---
 
-# PauliFeatureMap[¶](#paulifeaturemap "Permalink to this headline")
+# PauliFeatureMap
 
 <span id="qiskit.circuit.library.PauliFeatureMap" />
 

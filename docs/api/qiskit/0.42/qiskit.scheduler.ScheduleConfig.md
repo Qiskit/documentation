@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.scheduler.ScheduleConfig
 ---
 
-# ScheduleConfig[¶](#scheduleconfig "Permalink to this headline")
+# ScheduleConfig
 
 <span id="qiskit.scheduler.ScheduleConfig" />
 

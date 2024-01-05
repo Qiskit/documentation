@@ -1,6 +1,6 @@
 <span id="qiskit-aer" />
 
-# Qiskit Aer API Reference[¶](#qiskit-aer-api-reference "Permalink to this headline")
+# Qiskit Aer API Reference
 
 *   [Aer Provider (`qiskit_aer`)](aer_provider)
 *   [Aer Jobs (`qiskit_aer.jobs`)](aer_jobs)

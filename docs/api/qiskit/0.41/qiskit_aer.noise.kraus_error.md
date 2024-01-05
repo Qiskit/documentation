@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit_aer.noise.kraus_error
 ---
 
-# qiskit\_aer.noise.kraus\_error[¶](#qiskit-aer-noise-kraus-error "Permalink to this headline")
+# qiskit\_aer.noise.kraus\_error
 
 <span id="qiskit_aer.noise.kraus_error" />
 

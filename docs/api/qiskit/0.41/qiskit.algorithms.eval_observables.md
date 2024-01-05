@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.algorithms.eval_observables
 ---
 
-# qiskit.algorithms.eval\_observables[¶](#qiskit-algorithms-eval-observables "Permalink to this headline")
+# qiskit.algorithms.eval\_observables
 
 <span id="qiskit.algorithms.eval_observables" />
 

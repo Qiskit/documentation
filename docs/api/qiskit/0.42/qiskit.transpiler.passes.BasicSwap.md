@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.BasicSwap
 ---
 
-# BasicSwap[¶](#basicswap "Permalink to this headline")
+# BasicSwap
 
 <span id="qiskit.transpiler.passes.BasicSwap" />
 

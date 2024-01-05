@@ -16,17 +16,17 @@ python_api_name: qiskit.aqua.components.eigs
 
 `qiskit.aqua.components.eigs`
 
-These are components designed to find eigenvalues. They were initially designed for use by [`HHL`](qiskit.aqua.algorithms.HHL#qiskit.aqua.algorithms.HHL "qiskit.aqua.algorithms.HHL") which remains their currently principal usage.
+These are components designed to find eigenvalues. They were initially designed for use by [`HHL`](qiskit.aqua.algorithms.HHL "qiskit.aqua.algorithms.HHL") which remains their currently principal usage.
 
 # Eigenvalues Base Class
 
-|                                                                                                                                            |                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------- |
-| [`Eigenvalues`](qiskit.aqua.components.eigs.Eigenvalues#qiskit.aqua.components.eigs.Eigenvalues "qiskit.aqua.components.eigs.Eigenvalues") | Base class for eigenvalue estimation. |
+|                                                                                                    |                                       |
+| -------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| [`Eigenvalues`](qiskit.aqua.components.eigs.Eigenvalues "qiskit.aqua.components.eigs.Eigenvalues") | Base class for eigenvalue estimation. |
 
 # Eigenvalues
 
-|                                                                                                                            |                                             |
-| -------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| [`EigsQPE`](qiskit.aqua.components.eigs.EigsQPE#qiskit.aqua.components.eigs.EigsQPE "qiskit.aqua.components.eigs.EigsQPE") | Eigenvalues using Quantum Phase Estimation. |
+|                                                                                        |                                             |
+| -------------------------------------------------------------------------------------- | ------------------------------------------- |
+| [`EigsQPE`](qiskit.aqua.components.eigs.EigsQPE "qiskit.aqua.components.eigs.EigsQPE") | Eigenvalues using Quantum Phase Estimation. |
 

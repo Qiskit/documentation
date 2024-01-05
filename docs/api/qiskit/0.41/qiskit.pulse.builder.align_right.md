@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.align_right
 ---
 
-# qiskit.pulse.builder.align\_right[¶](#qiskit-pulse-builder-align-right "Permalink to this headline")
+# qiskit.pulse.builder.align\_right
 
 <span id="qiskit.pulse.builder.align_right" />
 

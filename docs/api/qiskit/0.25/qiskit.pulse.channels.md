@@ -1,3 +1,11 @@
+---
+title: AcquireChannel
+description: API reference for qiskit.pulse.channels.AcquireChannel
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.channels.AcquireChannel
+---
+
 <span id="qiskit-pulse-channels" />
 
 # qiskit.pulse.channels
@@ -24,7 +32,7 @@ Novel channel types can often utilize the `ControlChannel`, but if this is not s
 | [`RegisterSlot`](#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")(index)                       | Classical resister slot channels represent classical registers (low-latency classical memory). |
 | [`SnapshotChannel`](#qiskit.pulse.channels.SnapshotChannel "qiskit.pulse.channels.SnapshotChannel")(\*args, \*\*kwargs) | Snapshot channels are used to specify instructions for simulators.                             |
 
-
+<span id="qiskit.pulse.channels.AcquireChannel" />
 
 `AcquireChannel(index)`
 
@@ -36,7 +44,9 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
+### assign
 
+<span id="qiskit.pulse.channels.AcquireChannel.assign" />
 
 `assign(parameter, value)`
 
@@ -57,9 +67,11 @@ A new channel with updated parameters.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
+### index
 
+<span id="qiskit.pulse.channels.AcquireChannel.index" />
 
 `property index`
 
@@ -69,7 +81,9 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
+### is\_parameterized
 
+<span id="qiskit.pulse.channels.AcquireChannel.is_parameterized" />
 
 `is_parameterized()`
 
@@ -79,7 +93,9 @@ Return True iff the channel is parameterized.
 
 `bool`
 
+### name
 
+<span id="qiskit.pulse.channels.AcquireChannel.name" />
 
 `property name`
 
@@ -89,7 +105,9 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
+### parameters
 
+<span id="qiskit.pulse.channels.AcquireChannel.parameters" />
 
 `property parameters`
 
@@ -99,7 +117,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-
+<span id="qiskit.pulse.channels.Channel" />
 
 `Channel(index)`
 
@@ -115,7 +133,9 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
+### assign
 
+<span id="qiskit.pulse.channels.Channel.assign" />
 
 `assign(parameter, value)`
 
@@ -136,9 +156,11 @@ A new channel with updated parameters.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
+### index
 
+<span id="qiskit.pulse.channels.Channel.index" />
 
 `property index`
 
@@ -148,7 +170,9 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
+### is\_parameterized
 
+<span id="qiskit.pulse.channels.Channel.is_parameterized" />
 
 `is_parameterized()`
 
@@ -158,7 +182,9 @@ Return True iff the channel is parameterized.
 
 `bool`
 
+### name
 
+<span id="qiskit.pulse.channels.Channel.name" />
 
 `property name`
 
@@ -168,7 +194,9 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
+### parameters
 
+<span id="qiskit.pulse.channels.Channel.parameters" />
 
 `property parameters`
 
@@ -178,7 +206,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-
+<span id="qiskit.pulse.channels.Channel.prefix" />
 
 ### prefix
 
@@ -186,7 +214,7 @@ Parameters which determine the channel index.
 
 A shorthand string prefix for characterizing the channel type.
 
-
+<span id="qiskit.pulse.channels.ControlChannel" />
 
 `ControlChannel(index)`
 
@@ -198,7 +226,9 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
+### assign
 
+<span id="qiskit.pulse.channels.ControlChannel.assign" />
 
 `assign(parameter, value)`
 
@@ -219,9 +249,11 @@ A new channel with updated parameters.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
+### index
 
+<span id="qiskit.pulse.channels.ControlChannel.index" />
 
 `property index`
 
@@ -231,7 +263,9 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
+### is\_parameterized
 
+<span id="qiskit.pulse.channels.ControlChannel.is_parameterized" />
 
 `is_parameterized()`
 
@@ -241,7 +275,9 @@ Return True iff the channel is parameterized.
 
 `bool`
 
+### name
 
+<span id="qiskit.pulse.channels.ControlChannel.name" />
 
 `property name`
 
@@ -251,7 +287,9 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
+### parameters
 
+<span id="qiskit.pulse.channels.ControlChannel.parameters" />
 
 `property parameters`
 
@@ -261,7 +299,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-
+<span id="qiskit.pulse.channels.DriveChannel" />
 
 `DriveChannel(index)`
 
@@ -273,7 +311,9 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
+### assign
 
+<span id="qiskit.pulse.channels.DriveChannel.assign" />
 
 `assign(parameter, value)`
 
@@ -294,9 +334,11 @@ A new channel with updated parameters.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
+### index
 
+<span id="qiskit.pulse.channels.DriveChannel.index" />
 
 `property index`
 
@@ -306,7 +348,9 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
+### is\_parameterized
 
+<span id="qiskit.pulse.channels.DriveChannel.is_parameterized" />
 
 `is_parameterized()`
 
@@ -316,7 +360,9 @@ Return True iff the channel is parameterized.
 
 `bool`
 
+### name
 
+<span id="qiskit.pulse.channels.DriveChannel.name" />
 
 `property name`
 
@@ -326,7 +372,9 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
+### parameters
 
+<span id="qiskit.pulse.channels.DriveChannel.parameters" />
 
 `property parameters`
 
@@ -336,7 +384,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-
+<span id="qiskit.pulse.channels.MeasureChannel" />
 
 `MeasureChannel(index)`
 
@@ -348,7 +396,9 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
+### assign
 
+<span id="qiskit.pulse.channels.MeasureChannel.assign" />
 
 `assign(parameter, value)`
 
@@ -369,9 +419,11 @@ A new channel with updated parameters.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
+### index
 
+<span id="qiskit.pulse.channels.MeasureChannel.index" />
 
 `property index`
 
@@ -381,7 +433,9 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
+### is\_parameterized
 
+<span id="qiskit.pulse.channels.MeasureChannel.is_parameterized" />
 
 `is_parameterized()`
 
@@ -391,7 +445,9 @@ Return True iff the channel is parameterized.
 
 `bool`
 
+### name
 
+<span id="qiskit.pulse.channels.MeasureChannel.name" />
 
 `property name`
 
@@ -401,7 +457,9 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
+### parameters
 
+<span id="qiskit.pulse.channels.MeasureChannel.parameters" />
 
 `property parameters`
 
@@ -411,7 +469,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-
+<span id="qiskit.pulse.channels.MemorySlot" />
 
 `MemorySlot(index)`
 
@@ -423,7 +481,9 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
+### assign
 
+<span id="qiskit.pulse.channels.MemorySlot.assign" />
 
 `assign(parameter, value)`
 
@@ -444,9 +504,11 @@ A new channel with updated parameters.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
+### index
 
+<span id="qiskit.pulse.channels.MemorySlot.index" />
 
 `property index`
 
@@ -456,7 +518,9 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
+### is\_parameterized
 
+<span id="qiskit.pulse.channels.MemorySlot.is_parameterized" />
 
 `is_parameterized()`
 
@@ -466,7 +530,9 @@ Return True iff the channel is parameterized.
 
 `bool`
 
+### name
 
+<span id="qiskit.pulse.channels.MemorySlot.name" />
 
 `property name`
 
@@ -476,7 +542,9 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
+### parameters
 
+<span id="qiskit.pulse.channels.MemorySlot.parameters" />
 
 `property parameters`
 
@@ -486,7 +554,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-
+<span id="qiskit.pulse.channels.PulseChannel" />
 
 `PulseChannel(index)`
 
@@ -498,7 +566,9 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
+### assign
 
+<span id="qiskit.pulse.channels.PulseChannel.assign" />
 
 `assign(parameter, value)`
 
@@ -519,9 +589,11 @@ A new channel with updated parameters.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
+### index
 
+<span id="qiskit.pulse.channels.PulseChannel.index" />
 
 `property index`
 
@@ -531,7 +603,9 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
+### is\_parameterized
 
+<span id="qiskit.pulse.channels.PulseChannel.is_parameterized" />
 
 `is_parameterized()`
 
@@ -541,7 +615,9 @@ Return True iff the channel is parameterized.
 
 `bool`
 
+### name
 
+<span id="qiskit.pulse.channels.PulseChannel.name" />
 
 `property name`
 
@@ -551,7 +627,9 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
+### parameters
 
+<span id="qiskit.pulse.channels.PulseChannel.parameters" />
 
 `property parameters`
 
@@ -561,7 +639,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-
+<span id="qiskit.pulse.channels.RegisterSlot" />
 
 `RegisterSlot(index)`
 
@@ -573,7 +651,9 @@ Channel class.
 
 **index** (`int`) – Index of channel.
 
+### assign
 
+<span id="qiskit.pulse.channels.RegisterSlot.assign" />
 
 `assign(parameter, value)`
 
@@ -594,9 +674,11 @@ A new channel with updated parameters.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
+### index
 
+<span id="qiskit.pulse.channels.RegisterSlot.index" />
 
 `property index`
 
@@ -606,7 +688,9 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
+### is\_parameterized
 
+<span id="qiskit.pulse.channels.RegisterSlot.is_parameterized" />
 
 `is_parameterized()`
 
@@ -616,7 +700,9 @@ Return True iff the channel is parameterized.
 
 `bool`
 
+### name
 
+<span id="qiskit.pulse.channels.RegisterSlot.name" />
 
 `property name`
 
@@ -626,7 +712,9 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
+### parameters
 
+<span id="qiskit.pulse.channels.RegisterSlot.parameters" />
 
 `property parameters`
 
@@ -636,7 +724,7 @@ Parameters which determine the channel index.
 
 `Set`
 
-
+<span id="qiskit.pulse.channels.SnapshotChannel" />
 
 `SnapshotChannel(*args, **kwargs)`
 
@@ -644,7 +732,9 @@ Snapshot channels are used to specify instructions for simulators.
 
 Create new snapshot channel.
 
+### assign
 
+<span id="qiskit.pulse.channels.SnapshotChannel.assign" />
 
 `assign(parameter, value)`
 
@@ -665,9 +755,11 @@ A new channel with updated parameters.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
 
+### index
 
+<span id="qiskit.pulse.channels.SnapshotChannel.index" />
 
 `property index`
 
@@ -677,7 +769,9 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
+### is\_parameterized
 
+<span id="qiskit.pulse.channels.SnapshotChannel.is_parameterized" />
 
 `is_parameterized()`
 
@@ -687,7 +781,9 @@ Return True iff the channel is parameterized.
 
 `bool`
 
+### name
 
+<span id="qiskit.pulse.channels.SnapshotChannel.name" />
 
 `property name`
 
@@ -697,7 +793,9 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
+### parameters
 
+<span id="qiskit.pulse.channels.SnapshotChannel.parameters" />
 
 `property parameters`
 
@@ -706,3 +804,4 @@ Parameters which determine the channel index.
 **Return type**
 
 `Set`
+

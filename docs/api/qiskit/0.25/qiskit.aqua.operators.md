@@ -38,9 +38,9 @@ Below, you’ll find a base class for all Operators, some convenience immutable 
 
 The OperatorBase serves as the base class for all Operators, State functions and measurements, and enforces the presence and consistency of methods to manipulate these objects conveniently.
 
-|                                                                                                                              |                                                                       |
-| ---------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [`OperatorBase`](qiskit.aqua.operators.OperatorBase#qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase") | A base class for all Operators: PrimitiveOps, StateFns, ListOps, etc. |
+|                                                                                           |                                                                       |
+| ----------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
+| [`OperatorBase`](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase") | A base class for all Operators: PrimitiveOps, StateFns, ListOps, etc. |
 
 # Operator Globals
 
@@ -73,7 +73,7 @@ The Operators submodules include the PrimitiveOp, ListOp, and StateFn class grou
 
 ## Converters
 
-The Converter submodules include objects which manipulate Operators, usually recursing over an Operator structure and changing certain Operators’ representation. For example, the [`PauliExpectation`](qiskit.aqua.operators.expectations.PauliExpectation#qiskit.aqua.operators.expectations.PauliExpectation "qiskit.aqua.operators.expectations.PauliExpectation") traverses an Operator structure, and replaces all of the [`OperatorStateFn`](qiskit.aqua.operators.state_fns.OperatorStateFn#qiskit.aqua.operators.state_fns.OperatorStateFn "qiskit.aqua.operators.state_fns.OperatorStateFn") measurements containing non-diagonal Pauli terms into diagonalizing circuits following by [`OperatorStateFn`](qiskit.aqua.operators.state_fns.OperatorStateFn#qiskit.aqua.operators.state_fns.OperatorStateFn "qiskit.aqua.operators.state_fns.OperatorStateFn") measurement containing only diagonal Paulis.
+The Converter submodules include objects which manipulate Operators, usually recursing over an Operator structure and changing certain Operators’ representation. For example, the [`PauliExpectation`](qiskit.aqua.operators.expectations.PauliExpectation "qiskit.aqua.operators.expectations.PauliExpectation") traverses an Operator structure, and replaces all of the [`OperatorStateFn`](qiskit.aqua.operators.state_fns.OperatorStateFn "qiskit.aqua.operators.state_fns.OperatorStateFn") measurements containing non-diagonal Pauli terms into diagonalizing circuits following by [`OperatorStateFn`](qiskit.aqua.operators.state_fns.OperatorStateFn "qiskit.aqua.operators.state_fns.OperatorStateFn") measurement containing only diagonal Paulis.
 
 |                                                                                                                                     |                                                                                                                                                                          |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |

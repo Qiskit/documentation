@@ -1,6 +1,14 @@
+---
+title: L_BFGS_B
+description: API reference for qiskit.algorithms.optimizers.L_BFGS_B
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.optimizers.L_BFGS_B
+---
+
 # qiskit.algorithms.optimizers.L\_BFGS\_B
 
-
+<span id="qiskit.algorithms.optimizers.L_BFGS_B" />
 
 `L_BFGS_B(maxfun=1000, maxiter=15000, factr=10, iprint=- 1, epsilon=1e-08)`
 
@@ -22,7 +30,9 @@ Uses scipy.optimize.fmin\_l\_bfgs\_b. For further detail, please refer to [https
 *   **iprint** (`int`) – Controls the frequency of output. iprint \< 0 means no output; iprint = 0 print only one line at the last iteration; 0 \< iprint \< 99 print also f and |proj g| every iprint iterations; iprint = 99 print details of every iteration except n-vectors; iprint = 100 print also the changes of active set and final x; iprint > 100 print details of every iteration including x and g.
 *   **epsilon** (`float`) – Step size used when approx\_grad is True, for numerically calculating the gradient
 
+### \_\_init\_\_
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.__init__" />
 
 `__init__(maxfun=1000, maxiter=15000, factr=10, iprint=- 1, epsilon=1e-08)`
 
@@ -36,48 +46,27 @@ Uses scipy.optimize.fmin\_l\_bfgs\_b. For further detail, please refer to [https
 
 ## Methods
 
-|                                                                                                                                                                        |                                                                                                           |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.optimizers.L_BFGS_B.__init__ "qiskit.algorithms.optimizers.L_BFGS_B.__init__")(\[maxfun, maxiter, factr, iprint, …])                   | **type maxfun**`int`                                                                                      |
-| [`get_support_level`](#qiskit.algorithms.optimizers.L_BFGS_B.get_support_level "qiskit.algorithms.optimizers.L_BFGS_B.get_support_level")()                            | Return support level dictionary                                                                           |
-| [`gradient_num_diff`](#qiskit.algorithms.optimizers.L_BFGS_B.gradient_num_diff "qiskit.algorithms.optimizers.L_BFGS_B.gradient_num_diff")(x\_center, f, epsilon\[, …]) | We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center. |
-| [`optimize`](#qiskit.algorithms.optimizers.L_BFGS_B.optimize "qiskit.algorithms.optimizers.L_BFGS_B.optimize")(num\_vars, objective\_function\[, …])                   | Perform optimization.                                                                                     |
-| [`print_options`](#qiskit.algorithms.optimizers.L_BFGS_B.print_options "qiskit.algorithms.optimizers.L_BFGS_B.print_options")()                                        | Print algorithm-specific options.                                                                         |
-| [`set_max_evals_grouped`](#qiskit.algorithms.optimizers.L_BFGS_B.set_max_evals_grouped "qiskit.algorithms.optimizers.L_BFGS_B.set_max_evals_grouped")(limit)           | Set max evals grouped                                                                                     |
-| [`set_options`](#qiskit.algorithms.optimizers.L_BFGS_B.set_options "qiskit.algorithms.optimizers.L_BFGS_B.set_options")(\*\*kwargs)                                    | Sets or updates values in the options dictionary.                                                         |
-| [`wrap_function`](#qiskit.algorithms.optimizers.L_BFGS_B.wrap_function "qiskit.algorithms.optimizers.L_BFGS_B.wrap_function")(function, args)                          | Wrap the function to implicitly inject the args at the call of the function.                              |
-
 ## Attributes
 
-|                                                                                                                                                                         |                                     |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| [`bounds_support_level`](#qiskit.algorithms.optimizers.L_BFGS_B.bounds_support_level "qiskit.algorithms.optimizers.L_BFGS_B.bounds_support_level")                      | Returns bounds support level        |
-| [`gradient_support_level`](#qiskit.algorithms.optimizers.L_BFGS_B.gradient_support_level "qiskit.algorithms.optimizers.L_BFGS_B.gradient_support_level")                | Returns gradient support level      |
-| [`initial_point_support_level`](#qiskit.algorithms.optimizers.L_BFGS_B.initial_point_support_level "qiskit.algorithms.optimizers.L_BFGS_B.initial_point_support_level") | Returns initial point support level |
-| [`is_bounds_ignored`](#qiskit.algorithms.optimizers.L_BFGS_B.is_bounds_ignored "qiskit.algorithms.optimizers.L_BFGS_B.is_bounds_ignored")                               | Returns is bounds ignored           |
-| [`is_bounds_required`](#qiskit.algorithms.optimizers.L_BFGS_B.is_bounds_required "qiskit.algorithms.optimizers.L_BFGS_B.is_bounds_required")                            | Returns is bounds required          |
-| [`is_bounds_supported`](#qiskit.algorithms.optimizers.L_BFGS_B.is_bounds_supported "qiskit.algorithms.optimizers.L_BFGS_B.is_bounds_supported")                         | Returns is bounds supported         |
-| [`is_gradient_ignored`](#qiskit.algorithms.optimizers.L_BFGS_B.is_gradient_ignored "qiskit.algorithms.optimizers.L_BFGS_B.is_gradient_ignored")                         | Returns is gradient ignored         |
-| [`is_gradient_required`](#qiskit.algorithms.optimizers.L_BFGS_B.is_gradient_required "qiskit.algorithms.optimizers.L_BFGS_B.is_gradient_required")                      | Returns is gradient required        |
-| [`is_gradient_supported`](#qiskit.algorithms.optimizers.L_BFGS_B.is_gradient_supported "qiskit.algorithms.optimizers.L_BFGS_B.is_gradient_supported")                   | Returns is gradient supported       |
-| [`is_initial_point_ignored`](#qiskit.algorithms.optimizers.L_BFGS_B.is_initial_point_ignored "qiskit.algorithms.optimizers.L_BFGS_B.is_initial_point_ignored")          | Returns is initial point ignored    |
-| [`is_initial_point_required`](#qiskit.algorithms.optimizers.L_BFGS_B.is_initial_point_required "qiskit.algorithms.optimizers.L_BFGS_B.is_initial_point_required")       | Returns is initial point required   |
-| [`is_initial_point_supported`](#qiskit.algorithms.optimizers.L_BFGS_B.is_initial_point_supported "qiskit.algorithms.optimizers.L_BFGS_B.is_initial_point_supported")    | Returns is initial point supported  |
-| [`setting`](#qiskit.algorithms.optimizers.L_BFGS_B.setting "qiskit.algorithms.optimizers.L_BFGS_B.setting")                                                             | Return setting                      |
+### bounds\_support\_level
 
-
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.bounds_support_level" />
 
 `property bounds_support_level`
 
 Returns bounds support level
 
+### get\_support\_level
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.get_support_level" />
 
 `get_support_level()`
 
 Return support level dictionary
 
+### gradient\_num\_diff
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.gradient_num_diff" />
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -98,73 +87,97 @@ the gradient computed
 
 grad
 
+### gradient\_support\_level
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.gradient_support_level" />
 
 `property gradient_support_level`
 
 Returns gradient support level
 
+### initial\_point\_support\_level
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.initial_point_support_level" />
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
+### is\_bounds\_ignored
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.is_bounds_ignored" />
 
 `property is_bounds_ignored`
 
 Returns is bounds ignored
 
+### is\_bounds\_required
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.is_bounds_required" />
 
 `property is_bounds_required`
 
 Returns is bounds required
 
+### is\_bounds\_supported
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.is_bounds_supported" />
 
 `property is_bounds_supported`
 
 Returns is bounds supported
 
+### is\_gradient\_ignored
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.is_gradient_ignored" />
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
+### is\_gradient\_required
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.is_gradient_required" />
 
 `property is_gradient_required`
 
 Returns is gradient required
 
+### is\_gradient\_supported
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.is_gradient_supported" />
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
+### is\_initial\_point\_ignored
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.is_initial_point_ignored" />
 
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
 
+### is\_initial\_point\_required
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.is_initial_point_required" />
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
+### is\_initial\_point\_supported
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.is_initial_point_supported" />
 
 `property is_initial_point_supported`
 
 Returns is initial point supported
 
+### optimize
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.optimize" />
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -188,19 +201,25 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
+### print\_options
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.print_options" />
 
 `print_options()`
 
 Print algorithm-specific options.
 
+### set\_max\_evals\_grouped
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.set_max_evals_grouped" />
 
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
 
+### set\_options
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.set_options" />
 
 `set_options(**kwargs)`
 
@@ -212,13 +231,17 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
+### setting
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.setting" />
 
 `property setting`
 
 Return setting
 
+### wrap\_function
 
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.wrap_function" />
 
 `static wrap_function(function, args)`
 
@@ -236,3 +259,4 @@ wrapper
 **Return type**
 
 function\_wrapper
+

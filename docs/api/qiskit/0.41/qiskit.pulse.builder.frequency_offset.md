@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.frequency_offset
 ---
 
-# qiskit.pulse.builder.frequency\_offset[¶](#qiskit-pulse-builder-frequency-offset "Permalink to this headline")
+# qiskit.pulse.builder.frequency\_offset
 
 <span id="qiskit.pulse.builder.frequency_offset" />
 

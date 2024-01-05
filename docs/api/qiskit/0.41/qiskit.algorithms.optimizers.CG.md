@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.CG
 ---
 
-# CG[¶](#cg "Permalink to this headline")
+# CG
 
 <span id="qiskit.algorithms.optimizers.CG" />
 

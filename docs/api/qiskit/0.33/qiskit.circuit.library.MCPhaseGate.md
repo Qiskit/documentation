@@ -1,6 +1,14 @@
+---
+title: MCPhaseGate
+description: API reference for qiskit.circuit.library.MCPhaseGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.MCPhaseGate
+---
+
 # MCPhaseGate
 
-
+<span id="qiskit.circuit.library.MCPhaseGate" />
 
 `MCPhaseGate(lam, num_ctrl_qubits, label=None)`
 
@@ -31,14 +39,39 @@ Create new MCPhase gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                                 |                                                                       |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [`control`](qiskit.circuit.library.MCPhaseGate.control#qiskit.circuit.library.MCPhaseGate.control "qiskit.circuit.library.MCPhaseGate.control") | Controlled version of this gate.                                      |
-| [`inverse`](qiskit.circuit.library.MCPhaseGate.inverse#qiskit.circuit.library.MCPhaseGate.inverse "qiskit.circuit.library.MCPhaseGate.inverse") | Return inverted MCU1 gate ($MCU1(\lambda){\dagger} = MCU1(-\lambda)$) |
+### control
+
+<span id="qiskit.circuit.library.MCPhaseGate.control" />
+
+`MCPhaseGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+
+Controlled version of this gate.
+
+**Parameters**
+
+*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+*   **label** (*str or None*) – An optional label for the gate \[Default: None]
+*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+
+**Returns**
+
+controlled version of this gate.
+
+**Return type**
+
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+
+### inverse
+
+<span id="qiskit.circuit.library.MCPhaseGate.inverse" />
+
+`MCPhaseGate.inverse()`
+
+Return inverted MCU1 gate ($MCU1(\lambda){\dagger} = MCU1(-\lambda)$)
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.MCPhaseGate.condition_bits" />
 
 ### condition\_bits
 
@@ -48,7 +81,7 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.MCPhaseGate.ctrl_state" />
 
 ### ctrl\_state
 
@@ -58,13 +91,13 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
-
+<span id="qiskit.circuit.library.MCPhaseGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-
+<span id="qiskit.circuit.library.MCPhaseGate.definition" />
 
 ### definition
 
@@ -74,13 +107,13 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
-
+<span id="qiskit.circuit.library.MCPhaseGate.duration" />
 
 ### duration
 
 Get the duration.
 
-
+<span id="qiskit.circuit.library.MCPhaseGate.label" />
 
 ### label
 
@@ -90,7 +123,7 @@ Return instruction label
 
 `str`
 
-
+<span id="qiskit.circuit.library.MCPhaseGate.name" />
 
 ### name
 
@@ -104,7 +137,7 @@ where \<original\_name> is the gate name for the default case of closed control 
 
 `str`
 
-
+<span id="qiskit.circuit.library.MCPhaseGate.num_ctrl_qubits" />
 
 ### num\_ctrl\_qubits
 
@@ -118,7 +151,7 @@ The number of control qubits for the gate.
 
 int
 
-
+<span id="qiskit.circuit.library.MCPhaseGate.params" />
 
 ### params
 
@@ -136,8 +169,9 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
-
+<span id="qiskit.circuit.library.MCPhaseGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

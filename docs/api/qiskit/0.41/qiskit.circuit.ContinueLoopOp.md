@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.ContinueLoopOp
 ---
 
-# ContinueLoopOp[¶](#continueloopop "Permalink to this headline")
+# ContinueLoopOp
 
 <span id="qiskit.circuit.ContinueLoopOp" />
 

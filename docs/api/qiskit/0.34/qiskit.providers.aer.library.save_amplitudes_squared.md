@@ -1,6 +1,14 @@
+---
+title: save_amplitudes_squared
+description: API reference for qiskit.providers.aer.library.save_amplitudes_squared
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.library.save_amplitudes_squared
+---
+
 # qiskit.providers.aer.library.save\_amplitudes\_squared
 
-
+<span id="qiskit.providers.aer.library.save_amplitudes_squared" />
 
 `save_amplitudes_squared(self, params, label='amplitudes_squared', unnormalized=False, pershot=False, conditional=False)`
 
@@ -20,8 +28,9 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **ExtensionError** – if params is invalid for the specified number of qubits.
+

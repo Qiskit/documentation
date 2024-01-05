@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.assembler.RunConfig
 ---
 
-# RunConfig[¶](#runconfig "Permalink to this headline")
+# RunConfig
 
 <span id="qiskit.assembler.RunConfig" />
 

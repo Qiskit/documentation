@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.providers.QiskitBackendNotFoundError
 ---
 
-# qiskit.providers.QiskitBackendNotFoundError[¶](#qiskit-providers-qiskitbackendnotfounderror "Permalink to this headline")
+# qiskit.providers.QiskitBackendNotFoundError
 
 <span id="qiskit.providers.QiskitBackendNotFoundError" />
 

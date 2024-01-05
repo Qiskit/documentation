@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.plot_state_hinton
 ---
 
-# qiskit.visualization.plot\_state\_hinton[¶](#qiskit-visualization-plot-state-hinton "Permalink to this headline")
+# qiskit.visualization.plot\_state\_hinton
 
 <span id="qiskit.visualization.plot_state_hinton" />
 

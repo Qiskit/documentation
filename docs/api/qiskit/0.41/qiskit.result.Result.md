@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.result.Result
 ---
 
-# Result[¶](#result "Permalink to this headline")
+# Result
 
 <span id="qiskit.result.Result" />
 

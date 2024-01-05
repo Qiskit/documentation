@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.linear_solvers.MatrixFunctional
 ---
 
-# MatrixFunctional[¶](#matrixfunctional "Permalink to this headline")
+# MatrixFunctional
 
 <span id="qiskit.algorithms.linear_solvers.MatrixFunctional" />
 

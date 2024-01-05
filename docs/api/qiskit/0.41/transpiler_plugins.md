@@ -14,7 +14,7 @@ python_api_name: qiskit.transpiler.preset_passmanagers.plugin
 
 <span id="module-qiskit.transpiler.preset_passmanagers.plugin" />
 
-`qiskit.transpiler.preset_passmanagers.plugin¶`
+`qiskit.transpiler.preset_passmanagers.plugin`
 
 This module defines the plugin interface for providing custom stage implementations for the preset pass managers and the [`transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") function. This enables external Python packages to provide [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") objects that can be used for each named stage.
 
@@ -25,10 +25,6 @@ For details on how to instead write plugins for transpiler synthesis methods, se
 <span id="stage-table" />
 
 ## Plugin Stages
-
-<span id="module-qiskit.transpiler.preset_passmanagers.plugin" />
-
-`¶`
 
 Currently, there are 6 stages in the preset pass managers, all of which actively load external plugins via corresponding entry points.
 
@@ -42,10 +38,6 @@ Currently, there are 6 stages in the preset pass managers, all of which actively
 | `scheduling`   | `qiskit.transpiler.scheduling`   | `alap`, `asap`                                      | This is the last stage run and it is expected to output a scheduled circuit such that all idle periods in the circuit are marked by explicit [`Delay`](qiskit.circuit.Delay "qiskit.circuit.Delay") instructions.                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                  |
 
 ## Writing Plugins
-
-<span id="module-qiskit.transpiler.preset_passmanagers.plugin" />
-
-`¶`
 
 To write a pass manager stage plugin there are 2 main steps. The first step is to create a subclass of the abstract plugin class [`PassManagerStagePlugin`](qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePlugin "qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePlugin") which is used to define how the [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") for the stage will be constructed. For example, to create a `layout` stage plugin that just runs [`VF2Layout`](qiskit.transpiler.passes.VF2Layout "qiskit.transpiler.passes.VF2Layout") (with increasing amount of trials, depending on the optimization level) and falls back to using [`TrivialLayout`](qiskit.transpiler.passes.TrivialLayout "qiskit.transpiler.passes.TrivialLayout") if `VF2Layout` is unable to find a perfect layout:
 
@@ -97,10 +89,6 @@ entry_points = {
 Note that the entry point `name = path` is a single string not a Python expression. There isn’t a limit to the number of plugins a single package can include as long as each plugin has a unique name. So a single package can expose multiple plugins if necessary. Refer to [Plugin Stages](#stage-table) for a list of reserved names for each stage.
 
 ## Plugin API
-
-<span id="module-qiskit.transpiler.preset_passmanagers.plugin" />
-
-`¶`
 
 |                                                                                                                                                                                              |                                                                                                                                                            |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------- |

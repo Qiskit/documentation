@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.ReverseEstimatorGradient
 ---
 
-# ReverseEstimatorGradient[¶](#reverseestimatorgradient "Permalink to this headline")
+# ReverseEstimatorGradient
 
 <span id="qiskit.algorithms.gradients.ReverseEstimatorGradient" />
 

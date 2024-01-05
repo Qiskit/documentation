@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit_aer.library.SetStatevector
 ---
 
-# SetStatevector[¶](#setstatevector "Permalink to this headline")
+# SetStatevector
 
 <span id="qiskit_aer.library.SetStatevector" />
 

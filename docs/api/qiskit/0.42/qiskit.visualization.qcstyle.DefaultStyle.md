@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.visualization.qcstyle.DefaultStyle
 ---
 
-# DefaultStyle[¶](#defaultstyle "Permalink to this headline")
+# DefaultStyle
 
 <span id="qiskit.visualization.qcstyle.DefaultStyle" />
 

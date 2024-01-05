@@ -14,25 +14,17 @@ python_api_name: qiskit_aer.utils
 
 <span id="module-qiskit_aer.utils" />
 
-`qiskit_aer.utils¶`
+`qiskit_aer.utils`
 
 This module contains utility functions for modifying [`NoiseModel`](qiskit_aer.noise.NoiseModel "qiskit_aer.noise.NoiseModel") objects and `QuantumCircuits` using noise models.
 
 ## Classes
-
-<span id="module-qiskit_aer.utils" />
-
-`¶`
 
 |                                                                                               |                                                                                        |
 | --------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------- |
 | [`NoiseTransformer`](qiskit_aer.utils.NoiseTransformer "qiskit_aer.utils.NoiseTransformer")() | \[Deprecated] Transforms one quantum channel to another based on a specified criteria. |
 
 ## Functions
-
-<span id="module-qiskit_aer.utils" />
-
-`¶`
 
 |                                                                                                                                           |                                                                                                           |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |

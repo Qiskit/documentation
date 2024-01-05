@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.library.ParametricPulse
 ---
 
-# ParametricPulse[¶](#parametricpulse "Permalink to this headline")
+# ParametricPulse
 
 <span id="qiskit.pulse.library.ParametricPulse" />
 

@@ -1,8 +1,16 @@
+---
+title: twoQ_clifford_error
+description: API reference for qiskit.ignis.verification.twoQ_clifford_error
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.twoQ_clifford_error
+---
+
 <span id="qiskit-ignis-verification-twoq-clifford-error" />
 
 # qiskit.ignis.verification.twoQ\_clifford\_error
 
-
+<span id="qiskit.ignis.verification.twoQ_clifford_error" />
 
 `twoQ_clifford_error(ngates, gate_qubit, gate_err)`
 
@@ -29,3 +37,4 @@ float
 **Raises**
 
 **QiskitError** – when number of qubit contained in `ngates` is not 2.
+

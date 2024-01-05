@@ -1,6 +1,14 @@
+---
+title: OrbitalOptimizationVQE
+description: API reference for qiskit.chemistry.algorithms.OrbitalOptimizationVQE
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.OrbitalOptimizationVQE
+---
+
 # qiskit.chemistry.algorithms.OrbitalOptimizationVQE
 
-
+<span id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE" />
 
 `OrbitalOptimizationVQE(transformation, solver, initial_point=None, orbital_rotation=None, bounds=None, iterative_oo=True, iterative_oo_iterations=2)`
 
@@ -18,9 +26,11 @@ A ground state calculation employing the OOVQE algorithm. The Variational Quantu
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the number of orbital optimization iterations is less or equal to zero.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the number of orbital optimization iterations is less or equal to zero.
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.__init__" />
 
 `__init__(transformation, solver, initial_point=None, orbital_rotation=None, bounds=None, iterative_oo=True, iterative_oo_iterations=2)`
 
@@ -36,25 +46,15 @@ A ground state calculation employing the OOVQE algorithm. The Variational Quantu
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the number of orbital optimization iterations is less or equal to zero.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the number of orbital optimization iterations is less or equal to zero.
 
 ## Methods
 
-|                                                                                                                                                                                          |                                                                               |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.algorithms.OrbitalOptimizationVQE.__init__ "qiskit.chemistry.algorithms.OrbitalOptimizationVQE.__init__")(transformation, solver\[, …])                   | **type transformation**`FermionicTransformation`                              |
-| [`evaluate_operators`](#qiskit.chemistry.algorithms.OrbitalOptimizationVQE.evaluate_operators "qiskit.chemistry.algorithms.OrbitalOptimizationVQE.evaluate_operators")(state, operators) | Evaluates additional operators at the given state.                            |
-| [`returns_groundstate`](#qiskit.chemistry.algorithms.OrbitalOptimizationVQE.returns_groundstate "qiskit.chemistry.algorithms.OrbitalOptimizationVQE.returns_groundstate")()              | Whether the eigensolver returns the ground state or only ground state energy. |
-| [`solve`](#qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solve "qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solve")(driver\[, aux\_operators])                               | Compute Ground State properties.                                              |
-
 ## Attributes
 
-|                                                                                                                                                            |                                                                               |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`solver`](#qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solver "qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solver")                         | Returns the minimum eigensolver or factory.                                   |
-| [`transformation`](#qiskit.chemistry.algorithms.OrbitalOptimizationVQE.transformation "qiskit.chemistry.algorithms.OrbitalOptimizationVQE.transformation") | Returns the transformation used to obtain a qubit operator from the molecule. |
+### evaluate\_operators
 
-
+<span id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.evaluate_operators" />
 
 `evaluate_operators(state, operators)`
 
@@ -73,7 +73,9 @@ Evaluates additional operators at the given state.
 
 The expectation value of the given operator(s). The return type will be identical to the format of the provided operators.
 
+### returns\_groundstate
 
+<span id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.returns_groundstate" />
 
 `returns_groundstate()`
 
@@ -83,7 +85,9 @@ Whether the eigensolver returns the ground state or only ground state energy.
 
 `bool`
 
+### solve
 
+<span id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solve" />
 
 `solve(driver, aux_operators=None)`
 
@@ -106,7 +110,9 @@ Compute Ground State properties.
 
 An eigenstate result. Depending on the transformation this can be an electronic structure or bosonic result.
 
+### solver
 
+<span id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solver" />
 
 `property solver`
 
@@ -116,7 +122,9 @@ Returns the minimum eigensolver or factory.
 
 `Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
 
+### transformation
 
+<span id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.transformation" />
 
 `property transformation`
 
@@ -125,3 +133,4 @@ Returns the transformation used to obtain a qubit operator from the molecule.
 **Return type**
 
 `Transformation`
+

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.transpiler.preset_passmanagers.common.generate_scheduling
 ---
 
-# qiskit.transpiler.preset\_passmanagers.common.generate\_scheduling[¶](#qiskit-transpiler-preset-passmanagers-common-generate-scheduling "Permalink to this headline")
+# qiskit.transpiler.preset\_passmanagers.common.generate\_scheduling
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_scheduling" />
 

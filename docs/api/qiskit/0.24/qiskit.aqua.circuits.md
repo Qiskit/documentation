@@ -28,12 +28,12 @@ Collection of circuits and gates that may be used to build quantum algorithms an
 
 # Circuits
 
-|                                                                                                                                                                   |                                                                        |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`CNF`](qiskit.aqua.circuits.CNF#qiskit.aqua.circuits.CNF "qiskit.aqua.circuits.CNF")                                                                             | Class for constructing circuits for Conjunctive Normal Forms           |
-| [`DNF`](qiskit.aqua.circuits.DNF#qiskit.aqua.circuits.DNF "qiskit.aqua.circuits.DNF")                                                                             | Class for constructing circuits for Disjunctive Normal Forms           |
-| [`ESOP`](qiskit.aqua.circuits.ESOP#qiskit.aqua.circuits.ESOP "qiskit.aqua.circuits.ESOP")                                                                         | Class for constructing circuits for Exclusive Sum of Products          |
-| [`PhaseEstimationCircuit`](qiskit.aqua.circuits.PhaseEstimationCircuit#qiskit.aqua.circuits.PhaseEstimationCircuit "qiskit.aqua.circuits.PhaseEstimationCircuit") | Quantum Phase Estimation Circuit.                                      |
-| [`StateVectorCircuit`](qiskit.aqua.circuits.StateVectorCircuit#qiskit.aqua.circuits.StateVectorCircuit "qiskit.aqua.circuits.StateVectorCircuit")                 | Arbitrary State-Vector Circuit.                                        |
-| [`WeightedSumOperator`](qiskit.aqua.circuits.WeightedSumOperator#qiskit.aqua.circuits.WeightedSumOperator "qiskit.aqua.circuits.WeightedSumOperator")             | Adds q^T \* w to separate register for non-negative integer weights w. |
+|                                                                                                                       |                                                                        |
+| --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| [`CNF`](qiskit.aqua.circuits.CNF "qiskit.aqua.circuits.CNF")                                                          | Class for constructing circuits for Conjunctive Normal Forms           |
+| [`DNF`](qiskit.aqua.circuits.DNF "qiskit.aqua.circuits.DNF")                                                          | Class for constructing circuits for Disjunctive Normal Forms           |
+| [`ESOP`](qiskit.aqua.circuits.ESOP "qiskit.aqua.circuits.ESOP")                                                       | Class for constructing circuits for Exclusive Sum of Products          |
+| [`PhaseEstimationCircuit`](qiskit.aqua.circuits.PhaseEstimationCircuit "qiskit.aqua.circuits.PhaseEstimationCircuit") | Quantum Phase Estimation Circuit.                                      |
+| [`StateVectorCircuit`](qiskit.aqua.circuits.StateVectorCircuit "qiskit.aqua.circuits.StateVectorCircuit")             | Arbitrary State-Vector Circuit.                                        |
+| [`WeightedSumOperator`](qiskit.aqua.circuits.WeightedSumOperator "qiskit.aqua.circuits.WeightedSumOperator")          | Adds q^T \* w to separate register for non-negative integer weights w. |
 

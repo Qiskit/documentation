@@ -2,7 +2,7 @@
   The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
 </Admonition>
 
-# Qiskit IBM Quantum Provider API Reference[¶](#qiskit-ibm-quantum-provider-api-reference "Permalink to this headline")
+# Qiskit IBM Quantum Provider API Reference
 
 *   [IBM Quantum Provider (`qiskit.providers.ibmq`)](ibmq_provider)
 *   [Job (`qiskit.providers.ibmq.job`)](ibmq_job)

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.AnalysisPass
 ---
 
-# AnalysisPass[¶](#analysispass "Permalink to this headline")
+# AnalysisPass
 
 <span id="qiskit.transpiler.AnalysisPass" />
 

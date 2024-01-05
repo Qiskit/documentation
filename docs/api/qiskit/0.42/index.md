@@ -10,10 +10,6 @@ python_api_name: qiskit
 
 # Qiskit Terra API Reference
 
-<span id="module-qiskit" />
-
-`¶`
-
 *   [Quantum Circuits (`qiskit.circuit`)](circuit)
 *   [Circuit Library (`qiskit.circuit.library`)](circuit_library)
 *   [Compilation Routines (`qiskit.compiler`)](compiler)

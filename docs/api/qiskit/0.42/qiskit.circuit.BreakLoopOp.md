@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.BreakLoopOp
 ---
 
-# BreakLoopOp[¶](#breakloopop "Permalink to this headline")
+# BreakLoopOp
 
 <span id="qiskit.circuit.BreakLoopOp" />
 

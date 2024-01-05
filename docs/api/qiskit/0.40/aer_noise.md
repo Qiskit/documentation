@@ -14,19 +14,15 @@ python_api_name: qiskit_aer.noise
 
 <span id="module-qiskit_aer.noise" />
 
-`qiskit_aer.noise¶`
+`qiskit_aer.noise`
 
 This module contains classes and functions to build a noise model for simulating a Qiskit quantum circuit in the presence of errors.
 
 ## Building Noise Models
 
-<span id="module-qiskit_aer.noise" />
-
-`¶`
-
 The [`NoiseModel`](qiskit_aer.noise.NoiseModel "qiskit_aer.noise.NoiseModel") class is used to represent noise model for the [`QasmSimulator`](qiskit_aer.QasmSimulator "qiskit_aer.QasmSimulator"). It can be used to construct custom noise models for simulator, to to automatically generate a basic device noise model for an IBMQ backend.
 
-### Device Noise Models[¶](#device-noise-models "Permalink to this headline")
+### Device Noise Models
 
 A simplified approximate [`NoiseModel`](qiskit_aer.noise.NoiseModel "qiskit_aer.noise.NoiseModel") can be generated automatically from the properties of real device backends from the IBMQ provider using the [`NoiseModel.from_backend()`](qiskit_aer.noise.NoiseModel#from_backend "qiskit_aer.noise.NoiseModel.from_backend") method. See the method documentation for details.
 
@@ -65,7 +61,7 @@ counts = result.get_counts(0)
 plot_histogram(counts)
 ```
 
-### Custom Noise Models[¶](#custom-noise-models "Permalink to this headline")
+### Custom Noise Models
 
 Custom noise models can be used by adding [`QuantumError`](qiskit_aer.noise.QuantumError "qiskit_aer.noise.QuantumError") to circuit gate, reset or measure instructions, and [`ReadoutError`](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError") to measure instructions. This module includes several helper functions for generating [`QuantumError`](qiskit_aer.noise.QuantumError "qiskit_aer.noise.QuantumError") instances based on canonical error models used in Quantum Information Theory that can simplify building noise models. See the documentation for the [`NoiseModel`](qiskit_aer.noise.NoiseModel "qiskit_aer.noise.NoiseModel") class for additional details.
 
@@ -109,10 +105,6 @@ plot_histogram(counts)
 
 ## Classes
 
-<span id="module-qiskit_aer.noise" />
-
-`¶`
-
 The following are the classes used to represented noise and error terms.
 
 |                                                                                                                         |                                                 |
@@ -122,10 +114,6 @@ The following are the classes used to represented noise and error terms.
 | [`ReadoutError`](qiskit_aer.noise.ReadoutError "qiskit_aer.noise.ReadoutError")(probabilities\[, atol])                 | Readout error class for Qiskit Aer noise model. |
 
 ## Quantum Error Functions
-
-<span id="module-qiskit_aer.noise" />
-
-`¶`
 
 The following functions can be used to generate many common types of [`QuantumError`](qiskit_aer.noise.QuantumError "qiskit_aer.noise.QuantumError") objects for inclusion in a [`NoiseModel`](qiskit_aer.noise.NoiseModel "qiskit_aer.noise.NoiseModel").
 
@@ -144,10 +132,6 @@ The following functions can be used to generate many common types of [`QuantumEr
 
 ## Noise Transpiler Passes
 
-<span id="module-qiskit_aer.noise" />
-
-`¶`
-
 These transpiler passes can be used to build noise models that can be applied to circuits via transpilation.
 
 |                                                                                                                            |                                                                     |
@@ -156,10 +140,6 @@ These transpiler passes can be used to build noise models that can be applied to
 | [`RelaxationNoisePass`](qiskit_aer.noise.RelaxationNoisePass "qiskit_aer.noise.RelaxationNoisePass")(t1s, t2s\[, dt, ...]) | Add duration dependent thermal relaxation noise after instructions. |
 
 ## Device Noise Parameters
-
-<span id="module-qiskit_aer.noise" />
-
-`¶`
 
 The following are utility functions which can be used for extracting error parameters and error objects from device BackendProperties.
 

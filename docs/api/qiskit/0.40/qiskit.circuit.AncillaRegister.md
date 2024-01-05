@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.AncillaRegister
 ---
 
-# AncillaRegister[¶](#ancillaregister "Permalink to this headline")
+# AncillaRegister
 
 <span id="qiskit.circuit.AncillaRegister" />
 

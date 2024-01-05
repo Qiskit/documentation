@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.ImaginaryTimeEvolver
 ---
 
-# ImaginaryTimeEvolver[¶](#imaginarytimeevolver "Permalink to this headline")
+# ImaginaryTimeEvolver
 
 <span id="qiskit.algorithms.ImaginaryTimeEvolver" />
 

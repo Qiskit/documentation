@@ -1,14 +1,24 @@
+---
+title: MatrixEvolution
+description: API reference for qiskit.aqua.operators.evolutions.MatrixEvolution
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.evolutions.MatrixEvolution
+---
+
 <span id="qiskit-aqua-operators-evolutions-matrixevolution" />
 
 # qiskit.aqua.operators.evolutions.MatrixEvolution
 
-
+<span id="qiskit.aqua.operators.evolutions.MatrixEvolution" />
 
 `MatrixEvolution`
 
 Performs Evolution by classical matrix exponentiation, constructing a circuit with `UnitaryGates` or `HamiltonianGates` containing the exponentiation of the Operator.
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.operators.evolutions.MatrixEvolution.__init__" />
 
 `__init__()`
 
@@ -16,12 +26,9 @@ Initialize self. See help(type(self)) for accurate signature.
 
 ## Methods
 
-|                                                                                                                                             |                                                                                                                                                                                                            |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.operators.evolutions.MatrixEvolution.__init__ "qiskit.aqua.operators.evolutions.MatrixEvolution.__init__")()      | Initialize self.                                                                                                                                                                                           |
-| [`convert`](#qiskit.aqua.operators.evolutions.MatrixEvolution.convert "qiskit.aqua.operators.evolutions.MatrixEvolution.convert")(operator) | Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing `UnitaryGates` or `HamiltonianGates` (if self.coeff is a `ParameterExpression`) equalling the exponentiation of -i \* operator. |
+### convert
 
-
+<span id="qiskit.aqua.operators.evolutions.MatrixEvolution.convert" />
 
 `convert(operator)`
 
@@ -38,3 +45,4 @@ Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing `Unit
 **Returns**
 
 The converted operator.
+

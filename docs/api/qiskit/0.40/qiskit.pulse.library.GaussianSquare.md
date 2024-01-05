@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.library.GaussianSquare
 ---
 
-# GaussianSquare[¶](#gaussiansquare "Permalink to this headline")
+# GaussianSquare
 
 <span id="qiskit.pulse.library.GaussianSquare" />
 

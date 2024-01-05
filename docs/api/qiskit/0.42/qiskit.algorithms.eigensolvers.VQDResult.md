@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.eigensolvers.VQDResult
 ---
 
-# VQDResult[¶](#vqdresult "Permalink to this headline")
+# VQDResult
 
 <span id="qiskit.algorithms.eigensolvers.VQDResult" />
 

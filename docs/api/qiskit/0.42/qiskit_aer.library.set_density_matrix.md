@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit_aer.library.set_density_matrix
 ---
 
-# qiskit\_aer.library.set\_density\_matrix[¶](#qiskit-aer-library-set-density-matrix "Permalink to this headline")
+# qiskit\_aer.library.set\_density\_matrix
 
 <span id="qiskit_aer.library.set_density_matrix" />
 

@@ -1,8 +1,16 @@
+---
+title: FermionicDriver
+description: API reference for qiskit.chemistry.drivers.FermionicDriver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.drivers.FermionicDriver
+---
+
 <span id="qiskit-chemistry-drivers-fermionicdriver" />
 
 # qiskit.chemistry.drivers.FermionicDriver
 
-
+<span id="qiskit.chemistry.drivers.FermionicDriver" />
 
 `FermionicDriver(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)`
 
@@ -17,9 +25,11 @@ Base class for Qiskit’s chemistry fermionic drivers.
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Molecule passed but driver doesn’t support it.
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Molecule passed but driver doesn’t support it.
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.drivers.FermionicDriver.__init__" />
 
 `abstract __init__(molecule=None, basis='sto3g', hf_method='rhf', supports_molecule=False)`
 
@@ -32,25 +42,15 @@ Base class for Qiskit’s chemistry fermionic drivers.
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Molecule passed but driver doesn’t support it.
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Molecule passed but driver doesn’t support it.
 
 ## Methods
 
-|                                                                                                                                                         |                                            |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| [`__init__`](#qiskit.chemistry.drivers.FermionicDriver.__init__ "qiskit.chemistry.drivers.FermionicDriver.__init__")(\[molecule, basis, hf\_method, …]) | **type molecule**`Optional`\[`Molecule`]   |
-| [`run`](#qiskit.chemistry.drivers.FermionicDriver.run "qiskit.chemistry.drivers.FermionicDriver.run")()                                                 | Runs driver to produce a QMolecule output. |
-
 ## Attributes
 
-|                                                                                                                                                 |                                                 |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [`basis`](#qiskit.chemistry.drivers.FermionicDriver.basis "qiskit.chemistry.drivers.FermionicDriver.basis")                                     | return basis                                    |
-| [`hf_method`](#qiskit.chemistry.drivers.FermionicDriver.hf_method "qiskit.chemistry.drivers.FermionicDriver.hf_method")                         | return Hartree-Fock method                      |
-| [`molecule`](#qiskit.chemistry.drivers.FermionicDriver.molecule "qiskit.chemistry.drivers.FermionicDriver.molecule")                            | return molecule                                 |
-| [`supports_molecule`](#qiskit.chemistry.drivers.FermionicDriver.supports_molecule "qiskit.chemistry.drivers.FermionicDriver.supports_molecule") | True for derived classes that support Molecule. |
+### basis
 
-
+<span id="qiskit.chemistry.drivers.FermionicDriver.basis" />
 
 `property basis`
 
@@ -60,7 +60,9 @@ return basis
 
 `str`
 
+### hf\_method
 
+<span id="qiskit.chemistry.drivers.FermionicDriver.hf_method" />
 
 `property hf_method`
 
@@ -70,7 +72,9 @@ return Hartree-Fock method
 
 `str`
 
+### molecule
 
+<span id="qiskit.chemistry.drivers.FermionicDriver.molecule" />
 
 `property molecule`
 
@@ -80,7 +84,9 @@ return molecule
 
 `Optional`\[`Molecule`]
 
+### run
 
+<span id="qiskit.chemistry.drivers.FermionicDriver.run" />
 
 `abstract run()`
 
@@ -94,7 +100,9 @@ Runs driver to produce a QMolecule output.
 
 A QMolecule containing the molecular data.
 
+### supports\_molecule
 
+<span id="qiskit.chemistry.drivers.FermionicDriver.supports_molecule" />
 
 `property supports_molecule`
 
@@ -107,3 +115,4 @@ True for derived classes that support Molecule.
 **Returns**
 
 True if Molecule is supported.
+

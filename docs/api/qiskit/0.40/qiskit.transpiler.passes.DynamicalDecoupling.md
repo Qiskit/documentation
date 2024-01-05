@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.DynamicalDecoupling
 ---
 
-# DynamicalDecoupling[¶](#dynamicaldecoupling "Permalink to this headline")
+# DynamicalDecoupling
 
 <span id="qiskit.transpiler.passes.DynamicalDecoupling" />
 

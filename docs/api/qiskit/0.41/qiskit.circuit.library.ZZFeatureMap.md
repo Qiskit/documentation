@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.ZZFeatureMap
 ---
 
-# ZZFeatureMap[¶](#zzfeaturemap "Permalink to this headline")
+# ZZFeatureMap
 
 <span id="qiskit.circuit.library.ZZFeatureMap" />
 

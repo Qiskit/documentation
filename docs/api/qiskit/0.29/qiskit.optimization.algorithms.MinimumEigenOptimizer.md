@@ -1,6 +1,14 @@
+---
+title: MinimumEigenOptimizer
+description: API reference for qiskit.optimization.algorithms.MinimumEigenOptimizer
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.algorithms.MinimumEigenOptimizer
+---
+
 # MinimumEigenOptimizer
 
-
+<span id="qiskit.optimization.algorithms.MinimumEigenOptimizer" />
 
 `MinimumEigenOptimizer(min_eigen_solver, penalty=None, converters=None)`
 
@@ -32,24 +40,86 @@ This initializer takes the minimum eigen solver to be used to approximate the gr
 
 *   **min\_eigen\_solver** (`MinimumEigensolver`) – The eigen solver to find the ground state of the Hamiltonian.
 *   **penalty** (`Optional`\[`float`]) – The penalty factor to be used, or `None` for applying a default logic.
-*   **converters** (`Union`\[`QuadraticProgramConverter`, `List`\[`QuadraticProgramConverter`], `None`]) – The converters to use for converting a problem into a different form. By default, when None is specified, an internally created instance of [`QuadraticProgramToQubo`](qiskit.optimization.converters.QuadraticProgramToQubo#qiskit.optimization.converters.QuadraticProgramToQubo "qiskit.optimization.converters.QuadraticProgramToQubo") will be used.
+*   **converters** (`Union`\[`QuadraticProgramConverter`, `List`\[`QuadraticProgramConverter`], `None`]) – The converters to use for converting a problem into a different form. By default, when None is specified, an internally created instance of [`QuadraticProgramToQubo`](qiskit.optimization.converters.QuadraticProgramToQubo "qiskit.optimization.converters.QuadraticProgramToQubo") will be used.
 
 **Raises**
 
 *   **TypeError** – When one of converters has an invalid type.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – When the minimum eigensolver does not return an eigenstate.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – When the minimum eigensolver does not return an eigenstate.
 
 ## Methods
 
-|                                                                                                                                                                                                                                                               |                                                                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| [`get_compatibility_msg`](qiskit.optimization.algorithms.MinimumEigenOptimizer.get_compatibility_msg#qiskit.optimization.algorithms.MinimumEigenOptimizer.get_compatibility_msg "qiskit.optimization.algorithms.MinimumEigenOptimizer.get_compatibility_msg") | Checks whether a given problem can be solved with this optimizer.                         |
-| [`is_compatible`](qiskit.optimization.algorithms.MinimumEigenOptimizer.is_compatible#qiskit.optimization.algorithms.MinimumEigenOptimizer.is_compatible "qiskit.optimization.algorithms.MinimumEigenOptimizer.is_compatible")                                 | Checks whether a given problem can be solved with the optimizer implementing this method. |
-| [`solve`](qiskit.optimization.algorithms.MinimumEigenOptimizer.solve#qiskit.optimization.algorithms.MinimumEigenOptimizer.solve "qiskit.optimization.algorithms.MinimumEigenOptimizer.solve")                                                                 | Tries to solves the given problem using the optimizer.                                    |
+### get\_compatibility\_msg
+
+<span id="qiskit.optimization.algorithms.MinimumEigenOptimizer.get_compatibility_msg" />
+
+`MinimumEigenOptimizer.get_compatibility_msg(problem)`
+
+Checks whether a given problem can be solved with this optimizer.
+
+Checks whether the given problem is compatible, i.e., whether the problem can be converted to a QUBO, and otherwise, returns a message explaining the incompatibility.
+
+**Parameters**
+
+**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+
+**Return type**
+
+`str`
+
+**Returns**
+
+A message describing the incompatibility.
+
+### is\_compatible
+
+<span id="qiskit.optimization.algorithms.MinimumEigenOptimizer.is_compatible" />
+
+`MinimumEigenOptimizer.is_compatible(problem)`
+
+Checks whether a given problem can be solved with the optimizer implementing this method.
+
+**Parameters**
+
+**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+
+**Return type**
+
+`bool`
+
+**Returns**
+
+Returns True if the problem is compatible, False otherwise.
+
+### solve
+
+<span id="qiskit.optimization.algorithms.MinimumEigenOptimizer.solve" />
+
+`MinimumEigenOptimizer.solve(problem)`
+
+Tries to solves the given problem using the optimizer.
+
+Runs the optimizer to try to solve the optimization problem.
+
+**Parameters**
+
+**problem** (`QuadraticProgram`) – The problem to be solved.
+
+**Return type**
+
+`MinimumEigenOptimizationResult`
+
+**Returns**
+
+The result of the optimizer applied to the problem.
+
+**Raises**
+
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If problem not compatible.
 
 ## Attributes
 
-
+<span id="qiskit.optimization.algorithms.MinimumEigenOptimizer.min_eigen_solver" />
 
 ### min\_eigen\_solver
 
@@ -58,3 +128,4 @@ Returns the minimum eigensolver.
 **Return type**
 
 `MinimumEigensolver`
+

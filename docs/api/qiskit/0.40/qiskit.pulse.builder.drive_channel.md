@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.drive_channel
 ---
 
-# qiskit.pulse.builder.drive\_channel[¶](#qiskit-pulse-builder-drive-channel "Permalink to this headline")
+# qiskit.pulse.builder.drive\_channel
 
 <span id="qiskit.pulse.builder.drive_channel" />
 

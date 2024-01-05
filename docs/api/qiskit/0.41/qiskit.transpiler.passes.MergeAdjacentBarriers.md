@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.MergeAdjacentBarriers
 ---
 
-# MergeAdjacentBarriers[¶](#mergeadjacentbarriers "Permalink to this headline")
+# MergeAdjacentBarriers
 
 <span id="qiskit.transpiler.passes.MergeAdjacentBarriers" />
 

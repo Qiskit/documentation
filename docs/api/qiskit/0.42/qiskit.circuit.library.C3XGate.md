@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.C3XGate
 ---
 
-# C3XGate[¶](#c3xgate "Permalink to this headline")
+# C3XGate
 
 <span id="qiskit.circuit.library.C3XGate" />
 

@@ -1,6 +1,14 @@
+---
+title: WikipediaDataProvider
+description: API reference for qiskit.finance.data_providers.WikipediaDataProvider
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.finance.data_providers.WikipediaDataProvider
+---
+
 # qiskit.finance.data\_providers.WikipediaDataProvider
 
-
+<span id="qiskit.finance.data_providers.WikipediaDataProvider" />
 
 `WikipediaDataProvider(token=None, tickers=None, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0))`
 
@@ -14,7 +22,9 @@ Initializer :type token: `Optional`\[`str`] :param token: quandl access token, w
 >
 > MissingOptionalLibraryError: Quandl not installed
 
+### \_\_init\_\_
 
+<span id="qiskit.finance.data_providers.WikipediaDataProvider.__init__" />
 
 `__init__(token=None, tickers=None, start=datetime.datetime(2016, 1, 1, 0, 0), end=datetime.datetime(2016, 1, 30, 0, 0))`
 
@@ -26,18 +36,9 @@ Initializer :type token: `Optional`\[`str`] :param token: quandl access token, w
 
 ## Methods
 
-|                                                                                                                                                                                                                               |                                                                                                                                                                                                                                                                                                  |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.finance.data_providers.WikipediaDataProvider.__init__ "qiskit.finance.data_providers.WikipediaDataProvider.__init__")(\[token, tickers, start, end])                                                     | Initializer :type token: `Optional`\[`str`] :param token: quandl access token, which is not needed, strictly speaking :type tickers: `Union`\[`str`, `List`\[`str`], `None`] :param tickers: tickers :type start: `datetime` :param start: start time :type end: `datetime` :param end: end time |
-| [`get_coordinates`](#qiskit.finance.data_providers.WikipediaDataProvider.get_coordinates "qiskit.finance.data_providers.WikipediaDataProvider.get_coordinates")()                                                             | Returns random coordinates for visualisation purposes.                                                                                                                                                                                                                                           |
-| [`get_covariance_matrix`](#qiskit.finance.data_providers.WikipediaDataProvider.get_covariance_matrix "qiskit.finance.data_providers.WikipediaDataProvider.get_covariance_matrix")()                                           | Returns the covariance matrix.                                                                                                                                                                                                                                                                   |
-| [`get_mean_vector`](#qiskit.finance.data_providers.WikipediaDataProvider.get_mean_vector "qiskit.finance.data_providers.WikipediaDataProvider.get_mean_vector")()                                                             | Returns a vector containing the mean value of each asset.                                                                                                                                                                                                                                        |
-| [`get_period_return_covariance_matrix`](#qiskit.finance.data_providers.WikipediaDataProvider.get_period_return_covariance_matrix "qiskit.finance.data_providers.WikipediaDataProvider.get_period_return_covariance_matrix")() | Returns a vector containing the mean value of each asset.                                                                                                                                                                                                                                        |
-| [`get_period_return_mean_vector`](#qiskit.finance.data_providers.WikipediaDataProvider.get_period_return_mean_vector "qiskit.finance.data_providers.WikipediaDataProvider.get_period_return_mean_vector")()                   | Returns a vector containing the mean value of each asset.                                                                                                                                                                                                                                        |
-| [`get_similarity_matrix`](#qiskit.finance.data_providers.WikipediaDataProvider.get_similarity_matrix "qiskit.finance.data_providers.WikipediaDataProvider.get_similarity_matrix")()                                           | Returns time-series similarity matrix computed using dynamic time warping.                                                                                                                                                                                                                       |
-| [`run`](#qiskit.finance.data_providers.WikipediaDataProvider.run "qiskit.finance.data_providers.WikipediaDataProvider.run")()                                                                                                 | Loads data, thus enabling get\_similarity\_matrix and get\_covariance\_matrix methods in the base class.                                                                                                                                                                                         |
+### get\_coordinates
 
-
+<span id="qiskit.finance.data_providers.WikipediaDataProvider.get_coordinates" />
 
 `get_coordinates()`
 
@@ -47,7 +48,9 @@ Returns random coordinates for visualisation purposes.
 
 `Tuple`\[`ndarray`, `ndarray`]
 
+### get\_covariance\_matrix
 
+<span id="qiskit.finance.data_providers.WikipediaDataProvider.get_covariance_matrix" />
 
 `get_covariance_matrix()`
 
@@ -63,9 +66,11 @@ an asset-to-asset covariance matrix.
 
 **Raises**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
+### get\_mean\_vector
 
+<span id="qiskit.finance.data_providers.WikipediaDataProvider.get_mean_vector" />
 
 `get_mean_vector()`
 
@@ -81,9 +86,11 @@ a per-asset mean vector.
 
 **Raises**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
+### get\_period\_return\_covariance\_matrix
 
+<span id="qiskit.finance.data_providers.WikipediaDataProvider.get_period_return_covariance_matrix" />
 
 `get_period_return_covariance_matrix()`
 
@@ -99,9 +106,11 @@ a per-asset mean vector.
 
 **Raises**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
+### get\_period\_return\_mean\_vector
 
+<span id="qiskit.finance.data_providers.WikipediaDataProvider.get_period_return_mean_vector" />
 
 `get_period_return_mean_vector()`
 
@@ -117,9 +126,11 @@ a per-asset mean vector.
 
 **Raises**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
+### get\_similarity\_matrix
 
+<span id="qiskit.finance.data_providers.WikipediaDataProvider.get_similarity_matrix" />
 
 `get_similarity_matrix()`
 
@@ -135,9 +146,11 @@ an asset-to-asset similarity matrix.
 
 **Raises**
 
-[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
+[**QiskitFinanceError**](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") – no data loaded
 
+### run
 
+<span id="qiskit.finance.data_providers.WikipediaDataProvider.run" />
 
 `run()`
 
@@ -146,3 +159,4 @@ Loads data, thus enabling get\_similarity\_matrix and get\_covariance\_matrix me
 **Return type**
 
 `None`
+

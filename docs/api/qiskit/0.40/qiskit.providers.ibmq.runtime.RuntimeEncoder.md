@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.runtime.RuntimeEncoder
 ---
 
-# RuntimeEncoder[¶](#runtimeencoder "Permalink to this headline")
+# RuntimeEncoder
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeEncoder" />
 

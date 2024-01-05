@@ -1,6 +1,14 @@
+---
+title: double_commutator
+description: API reference for qiskit.opflow.double_commutator
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.opflow.double_commutator
+---
+
 # qiskit.opflow\.double\_commutator
 
-
+<span id="qiskit.opflow.double_commutator" />
 
 `double_commutator(op_a, op_b, op_c, sign=False)`
 
@@ -33,4 +41,5 @@ the double commutator
 
 **Return type**
 
-[OperatorBase](qiskit.aqua.operators.OperatorBase#qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase")
+[OperatorBase](qiskit.aqua.operators.OperatorBase "qiskit.aqua.operators.OperatorBase")
+

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.models.GateConfig
 ---
 
-# GateConfig[¶](#gateconfig "Permalink to this headline")
+# GateConfig
 
 <span id="qiskit.providers.models.GateConfig" />
 

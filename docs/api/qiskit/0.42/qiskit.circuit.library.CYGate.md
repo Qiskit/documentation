@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.CYGate
 ---
 
-# CYGate[¶](#cygate "Permalink to this headline")
+# CYGate
 
 <span id="qiskit.circuit.library.CYGate" />
 

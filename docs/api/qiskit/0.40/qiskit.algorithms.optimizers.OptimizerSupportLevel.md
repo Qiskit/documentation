@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.OptimizerSupportLevel
 ---
 
-# OptimizerSupportLevel[¶](#optimizersupportlevel "Permalink to this headline")
+# OptimizerSupportLevel
 
 <span id="qiskit.algorithms.optimizers.OptimizerSupportLevel" />
 

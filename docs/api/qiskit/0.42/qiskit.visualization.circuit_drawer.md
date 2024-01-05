@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.circuit_drawer
 ---
 
-# qiskit.visualization.circuit\_drawer[¶](#qiskit-visualization-circuit-drawer "Permalink to this headline")
+# qiskit.visualization.circuit\_drawer
 
 <span id="qiskit.visualization.circuit_drawer" />
 

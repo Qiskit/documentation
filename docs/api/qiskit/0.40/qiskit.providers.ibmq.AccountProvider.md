@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.AccountProvider
 ---
 
-# AccountProvider[¶](#accountprovider "Permalink to this headline")
+# AccountProvider
 
 <span id="qiskit.providers.ibmq.AccountProvider" />
 

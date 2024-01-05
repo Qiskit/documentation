@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.dagcircuit.BlockCollector
 ---
 
-# BlockCollector[¶](#blockcollector "Permalink to this headline")
+# BlockCollector
 
 <span id="qiskit.dagcircuit.BlockCollector" />
 

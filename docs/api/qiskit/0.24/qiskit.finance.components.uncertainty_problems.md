@@ -18,13 +18,13 @@ python_api_name: qiskit.finance.components.uncertainty_problems
 
 `qiskit.finance.components.uncertainty_problems`
 
-These are finance specific Aqua Uncertainty Problems where they inherit from Aqua [`UncertaintyProblem`](qiskit.aqua.components.uncertainty_problems.UncertaintyProblem#qiskit.aqua.components.uncertainty_problems.UncertaintyProblem "qiskit.aqua.components.uncertainty_problems.UncertaintyProblem"). Because they rely on finance specific knowledge and/or functions they are located here rather than in Aqua.
+These are finance specific Aqua Uncertainty Problems where they inherit from Aqua [`UncertaintyProblem`](qiskit.aqua.components.uncertainty_problems.UncertaintyProblem "qiskit.aqua.components.uncertainty_problems.UncertaintyProblem"). Because they rely on finance specific knowledge and/or functions they are located here rather than in Aqua.
 
 # Uncertainty Problems
 
-|                                                                                                                                                                                                                                                             |                                          |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| [`EuropeanCallDelta`](qiskit.finance.components.uncertainty_problems.EuropeanCallDelta#qiskit.finance.components.uncertainty_problems.EuropeanCallDelta "qiskit.finance.components.uncertainty_problems.EuropeanCallDelta")                                 | The European Call Option Delta.          |
-| [`EuropeanCallExpectedValue`](qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue#qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue "qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue") | The European Call Option Expected Value. |
-| [`FixedIncomeExpectedValue`](qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue#qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue")     | The Fixed Income Expected Value.         |
+|                                                                                                                                                                                    |                                          |
+| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
+| [`EuropeanCallDelta`](qiskit.finance.components.uncertainty_problems.EuropeanCallDelta "qiskit.finance.components.uncertainty_problems.EuropeanCallDelta")                         | The European Call Option Delta.          |
+| [`EuropeanCallExpectedValue`](qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue "qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue") | The European Call Option Expected Value. |
+| [`FixedIncomeExpectedValue`](qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue "qiskit.finance.components.uncertainty_problems.FixedIncomeExpectedValue")    | The Fixed Income Expected Value.         |
 

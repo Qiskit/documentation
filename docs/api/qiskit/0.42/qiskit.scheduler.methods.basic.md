@@ -1,6 +1,6 @@
 <span id="qiskit-scheduler-methods-basic" />
 
-# qiskit.scheduler.methods.basic[¶](#module-qiskit.scheduler.methods.basic "Permalink to this headline")
+# qiskit.scheduler.methods.basic
 
 The most straightforward scheduling methods: scheduling **as early** or **as late** as possible.
 

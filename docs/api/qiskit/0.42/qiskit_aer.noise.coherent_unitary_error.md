@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit_aer.noise.coherent_unitary_error
 ---
 
-# qiskit\_aer.noise.coherent\_unitary\_error[¶](#qiskit-aer-noise-coherent-unitary-error "Permalink to this headline")
+# qiskit\_aer.noise.coherent\_unitary\_error
 
 <span id="qiskit_aer.noise.coherent_unitary_error" />
 

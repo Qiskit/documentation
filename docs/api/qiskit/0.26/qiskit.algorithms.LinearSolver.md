@@ -1,12 +1,22 @@
+---
+title: LinearSolver
+description: API reference for qiskit.algorithms.LinearSolver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.LinearSolver
+---
+
 # qiskit.algorithms.LinearSolver
 
-
+<span id="qiskit.algorithms.LinearSolver" />
 
 `LinearSolver`
 
 An abstract class for linear system solvers in Qiskit.
 
+### \_\_init\_\_
 
+<span id="qiskit.algorithms.LinearSolver.__init__" />
 
 `__init__()`
 
@@ -14,12 +24,9 @@ Initialize self. See help(type(self)) for accurate signature.
 
 ## Methods
 
-|                                                                                                                           |                                                |
-| ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.LinearSolver.__init__ "qiskit.algorithms.LinearSolver.__init__")()                        | Initialize self.                               |
-| [`solve`](#qiskit.algorithms.LinearSolver.solve "qiskit.algorithms.LinearSolver.solve")(matrix, vector\[, observable, …]) | Solve the system and compute the observable(s) |
+### solve
 
-
+<span id="qiskit.algorithms.LinearSolver.solve" />
 
 `abstract solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`
 
@@ -40,3 +47,4 @@ Solve the system and compute the observable(s)
 **Returns**
 
 The result of the linear system.
+

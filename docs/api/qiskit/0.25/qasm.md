@@ -18,16 +18,16 @@ python_api_name: qiskit.qasm
 
 ## QASM Routines
 
-|                                                                                           |                                                      |
-| ----------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [`Qasm`](qiskit.qasm.Qasm#qiskit.qasm.Qasm "qiskit.qasm.Qasm")(\[filename, data])         | OPENQASM circuit object.                             |
-| [`QasmError`](qiskit.qasm.QasmError#qiskit.qasm.QasmError "qiskit.qasm.QasmError")(\*msg) | Base class for errors raised while parsing OPENQASM. |
+|                                                                     |                                                      |
+| ------------------------------------------------------------------- | ---------------------------------------------------- |
+| [`Qasm`](qiskit.qasm.Qasm "qiskit.qasm.Qasm")(\[filename, data])    | OPENQASM circuit object.                             |
+| [`QasmError`](qiskit.qasm.QasmError "qiskit.qasm.QasmError")(\*msg) | Base class for errors raised while parsing OPENQASM. |
 
 ## Pygments
 
-|                                                                                                                      |                                              |
-| -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [`OpenQASMLexer`](qiskit.qasm.OpenQASMLexer#qiskit.qasm.OpenQASMLexer "qiskit.qasm.OpenQASMLexer")(\*args, \*\*kwds) | A pygments lexer for OpenQasm.               |
-| [`QasmHTMLStyle`](qiskit.qasm.QasmHTMLStyle#qiskit.qasm.QasmHTMLStyle "qiskit.qasm.QasmHTMLStyle")()                 | A style for OpenQasm in a HTML env (e.g.     |
-| [`QasmTerminalStyle`](qiskit.qasm.QasmTerminalStyle#qiskit.qasm.QasmTerminalStyle "qiskit.qasm.QasmTerminalStyle")() | A style for OpenQasm in a Terminal env (e.g. |
+|                                                                                            |                                              |
+| ------------------------------------------------------------------------------------------ | -------------------------------------------- |
+| [`OpenQASMLexer`](qiskit.qasm.OpenQASMLexer "qiskit.qasm.OpenQASMLexer")(\*args, \*\*kwds) | A pygments lexer for OpenQasm.               |
+| [`QasmHTMLStyle`](qiskit.qasm.QasmHTMLStyle "qiskit.qasm.QasmHTMLStyle")()                 | A style for OpenQasm in a HTML env (e.g.     |
+| [`QasmTerminalStyle`](qiskit.qasm.QasmTerminalStyle "qiskit.qasm.QasmTerminalStyle")()     | A style for OpenQasm in a Terminal env (e.g. |
 

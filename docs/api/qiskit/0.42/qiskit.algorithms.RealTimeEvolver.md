@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.RealTimeEvolver
 ---
 
-# RealTimeEvolver[¶](#realtimeevolver "Permalink to this headline")
+# RealTimeEvolver
 
 <span id="qiskit.algorithms.RealTimeEvolver" />
 

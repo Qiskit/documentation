@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.PauliEvolutionGate
 ---
 
-# PauliEvolutionGate[¶](#paulievolutiongate "Permalink to this headline")
+# PauliEvolutionGate
 
 <span id="qiskit.circuit.library.PauliEvolutionGate" />
 

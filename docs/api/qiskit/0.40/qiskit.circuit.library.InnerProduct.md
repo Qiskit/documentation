@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.InnerProduct
 ---
 
-# InnerProduct[¶](#innerproduct "Permalink to this headline")
+# InnerProduct
 
 <span id="qiskit.circuit.library.InnerProduct" />
 

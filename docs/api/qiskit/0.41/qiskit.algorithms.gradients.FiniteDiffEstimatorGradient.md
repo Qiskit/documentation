@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.FiniteDiffEstimatorGradient
 ---
 
-# FiniteDiffEstimatorGradient[¶](#finitediffestimatorgradient "Permalink to this headline")
+# FiniteDiffEstimatorGradient
 
 <span id="qiskit.algorithms.gradients.FiniteDiffEstimatorGradient" />
 

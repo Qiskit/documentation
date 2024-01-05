@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.instructions.TimeBlockade
 ---
 
-# TimeBlockade[¶](#timeblockade "Permalink to this headline")
+# TimeBlockade
 
 <span id="qiskit.pulse.instructions.TimeBlockade" />
 

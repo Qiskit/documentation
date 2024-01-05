@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CXCancellation
 ---
 
-# CXCancellation[¶](#cxcancellation "Permalink to this headline")
+# CXCancellation
 
 <span id="qiskit.transpiler.passes.CXCancellation" />
 

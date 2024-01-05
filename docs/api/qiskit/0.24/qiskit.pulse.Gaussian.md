@@ -1,8 +1,16 @@
+---
+title: Gaussian
+description: API reference for qiskit.pulse.Gaussian
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.Gaussian
+---
+
 <span id="qiskit-pulse-gaussian" />
 
 # qiskit.pulse.Gaussian
 
-
+<span id="qiskit.pulse.Gaussian" />
 
 `Gaussian(duration, amp, sigma, name=None)`
 
@@ -21,7 +29,9 @@ Initialize the gaussian pulse.
 *   **sigma** (`Union`\[`float`, `ParameterExpression`]) – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
 *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
 
+### \_\_init\_\_
 
+<span id="qiskit.pulse.Gaussian.__init__" />
 
 `__init__(duration, amp, sigma, name=None)`
 
@@ -36,25 +46,11 @@ Initialize the gaussian pulse.
 
 ## Methods
 
-|                                                                                                                        |                                                                                                                                |
-| ---------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.pulse.Gaussian.__init__ "qiskit.pulse.Gaussian.__init__")(duration, amp, sigma\[, name])          | Initialize the gaussian pulse.                                                                                                 |
-| [`assign_parameters`](#qiskit.pulse.Gaussian.assign_parameters "qiskit.pulse.Gaussian.assign_parameters")(value\_dict) | Return a new ParametricPulse with parameters assigned.                                                                         |
-| [`draw`](#qiskit.pulse.Gaussian.draw "qiskit.pulse.Gaussian.draw")(\[dt, style, filename, interp\_method, …])          | Plot the pulse.                                                                                                                |
-| [`get_sample_pulse`](#qiskit.pulse.Gaussian.get_sample_pulse "qiskit.pulse.Gaussian.get_sample_pulse")()               | Deprecated.                                                                                                                    |
-| [`get_waveform`](#qiskit.pulse.Gaussian.get_waveform "qiskit.pulse.Gaussian.get_waveform")()                           | Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains. |
-| [`validate_parameters`](#qiskit.pulse.Gaussian.validate_parameters "qiskit.pulse.Gaussian.validate_parameters")()      | Validate parameters.                                                                                                           |
-
 ## Attributes
 
-|                                                                                      |                                                        |
-| ------------------------------------------------------------------------------------ | ------------------------------------------------------ |
-| [`amp`](#qiskit.pulse.Gaussian.amp "qiskit.pulse.Gaussian.amp")                      | The Gaussian amplitude.                                |
-| [`id`](#qiskit.pulse.Gaussian.id "qiskit.pulse.Gaussian.id")                         | Unique identifier for this pulse.                      |
-| [`parameters`](#qiskit.pulse.Gaussian.parameters "qiskit.pulse.Gaussian.parameters") | Return a dictionary containing the pulse’s parameters. |
-| [`sigma`](#qiskit.pulse.Gaussian.sigma "qiskit.pulse.Gaussian.sigma")                | The Gaussian standard deviation of the pulse width.    |
+### amp
 
-
+<span id="qiskit.pulse.Gaussian.amp" />
 
 `property amp`
 
@@ -64,7 +60,9 @@ The Gaussian amplitude.
 
 `Union`\[`complex`, `ParameterExpression`]
 
+### assign\_parameters
 
+<span id="qiskit.pulse.Gaussian.assign_parameters" />
 
 `assign_parameters(value_dict)`
 
@@ -82,7 +80,9 @@ Return a new ParametricPulse with parameters assigned.
 
 New pulse with updated parameters.
 
+### draw
 
+<span id="qiskit.pulse.Gaussian.draw" />
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, interactive=False)`
 
@@ -105,7 +105,9 @@ A matplotlib figure object of the pulse envelope
 
 matplotlib.figure
 
+### get\_sample\_pulse
 
+<span id="qiskit.pulse.Gaussian.get_sample_pulse" />
 
 `get_sample_pulse()`
 
@@ -115,7 +117,9 @@ Deprecated.
 
 `Waveform`
 
+### get\_waveform
 
+<span id="qiskit.pulse.Gaussian.get_waveform" />
 
 `get_waveform()`
 
@@ -125,7 +129,9 @@ Return a Waveform with samples filled according to the formula that the pulse re
 
 `Waveform`
 
+### id
 
+<span id="qiskit.pulse.Gaussian.id" />
 
 `property id`
 
@@ -135,7 +141,9 @@ Unique identifier for this pulse.
 
 `int`
 
+### parameters
 
+<span id="qiskit.pulse.Gaussian.parameters" />
 
 `property parameters`
 
@@ -145,7 +153,9 @@ Return a dictionary containing the pulse’s parameters.
 
 `Dict`\[`str`, `Any`]
 
+### sigma
 
+<span id="qiskit.pulse.Gaussian.sigma" />
 
 `property sigma`
 
@@ -155,7 +165,9 @@ The Gaussian standard deviation of the pulse width.
 
 `Union`\[`float`, `ParameterExpression`]
 
+### validate\_parameters
 
+<span id="qiskit.pulse.Gaussian.validate_parameters" />
 
 `validate_parameters()`
 
@@ -163,8 +175,9 @@ Validate parameters.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
 
 **Return type**
 
 `None`
+

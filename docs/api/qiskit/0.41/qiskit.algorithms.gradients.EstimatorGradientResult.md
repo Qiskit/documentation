@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.EstimatorGradientResult
 ---
 
-# EstimatorGradientResult[¶](#estimatorgradientresult "Permalink to this headline")
+# EstimatorGradientResult
 
 <span id="qiskit.algorithms.gradients.EstimatorGradientResult" />
 

@@ -1,6 +1,14 @@
+---
+title: save_stabilizer
+description: API reference for qiskit.providers.aer.library.save_stabilizer
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.library.save_stabilizer
+---
+
 # qiskit.providers.aer.library.save\_stabilizer
 
-
+<span id="qiskit.providers.aer.library.save_stabilizer" />
 
 `save_stabilizer(self, label='stabilizer', pershot=False, conditional=False)`
 
@@ -18,8 +26,9 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 <Admonition title="Note" type="note">
   This instruction is always defined across all qubits in a circuit.
 </Admonition>
+

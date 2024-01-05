@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.qasm.QasmError
 ---
 
-# qiskit.qasm.QasmError[¶](#qiskit-qasm-qasmerror "Permalink to this headline")
+# qiskit.qasm.QasmError
 
 <span id="qiskit.qasm.QasmError" />
 

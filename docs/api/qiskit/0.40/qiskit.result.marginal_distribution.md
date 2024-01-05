@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.result.marginal_distribution
 ---
 
-# qiskit.result.marginal\_distribution[¶](#qiskit-result-marginal-distribution "Permalink to this headline")
+# qiskit.result.marginal\_distribution
 
 <span id="qiskit.result.marginal_distribution" />
 

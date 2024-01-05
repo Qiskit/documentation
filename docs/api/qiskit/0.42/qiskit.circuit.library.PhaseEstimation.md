@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.PhaseEstimation
 ---
 
-# PhaseEstimation[¶](#phaseestimation "Permalink to this headline")
+# PhaseEstimation
 
 <span id="qiskit.circuit.library.PhaseEstimation" />
 

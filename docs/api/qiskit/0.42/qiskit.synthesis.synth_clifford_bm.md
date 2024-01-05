@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.synthesis.synth_clifford_bm
 ---
 
-# qiskit.synthesis.synth\_clifford\_bm[¶](#qiskit-synthesis-synth-clifford-bm "Permalink to this headline")
+# qiskit.synthesis.synth\_clifford\_bm
 
 <span id="qiskit.synthesis.synth_clifford_bm" />
 

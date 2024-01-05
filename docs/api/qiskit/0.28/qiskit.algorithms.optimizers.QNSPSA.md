@@ -1,6 +1,14 @@
+---
+title: QNSPSA
+description: API reference for qiskit.algorithms.optimizers.QNSPSA
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.optimizers.QNSPSA
+---
+
 # qiskit.algorithms.optimizers.QNSPSA
 
-
+<span id="qiskit.algorithms.optimizers.QNSPSA" />
 
 `QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None)`
 
@@ -56,7 +64,9 @@ result = qnspsa.optimize(ansatz.num_parameters, loss, initial_point=initial_poin
 *   **initial\_hessian** (`Optional`\[`ndarray`]) – The initial guess for the Hessian. By default the identity matrix is used.
 *   **callback** (`Optional`\[`Callable`\[\[`ndarray`, `float`, `float`, `int`, `bool`], `None`]]) – A callback function passed information in each iteration step. The information is, in this order: the parameters, the function value, the number of function evaluations, the stepsize, whether the step was accepted.
 
+### \_\_init\_\_
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.__init__" />
 
 `__init__(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None)`
 
@@ -79,46 +89,19 @@ result = qnspsa.optimize(ansatz.num_parameters, loss, initial_point=initial_poin
 
 ## Methods
 
-|                                                                                                                                                                    |                                                                                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.optimizers.QNSPSA.__init__ "qiskit.algorithms.optimizers.QNSPSA.__init__")(fidelity\[, maxiter, blocking, …])                      | **type fidelity**`Callable`\[\[`ndarray`, `ndarray`], `float`]                                            |
-| [`calibrate`](#qiskit.algorithms.optimizers.QNSPSA.calibrate "qiskit.algorithms.optimizers.QNSPSA.calibrate")(loss, initial\_point\[, c, …])                       | Calibrate SPSA parameters with a powerseries as learning rate and perturbation coeffs.                    |
-| [`estimate_stddev`](#qiskit.algorithms.optimizers.QNSPSA.estimate_stddev "qiskit.algorithms.optimizers.QNSPSA.estimate_stddev")(loss, initial\_point\[, avg])      | Estimate the standard deviation of the loss function.                                                     |
-| [`get_fidelity`](#qiskit.algorithms.optimizers.QNSPSA.get_fidelity "qiskit.algorithms.optimizers.QNSPSA.get_fidelity")(circuit\[, backend, expectation])           | Get a function to compute the fidelity of `circuit` with itself.                                          |
-| [`get_support_level`](#qiskit.algorithms.optimizers.QNSPSA.get_support_level "qiskit.algorithms.optimizers.QNSPSA.get_support_level")()                            | Get the support level dictionary.                                                                         |
-| [`gradient_num_diff`](#qiskit.algorithms.optimizers.QNSPSA.gradient_num_diff "qiskit.algorithms.optimizers.QNSPSA.gradient_num_diff")(x\_center, f, epsilon\[, …]) | We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center. |
-| [`optimize`](#qiskit.algorithms.optimizers.QNSPSA.optimize "qiskit.algorithms.optimizers.QNSPSA.optimize")(num\_vars, objective\_function\[, …])                   | Perform optimization.                                                                                     |
-| [`print_options`](#qiskit.algorithms.optimizers.QNSPSA.print_options "qiskit.algorithms.optimizers.QNSPSA.print_options")()                                        | Print algorithm-specific options.                                                                         |
-| [`set_max_evals_grouped`](#qiskit.algorithms.optimizers.QNSPSA.set_max_evals_grouped "qiskit.algorithms.optimizers.QNSPSA.set_max_evals_grouped")(limit)           | Set max evals grouped                                                                                     |
-| [`set_options`](#qiskit.algorithms.optimizers.QNSPSA.set_options "qiskit.algorithms.optimizers.QNSPSA.set_options")(\*\*kwargs)                                    | Sets or updates values in the options dictionary.                                                         |
-| [`wrap_function`](#qiskit.algorithms.optimizers.QNSPSA.wrap_function "qiskit.algorithms.optimizers.QNSPSA.wrap_function")(function, args)                          | Wrap the function to implicitly inject the args at the call of the function.                              |
-
 ## Attributes
 
-|                                                                                                                                                                     |                                                |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------- |
-| [`bounds_support_level`](#qiskit.algorithms.optimizers.QNSPSA.bounds_support_level "qiskit.algorithms.optimizers.QNSPSA.bounds_support_level")                      | Returns bounds support level                   |
-| [`gradient_support_level`](#qiskit.algorithms.optimizers.QNSPSA.gradient_support_level "qiskit.algorithms.optimizers.QNSPSA.gradient_support_level")                | Returns gradient support level                 |
-| [`initial_point_support_level`](#qiskit.algorithms.optimizers.QNSPSA.initial_point_support_level "qiskit.algorithms.optimizers.QNSPSA.initial_point_support_level") | Returns initial point support level            |
-| [`is_bounds_ignored`](#qiskit.algorithms.optimizers.QNSPSA.is_bounds_ignored "qiskit.algorithms.optimizers.QNSPSA.is_bounds_ignored")                               | Returns is bounds ignored                      |
-| [`is_bounds_required`](#qiskit.algorithms.optimizers.QNSPSA.is_bounds_required "qiskit.algorithms.optimizers.QNSPSA.is_bounds_required")                            | Returns is bounds required                     |
-| [`is_bounds_supported`](#qiskit.algorithms.optimizers.QNSPSA.is_bounds_supported "qiskit.algorithms.optimizers.QNSPSA.is_bounds_supported")                         | Returns is bounds supported                    |
-| [`is_gradient_ignored`](#qiskit.algorithms.optimizers.QNSPSA.is_gradient_ignored "qiskit.algorithms.optimizers.QNSPSA.is_gradient_ignored")                         | Returns is gradient ignored                    |
-| [`is_gradient_required`](#qiskit.algorithms.optimizers.QNSPSA.is_gradient_required "qiskit.algorithms.optimizers.QNSPSA.is_gradient_required")                      | Returns is gradient required                   |
-| [`is_gradient_supported`](#qiskit.algorithms.optimizers.QNSPSA.is_gradient_supported "qiskit.algorithms.optimizers.QNSPSA.is_gradient_supported")                   | Returns is gradient supported                  |
-| [`is_initial_point_ignored`](#qiskit.algorithms.optimizers.QNSPSA.is_initial_point_ignored "qiskit.algorithms.optimizers.QNSPSA.is_initial_point_ignored")          | Returns is initial point ignored               |
-| [`is_initial_point_required`](#qiskit.algorithms.optimizers.QNSPSA.is_initial_point_required "qiskit.algorithms.optimizers.QNSPSA.is_initial_point_required")       | Returns is initial point required              |
-| [`is_initial_point_supported`](#qiskit.algorithms.optimizers.QNSPSA.is_initial_point_supported "qiskit.algorithms.optimizers.QNSPSA.is_initial_point_supported")    | Returns is initial point supported             |
-| [`setting`](#qiskit.algorithms.optimizers.QNSPSA.setting "qiskit.algorithms.optimizers.QNSPSA.setting")                                                             | Return setting                                 |
-| [`settings`](#qiskit.algorithms.optimizers.QNSPSA.settings "qiskit.algorithms.optimizers.QNSPSA.settings")                                                          | The optimizer settings in a dictionary format. |
+### bounds\_support\_level
 
-
+<span id="qiskit.algorithms.optimizers.QNSPSA.bounds_support_level" />
 
 `property bounds_support_level`
 
 Returns bounds support level
 
+### calibrate
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.calibrate" />
 
 `static calibrate(loss, initial_point, c=0.2, stability_constant=0, target_magnitude=None, alpha=0.602, gamma=0.101, modelspace=False)`
 
@@ -151,7 +134,9 @@ learning rate and the second one for the perturbation.
 
 tuple(generator, generator)
 
+### estimate\_stddev
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.estimate_stddev" />
 
 `static estimate_stddev(loss, initial_point, avg=25)`
 
@@ -161,7 +146,9 @@ Estimate the standard deviation of the loss function.
 
 `float`
 
+### get\_fidelity
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.get_fidelity" />
 
 `static get_fidelity(circuit, backend=None, expectation=None)`
 
@@ -189,13 +176,17 @@ The output of this function can be used as input for the `fidelity` to the :clas
 
 A handle to the function $F$.
 
+### get\_support\_level
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.get_support_level" />
 
 `get_support_level()`
 
 Get the support level dictionary.
 
+### gradient\_num\_diff
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.gradient_num_diff" />
 
 `static gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
 
@@ -216,73 +207,97 @@ the gradient computed
 
 grad
 
+### gradient\_support\_level
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.gradient_support_level" />
 
 `property gradient_support_level`
 
 Returns gradient support level
 
+### initial\_point\_support\_level
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.initial_point_support_level" />
 
 `property initial_point_support_level`
 
 Returns initial point support level
 
+### is\_bounds\_ignored
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.is_bounds_ignored" />
 
 `property is_bounds_ignored`
 
 Returns is bounds ignored
 
+### is\_bounds\_required
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.is_bounds_required" />
 
 `property is_bounds_required`
 
 Returns is bounds required
 
+### is\_bounds\_supported
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.is_bounds_supported" />
 
 `property is_bounds_supported`
 
 Returns is bounds supported
 
+### is\_gradient\_ignored
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.is_gradient_ignored" />
 
 `property is_gradient_ignored`
 
 Returns is gradient ignored
 
+### is\_gradient\_required
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.is_gradient_required" />
 
 `property is_gradient_required`
 
 Returns is gradient required
 
+### is\_gradient\_supported
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.is_gradient_supported" />
 
 `property is_gradient_supported`
 
 Returns is gradient supported
 
+### is\_initial\_point\_ignored
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.is_initial_point_ignored" />
 
 `property is_initial_point_ignored`
 
 Returns is initial point ignored
 
+### is\_initial\_point\_required
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.is_initial_point_required" />
 
 `property is_initial_point_required`
 
 Returns is initial point required
 
+### is\_initial\_point\_supported
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.is_initial_point_supported" />
 
 `property is_initial_point_supported`
 
 Returns is initial point supported
 
+### optimize
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.optimize" />
 
 `optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
 
@@ -306,19 +321,25 @@ point: is a 1D numpy.ndarray\[float] containing the solution value: is a float w
 
 **ValueError** – invalid input
 
+### print\_options
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.print_options" />
 
 `print_options()`
 
 Print algorithm-specific options.
 
+### set\_max\_evals\_grouped
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.set_max_evals_grouped" />
 
 `set_max_evals_grouped(limit)`
 
 Set max evals grouped
 
+### set\_options
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.set_options" />
 
 `set_options(**kwargs)`
 
@@ -330,13 +351,17 @@ The options dictionary may be used internally by a given optimizer to pass addit
 
 **kwargs** (*dict*) – options, given as name=value.
 
+### setting
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.setting" />
 
 `property setting`
 
 Return setting
 
+### settings
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.settings" />
 
 `property settings`
 
@@ -350,7 +375,9 @@ The optimizer settings in a dictionary format.
 
 `Dict`\[`str`, `Any`]
 
+### wrap\_function
 
+<span id="qiskit.algorithms.optimizers.QNSPSA.wrap_function" />
 
 `static wrap_function(function, args)`
 
@@ -368,3 +395,4 @@ wrapper
 **Return type**
 
 function\_wrapper
+

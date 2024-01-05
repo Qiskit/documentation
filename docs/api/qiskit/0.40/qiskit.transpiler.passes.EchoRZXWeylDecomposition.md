@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.EchoRZXWeylDecomposition
 ---
 
-# EchoRZXWeylDecomposition[¶](#echorzxweyldecomposition "Permalink to this headline")
+# EchoRZXWeylDecomposition
 
 <span id="qiskit.transpiler.passes.EchoRZXWeylDecomposition" />
 

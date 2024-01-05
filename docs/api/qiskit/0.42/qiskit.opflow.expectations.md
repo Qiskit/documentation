@@ -1,12 +1,12 @@
 <span id="qiskit-opflow-expectations" />
 
-# qiskit.opflow\.expectations[¶](#module-qiskit.opflow.expectations "Permalink to this headline")
+# qiskit.opflow\.expectations
 
-## Expectations ([`qiskit.opflow.expectations`](#module-qiskit.opflow.expectations "qiskit.opflow.expectations"))[¶](#expectations-qiskit-opflow-expectations "Permalink to this headline")
+## Expectations ([`qiskit.opflow.expectations`](#module-qiskit.opflow.expectations "qiskit.opflow.expectations"))
 
 Expectations are converters which enable the computation of the expectation value of an Observable with respect to some state function. They traverse an Operator tree, replacing [`OperatorStateFn`](qiskit.opflow.state_fns.OperatorStateFn "qiskit.opflow.state_fns.OperatorStateFn") measurements with equivalent measurements which are more amenable to computation on quantum or classical hardware. For example, if one would like to measure the expectation value of an Operator `o` expressed as a sum of Paulis with respect to some state function, but only has access to diagonal measurements on Quantum hardware, we can create a measurement \~StateFn(o), use a [`PauliExpectation`](qiskit.opflow.expectations.PauliExpectation "qiskit.opflow.expectations.PauliExpectation") to convert it to a diagonal measurement and circuit pre-rotations to append to the state, and sample this circuit on Quantum hardware with a [`CircuitSampler`](qiskit.opflow.converters.CircuitSampler "qiskit.opflow.converters.CircuitSampler"). All in all, this would be: `my_sampler.convert(my_expect.convert(~StateFn(o)) @ my_state).eval()`.
 
-### Expectation Base Class[¶](#expectation-base-class "Permalink to this headline")
+### Expectation Base Class
 
 The ExpectationBase class gives an interface for algorithms to ask for Expectations as execution settings. For example, if an algorithm contains an expectation value step within it, such as [`VQE`](qiskit.algorithms.VQE "qiskit.algorithms.VQE"), the algorithm can give the opportunity for the user to pass an ExpectationBase of their choice to be used in that expectation value step.
 
@@ -14,7 +14,7 @@ The ExpectationBase class gives an interface for algorithms to ask for Expectati
 | -------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
 | [`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.ExpectationBase")() | A base for Expectation value converters. |
 
-### Expectations[¶](#expectations "Permalink to this headline")
+### Expectations
 
 |                                                                                                                                     |                                                                                                                                                                                          |
 | ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

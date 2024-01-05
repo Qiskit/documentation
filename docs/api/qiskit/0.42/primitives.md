@@ -16,13 +16,9 @@ python_api_name: qiskit.primitives
 
 <span id="module-qiskit.primitives" />
 
-`qiskit.primitives¶`
+`qiskit.primitives`
 
 ## Overview of Estimator
-
-<span id="module-qiskit.primitives" />
-
-`¶`
 
 Estimator class estimates expectation values of quantum circuits and observables.
 
@@ -75,10 +71,6 @@ print(f"The primitive-job finished with result {job_result}")
 
 ## Overview of Sampler
 
-<span id="module-qiskit.primitives" />
-
-`¶`
-
 Sampler class calculates probabilities or quasi-probabilities of bitstrings from quantum circuits.
 
 A sampler is initialized with an empty parameter set. The sampler is used to create a [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1"), via the [`qiskit.primitives.Sampler.run()`](qiskit.primitives.Sampler#run "qiskit.primitives.Sampler.run") method. This method is called with the following parameters
@@ -129,10 +121,6 @@ print([q.binary_probabilities() for q in job_result.quasi_dists])
 
 ## Estimator
 
-<span id="module-qiskit.primitives" />
-
-`¶`
-
 |                                                                                                                         |                                                                                                                   |
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
 | [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")(\[circuits, observables, ...])     | Estimator base class.                                                                                             |
@@ -141,10 +129,6 @@ print([q.binary_probabilities() for q in job_result.quasi_dists])
 
 ## Sampler
 
-<span id="module-qiskit.primitives" />
-
-`¶`
-
 |                                                                                                                   |                                                                                                                                                                                   |
 | ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
 | [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")(\[circuits, parameters, options])  | Sampler base class                                                                                                                                                                |
@@ -152,10 +136,6 @@ print([q.binary_probabilities() for q in job_result.quasi_dists])
 | [`BackendSampler`](qiskit.primitives.BackendSampler "qiskit.primitives.BackendSampler")(backend\[, options, ...]) | A [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") implementation that provides an interface for leveraging the sampler interface from any backend. |
 
 ## Results
-
-<span id="module-qiskit.primitives" />
-
-`¶`
 
 |                                                                                                              |                      |
 | ------------------------------------------------------------------------------------------------------------ | -------------------- |

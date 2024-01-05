@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.cx
 ---
 
-# qiskit.pulse.builder.cx[¶](#qiskit-pulse-builder-cx "Permalink to this headline")
+# qiskit.pulse.builder.cx
 
 <span id="qiskit.pulse.builder.cx" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit_aer.quantum_info.AerStatevector
 ---
 
-# AerStatevector[¶](#aerstatevector "Permalink to this headline")
+# AerStatevector
 
 <span id="qiskit_aer.quantum_info.AerStatevector" />
 

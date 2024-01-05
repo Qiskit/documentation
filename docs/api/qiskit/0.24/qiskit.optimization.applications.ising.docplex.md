@@ -60,7 +60,7 @@ print('tsp objective:', result['energy'] + offset)
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | [`get_operator`](#qiskit.optimization.applications.ising.docplex.get_operator "qiskit.optimization.applications.ising.docplex.get_operator")(mdl\[, auto\_penalty, …]) | Generate Ising Hamiltonian from a model of DOcplex. |
 
-
+<span id="qiskit.optimization.applications.ising.docplex.get_operator" />
 
 `get_operator(mdl, auto_penalty=True, default_penalty=100000.0)`
 

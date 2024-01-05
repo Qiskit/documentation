@@ -1,6 +1,14 @@
+---
+title: random_non_hermitian
+description: API reference for qiskit.aqua.utils.random_non_hermitian
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.aqua.utils.random_non_hermitian
+---
+
 # qiskit.aqua.utils.random\_non\_hermitian
 
-
+<span id="qiskit.aqua.utils.random_non_hermitian" />
 
 `random_non_hermitian(N, M=None, sings=None, K=None, srange=None, sparsity=None, trunc=None)`
 
@@ -27,3 +35,4 @@ np.ndarray
 **Raises:**
 
 ValueError: invalid matrix
+

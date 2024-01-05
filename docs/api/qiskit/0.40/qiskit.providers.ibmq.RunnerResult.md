@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.RunnerResult
 ---
 
-# RunnerResult[¶](#runnerresult "Permalink to this headline")
+# RunnerResult
 
 <span id="qiskit.providers.ibmq.RunnerResult" />
 

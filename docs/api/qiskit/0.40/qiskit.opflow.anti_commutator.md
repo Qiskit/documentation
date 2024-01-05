@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.opflow.anti_commutator
 ---
 
-# qiskit.opflow\.anti\_commutator[¶](#qiskit-opflow-anti-commutator "Permalink to this headline")
+# qiskit.opflow\.anti\_commutator
 
 <span id="qiskit.opflow.anti_commutator" />
 

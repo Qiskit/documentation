@@ -1,6 +1,14 @@
+---
+title: ECRGate
+description: API reference for qiskit.circuit.library.ECRGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.ECRGate
+---
+
 # ECRGate
 
-
+<span id="qiskit.circuit.library.ECRGate" />
 
 `ECRGate`
 
@@ -58,31 +66,35 @@ Create new ECR gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                             |                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| [`to_matrix`](qiskit.circuit.library.ECRGate.to_matrix#qiskit.circuit.library.ECRGate.to_matrix "qiskit.circuit.library.ECRGate.to_matrix") | Return a numpy.array for the ECR gate. |
+### to\_matrix
+
+<span id="qiskit.circuit.library.ECRGate.to_matrix" />
+
+`ECRGate.to_matrix()`
+
+Return a numpy.array for the ECR gate.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.ECRGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-
+<span id="qiskit.circuit.library.ECRGate.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
+<span id="qiskit.circuit.library.ECRGate.duration" />
 
 ### duration
 
 Get the duration.
 
-
+<span id="qiskit.circuit.library.ECRGate.label" />
 
 ### label
 
@@ -92,14 +104,15 @@ Return instruction label
 
 `str`
 
-
+<span id="qiskit.circuit.library.ECRGate.params" />
 
 ### params
 
 return instruction params.
 
-
+<span id="qiskit.circuit.library.ECRGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

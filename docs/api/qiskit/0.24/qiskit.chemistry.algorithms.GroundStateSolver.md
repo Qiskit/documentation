@@ -1,8 +1,16 @@
+---
+title: GroundStateSolver
+description: API reference for qiskit.chemistry.algorithms.GroundStateSolver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.GroundStateSolver
+---
+
 <span id="qiskit-chemistry-algorithms-groundstatesolver" />
 
 # qiskit.chemistry.algorithms.GroundStateSolver
 
-
+<span id="qiskit.chemistry.algorithms.GroundStateSolver" />
 
 `GroundStateSolver(transformation)`
 
@@ -12,7 +20,9 @@ The ground state calculation interface
 
 **transformation** (`Transformation`) – transformation from driver to qubit operator (and aux. operators)
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.algorithms.GroundStateSolver.__init__" />
 
 `__init__(transformation)`
 
@@ -22,20 +32,11 @@ The ground state calculation interface
 
 ## Methods
 
-|                                                                                                                                                                                |                                                                                          |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.algorithms.GroundStateSolver.__init__ "qiskit.chemistry.algorithms.GroundStateSolver.__init__")(transformation)                                 | **type transformation**`Transformation`                                                  |
-| [`evaluate_operators`](#qiskit.chemistry.algorithms.GroundStateSolver.evaluate_operators "qiskit.chemistry.algorithms.GroundStateSolver.evaluate_operators")(state, operators) | Evaluates additional operators at the given state.                                       |
-| [`returns_groundstate`](#qiskit.chemistry.algorithms.GroundStateSolver.returns_groundstate "qiskit.chemistry.algorithms.GroundStateSolver.returns_groundstate")()              | Whether this class returns only the ground state energy or also the ground state itself. |
-| [`solve`](#qiskit.chemistry.algorithms.GroundStateSolver.solve "qiskit.chemistry.algorithms.GroundStateSolver.solve")(driver\[, aux\_operators])                               | Compute the ground state energy of the molecule that was supplied via the driver.        |
-
 ## Attributes
 
-|                                                                                                                                                  |                                                                               |
-| ------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| [`transformation`](#qiskit.chemistry.algorithms.GroundStateSolver.transformation "qiskit.chemistry.algorithms.GroundStateSolver.transformation") | Returns the transformation used to obtain a qubit operator from the molecule. |
+### evaluate\_operators
 
-
+<span id="qiskit.chemistry.algorithms.GroundStateSolver.evaluate_operators" />
 
 `abstract evaluate_operators(state, operators)`
 
@@ -54,7 +55,9 @@ Evaluates additional operators at the given state.
 
 The expectation value of the given operator(s). The return type will be identical to the format of the provided operators.
 
+### returns\_groundstate
 
+<span id="qiskit.chemistry.algorithms.GroundStateSolver.returns_groundstate" />
 
 `abstract returns_groundstate()`
 
@@ -68,7 +71,9 @@ Whether this class returns only the ground state energy or also the ground state
 
 True, if this class also returns the ground state in the results object. False otherwise.
 
+### solve
 
+<span id="qiskit.chemistry.algorithms.GroundStateSolver.solve" />
 
 `abstract solve(driver, aux_operators=None)`
 
@@ -87,7 +92,9 @@ Compute the ground state energy of the molecule that was supplied via the driver
 
 An eigenstate result.
 
+### transformation
 
+<span id="qiskit.chemistry.algorithms.GroundStateSolver.transformation" />
 
 `property transformation`
 
@@ -96,3 +103,4 @@ Returns the transformation used to obtain a qubit operator from the molecule.
 **Return type**
 
 `Transformation`
+

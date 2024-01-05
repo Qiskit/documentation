@@ -1,6 +1,6 @@
 <span id="qiskit-transpiler-builtin-plugins" />
 
-# Built-in Transpiler Synthesis Plugins[¶](#built-in-transpiler-synthesis-plugins "Permalink to this headline")
+# Built-in Transpiler Synthesis Plugins
 
 *   [Approximate Quantum Compiler (`qiskit.transpiler.synthesis.aqc`)](synthesis_aqc)
 

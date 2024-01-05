@@ -1,6 +1,14 @@
+---
+title: MaximumLikelihoodAmplitudeEstimation
+description: API reference for qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation
+---
+
 # MaximumLikelihoodAmplitudeEstimation
 
-
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation" />
 
 `MaximumLikelihoodAmplitudeEstimation(num_oracle_circuits, state_preparation=None, grover_operator=None, objective_qubits=None, post_processing=None, a_factory=None, q_factory=None, i_objective=None, likelihood_evals=None, quantum_instance=None)`
 
@@ -35,18 +43,138 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 ## Methods
 
-|                                                                                                                                                                                                                                                                            |                                                                           |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| [`confidence_interval`](qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.confidence_interval#qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.confidence_interval "qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.confidence_interval") | Compute the alpha confidence interval using the method kind.              |
-| [`construct_circuits`](qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits#qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits "qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits")     | Construct the Amplitude Estimation w/o QPE quantum circuits.              |
-| [`is_good_state`](qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.is_good_state#qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.is_good_state "qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.is_good_state")                         | Determine whether a given state is a good state.                          |
-| [`post_processing`](qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.post_processing#qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.post_processing "qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.post_processing")                 | Post processing of the raw amplitude estimation output $0 \leq a \leq 1$. |
-| [`run`](qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.run#qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.run "qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.run")                                                                 | Execute the algorithm with selected backend.                              |
-| [`set_backend`](qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.set_backend#qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.set_backend "qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.set_backend")                                 | Sets backend with configuration.                                          |
+### confidence\_interval
+
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.confidence_interval" />
+
+`MaximumLikelihoodAmplitudeEstimation.confidence_interval(alpha, kind='fisher')`
+
+Compute the alpha confidence interval using the method kind.
+
+The confidence level is (1 - alpha) and supported kinds are ‘fisher’, ‘likelihood\_ratio’ and ‘observed\_fisher’ with shorthand notations ‘fi’, ‘lr’ and ‘oi’, respectively.
+
+**Parameters**
+
+*   **alpha** (`float`) – The confidence level.
+*   **kind** (`str`) – The method to compute the confidence interval. Defaults to ‘fisher’, which computes the theoretical Fisher information.
+
+**Return type**
+
+`List`\[`float`]
+
+**Returns**
+
+The specified confidence interval.
+
+**Raises**
+
+*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If run() hasn’t been called yet.
+*   **NotImplementedError** – If the method kind is not supported.
+
+### construct\_circuits
+
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.construct_circuits" />
+
+`MaximumLikelihoodAmplitudeEstimation.construct_circuits(measurement=False)`
+
+Construct the Amplitude Estimation w/o QPE quantum circuits.
+
+**Parameters**
+
+**measurement** (`bool`) – Boolean flag to indicate if measurement should be included in the circuits.
+
+**Return type**
+
+`List`\[`QuantumCircuit`]
+
+**Returns**
+
+A list with the QuantumCircuit objects for the algorithm.
+
+### is\_good\_state
+
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.is_good_state" />
+
+`MaximumLikelihoodAmplitudeEstimation.is_good_state(measurement)`
+
+Determine whether a given state is a good state.
+
+**Parameters**
+
+**measurement** (`str`) – A measurement as bitstring, e.g. ‘01100’.
+
+**Return type**
+
+`bool`
+
+**Returns**
+
+True if the measurement corresponds to a good state, False otherwise.
+
+**Raises**
+
+**ValueError** – If `self.objective_qubits` is not set.
+
+### post\_processing
+
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.post_processing" />
+
+`MaximumLikelihoodAmplitudeEstimation.post_processing(value)`
+
+Post processing of the raw amplitude estimation output $0 \leq a \leq 1$.
+
+**Parameters**
+
+**value** (`float`) – The estimation value $a$.
+
+**Return type**
+
+`float`
+
+**Returns**
+
+The value after post processing, usually mapping the interval $[0, 1]$ to the target interval.
+
+### run
+
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.run" />
+
+`MaximumLikelihoodAmplitudeEstimation.run(quantum_instance=None, **kwargs)`
+
+Execute the algorithm with selected backend.
+
+**Parameters**
+
+*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
+*   **kwargs** (*dict*) – kwargs
+
+**Returns**
+
+results of an algorithm.
+
+**Return type**
+
+dict
+
+**Raises**
+
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+
+### set\_backend
+
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.set_backend" />
+
+`MaximumLikelihoodAmplitudeEstimation.set_backend(backend, **kwargs)`
+
+Sets backend with configuration.
+
+**Return type**
+
+`None`
 
 ## Attributes
 
-
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.a_factory" />
 
 ### a\_factory
 
@@ -62,9 +190,9 @@ the A operator as CircuitFactory
 
 **Return type**
 
-[CircuitFactory](qiskit.aqua.utils.CircuitFactory#qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")
+[CircuitFactory](qiskit.aqua.utils.CircuitFactory "qiskit.aqua.utils.CircuitFactory")
 
-
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.backend" />
 
 ### backend
 
@@ -74,7 +202,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.grover_operator" />
 
 ### grover\_operator
 
@@ -90,7 +218,7 @@ If the Grover operator is not set, we try to build it from the $\mathcal{A}$ ope
 
 The Grover operator, or None if neither the Grover operator nor the $\mathcal{A}$ operator is set.
 
-
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.i_objective" />
 
 ### i\_objective
 
@@ -110,7 +238,7 @@ the index of the objective qubit
 
 int
 
-
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.objective_qubits" />
 
 ### objective\_qubits
 
@@ -124,7 +252,7 @@ Get the criterion for a measurement outcome to be in a ‘good’ state.
 
 The criterion as list of qubit indices.
 
-
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.q_factory" />
 
 ### q\_factory
 
@@ -146,7 +274,7 @@ returns the current Q factory of the algorithm
 
 QFactory
 
-
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.quantum_instance" />
 
 ### quantum\_instance
 
@@ -156,13 +284,13 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.random" />
 
 ### random
 
 Return a numpy random.
 
-
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimation.state_preparation" />
 
 ### state\_preparation
 
@@ -175,3 +303,4 @@ Get the $\mathcal{A}$ operator encoding the amplitude $a$.
 **Returns**
 
 The $\mathcal{A}$ operator as QuantumCircuit.
+

@@ -46,11 +46,47 @@ Quantum Instance holds a Qiskit Terra backend as well as configuration for circu
 
 ## Attributes
 
+### BACKEND\_CONFIG
+
+<span id="qiskit.aqua.QuantumInstance.BACKEND_CONFIG" />
+
+`= ['basis_gates', 'coupling_map']`
+
+### BACKEND\_OPTIONS
+
+<span id="qiskit.aqua.QuantumInstance.BACKEND_OPTIONS" />
+
+`= ['initial_statevector', 'chop_threshold', 'max_parallel_threads', 'max_parallel_experiments', 'statevector_parallel_threshold', 'statevector_hpc_gate_opt', 'statevector_sample_measure_opt', 'max_parallel_shots']`
+
 ### BACKEND\_OPTIONS\_QASM\_ONLY
 
 <span id="qiskit.aqua.QuantumInstance.BACKEND_OPTIONS_QASM_ONLY" />
 
 `= ['statevector_sample_measure_opt', 'max_parallel_shots']`
+
+### COMPILE\_CONFIG
+
+<span id="qiskit.aqua.QuantumInstance.COMPILE_CONFIG" />
+
+`= ['pass_manager', 'initial_layout', 'seed_transpiler', 'optimization_level']`
+
+### NOISE\_CONFIG
+
+<span id="qiskit.aqua.QuantumInstance.NOISE_CONFIG" />
+
+`= ['noise_model']`
+
+### QJOB\_CONFIG
+
+<span id="qiskit.aqua.QuantumInstance.QJOB_CONFIG" />
+
+`= ['timeout', 'wait']`
+
+### RUN\_CONFIG
+
+<span id="qiskit.aqua.QuantumInstance.RUN_CONFIG" />
+
+`= ['shots', 'max_credits', 'memory', 'seed_simulator']`
 
 ### backend
 

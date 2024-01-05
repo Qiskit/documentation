@@ -1,6 +1,14 @@
+---
+title: ResultDecoder
+description: API reference for qiskit.providers.ibmq.runtime.ResultDecoder
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.runtime.ResultDecoder
+---
+
 # qiskit.providers.ibmq.runtime.ResultDecoder
 
-
+<span id="qiskit.providers.ibmq.runtime.ResultDecoder" />
 
 `ResultDecoder`
 
@@ -17,9 +25,11 @@ class MyResultDecoder(ResultDecoder):
         custom_processing(decoded)  # perform custom processing
 ```
 
-Users of your program will need to pass in the subclass when invoking [`qiskit.providers.ibmq.runtime.RuntimeJob.result()`](qiskit.providers.ibmq.runtime.RuntimeJob#qiskit.providers.ibmq.runtime.RuntimeJob.result "qiskit.providers.ibmq.runtime.RuntimeJob.result") or [`qiskit.providers.ibmq.runtime.IBMRuntimeService.run()`](qiskit.providers.ibmq.runtime.IBMRuntimeService#qiskit.providers.ibmq.runtime.IBMRuntimeService.run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run").
+Users of your program will need to pass in the subclass when invoking [`qiskit.providers.ibmq.runtime.RuntimeJob.result()`](qiskit.providers.ibmq.runtime.RuntimeJob#result "qiskit.providers.ibmq.runtime.RuntimeJob.result") or [`qiskit.providers.ibmq.runtime.IBMRuntimeService.run()`](qiskit.providers.ibmq.runtime.IBMRuntimeService#run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run").
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.ibmq.runtime.ResultDecoder.__init__" />
 
 `__init__()`
 
@@ -27,12 +37,9 @@ Initialize self. See help(type(self)) for accurate signature.
 
 ## Methods
 
-|                                                                                                                              |                         |
-| ---------------------------------------------------------------------------------------------------------------------------- | ----------------------- |
-| [`__init__`](#qiskit.providers.ibmq.runtime.ResultDecoder.__init__ "qiskit.providers.ibmq.runtime.ResultDecoder.__init__")() | Initialize self.        |
-| [`decode`](#qiskit.providers.ibmq.runtime.ResultDecoder.decode "qiskit.providers.ibmq.runtime.ResultDecoder.decode")(data)   | Decode the result data. |
+### decode
 
-
+<span id="qiskit.providers.ibmq.runtime.ResultDecoder.decode" />
 
 `classmethod decode(data)`
 
@@ -49,3 +56,4 @@ Decode the result data.
 **Returns**
 
 Decoded result data.
+

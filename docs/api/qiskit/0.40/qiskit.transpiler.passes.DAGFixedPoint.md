@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.DAGFixedPoint
 ---
 
-# DAGFixedPoint[¶](#dagfixedpoint "Permalink to this headline")
+# DAGFixedPoint
 
 <span id="qiskit.transpiler.passes.DAGFixedPoint" />
 

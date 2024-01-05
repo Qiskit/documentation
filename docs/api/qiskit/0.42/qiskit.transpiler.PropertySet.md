@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.PropertySet
 ---
 
-# PropertySet[¶](#propertyset "Permalink to this headline")
+# PropertySet
 
 <span id="qiskit.transpiler.PropertySet" />
 

@@ -1,20 +1,28 @@
+---
+title: UchannelLO
+description: API reference for qiskit.providers.models.UchannelLO
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.models.UchannelLO
+---
+
 <span id="qiskit-providers-models-uchannello" />
 
 # qiskit.providers.models.UchannelLO
 
-
+<span id="qiskit.providers.models.UchannelLO" />
 
 `UchannelLO(q, scale)`
 
 Class representing a U Channel LO
 
-
+<span id="qiskit.providers.models.UchannelLO.q" />
 
 ### q
 
 Qubit that scale corresponds too.
 
-
+<span id="qiskit.providers.models.UchannelLO.scale" />
 
 ### scale
 
@@ -31,7 +39,9 @@ Initialize a UchannelLOSchema object
 
 **QiskitError** – If q is \< 0
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.models.UchannelLO.__init__" />
 
 `__init__(q, scale)`
 
@@ -48,13 +58,9 @@ Initialize a UchannelLOSchema object
 
 ## Methods
 
-|                                                                                                                    |                                                              |
-| ------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
-| [`__init__`](#qiskit.providers.models.UchannelLO.__init__ "qiskit.providers.models.UchannelLO.__init__")(q, scale) | Initialize a UchannelLOSchema object                         |
-| [`from_dict`](#qiskit.providers.models.UchannelLO.from_dict "qiskit.providers.models.UchannelLO.from_dict")(data)  | Create a new UchannelLO object from a dictionary.            |
-| [`to_dict`](#qiskit.providers.models.UchannelLO.to_dict "qiskit.providers.models.UchannelLO.to_dict")()            | Return a dictionary format representation of the UChannelLO. |
+### from\_dict
 
-
+<span id="qiskit.providers.models.UchannelLO.from_dict" />
 
 `classmethod from_dict(data)`
 
@@ -72,7 +78,9 @@ The UchannelLO from the input dictionary.
 
 [UchannelLO](#qiskit.providers.models.UchannelLO "qiskit.providers.models.UchannelLO")
 
+### to\_dict
 
+<span id="qiskit.providers.models.UchannelLO.to_dict" />
 
 `to_dict()`
 
@@ -85,3 +93,4 @@ The dictionary form of the UChannelLO.
 **Return type**
 
 dict
+

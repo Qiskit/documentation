@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.EfficientSU2
 ---
 
-# EfficientSU2[¶](#efficientsu2 "Permalink to this headline")
+# EfficientSU2
 
 <span id="qiskit.circuit.library.EfficientSU2" />
 

@@ -18,12 +18,12 @@ python_api_name: qiskit.chemistry.components.initial_states
 
 `qiskit.chemistry.components.initial_states`
 
-These are chemistry specific Aqua Initial States where they inherit from Aqua [`InitialState`](qiskit.aqua.components.initial_states.InitialState#qiskit.aqua.components.initial_states.InitialState "qiskit.aqua.components.initial_states.InitialState"). As they rely on chemistry specific knowledge and/or functions they live here rather than in Aqua.
+These are chemistry specific Aqua Initial States where they inherit from Aqua [`InitialState`](qiskit.aqua.components.initial_states.InitialState "qiskit.aqua.components.initial_states.InitialState"). As they rely on chemistry specific knowledge and/or functions they live here rather than in Aqua.
 
 # Initial States
 
-|                                                                                                                                                                                         |                                      |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-| [`HartreeFock`](qiskit.chemistry.components.initial_states.HartreeFock#qiskit.chemistry.components.initial_states.HartreeFock "qiskit.chemistry.components.initial_states.HartreeFock") | A Hartree-Fock initial state.        |
-| [`VSCF`](qiskit.chemistry.components.initial_states.VSCF#qiskit.chemistry.components.initial_states.VSCF "qiskit.chemistry.components.initial_states.VSCF")                             | Initial state for vibrational modes. |
+|                                                                                                                                  |                                      |
+| -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
+| [`HartreeFock`](qiskit.chemistry.components.initial_states.HartreeFock "qiskit.chemistry.components.initial_states.HartreeFock") | A Hartree-Fock initial state.        |
+| [`VSCF`](qiskit.chemistry.components.initial_states.VSCF "qiskit.chemistry.components.initial_states.VSCF")                      | Initial state for vibrational modes. |
 

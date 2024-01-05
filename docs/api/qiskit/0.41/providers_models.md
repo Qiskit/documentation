@@ -14,15 +14,11 @@ python_api_name: qiskit.providers.models
 
 <span id="module-qiskit.providers.models" />
 
-`qiskit.providers.models¶`
+`qiskit.providers.models`
 
 Qiskit schema-conformant objects used by the backends and providers.
 
 ## Backend Objects
-
-<span id="module-qiskit.providers.models" />
-
-`¶`
 
 |                                                                                                                                                          |                                                                       |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |

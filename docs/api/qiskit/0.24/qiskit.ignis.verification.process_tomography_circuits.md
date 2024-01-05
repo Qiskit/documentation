@@ -1,8 +1,16 @@
+---
+title: process_tomography_circuits
+description: API reference for qiskit.ignis.verification.process_tomography_circuits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.process_tomography_circuits
+---
+
 <span id="qiskit-ignis-verification-process-tomography-circuits" />
 
 # qiskit.ignis.verification.process\_tomography\_circuits
 
-
+<span id="qiskit.ignis.verification.process_tomography_circuits" />
 
 `process_tomography_circuits(circuit, measured_qubits, prepared_qubits=None, meas_labels='Pauli', meas_basis='Pauli', prep_labels='Pauli', prep_basis='Pauli')`
 
@@ -36,3 +44,4 @@ on each qubit, and measurement in the Pauli-basis X, Y, Z resulting in $4^n 3^n$
 A list of QuantumCircuit objects containing the original circuit with state preparation circuits prepended, and measurement circuits appended.
 
 The returned circuits are named by the preparation and measurement basis.
+

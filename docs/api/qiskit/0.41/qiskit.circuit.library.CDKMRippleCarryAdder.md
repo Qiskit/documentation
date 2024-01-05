@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.CDKMRippleCarryAdder
 ---
 
-# CDKMRippleCarryAdder[¶](#cdkmripplecarryadder "Permalink to this headline")
+# CDKMRippleCarryAdder
 
 <span id="qiskit.circuit.library.CDKMRippleCarryAdder" />
 

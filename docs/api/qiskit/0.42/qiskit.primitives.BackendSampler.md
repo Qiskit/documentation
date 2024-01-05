@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.primitives.BackendSampler
 ---
 
-# BackendSampler[¶](#backendsampler "Permalink to this headline")
+# BackendSampler
 
 <span id="qiskit.primitives.BackendSampler" />
 

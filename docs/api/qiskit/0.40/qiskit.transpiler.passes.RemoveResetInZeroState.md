@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.RemoveResetInZeroState
 ---
 
-# RemoveResetInZeroState[¶](#removeresetinzerostate "Permalink to this headline")
+# RemoveResetInZeroState
 
 <span id="qiskit.transpiler.passes.RemoveResetInZeroState" />
 

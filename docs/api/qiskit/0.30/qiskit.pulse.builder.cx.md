@@ -1,6 +1,14 @@
+---
+title: cx
+description: API reference for qiskit.pulse.builder.cx
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.cx
+---
+
 # qiskit.pulse.builder.cx
 
-
+<span id="qiskit.pulse.builder.cx" />
 
 `cx(control, target)`
 
@@ -21,3 +29,4 @@ backend = FakeOpenPulse2Q()
 with pulse.build(backend) as pulse_prog:
     pulse.cx(0, 1)
 ```
+

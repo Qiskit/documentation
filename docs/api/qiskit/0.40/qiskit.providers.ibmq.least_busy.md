@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.ibmq.least_busy
 ---
 
-# qiskit.providers.ibmq.least\_busy[¶](#qiskit-providers-ibmq-least-busy "Permalink to this headline")
+# qiskit.providers.ibmq.least\_busy
 
 <span id="qiskit.providers.ibmq.least_busy" />
 

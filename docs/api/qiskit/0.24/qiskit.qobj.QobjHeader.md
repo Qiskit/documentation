@@ -1,8 +1,16 @@
+---
+title: QobjHeader
+description: API reference for qiskit.qobj.QobjHeader
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.qobj.QobjHeader
+---
+
 <span id="qiskit-qobj-qobjheader" />
 
 # qiskit.qobj.QobjHeader
 
-
+<span id="qiskit.qobj.QobjHeader" />
 
 `QobjHeader(**kwargs)`
 
@@ -14,7 +22,9 @@ Instantiate a new Qobj dict field object.
 
 **kwargs** – arbitrary keyword arguments that can be accessed as attributes of the object.
 
+### \_\_init\_\_
 
+<span id="qiskit.qobj.QobjHeader.__init__" />
 
 `__init__(**kwargs)`
 
@@ -26,13 +36,9 @@ Instantiate a new Qobj dict field object.
 
 ## Methods
 
-|                                                                                              |                                                             |
-| -------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| [`__init__`](#qiskit.qobj.QobjHeader.__init__ "qiskit.qobj.QobjHeader.__init__")(\*\*kwargs) | Instantiate a new Qobj dict field object.                   |
-| [`from_dict`](#qiskit.qobj.QobjHeader.from_dict "qiskit.qobj.QobjHeader.from_dict")(data)    | Create a new QobjHeader object from a dictionary.           |
-| [`to_dict`](#qiskit.qobj.QobjHeader.to_dict "qiskit.qobj.QobjHeader.to_dict")()              | Return a dictionary format representation of the QASM Qobj. |
+### from\_dict
 
-
+<span id="qiskit.qobj.QobjHeader.from_dict" />
 
 `classmethod from_dict(data)`
 
@@ -50,7 +56,9 @@ The QobjDictField from the input dictionary.
 
 QobjDictFieldr
 
+### to\_dict
 
+<span id="qiskit.qobj.QobjHeader.to_dict" />
 
 `to_dict()`
 
@@ -63,3 +71,4 @@ The dictionary form of the QobjHeader.
 **Return type**
 
 dict
+

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.FencedDAGCircuit
 ---
 
-# FencedDAGCircuit[¶](#fenceddagcircuit "Permalink to this headline")
+# FencedDAGCircuit
 
 <span id="qiskit.transpiler.FencedDAGCircuit" />
 

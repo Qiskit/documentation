@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.GSLS
 ---
 
-# GSLS[¶](#gsls "Permalink to this headline")
+# GSLS
 
 <span id="qiskit.algorithms.optimizers.GSLS" />
 

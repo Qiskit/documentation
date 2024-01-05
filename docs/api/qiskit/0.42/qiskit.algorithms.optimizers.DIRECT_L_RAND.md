@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.DIRECT_L_RAND
 ---
 
-# DIRECT\_L\_RAND[¶](#direct-l-rand "Permalink to this headline")
+# DIRECT\_L\_RAND
 
 <span id="qiskit.algorithms.optimizers.DIRECT_L_RAND" />
 

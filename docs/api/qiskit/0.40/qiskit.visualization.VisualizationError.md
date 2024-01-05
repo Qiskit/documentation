@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.visualization.VisualizationError
 ---
 
-# qiskit.visualization.VisualizationError[¶](#qiskit-visualization-visualizationerror "Permalink to this headline")
+# qiskit.visualization.VisualizationError
 
 <span id="qiskit.visualization.VisualizationError" />
 

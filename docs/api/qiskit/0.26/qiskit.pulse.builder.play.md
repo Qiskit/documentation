@@ -1,6 +1,14 @@
+---
+title: play
+description: API reference for qiskit.pulse.builder.play
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.play
+---
+
 # qiskit.pulse.builder.play
 
-
+<span id="qiskit.pulse.builder.play" />
 
 `play(pulse, channel, name=None)`
 
@@ -22,3 +30,4 @@ with pulse.build() as pulse_prog:
 *   **pulse** (`Union`\[`Pulse`, `ndarray`]) – Pulse to play.
 *   **channel** ([`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")) – Channel to play pulse on.
 *   **name** (`Optional`\[`str`]) – Name of the pulse.
+

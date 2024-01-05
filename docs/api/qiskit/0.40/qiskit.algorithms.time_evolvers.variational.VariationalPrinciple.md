@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.time_evolvers.variational.VariationalPrinciple
 ---
 
-# VariationalPrinciple[¶](#variationalprinciple "Permalink to this headline")
+# VariationalPrinciple
 
 <span id="qiskit.algorithms.time_evolvers.variational.VariationalPrinciple" />
 

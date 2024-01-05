@@ -18,25 +18,25 @@ python_api_name: qiskit.assembler
 
 ## Circuit Assembler
 
-|                                                                                                                                                             |                                                                          |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`assemble_circuits`](qiskit.assembler.assemble_circuits#qiskit.assembler.assemble_circuits "qiskit.assembler.assemble_circuits")(circuits, run\_config, …) | Assembles a list of circuits into a qobj that can be run on the backend. |
+|                                                                                                                          |                                                                          |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------ |
+| [`assemble_circuits`](qiskit.assembler.assemble_circuits "qiskit.assembler.assemble_circuits")(circuits, run\_config, …) | Assembles a list of circuits into a qobj that can be run on the backend. |
 
 ## Schedule Assembler
 
-|                                                                                                                                                               |                                                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
-| [`assemble_schedules`](qiskit.assembler.assemble_schedules#qiskit.assembler.assemble_schedules "qiskit.assembler.assemble_schedules")(schedules, qobj\_id, …) | Assembles a list of schedules into a qobj that can be run on the backend. |
+|                                                                                                                           |                                                                           |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------- |
+| [`assemble_schedules`](qiskit.assembler.assemble_schedules "qiskit.assembler.assemble_schedules")(schedules, qobj\_id, …) | Assembles a list of schedules into a qobj that can be run on the backend. |
 
 ## Disassembler
 
-|                                                                                                                 |                                                                                              |
-| --------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
-| [`disassemble`](qiskit.assembler.disassemble#qiskit.assembler.disassemble "qiskit.assembler.disassemble")(qobj) | Disassemble a qobj and return the circuits or pulse schedules, run\_config, and user header. |
+|                                                                                    |                                                                                              |
+| ---------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------- |
+| [`disassemble`](qiskit.assembler.disassemble "qiskit.assembler.disassemble")(qobj) | Disassemble a qobj and return the circuits or pulse schedules, run\_config, and user header. |
 
 ## RunConfig
 
-|                                                                                                                              |                              |
-| ---------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| [`RunConfig`](qiskit.assembler.RunConfig#qiskit.assembler.RunConfig "qiskit.assembler.RunConfig")(\[shots, max\_credits, …]) | Class for Run Configuration. |
+|                                                                                                   |                              |
+| ------------------------------------------------------------------------------------------------- | ---------------------------- |
+| [`RunConfig`](qiskit.assembler.RunConfig "qiskit.assembler.RunConfig")(\[shots, max\_credits, …]) | Class for Run Configuration. |
 

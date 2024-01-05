@@ -14,19 +14,15 @@ python_api_name: qiskit_aer.library
 
 <span id="module-qiskit_aer.library" />
 
-`qiskit_aer.library¶`
+`qiskit_aer.library`
 
 This library contains custom qiskit `QuantumCircuit` [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") subclasses that can be used with the Aer circuit simulator backends.
 
 ## Setting a Custom Simulator State
 
-<span id="module-qiskit_aer.library" />
-
-`¶`
-
 The following instruction classes can be used to set the specific simulator methods to a custom state. Note that these instructions are only valid when applied to all qubits in a circuit. Applying to a subset of qubits will raise an exception during execution.
 
-### Instruction Classes[¶](#instruction-classes "Permalink to this headline")
+### Instruction Classes
 
 |                                                                                                                       |                                                    |
 | --------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
@@ -37,7 +33,7 @@ The following instruction classes can be used to set the specific simulator meth
 | [`SetUnitary`](qiskit_aer.library.SetUnitary "qiskit_aer.library.SetUnitary")(state)                                  | Set unitary state of the simulator                 |
 | [`SetMatrixProductState`](qiskit_aer.library.SetMatrixProductState "qiskit_aer.library.SetMatrixProductState")(state) | Set the matrix product state of the simulator      |
 
-### QuantumCircuit Methods[¶](#quantumcircuit-methods "Permalink to this headline")
+### QuantumCircuit Methods
 
 The set instructions can also be added to circuits by using the following `QuantumCircuit` methods which are patched when importing Aer.
 
@@ -52,11 +48,7 @@ The set instructions can also be added to circuits by using the following `Quant
 
 ## Saving Simulator Data
 
-<span id="module-qiskit_aer.library" />
-
-`¶`
-
-### Simulator State Save Instruction Classes[¶](#simulator-state-save-instruction-classes "Permalink to this headline")
+### Simulator State Save Instruction Classes
 
 The following instructions can be used to save the state of the simulator into the returned result object. The [`SaveState`](qiskit_aer.library.SaveState "qiskit_aer.library.SaveState") instruction will automatically select the format based on the simulation method (eg. [`SaveStatevector`](qiskit_aer.library.SaveStatevector "qiskit_aer.library.SaveStatevector") for statevector method, [`SaveDensityMatrix`](qiskit_aer.library.SaveDensityMatrix "qiskit_aer.library.SaveDensityMatrix") for density matrix method etc.).
 
@@ -80,7 +72,7 @@ The following instructions can be used to save the state of the simulator into t
   The [`StatevectorSimulator`](qiskit_aer.StatevectorSimulator "qiskit_aer.StatevectorSimulator") (and [`UnitarySimulator`](qiskit_aer.UnitarySimulator "qiskit_aer.UnitarySimulator")) backend automatically append every run circuit with the a ``SaveStatevector`()`` (``SaveUnitary`()``) instruction using the default label. Hence adding any additional save instructions of that type will require specifying a custom label for those instructions.
 </Admonition>
 
-### Simulator Derived Data Save Instruction Classes[¶](#simulator-derived-data-save-instruction-classes "Permalink to this headline")
+### Simulator Derived Data Save Instruction Classes
 
 The following classes can be used to directly save data derived from the simulator state to the returned result object. One some are compatible with certain simulation methods.
 
@@ -105,7 +97,7 @@ For convenience the save instructions can be accessed using custom `QuantumCircu
   In both these cases only a single shot is actually simulated and measurement samples for all shots are calculated from the final state.
 </Admonition>
 
-### QuantumCircuit Methods[¶](#id1 "Permalink to this headline")
+### QuantumCircuit Methods
 
 The save instructions can also be added to circuits by using the following `QuantumCircuit` methods which are patched when importing Aer.
 
@@ -132,10 +124,6 @@ The save instructions can also be added to circuits by using the following `Quan
 | [`save_unitary`](qiskit_aer.library.save_unitary "qiskit_aer.library.save_unitary")(self\[, label, pershot])                                                    | Save the current state of the unitary simulator.                          |
 
 ## Method Compatibility
-
-<span id="module-qiskit_aer.library" />
-
-`¶`
 
 The following table summarizes which instructions are compatible with which simulation methods
 

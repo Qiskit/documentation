@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CrosstalkAdaptiveSchedule
 ---
 
-# CrosstalkAdaptiveSchedule[¶](#crosstalkadaptiveschedule "Permalink to this headline")
+# CrosstalkAdaptiveSchedule
 
 <span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule" />
 

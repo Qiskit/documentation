@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.HamiltonianPhaseEstimationResult
 ---
 
-# HamiltonianPhaseEstimationResult[¶](#hamiltonianphaseestimationresult "Permalink to this headline")
+# HamiltonianPhaseEstimationResult
 
 <span id="qiskit.algorithms.HamiltonianPhaseEstimationResult" />
 

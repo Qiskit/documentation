@@ -1,8 +1,8 @@
 <span id="qiskit-opflow-state-fns" />
 
-# qiskit.opflow\.state\_fns[¶](#module-qiskit.opflow.state_fns "Permalink to this headline")
+# qiskit.opflow\.state\_fns
 
-## State Functions ([`qiskit.opflow.state_fns`](#module-qiskit.opflow.state_fns "qiskit.opflow.state_fns"))[¶](#state-functions-qiskit-opflow-state-fns "Permalink to this headline")
+## State Functions ([`qiskit.opflow.state_fns`](#module-qiskit.opflow.state_fns "qiskit.opflow.state_fns"))
 
 State functions are defined to be complex functions over a single binary string (as compared to an operator, which is defined as a function over two binary strings, or a function taking a binary function to another binary function). This function may be called by the eval() method.
 
@@ -16,7 +16,7 @@ Measurements are defined to be functionals over StateFns, taking them to real va
   State functions here are not restricted to wave functions, as there is no requirement of normalization.
 </Admonition>
 
-### State Functions[¶](#state-functions "Permalink to this headline")
+### State Functions
 
 |                                                                                                                                              |                                                                                                                                                                       |
 | -------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

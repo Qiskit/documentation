@@ -16,13 +16,13 @@ python_api_name: qiskit.chemistry.components.variational_forms
 
 `qiskit.chemistry.components.variational_forms`
 
-These are chemistry specific Aqua Variational Forms where they inherit from Aqua [`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm#qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.VariationalForm"). As they rely on chemistry specific knowledge and/or functions they live here rather than in Aqua.
+These are chemistry specific Aqua Variational Forms where they inherit from Aqua [`VariationalForm`](qiskit.aqua.components.variational_forms.VariationalForm "qiskit.aqua.components.variational_forms.VariationalForm"). As they rely on chemistry specific knowledge and/or functions they live here rather than in Aqua.
 
 # Variational Forms
 
-|                                                                                                                                                                          |                                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| [`UCCSD`](qiskit.chemistry.components.variational_forms.UCCSD#qiskit.chemistry.components.variational_forms.UCCSD "qiskit.chemistry.components.variational_forms.UCCSD") | This trial wavefunction is a Unitary Coupled-Cluster Single and Double excitations variational form.             |
-| [`UVCC`](qiskit.chemistry.components.variational_forms.UVCC#qiskit.chemistry.components.variational_forms.UVCC "qiskit.chemistry.components.variational_forms.UVCC")     | This trial wavefunction is a Unitary Vibrational Coupled-Cluster Single and Double excitations variational form. |
-| [`CHC`](qiskit.chemistry.components.variational_forms.CHC#qiskit.chemistry.components.variational_forms.CHC "qiskit.chemistry.components.variational_forms.CHC")         | This trial wavefunction is the Compact Heuristic for Chemistry.                                                  |
+|                                                                                                                      |                                                                                                                  |
+| -------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
+| [`UCCSD`](qiskit.chemistry.components.variational_forms.UCCSD "qiskit.chemistry.components.variational_forms.UCCSD") | This trial wavefunction is a Unitary Coupled-Cluster Single and Double excitations variational form.             |
+| [`UVCC`](qiskit.chemistry.components.variational_forms.UVCC "qiskit.chemistry.components.variational_forms.UVCC")    | This trial wavefunction is a Unitary Vibrational Coupled-Cluster Single and Double excitations variational form. |
+| [`CHC`](qiskit.chemistry.components.variational_forms.CHC "qiskit.chemistry.components.variational_forms.CHC")       | This trial wavefunction is the Compact Heuristic for Chemistry.                                                  |
 

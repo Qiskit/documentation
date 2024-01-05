@@ -1,8 +1,16 @@
+---
+title: random_state
+description: API reference for qiskit.quantum_info.random_state
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.quantum_info.random_state
+---
+
 <span id="qiskit-quantum-info-random-state" />
 
 # qiskit.quantum\_info.random\_state
 
-
+<span id="qiskit.quantum_info.random_state" />
 
 `random_state(dim, seed=None)`
 
@@ -20,3 +28,4 @@ state(2\*\*num) a random quantum state.
 **Return type**
 
 ndarray
+

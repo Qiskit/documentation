@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.LookaheadSwap
 ---
 
-# LookaheadSwap[¶](#lookaheadswap "Permalink to this headline")
+# LookaheadSwap
 
 <span id="qiskit.transpiler.passes.LookaheadSwap" />
 

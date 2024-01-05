@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.primitive_ops.PrimitiveOp
 ---
 
-# PrimitiveOp[¶](#primitiveop "Permalink to this headline")
+# PrimitiveOp
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp" />
 

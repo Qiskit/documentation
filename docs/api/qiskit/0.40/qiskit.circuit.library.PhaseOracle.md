@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.PhaseOracle
 ---
 
-# PhaseOracle[¶](#phaseoracle "Permalink to this headline")
+# PhaseOracle
 
 <span id="qiskit.circuit.library.PhaseOracle" />
 

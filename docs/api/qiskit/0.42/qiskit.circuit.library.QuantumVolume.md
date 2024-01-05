@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.QuantumVolume
 ---
 
-# QuantumVolume[¶](#quantumvolume "Permalink to this headline")
+# QuantumVolume
 
 <span id="qiskit.circuit.library.QuantumVolume" />
 

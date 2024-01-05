@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.transforms.flatten
 ---
 
-# qiskit.pulse.transforms.flatten[¶](#qiskit-pulse-transforms-flatten "Permalink to this headline")
+# qiskit.pulse.transforms.flatten
 
 <span id="qiskit.pulse.transforms.flatten" />
 

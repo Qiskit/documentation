@@ -20,20 +20,20 @@ python_api_name: qiskit.extensions
 
 ## Unitary Extensions
 
-|                                                                                                                                                    |                                                                                 |
-| -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
-| [`UnitaryGate`](qiskit.extensions.UnitaryGate#qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")(data\[, label])                       | Class for representing unitary gates                                            |
-| [`HamiltonianGate`](qiskit.extensions.HamiltonianGate#qiskit.extensions.HamiltonianGate "qiskit.extensions.HamiltonianGate")(data, time\[, label]) | Class for representing evolution by a Hermitian Hamiltonian operator as a gate. |
+|                                                                                                                  |                                                                                 |
+| ---------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------- |
+| [`UnitaryGate`](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")(data\[, label])                   | Class for representing unitary gates                                            |
+| [`HamiltonianGate`](qiskit.extensions.HamiltonianGate "qiskit.extensions.HamiltonianGate")(data, time\[, label]) | Class for representing evolution by a Hermitian Hamiltonian operator as a gate. |
 
 ## Simulator Extensions
 
-|                                                                                                                                            |                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------- |
-| [`Snapshot`](qiskit.extensions.Snapshot#qiskit.extensions.Snapshot "qiskit.extensions.Snapshot")(label\[, snapshot\_type, num\_qubits, …]) | Simulator snapshot instruction. |
+|                                                                                                                 |                                 |
+| --------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| [`Snapshot`](qiskit.extensions.Snapshot "qiskit.extensions.Snapshot")(label\[, snapshot\_type, num\_qubits, …]) | Simulator snapshot instruction. |
 
 ## Initialization
 
-|                                                                                                                  |                                   |
-| ---------------------------------------------------------------------------------------------------------------- | --------------------------------- |
-| [`Initialize`](qiskit.extensions.Initialize#qiskit.extensions.Initialize "qiskit.extensions.Initialize")(params) | Complex amplitude initialization. |
+|                                                                                     |                                   |
+| ----------------------------------------------------------------------------------- | --------------------------------- |
+| [`Initialize`](qiskit.extensions.Initialize "qiskit.extensions.Initialize")(params) | Complex amplitude initialization. |
 

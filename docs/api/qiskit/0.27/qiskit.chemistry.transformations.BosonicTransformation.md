@@ -1,6 +1,14 @@
+---
+title: BosonicTransformation
+description: API reference for qiskit.chemistry.transformations.BosonicTransformation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.transformations.BosonicTransformation
+---
+
 # qiskit.chemistry.transformations.BosonicTransformation
 
-
+<span id="qiskit.chemistry.transformations.BosonicTransformation" />
 
 `BosonicTransformation(qubit_mapping=<BosonicQubitMappingType.DIRECT: 'direct'>, transformation_type=<BosonicTransformationType.HARMONIC: 'harmonic'>, basis_size=2, truncation=3)`
 
@@ -13,7 +21,9 @@ A vibronic Hamiltonian operator representing the energy of the nuclei in the mol
 *   **basis\_size** (`Union`\[`int`, `List`\[`int`]]) – define the number of modals per mode. If the number of modals is the same for each mode, then only an int is required. However, if the number of modals differ depending on the mode basis\_size should be a list of int, for example: \[3,4] means 2 modes: first mode has 3 modals, second mode has 4 modals.
 *   **truncation** (`int`) – where is the Hamiltonian expansion truncation (1 for having only 1-body terms, 2 for having on 1- and 2-body terms…)
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.transformations.BosonicTransformation.__init__" />
 
 `__init__(qubit_mapping=<BosonicQubitMappingType.DIRECT: 'direct'>, transformation_type=<BosonicTransformationType.HARMONIC: 'harmonic'>, basis_size=2, truncation=3)`
 
@@ -26,24 +36,11 @@ A vibronic Hamiltonian operator representing the energy of the nuclei in the mol
 
 ## Methods
 
-|                                                                                                                                                                                                                |                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.transformations.BosonicTransformation.__init__ "qiskit.chemistry.transformations.BosonicTransformation.__init__")(\[qubit\_mapping, …])                                         | **type qubit\_mapping**`BosonicQubitMappingType`                                                  |
-| [`build_hopping_operators`](#qiskit.chemistry.transformations.BosonicTransformation.build_hopping_operators "qiskit.chemistry.transformations.BosonicTransformation.build_hopping_operators")(\[excitations])  | **type excitations**`Union`\[`str`, `List`\[`List`\[`int`]]]                                      |
-| [`get_default_filter_criterion`](#qiskit.chemistry.transformations.BosonicTransformation.get_default_filter_criterion "qiskit.chemistry.transformations.BosonicTransformation.get_default_filter_criterion")() | Returns a default filter criterion method to filter the eigenvalues computed by the eigen solver. |
-| [`interpret`](#qiskit.chemistry.transformations.BosonicTransformation.interpret "qiskit.chemistry.transformations.BosonicTransformation.interpret")(raw\_result)                                               | Interprets an EigenstateResult in the context of this transformation.                             |
-| [`transform`](#qiskit.chemistry.transformations.BosonicTransformation.transform "qiskit.chemistry.transformations.BosonicTransformation.transform")(driver\[, aux\_operators])                                 | Transformation to qubit operator from the driver                                                  |
-
 ## Attributes
 
-|                                                                                                                                                                                |                                               |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------- |
-| [`basis`](#qiskit.chemistry.transformations.BosonicTransformation.basis "qiskit.chemistry.transformations.BosonicTransformation.basis")                                        | returns the basis (number of modals per mode) |
-| [`commutation_rule`](#qiskit.chemistry.transformations.BosonicTransformation.commutation_rule "qiskit.chemistry.transformations.BosonicTransformation.commutation_rule")       | Getter of the commutation rule                |
-| [`num_modes`](#qiskit.chemistry.transformations.BosonicTransformation.num_modes "qiskit.chemistry.transformations.BosonicTransformation.num_modes")                            | the number of modes                           |
-| [`untapered_qubit_op`](#qiskit.chemistry.transformations.BosonicTransformation.untapered_qubit_op "qiskit.chemistry.transformations.BosonicTransformation.untapered_qubit_op") | Getter for the untapered qubit operator       |
+### basis
 
-
+<span id="qiskit.chemistry.transformations.BosonicTransformation.basis" />
 
 `property basis`
 
@@ -53,7 +50,9 @@ returns the basis (number of modals per mode)
 
 `Union`\[`int`, `List`\[`int`]]
 
+### build\_hopping\_operators
 
+<span id="qiskit.chemistry.transformations.BosonicTransformation.build_hopping_operators" />
 
 `build_hopping_operators(excitations='sd')`
 
@@ -69,7 +68,9 @@ returns the basis (number of modals per mode)
 
 Dict of hopping operators, dict of commutativity types and dict of excitation indices
 
+### commutation\_rule
 
+<span id="qiskit.chemistry.transformations.BosonicTransformation.commutation_rule" />
 
 `property commutation_rule`
 
@@ -79,7 +80,9 @@ Getter of the commutation rule
 
 `bool`
 
+### get\_default\_filter\_criterion
 
+<span id="qiskit.chemistry.transformations.BosonicTransformation.get_default_filter_criterion" />
 
 `get_default_filter_criterion()`
 
@@ -89,7 +92,9 @@ Returns a default filter criterion method to filter the eigenvalues computed by 
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
 
+### interpret
 
+<span id="qiskit.chemistry.transformations.BosonicTransformation.interpret" />
 
 `interpret(raw_result)`
 
@@ -107,7 +112,9 @@ Interprets an EigenstateResult in the context of this transformation.
 
 An vibronic structure result.
 
+### num\_modes
 
+<span id="qiskit.chemistry.transformations.BosonicTransformation.num_modes" />
 
 `property num_modes`
 
@@ -121,7 +128,9 @@ Returns
 
 `int`
 
+### transform
 
+<span id="qiskit.chemistry.transformations.BosonicTransformation.transform" />
 
 `transform(driver, aux_operators=None)`
 
@@ -140,8 +149,11 @@ Transformation to qubit operator from the driver
 
 qubit operator, auxiliary operators
 
+### untapered\_qubit\_op
 
+<span id="qiskit.chemistry.transformations.BosonicTransformation.untapered_qubit_op" />
 
 `property untapered_qubit_op`
 
 Getter for the untapered qubit operator
+

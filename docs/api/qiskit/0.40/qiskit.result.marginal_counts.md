@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.result.marginal_counts
 ---
 
-# qiskit.result.marginal\_counts[¶](#qiskit-result-marginal-counts "Permalink to this headline")
+# qiskit.result.marginal\_counts
 
 <span id="qiskit.result.marginal_counts" />
 

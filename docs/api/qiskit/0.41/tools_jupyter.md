@@ -14,15 +14,11 @@ python_api_name: qiskit.tools.jupyter
 
 <span id="module-qiskit.tools.jupyter" />
 
-`qiskit.tools.jupyter¶`
+`qiskit.tools.jupyter`
 
 A Collection of Jupyter magic functions and tools that extend the functionality of Qiskit.
 
 ## Overview of all available backends
-
-<span id="module-qiskit.tools.jupyter" />
-
-`¶`
 
 ```python
 from qiskit.providers.ibmq import IBMQ
@@ -35,10 +31,6 @@ IBMQ.load_account()
 ```
 
 ## Detailed information on a single backend
-
-<span id="module-qiskit.tools.jupyter" />
-
-`¶`
 
 ```python
 from qiskit.providers.ibmq import IBMQ
@@ -53,20 +45,12 @@ backend
 
 ## Load Qiskit Job Watcher
 
-<span id="module-qiskit.tools.jupyter" />
-
-`¶`
-
 ```python
 import qiskit.tools.jupyter
 %qiskit_job_watcher
 ```
 
 ## HTMLProgressBar
-
-<span id="module-qiskit.tools.jupyter" />
-
-`¶`
 
 ```python
 import numpy as np
@@ -79,10 +63,6 @@ parallel_map(np.sin, np.linspace(0,10,100));
 
 ## Qiskit version table
 
-<span id="module-qiskit.tools.jupyter" />
-
-`¶`
-
 ```python
 import qiskit.tools.jupyter
 %qiskit_version_table
@@ -90,20 +70,12 @@ import qiskit.tools.jupyter
 
 ## Qiskit copyright
 
-<span id="module-qiskit.tools.jupyter" />
-
-`¶`
-
 ```python
 import qiskit.tools.jupyter
 %qiskit_copyright
 ```
 
 ## Monospaced output
-
-<span id="module-qiskit.tools.jupyter" />
-
-`¶`
 
 ```python
 import qiskit.tools.jupyter

@@ -1,18 +1,26 @@
+---
+title: GaussianLogDriver
+description: API reference for qiskit.chemistry.drivers.GaussianLogDriver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.drivers.GaussianLogDriver
+---
+
 <span id="qiskit-chemistry-drivers-gaussianlogdriver" />
 
 # qiskit.chemistry.drivers.GaussianLogDriver
 
-
+<span id="qiskit.chemistry.drivers.GaussianLogDriver" />
 
 `GaussianLogDriver(jcf)`
 
 Gaussian™ 16 log driver.
 
-Qiskit chemistry driver using the Gaussian™ 16 program that provides the log back, via [`GaussianLogResult`](qiskit.chemistry.drivers.GaussianLogResult#qiskit.chemistry.drivers.GaussianLogResult "qiskit.chemistry.drivers.GaussianLogResult"), for access to the log and data recorded there.
+Qiskit chemistry driver using the Gaussian™ 16 program that provides the log back, via [`GaussianLogResult`](qiskit.chemistry.drivers.GaussianLogResult "qiskit.chemistry.drivers.GaussianLogResult"), for access to the log and data recorded there.
 
 See [http://gaussian.com/gaussian16/](http://gaussian.com/gaussian16/)
 
-This driver does not use Gaussian 16 interfacing code, as certain data such as forces properties are not present in the MatrixElement file. The log is returned as a [`GaussianLogResult`](qiskit.chemistry.drivers.GaussianLogResult#qiskit.chemistry.drivers.GaussianLogResult "qiskit.chemistry.drivers.GaussianLogResult") allowing it to be parsed for whatever data may be of interest. This result class also contains ready access to certain data within the log.
+This driver does not use Gaussian 16 interfacing code, as certain data such as forces properties are not present in the MatrixElement file. The log is returned as a [`GaussianLogResult`](qiskit.chemistry.drivers.GaussianLogResult "qiskit.chemistry.drivers.GaussianLogResult") allowing it to be parsed for whatever data may be of interest. This result class also contains ready access to certain data within the log.
 
 **Parameters**
 
@@ -20,9 +28,11 @@ This driver does not use Gaussian 16 interfacing code, as certain data such as f
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.drivers.GaussianLogDriver.__init__" />
 
 `__init__(jcf)`
 
@@ -32,25 +42,15 @@ This driver does not use Gaussian 16 interfacing code, as certain data such as f
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
 ## Methods
 
-|                                                                                                                               |                                                                          |
-| ----------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.chemistry.drivers.GaussianLogDriver.__init__ "qiskit.chemistry.drivers.GaussianLogDriver.__init__")(jcf) | **type jcf**`Union`\[`str`, `List`\[`str`]]                              |
-| [`run`](#qiskit.chemistry.drivers.GaussianLogDriver.run "qiskit.chemistry.drivers.GaussianLogDriver.run")()                   | Runs the driver to produce a result given the supplied job control file. |
-
 ## Attributes
 
-|                                                                                                                                                     |                                                 |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [`basis`](#qiskit.chemistry.drivers.GaussianLogDriver.basis "qiskit.chemistry.drivers.GaussianLogDriver.basis")                                     | return basis                                    |
-| [`hf_method`](#qiskit.chemistry.drivers.GaussianLogDriver.hf_method "qiskit.chemistry.drivers.GaussianLogDriver.hf_method")                         | return Hartree-Fock method                      |
-| [`molecule`](#qiskit.chemistry.drivers.GaussianLogDriver.molecule "qiskit.chemistry.drivers.GaussianLogDriver.molecule")                            | return molecule                                 |
-| [`supports_molecule`](#qiskit.chemistry.drivers.GaussianLogDriver.supports_molecule "qiskit.chemistry.drivers.GaussianLogDriver.supports_molecule") | True for derived classes that support Molecule. |
+### basis
 
-
+<span id="qiskit.chemistry.drivers.GaussianLogDriver.basis" />
 
 `property basis`
 
@@ -60,7 +60,9 @@ return basis
 
 `str`
 
+### hf\_method
 
+<span id="qiskit.chemistry.drivers.GaussianLogDriver.hf_method" />
 
 `property hf_method`
 
@@ -70,7 +72,9 @@ return Hartree-Fock method
 
 `str`
 
+### molecule
 
+<span id="qiskit.chemistry.drivers.GaussianLogDriver.molecule" />
 
 `property molecule`
 
@@ -80,7 +84,9 @@ return molecule
 
 `Optional`\[`Molecule`]
 
+### run
 
+<span id="qiskit.chemistry.drivers.GaussianLogDriver.run" />
 
 `run()`
 
@@ -96,9 +102,11 @@ A log file result.
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Missing output log
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Missing output log
 
+### supports\_molecule
 
+<span id="qiskit.chemistry.drivers.GaussianLogDriver.supports_molecule" />
 
 `property supports_molecule`
 
@@ -111,3 +119,4 @@ True for derived classes that support Molecule.
 **Returns**
 
 True if Molecule is supported.
+

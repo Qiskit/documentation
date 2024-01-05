@@ -22,7 +22,7 @@ These are chemistry applications leveraging quantum algorithms from Aqua.
 
 **DEPRECATED** See Ground state solvers in [`qiskit.chemistry.algorithms`](qiskit.chemistry.algorithms#module-qiskit.chemistry.algorithms "qiskit.chemistry.algorithms") which replace this.
 
-|                                                                                                                                                                                                              |                                                     |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------- |
-| [`MolecularGroundStateEnergy`](qiskit.chemistry.applications.MolecularGroundStateEnergy#qiskit.chemistry.applications.MolecularGroundStateEnergy "qiskit.chemistry.applications.MolecularGroundStateEnergy") | Molecular ground state energy chemistry application |
+|                                                                                                                                                     |                                                     |
+| --------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| [`MolecularGroundStateEnergy`](qiskit.chemistry.applications.MolecularGroundStateEnergy "qiskit.chemistry.applications.MolecularGroundStateEnergy") | Molecular ground state energy chemistry application |
 

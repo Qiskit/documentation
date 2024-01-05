@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.quantum_info.Operator
 ---
 
-# Operator[¶](#operator "Permalink to this headline")
+# Operator
 
 <span id="qiskit.quantum_info.Operator" />
 

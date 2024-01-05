@@ -1,6 +1,14 @@
+---
+title: wrap_method
+description: API reference for qiskit.utils.wrap_method
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.utils.wrap_method
+---
+
 # qiskit.utils.wrap\_method
 
-
+<span id="qiskit.utils.wrap_method" />
 
 `wrap_method(cls, name, *, before=None, after=None)`
 
@@ -20,3 +28,4 @@ If either `before` or `after` are given, they should be callables with a compati
 **Raises**
 
 **ValueError** – if the named method is not defined on the class or any parent class.
+

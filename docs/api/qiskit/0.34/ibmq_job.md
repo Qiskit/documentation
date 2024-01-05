@@ -20,24 +20,24 @@ Modules representing IBM Quantum Experience jobs.
 
 ## Classes
 
-|                                                                                                                                                              |                                                                             |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
-| [`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob#qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.IBMQJob")(backend, api\_client, job\_id, …\[, …]) | Representation of a job that executes on an IBM Quantum Experience backend. |
-| [`QueueInfo`](qiskit.providers.ibmq.job.QueueInfo#qiskit.providers.ibmq.job.QueueInfo "qiskit.providers.ibmq.job.QueueInfo")(\[position, status, …])         | Queue information for a job.                                                |
+|                                                                                                                            |                                                                             |
+| -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.IBMQJob")(backend, api\_client, job\_id, …\[, …]) | Representation of a job that executes on an IBM Quantum Experience backend. |
+| [`QueueInfo`](qiskit.providers.ibmq.job.QueueInfo "qiskit.providers.ibmq.job.QueueInfo")(\[position, status, …])           | Queue information for a job.                                                |
 
 ## Functions
 
-|                                                                                                                                                                |                                              |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [`job_monitor`](qiskit.providers.ibmq.job.job_monitor#qiskit.providers.ibmq.job.job_monitor "qiskit.providers.ibmq.job.job_monitor")(job\[, interval, output]) | Monitor the status of an `IBMQJob` instance. |
+|                                                                                                                          |                                              |
+| ------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
+| [`job_monitor`](qiskit.providers.ibmq.job.job_monitor "qiskit.providers.ibmq.job.job_monitor")(job\[, interval, output]) | Monitor the status of an `IBMQJob` instance. |
 
 ## Exception
 
-|                                                                                                                                                                                                     |                                                                     |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [`IBMQJobError`](qiskit.providers.ibmq.job.IBMQJobError#qiskit.providers.ibmq.job.IBMQJobError "qiskit.providers.ibmq.job.IBMQJobError")(\*message)                                                 | Base class for errors raised by the job modules.                    |
-| [`IBMQJobApiError`](qiskit.providers.ibmq.job.IBMQJobApiError#qiskit.providers.ibmq.job.IBMQJobApiError "qiskit.providers.ibmq.job.IBMQJobApiError")(\*message)                                     | Errors that occur unexpectedly when querying the server.            |
-| [`IBMQJobFailureError`](qiskit.providers.ibmq.job.IBMQJobFailureError#qiskit.providers.ibmq.job.IBMQJobFailureError "qiskit.providers.ibmq.job.IBMQJobFailureError")(\*message)                     | Errors raised when a job failed.                                    |
-| [`IBMQJobInvalidStateError`](qiskit.providers.ibmq.job.IBMQJobInvalidStateError#qiskit.providers.ibmq.job.IBMQJobInvalidStateError "qiskit.providers.ibmq.job.IBMQJobInvalidStateError")(\*message) | Errors raised when a job is not in a valid state for the operation. |
-| [`IBMQJobTimeoutError`](qiskit.providers.ibmq.job.IBMQJobTimeoutError#qiskit.providers.ibmq.job.IBMQJobTimeoutError "qiskit.providers.ibmq.job.IBMQJobTimeoutError")(\*message)                     | Errors raised when a job operation times out.                       |
+|                                                                                                                                                  |                                                                     |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| [`IBMQJobError`](qiskit.providers.ibmq.job.IBMQJobError "qiskit.providers.ibmq.job.IBMQJobError")(\*message)                                     | Base class for errors raised by the job modules.                    |
+| [`IBMQJobApiError`](qiskit.providers.ibmq.job.IBMQJobApiError "qiskit.providers.ibmq.job.IBMQJobApiError")(\*message)                            | Errors that occur unexpectedly when querying the server.            |
+| [`IBMQJobFailureError`](qiskit.providers.ibmq.job.IBMQJobFailureError "qiskit.providers.ibmq.job.IBMQJobFailureError")(\*message)                | Errors raised when a job failed.                                    |
+| [`IBMQJobInvalidStateError`](qiskit.providers.ibmq.job.IBMQJobInvalidStateError "qiskit.providers.ibmq.job.IBMQJobInvalidStateError")(\*message) | Errors raised when a job is not in a valid state for the operation. |
+| [`IBMQJobTimeoutError`](qiskit.providers.ibmq.job.IBMQJobTimeoutError "qiskit.providers.ibmq.job.IBMQJobTimeoutError")(\*message)                | Errors raised when a job operation times out.                       |
 

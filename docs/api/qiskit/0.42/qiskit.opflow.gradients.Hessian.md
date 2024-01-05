@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.gradients.Hessian
 ---
 
-# Hessian[¶](#hessian "Permalink to this headline")
+# Hessian
 
 <span id="qiskit.opflow.gradients.Hessian" />
 

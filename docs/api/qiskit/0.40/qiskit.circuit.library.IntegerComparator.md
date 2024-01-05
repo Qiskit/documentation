@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.IntegerComparator
 ---
 
-# IntegerComparator[¶](#integercomparator "Permalink to this headline")
+# IntegerComparator
 
 <span id="qiskit.circuit.library.IntegerComparator" />
 

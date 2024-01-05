@@ -1,8 +1,16 @@
+---
+title: CRZGate
+description: API reference for qiskit.circuit.library.CRZGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.CRZGate
+---
+
 <span id="qiskit-circuit-library-crzgate" />
 
 # qiskit.circuit.library.CRZGate
 
-
+<span id="qiskit.circuit.library.CRZGate" />
 
 `CRZGate(theta, label=None, ctrl_state=None)`
 
@@ -60,7 +68,9 @@ $$
 
 Create new CRZ gate.
 
+### \_\_init\_\_
 
+<span id="qiskit.circuit.library.CRZGate.__init__" />
 
 `__init__(theta, label=None, ctrl_state=None)`
 
@@ -68,45 +78,19 @@ Create new CRZ gate.
 
 ## Methods
 
-|                                                                                                                                                 |                                                                          |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.circuit.library.CRZGate.__init__ "qiskit.circuit.library.CRZGate.__init__")(theta\[, label, ctrl\_state])                  | Create new CRZ gate.                                                     |
-| [`add_decomposition`](#qiskit.circuit.library.CRZGate.add_decomposition "qiskit.circuit.library.CRZGate.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
-| [`assemble`](#qiskit.circuit.library.CRZGate.assemble "qiskit.circuit.library.CRZGate.assemble")()                                              | Assemble a QasmQobjInstruction                                           |
-| [`broadcast_arguments`](#qiskit.circuit.library.CRZGate.broadcast_arguments "qiskit.circuit.library.CRZGate.broadcast_arguments")(qargs, cargs) | Validation and handling of the arguments and its relationship.           |
-| [`c_if`](#qiskit.circuit.library.CRZGate.c_if "qiskit.circuit.library.CRZGate.c_if")(classical, val)                                            | Add classical condition on register classical and value val.             |
-| [`control`](#qiskit.circuit.library.CRZGate.control "qiskit.circuit.library.CRZGate.control")(\[num\_ctrl\_qubits, label, ctrl\_state])         | Return controlled version of gate.                                       |
-| [`copy`](#qiskit.circuit.library.CRZGate.copy "qiskit.circuit.library.CRZGate.copy")(\[name])                                                   | Copy of the instruction.                                                 |
-| [`inverse`](#qiskit.circuit.library.CRZGate.inverse "qiskit.circuit.library.CRZGate.inverse")()                                                 | Return inverse CRZ gate (i.e.                                            |
-| [`is_parameterized`](#qiskit.circuit.library.CRZGate.is_parameterized "qiskit.circuit.library.CRZGate.is_parameterized")()                      | Return True .IFF.                                                        |
-| [`mirror`](#qiskit.circuit.library.CRZGate.mirror "qiskit.circuit.library.CRZGate.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                              |
-| [`power`](#qiskit.circuit.library.CRZGate.power "qiskit.circuit.library.CRZGate.power")(exponent)                                               | Creates a unitary gate as gate^exponent.                                 |
-| [`qasm`](#qiskit.circuit.library.CRZGate.qasm "qiskit.circuit.library.CRZGate.qasm")()                                                          | Return a default OpenQASM string for the instruction.                    |
-| [`repeat`](#qiskit.circuit.library.CRZGate.repeat "qiskit.circuit.library.CRZGate.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.             |
-| [`reverse_ops`](#qiskit.circuit.library.CRZGate.reverse_ops "qiskit.circuit.library.CRZGate.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.      |
-| [`to_matrix`](#qiskit.circuit.library.CRZGate.to_matrix "qiskit.circuit.library.CRZGate.to_matrix")()                                           | Return a numpy.array for the CRZ gate.                                   |
-| [`validate_parameter`](#qiskit.circuit.library.CRZGate.validate_parameter "qiskit.circuit.library.CRZGate.validate_parameter")(parameter)       | Gate parameters should be int, float, or ParameterExpression             |
-
 ## Attributes
 
-|                                                                                                                       |                                                                               |
-| --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`ctrl_state`](#qiskit.circuit.library.CRZGate.ctrl_state "qiskit.circuit.library.CRZGate.ctrl_state")                | Return the control state of the gate as a decimal integer.                    |
-| [`decompositions`](#qiskit.circuit.library.CRZGate.decompositions "qiskit.circuit.library.CRZGate.decompositions")    | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
-| [`definition`](#qiskit.circuit.library.CRZGate.definition "qiskit.circuit.library.CRZGate.definition")                | Return definition in terms of other basic gates.                              |
-| [`duration`](#qiskit.circuit.library.CRZGate.duration "qiskit.circuit.library.CRZGate.duration")                      | Get the duration.                                                             |
-| [`label`](#qiskit.circuit.library.CRZGate.label "qiskit.circuit.library.CRZGate.label")                               | Return gate label                                                             |
-| [`num_ctrl_qubits`](#qiskit.circuit.library.CRZGate.num_ctrl_qubits "qiskit.circuit.library.CRZGate.num_ctrl_qubits") | Get number of control qubits.                                                 |
-| [`params`](#qiskit.circuit.library.CRZGate.params "qiskit.circuit.library.CRZGate.params")                            | Get parameters from base\_gate.                                               |
-| [`unit`](#qiskit.circuit.library.CRZGate.unit "qiskit.circuit.library.CRZGate.unit")                                  | Get the time unit of duration.                                                |
+### add\_decomposition
 
-
+<span id="qiskit.circuit.library.CRZGate.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
+### assemble
 
+<span id="qiskit.circuit.library.CRZGate.assemble" />
 
 `assemble()`
 
@@ -116,7 +100,9 @@ Assemble a QasmQobjInstruction
 
 `Instruction`
 
+### broadcast\_arguments
 
+<span id="qiskit.circuit.library.CRZGate.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -169,17 +155,21 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
+### c\_if
 
+<span id="qiskit.circuit.library.CRZGate.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
+### control
 
+<span id="qiskit.circuit.library.CRZGate.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
 **Parameters**
 
@@ -193,13 +183,15 @@ Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 anci
 
 **Return type**
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
 **Raises**
 
 **QiskitError** – unrecognized mode or invalid ctrl\_state
 
+### copy
 
+<span id="qiskit.circuit.library.CRZGate.copy" />
 
 `copy(name=None)`
 
@@ -217,9 +209,11 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### ctrl\_state
 
+<span id="qiskit.circuit.library.CRZGate.ctrl_state" />
 
 `property ctrl_state`
 
@@ -229,13 +223,17 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
+### decompositions
 
+<span id="qiskit.circuit.library.CRZGate.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
+### definition
 
+<span id="qiskit.circuit.library.CRZGate.definition" />
 
 `property definition`
 
@@ -245,25 +243,33 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
+### duration
 
+<span id="qiskit.circuit.library.CRZGate.duration" />
 
 `property duration`
 
 Get the duration.
 
+### inverse
 
+<span id="qiskit.circuit.library.CRZGate.inverse" />
 
 `inverse()`
 
 Return inverse CRZ gate (i.e. with the negative rotation angle).
 
+### is\_parameterized
 
+<span id="qiskit.circuit.library.CRZGate.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
+### label
 
+<span id="qiskit.circuit.library.CRZGate.label" />
 
 `property label`
 
@@ -273,7 +279,9 @@ Return gate label
 
 `str`
 
+### mirror
 
+<span id="qiskit.circuit.library.CRZGate.mirror" />
 
 `mirror()`
 
@@ -287,9 +295,11 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### num\_ctrl\_qubits
 
+<span id="qiskit.circuit.library.CRZGate.num_ctrl_qubits" />
 
 `property num_ctrl_qubits`
 
@@ -303,7 +313,9 @@ The number of control qubits for the gate.
 
 int
 
+### params
 
+<span id="qiskit.circuit.library.CRZGate.params" />
 
 `property params`
 
@@ -321,7 +333,9 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
+### power
 
+<span id="qiskit.circuit.library.CRZGate.power" />
 
 `power(exponent)`
 
@@ -337,13 +351,15 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **Return type**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate#qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
 **Raises**
 
 **CircuitError** – If Gate is not unitary
 
+### qasm
 
+<span id="qiskit.circuit.library.CRZGate.qasm" />
 
 `qasm()`
 
@@ -351,7 +367,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
+### repeat
 
+<span id="qiskit.circuit.library.CRZGate.repeat" />
 
 `repeat(n)`
 
@@ -367,13 +385,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
+### reverse\_ops
 
+<span id="qiskit.circuit.library.CRZGate.reverse_ops" />
 
 `reverse_ops()`
 
@@ -389,22 +409,29 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### to\_matrix
 
+<span id="qiskit.circuit.library.CRZGate.to_matrix" />
 
 `to_matrix()`
 
 Return a numpy.array for the CRZ gate.
 
+### unit
 
+<span id="qiskit.circuit.library.CRZGate.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
+### validate\_parameter
 
+<span id="qiskit.circuit.library.CRZGate.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
+

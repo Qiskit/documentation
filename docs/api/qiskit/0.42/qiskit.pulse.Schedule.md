@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.Schedule
 ---
 
-# Schedule[¶](#schedule "Permalink to this headline")
+# Schedule
 
 <span id="qiskit.pulse.Schedule" />
 

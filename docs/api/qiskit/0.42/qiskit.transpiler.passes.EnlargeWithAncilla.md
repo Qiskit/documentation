@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.EnlargeWithAncilla
 ---
 
-# EnlargeWithAncilla[¶](#enlargewithancilla "Permalink to this headline")
+# EnlargeWithAncilla
 
 <span id="qiskit.transpiler.passes.EnlargeWithAncilla" />
 

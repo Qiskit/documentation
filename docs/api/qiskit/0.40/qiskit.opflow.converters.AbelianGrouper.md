@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.converters.AbelianGrouper
 ---
 
-# AbelianGrouper[¶](#abeliangrouper "Permalink to this headline")
+# AbelianGrouper
 
 <span id="qiskit.opflow.converters.AbelianGrouper" />
 

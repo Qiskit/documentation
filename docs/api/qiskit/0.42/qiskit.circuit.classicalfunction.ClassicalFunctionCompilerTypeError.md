@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError
 ---
 
-# qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError[¶](#qiskit-circuit-classicalfunction-classicalfunctioncompilertypeerror "Permalink to this headline")
+# qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunctionCompilerTypeError" />
 

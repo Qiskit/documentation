@@ -1,6 +1,14 @@
+---
+title: tensorproduct
+description: API reference for qiskit.aqua.utils.tensorproduct
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.aqua.utils.tensorproduct
+---
+
 # qiskit.aqua.utils.tensorproduct
 
-
+<span id="qiskit.aqua.utils.tensorproduct" />
 
 `tensorproduct(*args)`
 
@@ -19,3 +27,4 @@ the tensor product
 **Return type**
 
 np.ndarray
+

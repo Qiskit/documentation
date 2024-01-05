@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.job.QueueInfo
 ---
 
-# QueueInfo[¶](#queueinfo "Permalink to this headline")
+# QueueInfo
 
 <span id="qiskit.providers.ibmq.job.QueueInfo" />
 

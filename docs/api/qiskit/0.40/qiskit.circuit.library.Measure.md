@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.Measure
 ---
 
-# Measure[¶](#measure "Permalink to this headline")
+# Measure
 
 <span id="qiskit.circuit.library.Measure" />
 

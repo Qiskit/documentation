@@ -1,6 +1,14 @@
+---
+title: Options
+description: API reference for qiskit.providers.Options
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.Options
+---
+
 # Options
 
-
+<span id="qiskit.providers.Options" />
 
 `Options`
 
@@ -12,7 +20,19 @@ This class is the abstract class that all backend options are based on. The prop
 
 ## Methods
 
-|                                                                                                                                               |                                      |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-| [`get`](qiskit.providers.Options.get#qiskit.providers.Options.get "qiskit.providers.Options.get")                                             | Get an option value for a given key. |
-| [`update_options`](qiskit.providers.Options.update_options#qiskit.providers.Options.update_options "qiskit.providers.Options.update_options") | Update options with kwargs           |
+### get
+
+<span id="qiskit.providers.Options.get" />
+
+`Options.get(field, default=None)`
+
+Get an option value for a given key.
+
+### update\_options
+
+<span id="qiskit.providers.Options.update_options" />
+
+`Options.update_options(**fields)`
+
+Update options with kwargs
+

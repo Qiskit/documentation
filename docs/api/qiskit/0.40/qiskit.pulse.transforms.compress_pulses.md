@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.transforms.compress_pulses
 ---
 
-# qiskit.pulse.transforms.compress\_pulses[¶](#qiskit-pulse-transforms-compress-pulses "Permalink to this headline")
+# qiskit.pulse.transforms.compress\_pulses
 
 <span id="qiskit.pulse.transforms.compress_pulses" />
 

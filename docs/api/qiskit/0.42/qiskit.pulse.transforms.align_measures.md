@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.transforms.align_measures
 ---
 
-# qiskit.pulse.transforms.align\_measures[¶](#qiskit-pulse-transforms-align-measures "Permalink to this headline")
+# qiskit.pulse.transforms.align\_measures
 
 <span id="qiskit.pulse.transforms.align_measures" />
 

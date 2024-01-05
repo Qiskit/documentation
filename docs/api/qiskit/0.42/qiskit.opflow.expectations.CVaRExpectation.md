@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.expectations.CVaRExpectation
 ---
 
-# CVaRExpectation[¶](#cvarexpectation "Permalink to this headline")
+# CVaRExpectation
 
 <span id="qiskit.opflow.expectations.CVaRExpectation" />
 

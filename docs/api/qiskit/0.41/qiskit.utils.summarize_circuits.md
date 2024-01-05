@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.utils.summarize_circuits
 ---
 
-# qiskit.utils.summarize\_circuits[¶](#qiskit-utils-summarize-circuits "Permalink to this headline")
+# qiskit.utils.summarize\_circuits
 
 <span id="qiskit.utils.summarize_circuits" />
 

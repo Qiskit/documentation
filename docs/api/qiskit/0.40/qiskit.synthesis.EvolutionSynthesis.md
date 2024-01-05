@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.synthesis.EvolutionSynthesis
 ---
 
-# EvolutionSynthesis[¶](#evolutionsynthesis "Permalink to this headline")
+# EvolutionSynthesis
 
 <span id="qiskit.synthesis.EvolutionSynthesis" />
 

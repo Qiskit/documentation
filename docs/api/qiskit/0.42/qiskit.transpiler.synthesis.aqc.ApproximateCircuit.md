@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.synthesis.aqc.ApproximateCircuit
 ---
 
-# ApproximateCircuit[¶](#approximatecircuit "Permalink to this headline")
+# ApproximateCircuit
 
 <span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit" />
 

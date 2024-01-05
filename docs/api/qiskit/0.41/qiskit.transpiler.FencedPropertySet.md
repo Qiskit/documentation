@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.FencedPropertySet
 ---
 
-# FencedPropertySet[¶](#fencedpropertyset "Permalink to this headline")
+# FencedPropertySet
 
 <span id="qiskit.transpiler.FencedPropertySet" />
 

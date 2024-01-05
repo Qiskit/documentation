@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.evolutions.PauliTrotterEvolution
 ---
 
-# PauliTrotterEvolution[¶](#paulitrotterevolution "Permalink to this headline")
+# PauliTrotterEvolution
 
 <span id="qiskit.opflow.evolutions.PauliTrotterEvolution" />
 

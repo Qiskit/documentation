@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CollectCliffords
 ---
 
-# CollectCliffords[¶](#collectcliffords "Permalink to this headline")
+# CollectCliffords
 
 <span id="qiskit.transpiler.passes.CollectCliffords" />
 

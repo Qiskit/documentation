@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.converters.TwoQubitReduction
 ---
 
-# TwoQubitReduction[¶](#twoqubitreduction "Permalink to this headline")
+# TwoQubitReduction
 
 <span id="qiskit.opflow.converters.TwoQubitReduction" />
 

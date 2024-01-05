@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.result.BaseReadoutMitigator
 ---
 
-# BaseReadoutMitigator[¶](#basereadoutmitigator "Permalink to this headline")
+# BaseReadoutMitigator
 
 <span id="qiskit.result.BaseReadoutMitigator" />
 

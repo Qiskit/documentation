@@ -1,8 +1,16 @@
+---
+title: transpiler_settings
+description: API reference for qiskit.pulse.builder.transpiler_settings
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.transpiler_settings
+---
+
 <span id="qiskit-pulse-builder-transpiler-settings" />
 
 # qiskit.pulse.builder.transpiler\_settings
 
-
+<span id="qiskit.pulse.builder.transpiler_settings" />
 
 `transpiler_settings(**settings)`
 
@@ -30,3 +38,4 @@ with pulse.build(backend):
 **Return type**
 
 `AbstractContextManager`\[`None`]
+

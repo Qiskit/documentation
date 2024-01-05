@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.align_equispaced
 ---
 
-# qiskit.pulse.builder.align\_equispaced[¶](#qiskit-pulse-builder-align-equispaced "Permalink to this headline")
+# qiskit.pulse.builder.align\_equispaced
 
 <span id="qiskit.pulse.builder.align_equispaced" />
 

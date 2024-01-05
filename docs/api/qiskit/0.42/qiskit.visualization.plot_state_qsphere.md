@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.plot_state_qsphere
 ---
 
-# qiskit.visualization.plot\_state\_qsphere[¶](#qiskit-visualization-plot-state-qsphere "Permalink to this headline")
+# qiskit.visualization.plot\_state\_qsphere
 
 <span id="qiskit.visualization.plot_state_qsphere" />
 

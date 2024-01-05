@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.WhileLoopOp
 ---
 
-# WhileLoopOp[¶](#whileloopop "Permalink to this headline")
+# WhileLoopOp
 
 <span id="qiskit.circuit.WhileLoopOp" />
 
