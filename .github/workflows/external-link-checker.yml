@@ -32,4 +32,10 @@ jobs:
         run: npm ci
 
       - name: Check external links
-        run: npm run check:links -- --current-apis --qiskit-release-notes --external
+        run: >
+          npm run check:links --
+          --current-apis
+          --qiskit-release-notes
+          --historical-apis
+          --skip-broken-historical
+          --external
