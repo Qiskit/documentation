@@ -1,6 +1,14 @@
+---
+title: approximate_quantum_error
+description: API reference for qiskit.providers.aer.utils.approximate_quantum_error
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.utils.approximate_quantum_error
+---
+
 # qiskit.providers.aer.utils.approximate\_quantum\_error
 
-
+<span id="qiskit.providers.aer.utils.approximate_quantum_error" />
 
 `approximate_quantum_error(error, *, operator_string=None, operator_dict=None, operator_list=None)`
 
@@ -10,7 +18,7 @@ Currently this is only implemented for 1-qubit QuantumErrors.
 
 **Parameters**
 
-*   **error** ([*QuantumError*](qiskit.providers.aer.noise.QuantumError#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")) – the error to be approximated.
+*   **error** ([*QuantumError*](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")) – the error to be approximated.
 *   **operator\_string** (*string or None*) – a name for a pre-made set of building blocks for the output channel (Default: None).
 *   **operator\_dict** (*dict or None*) – a dictionary whose values are the building blocks for the output channel (Default: None).
 *   **operator\_list** (*dict or None*) – list of building blocks for the output channel (Default: None).
@@ -21,7 +29,7 @@ the approximate quantum error.
 
 **Return type**
 
-[QuantumError](qiskit.providers.aer.noise.QuantumError#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+[QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
 
 **Raises**
 
@@ -31,3 +39,4 @@ the approximate quantum error.
 ## Additional Information:
 
 The operator input precedence is: `list` \< `dict` \< `str`. If a string is given, dict is overwritten; if a dict is given, list is overwritten. Oossible values for string are `'pauli'`, `'reset'`, `'clifford'`. For further information see `NoiseTransformer.named_operators()`.
+

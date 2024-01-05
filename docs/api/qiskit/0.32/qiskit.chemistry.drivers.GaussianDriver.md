@@ -1,6 +1,14 @@
+---
+title: GaussianDriver
+description: API reference for qiskit.chemistry.drivers.GaussianDriver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.drivers.GaussianDriver
+---
+
 # GaussianDriver
 
-
+<span id="qiskit.chemistry.drivers.GaussianDriver" />
 
 `GaussianDriver(config='# rhf/sto-3g scf(conventional)\\n\\nh2 molecule\\n\\n0 1\\nH 0.0 0.0 0.0\\nH 0.0 0.0 0.735\\n\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)`
 
@@ -21,17 +29,29 @@ This driver uses the Gaussian open-source Gaussian 16 interfacing code in order 
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
 ## Methods
 
-|                                                                                                                                                |                                            |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| [`run`](qiskit.chemistry.drivers.GaussianDriver.run#qiskit.chemistry.drivers.GaussianDriver.run "qiskit.chemistry.drivers.GaussianDriver.run") | Runs driver to produce a QMolecule output. |
+### run
+
+<span id="qiskit.chemistry.drivers.GaussianDriver.run" />
+
+`GaussianDriver.run()`
+
+Runs driver to produce a QMolecule output.
+
+**Return type**
+
+`QMolecule`
+
+**Returns**
+
+A QMolecule containing the molecular data.
 
 ## Attributes
 
-
+<span id="qiskit.chemistry.drivers.GaussianDriver.basis" />
 
 ### basis
 
@@ -41,7 +61,7 @@ return basis
 
 `str`
 
-
+<span id="qiskit.chemistry.drivers.GaussianDriver.hf_method" />
 
 ### hf\_method
 
@@ -51,7 +71,7 @@ return Hartree-Fock method
 
 `str`
 
-
+<span id="qiskit.chemistry.drivers.GaussianDriver.molecule" />
 
 ### molecule
 
@@ -61,7 +81,7 @@ return molecule
 
 `Optional`\[`Molecule`]
 
-
+<span id="qiskit.chemistry.drivers.GaussianDriver.supports_molecule" />
 
 ### supports\_molecule
 
@@ -74,3 +94,4 @@ True for derived classes that support Molecule.
 **Returns**
 
 True if Molecule is supported.
+

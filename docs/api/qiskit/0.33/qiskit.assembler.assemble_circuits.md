@@ -1,6 +1,14 @@
+---
+title: assemble_circuits
+description: API reference for qiskit.assembler.assemble_circuits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.assembler.assemble_circuits
+---
+
 # qiskit.assembler.assemble\_circuits
 
-
+<span id="qiskit.assembler.assemble_circuits" />
 
 `assemble_circuits(circuits, run_config, qobj_id, qobj_header)`
 
@@ -20,3 +28,4 @@ Assembles a list of circuits into a qobj that can be run on the backend.
 **Returns**
 
 The qobj to be run on the backends
+

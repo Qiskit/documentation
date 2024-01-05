@@ -1,6 +1,14 @@
+---
+title: transform_noise_model
+description: API reference for qiskit.providers.aer.utils.transform_noise_model
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.utils.transform_noise_model
+---
+
 # qiskit.providers.aer.utils.transform\_noise\_model
 
-
+<span id="qiskit.providers.aer.utils.transform_noise_model" />
 
 `transform_noise_model(noise_model, func)`
 
@@ -24,3 +32,4 @@ The transpiled noise model.
 **Raises**
 
 **NoiseError** – if the transformation failed.
+

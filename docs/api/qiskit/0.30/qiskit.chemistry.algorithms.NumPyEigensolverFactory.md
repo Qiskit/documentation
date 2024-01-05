@@ -1,6 +1,14 @@
+---
+title: NumPyEigensolverFactory
+description: API reference for qiskit.chemistry.algorithms.NumPyEigensolverFactory
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.NumPyEigensolverFactory
+---
+
 # NumPyEigensolverFactory
 
-
+<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory" />
 
 `NumPyEigensolverFactory(filter_criterion=None, k=100, use_default_filter_criterion=False)`
 
@@ -17,13 +25,29 @@ A factory to construct a NumPyEigensolver.
 
 ## Methods
 
-|                                                                                                                                                                                                                |                                                    |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| [`get_solver`](qiskit.chemistry.algorithms.NumPyEigensolverFactory.get_solver#qiskit.chemistry.algorithms.NumPyEigensolverFactory.get_solver "qiskit.chemistry.algorithms.NumPyEigensolverFactory.get_solver") | Returns a NumPyEigensolver with the desired filter |
+### get\_solver
+
+<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.get_solver" />
+
+`NumPyEigensolverFactory.get_solver(transformation)`
+
+Returns a NumPyEigensolver with the desired filter
+
+**Parameters**
+
+**transformation** (`Transformation`) – a fermionic/bosonic qubit operator transformation.
+
+**Return type**
+
+`Eigensolver`
+
+**Returns**
+
+A NumPyEigensolver suitable to compute the ground state of the molecule transformed by `transformation`.
 
 ## Attributes
 
-
+<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.filter_criterion" />
 
 ### filter\_criterion
 
@@ -33,7 +57,7 @@ returns filter criterion
 
 `Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]
 
-
+<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.k" />
 
 ### k
 
@@ -43,7 +67,7 @@ returns k (number of eigenvalues requested)
 
 `int`
 
-
+<span id="qiskit.chemistry.algorithms.NumPyEigensolverFactory.use_default_filter_criterion" />
 
 ### use\_default\_filter\_criterion
 
@@ -52,3 +76,4 @@ returns whether to use the default filter criterion
 **Return type**
 
 `bool`
+

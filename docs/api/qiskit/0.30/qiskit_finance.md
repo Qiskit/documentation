@@ -18,9 +18,9 @@ python_api_name: qiskit.finance
 
 This is the Qiskit\`s finance module. There is an initial set of function here that will be built out over time. At present it has applications in the form of Ising Hamiltonians. Some financial uncertainty problem components and data providers which supply a source of financial data.
 
-|                                                                                                                                 |                                                       |
-| ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| [`QiskitFinanceError`](qiskit.finance.QiskitFinanceError#qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") | Class for errors returned by Qiskit’s finance module. |
+|                                                                                               |                                                       |
+| --------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
+| [`QiskitFinanceError`](qiskit.finance.QiskitFinanceError "qiskit.finance.QiskitFinanceError") | Class for errors returned by Qiskit’s finance module. |
 
 In addition to standard Python errors Qiskit’s finance module will raise this error if circumstances are that it cannot proceed to completion.
 

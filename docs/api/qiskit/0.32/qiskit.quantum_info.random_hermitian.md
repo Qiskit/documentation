@@ -1,6 +1,14 @@
+---
+title: random_hermitian
+description: API reference for qiskit.quantum_info.random_hermitian
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.quantum_info.random_hermitian
+---
+
 # qiskit.quantum\_info.random\_hermitian
 
-
+<span id="qiskit.quantum_info.random_hermitian" />
 
 `random_hermitian(dims, traceless=False, seed=None)`
 
@@ -20,4 +28,5 @@ a Hermitian operator.
 
 **Return type**
 
-[Operator](qiskit.quantum_info.Operator#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+[Operator](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
+

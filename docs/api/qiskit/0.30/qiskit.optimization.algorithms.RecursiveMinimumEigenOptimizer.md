@@ -1,6 +1,14 @@
+---
+title: RecursiveMinimumEigenOptimizer
+description: API reference for qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer
+---
+
 # RecursiveMinimumEigenOptimizer
 
-
+<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer" />
 
 `RecursiveMinimumEigenOptimizer(min_eigen_optimizer, min_num_vars=1, min_num_vars_optimizer=None, penalty=None, history=<IntermediateResult.LAST_ITERATION: 1>, converters=None)`
 
@@ -8,7 +16,7 @@ Bases: `qiskit.optimization.algorithms.optimization_algorithm.OptimizationAlgori
 
 A meta-algorithm that applies a recursive optimization.
 
-The recursive minimum eigen optimizer applies a recursive optimization on top of [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer#qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer"). The algorithm is introduced in \[1].
+The recursive minimum eigen optimizer applies a recursive optimization on top of [`MinimumEigenOptimizer`](qiskit.optimization.algorithms.MinimumEigenOptimizer "qiskit.optimization.algorithms.MinimumEigenOptimizer"). The algorithm is introduced in \[1].
 
 ## Examples
 
@@ -42,18 +50,82 @@ This initializer takes a `MinimumEigenOptimizer`, the parameters to specify unti
 *   **min\_num\_vars** (`int`) – The minimum number of variables to apply the recursive scheme. If this threshold is reached, the min\_num\_vars\_optimizer is used.
 *   **min\_num\_vars\_optimizer** (`Optional`\[`OptimizationAlgorithm`]) – This optimizer is used after the recursive scheme for the problem with the remaining variables.
 *   **penalty** (`Optional`\[`float`]) – The factor that is used to scale the penalty terms corresponding to linear equality constraints.
-*   **history** (`Optional`\[`IntermediateResult`]) – Whether the intermediate results are stored. Default value is [`LAST_ITERATION`](qiskit.optimization.algorithms.IntermediateResult#qiskit.optimization.algorithms.IntermediateResult.LAST_ITERATION "qiskit.optimization.algorithms.IntermediateResult.LAST_ITERATION").
-*   **converters** (`Union`\[`QuadraticProgramConverter`, `List`\[`QuadraticProgramConverter`], `None`]) – The converters to use for converting a problem into a different form. By default, when None is specified, an internally created instance of [`QuadraticProgramToQubo`](qiskit.optimization.converters.QuadraticProgramToQubo#qiskit.optimization.converters.QuadraticProgramToQubo "qiskit.optimization.converters.QuadraticProgramToQubo") will be used.
+*   **history** (`Optional`\[`IntermediateResult`]) – Whether the intermediate results are stored. Default value is [`LAST_ITERATION`](qiskit.optimization.algorithms.IntermediateResult#LAST_ITERATION "qiskit.optimization.algorithms.IntermediateResult.LAST_ITERATION").
+*   **converters** (`Union`\[`QuadraticProgramConverter`, `List`\[`QuadraticProgramConverter`], `None`]) – The converters to use for converting a problem into a different form. By default, when None is specified, an internally created instance of [`QuadraticProgramToQubo`](qiskit.optimization.converters.QuadraticProgramToQubo "qiskit.optimization.converters.QuadraticProgramToQubo") will be used.
 
 **Raises**
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – In case of invalid parameters (num\_min\_vars \< 1).
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – In case of invalid parameters (num\_min\_vars \< 1).
 *   **TypeError** – When there one of converters is an invalid type.
 
 ## Methods
 
-|                                                                                                                                                                                                                                                                                          |                                                                                           |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| [`get_compatibility_msg`](qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.get_compatibility_msg#qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.get_compatibility_msg "qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.get_compatibility_msg") | Checks whether a given problem can be solved with this optimizer.                         |
-| [`is_compatible`](qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.is_compatible#qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.is_compatible "qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.is_compatible")                                 | Checks whether a given problem can be solved with the optimizer implementing this method. |
-| [`solve`](qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.solve#qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.solve "qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.solve")                                                                 | Tries to solve the given problem using the recursive optimizer.                           |
+### get\_compatibility\_msg
+
+<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.get_compatibility_msg" />
+
+`RecursiveMinimumEigenOptimizer.get_compatibility_msg(problem)`
+
+Checks whether a given problem can be solved with this optimizer.
+
+Checks whether the given problem is compatible, i.e., whether the problem can be converted to a QUBO, and otherwise, returns a message explaining the incompatibility.
+
+**Parameters**
+
+**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+
+**Return type**
+
+`str`
+
+**Returns**
+
+A message describing the incompatibility.
+
+### is\_compatible
+
+<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.is_compatible" />
+
+`RecursiveMinimumEigenOptimizer.is_compatible(problem)`
+
+Checks whether a given problem can be solved with the optimizer implementing this method.
+
+**Parameters**
+
+**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+
+**Return type**
+
+`bool`
+
+**Returns**
+
+Returns True if the problem is compatible, False otherwise.
+
+### solve
+
+<span id="qiskit.optimization.algorithms.RecursiveMinimumEigenOptimizer.solve" />
+
+`RecursiveMinimumEigenOptimizer.solve(problem)`
+
+Tries to solve the given problem using the recursive optimizer.
+
+Runs the optimizer to try to solve the optimization problem.
+
+**Parameters**
+
+**problem** (`QuadraticProgram`) – The problem to be solved.
+
+**Return type**
+
+`OptimizationResult`
+
+**Returns**
+
+The result of the optimizer applied to the problem.
+
+**Raises**
+
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – Incompatible problem.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – Infeasible due to variable substitution
+

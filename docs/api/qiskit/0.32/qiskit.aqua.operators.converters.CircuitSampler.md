@@ -1,6 +1,14 @@
+---
+title: CircuitSampler
+description: API reference for qiskit.aqua.operators.converters.CircuitSampler
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.converters.CircuitSampler
+---
+
 # CircuitSampler
 
-
+<span id="qiskit.aqua.operators.converters.CircuitSampler" />
 
 `CircuitSampler(backend, statevector=None, param_qobj=False, attach_results=False)`
 
@@ -23,15 +31,75 @@ The CircuitSampler aggressively caches transpiled circuits to handle re-paramete
 
 ## Methods
 
-|                                                                                                                                                                                                                        |                                                                                                                                   |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| [`convert`](qiskit.aqua.operators.converters.CircuitSampler.convert#qiskit.aqua.operators.converters.CircuitSampler.convert "qiskit.aqua.operators.converters.CircuitSampler.convert")                                 | Converts the Operator to one in which the CircuitStateFns are replaced by DictStateFns or VectorStateFns.                         |
-| [`sample_circuits`](qiskit.aqua.operators.converters.CircuitSampler.sample_circuits#qiskit.aqua.operators.converters.CircuitSampler.sample_circuits "qiskit.aqua.operators.converters.CircuitSampler.sample_circuits") | Samples the CircuitStateFns and returns a dict associating their `id()` values to their replacement DictStateFn or VectorStateFn. |
-| [`set_backend`](qiskit.aqua.operators.converters.CircuitSampler.set_backend#qiskit.aqua.operators.converters.CircuitSampler.set_backend "qiskit.aqua.operators.converters.CircuitSampler.set_backend")                 | Sets backend with configuration.                                                                                                  |
+### convert
+
+<span id="qiskit.aqua.operators.converters.CircuitSampler.convert" />
+
+`CircuitSampler.convert(operator, params=None)`
+
+Converts the Operator to one in which the CircuitStateFns are replaced by DictStateFns or VectorStateFns. Extracts the CircuitStateFns out of the Operator, caches them, calls `sample_circuits` below to get their converted replacements, and replaces the CircuitStateFns in operator with the replacement StateFns.
+
+**Parameters**
+
+*   **operator** (`OperatorBase`) – The Operator to convert
+*   **params** (`Optional`\[`Dict`\[`Parameter`, `Union`\[`float`, `List`\[`float`], `List`\[`List`\[`float`]]]]]) – A dictionary mapping parameters to either single binding values or lists of binding values.
+
+**Return type**
+
+`OperatorBase`
+
+**Returns**
+
+The converted Operator with CircuitStateFns replaced by DictStateFns or VectorStateFns.
+
+**Raises**
+
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if extracted circuits are empty.
+
+### sample\_circuits
+
+<span id="qiskit.aqua.operators.converters.CircuitSampler.sample_circuits" />
+
+`CircuitSampler.sample_circuits(circuit_sfns=None, param_bindings=None)`
+
+Samples the CircuitStateFns and returns a dict associating their `id()` values to their replacement DictStateFn or VectorStateFn. If param\_bindings is provided, the CircuitStateFns are broken into their parameterizations, and a list of StateFns is returned in the dict for each circuit `id()`. Note that param\_bindings is provided here in a different format than in `convert`, and lists of parameters within the dict is not supported, and only binding dicts which are valid to be passed into Terra can be included in this list.
+
+**Parameters**
+
+*   **circuit\_sfns** (`Optional`\[`List`\[`CircuitStateFn`]]) – The list of CircuitStateFns to sample.
+*   **param\_bindings** (`Optional`\[`List`\[`Dict`\[`Parameter`, `float`]]]) – The parameterizations to bind to each CircuitStateFn.
+
+**Return type**
+
+`Dict`\[`int`, `Union`\[`StateFn`, `List`\[`StateFn`]]]
+
+**Returns**
+
+The dictionary mapping ids of the CircuitStateFns to their replacement StateFns.
+
+**Raises**
+
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if extracted circuits are empty.
+
+### set\_backend
+
+<span id="qiskit.aqua.operators.converters.CircuitSampler.set_backend" />
+
+`CircuitSampler.set_backend(backend, **kwargs)`
+
+Sets backend with configuration.
+
+**Raises**
+
+**ValueError** – statevector or param\_qobj are True when not supported by backend.
+
+**Return type**
+
+`None`
 
 ## Attributes
 
-
+<span id="qiskit.aqua.operators.converters.CircuitSampler.backend" />
 
 ### backend
 
@@ -45,7 +113,7 @@ Returns the backend.
 
 The backend used by the CircuitSampler
 
-
+<span id="qiskit.aqua.operators.converters.CircuitSampler.quantum_instance" />
 
 ### quantum\_instance
 
@@ -58,3 +126,4 @@ Returns the quantum instance.
 **Returns**
 
 The QuantumInstance used by the CircuitSampler
+

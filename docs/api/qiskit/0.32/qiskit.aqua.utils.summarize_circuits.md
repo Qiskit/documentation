@@ -1,6 +1,14 @@
+---
+title: summarize_circuits
+description: API reference for qiskit.aqua.utils.summarize_circuits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.aqua.utils.summarize_circuits
+---
+
 # qiskit.aqua.utils.summarize\_circuits
 
-
+<span id="qiskit.aqua.utils.summarize_circuits" />
 
 `summarize_circuits(circuits)`
 
@@ -16,7 +24,7 @@ The average statistic of the first four is provided if multiple circuits are pro
 
 **Parameters**
 
-**circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or \[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – the to-be-summarized circuits
+**circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or \[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*]*) – the to-be-summarized circuits
 
 **Returns**
 
@@ -25,3 +33,4 @@ a formatted string records the summary
 **Return type**
 
 str
+

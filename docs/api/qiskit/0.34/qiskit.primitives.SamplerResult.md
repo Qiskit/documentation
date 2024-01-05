@@ -1,6 +1,14 @@
+---
+title: SamplerResult
+description: API reference for qiskit.primitives.SamplerResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.primitives.SamplerResult
+---
+
 # SamplerResult
 
-
+<span id="qiskit.primitives.SamplerResult" />
 
 `SamplerResult(quasi_dists, metadata)`
 
@@ -16,5 +24,6 @@ where the i-th elements of `result` correspond to the circuit given by `circuit_
 
 **Parameters**
 
-*   **quasi\_dists** (*list\[*[*QuasiDistribution*](qiskit.result.QuasiDistribution#qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")*]*) – list of the quasi-probabilities.
+*   **quasi\_dists** (*list\[*[*QuasiDistribution*](qiskit.result.QuasiDistribution "qiskit.result.QuasiDistribution")*]*) – list of the quasi-probabilities.
 *   **metadata** (*list\[dict]*) – list of the metadata.
+

@@ -1,6 +1,14 @@
+---
+title: BOPESSampler
+description: API reference for qiskit.chemistry.algorithms.pes_samplers.BOPESSampler
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.pes_samplers.BOPESSampler
+---
+
 # BOPESSampler
 
-
+<span id="qiskit.chemistry.algorithms.pes_samplers.BOPESSampler" />
 
 `BOPESSampler(gss, tolerance=0.001, bootstrap=True, num_bootstrap=None, extrapolator=None)`
 
@@ -18,10 +26,32 @@ Class to evaluate the Born-Oppenheimer Potential Energy Surface (BOPES).
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If `num_boostrap` is an integer smaller than 2, or if `num_boostrap` is larger than 2 and the extrapolator is not an instance of `WindowExtrapolator`.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If `num_boostrap` is an integer smaller than 2, or if `num_boostrap` is larger than 2 and the extrapolator is not an instance of `WindowExtrapolator`.
 
 ## Methods
 
-|                                                                                                                                                                                                      |                                                                    |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| [`sample`](qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.sample#qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.sample "qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.sample") | Run the sampler at the given points, potentially with repetitions. |
+### sample
+
+<span id="qiskit.chemistry.algorithms.pes_samplers.BOPESSampler.sample" />
+
+`BOPESSampler.sample(driver, points)`
+
+Run the sampler at the given points, potentially with repetitions.
+
+**Parameters**
+
+*   **driver** (`BaseDriver`) – BaseDriver specific for the problem. The driver should be based on a Molecule object that has perturbations to be varied.
+*   **points** (`List`\[`float`]) – The points along the degrees of freedom to evaluate.
+
+**Return type**
+
+`BOPESSamplerResult`
+
+**Returns**
+
+BOPES Sampler Result
+
+**Raises**
+
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the driver does not have a molecule specified.
+

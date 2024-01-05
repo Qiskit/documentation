@@ -1,12 +1,20 @@
+---
+title: load
+description: API reference for qiskit.circuit.qpy_serialization.load
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.circuit.qpy_serialization.load
+---
+
 # qiskit.circuit.qpy\_serialization.load
 
-
+<span id="qiskit.circuit.qpy_serialization.load" />
 
 `load(file_obj)`
 
 Load a QPY binary file
 
-This function is used to load a serialized QPY circuit file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from its contents. For example:
+This function is used to load a serialized QPY circuit file and create [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from its contents. For example:
 
 ```python
 from qiskit.circuit import qpy_serialization
@@ -25,7 +33,7 @@ with gzip.open('bell.qpy.gz', 'rb') as fd:
     circuits = qpy_serialization.load(fd)
 ```
 
-which will read the contents of the qpy and return a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from the file.
+which will read the contents of the qpy and return a list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects from the file.
 
 **Parameters**
 
@@ -35,7 +43,7 @@ which will read the contents of the qpy and return a list of [`QuantumCircuit`](
 
 **List of `QuantumCircuit`**
 
-The list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects contained in the QPY data. A list is always returned, even if there is only 1 circuit in the QPY data.
+The list of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects contained in the QPY data. A list is always returned, even if there is only 1 circuit in the QPY data.
 
 **Return type**
 
@@ -44,3 +52,4 @@ list
 **Raises**
 
 **QiskitError** – if `file_obj` is not a valid QPY file
+

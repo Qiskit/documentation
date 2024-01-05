@@ -1,6 +1,14 @@
+---
+title: Sampler
+description: API reference for qiskit.primitives.Sampler
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.primitives.Sampler
+---
+
 # Sampler
 
-
+<span id="qiskit.primitives.Sampler" />
 
 `Sampler(circuits, parameters=None)`
 
@@ -18,13 +26,17 @@ Sampler class
 
 ## Methods
 
-|                                                                                                              |                                      |
-| ------------------------------------------------------------------------------------------------------------ | ------------------------------------ |
-| [`close`](qiskit.primitives.Sampler.close#qiskit.primitives.Sampler.close "qiskit.primitives.Sampler.close") | Close the session and free resources |
+### close
+
+<span id="qiskit.primitives.Sampler.close" />
+
+`Sampler.close()`
+
+Close the session and free resources
 
 ## Attributes
 
-
+<span id="qiskit.primitives.Sampler.circuits" />
 
 ### circuits
 
@@ -34,7 +46,7 @@ Quantum circuits
 
 quantum circuits
 
-
+<span id="qiskit.primitives.Sampler.parameters" />
 
 ### parameters
 
@@ -43,3 +55,4 @@ Parameters of quantum circuits
 **Returns**
 
 Parameter list of the quantum circuits
+

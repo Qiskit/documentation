@@ -1,6 +1,14 @@
+---
+title: NormalDistribution
+description: API reference for qiskit.circuit.library.NormalDistribution
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.NormalDistribution
+---
+
 # NormalDistribution
 
-
+<span id="qiskit.circuit.library.NormalDistribution" />
 
 `NormalDistribution(num_qubits, mu=None, sigma=None, bounds=None, upto_diag=False, name='P(X)')`
 
@@ -111,13 +119,13 @@ Quantum Risk Analysis. [arXiv:1806.06893](http://arxiv.org/abs/1806.06893)
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.NormalDistribution.ancillas" />
 
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
 
-
+<span id="qiskit.circuit.library.NormalDistribution.bounds" />
 
 ### bounds
 
@@ -127,7 +135,7 @@ Return the bounds of the probability distribution.
 
 `Union`\[`Tuple`\[`float`, `float`], `List`\[`Tuple`\[`float`, `float`]]]
 
-
+<span id="qiskit.circuit.library.NormalDistribution.calibrations" />
 
 ### calibrations
 
@@ -137,13 +145,13 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-
+<span id="qiskit.circuit.library.NormalDistribution.clbits" />
 
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
 
-
+<span id="qiskit.circuit.library.NormalDistribution.data" />
 
 ### data
 
@@ -159,31 +167,31 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-
+<span id="qiskit.circuit.library.NormalDistribution.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-
+<span id="qiskit.circuit.library.NormalDistribution.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the circuit in radians.
 
-
+<span id="qiskit.circuit.library.NormalDistribution.header" />
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
+<span id="qiskit.circuit.library.NormalDistribution.instances" />
 
 ### instances
 
 `= 16`
 
-
+<span id="qiskit.circuit.library.NormalDistribution.metadata" />
 
 ### metadata
 
@@ -191,43 +199,43 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-
+<span id="qiskit.circuit.library.NormalDistribution.num_ancillas" />
 
 ### num\_ancillas
 
 Return the number of ancilla qubits.
 
-
+<span id="qiskit.circuit.library.NormalDistribution.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
 
-
+<span id="qiskit.circuit.library.NormalDistribution.num_parameters" />
 
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
 
-
+<span id="qiskit.circuit.library.NormalDistribution.num_qubits" />
 
 ### num\_qubits
 
 Return number of qubits.
 
-
+<span id="qiskit.circuit.library.NormalDistribution.parameters" />
 
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
 
-
+<span id="qiskit.circuit.library.NormalDistribution.prefix" />
 
 ### prefix
 
 `= 'circuit'`
 
-
+<span id="qiskit.circuit.library.NormalDistribution.probabilities" />
 
 ### probabilities
 
@@ -237,13 +245,13 @@ Return the sampling probabilities for the values.
 
 `ndarray`
 
-
+<span id="qiskit.circuit.library.NormalDistribution.qubits" />
 
 ### qubits
 
 Returns a list of quantum bits in the order that the registers were added.
 
-
+<span id="qiskit.circuit.library.NormalDistribution.values" />
 
 ### values
 
@@ -252,3 +260,4 @@ Return the discretized points of the random variable.
 **Return type**
 
 `ndarray`
+

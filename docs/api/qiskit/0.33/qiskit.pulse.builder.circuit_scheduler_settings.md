@@ -1,6 +1,14 @@
+---
+title: circuit_scheduler_settings
+description: API reference for qiskit.pulse.builder.circuit_scheduler_settings
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.circuit_scheduler_settings
+---
+
 # qiskit.pulse.builder.circuit\_scheduler\_settings
 
-
+<span id="qiskit.pulse.builder.circuit_scheduler_settings" />
 
 `circuit_scheduler_settings(**settings)`
 
@@ -28,3 +36,4 @@ with pulse.build(backend):
 **Return type**
 
 `AbstractContextManager`\[`None`]
+

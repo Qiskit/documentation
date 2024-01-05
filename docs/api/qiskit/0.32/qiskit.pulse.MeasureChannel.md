@@ -1,6 +1,14 @@
+---
+title: MeasureChannel
+description: API reference for qiskit.pulse.MeasureChannel
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.MeasureChannel
+---
+
 # MeasureChannel
 
-
+<span id="qiskit.pulse.MeasureChannel" />
 
 `MeasureChannel(index)`
 
@@ -16,14 +24,46 @@ Channel class.
 
 ## Methods
 
-|                                                                                                                                                                |                                                                  |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------- |
-| [`assign`](qiskit.pulse.MeasureChannel.assign#qiskit.pulse.MeasureChannel.assign "qiskit.pulse.MeasureChannel.assign")                                         | Return a new channel with the input Parameter assigned to value. |
-| [`is_parameterized`](qiskit.pulse.MeasureChannel.is_parameterized#qiskit.pulse.MeasureChannel.is_parameterized "qiskit.pulse.MeasureChannel.is_parameterized") | Return True iff the channel is parameterized.                    |
+### assign
+
+<span id="qiskit.pulse.MeasureChannel.assign" />
+
+`MeasureChannel.assign(parameter, value)`
+
+Return a new channel with the input Parameter assigned to value.
+
+**Parameters**
+
+*   **parameter** (`Parameter`) – A parameter in this expression whose value will be updated.
+*   **value** (`Union`\[`ParameterExpression`, `float`]) – The new value to bind to.
+
+**Return type**
+
+`Channel`
+
+**Returns**
+
+A new channel with updated parameters.
+
+**Raises**
+
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameter is not present in the channel.
+
+### is\_parameterized
+
+<span id="qiskit.pulse.MeasureChannel.is_parameterized" />
+
+`MeasureChannel.is_parameterized()`
+
+Return True iff the channel is parameterized.
+
+**Return type**
+
+`bool`
 
 ## Attributes
 
-
+<span id="qiskit.pulse.MeasureChannel.index" />
 
 ### index
 
@@ -33,7 +73,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
-
+<span id="qiskit.pulse.MeasureChannel.name" />
 
 ### name
 
@@ -43,7 +83,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-
+<span id="qiskit.pulse.MeasureChannel.parameters" />
 
 ### parameters
 
@@ -53,8 +93,9 @@ Parameters which determine the channel index.
 
 `Set`
 
-
+<span id="qiskit.pulse.MeasureChannel.prefix" />
 
 ### prefix
 
 `= 'm'`
+

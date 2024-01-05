@@ -1,6 +1,14 @@
+---
+title: RuntimeOptions
+description: API reference for qiskit.providers.ibmq.runtime.RuntimeOptions
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.runtime.RuntimeOptions
+---
+
 # RuntimeOptions
 
-
+<span id="qiskit.providers.ibmq.runtime.RuntimeOptions" />
 
 `RuntimeOptions(backend_name=None, image=None, log_level=None)`
 
@@ -16,13 +24,25 @@ Class for representing runtime execution options.
 
 ## Methods
 
-|                                                                                                                                                                                   |                   |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------- |
-| [`validate`](qiskit.providers.ibmq.runtime.RuntimeOptions.validate#qiskit.providers.ibmq.runtime.RuntimeOptions.validate "qiskit.providers.ibmq.runtime.RuntimeOptions.validate") | Validate options. |
+### validate
+
+<span id="qiskit.providers.ibmq.runtime.RuntimeOptions.validate" />
+
+`RuntimeOptions.validate()`
+
+Validate options.
+
+**Raises**
+
+**IBMQInputValueError** – If one or more option is invalid.
+
+**Return type**
+
+`None`
 
 ## Attributes
 
-
+<span id="qiskit.providers.ibmq.runtime.RuntimeOptions.backend_name" />
 
 ### backend\_name
 
@@ -30,7 +50,7 @@ Class for representing runtime execution options.
 
 `= None`
 
-
+<span id="qiskit.providers.ibmq.runtime.RuntimeOptions.image" />
 
 ### image
 
@@ -38,10 +58,11 @@ Class for representing runtime execution options.
 
 `= None`
 
-
+<span id="qiskit.providers.ibmq.runtime.RuntimeOptions.log_level" />
 
 ### log\_level
 
 `Optional[str]`
 
 `= None`
+

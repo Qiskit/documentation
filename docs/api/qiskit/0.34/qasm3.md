@@ -16,9 +16,9 @@ python_api_name: qiskit.qasm3
 
 `qiskit.qasm3`
 
-|                                                                                                                 |                                                                                                                                                                               |
-| --------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`Exporter`](qiskit.qasm3.Exporter#qiskit.qasm3.Exporter "qiskit.qasm3.Exporter")(\[includes, basis\_gates, …]) | QASM3 expoter main class.                                                                                                                                                     |
-| [`dumps`](qiskit.qasm3.dumps#qiskit.qasm3.dumps "qiskit.qasm3.dumps")(circuit, \*\*kwargs)                      | Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object in an OpenQASM3 string.                    |
-| [`dump`](qiskit.qasm3.dump#qiskit.qasm3.dump "qiskit.qasm3.dump")(circuit, stream, \*\*kwargs)                  | Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object as a OpenQASM3 stream to file-like object. |
+|                                                                                           |                                                                                                                                                 |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`Exporter`](qiskit.qasm3.Exporter "qiskit.qasm3.Exporter")(\[includes, basis\_gates, …]) | QASM3 expoter main class.                                                                                                                       |
+| [`dumps`](qiskit.qasm3.dumps "qiskit.qasm3.dumps")(circuit, \*\*kwargs)                   | Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object in an OpenQASM3 string.                    |
+| [`dump`](qiskit.qasm3.dump "qiskit.qasm3.dump")(circuit, stream, \*\*kwargs)              | Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object as a OpenQASM3 stream to file-like object. |
 

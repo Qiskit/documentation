@@ -1,6 +1,14 @@
+---
+title: RCCXGate
+description: API reference for qiskit.circuit.library.RCCXGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.RCCXGate
+---
+
 # RCCXGate
 
-
+<span id="qiskit.circuit.library.RCCXGate" />
 
 `RCCXGate(label=None)`
 
@@ -16,7 +24,7 @@ Create a new simplified CCX gate.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.RCCXGate.condition_bits" />
 
 ### condition\_bits
 
@@ -26,25 +34,25 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.RCCXGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-
+<span id="qiskit.circuit.library.RCCXGate.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
+<span id="qiskit.circuit.library.RCCXGate.duration" />
 
 ### duration
 
 Get the duration.
 
-
+<span id="qiskit.circuit.library.RCCXGate.label" />
 
 ### label
 
@@ -54,14 +62,15 @@ Return instruction label
 
 `str`
 
-
+<span id="qiskit.circuit.library.RCCXGate.params" />
 
 ### params
 
 return instruction params.
 
-
+<span id="qiskit.circuit.library.RCCXGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

@@ -24,9 +24,9 @@ $$
         \end{cases}\end{split}
 $$
 
-where $g(x)$ is the Gaussian function sampled from in [`gaussian()`](qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian") with $A=$ `amp`, $\mu=1$, and $\sigma=$ `sigma`. I.e. $f(x)$ represents a square pulse with smooth Gaussian edges.
+where $g(x)$ is the Gaussian function sampled from in [`gaussian()`](qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian") with $A=$ `amp`, $\mu=1$, and $\sigma=$ `sigma`. I.e. $f(x)$ represents a square pulse with smooth Gaussian edges.
 
-If `zero_ends == True`, the samples for the Gaussian ramps are remapped as in [`gaussian()`](qiskit.pulse.library.gaussian#qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian").
+If `zero_ends == True`, the samples for the Gaussian ramps are remapped as in [`gaussian()`](qiskit.pulse.library.gaussian "qiskit.pulse.library.gaussian").
 
 **Parameters**
 

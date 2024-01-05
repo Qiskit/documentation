@@ -1,6 +1,14 @@
+---
+title: MissingOptionalLibraryError
+description: API reference for qiskit.aqua.MissingOptionalLibraryError
+in_page_toc_min_heading_level: 1
+python_api_type: exception
+python_api_name: qiskit.aqua.MissingOptionalLibraryError
+---
+
 # qiskit.aqua.MissingOptionalLibraryError
 
-
+<span id="qiskit.aqua.MissingOptionalLibraryError" />
 
 `MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)`
 
@@ -14,3 +22,4 @@ Set the error message.
 *   **name** (`str`) – Name of class, function, module that uses this library
 *   **pip\_install** (`Optional`\[`str`]) – pip install command, if any
 *   **msg** (`Optional`\[`str`]) – Descriptive message, if any
+

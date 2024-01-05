@@ -1,6 +1,14 @@
+---
+title: AbsoluteAverage
+description: API reference for qiskit.algorithms.linear_solvers.AbsoluteAverage
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.linear_solvers.AbsoluteAverage
+---
+
 # AbsoluteAverage
 
-
+<span id="qiskit.algorithms.linear_solvers.AbsoluteAverage" />
 
 `AbsoluteAverage`
 
@@ -42,9 +50,89 @@ exact = observable.evaluate_classically(init_state)
 
 ## Methods
 
-|                                                                                                                                                                                                                                               |                                                                      |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
-| [`evaluate_classically`](qiskit.algorithms.linear_solvers.AbsoluteAverage.evaluate_classically#qiskit.algorithms.linear_solvers.AbsoluteAverage.evaluate_classically "qiskit.algorithms.linear_solvers.AbsoluteAverage.evaluate_classically") | Evaluates the given observable on the solution to the linear system. |
-| [`observable`](qiskit.algorithms.linear_solvers.AbsoluteAverage.observable#qiskit.algorithms.linear_solvers.AbsoluteAverage.observable "qiskit.algorithms.linear_solvers.AbsoluteAverage.observable")                                         | The observable operator.                                             |
-| [`observable_circuit`](qiskit.algorithms.linear_solvers.AbsoluteAverage.observable_circuit#qiskit.algorithms.linear_solvers.AbsoluteAverage.observable_circuit "qiskit.algorithms.linear_solvers.AbsoluteAverage.observable_circuit")         | The circuit implementing the absolute average observable.            |
-| [`post_processing`](qiskit.algorithms.linear_solvers.AbsoluteAverage.post_processing#qiskit.algorithms.linear_solvers.AbsoluteAverage.post_processing "qiskit.algorithms.linear_solvers.AbsoluteAverage.post_processing")                     | Evaluates the absolute average on the solution to the linear system. |
+### evaluate\_classically
+
+<span id="qiskit.algorithms.linear_solvers.AbsoluteAverage.evaluate_classically" />
+
+`AbsoluteAverage.evaluate_classically(solution)`
+
+Evaluates the given observable on the solution to the linear system.
+
+**Parameters**
+
+**solution** (`Union`\[`array`, `QuantumCircuit`]) – The solution to the system as a numpy array or the circuit that prepares it.
+
+**Return type**
+
+`float`
+
+**Returns**
+
+The value of the observable.
+
+### observable
+
+<span id="qiskit.algorithms.linear_solvers.AbsoluteAverage.observable" />
+
+`AbsoluteAverage.observable(num_qubits)`
+
+The observable operator.
+
+**Parameters**
+
+**num\_qubits** (`int`) – The number of qubits on which the observable will be applied.
+
+**Return type**
+
+`Union`\[`TensoredOp`, `List`\[`TensoredOp`]]
+
+**Returns**
+
+The observable as a sum of Pauli strings.
+
+### observable\_circuit
+
+<span id="qiskit.algorithms.linear_solvers.AbsoluteAverage.observable_circuit" />
+
+`AbsoluteAverage.observable_circuit(num_qubits)`
+
+The circuit implementing the absolute average observable.
+
+**Parameters**
+
+**num\_qubits** (`int`) – The number of qubits on which the observable will be applied.
+
+**Return type**
+
+`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]]
+
+**Returns**
+
+The observable as a QuantumCircuit.
+
+### post\_processing
+
+<span id="qiskit.algorithms.linear_solvers.AbsoluteAverage.post_processing" />
+
+`AbsoluteAverage.post_processing(solution, num_qubits, scaling=1)`
+
+Evaluates the absolute average on the solution to the linear system.
+
+**Parameters**
+
+*   **solution** (`Union`\[`float`, `List`\[`float`]]) – The probability calculated from the circuit and the observable.
+*   **num\_qubits** (`int`) – The number of qubits where the observable was applied.
+*   **scaling** (`float`) – Scaling of the solution.
+
+**Return type**
+
+`float`
+
+**Returns**
+
+The value of the absolute average.
+
+**Raises**
+
+**ValueError** – If the input is not in the correct format.
+

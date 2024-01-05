@@ -1,6 +1,14 @@
+---
+title: LinearAmplitudeFunction
+description: API reference for qiskit.circuit.library.LinearAmplitudeFunction
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.LinearAmplitudeFunction
+---
+
 # LinearAmplitudeFunction
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction" />
 
 `LinearAmplitudeFunction(num_state_qubits, slope, offset, domain, image, rescaling_factor=1, breakpoints=None, name='F')`
 
@@ -62,19 +70,35 @@ Quantum-Enhanced Simulation-Based Optimization. [arXiv:2005.10780](http://arxiv.
 
 ## Methods Defined Here
 
-|                                                                                                                                                                                                                     |                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [`post_processing`](qiskit.circuit.library.LinearAmplitudeFunction.post_processing#qiskit.circuit.library.LinearAmplitudeFunction.post_processing "qiskit.circuit.library.LinearAmplitudeFunction.post_processing") | Map the function value of the approximated $\hat{f}$ to $f$. |
+### post\_processing
+
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.post_processing" />
+
+`LinearAmplitudeFunction.post_processing(scaled_value)`
+
+Map the function value of the approximated $\hat{f}$ to $f$.
+
+**Parameters**
+
+**scaled\_value** (`float`) – A function value from the Taylor expansion of $\hat{f}(x)$.
+
+**Return type**
+
+`float`
+
+**Returns**
+
+The `scaled_value` mapped back to the domain of $f$, by first inverting the transformation used for the Taylor approximation and then mapping back from $[0, 1]$ to the original domain.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.ancillas" />
 
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.calibrations" />
 
 ### calibrations
 
@@ -84,13 +108,13 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.clbits" />
 
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.data" />
 
 ### data
 
@@ -106,31 +130,31 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the circuit in radians.
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.header" />
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.instances" />
 
 ### instances
 
 `= 16`
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.metadata" />
 
 ### metadata
 
@@ -138,44 +162,45 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.num_ancillas" />
 
 ### num\_ancillas
 
 Return the number of ancilla qubits.
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.num_parameters" />
 
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.num_qubits" />
 
 ### num\_qubits
 
 Return number of qubits.
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.parameters" />
 
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.prefix" />
 
 ### prefix
 
 `= 'circuit'`
 
-
+<span id="qiskit.circuit.library.LinearAmplitudeFunction.qubits" />
 
 ### qubits
 
 Returns a list of quantum bits in the order that the registers were added.
+

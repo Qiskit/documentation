@@ -1,6 +1,14 @@
+---
+title: parallel_map
+description: API reference for qiskit.tools.parallel_map
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.tools.parallel_map
+---
+
 # qiskit.tools.parallel\_map
 
-
+<span id="qiskit.tools.parallel_map" />
 
 `parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=32)`
 
@@ -39,3 +47,4 @@ result
 ## Events:
 
 terra.parallel.start: The collection of parallel tasks are about to start. terra.parallel.update: One of the parallel task has finished. terra.parallel.finish: All the parallel tasks have finished.
+
