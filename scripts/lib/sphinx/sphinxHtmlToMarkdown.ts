@@ -10,15 +10,28 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+import { unified } from "unified";
+import rehypeParse from "rehype-parse";
+import rehypeRemark from "rehype-remark";
+import remarkStringify from "remark-stringify";
+import remarkGfm from "remark-gfm";
+import { last, first, without, initial, tail } from "lodash";
 import { CheerioAPI, Cheerio, load } from "cheerio";
-import { last, without } from "lodash";
 import { defaultHandlers, Handle, toMdast, all } from "hast-util-to-mdast";
 import { toText } from "hast-util-to-text";
+import remarkMath from "remark-math";
+import remarkMdx from "remark-mdx";
 import { SphinxToMdResult } from "./SphinxToMdResult";
-import { PythonObjectMeta } from "./PythonObjectMeta";
-import { getLastPartFromFullIdentifier } from "../stringUtils";
-import { sphinxHtmlToMarkdownUnifiedPlugin } from "./unifiedParser";
+import { PythonObjectMeta, pythonApiType } from "./PythonObjectMeta";
+import {
+  getLastPartFromFullIdentifier,
+  removePrefix,
+  removeSuffix,
+} from "../stringUtils";
+import { remarkStringifyOptions } from "./unifiedParser";
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
+import { visit } from "unist-util-visit";
+import { Root } from "mdast";
 
 export async function sphinxHtmlToMarkdown(options: {
   html: string;
@@ -40,8 +53,7 @@ export async function sphinxHtmlToMarkdown(options: {
   const isReleaseNotes = url.endsWith("release_notes.html") ? true : false;
 
   const $ = load(html);
-  const main = $(`[role='main']`);
-  const $main = $(main);
+  const $main = $(`[role='main']`);
   const images = loadImages($, $main, url, imageDestination, isReleaseNotes);
 
   preprocessHtml($, $main, baseSourceUrl, isReleaseNotes, releaseNotesTitle);
@@ -203,7 +215,7 @@ export async function sphinxHtmlToMarkdown(options: {
   }
 
   // convert to markdown
-  const markdown = await generateMarkdownFile(main.html()!, meta);
+  const markdown = await generateMarkdownFile($main.html()!, meta);
 
   return { markdown, meta, images, isReleaseNotes };
 }
@@ -247,7 +259,7 @@ function preprocessHtml(
   baseSourceUrl: string | undefined,
   isReleaseNotes: boolean,
   releaseNotesTitle: string | undefined,
-) {
+): void {
   // remove html extensions in relative links
   $main.find("a").each((_, link) => {
     const $link = $(link);
@@ -341,7 +353,10 @@ function preprocessHtml(
     });
 }
 
-async function generateMarkdownFile(mainHtml: string, meta: PythonObjectMeta) {
+async function generateMarkdownFile(
+  mainHtml: string,
+  meta: PythonObjectMeta,
+): Promise<string> {
   const handlers: Record<string, Handle> = {
     br(h, node: any) {
       return all(h, node);
@@ -463,7 +478,62 @@ async function generateMarkdownFile(mainHtml: string, meta: PythonObjectMeta) {
     },
   };
 
-  const mdFile = await sphinxHtmlToMarkdownUnifiedPlugin(mainHtml, handlers);
+  const mdFile = await unified()
+    .use(rehypeParse)
+    .use(remarkGfm)
+    .use(remarkMath)
+    .use(remarkMdx)
+    .use(rehypeRemark, {
+      handlers,
+    })
+    .use(remarkStringify, remarkStringifyOptions)
+    .use(() => (root: Root) => {
+      // merge contiguous emphasis
+      visit(root, "emphasis", (node, index, parent) => {
+        if (index === null || parent === null) return;
+        let nextIndex = index + 1;
+        while (parent.children[nextIndex]?.type === "emphasis") {
+          node.children.push(
+            ...((parent.children[nextIndex] as any).children ?? []),
+          );
+          nextIndex++;
+        }
+        parent.children.splice(index + 1, nextIndex - (index + 1));
+
+        // remove initial and trailing spaces from emphasis
+        const firstChild = first(node.children);
+        if (firstChild?.type === "text") {
+          const match = firstChild.value.match(/^\s+/);
+          if (match) {
+            if (match[0] === firstChild.value) {
+              node.children = tail(node.children);
+            } else {
+              firstChild.value = removePrefix(firstChild.value, match[0]);
+            }
+            parent.children.splice(index, 0, {
+              type: "text",
+              value: match[0],
+            });
+          }
+        }
+        const lastChild = last(node.children);
+        if (lastChild?.type === "text") {
+          const match = lastChild.value.match(/\s+$/);
+          if (match) {
+            if (match[0] === lastChild.value) {
+              node.children = initial(node.children);
+            } else {
+              lastChild.value = removeSuffix(lastChild.value, match[0]);
+            }
+            parent.children.splice(index + 1, 0, {
+              type: "text",
+              value: match[0],
+            });
+          }
+        }
+      });
+    })
+    .process(mainHtml);
 
   return mdFile.toString().replaceAll(`<!---->`, "");
 }
@@ -508,39 +578,31 @@ function buildSpanId(id: string): MdxJsxFlowElement {
   };
 }
 
-// translate type headings to titles
+/**
+ * Find the element that both matches the `selector` and whose content is the same as `text`
+ */
 function findByText(
   $: CheerioAPI,
   $main: Cheerio<any>,
   selector: string,
   text: string,
-) {
+): Cheerio<any> {
   return $main.find(selector).filter((i, el) => $(el).text().trim() === text);
 }
 
-function getPythonApiType(
-  $dl: Cheerio<any>,
-):
-  | "function"
-  | "class"
-  | "exception"
-  | "method"
-  | "property"
-  | "attribute"
-  | "module"
-  | undefined {
-  if ($dl.hasClass("class")) {
-    return "class";
-  } else if ($dl.hasClass("function")) {
-    return "function";
-  } else if ($dl.hasClass("exception")) {
-    return "exception";
-  } else if ($dl.hasClass("property")) {
-    return "property";
-  } else if ($dl.hasClass("method")) {
-    return "method";
-  } else if ($dl.hasClass("attribute")) {
-    return "attribute";
+function getPythonApiType($dl: Cheerio<any>): pythonApiType | undefined {
+  for (const className of [
+    "function",
+    "class",
+    "exception",
+    "method",
+    "property",
+    "attribute",
+    "module",
+  ]) {
+    if ($dl.hasClass(className)) {
+      return className as pythonApiType;
+    }
   }
 
   return undefined;

@@ -10,15 +10,17 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
+export type pythonApiType =
+  | "class"
+  | "method"
+  | "property"
+  | "attribute"
+  | "module"
+  | "function"
+  | "exception";
+
 export type PythonObjectMeta = {
   python_api_name?: string;
-  python_api_type?:
-    | "class"
-    | "method"
-    | "property"
-    | "attribute"
-    | "module"
-    | "function"
-    | "exception";
+  python_api_type?: pythonApiType;
   hardcoded_frontmatter?: string;
 };
