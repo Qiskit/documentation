@@ -1,8 +1,16 @@
+---
+title: disassemble
+description: API reference for qiskit.assembler.disassemble
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.assembler.disassemble
+---
+
 <span id="qiskit-assembler-disassemble" />
 
 # qiskit.assembler.disassemble
 
-
+<span id="qiskit.assembler.disassemble" />
 
 `disassemble(qobj)`
 
@@ -10,7 +18,7 @@ Disassemble a qobj and return the circuits or pulse schedules, run\_config, and 
 
 **Parameters**
 
-**qobj** ([*Qobj*](qiskit.qobj.Qobj#qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – The input qobj object to disassemble
+**qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – The input qobj object to disassemble
 
 **Returns**
 
@@ -23,3 +31,4 @@ The disassembled program which consists of:
 **Return type**
 
 Union\[CircuitModule, PulseModule]
+

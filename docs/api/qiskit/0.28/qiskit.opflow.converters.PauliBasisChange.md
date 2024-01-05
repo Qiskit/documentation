@@ -1,6 +1,14 @@
+---
+title: PauliBasisChange
+description: API reference for qiskit.opflow.converters.PauliBasisChange
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.converters.PauliBasisChange
+---
+
 # qiskit.opflow\.converters.PauliBasisChange
 
-
+<span id="qiskit.opflow.converters.PauliBasisChange" />
 
 `PauliBasisChange(destination_basis=None, traverse=True, replacement_fn=None)`
 
@@ -23,7 +31,9 @@ This class uses the typical basis change method found in most Quantum Computing 
     > 1.  For StateFns (or Measurements): replacing the StateFn with ComposedOp(StateFn(d), c) where c is the conversion circuit and d is the destination Pauli, so the overall beginning and ending operators are equivalent.
     > 2.  For non-StateFn Operators: replacing the origin p with c·d·c†, where c is the conversion circuit and d is the destination, so the overall beginning and ending operators are equivalent.
 
+### \_\_init\_\_
 
+<span id="qiskit.opflow.converters.PauliBasisChange.__init__" />
 
 `__init__(destination_basis=None, traverse=True, replacement_fn=None)`
 
@@ -42,27 +52,11 @@ This class uses the typical basis change method found in most Quantum Computing 
 
 ## Methods
 
-|                                                                                                                                                                                                      |                                                                                                                                                                                                                                                                                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.opflow.converters.PauliBasisChange.__init__ "qiskit.opflow.converters.PauliBasisChange.__init__")(\[destination\_basis, traverse, …])                                           | **type destination\_basis**`Union`\[`Pauli`, `PauliOp`, `None`]                                                                                                                                                                                                                                  |
-| [`construct_cnot_chain`](#qiskit.opflow.converters.PauliBasisChange.construct_cnot_chain "qiskit.opflow.converters.PauliBasisChange.construct_cnot_chain")(diag\_pauli\_op1, …)                      | Construct a `CircuitOp` (or `PauliOp` if equal to the identity) which takes the eigenvectors of `diag_pauli_op1` to the eigenvectors of `diag_pauli_op2`, assuming both are diagonal (or performing this operation on their diagonalized Paulis implicitly if not).                              |
-| [`convert`](#qiskit.opflow.converters.PauliBasisChange.convert "qiskit.opflow.converters.PauliBasisChange.convert")(operator)                                                                        | Given a `PauliOp`, or an Operator containing `PauliOps` if `_traverse` is True, converts each Pauli into the basis specified by self.\_destination and a basis-change-circuit, calls `replacement_fn` with these two Operators, and replaces the `PauliOps` with the output of `replacement_fn`. |
-| [`get_cob_circuit`](#qiskit.opflow.converters.PauliBasisChange.get_cob_circuit "qiskit.opflow.converters.PauliBasisChange.get_cob_circuit")(origin)                                                  | Construct an Operator which maps the +1 and -1 eigenvectors of the origin Pauli to the +1 and -1 eigenvectors of the destination Pauli.                                                                                                                                                          |
-| [`get_diagonal_pauli_op`](#qiskit.opflow.converters.PauliBasisChange.get_diagonal_pauli_op "qiskit.opflow.converters.PauliBasisChange.get_diagonal_pauli_op")(pauli\_op)                             | Get the diagonal `PualiOp` to which `pauli_op` could be rotated with only single-qubit operations.                                                                                                                                                                                               |
-| [`get_diagonalizing_clifford`](#qiskit.opflow.converters.PauliBasisChange.get_diagonalizing_clifford "qiskit.opflow.converters.PauliBasisChange.get_diagonalizing_clifford")(pauli)                  | Construct a `CircuitOp` with only single-qubit gates which takes the eigenvectors of `pauli` to eigenvectors composed only of \|0⟩ and \|1⟩ tensor products.                                                                                                                                     |
-| [`get_tpb_pauli`](#qiskit.opflow.converters.PauliBasisChange.get_tpb_pauli "qiskit.opflow.converters.PauliBasisChange.get_tpb_pauli")(list\_op)                                                      | Gets the Pauli (not `PauliOp`!) whose diagonalizing single-qubit rotations is a superset of the diagonalizing single-qubit rotations for each of the Paulis in `list_op`.                                                                                                                        |
-| [`measurement_replacement_fn`](#qiskit.opflow.converters.PauliBasisChange.measurement_replacement_fn "qiskit.opflow.converters.PauliBasisChange.measurement_replacement_fn")(cob\_instr\_op, …)      | A built-in convenience replacement function which produces measurements isomorphic to an `OperatorStateFn` measurement holding the origin `PauliOp`.                                                                                                                                             |
-| [`operator_replacement_fn`](#qiskit.opflow.converters.PauliBasisChange.operator_replacement_fn "qiskit.opflow.converters.PauliBasisChange.operator_replacement_fn")(cob\_instr\_op, …)               | A built-in convenience replacement function which produces Operators isomorphic to the origin `PauliOp`.                                                                                                                                                                                         |
-| [`pad_paulis_to_equal_length`](#qiskit.opflow.converters.PauliBasisChange.pad_paulis_to_equal_length "qiskit.opflow.converters.PauliBasisChange.pad_paulis_to_equal_length")(pauli\_op1, pauli\_op2) | If `pauli_op1` and `pauli_op2` do not act over the same number of qubits, pad identities to the end of the shorter of the two so they are of equal length.                                                                                                                                       |
-| [`statefn_replacement_fn`](#qiskit.opflow.converters.PauliBasisChange.statefn_replacement_fn "qiskit.opflow.converters.PauliBasisChange.statefn_replacement_fn")(cob\_instr\_op, …)                  | A built-in convenience replacement function which produces state functions isomorphic to an `OperatorStateFn` state function holding the origin `PauliOp`.                                                                                                                                       |
-
 ## Attributes
 
-|                                                                                                                                 |                                                                                            |
-| ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
-| [`destination`](#qiskit.opflow.converters.PauliBasisChange.destination "qiskit.opflow.converters.PauliBasisChange.destination") | The destination `PauliOp`, or `None` if using the default destination, the diagonal basis. |
+### construct\_cnot\_chain
 
-
+<span id="qiskit.opflow.converters.PauliBasisChange.construct_cnot_chain" />
 
 `construct_cnot_chain(diag_pauli_op1, diag_pauli_op2)`
 
@@ -81,7 +75,9 @@ Construct a `CircuitOp` (or `PauliOp` if equal to the identity) which takes the 
 
 The `PrimitiveOp` performs the mapping.
 
+### convert
 
+<span id="qiskit.opflow.converters.PauliBasisChange.convert" />
 
 `convert(operator)`
 
@@ -99,7 +95,9 @@ Given a `PauliOp`, or an Operator containing `PauliOps` if `_traverse` is True, 
 
 The converted Operator.
 
+### destination
 
+<span id="qiskit.opflow.converters.PauliBasisChange.destination" />
 
 `property destination`
 
@@ -109,7 +107,9 @@ The destination `PauliOp`, or `None` if using the default destination, the diago
 
 `Optional`\[`PauliOp`]
 
+### get\_cob\_circuit
 
+<span id="qiskit.opflow.converters.PauliBasisChange.get_cob_circuit" />
 
 `get_cob_circuit(origin)`
 
@@ -139,7 +139,9 @@ A tuple of a `PrimitiveOp` which equals the basis change mapping and a `PauliOp`
 *   **TypeError** – Attempting to convert from non-Pauli origin.
 *   **ValueError** – Attempting to change a non-identity Pauli to an identity Pauli, or vice versa.
 
+### get\_diagonal\_pauli\_op
 
+<span id="qiskit.opflow.converters.PauliBasisChange.get_diagonal_pauli_op" />
 
 `get_diagonal_pauli_op(pauli_op)`
 
@@ -157,7 +159,9 @@ Get the diagonal `PualiOp` to which `pauli_op` could be rotated with only single
 
 The diagonal `PauliOp`.
 
+### get\_diagonalizing\_clifford
 
+<span id="qiskit.opflow.converters.PauliBasisChange.get_diagonalizing_clifford" />
 
 `get_diagonalizing_clifford(pauli)`
 
@@ -177,7 +181,9 @@ Note, underlying Pauli bits are in Qiskit endianness, so we need to reverse befo
 
 The diagonalizing `CircuitOp`.
 
+### get\_tpb\_pauli
 
+<span id="qiskit.opflow.converters.PauliBasisChange.get_tpb_pauli" />
 
 `get_tpb_pauli(list_op)`
 
@@ -195,7 +201,9 @@ Gets the Pauli (not `PauliOp`!) whose diagonalizing single-qubit rotations is a 
 
 The TBP Pauli.
 
+### measurement\_replacement\_fn
 
+<span id="qiskit.opflow.converters.PauliBasisChange.measurement_replacement_fn" />
 
 `static measurement_replacement_fn(cob_instr_op, dest_pauli_op)`
 
@@ -214,7 +222,9 @@ A built-in convenience replacement function which produces measurements isomorph
 
 The `~StateFn @ CircuitOp` composition equivalent to a measurement by the original `PauliOp`.
 
+### operator\_replacement\_fn
 
+<span id="qiskit.opflow.converters.PauliBasisChange.operator_replacement_fn" />
 
 `static operator_replacement_fn(cob_instr_op, dest_pauli_op)`
 
@@ -233,7 +243,9 @@ A built-in convenience replacement function which produces Operators isomorphic 
 
 The `~CircuitOp @ PauliOp @ CircuitOp` composition isomorphic to the original `PauliOp`.
 
+### pad\_paulis\_to\_equal\_length
 
+<span id="qiskit.opflow.converters.PauliBasisChange.pad_paulis_to_equal_length" />
 
 `pad_paulis_to_equal_length(pauli_op1, pauli_op2)`
 
@@ -252,7 +264,9 @@ If `pauli_op1` and `pauli_op2` do not act over the same number of qubits, pad id
 
 A tuple containing the padded PauliOps.
 
+### statefn\_replacement\_fn
 
+<span id="qiskit.opflow.converters.PauliBasisChange.statefn_replacement_fn" />
 
 `static statefn_replacement_fn(cob_instr_op, dest_pauli_op)`
 
@@ -270,3 +284,4 @@ A built-in convenience replacement function which produces state functions isomo
 **Returns**
 
 The `~CircuitOp @ StateFn` composition equivalent to a state function defined by the original `PauliOp`.
+

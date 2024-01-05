@@ -1,8 +1,16 @@
+---
+title: ampcal_cx_circuits
+description: API reference for qiskit.ignis.characterization.ampcal_cx_circuits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.characterization.ampcal_cx_circuits
+---
+
 <span id="qiskit-ignis-characterization-ampcal-cx-circuits" />
 
 # qiskit.ignis.characterization.ampcal\_cx\_circuits
 
-
+<span id="qiskit.ignis.characterization.ampcal_cx_circuits" />
 
 `ampcal_cx_circuits(max_reps, qubits, control_qubits)`
 
@@ -29,3 +37,4 @@ Note: the circuit may not behave as intended if the target-control pairs are not
 **Return type**
 
 tuple
+

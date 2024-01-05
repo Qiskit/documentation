@@ -21,7 +21,7 @@ The most straightforward scheduling methods: scheduling **as early** or **as lat
 | [`as_late_as_possible`](#qiskit.scheduler.methods.basic.as_late_as_possible "qiskit.scheduler.methods.basic.as_late_as_possible")(circuit, schedule\_config) | Return the pulse Schedule which implements the input circuit using an “as late as possible” (alap) scheduling policy. |
 | [`as_soon_as_possible`](#qiskit.scheduler.methods.basic.as_soon_as_possible "qiskit.scheduler.methods.basic.as_soon_as_possible")(circuit, schedule\_config) | Return the pulse Schedule which implements the input circuit using an “as soon as possible” (asap) scheduling policy. |
 
-
+<span id="qiskit.scheduler.methods.basic.as_late_as_possible" />
 
 `as_late_as_possible(circuit, schedule_config)`
 
@@ -44,7 +44,7 @@ This method should improves the outcome fidelity over ASAP scheduling, because w
 
 A schedule corresponding to the input `circuit` with pulses occurring as late as possible.
 
-
+<span id="qiskit.scheduler.methods.basic.as_soon_as_possible" />
 
 `as_soon_as_possible(circuit, schedule_config)`
 

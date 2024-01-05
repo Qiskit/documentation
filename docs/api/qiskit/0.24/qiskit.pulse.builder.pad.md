@@ -1,8 +1,16 @@
+---
+title: pad
+description: API reference for qiskit.pulse.builder.pad
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.pad
+---
+
 <span id="qiskit-pulse-builder-pad" />
 
 # qiskit.pulse.builder.pad
 
-
+<span id="qiskit.pulse.builder.pad" />
 
 `pad(*chs)`
 
@@ -35,3 +43,4 @@ assert pulse_prog.ch_stop_time(d0) == pulse_prog.ch_stop_time(d1)
 **Return type**
 
 `AbstractContextManager`\[`None`]
+

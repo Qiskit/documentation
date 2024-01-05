@@ -1,14 +1,24 @@
+---
+title: ZZFitter
+description: API reference for qiskit.ignis.characterization.ZZFitter
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.characterization.ZZFitter
+---
+
 <span id="qiskit-ignis-characterization-zzfitter" />
 
 # qiskit.ignis.characterization.ZZFitter
 
-
+<span id="qiskit.ignis.characterization.ZZFitter" />
 
 `ZZFitter(backend_result, xdata, qubits, spectators, fit_p0, fit_bounds, time_unit='micro-seconds')`
 
 ZZ fitter
 
+### \_\_init\_\_
 
+<span id="qiskit.ignis.characterization.ZZFitter.__init__" />
 
 `__init__(backend_result, xdata, qubits, spectators, fit_p0, fit_bounds, time_unit='micro-seconds')`
 
@@ -16,32 +26,11 @@ Initialize self. See help(type(self)) for accurate signature.
 
 ## Methods
 
-|                                                                                                                                                     |                                                                        |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`ZZ_rate`](#qiskit.ignis.characterization.ZZFitter.ZZ_rate "qiskit.ignis.characterization.ZZFitter.ZZ_rate")(\[qind])                              | Return the ZZ rate from the fit of the two curves                      |
-| [`__init__`](#qiskit.ignis.characterization.ZZFitter.__init__ "qiskit.ignis.characterization.ZZFitter.__init__")(backend\_result, xdata, qubits, …) | Initialize self.                                                       |
-| [`add_data`](#qiskit.ignis.characterization.ZZFitter.add_data "qiskit.ignis.characterization.ZZFitter.add_data")(results\[, recalc, refit])         | Add new execution results to previous execution results                |
-| [`fit_data`](#qiskit.ignis.characterization.ZZFitter.fit_data "qiskit.ignis.characterization.ZZFitter.fit_data")(\[qid, p0, bounds, series])        | Fit the curve.                                                         |
-| [`plot`](#qiskit.ignis.characterization.ZZFitter.plot "qiskit.ignis.characterization.ZZFitter.plot")(qind, series\[, ax, show\_plot])               | Plot coherence data.                                                   |
-| [`plot_ZZ`](#qiskit.ignis.characterization.ZZFitter.plot_ZZ "qiskit.ignis.characterization.ZZFitter.plot_ZZ")(qind\[, ax, show\_plot])              | Plot ZZ data.                                                          |
-| [`time`](#qiskit.ignis.characterization.ZZFitter.time "qiskit.ignis.characterization.ZZFitter.time")(\[qid, series])                                | Return the characteristic time for the given qubit and series          |
-| [`time_err`](#qiskit.ignis.characterization.ZZFitter.time_err "qiskit.ignis.characterization.ZZFitter.time_err")(\[qid, series])                    | Return the error of characteristic time for the given qubit and series |
-
 ## Attributes
 
-|                                                                                                                                       |                                                                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------- |
-| [`backend_result`](#qiskit.ignis.characterization.ZZFitter.backend_result "qiskit.ignis.characterization.ZZFitter.backend_result")    | Return the execution results                                                          |
-| [`description`](#qiskit.ignis.characterization.ZZFitter.description "qiskit.ignis.characterization.ZZFitter.description")             | Return the fitter’s purpose, e.g.                                                     |
-| [`fit_fun`](#qiskit.ignis.characterization.ZZFitter.fit_fun "qiskit.ignis.characterization.ZZFitter.fit_fun")                         | Return the function used in the fit, e.g.                                             |
-| [`measured_qubits`](#qiskit.ignis.characterization.ZZFitter.measured_qubits "qiskit.ignis.characterization.ZZFitter.measured_qubits") | Return the indices of the qubits to be characterized                                  |
-| [`params`](#qiskit.ignis.characterization.ZZFitter.params "qiskit.ignis.characterization.ZZFitter.params")                            | Return the fit function parameters that were calculated by curve\_fit                 |
-| [`params_err`](#qiskit.ignis.characterization.ZZFitter.params_err "qiskit.ignis.characterization.ZZFitter.params_err")                | Return the error of the fit function parameters                                       |
-| [`series`](#qiskit.ignis.characterization.ZZFitter.series "qiskit.ignis.characterization.ZZFitter.series")                            | Return the list of series for the data                                                |
-| [`xdata`](#qiskit.ignis.characterization.ZZFitter.xdata "qiskit.ignis.characterization.ZZFitter.xdata")                               | Return the data points on the x-axis, the independenet parameter which is fit against |
-| [`ydata`](#qiskit.ignis.characterization.ZZFitter.ydata "qiskit.ignis.characterization.ZZFitter.ydata")                               | Return the data points on the y-axis                                                  |
+### ZZ\_rate
 
-
+<span id="qiskit.ignis.characterization.ZZFitter.ZZ_rate" />
 
 `ZZ_rate(qind=- 1)`
 
@@ -59,7 +48,9 @@ a list of zz\_rates
 
 list
 
+### add\_data
 
+<span id="qiskit.ignis.characterization.ZZFitter.add_data" />
 
 `add_data(results, recalc=True, refit=True)`
 
@@ -71,7 +62,9 @@ Add new execution results to previous execution results
 *   **recalc** (`bool`) – whether tp recalculate the data
 *   **refit** (`bool`) – whether to refit the data
 
+### backend\_result
 
+<span id="qiskit.ignis.characterization.ZZFitter.backend_result" />
 
 `property backend_result`
 
@@ -81,7 +74,9 @@ Return the execution results
 
 `Union`\[`Result`, `List`\[`Result`]]
 
+### description
 
+<span id="qiskit.ignis.characterization.ZZFitter.description" />
 
 `property description`
 
@@ -91,7 +86,9 @@ Return the fitter’s purpose, e.g. ‘T1’
 
 `str`
 
+### fit\_data
 
+<span id="qiskit.ignis.characterization.ZZFitter.fit_data" />
 
 `fit_data(qid=- 1, p0=None, bounds=None, series=None)`
 
@@ -106,7 +103,9 @@ Compute self.\_params and self.\_params\_err
 *   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
 *   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
 
+### fit\_fun
 
+<span id="qiskit.ignis.characterization.ZZFitter.fit_fun" />
 
 `property fit_fun`
 
@@ -116,7 +115,9 @@ Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
 
 `Callable`
 
+### measured\_qubits
 
+<span id="qiskit.ignis.characterization.ZZFitter.measured_qubits" />
 
 `property measured_qubits`
 
@@ -126,7 +127,9 @@ Return the indices of the qubits to be characterized
 
 `List`\[`int`]
 
+### params
 
+<span id="qiskit.ignis.characterization.ZZFitter.params" />
 
 `property params`
 
@@ -136,7 +139,9 @@ Return the fit function parameters that were calculated by curve\_fit
 
 `List`\[`float`]
 
+### params\_err
 
+<span id="qiskit.ignis.characterization.ZZFitter.params_err" />
 
 `property params_err`
 
@@ -146,7 +151,9 @@ Return the error of the fit function parameters
 
 `List`\[`float`]
 
+### plot
 
+<span id="qiskit.ignis.characterization.ZZFitter.plot" />
 
 `plot(qind, series, ax=None, show_plot=True)`
 
@@ -171,7 +178,9 @@ Axes
 
 **ImportError** – if matplotlib is not installed
 
+### plot\_ZZ
 
+<span id="qiskit.ignis.characterization.ZZFitter.plot_ZZ" />
 
 `plot_ZZ(qind, ax=None, show_plot=False)`
 
@@ -195,7 +204,9 @@ Axes
 
 **ImportError** – If matplotlib is not installed
 
+### series
 
+<span id="qiskit.ignis.characterization.ZZFitter.series" />
 
 `property series`
 
@@ -205,7 +216,9 @@ Return the list of series for the data
 
 `Optional`\[`List`\[`str`]]
 
+### time
 
+<span id="qiskit.ignis.characterization.ZZFitter.time" />
 
 `time(qid=- 1, series='0')`
 
@@ -224,7 +237,9 @@ Return the characteristic time for the given qubit and series
 
 The characteristic time of the qubit, or all qubits
 
+### time\_err
 
+<span id="qiskit.ignis.characterization.ZZFitter.time_err" />
 
 `time_err(qid=- 1, series='0')`
 
@@ -243,7 +258,9 @@ Return the error of characteristic time for the given qubit and series
 
 The error of the characteristic time of the qubit, or all qubits
 
+### xdata
 
+<span id="qiskit.ignis.characterization.ZZFitter.xdata" />
 
 `property xdata`
 
@@ -253,7 +270,9 @@ Return the data points on the x-axis, the independenet parameter which is fit ag
 
 `Union`\[`List`\[`float`], `array`]
 
+### ydata
 
+<span id="qiskit.ignis.characterization.ZZFitter.ydata" />
 
 `property ydata`
 
@@ -272,3 +291,4 @@ The data points are returning in the form of a list of dictionaries:
 **Return type**
 
 `List`\[`Dict`]
+

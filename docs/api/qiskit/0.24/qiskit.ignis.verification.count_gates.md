@@ -1,8 +1,16 @@
+---
+title: count_gates
+description: API reference for qiskit.ignis.verification.count_gates
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.count_gates
+---
+
 <span id="qiskit-ignis-verification-count-gates" />
 
 # qiskit.ignis.verification.count\_gates
 
-
+<span id="qiskit.ignis.verification.count_gates" />
 
 `count_gates(qobj, basis, qubits)`
 
@@ -29,3 +37,4 @@ list
 ## Additional Information:
 
 nQ gates are counted in each qubit’s set of gates.
+

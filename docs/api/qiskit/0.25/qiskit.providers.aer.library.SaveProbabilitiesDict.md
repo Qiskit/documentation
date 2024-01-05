@@ -1,6 +1,14 @@
+---
+title: SaveProbabilitiesDict
+description: API reference for qiskit.providers.aer.library.SaveProbabilitiesDict
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.library.SaveProbabilitiesDict
+---
+
 # qiskit.providers.aer.library.SaveProbabilitiesDict
 
-
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict" />
 
 `SaveProbabilitiesDict(num_qubits, label='probabilities_dict', unnormalized=False, pershot=False, conditional=False)`
 
@@ -16,7 +24,9 @@ Instruction to save measurement probabilities dict.
 *   **pershot** (*bool*) – if True save a list of probabilities for each shot of the simulation rather than the average over all shots \[Default: False].
 *   **conditional** (*bool*) – if True save the probabilities data conditional on the current classical register values \[Default: False].
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.__init__" />
 
 `__init__(num_qubits, label='probabilities_dict', unnormalized=False, pershot=False, conditional=False)`
 
@@ -32,46 +42,27 @@ Instruction to save measurement probabilities dict.
 
 ## Methods
 
-|                                                                                                                                                                                         |                                                                          |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.providers.aer.library.SaveProbabilitiesDict.__init__ "qiskit.providers.aer.library.SaveProbabilitiesDict.__init__")(num\_qubits\[, label, unnormalized, …])        | Instruction to save measurement probabilities dict.                      |
-| [`add_decomposition`](#qiskit.providers.aer.library.SaveProbabilitiesDict.add_decomposition "qiskit.providers.aer.library.SaveProbabilitiesDict.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
-| [`assemble`](#qiskit.providers.aer.library.SaveProbabilitiesDict.assemble "qiskit.providers.aer.library.SaveProbabilitiesDict.assemble")()                                              | Return the QasmQobjInstruction for the intructions.                      |
-| [`broadcast_arguments`](#qiskit.providers.aer.library.SaveProbabilitiesDict.broadcast_arguments "qiskit.providers.aer.library.SaveProbabilitiesDict.broadcast_arguments")(qargs, cargs) | Validation of the arguments.                                             |
-| [`c_if`](#qiskit.providers.aer.library.SaveProbabilitiesDict.c_if "qiskit.providers.aer.library.SaveProbabilitiesDict.c_if")(classical, val)                                            | Add classical condition on register classical and value val.             |
-| [`copy`](#qiskit.providers.aer.library.SaveProbabilitiesDict.copy "qiskit.providers.aer.library.SaveProbabilitiesDict.copy")(\[name])                                                   | Copy of the instruction.                                                 |
-| [`inverse`](#qiskit.providers.aer.library.SaveProbabilitiesDict.inverse "qiskit.providers.aer.library.SaveProbabilitiesDict.inverse")()                                                 | Special case.                                                            |
-| [`is_parameterized`](#qiskit.providers.aer.library.SaveProbabilitiesDict.is_parameterized "qiskit.providers.aer.library.SaveProbabilitiesDict.is_parameterized")()                      | Return True .IFF.                                                        |
-| [`mirror`](#qiskit.providers.aer.library.SaveProbabilitiesDict.mirror "qiskit.providers.aer.library.SaveProbabilitiesDict.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                              |
-| [`qasm`](#qiskit.providers.aer.library.SaveProbabilitiesDict.qasm "qiskit.providers.aer.library.SaveProbabilitiesDict.qasm")()                                                          | Return a default OpenQASM string for the instruction.                    |
-| [`repeat`](#qiskit.providers.aer.library.SaveProbabilitiesDict.repeat "qiskit.providers.aer.library.SaveProbabilitiesDict.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.             |
-| [`reverse_ops`](#qiskit.providers.aer.library.SaveProbabilitiesDict.reverse_ops "qiskit.providers.aer.library.SaveProbabilitiesDict.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.      |
-| [`soft_compare`](#qiskit.providers.aer.library.SaveProbabilitiesDict.soft_compare "qiskit.providers.aer.library.SaveProbabilitiesDict.soft_compare")(other)                             | Soft comparison between gates.                                           |
-| [`validate_parameter`](#qiskit.providers.aer.library.SaveProbabilitiesDict.validate_parameter "qiskit.providers.aer.library.SaveProbabilitiesDict.validate_parameter")(parameter)       | Instruction parameters has no validation or normalization.               |
-
 ## Attributes
 
-|                                                                                                                                                            |                                                                               |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`decompositions`](#qiskit.providers.aer.library.SaveProbabilitiesDict.decompositions "qiskit.providers.aer.library.SaveProbabilitiesDict.decompositions") | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
-| [`definition`](#qiskit.providers.aer.library.SaveProbabilitiesDict.definition "qiskit.providers.aer.library.SaveProbabilitiesDict.definition")             | Return definition in terms of other basic gates.                              |
-| [`duration`](#qiskit.providers.aer.library.SaveProbabilitiesDict.duration "qiskit.providers.aer.library.SaveProbabilitiesDict.duration")                   | Get the duration.                                                             |
-| [`params`](#qiskit.providers.aer.library.SaveProbabilitiesDict.params "qiskit.providers.aer.library.SaveProbabilitiesDict.params")                         | return instruction params.                                                    |
-| [`unit`](#qiskit.providers.aer.library.SaveProbabilitiesDict.unit "qiskit.providers.aer.library.SaveProbabilitiesDict.unit")                               | Get the time unit of duration.                                                |
+### add\_decomposition
 
-
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
+### assemble
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.assemble" />
 
 `assemble()`
 
 Return the QasmQobjInstruction for the intructions.
 
+### broadcast\_arguments
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -90,13 +81,17 @@ Validation of the arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
+### c\_if
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
+### copy
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.copy" />
 
 `copy(name=None)`
 
@@ -114,39 +109,51 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### decompositions
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
+### definition
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
+### duration
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.duration" />
 
 `property duration`
 
 Get the duration.
 
+### inverse
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.inverse" />
 
 `inverse()`
 
 Special case. Return self.
 
+### is\_parameterized
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
+### mirror
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.mirror" />
 
 `mirror()`
 
@@ -160,15 +167,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### params
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.params" />
 
 `property params`
 
 return instruction params.
 
+### qasm
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.qasm" />
 
 `qasm()`
 
@@ -176,7 +187,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
+### repeat
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.repeat" />
 
 `repeat(n)`
 
@@ -192,13 +205,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
+### reverse\_ops
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.reverse_ops" />
 
 `reverse_ops()`
 
@@ -214,9 +229,11 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### soft\_compare
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.soft_compare" />
 
 `soft_compare(other)`
 
@@ -234,14 +251,19 @@ are self and other equal up to parameter expressions.
 
 bool
 
+### unit
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
+### validate\_parameter
 
+<span id="qiskit.providers.aer.library.SaveProbabilitiesDict.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Instruction parameters has no validation or normalization.
+

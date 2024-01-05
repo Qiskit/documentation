@@ -1,6 +1,14 @@
+---
+title: QAOA
+description: API reference for qiskit.algorithms.QAOA
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.QAOA
+---
+
 # qiskit.algorithms.QAOA
 
-
+<span id="qiskit.algorithms.QAOA" />
 
 `QAOA(optimizer=None, reps=1, initial_state=None, mixer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)`
 
@@ -8,7 +16,7 @@ The Quantum Approximate Optimization Algorithm.
 
 [QAOA](https://arxiv.org/abs/1411.4028) is a well-known algorithm for finding approximate solutions to combinatorial-optimization problems.
 
-The QAOA implementation directly extends [`VQE`](qiskit.algorithms.VQE#qiskit.algorithms.VQE "qiskit.algorithms.VQE") and inherits VQE’s optimization structure. However, unlike VQE, which can be configured with arbitrary ansatzes, QAOA uses its own fine-tuned ansatz, which comprises $p$ parameterized global $x$ rotations and $p$ different parameterizations of the problem hamiltonian. QAOA is thus principally configured by the single integer parameter, *p*, which dictates the depth of the ansatz, and thus affects the approximation quality.
+The QAOA implementation directly extends [`VQE`](qiskit.algorithms.VQE "qiskit.algorithms.VQE") and inherits VQE’s optimization structure. However, unlike VQE, which can be configured with arbitrary ansatzes, QAOA uses its own fine-tuned ansatz, which comprises $p$ parameterized global $x$ rotations and $p$ different parameterizations of the problem hamiltonian. QAOA is thus principally configured by the single integer parameter, *p*, which dictates the depth of the ansatz, and thus affects the approximation quality.
 
 An optional array of $2p$ parameter values, as the *initial\_point*, may be provided as the starting **beta** and **gamma** parameters (as identically named in the original [QAOA paper](https://arxiv.org/abs/1411.4028)) for the QAOA ansatz.
 
@@ -22,13 +30,15 @@ An operator or a parameterized quantum circuit may optionally also be provided a
 *   **mixer** (`Union`\[`QuantumCircuit`, `OperatorBase`, `None`]) – the mixer Hamiltonian to evolve with or a custom quantum circuit. Allows support of optimizations in constrained subspaces as per [https://arxiv.org/abs/1709.03489](https://arxiv.org/abs/1709.03489) as well as warm-starting the optimization as introduced in [http://arxiv.org/abs/2009.10095](http://arxiv.org/abs/2009.10095).
 *   **initial\_point** (`Optional`\[`ndarray`]) – An optional initial point (i.e. initial parameter values) for the optimizer. If `None` then it will simply compute a random one.
 *   **gradient** (`Union`\[`GradientBase`, `Callable`\[\[`Union`\[`ndarray`, `List`]], `List`], `None`]) – An optional gradient operator respectively a gradient function used for optimization.
-*   **expectation** (`Optional`\[`ExpectationBase`]) – The Expectation converter for taking the average value of the Observable over the ansatz state function. When None (the default) an [`ExpectationFactory`](qiskit.opflow.expectations.ExpectationFactory#qiskit.opflow.expectations.ExpectationFactory "qiskit.opflow.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to True (defaults to False).
+*   **expectation** (`Optional`\[`ExpectationBase`]) – The Expectation converter for taking the average value of the Observable over the ansatz state function. When None (the default) an [`ExpectationFactory`](qiskit.opflow.expectations.ExpectationFactory "qiskit.opflow.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to True (defaults to False).
 *   **include\_custom** (`bool`) – When expectation parameter here is None setting this to True will allow the factory to include the custom Aer pauli expectation.
 *   **max\_evals\_grouped** (`int`) – Max number of evaluations performed simultaneously. Signals the given optimizer that more than one set of parameters can be supplied so that potentially the expectation values can be computed in parallel. Typically this is possible when a finite difference gradient is used by the optimizer such that multiple points to compute the gradient can be passed and if computed in parallel improve overall execution time. Ignored if a gradient operator or function is given.
 *   **callback** (`Optional`\[`Callable`\[\[`int`, `ndarray`, `float`, `float`], `None`]]) – a callback that can access the intermediate data during the optimization. Four parameter values are passed to the callback as follows during each evaluation by the optimizer for its current set of parameters as it works towards the minimum. These are: the evaluation count, the optimizer parameters for the ansatz, the evaluated mean and the evaluated standard deviation.
 *   **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – Quantum Instance or Backend
 
+### \_\_init\_\_
 
+<span id="qiskit.algorithms.QAOA.__init__" />
 
 `__init__(optimizer=None, reps=1, initial_state=None, mixer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)`
 
@@ -40,7 +50,7 @@ An operator or a parameterized quantum circuit may optionally also be provided a
 *   **mixer** (`Union`\[`QuantumCircuit`, `OperatorBase`, `None`]) – the mixer Hamiltonian to evolve with or a custom quantum circuit. Allows support of optimizations in constrained subspaces as per [https://arxiv.org/abs/1709.03489](https://arxiv.org/abs/1709.03489) as well as warm-starting the optimization as introduced in [http://arxiv.org/abs/2009.10095](http://arxiv.org/abs/2009.10095).
 *   **initial\_point** (`Optional`\[`ndarray`]) – An optional initial point (i.e. initial parameter values) for the optimizer. If `None` then it will simply compute a random one.
 *   **gradient** (`Union`\[`GradientBase`, `Callable`\[\[`Union`\[`ndarray`, `List`]], `List`], `None`]) – An optional gradient operator respectively a gradient function used for optimization.
-*   **expectation** (`Optional`\[`ExpectationBase`]) – The Expectation converter for taking the average value of the Observable over the ansatz state function. When None (the default) an [`ExpectationFactory`](qiskit.opflow.expectations.ExpectationFactory#qiskit.opflow.expectations.ExpectationFactory "qiskit.opflow.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to True (defaults to False).
+*   **expectation** (`Optional`\[`ExpectationBase`]) – The Expectation converter for taking the average value of the Observable over the ansatz state function. When None (the default) an [`ExpectationFactory`](qiskit.opflow.expectations.ExpectationFactory "qiskit.opflow.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to True (defaults to False).
 *   **include\_custom** (`bool`) – When expectation parameter here is None setting this to True will allow the factory to include the custom Aer pauli expectation.
 *   **max\_evals\_grouped** (`int`) – Max number of evaluations performed simultaneously. Signals the given optimizer that more than one set of parameters can be supplied so that potentially the expectation values can be computed in parallel. Typically this is possible when a finite difference gradient is used by the optimizer such that multiple points to compute the gradient can be passed and if computed in parallel improve overall execution time. Ignored if a gradient operator or function is given.
 *   **callback** (`Optional`\[`Callable`\[\[`int`, `ndarray`, `float`, `float`], `None`]]) – a callback that can access the intermediate data during the optimization. Four parameter values are passed to the callback as follows during each evaluation by the optimizer for its current set of parameters as it works towards the minimum. These are: the evaluation count, the optimizer parameters for the ansatz, the evaluated mean and the evaluated standard deviation.
@@ -48,39 +58,11 @@ An operator or a parameterized quantum circuit may optionally also be provided a
 
 ## Methods
 
-|                                                                                                                                                        |                                                                                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.QAOA.__init__ "qiskit.algorithms.QAOA.__init__")(\[optimizer, reps, initial\_state, …])                                | **type optimizer**`Optional`\[`Optimizer`]                                                            |
-| [`cleanup_parameterized_circuits`](#qiskit.algorithms.QAOA.cleanup_parameterized_circuits "qiskit.algorithms.QAOA.cleanup_parameterized_circuits")()   | set parameterized circuits to None                                                                    |
-| [`compute_minimum_eigenvalue`](#qiskit.algorithms.QAOA.compute_minimum_eigenvalue "qiskit.algorithms.QAOA.compute_minimum_eigenvalue")(operator\[, …]) | Computes minimum eigenvalue.                                                                          |
-| [`construct_circuit`](#qiskit.algorithms.QAOA.construct_circuit "qiskit.algorithms.QAOA.construct_circuit")(parameter, operator)                       | Return the circuits used to compute the expectation value.                                            |
-| [`construct_expectation`](#qiskit.algorithms.QAOA.construct_expectation "qiskit.algorithms.QAOA.construct_expectation")(parameter, operator\[, …])     | Generate the ansatz circuit and expectation value measurement, and return their runnable composition. |
-| [`find_minimum`](#qiskit.algorithms.QAOA.find_minimum "qiskit.algorithms.QAOA.find_minimum")(\[initial\_point, ansatz, …])                             | Optimize to find the minimum cost value.                                                              |
-| [`get_energy_evaluation`](#qiskit.algorithms.QAOA.get_energy_evaluation "qiskit.algorithms.QAOA.get_energy_evaluation")(operator\[, …])                | Returns a function handle to evaluates the energy at given parameters for the ansatz.                 |
-| [`get_optimal_circuit`](#qiskit.algorithms.QAOA.get_optimal_circuit "qiskit.algorithms.QAOA.get_optimal_circuit")()                                    | Get the circuit with the optimal parameters.                                                          |
-| [`get_optimal_cost`](#qiskit.algorithms.QAOA.get_optimal_cost "qiskit.algorithms.QAOA.get_optimal_cost")()                                             | Get the minimal cost or energy found by the VQE.                                                      |
-| [`get_optimal_vector`](#qiskit.algorithms.QAOA.get_optimal_vector "qiskit.algorithms.QAOA.get_optimal_vector")()                                       | Get the simulation outcome of the optimal circuit.                                                    |
-| [`get_prob_vector_for_params`](#qiskit.algorithms.QAOA.get_prob_vector_for_params "qiskit.algorithms.QAOA.get_prob_vector_for_params")(…\[, …])        | Helper function to get probability vectors for a set of params                                        |
-| [`get_probabilities_for_counts`](#qiskit.algorithms.QAOA.get_probabilities_for_counts "qiskit.algorithms.QAOA.get_probabilities_for_counts")(counts)   | get probabilities for counts                                                                          |
-| [`print_settings`](#qiskit.algorithms.QAOA.print_settings "qiskit.algorithms.QAOA.print_settings")()                                                   | Preparing the setting of VQE into a string.                                                           |
-| [`supports_aux_operators`](#qiskit.algorithms.QAOA.supports_aux_operators "qiskit.algorithms.QAOA.supports_aux_operators")()                           | Whether computing the expectation value of auxiliary operators is supported.                          |
-
 ## Attributes
 
-|                                                                                                          |                                                                                                    |
-| -------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
-| [`ansatz`](#qiskit.algorithms.QAOA.ansatz "qiskit.algorithms.QAOA.ansatz")                               | Returns the ansatz.                                                                                |
-| [`expectation`](#qiskit.algorithms.QAOA.expectation "qiskit.algorithms.QAOA.expectation")                | The expectation value algorithm used to construct the expectation measurement from the observable. |
-| [`gradient`](#qiskit.algorithms.QAOA.gradient "qiskit.algorithms.QAOA.gradient")                         | Returns the gradient.                                                                              |
-| [`initial_point`](#qiskit.algorithms.QAOA.initial_point "qiskit.algorithms.QAOA.initial_point")          | Returns initial point                                                                              |
-| [`initial_state`](#qiskit.algorithms.QAOA.initial_state "qiskit.algorithms.QAOA.initial_state")          | Returns: Returns the initial state.                                                                |
-| [`mixer`](#qiskit.algorithms.QAOA.mixer "qiskit.algorithms.QAOA.mixer")                                  | Returns: Returns the mixer.                                                                        |
-| [`optimal_params`](#qiskit.algorithms.QAOA.optimal_params "qiskit.algorithms.QAOA.optimal_params")       | The optimal parameters for the ansatz.                                                             |
-| [`optimizer`](#qiskit.algorithms.QAOA.optimizer "qiskit.algorithms.QAOA.optimizer")                      | Returns optimizer                                                                                  |
-| [`quantum_instance`](#qiskit.algorithms.QAOA.quantum_instance "qiskit.algorithms.QAOA.quantum_instance") | Returns quantum instance.                                                                          |
-| [`setting`](#qiskit.algorithms.QAOA.setting "qiskit.algorithms.QAOA.setting")                            | Prepare the setting of VQE as a string.                                                            |
+### ansatz
 
-
+<span id="qiskit.algorithms.QAOA.ansatz" />
 
 `property ansatz`
 
@@ -90,13 +72,17 @@ Returns the ansatz.
 
 `Optional`\[`QuantumCircuit`]
 
+### cleanup\_parameterized\_circuits
 
+<span id="qiskit.algorithms.QAOA.cleanup_parameterized_circuits" />
 
 `cleanup_parameterized_circuits()`
 
 set parameterized circuits to None
 
+### compute\_minimum\_eigenvalue
 
+<span id="qiskit.algorithms.QAOA.compute_minimum_eigenvalue" />
 
 `compute_minimum_eigenvalue(operator, aux_operators=None)`
 
@@ -115,7 +101,9 @@ Computes minimum eigenvalue. Operator and aux\_operators can be supplied here an
 
 MinimumEigensolverResult
 
+### construct\_circuit
 
+<span id="qiskit.algorithms.QAOA.construct_circuit" />
 
 `construct_circuit(parameter, operator)`
 
@@ -134,7 +122,9 @@ Return the circuits used to compute the expectation value.
 
 A list of the circuits used to compute the expectation value.
 
+### construct\_expectation
 
+<span id="qiskit.algorithms.QAOA.construct_expectation" />
 
 `construct_expectation(parameter, operator, return_expectation=False)`
 
@@ -156,10 +146,12 @@ The Operator equalling the measurement of the ansatz `StateFn` by the Observable
 
 **Raises**
 
-*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If no operator has been provided.
-*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If no expectation is passed and None could be inferred via the ExpectationFactory.
+*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If no operator has been provided.
+*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – If no expectation is passed and None could be inferred via the ExpectationFactory.
 
+### expectation
 
+<span id="qiskit.algorithms.QAOA.expectation" />
 
 `property expectation`
 
@@ -169,7 +161,9 @@ The expectation value algorithm used to construct the expectation measurement fr
 
 `Optional`\[`ExpectationBase`]
 
+### find\_minimum
 
+<span id="qiskit.algorithms.QAOA.find_minimum" />
 
 `find_minimum(initial_point=None, ansatz=None, cost_fn=None, optimizer=None, gradient_fn=None)`
 
@@ -195,7 +189,9 @@ dict
 
 **ValueError** – invalid input
 
+### get\_energy\_evaluation
 
+<span id="qiskit.algorithms.QAOA.get_energy_evaluation" />
 
 `get_energy_evaluation(operator, return_expectation=False)`
 
@@ -220,7 +216,9 @@ Energy of the hamiltonian of each parameter, and, optionally, the expectation co
 
 **RuntimeError** – If the circuit is not parameterized (i.e. has 0 free parameters).
 
+### get\_optimal\_circuit
 
+<span id="qiskit.algorithms.QAOA.get_optimal_circuit" />
 
 `get_optimal_circuit()`
 
@@ -230,7 +228,9 @@ Get the circuit with the optimal parameters.
 
 `QuantumCircuit`
 
+### get\_optimal\_cost
 
+<span id="qiskit.algorithms.QAOA.get_optimal_cost" />
 
 `get_optimal_cost()`
 
@@ -240,7 +240,9 @@ Get the minimal cost or energy found by the VQE.
 
 `float`
 
+### get\_optimal\_vector
 
+<span id="qiskit.algorithms.QAOA.get_optimal_vector" />
 
 `get_optimal_vector()`
 
@@ -250,19 +252,25 @@ Get the simulation outcome of the optimal circuit.
 
 `Union`\[`List`\[`float`], `Dict`\[`str`, `int`]]
 
+### get\_prob\_vector\_for\_params
 
+<span id="qiskit.algorithms.QAOA.get_prob_vector_for_params" />
 
 `get_prob_vector_for_params(construct_circuit_fn, params_s, quantum_instance, construct_circuit_args=None)`
 
 Helper function to get probability vectors for a set of params
 
+### get\_probabilities\_for\_counts
 
+<span id="qiskit.algorithms.QAOA.get_probabilities_for_counts" />
 
 `get_probabilities_for_counts(counts)`
 
 get probabilities for counts
 
+### gradient
 
+<span id="qiskit.algorithms.QAOA.gradient" />
 
 `property gradient`
 
@@ -272,7 +280,9 @@ Returns the gradient.
 
 `Union`\[`GradientBase`, `Callable`, `None`]
 
+### initial\_point
 
+<span id="qiskit.algorithms.QAOA.initial_point" />
 
 `property initial_point`
 
@@ -282,7 +292,9 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
+### initial\_state
 
+<span id="qiskit.algorithms.QAOA.initial_state" />
 
 `property initial_state`
 
@@ -292,7 +304,9 @@ Returns: Returns the initial state.
 
 `Optional`\[`QuantumCircuit`]
 
+### mixer
 
+<span id="qiskit.algorithms.QAOA.mixer" />
 
 `property mixer`
 
@@ -302,7 +316,9 @@ Returns: Returns the mixer.
 
 `Union`\[`QuantumCircuit`, `OperatorBase`]
 
+### optimal\_params
 
+<span id="qiskit.algorithms.QAOA.optimal_params" />
 
 `property optimal_params`
 
@@ -312,7 +328,9 @@ The optimal parameters for the ansatz.
 
 `ndarray`
 
+### optimizer
 
+<span id="qiskit.algorithms.QAOA.optimizer" />
 
 `property optimizer`
 
@@ -322,7 +340,9 @@ Returns optimizer
 
 `Optional`\[`Optimizer`]
 
+### print\_settings
 
+<span id="qiskit.algorithms.QAOA.print_settings" />
 
 `print_settings()`
 
@@ -336,7 +356,9 @@ the formatted setting of VQE
 
 str
 
+### quantum\_instance
 
+<span id="qiskit.algorithms.QAOA.quantum_instance" />
 
 `property quantum_instance`
 
@@ -346,13 +368,17 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
+### setting
 
+<span id="qiskit.algorithms.QAOA.setting" />
 
 `property setting`
 
 Prepare the setting of VQE as a string.
 
+### supports\_aux\_operators
 
+<span id="qiskit.algorithms.QAOA.supports_aux_operators" />
 
 `classmethod supports_aux_operators()`
 
@@ -367,3 +393,4 @@ If the minimum eigensolver computes an eigenstate of the main operator then it c
 **Returns**
 
 True if aux\_operator expectations can be evaluated, False otherwise
+

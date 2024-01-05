@@ -1,6 +1,14 @@
+---
+title: UnitarySimulator
+description: API reference for qiskit.providers.aer.UnitarySimulator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.UnitarySimulator
+---
+
 # qiskit.providers.aer.UnitarySimulator
 
-
+<span id="qiskit.providers.aer.UnitarySimulator" />
 
 `UnitarySimulator(configuration=None, properties=None, provider=None, **backend_options)`
 
@@ -45,18 +53,20 @@ This method should initialize the module and its configuration, and raise an exc
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
-*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
-*   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults#qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
+*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
+*   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
 *   **available\_methods** (*list or None*) – Optional, the available simulation methods if backend supports multiple methods.
-*   **provider** ([*Provider*](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")) – Optional, provider responsible for this backend.
+*   **provider** ([*Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optional, provider responsible for this backend.
 *   **backend\_options** (*dict or None*) – Optional set custom backend options.
 
 **Raises**
 
-[**AerError**](qiskit.providers.aer.AerError#qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
+[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.aer.UnitarySimulator.__init__" />
 
 `__init__(configuration=None, properties=None, provider=None, **backend_options)`
 
@@ -66,54 +76,40 @@ This method should initialize the module and its configuration, and raise an exc
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
-*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
-*   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults#qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
+*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
+*   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
 *   **available\_methods** (*list or None*) – Optional, the available simulation methods if backend supports multiple methods.
-*   **provider** ([*Provider*](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")) – Optional, provider responsible for this backend.
+*   **provider** ([*Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optional, provider responsible for this backend.
 *   **backend\_options** (*dict or None*) – Optional set custom backend options.
 
 **Raises**
 
-[**AerError**](qiskit.providers.aer.AerError#qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
+[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
 
 ## Methods
 
-|                                                                                                                                                        |                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------- |
-| [`__init__`](#qiskit.providers.aer.UnitarySimulator.__init__ "qiskit.providers.aer.UnitarySimulator.__init__")(\[configuration, properties, provider]) | Aer class for backends.                         |
-| [`available_methods`](#qiskit.providers.aer.UnitarySimulator.available_methods "qiskit.providers.aer.UnitarySimulator.available_methods")()            | Return the available simulation methods.        |
-| [`clear_options`](#qiskit.providers.aer.UnitarySimulator.clear_options "qiskit.providers.aer.UnitarySimulator.clear_options")()                        | Reset the simulator options to default values.  |
-| [`configuration`](#qiskit.providers.aer.UnitarySimulator.configuration "qiskit.providers.aer.UnitarySimulator.configuration")()                        | Return the simulator backend configuration.     |
-| [`defaults`](#qiskit.providers.aer.UnitarySimulator.defaults "qiskit.providers.aer.UnitarySimulator.defaults")()                                       | Return the simulator backend pulse defaults.    |
-| [`name`](#qiskit.providers.aer.UnitarySimulator.name "qiskit.providers.aer.UnitarySimulator.name")()                                                   | Return the backend name.                        |
-| [`properties`](#qiskit.providers.aer.UnitarySimulator.properties "qiskit.providers.aer.UnitarySimulator.properties")()                                 | Return the simulator backend properties if set. |
-| [`provider`](#qiskit.providers.aer.UnitarySimulator.provider "qiskit.providers.aer.UnitarySimulator.provider")()                                       | Return the backend Provider.                    |
-| [`run`](#qiskit.providers.aer.UnitarySimulator.run "qiskit.providers.aer.UnitarySimulator.run")(circuits\[, backend\_options, validate])               | Run a qobj on the backend.                      |
-| [`set_option`](#qiskit.providers.aer.UnitarySimulator.set_option "qiskit.providers.aer.UnitarySimulator.set_option")(key, value)                       | Special handling for setting backend options.   |
-| [`set_options`](#qiskit.providers.aer.UnitarySimulator.set_options "qiskit.providers.aer.UnitarySimulator.set_options")(\*\*fields)                    | Set the options fields for the backend          |
-| [`status`](#qiskit.providers.aer.UnitarySimulator.status "qiskit.providers.aer.UnitarySimulator.status")()                                             | Return backend status.                          |
-
 ## Attributes
 
-|                                                                                                             |                                    |
-| ----------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| [`options`](#qiskit.providers.aer.UnitarySimulator.options "qiskit.providers.aer.UnitarySimulator.options") | Return the options for the backend |
-| `version`                                                                                                   |                                    |
+### available\_methods
 
-
+<span id="qiskit.providers.aer.UnitarySimulator.available_methods" />
 
 `available_methods()`
 
 Return the available simulation methods.
 
+### clear\_options
 
+<span id="qiskit.providers.aer.UnitarySimulator.clear_options" />
 
 `clear_options()`
 
 Reset the simulator options to default values.
 
+### configuration
 
+<span id="qiskit.providers.aer.UnitarySimulator.configuration" />
 
 `configuration()`
 
@@ -125,9 +121,11 @@ the configuration for the backend.
 
 **Return type**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
 
+### defaults
 
+<span id="qiskit.providers.aer.UnitarySimulator.defaults" />
 
 `defaults()`
 
@@ -141,9 +139,11 @@ backend does not support pulse.
 
 **Return type**
 
-[PulseDefaults](qiskit.providers.models.PulseDefaults#qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
+[PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
 
+### name
 
+<span id="qiskit.providers.aer.UnitarySimulator.name" />
 
 `name()`
 
@@ -157,7 +157,9 @@ the name of the backend.
 
 str
 
+### options
 
+<span id="qiskit.providers.aer.UnitarySimulator.options" />
 
 `property options`
 
@@ -165,7 +167,9 @@ Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.aer.UnitarySimulator.run "qiskit.providers.aer.UnitarySimulator.run") method.
 
+### properties
 
+<span id="qiskit.providers.aer.UnitarySimulator.properties" />
 
 `properties()`
 
@@ -179,9 +183,11 @@ backend does not have properties set.
 
 **Return type**
 
-[BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
+### provider
 
+<span id="qiskit.providers.aer.UnitarySimulator.provider" />
 
 `provider()`
 
@@ -193,9 +199,11 @@ the Provider responsible for the backend.
 
 **Return type**
 
-[Provider](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")
+[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
 
+### run
 
+<span id="qiskit.providers.aer.UnitarySimulator.run" />
 
 `run(circuits, backend_options=None, validate=False, **run_options)`
 
@@ -203,7 +211,7 @@ Run a qobj on the backend.
 
 **Parameters**
 
-*   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or list*) – The QuantumCircuit (or list of QuantumCircuit objects) to run
+*   **circuits** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or list*) – The QuantumCircuit (or list of QuantumCircuit objects) to run
 *   **backend\_options** (*dict or None*) – DEPRECATED dictionary of backend options for the execution (default: None).
 *   **validate** (*bool*) – validate the Qobj before running (default: False).
 *   **run\_options** (*kwargs*) – additional run time backend options.
@@ -214,14 +222,16 @@ The simulation job.
 
 **Return type**
 
-[AerJob](qiskit.providers.aer.AerJob#qiskit.providers.aer.AerJob "qiskit.providers.aer.AerJob")
+[AerJob](qiskit.providers.aer.AerJob "qiskit.providers.aer.AerJob")
 
 **Additional Information:**
 
 *   kwarg options specified in `run_options` will temporarily override any set options of the same name for the current run.
 *   The entries in the `backend_options` will be combined with the `Qobj.config` dictionary with the values of entries in `backend_options` taking precedence. This kwarg is deprecated and direct kwarg’s should be used for options to pass them to `run_options`.
 
+### set\_option
 
+<span id="qiskit.providers.aer.UnitarySimulator.set_option" />
 
 `set_option(key, value)`
 
@@ -236,9 +246,11 @@ This method should be extended by sub classes to update special option values.
 
 **Raises**
 
-[**AerError**](qiskit.providers.aer.AerError#qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if key is ‘method’ and val isn’t in available methods.
+[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if key is ‘method’ and val isn’t in available methods.
 
+### set\_options
 
+<span id="qiskit.providers.aer.UnitarySimulator.set_options" />
 
 `set_options(**fields)`
 
@@ -254,7 +266,9 @@ This method is used to update the options of a backend. If you need to change an
 
 **AttributeError** – If the field passed in is not part of the options
 
+### status
 
+<span id="qiskit.providers.aer.UnitarySimulator.status" />
 
 `status()`
 
@@ -266,4 +280,5 @@ the status of the backend.
 
 **Return type**
 
-[BackendStatus](qiskit.providers.models.BackendStatus#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+

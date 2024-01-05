@@ -1,6 +1,14 @@
+---
+title: RXXGate
+description: API reference for qiskit.circuit.library.RXXGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.RXXGate
+---
+
 # qiskit.circuit.library.RXXGate
 
-
+<span id="qiskit.circuit.library.RXXGate" />
 
 `RXXGate(theta)`
 
@@ -52,7 +60,9 @@ $$
 
 Create new RXX gate.
 
+### \_\_init\_\_
 
+<span id="qiskit.circuit.library.RXXGate.__init__" />
 
 `__init__(theta)`
 
@@ -60,50 +70,27 @@ Create new RXX gate.
 
 ## Methods
 
-|                                                                                                                                                 |                                                                          |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.circuit.library.RXXGate.__init__ "qiskit.circuit.library.RXXGate.__init__")(theta)                                         | Create new RXX gate.                                                     |
-| [`add_decomposition`](#qiskit.circuit.library.RXXGate.add_decomposition "qiskit.circuit.library.RXXGate.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
-| [`assemble`](#qiskit.circuit.library.RXXGate.assemble "qiskit.circuit.library.RXXGate.assemble")()                                              | Assemble a QasmQobjInstruction                                           |
-| [`broadcast_arguments`](#qiskit.circuit.library.RXXGate.broadcast_arguments "qiskit.circuit.library.RXXGate.broadcast_arguments")(qargs, cargs) | Validation and handling of the arguments and its relationship.           |
-| [`c_if`](#qiskit.circuit.library.RXXGate.c_if "qiskit.circuit.library.RXXGate.c_if")(classical, val)                                            | Add classical condition on register or cbit classical and value val.     |
-| [`control`](#qiskit.circuit.library.RXXGate.control "qiskit.circuit.library.RXXGate.control")(\[num\_ctrl\_qubits, label, ctrl\_state])         | Return controlled version of gate.                                       |
-| [`copy`](#qiskit.circuit.library.RXXGate.copy "qiskit.circuit.library.RXXGate.copy")(\[name])                                                   | Copy of the instruction.                                                 |
-| [`inverse`](#qiskit.circuit.library.RXXGate.inverse "qiskit.circuit.library.RXXGate.inverse")()                                                 | Return inverse RXX gate (i.e.                                            |
-| [`is_parameterized`](#qiskit.circuit.library.RXXGate.is_parameterized "qiskit.circuit.library.RXXGate.is_parameterized")()                      | Return True .IFF.                                                        |
-| [`mirror`](#qiskit.circuit.library.RXXGate.mirror "qiskit.circuit.library.RXXGate.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                              |
-| [`power`](#qiskit.circuit.library.RXXGate.power "qiskit.circuit.library.RXXGate.power")(exponent)                                               | Creates a unitary gate as gate^exponent.                                 |
-| [`qasm`](#qiskit.circuit.library.RXXGate.qasm "qiskit.circuit.library.RXXGate.qasm")()                                                          | Return a default OpenQASM string for the instruction.                    |
-| [`repeat`](#qiskit.circuit.library.RXXGate.repeat "qiskit.circuit.library.RXXGate.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.             |
-| [`reverse_ops`](#qiskit.circuit.library.RXXGate.reverse_ops "qiskit.circuit.library.RXXGate.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.      |
-| [`soft_compare`](#qiskit.circuit.library.RXXGate.soft_compare "qiskit.circuit.library.RXXGate.soft_compare")(other)                             | Soft comparison between gates.                                           |
-| [`to_matrix`](#qiskit.circuit.library.RXXGate.to_matrix "qiskit.circuit.library.RXXGate.to_matrix")()                                           | Return a Numpy.array for the gate unitary matrix.                        |
-| [`validate_parameter`](#qiskit.circuit.library.RXXGate.validate_parameter "qiskit.circuit.library.RXXGate.validate_parameter")(parameter)       | Gate parameters should be int, float, or ParameterExpression             |
-
 ## Attributes
 
-|                                                                                                                    |                                                                               |
-| ------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------- |
-| [`decompositions`](#qiskit.circuit.library.RXXGate.decompositions "qiskit.circuit.library.RXXGate.decompositions") | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
-| [`definition`](#qiskit.circuit.library.RXXGate.definition "qiskit.circuit.library.RXXGate.definition")             | Return definition in terms of other basic gates.                              |
-| [`duration`](#qiskit.circuit.library.RXXGate.duration "qiskit.circuit.library.RXXGate.duration")                   | Get the duration.                                                             |
-| [`label`](#qiskit.circuit.library.RXXGate.label "qiskit.circuit.library.RXXGate.label")                            | Return instruction label                                                      |
-| [`params`](#qiskit.circuit.library.RXXGate.params "qiskit.circuit.library.RXXGate.params")                         | return instruction params.                                                    |
-| [`unit`](#qiskit.circuit.library.RXXGate.unit "qiskit.circuit.library.RXXGate.unit")                               | Get the time unit of duration.                                                |
+### add\_decomposition
 
-
+<span id="qiskit.circuit.library.RXXGate.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
+### assemble
 
+<span id="qiskit.circuit.library.RXXGate.assemble" />
 
 `assemble()`
 
 Assemble a QasmQobjInstruction
 
+### broadcast\_arguments
 
+<span id="qiskit.circuit.library.RXXGate.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -156,17 +143,21 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
+### c\_if
 
+<span id="qiskit.circuit.library.RXXGate.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register or cbit classical and value val.
 
+### control
 
+<span id="qiskit.circuit.library.RXXGate.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
 **Parameters**
 
@@ -180,13 +171,15 @@ Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 anci
 
 **Return type**
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
 **Raises**
 
 **QiskitError** – unrecognized mode or invalid ctrl\_state
 
+### copy
 
+<span id="qiskit.circuit.library.RXXGate.copy" />
 
 `copy(name=None)`
 
@@ -204,39 +197,51 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### decompositions
 
+<span id="qiskit.circuit.library.RXXGate.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
+### definition
 
+<span id="qiskit.circuit.library.RXXGate.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
+### duration
 
+<span id="qiskit.circuit.library.RXXGate.duration" />
 
 `property duration`
 
 Get the duration.
 
+### inverse
 
+<span id="qiskit.circuit.library.RXXGate.inverse" />
 
 `inverse()`
 
 Return inverse RXX gate (i.e. with the negative rotation angle).
 
+### is\_parameterized
 
+<span id="qiskit.circuit.library.RXXGate.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
+### label
 
+<span id="qiskit.circuit.library.RXXGate.label" />
 
 `property label`
 
@@ -246,7 +251,9 @@ Return instruction label
 
 `str`
 
+### mirror
 
+<span id="qiskit.circuit.library.RXXGate.mirror" />
 
 `mirror()`
 
@@ -260,15 +267,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### params
 
+<span id="qiskit.circuit.library.RXXGate.params" />
 
 `property params`
 
 return instruction params.
 
+### power
 
+<span id="qiskit.circuit.library.RXXGate.power" />
 
 `power(exponent)`
 
@@ -284,13 +295,15 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **Return type**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate#qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
 **Raises**
 
 **CircuitError** – If Gate is not unitary
 
+### qasm
 
+<span id="qiskit.circuit.library.RXXGate.qasm" />
 
 `qasm()`
 
@@ -298,7 +311,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
+### repeat
 
+<span id="qiskit.circuit.library.RXXGate.repeat" />
 
 `repeat(n)`
 
@@ -314,13 +329,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
+### reverse\_ops
 
+<span id="qiskit.circuit.library.RXXGate.reverse_ops" />
 
 `reverse_ops()`
 
@@ -336,9 +353,11 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### soft\_compare
 
+<span id="qiskit.circuit.library.RXXGate.soft_compare" />
 
 `soft_compare(other)`
 
@@ -356,7 +375,9 @@ are self and other equal up to parameter expressions.
 
 bool
 
+### to\_matrix
 
+<span id="qiskit.circuit.library.RXXGate.to_matrix" />
 
 `to_matrix()`
 
@@ -374,14 +395,19 @@ np.ndarray
 
 **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
 
+### unit
 
+<span id="qiskit.circuit.library.RXXGate.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
+### validate\_parameter
 
+<span id="qiskit.circuit.library.RXXGate.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
+

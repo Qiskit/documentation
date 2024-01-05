@@ -1,6 +1,14 @@
+---
+title: drive_channel
+description: API reference for qiskit.pulse.builder.drive_channel
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.drive_channel
+---
+
 # qiskit.pulse.builder.drive\_channel
 
-
+<span id="qiskit.pulse.builder.drive_channel" />
 
 `drive_channel(qubit)`
 
@@ -25,3 +33,4 @@ with pulse.build(backend):
 **Return type**
 
 `DriveChannel`
+

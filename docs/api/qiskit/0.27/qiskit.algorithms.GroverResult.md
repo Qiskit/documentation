@@ -1,12 +1,22 @@
+---
+title: GroverResult
+description: API reference for qiskit.algorithms.GroverResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.GroverResult
+---
+
 # qiskit.algorithms.GroverResult
 
-
+<span id="qiskit.algorithms.GroverResult" />
 
 `GroverResult`
 
 Grover Result.
 
+### \_\_init\_\_
 
+<span id="qiskit.algorithms.GroverResult.__init__" />
 
 `__init__()`
 
@@ -14,23 +24,11 @@ Initialize self. See help(type(self)) for accurate signature.
 
 ## Methods
 
-|                                                                                                       |                                                                        |
-| ----------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.GroverResult.__init__ "qiskit.algorithms.GroverResult.__init__")()    | Initialize self.                                                       |
-| [`combine`](#qiskit.algorithms.GroverResult.combine "qiskit.algorithms.GroverResult.combine")(result) | Any property from the argument that exists in the receiver is updated. |
-
 ## Attributes
 
-|                                                                                                                             |                                                                                   |
-| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| [`assignment`](#qiskit.algorithms.GroverResult.assignment "qiskit.algorithms.GroverResult.assignment")                      | The post-processed value of the most likely bitstring.                            |
-| [`circuit_results`](#qiskit.algorithms.GroverResult.circuit_results "qiskit.algorithms.GroverResult.circuit_results")       | Return the circuit results.                                                       |
-| [`iterations`](#qiskit.algorithms.GroverResult.iterations "qiskit.algorithms.GroverResult.iterations")                      | All the powers of the Grover operator that have been tried.                       |
-| [`max_probability`](#qiskit.algorithms.GroverResult.max_probability "qiskit.algorithms.GroverResult.max_probability")       | Return the maximum sampling probability.                                          |
-| [`oracle_evaluation`](#qiskit.algorithms.GroverResult.oracle_evaluation "qiskit.algorithms.GroverResult.oracle_evaluation") | Whether the classical oracle evaluation of the top measurement was True or False. |
-| [`top_measurement`](#qiskit.algorithms.GroverResult.top_measurement "qiskit.algorithms.GroverResult.top_measurement")       | The most frequently measured output as bitstring.                                 |
+### assignment
 
-
+<span id="qiskit.algorithms.GroverResult.assignment" />
 
 `property assignment`
 
@@ -44,7 +42,9 @@ The post-processed value of the most likely bitstring.
 
 The output of the `post_processing` function of the respective `AmplificationProblem`, where the input is the `top_measurement`. The type is the same as the return type of the post-processing function.
 
+### circuit\_results
 
+<span id="qiskit.algorithms.GroverResult.circuit_results" />
 
 `property circuit_results`
 
@@ -54,7 +54,9 @@ Return the circuit results. Can be a statevector or counts dictionary.
 
 `Union`\[`List`\[`ndarray`], `List`\[`Dict`\[`str`, `int`]], `None`]
 
+### combine
 
+<span id="qiskit.algorithms.GroverResult.combine" />
 
 `combine(result)`
 
@@ -68,7 +70,9 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
+### iterations
 
+<span id="qiskit.algorithms.GroverResult.iterations" />
 
 `property iterations`
 
@@ -82,7 +86,9 @@ All the powers of the Grover operator that have been tried.
 
 The powers of the Grover operator tested.
 
+### max\_probability
 
+<span id="qiskit.algorithms.GroverResult.max_probability" />
 
 `property max_probability`
 
@@ -92,7 +98,9 @@ Return the maximum sampling probability.
 
 `float`
 
+### oracle\_evaluation
 
+<span id="qiskit.algorithms.GroverResult.oracle_evaluation" />
 
 `property oracle_evaluation`
 
@@ -106,7 +114,9 @@ Whether the classical oracle evaluation of the top measurement was True or False
 
 The classical oracle evaluation of the top measurement.
 
+### top\_measurement
 
+<span id="qiskit.algorithms.GroverResult.top_measurement" />
 
 `property top_measurement`
 
@@ -119,3 +129,4 @@ The most frequently measured output as bitstring.
 **Returns**
 
 The most frequently measured output state.
+

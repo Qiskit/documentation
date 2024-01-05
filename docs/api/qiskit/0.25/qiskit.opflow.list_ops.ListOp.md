@@ -1,6 +1,14 @@
+---
+title: ListOp
+description: API reference for qiskit.opflow.list_ops.ListOp
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.list_ops.ListOp
+---
+
 # qiskit.opflow\.list\_ops.ListOp
 
-
+<span id="qiskit.opflow.list_ops.ListOp" />
 
 `ListOp(oplist, combo_fn=<function ListOp.<lambda>>, coeff=1.0, abelian=False, grad_combo_fn=None)`
 
@@ -21,7 +29,9 @@ The base `ListOp` class is particularly interesting, as its `combo_fn` is “the
 *   **- it accepts the list of values** (*identity*) –
 *   **returns them in a list.** (*and*) –
 
+### \_\_init\_\_
 
+<span id="qiskit.opflow.list_ops.ListOp.__init__" />
 
 `__init__(oplist, combo_fn=<function ListOp.<lambda>>, coeff=1.0, abelian=False, grad_combo_fn=None)`
 
@@ -38,50 +48,11 @@ The base `ListOp` class is particularly interesting, as its `combo_fn` is “the
 
 ## Methods
 
-|                                                                                                                                         |                                                                                                                                                                               |
-| --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.opflow.list_ops.ListOp.__init__ "qiskit.opflow.list_ops.ListOp.__init__")(oplist\[, combo\_fn, coeff, abelian, …]) | **type oplist**`Sequence`\[`OperatorBase`]                                                                                                                                    |
-| [`add`](#qiskit.opflow.list_ops.ListOp.add "qiskit.opflow.list_ops.ListOp.add")(other)                                                  | Return Operator addition of self and other, overloaded by `+`.                                                                                                                |
-| [`adjoint`](#qiskit.opflow.list_ops.ListOp.adjoint "qiskit.opflow.list_ops.ListOp.adjoint")()                                           | Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`.                                                                               |
-| [`assign_parameters`](#qiskit.opflow.list_ops.ListOp.assign_parameters "qiskit.opflow.list_ops.ListOp.assign_parameters")(param\_dict)  | Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another.                                  |
-| [`bind_parameters`](#qiskit.opflow.list_ops.ListOp.bind_parameters "qiskit.opflow.list_ops.ListOp.bind_parameters")(param\_dict)        | Same as assign\_parameters, but maintained for consistency with QuantumCircuit in Terra (which has both assign\_parameters and bind\_parameters).                             |
-| [`compose`](#qiskit.opflow.list_ops.ListOp.compose "qiskit.opflow.list_ops.ListOp.compose")(other\[, permutation, front])               | Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.                                                              |
-| [`copy`](#qiskit.opflow.list_ops.ListOp.copy "qiskit.opflow.list_ops.ListOp.copy")()                                                    | Return a deep copy of the Operator.                                                                                                                                           |
-| [`equals`](#qiskit.opflow.list_ops.ListOp.equals "qiskit.opflow.list_ops.ListOp.equals")(other)                                         | Evaluate Equality between Operators, overloaded by `==`.                                                                                                                      |
-| [`eval`](#qiskit.opflow.list_ops.ListOp.eval "qiskit.opflow.list_ops.ListOp.eval")(\[front])                                            | Evaluate the Operator’s underlying function, either on a binary string or another Operator.                                                                                   |
-| [`exp_i`](#qiskit.opflow.list_ops.ListOp.exp_i "qiskit.opflow.list_ops.ListOp.exp_i")()                                                 | Return an `OperatorBase` equivalent to an exponentiation of self \* -i, e^(-i\*op).                                                                                           |
-| [`log_i`](#qiskit.opflow.list_ops.ListOp.log_i "qiskit.opflow.list_ops.ListOp.log_i")(\[massive])                                       | Return a `MatrixOp` equivalent to log(H)/-i for this operator H.                                                                                                              |
-| [`mul`](#qiskit.opflow.list_ops.ListOp.mul "qiskit.opflow.list_ops.ListOp.mul")(scalar)                                                 | Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`). |
-| [`neg`](#qiskit.opflow.list_ops.ListOp.neg "qiskit.opflow.list_ops.ListOp.neg")()                                                       | Return the Operator’s negation, effectively just multiplying by -1.0, overloaded by `-`.                                                                                      |
-| [`permute`](#qiskit.opflow.list_ops.ListOp.permute "qiskit.opflow.list_ops.ListOp.permute")(permutation)                                | Permute the qubits of the operator.                                                                                                                                           |
-| [`power`](#qiskit.opflow.list_ops.ListOp.power "qiskit.opflow.list_ops.ListOp.power")(exponent)                                         | Return Operator composed with self multiple times, overloaded by `**`.                                                                                                        |
-| [`primitive_strings`](#qiskit.opflow.list_ops.ListOp.primitive_strings "qiskit.opflow.list_ops.ListOp.primitive_strings")()             | Return a set of strings describing the primitives contained in the Operator.                                                                                                  |
-| [`reduce`](#qiskit.opflow.list_ops.ListOp.reduce "qiskit.opflow.list_ops.ListOp.reduce")()                                              | Try collapsing the Operator structure, usually after some type of conversion, e.g.                                                                                            |
-| [`tensor`](#qiskit.opflow.list_ops.ListOp.tensor "qiskit.opflow.list_ops.ListOp.tensor")(other)                                         | Return tensor product between self and other, overloaded by `^`.                                                                                                              |
-| [`tensorpower`](#qiskit.opflow.list_ops.ListOp.tensorpower "qiskit.opflow.list_ops.ListOp.tensorpower")(other)                          | Return tensor product with self multiple times, overloaded by `^`.                                                                                                            |
-| [`to_circuit_op`](#qiskit.opflow.list_ops.ListOp.to_circuit_op "qiskit.opflow.list_ops.ListOp.to_circuit_op")()                         | Returns an equivalent Operator composed of only QuantumCircuit-based primitives, such as `CircuitOp` and `CircuitStateFn`.                                                    |
-| [`to_matrix`](#qiskit.opflow.list_ops.ListOp.to_matrix "qiskit.opflow.list_ops.ListOp.to_matrix")(\[massive])                           | Return NumPy representation of the Operator.                                                                                                                                  |
-| [`to_matrix_op`](#qiskit.opflow.list_ops.ListOp.to_matrix_op "qiskit.opflow.list_ops.ListOp.to_matrix_op")(\[massive])                  | Returns an equivalent Operator composed of only NumPy-based primitives, such as `MatrixOp` and `VectorStateFn`.                                                               |
-| [`to_pauli_op`](#qiskit.opflow.list_ops.ListOp.to_pauli_op "qiskit.opflow.list_ops.ListOp.to_pauli_op")(\[massive])                     | Returns an equivalent Operator composed of only Pauli-based primitives, such as `PauliOp`.                                                                                    |
-| [`to_spmatrix`](#qiskit.opflow.list_ops.ListOp.to_spmatrix "qiskit.opflow.list_ops.ListOp.to_spmatrix")()                               | Returns SciPy sparse matrix representation of the Operator.                                                                                                                   |
-| [`traverse`](#qiskit.opflow.list_ops.ListOp.traverse "qiskit.opflow.list_ops.ListOp.traverse")(convert\_fn\[, coeff])                   | Apply the convert\_fn to each node in the oplist.                                                                                                                             |
-
 ## Attributes
 
-|                                                                                                               |                                                                                                                            |
-| ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------- |
-| `INDENTATION`                                                                                                 |                                                                                                                            |
-| [`abelian`](#qiskit.opflow.list_ops.ListOp.abelian "qiskit.opflow.list_ops.ListOp.abelian")                   | Whether the Operators in `oplist` are known to commute with one another.                                                   |
-| [`coeff`](#qiskit.opflow.list_ops.ListOp.coeff "qiskit.opflow.list_ops.ListOp.coeff")                         | The scalar coefficient multiplying the Operator.                                                                           |
-| [`combo_fn`](#qiskit.opflow.list_ops.ListOp.combo_fn "qiskit.opflow.list_ops.ListOp.combo_fn")                | The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to produce the Operator’s underlying function. |
-| [`distributive`](#qiskit.opflow.list_ops.ListOp.distributive "qiskit.opflow.list_ops.ListOp.distributive")    | Indicates whether the ListOp or subclass is distributive under composition.                                                |
-| [`grad_combo_fn`](#qiskit.opflow.list_ops.ListOp.grad_combo_fn "qiskit.opflow.list_ops.ListOp.grad_combo_fn") | The gradient of `combo_fn`.                                                                                                |
-| [`instance_id`](#qiskit.opflow.list_ops.ListOp.instance_id "qiskit.opflow.list_ops.ListOp.instance_id")       | Return the unique instance id.                                                                                             |
-| [`num_qubits`](#qiskit.opflow.list_ops.ListOp.num_qubits "qiskit.opflow.list_ops.ListOp.num_qubits")          | The number of qubits over which the Operator is defined.                                                                   |
-| [`oplist`](#qiskit.opflow.list_ops.ListOp.oplist "qiskit.opflow.list_ops.ListOp.oplist")                      | The list of `OperatorBases` defining the underlying function of this Operator.                                             |
-| [`parameters`](#qiskit.opflow.list_ops.ListOp.parameters "qiskit.opflow.list_ops.ListOp.parameters")          | Return a set of Parameter objects contained in the Operator.                                                               |
+### abelian
 
-
+<span id="qiskit.opflow.list_ops.ListOp.abelian" />
 
 `property abelian`
 
@@ -95,7 +66,9 @@ Whether the Operators in `oplist` are known to commute with one another.
 
 A bool indicating whether the `oplist` is Abelian.
 
+### add
 
+<span id="qiskit.opflow.list_ops.ListOp.add" />
 
 `add(other)`
 
@@ -113,7 +86,9 @@ Return Operator addition of self and other, overloaded by `+`.
 
 An `OperatorBase` equivalent to the sum of self and other.
 
+### adjoint
 
+<span id="qiskit.opflow.list_ops.ListOp.adjoint" />
 
 `adjoint()`
 
@@ -127,7 +102,9 @@ Return a new Operator equal to the Operator’s adjoint (conjugate transpose), o
 
 An `OperatorBase` equivalent to the adjoint of self.
 
+### assign\_parameters
 
+<span id="qiskit.opflow.list_ops.ListOp.assign_parameters" />
 
 `assign_parameters(param_dict)`
 
@@ -145,7 +122,9 @@ Binds scalar values to any Terra `Parameters` in the coefficients or primitives 
 
 The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
 
+### bind\_parameters
 
+<span id="qiskit.opflow.list_ops.ListOp.bind_parameters" />
 
 `bind_parameters(param_dict)`
 
@@ -155,7 +134,9 @@ Same as assign\_parameters, but maintained for consistency with QuantumCircuit i
 
 `OperatorBase`
 
+### coeff
 
+<span id="qiskit.opflow.list_ops.ListOp.coeff" />
 
 `property coeff`
 
@@ -169,7 +150,9 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
+### combo\_fn
 
+<span id="qiskit.opflow.list_ops.ListOp.combo_fn" />
 
 `property combo_fn`
 
@@ -183,7 +166,9 @@ The function defining how to combine `oplist` (or Numbers, or NumPy arrays) to p
 
 The combination function.
 
+### compose
 
+<span id="qiskit.opflow.list_ops.ListOp.compose" />
 
 `compose(other, permutation=None, front=False)`
 
@@ -209,7 +194,9 @@ Because Terra prints circuits with the initial state at the left side of the cir
 
 An `OperatorBase` equivalent to the function composition of self and other.
 
+### copy
 
+<span id="qiskit.opflow.list_ops.ListOp.copy" />
 
 `copy()`
 
@@ -219,7 +206,9 @@ Return a deep copy of the Operator.
 
 `OperatorBase`
 
+### distributive
 
+<span id="qiskit.opflow.list_ops.ListOp.distributive" />
 
 `property distributive`
 
@@ -233,7 +222,9 @@ Indicates whether the ListOp or subclass is distributive under composition. List
 
 A bool indicating whether the ListOp is distributive under composition.
 
+### equals
 
+<span id="qiskit.opflow.list_ops.ListOp.equals" />
 
 `equals(other)`
 
@@ -251,7 +242,9 @@ Evaluate Equality between Operators, overloaded by `==`. Only returns True if se
 
 A bool equal to the equality of self and other.
 
+### eval
 
+<span id="qiskit.opflow.list_ops.ListOp.eval" />
 
 `eval(front=None)`
 
@@ -277,7 +270,9 @@ The output of the `oplist` Operators’ evaluation function, combined with the `
 *   **TypeError** – Operators with mixed hierarchies, such as a ListOp containing both PrimitiveOps and ListOps, are not supported.
 *   **NotImplementedError** – Attempting to call ListOp’s eval from a non-distributive subclass.
 
+### exp\_i
 
+<span id="qiskit.opflow.list_ops.ListOp.exp_i" />
 
 `exp_i()`
 
@@ -287,7 +282,9 @@ Return an `OperatorBase` equivalent to an exponentiation of self \* -i, e^(-i\*o
 
 `OperatorBase`
 
+### grad\_combo\_fn
 
+<span id="qiskit.opflow.list_ops.ListOp.grad_combo_fn" />
 
 `property grad_combo_fn`
 
@@ -297,7 +294,9 @@ The gradient of `combo_fn`.
 
 `Optional`\[`Callable`]
 
+### instance\_id
 
+<span id="qiskit.opflow.list_ops.ListOp.instance_id" />
 
 `property instance_id`
 
@@ -307,7 +306,9 @@ Return the unique instance id.
 
 `int`
 
+### log\_i
 
+<span id="qiskit.opflow.list_ops.ListOp.log_i" />
 
 `log_i(massive=False)`
 
@@ -317,7 +318,9 @@ Return a `MatrixOp` equivalent to log(H)/-i for this operator H. This function i
 
 `OperatorBase`
 
+### mul
 
+<span id="qiskit.opflow.list_ops.ListOp.mul" />
 
 `mul(scalar)`
 
@@ -335,7 +338,9 @@ Returns the scalar multiplication of the Operator, overloaded by `*`, including 
 
 An `OperatorBase` equivalent to product of self and scalar.
 
+### neg
 
+<span id="qiskit.opflow.list_ops.ListOp.neg" />
 
 `neg()`
 
@@ -349,7 +354,9 @@ Return the Operator’s negation, effectively just multiplying by -1.0, overload
 
 An `OperatorBase` equivalent to the negation of self.
 
+### num\_qubits
 
+<span id="qiskit.opflow.list_ops.ListOp.num_qubits" />
 
 `property num_qubits`
 
@@ -363,7 +370,9 @@ The number of qubits over which the Operator is defined. If `op.num_qubits == 5`
 
 The number of qubits accepted by the Operator’s underlying function.
 
+### oplist
 
+<span id="qiskit.opflow.list_ops.ListOp.oplist" />
 
 `property oplist`
 
@@ -377,13 +386,17 @@ The list of `OperatorBases` defining the underlying function of this Operator.
 
 The Operators defining the ListOp
 
+### parameters
 
+<span id="qiskit.opflow.list_ops.ListOp.parameters" />
 
 `property parameters`
 
 Return a set of Parameter objects contained in the Operator.
 
+### permute
 
+<span id="qiskit.opflow.list_ops.ListOp.permute" />
 
 `permute(permutation)`
 
@@ -403,9 +416,11 @@ A new ListOp representing the permuted operator.
 
 **Raises**
 
-[**OpflowError**](qiskit.opflow.OpflowError#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if indices do not define a new index for each qubit.
+[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if indices do not define a new index for each qubit.
 
+### power
 
+<span id="qiskit.opflow.list_ops.ListOp.power" />
 
 `power(exponent)`
 
@@ -423,7 +438,9 @@ Return Operator composed with self multiple times, overloaded by `**`.
 
 An `OperatorBase` equivalent to self composed with itself exponent times.
 
+### primitive\_strings
 
+<span id="qiskit.opflow.list_ops.ListOp.primitive_strings" />
 
 `primitive_strings()`
 
@@ -437,7 +454,9 @@ Return a set of strings describing the primitives contained in the Operator. For
 
 A set of strings describing the primitives contained within the Operator.
 
+### reduce
 
+<span id="qiskit.opflow.list_ops.ListOp.reduce" />
 
 `reduce()`
 
@@ -451,7 +470,9 @@ Try collapsing the Operator structure, usually after some type of conversion, e.
 
 The reduced `OperatorBase`.
 
+### tensor
 
+<span id="qiskit.opflow.list_ops.ListOp.tensor" />
 
 `tensor(other)`
 
@@ -473,7 +494,9 @@ Because Terra prints circuits and results with qubit 0 at the end of the string 
 
 An `OperatorBase` equivalent to the tensor product of self and other.
 
+### tensorpower
 
+<span id="qiskit.opflow.list_ops.ListOp.tensorpower" />
 
 `tensorpower(other)`
 
@@ -491,7 +514,9 @@ Return tensor product with self multiple times, overloaded by `^`.
 
 An `OperatorBase` equivalent to the tensorpower of self by other.
 
+### to\_circuit\_op
 
+<span id="qiskit.opflow.list_ops.ListOp.to_circuit_op" />
 
 `to_circuit_op()`
 
@@ -501,7 +526,9 @@ Returns an equivalent Operator composed of only QuantumCircuit-based primitives,
 
 `OperatorBase`
 
+### to\_matrix
 
+<span id="qiskit.opflow.list_ops.ListOp.to_matrix" />
 
 `to_matrix(massive=False)`
 
@@ -515,7 +542,9 @@ Return NumPy representation of the Operator. Represents the evaluation of the Op
 
 The NumPy `ndarray` equivalent to this Operator.
 
+### to\_matrix\_op
 
+<span id="qiskit.opflow.list_ops.ListOp.to_matrix_op" />
 
 `to_matrix_op(massive=False)`
 
@@ -525,7 +554,9 @@ Returns an equivalent Operator composed of only NumPy-based primitives, such as 
 
 `ListOp`
 
+### to\_pauli\_op
 
+<span id="qiskit.opflow.list_ops.ListOp.to_pauli_op" />
 
 `to_pauli_op(massive=False)`
 
@@ -535,7 +566,9 @@ Returns an equivalent Operator composed of only Pauli-based primitives, such as 
 
 `ListOp`
 
+### to\_spmatrix
 
+<span id="qiskit.opflow.list_ops.ListOp.to_spmatrix" />
 
 `to_spmatrix()`
 
@@ -549,7 +582,9 @@ Returns SciPy sparse matrix representation of the Operator.
 
 CSR sparse matrix representation of the Operator, or List thereof.
 
+### traverse
 
+<span id="qiskit.opflow.list_ops.ListOp.traverse" />
 
 `traverse(convert_fn, coeff=None)`
 
@@ -567,3 +602,4 @@ Apply the convert\_fn to each node in the oplist.
 **Returns**
 
 The converted ListOp.
+

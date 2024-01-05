@@ -1,14 +1,22 @@
+---
+title: CustomCircuitOracle
+description: API reference for qiskit.aqua.components.oracles.CustomCircuitOracle
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.oracles.CustomCircuitOracle
+---
+
 <span id="qiskit-aqua-components-oracles-customcircuitoracle" />
 
 # qiskit.aqua.components.oracles.CustomCircuitOracle
 
-
+<span id="qiskit.aqua.components.oracles.CustomCircuitOracle" />
 
 `CustomCircuitOracle(variable_register, output_register, circuit, ancillary_register=None, evaluate_classically_callback=None)`
 
 The Custom Circuit-based Quantum Oracle.
 
-A helper class to, in essence, ‘wrap’ a user-supplied quantum circuit such that it becomes of type [`Oracle`](qiskit.aqua.components.oracles.Oracle#qiskit.aqua.components.oracles.Oracle "qiskit.aqua.components.oracles.Oracle") and hence can be used by algorithms taking an oracle as input.
+A helper class to, in essence, ‘wrap’ a user-supplied quantum circuit such that it becomes of type [`Oracle`](qiskit.aqua.components.oracles.Oracle "qiskit.aqua.components.oracles.Oracle") and hence can be used by algorithms taking an oracle as input.
 
 This class is provided for easy creation of oracles using custom circuits. It is geared towards programmatically experimenting with oracles, where a user directly provides a QuantumCircuit object, corresponding to the intended oracle function, together with the various QuantumRegister objects involved.
 
@@ -17,7 +25,7 @@ This class is provided for easy creation of oracles using custom circuits. It is
 
   The input bitstring is a string of 1’s and 0’s corresponding to the input variable(s). The return should be a (bool, List\[int]) tuple where the bool corresponds to the return value of the *binary* function encoded by the oracle, and the List\[int] should just be a different representation of the input variable assignment, which should be equivalent to the bitstring or a quantum measurement.
 
-  Examples of existing implementations, for reference, can be found in other oracles such as [`TruthTableOracle.evaluate_classically()`](qiskit.aqua.components.oracles.TruthTableOracle#qiskit.aqua.components.oracles.TruthTableOracle.evaluate_classically "qiskit.aqua.components.oracles.TruthTableOracle.evaluate_classically") and [`LogicalExpressionOracle.evaluate_classically()`](qiskit.aqua.components.oracles.LogicalExpressionOracle#qiskit.aqua.components.oracles.LogicalExpressionOracle.evaluate_classically "qiskit.aqua.components.oracles.LogicalExpressionOracle.evaluate_classically").
+  Examples of existing implementations, for reference, can be found in other oracles such as [`TruthTableOracle.evaluate_classically()`](qiskit.aqua.components.oracles.TruthTableOracle#evaluate_classically "qiskit.aqua.components.oracles.TruthTableOracle.evaluate_classically") and [`LogicalExpressionOracle.evaluate_classically()`](qiskit.aqua.components.oracles.LogicalExpressionOracle#evaluate_classically "qiskit.aqua.components.oracles.LogicalExpressionOracle.evaluate_classically").
 </Admonition>
 
 **Parameters**
@@ -26,13 +34,15 @@ This class is provided for easy creation of oracles using custom circuits. It is
 *   **output\_register** (`QuantumRegister`) – The register holding output qubit(s) for the oracle function
 *   **circuit** (`QuantumCircuit`) – The quantum circuit corresponding to the intended oracle function
 *   **ancillary\_register** (`Optional`\[`QuantumRegister`]) – The register holding ancillary qubit(s)
-*   **evaluate\_classically\_callback** (`Optional`\[`Callable`\[\[`str`], `Tuple`\[`bool`, `List`\[`int`]]]]) – The classical callback function for evaluating the oracle, for example, to use with [`Grover`](qiskit.aqua.algorithms.Grover#qiskit.aqua.algorithms.Grover "qiskit.aqua.algorithms.Grover")’s search
+*   **evaluate\_classically\_callback** (`Optional`\[`Callable`\[\[`str`], `Tuple`\[`bool`, `List`\[`int`]]]]) – The classical callback function for evaluating the oracle, for example, to use with [`Grover`](qiskit.aqua.algorithms.Grover "qiskit.aqua.algorithms.Grover")’s search
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.components.oracles.CustomCircuitOracle.__init__" />
 
 `__init__(variable_register, output_register, circuit, ancillary_register=None, evaluate_classically_callback=None)`
 
@@ -42,39 +52,33 @@ This class is provided for easy creation of oracles using custom circuits. It is
 *   **output\_register** (`QuantumRegister`) – The register holding output qubit(s) for the oracle function
 *   **circuit** (`QuantumCircuit`) – The quantum circuit corresponding to the intended oracle function
 *   **ancillary\_register** (`Optional`\[`QuantumRegister`]) – The register holding ancillary qubit(s)
-*   **evaluate\_classically\_callback** (`Optional`\[`Callable`\[\[`str`], `Tuple`\[`bool`, `List`\[`int`]]]]) – The classical callback function for evaluating the oracle, for example, to use with [`Grover`](qiskit.aqua.algorithms.Grover#qiskit.aqua.algorithms.Grover "qiskit.aqua.algorithms.Grover")’s search
+*   **evaluate\_classically\_callback** (`Optional`\[`Callable`\[\[`str`], `Tuple`\[`bool`, `List`\[`int`]]]]) – The classical callback function for evaluating the oracle, for example, to use with [`Grover`](qiskit.aqua.algorithms.Grover "qiskit.aqua.algorithms.Grover")’s search
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – Invalid input
 
 ## Methods
 
-|                                                                                                                                                                                   |                                              |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [`__init__`](#qiskit.aqua.components.oracles.CustomCircuitOracle.__init__ "qiskit.aqua.components.oracles.CustomCircuitOracle.__init__")(variable\_register, output\_register, …) | **type variable\_register**`QuantumRegister` |
-| [`construct_circuit`](#qiskit.aqua.components.oracles.CustomCircuitOracle.construct_circuit "qiskit.aqua.components.oracles.CustomCircuitOracle.construct_circuit")()             | Construct the oracle circuit.                |
-
 ## Attributes
 
-|                                                                                                                                                                        |                            |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| [`ancillary_register`](#qiskit.aqua.components.oracles.CustomCircuitOracle.ancillary_register "qiskit.aqua.components.oracles.CustomCircuitOracle.ancillary_register") | returns ancillary register |
-| [`circuit`](#qiskit.aqua.components.oracles.CustomCircuitOracle.circuit "qiskit.aqua.components.oracles.CustomCircuitOracle.circuit")                                  |                            |
-| [`output_register`](#qiskit.aqua.components.oracles.CustomCircuitOracle.output_register "qiskit.aqua.components.oracles.CustomCircuitOracle.output_register")          | returns output register    |
-| [`variable_register`](#qiskit.aqua.components.oracles.CustomCircuitOracle.variable_register "qiskit.aqua.components.oracles.CustomCircuitOracle.variable_register")    | returns variable register  |
+### ancillary\_register
 
-
+<span id="qiskit.aqua.components.oracles.CustomCircuitOracle.ancillary_register" />
 
 `property ancillary_register`
 
 returns ancillary register
 
+### circuit
 
+<span id="qiskit.aqua.components.oracles.CustomCircuitOracle.circuit" />
 
 `property circuit`
 
+### construct\_circuit
 
+<span id="qiskit.aqua.components.oracles.CustomCircuitOracle.construct_circuit" />
 
 `construct_circuit()`
 
@@ -86,16 +90,21 @@ A quantum circuit for the oracle.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### output\_register
 
+<span id="qiskit.aqua.components.oracles.CustomCircuitOracle.output_register" />
 
 `property output_register`
 
 returns output register
 
+### variable\_register
 
+<span id="qiskit.aqua.components.oracles.CustomCircuitOracle.variable_register" />
 
 `property variable_register`
 
 returns variable register
+

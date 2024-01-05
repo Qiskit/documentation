@@ -1,6 +1,14 @@
+---
+title: EnergySurface1DSpline
+description: API reference for qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline
+---
+
 # qiskit.chemistry.algorithms.pes\_samplers.EnergySurface1DSpline
 
-
+<span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline" />
 
 `EnergySurface1DSpline`
 
@@ -10,7 +18,9 @@ A spline interpolation method for data fitting.
 
 This allows for fitting BOPES sampler results or potential energy surfaces.
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.__init__" />
 
 `__init__()`
 
@@ -20,16 +30,9 @@ This allows for fitting BOPES sampler results or potential energy surfaces.
 
 ## Methods
 
-|                                                                                                                                                                                                                              |                                                                                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.__init__ "qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.__init__")()                                                           | A spline interpolation method for data fitting.                                                              |
-| [`eval`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.eval "qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.eval")(x)                                                                      | After fitting the data to the fit function, predict the energy at a point x.                                 |
-| [`fit`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.fit "qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.fit")(xdata, ydata\[, initial\_vals, bounds\_list])                              | Fits surface to data.                                                                                        |
-| [`get_equilibrium_geometry`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_equilibrium_geometry "qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_equilibrium_geometry")(\[scaling]) | Returns the geometry for the minimal energy (scaled by ‘scaling’) Default units (scaling=1.0) are Angstroms. |
-| [`get_minimal_energy`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_minimal_energy "qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_minimal_energy")(\[scaling])                   | Returns the value of the minimal energy (scaled by ‘scaling’) Default units (scaling=1.0) are J/mol.         |
-| [`get_trust_region`](#qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_trust_region "qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_trust_region")()                                   | Get the trust region.                                                                                        |
+### eval
 
-
+<span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.eval" />
 
 `eval(x)`
 
@@ -47,7 +50,9 @@ After fitting the data to the fit function, predict the energy at a point x.
 
 Value of surface fit in point x.
 
+### fit
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.fit" />
 
 `fit(xdata, ydata, initial_vals=None, bounds_list=None)`
 
@@ -64,7 +69,9 @@ Fits surface to data.
 
 `None`
 
+### get\_equilibrium\_geometry
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_equilibrium_geometry" />
 
 `get_equilibrium_geometry(scaling=1.0)`
 
@@ -78,7 +85,9 @@ Returns the geometry for the minimal energy (scaled by ‘scaling’) Default un
 
 equilibrium geometry
 
+### get\_minimal\_energy
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_minimal_energy" />
 
 `get_minimal_energy(scaling=1.0)`
 
@@ -92,7 +101,9 @@ Returns the value of the minimal energy (scaled by ‘scaling’) Default units 
 
 minimum energy
 
+### get\_trust\_region
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.EnergySurface1DSpline.get_trust_region" />
 
 `get_trust_region()`
 
@@ -107,3 +118,4 @@ Returns the bounds of the region (in space) where the energy surface implementat
 **Returns**
 
 The trust region between bounds.
+

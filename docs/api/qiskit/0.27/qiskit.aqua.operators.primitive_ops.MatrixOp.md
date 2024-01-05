@@ -1,6 +1,14 @@
+---
+title: MatrixOp
+description: API reference for qiskit.aqua.operators.primitive_ops.MatrixOp
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.primitive_ops.MatrixOp
+---
+
 # qiskit.aqua.operators.primitive\_ops.MatrixOp
 
-
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp" />
 
 `MatrixOp(primitive, coeff=1.0)`
 
@@ -16,7 +24,9 @@ Class for Operators represented by matrices, backed by Terra’s `Operator` modu
 *   **TypeError** – invalid parameters.
 *   **ValueError** – invalid parameters.
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.__init__" />
 
 `__init__(primitive, coeff=1.0)`
 
@@ -32,46 +42,11 @@ Class for Operators represented by matrices, backed by Terra’s `Operator` modu
 
 ## Methods
 
-|                                                                                                                                                                      |                                                                                                                                                                               |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.operators.primitive_ops.MatrixOp.__init__ "qiskit.aqua.operators.primitive_ops.MatrixOp.__init__")(primitive\[, coeff])                    | **type primitive**`Union`\[`list`, `ndarray`, `spmatrix`, `Operator`]                                                                                                         |
-| [`add`](#qiskit.aqua.operators.primitive_ops.MatrixOp.add "qiskit.aqua.operators.primitive_ops.MatrixOp.add")(other)                                                 | Return Operator addition of self and other, overloaded by `+`.                                                                                                                |
-| [`adjoint`](#qiskit.aqua.operators.primitive_ops.MatrixOp.adjoint "qiskit.aqua.operators.primitive_ops.MatrixOp.adjoint")()                                          | Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`.                                                                               |
-| [`assign_parameters`](#qiskit.aqua.operators.primitive_ops.MatrixOp.assign_parameters "qiskit.aqua.operators.primitive_ops.MatrixOp.assign_parameters")(param\_dict) | Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another.                                  |
-| [`bind_parameters`](#qiskit.aqua.operators.primitive_ops.MatrixOp.bind_parameters "qiskit.aqua.operators.primitive_ops.MatrixOp.bind_parameters")(param\_dict)       | Same as assign\_parameters, but maintained for consistency with QuantumCircuit in Terra (which has both assign\_parameters and bind\_parameters).                             |
-| [`compose`](#qiskit.aqua.operators.primitive_ops.MatrixOp.compose "qiskit.aqua.operators.primitive_ops.MatrixOp.compose")(other\[, permutation, front])              | Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.                                                              |
-| [`equals`](#qiskit.aqua.operators.primitive_ops.MatrixOp.equals "qiskit.aqua.operators.primitive_ops.MatrixOp.equals")(other)                                        | Evaluate Equality between Operators, overloaded by `==`.                                                                                                                      |
-| [`eval`](#qiskit.aqua.operators.primitive_ops.MatrixOp.eval "qiskit.aqua.operators.primitive_ops.MatrixOp.eval")(\[front])                                           | Evaluate the Operator’s underlying function, either on a binary string or another Operator.                                                                                   |
-| [`exp_i`](#qiskit.aqua.operators.primitive_ops.MatrixOp.exp_i "qiskit.aqua.operators.primitive_ops.MatrixOp.exp_i")()                                                | Return a `CircuitOp` equivalent to e^-iH for this operator H                                                                                                                  |
-| [`log_i`](#qiskit.aqua.operators.primitive_ops.MatrixOp.log_i "qiskit.aqua.operators.primitive_ops.MatrixOp.log_i")(\[massive])                                      | Return a `MatrixOp` equivalent to log(H)/-i for this operator H.                                                                                                              |
-| [`mul`](#qiskit.aqua.operators.primitive_ops.MatrixOp.mul "qiskit.aqua.operators.primitive_ops.MatrixOp.mul")(scalar)                                                | Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`). |
-| [`neg`](#qiskit.aqua.operators.primitive_ops.MatrixOp.neg "qiskit.aqua.operators.primitive_ops.MatrixOp.neg")()                                                      | Return the Operator’s negation, effectively just multiplying by -1.0, overloaded by `-`.                                                                                      |
-| [`permute`](#qiskit.aqua.operators.primitive_ops.MatrixOp.permute "qiskit.aqua.operators.primitive_ops.MatrixOp.permute")(\[permutation])                            | Creates a new MatrixOp that acts on the permuted qubits.                                                                                                                      |
-| [`power`](#qiskit.aqua.operators.primitive_ops.MatrixOp.power "qiskit.aqua.operators.primitive_ops.MatrixOp.power")(exponent)                                        | Return Operator composed with self multiple times, overloaded by `**`.                                                                                                        |
-| [`primitive_strings`](#qiskit.aqua.operators.primitive_ops.MatrixOp.primitive_strings "qiskit.aqua.operators.primitive_ops.MatrixOp.primitive_strings")()            | Return a set of strings describing the primitives contained in the Operator.                                                                                                  |
-| [`reduce`](#qiskit.aqua.operators.primitive_ops.MatrixOp.reduce "qiskit.aqua.operators.primitive_ops.MatrixOp.reduce")()                                             | Try collapsing the Operator structure, usually after some type of conversion, e.g.                                                                                            |
-| [`tensor`](#qiskit.aqua.operators.primitive_ops.MatrixOp.tensor "qiskit.aqua.operators.primitive_ops.MatrixOp.tensor")(other)                                        | Return tensor product between self and other, overloaded by `^`.                                                                                                              |
-| [`tensorpower`](#qiskit.aqua.operators.primitive_ops.MatrixOp.tensorpower "qiskit.aqua.operators.primitive_ops.MatrixOp.tensorpower")(other)                         | Return tensor product with self multiple times, overloaded by `^`.                                                                                                            |
-| [`to_circuit`](#qiskit.aqua.operators.primitive_ops.MatrixOp.to_circuit "qiskit.aqua.operators.primitive_ops.MatrixOp.to_circuit")()                                 | Returns a `QuantumCircuit` equivalent to this Operator.                                                                                                                       |
-| [`to_circuit_op`](#qiskit.aqua.operators.primitive_ops.MatrixOp.to_circuit_op "qiskit.aqua.operators.primitive_ops.MatrixOp.to_circuit_op")()                        | Returns a `CircuitOp` equivalent to this Operator.                                                                                                                            |
-| [`to_instruction`](#qiskit.aqua.operators.primitive_ops.MatrixOp.to_instruction "qiskit.aqua.operators.primitive_ops.MatrixOp.to_instruction")()                     | Returns an `Instruction` equivalent to this Operator.                                                                                                                         |
-| [`to_legacy_op`](#qiskit.aqua.operators.primitive_ops.MatrixOp.to_legacy_op "qiskit.aqua.operators.primitive_ops.MatrixOp.to_legacy_op")(\[massive])                 | Attempt to return the Legacy Operator representation of the Operator.                                                                                                         |
-| [`to_matrix`](#qiskit.aqua.operators.primitive_ops.MatrixOp.to_matrix "qiskit.aqua.operators.primitive_ops.MatrixOp.to_matrix")(\[massive])                          | Return NumPy representation of the Operator.                                                                                                                                  |
-| [`to_matrix_op`](#qiskit.aqua.operators.primitive_ops.MatrixOp.to_matrix_op "qiskit.aqua.operators.primitive_ops.MatrixOp.to_matrix_op")(\[massive])                 | Returns a `MatrixOp` equivalent to this Operator.                                                                                                                             |
-| [`to_pauli_op`](#qiskit.aqua.operators.primitive_ops.MatrixOp.to_pauli_op "qiskit.aqua.operators.primitive_ops.MatrixOp.to_pauli_op")(\[massive])                    | Returns a sum of `PauliOp` s equivalent to this Operator.                                                                                                                     |
-
 ## Attributes
 
-|                                                                                                                                    |                                                                 |
-| ---------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| `ENABLE_DEPRECATION`                                                                                                               |                                                                 |
-| `INDENTATION`                                                                                                                      |                                                                 |
-| [`coeff`](#qiskit.aqua.operators.primitive_ops.MatrixOp.coeff "qiskit.aqua.operators.primitive_ops.MatrixOp.coeff")                | The scalar coefficient multiplying the Operator.                |
-| [`num_qubits`](#qiskit.aqua.operators.primitive_ops.MatrixOp.num_qubits "qiskit.aqua.operators.primitive_ops.MatrixOp.num_qubits") | The number of qubits over which the Operator is defined.        |
-| [`parameters`](#qiskit.aqua.operators.primitive_ops.MatrixOp.parameters "qiskit.aqua.operators.primitive_ops.MatrixOp.parameters") | Return a set of Parameter objects contained in the Operator.    |
-| [`primitive`](#qiskit.aqua.operators.primitive_ops.MatrixOp.primitive "qiskit.aqua.operators.primitive_ops.MatrixOp.primitive")    | The primitive defining the underlying function of the Operator. |
+### add
 
-
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.add" />
 
 `add(other)`
 
@@ -89,7 +64,9 @@ Return Operator addition of self and other, overloaded by `+`.
 
 An `OperatorBase` equivalent to the sum of self and other.
 
+### adjoint
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.adjoint" />
 
 `adjoint()`
 
@@ -103,7 +80,9 @@ Return a new Operator equal to the Operator’s adjoint (conjugate transpose), o
 
 An `OperatorBase` equivalent to the adjoint of self.
 
+### assign\_parameters
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.assign_parameters" />
 
 `assign_parameters(param_dict)`
 
@@ -121,7 +100,9 @@ Binds scalar values to any Terra `Parameters` in the coefficients or primitives 
 
 The `OperatorBase` with the `Parameters` in self replaced by the values or `Parameters` in param\_dict. If param\_dict contains parameterization lists, this `OperatorBase` is an `OpList`.
 
+### bind\_parameters
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.bind_parameters" />
 
 `bind_parameters(param_dict)`
 
@@ -131,7 +112,9 @@ Same as assign\_parameters, but maintained for consistency with QuantumCircuit i
 
 `OperatorBase`
 
+### coeff
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.coeff" />
 
 `property coeff`
 
@@ -145,7 +128,9 @@ The scalar coefficient multiplying the Operator.
 
 The coefficient.
 
+### compose
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.compose" />
 
 `compose(other, permutation=None, front=False)`
 
@@ -171,7 +156,9 @@ Because Terra prints circuits with the initial state at the left side of the cir
 
 An `OperatorBase` equivalent to the function composition of self and other.
 
+### equals
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.equals" />
 
 `equals(other)`
 
@@ -189,7 +176,9 @@ Evaluate Equality between Operators, overloaded by `==`. Only returns True if se
 
 A bool equal to the equality of self and other.
 
+### eval
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.eval" />
 
 `eval(front=None)`
 
@@ -209,7 +198,9 @@ If `front` is None, the matrix-representation of the operator is returned.
 
 The output of the Operator’s evaluation function. If self is a `StateFn`, the result is a float or complex. If self is an Operator (`PrimitiveOp, ComposedOp, SummedOp, EvolvedOp,` etc.), the result is a StateFn. If `front` is None, the matrix-representation of the operator is returned, which is a `MatrixOp` for the operators and a `VectorStateFn` for state-functions. If either self or front contain proper `ListOps` (not ListOp subclasses), the result is an n-dimensional list of complex or StateFn results, resulting from the recursive evaluation by each OperatorBase in the ListOps.
 
+### exp\_i
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.exp_i" />
 
 `exp_i()`
 
@@ -219,7 +210,9 @@ Return a `CircuitOp` equivalent to e^-iH for this operator H
 
 `OperatorBase`
 
+### log\_i
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.log_i" />
 
 `log_i(massive=False)`
 
@@ -229,7 +222,9 @@ Return a `MatrixOp` equivalent to log(H)/-i for this operator H. This function i
 
 `OperatorBase`
 
+### mul
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.mul" />
 
 `mul(scalar)`
 
@@ -247,7 +242,9 @@ Returns the scalar multiplication of the Operator, overloaded by `*`, including 
 
 An `OperatorBase` equivalent to product of self and scalar.
 
+### neg
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.neg" />
 
 `neg()`
 
@@ -261,7 +258,9 @@ Return the Operator’s negation, effectively just multiplying by -1.0, overload
 
 An `OperatorBase` equivalent to the negation of self.
 
+### num\_qubits
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.num_qubits" />
 
 `property num_qubits`
 
@@ -275,13 +274,17 @@ The number of qubits over which the Operator is defined. If `op.num_qubits == 5`
 
 The number of qubits accepted by the Operator’s underlying function.
 
+### parameters
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.parameters" />
 
 `property parameters`
 
 Return a set of Parameter objects contained in the Operator.
 
+### permute
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.permute" />
 
 `permute(permutation=None)`
 
@@ -301,9 +304,11 @@ A new MatrixOp representing the permuted operator.
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if indices do not define a new index for each qubit.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if indices do not define a new index for each qubit.
 
+### power
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.power" />
 
 `power(exponent)`
 
@@ -321,7 +326,9 @@ Return Operator composed with self multiple times, overloaded by `**`.
 
 An `OperatorBase` equivalent to self composed with itself exponent times.
 
+### primitive
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.primitive" />
 
 `property primitive`
 
@@ -335,7 +342,9 @@ The primitive defining the underlying function of the Operator.
 
 The primitive object.
 
+### primitive\_strings
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.primitive_strings" />
 
 `primitive_strings()`
 
@@ -349,7 +358,9 @@ Return a set of strings describing the primitives contained in the Operator. For
 
 A set of strings describing the primitives contained within the Operator.
 
+### reduce
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.reduce" />
 
 `reduce()`
 
@@ -363,7 +374,9 @@ Try collapsing the Operator structure, usually after some type of conversion, e.
 
 The reduced `OperatorBase`.
 
+### tensor
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.tensor" />
 
 `tensor(other)`
 
@@ -385,7 +398,9 @@ Because Terra prints circuits and results with qubit 0 at the end of the string 
 
 An `OperatorBase` equivalent to the tensor product of self and other.
 
+### tensorpower
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.tensorpower" />
 
 `tensorpower(other)`
 
@@ -403,7 +418,9 @@ Return tensor product with self multiple times, overloaded by `^`.
 
 An `OperatorBase` equivalent to the tensorpower of self by other.
 
+### to\_circuit
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.to_circuit" />
 
 `to_circuit()`
 
@@ -413,7 +430,9 @@ Returns a `QuantumCircuit` equivalent to this Operator.
 
 `QuantumCircuit`
 
+### to\_circuit\_op
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.to_circuit_op" />
 
 `to_circuit_op()`
 
@@ -423,7 +442,9 @@ Returns a `CircuitOp` equivalent to this Operator.
 
 `OperatorBase`
 
+### to\_instruction
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.to_instruction" />
 
 `to_instruction()`
 
@@ -433,7 +454,9 @@ Returns an `Instruction` equivalent to this Operator.
 
 `Instruction`
 
+### to\_legacy\_op
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.to_legacy_op" />
 
 `to_legacy_op(massive=False)`
 
@@ -453,7 +476,9 @@ The `LegacyBaseOperator` representing this Operator.
 
 **TypeError** – self is an Operator which cannot be represented by a `LegacyBaseOperator`, such as `StateFn`, proper (non-subclass) `ListOp`, or an Operator with an unbound coeff Parameter.
 
+### to\_matrix
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.to_matrix" />
 
 `to_matrix(massive=False)`
 
@@ -467,7 +492,9 @@ Return NumPy representation of the Operator. Represents the evaluation of the Op
 
 The NumPy `ndarray` equivalent to this Operator.
 
+### to\_matrix\_op
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.to_matrix_op" />
 
 `to_matrix_op(massive=False)`
 
@@ -477,7 +504,9 @@ Returns a `MatrixOp` equivalent to this Operator.
 
 `OperatorBase`
 
+### to\_pauli\_op
 
+<span id="qiskit.aqua.operators.primitive_ops.MatrixOp.to_pauli_op" />
 
 `to_pauli_op(massive=False)`
 
@@ -486,3 +515,4 @@ Returns a sum of `PauliOp` s equivalent to this Operator.
 **Return type**
 
 `OperatorBase`
+

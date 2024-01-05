@@ -1,8 +1,16 @@
+---
+title: calculate_1q_epc
+description: API reference for qiskit.ignis.verification.calculate_1q_epc
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.calculate_1q_epc
+---
+
 <span id="qiskit-ignis-verification-calculate-1q-epc" />
 
 # qiskit.ignis.verification.calculate\_1q\_epc
 
-
+<span id="qiskit.ignis.verification.calculate_1q_epc" />
 
 `calculate_1q_epc(gate_per_cliff, epg_1q, qubit)`
 
@@ -40,7 +48,7 @@ print(epc)
 
 **Parameters**
 
-*   **gate\_per\_cliff** (`Dict`\[`int`, `Dict`\[`str`, `float`]]) – dictionary of gate per Clifford. see [`gates_per_clifford()`](qiskit.ignis.verification.gates_per_clifford#qiskit.ignis.verification.gates_per_clifford "qiskit.ignis.verification.gates_per_clifford").
+*   **gate\_per\_cliff** (`Dict`\[`int`, `Dict`\[`str`, `float`]]) – dictionary of gate per Clifford. see [`gates_per_clifford()`](qiskit.ignis.verification.gates_per_clifford "qiskit.ignis.verification.gates_per_clifford").
 *   **epg\_1q** (`Dict`\[`str`, `float`]) – EPG of single qubit gates estimated by error model.
 *   **qubit** (`int`) – index of qubit to calculate EPC.
 
@@ -55,3 +63,4 @@ EPG of 2Q gate.
 **Raises**
 
 **QiskitError** – when specified `qubit` is not included in the gate count dictionary
+

@@ -22,7 +22,7 @@ Convert vertex cover instances into Pauli list Deal with Gset format. See [https
 | [`get_graph_solution`](#qiskit.optimization.applications.ising.vertex_cover.get_graph_solution "qiskit.optimization.applications.ising.vertex_cover.get_graph_solution")(x)                      | Get graph solution from binary string.                                             |
 | [`get_operator`](#qiskit.optimization.applications.ising.vertex_cover.get_operator "qiskit.optimization.applications.ising.vertex_cover.get_operator")(weight\_matrix)                           | Generate Hamiltonian for the vertex cover :param weight\_matrix: adjacency matrix. |
 
-
+<span id="qiskit.optimization.applications.ising.vertex_cover.check_full_edge_coverage" />
 
 `check_full_edge_coverage(x, w)`
 
@@ -39,7 +39,7 @@ value of the cut.
 
 float
 
-
+<span id="qiskit.optimization.applications.ising.vertex_cover.get_graph_solution" />
 
 `get_graph_solution(x)`
 
@@ -57,7 +57,7 @@ graph solution as binary numpy array.
 
 numpy.ndarray
 
-
+<span id="qiskit.optimization.applications.ising.vertex_cover.get_operator" />
 
 `get_operator(weight_matrix)`
 
@@ -69,7 +69,7 @@ operator for the Hamiltonian and a constant shift for the obj function.
 
 **Return type**
 
-tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
 
 Goals: 1 color some vertices as red such that every edge is connected to some red vertex 2 minimize the vertices to be colored as red
 

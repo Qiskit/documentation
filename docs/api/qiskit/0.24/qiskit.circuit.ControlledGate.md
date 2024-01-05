@@ -1,8 +1,16 @@
+---
+title: ControlledGate
+description: API reference for qiskit.circuit.ControlledGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.ControlledGate
+---
+
 <span id="qiskit-circuit-controlledgate" />
 
 # qiskit.circuit.ControlledGate
 
-
+<span id="qiskit.circuit.ControlledGate" />
 
 `ControlledGate(name, num_qubits, params, label=None, num_ctrl_qubits=1, definition=None, ctrl_state=None, base_gate=None)`
 
@@ -17,7 +25,7 @@ Create a new ControlledGate. In the new gate the first `num_ctrl_qubits` of the 
 *   **params** (`List`) – A list of parameters for the gate.
 *   **label** (`Optional`\[`str`]) – An optional label for the gate.
 *   **num\_ctrl\_qubits** (`Optional`\[`int`]) – Number of control qubits.
-*   **definition** (`Optional`\[`QuantumCircuit`]) – A list of gate rules for implementing this gate. The elements of the list are tuples of ([`Gate()`](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate"), \[qubit\_list], \[clbit\_list]).
+*   **definition** (`Optional`\[`QuantumCircuit`]) – A list of gate rules for implementing this gate. The elements of the list are tuples of ([`Gate()`](qiskit.circuit.Gate "qiskit.circuit.Gate"), \[qubit\_list], \[clbit\_list]).
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If specified as a bitstring the length must equal num\_ctrl\_qubits, MSB on left. If None, use 2\*\*num\_ctrl\_qubits-1.
 *   **base\_gate** (`Optional`\[`Gate`]) – Gate object to be controlled.
 
@@ -79,7 +87,9 @@ q_3: ──────■───────
                    
 ```
 
+### \_\_init\_\_
 
+<span id="qiskit.circuit.ControlledGate.__init__" />
 
 `__init__(name, num_qubits, params, label=None, num_ctrl_qubits=1, definition=None, ctrl_state=None, base_gate=None)`
 
@@ -92,7 +102,7 @@ Create a new ControlledGate. In the new gate the first `num_ctrl_qubits` of the 
 *   **params** (`List`) – A list of parameters for the gate.
 *   **label** (`Optional`\[`str`]) – An optional label for the gate.
 *   **num\_ctrl\_qubits** (`Optional`\[`int`]) – Number of control qubits.
-*   **definition** (`Optional`\[`QuantumCircuit`]) – A list of gate rules for implementing this gate. The elements of the list are tuples of ([`Gate()`](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate"), \[qubit\_list], \[clbit\_list]).
+*   **definition** (`Optional`\[`QuantumCircuit`]) – A list of gate rules for implementing this gate. The elements of the list are tuples of ([`Gate()`](qiskit.circuit.Gate "qiskit.circuit.Gate"), \[qubit\_list], \[clbit\_list]).
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal or as a bitstring (e.g. ‘111’). If specified as a bitstring the length must equal num\_ctrl\_qubits, MSB on left. If None, use 2\*\*num\_ctrl\_qubits-1.
 *   **base\_gate** (`Optional`\[`Gate`]) – Gate object to be controlled.
 
@@ -156,45 +166,19 @@ q_3: ──────■───────
 
 ## Methods
 
-|                                                                                                                                               |                                                                          |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.circuit.ControlledGate.__init__ "qiskit.circuit.ControlledGate.__init__")(name, num\_qubits, params\[, label, …])        | Create a new ControlledGate.                                             |
-| [`add_decomposition`](#qiskit.circuit.ControlledGate.add_decomposition "qiskit.circuit.ControlledGate.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
-| [`assemble`](#qiskit.circuit.ControlledGate.assemble "qiskit.circuit.ControlledGate.assemble")()                                              | Assemble a QasmQobjInstruction                                           |
-| [`broadcast_arguments`](#qiskit.circuit.ControlledGate.broadcast_arguments "qiskit.circuit.ControlledGate.broadcast_arguments")(qargs, cargs) | Validation and handling of the arguments and its relationship.           |
-| [`c_if`](#qiskit.circuit.ControlledGate.c_if "qiskit.circuit.ControlledGate.c_if")(classical, val)                                            | Add classical condition on register classical and value val.             |
-| [`control`](#qiskit.circuit.ControlledGate.control "qiskit.circuit.ControlledGate.control")(\[num\_ctrl\_qubits, label, ctrl\_state])         | Return controlled version of gate.                                       |
-| [`copy`](#qiskit.circuit.ControlledGate.copy "qiskit.circuit.ControlledGate.copy")(\[name])                                                   | Copy of the instruction.                                                 |
-| [`inverse`](#qiskit.circuit.ControlledGate.inverse "qiskit.circuit.ControlledGate.inverse")()                                                 | Invert this gate by calling inverse on the base gate.                    |
-| [`is_parameterized`](#qiskit.circuit.ControlledGate.is_parameterized "qiskit.circuit.ControlledGate.is_parameterized")()                      | Return True .IFF.                                                        |
-| [`mirror`](#qiskit.circuit.ControlledGate.mirror "qiskit.circuit.ControlledGate.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                              |
-| [`power`](#qiskit.circuit.ControlledGate.power "qiskit.circuit.ControlledGate.power")(exponent)                                               | Creates a unitary gate as gate^exponent.                                 |
-| [`qasm`](#qiskit.circuit.ControlledGate.qasm "qiskit.circuit.ControlledGate.qasm")()                                                          | Return a default OpenQASM string for the instruction.                    |
-| [`repeat`](#qiskit.circuit.ControlledGate.repeat "qiskit.circuit.ControlledGate.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.             |
-| [`reverse_ops`](#qiskit.circuit.ControlledGate.reverse_ops "qiskit.circuit.ControlledGate.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.      |
-| [`to_matrix`](#qiskit.circuit.ControlledGate.to_matrix "qiskit.circuit.ControlledGate.to_matrix")()                                           | Return a Numpy.array for the gate unitary matrix.                        |
-| [`validate_parameter`](#qiskit.circuit.ControlledGate.validate_parameter "qiskit.circuit.ControlledGate.validate_parameter")(parameter)       | Gate parameters should be int, float, or ParameterExpression             |
-
 ## Attributes
 
-|                                                                                                                     |                                                                               |
-| ------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`ctrl_state`](#qiskit.circuit.ControlledGate.ctrl_state "qiskit.circuit.ControlledGate.ctrl_state")                | Return the control state of the gate as a decimal integer.                    |
-| [`decompositions`](#qiskit.circuit.ControlledGate.decompositions "qiskit.circuit.ControlledGate.decompositions")    | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
-| [`definition`](#qiskit.circuit.ControlledGate.definition "qiskit.circuit.ControlledGate.definition")                | Return definition in terms of other basic gates.                              |
-| [`duration`](#qiskit.circuit.ControlledGate.duration "qiskit.circuit.ControlledGate.duration")                      | Get the duration.                                                             |
-| [`label`](#qiskit.circuit.ControlledGate.label "qiskit.circuit.ControlledGate.label")                               | Return gate label                                                             |
-| [`num_ctrl_qubits`](#qiskit.circuit.ControlledGate.num_ctrl_qubits "qiskit.circuit.ControlledGate.num_ctrl_qubits") | Get number of control qubits.                                                 |
-| [`params`](#qiskit.circuit.ControlledGate.params "qiskit.circuit.ControlledGate.params")                            | Get parameters from base\_gate.                                               |
-| [`unit`](#qiskit.circuit.ControlledGate.unit "qiskit.circuit.ControlledGate.unit")                                  | Get the time unit of duration.                                                |
+### add\_decomposition
 
-
+<span id="qiskit.circuit.ControlledGate.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
+### assemble
 
+<span id="qiskit.circuit.ControlledGate.assemble" />
 
 `assemble()`
 
@@ -204,7 +188,9 @@ Assemble a QasmQobjInstruction
 
 `Instruction`
 
+### broadcast\_arguments
 
+<span id="qiskit.circuit.ControlledGate.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -257,13 +243,17 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
+### c\_if
 
+<span id="qiskit.circuit.ControlledGate.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
+### control
 
+<span id="qiskit.circuit.ControlledGate.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
@@ -287,7 +277,9 @@ Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 anci
 
 **QiskitError** – unrecognized mode or invalid ctrl\_state
 
+### copy
 
+<span id="qiskit.circuit.ControlledGate.copy" />
 
 `copy(name=None)`
 
@@ -305,9 +297,11 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### ctrl\_state
 
+<span id="qiskit.circuit.ControlledGate.ctrl_state" />
 
 `property ctrl_state`
 
@@ -317,13 +311,17 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
+### decompositions
 
+<span id="qiskit.circuit.ControlledGate.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
+### definition
 
+<span id="qiskit.circuit.ControlledGate.definition" />
 
 `property definition`
 
@@ -333,13 +331,17 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
+### duration
 
+<span id="qiskit.circuit.ControlledGate.duration" />
 
 `property duration`
 
 Get the duration.
 
+### inverse
 
+<span id="qiskit.circuit.ControlledGate.inverse" />
 
 `inverse()`
 
@@ -349,13 +351,17 @@ Invert this gate by calling inverse on the base gate.
 
 `ControlledGate`
 
+### is\_parameterized
 
+<span id="qiskit.circuit.ControlledGate.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
+### label
 
+<span id="qiskit.circuit.ControlledGate.label" />
 
 `property label`
 
@@ -365,7 +371,9 @@ Return gate label
 
 `str`
 
+### mirror
 
+<span id="qiskit.circuit.ControlledGate.mirror" />
 
 `mirror()`
 
@@ -379,9 +387,11 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### num\_ctrl\_qubits
 
+<span id="qiskit.circuit.ControlledGate.num_ctrl_qubits" />
 
 `property num_ctrl_qubits`
 
@@ -395,7 +405,9 @@ The number of control qubits for the gate.
 
 int
 
+### params
 
+<span id="qiskit.circuit.ControlledGate.params" />
 
 `property params`
 
@@ -413,7 +425,9 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
+### power
 
+<span id="qiskit.circuit.ControlledGate.power" />
 
 `power(exponent)`
 
@@ -429,13 +443,15 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **Return type**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate#qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
 **Raises**
 
 **CircuitError** – If Gate is not unitary
 
+### qasm
 
+<span id="qiskit.circuit.ControlledGate.qasm" />
 
 `qasm()`
 
@@ -443,7 +459,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
+### repeat
 
+<span id="qiskit.circuit.ControlledGate.repeat" />
 
 `repeat(n)`
 
@@ -459,13 +477,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
+### reverse\_ops
 
+<span id="qiskit.circuit.ControlledGate.reverse_ops" />
 
 `reverse_ops()`
 
@@ -481,9 +501,11 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### to\_matrix
 
+<span id="qiskit.circuit.ControlledGate.to_matrix" />
 
 `to_matrix()`
 
@@ -497,14 +519,19 @@ Return a Numpy.array for the gate unitary matrix.
 
 `ndarray`
 
+### unit
 
+<span id="qiskit.circuit.ControlledGate.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
+### validate\_parameter
 
+<span id="qiskit.circuit.ControlledGate.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
+

@@ -1,6 +1,14 @@
+---
+title: UnitarySimulatorPy
+description: API reference for qiskit.providers.basicaer.UnitarySimulatorPy
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.basicaer.UnitarySimulatorPy
+---
+
 # qiskit.providers.basicaer.UnitarySimulatorPy
 
-
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy" />
 
 `UnitarySimulatorPy(configuration=None, provider=None, **fields)`
 
@@ -10,15 +18,17 @@ Initialize a backend class
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
-*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
+*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
 *   **fields** – kwargs for the values to use to override the default options.
 
 **Raises**
 
 **AttributeError** – if input field not a valid options
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.__init__" />
 
 `__init__(configuration=None, provider=None, **fields)`
 
@@ -26,8 +36,8 @@ Initialize a backend class
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
-*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
+*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
 *   **fields** – kwargs for the values to use to override the default options.
 
 **Raises**
@@ -36,29 +46,11 @@ Initialize a backend class
 
 ## Methods
 
-|                                                                                                                                                            |                                                                    |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| [`__init__`](#qiskit.providers.basicaer.UnitarySimulatorPy.__init__ "qiskit.providers.basicaer.UnitarySimulatorPy.__init__")(\[configuration, provider])   | Initialize a backend class                                         |
-| [`configuration`](#qiskit.providers.basicaer.UnitarySimulatorPy.configuration "qiskit.providers.basicaer.UnitarySimulatorPy.configuration")()              | Return the backend configuration.                                  |
-| [`name`](#qiskit.providers.basicaer.UnitarySimulatorPy.name "qiskit.providers.basicaer.UnitarySimulatorPy.name")()                                         | Return the backend name.                                           |
-| [`properties`](#qiskit.providers.basicaer.UnitarySimulatorPy.properties "qiskit.providers.basicaer.UnitarySimulatorPy.properties")()                       | Return the backend properties.                                     |
-| [`provider`](#qiskit.providers.basicaer.UnitarySimulatorPy.provider "qiskit.providers.basicaer.UnitarySimulatorPy.provider")()                             | Return the backend Provider.                                       |
-| [`run`](#qiskit.providers.basicaer.UnitarySimulatorPy.run "qiskit.providers.basicaer.UnitarySimulatorPy.run")(qobj, \*\*backend\_options)                  | Run qobj asynchronously.                                           |
-| [`run_experiment`](#qiskit.providers.basicaer.UnitarySimulatorPy.run_experiment "qiskit.providers.basicaer.UnitarySimulatorPy.run_experiment")(experiment) | Run an experiment (circuit) and return a single experiment result. |
-| [`set_options`](#qiskit.providers.basicaer.UnitarySimulatorPy.set_options "qiskit.providers.basicaer.UnitarySimulatorPy.set_options")(\*\*fields)          | Set the options fields for the backend                             |
-| [`status`](#qiskit.providers.basicaer.UnitarySimulatorPy.status "qiskit.providers.basicaer.UnitarySimulatorPy.status")()                                   | Return the backend status.                                         |
-
 ## Attributes
 
-|                                                                                                                           |                                    |
-| ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| `DEFAULT_CONFIGURATION`                                                                                                   |                                    |
-| `DEFAULT_OPTIONS`                                                                                                         |                                    |
-| `MAX_QUBITS_MEMORY`                                                                                                       |                                    |
-| [`options`](#qiskit.providers.basicaer.UnitarySimulatorPy.options "qiskit.providers.basicaer.UnitarySimulatorPy.options") | Return the options for the backend |
-| `version`                                                                                                                 |                                    |
+### configuration
 
-
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.configuration" />
 
 `configuration()`
 
@@ -70,9 +62,11 @@ the configuration for the backend.
 
 **Return type**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
 
+### name
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.name" />
 
 `name()`
 
@@ -86,7 +80,9 @@ the name of the backend.
 
 str
 
+### options
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.options" />
 
 `property options`
 
@@ -94,7 +90,9 @@ Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.basicaer.UnitarySimulatorPy.run "qiskit.providers.basicaer.UnitarySimulatorPy.run") method.
 
+### properties
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.properties" />
 
 `properties()`
 
@@ -106,9 +104,11 @@ the configuration for the backend. If the backend does not support properties, i
 
 **Return type**
 
-[BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
+### provider
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.provider" />
 
 `provider()`
 
@@ -120,9 +120,11 @@ the Provider responsible for the backend.
 
 **Return type**
 
-[Provider](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")
+[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
 
+### run
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.run" />
 
 `run(qobj, **backend_options)`
 
@@ -130,7 +132,7 @@ Run qobj asynchronously.
 
 **Parameters**
 
-*   **qobj** ([*Qobj*](qiskit.qobj.Qobj#qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
+*   **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
 *   **backend\_options** (*dict*) – backend options
 
 **Returns**
@@ -139,7 +141,7 @@ derived from BaseJob
 
 **Return type**
 
-[BasicAerJob](qiskit.providers.basicaer.BasicAerJob#qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
+[BasicAerJob](qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
 
 Additional Information:
 
@@ -168,7 +170,9 @@ Example::
     }
 ```
 
+### run\_experiment
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.run_experiment" />
 
 `run_experiment(experiment)`
 
@@ -204,10 +208,12 @@ dict
 
 **Raises**
 
-*   [**BasicAerError**](qiskit.providers.basicaer.BasicAerError#qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if the number of qubits in the circuit is greater than 24.
+*   [**BasicAerError**](qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if the number of qubits in the circuit is greater than 24.
 *   **Note that the practical qubit limit is much lower than 24.** –
 
+### set\_options
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.set_options" />
 
 `set_options(**fields)`
 
@@ -223,7 +229,9 @@ This method is used to update the options of a backend. If you need to change an
 
 **AttributeError** – If the field passed in is not part of the options
 
+### status
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.status" />
 
 `status()`
 
@@ -235,4 +243,5 @@ the status of the backend.
 
 **Return type**
 
-[BackendStatus](qiskit.providers.models.BackendStatus#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+

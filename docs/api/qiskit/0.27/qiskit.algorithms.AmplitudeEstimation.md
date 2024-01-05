@@ -1,6 +1,14 @@
+---
+title: AmplitudeEstimation
+description: API reference for qiskit.algorithms.AmplitudeEstimation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.AmplitudeEstimation
+---
+
 # qiskit.algorithms.AmplitudeEstimation
 
-
+<span id="qiskit.algorithms.AmplitudeEstimation" />
 
 `AmplitudeEstimation(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None)`
 
@@ -37,7 +45,9 @@ Iterative Quantum Amplitude Estimation. [arXiv:1912.05559](https://arxiv.org/abs
 
 **ValueError** – If the number of evaluation qubits is smaller than 1.
 
+### \_\_init\_\_
 
+<span id="qiskit.algorithms.AmplitudeEstimation.__init__" />
 
 `__init__(num_eval_qubits, phase_estimation_circuit=None, iqft=None, quantum_instance=None)`
 
@@ -54,22 +64,11 @@ Iterative Quantum Amplitude Estimation. [arXiv:1912.05559](https://arxiv.org/abs
 
 ## Methods
 
-|                                                                                                                                                                                              |                                                                        |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.AmplitudeEstimation.__init__ "qiskit.algorithms.AmplitudeEstimation.__init__")(num\_eval\_qubits\[, …])                                                      | **type num\_eval\_qubits**`int`                                        |
-| [`compute_confidence_interval`](#qiskit.algorithms.AmplitudeEstimation.compute_confidence_interval "qiskit.algorithms.AmplitudeEstimation.compute_confidence_interval")(result\[, alpha, …]) | Compute the (1 - alpha) confidence interval.                           |
-| [`compute_mle`](#qiskit.algorithms.AmplitudeEstimation.compute_mle "qiskit.algorithms.AmplitudeEstimation.compute_mle")(result\[, apply\_post\_processing])                                  | Compute the Maximum Likelihood Estimator (MLE).                        |
-| [`construct_circuit`](#qiskit.algorithms.AmplitudeEstimation.construct_circuit "qiskit.algorithms.AmplitudeEstimation.construct_circuit")(estimation\_problem\[, …])                         | Construct the Amplitude Estimation quantum circuit.                    |
-| [`estimate`](#qiskit.algorithms.AmplitudeEstimation.estimate "qiskit.algorithms.AmplitudeEstimation.estimate")(estimation\_problem)                                                          | Run the amplitude estimation algorithm on provided estimation problem. |
-| [`evaluate_measurements`](#qiskit.algorithms.AmplitudeEstimation.evaluate_measurements "qiskit.algorithms.AmplitudeEstimation.evaluate_measurements")(circuit\_results\[, …])                | Evaluate the results from the circuit simulation.                      |
-
 ## Attributes
 
-|                                                                                                                                        |                           |
-| -------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| [`quantum_instance`](#qiskit.algorithms.AmplitudeEstimation.quantum_instance "qiskit.algorithms.AmplitudeEstimation.quantum_instance") | Get the quantum instance. |
+### compute\_confidence\_interval
 
-
+<span id="qiskit.algorithms.AmplitudeEstimation.compute_confidence_interval" />
 
 `static compute_confidence_interval(result, alpha=0.05, kind='likelihood_ratio')`
 
@@ -91,10 +90,12 @@ The (1 - alpha) confidence interval of the specified kind.
 
 **Raises**
 
-*   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If ‘mle’ is not in self.\_ret.keys() (i.e. run was not called yet).
+*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If ‘mle’ is not in self.\_ret.keys() (i.e. run was not called yet).
 *   **NotImplementedError** – If the confidence interval method kind is not implemented.
 
+### compute\_mle
 
+<span id="qiskit.algorithms.AmplitudeEstimation.compute_mle" />
 
 `static compute_mle(result, apply_post_processing=False)`
 
@@ -113,7 +114,9 @@ Compute the Maximum Likelihood Estimator (MLE).
 
 The MLE for the provided result object.
 
+### construct\_circuit
 
+<span id="qiskit.algorithms.AmplitudeEstimation.construct_circuit" />
 
 `construct_circuit(estimation_problem, measurement=False)`
 
@@ -132,7 +135,9 @@ Construct the Amplitude Estimation quantum circuit.
 
 The QuantumCircuit object for the constructed circuit.
 
+### estimate
 
+<span id="qiskit.algorithms.AmplitudeEstimation.estimate" />
 
 `estimate(estimation_problem)`
 
@@ -154,7 +159,9 @@ An amplitude estimation results object.
 
 **ValueError** – If state\_preparation or objective\_qubits are not set in the estimation\_problem.
 
+### evaluate\_measurements
 
+<span id="qiskit.algorithms.AmplitudeEstimation.evaluate_measurements" />
 
 `evaluate_measurements(circuit_results, threshold=1e-06)`
 
@@ -177,7 +184,9 @@ Given the probabilities from statevector simulation of the QAE circuit, compute 
 
 y measurements with respective probabilities, in this order.
 
+### quantum\_instance
 
+<span id="qiskit.algorithms.AmplitudeEstimation.quantum_instance" />
 
 `property quantum_instance`
 
@@ -190,3 +199,4 @@ Get the quantum instance.
 **Returns**
 
 The quantum instance used to run this algorithm.
+

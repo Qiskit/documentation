@@ -22,13 +22,13 @@ set packing module
 | [`get_operator`](#qiskit.optimization.applications.ising.set_packing.get_operator "qiskit.optimization.applications.ising.set_packing.get_operator")(list\_of\_subsets)            | Construct the Hamiltonian for the set packing. |
 | [`get_solution`](#qiskit.optimization.applications.ising.set_packing.get_solution "qiskit.optimization.applications.ising.set_packing.get_solution")(x)                            | **param x**binary string as numpy array.       |
 
-
+<span id="qiskit.optimization.applications.ising.set_packing.check_disjoint" />
 
 `check_disjoint(sol, list_of_subsets)`
 
 check disjoint
 
-
+<span id="qiskit.optimization.applications.ising.set_packing.get_operator" />
 
 `get_operator(list_of_subsets)`
 
@@ -56,9 +56,9 @@ a constant shift for the obj function.
 
 **Return type**
 
-tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
 
-
+<span id="qiskit.optimization.applications.ising.set_packing.get_solution" />
 
 `get_solution(x)`
 

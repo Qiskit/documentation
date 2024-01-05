@@ -1,6 +1,14 @@
+---
+title: measure_all
+description: API reference for qiskit.pulse.builder.measure_all
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.measure_all
+---
+
 # qiskit.pulse.builder.measure\_all
 
-
+<span id="qiskit.pulse.builder.measure_all" />
 
 `measure_all()`
 
@@ -32,3 +40,4 @@ with pulse.build(backend) as pulse_prog:
 **Returns**
 
 The `register`s the qubit measurement results will be stored in.
+

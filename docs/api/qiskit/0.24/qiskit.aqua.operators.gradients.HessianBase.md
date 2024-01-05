@@ -1,8 +1,16 @@
+---
+title: HessianBase
+description: API reference for qiskit.aqua.operators.gradients.HessianBase
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.gradients.HessianBase
+---
+
 <span id="qiskit-aqua-operators-gradients-hessianbase" />
 
 # qiskit.aqua.operators.gradients.HessianBase
 
-
+<span id="qiskit.aqua.operators.gradients.HessianBase" />
 
 `HessianBase(hess_method='param_shift', **kwargs)`
 
@@ -17,7 +25,9 @@ Base class for the Hessian of an expected value.
 
 **ValueError** – If method != `fin_diff` and `epsilon` is not None.
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.operators.gradients.HessianBase.__init__" />
 
 `__init__(hess_method='param_shift', **kwargs)`
 
@@ -32,20 +42,11 @@ Base class for the Hessian of an expected value.
 
 ## Methods
 
-|                                                                                                                                                                                                   |                                                                                                            |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.operators.gradients.HessianBase.__init__ "qiskit.aqua.operators.gradients.HessianBase.__init__")(\[hess\_method])                                                       | **type hess\_method**`Union`\[`str`, `CircuitGradient`]                                                    |
-| [`convert`](#qiskit.aqua.operators.gradients.HessianBase.convert "qiskit.aqua.operators.gradients.HessianBase.convert")(operator\[, params])                                                      | **type operator**`OperatorBase`                                                                            |
-| [`gradient_wrapper`](#qiskit.aqua.operators.gradients.HessianBase.gradient_wrapper "qiskit.aqua.operators.gradients.HessianBase.gradient_wrapper")(operator, bind\_params\[, …])                  | Get a callable function which provides the respective gradient, Hessian or QFI for given parameter values. |
-| [`parameter_expression_grad`](#qiskit.aqua.operators.gradients.HessianBase.parameter_expression_grad "qiskit.aqua.operators.gradients.HessianBase.parameter_expression_grad")(param\_expr, param) | Get the derivative of a parameter expression w\.r.t.                                                       |
-
 ## Attributes
 
-|                                                                                                                                     |                            |
-| ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------- |
-| [`hess_method`](#qiskit.aqua.operators.gradients.HessianBase.hess_method "qiskit.aqua.operators.gradients.HessianBase.hess_method") | Returns `CircuitGradient`. |
+### convert
 
-
+<span id="qiskit.aqua.operators.gradients.HessianBase.convert" />
 
 `abstract convert(operator, params=None)`
 
@@ -66,7 +67,9 @@ An operator whose evaluation yields the gradient, Hessian or QFI.
 
 **ValueError** – If `params` contains a parameter not present in `operator`.
 
+### gradient\_wrapper
 
+<span id="qiskit.aqua.operators.gradients.HessianBase.gradient_wrapper" />
 
 `gradient_wrapper(operator, bind_params, grad_params=None, backend=None)`
 
@@ -87,7 +90,9 @@ Function to compute a gradient, Hessian or QFI. The function takes an iterable a
 
 callable(param\_values)
 
+### hess\_method
 
+<span id="qiskit.aqua.operators.gradients.HessianBase.hess_method" />
 
 `property hess_method`
 
@@ -101,7 +106,9 @@ Returns `CircuitGradient`.
 
 `CircuitGradient`.
 
+### parameter\_expression\_grad
 
+<span id="qiskit.aqua.operators.gradients.HessianBase.parameter_expression_grad" />
 
 `static parameter_expression_grad(param_expr, param)`
 
@@ -119,3 +126,4 @@ Get the derivative of a parameter expression w\.r.t. the given parameter.
 **Returns**
 
 ParameterExpression representing the gradient of param\_expr w\.r.t. param
+

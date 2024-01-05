@@ -1,8 +1,16 @@
+---
+title: AbelianGrouper
+description: API reference for qiskit.aqua.operators.converters.AbelianGrouper
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.converters.AbelianGrouper
+---
+
 <span id="qiskit-aqua-operators-converters-abeliangrouper" />
 
 # qiskit.aqua.operators.converters.AbelianGrouper
 
-
+<span id="qiskit.aqua.operators.converters.AbelianGrouper" />
 
 `AbelianGrouper(traverse=True)`
 
@@ -14,7 +22,9 @@ Meaning, it will traverse the Operator, and when it finds a SummedOp, it will ev
 
 **traverse** (`bool`) – Whether to convert only the Operator passed to `convert`, or traverse down that Operator.
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.operators.converters.AbelianGrouper.__init__" />
 
 `__init__(traverse=True)`
 
@@ -24,13 +34,9 @@ Meaning, it will traverse the Operator, and when it finds a SummedOp, it will ev
 
 ## Methods
 
-|                                                                                                                                                                            |                                                                                                                                                                                                         |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.aqua.operators.converters.AbelianGrouper.__init__ "qiskit.aqua.operators.converters.AbelianGrouper.__init__")(\[traverse])                            | **type traverse**`bool`                                                                                                                                                                                 |
-| [`convert`](#qiskit.aqua.operators.converters.AbelianGrouper.convert "qiskit.aqua.operators.converters.AbelianGrouper.convert")(operator)                                  | Check if operator is a SummedOp, in which case covert it into a sum of mutually commuting sums, or if the Operator contains sub-Operators and `traverse` is True, attempt to convert any sub-Operators. |
-| [`group_subops`](#qiskit.aqua.operators.converters.AbelianGrouper.group_subops "qiskit.aqua.operators.converters.AbelianGrouper.group_subops")(list\_op\[, fast, use\_nx]) | Given a ListOp, attempt to group into Abelian ListOps of the same type.                                                                                                                                 |
+### convert
 
-
+<span id="qiskit.aqua.operators.converters.AbelianGrouper.convert" />
 
 `convert(operator)`
 
@@ -48,7 +54,9 @@ Check if operator is a SummedOp, in which case covert it into a sum of mutually 
 
 The converted Operator.
 
+### group\_subops
 
+<span id="qiskit.aqua.operators.converters.AbelianGrouper.group_subops" />
 
 `classmethod group_subops(list_op, fast=None, use_nx=None)`
 
@@ -70,4 +78,5 @@ The grouped Operator.
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If any of list\_op’s sub-ops is not `PauliOp`.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If any of list\_op’s sub-ops is not `PauliOp`.
+

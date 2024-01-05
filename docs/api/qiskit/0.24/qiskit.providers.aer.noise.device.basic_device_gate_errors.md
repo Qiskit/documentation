@@ -1,8 +1,16 @@
+---
+title: basic_device_gate_errors
+description: API reference for qiskit.providers.aer.noise.device.basic_device_gate_errors
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.noise.device.basic_device_gate_errors
+---
+
 <span id="qiskit-providers-aer-noise-device-basic-device-gate-errors" />
 
 # qiskit.providers.aer.noise.device.basic\_device\_gate\_errors
 
-
+<span id="qiskit.providers.aer.noise.device.basic_device_gate_errors" />
 
 `basic_device_gate_errors(properties, gate_error=True, thermal_relaxation=True, gate_lengths=None, gate_length_units='ns', temperature=0, standard_gates=True, warnings=True)`
 
@@ -12,7 +20,7 @@ If non-default values are used gate\_lengths should be a list of tuples `(name, 
 
 **Parameters**
 
-*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – device backend properties
+*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – device backend properties
 *   **gate\_error** (*bool*) – Include depolarizing gate errors (Default: True).
 *   **thermal\_relaxation** (*Bool*) – Include thermal relaxation errors (Default: True).
 *   **gate\_lengths** (*list*) – Override device gate times with custom values. If None use gate times from backend properties. (Default: None).
@@ -28,3 +36,4 @@ A list of tuples `(label, qubits, QuantumError)`, for gates with non-zero quantu
 **Return type**
 
 list
+

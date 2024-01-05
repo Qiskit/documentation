@@ -1,8 +1,16 @@
+---
+title: get_subsystems_counts
+description: API reference for qiskit.aqua.utils.get_subsystems_counts
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.aqua.utils.get_subsystems_counts
+---
+
 <span id="qiskit-aqua-utils-get-subsystems-counts" />
 
 # qiskit.aqua.utils.get\_subsystems\_counts
 
-
+<span id="qiskit.aqua.utils.get_subsystems_counts" />
 
 `get_subsystems_counts(complete_system_counts, post_select_index=None, post_select_flag=None)`
 
@@ -27,3 +35,4 @@ each of the subsystems measured.
 **Return type**
 
 list
+

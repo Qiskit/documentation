@@ -1,8 +1,16 @@
+---
+title: UCCSD
+description: API reference for qiskit.chemistry.components.variational_forms.UCCSD
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.components.variational_forms.UCCSD
+---
+
 <span id="qiskit-chemistry-components-variational-forms-uccsd" />
 
 # qiskit.chemistry.components.variational\_forms.UCCSD
 
-
+<span id="qiskit.chemistry.components.variational_forms.UCCSD" />
 
 `UCCSD(num_orbitals, num_particles, reps=1, active_occupied=None, active_unoccupied=None, initial_state=None, qubit_mapping='parity', two_qubit_reduction=True, num_time_slices=1, shallow_circuit_concat=True, z2_symmetries=None, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True, skip_commute_test=False)`
 
@@ -52,7 +60,9 @@ Constructor.
 
     ValueError: Num particles list is not 2 entries
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.__init__" />
 
 `__init__(num_orbitals, num_particles, reps=1, active_occupied=None, active_unoccupied=None, initial_state=None, qubit_mapping='parity', two_qubit_reduction=True, num_time_slices=1, shallow_circuit_concat=True, z2_symmetries=None, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True, skip_commute_test=False)`
 
@@ -102,37 +112,11 @@ Constructor.
 
 ## Methods
 
-|                                                                                                                                                                                                                                          |                                                                                                                                                                                                                                             |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.components.variational_forms.UCCSD.__init__ "qiskit.chemistry.components.variational_forms.UCCSD.__init__")(num\_orbitals, num\_particles\[, …])                                                          | Constructor.                                                                                                                                                                                                                                |
-| [`compute_excitation_lists`](#qiskit.chemistry.components.variational_forms.UCCSD.compute_excitation_lists "qiskit.chemistry.components.variational_forms.UCCSD.compute_excitation_lists")(num\_particles, …)                            | Computes single and double excitation lists.                                                                                                                                                                                                |
-| [`compute_excitation_lists_singlet`](#qiskit.chemistry.components.variational_forms.UCCSD.compute_excitation_lists_singlet "qiskit.chemistry.components.variational_forms.UCCSD.compute_excitation_lists_singlet")(double\_exc, …)       | Outputs the list of lists of grouped excitation.                                                                                                                                                                                            |
-| [`construct_circuit`](#qiskit.chemistry.components.variational_forms.UCCSD.construct_circuit "qiskit.chemistry.components.variational_forms.UCCSD.construct_circuit")(parameters\[, q])                                                  | Construct the variational form, given its parameters.                                                                                                                                                                                       |
-| [`get_entangler_map`](#qiskit.chemistry.components.variational_forms.UCCSD.get_entangler_map "qiskit.chemistry.components.variational_forms.UCCSD.get_entangler_map")(map\_type, num\_qubits\[, offset])                                 | returns entangler map                                                                                                                                                                                                                       |
-| [`group_excitations`](#qiskit.chemistry.components.variational_forms.UCCSD.group_excitations "qiskit.chemistry.components.variational_forms.UCCSD.group_excitations")(list\_de, num\_orbitals)                                           | Groups the excitations and gives out the remaining ones in the list\_de\_temp list because those excitations are controlled by the same parameter in full singlet UCCSD unlike in usual UCCSD where every excitation has its own parameter. |
-| [`group_excitations_if_same_ao`](#qiskit.chemistry.components.variational_forms.UCCSD.group_excitations_if_same_ao "qiskit.chemistry.components.variational_forms.UCCSD.group_excitations_if_same_ao")(list\_de, …)                      | Define that, given list of double excitations list\_de and number of spin-orbitals num\_orbitals, which excitations involve the same spatial orbitals for full singlet UCCSD.                                                               |
-| [`manage_hopping_operators`](#qiskit.chemistry.components.variational_forms.UCCSD.manage_hopping_operators "qiskit.chemistry.components.variational_forms.UCCSD.manage_hopping_operators")()                                             | Triggers the adaptive behavior of this UCCSD instance.                                                                                                                                                                                      |
-| [`order_labels_for_hopping_ops`](#qiskit.chemistry.components.variational_forms.UCCSD.order_labels_for_hopping_ops "qiskit.chemistry.components.variational_forms.UCCSD.order_labels_for_hopping_ops")(double\_exc, gde)                 | Orders the hopping operators according to the grouped excitations for the full singlet UCCSD.                                                                                                                                               |
-| [`pop_hopping_operator`](#qiskit.chemistry.components.variational_forms.UCCSD.pop_hopping_operator "qiskit.chemistry.components.variational_forms.UCCSD.pop_hopping_operator")()                                                         | Pops the hopping operator that was added last.                                                                                                                                                                                              |
-| [`push_hopping_operator`](#qiskit.chemistry.components.variational_forms.UCCSD.push_hopping_operator "qiskit.chemistry.components.variational_forms.UCCSD.push_hopping_operator")(excitation)                                            | Pushes a new hopping operator.                                                                                                                                                                                                              |
-| [`same_ao_double_excitation_block_spin`](#qiskit.chemistry.components.variational_forms.UCCSD.same_ao_double_excitation_block_spin "qiskit.chemistry.components.variational_forms.UCCSD.same_ao_double_excitation_block_spin")(de\_1, …) | Regroups the excitations that involve same spatial orbitals for example, with labeling.                                                                                                                                                     |
-| [`validate_entangler_map`](#qiskit.chemistry.components.variational_forms.UCCSD.validate_entangler_map "qiskit.chemistry.components.variational_forms.UCCSD.validate_entangler_map")(entangler\_map, num\_qubits)                        | validate entangler map                                                                                                                                                                                                                      |
-
 ## Attributes
 
-|                                                                                                                                                                                                           |                                                                                             |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------- |
-| [`double_excitations`](#qiskit.chemistry.components.variational_forms.UCCSD.double_excitations "qiskit.chemistry.components.variational_forms.UCCSD.double_excitations")                                  | Getter of double excitation list :returns: double excitation list :rtype: list\[list\[int]] |
-| [`excitation_pool`](#qiskit.chemistry.components.variational_forms.UCCSD.excitation_pool "qiskit.chemistry.components.variational_forms.UCCSD.excitation_pool")                                           | Returns the full list of available excitations (called the pool).                           |
-| [`num_parameters`](#qiskit.chemistry.components.variational_forms.UCCSD.num_parameters "qiskit.chemistry.components.variational_forms.UCCSD.num_parameters")                                              | Number of parameters of the variational form.                                               |
-| [`num_qubits`](#qiskit.chemistry.components.variational_forms.UCCSD.num_qubits "qiskit.chemistry.components.variational_forms.UCCSD.num_qubits")                                                          | Number of qubits of the variational form.                                                   |
-| [`parameter_bounds`](#qiskit.chemistry.components.variational_forms.UCCSD.parameter_bounds "qiskit.chemistry.components.variational_forms.UCCSD.parameter_bounds")                                        | Parameter bounds.                                                                           |
-| [`preferred_init_points`](#qiskit.chemistry.components.variational_forms.UCCSD.preferred_init_points "qiskit.chemistry.components.variational_forms.UCCSD.preferred_init_points")                         | Getter of preferred initial points based on the given initial state.                        |
-| [`setting`](#qiskit.chemistry.components.variational_forms.UCCSD.setting "qiskit.chemistry.components.variational_forms.UCCSD.setting")                                                                   |                                                                                             |
-| [`single_excitations`](#qiskit.chemistry.components.variational_forms.UCCSD.single_excitations "qiskit.chemistry.components.variational_forms.UCCSD.single_excitations")                                  | Getter of single excitation list :returns: single excitation list :rtype: list\[list\[int]] |
-| [`support_parameterized_circuit`](#qiskit.chemistry.components.variational_forms.UCCSD.support_parameterized_circuit "qiskit.chemistry.components.variational_forms.UCCSD.support_parameterized_circuit") | Whether or not the sub-class support parameterized circuit.                                 |
+### compute\_excitation\_lists
 
-
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.compute_excitation_lists" />
 
 `static compute_excitation_lists(num_particles, num_orbitals, active_occ_list=None, active_unocc_list=None, same_spin_doubles=True, method_singles='both', method_doubles='ucc', excitation_type='sd')`
 
@@ -162,7 +146,9 @@ list
 *   **ValueError** – invalid setting of number of particles
 *   **ValueError** – invalid setting of number of orbitals
 
+### compute\_excitation\_lists\_singlet
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.compute_excitation_lists_singlet" />
 
 `static compute_excitation_lists_singlet(double_exc, num_orbitals)`
 
@@ -181,7 +167,9 @@ de\_groups grouped excitations
 
 list
 
+### construct\_circuit
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.construct_circuit" />
 
 `construct_circuit(parameters, q=None)`
 
@@ -189,8 +177,8 @@ Construct the variational form, given its parameters.
 
 **Parameters**
 
-*   **parameters** (*Union(numpy.ndarray, list\[*[*Parameter*](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter")*],* [*ParameterVector*](qiskit.circuit.ParameterVector#qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")*)*) – circuit parameters
-*   **q** ([*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*, optional*) – Quantum Register for the circuit.
+*   **parameters** (*Union(numpy.ndarray, list\[*[*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")*],* [*ParameterVector*](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector")*)*) – circuit parameters
+*   **q** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*, optional*) – Quantum Register for the circuit.
 
 **Returns**
 
@@ -198,19 +186,23 @@ a quantum circuit with given parameters
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **ValueError** – the number of parameters is incorrect.
 
+### double\_excitations
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.double_excitations" />
 
 `property double_excitations`
 
 Getter of double excitation list :returns: double excitation list :rtype: list\[list\[int]]
 
+### excitation\_pool
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.excitation_pool" />
 
 `property excitation_pool`
 
@@ -220,13 +212,17 @@ Returns the full list of available excitations (called the pool).
 
 `List`\[`WeightedPauliOperator`]
 
+### get\_entangler\_map
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.get_entangler_map" />
 
 `static get_entangler_map(map_type, num_qubits, offset=0)`
 
 returns entangler map
 
+### group\_excitations
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.group_excitations" />
 
 `static group_excitations(list_de, num_orbitals)`
 
@@ -245,7 +241,9 @@ list\_same\_ao\_group, list\_de\_temp, the grouped double\_exc (that involve sam
 
 tuple
 
+### group\_excitations\_if\_same\_ao
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.group_excitations_if_same_ao" />
 
 `static group_excitations_if_same_ao(list_de, num_orbitals)`
 
@@ -264,13 +262,17 @@ grouped list of excitations
 
 list
 
+### manage\_hopping\_operators
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.manage_hopping_operators" />
 
 `manage_hopping_operators()`
 
 Triggers the adaptive behavior of this UCCSD instance. This function is used by the Adaptive VQE algorithm. It stores the full list of available hopping operators in a so called “excitation pool” and clears the previous list to be empty. Furthermore, the depth is asserted to be 1 which is required by the Adaptive VQE algorithm.
 
+### num\_parameters
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.num_parameters" />
 
 `property num_parameters`
 
@@ -284,7 +286,9 @@ An integer indicating the number of parameters.
 
 int
 
+### num\_qubits
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.num_qubits" />
 
 `property num_qubits`
 
@@ -298,7 +302,9 @@ An integer indicating the number of qubits.
 
 int
 
+### order\_labels\_for\_hopping\_ops
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.order_labels_for_hopping_ops" />
 
 `static order_labels_for_hopping_ops(double_exc, gde)`
 
@@ -317,7 +323,9 @@ ordered\_labels to order hopping ops
 
 list
 
+### parameter\_bounds
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.parameter_bounds" />
 
 `property parameter_bounds`
 
@@ -331,19 +339,25 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 list
 
+### pop\_hopping\_operator
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.pop_hopping_operator" />
 
 `pop_hopping_operator()`
 
 Pops the hopping operator that was added last.
 
+### preferred\_init\_points
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.preferred_init_points" />
 
 `property preferred_init_points`
 
 Getter of preferred initial points based on the given initial state.
 
+### push\_hopping\_operator
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.push_hopping_operator" />
 
 `push_hopping_operator(excitation)`
 
@@ -351,9 +365,11 @@ Pushes a new hopping operator.
 
 **Parameters**
 
-**excitation** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – the new hopping operator to be added
+**excitation** ([*WeightedPauliOperator*](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")) – the new hopping operator to be added
 
+### same\_ao\_double\_excitation\_block\_spin
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.same_ao_double_excitation_block_spin" />
 
 `static same_ao_double_excitation_block_spin(de_1, de_2, num_orbitals)`
 
@@ -377,17 +393,23 @@ says if given excitation involves same spatial orbitals 1 = yes, 0 = no.
 
 int
 
+### setting
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.setting" />
 
 `property setting`
 
+### single\_excitations
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.single_excitations" />
 
 `property single_excitations`
 
 Getter of single excitation list :returns: single excitation list :rtype: list\[list\[int]]
 
+### support\_parameterized\_circuit
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.support_parameterized_circuit" />
 
 `property support_parameterized_circuit`
 
@@ -401,8 +423,11 @@ indicate the sub-class support parameterized circuit
 
 boolean
 
+### validate\_entangler\_map
 
+<span id="qiskit.chemistry.components.variational_forms.UCCSD.validate_entangler_map" />
 
 `static validate_entangler_map(entangler_map, num_qubits)`
 
 validate entangler map
+

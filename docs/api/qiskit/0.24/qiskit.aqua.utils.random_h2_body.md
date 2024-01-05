@@ -1,8 +1,16 @@
+---
+title: random_h2_body
+description: API reference for qiskit.aqua.utils.random_h2_body
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.aqua.utils.random_h2_body
+---
+
 <span id="qiskit-aqua-utils-random-h2-body" />
 
 # qiskit.aqua.utils.random\_h2\_body
 
-
+<span id="qiskit.aqua.utils.random_h2_body" />
 
 `random_h2_body(N, M)`
 
@@ -24,3 +32,4 @@ np.ndarray
 **Raises**
 
 **ValueError** – invalid spin orbitals
+

@@ -1,8 +1,16 @@
+---
+title: kernel_F2
+description: API reference for qiskit.aqua.operators.legacy.kernel_F2
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.aqua.operators.legacy.kernel_F2
+---
+
 <span id="qiskit-aqua-operators-legacy-kernel-f2" />
 
 # qiskit.aqua.operators.legacy.kernel\_F2
 
-
+<span id="qiskit.aqua.operators.legacy.kernel_F2" />
 
 `kernel_F2(matrix_in)`
 
@@ -19,3 +27,4 @@ the list of kernel vectors
 **Return type**
 
 list\[numpy.ndarray]
+

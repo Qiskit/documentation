@@ -1,6 +1,14 @@
+---
+title: PySCFDriver
+description: API reference for qiskit.chemistry.drivers.PySCFDriver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.drivers.PySCFDriver
+---
+
 # qiskit.chemistry.drivers.PySCFDriver
 
-
+<span id="qiskit.chemistry.drivers.PySCFDriver" />
 
 `PySCFDriver(atom='H 0.0 0.0 0.0; H 0.0 0.0 0.735', unit=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, spin=0, basis='sto3g', hf_method=<HFMethodType.RHF: 'rhf'>, conv_tol=1e-09, max_cycle=50, init_guess=<InitialGuess.MINAO: 'minao'>, max_memory=None, molecule=None)`
 
@@ -24,9 +32,11 @@ See [https://sunqm.github.io/pyscf/](https://sunqm.github.io/pyscf/)
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.drivers.PySCFDriver.__init__" />
 
 `__init__(atom='H 0.0 0.0 0.0; H 0.0 0.0 0.735', unit=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, spin=0, basis='sto3g', hf_method=<HFMethodType.RHF: 'rhf'>, conv_tol=1e-09, max_cycle=50, init_guess=<InitialGuess.MINAO: 'minao'>, max_memory=None, molecule=None)`
 
@@ -46,25 +56,15 @@ See [https://sunqm.github.io/pyscf/](https://sunqm.github.io/pyscf/)
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
 ## Methods
 
-|                                                                                                                                                     |                                              |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.drivers.PySCFDriver.__init__ "qiskit.chemistry.drivers.PySCFDriver.__init__")(\[atom, unit, charge, spin, basis, …]) | **type atom**`Union`\[`str`, `List`\[`str`]] |
-| [`run`](#qiskit.chemistry.drivers.PySCFDriver.run "qiskit.chemistry.drivers.PySCFDriver.run")()                                                     | Runs driver to produce a QMolecule output.   |
-
 ## Attributes
 
-|                                                                                                                                         |                                                 |
-| --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [`basis`](#qiskit.chemistry.drivers.PySCFDriver.basis "qiskit.chemistry.drivers.PySCFDriver.basis")                                     | return basis                                    |
-| [`hf_method`](#qiskit.chemistry.drivers.PySCFDriver.hf_method "qiskit.chemistry.drivers.PySCFDriver.hf_method")                         | return Hartree-Fock method                      |
-| [`molecule`](#qiskit.chemistry.drivers.PySCFDriver.molecule "qiskit.chemistry.drivers.PySCFDriver.molecule")                            | return molecule                                 |
-| [`supports_molecule`](#qiskit.chemistry.drivers.PySCFDriver.supports_molecule "qiskit.chemistry.drivers.PySCFDriver.supports_molecule") | True for derived classes that support Molecule. |
+### basis
 
-
+<span id="qiskit.chemistry.drivers.PySCFDriver.basis" />
 
 `property basis`
 
@@ -74,7 +74,9 @@ return basis
 
 `str`
 
+### hf\_method
 
+<span id="qiskit.chemistry.drivers.PySCFDriver.hf_method" />
 
 `property hf_method`
 
@@ -84,7 +86,9 @@ return Hartree-Fock method
 
 `str`
 
+### molecule
 
+<span id="qiskit.chemistry.drivers.PySCFDriver.molecule" />
 
 `property molecule`
 
@@ -94,7 +98,9 @@ return molecule
 
 `Optional`\[`Molecule`]
 
+### run
 
+<span id="qiskit.chemistry.drivers.PySCFDriver.run" />
 
 `run()`
 
@@ -108,7 +114,9 @@ Runs driver to produce a QMolecule output.
 
 A QMolecule containing the molecular data.
 
+### supports\_molecule
 
+<span id="qiskit.chemistry.drivers.PySCFDriver.supports_molecule" />
 
 `property supports_molecule`
 
@@ -121,3 +129,4 @@ True for derived classes that support Molecule.
 **Returns**
 
 True if Molecule is supported.
+

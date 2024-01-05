@@ -1,8 +1,16 @@
+---
+title: SabreSwap
+description: API reference for qiskit.transpiler.passes.SabreSwap
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.SabreSwap
+---
+
 <span id="qiskit-transpiler-passes-sabreswap" />
 
 # qiskit.transpiler.passes.SabreSwap
 
-
+<span id="qiskit.transpiler.passes.SabreSwap" />
 
 `SabreSwap(*args, **kwargs)`
 
@@ -24,7 +32,7 @@ SabreSwap initializer.
 
 **Parameters**
 
-*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – CouplingMap of the target backend.
+*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – CouplingMap of the target backend.
 *   **heuristic** (*str*) – The type of heuristic to use when deciding best swap strategy (‘basic’ or ‘lookahead’ or ‘decay’).
 *   **seed** (*int*) – random seed used to tie-break among candidate swaps.
 
@@ -60,7 +68,9 @@ Additional Information:
 >     }\end{split}
 > $$
 
+### \_\_init\_\_
 
+<span id="qiskit.transpiler.passes.SabreSwap.__init__" />
 
 `__init__(coupling_map, heuristic='basic', seed=None)`
 
@@ -68,7 +78,7 @@ SabreSwap initializer.
 
 **Parameters**
 
-*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – CouplingMap of the target backend.
+*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")) – CouplingMap of the target backend.
 *   **heuristic** (*str*) – The type of heuristic to use when deciding best swap strategy (‘basic’ or ‘lookahead’ or ‘decay’).
 *   **seed** (*int*) – random seed used to tie-break among candidate swaps.
 
@@ -106,20 +116,11 @@ Additional Information:
 
 ## Methods
 
-|                                                                                                                                             |                                |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| [`__init__`](#qiskit.transpiler.passes.SabreSwap.__init__ "qiskit.transpiler.passes.SabreSwap.__init__")(coupling\_map\[, heuristic, seed]) | SabreSwap initializer.         |
-| [`name`](#qiskit.transpiler.passes.SabreSwap.name "qiskit.transpiler.passes.SabreSwap.name")()                                              | Return the name of the pass.   |
-| [`run`](#qiskit.transpiler.passes.SabreSwap.run "qiskit.transpiler.passes.SabreSwap.run")(dag)                                              | Run the SabreSwap pass on dag. |
-
 ## Attributes
 
-|                                                                                                                                                    |                                             |
-| -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------- |
-| [`is_analysis_pass`](#qiskit.transpiler.passes.SabreSwap.is_analysis_pass "qiskit.transpiler.passes.SabreSwap.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
-| [`is_transformation_pass`](#qiskit.transpiler.passes.SabreSwap.is_transformation_pass "qiskit.transpiler.passes.SabreSwap.is_transformation_pass") | Check if the pass is a transformation pass. |
+### is\_analysis\_pass
 
-
+<span id="qiskit.transpiler.passes.SabreSwap.is_analysis_pass" />
 
 `property is_analysis_pass`
 
@@ -127,7 +128,9 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
+### is\_transformation\_pass
 
+<span id="qiskit.transpiler.passes.SabreSwap.is_transformation_pass" />
 
 `property is_transformation_pass`
 
@@ -135,13 +138,17 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
+### name
 
+<span id="qiskit.transpiler.passes.SabreSwap.name" />
 
 `name()`
 
 Return the name of the pass.
 
+### run
 
+<span id="qiskit.transpiler.passes.SabreSwap.run" />
 
 `run(dag)`
 
@@ -149,7 +156,7 @@ Run the SabreSwap pass on dag.
 
 **Parameters**
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the directed acyclic graph to be mapped.
+**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the directed acyclic graph to be mapped.
 
 **Returns**
 
@@ -157,9 +164,10 @@ A dag mapped to be compatible with the coupling\_map.
 
 **Return type**
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
 **Raises**
 
-*   [**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the coupling map or the layout are not
+*   [**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the coupling map or the layout are not
 *   **compatible with the DAG** –
+

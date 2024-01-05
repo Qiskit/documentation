@@ -1,6 +1,14 @@
+---
+title: Acquire
+description: API reference for qiskit.pulse.Acquire
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.Acquire
+---
+
 # qiskit.pulse.Acquire
 
-
+<span id="qiskit.pulse.Acquire" />
 
 `Acquire(duration, channel, mem_slot=None, reg_slot=None, kernel=None, discriminator=None, name=None)`
 
@@ -26,9 +34,11 @@ Create a new Acquire instruction.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If channels are supplied, and the number of register and/or memory slots does not equal the number of channels.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If channels are supplied, and the number of register and/or memory slots does not equal the number of channels.
 
+### \_\_init\_\_
 
+<span id="qiskit.pulse.Acquire.__init__" />
 
 `__init__(duration, channel, mem_slot=None, reg_slot=None, kernel=None, discriminator=None, name=None)`
 
@@ -46,45 +56,15 @@ Create a new Acquire instruction.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If channels are supplied, and the number of register and/or memory slots does not equal the number of channels.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If channels are supplied, and the number of register and/or memory slots does not equal the number of channels.
 
 ## Methods
 
-|                                                                                                                      |                                                                                                                                                                                                     |
-| -------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.pulse.Acquire.__init__ "qiskit.pulse.Acquire.__init__")(duration, channel\[, mem\_slot, …])     | Create a new Acquire instruction.                                                                                                                                                                   |
-| [`append`](#qiskit.pulse.Acquire.append "qiskit.pulse.Acquire.append")(schedule\[, name])                            | Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`. |
-| [`assign_parameters`](#qiskit.pulse.Acquire.assign_parameters "qiskit.pulse.Acquire.assign_parameters")(value\_dict) | Modify and return self with parameters assigned according to the input.                                                                                                                             |
-| [`ch_duration`](#qiskit.pulse.Acquire.ch_duration "qiskit.pulse.Acquire.ch_duration")(\*channels)                    | Return duration of the supplied channels in this Instruction.                                                                                                                                       |
-| [`ch_start_time`](#qiskit.pulse.Acquire.ch_start_time "qiskit.pulse.Acquire.ch_start_time")(\*channels)              | Return minimum start time for supplied channels.                                                                                                                                                    |
-| [`ch_stop_time`](#qiskit.pulse.Acquire.ch_stop_time "qiskit.pulse.Acquire.ch_stop_time")(\*channels)                 | Return maximum start time for supplied channels.                                                                                                                                                    |
-| [`draw`](#qiskit.pulse.Acquire.draw "qiskit.pulse.Acquire.draw")(\[dt, style, filename, interp\_method, …])          | Plot the instruction.                                                                                                                                                                               |
-| [`flatten`](#qiskit.pulse.Acquire.flatten "qiskit.pulse.Acquire.flatten")()                                          | Return itself as already single instruction.                                                                                                                                                        |
-| [`insert`](#qiskit.pulse.Acquire.insert "qiskit.pulse.Acquire.insert")(start\_time, schedule\[, name])               | Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.                                              |
-| [`is_parameterized`](#qiskit.pulse.Acquire.is_parameterized "qiskit.pulse.Acquire.is_parameterized")()               | Return True iff the instruction is parameterized.                                                                                                                                                   |
-| [`shift`](#qiskit.pulse.Acquire.shift "qiskit.pulse.Acquire.shift")(time\[, name])                                   | Return a new schedule shifted forward by time.                                                                                                                                                      |
-
 ## Attributes
 
-|                                                                                             |                                                                                                                                                    |
-| ------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`acquire`](#qiskit.pulse.Acquire.acquire "qiskit.pulse.Acquire.acquire")                   | Acquire channel to acquire data.                                                                                                                   |
-| [`channel`](#qiskit.pulse.Acquire.channel "qiskit.pulse.Acquire.channel")                   | Return the [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel") that this instruction is scheduled on. |
-| [`channels`](#qiskit.pulse.Acquire.channels "qiskit.pulse.Acquire.channels")                | Returns the channels that this schedule uses.                                                                                                      |
-| [`discriminator`](#qiskit.pulse.Acquire.discriminator "qiskit.pulse.Acquire.discriminator") | Return discrimination settings.                                                                                                                    |
-| [`duration`](#qiskit.pulse.Acquire.duration "qiskit.pulse.Acquire.duration")                | Duration of this instruction.                                                                                                                      |
-| [`id`](#qiskit.pulse.Acquire.id "qiskit.pulse.Acquire.id")                                  | Unique identifier for this instruction.                                                                                                            |
-| [`instructions`](#qiskit.pulse.Acquire.instructions "qiskit.pulse.Acquire.instructions")    | Iterable for getting instructions from Schedule tree.                                                                                              |
-| [`kernel`](#qiskit.pulse.Acquire.kernel "qiskit.pulse.Acquire.kernel")                      | Return kernel settings.                                                                                                                            |
-| [`mem_slot`](#qiskit.pulse.Acquire.mem_slot "qiskit.pulse.Acquire.mem_slot")                | The classical memory slot which will store the classified readout result.                                                                          |
-| [`name`](#qiskit.pulse.Acquire.name "qiskit.pulse.Acquire.name")                            | Name of this instruction.                                                                                                                          |
-| [`operands`](#qiskit.pulse.Acquire.operands "qiskit.pulse.Acquire.operands")                | Return instruction operands.                                                                                                                       |
-| [`parameters`](#qiskit.pulse.Acquire.parameters "qiskit.pulse.Acquire.parameters")          | Parameters which determine the instruction behavior.                                                                                               |
-| [`reg_slot`](#qiskit.pulse.Acquire.reg_slot "qiskit.pulse.Acquire.reg_slot")                | The fast-access register slot which will store the classified readout result for fast-feedback computation.                                        |
-| [`start_time`](#qiskit.pulse.Acquire.start_time "qiskit.pulse.Acquire.start_time")          | Relative begin time of this instruction.                                                                                                           |
-| [`stop_time`](#qiskit.pulse.Acquire.stop_time "qiskit.pulse.Acquire.stop_time")             | Relative end time of this instruction.                                                                                                             |
+### acquire
 
-
+<span id="qiskit.pulse.Acquire.acquire" />
 
 `property acquire`
 
@@ -94,11 +74,13 @@ Acquire channel to acquire data. The `AcquireChannel` index maps trivially to qu
 
 [`AcquireChannel`](qiskit.pulse.channels#qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
 
+### append
 
+<span id="qiskit.pulse.Acquire.append" />
 
 `append(schedule, name=None)`
 
-Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
+Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
 **Parameters**
 
@@ -111,9 +93,11 @@ A new schedule with `schedule` a this instruction at t=0.
 
 **Return type**
 
-[Schedule](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
+### assign\_parameters
 
+<span id="qiskit.pulse.Acquire.assign_parameters" />
 
 `assign_parameters(value_dict)`
 
@@ -131,7 +115,9 @@ Modify and return self with parameters assigned according to the input.
 
 Self with updated parameters.
 
+### ch\_duration
 
+<span id="qiskit.pulse.Acquire.ch_duration" />
 
 `ch_duration(*channels)`
 
@@ -145,7 +131,9 @@ Return duration of the supplied channels in this Instruction.
 
 `int`
 
+### ch\_start\_time
 
+<span id="qiskit.pulse.Acquire.ch_start_time" />
 
 `ch_start_time(*channels)`
 
@@ -159,7 +147,9 @@ Return minimum start time for supplied channels.
 
 `int`
 
+### ch\_stop\_time
 
+<span id="qiskit.pulse.Acquire.ch_stop_time" />
 
 `ch_stop_time(*channels)`
 
@@ -173,7 +163,9 @@ Return maximum start time for supplied channels.
 
 `int`
 
+### channel
 
+<span id="qiskit.pulse.Acquire.channel" />
 
 `property channel`
 
@@ -183,7 +175,9 @@ Return the [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qisk
 
 [`AcquireChannel`](qiskit.pulse.channels#qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
 
+### channels
 
+<span id="qiskit.pulse.Acquire.channels" />
 
 `property channels`
 
@@ -193,7 +187,9 @@ Returns the channels that this schedule uses.
 
 `Tuple`\[`Union`\[[`AcquireChannel`](qiskit.pulse.channels#qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel"), [`MemorySlot`](qiskit.pulse.channels#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")]]
 
+### discriminator
 
+<span id="qiskit.pulse.Acquire.discriminator" />
 
 `property discriminator`
 
@@ -203,7 +199,9 @@ Return discrimination settings.
 
 `Discriminator`
 
+### draw
 
+<span id="qiskit.pulse.Acquire.draw" />
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`
 
@@ -232,7 +230,9 @@ A matplotlib figure object of the pulse schedule
 
 matplotlib.figure
 
+### duration
 
+<span id="qiskit.pulse.Acquire.duration" />
 
 `property duration`
 
@@ -242,7 +242,9 @@ Duration of this instruction.
 
 `Union`\[`int`, `ParameterExpression`]
 
+### flatten
 
+<span id="qiskit.pulse.Acquire.flatten" />
 
 `flatten()`
 
@@ -252,7 +254,9 @@ Return itself as already single instruction.
 
 `Instruction`
 
+### id
 
+<span id="qiskit.pulse.Acquire.id" />
 
 `property id`
 
@@ -262,11 +266,13 @@ Unique identifier for this instruction.
 
 `int`
 
+### insert
 
+<span id="qiskit.pulse.Acquire.insert" />
 
 `insert(start_time, schedule, name=None)`
 
-Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
+Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
 
 **Parameters**
 
@@ -280,9 +286,11 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 **Return type**
 
-[Schedule](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
+### instructions
 
+<span id="qiskit.pulse.Acquire.instructions" />
 
 `property instructions`
 
@@ -292,7 +300,9 @@ Iterable for getting instructions from Schedule tree.
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
+### is\_parameterized
 
+<span id="qiskit.pulse.Acquire.is_parameterized" />
 
 `is_parameterized()`
 
@@ -302,7 +312,9 @@ Return True iff the instruction is parameterized.
 
 `bool`
 
+### kernel
 
+<span id="qiskit.pulse.Acquire.kernel" />
 
 `property kernel`
 
@@ -312,7 +324,9 @@ Return kernel settings.
 
 `Kernel`
 
+### mem\_slot
 
+<span id="qiskit.pulse.Acquire.mem_slot" />
 
 `property mem_slot`
 
@@ -322,7 +336,9 @@ The classical memory slot which will store the classified readout result.
 
 [`MemorySlot`](qiskit.pulse.channels#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")
 
+### name
 
+<span id="qiskit.pulse.Acquire.name" />
 
 `property name`
 
@@ -332,7 +348,9 @@ Name of this instruction.
 
 `str`
 
+### operands
 
+<span id="qiskit.pulse.Acquire.operands" />
 
 `property operands`
 
@@ -342,7 +360,9 @@ Return instruction operands.
 
 `Tuple`
 
+### parameters
 
+<span id="qiskit.pulse.Acquire.parameters" />
 
 `property parameters`
 
@@ -352,7 +372,9 @@ Parameters which determine the instruction behavior.
 
 `Set`
 
+### reg\_slot
 
+<span id="qiskit.pulse.Acquire.reg_slot" />
 
 `property reg_slot`
 
@@ -362,7 +384,9 @@ The fast-access register slot which will store the classified readout result for
 
 [`RegisterSlot`](qiskit.pulse.channels#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")
 
+### shift
 
+<span id="qiskit.pulse.Acquire.shift" />
 
 `shift(time, name=None)`
 
@@ -379,9 +403,11 @@ The shifted schedule.
 
 **Return type**
 
-[Schedule](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
+### start\_time
 
+<span id="qiskit.pulse.Acquire.start_time" />
 
 `property start_time`
 
@@ -391,7 +417,9 @@ Relative begin time of this instruction.
 
 `int`
 
+### stop\_time
 
+<span id="qiskit.pulse.Acquire.stop_time" />
 
 `property stop_time`
 
@@ -400,3 +428,4 @@ Relative end time of this instruction.
 **Return type**
 
 `int`
+

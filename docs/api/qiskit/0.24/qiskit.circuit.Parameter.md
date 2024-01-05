@@ -1,8 +1,16 @@
+---
+title: Parameter
+description: API reference for qiskit.circuit.Parameter
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.Parameter
+---
+
 <span id="qiskit-circuit-parameter" />
 
 # qiskit.circuit.Parameter
 
-
+<span id="qiskit.circuit.Parameter" />
 
 `Parameter(name)`
 
@@ -14,7 +22,9 @@ Create a new named [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Param
 
 **name** (`str`) – name of the `Parameter`, used for visual representation. This can be any unicode string, e.g. “ϕ”.
 
+### \_\_init\_\_
 
+<span id="qiskit.circuit.Parameter.__init__" />
 
 `__init__(name)`
 
@@ -26,22 +36,11 @@ Create a new named [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Param
 
 ## Methods
 
-|                                                                                                  |                                                                                               |
-| ------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.circuit.Parameter.__init__ "qiskit.circuit.Parameter.__init__")(name)       | Create a new named [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter").       |
-| [`assign`](#qiskit.circuit.Parameter.assign "qiskit.circuit.Parameter.assign")(parameter, value) | Assign one parameter to a value, which can either be numeric or another parameter expression. |
-| [`bind`](#qiskit.circuit.Parameter.bind "qiskit.circuit.Parameter.bind")(parameter\_values)      | Binds the provided set of parameters to their corresponding values.                           |
-| [`conjugate`](#qiskit.circuit.Parameter.conjugate "qiskit.circuit.Parameter.conjugate")()        | Return the conjugate, which is the ParameterExpression itself, since it is real.              |
-| [`subs`](#qiskit.circuit.Parameter.subs "qiskit.circuit.Parameter.subs")(parameter\_map)         | Substitute self with the corresponding parameter in `parameter_map`.                          |
-
 ## Attributes
 
-|                                                                                            |                                                                                              |
-| ------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------- |
-| [`name`](#qiskit.circuit.Parameter.name "qiskit.circuit.Parameter.name")                   | Returns the name of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter"). |
-| [`parameters`](#qiskit.circuit.Parameter.parameters "qiskit.circuit.Parameter.parameters") | Returns a set of the unbound Parameters in the expression.                                   |
+### assign
 
-
+<span id="qiskit.circuit.Parameter.assign" />
 
 `assign(parameter, value)`
 
@@ -60,7 +59,9 @@ Assign one parameter to a value, which can either be numeric or another paramete
 
 A new expression parameterized by any parameters which were not bound by assignment.
 
+### bind
 
+<span id="qiskit.circuit.Parameter.bind" />
 
 `bind(parameter_values)`
 
@@ -88,7 +89,9 @@ Binds the provided set of parameters to their corresponding values.
 
 A new expression parameterized by any parameters which were not bound by parameter\_values.
 
+### conjugate
 
+<span id="qiskit.circuit.Parameter.conjugate" />
 
 `conjugate()`
 
@@ -98,13 +101,17 @@ Return the conjugate, which is the ParameterExpression itself, since it is real.
 
 `ParameterExpression`
 
+### name
 
+<span id="qiskit.circuit.Parameter.name" />
 
 `property name`
 
 Returns the name of the [`Parameter`](#qiskit.circuit.Parameter "qiskit.circuit.Parameter").
 
+### parameters
 
+<span id="qiskit.circuit.Parameter.parameters" />
 
 `property parameters`
 
@@ -114,8 +121,11 @@ Returns a set of the unbound Parameters in the expression.
 
 `Set`
 
+### subs
 
+<span id="qiskit.circuit.Parameter.subs" />
 
 `subs(parameter_map)`
 
 Substitute self with the corresponding parameter in `parameter_map`.
+

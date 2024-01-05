@@ -1,8 +1,16 @@
+---
+title: StatevectorSimulator
+description: API reference for qiskit.providers.aer.StatevectorSimulator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.StatevectorSimulator
+---
+
 <span id="qiskit-providers-aer-statevectorsimulator" />
 
 # qiskit.providers.aer.StatevectorSimulator
 
-
+<span id="qiskit.providers.aer.StatevectorSimulator" />
 
 `StatevectorSimulator(configuration=None, properties=None, provider=None, **backend_options)`
 
@@ -46,18 +54,20 @@ This method should initialize the module and its configuration, and raise an exc
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
-*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
-*   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults#qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
+*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
+*   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
 *   **available\_methods** (*list or None*) – Optional, the available simulation methods if backend supports multiple methods.
-*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – Optional, provider responsible for this backend.
+*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – Optional, provider responsible for this backend.
 *   **backend\_options** (*dict or None*) – Optional set custom backend options.
 
 **Raises**
 
-[**AerError**](qiskit.providers.aer.AerError#qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
+[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.aer.StatevectorSimulator.__init__" />
 
 `__init__(configuration=None, properties=None, provider=None, **backend_options)`
 
@@ -67,53 +77,40 @@ This method should initialize the module and its configuration, and raise an exc
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
-*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
-*   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults#qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration.
+*   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *or None*) – Optional, backend properties.
+*   **defaults** ([*PulseDefaults*](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults") *or None*) – Optional, backend pulse defaults.
 *   **available\_methods** (*list or None*) – Optional, the available simulation methods if backend supports multiple methods.
-*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – Optional, provider responsible for this backend.
+*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – Optional, provider responsible for this backend.
 *   **backend\_options** (*dict or None*) – Optional set custom backend options.
 
 **Raises**
 
-[**AerError**](qiskit.providers.aer.AerError#qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
+[**AerError**](qiskit.providers.aer.AerError "qiskit.providers.aer.AerError") – if there is no name in the configuration
 
 ## Methods
 
-|                                                                                                                                                                |                                                 |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [`__init__`](#qiskit.providers.aer.StatevectorSimulator.__init__ "qiskit.providers.aer.StatevectorSimulator.__init__")(\[configuration, properties, provider]) | Aer class for backends.                         |
-| [`available_methods`](#qiskit.providers.aer.StatevectorSimulator.available_methods "qiskit.providers.aer.StatevectorSimulator.available_methods")()            | Return the available simulation methods.        |
-| [`clear_options`](#qiskit.providers.aer.StatevectorSimulator.clear_options "qiskit.providers.aer.StatevectorSimulator.clear_options")()                        | Reset the simulator options to default values.  |
-| [`configuration`](#qiskit.providers.aer.StatevectorSimulator.configuration "qiskit.providers.aer.StatevectorSimulator.configuration")()                        | Return the simulator backend configuration.     |
-| [`defaults`](#qiskit.providers.aer.StatevectorSimulator.defaults "qiskit.providers.aer.StatevectorSimulator.defaults")()                                       | Return the simulator backend pulse defaults.    |
-| [`name`](#qiskit.providers.aer.StatevectorSimulator.name "qiskit.providers.aer.StatevectorSimulator.name")()                                                   | Return the backend name.                        |
-| [`properties`](#qiskit.providers.aer.StatevectorSimulator.properties "qiskit.providers.aer.StatevectorSimulator.properties")()                                 | Return the simulator backend properties if set. |
-| [`provider`](#qiskit.providers.aer.StatevectorSimulator.provider "qiskit.providers.aer.StatevectorSimulator.provider")()                                       | Return the backend Provider.                    |
-| [`run`](#qiskit.providers.aer.StatevectorSimulator.run "qiskit.providers.aer.StatevectorSimulator.run")(qobj\[, backend\_options, validate])                   | Run a qobj on the backend.                      |
-| [`set_options`](#qiskit.providers.aer.StatevectorSimulator.set_options "qiskit.providers.aer.StatevectorSimulator.set_options")(\*\*backend\_options)          | Set the simulator options                       |
-| [`status`](#qiskit.providers.aer.StatevectorSimulator.status "qiskit.providers.aer.StatevectorSimulator.status")()                                             | Return backend status.                          |
-| [`version`](#qiskit.providers.aer.StatevectorSimulator.version "qiskit.providers.aer.StatevectorSimulator.version")()                                          | Return the backend version.                     |
-
 ## Attributes
 
-|                                                                                                                     |                                      |
-| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-| [`options`](#qiskit.providers.aer.StatevectorSimulator.options "qiskit.providers.aer.StatevectorSimulator.options") | Return the current simulator options |
+### available\_methods
 
-
+<span id="qiskit.providers.aer.StatevectorSimulator.available_methods" />
 
 `available_methods()`
 
 Return the available simulation methods.
 
+### clear\_options
 
+<span id="qiskit.providers.aer.StatevectorSimulator.clear_options" />
 
 `clear_options()`
 
 Reset the simulator options to default values.
 
+### configuration
 
+<span id="qiskit.providers.aer.StatevectorSimulator.configuration" />
 
 `configuration()`
 
@@ -125,9 +122,11 @@ the configuration for the backend.
 
 **Return type**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
 
+### defaults
 
+<span id="qiskit.providers.aer.StatevectorSimulator.defaults" />
 
 `defaults()`
 
@@ -141,9 +140,11 @@ backend does not support pulse.
 
 **Return type**
 
-[PulseDefaults](qiskit.providers.models.PulseDefaults#qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
+[PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
 
+### name
 
+<span id="qiskit.providers.aer.StatevectorSimulator.name" />
 
 `name()`
 
@@ -157,13 +158,17 @@ the name of the backend.
 
 str
 
+### options
 
+<span id="qiskit.providers.aer.StatevectorSimulator.options" />
 
 `property options`
 
 Return the current simulator options
 
+### properties
 
+<span id="qiskit.providers.aer.StatevectorSimulator.properties" />
 
 `properties()`
 
@@ -177,9 +182,11 @@ backend does not have properties set.
 
 **Return type**
 
-[BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
+### provider
 
+<span id="qiskit.providers.aer.StatevectorSimulator.provider" />
 
 `provider()`
 
@@ -191,9 +198,11 @@ the Provider responsible for the backend.
 
 **Return type**
 
-[BaseProvider](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
+[BaseProvider](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
 
+### run
 
+<span id="qiskit.providers.aer.StatevectorSimulator.run" />
 
 `run(qobj, backend_options=None, validate=False, **run_options)`
 
@@ -201,7 +210,7 @@ Run a qobj on the backend.
 
 **Parameters**
 
-*   **qobj** ([*QasmQobj*](qiskit.qobj.QasmQobj#qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj")) – The Qobj to be executed.
+*   **qobj** ([*QasmQobj*](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj")) – The Qobj to be executed.
 *   **backend\_options** (*dict or None*) – DEPRECATED dictionary of backend options for the execution (default: None).
 *   **validate** (*bool*) – validate the Qobj before running (default: False).
 *   **run\_options** (*kwargs*) – additional run time backend options.
@@ -212,20 +221,24 @@ The simulation job.
 
 **Return type**
 
-[AerJob](qiskit.providers.aer.AerJob#qiskit.providers.aer.AerJob "qiskit.providers.aer.AerJob")
+[AerJob](qiskit.providers.aer.AerJob "qiskit.providers.aer.AerJob")
 
 **Additional Information:**
 
 *   kwarg options specified in `run_options` will temporarily override any set options of the same name for the current run.
 *   The entries in the `backend_options` will be combined with the `Qobj.config` dictionary with the values of entries in `backend_options` taking precedence. This kwarg is deprecated and direct kwarg’s should be used for options to pass them to `run_options`.
 
+### set\_options
 
+<span id="qiskit.providers.aer.StatevectorSimulator.set_options" />
 
 `set_options(**backend_options)`
 
 Set the simulator options
 
+### status
 
+<span id="qiskit.providers.aer.StatevectorSimulator.status" />
 
 `status()`
 
@@ -237,9 +250,11 @@ the status of the backend.
 
 **Return type**
 
-[BackendStatus](qiskit.providers.models.BackendStatus#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
 
+### version
 
+<span id="qiskit.providers.aer.StatevectorSimulator.version" />
 
 `version()`
 
@@ -252,3 +267,4 @@ the X.X.X version of the backend.
 **Return type**
 
 str
+

@@ -1,6 +1,14 @@
+---
+title: barrier
+description: API reference for qiskit.pulse.builder.barrier
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.barrier
+---
+
 # qiskit.pulse.builder.barrier
 
-
+<span id="qiskit.pulse.builder.barrier" />
 
 `barrier(*channels_or_qubits, name=None)`
 
@@ -64,3 +72,4 @@ with pulse.build(backend) as pulse_prog:
 
 *   **channels\_or\_qubits** (`Union`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel"), `int`]) – Channels or qubits to barrier.
 *   **name** (`Optional`\[`str`]) – Name for the barrier
+

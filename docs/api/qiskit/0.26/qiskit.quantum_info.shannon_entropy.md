@@ -1,6 +1,14 @@
+---
+title: shannon_entropy
+description: API reference for qiskit.quantum_info.shannon_entropy
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.quantum_info.shannon_entropy
+---
+
 # qiskit.quantum\_info.shannon\_entropy
 
-
+<span id="qiskit.quantum_info.shannon_entropy" />
 
 `shannon_entropy(pvec, base=2)`
 
@@ -26,3 +34,4 @@ The Shannon entropy H(pvec).
 **Return type**
 
 float
+

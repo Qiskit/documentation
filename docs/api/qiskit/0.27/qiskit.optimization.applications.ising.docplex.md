@@ -1,3 +1,11 @@
+---
+title: get_operator
+description: API reference for qiskit.optimization.applications.ising.docplex.get_operator
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.optimization.applications.ising.docplex.get_operator
+---
+
 <span id="qiskit-optimization-applications-ising-docplex" />
 
 # qiskit.optimization.applications.ising.docplex
@@ -50,7 +58,7 @@ print('tsp objective:', result['energy'] + offset)
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
 | [`get_operator`](#qiskit.optimization.applications.ising.docplex.get_operator "qiskit.optimization.applications.ising.docplex.get_operator")(mdl\[, auto\_penalty, …]) | Generate Ising Hamiltonian from a model of DOcplex. |
 
-
+<span id="qiskit.optimization.applications.ising.docplex.get_operator" />
 
 `get_operator(mdl, auto_penalty=True, default_penalty=100000.0)`
 
@@ -69,3 +77,4 @@ Generate Ising Hamiltonian from a model of DOcplex.
 **Returns**
 
 Operator for the Hamiltonian and a constant shift for the obj function.
+

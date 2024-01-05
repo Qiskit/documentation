@@ -122,7 +122,7 @@ The choice of initial layout is extremely important when:
 
 The choice of initial\_layout can mean the difference between getting a result, and getting nothing but noise.
 
-Lets see what layouts are automatically picked at various optimization levels. The modified circuits returned by [`qiskit.compiler.transpile()`](qiskit.compiler.transpile#qiskit.compiler.transpile "qiskit.compiler.transpile") have this initial layout information in them, and we can view this layout selection graphically using [`qiskit.visualization.plot_circuit_layout()`](qiskit.visualization.plot_circuit_layout#qiskit.visualization.plot_circuit_layout "qiskit.visualization.plot_circuit_layout"):
+Lets see what layouts are automatically picked at various optimization levels. The modified circuits returned by [`qiskit.compiler.transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") have this initial layout information in them, and we can view this layout selection graphically using [`qiskit.visualization.plot_circuit_layout()`](qiskit.visualization.plot_circuit_layout "qiskit.visualization.plot_circuit_layout"):
 
 ```python
 from qiskit import QuantumCircuit, transpile
@@ -158,7 +158,7 @@ ghz.draw(output='mpl')
     >
     > ![../\_images/transpiler\_9\_0.png](/images/api/qiskit/0.27/transpiler_9_0.png) ![../\_images/transpiler\_9\_1.png](/images/api/qiskit/0.27/transpiler_9_1.png)
 
-It is completely possible to specify your own initial layout. To do so we can pass a list of integers to [`qiskit.compiler.transpile()`](qiskit.compiler.transpile#qiskit.compiler.transpile "qiskit.compiler.transpile") via the initial\_layout keyword argument, where the index labels the virtual qubit in the circuit and the corresponding value is the label for the physical qubit to map onto:
+It is completely possible to specify your own initial layout. To do so we can pass a list of integers to [`qiskit.compiler.transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") via the initial\_layout keyword argument, where the index labels the virtual qubit in the circuit and the corresponding value is the label for the physical qubit to map onto:
 
 ```python
 # Virtual -> physical
@@ -265,44 +265,44 @@ Gate counts: OrderedDict([('cx', 14), ('u2', 5), ('u3', 1)])
 
 ### Pass Manager Construction
 
-|                                                                                                                                                             |                                                                        |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`PassManager`](qiskit.transpiler.PassManager#qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")(\[passes, max\_iteration])                     | Manager for a set of Passes and their scheduling during transpilation. |
-| [`PassManagerConfig`](qiskit.transpiler.PassManagerConfig#qiskit.transpiler.PassManagerConfig "qiskit.transpiler.PassManagerConfig")(\[initial\_layout, …]) | Pass Manager Configuration.                                            |
-| [`PropertySet`](qiskit.transpiler.PropertySet#qiskit.transpiler.PropertySet "qiskit.transpiler.PropertySet")                                                | A default dictionary-like object                                       |
-| [`FlowController`](qiskit.transpiler.FlowController#qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")(passes, options, …)                | Base class for multiple types of working list.                         |
+|                                                                                                                         |                                                                        |
+| ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
+| [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")(\[passes, max\_iteration])               | Manager for a set of Passes and their scheduling during transpilation. |
+| [`PassManagerConfig`](qiskit.transpiler.PassManagerConfig "qiskit.transpiler.PassManagerConfig")(\[initial\_layout, …]) | Pass Manager Configuration.                                            |
+| [`PropertySet`](qiskit.transpiler.PropertySet "qiskit.transpiler.PropertySet")                                          | A default dictionary-like object                                       |
+| [`FlowController`](qiskit.transpiler.FlowController "qiskit.transpiler.FlowController")(passes, options, …)             | Base class for multiple types of working list.                         |
 
 ### Layout and Topology
 
-|                                                                                                                                            |                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------- |
-| [`Layout`](qiskit.transpiler.Layout#qiskit.transpiler.Layout "qiskit.transpiler.Layout")(\[input\_dict])                                   | Two-ways dict to represent a Layout.      |
-| [`CouplingMap`](qiskit.transpiler.CouplingMap#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")(\[couplinglist, description]) | Directed graph specifying fixed coupling. |
+|                                                                                                              |                                           |
+| ------------------------------------------------------------------------------------------------------------ | ----------------------------------------- |
+| [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout")(\[input\_dict])                              | Two-ways dict to represent a Layout.      |
+| [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")(\[couplinglist, description]) | Directed graph specifying fixed coupling. |
 
 ### Scheduling
 
-|                                                                                                                                                                                 |                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| [`InstructionDurations`](qiskit.transpiler.InstructionDurations#qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")(\[instruction\_durations, dt]) | Helper class to provide durations of instructions for scheduling. |
+|                                                                                                                                          |                                                                   |
+| ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")(\[instruction\_durations, dt]) | Helper class to provide durations of instructions for scheduling. |
 
 ### Fenced Objects
 
-|                                                                                                                                                               |                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [`FencedDAGCircuit`](qiskit.transpiler.FencedDAGCircuit#qiskit.transpiler.FencedDAGCircuit "qiskit.transpiler.FencedDAGCircuit")(dag\_circuit\_instance)      | A dag circuit that cannot be modified (via remove\_op\_node) |
-| [`FencedPropertySet`](qiskit.transpiler.FencedPropertySet#qiskit.transpiler.FencedPropertySet "qiskit.transpiler.FencedPropertySet")(property\_set\_instance) | A property set that cannot be written (via \_\_setitem\_\_)  |
+|                                                                                                                           |                                                              |
+| ------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
+| [`FencedDAGCircuit`](qiskit.transpiler.FencedDAGCircuit "qiskit.transpiler.FencedDAGCircuit")(dag\_circuit\_instance)     | A dag circuit that cannot be modified (via remove\_op\_node) |
+| [`FencedPropertySet`](qiskit.transpiler.FencedPropertySet "qiskit.transpiler.FencedPropertySet")(property\_set\_instance) | A property set that cannot be written (via \_\_setitem\_\_)  |
 
 ### Abstract Passes
 
-|                                                                                                                                                              |                                                      |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------- |
-| [`TransformationPass`](qiskit.transpiler.TransformationPass#qiskit.transpiler.TransformationPass "qiskit.transpiler.TransformationPass")(\*args, \*\*kwargs) | A transformation pass: change DAG, not property set. |
-| [`AnalysisPass`](qiskit.transpiler.AnalysisPass#qiskit.transpiler.AnalysisPass "qiskit.transpiler.AnalysisPass")(\*args, \*\*kwargs)                         | An analysis pass: change property set, not DAG.      |
+|                                                                                                                         |                                                      |
+| ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.TransformationPass")(\*args, \*\*kwargs) | A transformation pass: change DAG, not property set. |
+| [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.AnalysisPass")(\*args, \*\*kwargs)                   | An analysis pass: change property set, not DAG.      |
 
 ### Exceptions
 
-|                                                                                                                                                                 |                                                                 |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| [`TranspilerError`](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError")(\*message)                         | Exceptions raised during transpilation.                         |
-| [`TranspilerAccessError`](qiskit.transpiler.TranspilerAccessError#qiskit.transpiler.TranspilerAccessError "qiskit.transpiler.TranspilerAccessError")(\*message) | DEPRECATED: Exception of access error in the transpiler passes. |
+|                                                                                                                         |                                                                 |
+| ----------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
+| [`TranspilerError`](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError")(\*message)                   | Exceptions raised during transpilation.                         |
+| [`TranspilerAccessError`](qiskit.transpiler.TranspilerAccessError "qiskit.transpiler.TranspilerAccessError")(\*message) | DEPRECATED: Exception of access error in the transpiler passes. |
 

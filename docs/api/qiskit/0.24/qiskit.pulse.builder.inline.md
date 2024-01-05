@@ -1,8 +1,16 @@
+---
+title: inline
+description: API reference for qiskit.pulse.builder.inline
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.inline
+---
+
 <span id="qiskit-pulse-builder-inline" />
 
 # qiskit.pulse.builder.inline
 
-
+<span id="qiskit.pulse.builder.inline" />
 
 `inline()`
 
@@ -40,3 +48,4 @@ assert (pulse_prog.ch_start_time(d0) ==
 **Return type**
 
 `AbstractContextManager`\[`None`]
+

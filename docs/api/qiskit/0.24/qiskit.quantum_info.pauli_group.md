@@ -1,8 +1,16 @@
+---
+title: pauli_group
+description: API reference for qiskit.quantum_info.pauli_group
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.quantum_info.pauli_group
+---
+
 <span id="qiskit-quantum-info-pauli-group" />
 
 # qiskit.quantum\_info.pauli\_group
 
-
+<span id="qiskit.quantum_info.pauli_group" />
 
 `pauli_group(number_of_qubits, case='weight')`
 
@@ -27,3 +35,4 @@ list
 
 *   **QiskitError** – case is not ‘weight’ or ‘tensor’
 *   **QiskitError** – number\_of\_qubits is larger than 4
+

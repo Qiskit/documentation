@@ -1,3 +1,11 @@
+---
+title: check_solution_satisfiability
+description: API reference for qiskit.optimization.applications.ising.exact_cover.check_solution_satisfiability
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.optimization.applications.ising.exact_cover.check_solution_satisfiability
+---
+
 <span id="qiskit-optimization-applications-ising-exact-cover" />
 
 # qiskit.optimization.applications.ising.exact\_cover
@@ -12,13 +20,13 @@ exact cover
 | [`get_operator`](#qiskit.optimization.applications.ising.exact_cover.get_operator "qiskit.optimization.applications.ising.exact_cover.get_operator")(list\_of\_subsets)                                         | Construct the Hamiltonian for the exact solver problem. |
 | [`get_solution`](#qiskit.optimization.applications.ising.exact_cover.get_solution "qiskit.optimization.applications.ising.exact_cover.get_solution")(x)                                                         | **param x**binary string as numpy array.                |
 
-
+<span id="qiskit.optimization.applications.ising.exact_cover.check_solution_satisfiability" />
 
 `check_solution_satisfiability(sol, list_of_subsets)`
 
 check solution satisfiability
 
-
+<span id="qiskit.optimization.applications.ising.exact_cover.get_operator" />
 
 `get_operator(list_of_subsets)`
 
@@ -44,9 +52,9 @@ operator for the Hamiltonian, a constant shift for the obj function.
 
 **Return type**
 
-tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
 
-
+<span id="qiskit.optimization.applications.ising.exact_cover.get_solution" />
 
 `get_solution(x)`
 
@@ -61,3 +69,4 @@ graph solution as binary numpy array.
 **Return type**
 
 numpy.ndarray
+

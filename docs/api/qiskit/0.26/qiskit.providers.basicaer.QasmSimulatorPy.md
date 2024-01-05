@@ -1,6 +1,14 @@
+---
+title: QasmSimulatorPy
+description: API reference for qiskit.providers.basicaer.QasmSimulatorPy
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.basicaer.QasmSimulatorPy
+---
+
 # qiskit.providers.basicaer.QasmSimulatorPy
 
-
+<span id="qiskit.providers.basicaer.QasmSimulatorPy" />
 
 `QasmSimulatorPy(configuration=None, provider=None, **fields)`
 
@@ -10,15 +18,17 @@ Initialize a backend class
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
-*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
+*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
 *   **fields** – kwargs for the values to use to override the default options.
 
 **Raises**
 
 **AttributeError** – if input field not a valid options
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.__init__" />
 
 `__init__(configuration=None, provider=None, **fields)`
 
@@ -26,8 +36,8 @@ Initialize a backend class
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
-*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – A backend configuration object for the backend object.
+*   **provider** ([*qiskit.providers.Provider*](qiskit.providers.Provider "qiskit.providers.Provider")) – Optionally, the provider object that this Backend comes from.
 *   **fields** – kwargs for the values to use to override the default options.
 
 **Raises**
@@ -36,30 +46,11 @@ Initialize a backend class
 
 ## Methods
 
-|                                                                                                                                                      |                                                                    |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| [`__init__`](#qiskit.providers.basicaer.QasmSimulatorPy.__init__ "qiskit.providers.basicaer.QasmSimulatorPy.__init__")(\[configuration, provider])   | Initialize a backend class                                         |
-| [`configuration`](#qiskit.providers.basicaer.QasmSimulatorPy.configuration "qiskit.providers.basicaer.QasmSimulatorPy.configuration")()              | Return the backend configuration.                                  |
-| [`name`](#qiskit.providers.basicaer.QasmSimulatorPy.name "qiskit.providers.basicaer.QasmSimulatorPy.name")()                                         | Return the backend name.                                           |
-| [`properties`](#qiskit.providers.basicaer.QasmSimulatorPy.properties "qiskit.providers.basicaer.QasmSimulatorPy.properties")()                       | Return the backend properties.                                     |
-| [`provider`](#qiskit.providers.basicaer.QasmSimulatorPy.provider "qiskit.providers.basicaer.QasmSimulatorPy.provider")()                             | Return the backend Provider.                                       |
-| [`run`](#qiskit.providers.basicaer.QasmSimulatorPy.run "qiskit.providers.basicaer.QasmSimulatorPy.run")(qobj, \*\*backend\_options)                  | Run qobj asynchronously.                                           |
-| [`run_experiment`](#qiskit.providers.basicaer.QasmSimulatorPy.run_experiment "qiskit.providers.basicaer.QasmSimulatorPy.run_experiment")(experiment) | Run an experiment (circuit) and return a single experiment result. |
-| [`set_options`](#qiskit.providers.basicaer.QasmSimulatorPy.set_options "qiskit.providers.basicaer.QasmSimulatorPy.set_options")(\*\*fields)          | Set the options fields for the backend                             |
-| [`status`](#qiskit.providers.basicaer.QasmSimulatorPy.status "qiskit.providers.basicaer.QasmSimulatorPy.status")()                                   | Return the backend status.                                         |
-
 ## Attributes
 
-|                                                                                                                     |                                    |
-| ------------------------------------------------------------------------------------------------------------------- | ---------------------------------- |
-| `DEFAULT_CONFIGURATION`                                                                                             |                                    |
-| `DEFAULT_OPTIONS`                                                                                                   |                                    |
-| `MAX_QUBITS_MEMORY`                                                                                                 |                                    |
-| `SHOW_FINAL_STATE`                                                                                                  |                                    |
-| [`options`](#qiskit.providers.basicaer.QasmSimulatorPy.options "qiskit.providers.basicaer.QasmSimulatorPy.options") | Return the options for the backend |
-| `version`                                                                                                           |                                    |
+### configuration
 
-
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.configuration" />
 
 `configuration()`
 
@@ -71,9 +62,11 @@ the configuration for the backend.
 
 **Return type**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
 
+### name
 
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.name" />
 
 `name()`
 
@@ -87,7 +80,9 @@ the name of the backend.
 
 str
 
+### options
 
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.options" />
 
 `property options`
 
@@ -95,7 +90,9 @@ Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.basicaer.QasmSimulatorPy.run "qiskit.providers.basicaer.QasmSimulatorPy.run") method.
 
+### properties
 
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.properties" />
 
 `properties()`
 
@@ -107,9 +104,11 @@ the configuration for the backend. If the backend does not support properties, i
 
 **Return type**
 
-[BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
+### provider
 
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.provider" />
 
 `provider()`
 
@@ -121,9 +120,11 @@ the Provider responsible for the backend.
 
 **Return type**
 
-[Provider](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")
+[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
 
+### run
 
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.run" />
 
 `run(qobj, **backend_options)`
 
@@ -131,7 +132,7 @@ Run qobj asynchronously.
 
 **Parameters**
 
-*   **qobj** ([*Qobj*](qiskit.qobj.Qobj#qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
+*   **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
 *   **backend\_options** (*dict*) – backend options
 
 **Returns**
@@ -140,7 +141,7 @@ derived from BaseJob
 
 **Return type**
 
-[BasicAerJob](qiskit.providers.basicaer.BasicAerJob#qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
+[BasicAerJob](qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
 
 **Additional Information:**
 
@@ -158,7 +159,9 @@ backend_options = {
 }
 ```
 
+### run\_experiment
 
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.run_experiment" />
 
 `run_experiment(experiment)`
 
@@ -194,9 +197,11 @@ dict
 
 **Raises**
 
-[**BasicAerError**](qiskit.providers.basicaer.BasicAerError#qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if an error occurred.
+[**BasicAerError**](qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if an error occurred.
 
+### set\_options
 
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.set_options" />
 
 `set_options(**fields)`
 
@@ -212,7 +217,9 @@ This method is used to update the options of a backend. If you need to change an
 
 **AttributeError** – If the field passed in is not part of the options
 
+### status
 
+<span id="qiskit.providers.basicaer.QasmSimulatorPy.status" />
 
 `status()`
 
@@ -224,4 +231,5 @@ the status of the backend.
 
 **Return type**
 
-[BackendStatus](qiskit.providers.models.BackendStatus#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+

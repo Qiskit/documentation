@@ -1,6 +1,14 @@
+---
+title: TensoredFilter
+description: API reference for qiskit.ignis.mitigation.TensoredFilter
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.mitigation.TensoredFilter
+---
+
 # qiskit.ignis.mitigation.TensoredFilter
 
-
+<span id="qiskit.ignis.mitigation.TensoredFilter" />
 
 `TensoredFilter(cal_matrices, substate_labels_list, mit_pattern)`
 
@@ -16,7 +24,9 @@ Initialize a tensored measurement error mitigation filter using the cal\_matrice
 *   **substate\_labels\_list** (`list`) – for each calibration matrix a list of the states (as strings, states in the subspace)
 *   **mit\_pattern** (`list`) – for each calibration matrix a list of the logical qubit indices (as int, states in the subspace)
 
+### \_\_init\_\_
 
+<span id="qiskit.ignis.mitigation.TensoredFilter.__init__" />
 
 `__init__(cal_matrices, substate_labels_list, mit_pattern)`
 
@@ -30,23 +40,11 @@ Initialize a tensored measurement error mitigation filter using the cal\_matrice
 
 ## Methods
 
-|                                                                                                                                                                                         |                                                                                                                                   |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.ignis.mitigation.TensoredFilter.__init__ "qiskit.ignis.mitigation.TensoredFilter.__init__")(cal\_matrices, substate\_labels\_list, …)                              | Initialize a tensored measurement error mitigation filter using the cal\_matrices from a tensored measurement calibration fitter. |
-| [`apply`](#qiskit.ignis.mitigation.TensoredFilter.apply "qiskit.ignis.mitigation.TensoredFilter.apply")(raw\_data\[, method, meas\_layout])                                             | Apply the calibration matrices to results.                                                                                        |
-| [`compute_index_of_cal_mat`](#qiskit.ignis.mitigation.TensoredFilter.compute_index_of_cal_mat "qiskit.ignis.mitigation.TensoredFilter.compute_index_of_cal_mat")(state, pos\_qubits, …) | Return the index of (pseudo inverse) calibration matrix for the input quantum state                                               |
-| [`flip_state`](#qiskit.ignis.mitigation.TensoredFilter.flip_state "qiskit.ignis.mitigation.TensoredFilter.flip_state")(state, mat\_index, flip\_poses)                                  | Flip the state according to the chosen qubit positions                                                                            |
-
 ## Attributes
 
-|                                                                                                                                                      |                                 |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [`cal_matrices`](#qiskit.ignis.mitigation.TensoredFilter.cal_matrices "qiskit.ignis.mitigation.TensoredFilter.cal_matrices")                         | Return cal\_matrices.           |
-| [`nqubits`](#qiskit.ignis.mitigation.TensoredFilter.nqubits "qiskit.ignis.mitigation.TensoredFilter.nqubits")                                        | Return the number of qubits.    |
-| [`qubit_list_sizes`](#qiskit.ignis.mitigation.TensoredFilter.qubit_list_sizes "qiskit.ignis.mitigation.TensoredFilter.qubit_list_sizes")             | Return \_qubit\_list\_sizes.    |
-| [`substate_labels_list`](#qiskit.ignis.mitigation.TensoredFilter.substate_labels_list "qiskit.ignis.mitigation.TensoredFilter.substate_labels_list") | Return \_substate\_labels\_list |
+### apply
 
-
+<span id="qiskit.ignis.mitigation.TensoredFilter.apply" />
 
 `apply(raw_data, method='least_squares', meas_layout=None)`
 
@@ -54,7 +52,7 @@ Apply the calibration matrices to results.
 
 **Parameters**
 
-*   **raw\_data** (*dict or* [*Result*](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result")) –
+*   **raw\_data** (*dict or* [*Result*](qiskit.result.Result "qiskit.result.Result")) –
 
     The data to be corrected. Can be in one of two forms:
 
@@ -93,19 +91,23 @@ The corrected data in the same form as raw\_data
 
 **Return type**
 
-dict or [Result](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result")
+dict or [Result](qiskit.result.Result "qiskit.result.Result")
 
 **Raises**
 
 **QiskitError** – if raw\_data is not in a one of the defined forms.
 
+### cal\_matrices
 
+<span id="qiskit.ignis.mitigation.TensoredFilter.cal_matrices" />
 
 `property cal_matrices`
 
 Return cal\_matrices.
 
+### compute\_index\_of\_cal\_mat
 
+<span id="qiskit.ignis.mitigation.TensoredFilter.compute_index_of_cal_mat" />
 
 `compute_index_of_cal_mat(state, pos_qubits, indices)`
 
@@ -115,7 +117,9 @@ Return the index of (pseudo inverse) calibration matrix for the input quantum st
 
 `int`
 
+### flip\_state
 
+<span id="qiskit.ignis.mitigation.TensoredFilter.flip_state" />
 
 `flip_state(state, mat_index, flip_poses)`
 
@@ -125,20 +129,27 @@ Flip the state according to the chosen qubit positions
 
 `str`
 
+### nqubits
 
+<span id="qiskit.ignis.mitigation.TensoredFilter.nqubits" />
 
 `property nqubits`
 
 Return the number of qubits. See also MeasurementFilter.apply()
 
+### qubit\_list\_sizes
 
+<span id="qiskit.ignis.mitigation.TensoredFilter.qubit_list_sizes" />
 
 `property qubit_list_sizes`
 
 Return \_qubit\_list\_sizes.
 
+### substate\_labels\_list
 
+<span id="qiskit.ignis.mitigation.TensoredFilter.substate_labels_list" />
 
 `property substate_labels_list`
 
 Return \_substate\_labels\_list
+

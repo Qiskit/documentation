@@ -1,8 +1,16 @@
+---
+title: CRYGate
+description: API reference for qiskit.circuit.library.CRYGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.CRYGate
+---
+
 <span id="qiskit-circuit-library-crygate" />
 
 # qiskit.circuit.library.CRYGate
 
-
+<span id="qiskit.circuit.library.CRYGate" />
 
 `CRYGate(theta, label=None, ctrl_state=None)`
 
@@ -54,7 +62,9 @@ $$
 
 Create new CRY gate.
 
+### \_\_init\_\_
 
+<span id="qiskit.circuit.library.CRYGate.__init__" />
 
 `__init__(theta, label=None, ctrl_state=None)`
 
@@ -62,45 +72,19 @@ Create new CRY gate.
 
 ## Methods
 
-|                                                                                                                                                 |                                                                          |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.circuit.library.CRYGate.__init__ "qiskit.circuit.library.CRYGate.__init__")(theta\[, label, ctrl\_state])                  | Create new CRY gate.                                                     |
-| [`add_decomposition`](#qiskit.circuit.library.CRYGate.add_decomposition "qiskit.circuit.library.CRYGate.add_decomposition")(decomposition)      | Add a decomposition of the instruction to the SessionEquivalenceLibrary. |
-| [`assemble`](#qiskit.circuit.library.CRYGate.assemble "qiskit.circuit.library.CRYGate.assemble")()                                              | Assemble a QasmQobjInstruction                                           |
-| [`broadcast_arguments`](#qiskit.circuit.library.CRYGate.broadcast_arguments "qiskit.circuit.library.CRYGate.broadcast_arguments")(qargs, cargs) | Validation and handling of the arguments and its relationship.           |
-| [`c_if`](#qiskit.circuit.library.CRYGate.c_if "qiskit.circuit.library.CRYGate.c_if")(classical, val)                                            | Add classical condition on register classical and value val.             |
-| [`control`](#qiskit.circuit.library.CRYGate.control "qiskit.circuit.library.CRYGate.control")(\[num\_ctrl\_qubits, label, ctrl\_state])         | Return controlled version of gate.                                       |
-| [`copy`](#qiskit.circuit.library.CRYGate.copy "qiskit.circuit.library.CRYGate.copy")(\[name])                                                   | Copy of the instruction.                                                 |
-| [`inverse`](#qiskit.circuit.library.CRYGate.inverse "qiskit.circuit.library.CRYGate.inverse")()                                                 | Return inverse CRY gate (i.e.                                            |
-| [`is_parameterized`](#qiskit.circuit.library.CRYGate.is_parameterized "qiskit.circuit.library.CRYGate.is_parameterized")()                      | Return True .IFF.                                                        |
-| [`mirror`](#qiskit.circuit.library.CRYGate.mirror "qiskit.circuit.library.CRYGate.mirror")()                                                    | DEPRECATED: use instruction.reverse\_ops().                              |
-| [`power`](#qiskit.circuit.library.CRYGate.power "qiskit.circuit.library.CRYGate.power")(exponent)                                               | Creates a unitary gate as gate^exponent.                                 |
-| [`qasm`](#qiskit.circuit.library.CRYGate.qasm "qiskit.circuit.library.CRYGate.qasm")()                                                          | Return a default OpenQASM string for the instruction.                    |
-| [`repeat`](#qiskit.circuit.library.CRYGate.repeat "qiskit.circuit.library.CRYGate.repeat")(n)                                                   | Creates an instruction with gate repeated n amount of times.             |
-| [`reverse_ops`](#qiskit.circuit.library.CRYGate.reverse_ops "qiskit.circuit.library.CRYGate.reverse_ops")()                                     | For a composite instruction, reverse the order of sub-instructions.      |
-| [`to_matrix`](#qiskit.circuit.library.CRYGate.to_matrix "qiskit.circuit.library.CRYGate.to_matrix")()                                           | Return a numpy.array for the CRY gate.                                   |
-| [`validate_parameter`](#qiskit.circuit.library.CRYGate.validate_parameter "qiskit.circuit.library.CRYGate.validate_parameter")(parameter)       | Gate parameters should be int, float, or ParameterExpression             |
-
 ## Attributes
 
-|                                                                                                                       |                                                                               |
-| --------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`ctrl_state`](#qiskit.circuit.library.CRYGate.ctrl_state "qiskit.circuit.library.CRYGate.ctrl_state")                | Return the control state of the gate as a decimal integer.                    |
-| [`decompositions`](#qiskit.circuit.library.CRYGate.decompositions "qiskit.circuit.library.CRYGate.decompositions")    | Get the decompositions of the instruction from the SessionEquivalenceLibrary. |
-| [`definition`](#qiskit.circuit.library.CRYGate.definition "qiskit.circuit.library.CRYGate.definition")                | Return definition in terms of other basic gates.                              |
-| [`duration`](#qiskit.circuit.library.CRYGate.duration "qiskit.circuit.library.CRYGate.duration")                      | Get the duration.                                                             |
-| [`label`](#qiskit.circuit.library.CRYGate.label "qiskit.circuit.library.CRYGate.label")                               | Return gate label                                                             |
-| [`num_ctrl_qubits`](#qiskit.circuit.library.CRYGate.num_ctrl_qubits "qiskit.circuit.library.CRYGate.num_ctrl_qubits") | Get number of control qubits.                                                 |
-| [`params`](#qiskit.circuit.library.CRYGate.params "qiskit.circuit.library.CRYGate.params")                            | Get parameters from base\_gate.                                               |
-| [`unit`](#qiskit.circuit.library.CRYGate.unit "qiskit.circuit.library.CRYGate.unit")                                  | Get the time unit of duration.                                                |
+### add\_decomposition
 
-
+<span id="qiskit.circuit.library.CRYGate.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
+### assemble
 
+<span id="qiskit.circuit.library.CRYGate.assemble" />
 
 `assemble()`
 
@@ -110,7 +94,9 @@ Assemble a QasmQobjInstruction
 
 `Instruction`
 
+### broadcast\_arguments
 
+<span id="qiskit.circuit.library.CRYGate.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -163,17 +149,21 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
+### c\_if
 
+<span id="qiskit.circuit.library.CRYGate.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
+### control
 
+<span id="qiskit.circuit.library.CRYGate.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
 **Parameters**
 
@@ -187,13 +177,15 @@ Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 anci
 
 **Return type**
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
 **Raises**
 
 **QiskitError** – unrecognized mode or invalid ctrl\_state
 
+### copy
 
+<span id="qiskit.circuit.library.CRYGate.copy" />
 
 `copy(name=None)`
 
@@ -211,9 +203,11 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### ctrl\_state
 
+<span id="qiskit.circuit.library.CRYGate.ctrl_state" />
 
 `property ctrl_state`
 
@@ -223,13 +217,17 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
+### decompositions
 
+<span id="qiskit.circuit.library.CRYGate.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
+### definition
 
+<span id="qiskit.circuit.library.CRYGate.definition" />
 
 `property definition`
 
@@ -239,25 +237,33 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
+### duration
 
+<span id="qiskit.circuit.library.CRYGate.duration" />
 
 `property duration`
 
 Get the duration.
 
+### inverse
 
+<span id="qiskit.circuit.library.CRYGate.inverse" />
 
 `inverse()`
 
 Return inverse CRY gate (i.e. with the negative rotation angle).
 
+### is\_parameterized
 
+<span id="qiskit.circuit.library.CRYGate.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
+### label
 
+<span id="qiskit.circuit.library.CRYGate.label" />
 
 `property label`
 
@@ -267,7 +273,9 @@ Return gate label
 
 `str`
 
+### mirror
 
+<span id="qiskit.circuit.library.CRYGate.mirror" />
 
 `mirror()`
 
@@ -281,9 +289,11 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### num\_ctrl\_qubits
 
+<span id="qiskit.circuit.library.CRYGate.num_ctrl_qubits" />
 
 `property num_ctrl_qubits`
 
@@ -297,7 +307,9 @@ The number of control qubits for the gate.
 
 int
 
+### params
 
+<span id="qiskit.circuit.library.CRYGate.params" />
 
 `property params`
 
@@ -315,7 +327,9 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
+### power
 
+<span id="qiskit.circuit.library.CRYGate.power" />
 
 `power(exponent)`
 
@@ -331,13 +345,15 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **Return type**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate#qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
 **Raises**
 
 **CircuitError** – If Gate is not unitary
 
+### qasm
 
+<span id="qiskit.circuit.library.CRYGate.qasm" />
 
 `qasm()`
 
@@ -345,7 +361,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
+### repeat
 
+<span id="qiskit.circuit.library.CRYGate.repeat" />
 
 `repeat(n)`
 
@@ -361,13 +379,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
+### reverse\_ops
 
+<span id="qiskit.circuit.library.CRYGate.reverse_ops" />
 
 `reverse_ops()`
 
@@ -383,22 +403,29 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### to\_matrix
 
+<span id="qiskit.circuit.library.CRYGate.to_matrix" />
 
 `to_matrix()`
 
 Return a numpy.array for the CRY gate.
 
+### unit
 
+<span id="qiskit.circuit.library.CRYGate.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
+### validate\_parameter
 
+<span id="qiskit.circuit.library.CRYGate.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
+

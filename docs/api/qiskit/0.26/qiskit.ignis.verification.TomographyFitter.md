@@ -1,6 +1,14 @@
+---
+title: TomographyFitter
+description: API reference for qiskit.ignis.verification.TomographyFitter
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.verification.TomographyFitter
+---
+
 # qiskit.ignis.verification.TomographyFitter
 
-
+<span id="qiskit.ignis.verification.TomographyFitter" />
 
 `TomographyFitter(result, circuits, meas_basis='Pauli', prep_basis='Pauli')`
 
@@ -15,7 +23,9 @@ Initialize tomography fitter with experimental data.
 *   **meas\_basis** (`Union`\[`TomographyBasis`, `str`]) – (default: ‘Pauli’) A function to return measurement operators corresponding to measurement outcomes. See Additional Information.
 *   **prep\_basis** (`Union`\[`TomographyBasis`, `str`]) – (default: ‘Pauli’) A function to return preparation operators. See Additional Information
 
+### \_\_init\_\_
 
+<span id="qiskit.ignis.verification.TomographyFitter.__init__" />
 
 `__init__(result, circuits, meas_basis='Pauli', prep_basis='Pauli')`
 
@@ -30,23 +40,11 @@ Initialize tomography fitter with experimental data.
 
 ## Methods
 
-|                                                                                                                                                                        |                                                              |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
-| [`__init__`](#qiskit.ignis.verification.TomographyFitter.__init__ "qiskit.ignis.verification.TomographyFitter.__init__")(result, circuits\[, meas\_basis, …])          | Initialize tomography fitter with experimental data.         |
-| [`add_data`](#qiskit.ignis.verification.TomographyFitter.add_data "qiskit.ignis.verification.TomographyFitter.add_data")(results, circuits)                            | Add tomography data from a Qiskit Result object.             |
-| [`fit`](#qiskit.ignis.verification.TomographyFitter.fit "qiskit.ignis.verification.TomographyFitter.fit")(\[method, standard\_weights, beta, psd, …])                  | Reconstruct a quantum state using CVXPY convex optimization. |
-| [`set_measure_basis`](#qiskit.ignis.verification.TomographyFitter.set_measure_basis "qiskit.ignis.verification.TomographyFitter.set_measure_basis")(basis)             | Set the measurement basis                                    |
-| [`set_preparation_basis`](#qiskit.ignis.verification.TomographyFitter.set_preparation_basis "qiskit.ignis.verification.TomographyFitter.set_preparation_basis")(basis) | Set the preparation basis function                           |
-
 ## Attributes
 
-|                                                                                                                                                     |                                          |
-| --------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------- |
-| [`data`](#qiskit.ignis.verification.TomographyFitter.data "qiskit.ignis.verification.TomographyFitter.data")                                        | Return tomography data                   |
-| [`measure_basis`](#qiskit.ignis.verification.TomographyFitter.measure_basis "qiskit.ignis.verification.TomographyFitter.measure_basis")             | Return the tomography measurement basis. |
-| [`preparation_basis`](#qiskit.ignis.verification.TomographyFitter.preparation_basis "qiskit.ignis.verification.TomographyFitter.preparation_basis") | Return the tomography preparation basis. |
+### add\_data
 
-
+<span id="qiskit.ignis.verification.TomographyFitter.add_data" />
 
 `add_data(results, circuits)`
 
@@ -61,13 +59,17 @@ Add tomography data from a Qiskit Result object.
 
 **QiskitError** – In case some of the tomography data is not found in the results
 
+### data
 
+<span id="qiskit.ignis.verification.TomographyFitter.data" />
 
 `property data`
 
 Return tomography data
 
+### fit
 
+<span id="qiskit.ignis.verification.TomographyFitter.fit" />
 
 `fit(method='auto', standard_weights=True, beta=0.5, psd=True, trace=None, trace_preserving=False, **kwargs)`
 
@@ -132,19 +134,25 @@ References:
 
 The fitted matrix rho that minimizes $||\text{basis_matrix} * \text{vec(rho)} - \text{data}||_2$.
 
+### measure\_basis
 
+<span id="qiskit.ignis.verification.TomographyFitter.measure_basis" />
 
 `property measure_basis`
 
 Return the tomography measurement basis.
 
+### preparation\_basis
 
+<span id="qiskit.ignis.verification.TomographyFitter.preparation_basis" />
 
 `property preparation_basis`
 
 Return the tomography preparation basis.
 
+### set\_measure\_basis
 
+<span id="qiskit.ignis.verification.TomographyFitter.set_measure_basis" />
 
 `set_measure_basis(basis)`
 
@@ -158,7 +166,9 @@ Set the measurement basis
 
 **QiskitError** – In case of invalid measurement or preparation basis.
 
+### set\_preparation\_basis
 
+<span id="qiskit.ignis.verification.TomographyFitter.set_preparation_basis" />
 
 `set_preparation_basis(basis)`
 
@@ -171,3 +181,4 @@ Set the preparation basis function
 **Raises**
 
 **QiskitError** – in case the basis has no preperation data
+

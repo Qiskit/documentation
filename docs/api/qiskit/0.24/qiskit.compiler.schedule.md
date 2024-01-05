@@ -1,8 +1,16 @@
+---
+title: schedule
+description: API reference for qiskit.compiler.schedule
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.compiler.schedule
+---
+
 <span id="qiskit-compiler-schedule" />
 
 # qiskit.compiler.schedule
 
-
+<span id="qiskit.compiler.schedule" />
 
 `schedule(circuits, backend=None, inst_map=None, meas_map=None, dt=None, method=None)`
 
@@ -28,3 +36,4 @@ A pulse `Schedule` that implements the input circuit
 **Raises**
 
 **QiskitError** – If `inst_map` and `meas_map` are not passed and `backend` is not passed
+

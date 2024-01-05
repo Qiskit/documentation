@@ -1,6 +1,14 @@
+---
+title: CircuitSampler
+description: API reference for qiskit.opflow.converters.CircuitSampler
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.converters.CircuitSampler
+---
+
 # qiskit.opflow\.converters.CircuitSampler
 
-
+<span id="qiskit.opflow.converters.CircuitSampler" />
 
 `CircuitSampler(backend, statevector=None, param_qobj=False, attach_results=False, caching='last')`
 
@@ -20,7 +28,9 @@ The CircuitSampler aggressively caches transpiled circuits to handle re-paramete
 
 **ValueError** – Set statevector or param\_qobj True when not supported by backend.
 
+### \_\_init\_\_
 
+<span id="qiskit.opflow.converters.CircuitSampler.__init__" />
 
 `__init__(backend, statevector=None, param_qobj=False, attach_results=False, caching='last')`
 
@@ -38,20 +48,11 @@ The CircuitSampler aggressively caches transpiled circuits to handle re-paramete
 
 ## Methods
 
-|                                                                                                                                                                            |                                                                                                                                   |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.opflow.converters.CircuitSampler.__init__ "qiskit.opflow.converters.CircuitSampler.__init__")(backend\[, statevector, param\_qobj, …])                | **type backend**`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`]                                                             |
-| [`clear_cache`](#qiskit.opflow.converters.CircuitSampler.clear_cache "qiskit.opflow.converters.CircuitSampler.clear_cache")()                                              | Clear the cache of sampled operator expressions.                                                                                  |
-| [`convert`](#qiskit.opflow.converters.CircuitSampler.convert "qiskit.opflow.converters.CircuitSampler.convert")(operator\[, params])                                       | Converts the Operator to one in which the CircuitStateFns are replaced by DictStateFns or VectorStateFns.                         |
-| [`sample_circuits`](#qiskit.opflow.converters.CircuitSampler.sample_circuits "qiskit.opflow.converters.CircuitSampler.sample_circuits")(\[circuit\_sfns, param\_bindings]) | Samples the CircuitStateFns and returns a dict associating their `id()` values to their replacement DictStateFn or VectorStateFn. |
-
 ## Attributes
 
-|                                                                                                                                            |                               |
-| ------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------- |
-| [`quantum_instance`](#qiskit.opflow.converters.CircuitSampler.quantum_instance "qiskit.opflow.converters.CircuitSampler.quantum_instance") | Returns the quantum instance. |
+### clear\_cache
 
-
+<span id="qiskit.opflow.converters.CircuitSampler.clear_cache" />
 
 `clear_cache()`
 
@@ -61,7 +62,9 @@ Clear the cache of sampled operator expressions.
 
 `None`
 
+### convert
 
+<span id="qiskit.opflow.converters.CircuitSampler.convert" />
 
 `convert(operator, params=None)`
 
@@ -82,9 +85,11 @@ The converted Operator with CircuitStateFns replaced by DictStateFns or VectorSt
 
 **Raises**
 
-[**OpflowError**](qiskit.opflow.OpflowError#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if extracted circuits are empty.
+[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if extracted circuits are empty.
 
+### quantum\_instance
 
+<span id="qiskit.opflow.converters.CircuitSampler.quantum_instance" />
 
 `property quantum_instance`
 
@@ -98,7 +103,9 @@ Returns the quantum instance.
 
 The QuantumInstance used by the CircuitSampler
 
+### sample\_circuits
 
+<span id="qiskit.opflow.converters.CircuitSampler.sample_circuits" />
 
 `sample_circuits(circuit_sfns=None, param_bindings=None)`
 
@@ -119,4 +126,5 @@ The dictionary mapping ids of the CircuitStateFns to their replacement StateFns.
 
 **Raises**
 
-[**OpflowError**](qiskit.opflow.OpflowError#qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if extracted circuits are empty.
+[**OpflowError**](qiskit.opflow.OpflowError "qiskit.opflow.OpflowError") – if extracted circuits are empty.
+

@@ -1,14 +1,22 @@
+---
+title: expval_meas_mitigator_circuits
+description: API reference for qiskit.ignis.mitigation.expval_meas_mitigator_circuits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.mitigation.expval_meas_mitigator_circuits
+---
+
 <span id="qiskit-ignis-mitigation-expval-meas-mitigator-circuits" />
 
 # qiskit.ignis.mitigation.expval\_meas\_mitigator\_circuits
 
-
+<span id="qiskit.ignis.mitigation.expval_meas_mitigator_circuits" />
 
 `expval_meas_mitigator_circuits(num_qubits, method='CTMP', labels=None)`
 
 Generate measurement error mitigator circuits and metadata.
 
-Use the [`ExpvalMeasMitigatorFitter`](qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter#qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter") class to fit the execution results to construct a calibrated expectation value measurement error mitigator.
+Use the [`ExpvalMeasMitigatorFitter`](qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter") class to fit the execution results to construct a calibrated expectation value measurement error mitigator.
 
 **Parameters**
 
@@ -28,9 +36,9 @@ tuple
 
 ## Mitigation Method:
 
-*   The `'complete'` method will generate all $2^n$ computational basis states measurement circuits and fitting will return a [`CompleteExpvalMeasMitigator`](qiskit.ignis.mitigation.CompleteExpvalMeasMitigator#qiskit.ignis.mitigation.CompleteExpvalMeasMitigator "qiskit.ignis.mitigation.CompleteExpvalMeasMitigator"). This method should only be used for small numbers of qubits.
-*   The `'tensored'` method will generate two input state circuits of the all 0 and all 1 states on number of qubits unless custom labels are specified. Ftting will return a [`TensoredExpvalMeasMitigator`](qiskit.ignis.mitigation.TensoredExpvalMeasMitigator#qiskit.ignis.mitigation.TensoredExpvalMeasMitigator "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator"). This method assumes measurement errors are uncorrelated between qubits.
-*   The `'CTMP'` method will generate $n+2$ input state circuits unless custom labels are specified. The default input states are the all 0 state, the all 1 state, and the $n$ state with a single qubit in the 1 state and all others in the 0 state. Ftting will return a [`CTMPExpvalMeasMitigator`](qiskit.ignis.mitigation.CTMPExpvalMeasMitigator#qiskit.ignis.mitigation.CTMPExpvalMeasMitigator "qiskit.ignis.mitigation.CTMPExpvalMeasMitigator").
+*   The `'complete'` method will generate all $2^n$ computational basis states measurement circuits and fitting will return a [`CompleteExpvalMeasMitigator`](qiskit.ignis.mitigation.CompleteExpvalMeasMitigator "qiskit.ignis.mitigation.CompleteExpvalMeasMitigator"). This method should only be used for small numbers of qubits.
+*   The `'tensored'` method will generate two input state circuits of the all 0 and all 1 states on number of qubits unless custom labels are specified. Ftting will return a [`TensoredExpvalMeasMitigator`](qiskit.ignis.mitigation.TensoredExpvalMeasMitigator "qiskit.ignis.mitigation.TensoredExpvalMeasMitigator"). This method assumes measurement errors are uncorrelated between qubits.
+*   The `'CTMP'` method will generate $n+2$ input state circuits unless custom labels are specified. The default input states are the all 0 state, the all 1 state, and the $n$ state with a single qubit in the 1 state and all others in the 0 state. Ftting will return a [`CTMPExpvalMeasMitigator`](qiskit.ignis.mitigation.CTMPExpvalMeasMitigator "qiskit.ignis.mitigation.CTMPExpvalMeasMitigator").
 
 ## Example
 
@@ -94,3 +102,4 @@ print('Expval (with mitigation): {:.2f} ± {:.2f}'.format(
 Expval (no mitigation): -0.81 ± 0.01
 Expval (with mitigation): -0.99 ± 0.01
 ```
+

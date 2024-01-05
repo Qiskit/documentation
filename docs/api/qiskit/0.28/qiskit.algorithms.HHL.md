@@ -1,6 +1,14 @@
+---
+title: HHL
+description: API reference for qiskit.algorithms.HHL
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.HHL
+---
+
 # qiskit.algorithms.HHL
 
-
+<span id="qiskit.algorithms.HHL" />
 
 `HHL(epsilon=0.01, expectation=None, quantum_instance=None)`
 
@@ -46,7 +54,9 @@ approx_result = solution.observable
 *   **expectation** (`Optional`\[`ExpectationBase`]) – The expectation converter applied to the expectation values before evaluation. If None then PauliExpectation is used.
 *   **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – Quantum Instance or Backend. If None, a Statevector calculation is done.
 
+### \_\_init\_\_
 
+<span id="qiskit.algorithms.HHL.__init__" />
 
 `__init__(epsilon=0.01, expectation=None, quantum_instance=None)`
 
@@ -58,21 +68,11 @@ approx_result = solution.observable
 
 ## Methods
 
-|                                                                                                                           |                                                      |
-| ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [`__init__`](#qiskit.algorithms.HHL.__init__ "qiskit.algorithms.HHL.__init__")(\[epsilon, expectation, …])                | **type epsilon**`float`                              |
-| [`construct_circuit`](#qiskit.algorithms.HHL.construct_circuit "qiskit.algorithms.HHL.construct_circuit")(matrix, vector) | Construct the HHL circuit.                           |
-| [`solve`](#qiskit.algorithms.HHL.solve "qiskit.algorithms.HHL.solve")(matrix, vector\[, observable, …])                   | Tries to solve the given linear system of equations. |
-
 ## Attributes
 
-|                                                                                                        |                                                                                                    |
-| ------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------- |
-| [`expectation`](#qiskit.algorithms.HHL.expectation "qiskit.algorithms.HHL.expectation")                | The expectation value algorithm used to construct the expectation measurement from the observable. |
-| [`quantum_instance`](#qiskit.algorithms.HHL.quantum_instance "qiskit.algorithms.HHL.quantum_instance") | Get the quantum instance.                                                                          |
-| [`scaling`](#qiskit.algorithms.HHL.scaling "qiskit.algorithms.HHL.scaling")                            | The scaling of the solution vector.                                                                |
+### construct\_circuit
 
-
+<span id="qiskit.algorithms.HHL.construct_circuit" />
 
 `construct_circuit(matrix, vector)`
 
@@ -96,7 +96,9 @@ The HHL circuit.
 *   **ValueError** – If the input is not in the correct format.
 *   **ValueError** – If the type of the input matrix is not supported.
 
+### expectation
 
+<span id="qiskit.algorithms.HHL.expectation" />
 
 `property expectation`
 
@@ -106,7 +108,9 @@ The expectation value algorithm used to construct the expectation measurement fr
 
 `ExpectationBase`
 
+### quantum\_instance
 
+<span id="qiskit.algorithms.HHL.quantum_instance" />
 
 `property quantum_instance`
 
@@ -120,7 +124,9 @@ Get the quantum instance.
 
 The quantum instance used to run this algorithm.
 
+### scaling
 
+<span id="qiskit.algorithms.HHL.scaling" />
 
 `property scaling`
 
@@ -130,7 +136,9 @@ The scaling of the solution vector.
 
 `float`
 
+### solve
 
+<span id="qiskit.algorithms.HHL.solve" />
 
 `solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`
 
@@ -155,3 +163,4 @@ Tries to solve the given linear system of equations.
 **Returns**
 
 The result object containing information about the solution vector of the linear system.
+

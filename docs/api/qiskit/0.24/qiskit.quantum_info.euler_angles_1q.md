@@ -1,8 +1,16 @@
+---
+title: euler_angles_1q
+description: API reference for qiskit.quantum_info.euler_angles_1q
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.quantum_info.euler_angles_1q
+---
+
 <span id="qiskit-quantum-info-euler-angles-1q" />
 
 # qiskit.quantum\_info.euler\_angles\_1q
 
-
+<span id="qiskit.quantum_info.euler_angles_1q" />
 
 `euler_angles_1q(unitary_matrix)`
 
@@ -25,3 +33,4 @@ tuple
 **Raises**
 
 **QiskitError** – if unitary\_matrix not 2x2, or failure
+

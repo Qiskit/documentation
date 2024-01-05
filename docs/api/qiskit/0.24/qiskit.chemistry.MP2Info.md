@@ -1,8 +1,16 @@
+---
+title: MP2Info
+description: API reference for qiskit.chemistry.MP2Info
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.MP2Info
+---
+
 <span id="qiskit-chemistry-mp2info" />
 
 # qiskit.chemistry.MP2Info
 
-
+<span id="qiskit.chemistry.MP2Info" />
 
 `MP2Info(qmolecule, threshold=1e-12)`
 
@@ -24,10 +32,12 @@ A utility class for MP2 info
 
 **Parameters**
 
-*   **qmolecule** ([*QMolecule*](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule")) – QMolecule from chemistry driver
+*   **qmolecule** ([*QMolecule*](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule")) – QMolecule from chemistry driver
 *   **threshold** (*float*) – Computed coefficients and energy deltas will be set to zero if their value is below this threshold
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.MP2Info.__init__" />
 
 `__init__(qmolecule, threshold=1e-12)`
 
@@ -35,25 +45,16 @@ A utility class for MP2 info
 
 **Parameters**
 
-*   **qmolecule** ([*QMolecule*](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule")) – QMolecule from chemistry driver
+*   **qmolecule** ([*QMolecule*](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule")) – QMolecule from chemistry driver
 *   **threshold** (*float*) – Computed coefficients and energy deltas will be set to zero if their value is below this threshold
 
 ## Methods
 
-|                                                                                                                                         |                                                                                                                                    |
-| --------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.MP2Info.__init__ "qiskit.chemistry.MP2Info.__init__")(qmolecule\[, threshold])                           | A utility class for MP2 info                                                                                                       |
-| [`mp2_get_term_info`](#qiskit.chemistry.MP2Info.mp2_get_term_info "qiskit.chemistry.MP2Info.mp2_get_term_info")(excitation\_list\[, …]) | With a reduced active space the set of used excitations can be less than allowing all available excitations.                       |
-| [`mp2_terms`](#qiskit.chemistry.MP2Info.mp2_terms "qiskit.chemistry.MP2Info.mp2_terms")(\[freeze\_core, orbital\_reduction])            | Gets the set of MP2 terms for the molecule taking into account index adjustments due to frozen core and/or other orbital reduction |
-
 ## Attributes
 
-|                                                                                            |                                                      |
-| ------------------------------------------------------------------------------------------ | ---------------------------------------------------- |
-| [`mp2_delta`](#qiskit.chemistry.MP2Info.mp2_delta "qiskit.chemistry.MP2Info.mp2_delta")    | Get the MP2 delta energy correction for the molecule |
-| [`mp2_energy`](#qiskit.chemistry.MP2Info.mp2_energy "qiskit.chemistry.MP2Info.mp2_energy") | Get the MP2 energy for the molecule                  |
+### mp2\_delta
 
-
+<span id="qiskit.chemistry.MP2Info.mp2_delta" />
 
 `property mp2_delta`
 
@@ -67,7 +68,9 @@ The MP2 delta energy
 
 float
 
+### mp2\_energy
 
+<span id="qiskit.chemistry.MP2Info.mp2_energy" />
 
 `property mp2_energy`
 
@@ -81,7 +84,9 @@ The MP2 energy
 
 float
 
+### mp2\_get\_term\_info
 
+<span id="qiskit.chemistry.MP2Info.mp2_get_term_info" />
 
 `mp2_get_term_info(excitation_list, freeze_core=False, orbital_reduction=None)`
 
@@ -105,7 +110,9 @@ Tuple(list, list)
 
 **ValueError** – Excitation not present in mp2 terms
 
+### mp2\_terms
 
+<span id="qiskit.chemistry.MP2Info.mp2_terms" />
 
 `mp2_terms(freeze_core=False, orbital_reduction=None)`
 
@@ -125,3 +132,4 @@ from\_to\_from\_to e.g. 0\_4\_6\_10 and the value is a tuple of (coeff, e\_delta
 **Return type**
 
 dict
+

@@ -1,8 +1,16 @@
+---
+title: ClassicalFunctionParseError
+description: API reference for qiskit.circuit.classicalfunction.ClassicalFunctionParseError
+in_page_toc_min_heading_level: 1
+python_api_type: exception
+python_api_name: qiskit.circuit.classicalfunction.ClassicalFunctionParseError
+---
+
 <span id="qiskit-circuit-classicalfunction-classicalfunctionparseerror" />
 
 # qiskit.circuit.classicalfunction.ClassicalFunctionParseError
 
-
+<span id="qiskit.circuit.classicalfunction.ClassicalFunctionParseError" />
 
 `ClassicalFunctionParseError(*message)`
 
@@ -10,8 +18,11 @@ ClassicalFunction compiler parse error. The classicalfunction function fails at 
 
 Set the error message.
 
+### with\_traceback
 
+<span id="qiskit.circuit.classicalfunction.ClassicalFunctionParseError.with_traceback" />
 
 `with_traceback()`
 
 Exception.with\_traceback(tb) – set self.\_\_traceback\_\_ to tb and return self.
+

@@ -1,6 +1,14 @@
+---
+title: EquivalenceLibrary
+description: API reference for qiskit.circuit.EquivalenceLibrary
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.EquivalenceLibrary
+---
+
 # qiskit.circuit.EquivalenceLibrary
 
-
+<span id="qiskit.circuit.EquivalenceLibrary" />
 
 `EquivalenceLibrary(*, base=None)`
 
@@ -12,7 +20,9 @@ Create a new equivalence library.
 
 **base** (*Optional\[*[*EquivalenceLibrary*](#qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")*]*) – Base equivalence library to will be referenced if an entry is not found in this library.
 
+### \_\_init\_\_
 
+<span id="qiskit.circuit.EquivalenceLibrary.__init__" />
 
 `__init__(*, base=None)`
 
@@ -24,16 +34,9 @@ Create a new equivalence library.
 
 ## Methods
 
-|                                                                                                                                                        |                                                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
-| [`__init__`](#qiskit.circuit.EquivalenceLibrary.__init__ "qiskit.circuit.EquivalenceLibrary.__init__")(\*\[, base])                                    | Create a new equivalence library.                                                                      |
-| [`add_equivalence`](#qiskit.circuit.EquivalenceLibrary.add_equivalence "qiskit.circuit.EquivalenceLibrary.add_equivalence")(gate, equivalent\_circuit) | Add a new equivalence to the library.                                                                  |
-| [`draw`](#qiskit.circuit.EquivalenceLibrary.draw "qiskit.circuit.EquivalenceLibrary.draw")(\[filename])                                                | Draws the equivalence relations available in the library.                                              |
-| [`get_entry`](#qiskit.circuit.EquivalenceLibrary.get_entry "qiskit.circuit.EquivalenceLibrary.get_entry")(gate)                                        | Gets the set of QuantumCircuits circuits from the library which equivalently implement the given Gate. |
-| [`has_entry`](#qiskit.circuit.EquivalenceLibrary.has_entry "qiskit.circuit.EquivalenceLibrary.has_entry")(gate)                                        | Check if a library contains any decompositions for gate.                                               |
-| [`set_entry`](#qiskit.circuit.EquivalenceLibrary.set_entry "qiskit.circuit.EquivalenceLibrary.set_entry")(gate, entry)                                 | Set the equivalence record for a Gate.                                                                 |
+### add\_equivalence
 
-
+<span id="qiskit.circuit.EquivalenceLibrary.add_equivalence" />
 
 `add_equivalence(gate, equivalent_circuit)`
 
@@ -43,10 +46,12 @@ Parameterized Gates (those including qiskit.circuit.Parameters in their Gate.par
 
 **Parameters**
 
-*   **gate** ([*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
-*   **equivalent\_circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A circuit equivalently implementing the given Gate.
+*   **gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
+*   **equivalent\_circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – A circuit equivalently implementing the given Gate.
 
+### draw
 
+<span id="qiskit.circuit.EquivalenceLibrary.draw" />
 
 `draw(filename=None)`
 
@@ -70,7 +75,9 @@ PIL.Image or IPython.display.SVG
 
 **ImportError** – when pydot or pillow are not installed.
 
+### get\_entry
 
+<span id="qiskit.circuit.EquivalenceLibrary.get_entry" />
 
 `get_entry(gate)`
 
@@ -80,7 +87,7 @@ Parameterized circuits will have their parameters replaced with the correspondin
 
 **Parameters**
 
-**gate** ([*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
+**gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
 
 **Returns**
 
@@ -92,9 +99,11 @@ Returned circuits will be ordered according to their insertion in the library, f
 
 **Return type**
 
-List\[[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
+List\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
 
+### has\_entry
 
+<span id="qiskit.circuit.EquivalenceLibrary.has_entry" />
 
 `has_entry(gate)`
 
@@ -102,7 +111,7 @@ Check if a library contains any decompositions for gate.
 
 **Parameters**
 
-**gate** ([*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
+**gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
 
 **Returns**
 
@@ -114,7 +123,9 @@ False otherwise.
 
 Bool
 
+### set\_entry
 
+<span id="qiskit.circuit.EquivalenceLibrary.set_entry" />
 
 `set_entry(gate, entry)`
 
@@ -124,5 +135,6 @@ Parameterized Gates (those including qiskit.circuit.Parameters in their Gate.par
 
 **Parameters**
 
-*   **gate** ([*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
+*   **gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – A Gate instance.
 *   **entry** (*List\['QuantumCircuit']*) – A list of QuantumCircuits, each equivalently implementing the given Gate.
+

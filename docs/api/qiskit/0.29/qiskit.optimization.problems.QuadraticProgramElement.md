@@ -1,6 +1,14 @@
+---
+title: QuadraticProgramElement
+description: API reference for qiskit.optimization.problems.QuadraticProgramElement
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.problems.QuadraticProgramElement
+---
+
 # QuadraticProgramElement
 
-
+<span id="qiskit.optimization.problems.QuadraticProgramElement" />
 
 `QuadraticProgramElement(quadratic_program)`
 
@@ -20,7 +28,7 @@ Initialize object with parent QuadraticProgram.
 
 ## Attributes
 
-
+<span id="qiskit.optimization.problems.QuadraticProgramElement.quadratic_program" />
 
 ### quadratic\_program
 
@@ -33,3 +41,4 @@ Returns the parent QuadraticProgram.
 **Returns**
 
 The parent QuadraticProgram.
+

@@ -1,8 +1,16 @@
+---
+title: PyQuanteDriver
+description: API reference for qiskit.chemistry.drivers.PyQuanteDriver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.drivers.PyQuanteDriver
+---
+
 <span id="qiskit-chemistry-drivers-pyquantedriver" />
 
 # qiskit.chemistry.drivers.PyQuanteDriver
 
-
+<span id="qiskit.chemistry.drivers.PyQuanteDriver" />
 
 `PyQuanteDriver(atoms='H 0.0 0.0 0.0; H 0.0 0.0 0.735', units=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, multiplicity=1, basis=<BasisType.BSTO3G: 'sto3g'>, hf_method=<HFMethodType.RHF: 'rhf'>, tol=1e-08, maxiters=100, molecule=None)`
 
@@ -24,9 +32,11 @@ See [https://github.com/rpmuller/pyquante2](https://github.com/rpmuller/pyquante
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.drivers.PyQuanteDriver.__init__" />
 
 `__init__(atoms='H 0.0 0.0 0.0; H 0.0 0.0 0.735', units=<UnitsType.ANGSTROM: 'Angstrom'>, charge=0, multiplicity=1, basis=<BasisType.BSTO3G: 'sto3g'>, hf_method=<HFMethodType.RHF: 'rhf'>, tol=1e-08, maxiters=100, molecule=None)`
 
@@ -44,25 +54,15 @@ See [https://github.com/rpmuller/pyquante2](https://github.com/rpmuller/pyquante
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
 ## Methods
 
-|                                                                                                                                                |                                               |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| [`__init__`](#qiskit.chemistry.drivers.PyQuanteDriver.__init__ "qiskit.chemistry.drivers.PyQuanteDriver.__init__")(\[atoms, units, charge, …]) | **type atoms**`Union`\[`str`, `List`\[`str`]] |
-| [`run`](#qiskit.chemistry.drivers.PyQuanteDriver.run "qiskit.chemistry.drivers.PyQuanteDriver.run")()                                          | Runs driver to produce a QMolecule output.    |
-
 ## Attributes
 
-|                                                                                                                                               |                                                 |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [`basis`](#qiskit.chemistry.drivers.PyQuanteDriver.basis "qiskit.chemistry.drivers.PyQuanteDriver.basis")                                     | return basis                                    |
-| [`hf_method`](#qiskit.chemistry.drivers.PyQuanteDriver.hf_method "qiskit.chemistry.drivers.PyQuanteDriver.hf_method")                         | return Hartree-Fock method                      |
-| [`molecule`](#qiskit.chemistry.drivers.PyQuanteDriver.molecule "qiskit.chemistry.drivers.PyQuanteDriver.molecule")                            | return molecule                                 |
-| [`supports_molecule`](#qiskit.chemistry.drivers.PyQuanteDriver.supports_molecule "qiskit.chemistry.drivers.PyQuanteDriver.supports_molecule") | True for derived classes that support Molecule. |
+### basis
 
-
+<span id="qiskit.chemistry.drivers.PyQuanteDriver.basis" />
 
 `property basis`
 
@@ -72,7 +72,9 @@ return basis
 
 `str`
 
+### hf\_method
 
+<span id="qiskit.chemistry.drivers.PyQuanteDriver.hf_method" />
 
 `property hf_method`
 
@@ -82,7 +84,9 @@ return Hartree-Fock method
 
 `str`
 
+### molecule
 
+<span id="qiskit.chemistry.drivers.PyQuanteDriver.molecule" />
 
 `property molecule`
 
@@ -92,7 +96,9 @@ return molecule
 
 `Optional`\[`Molecule`]
 
+### run
 
+<span id="qiskit.chemistry.drivers.PyQuanteDriver.run" />
 
 `run()`
 
@@ -106,7 +112,9 @@ Runs driver to produce a QMolecule output.
 
 A QMolecule containing the molecular data.
 
+### supports\_molecule
 
+<span id="qiskit.chemistry.drivers.PyQuanteDriver.supports_molecule" />
 
 `property supports_molecule`
 
@@ -119,3 +127,4 @@ True for derived classes that support Molecule.
 **Returns**
 
 True if Molecule is supported.
+

@@ -1,8 +1,16 @@
+---
+title: pauli_basis
+description: API reference for qiskit.quantum_info.pauli_basis
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.quantum_info.pauli_basis
+---
+
 <span id="qiskit-quantum-info-pauli-basis" />
 
 # qiskit.quantum\_info.pauli\_basis
 
-
+<span id="qiskit.quantum_info.pauli_basis" />
 
 `pauli_basis(num_qubits, weight=False)`
 
@@ -19,4 +27,5 @@ the PauliTable for the basis
 
 **Return type**
 
-[PauliTable](qiskit.quantum_info.PauliTable#qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
+[PauliTable](qiskit.quantum_info.PauliTable "qiskit.quantum_info.PauliTable")
+

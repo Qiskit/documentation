@@ -1,6 +1,14 @@
+---
+title: FasterAmplitudeEstimation
+description: API reference for qiskit.algorithms.FasterAmplitudeEstimation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.FasterAmplitudeEstimation
+---
+
 # qiskit.algorithms.FasterAmplitudeEstimation
 
-
+<span id="qiskit.algorithms.FasterAmplitudeEstimation" />
 
 `FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None)`
 
@@ -35,7 +43,9 @@ Due to the iterative version of the QPE, this algorithm does not require any add
   This algorithm overwrites the number of shots set in the `quantum_instance` argument, but will reset them to the initial number after running.
 </Admonition>
 
+### \_\_init\_\_
 
+<span id="qiskit.algorithms.FasterAmplitudeEstimation.__init__" />
 
 `__init__(delta, maxiter, rescale=True, quantum_instance=None)`
 
@@ -52,19 +62,11 @@ Due to the iterative version of the QPE, this algorithm does not require any add
 
 ## Methods
 
-|                                                                                                                                                                                     |                                         |              |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- | ------------ |
-| [`__init__`](#qiskit.algorithms.FasterAmplitudeEstimation.__init__ "qiskit.algorithms.FasterAmplitudeEstimation.__init__")(delta, maxiter\[, rescale, …])                           | **type delta**`float`                   |              |
-| [`construct_circuit`](#qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit "qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit")(estimation\_problem, k\[, …]) | Construct the circuit \$Q^k X           | 0\rangle>\$. |
-| [`estimate`](#qiskit.algorithms.FasterAmplitudeEstimation.estimate "qiskit.algorithms.FasterAmplitudeEstimation.estimate")(estimation\_problem)                                     | Run the amplitude estimation algorithm. |              |
-
 ## Attributes
 
-|                                                                                                                                                    |                           |
-| -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| [`quantum_instance`](#qiskit.algorithms.FasterAmplitudeEstimation.quantum_instance "qiskit.algorithms.FasterAmplitudeEstimation.quantum_instance") | Get the quantum instance. |
+### construct\_circuit
 
-
+<span id="qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit" />
 
 `construct_circuit(estimation_problem, k, measurement=False)`
 
@@ -86,7 +88,9 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 The circuit $Q^k X |0\rangle$.
 
+### estimate
 
+<span id="qiskit.algorithms.FasterAmplitudeEstimation.estimate" />
 
 `estimate(estimation_problem)`
 
@@ -100,7 +104,9 @@ Run the amplitude estimation algorithm.
 
 `FasterAmplitudeEstimationResult`
 
+### quantum\_instance
 
+<span id="qiskit.algorithms.FasterAmplitudeEstimation.quantum_instance" />
 
 `property quantum_instance`
 
@@ -113,3 +119,4 @@ Get the quantum instance.
 **Returns**
 
 The quantum instance used to run this algorithm.
+

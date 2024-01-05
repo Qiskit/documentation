@@ -1,8 +1,16 @@
+---
+title: PulseQobj
+description: API reference for qiskit.qobj.PulseQobj
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.qobj.PulseQobj
+---
+
 <span id="qiskit-qobj-pulseqobj" />
 
 # qiskit.qobj.PulseQobj
 
-
+<span id="qiskit.qobj.PulseQobj" />
 
 `PulseQobj(qobj_id, config, experiments, header=None)`
 
@@ -15,11 +23,13 @@ Each Pulse Qobj object is used to represent a single payload that will be passed
 **Parameters**
 
 *   **qobj\_id** (*str*) – An identifier for the qobj
-*   **config** ([*PulseQobjConfig*](qiskit.qobj.PulseQobjConfig#qiskit.qobj.PulseQobjConfig "qiskit.qobj.PulseQobjConfig")) – A config for the entire run
-*   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader#qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
-*   **experiments** (*list*) – A list of lists of [`PulseQobjExperiment`](qiskit.qobj.PulseQobjExperiment#qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment") objects representing an experiment
+*   **config** ([*PulseQobjConfig*](qiskit.qobj.PulseQobjConfig "qiskit.qobj.PulseQobjConfig")) – A config for the entire run
+*   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
+*   **experiments** (*list*) – A list of lists of [`PulseQobjExperiment`](qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment") objects representing an experiment
 
+### \_\_init\_\_
 
+<span id="qiskit.qobj.PulseQobj.__init__" />
 
 `__init__(qobj_id, config, experiments, header=None)`
 
@@ -30,19 +40,15 @@ Each Pulse Qobj object is used to represent a single payload that will be passed
 **Parameters**
 
 *   **qobj\_id** (*str*) – An identifier for the qobj
-*   **config** ([*PulseQobjConfig*](qiskit.qobj.PulseQobjConfig#qiskit.qobj.PulseQobjConfig "qiskit.qobj.PulseQobjConfig")) – A config for the entire run
-*   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader#qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
-*   **experiments** (*list*) – A list of lists of [`PulseQobjExperiment`](qiskit.qobj.PulseQobjExperiment#qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment") objects representing an experiment
+*   **config** ([*PulseQobjConfig*](qiskit.qobj.PulseQobjConfig "qiskit.qobj.PulseQobjConfig")) – A config for the entire run
+*   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
+*   **experiments** (*list*) – A list of lists of [`PulseQobjExperiment`](qiskit.qobj.PulseQobjExperiment "qiskit.qobj.PulseQobjExperiment") objects representing an experiment
 
 ## Methods
 
-|                                                                                                                          |                                                              |
-| ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------ |
-| [`__init__`](#qiskit.qobj.PulseQobj.__init__ "qiskit.qobj.PulseQobj.__init__")(qobj\_id, config, experiments\[, header]) | Instatiate a new Pulse Qobj Object.                          |
-| [`from_dict`](#qiskit.qobj.PulseQobj.from_dict "qiskit.qobj.PulseQobj.from_dict")(data)                                  | Create a new PulseQobj object from a dictionary.             |
-| [`to_dict`](#qiskit.qobj.PulseQobj.to_dict "qiskit.qobj.PulseQobj.to_dict")(\[validate])                                 | Return a dictionary format representation of the Pulse Qobj. |
+### from\_dict
 
-
+<span id="qiskit.qobj.PulseQobj.from_dict" />
 
 `classmethod from_dict(data)`
 
@@ -60,7 +66,9 @@ The PulseQobj from the input dictionary.
 
 [PulseQobj](#qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj")
 
+### to\_dict
 
+<span id="qiskit.qobj.PulseQobj.to_dict" />
 
 `to_dict(validate=False)`
 
@@ -94,3 +102,4 @@ A dictionary representation of the PulseQobj object
 **Return type**
 
 dict
+

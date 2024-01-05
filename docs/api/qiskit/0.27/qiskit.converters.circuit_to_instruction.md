@@ -1,6 +1,14 @@
+---
+title: circuit_to_instruction
+description: API reference for qiskit.converters.circuit_to_instruction
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.converters.circuit_to_instruction
+---
+
 # qiskit.converters.circuit\_to\_instruction
 
-
+<span id="qiskit.converters.circuit_to_instruction" />
 
 `circuit_to_instruction(circuit, parameter_map=None, equivalence_library=None)`
 
@@ -10,9 +18,9 @@ The instruction is anonymous (not tied to a named quantum register), and so can 
 
 **Parameters**
 
-*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
+*   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the input circuit.
 *   **parameter\_map** (*dict*) – For parameterized circuits, a mapping from parameters in the circuit to parameters to be used in the instruction. If None, existing circuit parameters will also parameterize the instruction.
-*   **equivalence\_library** ([*EquivalenceLibrary*](qiskit.circuit.EquivalenceLibrary#qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – Optional equivalence library where the converted instruction will be registered.
+*   **equivalence\_library** ([*EquivalenceLibrary*](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – Optional equivalence library where the converted instruction will be registered.
 
 **Raises**
 
@@ -24,7 +32,7 @@ an instruction equivalent to the action of the input circuit. Upon decomposition
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 ## Example
 
@@ -46,3 +54,4 @@ circuit_to_instruction(circ)
 ```python
 <qiskit.circuit.instruction.Instruction at 0x7f34e8ebedd0>
 ```
+
