@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.KMSSynthesisPermutation
 ---
 
-# KMSSynthesisPermutation[¶](#kmssynthesispermutation "Permalink to this headline")
+# KMSSynthesisPermutation
 
 <span id="qiskit.transpiler.passes.KMSSynthesisPermutation" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.state_fidelities.BaseStateFidelity
 ---
 
-# BaseStateFidelity[¶](#basestatefidelity "Permalink to this headline")
+# BaseStateFidelity
 
 <span id="qiskit.algorithms.state_fidelities.BaseStateFidelity" />
 

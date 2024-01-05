@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.synthesis.SuzukiTrotter
 ---
 
-# SuzukiTrotter[¶](#suzukitrotter "Permalink to this headline")
+# SuzukiTrotter
 
 <span id="qiskit.synthesis.SuzukiTrotter" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.UMDA
 ---
 
-# UMDA[¶](#umda "Permalink to this headline")
+# UMDA
 
 <span id="qiskit.algorithms.optimizers.UMDA" />
 

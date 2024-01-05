@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.BasicSynthesisPermutation
 ---
 
-# BasicSynthesisPermutation[¶](#basicsynthesispermutation "Permalink to this headline")
+# BasicSynthesisPermutation
 
 <span id="qiskit.transpiler.passes.BasicSynthesisPermutation" />
 

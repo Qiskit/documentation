@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.HiddenLinearFunction
 ---
 
-# HiddenLinearFunction[¶](#hiddenlinearfunction "Permalink to this headline")
+# HiddenLinearFunction
 
 <span id="qiskit.circuit.library.HiddenLinearFunction" />
 

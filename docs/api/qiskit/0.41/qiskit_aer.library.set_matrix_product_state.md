@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit_aer.library.set_matrix_product_state
 ---
 
-# qiskit\_aer.library.set\_matrix\_product\_state[¶](#qiskit-aer-library-set-matrix-product-state "Permalink to this headline")
+# qiskit\_aer.library.set\_matrix\_product\_state
 
 <span id="qiskit_aer.library.set_matrix_product_state" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.expectations.MatrixExpectation
 ---
 
-# MatrixExpectation[¶](#matrixexpectation "Permalink to this headline")
+# MatrixExpectation
 
 <span id="qiskit.opflow.expectations.MatrixExpectation" />
 

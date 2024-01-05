@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.ForLoopOp
 ---
 
-# ForLoopOp[¶](#forloopop "Permalink to this headline")
+# ForLoopOp
 
 <span id="qiskit.circuit.ForLoopOp" />
 

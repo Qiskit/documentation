@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.qobj.GateCalibration
 ---
 
-# GateCalibration[¶](#gatecalibration "Permalink to this headline")
+# GateCalibration
 
 <span id="qiskit.qobj.GateCalibration" />
 

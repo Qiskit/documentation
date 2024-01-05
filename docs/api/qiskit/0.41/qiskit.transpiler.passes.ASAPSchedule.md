@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.ASAPSchedule
 ---
 
-# ASAPSchedule[¶](#asapschedule "Permalink to this headline")
+# ASAPSchedule
 
 <span id="qiskit.transpiler.passes.ASAPSchedule" />
 

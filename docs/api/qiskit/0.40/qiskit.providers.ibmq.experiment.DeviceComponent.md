@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.experiment.DeviceComponent
 ---
 
-# DeviceComponent[¶](#devicecomponent "Permalink to this headline")
+# DeviceComponent
 
 <span id="qiskit.providers.ibmq.experiment.DeviceComponent" />
 

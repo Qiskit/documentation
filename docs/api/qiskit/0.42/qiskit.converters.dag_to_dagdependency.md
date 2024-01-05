@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.converters.dag_to_dagdependency
 ---
 
-# qiskit.converters.dag\_to\_dagdependency[¶](#qiskit-converters-dag-to-dagdependency "Permalink to this headline")
+# qiskit.converters.dag\_to\_dagdependency
 
 <span id="qiskit.converters.dag_to_dagdependency" />
 

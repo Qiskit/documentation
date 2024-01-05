@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.Operation
 ---
 
-# Operation[¶](#operation "Permalink to this headline")
+# Operation
 
 <span id="qiskit.circuit.Operation" />
 

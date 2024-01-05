@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.VF2PostLayout
 ---
 
-# VF2PostLayout[¶](#vf2postlayout "Permalink to this headline")
+# VF2PostLayout
 
 <span id="qiskit.transpiler.passes.VF2PostLayout" />
 

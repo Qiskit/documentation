@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.result.sampled_expectation_value
 ---
 
-# qiskit.result.sampled\_expectation\_value[¶](#qiskit-result-sampled-expectation-value "Permalink to this headline")
+# qiskit.result.sampled\_expectation\_value
 
 <span id="qiskit.result.sampled_expectation_value" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.LinCombSamplerGradient
 ---
 
-# LinCombSamplerGradient[¶](#lincombsamplergradient "Permalink to this headline")
+# LinCombSamplerGradient
 
 <span id="qiskit.algorithms.gradients.LinCombSamplerGradient" />
 

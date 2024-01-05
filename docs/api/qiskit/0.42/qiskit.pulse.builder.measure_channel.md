@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.measure_channel
 ---
 
-# qiskit.pulse.builder.measure\_channel[¶](#qiskit-pulse-builder-measure-channel "Permalink to this headline")
+# qiskit.pulse.builder.measure\_channel
 
 <span id="qiskit.pulse.builder.measure_channel" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.extensions.UnitaryGate
 ---
 
-# UnitaryGate[¶](#unitarygate "Permalink to this headline")
+# UnitaryGate
 
 <span id="qiskit.extensions.UnitaryGate" />
 

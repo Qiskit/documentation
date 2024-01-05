@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.time_evolvers.variational.RealVariationalPrinciple
 ---
 
-# RealVariationalPrinciple[¶](#realvariationalprinciple "Permalink to this headline")
+# RealVariationalPrinciple
 
 <span id="qiskit.algorithms.time_evolvers.variational.RealVariationalPrinciple" />
 

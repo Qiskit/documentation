@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit_aer.noise.device.gate_length_values
 ---
 
-# qiskit\_aer.noise.device.gate\_length\_values[¶](#qiskit-aer-noise-device-gate-length-values "Permalink to this headline")
+# qiskit\_aer.noise.device.gate\_length\_values
 
 <span id="qiskit_aer.noise.device.gate_length_values" />
 

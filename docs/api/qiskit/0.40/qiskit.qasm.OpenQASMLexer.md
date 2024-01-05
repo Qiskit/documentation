@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.qasm.OpenQASMLexer
 ---
 
-# OpenQASMLexer[¶](#openqasmlexer "Permalink to this headline")
+# OpenQASMLexer
 
 <span id="qiskit.qasm.OpenQASMLexer" />
 

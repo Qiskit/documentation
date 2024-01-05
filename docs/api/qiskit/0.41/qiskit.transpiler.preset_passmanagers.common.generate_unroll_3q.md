@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.transpiler.preset_passmanagers.common.generate_unroll_3q
 ---
 
-# qiskit.transpiler.preset\_passmanagers.common.generate\_unroll\_3q[¶](#qiskit-transpiler-preset-passmanagers-common-generate-unroll-3q "Permalink to this headline")
+# qiskit.transpiler.preset\_passmanagers.common.generate\_unroll\_3q
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_unroll_3q" />
 

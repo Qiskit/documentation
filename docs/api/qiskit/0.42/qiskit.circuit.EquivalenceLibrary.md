@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.EquivalenceLibrary
 ---
 
-# EquivalenceLibrary[¶](#equivalencelibrary "Permalink to this headline")
+# EquivalenceLibrary
 
 <span id="qiskit.circuit.EquivalenceLibrary" />
 

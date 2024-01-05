@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.extensions.UCRYGate
 ---
 
-# UCRYGate[¶](#ucrygate "Permalink to this headline")
+# UCRYGate
 
 <span id="qiskit.extensions.UCRYGate" />
 

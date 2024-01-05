@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.Permutation
 ---
 
-# Permutation[¶](#permutation "Permalink to this headline")
+# Permutation
 
 <span id="qiskit.circuit.library.Permutation" />
 

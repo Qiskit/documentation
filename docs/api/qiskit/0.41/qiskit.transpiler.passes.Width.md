@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.Width
 ---
 
-# Width[¶](#width "Permalink to this headline")
+# Width
 
 <span id="qiskit.transpiler.passes.Width" />
 

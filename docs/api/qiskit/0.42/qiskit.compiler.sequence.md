@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.compiler.sequence
 ---
 
-# qiskit.compiler.sequence[¶](#qiskit-compiler-sequence "Permalink to this headline")
+# qiskit.compiler.sequence
 
 <span id="qiskit.compiler.sequence" />
 

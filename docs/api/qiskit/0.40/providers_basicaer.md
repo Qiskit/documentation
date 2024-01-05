@@ -14,7 +14,7 @@ python_api_name: qiskit.providers.basicaer
 
 <span id="module-qiskit.providers.basicaer" />
 
-`qiskit.providers.basicaer¶`
+`qiskit.providers.basicaer`
 
 A module of Python-based quantum simulators. Simulators are accessed via the BasicAer provider, e.g.:
 
@@ -26,10 +26,6 @@ backend = BasicAer.get_backend('qasm_simulator')
 
 ## Simulators
 
-<span id="module-qiskit.providers.basicaer" />
-
-`¶`
-
 |                                                                                                                                                             |                                               |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
 | [`QasmSimulatorPy`](qiskit.providers.basicaer.QasmSimulatorPy "qiskit.providers.basicaer.QasmSimulatorPy")(\[configuration, provider])                      | Python implementation of a qasm simulator.    |
@@ -38,29 +34,17 @@ backend = BasicAer.get_backend('qasm_simulator')
 
 ## Provider
 
-<span id="module-qiskit.providers.basicaer" />
-
-`¶`
-
 |                                                                                                                 |                                  |
 | --------------------------------------------------------------------------------------------------------------- | -------------------------------- |
 | [`BasicAerProvider`](qiskit.providers.basicaer.BasicAerProvider "qiskit.providers.basicaer.BasicAerProvider")() | Provider for Basic Aer backends. |
 
 ## Job Class
 
-<span id="module-qiskit.providers.basicaer" />
-
-`¶`
-
 |                                                                                                                          |                    |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------ |
 | [`BasicAerJob`](qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")(backend, job\_id, result) | BasicAerJob class. |
 
 ## Exceptions
-
-<span id="module-qiskit.providers.basicaer" />
-
-`¶`
 
 |                                                                                                                 |                                            |
 | --------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |

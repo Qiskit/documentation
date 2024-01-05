@@ -14,15 +14,11 @@ python_api_name: qiskit.qasm3
 
 <span id="module-qiskit.qasm3" />
 
-`qiskit.qasm3¶`
+`qiskit.qasm3`
 
 Qiskit provides some tools for converting between [OpenQASM 3](https://openqasm.com) representations of quantum programs, and the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class. These will continue to evolve as Qiskit’s support for the dynamic-circuit capabilities expressed by OpenQASM 3 increases.
 
 ## Exporting to OpenQASM 3
-
-<span id="module-qiskit.qasm3" />
-
-`¶`
 
 The high-level functions are simply [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.dump") and [`dumps()`](#qiskit.qasm3.dumps "qiskit.qasm3.dumps"), which respectively export to a file (given as a filename) and to a Python string.
 
@@ -104,10 +100,6 @@ An error raised during running the OpenQASM 3 exporter.
 Set the error message.
 
 ## Importing from OpenQASM 3
-
-<span id="module-qiskit.qasm3" />
-
-`¶`
 
 Currently only two high-level functions are offered, as Qiskit support for importing from OpenQASM 3 is in its infancy, and the implementation is expected to change significantly. The two functions are [`load()`](#qiskit.qasm3.load "qiskit.qasm3.load") and [`loads()`](#qiskit.qasm3.loads "qiskit.qasm3.loads"), which are direct counterparts of [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.dump") and [`dumps()`](#qiskit.qasm3.dumps "qiskit.qasm3.dumps"), respectively loading a program indirectly from a named file and directly from a given string.
 

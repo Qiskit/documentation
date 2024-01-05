@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.purity
 ---
 
-# qiskit.quantum\_info.purity[¶](#qiskit-quantum-info-purity "Permalink to this headline")
+# qiskit.quantum\_info.purity
 
 <span id="qiskit.quantum_info.purity" />
 

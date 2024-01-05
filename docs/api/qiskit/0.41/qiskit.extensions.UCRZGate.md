@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.extensions.UCRZGate
 ---
 
-# UCRZGate[¶](#ucrzgate "Permalink to this headline")
+# UCRZGate
 
 <span id="qiskit.extensions.UCRZGate" />
 

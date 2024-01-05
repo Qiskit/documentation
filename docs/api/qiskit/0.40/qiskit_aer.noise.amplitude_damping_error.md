@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit_aer.noise.amplitude_damping_error
 ---
 
-# qiskit\_aer.noise.amplitude\_damping\_error[¶](#qiskit-aer-noise-amplitude-damping-error "Permalink to this headline")
+# qiskit\_aer.noise.amplitude\_damping\_error
 
 <span id="qiskit_aer.noise.amplitude_damping_error" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.state_fns.CVaRMeasurement
 ---
 
-# CVaRMeasurement[¶](#cvarmeasurement "Permalink to this headline")
+# CVaRMeasurement
 
 <span id="qiskit.opflow.state_fns.CVaRMeasurement" />
 

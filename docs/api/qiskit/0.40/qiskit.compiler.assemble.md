@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.compiler.assemble
 ---
 
-# qiskit.compiler.assemble[¶](#qiskit-compiler-assemble "Permalink to this headline")
+# qiskit.compiler.assemble
 
 <span id="qiskit.compiler.assemble" />
 

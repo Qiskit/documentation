@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.QGTResult
 ---
 
-# QGTResult[¶](#qgtresult "Permalink to this headline")
+# QGTResult
 
 <span id="qiskit.algorithms.gradients.QGTResult" />
 

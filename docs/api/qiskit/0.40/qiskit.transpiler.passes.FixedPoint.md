@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.FixedPoint
 ---
 
-# FixedPoint[¶](#fixedpoint "Permalink to this headline")
+# FixedPoint
 
 <span id="qiskit.transpiler.passes.FixedPoint" />
 

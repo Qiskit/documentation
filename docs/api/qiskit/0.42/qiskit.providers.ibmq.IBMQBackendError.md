@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.IBMQBackendError
   The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
 </Admonition>
 
-# qiskit.providers.ibmq.IBMQBackendError[¶](#qiskit-providers-ibmq-ibmqbackenderror "Permalink to this headline")
+# qiskit.providers.ibmq.IBMQBackendError
 
 <span id="qiskit.providers.ibmq.IBMQBackendError" />
 

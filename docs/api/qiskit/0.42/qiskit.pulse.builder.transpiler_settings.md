@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.transpiler_settings
 ---
 
-# qiskit.pulse.builder.transpiler\_settings[¶](#qiskit-pulse-builder-transpiler-settings "Permalink to this headline")
+# qiskit.pulse.builder.transpiler\_settings
 
 <span id="qiskit.pulse.builder.transpiler_settings" />
 

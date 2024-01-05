@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.quantum_info.PauliTable
 ---
 
-# PauliTable[¶](#paulitable "Permalink to this headline")
+# PauliTable
 
 <span id="qiskit.quantum_info.PauliTable" />
 

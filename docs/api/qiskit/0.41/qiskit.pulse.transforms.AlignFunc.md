@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.transforms.AlignFunc
 ---
 
-# AlignFunc[¶](#alignfunc "Permalink to this headline")
+# AlignFunc
 
 <span id="qiskit.pulse.transforms.AlignFunc" />
 

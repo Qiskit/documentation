@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.OptimizeCliffords
 ---
 
-# OptimizeCliffords[¶](#optimizecliffords "Permalink to this headline")
+# OptimizeCliffords
 
 <span id="qiskit.transpiler.passes.OptimizeCliffords" />
 

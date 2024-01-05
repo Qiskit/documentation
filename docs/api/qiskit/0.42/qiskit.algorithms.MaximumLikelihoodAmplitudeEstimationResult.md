@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult
 ---
 
-# MaximumLikelihoodAmplitudeEstimationResult[¶](#maximumlikelihoodamplitudeestimationresult "Permalink to this headline")
+# MaximumLikelihoodAmplitudeEstimationResult
 
 <span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult" />
 

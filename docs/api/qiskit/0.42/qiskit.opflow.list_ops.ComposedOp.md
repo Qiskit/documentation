@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.list_ops.ComposedOp
 ---
 
-# ComposedOp[¶](#composedop "Permalink to this headline")
+# ComposedOp
 
 <span id="qiskit.opflow.list_ops.ComposedOp" />
 

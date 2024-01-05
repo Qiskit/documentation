@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePlugin
 ---
 
-# PassManagerStagePlugin[¶](#passmanagerstageplugin "Permalink to this headline")
+# PassManagerStagePlugin
 
 <span id="qiskit.transpiler.preset_passmanagers.plugin.PassManagerStagePlugin" />
 

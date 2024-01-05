@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.quantum_info.Stinespring
 ---
 
-# Stinespring[¶](#stinespring "Permalink to this headline")
+# Stinespring
 
 <span id="qiskit.quantum_info.Stinespring" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.library.ScalableSymbolicPulse
 ---
 
-# ScalableSymbolicPulse[¶](#scalablesymbolicpulse "Permalink to this headline")
+# ScalableSymbolicPulse
 
 <span id="qiskit.pulse.library.ScalableSymbolicPulse" />
 

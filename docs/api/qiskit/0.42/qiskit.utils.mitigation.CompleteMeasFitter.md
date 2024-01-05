@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.utils.mitigation.CompleteMeasFitter
 ---
 
-# CompleteMeasFitter[¶](#completemeasfitter "Permalink to this headline")
+# CompleteMeasFitter
 
 <span id="qiskit.utils.mitigation.CompleteMeasFitter" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CollectAndCollapse
 ---
 
-# CollectAndCollapse[¶](#collectandcollapse "Permalink to this headline")
+# CollectAndCollapse
 
 <span id="qiskit.transpiler.passes.CollectAndCollapse" />
 

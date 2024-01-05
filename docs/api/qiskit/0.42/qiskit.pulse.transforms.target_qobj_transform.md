@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.transforms.target_qobj_transform
 ---
 
-# qiskit.pulse.transforms.target\_qobj\_transform[¶](#qiskit-pulse-transforms-target-qobj-transform "Permalink to this headline")
+# qiskit.pulse.transforms.target\_qobj\_transform
 
 <span id="qiskit.pulse.transforms.target_qobj_transform" />
 

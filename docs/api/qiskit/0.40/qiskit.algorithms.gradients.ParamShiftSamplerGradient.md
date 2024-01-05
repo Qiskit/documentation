@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.ParamShiftSamplerGradient
 ---
 
-# ParamShiftSamplerGradient[¶](#paramshiftsamplergradient "Permalink to this headline")
+# ParamShiftSamplerGradient
 
 <span id="qiskit.algorithms.gradients.ParamShiftSamplerGradient" />
 

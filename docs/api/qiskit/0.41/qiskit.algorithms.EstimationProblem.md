@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.EstimationProblem
 ---
 
-# EstimationProblem[¶](#estimationproblem "Permalink to this headline")
+# EstimationProblem
 
 <span id="qiskit.algorithms.EstimationProblem" />
 

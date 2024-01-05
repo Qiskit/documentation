@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.PauliTwoDesign
 ---
 
-# PauliTwoDesign[¶](#paulitwodesign "Permalink to this headline")
+# PauliTwoDesign
 
 <span id="qiskit.circuit.library.PauliTwoDesign" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit_aer.noise.LocalNoisePass
 ---
 
-# LocalNoisePass[¶](#localnoisepass "Permalink to this headline")
+# LocalNoisePass
 
 <span id="qiskit_aer.noise.LocalNoisePass" />
 

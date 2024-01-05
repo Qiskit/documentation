@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.VarQRTE
 ---
 
-# VarQRTE[¶](#varqrte "Permalink to this headline")
+# VarQRTE
 
 <span id="qiskit.algorithms.VarQRTE" />
 

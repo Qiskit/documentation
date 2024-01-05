@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.PiecewisePolynomialPauliRotations
 ---
 
-# PiecewisePolynomialPauliRotations[¶](#piecewisepolynomialpaulirotations "Permalink to this headline")
+# PiecewisePolynomialPauliRotations
 
 <span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations" />
 

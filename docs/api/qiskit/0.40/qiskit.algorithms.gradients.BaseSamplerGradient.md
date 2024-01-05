@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.BaseSamplerGradient
 ---
 
-# BaseSamplerGradient[¶](#basesamplergradient "Permalink to this headline")
+# BaseSamplerGradient
 
 <span id="qiskit.algorithms.gradients.BaseSamplerGradient" />
 

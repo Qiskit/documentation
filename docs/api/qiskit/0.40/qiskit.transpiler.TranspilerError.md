@@ -6,7 +6,7 @@ python_api_type: exception
 python_api_name: qiskit.transpiler.TranspilerError
 ---
 
-# qiskit.transpiler.TranspilerError[¶](#qiskit-transpiler-transpilererror "Permalink to this headline")
+# qiskit.transpiler.TranspilerError
 
 <span id="qiskit.transpiler.TranspilerError" />
 

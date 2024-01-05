@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.compiler.schedule
 ---
 
-# qiskit.compiler.schedule[¶](#qiskit-compiler-schedule "Permalink to this headline")
+# qiskit.compiler.schedule
 
 <span id="qiskit.compiler.schedule" />
 

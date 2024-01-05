@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.transpiler.preset_passmanagers.common.generate_control_flow_options_check
 ---
 
-# qiskit.transpiler.preset\_passmanagers.common.generate\_control\_flow\_options\_check[¶](#qiskit-transpiler-preset-passmanagers-common-generate-control-flow-options-check "Permalink to this headline")
+# qiskit.transpiler.preset\_passmanagers.common.generate\_control\_flow\_options\_check
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_control_flow_options_check" />
 

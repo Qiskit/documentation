@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.LinearFunctionsSynthesis
 ---
 
-# LinearFunctionsSynthesis[¶](#linearfunctionssynthesis "Permalink to this headline")
+# LinearFunctionsSynthesis
 
 <span id="qiskit.transpiler.passes.LinearFunctionsSynthesis" />
 

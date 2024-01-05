@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.QuantumRegister
 ---
 
-# QuantumRegister[¶](#quantumregister "Permalink to this headline")
+# QuantumRegister
 
 <span id="qiskit.circuit.QuantumRegister" />
 

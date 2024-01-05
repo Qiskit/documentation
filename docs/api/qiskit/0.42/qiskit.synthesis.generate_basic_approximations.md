@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.synthesis.generate_basic_approximations
 ---
 
-# qiskit.synthesis.generate\_basic\_approximations[¶](#qiskit-synthesis-generate-basic-approximations "Permalink to this headline")
+# qiskit.synthesis.generate\_basic\_approximations
 
 <span id="qiskit.synthesis.generate_basic_approximations" />
 

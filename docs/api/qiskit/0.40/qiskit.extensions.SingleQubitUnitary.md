@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.extensions.SingleQubitUnitary
 ---
 
-# SingleQubitUnitary[¶](#singlequbitunitary "Permalink to this headline")
+# SingleQubitUnitary
 
 <span id="qiskit.extensions.SingleQubitUnitary" />
 

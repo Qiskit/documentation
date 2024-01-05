@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.synthesis.synth_permutation_depth_lnn_kms
 ---
 
-# qiskit.synthesis.synth\_permutation\_depth\_lnn\_kms[¶](#qiskit-synthesis-synth-permutation-depth-lnn-kms "Permalink to this headline")
+# qiskit.synthesis.synth\_permutation\_depth\_lnn\_kms
 
 <span id="qiskit.synthesis.synth_permutation_depth_lnn_kms" />
 

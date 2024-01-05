@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.transforms.pad
 ---
 
-# qiskit.pulse.transforms.pad[¶](#qiskit-pulse-transforms-pad "Permalink to this headline")
+# qiskit.pulse.transforms.pad
 
 <span id="qiskit.pulse.transforms.pad" />
 

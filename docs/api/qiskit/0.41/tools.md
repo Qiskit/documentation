@@ -12,13 +12,9 @@ python_api_name: qiskit.tools
 
 <span id="module-qiskit.tools" />
 
-`qiskit.tools¶`
+`qiskit.tools`
 
 ## Parallel Routines
-
-<span id="module-qiskit.tools" />
-
-`¶`
 
 A helper function for calling a custom function with python `ProcessPoolExecutor`. Tasks can be executed in parallel using this function. It has a built-in event publisher to show the progress of the parallel tasks.
 
@@ -27,10 +23,6 @@ A helper function for calling a custom function with python `ProcessPoolExecutor
 | [`parallel_map`](qiskit.tools.parallel_map "qiskit.tools.parallel_map")(task, values\[, task\_args, ...]) | Parallel execution of a mapping of values to the function task. This is functionally equivalent to::. |
 
 ## Monitoring
-
-<span id="module-qiskit.tools" />
-
-`¶`
 
 A helper module to get IBM backend information and submitted job status.
 
@@ -42,11 +34,11 @@ A helper module to get IBM backend information and submitted job status.
 
 <span id="module-qiskit.tools.events" />
 
-### Events ([`qiskit.tools.events`](#module-qiskit.tools.events "qiskit.tools.events"))[¶](#events-qiskit-tools-events "Permalink to this headline")
+### Events ([`qiskit.tools.events`](#module-qiskit.tools.events "qiskit.tools.events"))
 
 A helper component for publishing and subscribing to events.
 
-#### TextProgressBar[¶](#textprogressbar "Permalink to this headline")
+#### TextProgressBar
 
 A text based progress bar, which also enables Jupyter magics.
 

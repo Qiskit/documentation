@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.SNOBFIT
 ---
 
-# SNOBFIT[¶](#snobfit "Permalink to this headline")
+# SNOBFIT
 
 <span id="qiskit.algorithms.optimizers.SNOBFIT" />
 

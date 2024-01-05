@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.FourierChecking
 ---
 
-# FourierChecking[¶](#fourierchecking "Permalink to this headline")
+# FourierChecking
 
 <span id="qiskit.circuit.library.FourierChecking" />
 

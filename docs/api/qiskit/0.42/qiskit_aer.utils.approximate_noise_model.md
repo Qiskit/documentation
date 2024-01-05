@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit_aer.utils.approximate_noise_model
 ---
 
-# qiskit\_aer.utils.approximate\_noise\_model[¶](#qiskit-aer-utils-approximate-noise-model "Permalink to this headline")
+# qiskit\_aer.utils.approximate\_noise\_model
 
 <span id="qiskit_aer.utils.approximate_noise_model" />
 

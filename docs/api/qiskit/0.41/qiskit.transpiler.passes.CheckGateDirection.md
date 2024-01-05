@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CheckGateDirection
 ---
 
-# CheckGateDirection[¶](#checkgatedirection "Permalink to this headline")
+# CheckGateDirection
 
 <span id="qiskit.transpiler.passes.CheckGateDirection" />
 

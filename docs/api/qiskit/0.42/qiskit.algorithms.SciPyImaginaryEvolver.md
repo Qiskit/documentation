@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.SciPyImaginaryEvolver
 ---
 
-# SciPyImaginaryEvolver[¶](#scipyimaginaryevolver "Permalink to this headline")
+# SciPyImaginaryEvolver
 
 <span id="qiskit.algorithms.SciPyImaginaryEvolver" />
 

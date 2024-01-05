@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.dagcircuit.DAGOpNode
 ---
 
-# DAGOpNode[¶](#dagopnode "Permalink to this headline")
+# DAGOpNode
 
 <span id="qiskit.dagcircuit.DAGOpNode" />
 

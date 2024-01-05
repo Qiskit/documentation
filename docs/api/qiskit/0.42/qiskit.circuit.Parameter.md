@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.Parameter
 ---
 
-# Parameter[¶](#parameter "Permalink to this headline")
+# Parameter
 
 <span id="qiskit.circuit.Parameter" />
 

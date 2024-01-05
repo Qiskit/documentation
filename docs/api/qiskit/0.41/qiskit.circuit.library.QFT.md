@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.QFT
 ---
 
-# QFT[¶](#qft "Permalink to this headline")
+# QFT
 
 <span id="qiskit.circuit.library.QFT" />
 

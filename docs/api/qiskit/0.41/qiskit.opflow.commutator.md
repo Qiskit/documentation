@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.opflow.commutator
 ---
 
-# qiskit.opflow\.commutator[¶](#qiskit-opflow-commutator "Permalink to this headline")
+# qiskit.opflow\.commutator
 
 <span id="qiskit.opflow.commutator" />
 

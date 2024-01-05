@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.synthesis.aqc.ApproximatingObjective
 ---
 
-# ApproximatingObjective[¶](#approximatingobjective "Permalink to this headline")
+# ApproximatingObjective
 
 <span id="qiskit.transpiler.synthesis.aqc.ApproximatingObjective" />
 

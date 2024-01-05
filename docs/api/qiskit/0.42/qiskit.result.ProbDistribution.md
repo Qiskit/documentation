@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.result.ProbDistribution
 ---
 
-# ProbDistribution[¶](#probdistribution "Permalink to this headline")
+# ProbDistribution
 
 <span id="qiskit.result.ProbDistribution" />
 

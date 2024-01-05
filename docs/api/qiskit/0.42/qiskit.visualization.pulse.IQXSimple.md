@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.visualization.pulse.IQXSimple
 ---
 
-# IQXSimple[¶](#iqxsimple "Permalink to this headline")
+# IQXSimple
 
 <span id="qiskit.visualization.pulse.IQXSimple" />
 

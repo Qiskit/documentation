@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.expectations.ExpectationFactory
 ---
 
-# ExpectationFactory[¶](#expectationfactory "Permalink to this headline")
+# ExpectationFactory
 
 <span id="qiskit.opflow.expectations.ExpectationFactory" />
 

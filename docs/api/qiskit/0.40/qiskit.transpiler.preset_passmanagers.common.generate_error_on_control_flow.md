@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.transpiler.preset_passmanagers.common.generate_error_on_control_flow
 ---
 
-# qiskit.transpiler.preset\_passmanagers.common.generate\_error\_on\_control\_flow[¶](#qiskit-transpiler-preset-passmanagers-common-generate-error-on-control-flow "Permalink to this headline")
+# qiskit.transpiler.preset\_passmanagers.common.generate\_error\_on\_control\_flow
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_error_on_control_flow" />
 

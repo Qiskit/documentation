@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.models.BackendConfiguration
 ---
 
-# BackendConfiguration[¶](#backendconfiguration "Permalink to this headline")
+# BackendConfiguration
 
 <span id="qiskit.providers.models.BackendConfiguration" />
 

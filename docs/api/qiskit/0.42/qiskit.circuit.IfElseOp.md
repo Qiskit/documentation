@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.IfElseOp
 ---
 
-# IfElseOp[¶](#ifelseop "Permalink to this headline")
+# IfElseOp
 
 <span id="qiskit.circuit.IfElseOp" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.converters.DictToCircuitSum
 ---
 
-# DictToCircuitSum[¶](#dicttocircuitsum "Permalink to this headline")
+# DictToCircuitSum
 
 <span id="qiskit.opflow.converters.DictToCircuitSum" />
 

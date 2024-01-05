@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.MCXRecursive
 ---
 
-# MCXRecursive[¶](#mcxrecursive "Permalink to this headline")
+# MCXRecursive
 
 <span id="qiskit.circuit.library.MCXRecursive" />
 

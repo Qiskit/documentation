@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.providers.QubitProperties
 ---
 
-# QubitProperties[¶](#qubitproperties "Permalink to this headline")
+# QubitProperties
 
 <span id="qiskit.providers.QubitProperties" />
 

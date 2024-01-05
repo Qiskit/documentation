@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.active_backend
 ---
 
-# qiskit.pulse.builder.active\_backend[¶](#qiskit-pulse-builder-active-backend "Permalink to this headline")
+# qiskit.pulse.builder.active\_backend
 
 <span id="qiskit.pulse.builder.active_backend" />
 

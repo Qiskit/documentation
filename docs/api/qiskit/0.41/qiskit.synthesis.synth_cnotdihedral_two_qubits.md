@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.synthesis.synth_cnotdihedral_two_qubits
 ---
 
-# qiskit.synthesis.synth\_cnotdihedral\_two\_qubits[¶](#qiskit-synthesis-synth-cnotdihedral-two-qubits "Permalink to this headline")
+# qiskit.synthesis.synth\_cnotdihedral\_two\_qubits
 
 <span id="qiskit.synthesis.synth_cnotdihedral_two_qubits" />
 

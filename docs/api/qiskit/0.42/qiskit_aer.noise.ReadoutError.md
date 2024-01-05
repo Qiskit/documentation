@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit_aer.noise.ReadoutError
 ---
 
-# ReadoutError[¶](#readouterror "Permalink to this headline")
+# ReadoutError
 
 <span id="qiskit_aer.noise.ReadoutError" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit_aer.quantum_info.AerDensityMatrix
 ---
 
-# AerDensityMatrix[¶](#aerdensitymatrix "Permalink to this headline")
+# AerDensityMatrix
 
 <span id="qiskit_aer.quantum_info.AerDensityMatrix" />
 

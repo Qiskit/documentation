@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.shift_phase
 ---
 
-# qiskit.pulse.builder.shift\_phase[¶](#qiskit-pulse-builder-shift-phase "Permalink to this headline")
+# qiskit.pulse.builder.shift\_phase
 
 <span id="qiskit.pulse.builder.shift_phase" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.CircuitInstruction
 ---
 
-# CircuitInstruction[¶](#circuitinstruction "Permalink to this headline")
+# CircuitInstruction
 
 <span id="qiskit.circuit.CircuitInstruction" />
 

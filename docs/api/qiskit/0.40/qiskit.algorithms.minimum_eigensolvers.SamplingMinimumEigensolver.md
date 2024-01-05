@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolver
 ---
 
-# SamplingMinimumEigensolver[¶](#samplingminimumeigensolver "Permalink to this headline")
+# SamplingMinimumEigensolver
 
 <span id="qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolver" />
 

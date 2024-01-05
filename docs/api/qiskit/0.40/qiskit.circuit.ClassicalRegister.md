@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.ClassicalRegister
 ---
 
-# ClassicalRegister[¶](#classicalregister "Permalink to this headline")
+# ClassicalRegister
 
 <span id="qiskit.circuit.ClassicalRegister" />
 

@@ -1,8 +1,8 @@
 <span id="qiskit-opflow-list-ops" />
 
-# qiskit.opflow\.list\_ops[¶](#module-qiskit.opflow.list_ops "Permalink to this headline")
+# qiskit.opflow\.list\_ops
 
-## List Operators ([`qiskit.opflow.list_ops`](#module-qiskit.opflow.list_ops "qiskit.opflow.list_ops"))[¶](#list-operators-qiskit-opflow-list-ops "Permalink to this headline")
+## List Operators ([`qiskit.opflow.list_ops`](#module-qiskit.opflow.list_ops "qiskit.opflow.list_ops"))
 
 List Operators are classes for storing and manipulating lists of Operators, State functions, or Measurements, and include some rule or `combo_fn` defining how the Operator functions of the list constituents should be combined to form to cumulative Operator function of the [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.ListOp"). For example, a [`SummedOp`](qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.SummedOp") has an addition-based `combo_fn`, so once the Operators in its list are evaluated against some bitstring to produce a list of results, we know to add up those results to produce the final result of the [`SummedOp`](qiskit.opflow.list_ops.SummedOp "qiskit.opflow.list_ops.SummedOp")’s evaluation. In theory, this `combo_fn` can be any function over classical complex values, but for convenience we’ve chosen for them to be defined over NumPy arrays and values. This way, large numbers of evaluations, such as after calling [`to_matrix()`](qiskit.opflow.list_ops.ListOp#to_matrix "qiskit.opflow.list_ops.ListOp.to_matrix") on the list constituents, can be efficiently combined. While the combination function is defined over classical values, it should be understood as the operation by which each Operators’ underlying function is combined to form the underlying Operator function of the [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.ListOp"). In this way, the [`list_ops`](#module-qiskit.opflow.list_ops "qiskit.opflow.list_ops") are the basis for constructing large and sophisticated Operators, State Functions, and Measurements.
 
@@ -23,7 +23,7 @@ You’ll encounter the [`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.l
   Combination functions do not always behave predictably, and you must understand the conversions you’re making when you working with [`list_ops`](#module-qiskit.opflow.list_ops "qiskit.opflow.list_ops"). Most notably - sampling a sum of two circuits on Quantum hardware does not incorporate interference between the wavefunctions! In this case, we’re sending our State functions through a depolarizing channel before adding them, rather than adding them directly before the measurement.
 </Admonition>
 
-### List Operators[¶](#list-operators "Permalink to this headline")
+### List Operators
 
 |                                                                                                                      |                                                                                                          |
 | -------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------- |

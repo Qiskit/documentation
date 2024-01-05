@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.opflow.primitive_ops.Z2Symmetries
 ---
 
-# Z2Symmetries[¶](#z2symmetries "Permalink to this headline")
+# Z2Symmetries
 
 <span id="qiskit.opflow.primitive_ops.Z2Symmetries" />
 

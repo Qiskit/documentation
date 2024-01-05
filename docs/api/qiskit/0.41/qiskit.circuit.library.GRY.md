@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.GRY
 ---
 
-# GRY[¶](#gry "Permalink to this headline")
+# GRY
 
 <span id="qiskit.circuit.library.GRY" />
 

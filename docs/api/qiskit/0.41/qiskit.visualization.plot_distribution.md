@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.visualization.plot_distribution
 ---
 
-# qiskit.visualization.plot\_distribution[¶](#qiskit-visualization-plot-distribution "Permalink to this headline")
+# qiskit.visualization.plot\_distribution
 
 <span id="qiskit.visualization.plot_distribution" />
 

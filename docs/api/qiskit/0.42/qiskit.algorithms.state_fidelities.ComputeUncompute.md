@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.state_fidelities.ComputeUncompute
 ---
 
-# ComputeUncompute[¶](#computeuncompute "Permalink to this headline")
+# ComputeUncompute
 
 <span id="qiskit.algorithms.state_fidelities.ComputeUncompute" />
 

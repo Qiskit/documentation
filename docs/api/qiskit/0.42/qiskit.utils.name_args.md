@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.utils.name_args
 ---
 
-# qiskit.utils.name\_args[¶](#qiskit-utils-name-args "Permalink to this headline")
+# qiskit.utils.name\_args
 
 <span id="qiskit.utils.name_args" />
 

@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.library.cos
 ---
 
-# qiskit.pulse.library.cos[¶](#qiskit-pulse-library-cos "Permalink to this headline")
+# qiskit.pulse.library.cos
 
 <span id="qiskit.pulse.library.cos" />
 

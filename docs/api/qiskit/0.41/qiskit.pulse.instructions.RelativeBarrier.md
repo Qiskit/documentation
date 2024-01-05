@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.instructions.RelativeBarrier
 ---
 
-# RelativeBarrier[¶](#relativebarrier "Permalink to this headline")
+# RelativeBarrier
 
 <span id="qiskit.pulse.instructions.RelativeBarrier" />
 

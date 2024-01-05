@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple
 ---
 
-# RealMcLachlanPrinciple[¶](#realmclachlanprinciple "Permalink to this headline")
+# RealMcLachlanPrinciple
 
 <span id="qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple" />
 

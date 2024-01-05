@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.FasterAmplitudeEstimation
 ---
 
-# FasterAmplitudeEstimation[¶](#fasteramplitudeestimation "Permalink to this headline")
+# FasterAmplitudeEstimation
 
 <span id="qiskit.algorithms.FasterAmplitudeEstimation" />
 

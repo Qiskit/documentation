@@ -14,7 +14,7 @@ python_api_name: qiskit.result
 
 <span id="module-qiskit.result" />
 
-`qiskit.result¶`
+`qiskit.result`
 
 |                                                                                                                               |                                                                      |
 | ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------- |
@@ -27,10 +27,6 @@ python_api_name: qiskit.result
 
 ## Distributions
 
-<span id="module-qiskit.result" />
-
-`¶`
-
 |                                                                                                               |                                                          |
 | ------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
 | [`ProbDistribution`](qiskit.result.ProbDistribution "qiskit.result.ProbDistribution")(data\[, shots])         | A generic dict-like class for probability distributions. |
@@ -38,19 +34,11 @@ python_api_name: qiskit.result
 
 ## Expectation values
 
-<span id="module-qiskit.result" />
-
-`¶`
-
 |                                                                                                                              |                                                        |
 | ---------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |
 | [`sampled_expectation_value`](qiskit.result.sampled_expectation_value "qiskit.result.sampled_expectation_value")(dist, oper) | Computes expectation value from a sampled distribution |
 
 ## Mitigation
-
-<span id="module-qiskit.result" />
-
-`¶`
 
 |                                                                                                                                         |                                                 |
 | --------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |

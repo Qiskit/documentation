@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.circuit.random.random_circuit
 ---
 
-# qiskit.circuit.random.random\_circuit[¶](#qiskit-circuit-random-random-circuit "Permalink to this headline")
+# qiskit.circuit.random.random\_circuit
 
 <span id="qiskit.circuit.random.random_circuit" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.result.CorrelatedReadoutMitigator
 ---
 
-# CorrelatedReadoutMitigator[¶](#correlatedreadoutmitigator "Permalink to this headline")
+# CorrelatedReadoutMitigator
 
 <span id="qiskit.result.CorrelatedReadoutMitigator" />
 

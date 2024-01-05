@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.instructions.Reference
 ---
 
-# Reference[¶](#reference "Permalink to this headline")
+# Reference
 
 <span id="qiskit.pulse.instructions.Reference" />
 

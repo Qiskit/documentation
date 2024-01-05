@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolverResult
 ---
 
-# NumPyMinimumEigensolverResult[¶](#numpyminimumeigensolverresult "Permalink to this headline")
+# NumPyMinimumEigensolverResult
 
 <span id="qiskit.algorithms.minimum_eigensolvers.NumPyMinimumEigensolverResult" />
 

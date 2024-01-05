@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.TransformationPass
 ---
 
-# TransformationPass[¶](#transformationpass "Permalink to this headline")
+# TransformationPass
 
 <span id="qiskit.transpiler.TransformationPass" />
 

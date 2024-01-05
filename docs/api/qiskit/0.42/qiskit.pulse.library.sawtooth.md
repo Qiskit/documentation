@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.library.sawtooth
 ---
 
-# qiskit.pulse.library.sawtooth[¶](#qiskit-pulse-library-sawtooth "Permalink to this headline")
+# qiskit.pulse.library.sawtooth
 
 <span id="qiskit.pulse.library.sawtooth" />
 

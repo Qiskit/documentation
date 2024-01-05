@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.pulse.library.sech_deriv
 ---
 
-# qiskit.pulse.library.sech\_deriv[¶](#qiskit-pulse-library-sech-deriv "Permalink to this headline")
+# qiskit.pulse.library.sech\_deriv
 
 <span id="qiskit.pulse.library.sech_deriv" />
 

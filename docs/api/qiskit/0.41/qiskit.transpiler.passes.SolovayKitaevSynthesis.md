@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.SolovayKitaevSynthesis
 ---
 
-# SolovayKitaevSynthesis[¶](#solovaykitaevsynthesis "Permalink to this headline")
+# SolovayKitaevSynthesis
 
 <span id="qiskit.transpiler.passes.SolovayKitaevSynthesis" />
 

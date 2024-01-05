@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.dagcircuit.BlockCollapser
 ---
 
-# BlockCollapser[¶](#blockcollapser "Permalink to this headline")
+# BlockCollapser
 
 <span id="qiskit.dagcircuit.BlockCollapser" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.pulse.transforms.AlignLeft
 ---
 
-# AlignLeft[¶](#alignleft "Permalink to this headline")
+# AlignLeft
 
 <span id="qiskit.pulse.transforms.AlignLeft" />
 

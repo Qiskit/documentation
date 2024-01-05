@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilder
 ---
 
-# RZXCalibrationBuilder[¶](#rzxcalibrationbuilder "Permalink to this headline")
+# RZXCalibrationBuilder
 
 <span id="qiskit.transpiler.passes.RZXCalibrationBuilder" />
 

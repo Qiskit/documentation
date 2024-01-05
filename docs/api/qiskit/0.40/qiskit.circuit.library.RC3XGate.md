@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.RC3XGate
 ---
 
-# RC3XGate[¶](#rc3xgate "Permalink to this headline")
+# RC3XGate
 
 <span id="qiskit.circuit.library.RC3XGate" />
 

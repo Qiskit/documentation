@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.synthesis.synth_cnotdihedral_full
 ---
 
-# qiskit.synthesis.synth\_cnotdihedral\_full[¶](#qiskit-synthesis-synth-cnotdihedral-full "Permalink to this headline")
+# qiskit.synthesis.synth\_cnotdihedral\_full
 
 <span id="qiskit.synthesis.synth_cnotdihedral_full" />
 

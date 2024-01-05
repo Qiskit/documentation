@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.HoareOptimizer
 ---
 
-# HoareOptimizer[¶](#hoareoptimizer "Permalink to this headline")
+# HoareOptimizer
 
 <span id="qiskit.transpiler.passes.HoareOptimizer" />
 

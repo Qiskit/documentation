@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.algorithms.eigensolvers.VQD
 ---
 
-# VQD[¶](#vqd "Permalink to this headline")
+# VQD
 
 <span id="qiskit.algorithms.eigensolvers.VQD" />
 
@@ -87,8 +87,6 @@ Beta parameters in the VQD paper. Should have length k - 1, with k the number of
 **Type**
 
 list\[float]
-
-
 
 ### initial point
 

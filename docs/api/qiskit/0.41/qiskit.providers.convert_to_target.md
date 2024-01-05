@@ -6,7 +6,7 @@ python_api_type: function
 python_api_name: qiskit.providers.convert_to_target
 ---
 
-# qiskit.providers.convert\_to\_target[¶](#qiskit-providers-convert-to-target "Permalink to this headline")
+# qiskit.providers.convert\_to\_target
 
 <span id="qiskit.providers.convert_to_target" />
 

@@ -6,7 +6,7 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.Collect1qRuns
 ---
 
-# Collect1qRuns[¶](#collect1qruns "Permalink to this headline")
+# Collect1qRuns
 
 <span id="qiskit.transpiler.passes.Collect1qRuns" />
 
