@@ -22,7 +22,7 @@ import { toText } from "hast-util-to-text";
 import remarkMath from "remark-math";
 import remarkMdx from "remark-mdx";
 import { SphinxToMdResult } from "./SphinxToMdResult";
-import { PythonObjectMeta, pythonApiType } from "./PythonObjectMeta";
+import { PythonObjectMeta, PythonApiType } from "./PythonObjectMeta";
 import {
   getLastPartFromFullIdentifier,
   removePrefix,
@@ -81,13 +81,15 @@ export async function sphinxHtmlToMarkdown(options: {
         $child.find(".viewcode-link").closest("a").remove();
         const id = $dl.find("dt").attr("id") || "";
 
-        const python_type = getPythonApiType($dl);
+        if (child.name === "dt" && $dl.hasClass("class")) {
+          if (!meta.python_api_type) {
+            meta.python_api_type = "class";
+            meta.python_api_name = id;
+          }
 
-        if (child.name !== "dt" || !python_type) {
-          return `<div>${$child.html()}</div>`;
-        }
-
-        if (python_type == "property") {
+          findByText($, $main, "em.property", "class").remove();
+          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
+        } else if (child.name === "dt" && $dl.hasClass("property")) {
           if (!meta.python_api_type) {
             meta.python_api_type = "property";
             meta.python_api_name = id;
@@ -101,9 +103,25 @@ export async function sphinxHtmlToMarkdown(options: {
           const signature = $child.find("em").text()?.replace(/^:\s+/, "");
           if (signature.trim().length === 0) return;
           return `<span class="target" id='${id}'/><p><code>${signature}</code></p>`;
-        }
+        } else if (child.name === "dt" && $dl.hasClass("method")) {
+          if (!meta.python_api_type) {
+            meta.python_api_type = "method";
+            meta.python_api_name = id;
+            if (id) {
+              $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+            }
+          } else {
+            // Inline methods
+            if (id) {
+              $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore(
+                $dl,
+              );
+            }
+          }
 
-        if (python_type == "attribute") {
+          findByText($, $main, "em.property", "method").remove();
+          return `<span class="target" id='${id}'/><p><code>${$child.html()}</code></p>`;
+        } else if (child.name === "dt" && $dl.hasClass("attribute")) {
           if (!meta.python_api_type) {
             meta.python_api_type = "attribute";
             meta.python_api_name = id;
@@ -146,26 +164,24 @@ export async function sphinxHtmlToMarkdown(options: {
             }
             return output.join("\n");
           }
-        }
-
-        if (python_type == "method" && id) {
+        } else if (child.name === "dt" && $dl.hasClass("function")) {
           if (!meta.python_api_type) {
-            $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-          } else {
-            // Inline methods
-            $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore(
-              $dl,
-            );
+            meta.python_api_type = "function";
+            meta.python_api_name = id;
           }
+          findByText($, $main, "em.property", "function").remove();
+          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
+        } else if (child.name === "dt" && $dl.hasClass("exception")) {
+          if (!meta.python_api_type) {
+            meta.python_api_type = "exception";
+            meta.python_api_name = id;
+          }
+
+          findByText($, $main, "em.property", "exception").remove();
+          return `<span class="target" id='${id}'/><p><code>${$child.html()}</code></p>`;
         }
 
-        if (!meta.python_api_type) {
-          meta.python_api_type = python_type;
-          meta.python_api_name = id;
-        }
-
-        findByText($, $main, "em.property", `${python_type}`).remove();
-        return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
+        return `<div>${$child.html()}</div>`;
       })
       .join("\n");
 
@@ -590,7 +606,7 @@ function findByText(
   return $main.find(selector).filter((i, el) => $(el).text().trim() === text);
 }
 
-function getPythonApiType($dl: Cheerio<any>): pythonApiType | undefined {
+function getPythonApiType($dl: Cheerio<any>): PythonApiType | undefined {
   for (const className of [
     "function",
     "class",
@@ -601,7 +617,7 @@ function getPythonApiType($dl: Cheerio<any>): pythonApiType | undefined {
     "module",
   ]) {
     if ($dl.hasClass(className)) {
-      return className as pythonApiType;
+      return className as PythonApiType;
     }
   }
 
