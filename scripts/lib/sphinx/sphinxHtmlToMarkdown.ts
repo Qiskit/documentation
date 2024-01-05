@@ -81,15 +81,13 @@ export async function sphinxHtmlToMarkdown(options: {
         $child.find(".viewcode-link").closest("a").remove();
         const id = $dl.find("dt").attr("id") || "";
 
-        if (child.name === "dt" && $dl.hasClass("class")) {
-          if (!meta.python_api_type) {
-            meta.python_api_type = "class";
-            meta.python_api_name = id;
-          }
+        const python_type = getPythonApiType($dl);
 
-          findByText($, $main, "em.property", "class").remove();
-          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
-        } else if (child.name === "dt" && $dl.hasClass("property")) {
+        if (child.name !== "dt" || !python_type) {
+          return `<div>${$child.html()}</div>`;
+        }
+
+        if (python_type == "property") {
           if (!meta.python_api_type) {
             meta.python_api_type = "property";
             meta.python_api_name = id;
@@ -103,25 +101,9 @@ export async function sphinxHtmlToMarkdown(options: {
           const signature = $child.find("em").text()?.replace(/^:\s+/, "");
           if (signature.trim().length === 0) return;
           return `<span class="target" id='${id}'/><p><code>${signature}</code></p>`;
-        } else if (child.name === "dt" && $dl.hasClass("method")) {
-          if (!meta.python_api_type) {
-            meta.python_api_type = "method";
-            meta.python_api_name = id;
-            if (id) {
-              $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-            }
-          } else {
-            // Inline methods
-            if (id) {
-              $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore(
-                $dl,
-              );
-            }
-          }
+        }
 
-          findByText($, $main, "em.property", "method").remove();
-          return `<span class="target" id='${id}'/><p><code>${$child.html()}</code></p>`;
-        } else if (child.name === "dt" && $dl.hasClass("attribute")) {
+        if (python_type == "attribute") {
           if (!meta.python_api_type) {
             meta.python_api_type = "attribute";
             meta.python_api_name = id;
@@ -164,24 +146,26 @@ export async function sphinxHtmlToMarkdown(options: {
             }
             return output.join("\n");
           }
-        } else if (child.name === "dt" && $dl.hasClass("function")) {
-          if (!meta.python_api_type) {
-            meta.python_api_type = "function";
-            meta.python_api_name = id;
-          }
-          findByText($, $main, "em.property", "function").remove();
-          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
-        } else if (child.name === "dt" && $dl.hasClass("exception")) {
-          if (!meta.python_api_type) {
-            meta.python_api_type = "exception";
-            meta.python_api_name = id;
-          }
-
-          findByText($, $main, "em.property", "exception").remove();
-          return `<span class="target" id='${id}'/><p><code>${$child.html()}</code></p>`;
         }
 
-        return `<div>${$child.html()}</div>`;
+        if (python_type == "method" && id) {
+          if (!meta.python_api_type) {
+            $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+          } else {
+            // Inline methods
+            $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore(
+              $dl,
+            );
+          }
+        }
+
+        if (!meta.python_api_type) {
+          meta.python_api_type = python_type;
+          meta.python_api_name = id;
+        }
+
+        findByText($, $main, "em.property", `${python_type}`).remove();
+        return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
       })
       .join("\n");
 
