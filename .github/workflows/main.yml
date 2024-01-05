@@ -41,5 +41,12 @@ jobs:
         run: npm run check:fmt
       - name: Typecheck
         run: npm run typecheck
-      - name: Run infrastructure tests
+      - name: Infrastructure tests
         run: npm test
+
+      - name: Start local Docker preview
+        run: |
+          ./start &
+          sleep 20
+      - name: Check that pages render
+        run: npm run check-pages-render
