@@ -1,8 +1,6 @@
 ---
-
 title: Qiskit IBM Provider API Docs
 description: API documentation for qiskit-ibm-provider
-
 ---
 
 # qiskit-ibm-provider API Reference

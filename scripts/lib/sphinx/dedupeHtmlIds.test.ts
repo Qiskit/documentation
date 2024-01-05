@@ -10,15 +10,22 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
-import { removePart } from "../stringUtils";
+import { expect, test } from "@jest/globals";
 
-export function flatFolders(results: SphinxToMdResultWithUrl[]): void {
-  for (const result of results) {
-    result.url = omitRootFolders(result.url);
-  }
-}
+import { dedupeHtmlIds } from "./dedupeHtmlIds";
 
-function omitRootFolders(path: string): string {
-  return removePart(path, "/", ["stubs", "apidocs", "apidoc"]);
-}
+test("dedupeHtmlIds()", async () => {
+  expect(
+    await dedupeHtmlIds(`
+  <span id="foo" />
+  <span id="bar" />
+  # foo
+  <span id="foo" />
+  `),
+  ).toMatchInlineSnapshot(`
+    "<span id="bar" />
+
+    # foo
+    "
+  `);
+});
