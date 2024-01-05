@@ -31,6 +31,9 @@ jobs:
       - name: Get all changed files
         id: all-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
+        with:
+          files: docs/**/*.ipynb
+          separator: "\n"
 
       - name: Check for notebooks that require LaTeX
         id: latex-changed-files
@@ -71,4 +74,15 @@ jobs:
           key: ${{ hashFiles('scripts/nb-tester/requirements.txt') }}
 
       - name: Run tox
-        run: tox -- ${{ steps.all-changed-files.outputs.all_changed_files }}
+        shell: python
+        run: |
+          import subprocess
+          files = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
+          args = ["tox", "--"] + files.split("\n") + ["--write"]
+          subprocess.run(args, check=True)
+
+      - name: Upload executed notebooks
+        uses: actions/upload-artifact@v4
+        with:
+          name: Executed notebooks
+          path: ${{ steps.all-changed-files.outputs.all_changed_files }}

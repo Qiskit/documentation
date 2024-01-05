@@ -139,6 +139,12 @@ pipx install tox
 > add it to the "Check for notebooks that require LaTeX" step in
 > `.github/workflows/notebook-test.yml`.
 
+When you make a pull request with a changed notebook, you can get a version of
+that notebook that was executed in a uniform environment from CI. To do this,
+click "Show all checks" in the info box at the bottom of the pull request page
+on GitHub, then choose "Details" for the "Test notebooks" job. From the job
+page, click "Summary", then download "Executed notebooks".
+
 ## Check for broken links
 
 CI will check for broken links. You can also check locally:
@@ -153,6 +159,10 @@ npm run check:links -- --external
 # By default, only the non-API docs are checked. You can add any of the
 # below arguments to also check API docs and/or Qiskit release notes.
 npm run check:links -- --current-apis --historical-apis --qiskit-release-notes
+
+# However, `--historical-apis` currently has failing versions, so you may
+# want to add `--skip-broken-historical`.
+npm run check:links -- --historical-apis --skip-broken-historical
 
 # Or, run all the checks
 npm run check

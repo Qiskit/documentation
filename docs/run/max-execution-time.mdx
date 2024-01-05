@@ -4,7 +4,7 @@ description: Describes how long a Qiskit Runtime job or session can run.
 
 ---
 
-# Maximum execution time 
+# Maximum execution time for a Qiskit Runtime job or session
 
 To ensure fairness and help control costs, there is a maximum amount of time each Qiskit Runtime job and session can run. If a job exceeds this time limit, it is forcibly canceled and a `RuntimeJobMaxTimeoutError` exception is raised. If a session exceeds its limits, any queued jobs are canceled but any jobs that are already running are not. 
 
@@ -17,7 +17,7 @@ The maximum execution time for a job is the smaller of these values:
 - The system-determined job timeout value
 
 <Admonition type="note">
-  As of August 7, 2023, the `max_execution_time` value is based on _quantum time_ instead of wall clock time. Quantum time is the duration a quantum system is committed to fulfilling a user request.. 
+  As of August 7, 2023, the `max_execution_time` value is based on _quantum time_ instead of wall clock time. Quantum time is the duration a quantum system is committed to fulfilling a user request.
   
   Simulator jobs continue to use wall clock time because they do not have quantum time.
 </Admonition>
