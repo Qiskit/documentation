@@ -28,7 +28,7 @@ import {
   removePrefix,
   removeSuffix,
 } from "../stringUtils";
-import { remarkStringifyOptions } from "./unifiedParser";
+import { remarkStringifyOptions } from "./commonParserConfig";
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 import { visit } from "unist-util-visit";
 import { Root } from "mdast";

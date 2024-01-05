@@ -14,7 +14,7 @@ import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { SphinxToMdResult } from "./SphinxToMdResult";
 import { Pkg } from "../sharedTypes";
 
-export function addFrontMatter<T extends SphinxToMdResult>(
+function addFrontMatter<T extends SphinxToMdResult>(
   results: T[],
   pkg: Pkg,
 ): void {
@@ -39,11 +39,15 @@ python_api_name: ${result.meta.python_api_name}
 ${markdown}
 `;
     } else if (result.isReleaseNotes) {
+      const versionStr = pkg.hasSeparateReleaseNotes
+        ? ` ${pkg.versionWithoutPatch}`
+        : "";
+      const descriptionSuffix = pkg.hasSeparateReleaseNotes
+        ? `in ${pkg.title}${versionStr}`
+        : `to ${pkg.title}`;
       result.markdown = `---
-title: ${pkg.title}${
-        pkg.hasSeparateReleaseNotes ? " " + pkg.versionWithoutPatch : ""
-      } release notes
-description: Changes made to ${pkg.title}
+title: ${pkg.title}${versionStr} release notes
+description: Changes made ${descriptionSuffix}
 in_page_toc_max_heading_level: 2
 ---
 
@@ -52,3 +56,5 @@ ${markdown}
     }
   }
 }
+
+export default addFrontMatter;
