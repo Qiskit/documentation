@@ -17,19 +17,11 @@ import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
 
 test("flattenFolders()", () => {
   const results = [
-    {
-      url: "/api/my-pkg/apidoc/my_module",
-    } as SphinxToMdResultWithUrl,
-    {
-      url: "/api/my-pkg/apidocs/my_module2",
-    } as SphinxToMdResultWithUrl,
-    {
-      url: "/api/my-pkg/stubs/my_module.foo.Bar",
-    } as SphinxToMdResultWithUrl,
-    {
-      url: "/api/my-pkg/release_notes",
-    } as SphinxToMdResultWithUrl,
-  ];
+    { url: "/api/my-pkg/apidoc/my_module" },
+    { url: "/api/my-pkg/apidocs/my_module2" },
+    { url: "/api/my-pkg/stubs/my_module.foo.Bar" },
+    { url: "/api/my-pkg/release_notes" },
+  ] as SphinxToMdResultWithUrl[];
 
   flattenFolders(results);
   expect(results.map((result) => result.url)).toEqual([

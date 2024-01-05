@@ -21,24 +21,18 @@ import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
 
 test("specialCaseResults()", () => {
   const results = [
-    {
-      url: "/api/my-pkg/release_notes",
-    } as SphinxToMdResultWithUrl,
-    {
-      url: "/api/my-pkg/terra",
-    } as SphinxToMdResultWithUrl,
+    { url: "/api/my-pkg/release_notes" },
+    { url: "/api/my-pkg/terra" },
     {
       url: "/api/my-pkg/ibm-runtime",
       meta: {},
-    } as SphinxToMdResultWithUrl,
+    },
     {
       url: "/api/my-pkg/ibm-provider",
       meta: {},
-    } as SphinxToMdResultWithUrl,
-    {
-      url: "/api/my-pkg/other-file",
-    } as SphinxToMdResultWithUrl,
-  ];
+    },
+    { url: "/api/my-pkg/other-file" },
+  ] as SphinxToMdResultWithUrl[];
 
   specialCaseResults(results);
   expect(results).toEqual([
