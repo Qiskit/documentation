@@ -10,16 +10,32 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-# This Action runs every day at 00:00 UTC to check things that
-# we care about but would be too slow to check in every PR.
+# This Action runs checks things that we care about but would be
+# too slow to check in every PR.
 
-name: Nightly extended checks
+name: Extended checks
 on:
   schedule:
-    - cron: "0 0 * * *"
+    - cron: "0 0 * * *" # Every day at midnight UTC
+
+  # For translations, run checks during branch builds because CI will not be triggered
+  # in the automated PR to download new translations. (That's a restriction by GitHub
+  # because we use the GitHub token to create the PR - a workflow can't
+  # call other workflows.)
+  push:
+    branches:
+      - main
+    paths:
+      - "translations/**/*"
+
+  pull_request:
+    paths:
+      - "docs/api/qiskit/**/*"
+      - "docs/api/qiskit-ibm-provider/**/*"
+      - "docs/api/qiskit-ibm-runtime/**/*"
 
 jobs:
-  nightly-extended-checks:
+  extended-checks:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'Qiskit'
     steps:
