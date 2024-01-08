@@ -81,38 +81,40 @@ export async function sphinxHtmlToMarkdown(options: {
         $child.find(".viewcode-link").closest("a").remove();
         const id = $dl.find("dt").attr("id") || "";
 
-        if (child.name === "dt" && $dl.hasClass("class")) {
-          if (!meta.python_api_type) {
-            meta.python_api_type = "class";
-            meta.python_api_name = id;
-          }
+        const python_type = getPythonApiType($dl);
 
+        if (child.name !== "dt" || !python_type) {
+          return `<div>${$child.html()}</div>`;
+        }
+
+        const priorPythonApiType = meta.python_api_type;
+        if (!priorPythonApiType) {
+          meta.python_api_type = python_type;
+          meta.python_api_name = id;
+        }
+
+        if (python_type == "class") {
           findByText($, $main, "em.property", "class").remove();
           return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
-        } else if (child.name === "dt" && $dl.hasClass("property")) {
-          if (!meta.python_api_type) {
-            meta.python_api_type = "property";
-            meta.python_api_name = id;
+        }
 
-            if (id) {
-              $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-            }
+        if (python_type == "property") {
+          if (!priorPythonApiType && id) {
+            $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
           }
 
           findByText($, $main, "em.property", "property").remove();
           const signature = $child.find("em").text()?.replace(/^:\s+/, "");
           if (signature.trim().length === 0) return;
           return `<span class="target" id='${id}'/><p><code>${signature}</code></p>`;
-        } else if (child.name === "dt" && $dl.hasClass("method")) {
-          if (!meta.python_api_type) {
-            meta.python_api_type = "method";
-            meta.python_api_name = id;
-            if (id) {
+        }
+
+        if (python_type == "method") {
+          if (id) {
+            if (!priorPythonApiType) {
               $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-            }
-          } else {
-            // Inline methods
-            if (id) {
+            } else {
+              // Inline methods
               $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore(
                 $dl,
               );
@@ -121,11 +123,10 @@ export async function sphinxHtmlToMarkdown(options: {
 
           findByText($, $main, "em.property", "method").remove();
           return `<span class="target" id='${id}'/><p><code>${$child.html()}</code></p>`;
-        } else if (child.name === "dt" && $dl.hasClass("attribute")) {
-          if (!meta.python_api_type) {
-            meta.python_api_type = "attribute";
-            meta.python_api_name = id;
+        }
 
+        if (python_type == "attribute") {
+          if (!priorPythonApiType) {
             if (id) {
               $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
             }
@@ -134,54 +135,47 @@ export async function sphinxHtmlToMarkdown(options: {
             const signature = $child.find("em").text()?.replace(/^:\s+/, "");
             if (signature.trim().length === 0) return;
             return `<span class="target" id='${id}'/><p><code>${signature}</code></p>`;
-          } else {
-            // The attribute is embedded on the class
-            const text = $child.text();
-            const equalIndex = text.indexOf("=");
-            const colonIndex = text.indexOf(":");
-            let name = text;
-            let type: string | undefined;
-            let value: string | undefined;
-            if (colonIndex > 0 && equalIndex > 0) {
-              name = text.substring(0, colonIndex);
-              type = text.substring(colonIndex + 1, equalIndex);
-              value = text.substring(equalIndex);
-            } else if (colonIndex > 0) {
-              name = text.substring(0, colonIndex);
-              type = text.substring(colonIndex + 1);
-            } else if (equalIndex > 0) {
-              name = text.substring(0, equalIndex);
-              value = text.substring(equalIndex);
-            }
-            const output = [
-              `<span class="target" id='${id}'/><h3>${name}</h3>`,
-            ];
-            if (type) {
-              output.push(`<p><code>${type}</code></p>`);
-            }
-            if (value) {
-              output.push(`<p><code>${value}</code></p>`);
-            }
-            return output.join("\n");
-          }
-        } else if (child.name === "dt" && $dl.hasClass("function")) {
-          if (!meta.python_api_type) {
-            meta.python_api_type = "function";
-            meta.python_api_name = id;
-          }
-          findByText($, $main, "em.property", "function").remove();
-          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
-        } else if (child.name === "dt" && $dl.hasClass("exception")) {
-          if (!meta.python_api_type) {
-            meta.python_api_type = "exception";
-            meta.python_api_name = id;
           }
 
-          findByText($, $main, "em.property", "exception").remove();
-          return `<span class="target" id='${id}'/><p><code>${$child.html()}</code></p>`;
+          // Else, the attribute is embedded on the class
+          const text = $child.text();
+          const equalIndex = text.indexOf("=");
+          const colonIndex = text.indexOf(":");
+          let name = text;
+          let type: string | undefined;
+          let value: string | undefined;
+          if (colonIndex > 0 && equalIndex > 0) {
+            name = text.substring(0, colonIndex);
+            type = text.substring(colonIndex + 1, equalIndex);
+            value = text.substring(equalIndex);
+          } else if (colonIndex > 0) {
+            name = text.substring(0, colonIndex);
+            type = text.substring(colonIndex + 1);
+          } else if (equalIndex > 0) {
+            name = text.substring(0, equalIndex);
+            value = text.substring(equalIndex);
+          }
+          const output = [`<span class="target" id='${id}'/><h3>${name}</h3>`];
+          if (type) {
+            output.push(`<p><code>${type}</code></p>`);
+          }
+          if (value) {
+            output.push(`<p><code>${value}</code></p>`);
+          }
+          return output.join("\n");
         }
 
-        return `<div>${$child.html()}</div>`;
+        if (python_type === "function") {
+          findByText($, $main, "em.property", "function").remove();
+          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
+        }
+
+        if (python_type === "exception") {
+          findByText($, $main, "em.property", "exception").remove();
+          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
+        }
+
+        throw new Error(`Unhandled Python type: ${python_type}`);
       })
       .join("\n");
 
