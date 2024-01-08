@@ -95,7 +95,7 @@ export async function sphinxHtmlToMarkdown(options: {
 
         if (python_type == "class") {
           findByText($, $main, "em.property", "class").remove();
-          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>`;
+          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
         }
 
         if (python_type == "property") {
@@ -122,7 +122,7 @@ export async function sphinxHtmlToMarkdown(options: {
           }
 
           findByText($, $main, "em.property", "method").remove();
-          return `<span class="target" id='${id}'/><p><code>${$child.html()}</code>`;
+          return `<span class="target" id='${id}'/><p><code>${$child.html()}</code></p>`;
         }
 
         if (python_type == "attribute") {
@@ -167,12 +167,12 @@ export async function sphinxHtmlToMarkdown(options: {
 
         if (python_type === "function") {
           findByText($, $main, "em.property", "function").remove();
-          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>`;
+          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
         }
 
         if (python_type === "exception") {
           findByText($, $main, "em.property", "exception").remove();
-          return `<span class="target" id='${id}'/><p><code>${$child.html()}</code>`;
+          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
         }
 
         throw new Error(`Unhandled Python type: ${python_type}`);
