@@ -44,11 +44,11 @@ test("specialCaseResults()", () => {
     },
     {
       url: "/api/my-pkg/index",
-      meta: { hardcoded_frontmatter: RUNTIME_INDEX_META },
+      meta: { hardcodedFrontmatter: RUNTIME_INDEX_META },
     },
     {
       url: "/api/my-pkg/index",
-      meta: { hardcoded_frontmatter: PROVIDER_INDEX_META },
+      meta: { hardcodedFrontmatter: PROVIDER_INDEX_META },
     },
     {
       url: "/api/my-pkg/other-file",

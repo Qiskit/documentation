@@ -594,8 +594,8 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
       Class for interacting with Qiskit Runtime Sampler primitive service.
       ",
         "meta": {
-          "python_api_name": "qiskit_ibm_runtime.Sampler",
-          "python_api_type": "class",
+          "apiName": "qiskit_ibm_runtime.Sampler",
+          "apiType": "class",
         },
       }
     `);
@@ -645,8 +645,8 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
       Quantum circuits that represents quantum states.
       ",
         "meta": {
-          "python_api_name": "qiskit_ibm_runtime.Estimator.circuits",
-          "python_api_type": "property",
+          "apiName": "qiskit_ibm_runtime.Estimator.circuits",
+          "apiType": "property",
         },
       }
     `);
@@ -675,8 +675,8 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
       Submit a request to the estimator primitive program.
       ",
         "meta": {
-          "python_api_name": "qiskit_ibm_runtime.Estimator.run",
-          "python_api_type": "method",
+          "apiName": "qiskit_ibm_runtime.Estimator.run",
+          "apiType": "method",
         },
       }
     `);
@@ -703,8 +703,8 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
       \`Optional[Callable] = None\`
       ",
         "meta": {
-          "python_api_name": "qiskit_ibm_runtime.options.EnvironmentOptions.callback",
-          "python_api_type": "attribute",
+          "apiName": "qiskit_ibm_runtime.options.EnvironmentOptions.callback",
+          "apiType": "attribute",
         },
       }
     `);
@@ -778,8 +778,8 @@ By default this is sys.stdout.</p></li>
       \`None\`
       ",
         "meta": {
-          "python_api_name": "qiskit_ibm_provider.job.job_monitor",
-          "python_api_type": "function",
+          "apiName": "qiskit_ibm_provider.job.job_monitor",
+          "apiType": "function",
         },
       }
     `);
@@ -822,8 +822,8 @@ By default this is sys.stdout.</p></li>
       Set the error message.
       ",
         "meta": {
-          "python_api_name": "qiskit_ibm_provider.job.IBMJobError",
-          "python_api_type": "exception",
+          "apiName": "qiskit_ibm_provider.job.IBMJobError",
+          "apiType": "exception",
         },
       }
     `);
@@ -843,8 +843,8 @@ By default this is sys.stdout.</p></li>
       ).meta,
     ).toMatchInlineSnapshot(`
         {
-          "python_api_name": "qiskit.circuit",
-          "python_api_type": "module",
+          "apiName": "qiskit.circuit",
+          "apiType": "module",
         }
       `);
     // Sphinx 7.2+ uses this style.
@@ -858,8 +858,8 @@ By default this is sys.stdout.</p></li>
       ).meta,
     ).toMatchInlineSnapshot(`
           {
-            "python_api_name": "qiskit_ibm_runtime.options",
-            "python_api_type": "module",
+            "apiName": "qiskit_ibm_runtime.options",
+            "apiType": "module",
           }
         `);
   });
@@ -894,8 +894,8 @@ By default this is sys.stdout.</p></li>
       Passes to layout circuits to IBM backend’s instruction sets.
       ",
         "meta": {
-          "python_api_name": "qiskit_ibm_provider.transpiler.passes.basis",
-          "python_api_type": "module",
+          "apiName": "qiskit_ibm_provider.transpiler.passes.basis",
+          "apiType": "module",
         },
       }
     `);
@@ -977,8 +977,8 @@ By default this is sys.stdout.</p></li>
       \`None\`
       ",
         "meta": {
-          "python_api_name": "qiskit_ibm_provider.job.IBMCircuitJob.wait_for_final_state",
-          "python_api_type": "method",
+          "apiName": "qiskit_ibm_provider.job.IBMCircuitJob.wait_for_final_state",
+          "apiType": "method",
         },
       }
     `);

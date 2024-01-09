@@ -33,14 +33,14 @@ export function specialCaseResults(results: HtmlToMdResultWithUrl[]): void {
     if (result.url.endsWith("/ibm-provider")) {
       result.url = result.url.replace(/\/ibm-provider$/g, "/index");
       result.meta = {
-        hardcoded_frontmatter: PROVIDER_INDEX_META,
+        hardcodedFrontmatter: PROVIDER_INDEX_META,
       };
     }
 
     if (result.url.endsWith("/ibm-runtime")) {
       result.url = result.url.replace(/\/ibm-runtime$/g, "/index");
       result.meta = {
-        hardcoded_frontmatter: RUNTIME_INDEX_META,
+        hardcodedFrontmatter: RUNTIME_INDEX_META,
       };
     }
   }

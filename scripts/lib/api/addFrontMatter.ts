@@ -20,20 +20,20 @@ function addFrontMatter<T extends HtmlToMdResult>(
 ): void {
   for (let result of results) {
     let markdown = result.markdown;
-    if (result.meta.hardcoded_frontmatter) {
+    if (result.meta.hardcodedFrontmatter) {
       result.markdown = `---
-${result.meta.hardcoded_frontmatter}
+${result.meta.hardcodedFrontmatter}
 ---
 
 ${markdown}
 `;
-    } else if (result.meta.python_api_name) {
+    } else if (result.meta.apiName) {
       result.markdown = `---
-title: ${getLastPartFromFullIdentifier(result.meta.python_api_name)}
-description: API reference for ${result.meta.python_api_name}
+title: ${getLastPartFromFullIdentifier(result.meta.apiName)}
+description: API reference for ${result.meta.apiName}
 in_page_toc_min_heading_level: 1
-python_api_type: ${result.meta.python_api_type}
-python_api_name: ${result.meta.python_api_name}
+python_api_type: ${result.meta.apiType}
+python_api_name: ${result.meta.apiName}
 ---
 
 ${markdown}

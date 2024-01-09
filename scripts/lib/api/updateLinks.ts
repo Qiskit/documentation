@@ -62,7 +62,7 @@ export function updateUrl(
   const member = last(pathParts);
   const initialPathParts = initial(pathParts);
   const parentName = initialPathParts.join(".");
-  if ("class" === resultsByName[parentName]?.meta.python_api_type) {
+  if ("class" === resultsByName[parentName]?.meta.apiType) {
     return [...initialUrlParts, parentName].join("/") + "#" + member;
   }
   return url;
@@ -72,10 +72,7 @@ export async function updateLinks(
   results: HtmlToMdResultWithUrl[],
   transformLink?: (link: Link) => Link | undefined,
 ): Promise<void> {
-  const resultsByName = keyBy(
-    results,
-    (result) => result.meta.python_api_name!,
-  );
+  const resultsByName = keyBy(results, (result) => result.meta.apiName!);
   const itemNames = new Set(keys(resultsByName));
 
   for (const result of results) {

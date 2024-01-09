@@ -20,7 +20,7 @@ export type ApiType =
   | "exception";
 
 export type Metadata = {
-  python_api_name?: string;
-  python_api_type?: ApiType;
-  hardcoded_frontmatter?: string;
+  apiName?: string;
+  apiType?: ApiType;
+  hardcodedFrontmatter?: string;
 };

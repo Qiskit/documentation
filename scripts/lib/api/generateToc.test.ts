@@ -19,49 +19,49 @@ describe("generateToc", () => {
     const toc = generateToc(pkg, [
       {
         meta: {
-          python_api_type: "module",
-          python_api_name: "qiskit_ibm_runtime",
+          apiType: "module",
+          apiName: "qiskit_ibm_runtime",
         },
         url: "/docs/runtime",
       },
       {
         meta: {
-          python_api_type: "module",
-          python_api_name: "qiskit_ibm_runtime.options",
+          apiType: "module",
+          apiName: "qiskit_ibm_runtime.options",
         },
         url: "/docs/options",
       },
       {
-        meta: { python_api_type: "class", python_api_name: "Sampler" },
+        meta: { apiType: "class", apiName: "Sampler" },
         url: "/docs/qiskit_ibm_runtime.Sampler",
       },
       {
-        meta: { python_api_type: "method", python_api_name: "Sampler.run" },
+        meta: { apiType: "method", apiName: "Sampler.run" },
         url: "/docs/qiskit_ibm_runtime.Sampler.run",
       },
       {
-        meta: { python_api_type: "class", python_api_name: "Estimator" },
+        meta: { apiType: "class", apiName: "Estimator" },
         url: "/docs/qiskit_ibm_runtime.Estimator",
       },
       {
-        meta: { python_api_type: "class" },
+        meta: { apiType: "class" },
         url: "/docs/qiskit_ibm_runtime.NoName",
       },
       {
-        meta: { python_api_type: "class", python_api_name: "Options" },
+        meta: { apiType: "class", apiName: "Options" },
         url: "docs/qiskit_ibm_runtime.options.Options",
       },
       {
         meta: {
-          python_api_type: "function",
-          python_api_name: "runSomething",
+          apiType: "function",
+          apiName: "runSomething",
         },
         url: "docs/qiskit_ibm_runtime.runSomething",
       },
       {
         meta: {
-          python_api_type: "module",
-          python_api_name: "qiskit_ibm_runtime.single",
+          apiType: "module",
+          apiName: "qiskit_ibm_runtime.single",
         },
         url: "/docs/single",
       },
@@ -105,8 +105,8 @@ describe("generateToc", () => {
       [
         {
           meta: {
-            python_api_type: "module",
-            python_api_name: "qiskit_ibm_runtime",
+            apiType: "module",
+            apiName: "qiskit_ibm_runtime",
           },
           url: "/docs/runtime/qiskit_ibm_runtime",
         },

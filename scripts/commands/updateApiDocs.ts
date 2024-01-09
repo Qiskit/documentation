@@ -249,7 +249,7 @@ async function convertHtmlToMarkdown(
     const { dir, name } = parse(`${markdownPath}/${file}`);
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
 
-    if (!result.meta.python_api_name || !ignore(result.meta.python_api_name)) {
+    if (!result.meta.apiName || !ignore(result.meta.apiName)) {
       results.push({ ...result, url });
     }
     if (

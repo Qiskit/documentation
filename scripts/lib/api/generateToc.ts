@@ -41,17 +41,17 @@ export function generateToc(
 ): Toc {
   const releaseNotesUrl = `/api/${pkg.name}/release-notes`;
   const resultsWithName = results.filter(
-    (result) => !isEmpty(result.meta.python_api_name),
+    (result) => !isEmpty(result.meta.apiName),
   );
 
   const modules = resultsWithName.filter(
-    (result) => result.meta.python_api_type === "module",
+    (result) => result.meta.apiType === "module",
   );
   const items = resultsWithName.filter(
     (result) =>
-      result.meta.python_api_type === "class" ||
-      result.meta.python_api_type === "function" ||
-      result.meta.python_api_type === "exception",
+      result.meta.apiType === "class" ||
+      result.meta.apiType === "function" ||
+      result.meta.apiType === "exception",
   );
 
   const tocChildren: Toc["children"] = [];
@@ -59,7 +59,7 @@ export function generateToc(
   if (modules.length > 0) {
     const tocModules = modules.map(
       (module): TocEntry => ({
-        title: module.meta.python_api_name!,
+        title: module.meta.apiName!,
         // Remove the final /index from the url
         url: module.url.replace(/\/index$/, ""),
       }),
@@ -69,9 +69,9 @@ export function generateToc(
 
     // Add items to modules
     for (const item of items) {
-      if (!item.meta.python_api_name) continue;
+      if (!item.meta.apiName) continue;
       const itemModuleTitle = findClosestParentModules(
-        item.meta.python_api_name,
+        item.meta.apiName,
         tocModuleTitles,
       );
       const itemModule = itemModuleTitle
@@ -80,7 +80,7 @@ export function generateToc(
       if (itemModule) {
         if (!itemModule.children) itemModule.children = [];
         const itemTocEntry: TocEntry = {
-          title: getLastPartFromFullIdentifier(item.meta.python_api_name!),
+          title: getLastPartFromFullIdentifier(item.meta.apiName!),
           url: item.url,
         };
         itemModule.children.push(itemTocEntry);
