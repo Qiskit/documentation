@@ -84,6 +84,12 @@ export async function sphinxHtmlToMarkdown(options: {
       const dest = `${imageDestination}/${filename}`;
 
       $img.attr("src", dest);
+
+      if (isReleaseNotes) {
+        // Release notes links should point to the current version
+        $img.attr("src", dest.replace(/[0-9].*\//, ""));
+      }
+
       images.push({ src, dest: dest });
     });
 
@@ -193,7 +199,7 @@ export async function sphinxHtmlToMarkdown(options: {
       .map((child) => {
         const $child = $page(child);
         $child.find(".viewcode-link").closest("a").remove();
-        const id = $dl.find("dt.sig-object").attr("id") || "";
+        const id = $dl.find("dt").attr("id") || "";
 
         if (child.name === "dt" && $dl.hasClass("class")) {
           if (!meta.python_api_type) {

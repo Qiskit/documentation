@@ -1,0 +1,109 @@
+---
+title: Instances
+description: What IBM Quantum Platform instances are and how to use them
+---
+
+# Instances
+
+Access to IBM Quantum Platform services is controlled by the **instances** (previously called providers) to which you are assigned. An instance is defined by a hierarchical organization of **hub**, **group**, and **project**. A hub is the top level of a given hierarchy (organization) and contains within it one or more groups. These groups are in turn populated with projects. The combination of hub/group/project is called an instance. Users can belong to more than one instance at any given time.
+
+<Admonition type="note">
+  IBM Cloud instances are different from IBM Quantum Platform instances.  IBM Cloud does not use the hub/group/project structure for user management. This section describes instances in IBM Quantum Platform. To view and create IBM Cloud instances, visit the [IBM Cloud Quantum Instances page](https://cloud.ibm.com/quantum/instances). Click the name of an instance to see details such as your CRN for that instance, what compute resources (programs, systems, and simulators) are available to you by using that instance, and what jobs you have run on that instance. 
+</Admonition>
+
+![../../../\_images/providers1.jpg](/images/migration/providers1.jpg)
+
+The hub/group/project hierarchy that makes up an IBM Quantum instance.
+
+Users with a public account automatically belong to the ibm-q/open/main [open plan](#open-plan). For organizations outside of IBM, designated hub or group administrators assign users to instances. 
+
+To see the instances to which you have access, look at the bottom of your [Account page](https://quantum.ibm.com/account).
+
+![../../../\_images/find-providers1.png](/images/migration/find-providers1.png)
+
+## Find your instances
+
+You can view a list of your instances on your [account settings page](https://quantum.ibm.com/account), or you can use [the `instances()` method](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#instances).
+
+## Switch instances
+
+If you have access to run on multiple instances, the [IBM Quantum interface](https://quantum.ibm.com/) menu bar contains a dropdown that lets you switch between instances.  The IBM Quantum Platform dashboard, Compute resources, and Jobs pages display information such as usage metrics, jobs, and systems based on the selected instance.  
+
+<Admonition type="note">
+ The instance switcher does not appear in the Administration application.
+ </Admonition>
+
+If you switch to a different instance, it is remembered the next time you log on and, assuming that it's still a valid instance, information pertaining to that instance is displayed.  By default, the first premium instance you have access to is used.  If you do not have any premium instances, the first open instance is shown.   
+
+<Admonition type="note">
+The first instance is determined alphabetically. 
+</Admonition>
+
+## Instances and jobs
+
+When you execute a task using an IBM Quantum service (for example, sending circuits to a quantum system or simulator), a **job** instance is returned to you. Regardless of which service is being used, a job can track the progress of the submission through IBM Quantum, and retrieve the final result(s) of the computation. Because services are coupled to instances, the jobs created from these services are also tied to the specific instance being used. Therefore, **if a user is removed from an instance, their jobs and the associated results are no longer accessible**.
+
+## Open plan
+
+By default, users who sign up for an IBM Quantum account are assigned to the Open plan and the Open plan's instance, `ibm-q/open/main`. To guarantee that everyone can use the IBM Quantum systems allocated to the plan fairly, **an individual can have no more than three jobs running and/or in the queue (across all systems) at the same time.** Submitting more than three jobs at a time will return error [#3458](../errors#3458), and additional jobs will be canceled.
+
+Those using the Open plan instance have up to 10 minutes total of system execution time per month, which resets at 00:00:00 UTC on the first of each calendar month. Open plan users can track their system execution time on the [Platform dashboard,](https://quantum.ibm.com/) [Jobs,](https://quantum.ibm.com/jobs) and [Account](https://quantum.ibm.com/account) pages.
+
+<span id="connect-instance"></span>
+## Connect to an instance
+
+You can specify an instance when initializing the service or provider, or when choosing a backend.  You can copy the service-level code by clicking the three dots by the instance name on the Instances section of the [Account overview page](https://quantum.ibm.com/account).
+
+### qiskit-ibm-runtime
+
+```python
+
+# Optional: List all the instances you can access.
+service = QiskitRuntimeService(channel='ibm_quantum')
+print(service.instances())
+
+# Optional: Specify it at service level. This becomes the default unless overwritten.
+service = QiskitRuntimeService(channel='ibm_quantum', instance="hub1/group1/project1")
+backend1 = service.backend("ibmq_manila")
+
+# Optional: Specify it at the backend level, which overwrites the service-level specification when this backend is used. 
+backend2 = service.backend("ibmq_manila", instance="hub2/group2/project2")
+
+sampler1 = Sampler(backend=backend1)    # this will use hub1/group1/project1
+sampler2 = Sampler(backend=backend2)    # this will use hub2/group2/project2
+```
+
+### qiskit-ibm-provider
+
+```python
+from qiskit_ibm_provider import IBMProvider
+
+provider = IBMProvider(instance="hub1/group1/project1")
+backend1 = provider.get_backend("ibmq_manila")
+backend2 = provider.get_backend("ibmq_manila", instance="hub2/group2/project2")
+
+job1 = backend1.run(...)    # this will use hub1/group1/project1
+job2 = backend2.run(...)    # this will use hub2/group2/project2
+```
+
+<Admonition type="note">
+If you do not specify an instance, the code will select one in the following order:
+
+1.  If your account only has access to one instance, it is selected by default.
+2.  If your account has access to multiple instances but only one can access the requested backend, the instance with access is selected.
+3.  In all other cases, the code selects the first instance other than `ibm-q/open/main` that has access to the backend.
+    </Admonition>
+
+## Leaving an instance
+
+To leave an instance, visit the instance list on your [Account page.](https://quantum.ibm.com/account) Select the instance you wish to leave, then select the overflow menu and choose _Leave instance_.
+
+![../../../\_images/leaving1.png](/images/migration/leaving1.png)
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Try the [Grover's algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm) tutorial.
+    - Review the [IBMProvider instances method](/api/qiskit-ibm-provider/qiskit_ibm_provider.IBMProvider#instances) reference.
+    - Review the [QiskitRuntimeService instances method](/api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#instances) reference.
+</Admonition>

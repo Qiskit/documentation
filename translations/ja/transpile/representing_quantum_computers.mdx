@@ -1,0 +1,177 @@
+---
+title: Representing quantum computers
+description: Learn about coupling maps, basis gates and backend errors for transpiling
+---
+
+# Represent quantum computers
+
+To construct an equivalent circuit that can run on a specific backend, the transpiler needs certain details about the backend.  Typically, this information is found in the `backend` or `target = backend.target` class, so you don't need to pass anything further to the transpiler. However, if more infomation is provided, the transpiler can use it to try to produce the best circuit to run on that hardware.  
+
+<Admonition type="note">
+Because many of the underlying transpilation algorithms are stochastic, there is no guarantee that a better circuit will be found. 
+</Admonition>
+
+<span id="default-config"></span>
+## Default configuration
+
+The simplest use of the transpiler is to provide all the backend information by providing the `backend` or `target`. To better understand how the transpiler works, construct a circuit and transpile it with different information:
+
+Import the necessary libraries and instantiate the backend:
+
+```python
+from qiskit import transpile
+from qiskit.circuit.library import EfficientSU2
+from qiskit.providers.fake_provider import FakeSherbrooke
+
+backend = FakeSherbrooke()
+target = backend.target
+```
+
+The `EfficientSU2` circuit consists of layers of single qubit operations spanned by `SU(2)` and `CX` entanglements. This is a heuristic pattern that can be used to prepare trial wave functions for variational quantum algorithms or classification circuits for machine learning.
+
+```python
+qc = EfficientSU2(12, entanglement='circular', reps=1)
+qc.decompose(reps=1).draw('mpl', style='iqp')
+```
+
+![The 12-qubit test circuit](/images/transpile/representing_quantum_computers/qc-circular.png)
+
+### Transpile the circuit to backend target
+
+This example uses the default `optimization_level=1` to transpile to the `backend` `target`, which providers all the information to the transpiler that is necessary to convert circuit to one that will run on the backend.
+
+```python
+qc_t_target = transpile(qc, target=target, seed_transpiler=12345)
+qc_t_target.draw('mpl', style='iqp', idle_wires=False)
+```
+
+![The transpiled 12-qubit ansatz using Target information](/images/transpile/representing_quantum_computers/qc_t_target.png)
+
+This example is used in later sections of this topic to illustrate that the coupling map and basis gates are the essential pieces of information to pass to the transpiler for optimal circuit construction. The backend can usually select default settings for other information that is not passed in, such as timing and scheduling.
+
+Providing the backend properties, including the gates' error rates, allows the transpiler to select the best set of qubits on the backend.
+
+## Coupling map
+
+The coupling map is a graph that shows which qubits are connected and hence have 2-qubit gates between them. Sometimes this graph is directional, meaning that the 2-qubit gates can only go in one direction. However, the transpiler can always flip a gate's direction by adding additional 1-qubit gates. An abstract quantum circuit can always be represented on this graph, even if its connectivity is limited, by introducting SWAP gates to move the quantum information around. 
+
+The qubits from our abstract circuits are called _virtual qubits_ and those on the coupling map are _physical qubits_. The transpiler provides a mapping between virtual and physical qubits. One of the first steps in transpilation, the _routing_ stage, performs this mapping.
+
+<Admonition type="note">
+Although the routing stage is intertwined with the _layout_ stage, which selects the actual qubits, we will consider them as separate stages for simplicity. The combination of routing and layout is called _qubit mapping_.  Learn more about these stages in the [Transpiler stages](transpiler-stages) topic.
+</Admonition>
+
+Pass the `coupling_map` keyword argument to see its effect on the transpiler:
+
+```python
+coupling_map = target.build_coupling_map()
+
+qc_t_cm_lv0 = transpile(qc, coupling_map=coupling_map, optimization_level=0, seed_transpiler=11)
+qc_t_cm_lv0.draw('mpl', style='iqp', idle_wires=False)
+```
+
+![Ansatz transpiled to coupling map with optimization level 0](/images/transpile/representing_quantum_computers/qc_t_cm_lv0.png)
+
+As shown above, several SWAP gates were inserted (each consisting of three CX gates), which will cause a lot of errors on current devices. To see which qubits are selected on the actual qubit topology, use `plot_circuit_layout` from Qiskit Visualizations:
+
+```python
+from qiskit.visualization import plot_circuit_layout
+
+plot_circuit_layout(qc_t_cm_lv0, backend, view='physical')
+```
+
+![Circuit Layout for optimization level 0](/images/transpile/representing_quantum_computers/circ_layout_lv0.png)
+
+This shows that our virtual qubits 0-11 were trivially mapped to the line of physical qubits 0-11. Let's return to the default (`optimization_level=1`), which uses `VF2Layout` if any routing is required.
+
+```python
+qc_t_cm_lv1 = transpile(qc, coupling_map=coupling_map, seed_transpiler=11)
+qc_t_cm_lv1.draw('mpl', style='iqp', idle_wires=False)
+```
+
+![Ansatz transpiled to coupling map with optimization level 1](/images/transpile/representing_quantum_computers/qc_t_cm_lv1.png)
+
+Now there are no SWAP gates inserted and the physical qubits selected are the same when using the `target` class.
+
+```python
+from qiskit.visualization import plot_circuit_layout
+
+plot_circuit_layout(qc_t_cm_lv1, backend, view='physical')
+```
+
+![Circuit Layout for default optimization level](/images/transpile/representing_quantum_computers/circ_layout_lv1.png)
+
+Now the layout is in a ring.  Because this layout respects the circuit's connectivity, there are no SWAP gates, providing a much better circuit for execution.
+
+## Basis gates
+
+Every quantum backend supports a limited instruction set, called its _basis gates_.  Every gate in the circuit must be translated to the elements of this set. This set should consist of single- and two-qubit gates that provide a universal gates set, meaning that any quantum operation can be decomposed into those gates.  This is done by the [BasisTranslator](../api/qiskit/qiskit.transpiler.passes.BasisTranslator), and the basis gates can be specified as a keyword argument to the transpiler to provide this information.
+
+```python
+basis_gates = list(target.operation_names)
+print(basis_gates)
+```
+
+```python
+['rz', 'sx', 'x', 'ecr', 'measure', 'delay']
+```
+
+The default single-qubit gates on _ibm_sherbrooke_ are `rz`, `x`, and `sx`, and the default two-qubit gate is `ecr` which stands for echoed cross resonance. CX gates are constructed from `ecr` gates, so on some backends `ecr` is specified as the two-qubit basis gate while on others `cx` is default. The `ecr` gates is the _entangling_ part of the `cx` gate. If one desires to use a gate that is not in the basis gate set, instructions for custom gates can be provided using [pulse gates](https://docs.quantum.ibm.com/api/qiskit/qiskit.transpiler.passes.PulseGates#pulsegates). In addition to the control gates, there are also `delay` and `measurement` instructions.
+
+<Admonition>
+    Backends have default basis gates, but you can choose whatever gates you want, as long as you provide the instruction or add pulse gates (See [Create transpiler passes.](custom-transpiler-pass)) The default basis gates are those that calibrations have been done for on the backend, so no further instruction/pulse gate needs to be provided. For example, on some backends `cx` is the default two-qubit gates and `ecr` on others.
+</Admonition>
+
+```python
+qc_t_cm_bg = transpile(qc, coupling_map=coupling_map, basis_gates=basis_gates, seed_transpiler=11)
+qc_t_cm_bg.draw('mpl', style='iqp', fold=-1, idle_wires=False)
+```
+
+![Ansatz transpiled to coupling map and basis gates](/images/transpile/representing_quantum_computers/qc_t_cm_bg_lv1.png)
+
+Note that the `CXGate`s have been decomposed to `ecr` gates and single-qubit basis gates.
+
+## Including backend errors
+
+Constructing a `target` object lets you consider the qubits' error rates in addition to the `coupling_map` and `basis_gates`.  The `target` object contains everything needed to target a backend, but here we build one that contains a limited amount of information.
+
+We retrieved the `target` from `backend.target` previously. This contains a lot of backend information, including error rates. For example, the instruction properties of the echoed cross resonance gate between qubit 0 and 1 (not that `ecr` is directional) is retrieved by running the following command:
+
+```python
+target['ecr'][(1, 0)]
+```
+
+```
+InstructionProperties(duration=5.333333333333332e-07, error=0.006969730734746021, calibration=PulseQobj)
+```
+
+The above result shows that the gate is 533μs with an error of 0.7%. To reveal error information to the transpiler, we will build our own target model with the `basis_gates` and `coupling_map` from above and populate it with error values from the backend `FakeSherbrooke`. 
+
+```python
+from qiskit.transpiler import Target
+
+err_targ = Target.from_configuration(basis_gates=basis_gates, coupling_map=coupling_map, num_qubits=target.num_qubits)
+
+for idx in range(len(target.instructions)):
+    err_targ[target.instructions[idx][0].name][target.instructions[idx][1]] = target.instruction_properties(idx)
+```
+
+Transpile with our new target `err_targ` as the target: 
+
+```python
+qc_t_cm_bg_et = transpile(qc, target=err_targ, seed_transpiler=11)
+qc_t_cm_bg_et.draw('mpl', style='iqp', fold=-1, idle_wires=False)
+```
+
+![Ansatz transpiled to our target model](/images/transpile/representing_quantum_computers/qc_t_cm_bg_et_lv1.png)
+
+Note that by including the error information, the `VF2PostLayout` pass tries to find the optimal qubits to use, resulting in the same circuit that we found originally with the same physical qubits.
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Understand [Transpilation default settings and configuration options.](defaults-and-configuration-options)
+    - Review the [Commonly used parameters for transpilation](common-parameters) topic. 
+    - Try the [Submit transpiled circuits](https://learning.quantum.ibm.com/tutorial/submit-transpiled-circuits) tutorial.
+    - See the [Transpile API documentation.](/api/qiskit/transpiler)
+</Admonition>

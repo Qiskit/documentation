@@ -1,0 +1,180 @@
+---
+title: Run jobs in a session
+description: Run a job in a session
+---
+
+# Run jobs in a session
+
+There are several ways to set up and use [sessions](sessions).  It is recommended that you do not run a session with a single job in it.
+
+## Set up to use sessions
+
+Before starting a session, you must [set up Qiskit Runtime](../start/install) and initialize it as a service:
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService, Session, Sampler, Estimator
+
+service = QiskitRuntimeService()
+```
+
+## Open a session
+
+You can open a runtime session by using the context manager `with Session(...)` or by initializing the `Session`
+class. The session starts when its first job begins execution. 
+
+<Admonition type="note" title="Important">
+    If the first session job is canceled, subsequent session jobs will all fail.
+</Admonition>
+
+**Session class**
+
+```python
+from qiskit_ibm_runtime import Session, Sampler, Estimator
+
+session = Session(service=service, backend="ibmq_qasm_simulator")
+estimator = Estimator(session=session)
+sampler = Sampler(session=session)
+```
+
+**Context manager**
+
+The context manager automatically opens and closes the session.
+
+```python
+with Session(service=service, backend="ibmq_qasm_simulator"):
+  estimator = Estimator()
+  sampler = Sampler()
+```
+
+When you start a session,  you must specify a backend. This can be done by specifying its name or by passing a backend object. 
+
+**Specify a backend by name**
+
+```python
+service = QiskitRuntimeService()
+with Session(service=service, backend="ibmq_qasm_simulator"):
+    ...
+```
+
+**Pass a backend object** 
+
+```python
+backend = service.get_backend("ibmq_qasm_simulator")
+with Session(backend=backend):
+  ...
+```
+
+<span id="specify-length"></span>
+## Session length
+
+You can define the maximum session timeout with the max_time parameter. This should exceed the longest job's execution time and be within the system's limits. 
+
+```python
+with Session(service=service, backend=backend, max_time="25m"):
+  ...   
+```
+
+There is also an interactive timeout value (ITTL, or interactive time to live) that cannot be configured.  If no session jobs are queued within that window, the session is temporarily deactivated. To determine a session's ITTL, follow the instructions in [Determine session details](#session-details) and look for the `interactive_timeout` value.
+
+<span id="close"></span>
+## Close a session
+
+A session automatically closes when it exits the context manager. With qiskit-ibm-runtime 0.13 or later releases, when the session context manager is exited, the session is put into "In progress, not accepting new jobs" status. This means that the session finishes processing all running or queued jobs until the maximum timeout value is reached. After all jobs are completed, the session is immediately closed. This allows the scheduler to run the next job without waiting for the session interactive timeout, thereby reducing the average job queuing time. You cannot submit jobs to a closed session.
+
+```python
+with Session(service=service, backend=backend) as session:
+    estimator = Estimator()
+    job1 = estimator.run(...)
+    job2 = estimator.run(...)
+    
+# The session is no longer accepting jobs but the submitted job will run to completion.    
+result = job1.result()
+result2 = job2.result()
+```
+
+If you are not using a context manager, it's good practice to manually close the session once all the necessary results have been retrieved. With qiskit-ibm-runtime 0.13 or later releases, when a session is closed with `session.close()`, it no longer accepts new jobs, but the already submitted jobs will still run until completion and their results can be retrieved. Prior to qiskit-ibm-runtime 0.13, when a session is closed with `session.close()`, any jobs that are already running continue to run, but any queued jobs remaining in the session are put into a failed state.
+
+```python
+session = Session(backend=backend)
+estimator = Estimator(session=session)
+job1 = estimator.run(...)
+job2 = estimator.run(...)
+print(f"Result1: {job1.result()}")
+print(f"Result2: {job2.result()}")
+
+# Manually close the session. Running and queued jobs will run to completion.
+session.close()
+```
+
+<Admonition type="caution" title="When the root job is canceled">
+Note that when you cancel the root job in the session (the job which has the same ID as the session), the session closes and fails any remaining queued jobs in the session.
+</Admonition>
+
+<span id="cancel"></span>
+## Cancel a session
+
+Canceling a session immediately closes it, failing all queued jobs and preventing new submission. Use the `session.cancel()` method to cancel a session.  Any jobs that are already running continue to run but queued jobs are put into a failed state and no further jobs can be submitted to the session. This is a convenient way to quickly fail all queued jobs within a session. 
+
+```python
+with Session(service=service, backend=backend) as session:
+    estimator = Estimator()
+    job1 = estimator.run(...)
+    job2 = estimator.run(...)
+    # You can use session.cancel() to fail all pending jobs, for example, 
+    # if you realize you made a mistake.
+    session.cancel()
+```
+
+## Invoke multiple primitives in a session
+
+A session can handle multiple primitives, allowing for various operations within a single session.  The following example shows how you can create both an instance of the `Sampler` class and one of the `Estimator` class and invoke their `run()` methods within a session. 
+
+````python
+from qiskit_ibm_runtime import Session, Sampler, Estimator
+
+with Session(backend=backend):
+    sampler = Sampler()
+    estimator = Estimator()
+
+    result = sampler.run(sampler_circuit).result()
+    print(f">>> Quasi-probability distribution from the sampler job: {result.quasi_dists[0]}")
+
+    result = estimator.run(circuit, observable).result()
+    print(f">>> Expectation value from the estimator job: {result.values[0]}")
+    ```
+<span id="session-status"></span>
+## Check session status
+
+You can query a session's status to understand its current state by using  `session.status()` or on the Jobs page for your channel.
+
+Session status can be one of the following:
+
+- `Pending`: The session has not started or has been deactivated. The next session job needs to wait in the queue like other jobs. 
+- `In progress, accepting new jobs`: The session is active and accepting new jobs.
+- `In progress, not accepting new jobs`: The session is active but not accepting new jobs. Job submission to the session is rejected, but outstanding session jobs will run to completion. The session is automatically closed once all jobs finish. 
+- `Closed`: The session's maximum timeout value has been reached or the session was explicitly closed.
+
+<span id="session-details"></span>
+## Determine session details
+
+For a comprehensive overview of a session's configuration and status, use the  `session.details() method`. 
+
+``` python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService()
+
+with Session(service=service, backend="ibmq_qasm_simulator") as session:
+    estimator = Estimator()
+    job = estimator.run(circuit, observable)
+    print(session.details())
+````
+
+ You can also view session details on the [Quantum Platform Jobs page](https://quantum.ibm.com/jobs) or on the IBM Cloud Jobs page, which you access from your [Instances page](https://cloud.ibm.com/quantum/instances). 
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  - Try an example in the [Quantum approximate optimization algorithm (QAOA)](https://learning.quantum.ibm.com/tutorial/quantum-approximate-optimization-algorithm) tutorial. 
+  - Review the [Session API](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Session) reference.
+</Admonition>

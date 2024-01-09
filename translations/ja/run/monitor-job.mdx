@@ -1,0 +1,49 @@
+---
+title: Monitor a job
+description: How to monitor a job submitted to IBM Quantum Platform or IBM Quantum on IBM Cloud
+---
+
+# Monitor a job
+
+Jobs are listed on the Jobs page for your quantum service channel:
+
+-   IBM Cloud channel: From the IBM Cloud console quantum [Instances page](https://cloud.ibm.com/quantum/instances), click the name of your instance, then click the Jobs tab.
+-   IBM Quantum channel: In IBM Quantum Platform, open the [Jobs page](https://quantum.ibm.com/jobs).
+
+Use the job instance to check the job status or retrieve the results by calling the appropriate command:
+
+|                               |                                                                                                                                                                                                               |
+| ----------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| job.result()                  | Review job results immediately after the job completes. Job results are available after the job completes. Therefore, job.result() is a blocking call until the job completes.                                |
+| job.job_id()                  | Return the ID that uniquely identifies that job. Retrieving the job results at a later time requires the job ID. Therefore, it is recommended that you save the IDs of jobs you might want to retrieve later. |
+| job.status()                  | Check the job status.                                                                                                                                                                                         |
+| job = service.job(\<job_id>)  | Retrieve a job you previously submitted. This call requires the job ID.                                                                                                                                       |
+
+<span id="retrieve-later"></span>
+## Retrieve job results at a later time
+
+Call `service.job(\<job\how_toID>)` to retrieve a job you previously submitted. If you don’t have the job ID, or if you want to retrieve multiple jobs at once; including jobs from retired systems, call `service.jobs()` with optional filters instead. See [QiskitRuntimeService.jobs](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.QiskitRuntimeService#jobs).
+
+<Admonition type="note">
+  service.jobs() returns only Qiskit Runtime jobs. To retrieve other jobs, use [qiskit-ibm-provider](../api/qiskit-ibm-provider/qiskit_ibm_provider.IBMBackend#ibmbackend) instead.
+</Admonition>
+
+## Example
+
+This example returns the 10 most recent runtime jobs that were run on `my_backend`:
+
+```python
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+# Initialize the account first.
+service = QiskitRuntimeService()
+
+service.jobs(backend_name=my_backend)
+```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Try the [Grover's algorithm](https://learning.quantum.ibm.com/tutorial/grovers-algorithm) tutorial.
+    - Review the [Qiskit tools documentation](/api/qiskit/tools) in the Qiskit Terra API reference.
+</Admonition>

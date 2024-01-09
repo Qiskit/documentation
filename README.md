@@ -87,17 +87,26 @@ The local preview does not include the initial index page and the top nav bar fr
 - http://localhost:3000/api/qiskit-ibm-provider
 - http://localhost:3000/api/migration-guides
 
+For historical API versions, use URLs like http://localhost:3000/api/qiskit/0.44, i.e. put the desired version after the
+API name.
+
+For translations, put the language code in front of the URL, like http://localhost:3000/es/start or http://localhost:3000/fr/start. You can find the language codes by looking in the `translations/` folder.
+
 ## Preview the docs in PRs
 
 Contributors with write access to this repository can use live previews of the docs: GitHub will deploy a website using your changes.
 
 To use live previews, push your branch to `upstream` rather than your fork. GitHub will leave a comment with the link to the site. Please prefix your branch name with your initials, e.g. `EA/fix-build-typo`, for good Git hygiene.
 
+The preview application's UI is currently out-of-date so it does not properly show certain navigation like historical API versions. Refer to [Preview the docs locally](#preview-the-docs-locally) for instructions on how to explicitly visit pages.
+
 ## Staging
 
 We also re-deploy the docs every time we merge into `main` at the site https://qiskit-docs-preview-staging.1799mxdls7qz.us-south.codeengine.appdomain.cloud.
 
 This staging environment can be useful to see how the docs are rendering before we push it live to production.
+
+The staging application's UI is currently out-of-date so it does not properly show certain navigation like historical API versions. Refer to [Preview the docs locally](#preview-the-docs-locally) for instructions on how to explicitly visit pages.
 
 ## Execute notebooks
 
@@ -130,6 +139,12 @@ pipx install tox
 > add it to the "Check for notebooks that require LaTeX" step in
 > `.github/workflows/notebook-test.yml`.
 
+When you make a pull request with a changed notebook, you can get a version of
+that notebook that was executed in a uniform environment from CI. To do this,
+click "Show all checks" in the info box at the bottom of the pull request page
+on GitHub, then choose "Details" for the "Test notebooks" job. From the job
+page, click "Summary", then download "Executed notebooks".
+
 ## Check for broken links
 
 CI will check for broken links. You can also check locally:
@@ -140,6 +155,10 @@ npm run check:links
 
 # Enable the validation of external links
 npm run check:links -- --external
+
+# By default, only the non-API docs are checked. You can add any of the
+# below arguments to also check API docs and/or Qiskit release notes.
+npm run check:links -- --current-apis --historical-apis --qiskit-release-notes
 
 # Or, run all the checks
 npm run check

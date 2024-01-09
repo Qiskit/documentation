@@ -13,20 +13,19 @@
 import { $ } from "zx";
 import { zxMain } from "../lib/zx";
 import { pathExists, getRoot } from "../lib/fs";
-import { readFile, writeFile, readdir } from "fs/promises";
+import { readFile, writeFile } from "fs/promises";
 import { globby } from "globby";
 import { join, parse, relative } from "path";
 import { sphinxHtmlToMarkdown } from "../lib/sphinx/sphinxHtmlToMarkdown";
 import { uniq, uniqBy } from "lodash";
 import { mkdirp } from "mkdirp";
-import { WebCrawler } from "../lib/WebCrawler";
-import { downloadImages } from "../lib/downloadImages";
+import { saveImages } from "../lib/saveImages";
 import { generateToc } from "../lib/sphinx/generateToc";
 import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
 import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
 import { flatFolders } from "../lib/sphinx/flatFolders";
 import { updateLinks } from "../lib/sphinx/updateLinks";
-import { renameUrls } from "../lib/sphinx/renameUrls";
+import specialCaseResults from "../lib/sphinx/specialCaseResults";
 import { addFrontMatter } from "../lib/sphinx/addFrontMatter";
 import { dedupeResultIds } from "../lib/sphinx/dedupeIds";
 import { removePrefix, removeSuffix } from "../lib/stringUtils";
@@ -35,13 +34,12 @@ import { hideBin } from "yargs/helpers";
 import { Pkg, PkgInfo, Link } from "../lib/sharedTypes";
 import transformLinks from "transform-markdown-links";
 import { downloadCIArtifact } from "../lib/downloadArtifacts";
-import { startWebServer, closeWebServer } from "../lib/webServer";
 import {
   findLegacyReleaseNotes,
   addNewReleaseNotes,
-  currentReleaseNotesPath,
   generateReleaseNotesIndex,
   updateHistoricalTocFiles,
+  writeSeparateReleaseNotes,
 } from "../lib/releaseNotes";
 
 interface Arguments {
@@ -93,12 +91,6 @@ const PACKAGES: PkgInfo[] = [
     githubSlug: "qiskit/qiskit",
     initialUrl: `/apidoc/index.html`,
     hasSeparateReleaseNotes: true,
-    tocOptions: {
-      collapsed: true,
-      nestModule(id: string) {
-        return id.split(".").length > 2;
-      },
-    },
   },
 ];
 
@@ -121,13 +113,14 @@ const readArgs = (): Arguments => {
     .option("historical", {
       type: "boolean",
       default: false,
-      description: "Is this a prior release? Only works with `-p qiskit`.",
+      description: "Is this a prior release?",
     })
     .option("artifact", {
       alias: "a",
       type: "string",
       demandOption: true,
-      description: "Which artifact from CI to download",
+      description:
+        "The URL for the CI artifact to download. Must be from GitHub Actions.",
     })
     .parseSync();
 };
@@ -167,14 +160,11 @@ zxMain(async () => {
   const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
     pkg.version
   }`;
-  const localWebServerDir = `${destination}/artifact`;
-  const listenPort = 8000;
-  startWebServer(localWebServerDir, listenPort);
 
   if (await pathExists(destination)) {
     console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
-    await downloadApiSources(pkg, artifactUrl, destination, listenPort);
+    await downloadCIArtifact(pkg.name, artifactUrl, destination);
   }
 
   const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${pkg.versionWithoutPatch}/`;
@@ -183,7 +173,7 @@ zxMain(async () => {
     : `${getRoot()}/docs/api/${pkg.name}`;
 
   if (pkg.historical && !(await pathExists(outputDir))) {
-    mkdirp(outputDir);
+    await mkdirp(outputDir);
   } else {
     await rmFilesInFolder(outputDir, `${pkg.name}:${pkg.versionWithoutPatch}`);
   }
@@ -193,8 +183,12 @@ zxMain(async () => {
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
-  await convertHtmlToMarkdown(destination, outputDir, baseSourceUrl, pkg);
-  await closeWebServer(listenPort);
+  await convertHtmlToMarkdown(
+    `${destination}/artifact`,
+    outputDir,
+    baseSourceUrl,
+    pkg,
+  );
 });
 
 /**
@@ -209,44 +203,6 @@ async function rmFilesInFolder(
 ): Promise<void> {
   console.log(`Deleting existing markdown for ${description}`);
   await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`;
-}
-
-async function saveHtml(options: {
-  baseUrl: string;
-  initialUrl: string;
-  destination: string;
-}): Promise<void> {
-  const { baseUrl, destination, initialUrl } = options;
-  let successCount = 0;
-  let errorCount = 0;
-  const crawler = new WebCrawler({
-    initialUrl: initialUrl,
-    followUrl(url) {
-      return (
-        url.startsWith(`${baseUrl}/apidocs`) ||
-        url.startsWith(`${baseUrl}/apidoc`) ||
-        url.startsWith(`${baseUrl}/stubs`) ||
-        url.startsWith(`${baseUrl}/release_notes`)
-      );
-    },
-    async onSuccess(url: string, content: string) {
-      successCount++;
-      const relativePath = url.substring(`${baseUrl}/`.length);
-      const destinationPath = `${destination}/${relativePath}`;
-      const { dir } = parse(destinationPath);
-      await mkdirp(dir); // TODO track the folders already created
-      await writeFile(destinationPath, content);
-    },
-    async onError(url: string, error: unknown) {
-      errorCount++;
-      console.error(`Error ${url}`, error);
-    },
-  });
-  await crawler.run();
-  console.log(`Download summary from ${baseUrl}`, {
-    success: successCount,
-    error: errorCount,
-  });
 }
 
 async function convertHtmlToMarkdown(
@@ -282,6 +238,12 @@ async function convertHtmlToMarkdown(
       releaseNotesTitle: `${pkg.title} ${pkg.versionWithoutPatch} release notes`,
     });
 
+    // Avoid creating an empty markdown file for HTML files without content
+    // (e.g. HTML redirects)
+    if (result.markdown == "") {
+      continue;
+    }
+
     const { dir, name } = parse(`${markdownPath}/${file}`);
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
 
@@ -311,19 +273,25 @@ async function convertHtmlToMarkdown(
 
   results = await mergeClassMembers(results);
   flatFolders(results);
-  renameUrls(results);
+  specialCaseResults(results);
   await updateLinks(results, pkg.transformLink);
   await dedupeResultIds(results);
   addFrontMatter(results, pkg);
 
   for (const result of results) {
     let path = urlToPath(result.url);
-    if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
-      // Historical versions use the same release notes files as the current API
-      if (pkg.historical) {
-        continue;
-      }
 
+    // Historical versions with a single release notes file should not
+    // modify the current API's file.
+    if (
+      !pkg.hasSeparateReleaseNotes &&
+      pkg.historical &&
+      path.endsWith("release-notes.md")
+    ) {
+      continue;
+    }
+
+    if (pkg.hasSeparateReleaseNotes && path.endsWith("release-notes.md")) {
       // Convert the relative links to absolute links
       result.markdown = transformLinks(result.markdown, (link, _) =>
         link.startsWith("http") || link.startsWith("#") || link.startsWith("/")
@@ -331,8 +299,10 @@ async function convertHtmlToMarkdown(
           : `/api/${pkg.name}/${link}`,
       );
 
-      path = currentReleaseNotesPath(pkg);
+      await writeSeparateReleaseNotes(pkg, result.markdown);
+      continue;
     }
+
     await writeFile(path, result.markdown);
   }
 
@@ -363,37 +333,10 @@ async function convertHtmlToMarkdown(
     JSON.stringify(pkg_json, null, 2) + "\n",
   );
 
-  console.log("Downloading images");
-  await downloadImages(
-    allImages.map((img) => ({
-      src: img.src,
-      dest: `${getRoot()}/public${img.dest}`,
-    })),
-  );
+  console.log("Saving images");
+  await saveImages(allImages, `${htmlPath}/_images`, pkg);
 }
 
 function urlToPath(url: string) {
   return `${getRoot()}/docs${url}.md`;
-}
-
-/**
- * Uses a local web server to download the HTML files from a specific CI artifact
- */
-async function downloadApiSources(
-  pkg: Pkg,
-  artifactUrl: string,
-  destination: string,
-  listenPort: number,
-) {
-  try {
-    await downloadCIArtifact(pkg.name, artifactUrl, destination);
-    await saveHtml({
-      baseUrl: pkg.baseUrl,
-      initialUrl: pkg.initialUrl,
-      destination,
-    });
-  } catch (e) {
-    await closeWebServer(listenPort);
-    throw e;
-  }
 }

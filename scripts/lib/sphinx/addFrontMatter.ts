@@ -20,7 +20,14 @@ export function addFrontMatter<T extends SphinxToMdResult>(
 ): void {
   for (let result of results) {
     let markdown = result.markdown;
-    if (result.meta.python_api_name) {
+    if (result.meta.hardcoded_frontmatter) {
+      result.markdown = `---
+${result.meta.hardcoded_frontmatter}
+---
+
+${markdown}
+`;
+    } else if (result.meta.python_api_name) {
       result.markdown = `---
 title: ${getLastPartFromFullIdentifier(result.meta.python_api_name)}
 description: API reference for ${result.meta.python_api_name}

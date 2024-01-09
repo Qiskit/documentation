@@ -1,0 +1,167 @@
+---
+title: Advanced runtime options
+description: Specify options when building with Qiskit runtime primitives
+---
+
+# Advanced Qiskit Runtime options
+
+When calling the primitives, you can pass in options by using the `Options` class or when using the `run` method. In the `Options` class, commonly used options, such as `resilience_level`, are at the first level. Other options are grouped into different categories:
+
+![options](/images/build/options.png)
+
+<Admonition type="info" title="Attention">
+    This section focuses on Qiskit Runtime primitive [Options](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options) (imported from `qiskit_ibm_runtime`). While most of the `primitives` interface is common across implementations, most `Options` are not. Consult the
+    corresponding API references for information about the `qiskit.primitives` and `qiskit_aer.primitives` options.
+</Admonition>
+
+## Instantiate the Options class
+
+In the example below, we create an instance of the `Options` class. `optimization_level` is a first-level option and can be passed as an input parameter. Options related to the execution environment are passed using the `environment` parameter.
+
+```python
+from qiskit_ibm_runtime import Options
+
+options = Options(optimization_level=3, environment={"log_level": "INFO"})
+```
+
+The `Options` class supports auto-complete. Once you create an instance of the `Options` class, you can use auto-complete to see what options are available. If you choose one of the categories, you can use auto-complete again to see what options are available under that category. 
+
+```python
+from qiskit_ibm_runtime import Options
+
+options = Options()
+options.resilience_level = 1
+options.execution.shots = 2048
+```
+
+## Pass options to a primitive
+
+### Options class
+
+When creating an instance of the `Estimator` or `Sampler` class, you can pass in the `options` you just created. Those options will then be applied when you use `run()` to perform the calculation.  Example: 
+
+```python
+estimator = Estimator(session=backend, options=options)
+result = estimator.run(circuit, observable).result()
+print(f">>> Metadata: {result.metadata[0]}")
+```
+
+### Run() method
+
+You can pass in options by using the `run()` method. This overwrites the options you specified when creating the `Estimator` or `Sampler` instance for that particular execution. 
+
+Because most users will only overwrite a few options at the job level, it is not necessary to specify the category the options are in. The code below, for example, specifies `shots=1024` instead of `execution={"shots": 1024}` (which is also valid). 
+
+```python
+estimator = Estimator(session=backend, options=options)
+result = estimator.run(circuit, observable, shots=1024).result()
+print(f">>> Metadata: {result.metadata[0]}")
+```
+
+## Commonly used options
+
+There are many available options, but the following are the most commonly used:
+
+### Shots
+
+For some algorithms, setting a specific number of shots is a core part of their routines. Previously, shots could be set during the call to `backend.run()`. For example, `backend.run(shots=1024)`. Now, that setting is part of the execution
+options ("second level option"). This can be done during the primitive setup:
+
+```python
+from qiskit_ibm_runtime import Estimator, Options
+
+options = Options()
+options.execution.shots = 1024
+
+estimator = Estimator(session=backend, options=options)
+```
+
+If you need to modify the number of shots set between iterations (primitive calls), you can set the
+shots directly in the `run()` method. This overwrites the initial `shots` setting.
+
+```python
+from qiskit_ibm_runtime import Estimator
+
+estimator = Estimator(session=backend)
+
+estimator.run(circuits=circuits, observables=observables, shots=50)
+
+# other logic
+
+estimator.run(circuits=circuits, observables=observables, shots=100)
+```
+
+For more information about the primitive options, refer to the
+[Options class API reference](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options).
+
+### Runtime compilation
+
+The Qiskit Runtime primitives expect to be called with circuits already suitable for execution on the target system. This implies that the user has already transpiled their circuits to respect the native gate set and connectivity constraints of the target system.
+
+The Qiskit Runtime primitives may perform additional runtime compilation to optimize circuits, with the degree of optimization controlled by an optimization level option. The optimization level you choose affects the compilation strategy, with higher levels invoking more expensive or aggressive optimizations.
+
+See the Optimization level table in the
+[Runtime compilation topic](configure-runtime-compilation#set-the-optimization-level) for further details.
+
+<Admonition>
+    In the currently deployed Qiskit Runtime primitives, optimization levels 2 and 3 behave identically to level 1. If you want to use more advanced optimization, use the Qiskit transpiler locally, set [`skip_transpilation=True`](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.TranspilationOptions#skip_transpilation), and then pass the transpiled circuits to the primitives.  For instructions see the [Submit pre-transpiled circuits](https://learning.quantum.ibm.com/tutorial/submitting-user-transpiled-circuits-using-primitives) tutorial.
+</Admonition>
+
+The optimization level option is a "first-level option", and can be set as follows:
+
+```python
+from qiskit_ibm_runtime import Estimator, Options
+
+options = Options(optimization_level=1)
+
+# or..
+options = Options()
+options.optimization_level = 1
+
+estimator = Estimator(session=backend, options=options)
+```
+
+Turning off all optional runtime compilation steps requires a "second-level option", as follows:
+
+```python
+from qiskit_ibm_runtime import Estimator, Options
+
+options = Options()
+options.transpilation.skip_transpilation = True
+
+estimator = Estimator(session=backend, options=options)
+```
+
+For more information and a complete list of advanced transpilation options, see the Advanced transpilation options table in the
+[Runtime compilation topic](configure-runtime-compilation#transpilation-table).
+
+### Error mitigation
+
+You might want to leverage different error mitigation methods and see how these affect the performance of your
+algorithm. These can also be set through the `resilience_level` option. The method selected for each level is
+different for `Sampler` and `Estimator`. You can find more information in the
+[Configure error mitigation topic](configure-error-mitigation).
+
+The configuration is similar to the other options:
+
+```python
+from qiskit_ibm_runtime import Estimator, Options
+
+options = Options(resilience_level = 2)
+
+# or...
+
+options = Options()
+options.resilience_level = 2
+
+estimator = Estimator(session=backend, options=options)
+```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Find more details about the `Estimator` methods in the [Estimator API reference](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.Estimator#estimator).
+    - Find more details about the `Sampler` methods in the [Sampler API reference](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.Sampler#sampler).
+    - Find all available options in the [Options API reference](../api/qiskit-ibm-runtime/qiskit_ibm_runtime.options.Options).
+    - Find details about [runtime compilation](../run/configure-runtime-compilation) and [error mitigation](../run/configure-error-mitigation).
+</Admonition>
