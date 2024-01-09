@@ -117,15 +117,11 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
+          git config pull.rebase true
           git add **/*.ipynb
           git commit -m "Execute notebooks" --allow-empty
           git pull origin ${{ github.head_ref }}
           git push origin HEAD:${{ github.head_ref }}
-      
-      - name: Remove label
-        if: github.event.action == 'labeled'
-        continue-on-error: true
-
 
       - name: Create pull request
         if: github.event_name == 'workflow_dispatch'
