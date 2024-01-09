@@ -13,6 +13,12 @@
 import { describe, test, expect } from "@jest/globals";
 import { sphinxHtmlToMarkdown } from "./sphinxHtmlToMarkdown";
 
+const DEFAULT_ARGS = {
+  imageDestination: "/images/qiskit",
+  baseSourceUrl: "https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/",
+  releaseNotesTitle: "My Quantum release notes",
+};
+
 describe("sphinxHtmlToMarkdown", () => {
   test("remove .html extension from relative links", async () => {
     expect(
@@ -114,7 +120,7 @@ describe("sphinxHtmlToMarkdown", () => {
            </div>
           `,
         url: "http://qiskit.org/docs/quantum-circuit.html",
-        imageDestination: "/images/qiskit",
+        ...DEFAULT_ARGS,
       }),
     ).toMatchInlineSnapshot(`
         {
@@ -506,7 +512,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
 </div>
 `,
           url: "https://qiskit.org/documentation/partners/qiskit_ibm_runtime/stubs/qiskit_ibm_runtime.Sampler.html",
-          baseSourceUrl: `https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/`,
+          ...DEFAULT_ARGS,
         })
       ).markdown,
     ).toMatchInlineSnapshot(`
@@ -1418,7 +1424,7 @@ compilation flow follows the structure given below:</p>
 
       Most circuits must undergo a series of transformations that make them compatible with a given target device, and optimize them to reduce the effects of noise on the resulting outcomes. Rewriting quantum circuits to match hardware constraints and optimizing for performance can be far from trivial. The flow of logic in the rewriting tool chain need not be linear, and can often have iterative sub-loops, conditional branches, and other complex behaviors. That being said, the standard compilation flow follows the structure given below:
 
-      ![../\\_images/transpiling\\_core\\_steps.png](/images/api//transpiling_core_steps.png)
+      ![../\\_images/transpiling\\_core\\_steps.png](/images/qiskit/transpiling_core_steps.png)
 
       Qiskit has four pre-built transpilation pipelines available here:
       "
@@ -1443,13 +1449,13 @@ test("identify release notes", async () => {
           </ul>
           `,
       url: "http://qiskit.org/docs/release_notes.html",
-      imageDestination: "/images/qiskit",
+      ...DEFAULT_ARGS,
     }),
   ).toMatchInlineSnapshot(`
 {
   "images": [],
   "isReleaseNotes": true,
-  "markdown": "# Release Notes
+  "markdown": "# My Quantum release notes
 
 <span id="release-notes-0-14-0" />
 
@@ -1528,6 +1534,7 @@ async function toMd(html: string) {
     await sphinxHtmlToMarkdown({
       url: "https://qiskit.org/documentation/partners/qiskit_ibm_runtime/stubs/qiskit_ibm_runtime.Sampler.html",
       html,
+      ...DEFAULT_ARGS,
     })
   ).markdown;
 }
@@ -1536,5 +1543,6 @@ async function toMdWithMeta(html: string) {
   return await sphinxHtmlToMarkdown({
     url: "https://qiskit.org/documentation/partners/qiskit_ibm_runtime/stubs/qiskit_ibm_runtime.Sampler.html",
     html,
+    ...DEFAULT_ARGS,
   });
 }
