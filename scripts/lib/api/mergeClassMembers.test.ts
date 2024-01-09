@@ -11,6 +11,7 @@
 // that they have been altered from the originals.
 
 import { describe, expect, test } from "@jest/globals";
+
 import { mergeClassMembers } from "./mergeClassMembers";
 
 describe("mergeClassMembers", () => {
@@ -29,8 +30,8 @@ describe("mergeClassMembers", () => {
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
 | [\`RuntimeOptions.validate\`](qiskit_ibm_runtime.RuntimeOptions.validate#qiskit_ibm_runtime.RuntimeOptions.validate "qiskit_ibm_runtime.RuntimeOptions.validate")(channel) | Validate options. |`,
         meta: {
-          python_api_type: "class",
-          python_api_name: "RuntimeOptions",
+          apiType: "class",
+          apiName: "RuntimeOptions",
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions",
         images: [],
@@ -42,8 +43,8 @@ describe("mergeClassMembers", () => {
 \`Optional[str] = None\`
 `,
         meta: {
-          python_api_type: "attribute",
-          python_api_name: "RuntimeOptions.backend",
+          apiType: "attribute",
+          apiName: "RuntimeOptions.backend",
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.backend",
         images: [],
@@ -55,8 +56,8 @@ describe("mergeClassMembers", () => {
 \`Optional[str] = None\`
 `,
         meta: {
-          python_api_type: "property",
-          python_api_name: "RuntimeOptions.circuits",
+          apiType: "property",
+          apiName: "RuntimeOptions.circuits",
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.circuits",
         images: [],
@@ -83,8 +84,8 @@ Validate options.
     \`None\`
           `,
         meta: {
-          python_api_type: "method",
-          python_api_name: "RuntimeOptions.backend",
+          apiType: "method",
+          apiName: "RuntimeOptions.backend",
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions.validate",
         images: [],
@@ -92,9 +93,8 @@ Validate options.
       },
     ];
     const merged = await mergeClassMembers(results);
-    expect(
-      merged.find((item) => item.meta.python_api_type === "class")?.markdown,
-    ).toMatchInlineSnapshot(`
+    expect(merged.find((item) => item.meta.apiType === "class")?.markdown)
+      .toMatchInlineSnapshot(`
         "## Attributes
 
         ### RuntimeOptions.backend

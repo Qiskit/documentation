@@ -13,7 +13,7 @@
 import { expect, test } from "@jest/globals";
 
 import flattenFolders from "./flattenFolders";
-import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 
 test("flattenFolders()", () => {
   const results = [
@@ -21,7 +21,7 @@ test("flattenFolders()", () => {
     { url: "/api/my-pkg/apidocs/my_module2" },
     { url: "/api/my-pkg/stubs/my_module.foo.Bar" },
     { url: "/api/my-pkg/release_notes" },
-  ] as SphinxToMdResultWithUrl[];
+  ] as HtmlToMdResultWithUrl[];
 
   flattenFolders(results);
   expect(results.map((result) => result.url)).toEqual([

@@ -10,37 +10,39 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { $ } from "zx";
-import { zxMain } from "../lib/zx";
-import { pathExists, getRoot } from "../lib/fs";
-import { readFile, writeFile } from "fs/promises";
-import { globby } from "globby";
 import { join, parse, relative } from "path";
-import { sphinxHtmlToMarkdown } from "../lib/sphinx/sphinxHtmlToMarkdown";
+import { readFile, writeFile } from "fs/promises";
+
+import { $ } from "zx";
+import { globby } from "globby";
 import { uniq, uniqBy } from "lodash";
 import { mkdirp } from "mkdirp";
-import { saveImages } from "../lib/saveImages";
-import { generateToc } from "../lib/sphinx/generateToc";
-import { SphinxToMdResult } from "../lib/sphinx/SphinxToMdResult";
-import { mergeClassMembers } from "../lib/sphinx/mergeClassMembers";
-import flattenFolders from "../lib/sphinx/flattenFolders";
-import { updateLinks } from "../lib/sphinx/updateLinks";
-import { specialCaseResults } from "../lib/sphinx/specialCaseResults";
-import addFrontMatter from "../lib/sphinx/addFrontMatter";
-import { dedupeHtmlIdsFromResults } from "../lib/sphinx/dedupeHtmlIds";
-import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
-import { Pkg, PkgInfo, Link } from "../lib/sharedTypes";
 import transformLinks from "transform-markdown-links";
-import { downloadCIArtifact } from "../lib/downloadCIArtifacts";
+
+import { sphinxHtmlToMarkdown } from "../lib/api/htmlToMd";
+import { saveImages } from "../lib/api/saveImages";
+import { generateToc } from "../lib/api/generateToc";
+import { HtmlToMdResult } from "../lib/api/HtmlToMdResult";
+import { mergeClassMembers } from "../lib/api/mergeClassMembers";
+import flattenFolders from "../lib/api/flattenFolders";
+import { updateLinks } from "../lib/api/updateLinks";
+import { specialCaseResults } from "../lib/api/specialCaseResults";
+import addFrontMatter from "../lib/api/addFrontMatter";
+import { dedupeHtmlIdsFromResults } from "../lib/api/dedupeHtmlIds";
+import { removePrefix, removeSuffix } from "../lib/stringUtils";
+import { Pkg, PkgInfo, Link } from "../lib/sharedTypes";
+import { zxMain } from "../lib/zx";
+import { pathExists, getRoot } from "../lib/fs";
+import { downloadCIArtifact } from "../lib/api/downloadCIArtifacts";
 import {
   findLegacyReleaseNotes,
   addNewReleaseNotes,
   generateReleaseNotesIndex,
   updateHistoricalTocFiles,
   writeSeparateReleaseNotes,
-} from "../lib/releaseNotes";
+} from "../lib/api/releaseNotes";
 
 interface Arguments {
   [x: string]: unknown;
@@ -225,7 +227,7 @@ async function convertHtmlToMarkdown(
 
   const ignore = pkg.ignore ?? (() => false);
 
-  let results: Array<SphinxToMdResult & { url: string }> = [];
+  let results: Array<HtmlToMdResult & { url: string }> = [];
   for (const file of files) {
     const html = await readFile(join(htmlPath, file), "utf-8");
     const result = await sphinxHtmlToMarkdown({
@@ -247,7 +249,7 @@ async function convertHtmlToMarkdown(
     const { dir, name } = parse(`${markdownPath}/${file}`);
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
 
-    if (!result.meta.python_api_name || !ignore(result.meta.python_api_name)) {
+    if (!result.meta.apiName || !ignore(result.meta.apiName)) {
       results.push({ ...result, url });
     }
     if (

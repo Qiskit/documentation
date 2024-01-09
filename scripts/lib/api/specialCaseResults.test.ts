@@ -17,7 +17,7 @@ import {
   PROVIDER_INDEX_META,
   RUNTIME_INDEX_META,
 } from "./specialCaseResults";
-import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 
 test("specialCaseResults()", () => {
   const results = [
@@ -32,7 +32,7 @@ test("specialCaseResults()", () => {
       meta: {},
     },
     { url: "/api/my-pkg/other-file" },
-  ] as SphinxToMdResultWithUrl[];
+  ] as HtmlToMdResultWithUrl[];
 
   specialCaseResults(results);
   expect(results).toEqual([
@@ -44,11 +44,11 @@ test("specialCaseResults()", () => {
     },
     {
       url: "/api/my-pkg/index",
-      meta: { hardcoded_frontmatter: RUNTIME_INDEX_META },
+      meta: { hardcodedFrontmatter: RUNTIME_INDEX_META },
     },
     {
       url: "/api/my-pkg/index",
-      meta: { hardcoded_frontmatter: PROVIDER_INDEX_META },
+      meta: { hardcodedFrontmatter: PROVIDER_INDEX_META },
     },
     {
       url: "/api/my-pkg/other-file",

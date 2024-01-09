@@ -11,7 +11,7 @@
 // that they have been altered from the originals.
 
 import { $ } from "zx";
-import { pathExists, getRoot } from "./fs";
+import { pathExists, getRoot } from "../fs";
 import { mkdirp } from "mkdirp";
 
 export function getArtifactID(url: string) {

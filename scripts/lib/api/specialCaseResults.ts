@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 
 export const RUNTIME_INDEX_META = `title: Qiskit Runtime IBM Client API Docs
 description: API documentation for qiskit-ibm-runtime`;
@@ -18,7 +18,7 @@ description: API documentation for qiskit-ibm-runtime`;
 export const PROVIDER_INDEX_META = `title: Qiskit IBM Provider API Docs
 description: API documentation for qiskit-ibm-provider`;
 
-export function specialCaseResults(results: SphinxToMdResultWithUrl[]): void {
+export function specialCaseResults(results: HtmlToMdResultWithUrl[]): void {
   for (let result of results) {
     // We use `-` rather than `_` as our delimiter.
     if (result.url.endsWith("/release_notes")) {
@@ -33,14 +33,14 @@ export function specialCaseResults(results: SphinxToMdResultWithUrl[]): void {
     if (result.url.endsWith("/ibm-provider")) {
       result.url = result.url.replace(/\/ibm-provider$/g, "/index");
       result.meta = {
-        hardcoded_frontmatter: PROVIDER_INDEX_META,
+        hardcodedFrontmatter: PROVIDER_INDEX_META,
       };
     }
 
     if (result.url.endsWith("/ibm-runtime")) {
       result.url = result.url.replace(/\/ibm-runtime$/g, "/index");
       result.meta = {
-        hardcoded_frontmatter: RUNTIME_INDEX_META,
+        hardcodedFrontmatter: RUNTIME_INDEX_META,
       };
     }
   }
