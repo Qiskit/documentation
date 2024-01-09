@@ -36,28 +36,208 @@ import { Root } from "mdast";
 export async function sphinxHtmlToMarkdown(options: {
   html: string;
   url: string;
-  imageDestination?: string;
+  imageDestination: string;
   // url links to a fixed version and ending in /
   // https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/
-  baseSourceUrl?: string;
-  releaseNotesTitle?: string;
+  baseSourceUrl: string;
+  releaseNotesTitle: string;
 }): Promise<SphinxToMdResult> {
-  const {
-    html,
-    url,
-    imageDestination = "/images/api/",
-    baseSourceUrl,
-    releaseNotesTitle,
-  } = options;
-  const meta: PythonObjectMeta = {};
-  const isReleaseNotes = url.endsWith("release_notes.html") ? true : false;
-
+  const { html, url, imageDestination, baseSourceUrl, releaseNotesTitle } =
+    options;
   const $ = load(html);
   const $main = $(`[role='main']`);
+
+  const isReleaseNotes = url.endsWith("release_notes.html");
   const images = loadImages($, $main, url, imageDestination, isReleaseNotes);
+  if (url.endsWith("release_notes.html")) {
+    setReleaseNotesHeading($, releaseNotesTitle);
+  }
 
-  preprocessHtml($, $main, baseSourceUrl, isReleaseNotes, releaseNotesTitle);
+  removeHtmlExtensionsInRelativeLinks($, $main);
+  removePermalinks($main);
+  removeDownloadSourceCode($main);
+  handleTabs($, $main);
+  addLanguageClassToCodeBlocks($, $main);
+  replaceSourceLinksWithGitHub($, $main, baseSourceUrl);
+  convertRubricsToHeaders($, $main);
+  processSimpleFieldLists($, $main);
+  removeColons($main);
+  preserveMathBlockWhitespace($, $main);
 
+  const meta: PythonObjectMeta = {};
+  processMembersAndSetMeta($, $main, meta);
+  maybeExtractAndSetModuleMetadata($, $main, meta);
+  if (meta.python_api_type === "module") {
+    updateModuleHeadings($, $main, meta);
+  }
+
+  const markdown = await generateMarkdownFile($main.html()!, meta);
+  return { markdown, meta, images, isReleaseNotes };
+}
+
+function loadImages(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+  url: string,
+  imageDestination: string,
+  isReleaseNotes: boolean,
+): Array<{ src: string; dest: string }> {
+  const images: Array<{ src: string; dest: string }> = [];
+  $main
+    .find("img")
+    .toArray()
+    .forEach((img) => {
+      const $img = $(img);
+
+      const imageUrl = new URL($img.attr("src")!, url);
+      const src = imageUrl.toString();
+
+      const filename = last(src.split("/"));
+      const dest = `${imageDestination}/${filename}`;
+
+      $img.attr("src", dest);
+
+      if (isReleaseNotes) {
+        // Release notes links should point to the current version
+        $img.attr("src", dest.replace(/[0-9].*\//, ""));
+      }
+
+      images.push({ src, dest: dest });
+    });
+
+  return images;
+}
+
+function removeHtmlExtensionsInRelativeLinks(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+): void {
+  $main.find("a").each((_, link) => {
+    const $link = $(link);
+    const href = $link.attr("href");
+    if (href && !href.startsWith("http")) {
+      $link.attr("href", href.replaceAll(".html", ""));
+    }
+  });
+}
+
+function setReleaseNotesHeading(
+  $: CheerioAPI,
+  releaseNotesTitle: string,
+): void {
+  $("h1").html(releaseNotesTitle);
+}
+
+function removePermalinks($main: Cheerio<any>): void {
+  $main.find('a[title="Permalink to this headline"]').remove();
+  $main.find('a[title="Permalink to this heading"]').remove();
+  $main.find('a[title="Permalink to this definition"]').remove();
+  $main.find('a[title="Link to this heading"]').remove();
+  $main.find('a[title="Link to this definition"]').remove();
+}
+
+function removeDownloadSourceCode($main: Cheerio<any>): void {
+  $main.find("p > a.reference.download.internal").closest("p").remove();
+}
+
+/**
+ * Convert sphinx-design tabs.
+ *
+ * Uses the heading for the summary and removes the blockquote.
+ */
+function handleTabs($: CheerioAPI, $main: Cheerio<any>): void {
+  $main.find(".sd-summary-title").each((_, quote) => {
+    const $quote = $(quote);
+    $quote.replaceWith(`<h3>${$quote.html()}</h3>`);
+  });
+
+  $main.find(".sd-card-body blockquote").each((_, quote) => {
+    const $quote = $(quote);
+    $quote.replaceWith($quote.children());
+  });
+}
+
+function addLanguageClassToCodeBlocks(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+): void {
+  $main.find("pre").each((_, pre) => {
+    const $pre = $(pre);
+    $pre.replaceWith(
+      `<pre><code class="language-python">${$pre.html()}</code></pre>`,
+    );
+  });
+}
+
+// TODO(#519): figure out if this is working.
+function replaceSourceLinksWithGitHub(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+  baseSourceUrl: string,
+): void {
+  $main.find("a").each((_, a) => {
+    const $a = $(a);
+    const href = $a.attr("href");
+    if (href?.startsWith("http:")) return;
+    if (href?.includes(`/_modules/`)) {
+      //_modules/qiskit_ibm_runtime/ibm_backend
+      const match = href?.match(/_modules\/(.*?)(#|$)/);
+      if (match) {
+        const newHref = `${baseSourceUrl}${match[1]}.py`;
+        $a.attr("href", newHref);
+      }
+    }
+  });
+}
+
+function convertRubricsToHeaders($: CheerioAPI, $main: Cheerio<any>): void {
+  // Rubrics correspond to method and attribute headers.
+  // TODO(#479): ensure our understanding of what .rubric corresponds to is correct and figure out
+  //  if always using <h2> makes sense.
+  $main.find(".rubric").each((_, el) => {
+    const $el = $(el);
+    $el.replaceWith(`<h2>${$el.html()}</h2>`);
+  });
+}
+
+function processSimpleFieldLists($: CheerioAPI, $main: Cheerio<any>): void {
+  // TODO(#479): Have a better understanding of what dl.field-list.simple corresponds to
+  //   and confirm this behavior makes sense.
+  $main
+    .find("dl.field-list.simple")
+    .toArray()
+    .map((dl) => {
+      const $dl = $(dl);
+
+      $dl
+        .find("dt")
+        .toArray()
+        .forEach((dt) => {
+          const $dt = $(dt);
+          $dt.replaceWith(`<strong>${$dt.html()}</strong>`);
+        });
+
+      $dl
+        .find("dd")
+        .toArray()
+        .forEach((dd) => {
+          const $dd = $(dd);
+          $dd.replaceWith(`<div>${$dd.html()}</div>`);
+        });
+
+      $dl.replaceWith(`<div>${$dl.html()}</div>`);
+    });
+}
+
+function removeColons($main: Cheerio<any>): void {
+  $main.find(".colon").remove();
+}
+
+function processMembersAndSetMeta(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+  meta: PythonObjectMeta,
+): void {
   let continueMapMembers = true;
   while (continueMapMembers) {
     // members can be recursive, so we need to pick elements one by one
@@ -181,17 +361,13 @@ export async function sphinxHtmlToMarkdown(options: {
 
     $dl.replaceWith(`<div>${replacement}</div>`);
   }
+}
 
-  // preserve math block whitespace
-  $main
-    .find("div.math")
-    .toArray()
-    .map((el) => {
-      const $el = $(el);
-      $el.replaceWith(`<pre class="math">${$el.html()}</pre>`);
-    });
-
-  // extract module metadata
+function maybeExtractAndSetModuleMetadata(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+  meta: PythonObjectMeta,
+): void {
   const modulePrefix = "module-";
   const moduleIdWithPrefix = $main
     .find("span, section")
@@ -202,164 +378,39 @@ export async function sphinxHtmlToMarkdown(options: {
     meta.python_api_type = "module";
     meta.python_api_name = moduleIdWithPrefix.slice(modulePrefix.length);
   }
-
-  // Update headings of modules
-  if (meta.python_api_type === "module") {
-    $main
-      .find("h1,h2")
-      .toArray()
-      .forEach((el) => {
-        const $el = $(el);
-        const $a = $($el.find("a"));
-        const signature = $a.text();
-        $a.remove();
-
-        let title = $el.text();
-        title = title.replace("()", "");
-        let replacement = `<${el.tagName}>${title}</${el.tagName}>`;
-        if (signature.trim().length > 0) {
-          replacement += `<span class="target" id="module-${meta.python_api_name}" /><p><code>${signature}</code></p>`;
-        }
-        $el.replaceWith(replacement);
-      });
-  }
-
-  // convert to markdown
-  const markdown = await generateMarkdownFile($main.html()!, meta);
-
-  return { markdown, meta, images, isReleaseNotes };
 }
 
-function loadImages(
-  $: CheerioAPI,
-  $main: Cheerio<any>,
-  url: string,
-  imageDestination: string,
-  isReleaseNotes: boolean,
-): Array<{ src: string; dest: string }> {
-  const images: Array<{ src: string; dest: string }> = [];
+function preserveMathBlockWhitespace($: CheerioAPI, $main: Cheerio<any>): void {
   $main
-    .find("img")
+    .find("div.math")
     .toArray()
-    .forEach((img) => {
-      const $img = $(img);
-
-      const imageUrl = new URL($img.attr("src")!, url);
-      const src = imageUrl.toString();
-
-      const filename = last(src.split("/"));
-      const dest = `${imageDestination}/${filename}`;
-
-      $img.attr("src", dest);
-
-      if (isReleaseNotes) {
-        // Release notes links should point to the current version
-        $img.attr("src", dest.replace(/[0-9].*\//, ""));
-      }
-
-      images.push({ src, dest: dest });
+    .map((el) => {
+      const $el = $(el);
+      $el.replaceWith(`<pre class="math">${$el.html()}</pre>`);
     });
-
-  return images;
 }
 
-function preprocessHtml(
+function updateModuleHeadings(
   $: CheerioAPI,
   $main: Cheerio<any>,
-  baseSourceUrl: string | undefined,
-  isReleaseNotes: boolean,
-  releaseNotesTitle: string | undefined,
+  meta: PythonObjectMeta,
 ): void {
-  // remove html extensions in relative links
-  $main.find("a").each((_, link) => {
-    const $link = $(link);
-    const href = $link.attr("href");
-    if (href && !href.startsWith("http")) {
-      $link.attr("href", href.replaceAll(".html", ""));
-    }
-  });
-
-  // Custom heading for release notes
-  if (isReleaseNotes && releaseNotesTitle) {
-    $("h1").html(releaseNotesTitle);
-  }
-
-  // remove permalink links
-  $main.find('a[title="Permalink to this headline"]').remove();
-  $main.find('a[title="Permalink to this heading"]').remove();
-  $main.find('a[title="Permalink to this definition"]').remove();
-  $main.find('a[title="Link to this heading"]').remove();
-  $main.find('a[title="Link to this definition"]').remove();
-
-  // remove download source code
-  $main.find("p > a.reference.download.internal").closest("p").remove();
-
-  // handle tabs, use heading for the summary and remove the blockquote
-  $main.find(".sd-summary-title").each((_, quote) => {
-    const $quote = $(quote);
-    $quote.replaceWith(`<h3>${$quote.html()}</h3>`);
-  });
-
-  $main.find(".sd-card-body blockquote").each((_, quote) => {
-    const $quote = $(quote);
-    $quote.replaceWith($quote.children());
-  });
-
-  // add language class to code blocks
-  $main.find("pre").each((_, pre) => {
-    const $pre = $(pre);
-    $pre.replaceWith(
-      `<pre><code class="language-python">${$pre.html()}</code></pre>`,
-    );
-  });
-
-  // replace source links
-  $main.find("a").each((_, a) => {
-    const $a = $(a);
-    const href = $a.attr("href");
-    if (href?.startsWith("http:")) return;
-    if (href?.includes(`/_modules/`)) {
-      //_modules/qiskit_ibm_runtime/ibm_backend
-      const match = href?.match(/_modules\/(.*?)(#|$)/);
-      if (match) {
-        const newHref = `${baseSourceUrl ?? ""}${match[1]}.py`;
-        $a.attr("href", newHref);
-      }
-    }
-  });
-
-  // use titles for method and attribute headers
-  $main.find(".rubric").each((_, el) => {
-    const $el = $(el);
-    $el.replaceWith(`<h2>${$el.html()}</h2>`);
-  });
-
-  // delete colons
-  $main.find(".colon").remove();
-
   $main
-    .find("dl.field-list.simple")
+    .find("h1,h2")
     .toArray()
-    .map((dl) => {
-      const $dl = $(dl);
+    .forEach((el) => {
+      const $el = $(el);
+      const $a = $($el.find("a"));
+      const signature = $a.text();
+      $a.remove();
 
-      $dl
-        .find("dt")
-        .toArray()
-        .forEach((dt) => {
-          const $dt = $(dt);
-          $dt.replaceWith(`<strong>${$dt.html()}</strong>`);
-        });
-
-      $dl
-        .find("dd")
-        .toArray()
-        .forEach((dd) => {
-          const $dd = $(dd);
-          $dd.replaceWith(`<div>${$dd.html()}</div>`);
-        });
-
-      $dl.replaceWith(`<div>${$dl.html()}</div>`);
+      let title = $el.text();
+      title = title.replace("()", "");
+      let replacement = `<${el.tagName}>${title}</${el.tagName}>`;
+      if (signature.trim().length > 0) {
+        replacement += `<span class="target" id="module-${meta.python_api_name}" /><p><code>${signature}</code></p>`;
+      }
+      $el.replaceWith(replacement);
     });
 }
 
