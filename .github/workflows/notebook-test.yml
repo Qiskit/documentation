@@ -12,15 +12,32 @@
 
 name: Test notebooks
 on:
+  # Three event types can trigger this workflow:
+  #  1. Pull request
+  #     On creating or pushing to a PR branch, this action runs any changed
+  #     notebooks and reports pass / fail. This is to catch broken code
+  #     examples.
+  #  2. Labeled
+  #     On adding an `🤖 Auto execute` label (id: 6409509633) to a PR, this
+  #     workflow executes any changed notebooks, then pushes the updates to the
+  #     PR branch. This makes it easy to quickly get notebooks executed in the
+  #     CI environment.
+  #  3. Workflow dispatch
+  #     When triggered by a workflow_dispatch event, we execute all notebooks,
+  #     and make a PR to the branch with the updated notebooks. This is handy
+  #     when upgrading qiskit package versions.
   pull_request:
     paths:
       - "docs/**/*.ipynb"
       - "!docs/api/**/*"
+    types: [opened, synchronize, labeled]
+  issue_comment:
   workflow_dispatch:
 jobs:
   execute:
     name: Execute notebooks
     runs-on: ubuntu-latest
+    if: github.event.action != 'labeled' || github.event.label.id == 6409509633
     steps:
       - uses: actions/checkout@v4
       - uses: actions/setup-python@v4
@@ -29,6 +46,7 @@ jobs:
           cache: "pip"
 
       - name: Get all changed files
+        if: github.event_name == 'pull_request'
         id: all-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
         with:
@@ -36,6 +54,7 @@ jobs:
           separator: "\n"
 
       - name: Check for notebooks that require LaTeX
+        if: github.event_name == 'pull_request'
         id: latex-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
         with:
@@ -44,7 +63,7 @@ jobs:
             docs/build/circuit-visualization.ipynb
 
       - name: Install LaTeX dependencies
-        if: steps.latex-changed-files.outputs.any_changed == 'true'
+        if: github.event_name == 'workflow_dispatch' || steps.latex-changed-files.outputs.any_changed == 'true'
         run: |
           sudo apt-get update
           sudo apt-get install texlive-pictures texlive-latex-extra poppler-utils
@@ -55,7 +74,7 @@ jobs:
         run: pip install qiskit-ibm-runtime tox
 
       - name: Save IBM Quantum account
-        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+        if: github.event_name == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository
         shell: python
         run: |
           # This saves the result for qiskit-ibm-provider too
@@ -73,7 +92,8 @@ jobs:
           path: ".tox"
           key: ${{ hashFiles('scripts/nb-tester/requirements.txt') }}
 
-      - name: Run tox
+      - name: Run tox on changed files
+        if: github.event_name == 'pull_request'
         shell: python
         run: |
           import subprocess
@@ -81,8 +101,38 @@ jobs:
           args = ["tox", "--"] + files.split("\n") + ["--write"]
           subprocess.run(args, check=True)
 
+      - name: Run tox on all files
+        if: github.event_name == 'workflow_dispatch'
+        run: tox -- --write
+
       - name: Upload executed notebooks
+        if: github.event_name == 'pull_request' && github.event.action != 'labeled'
         uses: actions/upload-artifact@v4
         with:
           name: Executed notebooks
           path: ${{ steps.all-changed-files.outputs.all_changed_files }}
+
+      - name: Push to branch
+        if: github.event.action == 'labeled'
+        run: |
+          git config user.name github-actions
+          git config user.email github-actions@github.com
+          git config pull.merge true
+          git add **/*.ipynb
+          git commit -m "Execute notebooks" --allow-empty
+          git pull origin ${{ github.head_ref }}
+          git push origin HEAD:${{ github.head_ref }}
+
+
+      - name: Create pull request
+        if: github.event_name == 'workflow_dispatch'
+        uses: peter-evans/create-pull-request@5b5eb8d8d0d7f95a473039666b7a2ee417ab24e1
+        with:
+          title: "[Bot] Execute notebooks"
+          commit-message: Re-run all notebooks
+          branch: ACTIONS/${{ github.run_id }}
+          body: |
+            Executes notebooks.
+
+            > [!NOTE]
+            > This pull request was created by a GitHub action.
