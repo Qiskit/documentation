@@ -73,13 +73,18 @@ jobs:
           path: ".tox"
           key: ${{ hashFiles('scripts/nb-tester/requirements.txt') }}
 
-      - name: Run tox
+      - name: Run tox on changed files
+        if: github.event_name == 'pull_request'
         shell: python
         run: |
           import subprocess
           files = """${{ steps.all-changed-files.outputs.all_changed_files }}"""
           args = ["tox", "--"] + files.split("\n") + ["--write"]
           subprocess.run(args, check=True)
+
+      - name: Run tox on all files
+        if: github.event_name == 'workflow_dispatch'
+        run: tox -- --write
 
       - name: Upload executed notebooks
         uses: actions/upload-artifact@v4
