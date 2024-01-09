@@ -55,7 +55,7 @@ jobs:
         run: pip install qiskit-ibm-runtime tox
 
       - name: Save IBM Quantum account
-        if: ${{ github.event.pull_request.head.repo.full_name == github.repository }}
+        if: github.event_type == 'workflow_dispatch' || github.event.pull_request.head.repo.full_name == github.repository 
         shell: python
         run: |
           # This saves the result for qiskit-ibm-provider too
