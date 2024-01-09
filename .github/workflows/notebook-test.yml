@@ -45,7 +45,7 @@ jobs:
           cache: "pip"
 
       - name: Get all changed files
-        if: github.event_name == 'pull_request' || github.event_name == "issue_comment"
+        if: github.event_name == 'pull_request' || github.event_name == 'issue_comment'
         id: all-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
         with:
@@ -53,7 +53,7 @@ jobs:
           separator: "\n"
 
       - name: Check for notebooks that require LaTeX
-        if: github.event_name == 'pull_request' || github.event_name == "issue_comment"
+        if: github.event_name == 'pull_request' || github.event_name == 'issue_comment'
         id: latex-changed-files
         uses: tj-actions/changed-files@af2816c65436325c50621100d67f6e853cd1b0f1
         with:
@@ -92,7 +92,7 @@ jobs:
           key: ${{ hashFiles('scripts/nb-tester/requirements.txt') }}
 
       - name: Run tox on changed files
-        if: github.event_name == 'pull_request' || github.event_name == "issue_comment"
+        if: github.event_name == 'pull_request' || github.event_name == 'issue_comment'
         shell: python
         run: |
           import subprocess
