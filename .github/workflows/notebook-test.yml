@@ -117,10 +117,10 @@ jobs:
         run: |
           git config user.name github-actions
           git config user.email github-actions@github.com
-          git pull
+          git pull ${{ github.repository }} ${{ github.head_ref }}
           git add docs
           git commit -m "Execute notebooks" --allow-empty
-          git push
+          git push ${{ github.repository }} ${{ github.head_ref }}
 
       - name: Create pull request
         if: github.event_name == 'workflow_dispatch'
