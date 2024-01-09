@@ -22,7 +22,7 @@ import { toText } from "hast-util-to-text";
 import Slugger from "github-slugger";
 
 import { remarkStringifyOptions } from "./commonParserConfig";
-import { HtmlToMdResult } from "./SphinxToMdResult";
+import { HtmlToMdResult } from "./HtmlToMdResult";
 
 export async function dedupeHtmlIdsFromResults(
   results: HtmlToMdResult[],

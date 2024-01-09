@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { HtmlToMdResultWithUrl } from "./SphinxToMdResult";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { removePart } from "../stringUtils";
 
 function flattenFolders(results: HtmlToMdResultWithUrl[]): void {

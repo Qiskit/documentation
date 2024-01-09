@@ -14,7 +14,7 @@ import { describe, expect, test } from "@jest/globals";
 import { last } from "lodash";
 
 import { updateLinks, updateUrl } from "./updateLinks";
-import { HtmlToMdResultWithUrl } from "./SphinxToMdResult";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 
 describe("updateLinks", () => {
   test("update links", async () => {

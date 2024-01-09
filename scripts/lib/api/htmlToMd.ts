@@ -25,7 +25,7 @@ import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 import { visit } from "unist-util-visit";
 import { Root } from "mdast";
 
-import { HtmlToMdResult } from "./SphinxToMdResult";
+import { HtmlToMdResult } from "./HtmlToMdResult";
 import { Metadata, ApiType } from "./Metadata";
 import {
   getLastPartFromFullIdentifier,

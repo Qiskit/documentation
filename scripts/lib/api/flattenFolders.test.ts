@@ -13,7 +13,7 @@
 import { expect, test } from "@jest/globals";
 
 import flattenFolders from "./flattenFolders";
-import { HtmlToMdResultWithUrl } from "./SphinxToMdResult";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 
 test("flattenFolders()", () => {
   const results = [

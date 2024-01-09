@@ -22,7 +22,7 @@ import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
 
 import { removePart, removePrefix } from "../stringUtils";
-import { HtmlToMdResultWithUrl } from "./SphinxToMdResult";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { remarkStringifyOptions } from "./commonParserConfig";
 import { Link } from "../sharedTypes";
 

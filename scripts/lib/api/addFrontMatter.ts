@@ -11,7 +11,7 @@
 // that they have been altered from the originals.
 
 import { getLastPartFromFullIdentifier } from "../stringUtils";
-import { HtmlToMdResult } from "./SphinxToMdResult";
+import { HtmlToMdResult } from "./HtmlToMdResult";
 import { Pkg } from "../sharedTypes";
 
 function addFrontMatter<T extends HtmlToMdResult>(

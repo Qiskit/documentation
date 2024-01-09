@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { HtmlToMdResultWithUrl } from "./SphinxToMdResult";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 
 export const RUNTIME_INDEX_META = `title: Qiskit Runtime IBM Client API Docs
 description: API documentation for qiskit-ibm-runtime`;

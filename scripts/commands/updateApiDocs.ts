@@ -24,7 +24,7 @@ import transformLinks from "transform-markdown-links";
 import { sphinxHtmlToMarkdown } from "../lib/api/htmlToMd";
 import { saveImages } from "../lib/api/saveImages";
 import { generateToc } from "../lib/api/generateToc";
-import { HtmlToMdResult } from "../lib/api/SphinxToMdResult";
+import { HtmlToMdResult } from "../lib/api/HtmlToMdResult";
 import { mergeClassMembers } from "../lib/api/mergeClassMembers";
 import flattenFolders from "../lib/api/flattenFolders";
 import { updateLinks } from "../lib/api/updateLinks";

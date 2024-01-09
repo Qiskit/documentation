@@ -17,7 +17,7 @@ import {
   PROVIDER_INDEX_META,
   RUNTIME_INDEX_META,
 } from "./specialCaseResults";
-import { HtmlToMdResultWithUrl } from "./SphinxToMdResult";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 
 test("specialCaseResults()", () => {
   const results = [

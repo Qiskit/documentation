@@ -14,7 +14,7 @@ import { expect, test } from "@jest/globals";
 
 import addFrontMatter from "./addFrontMatter";
 import { Pkg } from "../sharedTypes";
-import { HtmlToMdResult } from "./SphinxToMdResult";
+import { HtmlToMdResult } from "./HtmlToMdResult";
 
 test("addFrontMatter()", () => {
   const results: HtmlToMdResult[] = [

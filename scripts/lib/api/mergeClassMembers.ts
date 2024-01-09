@@ -20,7 +20,7 @@ import remarkStringify from "remark-stringify";
 import { Content, Root } from "mdast";
 import { visit } from "unist-util-visit";
 
-import { HtmlToMdResultWithUrl } from "./SphinxToMdResult";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { remarkStringifyOptions } from "./commonParserConfig";
 
 export async function mergeClassMembers<T extends HtmlToMdResultWithUrl>(
