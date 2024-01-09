@@ -11,7 +11,8 @@
 // that they have been altered from the originals.
 
 import { describe, test, expect } from "@jest/globals";
-import { sphinxHtmlToMarkdown } from "./sphinxHtmlToMarkdown";
+
+import { sphinxHtmlToMarkdown } from "./htmlToMd";
 
 const DEFAULT_ARGS = {
   imageDestination: "/images/qiskit",

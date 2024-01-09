@@ -19,10 +19,11 @@ import remarkMath from "remark-math";
 import remarkStringify from "remark-stringify";
 import { Content, Root } from "mdast";
 import { visit } from "unist-util-visit";
-import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
+
+import { HtmlToMdResultWithUrl } from "./SphinxToMdResult";
 import { remarkStringifyOptions } from "./commonParserConfig";
 
-export async function mergeClassMembers<T extends SphinxToMdResultWithUrl>(
+export async function mergeClassMembers<T extends HtmlToMdResultWithUrl>(
   results: T[],
 ): Promise<T[]> {
   const resultsWithName = results.filter(
@@ -107,7 +108,7 @@ async function replaceMembersAfterTitle(
   tree: Root,
   node: Content,
   title: string,
-  members: SphinxToMdResultWithUrl[],
+  members: HtmlToMdResultWithUrl[],
 ) {
   if (node.type !== "heading") return;
   const nodeIndex = tree.children.indexOf(node);

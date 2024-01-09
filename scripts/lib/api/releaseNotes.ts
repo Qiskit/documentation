@@ -11,9 +11,9 @@
 // that they have been altered from the originals.
 
 import { $ } from "zx";
-import { getRoot, pathExists } from "./fs";
+import { getRoot, pathExists } from "../fs";
 import { parse } from "path";
-import { Pkg } from "./sharedTypes";
+import { Pkg } from "../sharedTypes";
 import { readFile, writeFile, readdir } from "fs/promises";
 
 interface releaseNoteEntry {

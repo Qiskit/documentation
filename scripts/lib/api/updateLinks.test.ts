@@ -11,13 +11,14 @@
 // that they have been altered from the originals.
 
 import { describe, expect, test } from "@jest/globals";
-import { updateLinks, updateUrl } from "./updateLinks";
-import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
 import { last } from "lodash";
+
+import { updateLinks, updateUrl } from "./updateLinks";
+import { HtmlToMdResultWithUrl } from "./SphinxToMdResult";
 
 describe("updateLinks", () => {
   test("update links", async () => {
-    const data: SphinxToMdResultWithUrl[] = [
+    const data: HtmlToMdResultWithUrl[] = [
       {
         markdown: `
 [link1](qiskit_ibm_runtime.RuntimeJob)
@@ -86,7 +87,7 @@ describe("updateLinks", () => {
   });
 
   test("update links using a transform function", async () => {
-    const data: SphinxToMdResultWithUrl[] = [
+    const data: HtmlToMdResultWithUrl[] = [
       {
         markdown: `
 [link1](algorithms)
@@ -153,7 +154,7 @@ describe("updateUrl", () => {
       `qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.run`,
       `stubs/qiskit_ibm_runtime.RuntimeJob`,
     ];
-    const resultsByName: { [key: string]: SphinxToMdResultWithUrl } = {
+    const resultsByName: { [key: string]: HtmlToMdResultWithUrl } = {
       "qiskit_ibm_runtime.RuntimeJob": {
         markdown: "",
         meta: {

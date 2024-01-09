@@ -10,17 +10,15 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
-import { removePart } from "../stringUtils";
+import { Metadata } from "./Metadata";
 
-function flattenFolders(results: SphinxToMdResultWithUrl[]): void {
-  for (const result of results) {
-    result.url = omitRootFolders(result.url);
-  }
-}
+export type HtmlToMdResult = {
+  markdown: string;
+  meta: Metadata;
+  images: Array<{ src: string; dest: string }>;
+  isReleaseNotes: boolean;
+};
 
-function omitRootFolders(path: string): string {
-  return removePart(path, "/", ["stubs", "apidocs", "apidoc"]);
-}
-
-export default flattenFolders;
+export type HtmlToMdResultWithUrl = HtmlToMdResult & {
+  url: string;
+};

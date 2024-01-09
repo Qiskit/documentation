@@ -11,10 +11,10 @@
 // that they have been altered from the originals.
 
 import { getLastPartFromFullIdentifier } from "../stringUtils";
-import { SphinxToMdResult } from "./SphinxToMdResult";
+import { HtmlToMdResult } from "./SphinxToMdResult";
 import { Pkg } from "../sharedTypes";
 
-function addFrontMatter<T extends SphinxToMdResult>(
+function addFrontMatter<T extends HtmlToMdResult>(
   results: T[],
   pkg: Pkg,
 ): void {

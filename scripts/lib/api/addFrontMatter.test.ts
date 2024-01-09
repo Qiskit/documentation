@@ -14,10 +14,10 @@ import { expect, test } from "@jest/globals";
 
 import addFrontMatter from "./addFrontMatter";
 import { Pkg } from "../sharedTypes";
-import { SphinxToMdResult } from "./SphinxToMdResult";
+import { HtmlToMdResult } from "./SphinxToMdResult";
 
 test("addFrontMatter()", () => {
-  const results: SphinxToMdResult[] = [
+  const results: HtmlToMdResult[] = [
     {
       markdown: "# Hardcoded!",
       meta: {

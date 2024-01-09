@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-export type PythonApiType =
+export type ApiType =
   | "class"
   | "method"
   | "property"
@@ -19,8 +19,8 @@ export type PythonApiType =
   | "function"
   | "exception";
 
-export type PythonObjectMeta = {
+export type Metadata = {
   python_api_name?: string;
-  python_api_type?: PythonApiType;
+  python_api_type?: ApiType;
   hardcoded_frontmatter?: string;
 };

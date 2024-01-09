@@ -17,7 +17,7 @@ import {
   PROVIDER_INDEX_META,
   RUNTIME_INDEX_META,
 } from "./specialCaseResults";
-import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
+import { HtmlToMdResultWithUrl } from "./SphinxToMdResult";
 
 test("specialCaseResults()", () => {
   const results = [
@@ -32,7 +32,7 @@ test("specialCaseResults()", () => {
       meta: {},
     },
     { url: "/api/my-pkg/other-file" },
-  ] as SphinxToMdResultWithUrl[];
+  ] as HtmlToMdResultWithUrl[];
 
   specialCaseResults(results);
   expect(results).toEqual([

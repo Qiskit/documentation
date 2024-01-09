@@ -11,6 +11,7 @@
 // that they have been altered from the originals.
 
 import { describe, expect, test } from "@jest/globals";
+
 import { mergeClassMembers } from "./mergeClassMembers";
 
 describe("mergeClassMembers", () => {

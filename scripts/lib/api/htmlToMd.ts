@@ -21,17 +21,18 @@ import { defaultHandlers, Handle, toMdast, all } from "hast-util-to-mdast";
 import { toText } from "hast-util-to-text";
 import remarkMath from "remark-math";
 import remarkMdx from "remark-mdx";
-import { SphinxToMdResult } from "./SphinxToMdResult";
-import { PythonObjectMeta, PythonApiType } from "./PythonObjectMeta";
+import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
+import { visit } from "unist-util-visit";
+import { Root } from "mdast";
+
+import { HtmlToMdResult } from "./SphinxToMdResult";
+import { Metadata, ApiType } from "./Metadata";
 import {
   getLastPartFromFullIdentifier,
   removePrefix,
   removeSuffix,
 } from "../stringUtils";
 import { remarkStringifyOptions } from "./commonParserConfig";
-import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
-import { visit } from "unist-util-visit";
-import { Root } from "mdast";
 
 export async function sphinxHtmlToMarkdown(options: {
   html: string;
@@ -41,7 +42,7 @@ export async function sphinxHtmlToMarkdown(options: {
   // https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/
   baseSourceUrl: string;
   releaseNotesTitle: string;
-}): Promise<SphinxToMdResult> {
+}): Promise<HtmlToMdResult> {
   const { html, url, imageDestination, baseSourceUrl, releaseNotesTitle } =
     options;
   const $ = load(html);
@@ -64,7 +65,7 @@ export async function sphinxHtmlToMarkdown(options: {
   removeColons($main);
   preserveMathBlockWhitespace($, $main);
 
-  const meta: PythonObjectMeta = {};
+  const meta: Metadata = {};
   processMembersAndSetMeta($, $main, meta);
   maybeExtractAndSetModuleMetadata($, $main, meta);
   if (meta.python_api_type === "module") {
@@ -236,7 +237,7 @@ function removeColons($main: Cheerio<any>): void {
 function processMembersAndSetMeta(
   $: CheerioAPI,
   $main: Cheerio<any>,
-  meta: PythonObjectMeta,
+  meta: Metadata,
 ): void {
   let continueMapMembers = true;
   while (continueMapMembers) {
@@ -366,7 +367,7 @@ function processMembersAndSetMeta(
 function maybeExtractAndSetModuleMetadata(
   $: CheerioAPI,
   $main: Cheerio<any>,
-  meta: PythonObjectMeta,
+  meta: Metadata,
 ): void {
   const modulePrefix = "module-";
   const moduleIdWithPrefix = $main
@@ -393,7 +394,7 @@ function preserveMathBlockWhitespace($: CheerioAPI, $main: Cheerio<any>): void {
 function updateModuleHeadings(
   $: CheerioAPI,
   $main: Cheerio<any>,
-  meta: PythonObjectMeta,
+  meta: Metadata,
 ): void {
   $main
     .find("h1,h2")
@@ -416,7 +417,7 @@ function updateModuleHeadings(
 
 async function generateMarkdownFile(
   mainHtml: string,
-  meta: PythonObjectMeta,
+  meta: Metadata,
 ): Promise<string> {
   const handlers: Record<string, Handle> = {
     br(h, node: any) {
@@ -651,7 +652,7 @@ function findByText(
   return $main.find(selector).filter((i, el) => $(el).text().trim() === text);
 }
 
-function getPythonApiType($dl: Cheerio<any>): PythonApiType | undefined {
+function getPythonApiType($dl: Cheerio<any>): ApiType | undefined {
   for (const className of [
     "function",
     "class",
@@ -662,7 +663,7 @@ function getPythonApiType($dl: Cheerio<any>): PythonApiType | undefined {
     "module",
   ]) {
     if ($dl.hasClass(className)) {
-      return className as PythonApiType;
+      return className as ApiType;
     }
   }
 

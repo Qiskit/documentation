@@ -11,8 +11,9 @@
 // that they have been altered from the originals.
 
 import { isEmpty, keyBy, keys, orderBy } from "lodash";
+
 import { getLastPartFromFullIdentifier } from "../stringUtils";
-import { PythonObjectMeta } from "./PythonObjectMeta";
+import { Metadata } from "./Metadata";
 import { Pkg } from "../sharedTypes";
 
 type TocEntry = {
@@ -36,7 +37,7 @@ function nestModule(id: string): boolean {
 
 export function generateToc(
   pkg: Pkg,
-  results: Array<{ meta: PythonObjectMeta; url: string }>,
+  results: Array<{ meta: Metadata; url: string }>,
 ): Toc {
   const releaseNotesUrl = `/api/${pkg.name}/release-notes`;
   const resultsWithName = results.filter(
