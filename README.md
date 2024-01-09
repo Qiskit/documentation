@@ -139,11 +139,10 @@ pipx install tox
 > add it to the "Check for notebooks that require LaTeX" step in
 > `.github/workflows/notebook-test.yml`.
 
-When you make a pull request with a changed notebook, you can get a version of
-that notebook that was executed in a uniform environment from CI. To do this,
-click "Show all checks" in the info box at the bottom of the pull request page
-on GitHub, then choose "Details" for the "Test notebooks" job. From the job
-page, click "Summary", then download "Executed notebooks".
+When you make a pull request with a changed notebook, you can update your
+branch with a version of that notebook that was executed in a uniform
+environment. To do this, add the `🤖 Auto execute` label to your PR, then
+wait ~5 minutes.
 
 ## Check for broken links
 
