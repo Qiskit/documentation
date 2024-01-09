@@ -42,6 +42,7 @@ export function processHtml(options: {
     setReleaseNotesHeading($, releaseNotesTitle);
   }
 
+  // Warning: the sequence of operations often matters.
   removeHtmlExtensionsInRelativeLinks($, $main);
   removePermalinks($main);
   removeDownloadSourceCode($main);
@@ -62,7 +63,7 @@ export function processHtml(options: {
   return { html: $main.html()!, meta, images, isReleaseNotes };
 }
 
-function loadImages(
+export function loadImages(
   $: CheerioAPI,
   $main: Cheerio<any>,
   url: string,
@@ -95,7 +96,7 @@ function loadImages(
   return images;
 }
 
-function removeHtmlExtensionsInRelativeLinks(
+export function removeHtmlExtensionsInRelativeLinks(
   $: CheerioAPI,
   $main: Cheerio<any>,
 ): void {
@@ -108,14 +109,14 @@ function removeHtmlExtensionsInRelativeLinks(
   });
 }
 
-function setReleaseNotesHeading(
+export function setReleaseNotesHeading(
   $: CheerioAPI,
   releaseNotesTitle: string,
 ): void {
   $("h1").html(releaseNotesTitle);
 }
 
-function removePermalinks($main: Cheerio<any>): void {
+export function removePermalinks($main: Cheerio<any>): void {
   $main.find('a[title="Permalink to this headline"]').remove();
   $main.find('a[title="Permalink to this heading"]').remove();
   $main.find('a[title="Permalink to this definition"]').remove();
@@ -123,7 +124,7 @@ function removePermalinks($main: Cheerio<any>): void {
   $main.find('a[title="Link to this definition"]').remove();
 }
 
-function removeDownloadSourceCode($main: Cheerio<any>): void {
+export function removeDownloadSourceCode($main: Cheerio<any>): void {
   $main.find("p > a.reference.download.internal").closest("p").remove();
 }
 
@@ -132,7 +133,7 @@ function removeDownloadSourceCode($main: Cheerio<any>): void {
  *
  * Uses the heading for the summary and removes the blockquote.
  */
-function handleTabs($: CheerioAPI, $main: Cheerio<any>): void {
+export function handleTabs($: CheerioAPI, $main: Cheerio<any>): void {
   $main.find(".sd-summary-title").each((_, quote) => {
     const $quote = $(quote);
     $quote.replaceWith(`<h3>${$quote.html()}</h3>`);
@@ -144,7 +145,7 @@ function handleTabs($: CheerioAPI, $main: Cheerio<any>): void {
   });
 }
 
-function addLanguageClassToCodeBlocks(
+export function addLanguageClassToCodeBlocks(
   $: CheerioAPI,
   $main: Cheerio<any>,
 ): void {
@@ -157,7 +158,7 @@ function addLanguageClassToCodeBlocks(
 }
 
 // TODO(#519): figure out if this is working.
-function replaceSourceLinksWithGitHub(
+export function replaceSourceLinksWithGitHub(
   $: CheerioAPI,
   $main: Cheerio<any>,
   baseSourceUrl: string,
@@ -177,7 +178,10 @@ function replaceSourceLinksWithGitHub(
   });
 }
 
-function convertRubricsToHeaders($: CheerioAPI, $main: Cheerio<any>): void {
+export function convertRubricsToHeaders(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+): void {
   // Rubrics correspond to method and attribute headers.
   // TODO(#479): ensure our understanding of what .rubric corresponds to is correct and figure out
   //  if always using <h2> makes sense.
@@ -187,7 +191,10 @@ function convertRubricsToHeaders($: CheerioAPI, $main: Cheerio<any>): void {
   });
 }
 
-function processSimpleFieldLists($: CheerioAPI, $main: Cheerio<any>): void {
+export function processSimpleFieldLists(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+): void {
   // TODO(#479): Have a better understanding of what dl.field-list.simple corresponds to
   //   and confirm this behavior makes sense.
   $main
@@ -216,11 +223,11 @@ function processSimpleFieldLists($: CheerioAPI, $main: Cheerio<any>): void {
     });
 }
 
-function removeColons($main: Cheerio<any>): void {
+export function removeColons($main: Cheerio<any>): void {
   $main.find(".colon").remove();
 }
 
-function processMembersAndSetMeta(
+export function processMembersAndSetMeta(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
@@ -350,7 +357,7 @@ function processMembersAndSetMeta(
   }
 }
 
-function maybeExtractAndSetModuleMetadata(
+export function maybeExtractAndSetModuleMetadata(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
@@ -367,7 +374,10 @@ function maybeExtractAndSetModuleMetadata(
   }
 }
 
-function preserveMathBlockWhitespace($: CheerioAPI, $main: Cheerio<any>): void {
+export function preserveMathBlockWhitespace(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+): void {
   $main
     .find("div.math")
     .toArray()
@@ -377,7 +387,7 @@ function preserveMathBlockWhitespace($: CheerioAPI, $main: Cheerio<any>): void {
     });
 }
 
-function updateModuleHeadings(
+export function updateModuleHeadings(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
