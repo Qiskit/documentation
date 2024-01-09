@@ -10,25 +10,25 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { load } from "cheerio";
 import { unified } from "unified";
 import rehypeParse from "rehype-parse";
 import rehypeRemark from "rehype-remark";
 import remarkStringify from "remark-stringify";
 import remarkGfm from "remark-gfm";
 import { last, first, without, initial, tail } from "lodash";
+import { CheerioAPI, Cheerio, load } from "cheerio";
 import { defaultHandlers, Handle, toMdast, all } from "hast-util-to-mdast";
 import { toText } from "hast-util-to-text";
 import remarkMath from "remark-math";
 import remarkMdx from "remark-mdx";
 import { SphinxToMdResult } from "./SphinxToMdResult";
-import { PythonObjectMeta } from "./PythonObjectMeta";
+import { PythonObjectMeta, PythonApiType } from "./PythonObjectMeta";
 import {
   getLastPartFromFullIdentifier,
   removePrefix,
   removeSuffix,
 } from "../stringUtils";
-import { remarkStringifyOptions } from "./unifiedParser";
+import { remarkStringifyOptions } from "./commonParserConfig";
 import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
 import { visit } from "unist-util-visit";
 import { Root } from "mdast";
@@ -42,7 +42,6 @@ export async function sphinxHtmlToMarkdown(options: {
   baseSourceUrl?: string;
   releaseNotesTitle?: string;
 }): Promise<SphinxToMdResult> {
-  const images: Array<{ src: string; dest: string }> = [];
   const {
     html,
     url,
@@ -53,29 +52,197 @@ export async function sphinxHtmlToMarkdown(options: {
   const meta: PythonObjectMeta = {};
   const isReleaseNotes = url.endsWith("release_notes.html") ? true : false;
 
-  const $page = load(html);
-  const main = $page(`[role='main']`);
-  const $main = $page(main);
+  const $ = load(html);
+  const $main = $(`[role='main']`);
+  const images = loadImages($, $main, url, imageDestination, isReleaseNotes);
 
-  // remove html extensions in relative links
-  $main.find("a").each((_, link) => {
-    const $link = $page(link);
-    const href = $link.attr("href");
-    if (href && !href.startsWith("http")) {
-      $link.attr("href", href.replaceAll(".html", ""));
+  preprocessHtml($, $main, baseSourceUrl, isReleaseNotes, releaseNotesTitle);
+
+  let continueMapMembers = true;
+  while (continueMapMembers) {
+    // members can be recursive, so we need to pick elements one by one
+    const dl = $main
+      .find(
+        "dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception",
+      )
+      .get(0);
+
+    if (!dl) {
+      continueMapMembers = false;
+      continue;
     }
-  });
 
-  if (isReleaseNotes && releaseNotesTitle) {
-    // Replace heading with custom heading
-    $page("h1").html(releaseNotesTitle);
+    const $dl = $(dl);
+    const replacement = $dl
+      .children()
+      .toArray()
+      .map((child) => {
+        const $child = $(child);
+        $child.find(".viewcode-link").closest("a").remove();
+        const id = $dl.find("dt").attr("id") || "";
+
+        const python_type = getPythonApiType($dl);
+
+        if (child.name !== "dt" || !python_type) {
+          return `<div>${$child.html()}</div>`;
+        }
+
+        const priorPythonApiType = meta.python_api_type;
+        if (!priorPythonApiType) {
+          meta.python_api_type = python_type;
+          meta.python_api_name = id;
+        }
+
+        if (python_type == "class") {
+          findByText($, $main, "em.property", "class").remove();
+          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
+        }
+
+        if (python_type == "property") {
+          if (!priorPythonApiType && id) {
+            $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+          }
+
+          findByText($, $main, "em.property", "property").remove();
+          const signature = $child.find("em").text()?.replace(/^:\s+/, "");
+          if (signature.trim().length === 0) return;
+          return `<span class="target" id='${id}'/><p><code>${signature}</code></p>`;
+        }
+
+        if (python_type == "method") {
+          if (id) {
+            if (!priorPythonApiType) {
+              $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+            } else {
+              // Inline methods
+              $(`<h3>${getLastPartFromFullIdentifier(id)}</h3>`).insertBefore(
+                $dl,
+              );
+            }
+          }
+
+          findByText($, $main, "em.property", "method").remove();
+          return `<span class="target" id='${id}'/><p><code>${$child.html()}</code></p>`;
+        }
+
+        if (python_type == "attribute") {
+          if (!priorPythonApiType) {
+            if (id) {
+              $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
+            }
+
+            findByText($, $main, "em.property", "attribute").remove();
+            const signature = $child.find("em").text()?.replace(/^:\s+/, "");
+            if (signature.trim().length === 0) return;
+            return `<span class="target" id='${id}'/><p><code>${signature}</code></p>`;
+          }
+
+          // Else, the attribute is embedded on the class
+          const text = $child.text();
+          const equalIndex = text.indexOf("=");
+          const colonIndex = text.indexOf(":");
+          let name = text;
+          let type: string | undefined;
+          let value: string | undefined;
+          if (colonIndex > 0 && equalIndex > 0) {
+            name = text.substring(0, colonIndex);
+            type = text.substring(colonIndex + 1, equalIndex);
+            value = text.substring(equalIndex);
+          } else if (colonIndex > 0) {
+            name = text.substring(0, colonIndex);
+            type = text.substring(colonIndex + 1);
+          } else if (equalIndex > 0) {
+            name = text.substring(0, equalIndex);
+            value = text.substring(equalIndex);
+          }
+          const output = [`<span class="target" id='${id}'/><h3>${name}</h3>`];
+          if (type) {
+            output.push(`<p><code>${type}</code></p>`);
+          }
+          if (value) {
+            output.push(`<p><code>${value}</code></p>`);
+          }
+          return output.join("\n");
+        }
+
+        if (python_type === "function") {
+          findByText($, $main, "em.property", "function").remove();
+          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
+        }
+
+        if (python_type === "exception") {
+          findByText($, $main, "em.property", "exception").remove();
+          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
+        }
+
+        throw new Error(`Unhandled Python type: ${python_type}`);
+      })
+      .join("\n");
+
+    $dl.replaceWith(`<div>${replacement}</div>`);
   }
 
+  // preserve math block whitespace
+  $main
+    .find("div.math")
+    .toArray()
+    .map((el) => {
+      const $el = $(el);
+      $el.replaceWith(`<pre class="math">${$el.html()}</pre>`);
+    });
+
+  // extract module metadata
+  const modulePrefix = "module-";
+  const moduleIdWithPrefix = $main
+    .find("span, section")
+    .toArray()
+    .map((el) => $(el).attr("id"))
+    .find((id) => id?.startsWith(modulePrefix));
+  if (moduleIdWithPrefix) {
+    meta.python_api_type = "module";
+    meta.python_api_name = moduleIdWithPrefix.slice(modulePrefix.length);
+  }
+
+  // Update headings of modules
+  if (meta.python_api_type === "module") {
+    $main
+      .find("h1,h2")
+      .toArray()
+      .forEach((el) => {
+        const $el = $(el);
+        const $a = $($el.find("a"));
+        const signature = $a.text();
+        $a.remove();
+
+        let title = $el.text();
+        title = title.replace("()", "");
+        let replacement = `<${el.tagName}>${title}</${el.tagName}>`;
+        if (signature.trim().length > 0) {
+          replacement += `<span class="target" id="module-${meta.python_api_name}" /><p><code>${signature}</code></p>`;
+        }
+        $el.replaceWith(replacement);
+      });
+  }
+
+  // convert to markdown
+  const markdown = await generateMarkdownFile($main.html()!, meta);
+
+  return { markdown, meta, images, isReleaseNotes };
+}
+
+function loadImages(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+  url: string,
+  imageDestination: string,
+  isReleaseNotes: boolean,
+): Array<{ src: string; dest: string }> {
+  const images: Array<{ src: string; dest: string }> = [];
   $main
     .find("img")
     .toArray()
-    .forEach((el) => {
-      const $img = $page(el);
+    .forEach((img) => {
+      const $img = $(img);
 
       const imageUrl = new URL($img.attr("src")!, url);
       const src = imageUrl.toString();
@@ -93,6 +260,30 @@ export async function sphinxHtmlToMarkdown(options: {
       images.push({ src, dest: dest });
     });
 
+  return images;
+}
+
+function preprocessHtml(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+  baseSourceUrl: string | undefined,
+  isReleaseNotes: boolean,
+  releaseNotesTitle: string | undefined,
+): void {
+  // remove html extensions in relative links
+  $main.find("a").each((_, link) => {
+    const $link = $(link);
+    const href = $link.attr("href");
+    if (href && !href.startsWith("http")) {
+      $link.attr("href", href.replaceAll(".html", ""));
+    }
+  });
+
+  // Custom heading for release notes
+  if (isReleaseNotes && releaseNotesTitle) {
+    $("h1").html(releaseNotesTitle);
+  }
+
   // remove permalink links
   $main.find('a[title="Permalink to this headline"]').remove();
   $main.find('a[title="Permalink to this heading"]').remove();
@@ -105,18 +296,18 @@ export async function sphinxHtmlToMarkdown(options: {
 
   // handle tabs, use heading for the summary and remove the blockquote
   $main.find(".sd-summary-title").each((_, quote) => {
-    const $quote = $page(quote);
+    const $quote = $(quote);
     $quote.replaceWith(`<h3>${$quote.html()}</h3>`);
   });
 
   $main.find(".sd-card-body blockquote").each((_, quote) => {
-    const $quote = $page(quote);
+    const $quote = $(quote);
     $quote.replaceWith($quote.children());
   });
 
   // add language class to code blocks
   $main.find("pre").each((_, pre) => {
-    const $pre = $page(pre);
+    const $pre = $(pre);
     $pre.replaceWith(
       `<pre><code class="language-python">${$pre.html()}</code></pre>`,
     );
@@ -124,7 +315,7 @@ export async function sphinxHtmlToMarkdown(options: {
 
   // replace source links
   $main.find("a").each((_, a) => {
-    const $a = $page(a);
+    const $a = $(a);
     const href = $a.attr("href");
     if (href?.startsWith("http:")) return;
     if (href?.includes(`/_modules/`)) {
@@ -139,31 +330,24 @@ export async function sphinxHtmlToMarkdown(options: {
 
   // use titles for method and attribute headers
   $main.find(".rubric").each((_, el) => {
-    const $el = $page(el);
+    const $el = $(el);
     $el.replaceWith(`<h2>${$el.html()}</h2>`);
   });
 
   // delete colons
   $main.find(".colon").remove();
 
-  // translate type headings to titles
-  function findByText(selector: string, text: string) {
-    return $main
-      .find(selector)
-      .filter((i, el) => $page(el).text().trim() === text);
-  }
-
   $main
     .find("dl.field-list.simple")
     .toArray()
     .map((dl) => {
-      const $dl = $page(dl);
+      const $dl = $(dl);
 
       $dl
         .find("dt")
         .toArray()
         .forEach((dt) => {
-          const $dt = $page(dt);
+          const $dt = $(dt);
           $dt.replaceWith(`<strong>${$dt.html()}</strong>`);
         });
 
@@ -171,188 +355,18 @@ export async function sphinxHtmlToMarkdown(options: {
         .find("dd")
         .toArray()
         .forEach((dd) => {
-          const $dd = $page(dd);
+          const $dd = $(dd);
           $dd.replaceWith(`<div>${$dd.html()}</div>`);
         });
 
       $dl.replaceWith(`<div>${$dl.html()}</div>`);
     });
+}
 
-  let continueMapMembers = true;
-  while (continueMapMembers) {
-    // members can be recursive, so we need to pick elements one by one
-    const dl = $main
-      .find(
-        "dl.py.class, dl.py.property, dl.py.method, dl.py.attribute, dl.py.function, dl.py.exception",
-      )
-      .get(0);
-
-    if (!dl) {
-      continueMapMembers = false;
-      continue;
-    }
-
-    const $dl = $page(dl);
-    const replacement = $dl
-      .children()
-      .toArray()
-      .map((child) => {
-        const $child = $page(child);
-        $child.find(".viewcode-link").closest("a").remove();
-        const id = $dl.find("dt").attr("id") || "";
-
-        if (child.name === "dt" && $dl.hasClass("class")) {
-          if (!meta.python_api_type) {
-            meta.python_api_type = "class";
-            meta.python_api_name = id;
-          }
-
-          findByText("em.property", "class").remove();
-          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
-        } else if (child.name === "dt" && $dl.hasClass("property")) {
-          if (!meta.python_api_type) {
-            meta.python_api_type = "property";
-            meta.python_api_name = id;
-
-            if (id) {
-              $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-            }
-          }
-
-          findByText("em.property", "property").remove();
-          const signature = $child.find("em").text()?.replace(/^:\s+/, "");
-          if (signature.trim().length === 0) return;
-          return `<span class="target" id='${id}'/><p><code>${signature}</code></p>`;
-        } else if (child.name === "dt" && $dl.hasClass("method")) {
-          if (!meta.python_api_type) {
-            meta.python_api_type = "method";
-            meta.python_api_name = id;
-            if (id) {
-              $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-            }
-          } else {
-            // Inline methods
-            if (id) {
-              $page(
-                `<h3>${getLastPartFromFullIdentifier(id)}</h3>`,
-              ).insertBefore($dl);
-            }
-          }
-
-          findByText("em.property", "method").remove();
-          return `<span class="target" id='${id}'/><p><code>${$child.html()}</code></p>`;
-        } else if (child.name === "dt" && $dl.hasClass("attribute")) {
-          if (!meta.python_api_type) {
-            meta.python_api_type = "attribute";
-            meta.python_api_name = id;
-
-            if (id) {
-              $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
-            }
-
-            findByText("em.property", "attribute").remove();
-            const signature = $child.find("em").text()?.replace(/^:\s+/, "");
-            if (signature.trim().length === 0) return;
-            return `<span class="target" id='${id}'/><p><code>${signature}</code></p>`;
-          } else {
-            // The attribute is embedded on the class
-            const text = $child.text();
-            const equalIndex = text.indexOf("=");
-            const colonIndex = text.indexOf(":");
-            let name = text;
-            let type: string | undefined;
-            let value: string | undefined;
-            if (colonIndex > 0 && equalIndex > 0) {
-              name = text.substring(0, colonIndex);
-              type = text.substring(colonIndex + 1, equalIndex);
-              value = text.substring(equalIndex);
-            } else if (colonIndex > 0) {
-              name = text.substring(0, colonIndex);
-              type = text.substring(colonIndex + 1);
-            } else if (equalIndex > 0) {
-              name = text.substring(0, equalIndex);
-              value = text.substring(equalIndex);
-            }
-            const output = [
-              `<span class="target" id='${id}'/><h3>${name}</h3>`,
-            ];
-            if (type) {
-              output.push(`<p><code>${type}</code></p>`);
-            }
-            if (value) {
-              output.push(`<p><code>${value}</code></p>`);
-            }
-            return output.join("\n");
-          }
-        } else if (child.name === "dt" && $dl.hasClass("function")) {
-          if (!meta.python_api_type) {
-            meta.python_api_type = "function";
-            meta.python_api_name = id;
-          }
-          findByText("em.property", "function").remove();
-          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
-        } else if (child.name === "dt" && $dl.hasClass("exception")) {
-          if (!meta.python_api_type) {
-            meta.python_api_type = "exception";
-            meta.python_api_name = id;
-          }
-
-          findByText("em.property", "exception").remove();
-          return `<span class="target" id='${id}'/><p><code>${$child.html()}</code></p>`;
-        }
-
-        return `<div>${$child.html()}</div>`;
-      })
-      .join("\n");
-
-    $dl.replaceWith(`<div>${replacement}</div>`);
-  }
-
-  // preserve math block whitespace
-  $main
-    .find("div.math")
-    .toArray()
-    .map((el) => {
-      const $el = $page(el);
-      $el.replaceWith(`<pre class="math">${$el.html()}</pre>`);
-    });
-
-  // extract module metadata
-  const modulePrefix = "module-";
-  const moduleIdWithPrefix = $main
-    .find("span, section")
-    .toArray()
-    .map((el) => $page(el).attr("id"))
-    .find((id) => id?.startsWith(modulePrefix));
-  if (moduleIdWithPrefix) {
-    meta.python_api_type = "module";
-    meta.python_api_name = moduleIdWithPrefix.slice(modulePrefix.length);
-  }
-
-  // Update headings of modules
-  if (meta.python_api_type === "module") {
-    $main
-      .find("h1,h2")
-      .toArray()
-      .forEach((el) => {
-        const $el = $page(el);
-        const $a = $page($el.find("a"));
-        const signature = $a.text();
-        $a.remove();
-
-        let title = $el.text();
-        title = title.replace("()", "");
-        let replacement = `<${el.tagName}>${title}</${el.tagName}>`;
-        if (signature.trim().length > 0) {
-          replacement += `<span class="target" id="module-${meta.python_api_name}" /><p><code>${signature}</code></p>`;
-        }
-        $el.replaceWith(replacement);
-      });
-  }
-
-  // convert to markdown
-  const mainHtml = main.html()!;
-
+async function generateMarkdownFile(
+  mainHtml: string,
+  meta: PythonObjectMeta,
+): Promise<string> {
   const handlers: Record<string, Handle> = {
     br(h, node: any) {
       return all(h, node);
@@ -483,63 +497,55 @@ export async function sphinxHtmlToMarkdown(options: {
       handlers,
     })
     .use(remarkStringify, remarkStringifyOptions)
-    .use(() => {
-      return (root: Root) => {
-        // merge contiguous emphasis
-        visit(root, "emphasis", (node, index, parent) => {
-          if (index === null || parent === null) return;
-          let nextIndex = index + 1;
-          while (parent.children[nextIndex]?.type === "emphasis") {
-            node.children.push(
-              ...((parent.children[nextIndex] as any).children ?? []),
-            );
-            nextIndex++;
-          }
-          parent.children.splice(index + 1, nextIndex - (index + 1));
-        });
+    .use(() => (root: Root) => {
+      // merge contiguous emphasis
+      visit(root, "emphasis", (node, index, parent) => {
+        if (index === null || parent === null) return;
+        let nextIndex = index + 1;
+        while (parent.children[nextIndex]?.type === "emphasis") {
+          node.children.push(
+            ...((parent.children[nextIndex] as any).children ?? []),
+          );
+          nextIndex++;
+        }
+        parent.children.splice(index + 1, nextIndex - (index + 1));
 
         // remove initial and trailing spaces from emphasis
-        visit(root, "emphasis", (node, index, parent) => {
-          if (index === null || parent === null) return;
-          const firstChild = first(node.children);
-          if (firstChild?.type === "text") {
-            const match = firstChild.value.match(/^\s+/);
-            if (match) {
-              if (match[0] === firstChild.value) {
-                node.children = tail(node.children);
-              } else {
-                firstChild.value = removePrefix(firstChild.value, match[0]);
-              }
-              parent.children.splice(index, 0, {
-                type: "text",
-                value: match[0],
-              });
+        const firstChild = first(node.children);
+        if (firstChild?.type === "text") {
+          const match = firstChild.value.match(/^\s+/);
+          if (match) {
+            if (match[0] === firstChild.value) {
+              node.children = tail(node.children);
+            } else {
+              firstChild.value = removePrefix(firstChild.value, match[0]);
             }
+            parent.children.splice(index, 0, {
+              type: "text",
+              value: match[0],
+            });
           }
-          const lastChild = last(node.children);
-          if (lastChild?.type === "text") {
-            const match = lastChild.value.match(/\s+$/);
-            if (match) {
-              if (match[0] === lastChild.value) {
-                node.children = initial(node.children);
-              } else {
-                lastChild.value = removeSuffix(lastChild.value, match[0]);
-              }
-              parent.children.splice(index + 1, 0, {
-                type: "text",
-                value: match[0],
-              });
+        }
+        const lastChild = last(node.children);
+        if (lastChild?.type === "text") {
+          const match = lastChild.value.match(/\s+$/);
+          if (match) {
+            if (match[0] === lastChild.value) {
+              node.children = initial(node.children);
+            } else {
+              lastChild.value = removeSuffix(lastChild.value, match[0]);
             }
+            parent.children.splice(index + 1, 0, {
+              type: "text",
+              value: match[0],
+            });
           }
-        });
-      };
+        }
+      });
     })
     .process(mainHtml);
 
-  let markdown = mdFile.toString();
-  markdown = markdown.replaceAll(`<!---->`, "");
-
-  return { markdown, meta, images, isReleaseNotes };
+  return mdFile.toString().replaceAll(`<!---->`, "");
 }
 
 function buildAdmonition(options: {
@@ -580,4 +586,34 @@ function buildSpanId(id: string): MdxJsxFlowElement {
     ],
     children: [],
   };
+}
+
+/**
+ * Find the element that both matches the `selector` and whose content is the same as `text`
+ */
+function findByText(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+  selector: string,
+  text: string,
+): Cheerio<any> {
+  return $main.find(selector).filter((i, el) => $(el).text().trim() === text);
+}
+
+function getPythonApiType($dl: Cheerio<any>): PythonApiType | undefined {
+  for (const className of [
+    "function",
+    "class",
+    "exception",
+    "method",
+    "property",
+    "attribute",
+    "module",
+  ]) {
+    if ($dl.hasClass(className)) {
+      return className as PythonApiType;
+    }
+  }
+
+  return undefined;
 }

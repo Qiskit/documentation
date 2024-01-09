@@ -10,11 +10,32 @@
 # copyright notice, and modified files need to carry a notice indicating
 # that they have been altered from the originals.
 
-name: Lint
-on: [pull_request, merge_group]
+# This Action runs checks things that we care about but would be
+# too slow to check in every PR.
+
+name: Extended checks
+on:
+  schedule:
+    - cron: "0 0 * * *" # Every day at midnight UTC
+
+  # For translations, run checks during branch builds because CI will not be triggered
+  # in the automated PR to download new translations. (That's a restriction by GitHub
+  # because we use the GitHub token to create the PR - a workflow can't
+  # call other workflows.)
+  push:
+    branches:
+      - main
+    paths:
+      - "translations/**/*"
+
+  pull_request:
+    paths:
+      - "docs/api/qiskit/**/*"
+      - "docs/api/qiskit-ibm-provider/**/*"
+      - "docs/api/qiskit-ibm-runtime/**/*"
+
 jobs:
-  lint:
-    name: Lint
+  extended-checks:
     runs-on: ubuntu-latest
     if: github.repository_owner == 'Qiskit'
     steps:
@@ -26,27 +47,23 @@ jobs:
       - name: Install Node.js dependencies
         run: npm ci
 
-      - name: File metadata
-        run: npm run check:metadata
-      - name: Spellcheck
-        run: npm run check:spelling
-      - name: Link checker
+      - name: Check external links
         run: >
           npm run check:links --
-          --current-apis
           --qiskit-release-notes
+          --current-apis
           --historical-apis
           --skip-broken-historical
-      - name: Formatting
-        run: npm run check:fmt
-      - name: Typecheck
-        run: npm run typecheck
-      - name: Infrastructure tests
-        run: npm test
+          --external
 
       - name: Start local Docker preview
         run: |
           ./start &
           sleep 20
-      - name: Check that pages render
-        run: npm run check-pages-render
+      - name: Check API pages render
+        run: >
+          npm run check-pages-render --
+          --qiskit-release-notes
+          --current-apis
+          --historical-apis
+          --translations
