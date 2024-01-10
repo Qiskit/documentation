@@ -18,13 +18,14 @@ import remarkMdx from "remark-mdx";
 import { Root } from "mdast";
 import { visit } from "unist-util-visit";
 import remarkStringify from "remark-stringify";
-import { remarkStringifyOptions } from "./commonParserConfig";
 import { toText } from "hast-util-to-text";
 import Slugger from "github-slugger";
-import { SphinxToMdResult } from "./SphinxToMdResult";
+
+import { remarkStringifyOptions } from "./commonParserConfig";
+import { HtmlToMdResult } from "./HtmlToMdResult";
 
 export async function dedupeHtmlIdsFromResults(
-  results: SphinxToMdResult[],
+  results: HtmlToMdResult[],
 ): Promise<void> {
   for (let result of results) {
     result.markdown = await dedupeHtmlIds(result.markdown);
