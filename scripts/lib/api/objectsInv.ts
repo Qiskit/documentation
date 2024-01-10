@@ -118,10 +118,8 @@ export class ObjectsInv {
 
   updateUris(transformLink: Function) {
     for (const entry of this.entries) {
-      entry.uri = ObjectsInv._expandUri(entry.uri, entry.name);
       entry.uri = entry.uri.replace(/\.html/, "");
       entry.uri = transformLink(entry.uri);
-      entry.uri = ObjectsInv._compressUri(entry.uri, entry.name);
     }
   }
 
