@@ -21,17 +21,18 @@ import { defaultHandlers, Handle, toMdast, all } from "hast-util-to-mdast";
 import { toText } from "hast-util-to-text";
 import remarkMath from "remark-math";
 import remarkMdx from "remark-mdx";
-import { SphinxToMdResult } from "./SphinxToMdResult";
-import { PythonObjectMeta, PythonApiType } from "./PythonObjectMeta";
+import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
+import { visit } from "unist-util-visit";
+import { Root } from "mdast";
+
+import { HtmlToMdResult } from "./HtmlToMdResult";
+import { Metadata, ApiType } from "./Metadata";
 import {
   getLastPartFromFullIdentifier,
   removePrefix,
   removeSuffix,
 } from "../stringUtils";
 import { remarkStringifyOptions } from "./commonParserConfig";
-import { MdxJsxFlowElement } from "mdast-util-mdx-jsx";
-import { visit } from "unist-util-visit";
-import { Root } from "mdast";
 
 export async function sphinxHtmlToMarkdown(options: {
   html: string;
@@ -41,7 +42,7 @@ export async function sphinxHtmlToMarkdown(options: {
   // https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/
   baseSourceUrl: string;
   releaseNotesTitle: string;
-}): Promise<SphinxToMdResult> {
+}): Promise<HtmlToMdResult> {
   const { html, url, imageDestination, baseSourceUrl, releaseNotesTitle } =
     options;
   const $ = load(html);
@@ -64,10 +65,10 @@ export async function sphinxHtmlToMarkdown(options: {
   removeColons($main);
   preserveMathBlockWhitespace($, $main);
 
-  const meta: PythonObjectMeta = {};
+  const meta: Metadata = {};
   processMembersAndSetMeta($, $main, meta);
   maybeExtractAndSetModuleMetadata($, $main, meta);
-  if (meta.python_api_type === "module") {
+  if (meta.apiType === "module") {
     updateModuleHeadings($, $main, meta);
   }
 
@@ -236,7 +237,7 @@ function removeColons($main: Cheerio<any>): void {
 function processMembersAndSetMeta(
   $: CheerioAPI,
   $main: Cheerio<any>,
-  meta: PythonObjectMeta,
+  meta: Metadata,
 ): void {
   let continueMapMembers = true;
   while (continueMapMembers) {
@@ -261,25 +262,25 @@ function processMembersAndSetMeta(
         $child.find(".viewcode-link").closest("a").remove();
         const id = $dl.find("dt").attr("id") || "";
 
-        const python_type = getPythonApiType($dl);
+        const apiType = getApiType($dl);
 
-        if (child.name !== "dt" || !python_type) {
+        if (child.name !== "dt" || !apiType) {
           return `<div>${$child.html()}</div>`;
         }
 
-        const priorPythonApiType = meta.python_api_type;
-        if (!priorPythonApiType) {
-          meta.python_api_type = python_type;
-          meta.python_api_name = id;
+        const priorApiType = meta.apiType;
+        if (!priorApiType) {
+          meta.apiType = apiType;
+          meta.apiName = id;
         }
 
-        if (python_type == "class") {
+        if (apiType == "class") {
           findByText($, $main, "em.property", "class").remove();
           return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
         }
 
-        if (python_type == "property") {
-          if (!priorPythonApiType && id) {
+        if (apiType == "property") {
+          if (!priorApiType && id) {
             $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
           }
 
@@ -289,9 +290,9 @@ function processMembersAndSetMeta(
           return `<span class="target" id='${id}'/><p><code>${signature}</code></p>`;
         }
 
-        if (python_type == "method") {
+        if (apiType == "method") {
           if (id) {
-            if (!priorPythonApiType) {
+            if (!priorApiType) {
               $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
             } else {
               // Inline methods
@@ -305,8 +306,8 @@ function processMembersAndSetMeta(
           return `<span class="target" id='${id}'/><p><code>${$child.html()}</code></p>`;
         }
 
-        if (python_type == "attribute") {
-          if (!priorPythonApiType) {
+        if (apiType == "attribute") {
+          if (!priorApiType) {
             if (id) {
               $dl.siblings("h1").text(getLastPartFromFullIdentifier(id));
             }
@@ -345,17 +346,17 @@ function processMembersAndSetMeta(
           return output.join("\n");
         }
 
-        if (python_type === "function") {
+        if (apiType === "function") {
           findByText($, $main, "em.property", "function").remove();
           return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
         }
 
-        if (python_type === "exception") {
+        if (apiType === "exception") {
           findByText($, $main, "em.property", "exception").remove();
           return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
         }
 
-        throw new Error(`Unhandled Python type: ${python_type}`);
+        throw new Error(`Unhandled Python type: ${apiType}`);
       })
       .join("\n");
 
@@ -366,7 +367,7 @@ function processMembersAndSetMeta(
 function maybeExtractAndSetModuleMetadata(
   $: CheerioAPI,
   $main: Cheerio<any>,
-  meta: PythonObjectMeta,
+  meta: Metadata,
 ): void {
   const modulePrefix = "module-";
   const moduleIdWithPrefix = $main
@@ -375,8 +376,8 @@ function maybeExtractAndSetModuleMetadata(
     .map((el) => $(el).attr("id"))
     .find((id) => id?.startsWith(modulePrefix));
   if (moduleIdWithPrefix) {
-    meta.python_api_type = "module";
-    meta.python_api_name = moduleIdWithPrefix.slice(modulePrefix.length);
+    meta.apiType = "module";
+    meta.apiName = moduleIdWithPrefix.slice(modulePrefix.length);
   }
 }
 
@@ -393,7 +394,7 @@ function preserveMathBlockWhitespace($: CheerioAPI, $main: Cheerio<any>): void {
 function updateModuleHeadings(
   $: CheerioAPI,
   $main: Cheerio<any>,
-  meta: PythonObjectMeta,
+  meta: Metadata,
 ): void {
   $main
     .find("h1,h2")
@@ -408,7 +409,7 @@ function updateModuleHeadings(
       title = title.replace("()", "");
       let replacement = `<${el.tagName}>${title}</${el.tagName}>`;
       if (signature.trim().length > 0) {
-        replacement += `<span class="target" id="module-${meta.python_api_name}" /><p><code>${signature}</code></p>`;
+        replacement += `<span class="target" id="module-${meta.apiName}" /><p><code>${signature}</code></p>`;
       }
       $el.replaceWith(replacement);
     });
@@ -416,7 +417,7 @@ function updateModuleHeadings(
 
 async function generateMarkdownFile(
   mainHtml: string,
-  meta: PythonObjectMeta,
+  meta: Metadata,
 ): Promise<string> {
   const handlers: Record<string, Handle> = {
     br(h, node: any) {
@@ -468,10 +469,7 @@ async function generateMarkdownFile(
       return defaultHandlers.div(h, node);
     },
     dt(h, node: any) {
-      if (
-        meta.python_api_type === "class" ||
-        meta.python_api_type === "module"
-      ) {
+      if (meta.apiType === "class" || meta.apiType === "module") {
         return [
           h(node, "strong", {
             type: "strong",
@@ -651,7 +649,7 @@ function findByText(
   return $main.find(selector).filter((i, el) => $(el).text().trim() === text);
 }
 
-function getPythonApiType($dl: Cheerio<any>): PythonApiType | undefined {
+function getApiType($dl: Cheerio<any>): ApiType | undefined {
   for (const className of [
     "function",
     "class",
@@ -662,7 +660,7 @@ function getPythonApiType($dl: Cheerio<any>): PythonApiType | undefined {
     "module",
   ]) {
     if ($dl.hasClass(className)) {
-      return className as PythonApiType;
+      return className as ApiType;
     }
   }
 

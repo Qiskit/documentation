@@ -19,17 +19,18 @@ import remarkMath from "remark-math";
 import remarkStringify from "remark-stringify";
 import { Content, Root } from "mdast";
 import { visit } from "unist-util-visit";
-import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
+
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { remarkStringifyOptions } from "./commonParserConfig";
 
-export async function mergeClassMembers<T extends SphinxToMdResultWithUrl>(
+export async function mergeClassMembers<T extends HtmlToMdResultWithUrl>(
   results: T[],
 ): Promise<T[]> {
   const resultsWithName = results.filter(
-    (result) => !isEmpty(result.meta.python_api_name),
+    (result) => !isEmpty(result.meta.apiName),
   );
   const classes = resultsWithName.filter(
-    (result) => result.meta.python_api_type === "class",
+    (result) => result.meta.apiType === "class",
   );
 
   for (const clazz of classes) {
@@ -38,24 +39,22 @@ export async function mergeClassMembers<T extends SphinxToMdResultWithUrl>(
         if (
           !includes(
             ["method", "property", "attribute", "function"],
-            result.meta.python_api_type,
+            result.meta.apiType,
           )
         )
           return false;
-        return result.meta.python_api_name?.startsWith(
-          `${clazz.meta.python_api_name}.`,
-        );
+        return result.meta.apiName?.startsWith(`${clazz.meta.apiName}.`);
       }),
-      (result) => result.meta.python_api_name,
+      (result) => result.meta.apiName,
     );
 
     const attributesAndProps = members.filter(
       (member) =>
-        member.meta.python_api_type === "attribute" ||
-        member.meta.python_api_type === "property",
+        member.meta.apiType === "attribute" ||
+        member.meta.apiType === "property",
     );
     const methods = members.filter(
-      (member) => member.meta.python_api_type === "method",
+      (member) => member.meta.apiType === "method",
     );
 
     try {
@@ -89,7 +88,7 @@ export async function mergeClassMembers<T extends SphinxToMdResultWithUrl>(
           .process(clazz.markdown)
       ).toString();
     } catch (e) {
-      console.log("Error found in", clazz.meta.python_api_name);
+      console.log("Error found in", clazz.meta.apiName);
       console.log(clazz.markdown);
       throw e;
     }
@@ -97,7 +96,7 @@ export async function mergeClassMembers<T extends SphinxToMdResultWithUrl>(
 
   // remove merged results
   const finalResults = reject(results, (result) =>
-    includes(["method", "attribute", "property"], result.meta.python_api_type),
+    includes(["method", "attribute", "property"], result.meta.apiType),
   );
 
   return finalResults;
@@ -107,7 +106,7 @@ async function replaceMembersAfterTitle(
   tree: Root,
   node: Content,
   title: string,
-  members: SphinxToMdResultWithUrl[],
+  members: HtmlToMdResultWithUrl[],
 ) {
   if (node.type !== "heading") return;
   const nodeIndex = tree.children.indexOf(node);
