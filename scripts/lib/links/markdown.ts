@@ -21,7 +21,7 @@ import { Root } from "remark-mdx";
 import rehypeRemark from "rehype-remark";
 import rehypeParse from "rehype-parse";
 import remarkGfm from "remark-gfm";
-import { ObjectsInv } from "../sphinx/objectsInv";
+import { ObjectsInv } from "../api/objectsInv";
 import { removePrefix } from "../stringUtils";
 
 interface JupyterCell {
