@@ -14,6 +14,7 @@ import { expect, test } from "@jest/globals";
 
 import {
   specialCaseResults,
+  transformSpecialCaseUrl,
   PROVIDER_INDEX_META,
   RUNTIME_INDEX_META,
 } from "./specialCaseResults";
@@ -54,4 +55,20 @@ test("specialCaseResults()", () => {
       url: "/api/my-pkg/other-file",
     },
   ]);
+});
+
+test("transformSpecialCaseUrl()", () => {
+  const urls = [
+    "release_notes",
+    "release_notes#release-notes-0-2-1-bug-fixes",
+    "ibm-provider#qiskit-ibm-provider",
+  ];
+  const transformedUrls = urls.map((x) => transformSpecialCaseUrl(x));
+  expect(transformedUrls).toMatchInlineSnapshot(`
+    [
+      "release-notes",
+      "release-notes#release-notes-0-2-1-bug-fixes",
+      "index#qiskit-ibm-provider",
+    ]
+  `);
 });

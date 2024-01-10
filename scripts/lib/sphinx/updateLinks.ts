@@ -25,6 +25,7 @@ import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
 import { Link } from "../sharedTypes";
 import { ObjectsInv } from "./objectsInv";
+import { transformSpecialCaseUrl } from "./specialCaseResults";
 
 export function updateUrl(
   url: string,
@@ -33,6 +34,7 @@ export function updateUrl(
 ): string {
   if (isAbsoluteUrl(url)) return url;
   if (url.startsWith("/")) return url;
+  url = transformSpecialCaseUrl(url);
 
   url = removePart(url, "/", ["stubs", "apidocs", "apidoc", ".."]);
 
