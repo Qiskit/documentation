@@ -39,24 +39,24 @@ export function processHtml(options: {
   const isReleaseNotes = url.endsWith("release_notes.html");
   const images = loadImages($, $main, url, imageDestination, isReleaseNotes);
   if (url.endsWith("release_notes.html")) {
-    setReleaseNotesHeading($, releaseNotesTitle);
+    renameAllH1s($, releaseNotesTitle);
   }
 
   // Warning: the sequence of operations often matters.
   removeHtmlExtensionsInRelativeLinks($, $main);
   removePermalinks($main);
   removeDownloadSourceCode($main);
-  handleTabs($, $main);
+  handleSphinxDesignCards($, $main);
   addLanguageClassToCodeBlocks($, $main);
   replaceSourceLinksWithGitHub($, $main, baseSourceUrl);
   convertRubricsToHeaders($, $main);
   processSimpleFieldLists($, $main);
-  removeColons($main);
+  removeColonSpans($main);
   preserveMathBlockWhitespace($, $main);
 
   const meta: Metadata = {};
   processMembersAndSetMeta($, $main, meta);
-  maybeExtractAndSetModuleMetadata($, $main, meta);
+  maybeSetModuleMetadata($, $main, meta);
   if (meta.apiType === "module") {
     updateModuleHeadings($, $main, meta);
   }
@@ -70,30 +70,25 @@ export function loadImages(
   imageDestination: string,
   isReleaseNotes: boolean,
 ): Image[] {
-  const images: Image[] = [];
-  $main
+  return $main
     .find("img")
     .toArray()
-    .forEach((img) => {
+    .map((img) => {
       const $img = $(img);
 
       const imageUrl = new URL($img.attr("src")!, url);
       const src = imageUrl.toString();
 
       const filename = last(src.split("/"));
-      const dest = `${imageDestination}/${filename}`;
-
-      $img.attr("src", dest);
-
+      let dest = `${imageDestination}/${filename}`;
       if (isReleaseNotes) {
         // Release notes links should point to the current version
-        $img.attr("src", dest.replace(/[0-9].*\//, ""));
+        dest = dest.replace(/[0-9].*\//, "");
       }
 
-      images.push({ src, dest: dest });
+      $img.attr("src", dest);
+      return { src, dest: dest };
     });
-
-  return images;
 }
 
 export function removeHtmlExtensionsInRelativeLinks(
@@ -109,19 +104,20 @@ export function removeHtmlExtensionsInRelativeLinks(
   });
 }
 
-export function setReleaseNotesHeading(
-  $: CheerioAPI,
-  releaseNotesTitle: string,
-): void {
+export function renameAllH1s($: CheerioAPI, releaseNotesTitle: string): void {
   $("h1").html(releaseNotesTitle);
 }
 
 export function removePermalinks($main: Cheerio<any>): void {
-  $main.find('a[title="Permalink to this headline"]').remove();
-  $main.find('a[title="Permalink to this heading"]').remove();
-  $main.find('a[title="Permalink to this definition"]').remove();
-  $main.find('a[title="Link to this heading"]').remove();
-  $main.find('a[title="Link to this definition"]').remove();
+  for (const [prefix, suffix] of [
+    ["Permalink", "headline"],
+    ["Permalink", "heading"],
+    ["Permalink", "definition"],
+    ["Link", "heading"],
+    ["Link", "definition"],
+  ]) {
+    $main.find(`a[title="${prefix} to this ${suffix}"]`).remove();
+  }
 }
 
 export function removeDownloadSourceCode($main: Cheerio<any>): void {
@@ -129,11 +125,17 @@ export function removeDownloadSourceCode($main: Cheerio<any>): void {
 }
 
 /**
- * Convert sphinx-design tabs.
+ * Flattens out sphinx-design cards, which are collapsible normally.
  *
- * Uses the heading for the summary and removes the blockquote.
+ * Sets the card summary as a header and removes the blockquote from the body.
+ *
+ * This is only used by the historical API docs for qiskit-ibm-runtime. We disabled sphinx-design
+ * for every project moving forward.
  */
-export function handleTabs($: CheerioAPI, $main: Cheerio<any>): void {
+export function handleSphinxDesignCards(
+  $: CheerioAPI,
+  $main: Cheerio<any>,
+): void {
   $main.find(".sd-summary-title").each((_, quote) => {
     const $quote = $(quote);
     $quote.replaceWith(`<h3>${$quote.html()}</h3>`);
@@ -223,7 +225,7 @@ export function processSimpleFieldLists(
     });
 }
 
-export function removeColons($main: Cheerio<any>): void {
+export function removeColonSpans($main: Cheerio<any>): void {
   $main.find(".colon").remove();
 }
 
@@ -357,7 +359,7 @@ export function processMembersAndSetMeta(
   }
 }
 
-export function maybeExtractAndSetModuleMetadata(
+export function maybeSetModuleMetadata(
   $: CheerioAPI,
   $main: Cheerio<any>,
   meta: Metadata,
