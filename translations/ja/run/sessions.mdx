@@ -1,0 +1,81 @@
+---
+title: Sessions
+description: An overview of sessions and when to use them.
+---
+
+# Introduction to Qiskit Runtime sessions
+
+A session is a Qiskit Runtime feature that lets you efficiently run multi-job iterative workloads on quantum computers. Using sessions helps avoid delays caused by queuing each job separately, which can be particularly useful for iterative tasks that require frequent communication between classical and quantum resources.
+
+<Admonition type="note">
+The queuing time does not decrease for the first job submitted within a session. Therefore, a session does not provide any benefits when running a single job.
+</Admonition>
+
+## Advantages of using sessions
+
+There are several benefits to using sessions:
+
+-   Efficiency: Multiple jobs from a single algorithm run can be run sequentially without interruptions.
+-   Flexibility: You can submit jobs, check results, and submit new jobs within an active session without needing to start a new one.
+
+## How sessions work
+
+The basic workflow for sessions is as follows:
+
+1.  The first job in a session enters the normal queue. 
+2.  When the first job starts running, the _maximum timeout_ clock starts. 
+3.  Subsequent jobs within the session are prioritized over others, reducing wait times.
+4.  The _interactive timeout_ runs between the jobs in a session. Every session has an interactive timeout value (ITTL, or interactive time to live). If there are no session jobs queued within the ITTL window, the session is temporarily deactivated and normal job selection resumes. A deactivated session can be resumed for the next job<sup>\*</sup> if the session has not reached its maximum timeout value.
+5.  If the maximum timeout value is reached, the sessions end and any remaining queued jobs fail.
+
+<Admonition type="note">
+* The job must go through the normal queue to reactivate the session.
+</Admonition>
+
+To find the maximum session timeout value for a session, follow the instructions in [Determine session details](run-jobs-in-session#session-details).
+
+<Admonition type="note">
+    There might be a limit imposed on the ITTL value depending on whether your hub is Premium, Open, and so on. 
+</Admonition>
+
+For instructions to start a session, see [Run a job in a session](run-jobs-in-session).
+
+<span id="ends"></span>
+## End a session
+
+A session can end in the following circumstances: 
+
+-   The maximum timeout is reached, resulting in the cancelation of all queued jobs. 
+-   The session is manually canceled, resulting in the cancelation of all queued jobs.
+-   The session is manually closed.  The session stops accepting new jobs but continues to run queued jobs with priority.
+
+## Usage patterns
+
+Sessions run iteratively.  This is useful for algorithms that require classical post-processing, where jobs submitted within the interactive time-out are processed immediately. If you want to submit jobs in a batch instead, see [Run jobs in a batch.](run-jobs-batch)
+
+Example: Run an iterative workload that uses the classical SciPy optimizer to minimize a cost function. In this model, SciPy uses the output of the cost function to calculate its next input.
+
+```python
+def cost_func(params, ansatz, hamiltonian, estimator):
+    # Return estimate of energy from estimator
+
+    energy = estimator.run(ansatz, hamiltonian, parameter_values=params).result().values[0]
+    return energy
+
+x0 = 2 * np.pi * np.random.random(num_params)
+
+session = Session(backend=backend)
+
+estimator = Estimator(session=session, options={"shots": int(1e4)})
+res = minimize(cost_func, x0, args=(ansatz, hamiltonian, estimator), method="cobyla")
+
+# Close the session because we didn't use a context manager.
+session.close()
+```
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+  - Try an example in the [Quantum approximate optimization algorithm (QAOA)](https://learning.quantum.ibm.com/tutorial/quantum-approximate-optimization-algorithm) tutorial. 
+  - Review the [Session API](https://docs.quantum.ibm.com/api/qiskit-ibm-runtime/qiskit_ibm_runtime.Session) reference.
+</Admonition>

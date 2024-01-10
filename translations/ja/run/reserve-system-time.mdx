@@ -1,0 +1,41 @@
+---
+title: Reserve system time
+description: Reserve time on a system as an IBM Quantum Network member
+---
+
+# Reserve system time
+
+<Admonition type="tip" title="Important">
+  This feature is available only to organizations that belong to the [IBM Quantum Network](https://www.ibm.com/quantum/network). Educators and researchers can also make reservations and access other benefits by signing up for one of the special programs we offer. Go to the [Educators program sign-up form](https://quantum.ibm.com/programs/educators) or the [Researchers program sign-up form](https://quantum.ibm.com/programs/researchers) for more information.
+</Admonition>
+
+Under standard operating conditions, IBM Quantum systems accept jobs according to the dynamic priority assigned by the [fair-share queuing system](fair-share-queue).
+
+![Normal device queuing operation.](/images/migration/normal_queue_with_providers1.jpg)
+
+While this system attempts to balance workloads for the benefit of all users, there are often use cases where you may require limited-time access at a higher priority level. IBM Quantum provides an option to gain elevated access to specific systems over a specified period of time: **Dedicated mode**. Depending on your hub configuration, if you are a hub admin or group admin, you can reserve time in advance on a particular system with the **Systems Reservations** tool.
+
+Example use cases for dedicated mode include the following:
+
+-   In-class demonstrations
+-   Iterative and near-time compute algorithms
+-   Jobs involving detailed noise analysis
+-   Time-critical projects
+
+<Admonition type="info" title="System reservations and fair-share allocation">
+  System time accumulated while using system reservations counts toward an instance’s fair-share allocation amount.
+</Admonition>
+
+If you need sole access to a specific quantum system for a given instance, select dedicated mode when making a reservation (only available to members of the [IBM Quantum Network](https://www.ibm.com/quantum/network)).
+
+![Dedicated mode with dedicated jobs.](/images/migration/dedicated_queue1.jpg)
+
+Instance #2 in dedicated mode.
+
+The standard fair-share queue is always blocked when the device is in dedicated mode.
+
+![Dedicated mode with no dedicated jobs leaves the device idle.](/images/migration/dedicated_queue_no_jobs1.jpg)
+
+Dedicated mode with no dedicated jobs from instance #2 leaves the device idle.
+
+This allows users to implement algorithms where input circuits are conditioned on previous results, such as iterative and near-time compute methods, without having to wait for other users’ results to process. If the dedicated instance has multiple users, then a single user’s jobs may be queued behind those of other users in the instance, as the execution is first-in first-out.

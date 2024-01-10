@@ -1,0 +1,52 @@
+---
+title: Introduction to OpenQASM
+description: An introduction to OpenQASM (Open quantum assembly language)
+---
+
+# Introduction to OpenQASM
+
+OpenQASM (open quantum assembly language), a machine-independent programming interface compatible with IBM Quantum systems, is an imperative programming language for describing quantum circuits. OpenQASM uses the quantum circuit model to express quantum programs as ordered sequences of parameterized operations (such as gates, measurements, and resets) and real-time classical computation. In addition to quantum algorithms, OpenQASM can describe circuits intended to characterize, validate, or debug quantum systems.
+
+As the needs of quantum system development have evolved, OpenQASM's feature list has expanded in response; the latest version, [OpenQASM 3,](https://arxiv.org/abs/2104.14722) incorporates extensions including classical feed-forward flow control, gate modifiers, and pulse implementations. 
+
+OpenQASM is the choice for a variety of audiences because of its versatility. The introduction to the OpenQASM 3 paper[^1] gives examples: 
+
+>   "Although OpenQASM is not a high-level language, many users would like to write simple quantum circuits by hand using an expressive domain-specific language. Researchers who study circuit compiling need high-level information recorded in the intermediate representations to inform the optimization and synthesis algorithms. Experimentalists prefer the convenience of writing circuits at a relatively high level but often need to manually modify timing or pulse-level gate descriptions at various points in the circuit. Hardware engineers who design the classical controllers and waveform generators prefer languages that are practical to compile given the hardware constraints and make explicit circuit structure that the controllers can take advantage of."
+
+OpenQASM is the common interchange format among independent quantum software tools. For developers that prefer one tool for circuit construction, another for transpilation, and so forth, OpenQASM is the _lingua franca_ that acts as a bridge among them.  
+
+ Qiskit provides ways to convert between OpenQASM and the [`QuantumCircuit`](../api/qiskit/qiskit.circuit.QuantumCircuit) class (see [OpenQASM 2 and Qiskit](interoperate-qiskit-qasm2) and [OpenQASM 3 and Qiskit](interoperate-qiskit-qasm3) for instructions).  
+
+For more information, view the [OpenQASM live specification.](https://openqasm.com/)
+
+## OpenQASM code example: cat state
+
+```qasm3
+
+OPENQASM 3;
+include "stdgates.inc";
+
+const n = 3; // number of qubits
+qubit[n] q; // a register 'q' of n qubits
+bit[n] c; // a register 'c' of n classical bits
+
+h q[0]; // Hadamard
+for k in [0:n-1] { 
+  cnot q[k], q[k+1]; // Controlled-NOT from control qubit q[k] to target qubit q[k+1] 
+}
+
+c = measure q; // measure quantum register
+```
+
+[^1]: Andrew W. Cross et al. "OpenQASM 3: A broader and deeper quantum assembly language," _ACM Transactions on Quantum Computing_, Volume 3, Issue 3 (2022). https://doi.org/10.48550/arXiv.2104.14722
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+
+-   Learn how to generate OpenQASM code in the [Explore gates and circuits with the Quantum Composer](https://learning.quantum.ibm.com/tutorial/explore-gates-and-circuits-with-the-quantum-composer) tutorial.
+-   Review the [OpenQASM 3 feature table](qasm-feature-table).
+-   Read the [OpenQASM 3 Qiskit API](/api/qiskit/qasm3) reference.
+-   Read the [OpenQASM 2 Qiskit API](/api/qiskit/qasm2) reference.
+-   Visit the [OpenQASM Live Specification](https://openqasm.com/).
+    </Admonition>

@@ -89,7 +89,7 @@ export class Link {
   async checkExternalLink(): Promise<string | null> {
     try {
       const response = await fetch(this.value, {
-        headers: { "User-Agent": "prn-broken-links-finder" },
+        headers: { "User-Agent": "qiskit-documentation-broken-links-finder" },
       });
 
       if (response.status >= 300) {

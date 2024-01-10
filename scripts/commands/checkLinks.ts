@@ -32,6 +32,7 @@ interface Arguments {
   currentApis: boolean;
   historicalApis: boolean;
   qiskitReleaseNotes: boolean;
+  skipBrokenHistorical: boolean;
 }
 
 const readArgs = (): Arguments => {
@@ -54,6 +55,13 @@ const readArgs = (): Arguments => {
       description:
         "Check the links in the historical API docs, e.g. `api/qiskit/0.44`. " +
         "Warning: this is slow.",
+    })
+    .option("skip-broken-historical", {
+      type: "boolean",
+      default: false,
+      description:
+        "Don't check historical releases that are known to still fail (currently all of Qiskit). " +
+        "Intended to be used alongside `--historical-apis`.",
     })
     .option("qiskit-release-notes", {
       type: "boolean",
@@ -96,8 +104,13 @@ async function determineFileBatches(args: Arguments): Promise<FileBatch[]> {
   }
 
   const provider = await determineHistoricalFileBatches("qiskit-ibm-provider");
-  const runtime = await determineHistoricalFileBatches("qiskit-ibm-runtime");
-  const qiskit = await determineHistoricalFileBatches("qiskit");
+  const runtime = await determineHistoricalFileBatches("qiskit-ibm-runtime", [
+    "docs/api/qiskit/providers_models.md",
+  ]);
+  let qiskit: FileBatch[] = [];
+  if (!args.skipBrokenHistorical) {
+    qiskit = await determineHistoricalFileBatches("qiskit");
+  }
   return [currentBatch, ...provider, ...runtime, ...qiskit];
 }
 
@@ -141,6 +154,7 @@ async function determineCurrentDocsFileBatch(
 
 async function determineHistoricalFileBatches(
   projectName: string,
+  toLoad: string[] = [],
 ): Promise<FileBatch[]> {
   const historicalFolders = (
     await readdir(`docs/api/${projectName}`, { withFileTypes: true })
@@ -150,7 +164,7 @@ async function determineHistoricalFileBatches(
   for (const folder of historicalFolders) {
     const fileBatch = await FileBatch.fromGlobs(
       [`docs/api/${projectName}/${folder.name}/*`],
-      [],
+      toLoad,
       `${projectName} v${folder.name}`,
     );
     result.push(fileBatch);

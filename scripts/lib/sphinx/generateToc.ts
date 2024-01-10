@@ -25,15 +25,20 @@ type Toc = {
   title: string;
   subtitle?: string;
   children: TocEntry[];
-  collapsed?: boolean;
+  collapsed: boolean;
 };
+
+function nestModule(id: string): boolean {
+  // For example, nest `qiskit.algorithms.submodule`, but
+  // not `qiskit.algorithms` which should be top-level.
+  return id.split(".").length > 2;
+}
 
 export function generateToc(
   pkg: Pkg,
   results: Array<{ meta: PythonObjectMeta; url: string }>,
-) {
+): Toc {
   const releaseNotesUrl = `/api/${pkg.name}/release-notes`;
-  const nestModule = pkg.tocOptions?.nestModule ?? (() => true);
   const resultsWithName = results.filter(
     (result) => !isEmpty(result.meta.python_api_name),
   );
@@ -128,17 +133,17 @@ export function generateToc(
   }
   tocChildren.push(releaseNotesEntry);
 
-  const toc: Toc = {
+  return {
     title: pkg.title,
     children: tocChildren,
+    collapsed: true,
   };
-  if (pkg.tocOptions?.collapsed) {
-    toc.collapsed = true;
-  }
-  return toc;
 }
 
-function findClosestParentModules(id: string, possibleParents: string[]) {
+function findClosestParentModules(
+  id: string,
+  possibleParents: string[],
+): string | undefined {
   const idParts = id.split(".");
   for (let i = idParts.length - 1; i > 0; i--) {
     const testId = idParts.slice(0, i).join(".");
@@ -148,11 +153,11 @@ function findClosestParentModules(id: string, possibleParents: string[]) {
   }
 }
 
-function orderEntriesByTitle(items: TocEntry[]) {
+function orderEntriesByTitle(items: TocEntry[]): TocEntry[] {
   return orderBy(items, [(item) => item.title.toLowerCase()]);
 }
 
-function orderEntriesByChildrenAndTitle(items: TocEntry[]) {
+function orderEntriesByChildrenAndTitle(items: TocEntry[]): TocEntry[] {
   return orderBy(items, [
     (item) => (isEmpty(item.children) ? 0 : 1),
     (item) => item.title.toLowerCase(),

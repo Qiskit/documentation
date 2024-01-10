@@ -27,7 +27,7 @@ By default, the package tries to authenticate to IBM Quantum services with the d
 
 ## qiskit-transpiler-service transpile options
 
-- `target` (optional, str) - A backend name as it would be expected by QiskitRuntimeService (for example, `ibm_sherbrooke`). If this is set, the transpile method uses the layout from the specified backend for the transpilation operation. If any other option is set that impacts these settings, such as `coupling_map`, the `target` settings are overridden.
+- `target` (optional, str) - A system name as it would be expected by QiskitRuntimeService (for example, `ibm_sherbrooke`). If this is set, the transpile method uses the layout from the specified system for the transpilation operation. If any other option is set that impacts these settings, such as `coupling_map`, the `target` settings are overridden.
 - `coupling_map` (optional, List[List[int]]) - A valid coupling map list (for example, [[0,1],[1,2]]). If this is set, the transpile method uses this coupling map for the transpilation operation. If defined, it overrides any value specified for `target`.
 - `optimization_level` (int) - The potential optimization level to apply during the transpilation process. Valid values are [1,2,3], where 1 is the least optimization (and fastest), and 3 the most optimization (and most time-intensive).
 - `ai` (bool) - Whether to use AI capabilities during transpilation. The AI capabilities available can be for `AIRouting` transpiling passes or other AI synthesis methods. If this value is `True`, the service applies different AI-powered transpiling passes depending on the `optimization_level` requested.
@@ -69,7 +69,8 @@ The following examples demonstrate how to transpile circuits using the Qiskit tr
     )
     transpiled_circuit = cloud_transpiler_service.run(random_circ)
     ```
-​## Next steps
+
+## Next steps
 
 <Admonition type="tip" title="Recommendations">
     - Learn how to create [AI transpiler passes.](ai-transpiler-passes)

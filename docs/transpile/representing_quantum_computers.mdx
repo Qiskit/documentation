@@ -1,12 +1,12 @@
 ---
 title: Representing quantum computers
-description: Learn about coupling maps, basis gates and backend errors for transpiling
+description: Learn about coupling maps, basis gates and system errors for transpiling
 
 ---
 
 # Represent quantum computers
 
-To construct an equivalent circuit that can run on a specific backend, the transpiler needs certain details about the backend.  Typically, this information is found in the `backend` or `target = backend.target` class, so you don't need to pass anything further to the transpiler. However, if more infomation is provided, the transpiler can use it to try to produce the best circuit to run on that hardware.  
+To construct an equivalent circuit that can run on a specific system, the transpiler needs certain details about the system.  Typically, this information is found in the `backend` or `target = backend.target` class, so you don't need to pass anything further to the transpiler. However, if more infomation is provided, the transpiler can use it to try to produce the best circuit to run on that hardware.  
 
 <Admonition type="note">
 Because many of the underlying transpilation algorithms are stochastic, there is no guarantee that a better circuit will be found. 
@@ -15,9 +15,9 @@ Because many of the underlying transpilation algorithms are stochastic, there is
 <span id="default-config"></span>
 ## Default configuration
 
-The simplest use of the transpiler is to provide all the backend information by providing the `backend` or `target`. To better understand how the transpiler works, construct a circuit and transpile it with different information:
+The simplest use of the transpiler is to provide all the system information by providing the `backend` or `target`. To better understand how the transpiler works, construct a circuit and transpile it with different information:
 
-Import the necessary libraries and instantiate the backend:
+Import the necessary libraries and instantiate the system or simulator:
 
 ```python
 from qiskit import transpile
@@ -36,9 +36,9 @@ qc.decompose(reps=1).draw('mpl', style='iqp')
 ```
 ![The 12-qubit test circuit](/images/transpile/representing_quantum_computers/qc-circular.png)
 
-### Transpile the circuit to backend target
+### Transpile the circuit to `backend` target
 
-This example uses the default `optimization_level=1` to transpile to the `backend` `target`, which providers all the information to the transpiler that is necessary to convert circuit to one that will run on the backend.
+This example uses the default `optimization_level=1` to transpile to the `backend` `target`, which providers all the information to the transpiler that is necessary to convert circuit to one that will run on the system.
 
 ```python
 qc_t_target = transpile(qc, target=target, seed_transpiler=12345)
@@ -46,9 +46,9 @@ qc_t_target.draw('mpl', style='iqp', idle_wires=False)
 ```
 ![The transpiled 12-qubit ansatz using Target information](/images/transpile/representing_quantum_computers/qc_t_target.png)
 
-This example is used in later sections of this topic to illustrate that the coupling map and basis gates are the essential pieces of information to pass to the transpiler for optimal circuit construction. The backend can usually select default settings for other information that is not passed in, such as timing and scheduling.
+This example is used in later sections of this topic to illustrate that the coupling map and basis gates are the essential pieces of information to pass to the transpiler for optimal circuit construction. The system can usually select default settings for other information that is not passed in, such as timing and scheduling.
 
-Providing the backend properties, including the gates' error rates, allows the transpiler to select the best set of qubits on the backend.
+Providing the `backend` properties, including the gates' error rates, allows the transpiler to select the best set of qubits on the system.
 
 ## Coupling map
 
@@ -100,7 +100,7 @@ Now the layout is in a ring.  Because this layout respects the circuit's connect
 
 ## Basis gates
 
-Every quantum backend supports a limited instruction set, called its _basis gates_.  Every gate in the circuit must be translated to the elements of this set. This set should consist of single- and two-qubit gates that provide a universal gates set, meaning that any quantum operation can be decomposed into those gates.  This is done by the [BasisTranslator](../api/qiskit/qiskit.transpiler.passes.BasisTranslator), and the basis gates can be specified as a keyword argument to the transpiler to provide this information.
+Every quantum system supports a limited instruction set, called its _basis gates_.  Every gate in the circuit must be translated to the elements of this set. This set should consist of single- and two-qubit gates that provide a universal gates set, meaning that any quantum operation can be decomposed into those gates.  This is done by the [BasisTranslator](../api/qiskit/qiskit.transpiler.passes.BasisTranslator), and the basis gates can be specified as a keyword argument to the transpiler to provide this information.
 
 ```python
 basis_gates = list(target.operation_names)
@@ -110,10 +110,10 @@ print(basis_gates)
 ['rz', 'sx', 'x', 'ecr', 'measure', 'delay']
 ```
 
-The default single-qubit gates on _ibm_sherbrooke_ are `rz`, `x`, and `sx`, and the default two-qubit gate is `ecr` which stands for echoed cross resonance. CX gates are constructed from `ecr` gates, so on some backends `ecr` is specified as the two-qubit basis gate while on others `cx` is default. The `ecr` gates is the _entangling_ part of the `cx` gate. If one desires to use a gate that is not in the basis gate set, instructions for custom gates can be provided using [pulse gates](https://docs.quantum.ibm.com/api/qiskit/qiskit.transpiler.passes.PulseGates#pulsegates). In addition to the control gates, there are also `delay` and `measurement` instructions.
+The default single-qubit gates on _ibm_sherbrooke_ are `rz`, `x`, and `sx`, and the default two-qubit gate is `ecr` which stands for echoed cross resonance. CX gates are constructed from `ecr` gates, so on some systems `ecr` is specified as the two-qubit basis gate while on others `cx` is default. The `ecr` gates is the _entangling_ part of the `cx` gate. If one desires to use a gate that is not in the basis gate set, instructions for custom gates can be provided using [pulse gates](https://docs.quantum.ibm.com/api/qiskit/qiskit.transpiler.passes.PulseGates#pulsegates). In addition to the control gates, there are also `delay` and `measurement` instructions.
 
 <Admonition>
-    Backends have default basis gates, but you can choose whatever gates you want, as long as you provide the instruction or add pulse gates (See [Create transpiler passes.](custom-transpiler-pass)) The default basis gates are those that calibrations have been done for on the backend, so no further instruction/pulse gate needs to be provided. For example, on some backends `cx` is the default two-qubit gates and `ecr` on others.
+    Systems have default basis gates, but you can choose whatever gates you want, as long as you provide the instruction or add pulse gates (See [Create transpiler passes.](custom-transpiler-pass)) The default basis gates are those that calibrations have been done for on the system, so no further instruction/pulse gate needs to be provided. For example, on some systems `cx` is the default two-qubit gates and `ecr` on others.
 </Admonition>
 
 
@@ -125,11 +125,11 @@ qc_t_cm_bg.draw('mpl', style='iqp', fold=-1, idle_wires=False)
 
 Note that the `CXGate`s have been decomposed to `ecr` gates and single-qubit basis gates.
 
-## Including backend errors
+## Including system errors
 
-Constructing a `target` object lets you consider the qubits' error rates in addition to the `coupling_map` and `basis_gates`.  The `target` object contains everything needed to target a backend, but here we build one that contains a limited amount of information.
+Constructing a `target` object lets you consider the qubits' error rates in addition to the `coupling_map` and `basis_gates`.  The `target` object contains everything needed to target a system, but here we build one that contains a limited amount of information.
 
-We retrieved the `target` from `backend.target` previously. This contains a lot of backend information, including error rates. For example, the instruction properties of the echoed cross resonance gate between qubit 0 and 1 (not that `ecr` is directional) is retrieved by running the following command:
+We retrieved the `target` from `backend.target` previously. This contains a lot of system information, including error rates. For example, the instruction properties of the echoed cross resonance gate between qubit 0 and 1 (not that `ecr` is directional) is retrieved by running the following command:
 
 ```python
 target['ecr'][(1, 0)]

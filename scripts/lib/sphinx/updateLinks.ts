@@ -16,7 +16,7 @@ import { visit } from "unist-util-visit";
 import isAbsoluteUrl from "is-absolute-url";
 import { removePart, removePrefix } from "../stringUtils";
 import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
-import { remarkStringifyOptions } from "./unifiedParser";
+import { remarkStringifyOptions } from "./commonParserConfig";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkMath from "remark-math";
