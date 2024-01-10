@@ -116,7 +116,7 @@ describe("objects.inv", () => {
     objectsInv.updateUris(transformFunction);
     expect(objectsInv.entries.map((i) => i.uri)).toMatchInlineSnapshot(`
     [
-      "qaskat_abm_runtame.RuntameJob#$",
+      "qaskat_abm_runtame.RuntameJob#qaskat_abm_runtame.RuntameJob.job_ad",
       "qaskat_abm_runtame.RuntameJob#$",
       "stubs/qaskat_abm_provader.transpaler.passes.schedulang.ASAPScheduleAnalysas.__call__",
       "search",

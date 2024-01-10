@@ -13,7 +13,6 @@
 import { readFile, writeFile } from "fs/promises";
 import { unzipSync, deflateSync } from "zlib";
 import { removeSuffix } from "../stringUtils";
-import { renameUrl } from "./renameUrls";
 
 /** Some pages exist in the sphinx docs but not in our docs
  * If any URIs match these cases, we remove their entries.
@@ -119,15 +118,10 @@ export class ObjectsInv {
 
   updateUris(transformLink: Function) {
     for (const entry of this.entries) {
-      entry.uri = entry.uri.replace(/\.html(?=[^A-z]|$)/, "");
-      if (entry.uri.includes("#")) {
-        // TODO: clean this up
-        entry.uri =
-          renameUrl(entry.uri.split("#")[0]) + "#" + entry.uri.split("#")[1];
-      } else {
-        entry.uri = renameUrl(entry.uri);
-      }
+      entry.uri = ObjectsInv._expandUri(entry.uri, entry.name);
+      entry.uri = entry.uri.replace(/\.html/, "");
       entry.uri = transformLink(entry.uri);
+      entry.uri = ObjectsInv._compressUri(entry.uri, entry.name);
     }
   }
 
