@@ -28,7 +28,7 @@ describe("objects.inv", () => {
         "# The remainder of this file is compressed using zlib.\n",
     );
 
-    const uriIndices = [10, 88, 107, 1419, 24694];
+    const uriIndices = [10, 88, 107, 1419, 24661];
     expect(uriIndices.map((i) => objectsInv.entries[i].uri))
       .toMatchInlineSnapshot(`
       [
@@ -39,7 +39,7 @@ describe("objects.inv", () => {
         "index.html",
       ]
     `);
-    const nameIndices = [24694, 25270];
+    const nameIndices = [24661, 25237];
     expect(nameIndices.map((i) => objectsInv.entries[i].dispname))
       .toMatchInlineSnapshot(`
     [
@@ -69,17 +69,10 @@ describe("objects.inv", () => {
     const transformFunction = (x: string) => x.replaceAll("i", "a");
     const entries: ObjectsInvEntry[] = [
       {
-        name: "qiskat_ibm_runtime.RuntimeJob.job_id",
+        name: "qiskit_ibm_runtime.RuntimeJob.job_id",
         domainAndRole: "py:method",
         priority: "1",
-        uri: "qiskit_ibm_runtime.RuntimeJob#$",
-        dispname: "-",
-      },
-      {
-        name: "qaskat_abm_runtame.RuntameJob.job_ad",
-        domainAndRole: "py:method",
-        priority: "1",
-        uri: "qiskit_ibm_runtime.RuntimeJob#$",
+        uri: "qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.job_id",
         dispname: "-",
       },
       {
@@ -117,7 +110,6 @@ describe("objects.inv", () => {
     expect(objectsInv.entries.map((i) => i.uri)).toMatchInlineSnapshot(`
     [
       "qaskat_abm_runtame.RuntameJob#qaskat_abm_runtame.RuntameJob.job_ad",
-      "qaskat_abm_runtame.RuntameJob#$",
       "stubs/qaskat_abm_provader.transpaler.passes.schedulang.ASAPScheduleAnalysas.__call__",
       "search",
       "legacy_release_notes#release-notes-agnas-0-5-0",
