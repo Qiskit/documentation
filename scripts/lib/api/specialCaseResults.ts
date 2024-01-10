@@ -10,7 +10,7 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 
 export const RUNTIME_INDEX_META = `title: Qiskit Runtime IBM Client API Docs
 description: API documentation for qiskit-ibm-runtime`;
@@ -27,17 +27,17 @@ export function transformSpecialCaseUrl(url: string): string {
     .replace(/(?<=^|\/)ibm-runtime(?=#|$)/g, "index");
 }
 
-export function specialCaseResults(results: SphinxToMdResultWithUrl[]): void {
+export function specialCaseResults(results: HtmlToMdResultWithUrl[]): void {
   for (let result of results) {
     if (result.url.endsWith("/ibm-provider")) {
       result.meta = {
-        hardcoded_frontmatter: PROVIDER_INDEX_META,
+        hardcodedFrontmatter: PROVIDER_INDEX_META,
       };
     }
 
     if (result.url.endsWith("/ibm-runtime")) {
       result.meta = {
-        hardcoded_frontmatter: RUNTIME_INDEX_META,
+        hardcodedFrontmatter: RUNTIME_INDEX_META,
       };
     }
     result.url = transformSpecialCaseUrl(result.url);

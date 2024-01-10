@@ -14,14 +14,14 @@ import { expect, test } from "@jest/globals";
 
 import addFrontMatter from "./addFrontMatter";
 import { Pkg } from "../sharedTypes";
-import { SphinxToMdResult } from "./SphinxToMdResult";
+import { HtmlToMdResult } from "./HtmlToMdResult";
 
 test("addFrontMatter()", () => {
-  const results: SphinxToMdResult[] = [
+  const results: HtmlToMdResult[] = [
     {
       markdown: "# Hardcoded!",
       meta: {
-        hardcoded_frontmatter: "title: hardcoded\ndescription: Hello world!",
+        hardcodedFrontmatter: "title: hardcoded\ndescription: Hello world!",
       },
       images: [],
       isReleaseNotes: false,
@@ -29,10 +29,10 @@ test("addFrontMatter()", () => {
     {
       markdown: "# Hardcoded with python_api_name!",
       meta: {
-        hardcoded_frontmatter:
+        hardcodedFrontmatter:
           "title: hardcoded with python_api_name\ndescription: Hello world!",
-        python_api_name: "quantum_software.MyClass",
-        python_api_type: "class",
+        apiName: "quantum_software.MyClass",
+        apiType: "class",
       },
       images: [],
       isReleaseNotes: true,
@@ -40,8 +40,8 @@ test("addFrontMatter()", () => {
     {
       markdown: "# Python API",
       meta: {
-        python_api_name: "quantum_software.MyClass",
-        python_api_type: "class",
+        apiName: "quantum_software.MyClass",
+        apiType: "class",
       },
       images: [],
       isReleaseNotes: false,

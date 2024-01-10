@@ -11,14 +11,15 @@
 // that they have been altered from the originals.
 
 import { describe, expect, test } from "@jest/globals";
-import { updateLinks, updateUrl } from "./updateLinks";
-import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
-import { ObjectsInv, ObjectsInvEntry } from "./objectsInv";
+import { ObjectsInv } from "./objectsInv";
 import { last } from "lodash";
+
+import { updateLinks, updateUrl } from "./updateLinks";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 
 describe("updateLinks", () => {
   test("update links", async () => {
-    const data: SphinxToMdResultWithUrl[] = [
+    const data: HtmlToMdResultWithUrl[] = [
       {
         markdown: `
 [link1](qiskit_ibm_runtime.RuntimeJob)
@@ -30,8 +31,8 @@ describe("updateLinks", () => {
 [link7](#qiskit_ibm_runtime.RuntimeJob.job)
           `,
         meta: {
-          python_api_type: "class",
-          python_api_name: "qiskit_ibm_runtime.RuntimeJob",
+          apiType: "class",
+          apiName: "qiskit_ibm_runtime.RuntimeJob",
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         images: [],
@@ -42,8 +43,8 @@ describe("updateLinks", () => {
 [run](qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.run)
           `,
         meta: {
-          python_api_type: "class",
-          python_api_name: "qiskit_ibm_runtime.Sampler",
+          apiType: "class",
+          apiName: "qiskit_ibm_runtime.Sampler",
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         images: [],
@@ -95,8 +96,8 @@ describe("updateLinks", () => {
       [link7](#qiskit_ibm_runtime.RuntimeJob.job)
       ",
           "meta": {
-            "python_api_name": "qiskit_ibm_runtime.RuntimeJob",
-            "python_api_type": "class",
+            "apiName": "qiskit_ibm_runtime.RuntimeJob",
+            "apiType": "class",
           },
           "url": "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         },
@@ -106,8 +107,8 @@ describe("updateLinks", () => {
           "markdown": "[run](qiskit_ibm_runtime.RuntimeJob#run)
       ",
           "meta": {
-            "python_api_name": "qiskit_ibm_runtime.Sampler",
-            "python_api_type": "class",
+            "apiName": "qiskit_ibm_runtime.Sampler",
+            "apiType": "class",
           },
           "url": "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         },
@@ -134,7 +135,7 @@ describe("updateLinks", () => {
   });
 
   test("update links using a transform function", async () => {
-    const data: SphinxToMdResultWithUrl[] = [
+    const data: HtmlToMdResultWithUrl[] = [
       {
         markdown: `
 [link1](algorithms)
@@ -144,8 +145,8 @@ describe("updateLinks", () => {
 [link7](#qiskit_ibm_runtime.RuntimeJob.job)
           `,
         meta: {
-          python_api_type: "class",
-          python_api_name: "qiskit_ibm_runtime.RuntimeJob",
+          apiType: "class",
+          apiName: "qiskit_ibm_runtime.RuntimeJob",
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         images: [],
@@ -201,8 +202,8 @@ describe("updateLinks", () => {
       [link7](#qiskit_ibm_runtime.RuntimeJob.job)
       ",
           "meta": {
-            "python_api_name": "qiskit_ibm_runtime.RuntimeJob",
-            "python_api_type": "class",
+            "apiName": "qiskit_ibm_runtime.RuntimeJob",
+            "apiType": "class",
           },
           "url": "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         },
@@ -236,12 +237,12 @@ describe("updateUrl", () => {
       `qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.run`,
       `stubs/qiskit_ibm_runtime.RuntimeJob`,
     ];
-    const resultsByName: { [key: string]: SphinxToMdResultWithUrl } = {
+    const resultsByName: { [key: string]: HtmlToMdResultWithUrl } = {
       "qiskit_ibm_runtime.RuntimeJob": {
         markdown: "",
         meta: {
-          python_api_type: "class",
-          python_api_name: "qiskit_ibm_runtime.RuntimeJob",
+          apiType: "class",
+          apiName: "qiskit_ibm_runtime.RuntimeJob",
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         images: [],
@@ -250,8 +251,8 @@ describe("updateUrl", () => {
       "qiskit_ibm_runtime.Sampler": {
         markdown: "",
         meta: {
-          python_api_type: "class",
-          python_api_name: "qiskit_ibm_runtime.Sampler",
+          apiType: "class",
+          apiName: "qiskit_ibm_runtime.Sampler",
         },
         url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeJob",
         images: [],
