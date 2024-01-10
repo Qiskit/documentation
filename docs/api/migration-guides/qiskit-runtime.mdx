@@ -190,17 +190,24 @@ from qiskit import IBMQ
 from qiskit_ibm_runtime import QiskitRuntimeService
 ```
 
-### Save and load accounts
+### Save and load accounts tests
 
-Use the updated code to work with accounts.
-
-**Legacy: Save accounts**
+<table>
+<tr>
+<th> Legacy: Save accounts </th>
+<th> Updated: Save accounts </th>
+</tr>
+<tr>
+<td>
 
 ``` python
 IBMQ.save_account("<IQX_TOKEN>", overwrite=True)
 ```
 
-**Updated: Save accounts** The new syntax accepts credentials for
+</td>
+<td>
+
+The new syntax accepts credentials for
 Qiskit Runtime on IBM Cloud or IBM Quantum Platform. For more
 information on retrieving account credentials, see [Install and set up](../../start/install).
 
@@ -214,7 +221,54 @@ QiskitRuntimeService.save_account(channel="ibm_cloud", token="<IBM Cloud API key
 QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQP_TOKEN>", overwrite=True, default=true)
 ```
 
-**Updated: Name saved credentials** You can now name your saved
+You can also name your saved credentials and load the credentials by name.
+
+**Example:**
+
+``` python
+# Save different accounts for open and premium access
+
+QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQX_TOKEN>", instance="h1/g1/p1", name="premium")
+QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQX_TOKEN>", instance="h2/g2/p2", name="open")
+
+# Load the "open" credentials
+
+service = QiskitRuntimeService(name="open")
+```
+
+</td>
+</tr>
+</table>
+
+### Save and load accounts
+
+Use the updated code to work with accounts.
+
+**Legacy: Save accounts**
+
+``` python
+IBMQ.save_account("<IQX_TOKEN>", overwrite=True)
+```
+
+**Updated: Save accounts** 
+
+The new syntax accepts credentials for
+Qiskit Runtime on IBM Cloud or IBM Quantum Platform. For more
+information on retrieving account credentials, see [Install and set up](../../start/install).
+
+``` python
+# IBM Cloud channel
+
+QiskitRuntimeService.save_account(channel="ibm_cloud", token="<IBM Cloud API key>", instance="<IBM Cloud CRN>", overwrite=True)
+
+# IBM Quantum channel; set to default 
+
+QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQP_TOKEN>", overwrite=True, default=true)
+```
+
+**Updated: Name saved credentials** 
+
+You can now name your saved
 credentials and load the credentials by name.
 
 **Example:**
