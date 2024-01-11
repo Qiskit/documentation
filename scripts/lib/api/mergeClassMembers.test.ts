@@ -142,7 +142,16 @@ Validate options.
 
 |                                                                                                                                                                          |                   |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
-| [\`RuntimeOptions.validate\`](#qiskit_ibm_runtime.RuntimeOptions.validate "qiskit_ibm_runtime.RuntimeOptions.validate")(channel) | Validate options. |`,
+| [\`RuntimeOptions.validate\`](#qiskit_ibm_runtime.RuntimeOptions.validate "qiskit_ibm_runtime.RuntimeOptions.validate")(channel) | Validate options. |
+
+\`property backend\`
+
+Inlined attribute
+
+\`validate()\`
+
+Inlined method
+`,
         meta: {
           apiType: "class",
           apiName: "RuntimeOptions",
@@ -153,19 +162,26 @@ Validate options.
       },
     ];
     const merged = await mergeClassMembers(results);
-    expect(
-      merged.find((item) => item.meta.apiType === "class")?.markdown,
-    ).toEqual(`## Attributes
+    expect(merged.find((item) => item.meta.apiType === "class")?.markdown)
+      .toEqual(`## Attributes
 
-|                                                                                                                                                             |   |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | - |
+|                                                                                                                    |   |
+| ------------------------------------------------------------------------------------------------------------------ | - |
 | [\`RuntimeOptions.backend\`](#qiskit_ibm_runtime.RuntimeOptions.backend "qiskit_ibm_runtime.RuntimeOptions.backend") |   |
 
 ## Methods
 
-|                                                                                                                                                                          |                   |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
+|                                                                                                                                |                   |
+| ------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
 | [\`RuntimeOptions.validate\`](#qiskit_ibm_runtime.RuntimeOptions.validate "qiskit_ibm_runtime.RuntimeOptions.validate")(channel) | Validate options. |
+
+\`property backend\`
+
+Inlined attribute
+
+\`validate()\`
+
+Inlined method
 `);
     expect(merged.length).toEqual(1);
   });
