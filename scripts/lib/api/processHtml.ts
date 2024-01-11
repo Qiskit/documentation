@@ -168,15 +168,17 @@ export function replaceSourceLinksWithGitHub(
   $main.find("a").each((_, a) => {
     const $a = $(a);
     const href = $a.attr("href");
-    if (href?.startsWith("http:")) return;
-    if (href?.includes(`/_modules/`)) {
-      //_modules/qiskit_ibm_runtime/ibm_backend
-      const match = href?.match(/_modules\/(.*?)(#|$)/);
-      if (match) {
-        const newHref = `${baseSourceUrl}${match[1]}.py`;
-        $a.attr("href", newHref);
-      }
+    if (
+      href === undefined ||
+      href.startsWith("http:") ||
+      !href.includes("_modules/")
+    ) {
+      return;
     }
+    //_modules/qiskit_ibm_runtime/ibm_backend
+    const match = href.match(/_modules\/(.*?)(#|$)/)!;
+    const newHref = `${baseSourceUrl}${match[1]}.py`;
+    $a.attr("href", newHref);
   });
 }
 
