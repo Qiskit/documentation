@@ -109,7 +109,9 @@ async function replaceMembersAfterTitle(
   title: string,
   members: SphinxToMdResultWithUrl[],
 ) {
+  // Keep old content when no members to inline
   if (members.length == 0) return;
+
   if (node.type !== "heading") return;
   const nodeIndex = tree.children.indexOf(node);
   if (nodeIndex === -1) return;
