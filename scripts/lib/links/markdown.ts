@@ -38,7 +38,9 @@ export function markdownFromNotebook(rawContent: string): string {
 }
 
 export function parseAnchors(markdown: string): string[] {
-  const mdAnchors = markdownLinkExtractor(markdown).anchors; //TODO rename
+  // Anchors generated from markdown titles:
+  const mdAnchors = markdownLinkExtractor(markdown).anchors;
+  // Anchors from HTML id tags:
   const idAnchors = markdown.match(/(?<=id=")(.*)(?=")/gm) || [];
   return [...mdAnchors, ...idAnchors.map((id) => `#${id}`)];
 }
@@ -67,13 +69,14 @@ export async function addLinksToMap(
   };
 
   if (filePath.endsWith(".inv")) {
-    const objinv = await ObjectsInv.fromFile(filePath);
-    for (let entry of objinv.entries) {
-      // All URIs are relative to the objects.inv file
-      const dirname = removePrefix(path.dirname(filePath), "docs");
-      const link = path.join(dirname, entry.uri);
-      addLink(link);
-    }
+    // // This is disabled for now; re-enable after fixing #616
+    // const objinv = await ObjectsInv.fromFile(filePath);
+    // for (let entry of objinv.entries) {
+    //   // All URIs are relative to the objects.inv file
+    //   const dirname = removePrefix(path.dirname(filePath), "docs");
+    //   const link = path.join(dirname, entry.uri);
+    //   addLink(link);
+    // }
     return;
   }
 
