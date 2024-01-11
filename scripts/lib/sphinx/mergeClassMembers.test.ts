@@ -128,4 +128,45 @@ Validate options.
       `);
     expect(merged.length).toEqual(1);
   });
+
+  test("merge class with methods already inlined", async () => {
+    const results: Parameters<typeof mergeClassMembers>[0] = [
+      {
+        markdown: `## Attributes
+
+|                                                                                                                                                                                                         |                 |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------- |
+| [\`RuntimeOptions.backend\`](qiskit_ibm_runtime.RuntimeOptions.backend#qiskit_ibm_runtime.RuntimeOptions.backend "qiskit_ibm_runtime.RuntimeOptions.backend")                                             |                 |
+
+## Methods
+
+|                                                                                                                                                                          |                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
+| [\`RuntimeOptions.validate\`](qiskit_ibm_runtime.RuntimeOptions.validate#qiskit_ibm_runtime.RuntimeOptions.validate "qiskit_ibm_runtime.RuntimeOptions.validate")(channel) | Validate options. |`,
+        meta: {
+          python_api_type: "class",
+          python_api_name: "RuntimeOptions",
+        },
+        url: "/docs/api/qiskit-ibm-runtime/stubs/qiskit_ibm_runtime.RuntimeOptions",
+        images: [],
+        isReleaseNotes: false,
+      },
+    ];
+    const merged = await mergeClassMembers(results);
+    expect(
+      merged.find((item) => item.meta.python_api_type === "class")?.markdown,
+    ).toEqual(`## Attributes
+
+|                                                                                                                                                             |   |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | - |
+| [\`RuntimeOptions.backend\`](qiskit_ibm_runtime.RuntimeOptions.backend#qiskit_ibm_runtime.RuntimeOptions.backend "qiskit_ibm_runtime.RuntimeOptions.backend") |   |
+
+## Methods
+
+|                                                                                                                                                                          |                   |
+| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------- |
+| [\`RuntimeOptions.validate\`](qiskit_ibm_runtime.RuntimeOptions.validate#qiskit_ibm_runtime.RuntimeOptions.validate "qiskit_ibm_runtime.RuntimeOptions.validate")(channel) | Validate options. |
+`);
+    expect(merged.length).toEqual(1);
+  });
 });
