@@ -130,7 +130,8 @@ describe("updateLinks", () => {
         "qiskit_ibm_runtime.RuntimeEncoder#qiskit_ibm_runtime.RuntimeEncoder",
         "qiskit_ibm_runtime.options.Options#options",
         "tutorials/qaoa_with_primitives",
-        "tutorials/vqe_with_estimator#Step-1:-Map-classical-inputs-to-a-quantum-problem",
+        "tutorials/vqe_with_estimator#step-1:-map-classical-inputs-to-a-quantum-problem",
+        "qiskit.algorithms.gradients.LinCombEstimatorGradient#supported_gates",
       ]
     `);
   });
