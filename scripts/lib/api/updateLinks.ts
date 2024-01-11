@@ -28,6 +28,24 @@ import { Link } from "../sharedTypes";
 import { ObjectsInv } from "./objectsInv";
 import { transformSpecialCaseUrl } from "./specialCaseResults";
 
+/**
+ * Anchors generated from markdown headings are lower case
+ * As a heuristic, we assume urls containing periods are anchors to HTML id
+ * tags, and anchors with no periods are from markdown headings. This seems to
+ * work ok.
+ */
+function ConvertMarkdownAnchorsToLowerCase(url: string): string {
+  if (!url.includes("#")) {
+    return url;
+  }
+  const [base, anchor] = url.split("#");
+  if (anchor.includes(".")) {
+    return url;
+  }
+  const newAnchor = anchor.toLowerCase();
+  return `${base}#${newAnchor}`;
+}
+
 export function updateUrl(
   url: string,
   resultsByName: { [key: string]: HtmlToMdResultWithUrl },
@@ -50,13 +68,13 @@ export function updateUrl(
   // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob
   if (itemNames.has(path)) {
     if (hash === path) {
-      return [...initialUrlParts, path].join("/");
+      url = [...initialUrlParts, path].join("/");
     }
 
     // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.job -> qiskit_ibm_runtime.RuntimeJob#job
     if (hash?.startsWith(`${path}.`)) {
       const member = removePrefix(hash, `${path}.`);
-      return [...initialUrlParts, path].join("/") + `#${member}`;
+      url = [...initialUrlParts, path].join("/") + `#${member}`;
     }
   }
 
@@ -66,8 +84,10 @@ export function updateUrl(
   const initialPathParts = initial(pathParts);
   const parentName = initialPathParts.join(".");
   if ("class" === resultsByName[parentName]?.meta.apiType) {
-    return [...initialUrlParts, parentName].join("/") + "#" + member;
+    url = [...initialUrlParts, parentName].join("/") + "#" + member;
   }
+
+  url = ConvertMarkdownAnchorsToLowerCase(url);
   return url;
 }
 

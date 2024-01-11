@@ -67,6 +67,7 @@ describe("updateLinks", () => {
       "stubs/qiskit_ibm_runtime.options.Options.html#options",
       "tutorials/qaoa_with_primitives.html",
       "tutorials/vqe_with_estimator.html#Step-1:-Map-classical-inputs-to-a-quantum-problem",
+      "qiskit.algorithms.gradients.LinCombEstimatorGradient#SUPPORTED_GATES",
     ].map((uri) => {
       return {
         name: "-",
