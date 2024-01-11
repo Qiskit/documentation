@@ -12,10 +12,15 @@
 
 import { Metadata } from "./Metadata";
 
+export type Image = {
+  src: string;
+  dest: string;
+};
+
 export type HtmlToMdResult = {
   markdown: string;
   meta: Metadata;
-  images: Array<{ src: string; dest: string }>;
+  images: Image[];
   isReleaseNotes: boolean;
 };
 

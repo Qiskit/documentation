@@ -15,10 +15,11 @@ import pMap from "p-map";
 import { copyFile } from "fs/promises";
 
 import { Pkg } from "../sharedTypes";
+import { Image } from "./HtmlToMdResult";
 import { pathExists } from "../fs";
 
 export async function saveImages(
-  images: Array<{ src: string; dest: string }>,
+  images: Image[],
   originalImagesFolderPath: string,
   pkg: Pkg,
 ) {
