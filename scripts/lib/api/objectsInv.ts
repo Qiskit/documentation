@@ -21,14 +21,17 @@ const ENTRIES_TO_EXCLUDE = [
   /^genindex$/,
   /^py-modindex$/,
   /^search$/,
-  /^tutorials(\/|#|$)/,
+  /^explanation(\/|#|$)/,
   /^how_to(\/|#|$)/,
+  /^tutorials(\/|#|$)/,
+  /^migration_guides(\/|#|$)/,
+  /^contributing_to_qiskit(#|$)/,
+  /^deprecation_policy(#|$)/,
   /^faq(#|$)/,
   /^getting_started(#|$)/,
   /^intro_tutorial1(#|$)/,
+  /^maintainers_guide(#|$)/,
   /^qc_intro(#|$)/,
-  /^contributing_to_qiskit(#|$)/,
-  /^deprecation_policy(#|$)/,
 ];
 
 function shouldExcludePage(uri: string): boolean {

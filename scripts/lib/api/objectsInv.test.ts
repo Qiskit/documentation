@@ -28,7 +28,7 @@ describe("objects.inv", () => {
         "# The remainder of this file is compressed using zlib.\n",
     );
 
-    const uriIndices = [10, 88, 107, 1419, 24661];
+    const uriIndices = [10, 88, 107, 1419, 24599];
     expect(uriIndices.map((i) => objectsInv.entries[i].uri))
       .toMatchInlineSnapshot(`
       [
@@ -39,7 +39,7 @@ describe("objects.inv", () => {
         "index.html",
       ]
     `);
-    const nameIndices = [24661, 25237];
+    const nameIndices = [24599, 25170];
     expect(nameIndices.map((i) => objectsInv.entries[i].dispname))
       .toMatchInlineSnapshot(`
     [
