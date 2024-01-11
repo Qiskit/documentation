@@ -10,23 +10,20 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { describe, expect, test } from "@jest/globals";
-import { dedupeIds } from "./dedupeIds";
+import { Metadata } from "./Metadata";
 
-describe("dedupeIds", () => {
-  test("dedupeIds", async () => {
-    expect(
-      await dedupeIds(`
-    <span id="foo" />
-    <span id="bar" />
-    # foo
-    <span id="foo" />
-    `),
-    ).toMatchInlineSnapshot(`
-      "<span id="bar" />
+export type Image = {
+  src: string;
+  dest: string;
+};
 
-      # foo
-      "
-    `);
-  });
-});
+export type HtmlToMdResult = {
+  markdown: string;
+  meta: Metadata;
+  images: Image[];
+  isReleaseNotes: boolean;
+};
+
+export type HtmlToMdResultWithUrl = HtmlToMdResult & {
+  url: string;
+};

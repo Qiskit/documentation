@@ -47,7 +47,7 @@ circuit = EfficientSU2(120, entanglement="circular", reps=1).decompose()
 transpiled_circuit = ai_passmanager.run(circuit)
 ```
 
-Here, the `target` determines which backend to route for, the `optimization_level` (1, 2, or 3) determines the computational effort to spend in the process (higher usually gives better results but takes longer), and the `layout_mode` specifies how to handle the layout selection.
+Here, the `target` determines which system to route for, the `optimization_level` (1, 2, or 3) determines the computational effort to spend in the process (higher usually gives better results but takes longer), and the `layout_mode` specifies how to handle the layout selection.
 The `layout_mode` includes the following options:
 
 -   `keep`: This respects the layout set by the previous transpiler passes (or uses the trivial layout if not set). It is typically only used when the circuit must be run on specific qubits of the device. It often produces worse results because it has less room for optimization.

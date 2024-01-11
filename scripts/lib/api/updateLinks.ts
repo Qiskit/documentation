@@ -14,20 +14,21 @@ import { initial, keyBy, keys, last } from "lodash";
 import { Root } from "mdast";
 import { visit } from "unist-util-visit";
 import isAbsoluteUrl from "is-absolute-url";
-import { removePart, removePrefix } from "../stringUtils";
-import { SphinxToMdResultWithUrl } from "./SphinxToMdResult";
-import { remarkStringifyOptions } from "./unifiedParser";
 import { unified } from "unified";
 import remarkParse from "remark-parse";
 import remarkMath from "remark-math";
 import remarkGfm from "remark-gfm";
 import remarkMdx from "remark-mdx";
 import remarkStringify from "remark-stringify";
+
+import { removePart, removePrefix } from "../stringUtils";
+import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
+import { remarkStringifyOptions } from "./commonParserConfig";
 import { Link } from "../sharedTypes";
 
 export function updateUrl(
   url: string,
-  resultsByName: { [key: string]: SphinxToMdResultWithUrl },
+  resultsByName: { [key: string]: HtmlToMdResultWithUrl },
   itemNames: Set<string>,
 ): string {
   if (isAbsoluteUrl(url)) return url;
@@ -61,20 +62,17 @@ export function updateUrl(
   const member = last(pathParts);
   const initialPathParts = initial(pathParts);
   const parentName = initialPathParts.join(".");
-  if ("class" === resultsByName[parentName]?.meta.python_api_type) {
+  if ("class" === resultsByName[parentName]?.meta.apiType) {
     return [...initialUrlParts, parentName].join("/") + "#" + member;
   }
   return url;
 }
 
 export async function updateLinks(
-  results: SphinxToMdResultWithUrl[],
+  results: HtmlToMdResultWithUrl[],
   transformLink?: (link: Link) => Link | undefined,
 ): Promise<void> {
-  const resultsByName = keyBy(
-    results,
-    (result) => result.meta.python_api_name!,
-  );
+  const resultsByName = keyBy(results, (result) => result.meta.apiName!);
   const itemNames = new Set(keys(resultsByName));
 
   for (const result of results) {

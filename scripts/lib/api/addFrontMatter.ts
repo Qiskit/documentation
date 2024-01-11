@@ -11,39 +11,43 @@
 // that they have been altered from the originals.
 
 import { getLastPartFromFullIdentifier } from "../stringUtils";
-import { SphinxToMdResult } from "./SphinxToMdResult";
+import { HtmlToMdResult } from "./HtmlToMdResult";
 import { Pkg } from "../sharedTypes";
 
-export function addFrontMatter<T extends SphinxToMdResult>(
+function addFrontMatter<T extends HtmlToMdResult>(
   results: T[],
   pkg: Pkg,
 ): void {
   for (let result of results) {
     let markdown = result.markdown;
-    if (result.meta.hardcoded_frontmatter) {
+    if (result.meta.hardcodedFrontmatter) {
       result.markdown = `---
-${result.meta.hardcoded_frontmatter}
+${result.meta.hardcodedFrontmatter}
 ---
 
 ${markdown}
 `;
-    } else if (result.meta.python_api_name) {
+    } else if (result.meta.apiName) {
       result.markdown = `---
-title: ${getLastPartFromFullIdentifier(result.meta.python_api_name)}
-description: API reference for ${result.meta.python_api_name}
+title: ${getLastPartFromFullIdentifier(result.meta.apiName)}
+description: API reference for ${result.meta.apiName}
 in_page_toc_min_heading_level: 1
-python_api_type: ${result.meta.python_api_type}
-python_api_name: ${result.meta.python_api_name}
+python_api_type: ${result.meta.apiType}
+python_api_name: ${result.meta.apiName}
 ---
 
 ${markdown}
 `;
     } else if (result.isReleaseNotes) {
+      const versionStr = pkg.hasSeparateReleaseNotes
+        ? ` ${pkg.versionWithoutPatch}`
+        : "";
+      const descriptionSuffix = pkg.hasSeparateReleaseNotes
+        ? `in ${pkg.title}${versionStr}`
+        : `to ${pkg.title}`;
       result.markdown = `---
-title: ${pkg.title}${
-        pkg.hasSeparateReleaseNotes ? " " + pkg.versionWithoutPatch : ""
-      } release notes
-description: Changes made to ${pkg.title}
+title: ${pkg.title}${versionStr} release notes
+description: Changes made ${descriptionSuffix}
 in_page_toc_max_heading_level: 2
 ---
 
@@ -52,3 +56,5 @@ ${markdown}
     }
   }
 }
+
+export default addFrontMatter;

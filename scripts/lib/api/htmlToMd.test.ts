@@ -11,7 +11,14 @@
 // that they have been altered from the originals.
 
 import { describe, test, expect } from "@jest/globals";
-import { sphinxHtmlToMarkdown } from "./sphinxHtmlToMarkdown";
+
+import { sphinxHtmlToMarkdown } from "./htmlToMd";
+
+const DEFAULT_ARGS = {
+  imageDestination: "/images/qiskit",
+  baseSourceUrl: "https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/",
+  releaseNotesTitle: "My Quantum release notes",
+};
 
 describe("sphinxHtmlToMarkdown", () => {
   test("remove .html extension from relative links", async () => {
@@ -114,7 +121,7 @@ describe("sphinxHtmlToMarkdown", () => {
            </div>
           `,
         url: "http://qiskit.org/docs/quantum-circuit.html",
-        imageDestination: "/images/qiskit",
+        ...DEFAULT_ARGS,
       }),
     ).toMatchInlineSnapshot(`
         {
@@ -506,7 +513,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
 </div>
 `,
           url: "https://qiskit.org/documentation/partners/qiskit_ibm_runtime/stubs/qiskit_ibm_runtime.Sampler.html",
-          baseSourceUrl: `https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/`,
+          ...DEFAULT_ARGS,
         })
       ).markdown,
     ).toMatchInlineSnapshot(`
@@ -587,8 +594,8 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
       Class for interacting with Qiskit Runtime Sampler primitive service.
       ",
         "meta": {
-          "python_api_name": "qiskit_ibm_runtime.Sampler",
-          "python_api_type": "class",
+          "apiName": "qiskit_ibm_runtime.Sampler",
+          "apiType": "class",
         },
       }
     `);
@@ -638,8 +645,8 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
       Quantum circuits that represents quantum states.
       ",
         "meta": {
-          "python_api_name": "qiskit_ibm_runtime.Estimator.circuits",
-          "python_api_type": "property",
+          "apiName": "qiskit_ibm_runtime.Estimator.circuits",
+          "apiType": "property",
         },
       }
     `);
@@ -668,8 +675,8 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
       Submit a request to the estimator primitive program.
       ",
         "meta": {
-          "python_api_name": "qiskit_ibm_runtime.Estimator.run",
-          "python_api_type": "method",
+          "apiName": "qiskit_ibm_runtime.Estimator.run",
+          "apiType": "method",
         },
       }
     `);
@@ -696,8 +703,8 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
       \`Optional[Callable] = None\`
       ",
         "meta": {
-          "python_api_name": "qiskit_ibm_runtime.options.EnvironmentOptions.callback",
-          "python_api_type": "attribute",
+          "apiName": "qiskit_ibm_runtime.options.EnvironmentOptions.callback",
+          "apiType": "attribute",
         },
       }
     `);
@@ -771,8 +778,8 @@ By default this is sys.stdout.</p></li>
       \`None\`
       ",
         "meta": {
-          "python_api_name": "qiskit_ibm_provider.job.job_monitor",
-          "python_api_type": "function",
+          "apiName": "qiskit_ibm_provider.job.job_monitor",
+          "apiType": "function",
         },
       }
     `);
@@ -815,80 +822,8 @@ By default this is sys.stdout.</p></li>
       Set the error message.
       ",
         "meta": {
-          "python_api_name": "qiskit_ibm_provider.job.IBMJobError",
-          "python_api_type": "exception",
-        },
-      }
-    `);
-  });
-
-  test("extract module metadata", async () => {
-    // Sphinx <= 7.1 uses this style.
-    expect(
-      (
-        await toMdWithMeta(
-          `<article role='main'>
-             <span class="target" id="module-qiskit.circuit">
-               <span id="qiskit-circuit"></span>
-             </span>
-            </article>`,
-        )
-      ).meta,
-    ).toMatchInlineSnapshot(`
-        {
-          "python_api_name": "qiskit.circuit",
-          "python_api_type": "module",
-        }
-      `);
-    // Sphinx 7.2+ uses this style.
-    expect(
-      (
-        await toMdWithMeta(
-          `<article role='main'>
-               <span id="module-qiskit_ibm_runtime.options"></span>
-            </article>`,
-        )
-      ).meta,
-    ).toMatchInlineSnapshot(`
-          {
-            "python_api_name": "qiskit_ibm_runtime.options",
-            "python_api_type": "module",
-          }
-        `);
-  });
-
-  test("extract module metadata for section", async () => {
-    expect(
-      await toMdWithMeta(`<div role="main"><section id="module-qiskit_ibm_provider.transpiler.passes.basis">
-<span id="basis"></span><h1>basis<a class="headerlink" href="#module-qiskit_ibm_provider.transpiler.passes.basis" title="Permalink to this heading">¶</a></h1>
-<section id="basis-qiskit-ibm-provider-transpiler-passes-basis">
-<h2>Basis (<a class="reference internal" href="#module-qiskit_ibm_provider.transpiler.passes.basis" title="qiskit_ibm_provider.transpiler.passes.basis"><code class="xref py py-mod docutils literal notranslate"><span class="pre">qiskit_ibm_provider.transpiler.passes.basis</span></code></a>)<a class="headerlink" href="#basis-qiskit-ibm-provider-transpiler-passes-basis" title="Permalink to this heading">¶</a></h2>
-<p>Passes to layout circuits to IBM backend’s instruction sets.</p>
-</section>
-</section></div>`),
-    ).toMatchInlineSnapshot(`
-      {
-        "images": [],
-        "isReleaseNotes": false,
-        "markdown": "<span id="module-qiskit_ibm_provider.transpiler.passes.basis" />
-
-      <span id="basis" />
-
-      # basis
-
-      <span id="basis-qiskit-ibm-provider-transpiler-passes-basis" />
-
-      ## Basis
-
-      <span id="module-qiskit_ibm_provider.transpiler.passes.basis" />
-
-      \`qiskit_ibm_provider.transpiler.passes.basis\`
-
-      Passes to layout circuits to IBM backend’s instruction sets.
-      ",
-        "meta": {
-          "python_api_name": "qiskit_ibm_provider.transpiler.passes.basis",
-          "python_api_type": "module",
+          "apiName": "qiskit_ibm_provider.job.IBMJobError",
+          "apiType": "exception",
         },
       }
     `);
@@ -970,8 +905,8 @@ By default this is sys.stdout.</p></li>
       \`None\`
       ",
         "meta": {
-          "python_api_name": "qiskit_ibm_provider.job.IBMCircuitJob.wait_for_final_state",
-          "python_api_type": "method",
+          "apiName": "qiskit_ibm_provider.job.IBMCircuitJob.wait_for_final_state",
+          "apiType": "method",
         },
       }
     `);
@@ -1418,7 +1353,7 @@ compilation flow follows the structure given below:</p>
 
       Most circuits must undergo a series of transformations that make them compatible with a given target device, and optimize them to reduce the effects of noise on the resulting outcomes. Rewriting quantum circuits to match hardware constraints and optimizing for performance can be far from trivial. The flow of logic in the rewriting tool chain need not be linear, and can often have iterative sub-loops, conditional branches, and other complex behaviors. That being said, the standard compilation flow follows the structure given below:
 
-      ![../\\_images/transpiling\\_core\\_steps.png](/images/api//transpiling_core_steps.png)
+      ![../\\_images/transpiling\\_core\\_steps.png](/images/qiskit/transpiling_core_steps.png)
 
       Qiskit has four pre-built transpilation pipelines available here:
       "
@@ -1443,13 +1378,13 @@ test("identify release notes", async () => {
           </ul>
           `,
       url: "http://qiskit.org/docs/release_notes.html",
-      imageDestination: "/images/qiskit",
+      ...DEFAULT_ARGS,
     }),
   ).toMatchInlineSnapshot(`
 {
   "images": [],
   "isReleaseNotes": true,
-  "markdown": "# Release Notes
+  "markdown": "# My Quantum release notes
 
 <span id="release-notes-0-14-0" />
 
@@ -1528,6 +1463,7 @@ async function toMd(html: string) {
     await sphinxHtmlToMarkdown({
       url: "https://qiskit.org/documentation/partners/qiskit_ibm_runtime/stubs/qiskit_ibm_runtime.Sampler.html",
       html,
+      ...DEFAULT_ARGS,
     })
   ).markdown;
 }
@@ -1536,5 +1472,6 @@ async function toMdWithMeta(html: string) {
   return await sphinxHtmlToMarkdown({
     url: "https://qiskit.org/documentation/partners/qiskit_ibm_runtime/stubs/qiskit_ibm_runtime.Sampler.html",
     html,
+    ...DEFAULT_ARGS,
   });
 }

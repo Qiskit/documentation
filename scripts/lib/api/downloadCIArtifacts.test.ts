@@ -11,9 +11,10 @@
 // that they have been altered from the originals.
 
 import { describe, expect, test } from "@jest/globals";
-import { getArtifactID } from "./downloadArtifacts";
 
-describe("downloadArtifacts", () => {
+import { getArtifactID } from "./downloadCIArtifacts";
+
+describe("getArtifactID()", () => {
   test("Pass the full URL of the artifact", () => {
     const artifactID = getArtifactID(
       "https://github.com/Qiskit/qiskit/suites/17881600359/artifacts/1026798160",

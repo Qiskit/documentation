@@ -10,14 +10,16 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { Pkg } from "./sharedTypes";
-import { pathExists } from "./fs";
 import { mkdirp } from "mkdirp";
 import pMap from "p-map";
 import { copyFile } from "fs/promises";
 
+import { Pkg } from "../sharedTypes";
+import { Image } from "./HtmlToMdResult";
+import { pathExists } from "../fs";
+
 export async function saveImages(
-  images: Array<{ src: string; dest: string }>,
+  images: Image[],
   originalImagesFolderPath: string,
   pkg: Pkg,
 ) {
