@@ -23,7 +23,8 @@ import {
   removeDownloadSourceCode,
   removePermalinks,
   removeColonSpans,
-  replaceSourceLinksWithGitHub,
+  replaceViewcodeLinksWithGitHub,
+  prepareGitHubLink,
 } from "./processHtml";
 import { Metadata } from "./Metadata";
 
@@ -245,7 +246,7 @@ test("replaceSourceLinksWithGitHub()", () => {
   const doc = Doc.load(
     `<a class="reference internal" href="../_modules/qiskit_ibm_runtime/ibm_backend#IBMBackend"></a><a href="#qiskit_ibm_runtime.IBMBackend"></a>`,
   );
-  replaceSourceLinksWithGitHub(
+  replaceViewcodeLinksWithGitHub(
     doc.$,
     doc.$main,
     "https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/",
@@ -295,6 +296,29 @@ describe("maybeSetModuleMetadata()", () => {
     checkModuleFound(
       `<section id="module-qiskit_ibm_provider.transpiler.passes.basis"><h1>Hello</h1></section>`,
       "qiskit_ibm_provider.transpiler.passes.basis",
+    );
+  });
+});
+
+describe("prepareGitHubLink()", () => {
+  test("no link", () => {
+    const html = `<span class="pre">None</span><span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`;
+    const doc = Doc.load(html);
+    const result = prepareGitHubLink(doc.$, doc.$main);
+    expect(result).toEqual("");
+    doc.expectHtml(html);
+  });
+
+  test("link", () => {
+    const doc = Doc.load(
+      `<span class="pre">None</span><span class="sig-paren">)</span><a class="reference internal" href="https://ibm.com/my_link"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
+    );
+    const result = prepareGitHubLink(doc.$, doc.$main);
+    expect(result).toEqual(
+      `<a href="https://ibm.com/my_link" title="view source code">GitHub</a>`,
+    );
+    doc.expectHtml(
+      `<span class="pre">None</span><span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
     );
   });
 });
