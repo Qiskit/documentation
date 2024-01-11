@@ -263,8 +263,8 @@ export function processMembersAndSetMeta(
       .toArray()
       .map((child) => {
         const $child = $(child);
-        $child.find(".viewcode-link").closest("a").remove();
         const id = $dl.find("dt").attr("id") || "";
+        const github = prepareGitHubLink($, $child);
 
         const apiType = getApiType($dl);
 
@@ -280,7 +280,7 @@ export function processMembersAndSetMeta(
 
         if (apiType == "class") {
           findByText($, $main, "em.property", "class").remove();
-          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
+          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
         }
 
         if (apiType == "property") {
@@ -291,7 +291,7 @@ export function processMembersAndSetMeta(
           findByText($, $main, "em.property", "property").remove();
           const signature = $child.find("em").text()?.replace(/^:\s+/, "");
           if (signature.trim().length === 0) return;
-          return `<span class="target" id='${id}'/><p><code>${signature}</code></p>`;
+          return `<span class="target" id='${id}'/><p><code>${signature}</code>${github}</p>`;
         }
 
         if (apiType == "method") {
@@ -307,7 +307,7 @@ export function processMembersAndSetMeta(
           }
 
           findByText($, $main, "em.property", "method").remove();
-          return `<span class="target" id='${id}'/><p><code>${$child.html()}</code></p>`;
+          return `<span class="target" id='${id}'/><p><code>${$child.html()}</code>${github}</p>`;
         }
 
         if (apiType == "attribute") {
@@ -319,7 +319,7 @@ export function processMembersAndSetMeta(
             findByText($, $main, "em.property", "attribute").remove();
             const signature = $child.find("em").text()?.replace(/^:\s+/, "");
             if (signature.trim().length === 0) return;
-            return `<span class="target" id='${id}'/><p><code>${signature}</code></p>`;
+            return `<span class="target" id='${id}'/><p><code>${signature}</code>${github}</p>`;
           }
 
           // Else, the attribute is embedded on the class
@@ -352,12 +352,12 @@ export function processMembersAndSetMeta(
 
         if (apiType === "function") {
           findByText($, $main, "em.property", "function").remove();
-          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
+          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
         }
 
         if (apiType === "exception") {
           findByText($, $main, "em.property", "exception").remove();
-          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code></p>`;
+          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
         }
 
         throw new Error(`Unhandled Python type: ${apiType}`);
@@ -366,6 +366,22 @@ export function processMembersAndSetMeta(
 
     $dl.replaceWith(`<div>${replacement}</div>`);
   }
+}
+
+/**
+ * Removes the original link from sphinx.ext.viewcode and returns the HTML string for our own link.
+ *
+ * This returns the HTML string, rather than directly inserting into the HTML, because the insertion
+ * logic is most easily handled by the calling code.
+ */
+export function prepareGitHubLink($: CheerioAPI, $child: Cheerio<any>): string {
+  const originalLink = $child.find(".viewcode-link").closest("a");
+  if (originalLink.length === 0) {
+    return "";
+  }
+  const href = originalLink.attr("href")!;
+  originalLink.remove();
+  return `<a href="${href}" title="view source code">GitHub</a>`;
 }
 
 export function maybeSetModuleMetadata(

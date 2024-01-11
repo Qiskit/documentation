@@ -169,7 +169,7 @@ zxMain(async () => {
     await downloadCIArtifact(pkg.name, artifactUrl, destination);
   }
 
-  const baseGitHubUrl = `https://github.com/${pkg.githubSlug}/tree/${pkg.versionWithoutPatch}/`;
+  const baseGitHubUrl = `https://github.com/${pkg.githubSlug}/tree/stable/${pkg.versionWithoutPatch}/`;
   const outputDir = pkg.historical
     ? `${getRoot()}/docs/api/${pkg.name}/${pkg.versionWithoutPatch}`
     : `${getRoot()}/docs/api/${pkg.name}`;

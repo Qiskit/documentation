@@ -462,7 +462,7 @@ describe("sphinxHtmlToMarkdown", () => {
 
       <span id="qiskit_ibm_runtime.options.Options" />
 
-      \`Options(optimization_level=None, resilience_level=None, max_execution_time=None, transpilation=<factory>, resilience=<factory>, execution=<factory>, environment=<factory>, simulator=<factory>)\`
+      \`Options(optimization_level=None, resilience_level=None, max_execution_time=None, transpilation=<factory>, resilience=<factory>, execution=<factory>, environment=<factory>, simulator=<factory>)\`[GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/options/options.py "view source code")
       "
     `);
   });
@@ -589,7 +589,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
 
       <span id="qiskit_ibm_runtime.Sampler" />
 
-      \`Sampler(circuits=None, parameters=None, service=None, session=None, options=None, skip_transpilation=False)\`
+      \`Sampler(circuits=None, parameters=None, service=None, session=None, options=None, skip_transpilation=False) \`[GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/sampler.py "view source code")
 
       Class for interacting with Qiskit Runtime Sampler primitive service.
       ",
@@ -670,7 +670,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
 
       <span id="qiskit_ibm_runtime.Estimator.run" />
 
-      \`Estimator.run(circuits, observables, parameter_values=None, **kwargs)\`
+      \`Estimator.run(circuits, observables, parameter_values=None, **kwargs)\`[GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/estimator.py "view source code")
 
       Submit a request to the estimator primitive program.
       ",
@@ -763,7 +763,7 @@ By default this is sys.stdout.</p></li>
 
       <span id="qiskit_ibm_provider.job.job_monitor" />
 
-      \`job_monitor(job, interval=None, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>)\`
+      \`job_monitor(job, interval=None, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>)\`[GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/job_monitor.py "view source code")
 
       Monitor the status of an \`IBMJob\` instance.
 
@@ -815,7 +815,7 @@ By default this is sys.stdout.</p></li>
 
       <span id="qiskit_ibm_provider.job.IBMJobError" />
 
-      \`IBMJobError(*message)\`
+      \`IBMJobError(*message)\`[GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/exceptions.py "view source code")
 
       Base class for errors raised by the job modules.
 
@@ -886,7 +886,7 @@ By default this is sys.stdout.</p></li>
 
       <span id="qiskit_ibm_provider.job.IBMCircuitJob.wait_for_final_state" />
 
-      \`IBMCircuitJob.wait_for_final_state(timeout=None)\`
+      \`IBMCircuitJob.wait_for_final_state(timeout=None) \`[GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_provider/job/ibm_circuit_job.py "view source code")
 
       ## Use the websocket server to wait for the final the state of a job. The server
 
@@ -956,7 +956,7 @@ bits.</p>
 
       <span id="qiskit.dagcircuit.DAGCircuit" />
 
-      \`qiskit.dagcircuit.DAGCircuit\`
+      \`qiskit.dagcircuit.DAGCircuit\`[GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit/dagcircuit/dagcircuit.py "view source code")
 
       Bases: \`object\`
 
@@ -1439,7 +1439,7 @@ test("test dt tag without id", async () => {
   ).toMatchInlineSnapshot(`
   "In addition to the public abstract methods, subclasses should also implement the following private methods:
   
-  \`classmethod _default_options()\`
+  \`classmethod _default_options()\`[GitHub](https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit/providers/basicaer/qasm_simulator.py "view source code")
   
   Return the default options
   
