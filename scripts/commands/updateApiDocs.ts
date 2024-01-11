@@ -169,7 +169,7 @@ zxMain(async () => {
     await downloadCIArtifact(pkg.name, artifactUrl, destination);
   }
 
-  const baseSourceUrl = `https://github.com/${pkg.githubSlug}/tree/${pkg.versionWithoutPatch}/`;
+  const baseGitHubUrl = `https://github.com/${pkg.githubSlug}/tree/stable/${pkg.versionWithoutPatch}/`;
   const outputDir = pkg.historical
     ? `${getRoot()}/docs/api/${pkg.name}/${pkg.versionWithoutPatch}`
     : `${getRoot()}/docs/api/${pkg.name}`;
@@ -188,7 +188,7 @@ zxMain(async () => {
   await convertHtmlToMarkdown(
     `${destination}/artifact`,
     outputDir,
-    baseSourceUrl,
+    baseGitHubUrl,
     pkg,
   );
 });
@@ -210,7 +210,7 @@ async function rmFilesInFolder(
 async function convertHtmlToMarkdown(
   htmlPath: string,
   markdownPath: string,
-  baseSourceUrl: string,
+  baseGitHubUrl: string,
   pkg: Pkg,
 ) {
   const files = await globby(
@@ -233,7 +233,7 @@ async function convertHtmlToMarkdown(
     const result = await sphinxHtmlToMarkdown({
       html,
       url: `${pkg.baseUrl}/${file}`,
-      baseSourceUrl,
+      baseGitHubUrl,
       imageDestination: pkg.historical
         ? `/images/api/${pkg.name}/${pkg.versionWithoutPatch}`
         : `/images/api/${pkg.name}`,

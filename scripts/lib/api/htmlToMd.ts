@@ -34,9 +34,8 @@ export async function sphinxHtmlToMarkdown(options: {
   html: string;
   url: string;
   imageDestination: string;
-  // url links to a fixed version and ending in /
-  // https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/
-  baseSourceUrl: string;
+  // E.g. https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/
+  baseGitHubUrl: string;
   releaseNotesTitle: string;
 }): Promise<HtmlToMdResult> {
   const processedHtml = processHtml(options);
