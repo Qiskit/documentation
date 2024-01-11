@@ -23,7 +23,7 @@ import {
   removeDownloadSourceCode,
   removePermalinks,
   removeColonSpans,
-  replaceSourceLinksWithGitHub,
+  replaceViewcodeLinksWithGitHub,
 } from "./processHtml";
 import { Metadata } from "./Metadata";
 
@@ -245,7 +245,7 @@ test("replaceSourceLinksWithGitHub()", () => {
   const doc = Doc.load(
     `<a class="reference internal" href="../_modules/qiskit_ibm_runtime/ibm_backend#IBMBackend"></a><a href="#qiskit_ibm_runtime.IBMBackend"></a>`,
   );
-  replaceSourceLinksWithGitHub(
+  replaceViewcodeLinksWithGitHub(
     doc.$,
     doc.$main,
     "https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/",

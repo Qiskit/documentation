@@ -28,10 +28,10 @@ export function processHtml(options: {
   html: string;
   url: string;
   imageDestination: string;
-  baseSourceUrl: string;
+  baseGitHubUrl: string;
   releaseNotesTitle: string;
 }): ProcessedHtml {
-  const { html, url, imageDestination, baseSourceUrl, releaseNotesTitle } =
+  const { html, url, imageDestination, baseGitHubUrl, releaseNotesTitle } =
     options;
   const $ = load(html);
   const $main = $(`[role='main']`);
@@ -48,7 +48,7 @@ export function processHtml(options: {
   removeDownloadSourceCode($main);
   handleSphinxDesignCards($, $main);
   addLanguageClassToCodeBlocks($, $main);
-  replaceSourceLinksWithGitHub($, $main, baseSourceUrl);
+  replaceViewcodeLinksWithGitHub($, $main, baseGitHubUrl);
   convertRubricsToHeaders($, $main);
   processSimpleFieldLists($, $main);
   removeColonSpans($main);
@@ -159,11 +159,18 @@ export function addLanguageClassToCodeBlocks(
   });
 }
 
-// TODO(#519): figure out if this is working.
-export function replaceSourceLinksWithGitHub(
+/**
+ * Redirect URLS from sphinx.ext.viewcode to instead go to GitHub.
+ *
+ * These URLs will only go to the overall source code file, not the specific lines
+ * of code. This function only changes the URLs; the DOM still needs to be modified
+ * to remove the original `[source]` anchor element from Sphinx with our own `GitHub`
+ * anchor element in the correct location.
+ */
+export function replaceViewcodeLinksWithGitHub(
   $: CheerioAPI,
   $main: Cheerio<any>,
-  baseSourceUrl: string,
+  baseGitHubUrl: string,
 ): void {
   $main.find("a").each((_, a) => {
     const $a = $(a);
@@ -177,7 +184,7 @@ export function replaceSourceLinksWithGitHub(
     }
     //_modules/qiskit_ibm_runtime/ibm_backend
     const match = href.match(/_modules\/(.*?)(#|$)/)!;
-    const newHref = `${baseSourceUrl}${match[1]}.py`;
+    const newHref = `${baseGitHubUrl}${match[1]}.py`;
     $a.attr("href", newHref);
   });
 }
