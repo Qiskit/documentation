@@ -14,27 +14,28 @@ import { readFile, writeFile } from "fs/promises";
 import { unzipSync, deflateSync } from "zlib";
 import { removeSuffix } from "../stringUtils";
 
-/** Some pages exist in the sphinx docs but not in our docs
+/**
+ * Some pages exist in the sphinx docs but not in our docs
  * If any URIs match these cases, we remove their entries.
- * */
+ **/
 const ENTRIES_TO_EXCLUDE = [
-  /^genindex$/,
-  /^py-modindex$/,
-  /^search$/,
-  /^explanation(\/|#|$)/,
-  /^how_to(\/|#|$)/,
-  /^tutorials(\/|#|$)/,
-  /^migration_guides(\/|#|$)/,
-  /^configuration(#|$)/,
-  /^contributing_to_qiskit(#|$)/,
-  /^deprecation_policy(#|$)/,
-  /^faq(#|$)/,
-  /^getting_started(#|$)/,
-  /^intro_tutorial1(#|$)/,
-  /^maintainers_guide(#|$)/,
-  /^qc_intro(#|$)/,
-  // /^release_notes(#)/,
-  // /^legacy_release_notes(#)/,
+  /^genindex(\.html)?$/,
+  /^py-modindex(\.html)?$/,
+  /^search(\.html)?$/,
+  /^explanation(\.html)?(?=\/|#|$)/,
+  /^how_to(\.html)?(?=\/|#|$)/,
+  /^tutorials(\.html)?(?=\/|#|$)/,
+  /^migration_guides(\.html)?(?=\/|#|$)/,
+  /^configuration(\.html)?(?=#|$)/,
+  /^contributing_to_qiskit(\.html)?(?=#|$)/,
+  /^deprecation_policy(\.html)?(?=#|$)/,
+  /^faq(\.html)?(?=#|$)/,
+  /^getting_started(\.html)?(?=#|$)/,
+  /^intro_tutorial1(\.html)?(?=#|$)/,
+  /^maintainers_guide(\.html)?(?=#|$)/,
+  /^qc_intro(\.html)?(?=#|$)/,
+  /^release[-_]notes(\.html)?(?=#|$)/,
+  /^legacy_release_notes(\.html)?(?=#|$)/,
 ];
 
 function shouldExcludePage(uri: string): boolean {
