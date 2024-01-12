@@ -25,6 +25,7 @@ const ENTRIES_TO_EXCLUDE = [
   /^how_to(\/|#|$)/,
   /^tutorials(\/|#|$)/,
   /^migration_guides(\/|#|$)/,
+  /^configuration(#|$)/,
   /^contributing_to_qiskit(#|$)/,
   /^deprecation_policy(#|$)/,
   /^faq(#|$)/,
@@ -32,6 +33,8 @@ const ENTRIES_TO_EXCLUDE = [
   /^intro_tutorial1(#|$)/,
   /^maintainers_guide(#|$)/,
   /^qc_intro(#|$)/,
+  // /^release_notes(#)/,
+  // /^legacy_release_notes(#)/,
 ];
 
 function shouldExcludePage(uri: string): boolean {

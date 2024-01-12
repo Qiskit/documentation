@@ -23,6 +23,7 @@ import rehypeParse from "rehype-parse";
 import remarkGfm from "remark-gfm";
 import { ObjectsInv } from "../api/objectsInv";
 import { removePrefix } from "../stringUtils";
+import { getRoot } from "../fs";
 
 interface JupyterCell {
   cell_type: string;
@@ -69,14 +70,15 @@ export async function addLinksToMap(
   };
 
   if (filePath.endsWith(".inv")) {
-    // // This is disabled for now; re-enable after fixing #616
-    // const objinv = await ObjectsInv.fromFile(filePath);
-    // for (let entry of objinv.entries) {
-    //   // All URIs are relative to the objects.inv file
-    //   const dirname = removePrefix(path.dirname(filePath), "docs");
-    //   const link = path.join(dirname, entry.uri);
-    //   addLink(link);
-    // }
+    // This is disabled for now; re-enable after fixing #616
+    const absoluteFilePath = path.join(getRoot(), filePath);
+    const objinv = await ObjectsInv.fromFile(absoluteFilePath);
+    for (let entry of objinv.entries) {
+      // All URIs are relative to the objects.inv file
+      const dirname = removePrefix(path.dirname(filePath), "public");
+      const link = path.join(dirname, entry.uri);
+      addLink(link);
+    }
     return;
   }
 

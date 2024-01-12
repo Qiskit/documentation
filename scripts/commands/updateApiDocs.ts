@@ -281,7 +281,11 @@ async function convertHtmlToMarkdown(
   await dedupeHtmlIdsFromResults(results);
   addFrontMatter(results, pkg);
 
-  await objectsInv.write(join(markdownPath, "objects.inv"));
+  const objectsInvDestination = pkg.historical
+    ? `public/api/${pkg.name}/${pkg.versionWithoutPatch}`
+    : `public/api/${pkg.name}`;
+  await mkdirp(join(getRoot(), objectsInvDestination));
+  await objectsInv.write(join(getRoot(), objectsInvDestination, "objects.inv"));
   for (const result of results) {
     let path = urlToPath(result.url);
 
