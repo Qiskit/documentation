@@ -11,7 +11,11 @@
 // that they have been altered from the originals.
 
 import { expect, test } from "@jest/globals";
-import { markdownFromNotebook, parseAnchors, addLinksToMap } from "./markdown";
+import {
+  markdownFromNotebook,
+  parseAnchors,
+  addLinksToMap,
+} from "./extractLinks";
 
 test("markdownFromNotebook()", () => {
   const result = markdownFromNotebook(`

@@ -14,7 +14,7 @@ import { globby } from "globby";
 
 import { Link, File } from "./LinkChecker";
 import FILES_TO_IGNORES from "./ignores";
-import { getMarkdownAndAnchors, addLinksToMap } from "./markdown";
+import { getMarkdownAndAnchors, addLinksToMap } from "./extractLinks";
 
 export class FileBatch {
   /**
