@@ -88,7 +88,7 @@ export class ObjectsInv {
       // Regex from sphinx source
       // https://github.com/sphinx-doc/sphinx/blob/2f60b44999d7e610d932529784f082fc1c6af989/sphinx/util/inventory.py#L115-L116
       const parts = line.match(/(.+?)\s+(\S+)\s+(-?\d+)\s+?(\S*)\s+(.*)/);
-      if (parts == null || parts.length < 5) {
+      if (parts == null || parts.length != 6) {
         console.warn(`Error parsing line of objects.inv: ${line}`);
         continue;
       }

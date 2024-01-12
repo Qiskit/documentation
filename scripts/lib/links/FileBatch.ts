@@ -74,7 +74,7 @@ export class FileBatch {
     const linksToOriginFiles = new Map<string, string[]>();
     for (const filePath of this.toCheck) {
       if (filePath.endsWith(".inv")) {
-        addLinksToMap(filePath, "", linksToOriginFiles);
+        await addLinksToMap(filePath, "", linksToOriginFiles);
         continue;
       }
       const [markdown, anchors] = await getMarkdownAndAnchors(filePath);
