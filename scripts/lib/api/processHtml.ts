@@ -187,12 +187,12 @@ export function replaceViewcodeLinksWithGitHub(
     ) {
       return;
     }
-    //_modules/qiskit_ibm_runtime/ibm_backend
-    let match = href.match(/_modules\/(.*?)(#|$)/)![1];
-    if (specialCases.has(match)) {
-      match = specialCases.get(match)!;
+    // E.g. `qiskit_ibm_runtime/ibm_backend`
+    let fullFileName = href.match(/_modules\/(.*?)(#|$)/)![1];
+    if (specialCases.has(fullFileName)) {
+      fullFileName = specialCases.get(fullFileName)!;
     }
-    const newHref = `${baseGitHubUrl}${match}.py`;
+    const newHref = `${baseGitHubUrl}${fullFileName}.py`;
     $a.attr("href", newHref);
   });
 }
