@@ -172,6 +172,11 @@ export function replaceViewcodeLinksWithGitHub(
   $main: Cheerio<any>,
   baseGitHubUrl: string,
 ): void {
+  // Certain files do not map 1:1 between sphinx.ext.viewcode and GitHub.
+  // When adding new entries, add a dedicated test case!
+  const specialCases = new Map([
+    ["qiskit_ibm_provider", "qiskit_ibm_provider/__init__"],
+  ]);
   $main.find("a").each((_, a) => {
     const $a = $(a);
     const href = $a.attr("href");
@@ -183,8 +188,11 @@ export function replaceViewcodeLinksWithGitHub(
       return;
     }
     //_modules/qiskit_ibm_runtime/ibm_backend
-    const match = href.match(/_modules\/(.*?)(#|$)/)!;
-    const newHref = `${baseGitHubUrl}${match[1]}.py`;
+    let match = href.match(/_modules\/(.*?)(#|$)/)![1];
+    if (specialCases.has(match)) {
+      match = specialCases.get(match)!;
+    }
+    const newHref = `${baseGitHubUrl}${match}.py`;
     $a.attr("href", newHref);
   });
 }
