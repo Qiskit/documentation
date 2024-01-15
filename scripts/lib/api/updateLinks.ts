@@ -29,10 +29,14 @@ import { ObjectsInv } from "./objectsInv";
 import { transformSpecialCaseUrl } from "./specialCaseResults";
 
 /**
- * Anchors generated from markdown headings are lower case
+ * Anchors generated from markdown headings are always lower case but, if these
+ * headings are API references, Sphinx sometimes expects them to include
+ * uppercase characters.
+ *
  * As a heuristic, we assume urls containing periods are anchors to HTML id
- * tags, and anchors with no periods are from markdown headings. This seems to
- * work ok.
+ * tags (which preserve Sphinx's original casing), and anchors with no periods
+ * are from markdown headings (which must be lower-cased). This seems to work
+ * ok.
  */
 function lowerCaseIfMarkdownAnchor(url: string): string {
   if (!url.includes("#")) {
