@@ -9,6 +9,7 @@
 // Any modifications or derivative works of this code must retain this
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
+import { join } from "path";
 
 /**
  * Simple interface for scripts/command/updateApiDocs.ts
@@ -45,3 +46,11 @@ export type Pkg = PkgInfo & {
   releaseNoteEntries: { title: string; url: string }[];
   baseUrl: string;
 };
+
+export function getPkgRoot(pkg: Pkg, parentDir = "docs") {
+  let path = join(parentDir, "api", pkg.name);
+  if (pkg.historical) {
+    path = join(path, pkg.versionWithoutPatch);
+  }
+  return path;
+}
