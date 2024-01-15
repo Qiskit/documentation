@@ -85,9 +85,7 @@ async function parseObjectsInv(filePath: string): Promise<ParsedFile> {
 
 export async function parseFile(filePath: string): Promise<ParsedFile> {
   if (filePath.endsWith(".inv")) {
-    // This is disabled for now until we fix the broken links in objects.inv
-    // return await parseObjectsInv(filePath)
-    return { links: [], anchors: [] };
+    return await parseObjectsInv(filePath);
   }
   const source = await readFile(filePath, { encoding: "utf8" });
   const markdown =
