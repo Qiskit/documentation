@@ -19,8 +19,8 @@ export const PROVIDER_INDEX_META = `title: Qiskit IBM Provider API Docs
 description: API documentation for qiskit-ibm-provider`;
 
 export function transformSpecialCaseUrl(url: string): string {
-  //We use `-` rather than `_` as our delimiter.
   return url
+    // We use `-` rather than `_` as our delimiter.
     .replace(/(?<=^|\/)release_notes(?=#|$)/g, "release-notes")
     .replace(/(?<=^|\/)terra(?=#|$)/g, "index")
     .replace(/(?<=^|\/)ibm-provider(?=#|$)/g, "index")

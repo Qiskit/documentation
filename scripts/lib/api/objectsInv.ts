@@ -1,6 +1,6 @@
 // This code is a Qiskit project.
 //
-// (C) Copyright IBM 2023.
+// (C) Copyright IBM 2024.
 //
 // This code is licensed under the Apache License, Version 2.0. You may
 // obtain a copy of this license in the LICENSE file in the root directory
@@ -130,7 +130,7 @@ export class ObjectsInv {
     return uri;
   }
 
-  updateUris(transformLink: Function) {
+  updateUris(transformLink: Function): void {
     for (const entry of this.entries) {
       entry.uri = entry.uri.replace(/\.html/, "");
       entry.uri = transformLink(entry.uri);
@@ -141,7 +141,7 @@ export class ObjectsInv {
    * Return all entries joined together as a single string
    * to be compressed before writing
    */
-  entriesString() {
+  entriesString(): string {
     const lines: string[] = [];
     for (const e of this.entries) {
       lines.push(
@@ -160,7 +160,7 @@ export class ObjectsInv {
   /**
    * Compress and write to file
    */
-  async write(path: string) {
+  async write(path: string): Promise<void> {
     const preamble = Buffer.from(this.preamble);
     const compressed = deflateSync(Buffer.from(this.entriesString(), "utf8"), {
       level: 9,

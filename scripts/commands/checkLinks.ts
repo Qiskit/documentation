@@ -119,7 +119,7 @@ async function determineCurrentDocsFileBatch(
 ): Promise<FileBatch> {
   const toCheck = [
     "docs/**/*.{ipynb,md,mdx}",
-    "public/api/**/objects.inv",
+    "public/api/*/objects.inv",
     // Ignore historical versions
     "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
     "!public/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
