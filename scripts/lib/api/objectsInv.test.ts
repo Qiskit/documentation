@@ -14,7 +14,7 @@ import { describe, expect, test } from "@jest/globals";
 import { ObjectsInv, ObjectsInvEntry } from "./objectsInv";
 import { unlink, stat } from "fs/promises";
 
-const TEST_FILE = "scripts/lib/api/test/objects.inv";
+const TEST_FILE = "scripts/lib/api/testdata/objects.inv";
 const TEMP_FILE = TEST_FILE + ".written";
 
 describe("objects.inv", () => {
