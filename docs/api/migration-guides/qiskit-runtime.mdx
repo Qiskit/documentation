@@ -190,17 +190,19 @@ from qiskit import IBMQ
 from qiskit_ibm_runtime import QiskitRuntimeService
 ```
 
-### Save and load accounts
+### Save accounts
 
-Use the updated code to work with accounts.
+Use the updated code to work save accounts.
 
-**Legacy: Save accounts**
+**Legacy**
 
 ``` python
 IBMQ.save_account("<IQX_TOKEN>", overwrite=True)
 ```
 
-**Updated: Save accounts** The new syntax accepts credentials for
+**Updated** 
+
+The new syntax accepts credentials for
 Qiskit Runtime on IBM Cloud or IBM Quantum Platform. For more
 information on retrieving account credentials, see [Install and set up](../../start/install).
 
@@ -214,10 +216,8 @@ QiskitRuntimeService.save_account(channel="ibm_cloud", token="<IBM Cloud API key
 QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQP_TOKEN>", overwrite=True, default=true)
 ```
 
-**Updated: Name saved credentials** You can now name your saved
-credentials and load the credentials by name.
+Additionally, you can now name your saved credentials and load the credentials by name.
 
-**Example:**
 
 ``` python
 # Save different accounts for open and premium access
@@ -230,13 +230,17 @@ QiskitRuntimeService.save_account(channel="ibm_quantum", token="<IQX_TOKEN>", in
 service = QiskitRuntimeService(name="open")
 ```
 
-**Legacy: Load accounts**
+### Load accounts
+
+Use the updated code to load accounts.
+
+**Legacy**
 
 ``` python
 IBMQ.load_account()
 ```
 
-**Updated: Load accounts**
+**Updated**
 
 The new syntax combines the functionality from `load_account()` and
 `get_provider()` in one statement. The `channel` input parameter is
@@ -250,6 +254,7 @@ service = QiskitRuntimeService(channel="ibm_cloud")
 # To access saved credentials for the IBM quantum channel
 service = QiskitRuntimeService(channel="ibm_quantum")
 ```
+
 
 ### Channel selection (get a provider)
 

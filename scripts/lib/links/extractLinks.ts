@@ -25,6 +25,13 @@ import { ObjectsInv } from "../api/objectsInv";
 import { removePrefix } from "../stringUtils";
 import { getRoot } from "../fs";
 
+export type ParsedFile = {
+  /** Anchors that the file defines. These can be linked to from other files. */
+  anchors: string[];
+  /** Links that this file has to other places. These need to be validated. */
+  links: string[];
+};
+
 interface JupyterCell {
   cell_type: string;
   source: string[];
@@ -39,62 +46,52 @@ export function markdownFromNotebook(rawContent: string): string {
 }
 
 export function parseAnchors(markdown: string): string[] {
-  // Anchors generated from markdown titles:
+  // Anchors generated from markdown titles.
   const mdAnchors = markdownLinkExtractor(markdown).anchors;
-  // Anchors from HTML id tags:
+  // Anchors from HTML id tags.
   const idAnchors = markdown.match(/(?<=id=")(.*)(?=")/gm) || [];
   return [...mdAnchors, ...idAnchors.map((id) => `#${id}`)];
 }
 
-export async function getMarkdownAndAnchors(
-  filePath: string,
-): Promise<[string, string[]]> {
-  const source = await readFile(filePath, { encoding: "utf8" });
-  const markdown =
-    path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
-  return [markdown, parseAnchors(markdown)];
-}
-
-export async function addLinksToMap(
-  filePath: string,
-  markdown: string,
-  linksToOriginFiles: Map<string, string[]>,
-): Promise<void> {
-  const addLink = (link: string): void => {
-    const entry = linksToOriginFiles.get(link);
-    if (entry === undefined) {
-      linksToOriginFiles.set(link, [filePath]);
-    } else {
-      entry.push(filePath);
-    }
-  };
-
-  if (filePath.endsWith(".inv")) {
-    // // This is disabled for now until we fix the broken links in objects.inv
-    // const absoluteFilePath = path.join(getRoot(), filePath);
-    // const objinv = await ObjectsInv.fromFile(absoluteFilePath);
-    // for (let entry of objinv.entries) {
-    //   // All URIs are relative to the objects.inv file
-    //   const dirname = removePrefix(path.dirname(filePath), "public");
-    //   const link = path.join(dirname, entry.uri);
-    //   addLink(link);
-    // }
-    return;
-  }
-
-  unified()
+export async function parseLinks(markdown: string): Promise<string[]> {
+  const result: string[] = [];
+  await unified()
     .use(rehypeParse)
     .use(remarkGfm)
     .use(rehypeRemark)
     .use(() => (tree: Root) => {
       visit(tree, "text", (TreeNode) => {
         markdownLinkExtractor(String(TreeNode.value)).links.forEach((url) =>
-          addLink(url),
+          result.push(url),
         );
       });
-      visit(tree, "link", (TreeNode) => addLink(TreeNode.url));
-      visit(tree, "image", (TreeNode) => addLink(TreeNode.url));
+      visit(tree, "link", (TreeNode) => result.push(TreeNode.url));
+      visit(tree, "image", (TreeNode) => result.push(TreeNode.url));
     })
     .use(remarkStringify)
     .process(markdown);
+
+  return result;
+}
+
+async function parseObjectsInv(filePath: string): Promise<ParsedFile> {
+  const absoluteFilePath = path.join(getRoot(), filePath);
+  const objinv = await ObjectsInv.fromFile(absoluteFilePath);
+  // All URIs are relative to the objects.inv file
+  const dirname = removePrefix(path.dirname(filePath), "public");
+  const links = objinv.entries.map((entry) => path.join(dirname, entry.uri));
+  return { links, anchors: [] };
+}
+
+export async function parseFile(filePath: string): Promise<ParsedFile> {
+  if (filePath.endsWith(".inv")) {
+    // This is disabled for now until we fix the broken links in objects.inv
+    // return await parseObjectsInv(filePath)
+    return { links: [], anchors: [] };
+  }
+  const source = await readFile(filePath, { encoding: "utf8" });
+  const markdown =
+    path.extname(filePath) === ".ipynb" ? markdownFromNotebook(source) : source;
+  const links = await parseLinks(markdown);
+  return { anchors: parseAnchors(markdown), links };
 }

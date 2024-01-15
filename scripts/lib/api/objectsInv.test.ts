@@ -28,7 +28,10 @@ describe("objects.inv", () => {
         "# The remainder of this file is compressed using zlib.\n",
     );
 
-    const uriIndices = [10, 88, 107, 1419, 24599];
+    const uriIndices = [10, 88, 107, 1419, 23575];
+    // This test fails when you include / exclude entries, which shifts some array indices.
+    // Use the following code to find the new indices.
+    // console.log(objectsInv.entries.findLastIndex( e => { return e.uri.includes("index") }))
     expect(uriIndices.map((i) => objectsInv.entries[i].uri))
       .toMatchInlineSnapshot(`
       [
@@ -39,12 +42,12 @@ describe("objects.inv", () => {
         "index.html",
       ]
     `);
-    const nameIndices = [24599, 25170];
+    const nameIndices = [23575, 24146];
     expect(nameIndices.map((i) => objectsInv.entries[i].dispname))
       .toMatchInlineSnapshot(`
     [
       "Qiskit 0.45 documentation",
-      "Circuits Deprecations",
+      "FakeOslo",
     ]
     `);
   });

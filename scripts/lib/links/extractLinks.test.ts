@@ -11,11 +11,7 @@
 // that they have been altered from the originals.
 
 import { expect, test } from "@jest/globals";
-import {
-  markdownFromNotebook,
-  parseAnchors,
-  addLinksToMap,
-} from "./extractLinks";
+import { markdownFromNotebook, parseAnchors, parseLinks } from "./extractLinks";
 
 test("markdownFromNotebook()", () => {
   const result = markdownFromNotebook(`
@@ -76,8 +72,7 @@ test("parseAnchors()", () => {
   ]);
 });
 
-test("addLinksToMap()", async () => {
-  const linksToMap = new Map();
+test("parseLinks()", async () => {
   const markdown = `
     # A header
     Our [first link!](https://ibm.com) and, look, [another](./relative)!
@@ -86,23 +81,11 @@ test("addLinksToMap()", async () => {
 
     <a href="./explicit-anchor">Explicit anchor</a>
     `;
-  await addLinksToMap("file1.md", markdown, linksToMap);
-  expect(linksToMap).toEqual(
-    new Map([
-      ["https://ibm.com", ["file1.md"]],
-      ["./explicit-anchor", ["file1.md"]],
-      ["./relative", ["file1.md"]],
-      ["/images/my_image.png", ["file1.md"]],
-    ]),
-  );
-
-  await addLinksToMap("file2.md", markdown, linksToMap);
-  expect(linksToMap).toEqual(
-    new Map([
-      ["https://ibm.com", ["file1.md", "file2.md"]],
-      ["./explicit-anchor", ["file1.md", "file2.md"]],
-      ["./relative", ["file1.md", "file2.md"]],
-      ["/images/my_image.png", ["file1.md", "file2.md"]],
-    ]),
-  );
+  const result = await parseLinks(markdown);
+  expect(result).toEqual([
+    "https://ibm.com",
+    "./relative",
+    "/images/my_image.png",
+    "./explicit-anchor",
+  ]);
 });

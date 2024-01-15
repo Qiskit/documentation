@@ -14,7 +14,7 @@ import { globby } from "globby";
 
 import { Link, File } from "./LinkChecker";
 import FILES_TO_IGNORES from "./ignores";
-import { getMarkdownAndAnchors, addLinksToMap } from "./extractLinks";
+import { parseFile } from "./extractLinks";
 
 export class FileBatch {
   /**
@@ -64,22 +64,15 @@ export class FileBatch {
   async load(): Promise<[File[], Link[], Link[]]> {
     const files: File[] = [];
     for (let filePath of this.toLoad) {
-      if (filePath.endsWith(".inv")) {
-        continue;
-      }
-      const [_, anchors] = await getMarkdownAndAnchors(filePath);
-      files.push(new File(filePath, anchors));
+      const parsed = await parseFile(filePath);
+      files.push(new File(filePath, parsed.anchors));
     }
 
     const linksToOriginFiles = new Map<string, string[]>();
     for (const filePath of this.toCheck) {
-      if (filePath.endsWith(".inv")) {
-        await addLinksToMap(filePath, "", linksToOriginFiles);
-        continue;
-      }
-      const [markdown, anchors] = await getMarkdownAndAnchors(filePath);
-      files.push(new File(filePath, anchors));
-      await addLinksToMap(filePath, markdown, linksToOriginFiles);
+      const parsed = await parseFile(filePath);
+      files.push(new File(filePath, parsed.anchors));
+      addLinksToMap(filePath, parsed.links, linksToOriginFiles);
     }
 
     const internalLinks: Link[] = [];
@@ -131,4 +124,19 @@ export class FileBatch {
     });
     return allGood;
   }
+}
+
+export function addLinksToMap(
+  filePath: string,
+  links: string[],
+  linksToOriginFiles: Map<string, string[]>,
+): void {
+  links.forEach((link) => {
+    const entry = linksToOriginFiles.get(link);
+    if (entry === undefined) {
+      linksToOriginFiles.set(link, [filePath]);
+    } else {
+      entry.push(filePath);
+    }
+  });
 }
