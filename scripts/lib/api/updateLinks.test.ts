@@ -53,21 +53,17 @@ describe("updateLinks", () => {
     ];
 
     const objectsInvEntries = [
-      "stubs/qiskit.algorithms.Eigensolver.html#$",
-      "stubs/qiskit.algorithms.Eigensolver.html#$",
-      "stubs/qiskit.algorithms.EigensolverResult.html#$",
-      "stubs/qiskit.algorithms.EstimationProblem.html#$",
-      "stubs/qiskit.algorithms.EvolutionProblem.html#$",
-      "stubs/qiskit.algorithms.EvolutionProblem.html#$",
-      "stubs/qiskit.algorithms.FasterAmplitudeEstimationResult.html#$",
-      "stubs/qiskit.algorithms.FasterAmplitudeEstimationResult.html#$",
-      "stubs/qiskit_ibm_runtime.QiskitRuntimeService.html",
-      "stubs/qiskit_ibm_runtime.RuntimeJob.html#qiskit_ibm_runtime.RuntimeJob.submit",
-      "stubs/qiskit_ibm_runtime.RuntimeEncoder.html#qiskit_ibm_runtime.RuntimeEncoder",
-      "stubs/qiskit_ibm_runtime.options.Options.html#options",
-      "tutorials/qaoa_with_primitives.html",
-      "tutorials/vqe_with_estimator.html#Step-1:-Map-classical-inputs-to-a-quantum-problem",
+      "stubs/qiskit.algorithms.Eigensolver#qiskit.algorithms.Eigensolver",
+      "stubs/qiskit.algorithms.EstimationProblem.html#qiskit.algorithms.EstimationProblem.state_preparation",
+      "stubs/qiskit.algorithms.FasterAmplitudeEstimationResult.html#qiskit.algorithms.FasterAmplitudeEstimationResult.success_probability",
+      "stubs/qiskit_ibm_runtime.QiskitRuntimeService",
+      "stubs/qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.submit",
+      "stubs/qiskit_ibm_runtime.RuntimeEncoder#qiskit_ibm_runtime.RuntimeEncoder",
+      "stubs/qiskit_ibm_runtime.options.Options#options",
+      "tutorials/qaoa_with_primitives",
+      "tutorials/vqe_with_estimator#Step-1:-Map-classical-inputs-to-a-quantum-problem",
       "qiskit.algorithms.gradients.LinCombEstimatorGradient#SUPPORTED_GATES",
+      "stubs/qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations#MEASURE_PATCH_CYCLES",
     ].map((uri) => {
       return {
         name: "-",
@@ -117,14 +113,9 @@ describe("updateLinks", () => {
     `);
     expect(objectsInv.entries.map((e) => e.uri)).toMatchInlineSnapshot(`
       [
-        "qiskit.algorithms.Eigensolver#$",
-        "qiskit.algorithms.Eigensolver#$",
-        "qiskit.algorithms.EigensolverResult#$",
-        "qiskit.algorithms.EstimationProblem#$",
-        "qiskit.algorithms.EvolutionProblem#$",
-        "qiskit.algorithms.EvolutionProblem#$",
-        "qiskit.algorithms.FasterAmplitudeEstimationResult#$",
-        "qiskit.algorithms.FasterAmplitudeEstimationResult#$",
+        "qiskit.algorithms.Eigensolver#qiskit.algorithms.Eigensolver",
+        "qiskit.algorithms.EstimationProblem#qiskit.algorithms.EstimationProblem.state_preparation",
+        "qiskit.algorithms.FasterAmplitudeEstimationResult#qiskit.algorithms.FasterAmplitudeEstimationResult.success_probability",
         "qiskit_ibm_runtime.QiskitRuntimeService",
         "qiskit_ibm_runtime.RuntimeJob#submit",
         "qiskit_ibm_runtime.RuntimeEncoder#qiskit_ibm_runtime.RuntimeEncoder",
@@ -132,6 +123,7 @@ describe("updateLinks", () => {
         "tutorials/qaoa_with_primitives",
         "tutorials/vqe_with_estimator#step-1:-map-classical-inputs-to-a-quantum-problem",
         "qiskit.algorithms.gradients.LinCombEstimatorGradient#supported_gates",
+        "qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations#measure_patch_cycles",
       ]
     `);
   });
