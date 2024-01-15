@@ -13,6 +13,8 @@
 import { readFile, writeFile } from "fs/promises";
 import { unzipSync, deflateSync } from "zlib";
 import { removeSuffix } from "../stringUtils";
+import { join, dirname, extname } from "path";
+import { mkdirp } from "mkdirp";
 
 /**
  * Some pages exist in the sphinx docs but not in our docs
@@ -74,6 +76,9 @@ export class ObjectsInv {
    *   https://github.com/bskinn/sphobjinv/blob/stable/src/sphobjinv/zlib.py
    */
   static async fromFile(path: string): Promise<ObjectsInv> {
+    if (extname(path) === "") {
+      path = join(path, "objects.inv");
+    }
     let buffer = await readFile(path);
     // Extract preamble (first 4 lines of file)
     let preamble = "";
@@ -161,10 +166,14 @@ export class ObjectsInv {
    * Compress and write to file
    */
   async write(path: string): Promise<void> {
+    if (extname(path) === "") {
+      path = join(path, "objects.inv");
+    }
     const preamble = Buffer.from(this.preamble);
     const compressed = deflateSync(Buffer.from(this.entriesString(), "utf8"), {
       level: 9,
     });
+    await mkdirp(dirname(path));
     await writeFile(path, Buffer.concat([preamble, compressed]));
   }
 }

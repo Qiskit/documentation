@@ -213,7 +213,7 @@ async function convertHtmlToMarkdown(
   baseGitHubUrl: string,
   pkg: Pkg,
 ) {
-  const objectsInv = await ObjectsInv.fromFile(join(htmlPath, "objects.inv"));
+  const objectsInv = await ObjectsInv.fromFile(htmlPath);
   const files = await globby(
     [
       "apidocs/**.html",
@@ -284,8 +284,7 @@ async function convertHtmlToMarkdown(
   const objectsInvDestination = pkg.historical
     ? `public/api/${pkg.name}/${pkg.versionWithoutPatch}`
     : `public/api/${pkg.name}`;
-  await mkdirp(join(getRoot(), objectsInvDestination));
-  await objectsInv.write(join(getRoot(), objectsInvDestination, "objects.inv"));
+  await objectsInv.write(join(getRoot(), objectsInvDestination));
   for (const result of results) {
     let path = urlToPath(result.url);
 
