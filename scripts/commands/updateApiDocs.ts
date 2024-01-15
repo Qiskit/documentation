@@ -277,10 +277,7 @@ async function convertHtmlToMarkdown(
   await dedupeHtmlIdsFromResults(results);
   addFrontMatter(results, pkg);
 
-  const objectsInvDestination = pkg.historical
-    ? `public/api/${pkg.name}/${pkg.versionWithoutPatch}`
-    : `public/api/${pkg.name}`;
-  await objectsInv.write(join(getRoot(), objectsInvDestination));
+  await objectsInv.write(getPkgRoot(pkg, "public"));
   for (const result of results) {
     let path = urlToPath(result.url);
 
