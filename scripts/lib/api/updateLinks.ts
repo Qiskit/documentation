@@ -34,7 +34,7 @@ import { transformSpecialCaseUrl } from "./specialCaseResults";
  * tags, and anchors with no periods are from markdown headings. This seems to
  * work ok.
  */
-function ConvertMarkdownAnchorsToLowerCase(url: string): string {
+function lowerCaseIfMarkdownAnchor(url: string): string {
   if (!url.includes("#")) {
     return url;
   }
@@ -87,7 +87,7 @@ export function updateUrl(
     url = [...initialUrlParts, parentName].join("/") + "#" + member;
   }
 
-  url = ConvertMarkdownAnchorsToLowerCase(url);
+  url = lowerCaseIfMarkdownAnchor(url);
   return url;
 }
 
