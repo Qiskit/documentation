@@ -14,7 +14,7 @@ import { mkdirp } from "mkdirp";
 import pMap from "p-map";
 import { copyFile } from "fs/promises";
 
-import { Pkg } from "../sharedTypes";
+import { Pkg, getPkgRoot } from "../sharedTypes";
 import { Image } from "./HtmlToMdResult";
 import { pathExists } from "../fs";
 
@@ -23,9 +23,7 @@ export async function saveImages(
   originalImagesFolderPath: string,
   pkg: Pkg,
 ) {
-  const imagesDestinationFolder = pkg.historical
-    ? `public/images/api/${pkg.name}/${pkg.versionWithoutPatch}`
-    : `public/images/api/${pkg.name}`;
+  const imagesDestinationFolder = getPkgRoot(pkg, "public/images");
   if (!(await pathExists(imagesDestinationFolder))) {
     await mkdirp(imagesDestinationFolder);
   }
