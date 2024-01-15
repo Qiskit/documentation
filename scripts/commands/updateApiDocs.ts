@@ -32,7 +32,7 @@ import { specialCaseResults } from "../lib/api/specialCaseResults";
 import addFrontMatter from "../lib/api/addFrontMatter";
 import { dedupeHtmlIdsFromResults } from "../lib/api/dedupeHtmlIds";
 import { removePrefix, removeSuffix } from "../lib/stringUtils";
-import { Pkg, PkgInfo, Link } from "../lib/sharedTypes";
+import { Pkg, PkgInfo, Link, getPkgRoot } from "../lib/sharedTypes";
 import { zxMain } from "../lib/zx";
 import { pathExists, getRoot } from "../lib/fs";
 import { downloadCIArtifact } from "../lib/api/downloadCIArtifacts";
@@ -170,9 +170,7 @@ zxMain(async () => {
   }
 
   const baseGitHubUrl = `https://github.com/${pkg.githubSlug}/tree/stable/${pkg.versionWithoutPatch}/`;
-  const outputDir = pkg.historical
-    ? `${getRoot()}/docs/api/${pkg.name}/${pkg.versionWithoutPatch}`
-    : `${getRoot()}/docs/api/${pkg.name}`;
+  const outputDir = getPkgRoot(pkg, `${getRoot()}/docs`);
 
   if (pkg.historical && !(await pathExists(outputDir))) {
     await mkdirp(outputDir);
@@ -235,9 +233,7 @@ async function convertHtmlToMarkdown(
       html,
       url: `${pkg.baseUrl}/${file}`,
       baseGitHubUrl,
-      imageDestination: pkg.historical
-        ? `/images/api/${pkg.name}/${pkg.versionWithoutPatch}`
-        : `/images/api/${pkg.name}`,
+      imageDestination: getPkgRoot(pkg, "/images"),
       releaseNotesTitle: `${pkg.title} ${pkg.versionWithoutPatch} release notes`,
     });
 
