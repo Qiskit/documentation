@@ -18,30 +18,31 @@ description: API documentation for qiskit-ibm-runtime`;
 export const PROVIDER_INDEX_META = `title: Qiskit IBM Provider API Docs
 description: API documentation for qiskit-ibm-provider`;
 
+export function transformSpecialCaseUrl(url: string): string {
+  return (
+    url
+      // We use `-` rather than `_` as our delimiter.
+      .replace(/(?<=^|\/)release_notes(?=#|$)/g, "release-notes")
+      .replace(/(?<=^|\/)terra(?=#|$)/g, "index")
+      .replace(/(?<=^|\/)ibm-provider(?=#|$)/g, "index")
+      .replace(/(?<=^|\/)ibm-runtime(?=#|$)/g, "index")
+  );
+}
+
 export function specialCaseResults(results: HtmlToMdResultWithUrl[]): void {
   for (let result of results) {
-    // We use `-` rather than `_` as our delimiter.
-    if (result.url.endsWith("/release_notes")) {
-      result.url = result.url.replace(/\/release_notes$/g, "/release-notes");
-    }
-
-    // Before Qiskit 0.44, the API index page was called terra.html.
-    if (result.url.endsWith("/terra")) {
-      result.url = result.url.replace(/\/terra$/g, "/index");
-    }
-
     if (result.url.endsWith("/ibm-provider")) {
-      result.url = result.url.replace(/\/ibm-provider$/g, "/index");
       result.meta = {
         hardcodedFrontmatter: PROVIDER_INDEX_META,
       };
     }
 
     if (result.url.endsWith("/ibm-runtime")) {
-      result.url = result.url.replace(/\/ibm-runtime$/g, "/index");
       result.meta = {
         hardcodedFrontmatter: RUNTIME_INDEX_META,
       };
     }
+
+    result.url = transformSpecialCaseUrl(result.url);
   }
 }
