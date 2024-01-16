@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RYGate
 
 <span id="qiskit.circuit.library.RYGate" />
 
-`qiskit.circuit.library.RYGate(theta, label=None, *, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/ry.py "view source code")
+`qiskit.circuit.library.RYGate(theta, label=None, *, duration=None, unit='dt')`
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -29,13 +29,11 @@ q_0: ┤ Ry(ϴ) ├
 **Matrix Representation:**
 
 $$
-\newcommand{\rotationangle}{\frac{\theta}{2}}
-
-RY(\theta) = \exp\left(-i \rotationangle Y\right) =
+ \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}RY(\theta) = \exp\left(-i \th Y\right) =
     \begin{pmatrix}
-        \cos\left(\rotationangle\right) & -\sin\left(\rotationangle\right) \\
-        \sin\left(\rotationangle\right) & \cos\left(\rotationangle\right)
-    \end{pmatrix}
+        \cos\left(\th\right) & -\sin\left(\th\right) \\
+        \sin\left(\th\right) & \cos\left(\th\right)
+    \end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
 Create new RY gate.

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RXXGate
 
 <span id="qiskit.circuit.library.RXXGate" />
 
-`qiskit.circuit.library.RXXGate(theta, label=None, *, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/rxx.py "view source code")
+`qiskit.circuit.library.RXXGate(theta, label=None, *, duration=None, unit='dt')`
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -33,15 +33,13 @@ q_1: ┤0        ├
 **Matrix Representation:**
 
 $$
-\newcommand{\rotationangle}{\frac{\theta}{2}}
-
-R_{XX}(\theta) = \exp\left(-i \rotationangle X{\otimes}X\right) =
+ \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{XX}(\theta) = \exp\left(-i \th X{\otimes}X\right) =
     \begin{pmatrix}
-        \cos\left(\rotationangle\right) & 0 & 0 & -i\sin\left(\rotationangle\right) \\
-        0 & \cos\left(\rotationangle\right) & -i\sin\left(\rotationangle\right) & 0 \\
-        0 & -i\sin\left(\rotationangle\right) & \cos\left(\rotationangle\right) & 0 \\
-        -i\sin\left(\rotationangle\right) & 0 & 0 & \cos\left(\rotationangle\right)
-    \end{pmatrix}
+        \cos\left(\th\right)   & 0           & 0           & -i\sin\left(\th\right) \\
+        0           & \cos\left(\th\right)   & -i\sin\left(\th\right) & 0 \\
+        0           & -i\sin\left(\th\right) & \cos\left(\th\right)   & 0 \\
+        -i\sin\left(\th\right) & 0           & 0           & \cos\left(\th\right)
+    \end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
 **Examples:**
@@ -55,13 +53,13 @@ $$
 > $$
 >
 > $$
-> R_{XX}\left(\theta = \frac{\pi}{2}\right) = \frac{1}{\sqrt{2}}
+> \begin{split}R_{XX}\left(\theta = \frac{\pi}{2}\right) = \frac{1}{\sqrt{2}}
 >                         \begin{pmatrix}
 >                             1  & 0  & 0  & -i \\
 >                             0  & 1  & -i & 0 \\
 >                             0  & -i & 1  & 0 \\
 >                             -i & 0  & 0  & 1
->                         \end{pmatrix}
+>                         \end{pmatrix}\end{split}
 > $$
 
 Create new RXX gate.

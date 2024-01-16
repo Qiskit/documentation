@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.SXdgGate
 
 <span id="qiskit.circuit.library.SXdgGate" />
 
-`qiskit.circuit.library.SXdgGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/sx.py "view source code")
+`qiskit.circuit.library.SXdgGate(*args, _force_mutable=False, **kwargs)`
 
 Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
@@ -19,21 +19,21 @@ The inverse single-qubit Sqrt(X) gate.
 Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") with the [`sxdg()`](qiskit.circuit.QuantumCircuit#sxdg "qiskit.circuit.QuantumCircuit.sxdg") method.
 
 $$
-\sqrt{X}^{\dagger} = \frac{1}{2} \begin{pmatrix}
+\begin{split}\sqrt{X}^{\dagger} = \frac{1}{2} \begin{pmatrix}
         1 - i & 1 + i \\
         1 + i & 1 - i
-    \end{pmatrix}
+    \end{pmatrix}\end{split}
 $$
 
 <Admonition title="Note" type="note">
   A global phase difference exists between the definitions of $RX(-\pi/2)$ and $\sqrt{X}^{\dagger}$.
 
   $$
-  RX(-\pi/2) = \frac{1}{\sqrt{2}} \begin{pmatrix}
+  \begin{split}RX(-\pi/2) = \frac{1}{\sqrt{2}} \begin{pmatrix}
               1 & i \\
               i & 1
             \end{pmatrix}
-          = e^{-i \pi/4} \sqrt{X}^{\dagger}
+          = e^{-i pi/4} \sqrt{X}^{\dagger}\end{split}
   $$
 </Admonition>
 

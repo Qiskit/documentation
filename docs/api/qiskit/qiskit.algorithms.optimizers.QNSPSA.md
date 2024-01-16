@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.QNSPSA
 
 <span id="qiskit.algorithms.optimizers.QNSPSA" />
 
-`qiskit.algorithms.optimizers.QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/optimizers/qnspsa.py "view source code")
+`qiskit.algorithms.optimizers.QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)`
 
 Bases: [`SPSA`](qiskit.algorithms.optimizers.SPSA "qiskit.algorithms.optimizers.spsa.SPSA")
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.state_fidelities.BaseStateFidelity
 
 <span id="qiskit.algorithms.state_fidelities.BaseStateFidelity" />
 
-`qiskit.algorithms.state_fidelities.BaseStateFidelity`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/state_fidelities/base_state_fidelity.py "view source code")
+`qiskit.algorithms.state_fidelities.BaseStateFidelity`
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

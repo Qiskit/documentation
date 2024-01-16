@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.iSwapGate
 
 <span id="qiskit.circuit.library.iSwapGate" />
 
-`qiskit.circuit.library.iSwapGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/iswap.py "view source code")
+`qiskit.circuit.library.iSwapGate(*args, _force_mutable=False, **kwargs)`
 
 Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
@@ -41,20 +41,20 @@ q_1: ┤ S ├─────┤ X ├──■──┤ H ├
 **Matrix Representation:**
 
 $$
-iSWAP = R_{XX+YY}\left(-\frac{\pi}{2}\right)
+\begin{split}iSWAP = R_{XX+YY}\left(-\frac{\pi}{2}\right)
   = \exp\left(i \frac{\pi}{4} \left(X{\otimes}X+Y{\otimes}Y\right)\right) =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 0 & i & 0 \\
         0 & i & 0 & 0 \\
         0 & 0 & 0 & 1
-    \end{pmatrix}
+    \end{pmatrix}\end{split}
 $$
 
 This gate is equivalent to a SWAP up to a diagonal.
 
 $$
-iSWAP =
+\begin{split}iSWAP =
    \begin{pmatrix}
        1 & 0 & 0 & 0 \\
        0 & 0 & 1 & 0 \\
@@ -66,7 +66,7 @@ iSWAP =
        0 & i & 0 & 0 \\
        0 & 0 & i & 0 \\
        0 & 0 & 0 & 1
-   \end{pmatrix}
+   \end{pmatrix}\end{split}
 $$
 
 Create new iSwap gate.

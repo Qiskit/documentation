@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.UGate
 
 <span id="qiskit.circuit.library.UGate" />
 
-`qiskit.circuit.library.UGate(theta, phi, lam, label=None, *, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/u.py "view source code")
+`qiskit.circuit.library.UGate(theta, phi, lam, label=None, *, duration=None, unit='dt')`
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -29,13 +29,11 @@ q_0: ┤ U(ϴ,φ,λ) ├
 **Matrix Representation:**
 
 $$
-\newcommand{\rotationangle}{\frac{\theta}{2}}
-
-U(\theta, \phi, \lambda) =
-\begin{pmatrix}
-    \cos\left(\rotationangle\right) & -e^{i\lambda}\sin\left(\rotationangle\right) \\
-    e^{i\phi}\sin\left(\rotationangle\right) & e^{i(\phi+\lambda)}\cos\left(\rotationangle\right)
-\end{pmatrix}
+ \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}U(\theta, \phi, \lambda) =
+    \begin{pmatrix}
+        \cos\left(\th\right)          & -e^{i\lambda}\sin\left(\th\right) \\
+        e^{i\phi}\sin\left(\th\right) & e^{i(\phi+\lambda)}\cos\left(\th\right)
+    \end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
 <Admonition title="Note" type="note">
