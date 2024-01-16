@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.DAGCircuit
 
 <span id="qiskit.dagcircuit.DAGCircuit" />
 
-`qiskit.dagcircuit.DAGCircuit`
+`qiskit.dagcircuit.DAGCircuit`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/dagcircuit/dagcircuit.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -343,7 +343,7 @@ Returns set of the descendants of a node as DAGOpNodes and DAGOutNodes.
 
 Draws the dag circuit.
 
-This function needs [pydot](https://github.com/erocarrera/pydot), which in turn needs [Graphviz](https://www.graphviz.org/) to be installed.
+This function needs [Graphviz](https://www.graphviz.org/) to be installed. Graphviz is not a python package and can’t be pip installed (the `graphviz` package on PyPI is a Python interface library for Graphviz and does not actually install Graphviz). You can refer to [the Graphviz documentation](https://www.graphviz.org/download/) on how to install it.
 
 **Parameters**
 

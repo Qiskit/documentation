@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.basicaer.QasmSimulatorPy
 
 <span id="qiskit.providers.basicaer.QasmSimulatorPy" />
 
-`qiskit.providers.basicaer.QasmSimulatorPy(configuration=None, provider=None, **fields)`
+`qiskit.providers.basicaer.QasmSimulatorPy(configuration=None, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/basicaer/qasm_simulator.py "view source code")
 
 Bases: [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1")
 
@@ -68,7 +68,7 @@ default values set
 
 ### MAX\_QUBITS\_MEMORY
 
-`= 28`
+`= 29`
 
 <span id="qiskit.providers.basicaer.QasmSimulatorPy.SHOW_FINAL_STATE" />
 

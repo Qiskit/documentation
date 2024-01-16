@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GRZ
 
 <span id="qiskit.circuit.library.GRZ" />
 
-`qiskit.circuit.library.GRZ(num_qubits, phi)`
+`qiskit.circuit.library.GRZ(num_qubits, phi)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/gr.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -105,7 +105,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 190`
+`= 198`
 
 <span id="qiskit.circuit.library.GRZ.layout" />
 

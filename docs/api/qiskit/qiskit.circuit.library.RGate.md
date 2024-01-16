@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RGate
 
 <span id="qiskit.circuit.library.RGate" />
 
-`qiskit.circuit.library.RGate(theta, phi, label=None, *, duration=None, unit='dt')`
+`qiskit.circuit.library.RGate(theta, phi, label=None, *, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/r.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -29,11 +29,13 @@ q_0: ┤ R(ϴ) ├
 **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R(\theta, \phi) = e^{-i \th \left(\cos{\phi} x + \sin{\phi} y\right)} =
+\newcommand{\rotationangle}{\frac{\theta}{2}}
+
+R(\theta, \phi) = e^{-i \rotationangle \left(\cos{\phi} x + \sin{\phi} y\right)} =
     \begin{pmatrix}
-        \cos\left(\th\right) & -i e^{-i \phi} \sin\left(\th\right) \\
-        -i e^{i \phi} \sin\left(\th\right) & \cos\left(\th\right)
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+        \cos\left(\rotationangle\right) & -i e^{-i \phi} \sin\left(\rotationangle\right) \\
+        -i e^{i \phi} \sin\left(\rotationangle\right) & \cos\left(\rotationangle\right)
+    \end{pmatrix}
 $$
 
 Create new r single-qubit gate.
