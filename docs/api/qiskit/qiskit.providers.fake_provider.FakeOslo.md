@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeOslo
 
 <span id="qiskit.providers.fake_provider.FakeOslo" />
 
-`qiskit.providers.fake_provider.FakeOslo`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/backends/oslo/fake_oslo.py "view source code")
+`qiskit.providers.fake_provider.FakeOslo`
 
 Bases: [`FakeBackendV2`](providers_fake_provider#qiskit.providers.fake_provider.fake_backend.FakeBackendV2 "qiskit.providers.fake_provider.fake_backend.FakeBackendV2")
 
@@ -48,7 +48,7 @@ Return the [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.Coup
 
 ### dirname
 
-`= '/home/runner/work/qiskit/qiskit/qiskit/providers/fake_provider/backends/oslo'`
+`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends/oslo'`
 
 <span id="qiskit.providers.fake_provider.FakeOslo.dt" />
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.QFI
 
 <span id="qiskit.algorithms.gradients.QFI" />
 
-`qiskit.algorithms.gradients.QFI(qgt, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/gradients/qfi.py "view source code")
+`qiskit.algorithms.gradients.QFI(qgt, options=None)`
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

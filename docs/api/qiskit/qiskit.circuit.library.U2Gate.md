@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.U2Gate
 
 <span id="qiskit.circuit.library.U2Gate" />
 
-`qiskit.circuit.library.U2Gate(phi, lam, label=None, *, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/u2.py "view source code")
+`qiskit.circuit.library.U2Gate(phi, lam, label=None, *, duration=None, unit='dt')`
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -42,11 +42,11 @@ q_0: ┤ U2(φ,λ) ├
 **Matrix Representation:**
 
 $$
-U2(\phi, \lambda) = \frac{1}{\sqrt{2}}
+\begin{split}U2(\phi, \lambda) = \frac{1}{\sqrt{2}}
     \begin{pmatrix}
         1          & -e^{i\lambda} \\
         e^{i\phi} & e^{i(\phi+\lambda)}
-    \end{pmatrix}
+    \end{pmatrix}\end{split}
 $$
 
 **Examples:**

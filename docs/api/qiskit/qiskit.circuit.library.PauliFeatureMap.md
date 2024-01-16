@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PauliFeatureMap
 
 <span id="qiskit.circuit.library.PauliFeatureMap" />
 
-`qiskit.circuit.library.PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/data_preparation/pauli_feature_map.py "view source code")
+`qiskit.circuit.library.PauliFeatureMap(feature_dimension=None, reps=2, entanglement='full', alpha=2.0, paulis=None, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='PauliFeatureMap')`
 
 Bases: [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.n_local.n_local.NLocal")
 
@@ -26,10 +26,10 @@ $$
 Here, $S$ is a set of qubit indices that describes the connections in the feature map, $\mathcal{I}$ is a set containing all these index sets, and $P_i \in \{I, X, Y, Z\}$. Per default the data-mapping $\phi_S$ is
 
 $$
-\phi_S(\vec{x}) = \begin{cases}
+\begin{split}\phi_S(\vec{x}) = \begin{cases}
     x_i \text{ if } S = \{i\} \\
     \prod_{j \in S} (\pi - x_j) \text{ if } |S| > 1
-    \end{cases}.
+    \end{cases}.\end{split}
 $$
 
 The possible connections can be set using the `entanglement` and `paulis` arguments. For example, for single-qubit $Z$ rotations and two-qubit $YY$ interactions between all qubit pairs, we can set:
@@ -220,7 +220,7 @@ If barriers are inserted in between the layers or not.
 
 ### instances
 
-`= 191`
+`= 229`
 
 <span id="qiskit.circuit.library.PauliFeatureMap.layout" />
 
