@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.Estimator
 
 <span id="qiskit_ibm_runtime.Estimator" />
 
-`Estimator(backend=None, session=None, options=None)`
+`Estimator(backend=None, session=None, options=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.17/qiskit_ibm_runtime/estimator.py "view source code")
 
 Class for interacting with Qiskit Runtime Estimator primitive service.
 
