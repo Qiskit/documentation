@@ -32,7 +32,7 @@ This module contains two public functions, both of which create a [`QuantumCircu
 
 <span id="qiskit.qasm2.load" />
 
-`qiskit.qasm2.load(filename, *, include_path=('.',), include_input_directory='append', custom_instructions=(), custom_classical=(), strict=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm2.py "view source code")
+`qiskit.qasm2.load(filename, *, include_path=('.',), include_input_directory='append', custom_instructions=(), custom_classical=(), strict=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm2/__init__.py "view source code")
 
 Parse an OpenQASM 2 program from a file into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). The given path should be ASCII or UTF-8 encoded, and contain the OpenQASM 2 program.
 
@@ -55,7 +55,7 @@ A circuit object representing the same OpenQASM 2 program.
 
 <span id="qiskit.qasm2.loads" />
 
-`qiskit.qasm2.loads(string, *, include_path=('.',), custom_instructions=(), custom_classical=(), strict=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm2.py "view source code")
+`qiskit.qasm2.loads(string, *, include_path=('.',), custom_instructions=(), custom_classical=(), strict=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm2/__init__.py "view source code")
 
 Parse an OpenQASM 2 program from a string into a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit").
 

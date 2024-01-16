@@ -26,7 +26,7 @@ The high-level functions are simply [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.
 
 <span id="qiskit.qasm3.dump" />
 
-`qiskit.qasm3.dump(circuit, stream, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3.py "view source code")
+`qiskit.qasm3.dump(circuit, stream, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/__init__.py "view source code")
 
 Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object as an OpenQASM 3 stream to file-like object.
 
@@ -38,7 +38,7 @@ Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.Qua
 
 <span id="qiskit.qasm3.dumps" />
 
-`qiskit.qasm3.dumps(circuit, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3.py "view source code")
+`qiskit.qasm3.dumps(circuit, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/__init__.py "view source code")
 
 Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object in an OpenQASM 3 string.
 
@@ -182,7 +182,7 @@ Currently only two high-level functions are offered, as Qiskit support for impor
 
 <span id="qiskit.qasm3.load" />
 
-`qiskit.qasm3.load(filename)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3.py "view source code")
+`qiskit.qasm3.load(filename)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/__init__.py "view source code")
 
 Load an OpenQASM 3 program from the file `filename`.
 
@@ -204,7 +204,7 @@ a circuit representation of the OpenQASM 3 program.
 
 <span id="qiskit.qasm3.loads" />
 
-`qiskit.qasm3.loads(program)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3.py "view source code")
+`qiskit.qasm3.loads(program)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/qasm3/__init__.py "view source code")
 
 Load an OpenQASM 3 program from the given string.
 

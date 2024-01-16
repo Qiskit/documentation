@@ -176,6 +176,12 @@ export function replaceViewcodeLinksWithGitHub(
   // When adding new entries, add a dedicated test case!
   const specialCases = new Map([
     ["qiskit_ibm_provider", "qiskit_ibm_provider/__init__"],
+    ["qiskit/qasm2", "qiskit/qasm2/__init__"],
+    ["qiskit/qasm3", "qiskit/qasm3/__init__"],
+    [
+      "qiskit/transpiler/preset_passmanagers",
+      "qiskit/transpiler/preset_passmanagers/__init__",
+    ],
   ]);
   $main.find("a").each((_, a) => {
     const $a = $(a);

@@ -26,7 +26,7 @@ This module contains functions for generating the preset pass managers for the t
 
 <span id="qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager" />
 
-`qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager(optimization_level, backend=None, target=None, basis_gates=None, inst_map=None, coupling_map=None, instruction_durations=None, backend_properties=None, timing_constraints=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, approximation_degree=None, seed_transpiler=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None, init_method=None, optimization_method=None, *, _skip_target=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/preset_passmanagers.py "view source code")
+`qiskit.transpiler.preset_passmanagers.generate_preset_pass_manager(optimization_level, backend=None, target=None, basis_gates=None, inst_map=None, coupling_map=None, instruction_durations=None, backend_properties=None, timing_constraints=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, approximation_degree=None, seed_transpiler=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, hls_config=None, init_method=None, optimization_method=None, *, _skip_target=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/preset_passmanagers/__init__.py "view source code")
 
 Generate a preset [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 
