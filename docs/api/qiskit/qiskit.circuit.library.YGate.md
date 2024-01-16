@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.YGate
 
 <span id="qiskit.circuit.library.YGate" />
 
-`qiskit.circuit.library.YGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/y.py "view source code")
+`qiskit.circuit.library.YGate(*args, _force_mutable=False, **kwargs)`
 
 Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
@@ -21,10 +21,10 @@ Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.cir
 **Matrix Representation:**
 
 $$
-Y = \begin{pmatrix}
+\begin{split}Y = \begin{pmatrix}
         0 & -i \\
         i & 0
-    \end{pmatrix}
+    \end{pmatrix}\end{split}
 $$
 
 **Circuit symbol:**
@@ -41,19 +41,19 @@ Equivalent to a $\pi$ radian rotation about the Y axis.
   A global phase difference exists between the definitions of $RY(\pi)$ and $Y$.
 
   $$
-  RY(\pi) = \begin{pmatrix}
+  \begin{split}RY(\pi) = \begin{pmatrix}
               0 & -1 \\
               1 & 0
             \end{pmatrix}
-          = -i Y
+          = -i Y\end{split}
   $$
 </Admonition>
 
 The gate is equivalent to a bit and phase flip.
 
 $$
-|0\rangle \rightarrow i|1\rangle \\
-|1\rangle \rightarrow -i|0\rangle
+\begin{split}|0\rangle \rightarrow i|1\rangle \\
+|1\rangle \rightarrow -i|0\rangle\end{split}
 $$
 
 Create new Y gate.

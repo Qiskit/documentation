@@ -71,8 +71,8 @@ Decorator for a classical function that returns a ClassicalFunction object.
 
 |                                                                                                                                                                 |                                                       |
 | --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| [`ClassicalFunction`](qiskit.circuit.classicalfunction.ClassicalFunction "qiskit.circuit.classicalfunction.ClassicalFunction")(source\[, name])                 | Represent a classical function and its logic network. |
-| [`BooleanExpression`](qiskit.circuit.classicalfunction.BooleanExpression "qiskit.circuit.classicalfunction.BooleanExpression")(expression\[, name, var\_order]) | The Boolean Expression gate.                          |
+| [`ClassicalFunction`](qiskit.circuit.classicalfunction.ClassicalFunction "qiskit.circuit.classicalfunction.ClassicalFunction")(source\[, name])                 | Represent a classical function and its logic network. |
+| [`BooleanExpression`](qiskit.circuit.classicalfunction.BooleanExpression "qiskit.circuit.classicalfunction.BooleanExpression")(expression\[, name, var\_order]) | The Boolean Expression gate.                          |
 
 ### Exceptions
 

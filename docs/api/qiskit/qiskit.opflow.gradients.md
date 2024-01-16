@@ -127,6 +127,6 @@ The derivative classes come with a gradient\_wrapper() function which returns th
 | ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------- |
 | [`Gradient`](qiskit.opflow.gradients.Gradient "qiskit.opflow.gradients.Gradient")(\[grad\_method])                                        | Deprecated: Convert an operator expression to the first-order gradient. |
 | [`Hessian`](qiskit.opflow.gradients.Hessian "qiskit.opflow.gradients.Hessian")(\[hess\_method])                                           | Deprecated: Compute the Hessian of an expected value.                   |
-| [`NaturalGradient`](qiskit.opflow.gradients.NaturalGradient "qiskit.opflow.gradients.NaturalGradient")(\[grad\_method, qfi\_method, ...]) | Deprecated: Convert an operator expression to the first-order gradient. |
+| [`NaturalGradient`](qiskit.opflow.gradients.NaturalGradient "qiskit.opflow.gradients.NaturalGradient")(\[grad\_method, qfi\_method, ...]) | Deprecated: Convert an operator expression to the first-order gradient. |
 | [`QFI`](qiskit.opflow.gradients.QFI "qiskit.opflow.gradients.QFI")(\[qfi\_method])                                                        | Deprecated: Compute the Quantum Fisher Information (QFI).               |
 

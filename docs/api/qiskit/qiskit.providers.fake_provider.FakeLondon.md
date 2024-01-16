@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeLondon
 
 <span id="qiskit.providers.fake_provider.FakeLondon" />
 
-`qiskit.providers.fake_provider.FakeLondon`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/backends/london/fake_london.py "view source code")
+`qiskit.providers.fake_provider.FakeLondon`
 
 Bases: [`FakeQasmBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeQasmBackend "qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend")
 
@@ -49,7 +49,7 @@ FakeBackend initializer.
 
 ### dirname
 
-`= '/home/runner/work/qiskit/qiskit/qiskit/providers/fake_provider/backends/london'`
+`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends/london'`
 
 <span id="qiskit.providers.fake_provider.FakeLondon.options" />
 

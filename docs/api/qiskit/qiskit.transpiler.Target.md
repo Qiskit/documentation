@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.Target
 
 <span id="qiskit.transpiler.Target" />
 
-`qiskit.transpiler.Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, acquire_alignment=1, qubit_properties=None, concurrent_measurements=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/target.py "view source code")
+`qiskit.transpiler.Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, acquire_alignment=1, qubit_properties=None, concurrent_measurements=None)`
 
 Bases: [`Mapping`](https://docs.python.org/3/library/collections.abc.html#collections.abc.Mapping "(in Python v3.12)")
 
@@ -39,7 +39,7 @@ cx_props = {
 gmap.add_instruction(CXGate(), cx_props)
 ```
 
-Each instruction in the `Target` is indexed by a unique string name that uniquely identifies that instance of an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") object in the Target. There is a 1:1 mapping between a name and an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instance in the target and each name must be unique. By default, the name is the [`name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attribute of the instruction, but can be set to anything. This lets a single target have multiple instances of the same instruction class with different parameters. For example, if a backend target has two instances of an [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate") one is parameterized over any theta while the other is tuned up for a theta of pi/6 you can add these by doing something like:
+Each instruction in the Target is indexed by a unique string name that uniquely identifies that instance of an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") object in the Target. There is a 1:1 mapping between a name and an [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instance in the target and each name must be unique. By default the name is the [`name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attribute of the instruction, but can be set to anything. This lets a single target have multiple instances of the same instruction class with different parameters. For example, if a backend target has two instances of an [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate") one is parameterized over any theta while the other is tuned up for a theta of pi/6 you can add these by doing something like:
 
 ```python
 import math
@@ -70,7 +70,7 @@ Then in the `target` object accessing by `rx_30` will get the fixed angle [`RXGa
   This class only supports additions of gates, qargs, and qubits. If you need to remove one of these the best option is to iterate over an existing object and create a new subset (or use one of the methods to do this). The object internally caches different views and these would potentially be invalidated by removals.
 </Admonition>
 
-Create a new `Target` object
+Create a new Target object
 
 <Admonition title="Deprecated since version 0.23.0" type="danger">
   `qiskit.transpiler.target.Target.__init__()`’s argument `aquire_alignment` is deprecated as of qiskit-terra 0.23.0. It will be removed no earlier than 3 months after the release date. Instead, use the argument `acquire_alignment`, which behaves identically.
@@ -86,11 +86,10 @@ Create a new `Target` object
 *   **pulse\_alignment** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – An integer value representing a time resolution of gate instruction starting time. Gate instruction should start at time which is a multiple of the alignment value.
 *   **acquire\_alignment** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – An integer value representing a time resolution of measure instruction starting time. Measure instruction should start at time which is a multiple of the alignment value.
 *   **qubit\_properties** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties") objects defining the characteristics of each qubit on the target device. If specified the length of this list must match the number of qubits in the target, where the index in the list matches the qubit number the properties are defined for. If some qubits don’t have properties available you can set that entry to `None`
-*   **concurrent\_measurements** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of sets of qubits that must be measured together. This must be provided as a nested list like `[[0, 1], [2, 3, 4]]`.
-
-**Raises**
-
-[**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If both `num_qubits` and `qubit_properties` are both defined and the value of `num_qubits` differs from the length of `qubit_properties`.
+*   **concurrent\_measurements** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of sets of qubits that must be measured together. This must be provided as a nested list like \[\[0, 1], \[2, 3, 4]].
+*   **ValueError** – If both `num_qubits` and `qubit_properties` are both
+*   **of** (*defined and the value of num\_qubits differs from the length*) –
+*   **qubit\_properties.** –
 
 ## Attributes
 
@@ -182,7 +181,7 @@ The set of qargs in the target.
 
 Add a new instruction to the [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target")
 
-As `Target` objects are strictly additive this is the primary method for modifying a `Target`. Typically, you will use this to fully populate a `Target` before using it in [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2"). For example:
+As `Target` objects are strictly additive this is the primary method for modifying a `Target`. Typically you will use this to fully populate a `Target` before using it in [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2"). For example:
 
 ```python
 from qiskit.circuit.library import CXGate
@@ -206,9 +205,9 @@ Will add a [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGa
 
 **Parameters**
 
-*   **instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – The operation object to add to the map. If it’s parameterized any value of the parameter can be set. Optionally for variable width instructions (such as control flow operations such as `ForLoop` or `MCXGate`) you can specify the class. If the class is specified than the `name` argument must be specified. When a class is used the gate is treated as global and not having any properties set.
-*   **properties** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary of qarg entries to an [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") object for that instruction implementation on the backend. Properties are optional for any instruction implementation, if there are no [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") available for the backend the value can be None. If there are no constraints on the instruction (as in a noiseless/ideal simulation) this can be set to `{None, None}` which will indicate it runs on all qubits (or all available permutations of qubits for multi-qubit gates). The first `None` indicates it applies to all qubits and the second `None` indicates there are no [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") for the instruction. By default, if properties is not set it is equivalent to passing `{None: None}`.
-*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – An optional name to use for identifying the instruction. If not specified the [`name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attribute of `gate` will be used. All gates in the `Target` need unique names. Backends can differentiate between different parameterization of a single gate by providing a unique name for each (e.g. “rx30”, “rx60”, \`”rx90”\`\` similar to the example in the documentation for the [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") class).
+*   **instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – The operation object to add to the map. If it’s paramerterized any value of the parameter can be set. Optionally for variable width instructions (such as control flow operations such as `ForLoop` or `MCXGate`) you can specify the class. If the class is specified than the `name` argument must be specified. When a class is used the gate is treated as global and not having any properties set.
+*   **properties** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")) – A dictionary of qarg entries to an [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") object for that instruction implementation on the backend. Properties are optional for any instruction implementation, if there are no [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") available for the backend the value can be None. If there are no constraints on the instruction (as in a noisless/ideal simulation) this can be set to `{None, None}` which will indicate it runs on all qubits (or all available permutations of qubits for multi-qubit gates). The first `None` indicates it applies to all qubits and the second `None` indicates there are no [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") for the instruction. By default, if properties is not set it is equivalent to passing `{None: None}`.
+*   **name** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – An optional name to use for identifying the instruction. If not specified the [`name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attribute of `gate` will be used. All gates in the `Target` need unique names. Backends can differentiate between different parameterizations of a single gate by providing a unique name for each (e.g. “rx30”, “rx60”, \`”rx90”\`\` similar to the example in the documentation for the [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target") class).
 
 **Raises**
 
@@ -227,8 +226,8 @@ If there is a mix of two qubit operations that have a connectivity constraint an
 
 **Parameters**
 
-*   **two\_q\_gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – An optional gate name for a two qubit gate in the `Target` to generate the coupling map for. If specified the output coupling map will only have edges between qubits where this gate is present.
-*   **filter\_idle\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to `True` the output [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") will remove any qubits that don’t have any operations defined in the target. Note that using this argument will result in an output [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object which has holes in its indices which might differ from the assumptions of the class. The typical use case of this argument is to be paired with [`CouplingMap.connected_components()`](qiskit.transpiler.CouplingMap#connected_components "qiskit.transpiler.CouplingMap.connected_components") which will handle the holes as expected.
+*   **two\_q\_gate** ([*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")) – An optional gate name for a two qubit gate in the Target to generate the coupling map for. If specified the output coupling map will only have edges between qubits where this gate is present.
+*   **filter\_idle\_qubits** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to `True` the output [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") will remove any qubits that don’t have any operations defined in the target. Note that using this argument will result in an output [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") object which has holes in its indices which might differ from the assumptions of the class. The typical use case of this argument is to be paired with with [`CouplingMap.connected_components()`](qiskit.transpiler.CouplingMap#connected_components "qiskit.transpiler.CouplingMap.connected_components") which will handle the holes as expected.
 
 **Returns**
 
@@ -243,7 +242,7 @@ for this target. If there are no connectivity constraints in the target this wil
 **Raises**
 
 *   [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – If a non-two qubit gate is passed in for `two_q_gate`.
-*   [**IndexError**](https://docs.python.org/3/library/exceptions.html#IndexError "(in Python v3.12)") – If an Instruction not in the `Target` is passed in for `two_q_gate`.
+*   [**IndexError**](https://docs.python.org/3/library/exceptions.html#IndexError "(in Python v3.12)") – If an Instruction not in the Target is passed in for `two_q_gate`.
 
 ### durations
 
@@ -277,16 +276,16 @@ This constructor will use the input from `basis_gates`, `num_qubits`, and `coupl
 
 **Parameters**
 
-*   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – The list of basis gate names for the backend. For the target to be created these names must either be in the output from `get_standard_gate_name_mapping()` or present in the specified `custom_name_mapping` argument.
+*   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – The list of basis gate names for the backend. For the target to be created these names must either be in the output from :func:\~.get\_standard\_gate\_name\_mapping\` or present in the specified `custom_name_mapping` argument.
 *   **num\_qubits** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)") *| None*) – The number of qubits supported on the backend.
 *   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") *| None*) – The coupling map representing connectivity constraints on the backend. If specified all gates from `basis_gates` will be supported on all qubits (or pairs of qubits).
-*   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") *| None*) – The instruction schedule map representing the pulse [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") definitions for each instruction. If this is specified `coupling_map` must be specified. The `coupling_map` is used as the source of truth for connectivity and if `inst_map` is used the schedule is looked up based on the instructions from the pair of `basis_gates` and `coupling_map`. If you want to define a custom gate for a particular qubit or qubit pair, you can manually build [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target").
+*   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") *| None*) – The instruction schedule map representing the pulse [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") definitions for each instruction. If this is specified `coupling_map` must be specified. The `coupling_map` is used as the source of truth for connectivity and if `inst_map` is used the schedule is looked up based on the instuctions from the pair of `basis_gates` and `coupling_map`. If you want to define a custom gate for a particular qubit or qubit pair, you can manually build [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target").
 *   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") *| None*) – The [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") object which is used for instruction properties and qubit properties. If specified and instruction properties are intended to be used then the `coupling_map` argument must be specified. This is only used to lookup error rates and durations (unless `instruction_durations` is specified which would take precedence) for instructions specified via `coupling_map` and `basis_gates`.
 *   **instruction\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations") *| None*) – Optional instruction durations for instructions. If specified it will take priority for setting the `duration` field in the [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties") objects for the instructions in the target.
-*   **concurrent\_measurements** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of sets of qubits that must be measured together. This must be provided as a nested list like `[[0, 1], [2, 3, 4]]`.
+*   **concurrent\_measurements** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – A list of sets of qubits that must be measured together. This must be provided as a nested list like \[\[0, 1], \[2, 3, 4]].
 *   **dt** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)") *| None*) – The system time resolution of input signals in seconds
 *   **timing\_constraints** (*TimingConstraints | None*) – Optional timing constraints to include in the [`Target`](#qiskit.transpiler.Target "qiskit.transpiler.Target")
-*   **custom\_name\_mapping** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any] | None*) – An optional dictionary that maps custom gate/operation names in `basis_gates` to an [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") object representing that gate/operation. By default, most standard gates names are mapped to the standard gate object from [`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library") this only needs to be specified if the input `basis_gates` defines gates in names outside that set.
+*   **custom\_name\_mapping** ([*dict*](https://docs.python.org/3/library/stdtypes.html#dict "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*, Any] | None*) – An optional dictionary that maps custom gate/operation names in `basis_gates` to an [`Operation`](qiskit.circuit.Operation "qiskit.circuit.Operation") object representing that gate/operation. By default most standard gates names are mapped to the standard gate object from [`qiskit.circuit.library`](circuit_library#module-qiskit.circuit.library "qiskit.circuit.library") this only needs to be specified if the input `basis_gates` defines gates in names outside that set.
 
 **Returns**
 
@@ -341,11 +340,11 @@ Calibrated pulse schedule of corresponding instruction.
 
 Return the non-global operation names for the target
 
-The non-global operations are those in the target which don’t apply on all qubits (for single qubit operations) or all multi-qubit qargs (for multi-qubit operations).
+The non-global operations are those in the target which don’t apply on all qubits (for single qubit operations) or all multiqubit qargs (for multi-qubit operations).
 
 **Parameters**
 
-**strict\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to `True` the multi-qubit operations considered as non-global respect the strict direction (or order of qubits in the qargs is significant). For example, if `cx` is defined on `(0, 1)` and `ecr` is defined over `(1, 0)` by default neither would be considered non-global, but if `strict_direction` is set `True` both `cx` and `ecr` would be returned.
+**strict\_direction** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – If set to `True` the multi-qubit operations considered as non-global respect the strict direction (or order of qubits in the qargs is signifcant). For example, if `cx` is defined on `(0, 1)` and `ecr` is defined over `(1, 0)` by default neither would be considered non-global, but if `strict_direction` is set `True` both `cx` and `ecr` would be returned.
 
 **Returns**
 
@@ -446,7 +445,7 @@ Return whether the instruction (operation + qubits) is supported by the target
 
 *   **qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – The tuple of qubit indices for the instruction. If this is not specified then this method will return `True` if the specified operation is supported on any qubits. The typical application will always have this set (otherwise it’s the same as just checking if the target contains the operation). Normally you would not set this argument if you wanted to check more generally that the target supports an operation with the `parameters` on any qubits.
 
-*   **operation\_class** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*]*) – The operation class to check whether the target supports a particular operation by class rather than by name. This lookup is more expensive as it needs to iterate over all operations in the target instead of just a single lookup. If this is specified it will supersede the `operation_name` argument. The typical use case for this operation is to check whether a specific variant of an operation is supported on the backend. For example, if you wanted to check whether a [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate") was supported on a specific qubit with a fixed angle. That fixed angle variant will typically have a name different from the object’s [`name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attribute (`"rx"`) in the target. This can be used to check if any instances of the class are available in such a case.
+*   **operation\_class** ([*Type*](circuit_classical#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.Type")*\[*[*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")*]*) – The operation class to check whether the target supports a particular operation by class rather than by name. This lookup is more expensive as it needs to iterate over all operations in the target instead of just a single lookup. If this is specified it will supersede the `operation_name` argument. The typical use case for this operation is to check whether a specific variant of an operation is supported on the backend. For example, if you wanted to check whether a [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate") was supported on a specific qubit with a fixed angle. That fixed angle variant will typically have a name different than the object’s [`name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attribute (`"rx"`) in the target. This can be used to check if any instances of the class are available in such a case.
 
 *   **parameters** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) –
 
@@ -457,7 +456,7 @@ Return whether the instruction (operation + qubits) is supported by the target
     target.instruction_supported("rx", (0,), parameters=parameters)
     ```
 
-    will return `True` if an [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate") is supported on qubit 0 that will accept any parameter. If you need to check for a fixed numeric value parameter this argument is typically paired with the `operation_class` argument. For example:
+    will return `True` if an [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate") is suporrted on qubit 0 that will accept any parameter. If you need to check for a fixed numeric value parameter this argument is typically paired with the `operation_class` argument. For example:
 
     ```python
     target.instruction_supported("rx", (0,), RXGate, parameters=[pi / 4])
@@ -515,11 +514,11 @@ Get the operation names for a specified qargs tuple
 
 **Parameters**
 
-**qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – A `qargs` tuple of the qubits to get the gates that apply to it. For example, `(0,)` will return the set of all instructions that apply to qubit 0. If set to `None` this will return the names for any globally defined operations in the target.
+**qargs** ([*tuple*](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")) – A qargs tuple of the qubits to get the gates that apply to it. For example, `(0,)` will return the set of all instructions that apply to qubit 0. If set to `None` this will return the names for any globally defined operations in the target.
 
 **Returns**
 
-The set of operation names that apply to the specified `qargs`.
+The set of operation names that apply to the specified qargs\`.
 
 **Return type**
 
@@ -527,7 +526,7 @@ The set of operation names that apply to the specified `qargs`.
 
 **Raises**
 
-[**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.12)") – If `qargs` is not in target
+[**KeyError**](https://docs.python.org/3/library/exceptions.html#KeyError "(in Python v3.12)") – If qargs is not in target
 
 ### operations\_for\_qargs
 
@@ -583,7 +582,7 @@ Get an `TimingConstraints` object from the target
 
 **Returns**
 
-The timing constraints represented in the `Target`
+The timing constraints represented in the Target
 
 **Return type**
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimation
 
 <span id="qiskit.algorithms.HamiltonianPhaseEstimation" />
 
-`qiskit.algorithms.HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation.py "view source code")
+`qiskit.algorithms.HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None, sampler=None)`
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

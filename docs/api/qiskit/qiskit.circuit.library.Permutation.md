@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.Permutation
 
 <span id="qiskit.circuit.library.Permutation" />
 
-`qiskit.circuit.library.Permutation(num_qubits, pattern=None, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/permutation.py "view source code")
+`qiskit.circuit.library.Permutation(num_qubits, pattern=None, seed=None)`
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -94,7 +94,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 210`
+`= 248`
 
 <span id="qiskit.circuit.library.Permutation.layout" />
 

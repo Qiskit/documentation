@@ -10,13 +10,13 @@ python_api_name: qiskit.circuit.library.PhaseEstimation
 
 <span id="qiskit.circuit.library.PhaseEstimation" />
 
-`qiskit.circuit.library.PhaseEstimation(num_evaluation_qubits, unitary, iqft=None, name='QPE')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/phase_estimation.py "view source code")
+`qiskit.circuit.library.PhaseEstimation(num_evaluation_qubits, unitary, iqft=None, name='QPE')`
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
 Phase Estimation circuit.
 
-In the Quantum Phase Estimation (QPE) algorithm \[1, 2, 3], the Phase Estimation circuit is used to estimate the phase $\phi$ of an eigenvalue $e^{2\pi i\phi}$ of a unitary operator $U$, provided with the corresponding eigenstate $|\psi\rangle$. That is
+In the Quantum Phase Estimation (QPE) algorithm \[1, 2, 3], the Phase Estimation circuit is used to estimate the phase $\phi$ of an eigenvalue $e^{2\pi i\phi}$ of a unitary operator $U$, provided with the corresponding eigenstate $|psi\rangle$. That is
 
 $$
 U|\psi\rangle = e^{2\pi i\phi} |\psi\rangle
@@ -36,7 +36,7 @@ Quantum Computation and Quantum Information: 10th Anniversary Edition (10th ed.)
 
 **\[3]: Qiskit**
 
-[textbook](https://github.com/Qiskit/textbook/blob/main/notebooks/ch-algorithms/quantum-phase-estimation.ipynb)
+[textbook](https://learn.qiskit.org/course/ch-algorithms/quantum-phase-estimation)
 
 **Parameters**
 
@@ -111,7 +111,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 264`
+`= 302`
 
 <span id="qiskit.circuit.library.PhaseEstimation.layout" />
 

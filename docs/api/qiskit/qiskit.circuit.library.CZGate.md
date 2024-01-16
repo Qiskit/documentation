@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CZGate
 
 <span id="qiskit.circuit.library.CZGate" />
 
-`qiskit.circuit.library.CZGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/z.py "view source code")
+`qiskit.circuit.library.CZGate(*args, _force_mutable=False, **kwargs)`
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
@@ -31,14 +31,14 @@ q_1: ─■─
 **Matrix representation:**
 
 $$
-CZ\ q_0, q_1 =
+\begin{split}CZ\ q_0, q_1 =
     I \otimes |0\rangle\langle 0| + Z \otimes |1\rangle\langle 1| =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 1 & 0 & 0 \\
         0 & 0 & 1 & 0 \\
         0 & 0 & 0 & -1
-    \end{pmatrix}
+    \end{pmatrix}\end{split}
 $$
 
 In the computational basis, this gate flips the phase of the target qubit if the control qubit is in the $|1\rangle$ state.

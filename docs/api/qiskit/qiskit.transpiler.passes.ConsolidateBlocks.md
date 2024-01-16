@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ConsolidateBlocks
 
 <span id="qiskit.transpiler.passes.ConsolidateBlocks" />
 
-`qiskit.transpiler.passes.ConsolidateBlocks(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/consolidate_blocks.py "view source code")
+`qiskit.transpiler.passes.ConsolidateBlocks(*args, **kwargs)`
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -24,14 +24,14 @@ This pass assumes that the ‘blocks\_list’ property that it reads is given su
 
 ConsolidateBlocks initializer.
 
-If `kak_basis_gate` is not `None` it will be used as the basis gate for KAK decomposition. Otherwise, if `basis_gates` is not `None` a basis gate will be chosen from this list. Otherwise, the basis gate will be [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGate").
+If kak\_basis\_gate is not None it will be used as the basis gate for KAK decomposition. Otherwise, if basis\_gates is not None a basis gate will be chosen from this list. Otherwise the basis gate will be CXGate.
 
 **Parameters**
 
 *   **kak\_basis\_gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – Basis gate for KAK decomposition.
 *   **force\_consolidate** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Force block consolidation.
 *   **basis\_gates** (*List(*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*)*) – Basis gates from which to choose a KAK gate.
-*   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – a float between $\[0.0, 1.0]\$. Lower approximates more.
+*   **approximation\_degree** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – a float between \[0.0, 1.0]. Lower approximates more.
 *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The target object for the compilation target backend.
 
 ## Attributes
