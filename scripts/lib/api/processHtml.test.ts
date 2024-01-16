@@ -247,6 +247,9 @@ test("replaceSourceLinksWithGitHub()", () => {
     `<a href="../_modules/qiskit_ibm_runtime/ibm_backend#IBMBackend"></a>
     <a href="../_modules/qiskit_ibm_provider/job/exceptions#IBMJobApiError"></a>
     <a href="../_modules/qiskit_ibm_provider#least_busy"></a>
+    <a href="../_modules/qiskit/qasm2#compile"></a>
+    <a href="../_modules/qiskit/qasm3#compile"></a>
+    <a href="../_modules/qiskit/transpiler/preset_passmanagers#foo"></a>
     <a href="#qiskit_ibm_runtime.IBMBackend"></a>`,
   );
   replaceViewcodeLinksWithGitHub(
@@ -258,6 +261,9 @@ test("replaceSourceLinksWithGitHub()", () => {
     `<a href="https://github.com/Qiskit/my-project/tree/stable/0.9/qiskit_ibm_runtime/ibm_backend.py"></a>
     <a href="https://github.com/Qiskit/my-project/tree/stable/0.9/qiskit_ibm_provider/job/exceptions.py"></a>
     <a href="https://github.com/Qiskit/my-project/tree/stable/0.9/qiskit_ibm_provider/__init__.py"></a>
+    <a href="https://github.com/Qiskit/my-project/tree/stable/0.9/qiskit/qasm2/__init__.py"></a>
+    <a href="https://github.com/Qiskit/my-project/tree/stable/0.9/qiskit/qasm3/__init__.py"></a>
+    <a href="https://github.com/Qiskit/my-project/tree/stable/0.9/qiskit/transpiler/preset_passmanagers/__init__.py"></a>
     <a href="#qiskit_ibm_runtime.IBMBackend"></a>`,
   );
 });

@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.options.SimulatorOptions
 
 <span id="qiskit_ibm_runtime.options.SimulatorOptions" />
 
-`SimulatorOptions(noise_model=None, seed_simulator=None, coupling_map=None, basis_gates=None)`
+`SimulatorOptions(noise_model=None, seed_simulator=None, coupling_map=None, basis_gates=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.17/qiskit_ibm_runtime/options/simulator_options.py "view source code")
 
 Simulator options.
 
