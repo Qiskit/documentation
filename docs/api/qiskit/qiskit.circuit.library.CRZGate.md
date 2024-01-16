@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CRZGate
 
 <span id="qiskit.circuit.library.CRZGate" />
 
-`qiskit.circuit.library.CRZGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)`
+`qiskit.circuit.library.CRZGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/rz.py "view source code")
 
 Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -32,14 +32,14 @@ q_1: ┤ Rz(λ) ├
 **Matrix representation:**
 
 $$
-\begin{split}CRZ(\lambda)\ q_0, q_1 =
+CRZ(\lambda)\ q_0, q_1 =
     I \otimes |0\rangle\langle 0| + RZ(\lambda) \otimes |1\rangle\langle 1| =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & e^{-i\frac{\lambda}{2}} & 0 & 0 \\
         0 & 0 & 1 & 0 \\
         0 & 0 & 0 & e^{i\frac{\lambda}{2}}
-    \end{pmatrix}\end{split}
+    \end{pmatrix}
 $$
 
 <Admonition title="Note" type="note">
@@ -53,14 +53,14 @@ $$
   ```
 
   $$
-  \begin{split}CRZ(\lambda)\ q_1, q_0 =
+  CRZ(\lambda)\ q_1, q_0 =
       |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes RZ(\lambda) =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\
           0 & 0 & e^{-i\frac{\lambda}{2}} & 0 \\
           0 & 0 & 0 & e^{i\frac{\lambda}{2}}
-      \end{pmatrix}\end{split}
+      \end{pmatrix}
   $$
 </Admonition>
 

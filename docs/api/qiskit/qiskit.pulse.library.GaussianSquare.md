@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.GaussianSquare
 
 <span id="qiskit.pulse.library.GaussianSquare" />
 
-`qiskit.pulse.library.GaussianSquare(duration, amp, sigma, width=None, angle=None, risefall_sigma_ratio=None, name=None, limit_amplitude=None)`
+`qiskit.pulse.library.GaussianSquare(duration, amp, sigma, width=None, angle=None, risefall_sigma_ratio=None, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -21,23 +21,25 @@ Exactly one of the `risefall_sigma_ratio` and `width` parameters has to be speci
 If `risefall_sigma_ratio` is not None and `width` is None:
 
 $$
-\begin{split}\text{risefall} &= \text{risefall_sigma_ratio} \times \text{sigma}\\
-\text{width} &= \text{duration} - 2 \times \text{risefall}\end{split}
+\text{risefall} &= \text{risefall_sigma_ratio} \times \text{sigma}\\
+\text{width} &= \text{duration} - 2 \times \text{risefall}
 $$
 
 If `width` is not None and `risefall_sigma_ratio` is None:
 
 $$
 \text{risefall} = \frac{\text{duration} - \text{width}}{2}
+
+
 $$
 
 In both cases, the lifted gaussian square pulse $f'(x)$ is defined as:
 
 $$
-\begin{split}f'(x) &= \begin{cases}            \exp\biggl(-\frac12 \frac{(x - \text{risefall})^2}{\text{sigma}^2}\biggr)                & x < \text{risefall}\\
+f'(x) &= \begin{cases}            \exp\biggl(-\frac12 \frac{(x - \text{risefall})^2}{\text{sigma}^2}\biggr)                & x < \text{risefall}\\
     1                & \text{risefall} \le x < \text{risefall} + \text{width}\\
     \exp\biggl(-\frac12                    \frac{{\bigl(x - (\text{risefall} + \text{width})\bigr)}^2}                          {\text{sigma}^2}                    \biggr)                & \text{risefall} + \text{width} \le x        \end{cases}\\
-f(x) &= \text{A} \times \frac{f'(x) - f'(-1)}{1-f'(-1)},            \quad 0 \le x < \text{duration}\end{split}
+f(x) &= \text{A} \times \frac{f'(x) - f'(-1)}{1-f'(-1)},            \quad 0 \le x < \text{duration}
 $$
 
 where $f'(x)$ is the gaussian square waveform without lifting or amplitude scaling, and $\text{A} = \text{amp} \times \exp\left(i\times\text{angle}\right)$.
