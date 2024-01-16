@@ -12,8 +12,25 @@ Whether you will work locally or in a cloud environment, the first step for all 
 ## Upgrade to Qiskit 1.0
 
 <Admonition type="info" title="You must create a new virtual environment to install Qiskit 1.0">
-  Because Qiskit 1.0 uses a new packaging structure, you cannot upgrade an existing Qiskit 0.x installation to Qiskit 1.0 in-place. Future updates starting with Qiskit 1.0 will allow for in-place upgrades.  
+  Because Qiskit 1.0 uses a new packaging structure, you cannot use `pip install -U qiskit` to upgrade from any Qiskit 0.x version to 1.0. Create a new virtual environment following the following steps. 
+  
+  Future updates starting with Qiskit 1.0 will allow for in-place upgrades.  
 </Admonition>
+
+To upgrade to Qiskit 1.0, create a new virtual environment. Here is an example, using the standard tool *venv*:
+
+```shell
+# Create a new virtual environment (you only do this once)
+python -m venv ~/qiskit-1.0-env
+
+# Activate the new virtual environment (you do this every time you start a new session)
+source ~/qiskit-1.0-env/bin/activate
+
+# Install Qiskit 1.0 (you only do this once for this environment)
+pip install ‘qiskit>=1.0’
+```
+
+Note that you may need to adapt your code to work with Qiskit 1.0, as there will be some breaking changes with respect to 0.x; see RELEASE NOTES OR MORE DETAILS LINK HERE
 
 
 <span id="local"></span>
