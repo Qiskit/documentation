@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CSwapGate
 
 <span id="qiskit.circuit.library.CSwapGate" />
 
-`qiskit.circuit.library.CSwapGate(*args, _force_mutable=False, **kwargs)`
+`qiskit.circuit.library.CSwapGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/swap.py "view source code")
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
@@ -31,7 +31,7 @@ q_2: ─X─
 **Matrix representation:**
 
 $$
-\begin{split}CSWAP\ q_0, q_1, q_2 =
+CSWAP\ q_0, q_1, q_2 =
     I \otimes I \otimes |0 \rangle \langle 0| +
     SWAP \otimes |1 \rangle \langle 1| =
     \begin{pmatrix}
@@ -43,7 +43,7 @@ $$
         0 & 0 & 0 & 1 & 0 & 0 & 0 & 0 \\
         0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
         0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
-    \end{pmatrix}\end{split}
+    \end{pmatrix}
 $$
 
 <Admonition title="Note" type="note">
@@ -58,7 +58,7 @@ $$
   ```
 
   $$
-  \begin{split}CSWAP\ q_2, q_1, q_0 =
+  CSWAP\ q_2, q_1, q_0 =
       |0 \rangle \langle 0| \otimes I \otimes I +
       |1 \rangle \langle 1| \otimes SWAP =
       \begin{pmatrix}
@@ -70,7 +70,7 @@ $$
           0 & 0 & 0 & 0 & 0 & 0 & 1 & 0 \\
           0 & 0 & 0 & 0 & 0 & 1 & 0 & 0 \\
           0 & 0 & 0 & 0 & 0 & 0 & 0 & 1 \\
-      \end{pmatrix}\end{split}
+      \end{pmatrix}
   $$
 </Admonition>
 
@@ -79,6 +79,8 @@ In the computational basis, this gate swaps the states of the two target qubits 
 $$
 |0, b, c\rangle \rightarrow |0, b, c\rangle
 |1, b, c\rangle \rightarrow |1, c, b\rangle
+
+
 $$
 
 Create new CSWAP gate.

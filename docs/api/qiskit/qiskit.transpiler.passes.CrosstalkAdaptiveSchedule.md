@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CrosstalkAdaptiveSchedule
 
 <span id="qiskit.transpiler.passes.CrosstalkAdaptiveSchedule" />
 
-`qiskit.transpiler.passes.CrosstalkAdaptiveSchedule(*args, **kwargs)`
+`qiskit.transpiler.passes.CrosstalkAdaptiveSchedule(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/crosstalk_adaptive_schedule.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -40,7 +40,7 @@ CrosstalkAdaptiveSchedule initializer.
 
 *   **measured\_qubits** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – a list of qubits that will be measured in a particular circuit. This arg need not be specified for circuits which already include measure gates. The arg is useful when a subsequent module such as state\_tomography\_circuits inserts the measure gates. If CrosstalkAdaptiveSchedule is made aware of those measurements, it is included in the optimization.
 
-*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the target backend, if both `backend_prop` and this are specified then this argument will take precedence and `coupling_map` will be ignored.
+*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the target backend, if both `backend_prop` and `target` are specified then this argument will take precedence and `coupling_map` will be ignored.
 
 **Raises**
 

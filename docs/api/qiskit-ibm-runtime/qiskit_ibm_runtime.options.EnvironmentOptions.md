@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.options.EnvironmentOptions
 
 <span id="qiskit_ibm_runtime.options.EnvironmentOptions" />
 
-`EnvironmentOptions(log_level='WARNING', callback=None, job_tags=<factory>)`
+`EnvironmentOptions(log_level='WARNING', callback=None, job_tags=<factory>)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.17/qiskit_ibm_runtime/options/environment_options.py "view source code")
 
 Options related to the execution environment.
 

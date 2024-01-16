@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.Drag
 
 <span id="qiskit.pulse.library.Drag" />
 
-`qiskit.pulse.library.Drag(duration, amp, sigma, beta, angle=None, name=None, limit_amplitude=None)`
+`qiskit.pulse.library.Drag(duration, amp, sigma, beta, angle=None, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -19,10 +19,10 @@ The Derivative Removal by Adiabatic Gate (DRAG) pulse is a standard Gaussian pul
 It can be calibrated either to reduce the phase error due to virtual population of the $|2\rangle$ state during the pulse or to reduce the frequency spectrum of a standard Gaussian pulse near the $|1\rangle\leftrightarrow|2\rangle$ transition, reducing the chance of leakage to the $|2\rangle$ state.
 
 $$
-\begin{split}g(x) &= \exp\Bigl(-\frac12 \frac{(x - \text{duration}/2)^2}{\text{sigma}^2}\Bigr)\\
+g(x) &= \exp\Bigl(-\frac12 \frac{(x - \text{duration}/2)^2}{\text{sigma}^2}\Bigr)\\
 g'(x) &= \text{A}\times\frac{g(x)-g(-1)}{1-g(-1)}\\
 f(x) &=  g'(x) \times \Bigl(1 + 1j \times \text{beta} \times            \Bigl(-\frac{x - \text{duration}/2}{\text{sigma}^2}\Bigr)  \Bigr),
-    \quad 0 \le x < \text{duration}\end{split}
+    \quad 0 \le x < \text{duration}
 $$
 
 where $g(x)$ is a standard unlifted Gaussian waveform, $g'(x)$ is the lifted [`Gaussian`](qiskit.pulse.library.Gaussian_class.rst#qiskit.pulse.library.Gaussian "qiskit.pulse.library.Gaussian") waveform, and $\text{A} = \text{amp} \times \exp\left(i\times\text{angle}\right)$.
