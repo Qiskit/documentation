@@ -172,16 +172,13 @@ export function replaceViewcodeLinksWithGitHub(
   $main: Cheerio<any>,
   baseGitHubUrl: string,
 ): void {
-  // Certain files do not map 1:1 between sphinx.ext.viewcode and GitHub.
-  // When adding new entries, add a dedicated test case!
-  const specialCases = new Map([
-    ["qiskit_ibm_provider", "qiskit_ibm_provider/__init__"],
-    ["qiskit/qasm2", "qiskit/qasm2/__init__"],
-    ["qiskit/qasm3", "qiskit/qasm3/__init__"],
-    [
-      "qiskit/transpiler/preset_passmanagers",
-      "qiskit/transpiler/preset_passmanagers/__init__",
-    ],
+  // For files like `my_module/__init__.py`, `sphinx.ext.viewcode` will title the
+  // file `my_module.py`. We need to add back the `/__init__.py` when linking to GitHub.
+  const convertToInitPy = new Set([
+    "qiskit_ibm_provider",
+    "qiskit/qasm2",
+    "qiskit/qasm3",
+    "qiskit/transpiler/preset_passmanagers",
   ]);
   $main.find("a").each((_, a) => {
     const $a = $(a);
@@ -195,8 +192,8 @@ export function replaceViewcodeLinksWithGitHub(
     }
     // E.g. `qiskit_ibm_runtime/ibm_backend`
     let fullFileName = href.match(/_modules\/(.*?)(#|$)/)![1];
-    if (specialCases.has(fullFileName)) {
-      fullFileName = specialCases.get(fullFileName)!;
+    if (convertToInitPy.has(fullFileName)) {
+      fullFileName = `${fullFileName}/__init__`;
     }
     const newHref = `${baseGitHubUrl}${fullFileName}.py`;
     $a.attr("href", newHref);
