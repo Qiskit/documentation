@@ -6,11 +6,11 @@ python_api_type: exception
 python_api_name: qiskit.dagcircuit.DAGCircuitError
 ---
 
-# qiskit.dagcircuit.DAGCircuitError[¶](#qiskit-dagcircuit-dagcircuiterror "Permalink to this headline")
+# qiskit.dagcircuit.DAGCircuitError
 
 <span id="qiskit.dagcircuit.DAGCircuitError" />
 
-`DAGCircuitError(*msg)`
+`DAGCircuitError(*msg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/exceptions.py "view source code")
 
 Base class for errors raised by the DAGCircuit object.
 

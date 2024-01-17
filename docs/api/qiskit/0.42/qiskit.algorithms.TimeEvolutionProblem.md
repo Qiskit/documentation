@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.TimeEvolutionProblem
 ---
 
-# TimeEvolutionProblem[¶](#timeevolutionproblem "Permalink to this headline")
+# TimeEvolutionProblem
 
 <span id="qiskit.algorithms.TimeEvolutionProblem" />
 
-`TimeEvolutionProblem(hamiltonian, time, initial_state=None, aux_operators=None, truncation_threshold=1e-12, t_param=None, param_value_map=None)`
+`TimeEvolutionProblem(hamiltonian, time, initial_state=None, aux_operators=None, truncation_threshold=1e-12, t_param=None, param_value_map=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/time_evolvers/time_evolution_problem.py "view source code")
 
 Bases: `object`
 
@@ -98,7 +98,7 @@ dict\[[Parameter](qiskit.circuit.Parameter "qiskit.circuit.Parameter"), complex]
 
 <span id="qiskit.algorithms.TimeEvolutionProblem.validate_params" />
 
-`TimeEvolutionProblem.validate_params()`
+`TimeEvolutionProblem.validate_params()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/time_evolvers/time_evolution_problem.py "view source code")
 
 Checks if all parameters present in the Hamiltonian are also present in the dictionary that maps them to values.
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.QNSPSA
 ---
 
-# QNSPSA[¶](#qnspsa "Permalink to this headline")
+# QNSPSA
 
 <span id="qiskit.algorithms.optimizers.QNSPSA" />
 
-`QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)`
+`QNSPSA(fidelity, maxiter=100, blocking=True, allowed_increase=None, learning_rate=None, perturbation=None, resamplings=1, perturbation_dims=None, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/optimizers/qnspsa.py "view source code")
 
 Bases: [`qiskit.algorithms.optimizers.spsa.SPSA`](qiskit.algorithms.optimizers.SPSA "qiskit.algorithms.optimizers.spsa.SPSA")
 
@@ -154,7 +154,7 @@ Estimate the standard deviation of the loss function.
 
 <span id="qiskit.algorithms.optimizers.QNSPSA.get_fidelity" />
 
-`static QNSPSA.get_fidelity(circuit, backend=None, expectation=None, *, sampler=None)`
+`static QNSPSA.get_fidelity(circuit, backend=None, expectation=None, *, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/optimizers/qnspsa.py "view source code")
 
 Get a function to compute the fidelity of `circuit` with itself.
 

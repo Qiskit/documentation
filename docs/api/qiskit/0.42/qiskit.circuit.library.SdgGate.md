@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.SdgGate
 ---
 
-# SdgGate[¶](#sdggate "Permalink to this headline")
+# SdgGate
 
 <span id="qiskit.circuit.library.SdgGate" />
 
-`SdgGate(label=None)`
+`SdgGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/s.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -49,7 +49,7 @@ Create new Sdg gate.
 
 <span id="qiskit.circuit.library.SdgGate.inverse" />
 
-`SdgGate.inverse()`
+`SdgGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/s.py "view source code")
 
 Return inverse of Sdg (SGate).
 
@@ -57,7 +57,7 @@ Return inverse of Sdg (SGate).
 
 <span id="qiskit.circuit.library.SdgGate.power" />
 
-`SdgGate.power(exponent)`
+`SdgGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/s.py "view source code")
 
 Raise gate to a power.
 

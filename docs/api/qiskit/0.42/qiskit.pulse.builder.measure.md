@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.measure
 ---
 
-# qiskit.pulse.builder.measure[¶](#qiskit-pulse-builder-measure "Permalink to this headline")
+# qiskit.pulse.builder.measure
 
 <span id="qiskit.pulse.builder.measure" />
 
-`measure(qubits, registers=None)`
+`measure(qubits, registers=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/builder.py "view source code")
 
 Measure a qubit within the currently active builder context.
 

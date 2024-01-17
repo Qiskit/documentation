@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.InnerProduct
 ---
 
-# InnerProduct[¶](#innerproduct "Permalink to this headline")
+# InnerProduct
 
 <span id="qiskit.circuit.library.InnerProduct" />
 
-`InnerProduct(num_qubits)`
+`InnerProduct(num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/boolean_logic/inner_product.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

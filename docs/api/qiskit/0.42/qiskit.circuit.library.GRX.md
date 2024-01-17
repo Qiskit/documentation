@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.GRX
 ---
 
-# GRX[¶](#grx "Permalink to this headline")
+# GRX
 
 <span id="qiskit.circuit.library.GRX" />
 
-`GRX(num_qubits, theta)`
+`GRX(num_qubits, theta)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/generalized_gates/gr.py "view source code")
 
 Bases: [`qiskit.circuit.library.generalized_gates.gr.GR`](qiskit.circuit.library.GR "qiskit.circuit.library.generalized_gates.gr.GR")
 

@@ -10,11 +10,11 @@ python_api_name: qiskit.providers.ibmq.job.IBMQJobApiError
   The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
 </Admonition>
 
-# qiskit.providers.ibmq.job.IBMQJobApiError[¶](#qiskit-providers-ibmq-job-ibmqjobapierror "Permalink to this headline")
+# qiskit.providers.ibmq.job.IBMQJobApiError
 
 <span id="qiskit.providers.ibmq.job.IBMQJobApiError" />
 
-`IBMQJobApiError(*message)`
+`IBMQJobApiError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/ibmq/job/exceptions.py "view source code")
 
 Errors that occur unexpectedly when querying the server.
 

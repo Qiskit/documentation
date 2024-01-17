@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult
 ---
 
-# AdaptVQEResult[¶](#adaptvqeresult "Permalink to this headline")
+# AdaptVQEResult
 
 <span id="qiskit.algorithms.minimum_eigensolvers.AdaptVQEResult" />
 
-`AdaptVQEResult`
+`AdaptVQEResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/minimum_eigensolvers/adapt_vqe.py "view source code")
 
 Bases: [`qiskit.algorithms.minimum_eigensolvers.vqe.VQEResult`](qiskit.algorithms.minimum_eigensolvers.VQEResult "qiskit.algorithms.minimum_eigensolvers.vqe.VQEResult")
 

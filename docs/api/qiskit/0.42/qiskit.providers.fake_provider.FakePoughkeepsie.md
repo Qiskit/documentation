@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakePoughkeepsie
 ---
 
-# FakePoughkeepsie[¶](#fakepoughkeepsie "Permalink to this headline")
+# FakePoughkeepsie
 
 <span id="qiskit.providers.fake_provider.FakePoughkeepsie" />
 
-`FakePoughkeepsie`
+`FakePoughkeepsie`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/poughkeepsie/fake_poughkeepsie.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackend`
 
@@ -64,7 +64,7 @@ str
 
 <span id="qiskit.providers.fake_provider.FakePoughkeepsie.properties" />
 
-`FakePoughkeepsie.properties()`
+`FakePoughkeepsie.properties()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/poughkeepsie/fake_poughkeepsie.py "view source code")
 
 Returns a snapshot of device properties
 

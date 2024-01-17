@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.opflow.gradients.QFI
 ---
 
-# QFI[¶](#qfi "Permalink to this headline")
+# QFI
 
 <span id="qiskit.opflow.gradients.QFI" />
 
-`QFI(qfi_method='lin_comb_full')`
+`QFI(qfi_method='lin_comb_full')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/opflow/gradients/qfi.py "view source code")
 
 Bases: [`qiskit.opflow.gradients.qfi_base.QFIBase`](qiskit.opflow.gradients.QFIBase "qiskit.opflow.gradients.qfi_base.QFIBase")
 
@@ -37,7 +37,7 @@ $$
 
 <span id="qiskit.opflow.gradients.QFI.convert" />
 
-`QFI.convert(operator, params=None)`
+`QFI.convert(operator, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/opflow/gradients/qfi.py "view source code")
 
 **Parameters**
 

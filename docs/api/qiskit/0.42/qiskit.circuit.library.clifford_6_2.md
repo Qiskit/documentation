@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.circuit.library.clifford_6_2
 ---
 
-# qiskit.circuit.library.clifford\_6\_2[¶](#qiskit-circuit-library-clifford-6-2 "Permalink to this headline")
+# qiskit.circuit.library.clifford\_6\_2
 
 <span id="qiskit.circuit.library.clifford_6_2" />
 
-`clifford_6_2()`
+`clifford_6_2()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/templates/clifford/clifford_6_2.py "view source code")
 
 **Returns**
 

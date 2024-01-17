@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.primitives.EstimatorResult
 ---
 
-# EstimatorResult[¶](#estimatorresult "Permalink to this headline")
+# EstimatorResult
 
 <span id="qiskit.primitives.EstimatorResult" />
 
-`EstimatorResult(values, metadata)`
+`EstimatorResult(values, metadata)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/primitives/base/estimator_result.py "view source code")
 
 Bases: `qiskit.primitives.base.base_result.BasePrimitiveResult`
 

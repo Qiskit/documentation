@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.DerivativeType
 ---
 
-# DerivativeType[¶](#derivativetype "Permalink to this headline")
+# DerivativeType
 
 <span id="qiskit.algorithms.gradients.DerivativeType" />
 
-`DerivativeType(value)`
+`DerivativeType(value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/gradients/utils.py "view source code")
 
 Bases: `enum.Enum`
 

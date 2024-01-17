@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.ParamShiftSamplerGradient
 ---
 
-# ParamShiftSamplerGradient[¶](#paramshiftsamplergradient "Permalink to this headline")
+# ParamShiftSamplerGradient
 
 <span id="qiskit.algorithms.gradients.ParamShiftSamplerGradient" />
 
-`ParamShiftSamplerGradient(sampler, options=None)`
+`ParamShiftSamplerGradient(sampler, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/gradients/param_shift_sampler_gradient.py "view source code")
 
 Bases: [`qiskit.algorithms.gradients.base_sampler_gradient.BaseSamplerGradient`](qiskit.algorithms.gradients.BaseSamplerGradient "qiskit.algorithms.gradients.base_sampler_gradient.BaseSamplerGradient")
 

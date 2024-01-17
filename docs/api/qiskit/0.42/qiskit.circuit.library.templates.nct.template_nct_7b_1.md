@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.circuit.library.templates.nct.template_nct_7b_1
 ---
 
-# qiskit.circuit.library.templates.nct.template\_nct\_7b\_1[¶](#qiskit-circuit-library-templates-nct-template-nct-7b-1 "Permalink to this headline")
+# qiskit.circuit.library.templates.nct.template\_nct\_7b\_1
 
 <span id="qiskit.circuit.library.templates.nct.template_nct_7b_1" />
 
-`template_nct_7b_1()`
+`template_nct_7b_1()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/templates/nct/template_nct_7b_1.py "view source code")
 
 **Returns**
 

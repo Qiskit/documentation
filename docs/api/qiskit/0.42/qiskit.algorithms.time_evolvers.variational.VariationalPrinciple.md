@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.time_evolvers.variational.VariationalPrinciple
 ---
 
-# VariationalPrinciple[¶](#variationalprinciple "Permalink to this headline")
+# VariationalPrinciple
 
 <span id="qiskit.algorithms.time_evolvers.variational.VariationalPrinciple" />
 
-`VariationalPrinciple(qgt, gradient)`
+`VariationalPrinciple(qgt, gradient)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/time_evolvers/variational/variational_principles/variational_principle.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -47,7 +47,7 @@ Instance of a class used to compute the state gradient.
 
 <span id="qiskit.algorithms.time_evolvers.variational.VariationalPrinciple.evolution_gradient" />
 
-`abstract VariationalPrinciple.evolution_gradient(hamiltonian, ansatz, param_values, gradient_params=None)`
+`abstract VariationalPrinciple.evolution_gradient(hamiltonian, ansatz, param_values, gradient_params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/time_evolvers/variational/variational_principles/variational_principle.py "view source code")
 
 Calculates an evolution gradient according to the rules of this variational principle.
 
@@ -66,7 +66,7 @@ An evolution gradient.
 
 <span id="qiskit.algorithms.time_evolvers.variational.VariationalPrinciple.metric_tensor" />
 
-`VariationalPrinciple.metric_tensor(ansatz, param_values)`
+`VariationalPrinciple.metric_tensor(ansatz, param_values)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/time_evolvers/variational/variational_principles/variational_principle.py "view source code")
 
 Calculates a metric tensor according to the rules of this variational principle.
 

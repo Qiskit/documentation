@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeArmonk
 ---
 
-# FakeArmonk[¶](#fakearmonk "Permalink to this headline")
+# FakeArmonk
 
 <span id="qiskit.providers.fake_provider.FakeArmonk" />
 
-`FakeArmonk`
+`FakeArmonk`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/armonk/fake_armonk.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 

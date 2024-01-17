@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeOslo
 ---
 
-# FakeOslo[¶](#fakeoslo "Permalink to this headline")
+# FakeOslo
 
 <span id="qiskit.providers.fake_provider.FakeOslo" />
 
-`FakeOslo`
+`FakeOslo`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/oslo/fake_oslo.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

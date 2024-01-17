@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.library.save_clifford
 ---
 
-# qiskit\_aer.library.save\_clifford[¶](#qiskit-aer-library-save-clifford "Permalink to this headline")
+# qiskit\_aer.library.save\_clifford
 
 <span id="qiskit_aer.library.save_clifford" />
 
-`save_clifford(self, label='clifford', pershot=False)`
+`save_clifford(self, label='clifford', pershot=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/library/save_instructions/save_clifford.py "view source code")
 
 Save the current stabilizer simulator quantum state as a Clifford.
 

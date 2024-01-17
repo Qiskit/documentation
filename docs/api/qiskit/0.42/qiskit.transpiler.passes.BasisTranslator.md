@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.BasisTranslator
 ---
 
-# BasisTranslator[¶](#basistranslator "Permalink to this headline")
+# BasisTranslator
 
 <span id="qiskit.transpiler.passes.BasisTranslator" />
 
-`BasisTranslator(*args, **kwargs)`
+`BasisTranslator(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/basis/basis_translator.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -51,7 +51,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.BasisTranslator.run" />
 
-`BasisTranslator.run(dag)`
+`BasisTranslator.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/basis/basis_translator.py "view source code")
 
 Translate an input DAGCircuit to the target basis.
 

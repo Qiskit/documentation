@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.QuantumRegister
 ---
 
-# QuantumRegister[¶](#quantumregister "Permalink to this headline")
+# QuantumRegister
 
 <span id="qiskit.circuit.QuantumRegister" />
 
-`QuantumRegister(size=None, name=None, bits=None)`
+`QuantumRegister(size=None, name=None, bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/quantumregister.py "view source code")
 
 Bases: `qiskit.circuit.register.Register`
 
@@ -48,7 +48,7 @@ Find the index of the provided bit within this register.
 
 <span id="qiskit.circuit.QuantumRegister.qasm" />
 
-`QuantumRegister.qasm()`
+`QuantumRegister.qasm()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/quantumregister.py "view source code")
 
 Return OPENQASM string for this register.
 

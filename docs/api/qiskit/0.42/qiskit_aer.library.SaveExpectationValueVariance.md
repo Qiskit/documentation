@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_aer.library.SaveExpectationValueVariance
 ---
 
-# SaveExpectationValueVariance[¶](#saveexpectationvaluevariance "Permalink to this headline")
+# SaveExpectationValueVariance
 
 <span id="qiskit_aer.library.SaveExpectationValueVariance" />
 
-`SaveExpectationValueVariance(operator, label='expectation_value_variance', unnormalized=False, pershot=False, conditional=False)`
+`SaveExpectationValueVariance(operator, label='expectation_value_variance', unnormalized=False, pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/library/save_instructions/save_expectation_value.py "view source code")
 
 Bases: `qiskit_aer.library.save_instructions.save_data.SaveAverageData`
 

@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.library.cos
 ---
 
-# qiskit.pulse.library.cos[¶](#qiskit-pulse-library-cos "Permalink to this headline")
+# qiskit.pulse.library.cos
 
 <span id="qiskit.pulse.library.cos" />
 
-`cos(duration, amp, freq=None, phase=0, name=None)`
+`cos(duration, amp, freq=None, phase=0, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/library/discrete.py "view source code")
 
 Generates cosine wave [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 

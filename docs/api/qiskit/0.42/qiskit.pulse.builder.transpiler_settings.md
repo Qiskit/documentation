@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.transpiler_settings
 ---
 
-# qiskit.pulse.builder.transpiler\_settings[¶](#qiskit-pulse-builder-transpiler-settings "Permalink to this headline")
+# qiskit.pulse.builder.transpiler\_settings
 
 <span id="qiskit.pulse.builder.transpiler_settings" />
 
-`transpiler_settings(**settings)`
+`transpiler_settings(**settings)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/builder.py "view source code")
 
 Set the currently active transpiler settings for this context.
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.Measure
 ---
 
-# Measure[¶](#measure "Permalink to this headline")
+# Measure
 
 <span id="qiskit.circuit.library.Measure" />
 
-`Measure`
+`Measure`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/measure.py "view source code")
 
 Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
@@ -40,7 +40,7 @@ Assemble a QasmQobjInstruction
 
 <span id="qiskit.circuit.library.Measure.broadcast_arguments" />
 
-`Measure.broadcast_arguments(qargs, cargs)`
+`Measure.broadcast_arguments(qargs, cargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/measure.py "view source code")
 
 Validation of the arguments.
 

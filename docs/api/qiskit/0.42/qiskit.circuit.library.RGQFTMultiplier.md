@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.RGQFTMultiplier
 ---
 
-# RGQFTMultiplier[¶](#rgqftmultiplier "Permalink to this headline")
+# RGQFTMultiplier
 
 <span id="qiskit.circuit.library.RGQFTMultiplier" />
 
-`RGQFTMultiplier(num_state_qubits, num_result_qubits=None, name='RGQFTMultiplier')`
+`RGQFTMultiplier(num_state_qubits, num_result_qubits=None, name='RGQFTMultiplier')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/arithmetic/multipliers/rg_qft_multiplier.py "view source code")
 
 Bases: `qiskit.circuit.library.arithmetic.multipliers.multiplier.Multiplier`
 

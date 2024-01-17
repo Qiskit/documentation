@@ -10,11 +10,11 @@ python_api_name: qiskit.providers.ibmq.runtime.RuntimeDecoder
   The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
 </Admonition>
 
-# RuntimeDecoder[¶](#runtimedecoder "Permalink to this headline")
+# RuntimeDecoder
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeDecoder" />
 
-`RuntimeDecoder(*args, **kwargs)`
+`RuntimeDecoder(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/ibmq/runtime/utils.py "view source code")
 
 Bases: `json.decoder.JSONDecoder`
 
@@ -54,7 +54,7 @@ Return the Python representation of `s` (a `str` instance containing a JSON docu
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeDecoder.object_hook" />
 
-`RuntimeDecoder.object_hook(obj)`
+`RuntimeDecoder.object_hook(obj)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/ibmq/runtime/utils.py "view source code")
 
 Called to decode object.
 

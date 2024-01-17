@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_aer.library.SetSuperOp
 ---
 
-# SetSuperOp[¶](#setsuperop "Permalink to this headline")
+# SetSuperOp
 
 <span id="qiskit_aer.library.SetSuperOp" />
 
-`SetSuperOp(state)`
+`SetSuperOp(state)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/library/set_instructions/set_superop.py "view source code")
 
 Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 

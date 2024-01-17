@@ -6,11 +6,11 @@ python_api_type: exception
 python_api_name: qiskit.circuit.classicalfunction.ClassicalFunctionParseError
 ---
 
-# qiskit.circuit.classicalfunction.ClassicalFunctionParseError[¶](#qiskit-circuit-classicalfunction-classicalfunctionparseerror "Permalink to this headline")
+# qiskit.circuit.classicalfunction.ClassicalFunctionParseError
 
 <span id="qiskit.circuit.classicalfunction.ClassicalFunctionParseError" />
 
-`ClassicalFunctionParseError(*message)`
+`ClassicalFunctionParseError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/classicalfunction/exceptions.py "view source code")
 
 ClassicalFunction compiler parse error. The classicalfunction function fails at parsing time.
 

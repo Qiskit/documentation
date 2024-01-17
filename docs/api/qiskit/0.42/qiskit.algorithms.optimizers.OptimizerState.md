@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.OptimizerState
 ---
 
-# OptimizerState[¶](#optimizerstate "Permalink to this headline")
+# OptimizerState
 
 <span id="qiskit.algorithms.optimizers.OptimizerState" />
 
-`OptimizerState(x, fun, jac, nfev, njev, nit)`
+`OptimizerState(x, fun, jac, nfev, njev, nit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
 
 Bases: `object`
 

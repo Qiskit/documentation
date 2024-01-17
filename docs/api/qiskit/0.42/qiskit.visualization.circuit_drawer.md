@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.visualization.circuit_drawer
 ---
 
-# qiskit.visualization.circuit\_drawer[¶](#qiskit-visualization-circuit-drawer "Permalink to this headline")
+# qiskit.visualization.circuit\_drawer
 
 <span id="qiskit.visualization.circuit_drawer" />
 
-`circuit_drawer(circuit, scale=None, filename=None, style=None, output=None, interactive=False, plot_barriers=True, reverse_bits=None, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=None, wire_order=None)`
+`circuit_drawer(circuit, scale=None, filename=None, style=None, output=None, interactive=False, plot_barriers=True, reverse_bits=None, justify=None, vertical_compression='medium', idle_wires=True, with_layout=True, fold=None, ax=None, initial_state=False, cregbundle=None, wire_order=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/visualization/circuit/circuit_visualization.py "view source code")
 
 Draw the quantum circuit. Use the output parameter to choose the drawing format:
 

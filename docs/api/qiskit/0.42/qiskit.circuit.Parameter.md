@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.Parameter
 ---
 
-# Parameter[¶](#parameter "Permalink to this headline")
+# Parameter
 
 <span id="qiskit.circuit.Parameter" />
 
-`Parameter(name)`
+`Parameter(name)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/parameter.py "view source code")
 
 Bases: [`qiskit.circuit.parameterexpression.ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
 
@@ -207,7 +207,7 @@ Sine of a ParameterExpression
 
 <span id="qiskit.circuit.Parameter.subs" />
 
-`Parameter.subs(parameter_map, allow_unknown_parameters=False)`
+`Parameter.subs(parameter_map, allow_unknown_parameters=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/parameter.py "view source code")
 
 Substitute self with the corresponding parameter in `parameter_map`.
 

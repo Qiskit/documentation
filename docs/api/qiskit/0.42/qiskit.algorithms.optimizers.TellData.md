@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.TellData
 ---
 
-# TellData[¶](#telldata "Permalink to this headline")
+# TellData
 
 <span id="qiskit.algorithms.optimizers.TellData" />
 
-`TellData(eval_fun=None, eval_jac=None)`
+`TellData(eval_fun=None, eval_jac=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
 
 Bases: `abc.ABC`
 

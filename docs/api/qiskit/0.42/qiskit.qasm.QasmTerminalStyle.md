@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.qasm.QasmTerminalStyle
 ---
 
-# QasmTerminalStyle[¶](#qasmterminalstyle "Permalink to this headline")
+# QasmTerminalStyle
 
 <span id="qiskit.qasm.QasmTerminalStyle" />
 
-`QasmTerminalStyle`
+`QasmTerminalStyle`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/qasm/pygments/lexer.py "view source code")
 
 Bases: `pygments.style.Style`
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.FiniteDiffSamplerGradient
 ---
 
-# FiniteDiffSamplerGradient[¶](#finitediffsamplergradient "Permalink to this headline")
+# FiniteDiffSamplerGradient
 
 <span id="qiskit.algorithms.gradients.FiniteDiffSamplerGradient" />
 
-`FiniteDiffSamplerGradient(sampler, epsilon, options=None, *, method='central')`
+`FiniteDiffSamplerGradient(sampler, epsilon, options=None, *, method='central')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/gradients/finite_diff_sampler_gradient.py "view source code")
 
 Bases: [`qiskit.algorithms.gradients.base_sampler_gradient.BaseSamplerGradient`](qiskit.algorithms.gradients.BaseSamplerGradient "qiskit.algorithms.gradients.base_sampler_gradient.BaseSamplerGradient")
 

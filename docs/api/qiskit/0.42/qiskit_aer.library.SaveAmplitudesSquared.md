@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_aer.library.SaveAmplitudesSquared
 ---
 
-# SaveAmplitudesSquared[¶](#saveamplitudessquared "Permalink to this headline")
+# SaveAmplitudesSquared
 
 <span id="qiskit_aer.library.SaveAmplitudesSquared" />
 
-`SaveAmplitudesSquared(num_qubits, params, label='amplitudes_squared', unnormalized=False, pershot=False, conditional=False)`
+`SaveAmplitudesSquared(num_qubits, params, label='amplitudes_squared', unnormalized=False, pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/library/save_instructions/save_amplitudes.py "view source code")
 
 Bases: `qiskit_aer.library.save_instructions.save_data.SaveAverageData`
 

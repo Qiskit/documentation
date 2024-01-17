@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.linear_solvers.LinearSolver
 ---
 
-# LinearSolver[¶](#linearsolver "Permalink to this headline")
+# LinearSolver
 
 <span id="qiskit.algorithms.linear_solvers.LinearSolver" />
 
-`LinearSolver`
+`LinearSolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/linear_solvers/linear_solver.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -22,7 +22,7 @@ The deprecated abstract class for linear system solvers in Qiskit.
 
 <span id="qiskit.algorithms.linear_solvers.LinearSolver.solve" />
 
-`abstract LinearSolver.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`
+`abstract LinearSolver.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/linear_solvers/linear_solver.py "view source code")
 
 Solve the system and compute the observable(s)
 

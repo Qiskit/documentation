@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.SXdgGate
 ---
 
-# SXdgGate[¶](#sxdggate "Permalink to this headline")
+# SXdgGate
 
 <span id="qiskit.circuit.library.SXdgGate" />
 
-`SXdgGate(label=None)`
+`SXdgGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/sx.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -45,7 +45,7 @@ Create new SXdg gate.
 
 <span id="qiskit.circuit.library.SXdgGate.inverse" />
 
-`SXdgGate.inverse()`
+`SXdgGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/sx.py "view source code")
 
 Return inverse SXdg gate (i.e. SX).
 

@@ -10,11 +10,11 @@ python_api_name: qiskit.providers.ibmq.IBMQError
   The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
 </Admonition>
 
-# qiskit.providers.ibmq.IBMQError[¶](#qiskit-providers-ibmq-ibmqerror "Permalink to this headline")
+# qiskit.providers.ibmq.IBMQError
 
 <span id="qiskit.providers.ibmq.IBMQError" />
 
-`IBMQError(*message)`
+`IBMQError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/ibmq/exceptions.py "view source code")
 
 Base class for errors raised by the provider modules.
 

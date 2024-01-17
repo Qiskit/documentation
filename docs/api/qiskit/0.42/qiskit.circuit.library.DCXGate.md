@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.DCXGate
 ---
 
-# DCXGate[¶](#dcxgate "Permalink to this headline")
+# DCXGate
 
 <span id="qiskit.circuit.library.DCXGate" />
 
-`DCXGate`
+`DCXGate`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/dcx.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

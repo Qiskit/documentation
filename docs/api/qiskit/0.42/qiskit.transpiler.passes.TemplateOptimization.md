@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.TemplateOptimization
 ---
 
-# TemplateOptimization[¶](#templateoptimization "Permalink to this headline")
+# TemplateOptimization
 
 <span id="qiskit.transpiler.passes.TemplateOptimization" />
 
-`TemplateOptimization(*args, **kwargs)`
+`TemplateOptimization(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/optimization/template_optimization.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -37,7 +37,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.TemplateOptimization.run" />
 
-`TemplateOptimization.run(dag)`
+`TemplateOptimization.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/optimization/template_optimization.py "view source code")
 
 **Parameters**
 

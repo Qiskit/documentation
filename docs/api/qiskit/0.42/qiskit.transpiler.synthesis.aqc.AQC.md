@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.synthesis.aqc.AQC
 ---
 
-# AQC[¶](#aqc "Permalink to this headline")
+# AQC
 
 <span id="qiskit.transpiler.synthesis.aqc.AQC" />
 
-`AQC(optimizer=None, seed=None)`
+`AQC(optimizer=None, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/synthesis/aqc/aqc.py "view source code")
 
 Bases: `object`
 
@@ -32,7 +32,7 @@ A generic implementation of Approximate Quantum Compiler. This implementation is
 
 <span id="qiskit.transpiler.synthesis.aqc.AQC.compile_unitary" />
 
-`AQC.compile_unitary(target_matrix, approximate_circuit, approximating_objective, initial_point=None)`
+`AQC.compile_unitary(target_matrix, approximate_circuit, approximating_objective, initial_point=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/synthesis/aqc/aqc.py "view source code")
 
 Approximately compiles a circuit represented as a unitary matrix by solving an optimization problem defined by `approximating_objective` and using `approximate_circuit` as a template for the approximate circuit.
 

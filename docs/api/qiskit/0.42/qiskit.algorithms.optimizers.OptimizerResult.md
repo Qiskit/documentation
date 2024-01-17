@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.OptimizerResult
 ---
 
-# OptimizerResult[¶](#optimizerresult "Permalink to this headline")
+# OptimizerResult
 
 <span id="qiskit.algorithms.optimizers.OptimizerResult" />
 
-`OptimizerResult`
+`OptimizerResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
 

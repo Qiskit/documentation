@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.transpiler.preset_passmanagers.common.generate_routing_passmanager
 ---
 
-# qiskit.transpiler.preset\_passmanagers.common.generate\_routing\_passmanager[¶](#qiskit-transpiler-preset-passmanagers-common-generate-routing-passmanager "Permalink to this headline")
+# qiskit.transpiler.preset\_passmanagers.common.generate\_routing\_passmanager
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_routing_passmanager" />
 
-`generate_routing_passmanager(routing_pass, target, coupling_map=None, vf2_call_limit=None, backend_properties=None, seed_transpiler=None, check_trivial=False, use_barrier_before_measurement=True)`
+`generate_routing_passmanager(routing_pass, target, coupling_map=None, vf2_call_limit=None, backend_properties=None, seed_transpiler=None, check_trivial=False, use_barrier_before_measurement=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/preset_passmanagers/common.py "view source code")
 
 Generate a routing [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 

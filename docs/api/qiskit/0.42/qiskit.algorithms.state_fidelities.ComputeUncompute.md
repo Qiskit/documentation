@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.state_fidelities.ComputeUncompute
 ---
 
-# ComputeUncompute[¶](#computeuncompute "Permalink to this headline")
+# ComputeUncompute
 
 <span id="qiskit.algorithms.state_fidelities.ComputeUncompute" />
 
-`ComputeUncompute(sampler, options=None)`
+`ComputeUncompute(sampler, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/state_fidelities/compute_uncompute.py "view source code")
 
 Bases: [`qiskit.algorithms.state_fidelities.base_state_fidelity.BaseStateFidelity`](qiskit.algorithms.state_fidelities.BaseStateFidelity "qiskit.algorithms.state_fidelities.base_state_fidelity.BaseStateFidelity")
 
@@ -39,7 +39,7 @@ where $x$ and $y$ are optional parametrizations of the states $\psi$ and $\phi$ 
 
 <span id="qiskit.algorithms.state_fidelities.ComputeUncompute.create_fidelity_circuit" />
 
-`ComputeUncompute.create_fidelity_circuit(circuit_1, circuit_2)`
+`ComputeUncompute.create_fidelity_circuit(circuit_1, circuit_2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/state_fidelities/compute_uncompute.py "view source code")
 
 Combines `circuit_1` and `circuit_2` to create the fidelity circuit following the compute-uncompute method.
 
@@ -80,7 +80,7 @@ Primitive job for the fidelity calculation. The job’s result is an instance of
 
 <span id="qiskit.algorithms.state_fidelities.ComputeUncompute.update_default_options" />
 
-`ComputeUncompute.update_default_options(**options)`
+`ComputeUncompute.update_default_options(**options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/state_fidelities/compute_uncompute.py "view source code")
 
 Update the fidelity’s default options setting.
 

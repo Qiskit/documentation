@@ -14,21 +14,17 @@ python_api_name: qiskit.qasm3
 
 <span id="module-qiskit.qasm3" />
 
-`qiskit.qasm3¶`
+`qiskit.qasm3`
 
 Qiskit provides some tools for converting between [OpenQASM 3](https://openqasm.com) representations of quantum programs, and the [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") class. These will continue to evolve as Qiskit’s support for the dynamic-circuit capabilities expressed by OpenQASM 3 increases.
 
 ## Exporting to OpenQASM 3
 
-<span id="module-qiskit.qasm3" />
-
-`¶`
-
 The high-level functions are simply [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.dump") and [`dumps()`](#qiskit.qasm3.dumps "qiskit.qasm3.dumps"), which respectively export to a file (given as a filename) and to a Python string.
 
 <span id="qiskit.qasm3.dump" />
 
-`dump(circuit, stream, **kwargs)`
+`dump(circuit, stream, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/qasm3.py "view source code")
 
 Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object as a OpenQASM3 stream to file-like object.
 
@@ -44,7 +40,7 @@ Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.Qua
 
 <span id="qiskit.qasm3.dumps" />
 
-`dumps(circuit, **kwargs)`
+`dumps(circuit, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/qasm3.py "view source code")
 
 Serialize a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") object in an OpenQASM3 string.
 
@@ -65,7 +61,7 @@ Both of these exporter functions are single-use wrappers around the main [`Expor
 
 <span id="qiskit.qasm3.Exporter" />
 
-`Exporter(includes=('stdgates.inc',), basis_gates=('U',), disable_constants=False, alias_classical_registers=False, indent='  ')`
+`Exporter(includes=('stdgates.inc',), basis_gates=('U',), disable_constants=False, alias_classical_registers=False, indent='  ')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/qasm3/exporter.py "view source code")
 
 QASM3 exporter main class.
 
@@ -97,17 +93,13 @@ All of these interfaces will raise [`QASM3ExporterError`](#qiskit.qasm3.QASM3Exp
 
 <span id="qiskit.qasm3.QASM3ExporterError" />
 
-`QASM3ExporterError(*message)`
+`QASM3ExporterError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/qasm3/exceptions.py "view source code")
 
 An error raised during running the OpenQASM 3 exporter.
 
 Set the error message.
 
 ## Importing from OpenQASM 3
-
-<span id="module-qiskit.qasm3" />
-
-`¶`
 
 Currently only two high-level functions are offered, as Qiskit support for importing from OpenQASM 3 is in its infancy, and the implementation is expected to change significantly. The two functions are [`load()`](#qiskit.qasm3.load "qiskit.qasm3.load") and [`loads()`](#qiskit.qasm3.loads "qiskit.qasm3.loads"), which are direct counterparts of [`dump()`](#qiskit.qasm3.dump "qiskit.qasm3.dump") and [`dumps()`](#qiskit.qasm3.dumps "qiskit.qasm3.dumps"), respectively loading a program indirectly from a named file and directly from a given string.
 
@@ -123,7 +115,7 @@ Currently only two high-level functions are offered, as Qiskit support for impor
 
 <span id="qiskit.qasm3.load" />
 
-`load(filename)`
+`load(filename)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/qasm3.py "view source code")
 
 Load an OpenQASM 3 program from the file `filename`.
 
@@ -145,7 +137,7 @@ a circuit representation of the OpenQASM 3 program.
 
 <span id="qiskit.qasm3.loads" />
 
-`loads(program)`
+`loads(program)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/qasm3.py "view source code")
 
 Load an OpenQASM 3 program from the given string.
 
@@ -169,7 +161,7 @@ Both of these two functions raise [`QASM3ImporterError`](#qiskit.qasm3.QASM3Impo
 
 <span id="qiskit.qasm3.QASM3ImporterError" />
 
-`QASM3ImporterError(*message)`
+`QASM3ImporterError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/qasm3/exceptions.py "view source code")
 
 An error raised during the OpenQASM 3 importer.
 

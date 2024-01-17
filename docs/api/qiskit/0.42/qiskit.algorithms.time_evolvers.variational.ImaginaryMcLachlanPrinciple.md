@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.time_evolvers.variational.ImaginaryMcLachlanPrinciple
 ---
 
-# ImaginaryMcLachlanPrinciple[¶](#imaginarymclachlanprinciple "Permalink to this headline")
+# ImaginaryMcLachlanPrinciple
 
 <span id="qiskit.algorithms.time_evolvers.variational.ImaginaryMcLachlanPrinciple" />
 
-`ImaginaryMcLachlanPrinciple(qgt=None, gradient=None)`
+`ImaginaryMcLachlanPrinciple(qgt=None, gradient=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/time_evolvers/variational/variational_principles/imaginary_mc_lachlan_principle.py "view source code")
 
 Bases: [`qiskit.algorithms.time_evolvers.variational.variational_principles.imaginary_variational_principle.ImaginaryVariationalPrinciple`](qiskit.algorithms.time_evolvers.variational.ImaginaryVariationalPrinciple "qiskit.algorithms.time_evolvers.variational.variational_principles.imaginary_variational_principle.ImaginaryVariationalPrinciple")
 
@@ -31,7 +31,7 @@ Class for an Imaginary McLachlan’s Variational Principle. It aims to minimize 
 
 <span id="qiskit.algorithms.time_evolvers.variational.ImaginaryMcLachlanPrinciple.evolution_gradient" />
 
-`ImaginaryMcLachlanPrinciple.evolution_gradient(hamiltonian, ansatz, param_values, gradient_params=None)`
+`ImaginaryMcLachlanPrinciple.evolution_gradient(hamiltonian, ansatz, param_values, gradient_params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/time_evolvers/variational/variational_principles/imaginary_mc_lachlan_principle.py "view source code")
 
 Calculates an evolution gradient according to the rules of this variational principle.
 

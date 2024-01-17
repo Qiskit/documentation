@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.InstructionScheduleMap
 ---
 
-# InstructionScheduleMap[¶](#instructionschedulemap "Permalink to this headline")
+# InstructionScheduleMap
 
 <span id="qiskit.pulse.InstructionScheduleMap" />
 
-`InstructionScheduleMap`
+`InstructionScheduleMap`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/instruction_schedule_map.py "view source code")
 
 Bases: `object`
 
@@ -32,7 +32,7 @@ Initialize a circuit instruction to schedule mapper instance.
 
 <span id="qiskit.pulse.InstructionScheduleMap.add" />
 
-`InstructionScheduleMap.add(instruction, qubits, schedule, arguments=None)`
+`InstructionScheduleMap.add(instruction, qubits, schedule, arguments=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/instruction_schedule_map.py "view source code")
 
 Add a new known instruction for the given qubits and its mapping to a pulse schedule.
 
@@ -55,7 +55,7 @@ Add a new known instruction for the given qubits and its mapping to a pulse sche
 
 <span id="qiskit.pulse.InstructionScheduleMap.assert_has" />
 
-`InstructionScheduleMap.assert_has(instruction, qubits)`
+`InstructionScheduleMap.assert_has(instruction, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/instruction_schedule_map.py "view source code")
 
 Error if the given instruction is not defined.
 
@@ -76,7 +76,7 @@ Error if the given instruction is not defined.
 
 <span id="qiskit.pulse.InstructionScheduleMap.get" />
 
-`InstructionScheduleMap.get(instruction, qubits, *params, **kwparams)`
+`InstructionScheduleMap.get(instruction, qubits, *params, **kwparams)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/instruction_schedule_map.py "view source code")
 
 Return the defined [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") or [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") for the given instruction on the given qubits.
 
@@ -101,7 +101,7 @@ The Schedule defined for the input.
 
 <span id="qiskit.pulse.InstructionScheduleMap.get_parameters" />
 
-`InstructionScheduleMap.get_parameters(instruction, qubits)`
+`InstructionScheduleMap.get_parameters(instruction, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/instruction_schedule_map.py "view source code")
 
 Return the list of parameters taken by the given instruction on the given qubits.
 
@@ -122,7 +122,7 @@ The names of the parameters required by the instruction.
 
 <span id="qiskit.pulse.InstructionScheduleMap.has" />
 
-`InstructionScheduleMap.has(instruction, qubits)`
+`InstructionScheduleMap.has(instruction, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/instruction_schedule_map.py "view source code")
 
 Is the instruction defined for the given qubits?
 
@@ -143,7 +143,7 @@ True iff the instruction is defined.
 
 <span id="qiskit.pulse.InstructionScheduleMap.has_custom_gate" />
 
-`InstructionScheduleMap.has_custom_gate()`
+`InstructionScheduleMap.has_custom_gate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/instruction_schedule_map.py "view source code")
 
 Return `True` if the map has user provided instruction.
 
@@ -155,7 +155,7 @@ Return `True` if the map has user provided instruction.
 
 <span id="qiskit.pulse.InstructionScheduleMap.pop" />
 
-`InstructionScheduleMap.pop(instruction, qubits, *params, **kwparams)`
+`InstructionScheduleMap.pop(instruction, qubits, *params, **kwparams)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/instruction_schedule_map.py "view source code")
 
 Remove and return the defined schedule for the given instruction on the given qubits.
 
@@ -178,7 +178,7 @@ The Schedule defined for the input.
 
 <span id="qiskit.pulse.InstructionScheduleMap.qubit_instructions" />
 
-`InstructionScheduleMap.qubit_instructions(qubits)`
+`InstructionScheduleMap.qubit_instructions(qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/instruction_schedule_map.py "view source code")
 
 Return a list of the instruction names that are defined by the backend for the given qubit or qubits.
 
@@ -200,7 +200,7 @@ For 1 qubit, all the 1Q instructions defined. For multiple qubits, all the instr
 
 <span id="qiskit.pulse.InstructionScheduleMap.qubits_with_instruction" />
 
-`InstructionScheduleMap.qubits_with_instruction(instruction)`
+`InstructionScheduleMap.qubits_with_instruction(instruction)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/instruction_schedule_map.py "view source code")
 
 Return a list of the qubits for which the given instruction is defined. Single qubit instructions return a flat list, and multiqubit instructions return a list of ordered tuples.
 
@@ -224,7 +224,7 @@ Qubit indices which have the given instruction defined. This is a list of tuples
 
 <span id="qiskit.pulse.InstructionScheduleMap.remove" />
 
-`InstructionScheduleMap.remove(instruction, qubits)`
+`InstructionScheduleMap.remove(instruction, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/instruction_schedule_map.py "view source code")
 
 Remove the given instruction from the listing of instructions defined in self.
 

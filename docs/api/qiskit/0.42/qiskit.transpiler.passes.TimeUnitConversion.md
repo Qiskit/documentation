@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.TimeUnitConversion
 ---
 
-# TimeUnitConversion[¶](#timeunitconversion "Permalink to this headline")
+# TimeUnitConversion
 
 <span id="qiskit.transpiler.passes.TimeUnitConversion" />
 
-`TimeUnitConversion(inst_durations)`
+`TimeUnitConversion(inst_durations)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/scheduling/time_unit_conversion.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -44,7 +44,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.TimeUnitConversion.run" />
 
-`TimeUnitConversion.run(dag)`
+`TimeUnitConversion.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/scheduling/time_unit_conversion.py "view source code")
 
 Run the TimeUnitAnalysis pass on dag.
 

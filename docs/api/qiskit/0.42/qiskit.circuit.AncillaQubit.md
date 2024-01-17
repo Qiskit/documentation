@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.AncillaQubit
 ---
 
-# AncillaQubit[¶](#ancillaqubit "Permalink to this headline")
+# AncillaQubit
 
 <span id="qiskit.circuit.AncillaQubit" />
 
-`AncillaQubit(register=None, index=None)`
+`AncillaQubit(register=None, index=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/quantumregister.py "view source code")
 
 Bases: [`qiskit.circuit.quantumregister.Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")
 

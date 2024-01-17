@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeMontrealV2
 ---
 
-# FakeMontrealV2[¶](#fakemontrealv2 "Permalink to this headline")
+# FakeMontrealV2
 
 <span id="qiskit.providers.fake_provider.FakeMontrealV2" />
 
-`FakeMontrealV2`
+`FakeMontrealV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/montreal/fake_montreal.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

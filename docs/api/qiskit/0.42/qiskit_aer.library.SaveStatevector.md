@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_aer.library.SaveStatevector
 ---
 
-# SaveStatevector[¶](#savestatevector "Permalink to this headline")
+# SaveStatevector
 
 <span id="qiskit_aer.library.SaveStatevector" />
 
-`SaveStatevector(num_qubits, label='statevector', pershot=False, conditional=False)`
+`SaveStatevector(num_qubits, label='statevector', pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/library/save_instructions/save_statevector.py "view source code")
 
 Bases: `qiskit_aer.library.save_instructions.save_data.SaveSingleData`
 

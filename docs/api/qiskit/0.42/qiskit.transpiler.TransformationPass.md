@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.TransformationPass
 ---
 
-# TransformationPass[¶](#transformationpass "Permalink to this headline")
+# TransformationPass
 
 <span id="qiskit.transpiler.TransformationPass" />
 
-`TransformationPass(*args, **kwargs)`
+`TransformationPass(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/basepasses.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.BasePass`
 

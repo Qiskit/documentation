@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.hellinger_distance
 ---
 
-# qiskit.quantum\_info.hellinger\_distance[¶](#qiskit-quantum-info-hellinger-distance "Permalink to this headline")
+# qiskit.quantum\_info.hellinger\_distance
 
 <span id="qiskit.quantum_info.hellinger_distance" />
 
-`hellinger_distance(dist_p, dist_q)`
+`hellinger_distance(dist_p, dist_q)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/quantum_info/analysis/distance.py "view source code")
 
 Computes the Hellinger distance between two counts distributions.
 

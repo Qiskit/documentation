@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.noise.depolarizing_error
 ---
 
-# qiskit\_aer.noise.depolarizing\_error[¶](#qiskit-aer-noise-depolarizing-error "Permalink to this headline")
+# qiskit\_aer.noise.depolarizing\_error
 
 <span id="qiskit_aer.noise.depolarizing_error" />
 
-`depolarizing_error(param, num_qubits)`
+`depolarizing_error(param, num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/noise/errors/standard_errors.py "view source code")
 
 Return a depolarizing quantum error channel.
 

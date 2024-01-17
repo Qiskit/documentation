@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.play
 ---
 
-# qiskit.pulse.builder.play[¶](#qiskit-pulse-builder-play "Permalink to this headline")
+# qiskit.pulse.builder.play
 
 <span id="qiskit.pulse.builder.play" />
 
-`play(pulse, channel, name=None)`
+`play(pulse, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/builder.py "view source code")
 
 Play a `pulse` on a `channel`.
 

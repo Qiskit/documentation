@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.delay
 ---
 
-# qiskit.pulse.builder.delay[¶](#qiskit-pulse-builder-delay "Permalink to this headline")
+# qiskit.pulse.builder.delay
 
 <span id="qiskit.pulse.builder.delay" />
 
-`delay(duration, channel, name=None)`
+`delay(duration, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/builder.py "view source code")
 
 Delay on a `channel` for a `duration`.
 

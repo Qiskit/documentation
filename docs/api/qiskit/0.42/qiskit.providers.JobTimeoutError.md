@@ -6,11 +6,11 @@ python_api_type: exception
 python_api_name: qiskit.providers.JobTimeoutError
 ---
 
-# qiskit.providers.JobTimeoutError[¶](#qiskit-providers-jobtimeouterror "Permalink to this headline")
+# qiskit.providers.JobTimeoutError
 
 <span id="qiskit.providers.JobTimeoutError" />
 
-`JobTimeoutError(*message)`
+`JobTimeoutError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/exceptions.py "view source code")
 
 Base class for timeout errors raised by jobs.
 

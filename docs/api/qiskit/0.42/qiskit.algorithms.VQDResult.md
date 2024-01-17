@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.VQDResult
 ---
 
-# VQDResult[¶](#vqdresult "Permalink to this headline")
+# VQDResult
 
 <span id="qiskit.algorithms.VQDResult" />
 
-`VQDResult`
+`VQDResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/eigen_solvers/vqd.py "view source code")
 
 Bases: `qiskit.algorithms.variational_algorithm.VariationalResult`, [`qiskit.algorithms.eigen_solvers.eigen_solver.EigensolverResult`](qiskit.algorithms.EigensolverResult "qiskit.algorithms.eigen_solvers.eigen_solver.EigensolverResult")
 

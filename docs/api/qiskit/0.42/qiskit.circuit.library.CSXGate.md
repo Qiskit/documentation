@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.CSXGate
 ---
 
-# CSXGate[¶](#csxgate "Permalink to this headline")
+# CSXGate
 
 <span id="qiskit.circuit.library.CSXGate" />
 
-`CSXGate(label=None, ctrl_state=None)`
+`CSXGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/sx.py "view source code")
 
 Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.channels.RegisterSlot
 ---
 
-# RegisterSlot[¶](#registerslot "Permalink to this headline")
+# RegisterSlot
 
 <span id="qiskit.pulse.channels.RegisterSlot" />
 
-`RegisterSlot(index)`
+`RegisterSlot(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/channels.py "view source code")
 
 Bases: `qiskit.pulse.channels.ClassicalIOChannel`
 

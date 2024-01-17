@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.utils.validate_entangler_map
 ---
 
-# qiskit.utils.validate\_entangler\_map[¶](#qiskit-utils-validate-entangler-map "Permalink to this headline")
+# qiskit.utils.validate\_entangler\_map
 
 <span id="qiskit.utils.validate_entangler_map" />
 
-`validate_entangler_map(entangler_map, num_qubits, allow_double_entanglement=False)`
+`validate_entangler_map(entangler_map, num_qubits, allow_double_entanglement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/utils/entangler_map.py "view source code")
 
 Validate a user supplied entangler map and converts entries to ints.
 

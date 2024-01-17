@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.RVGate
 ---
 
-# RVGate[¶](#rvgate "Permalink to this headline")
+# RVGate
 
 <span id="qiskit.circuit.library.RVGate" />
 
-`RVGate(v_x, v_y, v_z, basis='U')`
+`RVGate(v_x, v_y, v_z, basis='U')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/generalized_gates/rv.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -53,7 +53,7 @@ Create new rv single-qubit gate.
 
 <span id="qiskit.circuit.library.RVGate.inverse" />
 
-`RVGate.inverse()`
+`RVGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/generalized_gates/rv.py "view source code")
 
 Invert this gate.
 
@@ -61,7 +61,7 @@ Invert this gate.
 
 <span id="qiskit.circuit.library.RVGate.to_matrix" />
 
-`RVGate.to_matrix()`
+`RVGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/generalized_gates/rv.py "view source code")
 
 Return a numpy.array for the R(v) gate.
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.opflow.evolutions.TrotterizationFactory
 ---
 
-# TrotterizationFactory[¶](#trotterizationfactory "Permalink to this headline")
+# TrotterizationFactory
 
 <span id="qiskit.opflow.evolutions.TrotterizationFactory" />
 
-`TrotterizationFactory`
+`TrotterizationFactory`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/opflow/evolutions/trotterizations/trotterization_factory.py "view source code")
 
 Bases: `object`
 
@@ -22,7 +22,7 @@ A factory for conveniently creating TrotterizationBase instances.
 
 <span id="qiskit.opflow.evolutions.TrotterizationFactory.build" />
 
-`static TrotterizationFactory.build(mode='trotter', reps=1)`
+`static TrotterizationFactory.build(mode='trotter', reps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/opflow/evolutions/trotterizations/trotterization_factory.py "view source code")
 
 A factory for conveniently creating TrotterizationBase instances.
 

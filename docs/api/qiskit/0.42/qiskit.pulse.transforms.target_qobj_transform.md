@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.transforms.target_qobj_transform
 ---
 
-# qiskit.pulse.transforms.target\_qobj\_transform[¶](#qiskit-pulse-transforms-target-qobj-transform "Permalink to this headline")
+# qiskit.pulse.transforms.target\_qobj\_transform
 
 <span id="qiskit.pulse.transforms.target_qobj_transform" />
 
-`target_qobj_transform(sched, remove_directives=True)`
+`target_qobj_transform(sched, remove_directives=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/transforms/base_transforms.py "view source code")
 
 A basic pulse program transformation for OpenPulse API execution.
 

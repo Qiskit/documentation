@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeBogotaV2
 ---
 
-# FakeBogotaV2[¶](#fakebogotav2 "Permalink to this headline")
+# FakeBogotaV2
 
 <span id="qiskit.providers.fake_provider.FakeBogotaV2" />
 
-`FakeBogotaV2`
+`FakeBogotaV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/bogota/fake_bogota.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

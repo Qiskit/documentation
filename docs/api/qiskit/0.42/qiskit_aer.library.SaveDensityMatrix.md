@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_aer.library.SaveDensityMatrix
 ---
 
-# SaveDensityMatrix[¶](#savedensitymatrix "Permalink to this headline")
+# SaveDensityMatrix
 
 <span id="qiskit_aer.library.SaveDensityMatrix" />
 
-`SaveDensityMatrix(num_qubits, label='density_matrix', unnormalized=False, pershot=False, conditional=False)`
+`SaveDensityMatrix(num_qubits, label='density_matrix', unnormalized=False, pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/library/save_instructions/save_density_matrix.py "view source code")
 
 Bases: `qiskit_aer.library.save_instructions.save_data.SaveAverageData`
 

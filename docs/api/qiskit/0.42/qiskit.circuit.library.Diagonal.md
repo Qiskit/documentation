@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.Diagonal
 ---
 
-# Diagonal[¶](#diagonal "Permalink to this headline")
+# Diagonal
 
 <span id="qiskit.circuit.library.Diagonal" />
 
-`Diagonal(diag)`
+`Diagonal(diag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/generalized_gates/diagonal.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

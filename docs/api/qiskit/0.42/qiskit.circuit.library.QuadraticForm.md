@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.QuadraticForm
 ---
 
-# QuadraticForm[¶](#quadraticform "Permalink to this headline")
+# QuadraticForm
 
 <span id="qiskit.circuit.library.QuadraticForm" />
 
-`QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)`
+`QuadraticForm(num_result_qubits=None, quadratic=None, linear=None, offset=None, little_endian=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -61,7 +61,7 @@ The implementation of this circuit is discussed in \[1], Fig. 6.
 
 <span id="qiskit.circuit.library.QuadraticForm.required_result_qubits" />
 
-`static QuadraticForm.required_result_qubits(quadratic, linear, offset)`
+`static QuadraticForm.required_result_qubits(quadratic, linear, offset)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/arithmetic/quadratic_form.py "view source code")
 
 Get the number of required result qubits.
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.XOR
 ---
 
-# XOR[¶](#xor "Permalink to this headline")
+# XOR
 
 <span id="qiskit.circuit.library.XOR" />
 
-`XOR(num_qubits, amount=None, seed=None)`
+`XOR(num_qubits, amount=None, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/boolean_logic/quantum_xor.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

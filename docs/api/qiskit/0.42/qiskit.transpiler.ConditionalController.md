@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.ConditionalController
 ---
 
-# ConditionalController[¶](#conditionalcontroller "Permalink to this headline")
+# ConditionalController
 
 <span id="qiskit.transpiler.ConditionalController" />
 
-`ConditionalController(passes, options=None, condition=None, **partial_controller)`
+`ConditionalController(passes, options=None, condition=None, **partial_controller)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/runningpassmanager.py "view source code")
 
 Bases: [`qiskit.transpiler.runningpassmanager.FlowController`](qiskit.transpiler.FlowController "qiskit.transpiler.runningpassmanager.FlowController")
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.ContainsInstruction
 ---
 
-# ContainsInstruction[¶](#containsinstruction "Permalink to this headline")
+# ContainsInstruction
 
 <span id="qiskit.transpiler.passes.ContainsInstruction" />
 
-`ContainsInstruction(instruction_name, recurse=True)`
+`ContainsInstruction(instruction_name, recurse=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/utils/contains_instruction.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -39,7 +39,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ContainsInstruction.run" />
 
-`ContainsInstruction.run(dag)`
+`ContainsInstruction.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/utils/contains_instruction.py "view source code")
 
 Run the ContainsInstruction pass on dag.
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeAlmadenV2
 ---
 
-# FakeAlmadenV2[¶](#fakealmadenv2 "Permalink to this headline")
+# FakeAlmadenV2
 
 <span id="qiskit.providers.fake_provider.FakeAlmadenV2" />
 
-`FakeAlmadenV2`
+`FakeAlmadenV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/almaden/fake_almaden.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

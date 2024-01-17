@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_aer.library.SaveState
 ---
 
-# SaveState[¶](#savestate "Permalink to this headline")
+# SaveState
 
 <span id="qiskit_aer.library.SaveState" />
 
-`SaveState(num_qubits, label=None, pershot=False, conditional=False)`
+`SaveState(num_qubits, label=None, pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/library/save_instructions/save_state.py "view source code")
 
 Bases: `qiskit_aer.library.save_instructions.save_data.SaveSingleData`
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.AlgorithmJob
 ---
 
-# AlgorithmJob[¶](#algorithmjob "Permalink to this headline")
+# AlgorithmJob
 
 <span id="qiskit.algorithms.AlgorithmJob" />
 
-`AlgorithmJob(function, *args, **kwargs)`
+`AlgorithmJob(function, *args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/algorithm_job.py "view source code")
 
 Bases: `qiskit.primitives.primitive_job.PrimitiveJob`
 

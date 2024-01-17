@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.measure_channel
 ---
 
-# qiskit.pulse.builder.measure\_channel[¶](#qiskit-pulse-builder-measure-channel "Permalink to this headline")
+# qiskit.pulse.builder.measure\_channel
 
 <span id="qiskit.pulse.builder.measure_channel" />
 
-`measure_channel(qubit)`
+`measure_channel(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/builder.py "view source code")
 
 Return `MeasureChannel` for `qubit` on the active builder backend.
 

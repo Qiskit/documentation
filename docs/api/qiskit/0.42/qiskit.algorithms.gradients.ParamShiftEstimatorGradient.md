@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.ParamShiftEstimatorGradient
 ---
 
-# ParamShiftEstimatorGradient[¶](#paramshiftestimatorgradient "Permalink to this headline")
+# ParamShiftEstimatorGradient
 
 <span id="qiskit.algorithms.gradients.ParamShiftEstimatorGradient" />
 
-`ParamShiftEstimatorGradient(estimator, options=None, derivative_type=DerivativeType.REAL)`
+`ParamShiftEstimatorGradient(estimator, options=None, derivative_type=DerivativeType.REAL)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/gradients/param_shift_estimator_gradient.py "view source code")
 
 Bases: [`qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient`](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.base_estimator_gradient.BaseEstimatorGradient")
 

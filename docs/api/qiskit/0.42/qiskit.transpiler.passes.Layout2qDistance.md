@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.Layout2qDistance
 ---
 
-# Layout2qDistance[¶](#layout2qdistance "Permalink to this headline")
+# Layout2qDistance
 
 <span id="qiskit.transpiler.passes.Layout2qDistance" />
 
-`Layout2qDistance(*args, **kwargs)`
+`Layout2qDistance(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/layout/layout_2q_distance.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -39,7 +39,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Layout2qDistance.run" />
 
-`Layout2qDistance.run(dag)`
+`Layout2qDistance.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/layout/layout_2q_distance.py "view source code")
 
 Run the Layout2qDistance pass on dag. :param dag: DAG to evaluate. :type dag: DAGCircuit
 

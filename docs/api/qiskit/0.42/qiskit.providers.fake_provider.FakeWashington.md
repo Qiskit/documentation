@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeWashington
 ---
 
-# FakeWashington[¶](#fakewashington "Permalink to this headline")
+# FakeWashington
 
 <span id="qiskit.providers.fake_provider.FakeWashington" />
 
-`FakeWashington`
+`FakeWashington`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/washington/fake_washington.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 

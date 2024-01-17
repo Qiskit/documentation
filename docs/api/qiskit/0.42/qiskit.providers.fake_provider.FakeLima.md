@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeLima
 ---
 
-# FakeLima[¶](#fakelima "Permalink to this headline")
+# FakeLima
 
 <span id="qiskit.providers.fake_provider.FakeLima" />
 
-`FakeLima`
+`FakeLima`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/lima/fake_lima.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 

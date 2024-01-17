@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeVigo
 ---
 
-# FakeVigo[¶](#fakevigo "Permalink to this headline")
+# FakeVigo
 
 <span id="qiskit.providers.fake_provider.FakeVigo" />
 
-`FakeVigo`
+`FakeVigo`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/vigo/fake_vigo.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend`
 

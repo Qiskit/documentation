@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.GroverOperator
 ---
 
-# GroverOperator[¶](#groveroperator "Permalink to this headline")
+# GroverOperator
 
 <span id="qiskit.circuit.library.GroverOperator" />
 
-`GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')`
+`GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/grover_operator.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

@@ -10,11 +10,11 @@ python_api_name: qiskit.providers.ibmq.runtime.ResultDecoder
   The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
 </Admonition>
 
-# ResultDecoder[¶](#resultdecoder "Permalink to this headline")
+# ResultDecoder
 
 <span id="qiskit.providers.ibmq.runtime.ResultDecoder" />
 
-`ResultDecoder`
+`ResultDecoder`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/ibmq/runtime/program/result_decoder.py "view source code")
 
 Bases: `object`
 
@@ -43,7 +43,7 @@ Users of your program will need to pass in the subclass when invoking [`qiskit.p
 
 <span id="qiskit.providers.ibmq.runtime.ResultDecoder.decode" />
 
-`classmethod ResultDecoder.decode(data)`
+`classmethod ResultDecoder.decode(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/ibmq/runtime/program/result_decoder.py "view source code")
 
 Decode the result data.
 

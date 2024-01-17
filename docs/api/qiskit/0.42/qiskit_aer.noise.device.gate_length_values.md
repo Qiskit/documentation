@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.noise.device.gate_length_values
 ---
 
-# qiskit\_aer.noise.device.gate\_length\_values[¶](#qiskit-aer-noise-device-gate-length-values "Permalink to this headline")
+# qiskit\_aer.noise.device.gate\_length\_values
 
 <span id="qiskit_aer.noise.device.gate_length_values" />
 
-`gate_length_values(properties)`
+`gate_length_values(properties)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/noise/device/parameters.py "view source code")
 
 Return gate length values from a devices BackendProperties.
 

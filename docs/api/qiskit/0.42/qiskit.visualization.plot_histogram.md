@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.visualization.plot_histogram
 ---
 
-# qiskit.visualization.plot\_histogram[¶](#qiskit-visualization-plot-histogram "Permalink to this headline")
+# qiskit.visualization.plot\_histogram
 
 <span id="qiskit.visualization.plot_histogram" />
 
-`plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None, filename=None)`
+`plot_histogram(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/visualization/counts_visualization.py "view source code")
 
 Plot a histogram of input counts data.
 

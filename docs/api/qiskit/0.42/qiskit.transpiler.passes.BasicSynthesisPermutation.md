@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.BasicSynthesisPermutation
 ---
 
-# BasicSynthesisPermutation[¶](#basicsynthesispermutation "Permalink to this headline")
+# BasicSynthesisPermutation
 
 <span id="qiskit.transpiler.passes.BasicSynthesisPermutation" />
 
-`BasicSynthesisPermutation`
+`BasicSynthesisPermutation`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
 
 Bases: [`qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
 
@@ -42,7 +42,7 @@ print(f"basic: {qct.size() = }, {qct.depth() = }")
 
 <span id="qiskit.transpiler.passes.BasicSynthesisPermutation.run" />
 
-`BasicSynthesisPermutation.run(high_level_object, **options)`
+`BasicSynthesisPermutation.run(high_level_object, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
 
 Run synthesis for the given Permutation.
 

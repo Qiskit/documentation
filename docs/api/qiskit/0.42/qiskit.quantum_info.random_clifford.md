@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.random_clifford
 ---
 
-# qiskit.quantum\_info.random\_clifford[¶](#qiskit-quantum-info-random-clifford "Permalink to this headline")
+# qiskit.quantum\_info.random\_clifford
 
 <span id="qiskit.quantum_info.random_clifford" />
 
-`random_clifford(num_qubits, seed=None)`
+`random_clifford(num_qubits, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/quantum_info/operators/symplectic/random.py "view source code")
 
 Return a random Clifford operator.
 

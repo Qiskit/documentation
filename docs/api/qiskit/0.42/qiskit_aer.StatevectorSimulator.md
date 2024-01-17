@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_aer.StatevectorSimulator
 ---
 
-# StatevectorSimulator[¶](#statevectorsimulator "Permalink to this headline")
+# StatevectorSimulator
 
 <span id="qiskit_aer.StatevectorSimulator" />
 
-`StatevectorSimulator(configuration=None, properties=None, provider=None, **backend_options)`
+`StatevectorSimulator(configuration=None, properties=None, provider=None, **backend_options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/backends/statevector_simulator.py "view source code")
 
 Bases: `qiskit_aer.backends.aerbackend.AerBackend`
 
@@ -74,7 +74,7 @@ This method should initialize the module and its configuration, and raise an exc
 
 <span id="qiskit_aer.StatevectorSimulator.available_devices" />
 
-`StatevectorSimulator.available_devices()`
+`StatevectorSimulator.available_devices()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/backends/statevector_simulator.py "view source code")
 
 Return the available simulation methods.
 
@@ -82,7 +82,7 @@ Return the available simulation methods.
 
 <span id="qiskit_aer.StatevectorSimulator.available_methods" />
 
-`StatevectorSimulator.available_methods()`
+`StatevectorSimulator.available_methods()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/backends/statevector_simulator.py "view source code")
 
 Return the available simulation methods.
 
@@ -228,7 +228,7 @@ The simulation job.
 
 <span id="qiskit_aer.StatevectorSimulator.set_option" />
 
-`StatevectorSimulator.set_option(key, value)`
+`StatevectorSimulator.set_option(key, value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/backends/statevector_simulator.py "view source code")
 
 Special handling for setting backend options.
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.channels.AcquireChannel
 ---
 
-# AcquireChannel[¶](#acquirechannel "Permalink to this headline")
+# AcquireChannel
 
 <span id="qiskit.pulse.channels.AcquireChannel" />
 
-`AcquireChannel(index)`
+`AcquireChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/channels.py "view source code")
 
 Bases: [`qiskit.pulse.channels.Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
 

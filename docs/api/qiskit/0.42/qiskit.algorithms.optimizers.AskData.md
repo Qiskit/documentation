@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.AskData
 ---
 
-# AskData[¶](#askdata "Permalink to this headline")
+# AskData
 
 <span id="qiskit.algorithms.optimizers.AskData" />
 
-`AskData(x_fun=None, x_jac=None)`
+`AskData(x_fun=None, x_jac=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/optimizers/steppable_optimizer.py "view source code")
 
 Bases: `abc.ABC`
 

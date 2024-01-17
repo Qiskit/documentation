@@ -6,11 +6,11 @@ python_api_type: exception
 python_api_name: qiskit.algorithms.AlgorithmError
 ---
 
-# qiskit.algorithms.AlgorithmError[¶](#qiskit-algorithms-algorithmerror "Permalink to this headline")
+# qiskit.algorithms.AlgorithmError
 
 <span id="qiskit.algorithms.AlgorithmError" />
 
-`AlgorithmError(*message)`
+`AlgorithmError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/exceptions.py "view source code")
 
 For Algorithm specific errors.
 

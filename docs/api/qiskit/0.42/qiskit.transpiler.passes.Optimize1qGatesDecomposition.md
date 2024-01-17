@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.Optimize1qGatesDecomposition
 ---
 
-# Optimize1qGatesDecomposition[¶](#optimize1qgatesdecomposition "Permalink to this headline")
+# Optimize1qGatesDecomposition
 
 <span id="qiskit.transpiler.passes.Optimize1qGatesDecomposition" />
 
-`Optimize1qGatesDecomposition(*args, **kwargs)`
+`Optimize1qGatesDecomposition(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/optimization/optimize_1q_decomposition.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -46,7 +46,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Optimize1qGatesDecomposition.run" />
 
-`Optimize1qGatesDecomposition.run(dag)`
+`Optimize1qGatesDecomposition.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/optimization/optimize_1q_decomposition.py "view source code")
 
 Run the Optimize1qGatesDecomposition pass on dag.
 

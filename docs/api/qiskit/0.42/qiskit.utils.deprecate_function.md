@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.utils.deprecate_function
 ---
 
-# qiskit.utils.deprecate\_function[¶](#qiskit-utils-deprecate-function "Permalink to this headline")
+# qiskit.utils.deprecate\_function
 
 <span id="qiskit.utils.deprecate_function" />
 
-`deprecate_function(msg, stacklevel=2, category=<class 'DeprecationWarning'>)`
+`deprecate_function(msg, stacklevel=2, category=<class 'DeprecationWarning'>)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/utils/deprecation.py "view source code")
 
 Emit a warning prior to calling decorated function.
 

@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.synthesis.synth_cnotdihedral_general
 ---
 
-# qiskit.synthesis.synth\_cnotdihedral\_general[¶](#qiskit-synthesis-synth-cnotdihedral-general "Permalink to this headline")
+# qiskit.synthesis.synth\_cnotdihedral\_general
 
 <span id="qiskit.synthesis.synth_cnotdihedral_general" />
 
-`synth_cnotdihedral_general(elem)`
+`synth_cnotdihedral_general(elem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/synthesis/cnotdihedral/cnotdihedral_decompose_general.py "view source code")
 
 Decompose a CNOTDihedral element into a QuantumCircuit.
 

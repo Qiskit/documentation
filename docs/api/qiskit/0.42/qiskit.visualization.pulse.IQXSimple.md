@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.visualization.pulse.IQXSimple
 ---
 
-# IQXSimple[¶](#iqxsimple "Permalink to this headline")
+# IQXSimple
 
 <span id="qiskit.visualization.pulse.IQXSimple" />
 
-`IQXSimple(**kwargs)`
+`IQXSimple(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/visualization/pulse_v2/stylesheet.py "view source code")
 
 Bases: `dict`
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.time_evolvers.variational.RealVariationalPrinciple
 ---
 
-# RealVariationalPrinciple[¶](#realvariationalprinciple "Permalink to this headline")
+# RealVariationalPrinciple
 
 <span id="qiskit.algorithms.time_evolvers.variational.RealVariationalPrinciple" />
 
-`RealVariationalPrinciple(qgt, gradient)`
+`RealVariationalPrinciple(qgt, gradient)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/time_evolvers/variational/variational_principles/real_variational_principle.py "view source code")
 
 Bases: [`qiskit.algorithms.time_evolvers.variational.variational_principles.variational_principle.VariationalPrinciple`](qiskit.algorithms.time_evolvers.variational.VariationalPrinciple "qiskit.algorithms.time_evolvers.variational.variational_principles.variational_principle.VariationalPrinciple"), `abc.ABC`
 

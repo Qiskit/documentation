@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.shift_frequency
 ---
 
-# qiskit.pulse.builder.shift\_frequency[¶](#qiskit-pulse-builder-shift-frequency "Permalink to this headline")
+# qiskit.pulse.builder.shift\_frequency
 
 <span id="qiskit.pulse.builder.shift_frequency" />
 
-`shift_frequency(frequency, channel, name=None)`
+`shift_frequency(frequency, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/builder.py "view source code")
 
 Shift the `frequency` of a pulse `channel`.
 

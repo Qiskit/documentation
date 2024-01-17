@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.FencedDAGCircuit
 ---
 
-# FencedDAGCircuit[¶](#fenceddagcircuit "Permalink to this headline")
+# FencedDAGCircuit
 
 <span id="qiskit.transpiler.FencedDAGCircuit" />
 
-`FencedDAGCircuit(dag_circuit_instance)`
+`FencedDAGCircuit(dag_circuit_instance)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/fencedobjs.py "view source code")
 
 Bases: `qiskit.transpiler.fencedobjs.FencedObject`
 

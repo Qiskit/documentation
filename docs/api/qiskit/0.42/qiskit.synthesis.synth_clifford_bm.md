@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.synthesis.synth_clifford_bm
 ---
 
-# qiskit.synthesis.synth\_clifford\_bm[¶](#qiskit-synthesis-synth-clifford-bm "Permalink to this headline")
+# qiskit.synthesis.synth\_clifford\_bm
 
 <span id="qiskit.synthesis.synth_clifford_bm" />
 
-`synth_clifford_bm(clifford)`
+`synth_clifford_bm(clifford)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/synthesis/clifford/clifford_decompose_bm.py "view source code")
 
 Optimal CX-cost decomposition of a Clifford operator on 2-qubits or 3-qubits into a QuantumCircuit based on Bravyi-Maslov method.
 

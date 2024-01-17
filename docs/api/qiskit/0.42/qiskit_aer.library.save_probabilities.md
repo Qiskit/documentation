@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.library.save_probabilities
 ---
 
-# qiskit\_aer.library.save\_probabilities[¶](#qiskit-aer-library-save-probabilities "Permalink to this headline")
+# qiskit\_aer.library.save\_probabilities
 
 <span id="qiskit_aer.library.save_probabilities" />
 
-`save_probabilities(self, qubits=None, label='probabilities', unnormalized=False, pershot=False, conditional=False)`
+`save_probabilities(self, qubits=None, label='probabilities', unnormalized=False, pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/library/save_instructions/save_probabilities.py "view source code")
 
 Save measurement outcome probabilities vector.
 

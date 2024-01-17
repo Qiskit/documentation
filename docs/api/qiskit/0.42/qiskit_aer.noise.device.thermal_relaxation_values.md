@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.noise.device.thermal_relaxation_values
 ---
 
-# qiskit\_aer.noise.device.thermal\_relaxation\_values[¶](#qiskit-aer-noise-device-thermal-relaxation-values "Permalink to this headline")
+# qiskit\_aer.noise.device.thermal\_relaxation\_values
 
 <span id="qiskit_aer.noise.device.thermal_relaxation_values" />
 
-`thermal_relaxation_values(properties)`
+`thermal_relaxation_values(properties)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/noise/device/parameters.py "view source code")
 
 Return T1, T2 and frequency values from a devices BackendProperties.
 

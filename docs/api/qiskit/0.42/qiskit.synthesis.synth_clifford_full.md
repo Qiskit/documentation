@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.synthesis.synth_clifford_full
 ---
 
-# qiskit.synthesis.synth\_clifford\_full[¶](#qiskit-synthesis-synth-clifford-full "Permalink to this headline")
+# qiskit.synthesis.synth\_clifford\_full
 
 <span id="qiskit.synthesis.synth_clifford_full" />
 
-`synth_clifford_full(clifford, method=None)`
+`synth_clifford_full(clifford, method=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/synthesis/clifford/clifford_decompose_full.py "view source code")
 
 Decompose a Clifford operator into a QuantumCircuit.
 

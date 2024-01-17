@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.L_BFGS_B
 ---
 
-# L\_BFGS\_B[¶](#l-bfgs-b "Permalink to this headline")
+# L\_BFGS\_B
 
 <span id="qiskit.algorithms.optimizers.L_BFGS_B" />
 
-`L_BFGS_B(maxfun=15000, maxiter=15000, ftol=2.220446049250313e-15, iprint=- 1, eps=1e-08, options=None, max_evals_grouped=1, **kwargs)`
+`L_BFGS_B(maxfun=15000, maxiter=15000, ftol=2.220446049250313e-15, iprint=- 1, eps=1e-08, options=None, max_evals_grouped=1, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/optimizers/l_bfgs_b.py "view source code")
 
 Bases: [`qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer`](qiskit.algorithms.optimizers.SciPyOptimizer "qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer")
 

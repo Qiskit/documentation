@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.StochasticSwap
 ---
 
-# StochasticSwap[¶](#stochasticswap "Permalink to this headline")
+# StochasticSwap
 
 <span id="qiskit.transpiler.passes.StochasticSwap" />
 
-`StochasticSwap(*args, **kwargs)`
+`StochasticSwap(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/routing/stochastic_swap.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -51,7 +51,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.StochasticSwap.run" />
 
-`StochasticSwap.run(dag)`
+`StochasticSwap.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/routing/stochastic_swap.py "view source code")
 
 Run the StochasticSwap pass on dag.
 

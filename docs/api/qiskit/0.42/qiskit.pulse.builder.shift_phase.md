@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.shift_phase
 ---
 
-# qiskit.pulse.builder.shift\_phase[¶](#qiskit-pulse-builder-shift-phase "Permalink to this headline")
+# qiskit.pulse.builder.shift\_phase
 
 <span id="qiskit.pulse.builder.shift_phase" />
 
-`shift_phase(phase, channel, name=None)`
+`shift_phase(phase, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/builder.py "view source code")
 
 Shift the `phase` of a pulse `channel`.
 

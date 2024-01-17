@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPluginManager
 ---
 
-# UnitarySynthesisPluginManager[¶](#unitarysynthesispluginmanager "Permalink to this headline")
+# UnitarySynthesisPluginManager
 
 <span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPluginManager" />
 
-`UnitarySynthesisPluginManager`
+`UnitarySynthesisPluginManager`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/synthesis/plugin.py "view source code")
 
 Bases: `object`
 

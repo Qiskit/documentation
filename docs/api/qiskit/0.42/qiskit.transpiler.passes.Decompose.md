@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.Decompose
 ---
 
-# Decompose[¶](#decompose "Permalink to this headline")
+# Decompose
 
 <span id="qiskit.transpiler.passes.Decompose" />
 
-`Decompose(gates_to_decompose=None)`
+`Decompose(gates_to_decompose=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/basis/decompose.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -36,7 +36,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Decompose.run" />
 
-`Decompose.run(dag)`
+`Decompose.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/basis/decompose.py "view source code")
 
 Run the Decompose pass on dag.
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.Qubit
 ---
 
-# Qubit[¶](#qubit "Permalink to this headline")
+# Qubit
 
 <span id="qiskit.circuit.Qubit" />
 
-`Qubit(register=None, index=None)`
+`Qubit(register=None, index=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/quantumregister.py "view source code")
 
 Bases: `qiskit.circuit.bit.Bit`
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.channels.ControlChannel
 ---
 
-# ControlChannel[¶](#controlchannel "Permalink to this headline")
+# ControlChannel
 
 <span id="qiskit.pulse.channels.ControlChannel" />
 
-`ControlChannel(index)`
+`ControlChannel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/channels.py "view source code")
 
 Bases: `qiskit.pulse.channels.PulseChannel`
 

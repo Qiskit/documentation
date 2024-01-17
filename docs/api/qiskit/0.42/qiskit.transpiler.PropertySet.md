@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.PropertySet
 ---
 
-# PropertySet[¶](#propertyset "Permalink to this headline")
+# PropertySet
 
 <span id="qiskit.transpiler.PropertySet" />
 
-`PropertySet`
+`PropertySet`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/propertyset.py "view source code")
 
 Bases: `dict`
 

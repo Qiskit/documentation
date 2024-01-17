@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.MCXGate
 ---
 
-# MCXGate[¶](#mcxgate "Permalink to this headline")
+# MCXGate
 
 <span id="qiskit.circuit.library.MCXGate" />
 
-`MCXGate(num_ctrl_qubits, label=None, ctrl_state=None, _name='mcx')`
+`MCXGate(num_ctrl_qubits, label=None, ctrl_state=None, _name='mcx')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -26,7 +26,7 @@ Create new MCX gate.
 
 <span id="qiskit.circuit.library.MCXGate.control" />
 
-`MCXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`MCXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Return a multi-controlled-X gate with more control lines.
 
@@ -48,7 +48,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.MCXGate.get_num_ancilla_qubits" />
 
-`static MCXGate.get_num_ancilla_qubits(num_ctrl_qubits, mode='noancilla')`
+`static MCXGate.get_num_ancilla_qubits(num_ctrl_qubits, mode='noancilla')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Get the number of required ancilla qubits without instantiating the class.
 
@@ -62,7 +62,7 @@ This staticmethod might be necessary to check the number of ancillas before crea
 
 <span id="qiskit.circuit.library.MCXGate.inverse" />
 
-`MCXGate.inverse()`
+`MCXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Invert this gate. The MCX is its own inverse.
 

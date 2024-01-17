@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.WeightedAdder
 ---
 
-# WeightedAdder[¶](#weightedadder "Permalink to this headline")
+# WeightedAdder
 
 <span id="qiskit.circuit.library.WeightedAdder" />
 
-`WeightedAdder(num_state_qubits=None, weights=None, name='adder')`
+`WeightedAdder(num_state_qubits=None, weights=None, name='adder')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/arithmetic/weighted_adder.py "view source code")
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
 

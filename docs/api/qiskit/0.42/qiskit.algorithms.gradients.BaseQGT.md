@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.BaseQGT
 ---
 
-# BaseQGT[¶](#baseqgt "Permalink to this headline")
+# BaseQGT
 
 <span id="qiskit.algorithms.gradients.BaseQGT" />
 
-`BaseQGT(estimator, phase_fix=True, derivative_type=DerivativeType.COMPLEX, options=None)`
+`BaseQGT(estimator, phase_fix=True, derivative_type=DerivativeType.COMPLEX, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/gradients/base_qgt.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -60,7 +60,7 @@ $$
 
 <span id="qiskit.algorithms.gradients.BaseQGT.run" />
 
-`BaseQGT.run(circuits, parameter_values, parameters=None, **options)`
+`BaseQGT.run(circuits, parameter_values, parameters=None, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/gradients/base_qgt.py "view source code")
 
 Run the job of the QGTs on the given circuits.
 
@@ -83,7 +83,7 @@ The job object of the QGTs of the expectation values. The i-th result correspond
 
 <span id="qiskit.algorithms.gradients.BaseQGT.update_default_options" />
 
-`BaseQGT.update_default_options(**options)`
+`BaseQGT.update_default_options(**options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/gradients/base_qgt.py "view source code")
 
 Update the gradient’s default options setting.
 

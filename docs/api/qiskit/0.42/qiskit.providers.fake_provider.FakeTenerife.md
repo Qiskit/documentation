@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeTenerife
 ---
 
-# FakeTenerife[¶](#faketenerife "Permalink to this headline")
+# FakeTenerife
 
 <span id="qiskit.providers.fake_provider.FakeTenerife" />
 
-`FakeTenerife`
+`FakeTenerife`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/tenerife/fake_tenerife.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackend`
 
@@ -62,7 +62,7 @@ str
 
 <span id="qiskit.providers.fake_provider.FakeTenerife.properties" />
 
-`FakeTenerife.properties()`
+`FakeTenerife.properties()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/tenerife/fake_tenerife.py "view source code")
 
 Returns a snapshot of device properties as recorded on 8/30/19.
 

@@ -6,11 +6,11 @@ python_api_type: exception
 python_api_name: qiskit.qasm.QasmError
 ---
 
-# qiskit.qasm.QasmError[¶](#qiskit-qasm-qasmerror "Permalink to this headline")
+# qiskit.qasm.QasmError
 
 <span id="qiskit.qasm.QasmError" />
 
-`QasmError(*msg)`
+`QasmError(*msg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/qasm/exceptions.py "view source code")
 
 Base class for errors raised while parsing OPENQASM.
 

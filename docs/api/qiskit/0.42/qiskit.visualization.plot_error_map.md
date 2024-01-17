@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.visualization.plot_error_map
 ---
 
-# qiskit.visualization.plot\_error\_map[¶](#qiskit-visualization-plot-error-map "Permalink to this headline")
+# qiskit.visualization.plot\_error\_map
 
 <span id="qiskit.visualization.plot_error_map" />
 
-`plot_error_map(backend, figsize=(12, 9), show_title=True, qubit_coordinates=None)`
+`plot_error_map(backend, figsize=(12, 9), show_title=True, qubit_coordinates=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/visualization/gate_map.py "view source code")
 
 Plots the error map of a given backend.
 

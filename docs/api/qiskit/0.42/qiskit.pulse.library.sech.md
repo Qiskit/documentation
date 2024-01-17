@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.library.sech
 ---
 
-# qiskit.pulse.library.sech[¶](#qiskit-pulse-library-sech "Permalink to this headline")
+# qiskit.pulse.library.sech
 
 <span id="qiskit.pulse.library.sech" />
 
-`sech(duration, amp, sigma, name=None, zero_ends=True)`
+`sech(duration, amp, sigma, name=None, zero_ends=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/library/discrete.py "view source code")
 
 Generates unnormalized sech [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 

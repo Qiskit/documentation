@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.FunctionalPauliRotations
 ---
 
-# FunctionalPauliRotations[¶](#functionalpaulirotations "Permalink to this headline")
+# FunctionalPauliRotations
 
 <span id="qiskit.circuit.library.FunctionalPauliRotations" />
 
-`FunctionalPauliRotations(num_state_qubits=None, basis='Y', name='F')`
+`FunctionalPauliRotations(num_state_qubits=None, basis='Y', name='F')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/arithmetic/functional_pauli_rotations.py "view source code")
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`, `abc.ABC`
 

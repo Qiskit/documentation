@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.compiler.assemble
 ---
 
-# qiskit.compiler.assemble[¶](#qiskit-compiler-assemble "Permalink to this headline")
+# qiskit.compiler.assemble
 
 <span id="qiskit.compiler.assemble" />
 
-`assemble(experiments, backend=None, qobj_id=None, qobj_header=None, shots=None, memory=False, max_credits=None, seed_simulator=None, qubit_lo_freq=None, meas_lo_freq=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=MeasLevel.CLASSIFIED, meas_return=MeasReturnType.AVERAGE, meas_map=None, memory_slot_size=100, rep_time=None, rep_delay=None, parameter_binds=None, parametric_pulses=None, init_qubits=True, **run_config)`
+`assemble(experiments, backend=None, qobj_id=None, qobj_header=None, shots=None, memory=False, max_credits=None, seed_simulator=None, qubit_lo_freq=None, meas_lo_freq=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=MeasLevel.CLASSIFIED, meas_return=MeasReturnType.AVERAGE, meas_map=None, memory_slot_size=100, rep_time=None, rep_delay=None, parameter_binds=None, parametric_pulses=None, init_qubits=True, **run_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/compiler/assembler.py "view source code")
 
 Assemble a list of circuits or pulse schedules into a `Qobj`.
 

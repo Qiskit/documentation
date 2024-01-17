@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.qobj.QobjHeader
 ---
 
-# QobjHeader[¶](#qobjheader "Permalink to this headline")
+# QobjHeader
 
 <span id="qiskit.qobj.QobjHeader" />
 
-`QobjHeader(**kwargs)`
+`QobjHeader(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/qobj/common.py "view source code")
 
 Bases: `qiskit.qobj.common.QobjDictField`
 

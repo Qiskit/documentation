@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeManila
 ---
 
-# FakeManila[¶](#fakemanila "Permalink to this headline")
+# FakeManila
 
 <span id="qiskit.providers.fake_provider.FakeManila" />
 
-`FakeManila`
+`FakeManila`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/manila/fake_manila.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 

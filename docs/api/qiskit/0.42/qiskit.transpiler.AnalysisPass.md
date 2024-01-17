@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.AnalysisPass
 ---
 
-# AnalysisPass[¶](#analysispass "Permalink to this headline")
+# AnalysisPass
 
 <span id="qiskit.transpiler.AnalysisPass" />
 
-`AnalysisPass(*args, **kwargs)`
+`AnalysisPass(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/basepasses.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.BasePass`
 

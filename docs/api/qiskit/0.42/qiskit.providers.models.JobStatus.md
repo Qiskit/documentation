@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.models.JobStatus
 ---
 
-# JobStatus[¶](#jobstatus "Permalink to this headline")
+# JobStatus
 
 <span id="qiskit.providers.models.JobStatus" />
 
-`JobStatus(job_id, status, status_msg, **kwargs)`
+`JobStatus(job_id, status, status_msg, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/models/jobstatus.py "view source code")
 
 Bases: `object`
 
@@ -52,7 +52,7 @@ str
 
 <span id="qiskit.providers.models.JobStatus.from_dict" />
 
-`classmethod JobStatus.from_dict(data)`
+`classmethod JobStatus.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/models/jobstatus.py "view source code")
 
 Create a new JobStatus object from a dictionary.
 
@@ -74,7 +74,7 @@ qiskit.providers.model.JobStatus
 
 <span id="qiskit.providers.models.JobStatus.to_dict" />
 
-`JobStatus.to_dict()`
+`JobStatus.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/models/jobstatus.py "view source code")
 
 Return a dictionary format representation of the JobStatus.
 

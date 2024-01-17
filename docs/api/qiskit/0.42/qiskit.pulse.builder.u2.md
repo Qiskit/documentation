@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.u2
 ---
 
-# qiskit.pulse.builder.u2[¶](#qiskit-pulse-builder-u2 "Permalink to this headline")
+# qiskit.pulse.builder.u2
 
 <span id="qiskit.pulse.builder.u2" />
 
-`u2(phi, lam, qubit)`
+`u2(phi, lam, qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/builder.py "view source code")
 
 Call a `U2Gate` on the input physical qubit.
 

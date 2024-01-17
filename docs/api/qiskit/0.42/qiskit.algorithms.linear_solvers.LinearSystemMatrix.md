@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.linear_solvers.LinearSystemMatrix
 ---
 
-# LinearSystemMatrix[¶](#linearsystemmatrix "Permalink to this headline")
+# LinearSystemMatrix
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix" />
 
-`LinearSystemMatrix(num_state_qubits, tolerance, evolution_time, name='ls_matrix')`
+`LinearSystemMatrix(num_state_qubits, tolerance, evolution_time, name='ls_matrix')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`, `abc.ABC`
 
@@ -491,7 +491,7 @@ lcr_1: 0 ═══════════                           lcr_1: 0 �
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.condition_bounds" />
 
-`abstract LinearSystemMatrix.condition_bounds()`
+`abstract LinearSystemMatrix.condition_bounds()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
 
 Return lower and upper bounds on the condition number of the matrix.
 
@@ -1142,7 +1142,7 @@ A handle to the instructions created.
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.eigs_bounds" />
 
-`abstract LinearSystemMatrix.eigs_bounds()`
+`abstract LinearSystemMatrix.eigs_bounds()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
 
 Return lower and upper bounds on the eigenvalues of the matrix.
 
@@ -2141,7 +2141,7 @@ A handle to the instructions created.
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.power" />
 
-`abstract LinearSystemMatrix.power(power, matrix_power=False)`
+`abstract LinearSystemMatrix.power(power, matrix_power=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
 
 Build powers of the circuit.
 

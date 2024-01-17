@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.GRZ
 ---
 
-# GRZ[¶](#grz "Permalink to this headline")
+# GRZ
 
 <span id="qiskit.circuit.library.GRZ" />
 
-`GRZ(num_qubits, phi)`
+`GRZ(num_qubits, phi)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/generalized_gates/gr.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

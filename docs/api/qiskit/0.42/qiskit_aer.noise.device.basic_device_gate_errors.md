@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.noise.device.basic_device_gate_errors
 ---
 
-# qiskit\_aer.noise.device.basic\_device\_gate\_errors[¶](#qiskit-aer-noise-device-basic-device-gate-errors "Permalink to this headline")
+# qiskit\_aer.noise.device.basic\_device\_gate\_errors
 
 <span id="qiskit_aer.noise.device.basic_device_gate_errors" />
 
-`basic_device_gate_errors(properties=None, gate_error=True, thermal_relaxation=True, gate_lengths=None, gate_length_units='ns', temperature=0, warnings=None, target=None)`
+`basic_device_gate_errors(properties=None, gate_error=True, thermal_relaxation=True, gate_lengths=None, gate_length_units='ns', temperature=0, warnings=None, target=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/noise/device/models.py "view source code")
 
 Return QuantumErrors derived from either of a devices BackendProperties or Target.
 

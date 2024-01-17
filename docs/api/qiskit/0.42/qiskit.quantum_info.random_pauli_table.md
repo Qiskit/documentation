@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.random_pauli_table
 ---
 
-# qiskit.quantum\_info.random\_pauli\_table[¶](#qiskit-quantum-info-random-pauli-table "Permalink to this headline")
+# qiskit.quantum\_info.random\_pauli\_table
 
 <span id="qiskit.quantum_info.random_pauli_table" />
 
-`random_pauli_table(num_qubits, size=1, seed=None)`
+`random_pauli_table(num_qubits, size=1, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/quantum_info/operators/symplectic/random.py "view source code")
 
 Return a random PauliTable.
 

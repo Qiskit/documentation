@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.Job
 ---
 
-# Job[¶](#job "Permalink to this headline")
+# Job
 
 <span id="qiskit.providers.Job" />
 
-`Job`
+`Job`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/job.py "view source code")
 
 Bases: `object`
 

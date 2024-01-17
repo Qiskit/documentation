@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.instructions.Call
 ---
 
-# Call[¶](#call "Permalink to this headline")
+# Call
 
 <span id="qiskit.pulse.instructions.Call" />
 
-`Call(subroutine, value_dict=None, name=None)`
+`Call(subroutine, value_dict=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/instructions/call.py "view source code")
 
 Bases: [`qiskit.pulse.instructions.instruction.Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 
@@ -61,7 +61,7 @@ A new schedule with `schedule` a this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Call.assigned_subroutine" />
 
-`Call.assigned_subroutine()`
+`Call.assigned_subroutine()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/instructions/call.py "view source code")
 
 Returns this subroutine with the parameters assigned.
 

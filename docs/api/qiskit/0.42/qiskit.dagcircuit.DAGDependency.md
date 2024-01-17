@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.dagcircuit.DAGDependency
 ---
 
-# DAGDependency[¶](#dagdependency "Permalink to this headline")
+# DAGDependency
 
 <span id="qiskit.dagcircuit.DAGDependency" />
 
-`DAGDependency`
+`DAGDependency`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Bases: `object`
 
@@ -46,7 +46,7 @@ Create an empty DAGDependency.
 
 <span id="qiskit.dagcircuit.DAGDependency.add_clbits" />
 
-`DAGDependency.add_clbits(clbits)`
+`DAGDependency.add_clbits(clbits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Add individual clbit wires.
 
@@ -54,7 +54,7 @@ Add individual clbit wires.
 
 <span id="qiskit.dagcircuit.DAGDependency.add_creg" />
 
-`DAGDependency.add_creg(creg)`
+`DAGDependency.add_creg(creg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Add clbits in a classical register.
 
@@ -62,7 +62,7 @@ Add clbits in a classical register.
 
 <span id="qiskit.dagcircuit.DAGDependency.add_op_node" />
 
-`DAGDependency.add_op_node(operation, qargs, cargs)`
+`DAGDependency.add_op_node(operation, qargs, cargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Add a DAGDepNode to the graph and update the edges.
 
@@ -76,7 +76,7 @@ Add a DAGDepNode to the graph and update the edges.
 
 <span id="qiskit.dagcircuit.DAGDependency.add_qreg" />
 
-`DAGDependency.add_qreg(qreg)`
+`DAGDependency.add_qreg(qreg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Add qubits in a quantum register.
 
@@ -84,7 +84,7 @@ Add qubits in a quantum register.
 
 <span id="qiskit.dagcircuit.DAGDependency.add_qubits" />
 
-`DAGDependency.add_qubits(qubits)`
+`DAGDependency.add_qubits(qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Add individual qubit wires.
 
@@ -92,7 +92,7 @@ Add individual qubit wires.
 
 <span id="qiskit.dagcircuit.DAGDependency.copy" />
 
-`DAGDependency.copy()`
+`DAGDependency.copy()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Function to copy a DAGDependency object. :returns: a copy of a DAGDependency object. :rtype: DAGDependency
 
@@ -100,7 +100,7 @@ Function to copy a DAGDependency object. :returns: a copy of a DAGDependency obj
 
 <span id="qiskit.dagcircuit.DAGDependency.depth" />
 
-`DAGDependency.depth()`
+`DAGDependency.depth()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Return the circuit depth. :returns: the circuit depth :rtype: int
 
@@ -108,7 +108,7 @@ Return the circuit depth. :returns: the circuit depth :rtype: int
 
 <span id="qiskit.dagcircuit.DAGDependency.direct_predecessors" />
 
-`DAGDependency.direct_predecessors(node_id)`
+`DAGDependency.direct_predecessors(node_id)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Direct predecessors id of a given node as sorted list.
 
@@ -128,7 +128,7 @@ List
 
 <span id="qiskit.dagcircuit.DAGDependency.direct_successors" />
 
-`DAGDependency.direct_successors(node_id)`
+`DAGDependency.direct_successors(node_id)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Direct successors id of a given node as sorted list.
 
@@ -148,7 +148,7 @@ List
 
 <span id="qiskit.dagcircuit.DAGDependency.draw" />
 
-`DAGDependency.draw(scale=0.7, filename=None, style='color')`
+`DAGDependency.draw(scale=0.7, filename=None, style='color')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Draws the DAGDependency graph.
 
@@ -174,7 +174,7 @@ Ipython.display.Image
 
 <span id="qiskit.dagcircuit.DAGDependency.get_all_edges" />
 
-`DAGDependency.get_all_edges()`
+`DAGDependency.get_all_edges()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Enumeration of all edges.
 
@@ -190,7 +190,7 @@ List
 
 <span id="qiskit.dagcircuit.DAGDependency.get_edges" />
 
-`DAGDependency.get_edges(src_id, dest_id)`
+`DAGDependency.get_edges(src_id, dest_id)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Edge enumeration between two nodes through method get\_all\_edge\_data.
 
@@ -211,7 +211,7 @@ List
 
 <span id="qiskit.dagcircuit.DAGDependency.get_in_edges" />
 
-`DAGDependency.get_in_edges(node_id)`
+`DAGDependency.get_in_edges(node_id)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Enumeration of all incoming edges for a given node.
 
@@ -231,7 +231,7 @@ List
 
 <span id="qiskit.dagcircuit.DAGDependency.get_node" />
 
-`DAGDependency.get_node(node_id)`
+`DAGDependency.get_node(node_id)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 **Parameters**
 
@@ -249,7 +249,7 @@ node
 
 <span id="qiskit.dagcircuit.DAGDependency.get_nodes" />
 
-`DAGDependency.get_nodes()`
+`DAGDependency.get_nodes()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 **Returns**
 
@@ -263,7 +263,7 @@ generator(dict)
 
 <span id="qiskit.dagcircuit.DAGDependency.get_out_edges" />
 
-`DAGDependency.get_out_edges(node_id)`
+`DAGDependency.get_out_edges(node_id)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Enumeration of all outgoing edges for a given node.
 
@@ -283,7 +283,7 @@ List
 
 <span id="qiskit.dagcircuit.DAGDependency.predecessors" />
 
-`DAGDependency.predecessors(node_id)`
+`DAGDependency.predecessors(node_id)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Predecessors id of a given node as sorted list.
 
@@ -303,7 +303,7 @@ List
 
 <span id="qiskit.dagcircuit.DAGDependency.replace_block_with_op" />
 
-`DAGDependency.replace_block_with_op(node_block, op, wire_pos_map, cycle_check=True)`
+`DAGDependency.replace_block_with_op(node_block, op, wire_pos_map, cycle_check=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Replace a block of nodes with a single node.
 
@@ -326,7 +326,7 @@ It is important that such consolidation preserves commutativity assumptions pres
 
 <span id="qiskit.dagcircuit.DAGDependency.size" />
 
-`DAGDependency.size()`
+`DAGDependency.size()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Returns the number of gates in the circuit
 
@@ -334,7 +334,7 @@ Returns the number of gates in the circuit
 
 <span id="qiskit.dagcircuit.DAGDependency.successors" />
 
-`DAGDependency.successors(node_id)`
+`DAGDependency.successors(node_id)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Successors id of a given node as sorted list.
 
@@ -354,7 +354,7 @@ List
 
 <span id="qiskit.dagcircuit.DAGDependency.to_retworkx" />
 
-`DAGDependency.to_retworkx()`
+`DAGDependency.to_retworkx()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Returns the DAGDependency in retworkx format.
 
@@ -362,7 +362,7 @@ Returns the DAGDependency in retworkx format.
 
 <span id="qiskit.dagcircuit.DAGDependency.topological_nodes" />
 
-`DAGDependency.topological_nodes()`
+`DAGDependency.topological_nodes()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/dagcircuit/dagdependency.py "view source code")
 
 Yield nodes in topological order.
 

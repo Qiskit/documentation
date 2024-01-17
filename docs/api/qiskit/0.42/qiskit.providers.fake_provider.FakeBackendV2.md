@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeBackendV2
 ---
 
-# FakeBackendV2[¶](#fakebackendv2 "Permalink to this headline")
+# FakeBackendV2
 
 <span id="qiskit.providers.fake_provider.FakeBackendV2" />
 
-`FakeBackendV2`
+`FakeBackendV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/fake_backend_v2.py "view source code")
 
 Bases: [`qiskit.providers.backend.BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.backend.BackendV2")
 
@@ -157,7 +157,7 @@ qubit\_properties
 
 <span id="qiskit.providers.fake_provider.FakeBackendV2.run" />
 
-`FakeBackendV2.run(run_input, **options)`
+`FakeBackendV2.run(run_input, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/fake_backend_v2.py "view source code")
 
 Run on the backend.
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.ECRGate
 ---
 
-# ECRGate[¶](#ecrgate "Permalink to this headline")
+# ECRGate
 
 <span id="qiskit.circuit.library.ECRGate" />
 
-`ECRGate`
+`ECRGate`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/ecr.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -72,7 +72,7 @@ Create new ECR gate.
 
 <span id="qiskit.circuit.library.ECRGate.to_matrix" />
 
-`ECRGate.to_matrix()`
+`ECRGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/ecr.py "view source code")
 
 Return a numpy.array for the ECR gate.
 

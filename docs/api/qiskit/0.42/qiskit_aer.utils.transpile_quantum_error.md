@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.utils.transpile_quantum_error
 ---
 
-# qiskit\_aer.utils.transpile\_quantum\_error[¶](#qiskit-aer-utils-transpile-quantum-error "Permalink to this headline")
+# qiskit\_aer.utils.transpile\_quantum\_error
 
 <span id="qiskit_aer.utils.transpile_quantum_error" />
 
-`transpile_quantum_error(error, **transpile_kwargs)`
+`transpile_quantum_error(error, **transpile_kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/utils/noise_transformation.py "view source code")
 
 Return a new quantum error containin transpiled circuits.
 

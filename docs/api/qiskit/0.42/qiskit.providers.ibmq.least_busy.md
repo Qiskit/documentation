@@ -10,11 +10,11 @@ python_api_name: qiskit.providers.ibmq.least_busy
   The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
 </Admonition>
 
-# qiskit.providers.ibmq.least\_busy[¶](#qiskit-providers-ibmq-least-busy "Permalink to this headline")
+# qiskit.providers.ibmq.least\_busy
 
 <span id="qiskit.providers.ibmq.least_busy" />
 
-`least_busy(backends, reservation_lookahead=60)`
+`least_busy(backends, reservation_lookahead=60)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/ibmq.py "view source code")
 
 Return the least busy backend from a list.
 

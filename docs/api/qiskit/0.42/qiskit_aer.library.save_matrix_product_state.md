@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.library.save_matrix_product_state
 ---
 
-# qiskit\_aer.library.save\_matrix\_product\_state[¶](#qiskit-aer-library-save-matrix-product-state "Permalink to this headline")
+# qiskit\_aer.library.save\_matrix\_product\_state
 
 <span id="qiskit_aer.library.save_matrix_product_state" />
 
-`save_matrix_product_state(self, label='matrix_product_state', pershot=False, conditional=False)`
+`save_matrix_product_state(self, label='matrix_product_state', pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/library/save_instructions/save_matrix_product_state.py "view source code")
 
 Save the current simulator quantum state as a matrix product state.
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_aer.noise.RelaxationNoisePass
 ---
 
-# RelaxationNoisePass[¶](#relaxationnoisepass "Permalink to this headline")
+# RelaxationNoisePass
 
 <span id="qiskit_aer.noise.RelaxationNoisePass" />
 
-`RelaxationNoisePass(t1s, t2s, dt=None, op_types=None, excited_state_populations=None)`
+`RelaxationNoisePass(t1s, t2s, dt=None, op_types=None, excited_state_populations=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/noise/passes/relaxation_noise_pass.py "view source code")
 
 Bases: [`qiskit_aer.noise.passes.local_noise_pass.LocalNoisePass`](qiskit_aer.noise.LocalNoisePass "qiskit_aer.noise.passes.local_noise_pass.LocalNoisePass")
 

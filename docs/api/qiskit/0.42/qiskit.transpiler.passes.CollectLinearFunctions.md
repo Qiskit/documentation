@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CollectLinearFunctions
 ---
 
-# CollectLinearFunctions[¶](#collectlinearfunctions "Permalink to this headline")
+# CollectLinearFunctions
 
 <span id="qiskit.transpiler.passes.CollectLinearFunctions" />
 
-`CollectLinearFunctions(*args, **kwargs)`
+`CollectLinearFunctions(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/optimization/collect_linear_functions.py "view source code")
 
 Bases: [`qiskit.transpiler.passes.optimization.collect_and_collapse.CollectAndCollapse`](qiskit.transpiler.passes.CollectAndCollapse "qiskit.transpiler.passes.optimization.collect_and_collapse.CollectAndCollapse")
 

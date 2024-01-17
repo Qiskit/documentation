@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.AmplitudeEstimationResult
 ---
 
-# AmplitudeEstimationResult[¶](#amplitudeestimationresult "Permalink to this headline")
+# AmplitudeEstimationResult
 
 <span id="qiskit.algorithms.AmplitudeEstimationResult" />
 
-`AmplitudeEstimationResult`
+`AmplitudeEstimationResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/amplitude_estimators/ae.py "view source code")
 
 Bases: [`qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult`](qiskit.algorithms.AmplitudeEstimatorResult "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult")
 

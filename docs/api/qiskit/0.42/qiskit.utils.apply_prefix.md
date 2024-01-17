@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.utils.apply_prefix
 ---
 
-# qiskit.utils.apply\_prefix[¶](#qiskit-utils-apply-prefix "Permalink to this headline")
+# qiskit.utils.apply\_prefix
 
 <span id="qiskit.utils.apply_prefix" />
 
-`apply_prefix(value, unit)`
+`apply_prefix(value, unit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/utils/units.py "view source code")
 
 Given a SI unit prefix and value, apply the prefix to convert to standard SI unit.
 

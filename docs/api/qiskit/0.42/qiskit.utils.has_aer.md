@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.utils.has_aer
 ---
 
-# qiskit.utils.has\_aer[¶](#qiskit-utils-has-aer "Permalink to this headline")
+# qiskit.utils.has\_aer
 
 <span id="qiskit.utils.has_aer" />
 
-`has_aer()`
+`has_aer()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/utils/backend_utils.py "view source code")
 
 check if Aer is installed
 

@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.measure_all
 ---
 
-# qiskit.pulse.builder.measure\_all[¶](#qiskit-pulse-builder-measure-all "Permalink to this headline")
+# qiskit.pulse.builder.measure\_all
 
 <span id="qiskit.pulse.builder.measure_all" />
 
-`measure_all()`
+`measure_all()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/builder.py "view source code")
 
 Measure all qubits within the currently active builder context.
 

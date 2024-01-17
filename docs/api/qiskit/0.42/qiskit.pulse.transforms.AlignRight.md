@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.transforms.AlignRight
 ---
 
-# AlignRight[¶](#alignright "Permalink to this headline")
+# AlignRight
 
 <span id="qiskit.pulse.transforms.AlignRight" />
 
-`AlignRight`
+`AlignRight`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/transforms/alignments.py "view source code")
 
 Bases: [`qiskit.pulse.transforms.alignments.AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
 
@@ -26,7 +26,7 @@ Create new right-justified context.
 
 <span id="qiskit.pulse.transforms.AlignRight.align" />
 
-`AlignRight.align(schedule)`
+`AlignRight.align(schedule)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/transforms/alignments.py "view source code")
 
 Reallocate instructions according to the policy.
 

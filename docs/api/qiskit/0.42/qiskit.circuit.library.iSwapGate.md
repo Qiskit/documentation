@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.iSwapGate
 ---
 
-# iSwapGate[¶](#iswapgate "Permalink to this headline")
+# iSwapGate
 
 <span id="qiskit.circuit.library.iSwapGate" />
 
-`iSwapGate(label=None)`
+`iSwapGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/iswap.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -77,7 +77,7 @@ Create new iSwap gate.
 
 <span id="qiskit.circuit.library.iSwapGate.power" />
 
-`iSwapGate.power(exponent)`
+`iSwapGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/iswap.py "view source code")
 
 Raise gate to a power.
 

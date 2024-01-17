@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeBoeblingen
 ---
 
-# FakeBoeblingen[¶](#fakeboeblingen "Permalink to this headline")
+# FakeBoeblingen
 
 <span id="qiskit.providers.fake_provider.FakeBoeblingen" />
 
-`FakeBoeblingen`
+`FakeBoeblingen`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/boeblingen/fake_boeblingen.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 

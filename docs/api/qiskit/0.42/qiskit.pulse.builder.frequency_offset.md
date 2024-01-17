@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.frequency_offset
 ---
 
-# qiskit.pulse.builder.frequency\_offset[¶](#qiskit-pulse-builder-frequency-offset "Permalink to this headline")
+# qiskit.pulse.builder.frequency\_offset
 
 <span id="qiskit.pulse.builder.frequency_offset" />
 
-`frequency_offset(frequency, *channels, compensate_phase=False)`
+`frequency_offset(frequency, *channels, compensate_phase=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/builder.py "view source code")
 
 Shift the frequency of inputs channels on entry into context and undo on exit.
 

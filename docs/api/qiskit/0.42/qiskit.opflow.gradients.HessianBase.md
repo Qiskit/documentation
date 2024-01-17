@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.opflow.gradients.HessianBase
 ---
 
-# HessianBase[¶](#hessianbase "Permalink to this headline")
+# HessianBase
 
 <span id="qiskit.opflow.gradients.HessianBase" />
 
-`HessianBase(hess_method='param_shift', **kwargs)`
+`HessianBase(hess_method='param_shift', **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/opflow/gradients/hessian_base.py "view source code")
 
 Bases: [`qiskit.opflow.gradients.derivative_base.DerivativeBase`](qiskit.opflow.gradients.DerivativeBase "qiskit.opflow.gradients.derivative_base.DerivativeBase")
 

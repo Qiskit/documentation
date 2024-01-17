@@ -10,11 +10,11 @@ python_api_name: qiskit.providers.ibmq.runtime.ParameterNamespace
   The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
 </Admonition>
 
-# ParameterNamespace[¶](#parameternamespace "Permalink to this headline")
+# ParameterNamespace
 
 <span id="qiskit.providers.ibmq.runtime.ParameterNamespace" />
 
-`ParameterNamespace(parameters)`
+`ParameterNamespace(parameters)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/ibmq/runtime/runtime_program.py "view source code")
 
 Bases: `types.SimpleNamespace`
 
@@ -38,7 +38,7 @@ ParameterNamespace constructor.
 
 <span id="qiskit.providers.ibmq.runtime.ParameterNamespace.validate" />
 
-`ParameterNamespace.validate()`
+`ParameterNamespace.validate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/ibmq/runtime/runtime_program.py "view source code")
 
 Validate program input values.
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.Commuting2qGateRouter
 ---
 
-# Commuting2qGateRouter[¶](#commuting2qgaterouter "Permalink to this headline")
+# Commuting2qGateRouter
 
 <span id="qiskit.transpiler.passes.Commuting2qGateRouter" />
 
-`Commuting2qGateRouter(swap_strategy=None, edge_coloring=None)`
+`Commuting2qGateRouter(swap_strategy=None, edge_coloring=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/routing/commuting_2q_gate_routing/commuting_2q_gate_router.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -92,7 +92,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Commuting2qGateRouter.run" />
 
-`Commuting2qGateRouter.run(dag)`
+`Commuting2qGateRouter.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/routing/commuting_2q_gate_routing/commuting_2q_gate_router.py "view source code")
 
 Run the pass by decomposing the nodes it applies on.
 
@@ -118,7 +118,7 @@ A dag where swaps have been added for the intended gate type.
 
 <span id="qiskit.transpiler.passes.Commuting2qGateRouter.swap_decompose" />
 
-`Commuting2qGateRouter.swap_decompose(dag, node, current_layout, swap_strategy)`
+`Commuting2qGateRouter.swap_decompose(dag, node, current_layout, swap_strategy)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/routing/commuting_2q_gate_routing/commuting_2q_gate_router.py "view source code")
 
 Take an instance of `Commuting2qBlock` and map it to the coupling map.
 

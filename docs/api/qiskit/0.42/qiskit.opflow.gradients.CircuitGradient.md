@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.opflow.gradients.CircuitGradient
 ---
 
-# CircuitGradient[¶](#circuitgradient "Permalink to this headline")
+# CircuitGradient
 
 <span id="qiskit.opflow.gradients.CircuitGradient" />
 
-`CircuitGradient`
+`CircuitGradient`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/opflow/gradients/circuit_gradients/circuit_gradient.py "view source code")
 
 Bases: [`qiskit.opflow.converters.converter_base.ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
 
@@ -28,7 +28,7 @@ CircuitGradient - uses quantum techniques to get derivatives of circuits Derivat
 
 <span id="qiskit.opflow.gradients.CircuitGradient.convert" />
 
-`abstract CircuitGradient.convert(operator, params=None)`
+`abstract CircuitGradient.convert(operator, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/opflow/gradients/circuit_gradients/circuit_gradient.py "view source code")
 
 **Parameters**
 

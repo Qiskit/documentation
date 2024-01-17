@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeCambridge
 ---
 
-# FakeCambridge[¶](#fakecambridge "Permalink to this headline")
+# FakeCambridge
 
 <span id="qiskit.providers.fake_provider.FakeCambridge" />
 
-`FakeCambridge`
+`FakeCambridge`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/cambridge/fake_cambridge.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend`
 

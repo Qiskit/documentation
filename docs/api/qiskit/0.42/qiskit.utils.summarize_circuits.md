@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.utils.summarize_circuits
 ---
 
-# qiskit.utils.summarize\_circuits[¶](#qiskit-utils-summarize-circuits "Permalink to this headline")
+# qiskit.utils.summarize\_circuits
 
 <span id="qiskit.utils.summarize_circuits" />
 
-`summarize_circuits(circuits)`
+`summarize_circuits(circuits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/utils/circuit_utils.py "view source code")
 
 ## Summarize circuits based on QuantumCircuit, and five metrics are summarized.
 

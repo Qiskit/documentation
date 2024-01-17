@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.ClassicalRegister
 ---
 
-# ClassicalRegister[¶](#classicalregister "Permalink to this headline")
+# ClassicalRegister
 
 <span id="qiskit.circuit.ClassicalRegister" />
 
-`ClassicalRegister(size=None, name=None, bits=None)`
+`ClassicalRegister(size=None, name=None, bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/classicalregister.py "view source code")
 
 Bases: `qiskit.circuit.register.Register`
 
@@ -48,7 +48,7 @@ Find the index of the provided bit within this register.
 
 <span id="qiskit.circuit.ClassicalRegister.qasm" />
 
-`ClassicalRegister.qasm()`
+`ClassicalRegister.qasm()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/classicalregister.py "view source code")
 
 Return OPENQASM string for this register.
 

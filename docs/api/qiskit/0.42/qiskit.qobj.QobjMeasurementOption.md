@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.qobj.QobjMeasurementOption
 ---
 
-# QobjMeasurementOption[¶](#qobjmeasurementoption "Permalink to this headline")
+# QobjMeasurementOption
 
 <span id="qiskit.qobj.QobjMeasurementOption" />
 
-`QobjMeasurementOption(name, params=None)`
+`QobjMeasurementOption(name, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/qobj/pulse_qobj.py "view source code")
 
 Bases: `object`
 
@@ -29,7 +29,7 @@ Instantiate a new QobjMeasurementOption object.
 
 <span id="qiskit.qobj.QobjMeasurementOption.from_dict" />
 
-`classmethod QobjMeasurementOption.from_dict(data)`
+`classmethod QobjMeasurementOption.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/qobj/pulse_qobj.py "view source code")
 
 Create a new QobjMeasurementOption object from a dictionary.
 
@@ -49,7 +49,7 @@ The object from the input dictionary.
 
 <span id="qiskit.qobj.QobjMeasurementOption.to_dict" />
 
-`QobjMeasurementOption.to_dict()`
+`QobjMeasurementOption.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/qobj/pulse_qobj.py "view source code")
 
 Return a dict format representation of the QobjMeasurementOption.
 

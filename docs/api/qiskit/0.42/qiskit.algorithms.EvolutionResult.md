@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.EvolutionResult
 ---
 
-# EvolutionResult[¶](#evolutionresult "Permalink to this headline")
+# EvolutionResult
 
 <span id="qiskit.algorithms.EvolutionResult" />
 
-`EvolutionResult(evolved_state, aux_ops_evaluated=None)`
+`EvolutionResult(evolved_state, aux_ops_evaluated=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/evolvers/evolution_result.py "view source code")
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
 

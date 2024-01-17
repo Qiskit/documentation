@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.synthesis.ProductFormula
 ---
 
-# ProductFormula[¶](#productformula "Permalink to this headline")
+# ProductFormula
 
 <span id="qiskit.synthesis.ProductFormula" />
 
-`ProductFormula(order, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`
+`ProductFormula(order, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/synthesis/evolution/product_formula.py "view source code")
 
 Bases: [`qiskit.synthesis.evolution.evolution_synthesis.EvolutionSynthesis`](qiskit.synthesis.EvolutionSynthesis "qiskit.synthesis.evolution.evolution_synthesis.EvolutionSynthesis")
 

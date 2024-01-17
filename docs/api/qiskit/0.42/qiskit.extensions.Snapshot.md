@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.extensions.Snapshot
 ---
 
-# Snapshot[¶](#snapshot "Permalink to this headline")
+# Snapshot
 
 <span id="qiskit.extensions.Snapshot" />
 
-`Snapshot(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)`
+`Snapshot(label, snapshot_type='statevector', num_qubits=0, num_clbits=0, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/extensions/simulator/snapshot.py "view source code")
 
 Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
@@ -44,7 +44,7 @@ Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
 <span id="qiskit.extensions.Snapshot.assemble" />
 
-`Snapshot.assemble()`
+`Snapshot.assemble()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/extensions/simulator/snapshot.py "view source code")
 
 Assemble a QasmQobjInstruction
 
@@ -73,7 +73,7 @@ Validation of the arguments.
 
 <span id="qiskit.extensions.Snapshot.c_if" />
 
-`Snapshot.c_if(classical, val)`
+`Snapshot.c_if(classical, val)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/extensions/simulator/snapshot.py "view source code")
 
 Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
@@ -107,7 +107,7 @@ updated if it was provided
 
 <span id="qiskit.extensions.Snapshot.inverse" />
 
-`Snapshot.inverse()`
+`Snapshot.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/extensions/simulator/snapshot.py "view source code")
 
 Special case. Return self.
 

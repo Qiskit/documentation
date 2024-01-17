@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.InstructionProperties
 ---
 
-# InstructionProperties[¶](#instructionproperties "Permalink to this headline")
+# InstructionProperties
 
 <span id="qiskit.transpiler.InstructionProperties" />
 
-`InstructionProperties(duration=None, error=None, calibration=None)`
+`InstructionProperties(duration=None, error=None, calibration=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/target.py "view source code")
 
 Bases: `object`
 

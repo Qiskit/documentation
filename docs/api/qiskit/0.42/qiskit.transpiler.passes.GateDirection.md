@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.GateDirection
 ---
 
-# GateDirection[¶](#gatedirection "Permalink to this headline")
+# GateDirection
 
 <span id="qiskit.transpiler.passes.GateDirection" />
 
-`GateDirection(*args, **kwargs)`
+`GateDirection(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/utils/gate_direction.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -59,7 +59,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.GateDirection.run" />
 
-`GateDirection.run(dag)`
+`GateDirection.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/utils/gate_direction.py "view source code")
 
 Run the GateDirection pass on dag.
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.ZGate
 ---
 
-# ZGate[¶](#zgate "Permalink to this headline")
+# ZGate
 
 <span id="qiskit.circuit.library.ZGate" />
 
-`ZGate(label=None)`
+`ZGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -64,7 +64,7 @@ Create new Z gate.
 
 <span id="qiskit.circuit.library.ZGate.control" />
 
-`ZGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`ZGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 Return a (multi-)controlled-Z gate.
 
@@ -88,7 +88,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.ZGate.inverse" />
 
-`ZGate.inverse()`
+`ZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 Return inverted Z gate (itself).
 
@@ -96,7 +96,7 @@ Return inverted Z gate (itself).
 
 <span id="qiskit.circuit.library.ZGate.power" />
 
-`ZGate.power(exponent)`
+`ZGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/z.py "view source code")
 
 Raise gate to a power.
 

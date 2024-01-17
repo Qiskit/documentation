@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.synthesis.synth_permutation_acg
 ---
 
-# qiskit.synthesis.synth\_permutation\_acg[¶](#qiskit-synthesis-synth-permutation-acg "Permalink to this headline")
+# qiskit.synthesis.synth\_permutation\_acg
 
 <span id="qiskit.synthesis.synth_permutation_acg" />
 
-`synth_permutation_acg(pattern)`
+`synth_permutation_acg(pattern)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/synthesis/permutation/permutation_full.py "view source code")
 
 Synthesize a permutation circuit for a fully-connected architecture using the Alon, Chung, Graham method.
 

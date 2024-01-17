@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.Minimizer
 ---
 
-# Minimizer[¶](#minimizer "Permalink to this headline")
+# Minimizer
 
 <span id="qiskit.algorithms.optimizers.Minimizer" />
 
-`Minimizer(*args, **kwargs)`
+`Minimizer(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Bases: `Protocol`
 

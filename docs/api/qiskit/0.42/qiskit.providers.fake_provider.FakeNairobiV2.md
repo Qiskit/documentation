@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeNairobiV2
 ---
 
-# FakeNairobiV2[¶](#fakenairobiv2 "Permalink to this headline")
+# FakeNairobiV2
 
 <span id="qiskit.providers.fake_provider.FakeNairobiV2" />
 
-`FakeNairobiV2`
+`FakeNairobiV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/nairobi/fake_nairobi.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

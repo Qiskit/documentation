@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit
 ---
 
-# CNOTUnitCircuit[¶](#cnotunitcircuit "Permalink to this headline")
+# CNOTUnitCircuit
 
 <span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit" />
 
-`CNOTUnitCircuit(num_qubits, cnots, tol=0.0, name=None)`
+`CNOTUnitCircuit(num_qubits, cnots, tol=0.0, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/synthesis/aqc/cnot_unit_circuit.py "view source code")
 
 Bases: [`qiskit.transpiler.synthesis.aqc.approximate.ApproximateCircuit`](qiskit.transpiler.synthesis.aqc.ApproximateCircuit "qiskit.transpiler.synthesis.aqc.approximate.ApproximateCircuit")
 
@@ -33,7 +33,7 @@ A class that represents an approximate circuit based on CNOT unit blocks.
 
 <span id="qiskit.transpiler.synthesis.aqc.CNOTUnitCircuit.build" />
 
-`CNOTUnitCircuit.build(thetas)`
+`CNOTUnitCircuit.build(thetas)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/synthesis/aqc/cnot_unit_circuit.py "view source code")
 
 #### Constructs a Qiskit quantum circuit out of the parameters (angles) of this circuit. If a
 

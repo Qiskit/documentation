@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.Reset
 ---
 
-# Reset[¶](#reset "Permalink to this headline")
+# Reset
 
 <span id="qiskit.circuit.library.Reset" />
 
-`Reset`
+`Reset`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/reset.py "view source code")
 
 Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
@@ -40,7 +40,7 @@ Assemble a QasmQobjInstruction
 
 <span id="qiskit.circuit.library.Reset.broadcast_arguments" />
 
-`Reset.broadcast_arguments(qargs, cargs)`
+`Reset.broadcast_arguments(qargs, cargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/reset.py "view source code")
 
 Validation of the arguments.
 

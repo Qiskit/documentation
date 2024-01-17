@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.transforms.inline_subroutines
 ---
 
-# qiskit.pulse.transforms.inline\_subroutines[¶](#qiskit-pulse-transforms-inline-subroutines "Permalink to this headline")
+# qiskit.pulse.transforms.inline\_subroutines
 
 <span id="qiskit.pulse.transforms.inline_subroutines" />
 
-`inline_subroutines(program)`
+`inline_subroutines(program)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Recursively remove call instructions and inline the respective subroutine instructions.
 

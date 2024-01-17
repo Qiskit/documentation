@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.instructions.ShiftPhase
 ---
 
-# ShiftPhase[¶](#shiftphase "Permalink to this headline")
+# ShiftPhase
 
 <span id="qiskit.pulse.instructions.ShiftPhase" />
 
-`ShiftPhase(phase, channel, name=None)`
+`ShiftPhase(phase, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/instructions/phase.py "view source code")
 
 Bases: [`qiskit.pulse.instructions.instruction.Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 

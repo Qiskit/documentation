@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.OptimizerSupportLevel
 ---
 
-# OptimizerSupportLevel[¶](#optimizersupportlevel "Permalink to this headline")
+# OptimizerSupportLevel
 
 <span id="qiskit.algorithms.optimizers.OptimizerSupportLevel" />
 
-`OptimizerSupportLevel(value)`
+`OptimizerSupportLevel(value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Bases: `enum.IntEnum`
 

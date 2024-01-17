@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.DAGLongestPath
 ---
 
-# DAGLongestPath[¶](#daglongestpath "Permalink to this headline")
+# DAGLongestPath
 
 <span id="qiskit.transpiler.passes.DAGLongestPath" />
 
-`DAGLongestPath(*args, **kwargs)`
+`DAGLongestPath(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/analysis/dag_longest_path.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -30,7 +30,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.DAGLongestPath.run" />
 
-`DAGLongestPath.run(dag)`
+`DAGLongestPath.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/analysis/dag_longest_path.py "view source code")
 
 Run the DAGLongestPath pass on dag.
 

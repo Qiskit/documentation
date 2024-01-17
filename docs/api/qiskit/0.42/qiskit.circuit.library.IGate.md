@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.IGate
 ---
 
-# IGate[¶](#igate "Permalink to this headline")
+# IGate
 
 <span id="qiskit.circuit.library.IGate" />
 
-`IGate(label=None)`
+`IGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/i.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -45,7 +45,7 @@ Create new Identity gate.
 
 <span id="qiskit.circuit.library.IGate.inverse" />
 
-`IGate.inverse()`
+`IGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/i.py "view source code")
 
 Invert this gate.
 
@@ -53,7 +53,7 @@ Invert this gate.
 
 <span id="qiskit.circuit.library.IGate.power" />
 
-`IGate.power(exponent)`
+`IGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/i.py "view source code")
 
 Raise gate to a power.
 

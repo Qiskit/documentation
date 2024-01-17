@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.QAOA
 ---
 
-# QAOA[¶](#qaoa "Permalink to this headline")
+# QAOA
 
 <span id="qiskit.algorithms.QAOA" />
 
-`QAOA(optimizer=None, reps=1, initial_state=None, mixer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)`
+`QAOA(optimizer=None, reps=1, initial_state=None, mixer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/algorithms/minimum_eigen_solvers/qaoa.py "view source code")
 
 Bases: [`qiskit.algorithms.minimum_eigen_solvers.vqe.VQE`](qiskit.algorithms.VQE "qiskit.algorithms.minimum_eigen_solvers.vqe.VQE")
 

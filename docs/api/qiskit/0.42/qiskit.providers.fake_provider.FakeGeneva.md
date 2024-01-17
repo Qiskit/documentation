@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeGeneva
 ---
 
-# FakeGeneva[¶](#fakegeneva "Permalink to this headline")
+# FakeGeneva
 
 <span id="qiskit.providers.fake_provider.FakeGeneva" />
 
-`FakeGeneva`
+`FakeGeneva`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/geneva/fake_geneva.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

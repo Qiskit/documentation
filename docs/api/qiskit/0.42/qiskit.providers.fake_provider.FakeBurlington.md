@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeBurlington
 ---
 
-# FakeBurlington[¶](#fakeburlington "Permalink to this headline")
+# FakeBurlington
 
 <span id="qiskit.providers.fake_provider.FakeBurlington" />
 
-`FakeBurlington`
+`FakeBurlington`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/burlington/fake_burlington.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend`
 

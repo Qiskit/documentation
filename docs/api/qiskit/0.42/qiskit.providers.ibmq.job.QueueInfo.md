@@ -10,11 +10,11 @@ python_api_name: qiskit.providers.ibmq.job.QueueInfo
   The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
 </Admonition>
 
-# QueueInfo[¶](#queueinfo "Permalink to this headline")
+# QueueInfo
 
 <span id="qiskit.providers.ibmq.job.QueueInfo" />
 
-`QueueInfo(position=None, status=None, estimated_start_time=None, estimated_complete_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)`
+`QueueInfo(position=None, status=None, estimated_start_time=None, estimated_complete_time=None, hub_priority=None, group_priority=None, project_priority=None, job_id=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/ibmq/job/queueinfo.py "view source code")
 
 Bases: `object`
 
@@ -44,7 +44,7 @@ QueueInfo constructor.
 
 <span id="qiskit.providers.ibmq.job.QueueInfo.format" />
 
-`QueueInfo.format()`
+`QueueInfo.format()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/ibmq/job/queueinfo.py "view source code")
 
 Build a user-friendly report for the job queue information.
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_aer.library.SaveSuperOp
 ---
 
-# SaveSuperOp[¶](#savesuperop "Permalink to this headline")
+# SaveSuperOp
 
 <span id="qiskit_aer.library.SaveSuperOp" />
 
-`SaveSuperOp(num_qubits, label='superop', pershot=False)`
+`SaveSuperOp(num_qubits, label='superop', pershot=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/library/save_instructions/save_superop.py "view source code")
 
 Bases: `qiskit_aer.library.save_instructions.save_data.SaveSingleData`
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_aer.library.SetUnitary
 ---
 
-# SetUnitary[¶](#setunitary "Permalink to this headline")
+# SetUnitary
 
 <span id="qiskit_aer.library.SetUnitary" />
 
-`SetUnitary(state)`
+`SetUnitary(state)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit_aer/library/set_instructions/set_unitary.py "view source code")
 
 Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 

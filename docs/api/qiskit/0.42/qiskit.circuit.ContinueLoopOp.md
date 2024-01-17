@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.ContinueLoopOp
 ---
 
-# ContinueLoopOp[¶](#continueloopop "Permalink to this headline")
+# ContinueLoopOp
 
 <span id="qiskit.circuit.ContinueLoopOp" />
 
-`ContinueLoopOp(num_qubits, num_clbits, label=None)`
+`ContinueLoopOp(num_qubits, num_clbits, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/controlflow/continue_loop.py "view source code")
 
 Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 

@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.reference
 ---
 
-# qiskit.pulse.builder.reference[¶](#qiskit-pulse-builder-reference "Permalink to this headline")
+# qiskit.pulse.builder.reference
 
 <span id="qiskit.pulse.builder.reference" />
 
-`reference(name, *extra_keys)`
+`reference(name, *extra_keys)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/builder.py "view source code")
 
 Refer to undefined subroutine by string keys.
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.synthesis.LieTrotter
 ---
 
-# LieTrotter[¶](#lietrotter "Permalink to this headline")
+# LieTrotter
 
 <span id="qiskit.synthesis.LieTrotter" />
 
-`LieTrotter(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`
+`LieTrotter(reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/synthesis/evolution/lie_trotter.py "view source code")
 
 Bases: [`qiskit.synthesis.evolution.product_formula.ProductFormula`](qiskit.synthesis.ProductFormula "qiskit.synthesis.evolution.product_formula.ProductFormula")
 
@@ -45,7 +45,7 @@ $$
 
 <span id="qiskit.synthesis.LieTrotter.synthesize" />
 
-`LieTrotter.synthesize(evolution)`
+`LieTrotter.synthesize(evolution)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/synthesis/evolution/lie_trotter.py "view source code")
 
 Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
 

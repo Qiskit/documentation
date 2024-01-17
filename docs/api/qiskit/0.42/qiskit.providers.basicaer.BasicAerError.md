@@ -6,11 +6,11 @@ python_api_type: exception
 python_api_name: qiskit.providers.basicaer.BasicAerError
 ---
 
-# qiskit.providers.basicaer.BasicAerError[¶](#qiskit-providers-basicaer-basicaererror "Permalink to this headline")
+# qiskit.providers.basicaer.BasicAerError
 
 <span id="qiskit.providers.basicaer.BasicAerError" />
 
-`BasicAerError(*message)`
+`BasicAerError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/basicaer/exceptions.py "view source code")
 
 Base class for errors raised by Basic Aer.
 

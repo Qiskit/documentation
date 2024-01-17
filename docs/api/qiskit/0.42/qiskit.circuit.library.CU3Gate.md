@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.CU3Gate
 ---
 
-# CU3Gate[¶](#cu3gate "Permalink to this headline")
+# CU3Gate
 
 <span id="qiskit.circuit.library.CU3Gate" />
 
-`CU3Gate(theta, phi, lam, label=None, ctrl_state=None)`
+`CU3Gate(theta, phi, lam, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/u3.py "view source code")
 
 Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -72,7 +72,7 @@ Create new CU3 gate.
 
 <span id="qiskit.circuit.library.CU3Gate.inverse" />
 
-`CU3Gate.inverse()`
+`CU3Gate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/u3.py "view source code")
 
 Return inverted CU3 gate.
 

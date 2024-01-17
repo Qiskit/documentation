@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.average_gate_fidelity
 ---
 
-# qiskit.quantum\_info.average\_gate\_fidelity[¶](#qiskit-quantum-info-average-gate-fidelity "Permalink to this headline")
+# qiskit.quantum\_info.average\_gate\_fidelity
 
 <span id="qiskit.quantum_info.average_gate_fidelity" />
 
-`average_gate_fidelity(channel, target=None, require_cp=True, require_tp=False)`
+`average_gate_fidelity(channel, target=None, require_cp=True, require_tp=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/quantum_info/operators/measures.py "view source code")
 
 Return the average gate fidelity of a noisy quantum channel.
 

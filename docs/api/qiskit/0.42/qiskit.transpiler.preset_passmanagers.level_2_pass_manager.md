@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.transpiler.preset_passmanagers.level_2_pass_manager
 ---
 
-# qiskit.transpiler.preset\_passmanagers.level\_2\_pass\_manager[¶](#qiskit-transpiler-preset-passmanagers-level-2-pass-manager "Permalink to this headline")
+# qiskit.transpiler.preset\_passmanagers.level\_2\_pass\_manager
 
 <span id="qiskit.transpiler.preset_passmanagers.level_2_pass_manager" />
 
-`level_2_pass_manager(pass_manager_config)`
+`level_2_pass_manager(pass_manager_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/preset_passmanagers/level2.py "view source code")
 
 Level 2 pass manager: medium optimization by initial layout selection and gate cancellation using commutativity rules.
 

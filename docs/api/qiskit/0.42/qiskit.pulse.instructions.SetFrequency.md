@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.instructions.SetFrequency
 ---
 
-# SetFrequency[¶](#setfrequency "Permalink to this headline")
+# SetFrequency
 
 <span id="qiskit.pulse.instructions.SetFrequency" />
 
-`SetFrequency(frequency, channel, name=None)`
+`SetFrequency(frequency, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/instructions/frequency.py "view source code")
 
 Bases: [`qiskit.pulse.instructions.instruction.Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 

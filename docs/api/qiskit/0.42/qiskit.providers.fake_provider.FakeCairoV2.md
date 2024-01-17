@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeCairoV2
 ---
 
-# FakeCairoV2[¶](#fakecairov2 "Permalink to this headline")
+# FakeCairoV2
 
 <span id="qiskit.providers.fake_provider.FakeCairoV2" />
 
-`FakeCairoV2`
+`FakeCairoV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/providers/fake_provider/backends/cairo/fake_cairo.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

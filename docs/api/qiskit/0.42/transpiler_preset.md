@@ -14,17 +14,13 @@ python_api_name: qiskit.transpiler.preset_passmanagers
 
 <span id="module-qiskit.transpiler.preset_passmanagers" />
 
-`qiskit.transpiler.preset_passmanagers¶`
+`qiskit.transpiler.preset_passmanagers`
 
 This module contains functions for generating the preset pass managers for the transpiler. The preset pass managers are instances of [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") which are used to execute the circuit transformations as part of Qiskit’s compiler inside the [`transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") function at the different optimization levels. The functionality here is divided into two parts, the first includes the functions used generate the entire pass manager which is used by [`transpile()`](qiskit.compiler.transpile "qiskit.compiler.transpile") ([Preset Pass Manager Generation](#preset-pass-manager-generators)) and the second includes functions which are used to build (either entirely or in part) the stages which the preset pass managers are composed of ([Stage Generator Functions](#stage-generators)).
 
 <span id="preset-pass-manager-generators" />
 
 ## Preset Pass Manager Generation
-
-<span id="module-qiskit.transpiler.preset_passmanagers" />
-
-`¶`
 
 |                                                                                                                                                                                                |                                                                                                                                                 |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -37,10 +33,6 @@ This module contains functions for generating the preset pass managers for the t
 <span id="stage-generators" />
 
 ## Stage Generator Functions
-
-<span id="module-qiskit.transpiler.preset_passmanagers" />
-
-`¶`
 
 |                                                                                                                                                                                                                      |                                                                                                                                                                         |
 | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

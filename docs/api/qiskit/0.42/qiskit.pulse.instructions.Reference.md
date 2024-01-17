@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.instructions.Reference
 ---
 
-# Reference[¶](#reference "Permalink to this headline")
+# Reference
 
 <span id="qiskit.pulse.instructions.Reference" />
 
-`Reference(name, *extra_keys)`
+`Reference(name, *extra_keys)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/pulse/instructions/reference.py "view source code")
 
 Bases: [`qiskit.pulse.instructions.instruction.Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 

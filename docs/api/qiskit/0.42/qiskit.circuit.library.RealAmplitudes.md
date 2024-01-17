@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.RealAmplitudes
 ---
 
-# RealAmplitudes[¶](#realamplitudes "Permalink to this headline")
+# RealAmplitudes
 
 <span id="qiskit.circuit.library.RealAmplitudes" />
 
-`RealAmplitudes(num_qubits=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes')`
+`RealAmplitudes(num_qubits=None, entanglement='reverse_linear', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='RealAmplitudes')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/n_local/real_amplitudes.py "view source code")
 
 Bases: [`qiskit.circuit.library.n_local.two_local.TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 

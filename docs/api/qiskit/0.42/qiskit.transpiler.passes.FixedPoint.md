@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.FixedPoint
 ---
 
-# FixedPoint[¶](#fixedpoint "Permalink to this headline")
+# FixedPoint
 
 <span id="qiskit.transpiler.passes.FixedPoint" />
 
-`FixedPoint(*args, **kwargs)`
+`FixedPoint(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/utils/fixed_point.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.FixedPoint.run" />
 
-`FixedPoint.run(dag)`
+`FixedPoint.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/transpiler/passes/utils/fixed_point.py "view source code")
 
 Run the FixedPoint pass on dag.
 

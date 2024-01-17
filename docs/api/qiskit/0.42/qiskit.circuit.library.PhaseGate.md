@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.PhaseGate
 ---
 
-# PhaseGate[¶](#phasegate "Permalink to this headline")
+# PhaseGate
 
 <span id="qiskit.circuit.library.PhaseGate" />
 
-`PhaseGate(theta, label=None)`
+`PhaseGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/p.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -70,7 +70,7 @@ Create new Phase gate.
 
 <span id="qiskit.circuit.library.PhaseGate.control" />
 
-`PhaseGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`PhaseGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/p.py "view source code")
 
 Return a (multi-)controlled-Phase gate.
 
@@ -92,7 +92,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.PhaseGate.inverse" />
 
-`PhaseGate.inverse()`
+`PhaseGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/p.py "view source code")
 
 Return inverted Phase gate ($Phase(\lambda){\dagger} = Phase(-\lambda)$)
 
@@ -100,7 +100,7 @@ Return inverted Phase gate ($Phase(\lambda){\dagger} = Phase(-\lambda)$)
 
 <span id="qiskit.circuit.library.PhaseGate.power" />
 
-`PhaseGate.power(exponent)`
+`PhaseGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.42/qiskit/circuit/library/standard_gates/p.py "view source code")
 
 Raise gate to a power.
 
