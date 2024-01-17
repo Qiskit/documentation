@@ -220,10 +220,8 @@ async function convertHtmlToMarkdown(
 
     const { dir, name } = parse(`${markdownPath}/${file}`);
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
+    results.push({ ...result, url });
 
-    if (!result.meta.apiName) {
-      results.push({ ...result, url });
-    }
     if (
       !pkg.historical &&
       pkg.hasSeparateReleaseNotes &&
