@@ -75,8 +75,7 @@ export function loadImages(
     .map((img) => {
       const $img = $(img);
 
-      const imageUrl = new URL($img.attr("src")!, "https://doesnt-matter.com");
-      const fileName = last(imageUrl.toString().split("/"))!;
+      const fileName = $img.attr("src")!.split("/").pop()!;
 
       let dest = `${imageDestination}/${fileName}`;
       if (isReleaseNotes) {
