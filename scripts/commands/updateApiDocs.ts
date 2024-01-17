@@ -205,7 +205,7 @@ async function convertHtmlToMarkdown(
     const html = await readFile(join(htmlPath, file), "utf-8");
     const result = await sphinxHtmlToMarkdown({
       html,
-      file,
+      fileName: file,
       baseGitHubUrl,
       imageDestination: getPkgRoot(pkg, "/images"),
       releaseNotesTitle: `${pkg.title} ${pkg.versionWithoutPatch} release notes`,

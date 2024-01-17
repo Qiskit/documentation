@@ -10,7 +10,6 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { last } from "lodash";
 import { CheerioAPI, Cheerio, load } from "cheerio";
 
 import { Image } from "./HtmlToMdResult";
@@ -26,17 +25,17 @@ export type ProcessedHtml = {
 
 export function processHtml(options: {
   html: string;
-  file: string;
+  fileName: string;
   imageDestination: string;
   baseGitHubUrl: string;
   releaseNotesTitle: string;
 }): ProcessedHtml {
-  const { html, file, imageDestination, baseGitHubUrl, releaseNotesTitle } =
+  const { html, fileName, imageDestination, baseGitHubUrl, releaseNotesTitle } =
     options;
   const $ = load(html);
   const $main = $(`[role='main']`);
 
-  const isReleaseNotes = file.endsWith("release_notes.html");
+  const isReleaseNotes = fileName.endsWith("release_notes.html");
   const images = loadImages($, $main, imageDestination, isReleaseNotes);
   if (isReleaseNotes) {
     renameAllH1s($, releaseNotesTitle);
