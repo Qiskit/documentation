@@ -20,6 +20,7 @@ import { mkdirp } from "mkdirp";
 import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import transformLinks from "transform-markdown-links";
+
 import { ObjectsInv } from "../lib/api/objectsInv";
 import { sphinxHtmlToMarkdown } from "../lib/api/htmlToMd";
 import { saveImages } from "../lib/api/saveImages";

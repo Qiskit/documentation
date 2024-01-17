@@ -41,12 +41,7 @@ const ENTRIES_TO_EXCLUDE = [
 ];
 
 function shouldExcludePage(uri: string): boolean {
-  for (let condition of ENTRIES_TO_EXCLUDE) {
-    if (uri.match(condition)) {
-      return true;
-    }
-  }
-  return false;
+  return ENTRIES_TO_EXCLUDE.some((condition) =>  uri.match(condition));
 }
 
 export type ObjectsInvEntry = {
