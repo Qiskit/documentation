@@ -12,6 +12,7 @@
 
 import { join } from "path/posix";
 
+import { findLegacyReleaseNotes } from "./releaseNotes";
 import { removePrefix, removeSuffix } from "../stringUtils";
 import { getRoot } from "../fs";
 
@@ -46,7 +47,7 @@ export class Pkg {
   readonly version: string;
   readonly versionWithoutPatch: string;
   readonly historical: boolean;
-  releaseNoteEntries: ReleaseNoteEntry[];
+  readonly releaseNoteEntries: ReleaseNoteEntry[];
 
   constructor(kwargs: {
     name: string;
@@ -70,27 +71,28 @@ export class Pkg {
     this.releaseNoteEntries = kwargs.releaseNoteEntries;
   }
 
-  static fromArgs(
+  static async fromArgs(
     name: string,
     version: string,
     versionWithoutPatch: string,
     historical: boolean,
-  ): Pkg {
+  ): Promise<Pkg> {
     const args = {
       name,
       version,
       versionWithoutPatch,
       historical,
-      releaseNoteEntries: [],
     };
 
     if (name === "qiskit") {
+      const releaseNoteEntries = await findLegacyReleaseNotes(name);
       return new Pkg({
         ...args,
         title: "Qiskit",
         name: "qiskit",
         githubSlug: "qiskit/qiskit",
         hasSeparateReleaseNotes: true,
+        releaseNoteEntries,
       });
     }
 
@@ -102,6 +104,7 @@ export class Pkg {
         githubSlug: "qiskit/qiskit-ibm-runtime",
         transformLink,
         hasSeparateReleaseNotes: false,
+        releaseNoteEntries: [],
       });
     }
 
@@ -113,6 +116,7 @@ export class Pkg {
         githubSlug: "qiskit/qiskit-ibm-provider",
         transformLink,
         hasSeparateReleaseNotes: false,
+        releaseNoteEntries: [],
       });
     }
 

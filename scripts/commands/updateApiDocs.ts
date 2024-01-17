@@ -36,7 +36,6 @@ import { zxMain } from "../lib/zx";
 import { pathExists, getRoot, rmFilesInFolder } from "../lib/fs";
 import { downloadCIArtifact } from "../lib/api/downloadCIArtifacts";
 import {
-  findLegacyReleaseNotes,
   addNewReleaseNotes,
   generateReleaseNotesIndex,
   updateHistoricalTocFiles,
@@ -93,13 +92,12 @@ zxMain(async () => {
     );
   }
 
-  const pkg = Pkg.fromArgs(
+  const pkg = await Pkg.fromArgs(
     args.package,
     args.version,
     versionMatch[0],
     args.historical,
   );
-  pkg.releaseNoteEntries = await findLegacyReleaseNotes(pkg);
 
   const artifactFolder = pkg.ciArtifactFolder();
   if (await pathExists(artifactFolder)) {
