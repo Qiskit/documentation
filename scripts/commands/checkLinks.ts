@@ -76,9 +76,7 @@ async function main() {
 
   const fileBatches = await determineFileBatches(args);
   const otherFiles = [
-    ...(await globby("{public,docs}/**/*.{png,jpg,gif,svg}")).map(
-      (fp) => new File(fp, []),
-    ),
+    ...(await globby("public/**/*")).map((fp) => new File(fp, [])),
     ...SYNTHETIC_FILES.map((fp) => new File(fp, [], true)),
   ];
 
