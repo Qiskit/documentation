@@ -25,6 +25,30 @@ import { removePart, removePrefix } from "../stringUtils";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { remarkStringifyOptions } from "./commonParserConfig";
 import { Link } from "./Pkg";
+import { ObjectsInv } from "./objectsInv";
+import { transformSpecialCaseUrl } from "./specialCaseResults";
+
+/**
+ * Anchors generated from markdown headings are always lower case but, if these
+ * headings are API references, Sphinx sometimes expects them to include
+ * uppercase characters.
+ *
+ * As a heuristic, we assume urls containing periods are anchors to HTML id
+ * tags (which preserve Sphinx's original casing), and anchors with no periods
+ * are from markdown headings (which must be lower-cased). This seems to work
+ * ok.
+ */
+function lowerCaseIfMarkdownAnchor(url: string): string {
+  if (!url.includes("#")) {
+    return url;
+  }
+  const [base, anchor] = url.split("#");
+  if (anchor.includes(".")) {
+    return url;
+  }
+  const newAnchor = anchor.toLowerCase();
+  return `${base}#${newAnchor}`;
+}
 
 export function updateUrl(
   url: string,
@@ -33,6 +57,7 @@ export function updateUrl(
 ): string {
   if (isAbsoluteUrl(url)) return url;
   if (url.startsWith("/")) return url;
+  url = transformSpecialCaseUrl(url);
 
   url = removePart(url, "/", ["stubs", "apidocs", "apidoc", ".."]);
 
@@ -47,13 +72,13 @@ export function updateUrl(
   // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob
   if (itemNames.has(path)) {
     if (hash === path) {
-      return [...initialUrlParts, path].join("/");
+      url = [...initialUrlParts, path].join("/");
     }
 
     // qiskit_ibm_runtime.RuntimeJob#qiskit_ibm_runtime.RuntimeJob.job -> qiskit_ibm_runtime.RuntimeJob#job
     if (hash?.startsWith(`${path}.`)) {
       const member = removePrefix(hash, `${path}.`);
-      return [...initialUrlParts, path].join("/") + `#${member}`;
+      url = [...initialUrlParts, path].join("/") + `#${member}`;
     }
   }
 
@@ -63,13 +88,16 @@ export function updateUrl(
   const initialPathParts = initial(pathParts);
   const parentName = initialPathParts.join(".");
   if ("class" === resultsByName[parentName]?.meta.apiType) {
-    return [...initialUrlParts, parentName].join("/") + "#" + member;
+    url = [...initialUrlParts, parentName].join("/") + "#" + member;
   }
+
+  url = lowerCaseIfMarkdownAnchor(url);
   return url;
 }
 
 export async function updateLinks(
   results: HtmlToMdResultWithUrl[],
+  objectsInv: ObjectsInv,
   transformLink?: (link: Link) => Link | undefined,
 ): Promise<void> {
   const resultsByName = keyBy(results, (result) => result.meta.apiName!);
@@ -110,4 +138,8 @@ export async function updateLinks(
 
     result.markdown = output?.toString();
   }
+
+  objectsInv.updateUris((uri: string) =>
+    updateUrl(uri, resultsByName, itemNames),
+  );
 }

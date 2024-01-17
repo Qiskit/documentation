@@ -20,6 +20,7 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import transformLinks from "transform-markdown-links";
 
+import { ObjectsInv } from "../lib/api/objectsInv";
 import { sphinxHtmlToMarkdown } from "../lib/api/htmlToMd";
 import { saveImages } from "../lib/api/saveImages";
 import { generateToc } from "../lib/api/generateToc";
@@ -188,6 +189,7 @@ async function convertHtmlToMarkdown(
   baseGitHubUrl: string,
   pkg: Pkg,
 ) {
+  const objectsInv = await ObjectsInv.fromFile(htmlPath);
   const files = await globby(
     [
       "apidocs/**.html",
@@ -245,10 +247,11 @@ async function convertHtmlToMarkdown(
   results = await mergeClassMembers(results);
   flattenFolders(results);
   specialCaseResults(results);
-  await updateLinks(results, pkg.transformLink);
+  await updateLinks(results, objectsInv, pkg.transformLink);
   await dedupeHtmlIdsFromResults(results);
   addFrontMatter(results, pkg);
 
+  await objectsInv.write(getPkgRoot(pkg, "public"));
   for (const result of results) {
     let path = urlToPath(result.url);
 
