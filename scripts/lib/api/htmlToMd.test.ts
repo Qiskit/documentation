@@ -111,38 +111,6 @@ describe("sphinxHtmlToMarkdown", () => {
     ).toMatchInlineSnapshot(`""`);
   });
 
-  test("extract images", async () => {
-    expect(
-      await sphinxHtmlToMarkdown({
-        html: `
-           <div role='main'>
-            <img src="foo.png"/>
-            <img src="http://google.com/bar.png"/>
-           </div>
-          `,
-        url: "http://qiskit.org/docs/quantum-circuit.html",
-        ...DEFAULT_ARGS,
-      }),
-    ).toMatchInlineSnapshot(`
-        {
-          "images": [
-            {
-              "dest": "/images/qiskit/foo.png",
-              "src": "http://qiskit.org/docs/foo.png",
-            },
-            {
-              "dest": "/images/qiskit/bar.png",
-              "src": "http://google.com/bar.png",
-            },
-          ],
-          "isReleaseNotes": false,
-          "markdown": "![](/images/qiskit/foo.png) ![](/images/qiskit/bar.png)
-        ",
-          "meta": {},
-        }
-      `);
-  });
-
   test("handle tabs", async () => {
     expect(
       await toMd(`<div role='main'>
@@ -512,7 +480,7 @@ Can be either (1) a dictionary mapping XX angle values to fidelity at that angle
 <span class='sig-prename descclassname'><span class='pre'>IBMBackend.</span></span><span class='sig-name descname'><span class='pre'>control_channel</span></span><span class='sig-paren'>(</span><em class='sig-param'><span class='n'><span class='pre'>qubits</span></span></em><span class='sig-paren'>)</span><a class='reference internal' href='../_modules/qiskit_ibm_runtime/ibm_backend.html#IBMBackend.control_channel'><span class='viewcode-link'><span class='pre'>[source]</span></span></a><a class='headerlink' href='#qiskit_ibm_runtime.IBMBackend.control_channel' title='Permalink to this definition'>¶</a>
 </div>
 `,
-          url: "https://qiskit.org/documentation/partners/qiskit_ibm_runtime/stubs/qiskit_ibm_runtime.Sampler.html",
+          fileName: "stubs/qiskit_ibm_runtime.Sampler.html",
           ...DEFAULT_ARGS,
         })
       ).markdown,
@@ -1377,7 +1345,7 @@ test("identify release notes", async () => {
           to better support submitting multiple jobs at once.</p></li>
           </ul>
           `,
-      url: "http://qiskit.org/docs/release_notes.html",
+      fileName: "release_notes.html",
       ...DEFAULT_ARGS,
     }),
   ).toMatchInlineSnapshot(`
@@ -1461,7 +1429,7 @@ test("test dt tag without id", async () => {
 async function toMd(html: string) {
   return (
     await sphinxHtmlToMarkdown({
-      url: "https://qiskit.org/documentation/partners/qiskit_ibm_runtime/stubs/qiskit_ibm_runtime.Sampler.html",
+      fileName: "stubs/qiskit_ibm_runtime.Sampler.html",
       html,
       ...DEFAULT_ARGS,
     })
@@ -1470,7 +1438,7 @@ async function toMd(html: string) {
 
 async function toMdWithMeta(html: string) {
   return await sphinxHtmlToMarkdown({
-    url: "https://qiskit.org/documentation/partners/qiskit_ibm_runtime/stubs/qiskit_ibm_runtime.Sampler.html",
+    fileName: "stubs/qiskit_ibm_runtime.Sampler.html",
     html,
     ...DEFAULT_ARGS,
   });

@@ -207,7 +207,7 @@ async function convertHtmlToMarkdown(
     const html = await readFile(join(htmlPath, file), "utf-8");
     const result = await sphinxHtmlToMarkdown({
       html,
-      url: `http://localhost:8000/${file}`,
+      fileName: file,
       baseGitHubUrl,
       imageDestination: getPkgRoot(pkg, "/images"),
       releaseNotesTitle: `${pkg.title} ${pkg.versionWithoutPatch} release notes`,
@@ -234,7 +234,7 @@ async function convertHtmlToMarkdown(
 
   const allImages = uniqBy(
     results.flatMap((result) => result.images),
-    (image) => image.src,
+    (image) => image.fileName,
   );
 
   const dirsNeeded = uniq(
