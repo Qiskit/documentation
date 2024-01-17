@@ -24,7 +24,7 @@ import remarkStringify from "remark-stringify";
 import { removePart, removePrefix } from "../stringUtils";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { remarkStringifyOptions } from "./commonParserConfig";
-import { Link } from "../sharedTypes";
+import { Link } from "./Pkg";
 import { ObjectsInv } from "./objectsInv";
 import { transformSpecialCaseUrl } from "./specialCaseResults";
 
