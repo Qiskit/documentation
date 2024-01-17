@@ -149,15 +149,14 @@ zxMain(async () => {
     ...pkgInfo,
   };
 
-  const artifactUrl = args.artifact;
-  const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
+  const artifactFolder = `${getRoot()}/.out/python/sources/${pkg.name}/${
     pkg.version
   }`;
 
-  if (await pathExists(destination)) {
+  if (await pathExists(artifactFolder)) {
     console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
-    await downloadCIArtifact(pkg.name, artifactUrl, destination);
+    await downloadCIArtifact(pkg.name, args.artifact, artifactFolder);
   }
 
   const baseGitHubUrl = `https://github.com/${pkg.githubSlug}/tree/stable/${pkg.versionWithoutPatch}/`;
@@ -175,7 +174,7 @@ zxMain(async () => {
     `Convert sphinx html to markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
   await convertHtmlToMarkdown(
-    `${destination}/artifact`,
+    `${artifactFolder}/artifact`,
     outputDir,
     baseGitHubUrl,
     pkg,
