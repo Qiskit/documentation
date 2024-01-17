@@ -244,15 +244,27 @@ test("addLanguageClassToCodeBlocks()", () => {
 test("replaceSourceLinksWithGitHub()", () => {
   // Assumes that removeHtmlExtensionsInRelativeLinks() has already removed .html from the URL.
   const doc = Doc.load(
-    `<a class="reference internal" href="../_modules/qiskit_ibm_runtime/ibm_backend#IBMBackend"></a><a href="#qiskit_ibm_runtime.IBMBackend"></a>`,
+    `<a href="../_modules/qiskit_ibm_runtime/ibm_backend#IBMBackend"></a>
+    <a href="../_modules/qiskit_ibm_provider/job/exceptions#IBMJobApiError"></a>
+    <a href="../_modules/qiskit_ibm_provider#least_busy"></a>
+    <a href="../_modules/qiskit/qasm2#compile"></a>
+    <a href="../_modules/qiskit/qasm3#compile"></a>
+    <a href="../_modules/qiskit/transpiler/preset_passmanagers#foo"></a>
+    <a href="#qiskit_ibm_runtime.IBMBackend"></a>`,
   );
   replaceViewcodeLinksWithGitHub(
     doc.$,
     doc.$main,
-    "https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/",
+    "https://github.com/Qiskit/my-project/tree/stable/0.9/",
   );
   doc.expectHtml(
-    `<a class="reference internal" href="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/ibm_backend.py"></a><a href="#qiskit_ibm_runtime.IBMBackend"></a>`,
+    `<a href="https://github.com/Qiskit/my-project/tree/stable/0.9/qiskit_ibm_runtime/ibm_backend.py"></a>
+    <a href="https://github.com/Qiskit/my-project/tree/stable/0.9/qiskit_ibm_provider/job/exceptions.py"></a>
+    <a href="https://github.com/Qiskit/my-project/tree/stable/0.9/qiskit_ibm_provider/__init__.py"></a>
+    <a href="https://github.com/Qiskit/my-project/tree/stable/0.9/qiskit/qasm2/__init__.py"></a>
+    <a href="https://github.com/Qiskit/my-project/tree/stable/0.9/qiskit/qasm3/__init__.py"></a>
+    <a href="https://github.com/Qiskit/my-project/tree/stable/0.9/qiskit/transpiler/preset_passmanagers/__init__.py"></a>
+    <a href="#qiskit_ibm_runtime.IBMBackend"></a>`,
   );
 });
 

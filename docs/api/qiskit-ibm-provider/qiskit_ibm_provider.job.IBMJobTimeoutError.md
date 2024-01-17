@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.job.IBMJobTimeoutError
 
 <span id="qiskit_ibm_provider.job.IBMJobTimeoutError" />
 
-`IBMJobTimeoutError(*message)`
+`IBMJobTimeoutError(*message)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/exceptions.py "view source code")
 
 Errors raised when a job operation times out.
 

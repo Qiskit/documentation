@@ -13,6 +13,7 @@
 import { describe, expect, test } from "@jest/globals";
 
 import { generateToc } from "./generateToc";
+import { Pkg } from "./Pkg";
 
 describe("generateToc", () => {
   test("generate a toc", () => {
@@ -148,10 +149,4 @@ const pkg = {
   versionWithoutPatch: "1.0",
   releaseNoteEntries: [],
   historical: false,
-
-  // These properties are not used but included to appease typescript
-  githubSlug: "qiskit/qiskit-ibm-runtime",
-  baseUrl: `https://qiskit.org/ecosystem/ibm-runtime`,
-  initialUrl: `https://qiskit.org/ecosystem/ibm-runtime/apidocs/ibm-runtime.html`,
-  transformLink: undefined,
-};
+} as unknown as Pkg;

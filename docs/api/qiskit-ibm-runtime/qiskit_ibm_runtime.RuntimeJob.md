@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_runtime.RuntimeJob
 
 <span id="qiskit_ibm_runtime.RuntimeJob" />
 
-`RuntimeJob(backend, api_client, client_params, job_id, program_id, service, params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None)`
+`RuntimeJob(backend, api_client, client_params, job_id, program_id, service, params=None, creation_date=None, user_callback=None, result_decoder=None, image='', session_id=None, tags=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-runtime/tree/stable/0.17/qiskit_ibm_runtime/runtime_job.py "view source code")
 
 Representation of a runtime program execution.
 

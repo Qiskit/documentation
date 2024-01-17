@@ -172,6 +172,14 @@ export function replaceViewcodeLinksWithGitHub(
   $main: Cheerio<any>,
   baseGitHubUrl: string,
 ): void {
+  // For files like `my_module/__init__.py`, `sphinx.ext.viewcode` will title the
+  // file `my_module.py`. We need to add back the `/__init__.py` when linking to GitHub.
+  const convertToInitPy = new Set([
+    "qiskit_ibm_provider",
+    "qiskit/qasm2",
+    "qiskit/qasm3",
+    "qiskit/transpiler/preset_passmanagers",
+  ]);
   $main.find("a").each((_, a) => {
     const $a = $(a);
     const href = $a.attr("href");
@@ -182,9 +190,12 @@ export function replaceViewcodeLinksWithGitHub(
     ) {
       return;
     }
-    //_modules/qiskit_ibm_runtime/ibm_backend
-    const match = href.match(/_modules\/(.*?)(#|$)/)!;
-    const newHref = `${baseGitHubUrl}${match[1]}.py`;
+    // E.g. `qiskit_ibm_runtime/ibm_backend`
+    let fullFileName = href.match(/_modules\/(.*?)(#|$)/)![1];
+    if (convertToInitPy.has(fullFileName)) {
+      fullFileName = `${fullFileName}/__init__`;
+    }
+    const newHref = `${baseGitHubUrl}${fullFileName}.py`;
     $a.attr("href", newHref);
   });
 }
