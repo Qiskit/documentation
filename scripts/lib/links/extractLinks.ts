@@ -22,7 +22,7 @@ import rehypeRemark from "rehype-remark";
 import rehypeParse from "rehype-parse";
 import remarkGfm from "remark-gfm";
 import { ObjectsInv } from "../api/objectsInv";
-import { removePrefix } from "../stringUtils";
+import { removePrefix, removeSuffix } from "../stringUtils";
 import { getRoot } from "../fs";
 
 export type ParsedFile = {
@@ -75,7 +75,10 @@ export async function parseLinks(markdown: string): Promise<string[]> {
 }
 
 async function parseObjectsInv(filePath: string): Promise<ParsedFile> {
-  const absoluteFilePath = path.join(getRoot(), filePath);
+  const absoluteFilePath = path.join(
+    getRoot(),
+    removeSuffix(filePath, "objects.inv"),
+  );
   const objinv = await ObjectsInv.fromFile(absoluteFilePath);
   // All URIs are relative to the objects.inv file
   const dirname = removePrefix(path.dirname(filePath), "public");
