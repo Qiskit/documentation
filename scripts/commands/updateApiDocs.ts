@@ -13,7 +13,6 @@
 import { join, parse, relative } from "path";
 import { readFile, writeFile } from "fs/promises";
 
-import { $ } from "zx";
 import { globby } from "globby";
 import { uniq, uniqBy } from "lodash";
 import { mkdirp } from "mkdirp";
@@ -35,7 +34,7 @@ import { removePrefix, removeSuffix } from "../lib/stringUtils";
 import { Link } from "../lib/sharedTypes";
 import { Pkg, PkgInfo, getPkgRoot } from "../lib/api/Pkg";
 import { zxMain } from "../lib/zx";
-import { pathExists, getRoot } from "../lib/fs";
+import { pathExists, getRoot, rmFilesInFolder } from "../lib/fs";
 import { downloadCIArtifact } from "../lib/api/downloadCIArtifacts";
 import {
   findLegacyReleaseNotes,
@@ -165,7 +164,10 @@ zxMain(async () => {
   if (pkg.historical && !(await pathExists(outputDir))) {
     await mkdirp(outputDir);
   } else {
-    await rmFilesInFolder(outputDir, `${pkg.name}:${pkg.versionWithoutPatch}`);
+    console.log(
+      `Deleting existing markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
+    );
+    await rmFilesInFolder(outputDir);
   }
 
   pkg.releaseNoteEntries = await findLegacyReleaseNotes(pkg);
@@ -180,20 +182,6 @@ zxMain(async () => {
     pkg,
   );
 });
-
-/**
- * Deletes all the files in the folder, but preserves subfolders. That's important
- * to avoid accidentally deleting other historical versions of the API.
- *
- * We delete files when regenerating API docs to capture when APIs have been deleted.
- */
-async function rmFilesInFolder(
-  dir: string,
-  description: string,
-): Promise<void> {
-  console.log(`Deleting existing markdown for ${description}`);
-  await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`;
-}
 
 async function convertHtmlToMarkdown(
   htmlPath: string,
