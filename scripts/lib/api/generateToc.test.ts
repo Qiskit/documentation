@@ -13,7 +13,7 @@
 import { describe, expect, test } from "@jest/globals";
 
 import { generateToc } from "./generateToc";
-import { Pkg } from "../sharedTypes";
+import { Pkg } from "./Pkg";
 
 describe("generateToc", () => {
   test("generate a toc", () => {
