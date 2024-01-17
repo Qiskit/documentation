@@ -101,19 +101,14 @@ zxMain(async () => {
   );
   pkg.releaseNoteEntries = await findLegacyReleaseNotes(pkg);
 
-  const artifactFolder = `${getRoot()}/.out/python/sources/${pkg.name}/${
-    pkg.version
-  }`;
-
+  const artifactFolder = pkg.ciArtifactFolder();
   if (await pathExists(artifactFolder)) {
     console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
     await downloadCIArtifact(pkg.name, args.artifact, artifactFolder);
   }
 
-  const baseGitHubUrl = `https://github.com/${pkg.githubSlug}/tree/stable/${pkg.versionWithoutPatch}/`;
   const outputDir = pkg.outputDir(`${getRoot()}/docs`);
-
   if (pkg.historical && !(await pathExists(outputDir))) {
     await mkdirp(outputDir);
   } else {
@@ -126,18 +121,12 @@ zxMain(async () => {
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
-  await convertHtmlToMarkdown(
-    `${artifactFolder}/artifact`,
-    outputDir,
-    baseGitHubUrl,
-    pkg,
-  );
+  await convertHtmlToMarkdown(`${artifactFolder}/artifact`, outputDir, pkg);
 });
 
 async function convertHtmlToMarkdown(
   htmlPath: string,
   markdownPath: string,
-  baseGitHubUrl: string,
   pkg: Pkg,
 ) {
   const objectsInv = await ObjectsInv.fromFile(htmlPath);
@@ -159,7 +148,7 @@ async function convertHtmlToMarkdown(
     const result = await sphinxHtmlToMarkdown({
       html,
       fileName: file,
-      baseGitHubUrl,
+      baseGitHubUrl: pkg.baseGitHubUrl(),
       imageDestination: pkg.outputDir("/images"),
       releaseNotesTitle: `${pkg.title} ${pkg.versionWithoutPatch} release notes`,
     });

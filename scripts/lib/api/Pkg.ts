@@ -13,6 +13,7 @@
 import { join } from "path/posix";
 
 import { removePrefix, removeSuffix } from "../stringUtils";
+import { getRoot } from "../fs";
 
 export const VALID_PACKAGE_NAMES = [
   "qiskit",
@@ -148,6 +149,14 @@ export class Pkg {
       path = join(path, this.versionWithoutPatch);
     }
     return path;
+  }
+
+  ciArtifactFolder(): string {
+    return `${getRoot()}/.out/python/sources/${this.name}/${this.version}`;
+  }
+
+  baseGitHubUrl(): string {
+    return `https://github.com/${this.githubSlug}/tree/stable/${this.versionWithoutPatch}/`;
   }
 }
 
