@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.BaseQGT
 
 <span id="qiskit.algorithms.gradients.BaseQGT" />
 
-`qiskit.algorithms.gradients.BaseQGT(estimator, phase_fix=True, derivative_type=DerivativeType.COMPLEX, options=None)`
+`qiskit.algorithms.gradients.BaseQGT(estimator, phase_fix=True, derivative_type=DerivativeType.COMPLEX, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.44/qiskit/algorithms/gradients/base/base_qgt.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

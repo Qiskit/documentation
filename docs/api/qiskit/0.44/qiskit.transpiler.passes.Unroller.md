@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.Unroller
 
 <span id="qiskit.transpiler.passes.Unroller" />
 
-`qiskit.transpiler.passes.Unroller(*args, **kwargs)`
+`qiskit.transpiler.passes.Unroller(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.44/qiskit/transpiler/passes/basis/unroller.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 

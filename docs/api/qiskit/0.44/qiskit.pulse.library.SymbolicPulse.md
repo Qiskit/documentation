@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.SymbolicPulse
 
 <span id="qiskit.pulse.library.SymbolicPulse" />
 
-`qiskit.pulse.library.SymbolicPulse(pulse_type, duration, parameters=None, name=None, limit_amplitude=None, envelope=None, constraints=None, valid_amp_conditions=None)`
+`qiskit.pulse.library.SymbolicPulse(pulse_type, duration, parameters=None, name=None, limit_amplitude=None, envelope=None, constraints=None, valid_amp_conditions=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.44/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: `Pulse`
 

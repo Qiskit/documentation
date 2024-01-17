@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CU3Gate
 
 <span id="qiskit.circuit.library.CU3Gate" />
 
-`qiskit.circuit.library.CU3Gate(theta, phi, lam, label=None, ctrl_state=None)`
+`qiskit.circuit.library.CU3Gate(theta, phi, lam, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.44/qiskit/circuit/library/standard_gates/u3.py "view source code")
 
 Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 

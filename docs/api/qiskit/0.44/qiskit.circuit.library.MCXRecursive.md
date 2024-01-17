@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.MCXRecursive
 
 <span id="qiskit.circuit.library.MCXRecursive" />
 
-`qiskit.circuit.library.MCXRecursive(num_ctrl_qubits=None, label=None, ctrl_state=None)`
+`qiskit.circuit.library.MCXRecursive(num_ctrl_qubits=None, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.44/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: [`MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.standard_gates.x.MCXGate")
 

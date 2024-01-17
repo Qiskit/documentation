@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PhaseGate
 
 <span id="qiskit.circuit.library.PhaseGate" />
 
-`qiskit.circuit.library.PhaseGate(theta, label=None)`
+`qiskit.circuit.library.PhaseGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.44/qiskit/circuit/library/standard_gates/p.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

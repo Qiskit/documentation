@@ -57,7 +57,7 @@ and then loading that file will return a list with all the circuits
 
 <span id="qiskit.qpy.load" />
 
-`qiskit.qpy.load(file_obj, metadata_deserializer=None)`
+`qiskit.qpy.load(file_obj, metadata_deserializer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.44/qiskit/qpy/interface.py "view source code")
 
 Load a QPY binary file
 
@@ -102,7 +102,7 @@ The list of Qiskit programs contained in the QPY data. A list is always returned
 
 <span id="qiskit.qpy.dump" />
 
-`qiskit.qpy.dump(programs, file_obj, metadata_serializer=None)`
+`qiskit.qpy.dump(programs, file_obj, metadata_serializer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.44/qiskit/qpy/interface.py "view source code")
 
 Write QPY binary data to a file
 
@@ -157,7 +157,7 @@ These functions will raise a custom subclass of [`QiskitError`](exceptions#qiski
 
 <span id="qiskit.qpy.QpyError" />
 
-`qiskit.qpy.QpyError(*message)`
+`qiskit.qpy.QpyError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.44/qiskit/qpy/exceptions.py "view source code")
 
 Errors raised by the qpy module.
 

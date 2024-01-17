@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.RealTimeEvolver
 
 <span id="qiskit.algorithms.RealTimeEvolver" />
 
-`qiskit.algorithms.RealTimeEvolver`
+`qiskit.algorithms.RealTimeEvolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.44/qiskit/algorithms/time_evolvers/real_time_evolver.py "view source code")
 
 Bases: [`ABC`](https://docs.python.org/3/library/abc.html#abc.ABC "(in Python v3.12)")
 

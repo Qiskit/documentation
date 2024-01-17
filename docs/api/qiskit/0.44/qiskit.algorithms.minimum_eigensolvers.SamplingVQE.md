@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.minimum_eigensolvers.SamplingVQE
 
 <span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQE" />
 
-`qiskit.algorithms.minimum_eigensolvers.SamplingVQE(sampler, ansatz, optimizer, *, initial_point=None, aggregation=None, callback=None)`
+`qiskit.algorithms.minimum_eigensolvers.SamplingVQE(sampler, ansatz, optimizer, *, initial_point=None, aggregation=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.44/qiskit/algorithms/minimum_eigensolvers/sampling_vqe.py "view source code")
 
 Bases: `VariationalAlgorithm`, [`SamplingMinimumEigensolver`](qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolver "qiskit.algorithms.minimum_eigensolvers.sampling_mes.SamplingMinimumEigensolver")
 

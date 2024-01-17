@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.Qobj
 
 <span id="qiskit.qobj.Qobj" />
 
-`qiskit.qobj.Qobj(qobj_id=None, config=None, experiments=None, header=None)`
+`qiskit.qobj.Qobj(qobj_id=None, config=None, experiments=None, header=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.44/qiskit/qobj.py "view source code")
 
 Bases: [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj")
 
