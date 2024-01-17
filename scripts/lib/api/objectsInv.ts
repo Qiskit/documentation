@@ -58,8 +58,9 @@ export type ObjectsInvEntry = {
  *   https://sphobjinv.readthedocs.io/en/stable/syntax.html
  */
 export class ObjectsInv {
-  preamble: string;
+  readonly preamble: string;
   entries: ObjectsInvEntry[];
+
   constructor(preamble: string, entries: ObjectsInvEntry[]) {
     this.preamble = preamble;
     this.entries = entries;
