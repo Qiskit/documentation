@@ -31,7 +31,7 @@ import { updateLinks } from "../lib/api/updateLinks";
 import { specialCaseResults } from "../lib/api/specialCaseResults";
 import addFrontMatter from "../lib/api/addFrontMatter";
 import { dedupeHtmlIdsFromResults } from "../lib/api/dedupeHtmlIds";
-import { Pkg, getPkgRoot, VALID_PACKAGE_NAMES } from "../lib/api/Pkg";
+import { Pkg, VALID_PACKAGE_NAMES } from "../lib/api/Pkg";
 import { zxMain } from "../lib/zx";
 import { pathExists, getRoot, rmFilesInFolder } from "../lib/fs";
 import { downloadCIArtifact } from "../lib/api/downloadCIArtifacts";
@@ -112,7 +112,7 @@ zxMain(async () => {
   }
 
   const baseGitHubUrl = `https://github.com/${pkg.githubSlug}/tree/stable/${pkg.versionWithoutPatch}/`;
-  const outputDir = getPkgRoot(pkg, `${getRoot()}/docs`);
+  const outputDir = pkg.outputDir(`${getRoot()}/docs`);
 
   if (pkg.historical && !(await pathExists(outputDir))) {
     await mkdirp(outputDir);
@@ -160,7 +160,7 @@ async function convertHtmlToMarkdown(
       html,
       fileName: file,
       baseGitHubUrl,
-      imageDestination: getPkgRoot(pkg, "/images"),
+      imageDestination: pkg.outputDir("/images"),
       releaseNotesTitle: `${pkg.title} ${pkg.versionWithoutPatch} release notes`,
     });
 
@@ -202,7 +202,7 @@ async function convertHtmlToMarkdown(
   await dedupeHtmlIdsFromResults(results);
   addFrontMatter(results, pkg);
 
-  await objectsInv.write(getPkgRoot(pkg, "public"));
+  await objectsInv.write(pkg.outputDir("public"));
   for (const result of results) {
     let path = urlToPath(result.url);
 

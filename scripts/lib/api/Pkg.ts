@@ -105,14 +105,14 @@ export class Pkg {
     }
 
     if (name === "qiskit-ibm-provider") {
-      return {
+      return new Pkg({
         ...args,
         title: "Qiskit IBM Provider",
         name: "qiskit-ibm-provider",
         githubSlug: "qiskit/qiskit-ibm-provider",
         transformLink,
         hasSeparateReleaseNotes: false,
-      };
+      });
     }
 
     throw new Error(`Unrecognized package: ${name}`);
@@ -141,14 +141,14 @@ export class Pkg {
       releaseNoteEntries: kwargs.releaseNoteEntries ?? [],
     });
   }
-}
 
-export function getPkgRoot(pkg: Pkg, parentDir = "docs") {
-  let path = join(parentDir, "api", pkg.name);
-  if (pkg.historical) {
-    path = join(path, pkg.versionWithoutPatch);
+  outputDir(parentDir: string): string {
+    let path = join(parentDir, "api", this.name);
+    if (this.historical) {
+      path = join(path, this.versionWithoutPatch);
+    }
+    return path;
   }
-  return path;
 }
 
 function transformLink(link: Link): Link | undefined {
