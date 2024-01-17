@@ -24,7 +24,7 @@ import remarkStringify from "remark-stringify";
 import { removePart, removePrefix } from "../stringUtils";
 import { HtmlToMdResultWithUrl } from "./HtmlToMdResult";
 import { remarkStringifyOptions } from "./commonParserConfig";
-import { Link } from "../sharedTypes";
+import { Link } from "./Pkg";
 
 export function updateUrl(
   url: string,

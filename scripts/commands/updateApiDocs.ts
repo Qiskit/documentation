@@ -13,7 +13,6 @@
 import { join, parse, relative } from "path";
 import { readFile, writeFile } from "fs/promises";
 
-import { $ } from "zx";
 import { globby } from "globby";
 import { uniq, uniqBy } from "lodash";
 import { mkdirp } from "mkdirp";
@@ -32,9 +31,9 @@ import { specialCaseResults } from "../lib/api/specialCaseResults";
 import addFrontMatter from "../lib/api/addFrontMatter";
 import { dedupeHtmlIdsFromResults } from "../lib/api/dedupeHtmlIds";
 import { removePrefix, removeSuffix } from "../lib/stringUtils";
-import { Pkg, PkgInfo, Link, getPkgRoot } from "../lib/sharedTypes";
+import { Link, Pkg, PkgInfo, getPkgRoot } from "../lib/api/Pkg";
 import { zxMain } from "../lib/zx";
-import { pathExists, getRoot } from "../lib/fs";
+import { pathExists, getRoot, rmFilesInFolder } from "../lib/fs";
 import { downloadCIArtifact } from "../lib/api/downloadCIArtifacts";
 import {
   findLegacyReleaseNotes,
@@ -77,21 +76,18 @@ const PACKAGES: PkgInfo[] = [
     title: "Qiskit Runtime IBM Client",
     name: "qiskit-ibm-runtime",
     githubSlug: "qiskit/qiskit-ibm-runtime",
-    initialUrl: `/apidocs/ibm-runtime.html`,
     transformLink,
   },
   {
     title: "Qiskit IBM Provider",
     name: "qiskit-ibm-provider",
     githubSlug: "qiskit/qiskit-ibm-provider",
-    initialUrl: `/apidocs/ibm-provider.html`,
     transformLink,
   },
   {
     title: "Qiskit",
     name: "qiskit",
     githubSlug: "qiskit/qiskit",
-    initialUrl: `/apidoc/index.html`,
     hasSeparateReleaseNotes: true,
   },
 ];
@@ -148,25 +144,17 @@ zxMain(async () => {
     versionWithoutPatch: versionMatch[0],
     historical: args.historical,
     releaseNoteEntries: [],
-    baseUrl: `http://localhost:8000`,
     ...pkgInfo,
   };
 
-  pkg.initialUrl = pkg.baseUrl + pkg.initialUrl;
-
-  if (pkg.name == "qiskit" && +pkg.versionWithoutPatch < 0.44) {
-    pkg.initialUrl = `${pkg.baseUrl}/apidoc/terra.html`;
-  }
-
-  const artifactUrl = args.artifact;
-  const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
+  const artifactFolder = `${getRoot()}/.out/python/sources/${pkg.name}/${
     pkg.version
   }`;
 
-  if (await pathExists(destination)) {
+  if (await pathExists(artifactFolder)) {
     console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
-    await downloadCIArtifact(pkg.name, artifactUrl, destination);
+    await downloadCIArtifact(pkg.name, args.artifact, artifactFolder);
   }
 
   const baseGitHubUrl = `https://github.com/${pkg.githubSlug}/tree/stable/${pkg.versionWithoutPatch}/`;
@@ -175,7 +163,10 @@ zxMain(async () => {
   if (pkg.historical && !(await pathExists(outputDir))) {
     await mkdirp(outputDir);
   } else {
-    await rmFilesInFolder(outputDir, `${pkg.name}:${pkg.versionWithoutPatch}`);
+    console.log(
+      `Deleting existing markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
+    );
+    await rmFilesInFolder(outputDir);
   }
 
   pkg.releaseNoteEntries = await findLegacyReleaseNotes(pkg);
@@ -184,26 +175,12 @@ zxMain(async () => {
     `Convert sphinx html to markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
   await convertHtmlToMarkdown(
-    `${destination}/artifact`,
+    `${artifactFolder}/artifact`,
     outputDir,
     baseGitHubUrl,
     pkg,
   );
 });
-
-/**
- * Deletes all the files in the folder, but preserves subfolders. That's important
- * to avoid accidentally deleting other historical versions of the API.
- *
- * We delete files when regenerating API docs to capture when APIs have been deleted.
- */
-async function rmFilesInFolder(
-  dir: string,
-  description: string,
-): Promise<void> {
-  console.log(`Deleting existing markdown for ${description}`);
-  await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`;
-}
 
 async function convertHtmlToMarkdown(
   htmlPath: string,
@@ -223,14 +200,12 @@ async function convertHtmlToMarkdown(
     },
   );
 
-  const ignore = pkg.ignore ?? (() => false);
-
   let results: Array<HtmlToMdResult & { url: string }> = [];
   for (const file of files) {
     const html = await readFile(join(htmlPath, file), "utf-8");
     const result = await sphinxHtmlToMarkdown({
       html,
-      url: `${pkg.baseUrl}/${file}`,
+      url: `http://localhost:8000/${file}`,
       baseGitHubUrl,
       imageDestination: getPkgRoot(pkg, "/images"),
       releaseNotesTitle: `${pkg.title} ${pkg.versionWithoutPatch} release notes`,
@@ -244,10 +219,8 @@ async function convertHtmlToMarkdown(
 
     const { dir, name } = parse(`${markdownPath}/${file}`);
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
+    results.push({ ...result, url });
 
-    if (!result.meta.apiName || !ignore(result.meta.apiName)) {
-      results.push({ ...result, url });
-    }
     if (
       !pkg.historical &&
       pkg.hasSeparateReleaseNotes &&

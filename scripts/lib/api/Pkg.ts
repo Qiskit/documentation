@@ -1,6 +1,6 @@
 // This code is a Qiskit project.
 //
-// (C) Copyright IBM 2023.
+// (C) Copyright IBM 2024.
 //
 // This code is licensed under the Apache License, Version 2.0. You may
 // obtain a copy of this license in the LICENSE file in the root directory
@@ -9,7 +9,8 @@
 // Any modifications or derivative works of this code must retain this
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
-import { join } from "path";
+
+import { join } from "path/posix";
 
 /**
  * Simple interface for scripts/command/updateApiDocs.ts
@@ -26,9 +27,7 @@ export interface Link {
 export type PkgInfo = {
   name: string;
   githubSlug: string;
-  initialUrl: string;
   title: string;
-  ignore?(id: string): boolean;
   hasSeparateReleaseNotes?: boolean;
   transformLink?: (link: Link) => Link | undefined;
 };
@@ -44,7 +43,6 @@ export type Pkg = PkgInfo & {
   versionWithoutPatch: string;
   historical: boolean;
   releaseNoteEntries: { title: string; url: string }[];
-  baseUrl: string;
 };
 
 export function getPkgRoot(pkg: Pkg, parentDir = "docs") {

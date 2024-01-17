@@ -14,7 +14,7 @@ import { mkdirp } from "mkdirp";
 import pMap from "p-map";
 import { copyFile } from "fs/promises";
 
-import { Pkg, getPkgRoot } from "../sharedTypes";
+import { Pkg, getPkgRoot } from "./Pkg";
 import { Image } from "./HtmlToMdResult";
 import { pathExists } from "../fs";
 
