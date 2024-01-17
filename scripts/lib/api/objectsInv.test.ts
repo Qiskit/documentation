@@ -14,12 +14,12 @@ import { describe, expect, test } from "@jest/globals";
 import { ObjectsInv, ObjectsInvEntry } from "./objectsInv";
 import { unlink, stat } from "fs/promises";
 
-const TEST_FILE = "scripts/lib/api/testdata/objects.inv";
-const TEMP_FILE = TEST_FILE + ".written";
+const TEST_FOLDER = "scripts/lib/api/testdata/";
+const TEMP_FOLDER = "scripts/lib/api/testdata/temp/";
 
 describe("objects.inv", () => {
   test("read file and decompress", async () => {
-    const objectsInv = await ObjectsInv.fromFile(TEST_FILE);
+    const objectsInv = await ObjectsInv.fromFile(TEST_FOLDER);
 
     expect(objectsInv.preamble).toMatch(
       "# Sphinx inventory version 2\n" +
@@ -53,10 +53,10 @@ describe("objects.inv", () => {
   });
 
   test("write file and re-read matches original", async () => {
-    const originalObjectsInv = await ObjectsInv.fromFile(TEST_FILE);
-    await originalObjectsInv.write(TEMP_FILE);
+    const originalObjectsInv = await ObjectsInv.fromFile(TEST_FOLDER);
+    await originalObjectsInv.write(TEMP_FOLDER);
 
-    const newObjectsInv = await ObjectsInv.fromFile(TEMP_FILE);
+    const newObjectsInv = await ObjectsInv.fromFile(TEMP_FOLDER);
     expect(originalObjectsInv.entries.length).toEqual(
       newObjectsInv.entries.length,
     );
@@ -122,8 +122,8 @@ describe("objects.inv", () => {
   });
 
   afterAll(async () => {
-    if (await stat(TEMP_FILE)) {
-      await unlink(TEMP_FILE);
+    if (await stat(TEMP_FOLDER + "objects.inv")) {
+      await unlink(TEMP_FOLDER + "objects.inv");
     }
   });
 });

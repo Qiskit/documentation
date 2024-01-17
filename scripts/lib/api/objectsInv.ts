@@ -13,7 +13,7 @@
 import { readFile, writeFile } from "fs/promises";
 import { unzipSync, deflateSync } from "zlib";
 import { removeSuffix } from "../stringUtils";
-import { join, dirname, extname } from "path";
+import { join, dirname } from "path";
 import { mkdirp } from "mkdirp";
 
 /**
@@ -41,7 +41,7 @@ const ENTRIES_TO_EXCLUDE = [
 ];
 
 function shouldExcludePage(uri: string): boolean {
-  return ENTRIES_TO_EXCLUDE.some((condition) =>  uri.match(condition));
+  return ENTRIES_TO_EXCLUDE.some((condition) => uri.match(condition));
 }
 
 export type ObjectsInvEntry = {
@@ -70,10 +70,8 @@ export class ObjectsInv {
    * This function follows the process from:
    *   https://github.com/bskinn/sphobjinv/blob/stable/src/sphobjinv/zlib.py
    */
-  static async fromFile(path: string): Promise<ObjectsInv> {
-    if (extname(path) === "") {
-      path = join(path, "objects.inv");
-    }
+  static async fromFile(directoryPath: string): Promise<ObjectsInv> {
+    const path = join(directoryPath, "objects.inv");
     let buffer = await readFile(path);
     // Extract preamble (first 4 lines of file)
     let preamble = "";
@@ -160,10 +158,8 @@ export class ObjectsInv {
   /**
    * Compress and write to file
    */
-  async write(path: string): Promise<void> {
-    if (extname(path) === "") {
-      path = join(path, "objects.inv");
-    }
+  async write(directoryPath: string): Promise<void> {
+    const path = join(directoryPath, "objects.inv");
     const preamble = Buffer.from(this.preamble);
     const compressed = deflateSync(Buffer.from(this.entriesString(), "utf8"), {
       level: 9,
