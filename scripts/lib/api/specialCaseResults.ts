@@ -42,7 +42,6 @@ export function specialCaseResults(results: HtmlToMdResultWithUrl[]): void {
         hardcodedFrontmatter: RUNTIME_INDEX_META,
       };
     }
-
     result.url = transformSpecialCaseUrl(result.url);
   }
 }

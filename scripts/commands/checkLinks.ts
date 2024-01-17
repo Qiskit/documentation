@@ -117,8 +117,10 @@ async function determineCurrentDocsFileBatch(
 ): Promise<FileBatch> {
   const toCheck = [
     "docs/**/*.{ipynb,md,mdx}",
+    "public/api/*/objects.inv",
     // Ignore historical versions
     "!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
+    "!public/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/[0-9]*/*",
   ];
   const toLoad = [
     "docs/api/qiskit/0.44/{algorithms,opflow}.md",
@@ -127,7 +129,9 @@ async function determineCurrentDocsFileBatch(
   ];
 
   if (!args.currentApis) {
-    toCheck.push("!docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*");
+    toCheck.push(
+      "!{public,docs}/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*",
+    );
     toLoad.push("docs/api/{qiskit,qiskit-ibm-provider,qiskit-ibm-runtime}/*");
   }
 
@@ -161,7 +165,10 @@ async function determineHistoricalFileBatches(
   const result = [];
   for (const folder of historicalFolders) {
     const fileBatch = await FileBatch.fromGlobs(
-      [`docs/api/${projectName}/${folder.name}/*`],
+      [
+        `docs/api/${projectName}/${folder.name}/*`,
+        `public/api/${projectName}/${folder.name}/objects.inv`,
+      ],
       toLoad,
       `${projectName} v${folder.name}`,
     );
