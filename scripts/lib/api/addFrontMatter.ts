@@ -12,7 +12,7 @@
 
 import { getLastPartFromFullIdentifier } from "../stringUtils";
 import { HtmlToMdResult } from "./HtmlToMdResult";
-import { Pkg } from "../sharedTypes";
+import { Pkg } from "./Pkg";
 
 function addFrontMatter<T extends HtmlToMdResult>(
   results: T[],

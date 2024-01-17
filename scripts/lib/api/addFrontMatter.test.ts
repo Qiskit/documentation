@@ -13,7 +13,7 @@
 import { expect, test } from "@jest/globals";
 
 import addFrontMatter from "./addFrontMatter";
-import { Pkg } from "../sharedTypes";
+import { Pkg } from "./Pkg";
 import { HtmlToMdResult } from "./HtmlToMdResult";
 
 test("addFrontMatter()", () => {
