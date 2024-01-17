@@ -101,7 +101,7 @@ export class ObjectsInv {
         uri: parts[4],
         dispname: parts[5],
       };
-      entry.uri = ObjectsInv._expandUri(entry.uri, entry.name);
+      entry.uri = ObjectsInv.#expandUri(entry.uri, entry.name);
       if (shouldExcludePage(entry.uri)) {
         continue;
       }
@@ -112,7 +112,7 @@ export class ObjectsInv {
     return new ObjectsInv(preamble, entries);
   }
 
-  static _expandUri(uri: string, name: string): string {
+  static #expandUri(uri: string, name: string): string {
     if (uri.includes("#") && uri.endsWith("$")) {
       // #$ is a shorthand for "anchor==name"; see "For illustration" in
       // https://sphobjinv.readthedocs.io/en/stable/syntax.html
@@ -121,7 +121,7 @@ export class ObjectsInv {
     return uri;
   }
 
-  static _compressUri(uri: string, name: string): string {
+  static #compressUri(uri: string, name: string): string {
     if (uri.includes("#") && uri.endsWith(name)) {
       uri = removeSuffix(uri, name) + "$";
     }
@@ -147,7 +147,7 @@ export class ObjectsInv {
           e.name,
           e.domainAndRole,
           e.priority,
-          ObjectsInv._compressUri(e.uri, e.name),
+          ObjectsInv.#compressUri(e.uri, e.name),
           e.dispname,
         ].join(" "),
       );
