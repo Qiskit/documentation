@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.OR
 
 <span id="qiskit.circuit.library.OR" />
 
-`OR(num_variable_qubits, flags=None, mcx_mode='noancilla')`
+`OR(num_variable_qubits, flags=None, mcx_mode='noancilla')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/circuit/library/boolean_logic/quantum_or.py "view source code")
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

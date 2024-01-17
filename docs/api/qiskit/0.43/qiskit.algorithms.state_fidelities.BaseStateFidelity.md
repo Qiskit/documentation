@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.state_fidelities.BaseStateFidelity
 
 <span id="qiskit.algorithms.state_fidelities.BaseStateFidelity" />
 
-`BaseStateFidelity`
+`BaseStateFidelity`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/algorithms/state_fidelities/base_state_fidelity.py "view source code")
 
 Bases: `ABC`
 
@@ -30,7 +30,7 @@ where $x$ and $y$ are optional parametrizations of the states $\psi$ and $\phi$ 
 
 <span id="qiskit.algorithms.state_fidelities.BaseStateFidelity.create_fidelity_circuit" />
 
-`abstract BaseStateFidelity.create_fidelity_circuit(circuit_1, circuit_2)`
+`abstract BaseStateFidelity.create_fidelity_circuit(circuit_1, circuit_2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/algorithms/state_fidelities/base_state_fidelity.py "view source code")
 
 Implementation-dependent method to create a fidelity circuit from 2 circuit inputs.
 
@@ -53,7 +53,7 @@ The fidelity quantum circuit corresponding to `circuit_1` and `circuit_2`.
 
 <span id="qiskit.algorithms.state_fidelities.BaseStateFidelity.run" />
 
-`BaseStateFidelity.run(circuits_1, circuits_2, values_1=None, values_2=None, **options)`
+`BaseStateFidelity.run(circuits_1, circuits_2, values_1=None, values_2=None, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/algorithms/state_fidelities/base_state_fidelity.py "view source code")
 
 Runs asynchronously the state overlap (fidelity) calculation between two (parametrized) circuits (first and second) for a specific set of parameter values (first and second). This calculation depends on the particular fidelity method implementation.
 

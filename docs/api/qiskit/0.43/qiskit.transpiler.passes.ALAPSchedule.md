@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ALAPSchedule
 
 <span id="qiskit.transpiler.passes.ALAPSchedule" />
 
-`ALAPSchedule(*args, **kwargs)`
+`ALAPSchedule(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/transpiler/passes/scheduling/alap.py "view source code")
 
 Bases: `BaseSchedulerTransform`
 
@@ -40,7 +40,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ALAPSchedule.run" />
 
-`ALAPSchedule.run(dag)`
+`ALAPSchedule.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/transpiler/passes/scheduling/alap.py "view source code")
 
 Run the ALAPSchedule pass on dag.
 

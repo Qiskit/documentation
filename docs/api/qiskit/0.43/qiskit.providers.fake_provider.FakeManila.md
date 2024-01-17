@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeManila
 
 <span id="qiskit.providers.fake_provider.FakeManila" />
 
-`FakeManila`
+`FakeManila`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/providers/fake_provider/backends/manila/fake_manila.py "view source code")
 
 Bases: `FakePulseBackend`
 

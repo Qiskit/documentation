@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.MinimumPoint
 
 <span id="qiskit.transpiler.passes.MinimumPoint" />
 
-`MinimumPoint(*args, **kwargs)`
+`MinimumPoint(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/transpiler/passes/utils/minimum_point.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -54,7 +54,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.MinimumPoint.run" />
 
-`MinimumPoint.run(dag)`
+`MinimumPoint.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/transpiler/passes/utils/minimum_point.py "view source code")
 
 Run the MinimumPoint pass on dag.
 

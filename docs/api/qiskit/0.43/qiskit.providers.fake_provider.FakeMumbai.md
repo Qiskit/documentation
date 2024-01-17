@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeMumbai
 
 <span id="qiskit.providers.fake_provider.FakeMumbai" />
 
-`FakeMumbai`
+`FakeMumbai`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/providers/fake_provider/backends/mumbai/fake_mumbai.py "view source code")
 
 Bases: `FakePulseBackend`
 

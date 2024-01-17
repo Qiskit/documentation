@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
 
 <span id="qiskit.transpiler.passes.PadDynamicalDecoupling" />
 
-`PadDynamicalDecoupling(*args, **kwargs)`
+`PadDynamicalDecoupling(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/transpiler/passes/scheduling/padding/dynamical_decoupling.py "view source code")
 
 Bases: `BasePadding`
 

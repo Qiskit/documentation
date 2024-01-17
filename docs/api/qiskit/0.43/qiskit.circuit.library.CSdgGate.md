@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CSdgGate
 
 <span id="qiskit.circuit.library.CSdgGate" />
 
-`CSdgGate(label=None, ctrl_state=None)`
+`CSdgGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/circuit/library/standard_gates/s.py "view source code")
 
 Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -50,7 +50,7 @@ Create new CSdg gate.
 
 <span id="qiskit.circuit.library.CSdgGate.inverse" />
 
-`CSdgGate.inverse()`
+`CSdgGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/circuit/library/standard_gates/s.py "view source code")
 
 Return inverse of CSdgGate (CSGate).
 
@@ -60,7 +60,7 @@ Return inverse of CSdgGate (CSGate).
 
 <span id="qiskit.circuit.library.CSdgGate.power" />
 
-`CSdgGate.power(exponent)`
+`CSdgGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/circuit/library/standard_gates/s.py "view source code")
 
 Raise gate to a power.
 

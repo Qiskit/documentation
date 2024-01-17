@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.PTM
 
 <span id="qiskit.quantum_info.PTM" />
 
-`PTM(data, input_dims=None, output_dims=None)`
+`PTM(data, input_dims=None, output_dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/quantum_info/operators/channel/ptm.py "view source code")
 
 Bases: `QuantumChannel`
 
@@ -62,7 +62,7 @@ If the input or output dimensions are None, they will be automatically determine
 
 <span id="qiskit.quantum_info.PTM.adjoint" />
 
-`PTM.adjoint()`
+`PTM.adjoint()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/quantum_info/operators/channel/ptm.py "view source code")
 
 Return the adjoint quantum channel.
 
@@ -76,7 +76,7 @@ Return the adjoint quantum channel.
 
 <span id="qiskit.quantum_info.PTM.compose" />
 
-`PTM.compose(other, qargs=None, front=False)`
+`PTM.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/quantum_info/operators/channel/ptm.py "view source code")
 
 Return the operator composition with another PTM.
 
@@ -110,7 +110,7 @@ The composed PTM.
 
 <span id="qiskit.quantum_info.PTM.conjugate" />
 
-`PTM.conjugate()`
+`PTM.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/quantum_info/operators/channel/ptm.py "view source code")
 
 Return the conjugate quantum channel.
 
@@ -161,7 +161,7 @@ The right matrix multiplied Operator.
 
 <span id="qiskit.quantum_info.PTM.expand" />
 
-`PTM.expand(other)`
+`PTM.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/quantum_info/operators/channel/ptm.py "view source code")
 
 Return the reverse-order tensor product with another PTM.
 
@@ -303,7 +303,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.PTM.tensor" />
 
-`PTM.tensor(other)`
+`PTM.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/quantum_info/operators/channel/ptm.py "view source code")
 
 Return the tensor product with another PTM.
 
@@ -365,7 +365,7 @@ Try to convert channel to a unitary representation Operator.
 
 <span id="qiskit.quantum_info.PTM.transpose" />
 
-`PTM.transpose()`
+`PTM.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/quantum_info/operators/channel/ptm.py "view source code")
 
 Return the transpose quantum channel.
 

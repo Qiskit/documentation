@@ -12,7 +12,7 @@ python_api_name: qiskit.qpy.load
 
 <span id="qiskit.qpy.load" />
 
-`load(file_obj, metadata_deserializer=None)`
+`load(file_obj, metadata_deserializer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/qpy/interface.py "view source code")
 
 Load a QPY binary file
 

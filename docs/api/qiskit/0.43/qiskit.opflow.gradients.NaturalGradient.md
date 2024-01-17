@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.gradients.NaturalGradient
 
 <span id="qiskit.opflow.gradients.NaturalGradient" />
 
-`NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`
+`NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/opflow/gradients/natural_gradient.py "view source code")
 
 Bases: [`GradientBase`](qiskit.opflow.gradients.GradientBase "qiskit.opflow.gradients.gradient_base.GradientBase")
 
@@ -45,7 +45,7 @@ where R(x) represents the penalization term.
 
 <span id="qiskit.opflow.gradients.NaturalGradient.convert" />
 
-`NaturalGradient.convert(operator, params=None)`
+`NaturalGradient.convert(operator, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/opflow/gradients/natural_gradient.py "view source code")
 
 **Parameters**
 
@@ -72,7 +72,7 @@ An operator whose evaluation yields the NaturalGradient.
 
 <span id="qiskit.opflow.gradients.NaturalGradient.nat_grad_combo_fn" />
 
-`static NaturalGradient.nat_grad_combo_fn(x, regularization=None)`
+`static NaturalGradient.nat_grad_combo_fn(x, regularization=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/opflow/gradients/natural_gradient.py "view source code")
 
 Natural Gradient Function Implementation.
 

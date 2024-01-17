@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.TrivialLayout
 
 <span id="qiskit.transpiler.passes.TrivialLayout" />
 
-`TrivialLayout(*args, **kwargs)`
+`TrivialLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/transpiler/passes/layout/trivial_layout.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -50,7 +50,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.TrivialLayout.run" />
 
-`TrivialLayout.run(dag)`
+`TrivialLayout.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/transpiler/passes/layout/trivial_layout.py "view source code")
 
 Run the TrivialLayout pass on dag.
 

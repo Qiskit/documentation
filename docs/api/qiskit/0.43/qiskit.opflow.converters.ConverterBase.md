@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.converters.ConverterBase
 
 <span id="qiskit.opflow.converters.ConverterBase" />
 
-`ConverterBase`
+`ConverterBase`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/opflow/converters/converter_base.py "view source code")
 
 Bases: `ABC`
 
@@ -28,7 +28,7 @@ Deprecated: Converters take an Operator and return a new Operator, generally iso
 
 <span id="qiskit.opflow.converters.ConverterBase.convert" />
 
-`abstract ConverterBase.convert(operator)`
+`abstract ConverterBase.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/opflow/converters/converter_base.py "view source code")
 
 Accept the Operator and return the converted Operator
 

@@ -12,7 +12,7 @@ python_api_name: qiskit.pulse.library.triangle
 
 <span id="qiskit.pulse.library.triangle" />
 
-`triangle(duration, amp, freq=None, phase=0, name=None)`
+`triangle(duration, amp, freq=None, phase=0, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/pulse/library/discrete.py "view source code")
 
 Generates triangle wave [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 

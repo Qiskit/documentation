@@ -12,7 +12,7 @@ python_api_name: qiskit.visualization.VisualizationError
 
 <span id="qiskit.visualization.VisualizationError" />
 
-`VisualizationError(*message)`
+`VisualizationError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.43/qiskit/visualization/exceptions.py "view source code")
 
 For visualization specific errors.
 
