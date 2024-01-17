@@ -77,21 +77,18 @@ const PACKAGES: PkgInfo[] = [
     title: "Qiskit Runtime IBM Client",
     name: "qiskit-ibm-runtime",
     githubSlug: "qiskit/qiskit-ibm-runtime",
-    initialUrl: `/apidocs/ibm-runtime.html`,
     transformLink,
   },
   {
     title: "Qiskit IBM Provider",
     name: "qiskit-ibm-provider",
     githubSlug: "qiskit/qiskit-ibm-provider",
-    initialUrl: `/apidocs/ibm-provider.html`,
     transformLink,
   },
   {
     title: "Qiskit",
     name: "qiskit",
     githubSlug: "qiskit/qiskit",
-    initialUrl: `/apidoc/index.html`,
     hasSeparateReleaseNotes: true,
   },
 ];
@@ -148,15 +145,8 @@ zxMain(async () => {
     versionWithoutPatch: versionMatch[0],
     historical: args.historical,
     releaseNoteEntries: [],
-    baseUrl: `http://localhost:8000`,
     ...pkgInfo,
   };
-
-  pkg.initialUrl = pkg.baseUrl + pkg.initialUrl;
-
-  if (pkg.name == "qiskit" && +pkg.versionWithoutPatch < 0.44) {
-    pkg.initialUrl = `${pkg.baseUrl}/apidoc/terra.html`;
-  }
 
   const artifactUrl = args.artifact;
   const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
@@ -223,14 +213,12 @@ async function convertHtmlToMarkdown(
     },
   );
 
-  const ignore = pkg.ignore ?? (() => false);
-
   let results: Array<HtmlToMdResult & { url: string }> = [];
   for (const file of files) {
     const html = await readFile(join(htmlPath, file), "utf-8");
     const result = await sphinxHtmlToMarkdown({
       html,
-      url: `${pkg.baseUrl}/${file}`,
+      url: file,
       baseGitHubUrl,
       imageDestination: getPkgRoot(pkg, "/images"),
       releaseNotesTitle: `${pkg.title} ${pkg.versionWithoutPatch} release notes`,
@@ -245,7 +233,7 @@ async function convertHtmlToMarkdown(
     const { dir, name } = parse(`${markdownPath}/${file}`);
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
 
-    if (!result.meta.apiName || !ignore(result.meta.apiName)) {
+    if (!result.meta.apiName) {
       results.push({ ...result, url });
     }
     if (

@@ -26,9 +26,7 @@ export interface Link {
 export type PkgInfo = {
   name: string;
   githubSlug: string;
-  initialUrl: string;
   title: string;
-  ignore?(id: string): boolean;
   hasSeparateReleaseNotes?: boolean;
   transformLink?: (link: Link) => Link | undefined;
 };
@@ -44,7 +42,6 @@ export type Pkg = PkgInfo & {
   versionWithoutPatch: string;
   historical: boolean;
   releaseNoteEntries: { title: string; url: string }[];
-  baseUrl: string;
 };
 
 export function getPkgRoot(pkg: Pkg, parentDir = "docs") {
