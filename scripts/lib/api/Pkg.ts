@@ -12,7 +12,13 @@
 
 import { join } from "path/posix";
 
-import { Link } from "../sharedTypes";
+/**
+ * Simple interface for scripts/command/updateApiDocs.ts
+ */
+export interface Link {
+  url: string; // Where the link goes
+  text?: string; // What the user sees
+}
 
 /**
  * Python package (e.g. qiskit, qiskit-ibm-runtime).
