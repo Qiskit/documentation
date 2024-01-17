@@ -26,19 +26,19 @@ export type ProcessedHtml = {
 
 export function processHtml(options: {
   html: string;
-  url: string;
+  file: string;
   imageDestination: string;
   baseGitHubUrl: string;
   releaseNotesTitle: string;
 }): ProcessedHtml {
-  const { html, url, imageDestination, baseGitHubUrl, releaseNotesTitle } =
+  const { html, file, imageDestination, baseGitHubUrl, releaseNotesTitle } =
     options;
   const $ = load(html);
   const $main = $(`[role='main']`);
 
-  const isReleaseNotes = url.endsWith("release_notes.html");
-  const images = loadImages($, $main, url, imageDestination, isReleaseNotes);
-  if (url.endsWith("release_notes.html")) {
+  const isReleaseNotes = file.endsWith("release_notes.html");
+  const images = loadImages($, $main, imageDestination, isReleaseNotes);
+  if (isReleaseNotes) {
     renameAllH1s($, releaseNotesTitle);
   }
 
@@ -66,7 +66,6 @@ export function processHtml(options: {
 export function loadImages(
   $: CheerioAPI,
   $main: Cheerio<any>,
-  url: string,
   imageDestination: string,
   isReleaseNotes: boolean,
 ): Image[] {
@@ -76,18 +75,17 @@ export function loadImages(
     .map((img) => {
       const $img = $(img);
 
-      const imageUrl = new URL($img.attr("src")!, url);
-      const src = imageUrl.toString();
+      const imageUrl = new URL($img.attr("src")!, "https://doesnt-matter.com");
+      const fileName = last(imageUrl.toString().split("/"))!;
 
-      const filename = last(src.split("/"));
-      let dest = `${imageDestination}/${filename}`;
+      let dest = `${imageDestination}/${fileName}`;
       if (isReleaseNotes) {
         // Release notes links should point to the current version
         dest = dest.replace(/[0-9].*\//, "");
       }
 
       $img.attr("src", dest);
-      return { src, dest: dest };
+      return { fileName, dest };
     });
 }
 
