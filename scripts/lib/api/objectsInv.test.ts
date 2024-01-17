@@ -110,15 +110,13 @@ describe("objects.inv", () => {
 
     const objectsInv = new ObjectsInv(preamble, entries);
     objectsInv.updateUris(transformFunction);
-    expect(objectsInv.entries.map((i) => i.uri)).toMatchInlineSnapshot(`
-    [
+    expect(objectsInv.entries.map((i) => i.uri)).toEqual([
       "qaskat_abm_runtame.RuntameJob#qaskat_abm_runtame.RuntameJob.job_ad",
       "stubs/qaskat_abm_provader.transpaler.passes.schedulang.ASAPScheduleAnalysas.__call__",
       "search",
       "legacy_release_notes#release-notes-agnas-0-5-0",
       "andex",
-    ]
-    `);
+    ]);
   });
 
   afterAll(async () => {
