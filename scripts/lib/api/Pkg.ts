@@ -16,12 +16,6 @@ import { findLegacyReleaseNotes } from "./releaseNotes";
 import { removePrefix, removeSuffix } from "../stringUtils";
 import { getRoot } from "../fs";
 
-export const VALID_PACKAGE_NAMES = [
-  "qiskit",
-  "qiskit-ibm-runtime",
-  "qiskit-ibm-provider",
-];
-
 /**
  * Simple interface for scripts/command/updateApiDocs.ts
  */
@@ -48,6 +42,8 @@ export class Pkg {
   readonly versionWithoutPatch: string;
   readonly historical: boolean;
   readonly releaseNoteEntries: ReleaseNoteEntry[];
+
+  static VALID_NAMES = ["qiskit", "qiskit-ibm-runtime", "qiskit-ibm-provider"];
 
   constructor(kwargs: {
     name: string;

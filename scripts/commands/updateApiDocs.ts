@@ -31,7 +31,7 @@ import { updateLinks } from "../lib/api/updateLinks";
 import { specialCaseResults } from "../lib/api/specialCaseResults";
 import addFrontMatter from "../lib/api/addFrontMatter";
 import { dedupeHtmlIdsFromResults } from "../lib/api/dedupeHtmlIds";
-import { Pkg, VALID_PACKAGE_NAMES } from "../lib/api/Pkg";
+import { Pkg } from "../lib/api/Pkg";
 import { zxMain } from "../lib/zx";
 import { pathExists, getRoot, rmFilesInFolder } from "../lib/fs";
 import { downloadCIArtifact } from "../lib/api/downloadCIArtifacts";
@@ -56,7 +56,7 @@ const readArgs = (): Arguments => {
     .option("package", {
       alias: "p",
       type: "string",
-      choices: VALID_PACKAGE_NAMES,
+      choices: Pkg.VALID_NAMES,
       demandOption: true,
       description: "Which package to update",
     })
