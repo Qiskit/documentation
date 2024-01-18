@@ -25,6 +25,10 @@ CZ
 CX
 SXdg?
 Reset
+qubit_init flag?
+
+NOTES FOR DRAFTING:
+
 IBM Quantum systems support the `reset` instruction in Qiskit. This allows users to reset qubits into the ground state (`|0>`) with high fidelity. These instructions are comprised of a not-gate conditioned on the measurement outcome of the qubit, and demonstrate the real-time compute power of the IBM Quantum systems. They can be explored for the reuse of qubits in a circuit, to yield an increase in system throughput, and provide fidelity improvements over standard cavity-cooling methods. 
 
 IBM Quantum systems support the `reset` instruction in Qiskit. This allows users to reset qubits into the ground state (`|0>`) with high fidelity. These instructions are comprised of a not-gate conditioned on the measurement outcome of the qubit, and demonstrate the real-time compute power of the IBM Quantum systems. They can be explored for the reuse of qubits in a circuit, to yield an increase in system throughput, and provide fidelity improvements over standard cavity-cooling methods. 
@@ -48,4 +52,4 @@ In order to use `rep_delay`, we must check if the backend supports it. This is c
 Like `rep_delay`, `init_qubits` can be set in `execute()` or `assemble()`.
 
 
-qubit_init flag? (from API docs: A new kwarg for init_qubits has been added to assemble() and execute(). For backends that support this feature init_qubits can be used to control whether the backend executing the circuits inserts any initialization sequences at the start of each shot. By default this is set to True meaning that all qubits can assumed to be in the ground state at the start of each shot. However, when init_qubits is set to False qubits will be uninitialized at the start of each experiment and between shots. Note, that the backend running the circuits has to support this feature for this flag to have any effect.)
+(from API docs: A new kwarg for init_qubits has been added to assemble() and execute(). For backends that support this feature init_qubits can be used to control whether the backend executing the circuits inserts any initialization sequences at the start of each shot. By default this is set to True meaning that all qubits can assumed to be in the ground state at the start of each shot. However, when init_qubits is set to False qubits will be uninitialized at the start of each experiment and between shots. Note, that the backend running the circuits has to support this feature for this flag to have any effect.)
