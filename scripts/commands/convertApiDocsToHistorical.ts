@@ -144,7 +144,7 @@ async function copyImages(pkgName: string, versionWithoutPatch: string) {
   await $`find ${imageDirSource}/* -maxdepth 0 -type f | grep -v "release_notes" | xargs -I {} cp -a {} ${imageDirDest}`;
 }
 
-async function copyObjectsInv(pkgName: string, versionWithoutPatch:string){
+async function copyObjectsInv(pkgName: string, versionWithoutPatch: string) {
   console.log("Copying objects.inv");
   const sourceDir = `${getRoot()}/public/api/${pkgName}`;
   const destDir = `${getRoot()}/public/api/${pkgName}/${versionWithoutPatch}`;
