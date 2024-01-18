@@ -53,11 +53,9 @@ test("addFrontMatter()", () => {
       isReleaseNotes: true,
     },
   ];
-  const pkg = {
-    versionWithoutPatch: "0.0",
+  const pkg = Pkg.mock({
     hasSeparateReleaseNotes: true,
-    title: "My Quantum Software Project",
-  } as Pkg;
+  });
 
   addFrontMatter(results, pkg);
   expect(results.map((result) => result.markdown)).toEqual([
@@ -86,8 +84,8 @@ python_api_name: quantum_software.MyClass
 # Python API
 `,
     `---
-title: My Quantum Software Project 0.0 release notes
-description: Changes made in My Quantum Software Project 0.0
+title: My Quantum Project 0.1 release notes
+description: Changes made in My Quantum Project 0.1
 in_page_toc_max_heading_level: 2
 ---
 

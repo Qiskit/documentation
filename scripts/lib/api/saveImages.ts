@@ -14,7 +14,7 @@ import { mkdirp } from "mkdirp";
 import pMap from "p-map";
 import { copyFile } from "fs/promises";
 
-import { Pkg, getPkgRoot } from "./Pkg";
+import { Pkg } from "./Pkg";
 import { Image } from "./HtmlToMdResult";
 import { pathExists } from "../fs";
 
@@ -23,7 +23,7 @@ export async function saveImages(
   originalImagesFolderPath: string,
   pkg: Pkg,
 ) {
-  const destFolder = getPkgRoot(pkg, "public/images");
+  const destFolder = pkg.outputDir("public/images");
   if (!(await pathExists(destFolder))) {
     await mkdirp(destFolder);
   }

@@ -17,7 +17,7 @@ import { Pkg } from "./Pkg";
 
 describe("generateToc", () => {
   test("generate a toc", () => {
-    const toc = generateToc(pkg, [
+    const toc = generateToc(Pkg.mock({}), [
       {
         meta: {
           apiType: "module",
@@ -85,24 +85,23 @@ describe("generateToc", () => {
           },
           {
             "title": "Release notes",
-            "url": "/api/qiskit_ibm_runtime/release-notes",
+            "url": "/api/my-quantum-project/release-notes",
           },
         ],
         "collapsed": true,
-        "title": "Qiskit Runtime IBM Client",
+        "title": "My Quantum Project",
       }
     `);
   });
 
   test("TOC with distinct release note files", () => {
     const toc = generateToc(
-      {
-        ...pkg,
+      Pkg.mock({
         releaseNoteEntries: [
           { title: "0.39", url: "/docs/runtime/release-notes/0.39" },
           { title: "0.38", url: "/docs/runtime/release-notes/0.38" },
         ],
-      },
+      }),
       [
         {
           meta: {
@@ -136,17 +135,8 @@ describe("generateToc", () => {
           },
         ],
         "collapsed": true,
-        "title": "Qiskit Runtime IBM Client",
+        "title": "My Quantum Project",
       }
     `);
   });
 });
-
-const pkg = {
-  title: "Qiskit Runtime IBM Client",
-  name: "qiskit_ibm_runtime",
-  version: "1.0.0",
-  versionWithoutPatch: "1.0",
-  releaseNoteEntries: [],
-  historical: false,
-} as unknown as Pkg;
