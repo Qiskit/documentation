@@ -31,6 +31,12 @@ test("Pkg.determineGithubUrlFn()", () => {
     versionWithoutPatch: "0.45",
   }).determineGithubUrlFn();
 
+  const historicalQiskit = Pkg.mock({
+    name: "qiskit",
+    githubSlug: "qiskit/qiskit",
+    versionWithoutPatch: "0.32",
+  }).determineGithubUrlFn();
+
   expect(provider("qiskit_ibm_provider/job/exceptions")).toEqual(
     "https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/exceptions.py",
   );
@@ -53,5 +59,33 @@ test("Pkg.determineGithubUrlFn()", () => {
   );
   expect(qiskit("qiskit/transpiler/preset_passmanagers")).toEqual(
     "https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/preset_passmanagers/__init__.py",
+  );
+
+  expect(historicalQiskit("qiskit/exceptions")).toEqual(
+    "https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/exceptions.py",
+  );
+  expect(historicalQiskit("qiskit/qasm")).toEqual(
+    "https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/qasm/__init__.py",
+  );
+  expect(historicalQiskit("qiskit/aer/foo")).toEqual(
+    "https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/aer/foo.py",
+  );
+  expect(historicalQiskit("qiskit/providers/aer/foo")).toEqual(
+    "https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/providers/aer/foo.py",
+  );
+  expect(historicalQiskit("qiskit_aer/foo")).toEqual(
+    "https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit_aer/foo.py",
+  );
+  expect(historicalQiskit("qiskit/ignis/foo")).toEqual(
+    "https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.6/qiskit/ignis/foo.py",
+  );
+  expect(historicalQiskit("qiskit/aqua/foo")).toEqual(
+    "https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/foo.py",
+  );
+  expect(historicalQiskit("qiskit/aer/foo")).toEqual(
+    "https://github.com/qiskit/qiskit-aer/tree/stable/0.9/qiskit/aer/foo.py",
+  );
+  expect(historicalQiskit("qiskit/providers/ibmq/foo")).toEqual(
+    "https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/foo.py",
   );
 });
