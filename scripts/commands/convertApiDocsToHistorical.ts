@@ -71,14 +71,15 @@ zxMain(async () => {
 
   await mkdirp(projectNewHistoricalFolder);
 
-  copyApiDocsAndUpdateLinks(pkgName, versionWithoutPatch);
-  generateJsonFiles(
+  await copyApiDocsAndUpdateLinks(pkgName, versionWithoutPatch);
+  await generateJsonFiles(
     pkgName,
     packageInfo.version,
     versionWithoutPatch,
     projectNewHistoricalFolder,
   );
-  copyImages(pkgName, versionWithoutPatch);
+  await copyImages(pkgName, versionWithoutPatch);
+  await copyObjectsInv(pkgName, versionWithoutPatch);
 });
 
 async function copyApiDocsAndUpdateLinks(
@@ -141,6 +142,14 @@ async function copyImages(pkgName: string, versionWithoutPatch: string) {
   const imageDirDest = `${getRoot()}/public/images/api/${pkgName}/${versionWithoutPatch}`;
   await mkdirp(imageDirDest);
   await $`find ${imageDirSource}/* -maxdepth 0 -type f | grep -v "release_notes" | xargs -I {} cp -a {} ${imageDirDest}`;
+}
+
+async function copyObjectsInv(pkgName: string, versionWithoutPatch: string) {
+  console.log("Copying objects.inv");
+  const sourceDir = `${getRoot()}/public/api/${pkgName}`;
+  const destDir = `${getRoot()}/public/api/${pkgName}/${versionWithoutPatch}`;
+  await mkdirp(destDir);
+  await $`cp -a ${sourceDir}/objects.inv ${destDir}`;
 }
 
 async function updateLinksFile(
