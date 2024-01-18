@@ -16,7 +16,8 @@ import { sphinxHtmlToMarkdown } from "./htmlToMd";
 
 const DEFAULT_ARGS = {
   imageDestination: "/images/qiskit",
-  baseGitHubUrl: "https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/",
+  determineGithubUrl: (fileName: string) =>
+    `https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/${fileName}.py`,
   releaseNotesTitle: "My Quantum release notes",
 };
 

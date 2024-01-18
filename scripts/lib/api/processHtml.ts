@@ -27,11 +27,16 @@ export function processHtml(options: {
   html: string;
   fileName: string;
   imageDestination: string;
-  baseGitHubUrl: string;
+  determineGithubUrl: (fileName: string) => string;
   releaseNotesTitle: string;
 }): ProcessedHtml {
-  const { html, fileName, imageDestination, baseGitHubUrl, releaseNotesTitle } =
-    options;
+  const {
+    html,
+    fileName,
+    imageDestination,
+    determineGithubUrl,
+    releaseNotesTitle,
+  } = options;
   const $ = load(html);
   const $main = $(`[role='main']`);
 
@@ -47,7 +52,7 @@ export function processHtml(options: {
   removeDownloadSourceCode($main);
   handleSphinxDesignCards($, $main);
   addLanguageClassToCodeBlocks($, $main);
-  replaceViewcodeLinksWithGitHub($, $main, baseGitHubUrl);
+  replaceViewcodeLinksWithGitHub($, $main, determineGithubUrl);
   convertRubricsToHeaders($, $main);
   processSimpleFieldLists($, $main);
   removeColonSpans($main);
@@ -166,16 +171,8 @@ export function addLanguageClassToCodeBlocks(
 export function replaceViewcodeLinksWithGitHub(
   $: CheerioAPI,
   $main: Cheerio<any>,
-  baseGitHubUrl: string,
+  determineGithubUrl: (fileName: string) => string,
 ): void {
-  // For files like `my_module/__init__.py`, `sphinx.ext.viewcode` will title the
-  // file `my_module.py`. We need to add back the `/__init__.py` when linking to GitHub.
-  const convertToInitPy = new Set([
-    "qiskit_ibm_provider",
-    "qiskit/qasm2",
-    "qiskit/qasm3",
-    "qiskit/transpiler/preset_passmanagers",
-  ]);
   $main.find("a").each((_, a) => {
     const $a = $(a);
     const href = $a.attr("href");
@@ -187,12 +184,8 @@ export function replaceViewcodeLinksWithGitHub(
       return;
     }
     // E.g. `qiskit_ibm_runtime/ibm_backend`
-    let fullFileName = href.match(/_modules\/(.*?)(#|$)/)![1];
-    if (convertToInitPy.has(fullFileName)) {
-      fullFileName = `${fullFileName}/__init__`;
-    }
-    const newHref = `${baseGitHubUrl}${fullFileName}.py`;
-    $a.attr("href", newHref);
+    const fullFileName = href.match(/_modules\/(.*?)(#|$)/)![1];
+    $a.attr("href", determineGithubUrl(fullFileName));
   });
 }
 
