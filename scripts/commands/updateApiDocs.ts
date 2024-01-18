@@ -146,7 +146,7 @@ async function convertHtmlToMarkdown(
     const result = await sphinxHtmlToMarkdown({
       html,
       fileName: file,
-      baseGitHubUrl: pkg.baseGitHubUrl(),
+      determineGithubUrl: pkg.determineGithubUrlFn(),
       imageDestination: pkg.outputDir("/images"),
       releaseNotesTitle: `${pkg.title} ${pkg.versionWithoutPatch} release notes`,
     });
