@@ -25,4 +25,27 @@ CZ
 CX
 SXdg?
 Reset
-qubit_init flag?
+IBM Quantum systems support the `reset` instruction in Qiskit. This allows users to reset qubits into the ground state (`|0>`) with high fidelity. These instructions are comprised of a not-gate conditioned on the measurement outcome of the qubit, and demonstrate the real-time compute power of the IBM Quantum systems. They can be explored for the reuse of qubits in a circuit, to yield an increase in system throughput, and provide fidelity improvements over standard cavity-cooling methods. 
+
+IBM Quantum systems support the `reset` instruction in Qiskit. This allows users to reset qubits into the ground state (`|0>`) with high fidelity. These instructions are comprised of a not-gate conditioned on the measurement outcome of the qubit, and demonstrate the real-time compute power of the IBM Quantum systems. They can be explored for the reuse of qubits in a circuit, to yield an increase in system throughput, and provide fidelity improvements over standard cavity-cooling methods. 
+
+The repetition delay defines the delay time between circuit executions. For instance, if you run a job with 5 circuits, the repetition delay (`rep_delay` for short) defines how long the backend is idle for between the conclusion of one circuit and start of the next. This parameter provides finer grained control over the execution of your quantum circuits on IBM Quantum systems.
+
+Shortening `rep_delay` can reduce execution time, and therefore reduce the sensitivity of your experiment to long term drifts in hardware parameter variations. However, setting too short a time may yield poorly initialized qubits.
+
+With the smaller `rep_delay`, users may prefer to initialize circuits themselves via the `reset` instruction introduced above. For this reason, we have added a flag `init_qubits` which determines whether the default backend initialization sequence will be inserted. This allows users to work with "dirty qubits" and perform experiments with non-initialized states.
+
+<div class="alert alert-block alert-info">
+
+    
+**Note:** If `init_qubits` is set to false and you want qubits to start in the ground state, you must insert resets at the start of your circuit. Otherwise, qubits will begin with their state from the previous shot (after undergoing some thermalization process for the interval between shots as set by `rep_delay`). Note that the first shot of the first circuit may still be in the thermal ground state due to a longer delay existing during the loading of your job to hardware.
+</div>
+
+In order to use `rep_delay`, we must check if the backend supports it. This is controlled by a flag in the backend configuration `dynamic_reprate_enabled`.
+
+`rep_delay` can be specified in `execute()` or `assemble()`. We choose `assemble()` so that we can print and verify our `rep_delay` in the `qobj.config`. Also note that `init_qubits=False`.
+
+Like `rep_delay`, `init_qubits` can be set in `execute()` or `assemble()`.
+
+
+qubit_init flag? (from API docs: A new kwarg for init_qubits has been added to assemble() and execute(). For backends that support this feature init_qubits can be used to control whether the backend executing the circuits inserts any initialization sequences at the start of each shot. By default this is set to True meaning that all qubits can assumed to be in the ground state at the start of each shot. However, when init_qubits is set to False qubits will be uninitialized at the start of each experiment and between shots. Note, that the backend running the circuits has to support this feature for this flag to have any effect.)
