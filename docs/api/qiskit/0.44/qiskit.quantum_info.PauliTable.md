@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.PauliTable
 
 <span id="qiskit.quantum_info.PauliTable" />
 
-`qiskit.quantum_info.PauliTable(data)`
+`qiskit.quantum_info.PauliTable(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/pauli_table.py "view source code")
 
 Bases: `BaseOperator`, `AdjointMixin`
 
