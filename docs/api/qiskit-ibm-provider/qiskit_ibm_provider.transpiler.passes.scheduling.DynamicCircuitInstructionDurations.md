@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuit
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations" />
 
-`DynamicCircuitInstructionDurations(instruction_durations=None, dt=None, enable_patching=True)`
+`DynamicCircuitInstructionDurations(instruction_durations=None, dt=None, enable_patching=True)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/transpiler/passes/scheduling/utils.py "view source code")
 
 For dynamic circuits the IBM Qiskit backend currently reports instruction durations that differ compared with those required for the legacy Qobj-based path. For now we use this class to report updated InstructionDurations. TODO: This would be mitigated by a specialized Backend/Target for dynamic circuit backends.
 
@@ -117,7 +117,7 @@ Set of units used in this instruction durations.
 
 <span id="qiskit_ibm_provider.transpiler.passes.scheduling.DynamicCircuitInstructionDurations.update" />
 
-`DynamicCircuitInstructionDurations.update(inst_durations, dt=None)`
+`DynamicCircuitInstructionDurations.update(inst_durations, dt=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/transpiler/passes/scheduling/utils.py "view source code")
 
 Update self with inst\_durations (inst\_durations overwrite self). Overrides the default durations for certain hardcoded instructions.
 

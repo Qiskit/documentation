@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.StabilizerTable
 
 <span id="qiskit.quantum_info.StabilizerTable" />
 
-`qiskit.quantum_info.StabilizerTable(data, phase=None)`
+`qiskit.quantum_info.StabilizerTable(data, phase=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/quantum_info/operators/symplectic/stabilizer_table.py "view source code")
 
 Bases: [`PauliTable`](qiskit.quantum_info.PauliTable "qiskit.quantum_info.operators.symplectic.pauli_table.PauliTable"), `AdjointMixin`
 

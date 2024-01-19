@@ -10,11 +10,11 @@ python_api_name: qiskit.providers.ibmq.utils.seconds_to_duration
   The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
 </Admonition>
 
-# qiskit.providers.ibmq.utils.seconds\_to\_duration[¶](#qiskit-providers-ibmq-utils-seconds-to-duration "Permalink to this headline")
+# qiskit.providers.ibmq.utils.seconds\_to\_duration
 
 <span id="qiskit.providers.ibmq.utils.seconds_to_duration" />
 
-`seconds_to_duration(seconds)`
+`seconds_to_duration(seconds)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/utils/converters.py "view source code")
 
 Converts seconds in a datetime delta to a duration.
 

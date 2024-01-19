@@ -19,10 +19,10 @@ Find more information about the pass manager stages in the [Transpiler stages](t
 
 Qiskit's prebuilt transpiler pipeline consists of six fundamental stages:
 
-1.  `init` - This pass runs any initial passes that are required before we start embedding the circuit to the backend.  This typically involves unrolling custom instructions and converting the circuit to all single- and two-qubit gates. (By default this will just validate the circuit instructions and translate multi-qubit gates into single- and two-qubit gates.)
-2.  `layout` - This pass applies a _layout_, mapping/assigning the virtual qubits in your circuit to the physical qubits of a backend.
-3.  `routing` - This pass runs after a layout has been applied and will inject gates (i.e., SWAPs) in the original circuit in order to make it compatible with the backend's connectivity/coupling map.
-4.  `translation` - This pass translates the gates in the circuit to the backend's basis set of instructions.
+1.  `init` - This pass runs any initial passes that are required before we start embedding the circuit to the system.  This typically involves unrolling custom instructions and converting the circuit to all single- and two-qubit gates. (By default this will just validate the circuit instructions and translate multi-qubit gates into single- and two-qubit gates.)
+2.  `layout` - This pass applies a _layout_, mapping/assigning the virtual qubits in your circuit to the physical qubits of a system.
+3.  `routing` - This pass runs after a layout has been applied and will inject gates (i.e., SWAPs) in the original circuit in order to make it compatible with the system's connectivity/coupling map.
+4.  `translation` - This pass translates the gates in the circuit to the system's basis set of instructions.
 5.  `optimization` - This pass runs an optimization loop to find more efficient decompositions of your quantum circuit until a condition is met (such as a fixed depth).
 6.  `scheduling` - This stage is for any hardware-aware scheduling passes. If the user specifies a scheduling method, this stage accounts for all idle time in the circuit.
 

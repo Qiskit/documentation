@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeJakartaV2
 ---
 
-# FakeJakartaV2[¶](#fakejakartav2 "Permalink to this headline")
+# FakeJakartaV2
 
 <span id="qiskit.providers.fake_provider.FakeJakartaV2" />
 
-`FakeJakartaV2`
+`FakeJakartaV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/jakarta/fake_jakarta.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

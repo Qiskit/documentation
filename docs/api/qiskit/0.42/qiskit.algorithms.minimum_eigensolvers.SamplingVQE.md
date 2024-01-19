@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.minimum_eigensolvers.SamplingVQE
 ---
 
-# SamplingVQE[¶](#samplingvqe "Permalink to this headline")
+# SamplingVQE
 
 <span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQE" />
 
-`SamplingVQE(sampler, ansatz, optimizer, *, initial_point=None, aggregation=None, callback=None)`
+`SamplingVQE(sampler, ansatz, optimizer, *, initial_point=None, aggregation=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/sampling_vqe.py "view source code")
 
 Bases: `qiskit.algorithms.variational_algorithm.VariationalAlgorithm`, [`qiskit.algorithms.minimum_eigensolvers.sampling_mes.SamplingMinimumEigensolver`](qiskit.algorithms.minimum_eigensolvers.SamplingMinimumEigensolver "qiskit.algorithms.minimum_eigensolvers.sampling_mes.SamplingMinimumEigensolver")
 
@@ -123,7 +123,7 @@ Callable\[\[int, np.ndarray, float, dict\[str, Any]], None] | None
 
 <span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQE.compute_minimum_eigenvalue" />
 
-`SamplingVQE.compute_minimum_eigenvalue(operator, aux_operators=None)`
+`SamplingVQE.compute_minimum_eigenvalue(operator, aux_operators=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/sampling_vqe.py "view source code")
 
 Compute the minimum eigenvalue of a diagonal operator.
 
@@ -144,7 +144,7 @@ A [`SamplingMinimumEigensolverResult`](qiskit.algorithms.minimum_eigensolvers.Sa
 
 <span id="qiskit.algorithms.minimum_eigensolvers.SamplingVQE.supports_aux_operators" />
 
-`classmethod SamplingVQE.supports_aux_operators()`
+`classmethod SamplingVQE.supports_aux_operators()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigensolvers/sampling_vqe.py "view source code")
 
 Whether computing the expectation value of auxiliary operators is supported.
 

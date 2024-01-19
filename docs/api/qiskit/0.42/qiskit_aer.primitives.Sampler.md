@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_aer.primitives.Sampler
 ---
 
-# Sampler[¶](#sampler "Permalink to this headline")
+# Sampler
 
 <span id="qiskit_aer.primitives.Sampler" />
 
-`Sampler(*, backend_options=None, transpile_options=None, run_options=None, skip_transpilation=False)`
+`Sampler(*, backend_options=None, transpile_options=None, run_options=None, skip_transpilation=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/primitives/sampler.py "view source code")
 
 Bases: [`qiskit.primitives.base.base_sampler.BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.base.base_sampler.BaseSampler")
 
@@ -43,7 +43,7 @@ Aer implementation of Sampler class.
 
 <span id="qiskit_aer.primitives.Sampler.close" />
 
-`Sampler.close()`
+`Sampler.close()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/primitives/sampler.py "view source code")
 
 Close the session and free resources
 

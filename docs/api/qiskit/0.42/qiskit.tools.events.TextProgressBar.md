@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.tools.events.TextProgressBar
 ---
 
-# TextProgressBar[¶](#textprogressbar "Permalink to this headline")
+# TextProgressBar
 
 <span id="qiskit.tools.events.TextProgressBar" />
 
-`TextProgressBar(output_handler=None)`
+`TextProgressBar(output_handler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/tools/events/progressbar.py "view source code")
 
 Bases: `qiskit.tools.events.progressbar.BaseProgressBar`
 
@@ -70,7 +70,7 @@ Run when progress bar has completed.
 
 <span id="qiskit.tools.events.TextProgressBar.start" />
 
-`TextProgressBar.start(iterations)`
+`TextProgressBar.start(iterations)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/tools/events/progressbar.py "view source code")
 
 Start the progress bar.
 
@@ -134,7 +134,7 @@ Unsubscribe a pair event-callback, so the callback will not be called anymore wh
 
 <span id="qiskit.tools.events.TextProgressBar.update" />
 
-`TextProgressBar.update(n)`
+`TextProgressBar.update(n)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/tools/events/progressbar.py "view source code")
 
 Update status of progress bar.
 

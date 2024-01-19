@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.SabreSwap
 ---
 
-# SabreSwap[¶](#sabreswap "Permalink to this headline")
+# SabreSwap
 
 <span id="qiskit.transpiler.passes.SabreSwap" />
 
-`SabreSwap(*args, **kwargs)`
+`SabreSwap(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/routing/sabre_swap.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -90,7 +90,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.SabreSwap.run" />
 
-`SabreSwap.run(dag)`
+`SabreSwap.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/routing/sabre_swap.py "view source code")
 
 Run the SabreSwap pass on dag.
 

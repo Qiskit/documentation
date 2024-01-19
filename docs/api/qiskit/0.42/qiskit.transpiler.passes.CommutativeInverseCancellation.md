@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CommutativeInverseCancellation
 ---
 
-# CommutativeInverseCancellation[¶](#commutativeinversecancellation "Permalink to this headline")
+# CommutativeInverseCancellation
 
 <span id="qiskit.transpiler.passes.CommutativeInverseCancellation" />
 
-`CommutativeInverseCancellation(*args, **kwargs)`
+`CommutativeInverseCancellation(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/optimization/commutative_inverse_cancellation.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -30,7 +30,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CommutativeInverseCancellation.run" />
 
-`CommutativeInverseCancellation.run(dag)`
+`CommutativeInverseCancellation.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/optimization/commutative_inverse_cancellation.py "view source code")
 
 Run the CommutativeInverseCancellation pass on dag.
 

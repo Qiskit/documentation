@@ -12,15 +12,11 @@ python_api_name: qiskit_aer.jobs
 
 <span id="module-qiskit_aer.jobs" />
 
-`qiskit_aer.jobs¶`
+`qiskit_aer.jobs`
 
 This module contains classes and functions to manage Aer jobs.
 
 ## Classes
-
-<span id="module-qiskit_aer.jobs" />
-
-`¶`
 
 The following are the classes used to manage job submissions.
 

@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.qpy.load
 ---
 
-# qiskit.qpy.load[¶](#qiskit-qpy-load "Permalink to this headline")
+# qiskit.qpy.load
 
 <span id="qiskit.qpy.load" />
 
-`load(file_obj, metadata_deserializer=None)`
+`load(file_obj, metadata_deserializer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qpy/interface.py "view source code")
 
 Load a QPY binary file
 

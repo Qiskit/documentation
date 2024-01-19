@@ -16,7 +16,7 @@ The steps in this topic describes how to set up  primitives, explore the options
 
 ### 1.  Initialize the account
 
-Since Qiskit Runtime `Estimator` is a managed service, you will first need to initialize your account. You can then select the simulator or real backend you want to use to calculate the expectation value.
+Since Qiskit Runtime `Estimator` is a managed service, you will first need to initialize your account. You can then select the simulator or real system you want to use to calculate the expectation value.
 
 Follow the steps in the [Install and set up topic](../start/install) if you don't already have an account.
 
@@ -48,7 +48,7 @@ print(f">>> Observable: {observable.paulis}")
 
 Here we are initializing an instance of `qiskit_ibm_runtime.Estimator` instead of `qiskit.primitives.Estimator` to use Qiskit Runtime's implementation of the `Estimator`. 
 
-When you initialize the `Estimator`, you'll need to pass in the backend you previously selected as the target device (or simulator).  You could also do this within the `session` parameter. 
+When you initialize the `Estimator`, you'll need to pass in the system or simulator you previously selected as the target device (or simulator).  You could also do this within the `session` parameter. 
 
 ```python
 from qiskit_ibm_runtime import Estimator
@@ -78,7 +78,7 @@ print(f"  > Metadata: {result.metadata[0]}")
 
 ### 1.  Initialize the account
 
-Since Qiskit Runtime `Sampler` is a managed service, you will first need to initialize your account. You can then select the simulator or real backend you want to use to calculate the expectation value.
+Since Qiskit Runtime `Sampler` is a managed service, you will first need to initialize your account. You can then select the simulator or real system you want to use to calculate the expectation value.
 
 Follow the steps in the [Install and set up topic](../start/install) if you don't already have an account set up.
 
@@ -109,7 +109,7 @@ circuit.measure_all()
 
 Here we are initializing an instance of `qiskit_ibm_runtime.Sampler` instead of `qiskit.primitives.Sampler` to use Qiskit Runtime's implementation of the `Sampler`. 
 
-When you initialize the `Sampler`, you'll need to pass in the backend you previously selected as the target device (or simulator).  You could also do this within the `session` parameter. 
+When you initialize the `Sampler`, you'll need to pass in the simulator or system you previously selected as the target device (or simulator).  You could also do this within the `session` parameter. 
 
 ```python
 from qiskit_ibm_runtime import Sampler

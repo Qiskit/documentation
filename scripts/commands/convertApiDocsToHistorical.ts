@@ -71,14 +71,14 @@ zxMain(async () => {
 
   await mkdirp(projectNewHistoricalFolder);
 
-  copyApiDocsAndUpdateLinks(pkgName, versionWithoutPatch);
-  generateJsonFiles(
+  await copyApiDocsAndUpdateLinks(pkgName, versionWithoutPatch);
+  await generateJsonFiles(
     pkgName,
     packageInfo.version,
     versionWithoutPatch,
     projectNewHistoricalFolder,
   );
-  copyImages(pkgName, versionWithoutPatch);
+  await copyImages(pkgName, versionWithoutPatch);
 });
 
 async function copyApiDocsAndUpdateLinks(

@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.utils.name_args
 ---
 
-# qiskit.utils.name\_args[¶](#qiskit-utils-name-args "Permalink to this headline")
+# qiskit.utils.name\_args
 
 <span id="qiskit.utils.name_args" />
 
-`name_args(mapping, skip=0)`
+`name_args(mapping, skip=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/utils/name_unnamed_args.py "view source code")
 
 Decorator to convert unnamed arguments to named ones.
 

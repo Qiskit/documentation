@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.qasm.QasmHTMLStyle
 ---
 
-# QasmHTMLStyle[¶](#qasmhtmlstyle "Permalink to this headline")
+# QasmHTMLStyle
 
 <span id="qiskit.qasm.QasmHTMLStyle" />
 
-`QasmHTMLStyle`
+`QasmHTMLStyle`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qasm/pygments/lexer.py "view source code")
 
 Bases: `pygments.style.Style`
 
