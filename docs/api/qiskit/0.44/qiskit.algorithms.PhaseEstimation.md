@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.PhaseEstimation
 
 <span id="qiskit.algorithms.PhaseEstimation" />
 
-`qiskit.algorithms.PhaseEstimation(num_evaluation_qubits, quantum_instance=None, sampler=None)`
+`qiskit.algorithms.PhaseEstimation(num_evaluation_qubits, quantum_instance=None, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/phase_estimators/phase_estimation.py "view source code")
 
 Bases: `PhaseEstimator`
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.gradients.LinCombEstimatorGradient
 
 <span id="qiskit.algorithms.gradients.LinCombEstimatorGradient" />
 
-`qiskit.algorithms.gradients.LinCombEstimatorGradient(estimator, derivative_type=DerivativeType.REAL, options=None)`
+`qiskit.algorithms.gradients.LinCombEstimatorGradient(estimator, derivative_type=DerivativeType.REAL, options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/algorithms/gradients/lin_comb/lin_comb_estimator_gradient.py "view source code")
 
 Bases: [`BaseEstimatorGradient`](qiskit.algorithms.gradients.BaseEstimatorGradient "qiskit.algorithms.gradients.base.base_estimator_gradient.BaseEstimatorGradient")
 
