@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.UnrollForLoops
 
 <span id="qiskit.transpiler.passes.UnrollForLoops" />
 
-`UnrollForLoops(*args, **kwargs)`
+`UnrollForLoops(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/utils/unroll_forloops.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -44,7 +44,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.UnrollForLoops.run" />
 
-`UnrollForLoops.run(dag)`
+`UnrollForLoops.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/transpiler/passes/utils/unroll_forloops.py "view source code")
 
 Run the UnrollForLoops pass on dag.
 

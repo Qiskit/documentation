@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PiecewisePolynomialPauliRotations
 
 <span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations" />
 
-`PiecewisePolynomialPauliRotations(num_state_qubits=None, breakpoints=None, coeffs=None, basis='Y', name='pw_poly')`
+`PiecewisePolynomialPauliRotations(num_state_qubits=None, breakpoints=None, coeffs=None, basis='Y', name='pw_poly')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py "view source code")
 
 Bases: [`FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
 
@@ -90,7 +90,7 @@ Enhancing the Quantum Linear Systems Algorithm using Richardson Extrapolation. [
 
 <span id="qiskit.circuit.library.PiecewisePolynomialPauliRotations.evaluate" />
 
-`PiecewisePolynomialPauliRotations.evaluate(x)`
+`PiecewisePolynomialPauliRotations.evaluate(x)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/circuit/library/arithmetic/piecewise_polynomial_pauli_rotations.py "view source code")
 
 Classically evaluate the piecewise polynomial rotation.
 
