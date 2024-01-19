@@ -104,7 +104,7 @@ def execute_notebook(path: Path, options: ExecuteOptions) -> bool:
     if notebook_warnings:
         print("\r⚠️")
         [w.report() for w in notebook_warnings]
-        return True
+        return False
 
     print("\r✅")
     return True
