@@ -73,7 +73,7 @@ These are all instances of the same base class:
 
 <span id="qiskit.pulse.instructions.Instruction" />
 
-`Instruction(operands, name=None)`
+`Instruction(operands, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/instructions/instruction.py "view source code")
 
 The smallest schedulable unit: a single instruction. It has a fixed duration and specified channels.
 
@@ -182,7 +182,7 @@ All channels are children of the same abstract base class:
 
 <span id="qiskit.pulse.channels.Channel" />
 
-`Channel(*args, **kwargs)`
+`Channel(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/channels.py "view source code")
 
 Base class of channels. Channels provide a Qiskit-side label for typical quantum control hardware signal channels. The final label -> physical channel mapping is the responsibility of the hardware backend. For instance, `DriveChannel(0)` holds instructions which the backend should map to the signal line driving gate operations on the qubit labeled (indexed) 0.
 
@@ -237,7 +237,7 @@ These are all subtypes of the abstract base class [`AlignmentKind`](#qiskit.puls
 
 <span id="qiskit.pulse.transforms.AlignmentKind" />
 
-`AlignmentKind(context_params)`
+`AlignmentKind(context_params)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/transforms/alignments.py "view source code")
 
 An abstract class for schedule alignment.
 
@@ -686,7 +686,7 @@ There are 1e-06 seconds in 4500 samples.
 
 <span id="qiskit.pulse.PulseError" />
 
-`PulseError(*message)`
+`PulseError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/pulse/exceptions.py "view source code")
 
 Errors raised by the pulse module.
 
