@@ -155,6 +155,18 @@ export class Pkg {
     return `${getRoot()}/.out/python/sources/${this.name}/${this.version}`;
   }
 
+  hasObjectsInv(): boolean {
+    // We don't currently worry about objects.inv for historical API docs because we don't
+    // expect users to care about it, so we can keep things simple. For example, our copy
+    // of the historical Qiskit API docs <0.32 did not include `objects.inv`, so we could
+    // never get the mechanism working for those.
+    //
+    // Feel free to enable this mechanism for historical API docs if users find it useful!
+    // When adding, be sure that we correctly point to the correct subfolder, e.g.
+    // api/qiskit/0.44 rather than api/qiskit.
+    return !this.historical;
+  }
+
   /**
    * Returns a function that takes in a fileName like `qiskit_ibm_provider/job/exceptions` and returns the
    * stable GitHub URL to the file for this package's version.

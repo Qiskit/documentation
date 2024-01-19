@@ -97,7 +97,7 @@ export function updateUrl(
 
 export async function updateLinks(
   results: HtmlToMdResultWithUrl[],
-  objectsInv: ObjectsInv,
+  maybeObjectsInv?: ObjectsInv,
   transformLink?: (link: Link) => Link | undefined,
 ): Promise<void> {
   const resultsByName = keyBy(results, (result) => result.meta.apiName!);
@@ -139,7 +139,7 @@ export async function updateLinks(
     result.markdown = output?.toString();
   }
 
-  objectsInv.updateUris((uri: string) =>
+  maybeObjectsInv?.updateUris((uri: string) =>
     updateUrl(uri, resultsByName, itemNames),
   );
 }
