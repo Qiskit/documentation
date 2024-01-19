@@ -47,6 +47,9 @@ class NotebookWarning:
     msg: str
 
     def report(self):
+        """
+        Format warning and print it
+        """
         message = f"Warning detected in cell {self.cell_index}:\n"
         for line in self.msg.splitlines():
             message += (
@@ -55,7 +58,14 @@ class NotebookWarning:
                 )
                 + "\n"
             )
-        print(f"\033[0;33m{message}\033[0m", flush=True)
+        print_yellow(message, flush=True)
+
+
+def print_yellow(s: str, **kwargs):
+    """
+    Use ANSI escape codes to print yellow text
+    """
+    print(f"\033[0;33m{str}\033[0m", **kwargs)
 
 
 def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
