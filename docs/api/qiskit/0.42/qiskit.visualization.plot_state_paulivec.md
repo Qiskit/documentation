@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.visualization.plot_state_paulivec
 ---
 
-# qiskit.visualization.plot\_state\_paulivec[¶](#qiskit-visualization-plot-state-paulivec "Permalink to this headline")
+# qiskit.visualization.plot\_state\_paulivec
 
 <span id="qiskit.visualization.plot_state_paulivec" />
 
-`plot_state_paulivec(state, title='', figsize=None, color=None, ax=None, *, rho=None, filename=None)`
+`plot_state_paulivec(state, title='', figsize=None, color=None, ax=None, *, rho=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/visualization/state_visualization.py "view source code")
 
 Plot the paulivec representation of a quantum state.
 

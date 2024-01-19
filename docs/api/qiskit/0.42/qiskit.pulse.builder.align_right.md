@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.align_right
 ---
 
-# qiskit.pulse.builder.align\_right[¶](#qiskit-pulse-builder-align-right "Permalink to this headline")
+# qiskit.pulse.builder.align\_right
 
 <span id="qiskit.pulse.builder.align_right" />
 
-`align_right()`
+`align_right()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
 
 Right alignment pulse scheduling context.
 

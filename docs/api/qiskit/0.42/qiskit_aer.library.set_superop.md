@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.library.set_superop
 ---
 
-# qiskit\_aer.library.set\_superop[¶](#qiskit-aer-library-set-superop "Permalink to this headline")
+# qiskit\_aer.library.set\_superop
 
 <span id="qiskit_aer.library.set_superop" />
 
-`set_superop(self, state)`
+`set_superop(self, state)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/library/set_instructions/set_superop.py "view source code")
 
 Set the superop state of the simulator.
 

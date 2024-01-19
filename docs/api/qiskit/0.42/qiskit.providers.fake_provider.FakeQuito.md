@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeQuito
 ---
 
-# FakeQuito[¶](#fakequito "Permalink to this headline")
+# FakeQuito
 
 <span id="qiskit.providers.fake_provider.FakeQuito" />
 
-`FakeQuito`
+`FakeQuito`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/quito/fake_quito.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CheckCXDirection
 ---
 
-# CheckCXDirection[¶](#checkcxdirection "Permalink to this headline")
+# CheckCXDirection
 
 <span id="qiskit.transpiler.passes.CheckCXDirection" />
 
-`CheckCXDirection(*args, **kwargs)`
+`CheckCXDirection(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/utils/check_cx_direction.py "view source code")
 
 Bases: [`qiskit.transpiler.passes.utils.check_gate_direction.CheckGateDirection`](qiskit.transpiler.passes.CheckGateDirection "qiskit.transpiler.passes.utils.check_gate_direction.CheckGateDirection")
 

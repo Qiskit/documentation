@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.visualization.plot_distribution
 ---
 
-# qiskit.visualization.plot\_distribution[¶](#qiskit-visualization-plot-distribution "Permalink to this headline")
+# qiskit.visualization.plot\_distribution
 
 <span id="qiskit.visualization.plot_distribution" />
 
-`plot_distribution(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None, filename=None)`
+`plot_distribution(data, figsize=(7, 5), color=None, number_to_keep=None, sort='asc', target_string=None, legend=None, bar_labels=True, title=None, ax=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/visualization/counts_visualization.py "view source code")
 
 Plot a distribution from input sampled data.
 

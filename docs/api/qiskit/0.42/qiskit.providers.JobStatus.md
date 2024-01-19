@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.JobStatus
 ---
 
-# JobStatus[¶](#jobstatus "Permalink to this headline")
+# JobStatus
 
 <span id="qiskit.providers.JobStatus" />
 
-`JobStatus(value)`
+`JobStatus(value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/jobstatus.py "view source code")
 
 Bases: `enum.Enum`
 

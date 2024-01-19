@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.diamond_norm
 ---
 
-# qiskit.quantum\_info.diamond\_norm[¶](#qiskit-quantum-info-diamond-norm "Permalink to this headline")
+# qiskit.quantum\_info.diamond\_norm
 
 <span id="qiskit.quantum_info.diamond_norm" />
 
-`diamond_norm(choi, **kwargs)`
+`diamond_norm(choi, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/operators/measures.py "view source code")
 
 Return the diamond norm of the input quantum channel object.
 

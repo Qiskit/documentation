@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.RXXGate
 ---
 
-# RXXGate[¶](#rxxgate "Permalink to this headline")
+# RXXGate
 
 <span id="qiskit.circuit.library.RXXGate" />
 
-`RXXGate(theta, label=None)`
+`RXXGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/rxx.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -70,7 +70,7 @@ Create new RXX gate.
 
 <span id="qiskit.circuit.library.RXXGate.inverse" />
 
-`RXXGate.inverse()`
+`RXXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/rxx.py "view source code")
 
 Return inverse RXX gate (i.e. with the negative rotation angle).
 
@@ -78,7 +78,7 @@ Return inverse RXX gate (i.e. with the negative rotation angle).
 
 <span id="qiskit.circuit.library.RXXGate.power" />
 
-`RXXGate.power(exponent)`
+`RXXGate.power(exponent)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/rxx.py "view source code")
 
 Raise gate to a power.
 
