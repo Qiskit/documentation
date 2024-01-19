@@ -50,6 +50,9 @@ const SHOULD_BE_FIXED: FilesToIgnores = {
   "docs/api/qiskit/qiskit.circuit.SwitchCaseOp.md": [
     "circuit#qiskit.circuit.CASE_DEFAULT",
   ],
+  "docs/api/qiskit/qiskit.circuit.library.PhaseEstimation.md": [
+    "https://learn.qiskit.org/course/ch-algorithms/quantum-phase-estimation",
+  ],
   "docs/api/qiskit/utils.md": [
     "https://github.com/python-constraint/python-constraint%3E__",
     "#qiskit.utils.optionals.HAS_TESTTOOLS",
