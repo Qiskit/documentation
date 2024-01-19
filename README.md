@@ -309,7 +309,7 @@ Videos are stored in the `public/videos` folder. You should use subfolders to or
 To add a video:
 
 ```markdown
-<video title="Write a description of the video here as 'alt text' for accessibility." class="max-w-auto h-auto" controls>
+<video title="Write a description of the video here as 'alt text' for accessibility." className="max-w-auto h-auto" controls>
     <source src="/videos/run/sessions/demo.mp4" type="video/mp4"></source>
 </video>
 ```
