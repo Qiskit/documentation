@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.primitives.BackendEstimator
 ---
 
-# BackendEstimator[¶](#backendestimator "Permalink to this headline")
+# BackendEstimator
 
 <span id="qiskit.primitives.BackendEstimator" />
 
-`BackendEstimator(backend, options=None, abelian_grouping=True, bound_pass_manager=None, skip_transpilation=False)`
+`BackendEstimator(backend, options=None, abelian_grouping=True, bound_pass_manager=None, skip_transpilation=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/primitives/backend_estimator.py "view source code")
 
 Bases: [`qiskit.primitives.base.base_estimator.BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.base.base_estimator.BaseEstimator")
 
@@ -96,7 +96,7 @@ Set options values for the estimator.
 
 <span id="qiskit.primitives.BackendEstimator.set_transpile_options" />
 
-`BackendEstimator.set_transpile_options(**fields)`
+`BackendEstimator.set_transpile_options(**fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/primitives/backend_estimator.py "view source code")
 
 Set the transpiler options for transpiler. :param \*\*fields: The fields to update the options
 

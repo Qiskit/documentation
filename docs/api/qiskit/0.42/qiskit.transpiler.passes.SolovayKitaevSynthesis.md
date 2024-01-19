@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.SolovayKitaevSynthesis
 ---
 
-# SolovayKitaevSynthesis[¶](#solovaykitaevsynthesis "Permalink to this headline")
+# SolovayKitaevSynthesis
 
 <span id="qiskit.transpiler.passes.SolovayKitaevSynthesis" />
 
-`SolovayKitaevSynthesis`
+`SolovayKitaevSynthesis`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py "view source code")
 
 Bases: [`qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin")
 
@@ -44,7 +44,7 @@ The number of times the decomposition is recursively improved. If None, defaults
 
 <span id="qiskit.transpiler.passes.SolovayKitaevSynthesis.run" />
 
-`SolovayKitaevSynthesis.run(unitary, **options)`
+`SolovayKitaevSynthesis.run(unitary, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/solovay_kitaev_synthesis.py "view source code")
 
 Run synthesis for the given unitary matrix
 

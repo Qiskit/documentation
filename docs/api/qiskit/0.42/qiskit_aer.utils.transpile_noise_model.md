@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.utils.transpile_noise_model
 ---
 
-# qiskit\_aer.utils.transpile\_noise\_model[¶](#qiskit-aer-utils-transpile-noise-model "Permalink to this headline")
+# qiskit\_aer.utils.transpile\_noise\_model
 
 <span id="qiskit_aer.utils.transpile_noise_model" />
 
-`transpile_noise_model(noise_model, **transpile_kwargs)`
+`transpile_noise_model(noise_model, **transpile_kwargs)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/utils/noise_transformation.py "view source code")
 
 Return a new noise model with transpiled QuantumErrors.
 

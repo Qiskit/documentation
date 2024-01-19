@@ -14,15 +14,11 @@ python_api_name: qiskit_aer.utils
 
 <span id="module-qiskit_aer.utils" />
 
-`qiskit_aer.utils¶`
+`qiskit_aer.utils`
 
 This module contains utility functions for modifying [`NoiseModel`](qiskit_aer.noise.NoiseModel "qiskit_aer.noise.NoiseModel") objects and `QuantumCircuits` using noise models.
 
 ## Functions
-
-<span id="module-qiskit_aer.utils" />
-
-`¶`
 
 |                                                                                                                                           |                                                                                                           |
 | ----------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |

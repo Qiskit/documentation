@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.QuantumVolume
 ---
 
-# QuantumVolume[¶](#quantumvolume "Permalink to this headline")
+# QuantumVolume
 
 <span id="qiskit.circuit.library.QuantumVolume" />
 
-`QuantumVolume(num_qubits, depth=None, seed=None, classical_permutation=True)`
+`QuantumVolume(num_qubits, depth=None, seed=None, classical_permutation=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/quantum_volume.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

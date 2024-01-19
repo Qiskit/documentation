@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.align_func
 ---
 
-# qiskit.pulse.builder.align\_func[¶](#qiskit-pulse-builder-align-func "Permalink to this headline")
+# qiskit.pulse.builder.align\_func
 
 <span id="qiskit.pulse.builder.align_func" />
 
-`align_func(duration, func)`
+`align_func(duration, func)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
 
 Callback defined alignment pulse scheduling context.
 

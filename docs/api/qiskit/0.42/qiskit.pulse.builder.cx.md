@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.cx
 ---
 
-# qiskit.pulse.builder.cx[¶](#qiskit-pulse-builder-cx "Permalink to this headline")
+# qiskit.pulse.builder.cx
 
 <span id="qiskit.pulse.builder.cx" />
 
-`cx(control, target)`
+`cx(control, target)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
 
 Call a `CXGate` on the input physical qubits.
 
