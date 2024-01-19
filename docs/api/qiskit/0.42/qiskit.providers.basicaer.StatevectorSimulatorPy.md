@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.basicaer.StatevectorSimulatorPy
 ---
 
-# StatevectorSimulatorPy[¶](#statevectorsimulatorpy "Permalink to this headline")
+# StatevectorSimulatorPy
 
 <span id="qiskit.providers.basicaer.StatevectorSimulatorPy" />
 
-`StatevectorSimulatorPy(configuration=None, provider=None, **fields)`
+`StatevectorSimulatorPy(configuration=None, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/basicaer/statevector_simulator.py "view source code")
 
 Bases: [`qiskit.providers.basicaer.qasm_simulator.QasmSimulatorPy`](qiskit.providers.basicaer.QasmSimulatorPy "qiskit.providers.basicaer.qasm_simulator.QasmSimulatorPy")
 

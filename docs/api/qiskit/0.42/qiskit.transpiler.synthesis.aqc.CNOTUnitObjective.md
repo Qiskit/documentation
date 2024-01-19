@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.synthesis.aqc.CNOTUnitObjective
 ---
 
-# CNOTUnitObjective[¶](#cnotunitobjective "Permalink to this headline")
+# CNOTUnitObjective
 
 <span id="qiskit.transpiler.synthesis.aqc.CNOTUnitObjective" />
 
-`CNOTUnitObjective(num_qubits, cnots)`
+`CNOTUnitObjective(num_qubits, cnots)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/synthesis/aqc/cnot_unit_objective.py "view source code")
 
 Bases: [`qiskit.transpiler.synthesis.aqc.approximate.ApproximatingObjective`](qiskit.transpiler.synthesis.aqc.ApproximatingObjective "qiskit.transpiler.synthesis.aqc.approximate.ApproximatingObjective"), `abc.ABC`
 

@@ -1,8 +1,8 @@
 <span id="qiskit-algorithms-time-evolvers-variational" />
 
-# qiskit.algorithms.time\_evolvers.variational[¶](#module-qiskit.algorithms.time_evolvers.variational "Permalink to this headline")
+# qiskit.algorithms.time\_evolvers.variational
 
-## Variational Quantum Time Evolutions ([`qiskit.algorithms.time_evolvers.variational`](#module-qiskit.algorithms.time_evolvers.variational "qiskit.algorithms.time_evolvers.variational"))[¶](#variational-quantum-time-evolutions-qiskit-algorithms-time-evolvers-variational "Permalink to this headline")
+## Variational Quantum Time Evolutions ([`qiskit.algorithms.time_evolvers.variational`](#module-qiskit.algorithms.time_evolvers.variational "qiskit.algorithms.time_evolvers.variational"))
 
 Algorithms for performing Variational Quantum Time Evolution of quantum states, which can be tailored to near-term devices. `VarQTE` base class exposes an interface, compliant with the Quantum Time Evolution Framework in Qiskit Terra, that is implemented by [`VarQRTE`](qiskit.algorithms.VarQRTE "qiskit.algorithms.VarQRTE") and [`VarQITE`](qiskit.algorithms.VarQITE "qiskit.algorithms.VarQITE") classes for real and imaginary time evolution respectively. The variational approach is taken according to a variational principle chosen by a user.
 
@@ -38,7 +38,7 @@ var_qite = VarQITE(ansatz, var_principle, init_param_values)
 evolution_result = var_qite.evolve(evolution_problem)
 ```
 
-### Variational Principles[¶](#variational-principles "Permalink to this headline")
+### Variational Principles
 
 With variational principles we can project time evolution of a quantum state onto the parameters of a model, in our case a variational quantum circuit.
 
@@ -52,7 +52,7 @@ They can be divided into two categories: Variational Quantum \_Real\_ Time Evolu
 | [`RealMcLachlanPrinciple`](qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple "qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple")(\[qgt, gradient])                   | Class for a Real McLachlan's Variational Principle.       |
 | [`ImaginaryMcLachlanPrinciple`](qiskit.algorithms.time_evolvers.variational.ImaginaryMcLachlanPrinciple "qiskit.algorithms.time_evolvers.variational.ImaginaryMcLachlanPrinciple")(\[qgt, gradient])    | Class for an Imaginary McLachlan's Variational Principle. |
 
-### ODE solvers[¶](#ode-solvers "Permalink to this headline")
+### ODE solvers
 
 ODE solvers that implement the SciPy ODE Solver interface. The Forward Euler Solver is a preferred choice in the presence of noise. One might also use solvers provided by SciPy directly, e.g. RK45.
 

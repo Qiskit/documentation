@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.library.save_unitary
 ---
 
-# qiskit\_aer.library.save\_unitary[¶](#qiskit-aer-library-save-unitary "Permalink to this headline")
+# qiskit\_aer.library.save\_unitary
 
 <span id="qiskit_aer.library.save_unitary" />
 
-`save_unitary(self, label='unitary', pershot=False)`
+`save_unitary(self, label='unitary', pershot=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/library/save_instructions/save_unitary.py "view source code")
 
 Save the current state of the unitary simulator.
 

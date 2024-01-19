@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.EstimatorGradientResult
 ---
 
-# EstimatorGradientResult[¶](#estimatorgradientresult "Permalink to this headline")
+# EstimatorGradientResult
 
 <span id="qiskit.algorithms.gradients.EstimatorGradientResult" />
 
-`EstimatorGradientResult(gradients, metadata, options)`
+`EstimatorGradientResult(gradients, metadata, options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/gradients/estimator_gradient_result.py "view source code")
 
 Bases: `object`
 

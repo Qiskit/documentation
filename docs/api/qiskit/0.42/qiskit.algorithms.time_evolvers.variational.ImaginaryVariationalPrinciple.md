@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.time_evolvers.variational.ImaginaryVariationalPrinciple
 ---
 
-# ImaginaryVariationalPrinciple[¶](#imaginaryvariationalprinciple "Permalink to this headline")
+# ImaginaryVariationalPrinciple
 
 <span id="qiskit.algorithms.time_evolvers.variational.ImaginaryVariationalPrinciple" />
 
-`ImaginaryVariationalPrinciple(qgt, gradient)`
+`ImaginaryVariationalPrinciple(qgt, gradient)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/time_evolvers/variational/variational_principles/imaginary_variational_principle.py "view source code")
 
 Bases: [`qiskit.algorithms.time_evolvers.variational.variational_principles.variational_principle.VariationalPrinciple`](qiskit.algorithms.time_evolvers.variational.VariationalPrinciple "qiskit.algorithms.time_evolvers.variational.variational_principles.variational_principle.VariationalPrinciple"), `abc.ABC`
 

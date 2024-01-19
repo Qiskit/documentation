@@ -14,13 +14,9 @@ python_api_name: qiskit.dagcircuit
 
 <span id="module-qiskit.dagcircuit" />
 
-`qiskit.dagcircuit¶`
+`qiskit.dagcircuit`
 
 ## DAG Circuits
-
-<span id="module-qiskit.dagcircuit" />
-
-`¶`
 
 |                                                                                                                   |                                                                                                    |
 | ----------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------- |
@@ -34,20 +30,12 @@ python_api_name: qiskit.dagcircuit
 
 ## Block Collection
 
-<span id="module-qiskit.dagcircuit" />
-
-`¶`
-
 |                                                                                              |                                                                    |
 | -------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
 | [`BlockCollector`](qiskit.dagcircuit.BlockCollector "qiskit.dagcircuit.BlockCollector")(dag) | Class for implementing block collection on a DAG.                  |
 | [`BlockCollapser`](qiskit.dagcircuit.BlockCollapser "qiskit.dagcircuit.BlockCollapser")(dag) | Class to consolidate a given block from the dag into a single node |
 
 ## Exceptions
-
-<span id="module-qiskit.dagcircuit" />
-
-`¶`
 
 |                                                                                                   |                                                        |
 | ------------------------------------------------------------------------------------------------- | ------------------------------------------------------ |

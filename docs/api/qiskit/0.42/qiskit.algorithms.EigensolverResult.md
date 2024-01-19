@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.EigensolverResult
 ---
 
-# EigensolverResult[¶](#eigensolverresult "Permalink to this headline")
+# EigensolverResult
 
 <span id="qiskit.algorithms.EigensolverResult" />
 
-`EigensolverResult`
+`EigensolverResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/eigen_solvers/eigen_solver.py "view source code")
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
 
