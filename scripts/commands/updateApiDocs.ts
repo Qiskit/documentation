@@ -127,7 +127,9 @@ async function convertHtmlToMarkdown(
   markdownPath: string,
   pkg: Pkg,
 ) {
-  const objectsInv = await ObjectsInv.fromFile(htmlPath);
+  const maybeObjectsInv = await (pkg.hasObjectsInv()
+    ? ObjectsInv.fromFile(htmlPath)
+    : undefined);
   const files = await globby(
     [
       "apidocs/**.html",
@@ -185,11 +187,11 @@ async function convertHtmlToMarkdown(
   results = await mergeClassMembers(results);
   flattenFolders(results);
   specialCaseResults(results);
-  await updateLinks(results, objectsInv, pkg.transformLink);
+  await updateLinks(results, maybeObjectsInv, pkg.transformLink);
   await dedupeHtmlIdsFromResults(results);
   addFrontMatter(results, pkg);
 
-  await objectsInv.write(pkg.outputDir("public"));
+  await maybeObjectsInv?.write(pkg.outputDir("public"));
   for (const result of results) {
     let path = urlToPath(result.url);
 
