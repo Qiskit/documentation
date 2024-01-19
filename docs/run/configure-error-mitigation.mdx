@@ -107,7 +107,7 @@ stage). This approach tends to reduce errors in expectation values, but
 is not guaranteed to produce an unbiased result.
 
 
-![Illustration of the ZNE method](/images/optimize/resiliance-2.png "Illustration of the ZNE method")
+![This image shows a graph.  The x-axis is labeled Noise ampification factor.  The y-axis is labeled Expectation value.  An upward sloping line is labeled Mitigated value.  Points near the line are noise amplified values.  There is a horizontal line just above the X-axis labeled Exact value. ](/images/optimize/resiliance-2.png "Illustration of the ZNE method")
 
 The overhead of this method scales with the number of noise factors. The
 default settings sample the expectation value at three noise factors,
@@ -140,11 +140,11 @@ gates. Then it learns the noise model associated with each unique
 2-qubit gate layer.
 
 <figure>
-<img src="/images/optimize/stratified.png" alt="/images/optimize/stratified.png" />
+<img src="/images/optimize/stratified.png" alt="Stratified circuit illustration. There are arbitrary 1-qubit gates between each `layer`. Each layer is defined by a block that crosses multiple qubit wires." />
 <figcaption>This is an example of a <span
 class="title-ref">stratified</span> circuit, where the layers of
 two-qubit gates are labeled layer 1 through n. Note that each <span
-class="math inline"><em>U</em><sub><em>l</em></sub></span> is composed
+class="math inline"><em>U</em><sub><em>n</em></sub></span> is composed
 of two-qubit gates on the native connectivity graph of the quantum
 processor. The open boxes represent arbitrary single-qubit
 gates.</figcaption>
@@ -195,7 +195,7 @@ to scale the number of samples accordingly. The following plot
 illustrates the relationship between estimator error and number of
 circuit samples for different total sampling overheads.
 
-![](/images/optimize/sampling-overhead.png)
+![This image shows that the error decreases a the number of samples increases.  The accuracy is best with a high sampling overhead (1000) and least with a low samping overhead (1.1).](/images/optimize/sampling-overhead.png)
 
 Note that the number of samples required to deliver a desired accuracy
 is not known before the primitive query because the mitigation scaling
@@ -251,7 +251,7 @@ strings can be much smaller than the dimensionality of the full
 multi-qubit Hilbert space, the resulting linear system of equations is
 nominally much easier to solve.
 
-![Illustration of the M3 method](/images/optimize/m3.png)
+![Illustration of the M3 method](/images/optimize/m3.png "M3 method")
 
 </details>
 
