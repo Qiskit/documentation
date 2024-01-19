@@ -170,6 +170,7 @@ export class Pkg {
       "qiskit/qasm",
       "qiskit/qasm2",
       "qiskit/qasm3",
+      "qiskit/qobj",
       "qiskit/transpiler/preset_passmanagers",
     ]);
     const normalizeFile = (fp: string) =>
