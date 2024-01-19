@@ -183,6 +183,7 @@ export class Pkg {
       "qiskit/qasm2",
       "qiskit/qasm3",
       "qiskit/qobj",
+      "qiskit/providers/ibmq",
       "qiskit/transpiler/preset_passmanagers",
     ]);
     const normalizeFile = (fp: string) =>
