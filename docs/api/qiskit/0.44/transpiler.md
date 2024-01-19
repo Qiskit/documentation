@@ -936,7 +936,7 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 <span id="qiskit.transpiler.TranspilerError" />
 
-`qiskit.transpiler.TranspilerError(*message)`
+`qiskit.transpiler.TranspilerError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/exceptions.py "view source code")
 
 Exceptions raised during transpilation.
 
@@ -944,7 +944,7 @@ Set the error message.
 
 <span id="qiskit.transpiler.TranspilerAccessError" />
 
-`qiskit.transpiler.TranspilerAccessError(*message)`
+`qiskit.transpiler.TranspilerAccessError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/exceptions.py "view source code")
 
 DEPRECATED: Exception of access error in the transpiler passes.
 
@@ -952,7 +952,7 @@ Set the error message.
 
 <span id="qiskit.transpiler.CouplingError" />
 
-`qiskit.transpiler.CouplingError(*msg)`
+`qiskit.transpiler.CouplingError(*msg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/exceptions.py "view source code")
 
 Base class for errors raised by the coupling graph object.
 
@@ -960,7 +960,7 @@ Set the error message.
 
 <span id="qiskit.transpiler.LayoutError" />
 
-`qiskit.transpiler.LayoutError(*msg)`
+`qiskit.transpiler.LayoutError(*msg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/transpiler/exceptions.py "view source code")
 
 Errors raised by the layout object.
 
