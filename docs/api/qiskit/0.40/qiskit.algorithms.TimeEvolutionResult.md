@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.TimeEvolutionResult
 ---
 
-# TimeEvolutionResult[¶](#timeevolutionresult "Permalink to this headline")
+# TimeEvolutionResult
 
 <span id="qiskit.algorithms.TimeEvolutionResult" />
 
-`TimeEvolutionResult(evolved_state, aux_ops_evaluated=None, observables=None, times=None)`
+`TimeEvolutionResult(evolved_state, aux_ops_evaluated=None, observables=None, times=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/time_evolvers/time_evolution_result.py "view source code")
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
 

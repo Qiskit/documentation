@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CU1Gate
 
 <span id="qiskit.circuit.library.CU1Gate" />
 
-`CU1Gate(theta, label=None, ctrl_state=None)`
+`CU1Gate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/u1.py "view source code")
 
 Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -51,7 +51,7 @@ Create new CU1 gate.
 
 <span id="qiskit.circuit.library.CU1Gate.control" />
 
-`CU1Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`CU1Gate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/u1.py "view source code")
 
 Controlled version of this gate.
 
@@ -73,7 +73,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.CU1Gate.inverse" />
 
-`CU1Gate.inverse()`
+`CU1Gate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/circuit/library/standard_gates/u1.py "view source code")
 
 Return inverted CU1 gate ($CU1(\lambda){\dagger} = CU1(-\lambda)$)
 

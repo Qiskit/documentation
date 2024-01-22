@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult
 ---
 
-# MaximumLikelihoodAmplitudeEstimationResult[¶](#maximumlikelihoodamplitudeestimationresult "Permalink to this headline")
+# MaximumLikelihoodAmplitudeEstimationResult
 
 <span id="qiskit.algorithms.MaximumLikelihoodAmplitudeEstimationResult" />
 
-`MaximumLikelihoodAmplitudeEstimationResult`
+`MaximumLikelihoodAmplitudeEstimationResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/amplitude_estimators/mlae.py "view source code")
 
 Bases: [`qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult`](qiskit.algorithms.AmplitudeEstimatorResult "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimatorResult")
 

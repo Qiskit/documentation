@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.CollectCliffords
 ---
 
-# CollectCliffords[¶](#collectcliffords "Permalink to this headline")
+# CollectCliffords
 
 <span id="qiskit.transpiler.passes.CollectCliffords" />
 
-`CollectCliffords(*args, **kwargs)`
+`CollectCliffords(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/optimization/collect_cliffords.py "view source code")
 
 Bases: [`qiskit.transpiler.passes.optimization.collect_and_collapse.CollectAndCollapse`](qiskit.transpiler.passes.CollectAndCollapse "qiskit.transpiler.passes.optimization.collect_and_collapse.CollectAndCollapse")
 

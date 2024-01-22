@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.transpiler.preset_passmanagers.common.generate_scheduling
 ---
 
-# qiskit.transpiler.preset\_passmanagers.common.generate\_scheduling[¶](#qiskit-transpiler-preset-passmanagers-common-generate-scheduling "Permalink to this headline")
+# qiskit.transpiler.preset\_passmanagers.common.generate\_scheduling
 
 <span id="qiskit.transpiler.preset_passmanagers.common.generate_scheduling" />
 
-`generate_scheduling(instruction_durations, scheduling_method, timing_constraints, inst_map)`
+`generate_scheduling(instruction_durations, scheduling_method, timing_constraints, inst_map)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/preset_passmanagers/common.py "view source code")
 
 Generate a post optimization scheduling [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")
 

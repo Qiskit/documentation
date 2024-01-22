@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.noise.thermal_relaxation_error
 ---
 
-# qiskit\_aer.noise.thermal\_relaxation\_error[¶](#qiskit-aer-noise-thermal-relaxation-error "Permalink to this headline")
+# qiskit\_aer.noise.thermal\_relaxation\_error
 
 <span id="qiskit_aer.noise.thermal_relaxation_error" />
 
-`thermal_relaxation_error(t1, t2, time, excited_state_population=0)`
+`thermal_relaxation_error(t1, t2, time, excited_state_population=0)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/standard_errors.py "view source code")
 
 Return a single-qubit thermal relaxation quantum error channel.
 

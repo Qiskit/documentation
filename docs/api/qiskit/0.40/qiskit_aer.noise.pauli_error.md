@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.noise.pauli_error
 ---
 
-# qiskit\_aer.noise.pauli\_error[¶](#qiskit-aer-noise-pauli-error "Permalink to this headline")
+# qiskit\_aer.noise.pauli\_error
 
 <span id="qiskit_aer.noise.pauli_error" />
 
-`pauli_error(noise_ops, standard_gates=None)`
+`pauli_error(noise_ops, standard_gates=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/noise/errors/standard_errors.py "view source code")
 
 Return a mixed Pauli quantum error channel.
 

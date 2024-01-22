@@ -6,11 +6,11 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound
 ---
 
-# qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound[¶](#qiskit-providers-ibmq-managed-ibmqjobmanagerjobnotfound "Permalink to this headline")
+# qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManagerJobNotFound" />
 
-`IBMQJobManagerJobNotFound(*message)`
+`IBMQJobManagerJobNotFound(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/exceptions.py "view source code")
 
 Errors raised when a job cannot be found.
 

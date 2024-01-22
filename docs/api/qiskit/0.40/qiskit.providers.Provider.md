@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.Provider
 ---
 
-# Provider[¶](#provider "Permalink to this headline")
+# Provider
 
 <span id="qiskit.providers.Provider" />
 
-`Provider`
+`Provider`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/provider.py "view source code")
 
 Bases: `object`
 

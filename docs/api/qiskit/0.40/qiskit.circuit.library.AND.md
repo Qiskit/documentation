@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.AND
 ---
 
-# AND[¶](#and "Permalink to this headline")
+# AND
 
 <span id="qiskit.circuit.library.AND" />
 
-`AND(num_variable_qubits, flags=None, mcx_mode='noancilla')`
+`AND(num_variable_qubits, flags=None, mcx_mode='noancilla')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/boolean_logic/quantum_and.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

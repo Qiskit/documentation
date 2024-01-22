@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.synthesis.synth_clifford_ag
 ---
 
-# qiskit.synthesis.synth\_clifford\_ag[¶](#qiskit-synthesis-synth-clifford-ag "Permalink to this headline")
+# qiskit.synthesis.synth\_clifford\_ag
 
 <span id="qiskit.synthesis.synth_clifford_ag" />
 
-`synth_clifford_ag(clifford)`
+`synth_clifford_ag(clifford)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/clifford/clifford_decompose_ag.py "view source code")
 
 Decompose a Clifford operator into a QuantumCircuit based on Aaronson-Gottesman method.
 

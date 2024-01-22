@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeLagosV2
 ---
 
-# FakeLagosV2[¶](#fakelagosv2 "Permalink to this headline")
+# FakeLagosV2
 
 <span id="qiskit.providers.fake_provider.FakeLagosV2" />
 
-`FakeLagosV2`
+`FakeLagosV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/lagos/fake_lagos.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

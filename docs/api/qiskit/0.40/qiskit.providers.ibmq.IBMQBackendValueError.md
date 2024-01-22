@@ -6,11 +6,11 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.IBMQBackendValueError
 ---
 
-# qiskit.providers.ibmq.IBMQBackendValueError[¶](#qiskit-providers-ibmq-ibmqbackendvalueerror "Permalink to this headline")
+# qiskit.providers.ibmq.IBMQBackendValueError
 
 <span id="qiskit.providers.ibmq.IBMQBackendValueError" />
 
-`IBMQBackendValueError(*message)`
+`IBMQBackendValueError(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/exceptions.py "view source code")
 
 Value errors raised by the backend modules.
 

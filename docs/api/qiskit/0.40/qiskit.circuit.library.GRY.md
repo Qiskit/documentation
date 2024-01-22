@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.GRY
 ---
 
-# GRY[¶](#gry "Permalink to this headline")
+# GRY
 
 <span id="qiskit.circuit.library.GRY" />
 
-`GRY(num_qubits, theta)`
+`GRY(num_qubits, theta)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/gr.py "view source code")
 
 Bases: [`qiskit.circuit.library.generalized_gates.gr.GR`](qiskit.circuit.library.GR "qiskit.circuit.library.generalized_gates.gr.GR")
 

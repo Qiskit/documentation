@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.library.GaussianSquare
 ---
 
-# GaussianSquare[¶](#gaussiansquare "Permalink to this headline")
+# GaussianSquare
 
 <span id="qiskit.pulse.library.GaussianSquare" />
 
-`GaussianSquare(duration: Union[int, qiskit.circuit.parameterexpression.ParameterExpression], amp: Union[complex, float, qiskit.circuit.parameterexpression.ParameterExpression], sigma: Union[float, qiskit.circuit.parameterexpression.ParameterExpression], width: Optional[Union[float, qiskit.circuit.parameterexpression.ParameterExpression]] = None, angle: Optional[Union[float, qiskit.circuit.parameterexpression.ParameterExpression]] = None, risefall_sigma_ratio: Optional[Union[float, qiskit.circuit.parameterexpression.ParameterExpression]] = None, name: Optional[str] = None, limit_amplitude: Optional[bool] = None)`
+`GaussianSquare(duration: Union[int, qiskit.circuit.parameterexpression.ParameterExpression], amp: Union[complex, float, qiskit.circuit.parameterexpression.ParameterExpression], sigma: Union[float, qiskit.circuit.parameterexpression.ParameterExpression], width: Optional[Union[float, qiskit.circuit.parameterexpression.ParameterExpression]] = None, angle: Optional[Union[float, qiskit.circuit.parameterexpression.ParameterExpression]] = None, risefall_sigma_ratio: Optional[Union[float, qiskit.circuit.parameterexpression.ParameterExpression]] = None, name: Optional[str] = None, limit_amplitude: Optional[bool] = None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: `object`
 
