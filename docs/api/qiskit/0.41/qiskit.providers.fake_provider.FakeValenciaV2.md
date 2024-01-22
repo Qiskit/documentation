@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeValenciaV2
 ---
 
-# FakeValenciaV2[¶](#fakevalenciav2 "Permalink to this headline")
+# FakeValenciaV2
 
 <span id="qiskit.providers.fake_provider.FakeValenciaV2" />
 
-`FakeValenciaV2`
+`FakeValenciaV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/valencia/fake_valencia.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

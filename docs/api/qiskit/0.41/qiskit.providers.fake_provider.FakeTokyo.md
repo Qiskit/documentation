@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeTokyo
 ---
 
-# FakeTokyo[¶](#faketokyo "Permalink to this headline")
+# FakeTokyo
 
 <span id="qiskit.providers.fake_provider.FakeTokyo" />
 
-`FakeTokyo`
+`FakeTokyo`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/tokyo/fake_tokyo.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackend`
 
@@ -64,7 +64,7 @@ str
 
 <span id="qiskit.providers.fake_provider.FakeTokyo.properties" />
 
-`FakeTokyo.properties()`
+`FakeTokyo.properties()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/tokyo/fake_tokyo.py "view source code")
 
 Returns a snapshot of device properties as recorded on 8/30/19.
 

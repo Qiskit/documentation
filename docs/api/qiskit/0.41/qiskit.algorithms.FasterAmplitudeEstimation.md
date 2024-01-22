@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.FasterAmplitudeEstimation
 ---
 
-# FasterAmplitudeEstimation[¶](#fasteramplitudeestimation "Permalink to this headline")
+# FasterAmplitudeEstimation
 
 <span id="qiskit.algorithms.FasterAmplitudeEstimation" />
 
-`FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None, sampler=None)`
+`FasterAmplitudeEstimation(delta, maxiter, rescale=True, quantum_instance=None, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
 
 Bases: [`qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
 
@@ -52,7 +52,7 @@ Due to the iterative version of the QPE, this algorithm does not require any add
 
 <span id="qiskit.algorithms.FasterAmplitudeEstimation.construct_circuit" />
 
-`FasterAmplitudeEstimation.construct_circuit(estimation_problem, k, measurement=False)`
+`FasterAmplitudeEstimation.construct_circuit(estimation_problem, k, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
 
 Construct the circuit $Q^k X |0\rangle>$.
 
@@ -72,7 +72,7 @@ The circuit $Q^k X |0\rangle$.
 
 <span id="qiskit.algorithms.FasterAmplitudeEstimation.estimate" />
 
-`FasterAmplitudeEstimation.estimate(estimation_problem)`
+`FasterAmplitudeEstimation.estimate(estimation_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/amplitude_estimators/fae.py "view source code")
 
 Run the amplitude estimation algorithm on provided estimation problem.
 

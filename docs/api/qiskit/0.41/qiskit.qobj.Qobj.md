@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.qobj.Qobj
 ---
 
-# Qobj[¶](#qobj "Permalink to this headline")
+# Qobj
 
 <span id="qiskit.qobj.Qobj" />
 
-`Qobj(qobj_id=None, config=None, experiments=None, header=None)`
+`Qobj(qobj_id=None, config=None, experiments=None, header=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qobj/__init__.py "view source code")
 
 Bases: [`qiskit.qobj.qasm_qobj.QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj")
 

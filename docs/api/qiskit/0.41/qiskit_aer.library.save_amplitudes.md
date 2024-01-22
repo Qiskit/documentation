@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.library.save_amplitudes
 ---
 
-# qiskit\_aer.library.save\_amplitudes[¶](#qiskit-aer-library-save-amplitudes "Permalink to this headline")
+# qiskit\_aer.library.save\_amplitudes
 
 <span id="qiskit_aer.library.save_amplitudes" />
 
-`save_amplitudes(self, params, label='amplitudes', pershot=False, conditional=False)`
+`save_amplitudes(self, params, label='amplitudes', pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/library/save_instructions/save_amplitudes.py "view source code")
 
 Save complex statevector amplitudes.
 

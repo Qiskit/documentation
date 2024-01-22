@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.random_quantum_channel
 ---
 
-# qiskit.quantum\_info.random\_quantum\_channel[¶](#qiskit-quantum-info-random-quantum-channel "Permalink to this headline")
+# qiskit.quantum\_info.random\_quantum\_channel
 
 <span id="qiskit.quantum_info.random_quantum_channel" />
 
-`random_quantum_channel(input_dims=None, output_dims=None, rank=None, seed=None)`
+`random_quantum_channel(input_dims=None, output_dims=None, rank=None, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/operators/random.py "view source code")
 
 Return a random CPTP quantum channel.
 

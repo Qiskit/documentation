@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.VarQITE
 ---
 
-# VarQITE[¶](#varqite "Permalink to this headline")
+# VarQITE
 
 <span id="qiskit.algorithms.VarQITE" />
 
-`VarQITE(ansatz, initial_parameters, variational_principle=None, estimator=None, ode_solver=<class 'qiskit.algorithms.time_evolvers.variational.solvers.ode.forward_euler_solver.ForwardEulerSolver'>, lse_solver=None, num_timesteps=None, imag_part_tol=1e-07, num_instability_tol=1e-07)`
+`VarQITE(ansatz, initial_parameters, variational_principle=None, estimator=None, ode_solver=<class 'qiskit.algorithms.time_evolvers.variational.solvers.ode.forward_euler_solver.ForwardEulerSolver'>, lse_solver=None, num_timesteps=None, imag_part_tol=1e-07, num_instability_tol=1e-07)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/time_evolvers/variational/var_qite.py "view source code")
 
 Bases: `qiskit.algorithms.time_evolvers.variational.var_qte.VarQTE`, [`qiskit.algorithms.time_evolvers.imaginary_time_evolver.ImaginaryTimeEvolver`](qiskit.algorithms.ImaginaryTimeEvolver "qiskit.algorithms.time_evolvers.imaginary_time_evolver.ImaginaryTimeEvolver")
 
