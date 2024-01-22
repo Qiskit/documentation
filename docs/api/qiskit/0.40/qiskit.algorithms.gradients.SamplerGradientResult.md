@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.gradients.SamplerGradientResult
 ---
 
-# SamplerGradientResult[¶](#samplergradientresult "Permalink to this headline")
+# SamplerGradientResult
 
 <span id="qiskit.algorithms.gradients.SamplerGradientResult" />
 
-`SamplerGradientResult(gradients, metadata, options)`
+`SamplerGradientResult(gradients, metadata, options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/gradients/sampler_gradient_result.py "view source code")
 
 Bases: `object`
 

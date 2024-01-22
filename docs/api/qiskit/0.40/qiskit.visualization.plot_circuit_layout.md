@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.visualization.plot_circuit_layout
 ---
 
-# qiskit.visualization.plot\_circuit\_layout[¶](#qiskit-visualization-plot-circuit-layout "Permalink to this headline")
+# qiskit.visualization.plot\_circuit\_layout
 
 <span id="qiskit.visualization.plot_circuit_layout" />
 
-`plot_circuit_layout(circuit, backend, view='virtual', qubit_coordinates=None)`
+`plot_circuit_layout(circuit, backend, view='virtual', qubit_coordinates=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/visualization/gate_map.py "view source code")
 
 Plot the layout of a circuit transpiled for a given target backend.
 

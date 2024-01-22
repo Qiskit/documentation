@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.NELDER_MEAD
 ---
 
-# NELDER\_MEAD[¶](#nelder-mead "Permalink to this headline")
+# NELDER\_MEAD
 
 <span id="qiskit.algorithms.optimizers.NELDER_MEAD" />
 
-`NELDER_MEAD(maxiter=None, maxfev=1000, disp=False, xatol=0.0001, tol=None, adaptive=False, options=None, **kwargs)`
+`NELDER_MEAD(maxiter=None, maxfev=1000, disp=False, xatol=0.0001, tol=None, adaptive=False, options=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/nelder_mead.py "view source code")
 
 Bases: [`qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer`](qiskit.algorithms.optimizers.SciPyOptimizer "qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer")
 

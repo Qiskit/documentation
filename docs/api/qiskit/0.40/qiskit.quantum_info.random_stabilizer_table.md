@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.random_stabilizer_table
 ---
 
-# qiskit.quantum\_info.random\_stabilizer\_table[¶](#qiskit-quantum-info-random-stabilizer-table "Permalink to this headline")
+# qiskit.quantum\_info.random\_stabilizer\_table
 
 <span id="qiskit.quantum_info.random_stabilizer_table" />
 
-`random_stabilizer_table(num_qubits, size=1, seed=None)`
+`random_stabilizer_table(num_qubits, size=1, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/operators/symplectic/random.py "view source code")
 
 DEPRECATED: Return a random StabilizerTable.
 

@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.random_hermitian
 ---
 
-# qiskit.quantum\_info.random\_hermitian[¶](#qiskit-quantum-info-random-hermitian "Permalink to this headline")
+# qiskit.quantum\_info.random\_hermitian
 
 <span id="qiskit.quantum_info.random_hermitian" />
 
-`random_hermitian(dims, traceless=False, seed=None)`
+`random_hermitian(dims, traceless=False, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/operators/random.py "view source code")
 
 Return a random hermitian Operator.
 
