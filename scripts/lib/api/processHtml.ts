@@ -73,11 +73,16 @@ export function loadImages(
   imageDestination: string,
   isReleaseNotes: boolean,
 ): Image[] {
-  return $main
+  const images: Image[] = [];
+  $main
     .find("img")
     .toArray()
-    .map((img) => {
+    .forEach((img) => {
       const $img = $(img);
+
+      if (!$img.attr("src")) {
+        return;
+      }
 
       const fileName = $img.attr("src")!.split("/").pop()!;
 
@@ -88,8 +93,10 @@ export function loadImages(
       }
 
       $img.attr("src", dest);
-      return { fileName, dest };
+      images.push({ fileName, dest });
     });
+
+  return images;
 }
 
 export function removeHtmlExtensionsInRelativeLinks(
