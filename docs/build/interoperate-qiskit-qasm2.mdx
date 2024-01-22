@@ -13,6 +13,7 @@ Qiskit provides some tools for converting between OpenQASM representations of qu
 Currently two high-level functions are available for importing from OpenQASM 2 into Qiskit. These functions are `qasm2.load()`, which takes a file name, and `qasm2.loads()`, which takes the program itself as a string. 
 
 ```python
+import qiskit.qasm2
 qiskit.qasm2.load(filename, *, include_path=('.',), include_input_directory='append', custom_instructions=(), custom_classical=(), strict=False)
 ```
 
@@ -110,7 +111,7 @@ Use `qasm2.loads()` to import an OpenQASM 2 program as a string into a QuantumCi
 
 ```python
 import math
-from qiskit.qasm2 
+import qiskit.qasm2
 
 program = '''
     include "qelib1.inc";
