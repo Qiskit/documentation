@@ -76,6 +76,7 @@ export function loadImages(
   return $main
     .find("img")
     .toArray()
+    .filter((img) => $(img).attr("src"))
     .map((img) => {
       const $img = $(img);
 
