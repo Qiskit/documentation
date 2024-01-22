@@ -1,8 +1,16 @@
+---
+title: get_ghz_mqc
+description: API reference for qiskit.ignis.verification.get_ghz_mqc
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.get_ghz_mqc
+---
+
 # qiskit.ignis.verification.get\_ghz\_mqc
 
+<span id="qiskit.ignis.verification.get_ghz_mqc" />
 
-
-`get_ghz_mqc(n, delta, full_measurement=True)`
+`get_ghz_mqc(n, delta, full_measurement=True)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/entanglement/linear.py "view source code")
 
 This function creates an MQC circuit with n qubits, where the middle phase rotation around the z axis is by delta
 
@@ -19,3 +27,4 @@ This function creates an MQC circuit with n qubits, where the middle phase rotat
 **Returns**
 
 The MQC circuit
+
