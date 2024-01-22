@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.qobj.QobjExperimentHeader
 ---
 
-# QobjExperimentHeader[¶](#qobjexperimentheader "Permalink to this headline")
+# QobjExperimentHeader
 
 <span id="qiskit.qobj.QobjExperimentHeader" />
 
-`QobjExperimentHeader(**kwargs)`
+`QobjExperimentHeader(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qobj/common.py "view source code")
 
 Bases: [`qiskit.qobj.common.QobjHeader`](qiskit.qobj.QobjHeader "qiskit.qobj.common.QobjHeader")
 

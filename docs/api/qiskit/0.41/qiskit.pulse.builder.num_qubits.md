@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.num_qubits
 ---
 
-# qiskit.pulse.builder.num\_qubits[¶](#qiskit-pulse-builder-num-qubits "Permalink to this headline")
+# qiskit.pulse.builder.num\_qubits
 
 <span id="qiskit.pulse.builder.num_qubits" />
 
-`num_qubits()`
+`num_qubits()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
 
 Return number of qubits in the currently active backend.
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.MinimumEigensolverResult
 ---
 
-# MinimumEigensolverResult[¶](#minimumeigensolverresult "Permalink to this headline")
+# MinimumEigensolverResult
 
 <span id="qiskit.algorithms.MinimumEigensolverResult" />
 
-`MinimumEigensolverResult`
+`MinimumEigensolverResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/minimum_eigen_solvers/minimum_eigen_solver.py "view source code")
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
 

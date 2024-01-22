@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.opflow.evolutions.QDrift
 ---
 
-# QDrift[¶](#qdrift "Permalink to this headline")
+# QDrift
 
 <span id="qiskit.opflow.evolutions.QDrift" />
 
-`QDrift(reps=1)`
+`QDrift(reps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/evolutions/trotterizations/qdrift.py "view source code")
 
 Bases: [`qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase`](qiskit.opflow.evolutions.TrotterizationBase "qiskit.opflow.evolutions.trotterizations.trotterization_base.TrotterizationBase")
 
@@ -26,7 +26,7 @@ The QDrift Trotterization method, which selects each each term in the Trotteriza
 
 <span id="qiskit.opflow.evolutions.QDrift.convert" />
 
-`QDrift.convert(operator)`
+`QDrift.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/evolutions/trotterizations/qdrift.py "view source code")
 
 Convert a `SummedOp` into a `ComposedOp` or `CircuitOp` representing an approximation of e^-i\*\`\`op\_sum\`\`.
 

@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.transforms.remove_directives
 ---
 
-# qiskit.pulse.transforms.remove\_directives[¶](#qiskit-pulse-transforms-remove-directives "Permalink to this headline")
+# qiskit.pulse.transforms.remove\_directives
 
 <span id="qiskit.pulse.transforms.remove_directives" />
 
-`remove_directives(schedule)`
+`remove_directives(schedule)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Remove directives.
 

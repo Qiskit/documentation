@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins
 ---
 
-# qiskit.transpiler.preset\_passmanagers.plugin.list\_stage\_plugins[¶](#qiskit-transpiler-preset-passmanagers-plugin-list-stage-plugins "Permalink to this headline")
+# qiskit.transpiler.preset\_passmanagers.plugin.list\_stage\_plugins
 
 <span id="qiskit.transpiler.preset_passmanagers.plugin.list_stage_plugins" />
 
-`list_stage_plugins(stage_name)`
+`list_stage_plugins(stage_name)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/preset_passmanagers/plugin.py "view source code")
 
 Get a list of installed plugins for a stage.
 

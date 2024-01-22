@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.synthesis.synth_cnot_count_full_pmh
 ---
 
-# qiskit.synthesis.synth\_cnot\_count\_full\_pmh[¶](#qiskit-synthesis-synth-cnot-count-full-pmh "Permalink to this headline")
+# qiskit.synthesis.synth\_cnot\_count\_full\_pmh
 
 <span id="qiskit.synthesis.synth_cnot_count_full_pmh" />
 
-`synth_cnot_count_full_pmh(state, section_size=2)`
+`synth_cnot_count_full_pmh(state, section_size=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/linear/graysynth.py "view source code")
 
 Synthesize linear reversible circuits for all-to-all architecture using Patel, Markov and Hayes method.
 

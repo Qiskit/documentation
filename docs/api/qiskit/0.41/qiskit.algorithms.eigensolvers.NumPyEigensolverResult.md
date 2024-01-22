@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.eigensolvers.NumPyEigensolverResult
 ---
 
-# NumPyEigensolverResult[¶](#numpyeigensolverresult "Permalink to this headline")
+# NumPyEigensolverResult
 
 <span id="qiskit.algorithms.eigensolvers.NumPyEigensolverResult" />
 
-`NumPyEigensolverResult`
+`NumPyEigensolverResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/eigensolvers/numpy_eigensolver.py "view source code")
 
 Bases: [`qiskit.algorithms.eigensolvers.eigensolver.EigensolverResult`](qiskit.algorithms.eigensolvers.EigensolverResult "qiskit.algorithms.eigensolvers.eigensolver.EigensolverResult")
 

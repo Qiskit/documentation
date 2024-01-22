@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeBelem
 ---
 
-# FakeBelem[¶](#fakebelem "Permalink to this headline")
+# FakeBelem
 
 <span id="qiskit.providers.fake_provider.FakeBelem" />
 
-`FakeBelem`
+`FakeBelem`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/belem/fake_belem.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 

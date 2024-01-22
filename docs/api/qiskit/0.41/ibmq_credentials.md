@@ -18,25 +18,17 @@ python_api_name: qiskit.providers.ibmq.credentials
 
 <span id="module-qiskit.providers.ibmq.credentials" />
 
-`qiskit.providers.ibmq.credentials¶`
+`qiskit.providers.ibmq.credentials`
 
 Utilities for working with IBM Quantum Experience account credentials.
 
 ## Classes
-
-<span id="module-qiskit.providers.ibmq.credentials" />
-
-`¶`
 
 |                                                                                                                                                     |                                                             |
 | --------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
 | [`Credentials`](qiskit.providers.ibmq.credentials.Credentials "qiskit.providers.ibmq.credentials.Credentials")(token, url\[, websockets\_url, ...]) | IBM Quantum Experience account credentials and preferences. |
 
 ## Exceptions
-
-<span id="module-qiskit.providers.ibmq.credentials" />
-
-`¶`
 
 |                                                                                                                                                                                 |                                                              |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
