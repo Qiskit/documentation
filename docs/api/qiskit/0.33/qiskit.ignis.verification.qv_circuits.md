@@ -1,8 +1,16 @@
+---
+title: qv_circuits
+description: API reference for qiskit.ignis.verification.qv_circuits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.qv_circuits
+---
+
 # qiskit.ignis.verification.qv\_circuits
 
+<span id="qiskit.ignis.verification.qv_circuits" />
 
-
-`qv_circuits(qubit_lists, ntrials=1, qr=None, cr=None, seed=None)`
+`qv_circuits(qubit_lists, ntrials=1, qr=None, cr=None, seed=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/quantum_volume/circuits.py "view source code")
 
 Return a list of square quantum volume circuits (depth=width)
 
@@ -12,8 +20,8 @@ The qubit\_lists is specified as a list of qubit lists. For each set of qubits, 
 
 *   **qubit\_lists** (*list*) – list of list of qubits to apply qv circuits to. Assume the list is ordered in increasing number of qubits
 *   **ntrials** (*int*) – number of random iterations
-*   **qr** ([*QuantumRegister*](qiskit.circuit.QuantumRegister#qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – quantum register to act on (if None one is created)
-*   **cr** ([*ClassicalRegister*](qiskit.circuit.ClassicalRegister#qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")) – classical register to measure to (if None one is created)
+*   **qr** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – quantum register to act on (if None one is created)
+*   **cr** ([*ClassicalRegister*](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister")) – classical register to measure to (if None one is created)
 *   **seed** (*int*) – An optional RNG seed to use for the generated circuit
 
 **Returns**
@@ -25,3 +33,4 @@ The qubit\_lists is specified as a list of qubit lists. For each set of qubits, 
 **Return type**
 
 tuple
+

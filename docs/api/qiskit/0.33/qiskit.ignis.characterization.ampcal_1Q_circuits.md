@@ -1,8 +1,16 @@
+---
+title: ampcal_1Q_circuits
+description: API reference for qiskit.ignis.characterization.ampcal_1Q_circuits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.characterization.ampcal_1Q_circuits
+---
+
 # qiskit.ignis.characterization.ampcal\_1Q\_circuits
 
+<span id="qiskit.ignis.characterization.ampcal_1Q_circuits" />
 
-
-`ampcal_1Q_circuits(max_reps, qubits)`
+`ampcal_1Q_circuits(max_reps, qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/gates/circuits.py "view source code")
 
 Generates circuit for measuring the amplitude error of the single qubit gates
 
@@ -24,3 +32,4 @@ Y90-(Y90-Y90)^n
 **Return type**
 
 tuple
+

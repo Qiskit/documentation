@@ -1,8 +1,16 @@
+---
+title: expectation_counts
+description: API reference for qiskit.ignis.verification.expectation_counts
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.expectation_counts
+---
+
 # qiskit.ignis.verification.expectation\_counts
 
+<span id="qiskit.ignis.verification.expectation_counts" />
 
-
-`expectation_counts(counts)`
+`expectation_counts(counts)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/tomography/data.py "view source code")
 
 Converts count dict to an expectation counts dict.
 
@@ -26,3 +34,4 @@ Consider a input counts dictionary for s shots of measurement of the two-qubit o
 > *   `01`: $s * <IZ>$,
 > *   `10`: $s * <XI>$,
 > *   `11`: $s * <XZ>$
+
