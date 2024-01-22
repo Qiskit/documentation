@@ -8,26 +8,55 @@ description: Summary of the native gates and operations supported by IBM Quantum
 
 ## Explanation
 
-include difference between basis and native gates
+Each processor family has a particular set of native gates. 
+
 
 ## Find the native gateset for a system
 
 ### With Qiskit
 
+```python
+
+from qiskit_ibm_runtime import QiskitRuntimeService
+
+service = QiskitRuntimeService(channel="ibm_quantum")
+
+for backend in service.backends():
+    config = backend.configuration()
+    if "simulator" in config.backend_name:
+        continue
+    print(f"Backend: {config.backend_name}")
+    print(f"    Processor type: {config.processor_type}")
+    print(f"    Supported instructions:")
+    for instruction in config.supported_instructions:
+        print(f"        {instruction}")
+    print()
+```
+
 ### On IBM Quantum Platform
 
 ## List of gates
 
-ECR
-ID
-RZ
-SX
-X
-CZ
-CX
-SXdg?
-Reset
+ECR - 2Q
+CZ - 2Q
+CX - 2Q
+SXdg? (- 1Q)
+RZ - 1Q
+SX - 1Q
+X - 1Q
+ID no-op
+Reset - 1Q (special; not unitary)
 qubit_init flag?
+
+
+describing for 2Q, then 1Q, what each is, what the unitaries are, etc. Then explanation of reset
+
+service.backends.... code to loop through all the backends
+
+Basis gate is more abstract...
+Native gate is concrete...
+point to Representing quantum computers in transpile
+
 
 NOTES FOR DRAFTING:
 
@@ -55,3 +84,10 @@ Like `rep_delay`, `init_qubits` can be set in `execute()` or `assemble()`.
 
 
 (from API docs: A new kwarg for init_qubits has been added to assemble() and execute(). For backends that support this feature init_qubits can be used to control whether the backend executing the circuits inserts any initialization sequences at the start of each shot. By default this is set to True meaning that all qubits can assumed to be in the ground state at the start of each shot. However, when init_qubits is set to False qubits will be uninitialized at the start of each experiment and between shots. Note, that the backend running the circuits has to support this feature for this flag to have any effect.)
+
+## Next steps
+
+<Admonition type="tip" title="Recommendations">
+    - Read about basis gates in the [Represent quantum computers](../transpile/representing_quantum_computers#basis-gates) topic.
+</Admonition>
+
