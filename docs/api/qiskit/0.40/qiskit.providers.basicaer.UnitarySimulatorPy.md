@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.basicaer.UnitarySimulatorPy
 ---
 
-# UnitarySimulatorPy[¶](#unitarysimulatorpy "Permalink to this headline")
+# UnitarySimulatorPy
 
 <span id="qiskit.providers.basicaer.UnitarySimulatorPy" />
 
-`UnitarySimulatorPy(configuration=None, provider=None, **fields)`
+`UnitarySimulatorPy(configuration=None, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/basicaer/unitary_simulator.py "view source code")
 
 Bases: [`qiskit.providers.backend.BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1")
 
@@ -120,7 +120,7 @@ the Provider responsible for the backend.
 
 <span id="qiskit.providers.basicaer.UnitarySimulatorPy.run" />
 
-`UnitarySimulatorPy.run(qobj, **backend_options)`
+`UnitarySimulatorPy.run(qobj, **backend_options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/basicaer/unitary_simulator.py "view source code")
 
 Run qobj asynchronously.
 
@@ -168,7 +168,7 @@ Example::
 
 <span id="qiskit.providers.basicaer.UnitarySimulatorPy.run_experiment" />
 
-`UnitarySimulatorPy.run_experiment(experiment)`
+`UnitarySimulatorPy.run_experiment(experiment)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/basicaer/unitary_simulator.py "view source code")
 
 Run an experiment (circuit) and return a single experiment result.
 

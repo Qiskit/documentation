@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.TranslateParameterizedGates
 ---
 
-# TranslateParameterizedGates[¶](#translateparameterizedgates "Permalink to this headline")
+# TranslateParameterizedGates
 
 <span id="qiskit.transpiler.passes.TranslateParameterizedGates" />
 
-`TranslateParameterizedGates(*args, **kwargs)`
+`TranslateParameterizedGates(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/basis/translate_parameterized.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -87,7 +87,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.TranslateParameterizedGates.run" />
 
-`TranslateParameterizedGates.run(dag)`
+`TranslateParameterizedGates.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/basis/translate_parameterized.py "view source code")
 
 Run the transpiler pass.
 

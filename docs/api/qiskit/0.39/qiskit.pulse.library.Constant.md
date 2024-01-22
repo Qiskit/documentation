@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.library.Constant
 ---
 
-# Constant[¶](#constant "Permalink to this headline")
+# Constant
 
 <span id="qiskit.pulse.library.Constant" />
 
-`Constant(duration: Union[int, qiskit.circuit.parameterexpression.ParameterExpression], amp: Union[complex, qiskit.circuit.parameterexpression.ParameterExpression], name: Optional[str] = None, limit_amplitude: Optional[bool] = None)`
+`Constant(duration: Union[int, qiskit.circuit.parameterexpression.ParameterExpression], amp: Union[complex, qiskit.circuit.parameterexpression.ParameterExpression], name: Optional[str] = None, limit_amplitude: Optional[bool] = None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: `object`
 

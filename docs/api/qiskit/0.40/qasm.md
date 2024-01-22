@@ -14,13 +14,9 @@ python_api_name: qiskit.qasm
 
 <span id="module-qiskit.qasm" />
 
-`qiskit.qasm¶`
+`qiskit.qasm`
 
 ## QASM Routines
-
-<span id="module-qiskit.qasm" />
-
-`¶`
 
 |                                                                     |                                                      |
 | ------------------------------------------------------------------- | ---------------------------------------------------- |
@@ -28,10 +24,6 @@ python_api_name: qiskit.qasm
 | [`QasmError`](qiskit.qasm.QasmError "qiskit.qasm.QasmError")(\*msg) | Base class for errors raised while parsing OPENQASM. |
 
 ## Pygments
-
-<span id="module-qiskit.qasm" />
-
-`¶`
 
 |                                                                                            |                                              |
 | ------------------------------------------------------------------------------------------ | -------------------------------------------- |

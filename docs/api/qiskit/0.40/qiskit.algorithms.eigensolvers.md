@@ -1,10 +1,10 @@
 <span id="qiskit-algorithms-eigensolvers" />
 
-# qiskit.algorithms.eigensolvers[¶](#module-qiskit.algorithms.eigensolvers "Permalink to this headline")
+# qiskit.algorithms.eigensolvers
 
-## Eigensolvers Package ([`qiskit.algorithms.eigensolvers`](#module-qiskit.algorithms.eigensolvers "qiskit.algorithms.eigensolvers"))[¶](#eigensolvers-package-qiskit-algorithms-eigensolvers "Permalink to this headline")
+## Eigensolvers Package ([`qiskit.algorithms.eigensolvers`](#module-qiskit.algorithms.eigensolvers "qiskit.algorithms.eigensolvers"))
 
-### Eigensolvers[¶](#eigensolvers "Permalink to this headline")
+### Eigensolvers
 
 |                                                                                                                                                  |                                              |
 | ------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------- |
@@ -12,7 +12,7 @@
 | [`NumPyEigensolver`](qiskit.algorithms.eigensolvers.NumPyEigensolver "qiskit.algorithms.eigensolvers.NumPyEigensolver")(\[k, filter\_criterion]) | The NumPy eigensolver algorithm.             |
 | [`VQD`](qiskit.algorithms.eigensolvers.VQD "qiskit.algorithms.eigensolvers.VQD")(estimator, fidelity, ansatz, optimizer, \*)                     | The Variational Quantum Deflation algorithm. |
 
-### Results[¶](#results "Permalink to this headline")
+### Results
 
 > |                                                                                                                                             |                           |
 > | ------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |

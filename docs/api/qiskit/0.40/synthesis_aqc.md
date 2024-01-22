@@ -14,15 +14,11 @@ python_api_name: qiskit.transpiler.synthesis.aqc
 
 <span id="module-qiskit.transpiler.synthesis.aqc" />
 
-`qiskit.transpiler.synthesis.aqc¶`
+`qiskit.transpiler.synthesis.aqc`
 
 Implementation of Approximate Quantum Compiler as described in the paper \[1].
 
 ## Interface
-
-<span id="module-qiskit.transpiler.synthesis.aqc" />
-
-`¶`
 
 The main public interface of this module is reached by passing `unitary_synthesis_method='aqc'` to [`transpile`](qiskit.compiler.transpile "qiskit.compiler.transpile"). This will swap the synthesis method to use [`AQCSynthesisPlugin`](qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin "qiskit.transpiler.synthesis.aqc.AQCSynthesisPlugin"). The individual classes are:
 
@@ -38,10 +34,6 @@ The main public interface of this module is reached by passing `unitary_synthesi
 | [`FastCNOTUnitObjective`](qiskit.transpiler.synthesis.aqc.FastCNOTUnitObjective "qiskit.transpiler.synthesis.aqc.FastCNOTUnitObjective")(num\_qubits, cnots)          | Implementation of objective function and gradient calculator, which is similar to `DefaultCNOTUnitObjective` but several times faster. |
 
 ## Mathematical Detail
-
-<span id="module-qiskit.transpiler.synthesis.aqc" />
-
-`¶`
 
 We are interested in compiling a quantum circuit, which we formalize as finding the best circuit representation in terms of an ordered gate sequence of a target unitary matrix $U\in U(d)$, with some additional hardware constraints. In particular, we look at representations that could be constrained in terms of hardware connectivity, as well as gate depth, and we choose a gate basis in terms of CNOT and rotation gates. We recall that the combination of CNOT and rotation gates is universal in $SU(d)$ and therefore it does not limit compilation.
 
@@ -134,7 +126,7 @@ This uses a helper function, [`make_cnot_network`](#qiskit.transpiler.synthesis.
 
 <span id="qiskit.transpiler.synthesis.aqc.make_cnot_network" />
 
-`make_cnot_network(num_qubits, network_layout='spin', connectivity_type='full', depth=0)`
+`make_cnot_network(num_qubits, network_layout='spin', connectivity_type='full', depth=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/synthesis/aqc/cnot_structures.py "view source code")
 
 Generates a network consisting of building blocks each containing a CNOT gate and possibly some single-qubit ones. This network models a quantum operator in question. Note, each building block has 2 input and outputs corresponding to a pair of qubits. What we actually return here is a chain of indices of qubit pairs shared by every building block in a row.
 

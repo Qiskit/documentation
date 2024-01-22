@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.library.Drag
 ---
 
-# Drag[¶](#drag "Permalink to this headline")
+# Drag
 
 <span id="qiskit.pulse.library.Drag" />
 
-`Drag(duration: Union[int, qiskit.circuit.parameterexpression.ParameterExpression], amp: Union[complex, qiskit.circuit.parameterexpression.ParameterExpression], sigma: Union[float, qiskit.circuit.parameterexpression.ParameterExpression], beta: Union[float, qiskit.circuit.parameterexpression.ParameterExpression], name: Optional[str] = None, limit_amplitude: Optional[bool] = None)`
+`Drag(duration: Union[int, qiskit.circuit.parameterexpression.ParameterExpression], amp: Union[complex, qiskit.circuit.parameterexpression.ParameterExpression], sigma: Union[float, qiskit.circuit.parameterexpression.ParameterExpression], beta: Union[float, qiskit.circuit.parameterexpression.ParameterExpression], name: Optional[str] = None, limit_amplitude: Optional[bool] = None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: `object`
 

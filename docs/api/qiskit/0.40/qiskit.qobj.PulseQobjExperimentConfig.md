@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.qobj.PulseQobjExperimentConfig
 ---
 
-# PulseQobjExperimentConfig[¶](#pulseqobjexperimentconfig "Permalink to this headline")
+# PulseQobjExperimentConfig
 
 <span id="qiskit.qobj.PulseQobjExperimentConfig" />
 
-`PulseQobjExperimentConfig(qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`
+`PulseQobjExperimentConfig(qubit_lo_freq=None, meas_lo_freq=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/qobj/pulse_qobj.py "view source code")
 
 Bases: `qiskit.qobj.common.QobjDictField`
 

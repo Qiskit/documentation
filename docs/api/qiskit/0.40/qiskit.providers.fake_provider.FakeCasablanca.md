@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeCasablanca
 ---
 
-# FakeCasablanca[¶](#fakecasablanca "Permalink to this headline")
+# FakeCasablanca
 
 <span id="qiskit.providers.fake_provider.FakeCasablanca" />
 
-`FakeCasablanca`
+`FakeCasablanca`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/casablanca/fake_casablanca.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 

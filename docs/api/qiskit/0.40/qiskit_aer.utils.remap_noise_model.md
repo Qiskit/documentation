@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.utils.remap_noise_model
 ---
 
-# qiskit\_aer.utils.remap\_noise\_model[¶](#qiskit-aer-utils-remap-noise-model "Permalink to this headline")
+# qiskit\_aer.utils.remap\_noise\_model
 
 <span id="qiskit_aer.utils.remap_noise_model" />
 
-`remap_noise_model(noise_model, remapping, discard_qubits=False, warnings=True)`
+`remap_noise_model(noise_model, remapping, discard_qubits=False, warnings=True)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/utils/noise_remapper.py "view source code")
 
 \[Deprecated] Remap qubits in a noise model.
 

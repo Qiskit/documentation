@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.channels.SnapshotChannel
 ---
 
-# SnapshotChannel[¶](#snapshotchannel "Permalink to this headline")
+# SnapshotChannel
 
 <span id="qiskit.pulse.channels.SnapshotChannel" />
 
-`SnapshotChannel(*args, **kwargs)`
+`SnapshotChannel(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/channels.py "view source code")
 
 Bases: `qiskit.pulse.channels.ClassicalIOChannel`
 

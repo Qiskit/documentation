@@ -6,11 +6,11 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.experiment.IBMExperimentEntryExists
 ---
 
-# qiskit.providers.ibmq.experiment.IBMExperimentEntryExists[¶](#qiskit-providers-ibmq-experiment-ibmexperimententryexists "Permalink to this headline")
+# qiskit.providers.ibmq.experiment.IBMExperimentEntryExists
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentEntryExists" />
 
-`IBMExperimentEntryExists(*message)`
+`IBMExperimentEntryExists(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/experiment/exceptions.py "view source code")
 
 Errors raised when an experiment entry already exists.
 

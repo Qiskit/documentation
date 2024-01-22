@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.SetLayout
 ---
 
-# SetLayout[¶](#setlayout "Permalink to this headline")
+# SetLayout
 
 <span id="qiskit.transpiler.passes.SetLayout" />
 
-`SetLayout(*args, **kwargs)`
+`SetLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/layout/set_layout.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.SetLayout.run" />
 
-`SetLayout.run(dag)`
+`SetLayout.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/layout/set_layout.py "view source code")
 
 Run the SetLayout pass on dag.
 

@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_aer.quantum_info.AerStatevector
 ---
 
-# AerStatevector[¶](#aerstatevector "Permalink to this headline")
+# AerStatevector
 
 <span id="qiskit_aer.quantum_info.AerStatevector" />
 
-`AerStatevector(data, dims=None, **configs)`
+`AerStatevector(data, dims=None, **configs)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/quantum_info/states/aer_statevector.py "view source code")
 
 Bases: [`qiskit.quantum_info.states.statevector.Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector")
 
@@ -38,7 +38,7 @@ The `dims` kwarg is used to `Statevector` constructor.
 
 <span id="qiskit_aer.quantum_info.AerStatevector.conjugate" />
 
-`AerStatevector.conjugate()`
+`AerStatevector.conjugate()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/quantum_info/states/aer_statevector.py "view source code")
 
 Return the conjugate of the operator.
 
@@ -212,7 +212,7 @@ complex
 
 <span id="qiskit_aer.quantum_info.AerStatevector.from_instruction" />
 
-`classmethod AerStatevector.from_instruction(instruction)`
+`classmethod AerStatevector.from_instruction(instruction)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/quantum_info/states/aer_statevector.py "view source code")
 
 Return the output statevector of an instruction.
 
@@ -238,7 +238,7 @@ The final statevector.
 
 <span id="qiskit_aer.quantum_info.AerStatevector.from_int" />
 
-`static AerStatevector.from_int(i, dims)`
+`static AerStatevector.from_int(i, dims)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/quantum_info/states/aer_statevector.py "view source code")
 
 Return a computational basis statevector.
 
@@ -266,7 +266,7 @@ The `dims` kwarg can be an integer or an iterable of integers.
 
 <span id="qiskit_aer.quantum_info.AerStatevector.from_label" />
 
-`classmethod AerStatevector.from_label(label)`
+`classmethod AerStatevector.from_label(label)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/quantum_info/states/aer_statevector.py "view source code")
 
 Return a tensor product of Pauli X,Y,Z eigenstates.
 
@@ -355,7 +355,7 @@ tuple
 
 <span id="qiskit_aer.quantum_info.AerStatevector.metadata" />
 
-`AerStatevector.metadata()`
+`AerStatevector.metadata()`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/quantum_info/states/aer_statevector.py "view source code")
 
 Return result metadata of an operation that executed lastly.
 
@@ -538,7 +538,7 @@ Additional Information:
 
 <span id="qiskit_aer.quantum_info.AerStatevector.sample_memory" />
 
-`AerStatevector.sample_memory(shots, qargs=None)`
+`AerStatevector.sample_memory(shots, qargs=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/quantum_info/states/aer_statevector.py "view source code")
 
 Sample a list of qubit measurement outcomes in the computational basis.
 
@@ -565,7 +565,7 @@ Additional Information:
 
 <span id="qiskit_aer.quantum_info.AerStatevector.seed" />
 
-`AerStatevector.seed(value=None)`
+`AerStatevector.seed(value=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/quantum_info/states/aer_statevector.py "view source code")
 
 Set the seed for the quantum state RNG.
 

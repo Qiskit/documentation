@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.ibmq.runtime.RuntimeOptions
 ---
 
-# RuntimeOptions[¶](#runtimeoptions "Permalink to this headline")
+# RuntimeOptions
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeOptions" />
 
-`RuntimeOptions(backend_name=None, image=None, log_level=None)`
+`RuntimeOptions(backend_name=None, image=None, log_level=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/runtime_options.py "view source code")
 
 Bases: `object`
 
@@ -28,7 +28,7 @@ Class for representing runtime execution options.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeOptions.validate" />
 
-`RuntimeOptions.validate()`
+`RuntimeOptions.validate()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/runtime_options.py "view source code")
 
 Validate options.
 
