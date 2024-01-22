@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
 ---
 
-# PadDynamicalDecoupling[¶](#paddynamicaldecoupling "Permalink to this headline")
+# PadDynamicalDecoupling
 
 <span id="qiskit.transpiler.passes.PadDynamicalDecoupling" />
 
-`PadDynamicalDecoupling(durations, dd_sequence, qubits=None, spacing=None, skip_reset_qubits=True, pulse_alignment=1, extra_slack_distribution='middle')`
+`PadDynamicalDecoupling(durations, dd_sequence, qubits=None, spacing=None, skip_reset_qubits=True, pulse_alignment=1, extra_slack_distribution='middle')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/scheduling/padding/dynamical_decoupling.py "view source code")
 
 Bases: `qiskit.transpiler.passes.scheduling.padding.base_padding.BasePadding`
 

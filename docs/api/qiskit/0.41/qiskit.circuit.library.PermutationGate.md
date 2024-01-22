@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.PermutationGate
 ---
 
-# PermutationGate[¶](#permutationgate "Permalink to this headline")
+# PermutationGate
 
 <span id="qiskit.circuit.library.PermutationGate" />
 
-`PermutationGate(pattern)`
+`PermutationGate(pattern)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/permutation.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -40,7 +40,7 @@ Return a permutation gate.
 
 <span id="qiskit.circuit.library.PermutationGate.inverse" />
 
-`PermutationGate.inverse()`
+`PermutationGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/permutation.py "view source code")
 
 Returns the inverse of the permutation.
 
@@ -48,7 +48,7 @@ Returns the inverse of the permutation.
 
 <span id="qiskit.circuit.library.PermutationGate.qasm" />
 
-`PermutationGate.qasm()`
+`PermutationGate.qasm()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/permutation.py "view source code")
 
 The qasm for a permutation.
 
@@ -56,7 +56,7 @@ The qasm for a permutation.
 
 <span id="qiskit.circuit.library.PermutationGate.validate_parameter" />
 
-`PermutationGate.validate_parameter(parameter)`
+`PermutationGate.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/generalized_gates/permutation.py "view source code")
 
 Parameter validation.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.IterativeAmplitudeEstimation
 
 <span id="qiskit.algorithms.IterativeAmplitudeEstimation" />
 
-`IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None, sampler=None)`
+`IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None, sampler=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
 
 Bases: [`AmplitudeEstimator`](qiskit.algorithms.AmplitudeEstimator "qiskit.algorithms.amplitude_estimators.amplitude_estimator.AmplitudeEstimator")
 
@@ -60,7 +60,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 <span id="qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit" />
 
-`IterativeAmplitudeEstimation.construct_circuit(estimation_problem, k=0, measurement=False)`
+`IterativeAmplitudeEstimation.construct_circuit(estimation_problem, k=0, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
 
 Construct the circuit $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
@@ -86,7 +86,7 @@ The circuit implementing $\mathcal{Q}^k \mathcal{A} |0\rangle$.
 
 <span id="qiskit.algorithms.IterativeAmplitudeEstimation.estimate" />
 
-`IterativeAmplitudeEstimation.estimate(estimation_problem)`
+`IterativeAmplitudeEstimation.estimate(estimation_problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.24/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
 
 Run the amplitude estimation algorithm on provided estimation problem.
 

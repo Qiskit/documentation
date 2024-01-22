@@ -56,20 +56,14 @@ describe("loadImages()", () => {
     const doc = Doc.load(
       `<img src="../_static/logo.png" alt="Logo"><img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(
-      doc.$,
-      doc.$main,
-      "http://localhost:3000/api/my-file.html",
-      "/my-images",
-      false,
-    );
+    const images = loadImages(doc.$, doc.$main, "/my-images", false);
     expect(images).toEqual([
       {
-        src: "http://localhost:3000/_static/logo.png",
+        fileName: "logo.png",
         dest: "/my-images/logo.png",
       },
       {
-        src: "http://localhost:3000/_static/images/view-page-source-icon.svg",
+        fileName: "view-page-source-icon.svg",
         dest: "/my-images/view-page-source-icon.svg",
       },
     ]);
@@ -82,16 +76,10 @@ describe("loadImages()", () => {
     const doc = Doc.load(
       `<img src="../_static/images/view-page-source-icon.svg">`,
     );
-    const images = loadImages(
-      doc.$,
-      doc.$main,
-      "http://localhost:3000/api/release_notes.html",
-      "/my-images/0.45",
-      true,
-    );
+    const images = loadImages(doc.$, doc.$main, "/my-images/0.45", true);
     expect(images).toEqual([
       {
-        src: "http://localhost:3000/_static/images/view-page-source-icon.svg",
+        fileName: "view-page-source-icon.svg",
         dest: "/my-images/view-page-source-icon.svg",
       },
     ]);
@@ -244,15 +232,18 @@ test("addLanguageClassToCodeBlocks()", () => {
 test("replaceSourceLinksWithGitHub()", () => {
   // Assumes that removeHtmlExtensionsInRelativeLinks() has already removed .html from the URL.
   const doc = Doc.load(
-    `<a class="reference internal" href="../_modules/qiskit_ibm_runtime/ibm_backend#IBMBackend"></a><a href="#qiskit_ibm_runtime.IBMBackend"></a>`,
+    `<a href="../_modules/my_quantum_project/my_file#IBMBackend"></a>
+    <a href="#my_quantum_project.IBMBackend"></a>`,
   );
   replaceViewcodeLinksWithGitHub(
     doc.$,
     doc.$main,
-    "https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/",
+    (fileName) =>
+      `https://github.com/Qiskit/my-project/tree/stable/0.9/${fileName}.py`,
   );
   doc.expectHtml(
-    `<a class="reference internal" href="https://github.com/Qiskit/qiskit-ibm-runtime/tree/0.9.2/qiskit_ibm_runtime/ibm_backend.py"></a><a href="#qiskit_ibm_runtime.IBMBackend"></a>`,
+    `<a href="https://github.com/Qiskit/my-project/tree/stable/0.9/my_quantum_project/my_file.py"></a>
+    <a href="#my_quantum_project.IBMBackend"></a>`,
   );
 });
 

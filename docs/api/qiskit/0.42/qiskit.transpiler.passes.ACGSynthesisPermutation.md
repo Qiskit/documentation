@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.ACGSynthesisPermutation
 ---
 
-# ACGSynthesisPermutation[¶](#acgsynthesispermutation "Permalink to this headline")
+# ACGSynthesisPermutation
 
 <span id="qiskit.transpiler.passes.ACGSynthesisPermutation" />
 
-`ACGSynthesisPermutation`
+`ACGSynthesisPermutation`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
 
 Bases: [`qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin`](qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin "qiskit.transpiler.passes.synthesis.plugin.HighLevelSynthesisPlugin")
 
@@ -42,7 +42,7 @@ print(f"acg: {qct.size() = }, {qct.depth() = }")
 
 <span id="qiskit.transpiler.passes.ACGSynthesisPermutation.run" />
 
-`ACGSynthesisPermutation.run(high_level_object, **options)`
+`ACGSynthesisPermutation.run(high_level_object, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/high_level_synthesis.py "view source code")
 
 Run synthesis for the given Permutation.
 

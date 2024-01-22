@@ -77,7 +77,7 @@ It’s worth pointing out that Terra’s version support policy doesn’t mean p
 
 <span id="qiskit.providers.QiskitBackendNotFoundError" />
 
-`qiskit.providers.QiskitBackendNotFoundError(*message)`
+`qiskit.providers.QiskitBackendNotFoundError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/exceptions.py "view source code")
 
 Base class for errors raised while looking for a backend.
 
@@ -85,7 +85,7 @@ Set the error message.
 
 <span id="qiskit.providers.BackendPropertyError" />
 
-`qiskit.providers.BackendPropertyError(*message)`
+`qiskit.providers.BackendPropertyError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/exceptions.py "view source code")
 
 Base class for errors raised while looking for a backend property.
 
@@ -93,7 +93,7 @@ Set the error message.
 
 <span id="qiskit.providers.JobError" />
 
-`qiskit.providers.JobError(*message)`
+`qiskit.providers.JobError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/exceptions.py "view source code")
 
 Base class for errors raised by Jobs.
 
@@ -101,7 +101,7 @@ Set the error message.
 
 <span id="qiskit.providers.JobTimeoutError" />
 
-`qiskit.providers.JobTimeoutError(*message)`
+`qiskit.providers.JobTimeoutError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/exceptions.py "view source code")
 
 Base class for timeout errors raised by jobs.
 
@@ -109,7 +109,7 @@ Set the error message.
 
 <span id="qiskit.providers.BackendConfigurationError" />
 
-`qiskit.providers.BackendConfigurationError(*message)`
+`qiskit.providers.BackendConfigurationError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.25/qiskit/providers/exceptions.py "view source code")
 
 Base class for errors raised by the BackendConfiguration.
 

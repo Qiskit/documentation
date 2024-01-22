@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.quantum_info.purity
 ---
 
-# qiskit.quantum\_info.purity[¶](#qiskit-quantum-info-purity "Permalink to this headline")
+# qiskit.quantum\_info.purity
 
 <span id="qiskit.quantum_info.purity" />
 
-`purity(state, validate=True)`
+`purity(state, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/quantum_info/states/measures.py "view source code")
 
 Calculate the purity of a quantum state.
 

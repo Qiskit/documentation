@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.transforms.compress_pulses
 ---
 
-# qiskit.pulse.transforms.compress\_pulses[¶](#qiskit-pulse-transforms-compress-pulses "Permalink to this headline")
+# qiskit.pulse.transforms.compress\_pulses
 
 <span id="qiskit.pulse.transforms.compress_pulses" />
 
-`compress_pulses(schedules)`
+`compress_pulses(schedules)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Optimization pass to replace identical pulses.
 

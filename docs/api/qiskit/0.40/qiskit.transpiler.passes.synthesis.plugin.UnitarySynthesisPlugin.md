@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin
 ---
 
-# UnitarySynthesisPlugin[¶](#unitarysynthesisplugin "Permalink to this headline")
+# UnitarySynthesisPlugin
 
 <span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin" />
 
-`UnitarySynthesisPlugin`
+`UnitarySynthesisPlugin`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/plugin.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -24,7 +24,7 @@ This abstract class defines the interface for unitary synthesis plugins.
 
 <span id="qiskit.transpiler.passes.synthesis.plugin.UnitarySynthesisPlugin.run" />
 
-`abstract UnitarySynthesisPlugin.run(unitary, **options)`
+`abstract UnitarySynthesisPlugin.run(unitary, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/synthesis/plugin.py "view source code")
 
 Run synthesis for the given unitary matrix
 

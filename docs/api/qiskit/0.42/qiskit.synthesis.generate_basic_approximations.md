@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.synthesis.generate_basic_approximations
 ---
 
-# qiskit.synthesis.generate\_basic\_approximations[¶](#qiskit-synthesis-generate-basic-approximations "Permalink to this headline")
+# qiskit.synthesis.generate\_basic\_approximations
 
 <span id="qiskit.synthesis.generate_basic_approximations" />
 
-`generate_basic_approximations(basis_gates, depth, filename=None)`
+`generate_basic_approximations(basis_gates, depth, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/synthesis/discrete_basis/generate_basis_approximations.py "view source code")
 
 Generates a list of `GateSequence``s with the gates in ``basic_gates`.
 

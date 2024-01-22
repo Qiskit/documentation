@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.Backend
 ---
 
-# Backend[¶](#backend "Permalink to this headline")
+# Backend
 
 <span id="qiskit.providers.Backend" />
 
-`Backend`
+`Backend`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/backend.py "view source code")
 
 Bases: `object`
 

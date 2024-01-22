@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.scheduler.ScheduleConfig
 ---
 
-# ScheduleConfig[¶](#scheduleconfig "Permalink to this headline")
+# ScheduleConfig
 
 <span id="qiskit.scheduler.ScheduleConfig" />
 
-`ScheduleConfig(inst_map, meas_map, dt)`
+`ScheduleConfig(inst_map, meas_map, dt)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/scheduler/config.py "view source code")
 
 Bases: `object`
 

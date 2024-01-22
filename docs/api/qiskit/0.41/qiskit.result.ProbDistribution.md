@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.result.ProbDistribution
 ---
 
-# ProbDistribution[¶](#probdistribution "Permalink to this headline")
+# ProbDistribution
 
 <span id="qiskit.result.ProbDistribution" />
 
-`ProbDistribution(data, shots=None)`
+`ProbDistribution(data, shots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/distributions/probability.py "view source code")
 
 Bases: `dict`
 
@@ -41,7 +41,7 @@ Builds a probability distribution object.
 
 <span id="qiskit.result.ProbDistribution.binary_probabilities" />
 
-`ProbDistribution.binary_probabilities(num_bits=None)`
+`ProbDistribution.binary_probabilities(num_bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/distributions/probability.py "view source code")
 
 Build a probabilities dictionary with binary string keys
 
@@ -91,7 +91,7 @@ Return the value for key if key is in the dictionary, else default.
 
 <span id="qiskit.result.ProbDistribution.hex_probabilities" />
 
-`ProbDistribution.hex_probabilities()`
+`ProbDistribution.hex_probabilities()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/result/distributions/probability.py "view source code")
 
 Build a probabilities dictionary with hexadecimal string keys
 

@@ -282,25 +282,37 @@ Finally, add the file to the folder's `_toc.json`, such as `start/_toc.json`. Th
 
 Images are stored in the `public/images` folder. You should use subfolders to organize the files. For example, images for `start/my-file.mdx` should be stored like `public/images/start/my-file/img1.png`.
 
-To use the image inside an MDX page:
+To use the image:
 
 ```markdown
 ![Your image](/images/build/your-file/your_image.png)
 ```
 
-To add an inline images,
+To add an inline images:
 
 ```markdown
 Inline ![Inline image](/images/build/your-file/your_image.png) image
 ```
 
-To include a caption
+To include a caption:
 
 ```markdown
 ![Your image](/images/build/your-file/your_image.png "Image caption")
 ```
 
 You can include a version of the image to be with the dark theme. You only need to create an image with the same name ending in `@dark`. So for example, if you have a `sampler.png` image, the dark version would be `sampler@dark.png`. This is important for images that have a white background.
+
+## Videos
+
+Videos are stored in the `public/videos` folder. You should use subfolders to organize the files. For example, images for `start/my-file.mdx` should be stored like `public/videos/start/my-file/video1.mp4`.
+
+To add a video:
+
+```markdown
+<video title="Write a description of the video here as 'alt text' for accessibility." className="max-w-auto h-auto" controls>
+    <source src="/videos/run/sessions/demo.mp4" type="video/mp4"></source>
+</video>
+```
 
 ## Math
 

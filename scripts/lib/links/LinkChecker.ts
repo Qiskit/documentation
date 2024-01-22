@@ -58,7 +58,7 @@ export class Link {
     if (this.value === "") {
       return [originFile];
     }
-    if (this.value.startsWith("/images")) {
+    if (this.value.startsWith("/images") || this.value.startsWith("/videos")) {
       return [path.join("public/", this.value)];
     }
 

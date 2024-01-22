@@ -10,7 +10,6 @@
 // copyright notice, and modified files need to carry a notice indicating
 // that they have been altered from the originals.
 
-import { last } from "lodash";
 import { CheerioAPI, Cheerio, load } from "cheerio";
 
 import { Image } from "./HtmlToMdResult";
@@ -26,19 +25,24 @@ export type ProcessedHtml = {
 
 export function processHtml(options: {
   html: string;
-  url: string;
+  fileName: string;
   imageDestination: string;
-  baseGitHubUrl: string;
+  determineGithubUrl: (fileName: string) => string;
   releaseNotesTitle: string;
 }): ProcessedHtml {
-  const { html, url, imageDestination, baseGitHubUrl, releaseNotesTitle } =
-    options;
+  const {
+    html,
+    fileName,
+    imageDestination,
+    determineGithubUrl,
+    releaseNotesTitle,
+  } = options;
   const $ = load(html);
   const $main = $(`[role='main']`);
 
-  const isReleaseNotes = url.endsWith("release_notes.html");
-  const images = loadImages($, $main, url, imageDestination, isReleaseNotes);
-  if (url.endsWith("release_notes.html")) {
+  const isReleaseNotes = fileName.endsWith("release_notes.html");
+  const images = loadImages($, $main, imageDestination, isReleaseNotes);
+  if (isReleaseNotes) {
     renameAllH1s($, releaseNotesTitle);
   }
 
@@ -48,7 +52,7 @@ export function processHtml(options: {
   removeDownloadSourceCode($main);
   handleSphinxDesignCards($, $main);
   addLanguageClassToCodeBlocks($, $main);
-  replaceViewcodeLinksWithGitHub($, $main, baseGitHubUrl);
+  replaceViewcodeLinksWithGitHub($, $main, determineGithubUrl);
   convertRubricsToHeaders($, $main);
   processSimpleFieldLists($, $main);
   removeColonSpans($main);
@@ -66,28 +70,26 @@ export function processHtml(options: {
 export function loadImages(
   $: CheerioAPI,
   $main: Cheerio<any>,
-  url: string,
   imageDestination: string,
   isReleaseNotes: boolean,
 ): Image[] {
   return $main
     .find("img")
     .toArray()
+    .filter((img) => $(img).attr("src"))
     .map((img) => {
       const $img = $(img);
 
-      const imageUrl = new URL($img.attr("src")!, url);
-      const src = imageUrl.toString();
+      const fileName = $img.attr("src")!.split("/").pop()!;
 
-      const filename = last(src.split("/"));
-      let dest = `${imageDestination}/${filename}`;
+      let dest = `${imageDestination}/${fileName}`;
       if (isReleaseNotes) {
         // Release notes links should point to the current version
         dest = dest.replace(/[0-9].*\//, "");
       }
 
       $img.attr("src", dest);
-      return { src, dest: dest };
+      return { fileName, dest };
     });
 }
 
@@ -170,7 +172,7 @@ export function addLanguageClassToCodeBlocks(
 export function replaceViewcodeLinksWithGitHub(
   $: CheerioAPI,
   $main: Cheerio<any>,
-  baseGitHubUrl: string,
+  determineGithubUrl: (fileName: string) => string,
 ): void {
   $main.find("a").each((_, a) => {
     const $a = $(a);
@@ -182,10 +184,9 @@ export function replaceViewcodeLinksWithGitHub(
     ) {
       return;
     }
-    //_modules/qiskit_ibm_runtime/ibm_backend
-    const match = href.match(/_modules\/(.*?)(#|$)/)!;
-    const newHref = `${baseGitHubUrl}${match[1]}.py`;
-    $a.attr("href", newHref);
+    // E.g. `qiskit_ibm_runtime/ibm_backend`
+    const fullFileName = href.match(/_modules\/(.*?)(#|$)/)![1];
+    $a.attr("href", determineGithubUrl(fullFileName));
   });
 }
 

@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.library.gaussian_deriv
 ---
 
-# qiskit.pulse.library.gaussian\_deriv[¶](#qiskit-pulse-library-gaussian-deriv "Permalink to this headline")
+# qiskit.pulse.library.gaussian\_deriv
 
 <span id="qiskit.pulse.library.gaussian_deriv" />
 
-`gaussian_deriv(duration, amp, sigma, name=None)`
+`gaussian_deriv(duration, amp, sigma, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/library/discrete.py "view source code")
 
 Generates unnormalized gaussian derivative [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 

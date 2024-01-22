@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.optimizers.CRS
 ---
 
-# CRS[¶](#crs "Permalink to this headline")
+# CRS
 
 <span id="qiskit.algorithms.optimizers.CRS" />
 
-`CRS(max_evals=1000)`
+`CRS(max_evals=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/nlopts/crs.py "view source code")
 
 Bases: `qiskit.algorithms.optimizers.nlopts.nloptimizer.NLoptOptimizer`
 
@@ -34,7 +34,7 @@ NLopt global optimizer, derivative-free. For further detail, please refer to [ht
 
 <span id="qiskit.algorithms.optimizers.CRS.get_nlopt_optimizer" />
 
-`CRS.get_nlopt_optimizer()`
+`CRS.get_nlopt_optimizer()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/optimizers/nlopts/crs.py "view source code")
 
 Return NLopt optimizer type
 

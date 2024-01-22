@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.BreakLoopOp
 ---
 
-# BreakLoopOp[¶](#breakloopop "Permalink to this headline")
+# BreakLoopOp
 
 <span id="qiskit.circuit.BreakLoopOp" />
 
-`BreakLoopOp(num_qubits, num_clbits, label=None)`
+`BreakLoopOp(num_qubits, num_clbits, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/controlflow/break_loop.py "view source code")
 
 Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 

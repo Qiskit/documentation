@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.library.set_stabilizer
 ---
 
-# qiskit\_aer.library.set\_stabilizer[¶](#qiskit-aer-library-set-stabilizer "Permalink to this headline")
+# qiskit\_aer.library.set\_stabilizer
 
 <span id="qiskit_aer.library.set_stabilizer" />
 
-`set_stabilizer(self, state)`
+`set_stabilizer(self, state)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.12/qiskit_aer/library/set_instructions/set_stabilizer.py "view source code")
 
 Set the Clifford stabilizer state of the simulator.
 

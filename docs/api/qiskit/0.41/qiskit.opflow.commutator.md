@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.opflow.commutator
 ---
 
-# qiskit.opflow\.commutator[¶](#qiskit-opflow-commutator "Permalink to this headline")
+# qiskit.opflow\.commutator
 
 <span id="qiskit.opflow.commutator" />
 
-`commutator(op_a, op_b)`
+`commutator(op_a, op_b)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/opflow/utils.py "view source code")
 
 Compute commutator of op\_a and op\_b.
 

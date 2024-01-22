@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakePoughkeepsieV2
 ---
 
-# FakePoughkeepsieV2[¶](#fakepoughkeepsiev2 "Permalink to this headline")
+# FakePoughkeepsieV2
 
 <span id="qiskit.providers.fake_provider.FakePoughkeepsieV2" />
 
-`FakePoughkeepsieV2`
+`FakePoughkeepsieV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/poughkeepsie/fake_poughkeepsie.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 

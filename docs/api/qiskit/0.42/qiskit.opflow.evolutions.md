@@ -1,8 +1,8 @@
 <span id="qiskit-opflow-evolutions" />
 
-# qiskit.opflow\.evolutions[¶](#module-qiskit.opflow.evolutions "Permalink to this headline")
+# qiskit.opflow\.evolutions
 
-## Operator Evolutions ([`qiskit.opflow.evolutions`](#module-qiskit.opflow.evolutions "qiskit.opflow.evolutions"))[¶](#operator-evolutions-qiskit-opflow-evolutions "Permalink to this headline")
+## Operator Evolutions ([`qiskit.opflow.evolutions`](#module-qiskit.opflow.evolutions "qiskit.opflow.evolutions"))
 
 Evolutions are converters which traverse an Operator tree, replacing any [`EvolvedOp`](qiskit.opflow.evolutions.EvolvedOp "qiskit.opflow.evolutions.EvolvedOp") e with a Schrodinger equation-style evolution [`CircuitOp`](qiskit.opflow.primitive_ops.CircuitOp "qiskit.opflow.primitive_ops.CircuitOp") equalling or approximating the matrix exponential of -i \* the Operator contained inside (e.primitive). The Evolutions are essentially implementations of Hamiltonian Simulation algorithms, including various methods for Trotterization.
 
@@ -12,7 +12,7 @@ The [`EvolvedOp`](qiskit.opflow.evolutions.EvolvedOp "qiskit.opflow.evolutions.E
   Evolutions work with parameterized Operator coefficients, so `my_expectation.convert((t * H).exp_i())`, where t is a scalar or Terra Parameter and H is an Operator, will produce a [`CircuitOp`](qiskit.opflow.primitive_ops.CircuitOp "qiskit.opflow.primitive_ops.CircuitOp") equivalent to e^iHt.
 </Admonition>
 
-### Evolution Base Class[¶](#evolution-base-class "Permalink to this headline")
+### Evolution Base Class
 
 The EvolutionBase class gives an interface for algorithms to ask for Evolutions as execution settings. For example, if an algorithm contains an Operator evolution step within it, such as [`QAOA`](qiskit.algorithms.QAOA "qiskit.algorithms.QAOA"), the algorithm can give the opportunity for the user to pass an EvolutionBase of their choice to be used in that evolution step.
 
@@ -20,7 +20,7 @@ The EvolutionBase class gives an interface for algorithms to ask for Evolutions 
 | ---------------------------------------------------------------------------------------------------- | -------------------------------- |
 | [`EvolutionBase`](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.EvolutionBase")() | A base for Evolution converters. |
 
-### Evolutions[¶](#evolutions "Permalink to this headline")
+### Evolutions
 
 |                                                                                                                                                    |                                                                                                                                                                        |
 | -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -29,7 +29,7 @@ The EvolutionBase class gives an interface for algorithms to ask for Evolutions 
 | [`MatrixEvolution`](qiskit.opflow.evolutions.MatrixEvolution "qiskit.opflow.evolutions.MatrixEvolution")()                                         | Performs Evolution by classical matrix exponentiation, constructing a circuit with `UnitaryGates` or `HamiltonianGates` containing the exponentiation of the Operator. |
 | [`PauliTrotterEvolution`](qiskit.opflow.evolutions.PauliTrotterEvolution "qiskit.opflow.evolutions.PauliTrotterEvolution")(\[trotter\_mode, reps]) | An Evolution algorithm replacing exponentiated sums of Paulis by changing them each to the Z basis, rotating with an rZ, changing back, and Trotterizing.              |
 
-### Trotterizations[¶](#trotterizations "Permalink to this headline")
+### Trotterizations
 
 |                                                                                                                              |                                                                                                                                                                                        |
 | ---------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |

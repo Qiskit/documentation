@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.pulse.builder.x
 ---
 
-# qiskit.pulse.builder.x[¶](#qiskit-pulse-builder-x "Permalink to this headline")
+# qiskit.pulse.builder.x
 
 <span id="qiskit.pulse.builder.x" />
 
-`x(qubit)`
+`x(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/builder.py "view source code")
 
 Call a `XGate` on the input physical qubit.
 

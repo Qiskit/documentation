@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.QAOAAnsatz
 ---
 
-# QAOAAnsatz[¶](#qaoaansatz "Permalink to this headline")
+# QAOAAnsatz
 
 <span id="qiskit.circuit.library.QAOAAnsatz" />
 
-`QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA')`
+`QAOAAnsatz(cost_operator=None, reps=1, initial_state=None, mixer_operator=None, name='QAOA')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/n_local/qaoa_ansatz.py "view source code")
 
 Bases: [`qiskit.circuit.library.evolved_operator_ansatz.EvolvedOperatorAnsatz`](qiskit.circuit.library.EvolvedOperatorAnsatz "qiskit.circuit.library.evolved_operator_ansatz.EvolvedOperatorAnsatz")
 

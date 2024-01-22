@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.HiddenLinearFunction
 ---
 
-# HiddenLinearFunction[¶](#hiddenlinearfunction "Permalink to this headline")
+# HiddenLinearFunction
 
 <span id="qiskit.circuit.library.HiddenLinearFunction" />
 
-`HiddenLinearFunction(adjacency_matrix)`
+`HiddenLinearFunction(adjacency_matrix)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/hidden_linear_function.py "view source code")
 
 Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 

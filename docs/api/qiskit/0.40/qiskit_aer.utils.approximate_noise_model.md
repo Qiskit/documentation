@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit_aer.utils.approximate_noise_model
 ---
 
-# qiskit\_aer.utils.approximate\_noise\_model[¶](#qiskit-aer-utils-approximate-noise-model "Permalink to this headline")
+# qiskit\_aer.utils.approximate\_noise\_model
 
 <span id="qiskit_aer.utils.approximate_noise_model" />
 
-`approximate_noise_model(model, *, operator_string=None, operator_dict=None, operator_list=None)`
+`approximate_noise_model(model, *, operator_string=None, operator_dict=None, operator_list=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/utils/noise_transformation.py "view source code")
 
 Replace all noises in a noise model with ones approximated by a mixture of operators (channels).
 

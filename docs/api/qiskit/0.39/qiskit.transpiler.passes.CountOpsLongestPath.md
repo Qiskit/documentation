@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CountOpsLongestPath
 
 <span id="qiskit.transpiler.passes.CountOpsLongestPath" />
 
-`CountOpsLongestPath(*args, **kwargs)`
+`CountOpsLongestPath(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/analysis/count_ops_longest_path.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
@@ -32,7 +32,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.CountOpsLongestPath.run" />
 
-`CountOpsLongestPath.run(dag)`
+`CountOpsLongestPath.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.22/qiskit/transpiler/passes/analysis/count_ops_longest_path.py "view source code")
 
 Run the CountOpsLongestPath pass on dag.
 

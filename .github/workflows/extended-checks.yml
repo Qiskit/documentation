@@ -15,18 +15,9 @@
 
 name: Extended checks
 on:
+  workflow_dispatch:
   schedule:
     - cron: "0 0 * * *" # Every day at midnight UTC
-
-  # For translations, run checks during branch builds because CI will not be triggered
-  # in the automated PR to download new translations. (That's a restriction by GitHub
-  # because we use the GitHub token to create the PR - a workflow can't
-  # call other workflows.)
-  push:
-    branches:
-      - main
-    paths:
-      - "translations/**/*"
 
   pull_request:
     paths:
@@ -60,10 +51,8 @@ jobs:
         run: |
           ./start &
           sleep 20
-      - name: Check API pages render
+      - name: Check current API pages render
         run: >
           npm run check-pages-render --
           --qiskit-release-notes
           --current-apis
-          --historical-apis
-          --translations

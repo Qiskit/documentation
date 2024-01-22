@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.fake_provider.FakeHanoi
 ---
 
-# FakeHanoi[¶](#fakehanoi "Permalink to this headline")
+# FakeHanoi
 
 <span id="qiskit.providers.fake_provider.FakeHanoi" />
 
-`FakeHanoi`
+`FakeHanoi`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/fake_provider/backends/hanoi/fake_hanoi.py "view source code")
 
 Bases: `qiskit.providers.fake_provider.fake_pulse_backend.FakePulseBackend`
 

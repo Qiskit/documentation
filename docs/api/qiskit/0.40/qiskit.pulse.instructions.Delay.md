@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.instructions.Delay
 ---
 
-# Delay[¶](#delay "Permalink to this headline")
+# Delay
 
 <span id="qiskit.pulse.instructions.Delay" />
 
-`Delay(duration, channel, name=None)`
+`Delay(duration, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/instructions/delay.py "view source code")
 
 Bases: [`qiskit.pulse.instructions.instruction.Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 

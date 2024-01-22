@@ -10,7 +10,7 @@ python_api_name: qiskit_ibm_provider.job.IBMCompositeJob
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob" />
 
-`IBMCompositeJob(backend, api_client, job_id=None, creation_date=None, jobs=None, circuits_list=None, run_config=None, name=None, tags=None, client_version=None)`
+`IBMCompositeJob(backend, api_client, job_id=None, creation_date=None, jobs=None, circuits_list=None, run_config=None, name=None, tags=None, client_version=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Representation of a set of jobs that execute on an IBM Quantum backend.
 
@@ -97,7 +97,7 @@ Return the backend where this job was executed.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.backend_options" />
 
-`IBMCompositeJob.backend_options()`
+`IBMCompositeJob.backend_options()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Return the backend configuration options used for this job.
 
@@ -117,7 +117,7 @@ Backend options used for this job.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.block_for_submit" />
 
-`IBMCompositeJob.block_for_submit()`
+`IBMCompositeJob.block_for_submit()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Block until all sub-jobs are submitted.
 
@@ -131,7 +131,7 @@ Block until all sub-jobs are submitted.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.cancel" />
 
-`IBMCompositeJob.cancel()`
+`IBMCompositeJob.cancel()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Attempt to cancel the job.
 
@@ -171,7 +171,7 @@ Return whether the job has been cancelled.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.circuits" />
 
-`IBMCompositeJob.circuits()`
+`IBMCompositeJob.circuits()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Return the circuits for this job.
 
@@ -189,7 +189,7 @@ The circuits for this job.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.creation_date" />
 
-`IBMCompositeJob.creation_date()`
+`IBMCompositeJob.creation_date()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Return job creation date, in local time.
 
@@ -221,7 +221,7 @@ Return whether the job has successfully run.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.error_message" />
 
-`IBMCompositeJob.error_message()`
+`IBMCompositeJob.error_message()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Provide details about the reason of failure.
 
@@ -243,7 +243,7 @@ An error report if the job failed or `None` otherwise.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.from_jobs" />
 
-`classmethod IBMCompositeJob.from_jobs(job_id, jobs, api_client)`
+`classmethod IBMCompositeJob.from_jobs(job_id, jobs, api_client)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Return an instance of this class.
 
@@ -269,7 +269,7 @@ An instance of this class.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.header" />
 
-`IBMCompositeJob.header()`
+`IBMCompositeJob.header()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Return the user header specified for this job.
 
@@ -333,7 +333,7 @@ Job name or `None` if no name was assigned to this job.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.properties" />
 
-`IBMCompositeJob.properties(refresh=False)`
+`IBMCompositeJob.properties(refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Return the backend properties for this job.
 
@@ -365,7 +365,7 @@ The backend properties used for this job, or `None` if properties are not availa
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.queue_info" />
 
-`IBMCompositeJob.queue_info()`
+`IBMCompositeJob.queue_info()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Return queue information for this job.
 
@@ -391,7 +391,7 @@ A [`QueueInfo`](qiskit_ibm_provider.job.QueueInfo "qiskit_ibm_provider.job.Queue
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.queue_position" />
 
-`IBMCompositeJob.queue_position(refresh=False)`
+`IBMCompositeJob.queue_position(refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Return the position of the job in the server queue.
 
@@ -419,7 +419,7 @@ Position in the queue or `None` if position is unknown or not applicable.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.refresh" />
 
-`IBMCompositeJob.refresh()`
+`IBMCompositeJob.refresh()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Obtain the latest job information from the server.
 
@@ -439,7 +439,7 @@ This method may add additional attributes to this job instance, if new informati
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.report" />
 
-`IBMCompositeJob.report(detailed=True)`
+`IBMCompositeJob.report(detailed=True)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Return a report on current sub-job statuses.
 
@@ -461,7 +461,7 @@ A report on sub-job statuses.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.rerun_failed" />
 
-`IBMCompositeJob.rerun_failed()`
+`IBMCompositeJob.rerun_failed()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Re-submit all failed sub-jobs.
 
@@ -479,7 +479,7 @@ Re-submit all failed sub-jobs.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.result" />
 
-`IBMCompositeJob.result(timeout=None, wait=5, partial=False, refresh=False)`
+`IBMCompositeJob.result(timeout=None, wait=5, partial=False, refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Return the result of the job.
 
@@ -549,7 +549,7 @@ Return whether the job is actively running.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.scheduling_mode" />
 
-`IBMCompositeJob.scheduling_mode()`
+`IBMCompositeJob.scheduling_mode()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Return the scheduling mode the job is in.
 
@@ -573,7 +573,7 @@ The scheduling mode the job is in or `None` if the information is not available.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.status" />
 
-`IBMCompositeJob.status()`
+`IBMCompositeJob.status()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Query the server for the latest job status.
 
@@ -615,7 +615,7 @@ The status of the job.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.sub_job" />
 
-`IBMCompositeJob.sub_job(circuit_index)`
+`IBMCompositeJob.sub_job(circuit_index)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Retrieve the job used to submit the specified circuit.
 
@@ -641,7 +641,7 @@ The Job submitted for the circuit, or `None` if the job has not been submitted o
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.sub_jobs" />
 
-`IBMCompositeJob.sub_jobs(block_for_submit=True)`
+`IBMCompositeJob.sub_jobs(block_for_submit=True)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Return all submitted sub-jobs.
 
@@ -663,7 +663,7 @@ All submitted sub-jobs.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.submit" />
 
-`IBMCompositeJob.submit()`
+`IBMCompositeJob.submit()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Unsupported method.
 
@@ -703,7 +703,7 @@ Tags assigned to this job.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.time_per_step" />
 
-`IBMCompositeJob.time_per_step()`
+`IBMCompositeJob.time_per_step()`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Return the date and time information on each step of the job processing.
 
@@ -729,7 +729,7 @@ Date and time information on job processing steps, in local time, or `None` if t
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.update_name" />
 
-`IBMCompositeJob.update_name(name)`
+`IBMCompositeJob.update_name(name)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Update the name associated with this job.
 
@@ -760,7 +760,7 @@ The new name associated with this job.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.update_tags" />
 
-`IBMCompositeJob.update_tags(new_tags)`
+`IBMCompositeJob.update_tags(new_tags)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Update the tags associated with this job.
 
@@ -791,7 +791,7 @@ The new tags associated with this job.
 
 <span id="qiskit_ibm_provider.job.IBMCompositeJob.wait_for_final_state" />
 
-`IBMCompositeJob.wait_for_final_state(timeout=None, wait=None, callback=None)`
+`IBMCompositeJob.wait_for_final_state(timeout=None, wait=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit-ibm-provider/tree/stable/0.7/qiskit_ibm_provider/job/ibm_composite_job.py "view source code")
 
 Wait until the job progresses to a final state such as `DONE` or `ERROR`.
 

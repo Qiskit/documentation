@@ -14,13 +14,9 @@ python_api_name: qiskit.synthesis
 
 <span id="module-qiskit.synthesis" />
 
-`qiskit.synthesis¶`
+`qiskit.synthesis`
 
 ## Evolution Synthesis
-
-<span id="module-qiskit.synthesis" />
-
-`¶`
 
 |                                                                                                            |                                                                                                                                               |
 | ---------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -33,20 +29,12 @@ python_api_name: qiskit.synthesis
 
 ## Linear Function Synthesis
 
-<span id="module-qiskit.synthesis" />
-
-`¶`
-
 |                                                                                                                                                 |                                                                                                                        |
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------- |
 | [`synth_cnot_count_full_pmh`](qiskit.synthesis.synth_cnot_count_full_pmh "qiskit.synthesis.synth_cnot_count_full_pmh")(state\[, section\_size]) | Synthesize linear reversible circuits for all-to-all architecture using Patel, Markov and Hayes method.                |
 | [`synth_cnot_depth_line_kms`](qiskit.synthesis.synth_cnot_depth_line_kms "qiskit.synthesis.synth_cnot_depth_line_kms")(mat)                     | Synthesize linear reversible circuit for linear nearest-neighbor architectures using Kutin, Moulton, Smithline method. |
 
 ## Permutation Synthesis
-
-<span id="module-qiskit.synthesis" />
-
-`¶`
 
 |                                                                                                                                                   |                                                                                                                         |
 | ------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------- |
@@ -55,10 +43,6 @@ python_api_name: qiskit.synthesis
 | [`synth_permutation_acg`](qiskit.synthesis.synth_permutation_acg "qiskit.synthesis.synth_permutation_acg")(pattern)                               | Synthesize a permutation circuit for a fully-connected architecture using the Alon, Chung, Graham method.               |
 
 ## Clifford Synthesis
-
-<span id="module-qiskit.synthesis" />
-
-`¶`
 
 |                                                                                                                           |                                                                                                                                                                |
 | ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------------- |
@@ -70,10 +54,6 @@ python_api_name: qiskit.synthesis
 
 ## CNOTDihedral Synthesis
 
-<span id="module-qiskit.synthesis" />
-
-`¶`
-
 |                                                                                                                                          |                                                                                          |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------- |
 | [`synth_cnotdihedral_full`](qiskit.synthesis.synth_cnotdihedral_full "qiskit.synthesis.synth_cnotdihedral_full")(elem)                   | Decompose a CNOTDihedral element into a QuantumCircuit.                                  |
@@ -81,10 +61,6 @@ python_api_name: qiskit.synthesis
 | [`synth_cnotdihedral_general`](qiskit.synthesis.synth_cnotdihedral_general "qiskit.synthesis.synth_cnotdihedral_general")(elem)          | Decompose a CNOTDihedral element into a QuantumCircuit.                                  |
 
 ## Discrete Basis Synthesis
-
-<span id="module-qiskit.synthesis" />
-
-`¶`
 
 |                                                                                                                                                         |                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |

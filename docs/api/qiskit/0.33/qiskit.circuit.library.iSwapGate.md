@@ -1,8 +1,16 @@
+---
+title: iSwapGate
+description: API reference for qiskit.circuit.library.iSwapGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.iSwapGate
+---
+
 # iSwapGate
 
+<span id="qiskit.circuit.library.iSwapGate" />
 
-
-`iSwapGate(label=None)`
+`iSwapGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/circuit/library/standard_gates/iswap.py "view source code")
 
 Bases: `qiskit.circuit.gate.Gate`
 
@@ -63,7 +71,7 @@ Create new iSwap gate.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.iSwapGate.condition_bits" />
 
 ### condition\_bits
 
@@ -73,25 +81,25 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.iSwapGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-
+<span id="qiskit.circuit.library.iSwapGate.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
+<span id="qiskit.circuit.library.iSwapGate.duration" />
 
 ### duration
 
 Get the duration.
 
-
+<span id="qiskit.circuit.library.iSwapGate.label" />
 
 ### label
 
@@ -101,14 +109,15 @@ Return instruction label
 
 `str`
 
-
+<span id="qiskit.circuit.library.iSwapGate.params" />
 
 ### params
 
 return instruction params.
 
-
+<span id="qiskit.circuit.library.iSwapGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

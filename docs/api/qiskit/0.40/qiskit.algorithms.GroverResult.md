@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.GroverResult
 ---
 
-# GroverResult[¶](#groverresult "Permalink to this headline")
+# GroverResult
 
 <span id="qiskit.algorithms.GroverResult" />
 
-`GroverResult`
+`GroverResult`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Bases: `qiskit.algorithms.amplitude_amplifiers.amplitude_amplifier.AmplitudeAmplifierResult`
 

@@ -1,8 +1,16 @@
+---
+title: PhaseEstimation
+description: API reference for qiskit.algorithms.PhaseEstimation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.PhaseEstimation
+---
+
 # PhaseEstimation
 
+<span id="qiskit.algorithms.PhaseEstimation" />
 
-
-`PhaseEstimation(num_evaluation_qubits, quantum_instance=None)`
+`PhaseEstimation(num_evaluation_qubits, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/phase_estimators/phase_estimation.py "view source code")
 
 Bases: `qiskit.algorithms.phase_estimators.phase_estimator.PhaseEstimator`
 
@@ -49,8 +57,59 @@ Quantum Computation and Quantum Information: 10th Anniversary Edition (10th ed.)
 
 ## Methods
 
-|                                                                                                                                                                                                                  |                                                                       |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [`construct_circuit`](qiskit.algorithms.PhaseEstimation.construct_circuit#qiskit.algorithms.PhaseEstimation.construct_circuit "qiskit.algorithms.PhaseEstimation.construct_circuit")                             | Return the circuit to be executed to estimate phases.                 |
-| [`estimate`](qiskit.algorithms.PhaseEstimation.estimate#qiskit.algorithms.PhaseEstimation.estimate "qiskit.algorithms.PhaseEstimation.estimate")                                                                 | Build a phase estimation circuit and run the corresponding algorithm. |
-| [`estimate_from_pe_circuit`](qiskit.algorithms.PhaseEstimation.estimate_from_pe_circuit#qiskit.algorithms.PhaseEstimation.estimate_from_pe_circuit "qiskit.algorithms.PhaseEstimation.estimate_from_pe_circuit") | Run the the phase estimation algorithm on a phase estimation circuit  |
+### construct\_circuit
+
+<span id="qiskit.algorithms.PhaseEstimation.construct_circuit" />
+
+`PhaseEstimation.construct_circuit(unitary, state_preparation=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/phase_estimators/phase_estimation.py "view source code")
+
+Return the circuit to be executed to estimate phases.
+
+This circuit includes as sub-circuits the core phase estimation circuit, with the addition of the state-preparation circuit and possibly measurement instructions.
+
+**Return type**
+
+`QuantumCircuit`
+
+### estimate
+
+<span id="qiskit.algorithms.PhaseEstimation.estimate" />
+
+`PhaseEstimation.estimate(unitary=None, state_preparation=None, pe_circuit=None, num_unitary_qubits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/phase_estimators/phase_estimation.py "view source code")
+
+Build a phase estimation circuit and run the corresponding algorithm.
+
+**Parameters**
+
+*   **unitary** (`Optional`\[`QuantumCircuit`]) – The circuit representing the unitary operator whose eigenvalues (via phase) will be measured.
+*   **state\_preparation** (`Optional`\[`QuantumCircuit`]) – The circuit that prepares the state whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
+
+**Return type**
+
+`PhaseEstimationResult`
+
+**Returns**
+
+An instance of qiskit.algorithms.phase\_estimator\_result.PhaseEstimationResult.
+
+### estimate\_from\_pe\_circuit
+
+<span id="qiskit.algorithms.PhaseEstimation.estimate_from_pe_circuit" />
+
+`PhaseEstimation.estimate_from_pe_circuit(pe_circuit, num_unitary_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.19/qiskit/algorithms/phase_estimators/phase_estimation.py "view source code")
+
+Run the the phase estimation algorithm on a phase estimation circuit
+
+**Parameters**
+
+*   **pe\_circuit** (`QuantumCircuit`) – The phase estimation circuit.
+*   **num\_unitary\_qubits** (`int`) – Must agree with the number of qubits in the unitary in pe\_circuit.
+
+**Return type**
+
+`PhaseEstimationResult`
+
+**Returns**
+
+An instance of qiskit.algorithms.phase\_estimator\_result.PhaseEstimationResult.
+

@@ -10,11 +10,11 @@ python_api_name: qiskit.providers.ibmq.IBMQAccountCredentialsNotFound
   The package `qiskit-ibmq-provider` is being deprecated and its repo is going to be archived soon. Please transition to the new packages. More information in [https://ibm.biz/provider\_migration\_guide](https://ibm.biz/provider_migration_guide)
 </Admonition>
 
-# qiskit.providers.ibmq.IBMQAccountCredentialsNotFound[¶](#qiskit-providers-ibmq-ibmqaccountcredentialsnotfound "Permalink to this headline")
+# qiskit.providers.ibmq.IBMQAccountCredentialsNotFound
 
 <span id="qiskit.providers.ibmq.IBMQAccountCredentialsNotFound" />
 
-`IBMQAccountCredentialsNotFound(*message)`
+`IBMQAccountCredentialsNotFound(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.20/qiskit/providers/ibmq/exceptions.py "view source code")
 
 Errors raised when credentials are not found.
 

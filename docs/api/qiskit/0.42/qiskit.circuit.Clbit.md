@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.Clbit
 ---
 
-# Clbit[¶](#clbit "Permalink to this headline")
+# Clbit
 
 <span id="qiskit.circuit.Clbit" />
 
-`Clbit(register=None, index=None)`
+`Clbit(register=None, index=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/classicalregister.py "view source code")
 
 Bases: `qiskit.circuit.bit.Bit`
 

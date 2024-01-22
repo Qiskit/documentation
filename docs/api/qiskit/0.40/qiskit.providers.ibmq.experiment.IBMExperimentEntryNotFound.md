@@ -6,11 +6,11 @@ python_api_type: exception
 python_api_name: qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound
 ---
 
-# qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound[¶](#qiskit-providers-ibmq-experiment-ibmexperimententrynotfound "Permalink to this headline")
+# qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound
 
 <span id="qiskit.providers.ibmq.experiment.IBMExperimentEntryNotFound" />
 
-`IBMExperimentEntryNotFound(*message)`
+`IBMExperimentEntryNotFound(*message)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/experiment/exceptions.py "view source code")
 
 Errors raised when an experiment entry cannot be found.
 

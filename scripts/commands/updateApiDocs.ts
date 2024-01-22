@@ -13,7 +13,6 @@
 import { join, parse, relative } from "path";
 import { readFile, writeFile } from "fs/promises";
 
-import { $ } from "zx";
 import { globby } from "globby";
 import { uniq, uniqBy } from "lodash";
 import { mkdirp } from "mkdirp";
@@ -21,6 +20,7 @@ import yargs from "yargs/yargs";
 import { hideBin } from "yargs/helpers";
 import transformLinks from "transform-markdown-links";
 
+import { ObjectsInv } from "../lib/api/objectsInv";
 import { sphinxHtmlToMarkdown } from "../lib/api/htmlToMd";
 import { saveImages } from "../lib/api/saveImages";
 import { generateToc } from "../lib/api/generateToc";
@@ -31,13 +31,11 @@ import { updateLinks } from "../lib/api/updateLinks";
 import { specialCaseResults } from "../lib/api/specialCaseResults";
 import addFrontMatter from "../lib/api/addFrontMatter";
 import { dedupeHtmlIdsFromResults } from "../lib/api/dedupeHtmlIds";
-import { removePrefix, removeSuffix } from "../lib/stringUtils";
-import { Pkg, PkgInfo, Link } from "../lib/sharedTypes";
+import { Pkg } from "../lib/api/Pkg";
 import { zxMain } from "../lib/zx";
-import { pathExists, getRoot } from "../lib/fs";
+import { pathExists, getRoot, rmFilesInFolder } from "../lib/fs";
 import { downloadCIArtifact } from "../lib/api/downloadCIArtifacts";
 import {
-  findLegacyReleaseNotes,
   addNewReleaseNotes,
   generateReleaseNotesIndex,
   updateHistoricalTocFiles,
@@ -52,57 +50,13 @@ interface Arguments {
   artifact: string;
 }
 
-function transformLink(link: Link): Link | undefined {
-  const updateText = link.url === link.text;
-  const prefixes = [
-    "https://qiskit.org/documentation/apidoc/",
-    "https://qiskit.org/documentation/stubs/",
-  ];
-  const prefix = prefixes.find((prefix) => link.url.startsWith(prefix));
-  if (!prefix) {
-    return;
-  }
-  let [url, anchor] = link.url.split("#");
-  url = removePrefix(url, prefix);
-  url = removeSuffix(url, ".html");
-  if (anchor && anchor !== url) {
-    url = `${url}#${anchor}`;
-  }
-  const newText = updateText ? url : undefined;
-  return { url: `/api/qiskit/${url}`, text: newText };
-}
-
-const PACKAGES: PkgInfo[] = [
-  {
-    title: "Qiskit Runtime IBM Client",
-    name: "qiskit-ibm-runtime",
-    githubSlug: "qiskit/qiskit-ibm-runtime",
-    initialUrl: `/apidocs/ibm-runtime.html`,
-    transformLink,
-  },
-  {
-    title: "Qiskit IBM Provider",
-    name: "qiskit-ibm-provider",
-    githubSlug: "qiskit/qiskit-ibm-provider",
-    initialUrl: `/apidocs/ibm-provider.html`,
-    transformLink,
-  },
-  {
-    title: "Qiskit",
-    name: "qiskit",
-    githubSlug: "qiskit/qiskit",
-    initialUrl: `/apidoc/index.html`,
-    hasSeparateReleaseNotes: true,
-  },
-];
-
 const readArgs = (): Arguments => {
   return yargs(hideBin(process.argv))
     .version(false)
     .option("package", {
       alias: "p",
       type: "string",
-      choices: PACKAGES.map((p) => p.name),
+      choices: Pkg.VALID_NAMES,
       demandOption: true,
       description: "Which package to update",
     })
@@ -138,81 +92,44 @@ zxMain(async () => {
     );
   }
 
-  const pkgInfo = PACKAGES.find((pkg) => pkg.name === args.package);
-  if (pkgInfo === undefined) {
-    throw new Error(`Unrecognized package: ${args.package}`);
-  }
+  const pkg = await Pkg.fromArgs(
+    args.package,
+    args.version,
+    versionMatch[0],
+    args.historical,
+  );
 
-  const pkg: Pkg = {
-    version: args.version,
-    versionWithoutPatch: versionMatch[0],
-    historical: args.historical,
-    releaseNoteEntries: [],
-    baseUrl: `http://localhost:8000`,
-    ...pkgInfo,
-  };
-
-  pkg.initialUrl = pkg.baseUrl + pkg.initialUrl;
-
-  if (pkg.name == "qiskit" && +pkg.versionWithoutPatch < 0.44) {
-    pkg.initialUrl = `${pkg.baseUrl}/apidoc/terra.html`;
-  }
-
-  const artifactUrl = args.artifact;
-  const destination = `${getRoot()}/.out/python/sources/${pkg.name}/${
-    pkg.version
-  }`;
-
-  if (await pathExists(destination)) {
+  const artifactFolder = pkg.ciArtifactFolder();
+  if (await pathExists(artifactFolder)) {
     console.log(`Skip downloading sources for ${pkg.name}:${pkg.version}`);
   } else {
-    await downloadCIArtifact(pkg.name, artifactUrl, destination);
+    await downloadCIArtifact(pkg.name, args.artifact, artifactFolder);
   }
 
-  const baseGitHubUrl = `https://github.com/${pkg.githubSlug}/tree/stable/${pkg.versionWithoutPatch}/`;
-  const outputDir = pkg.historical
-    ? `${getRoot()}/docs/api/${pkg.name}/${pkg.versionWithoutPatch}`
-    : `${getRoot()}/docs/api/${pkg.name}`;
-
+  const outputDir = pkg.outputDir(`${getRoot()}/docs`);
   if (pkg.historical && !(await pathExists(outputDir))) {
     await mkdirp(outputDir);
   } else {
-    await rmFilesInFolder(outputDir, `${pkg.name}:${pkg.versionWithoutPatch}`);
+    console.log(
+      `Deleting existing markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
+    );
+    await rmFilesInFolder(outputDir);
   }
-
-  pkg.releaseNoteEntries = await findLegacyReleaseNotes(pkg);
 
   console.log(
     `Convert sphinx html to markdown for ${pkg.name}:${pkg.versionWithoutPatch}`,
   );
-  await convertHtmlToMarkdown(
-    `${destination}/artifact`,
-    outputDir,
-    baseGitHubUrl,
-    pkg,
-  );
+  await convertHtmlToMarkdown(`${artifactFolder}/artifact`, outputDir, pkg);
 });
-
-/**
- * Deletes all the files in the folder, but preserves subfolders. That's important
- * to avoid accidentally deleting other historical versions of the API.
- *
- * We delete files when regenerating API docs to capture when APIs have been deleted.
- */
-async function rmFilesInFolder(
-  dir: string,
-  description: string,
-): Promise<void> {
-  console.log(`Deleting existing markdown for ${description}`);
-  await $`find ${dir}/* -maxdepth 0 -type f | xargs rm -f {}`;
-}
 
 async function convertHtmlToMarkdown(
   htmlPath: string,
   markdownPath: string,
-  baseGitHubUrl: string,
   pkg: Pkg,
 ) {
+  const maybeObjectsInv = await (pkg.hasObjectsInv()
+    ? ObjectsInv.fromFile(htmlPath)
+    : undefined);
   const files = await globby(
     [
       "apidocs/**.html",
@@ -225,18 +142,14 @@ async function convertHtmlToMarkdown(
     },
   );
 
-  const ignore = pkg.ignore ?? (() => false);
-
   let results: Array<HtmlToMdResult & { url: string }> = [];
   for (const file of files) {
     const html = await readFile(join(htmlPath, file), "utf-8");
     const result = await sphinxHtmlToMarkdown({
       html,
-      url: `${pkg.baseUrl}/${file}`,
-      baseGitHubUrl,
-      imageDestination: pkg.historical
-        ? `/images/api/${pkg.name}/${pkg.versionWithoutPatch}`
-        : `/images/api/${pkg.name}`,
+      fileName: file,
+      determineGithubUrl: pkg.determineGithubUrlFn(),
+      imageDestination: pkg.outputDir("/images"),
       releaseNotesTitle: `${pkg.title} ${pkg.versionWithoutPatch} release notes`,
     });
 
@@ -248,10 +161,8 @@ async function convertHtmlToMarkdown(
 
     const { dir, name } = parse(`${markdownPath}/${file}`);
     let url = `/${relative(`${getRoot()}/docs`, dir)}/${name}`;
+    results.push({ ...result, url });
 
-    if (!result.meta.apiName || !ignore(result.meta.apiName)) {
-      results.push({ ...result, url });
-    }
     if (
       !pkg.historical &&
       pkg.hasSeparateReleaseNotes &&
@@ -263,7 +174,7 @@ async function convertHtmlToMarkdown(
 
   const allImages = uniqBy(
     results.flatMap((result) => result.images),
-    (image) => image.src,
+    (image) => image.fileName,
   );
 
   const dirsNeeded = uniq(
@@ -276,10 +187,11 @@ async function convertHtmlToMarkdown(
   results = await mergeClassMembers(results);
   flattenFolders(results);
   specialCaseResults(results);
-  await updateLinks(results, pkg.transformLink);
+  await updateLinks(results, maybeObjectsInv, pkg.transformLink);
   await dedupeHtmlIdsFromResults(results);
   addFrontMatter(results, pkg);
 
+  await maybeObjectsInv?.write(pkg.outputDir("public"));
   for (const result of results) {
     let path = urlToPath(result.url);
 
@@ -315,10 +227,9 @@ async function convertHtmlToMarkdown(
     JSON.stringify(toc, null, 2) + "\n",
   );
 
-  // Add the new release entry to the _toc.json for all Qiskit historical API versions.
-  // We don't need to add any entries in other projects, given that the release notes files
-  // are stable.
-  if (!pkg.historical && pkg.name == "qiskit") {
+  // Add the new release entry to the _toc.json for all historical API versions.
+  // We don't need to add any entries in projects with a single release notes file.
+  if (!pkg.historical && pkg.hasSeparateReleaseNotes) {
     await updateHistoricalTocFiles(pkg);
   }
 

@@ -12,6 +12,8 @@
 
 import argparse
 import sys
+import warnings
+import textwrap
 from dataclasses import dataclass
 from datetime import datetime
 from pathlib import Path
@@ -39,6 +41,49 @@ class ExecuteOptions:
     submit_jobs: bool
 
 
+@dataclass(frozen=True)
+class NotebookWarning:
+    cell_index: int
+    msg: str
+
+    def report(self):
+        """
+        Format warning and print it
+        """
+        message = f"Warning detected in cell {self.cell_index}:\n"
+        for line in self.msg.splitlines():
+            message += (
+                textwrap.fill(
+                    line, width=77, initial_indent=" │ ", subsequent_indent=" │ "
+                )
+                + "\n"
+            )
+        print_yellow(message, flush=True)
+
+
+def print_yellow(s: str, **kwargs):
+    """
+    Use ANSI escape codes to print yellow text
+    """
+    print(f"\033[0;33m{str}\033[0m", **kwargs)
+
+
+def extract_warnings(notebook: nbformat.NotebookNode) -> list[NotebookWarning]:
+    """
+    Detect warning messages in cell outputs
+    """
+    notebook_warnings = []
+    for cell_index, cell in enumerate(notebook.cells):
+        if not hasattr(cell, "outputs"):
+            continue
+        for output in cell.outputs:
+            if hasattr(output, "name") and output.name == "stderr":
+                notebook_warnings.append(
+                    NotebookWarning(cell_index=cell_index, msg=output.text)
+                )
+    return notebook_warnings
+
+
 def execute_notebook(path: Path, options: ExecuteOptions) -> bool:
     """
     Wrapper function for `_execute_notebook` to print status
@@ -49,16 +94,23 @@ def execute_notebook(path: Path, options: ExecuteOptions) -> bool:
         nbclient.exceptions.CellTimeoutError,
     )
     try:
-        _execute_notebook(path, options)
+        nb = _execute_notebook(path, options)
     except possible_exceptions as err:
         print("\r❌\n")
         print(err)
         return False
+
+    notebook_warnings = extract_warnings(nb)
+    if notebook_warnings:
+        print("\r⚠️")
+        [w.report() for w in notebook_warnings]
+        return False
+
     print("\r✅")
     return True
 
 
-def _execute_notebook(filepath: Path, options: ExecuteOptions) -> None:
+def _execute_notebook(filepath: Path, options: ExecuteOptions) -> nbformat.NotebookNode:
     """
     Use nbconvert to execute notebook
     """
@@ -73,12 +125,13 @@ def _execute_notebook(filepath: Path, options: ExecuteOptions) -> None:
     processor.preprocess(nb)
 
     if not options.write:
-        return
+        return nb
 
     for cell in nb.cells:
         # Remove execution metadata to avoid noisy diffs.
         cell.metadata.pop("execution", None)
     nbformat.write(nb, filepath)
+    return nb
 
 
 def find_notebooks(*, submit_jobs: bool = False) -> list[Path]:

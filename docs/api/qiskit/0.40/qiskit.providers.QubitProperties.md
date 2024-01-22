@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.providers.QubitProperties
 ---
 
-# QubitProperties[¶](#qubitproperties "Permalink to this headline")
+# QubitProperties
 
 <span id="qiskit.providers.QubitProperties" />
 
-`QubitProperties(t1=None, t2=None, frequency=None)`
+`QubitProperties(t1=None, t2=None, frequency=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/providers/backend.py "view source code")
 
 Bases: `object`
 

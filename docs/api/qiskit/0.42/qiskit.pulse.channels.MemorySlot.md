@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.pulse.channels.MemorySlot
 ---
 
-# MemorySlot[¶](#memoryslot "Permalink to this headline")
+# MemorySlot
 
 <span id="qiskit.pulse.channels.MemorySlot" />
 
-`MemorySlot(index)`
+`MemorySlot(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/pulse/channels.py "view source code")
 
 Bases: `qiskit.pulse.channels.ClassicalIOChannel`
 
