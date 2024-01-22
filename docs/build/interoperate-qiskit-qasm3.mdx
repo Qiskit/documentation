@@ -14,22 +14,25 @@ This function is still in the exploratory phase.  Therefore, it is likely that t
 
 ## Import an OpenQASM 3 program into Qiskit
 
-Currently two high-level functions are available for importing from OpenQASM 3 into Qiskit. These functions are `load()`, which takes a file name, and `loads()`, which takes the program itself as a string: 
-
-
-```python
-qiskit.qasm3.load(file_name)
-```
-
-```python
-qiskit.qasm3.loads(program-string)
-```
-
-You must install the package `qiskit_qasm3_import ` to use this function.  For example:  
+You must install the package `qiskit_qasm3_import ` to use this function. Install using the following command.
 
 ```python
 pip install qiskit-qasm3-import
 ```
+
+Currently two high-level functions are available for importing from OpenQASM 3 into Qiskit. These functions are `load()`, which takes a file name, and `loads()`, which takes the program itself as a string: 
+
+
+```python
+import qiskit.qasm3
+qiskit.qasm3.load(file_name)
+```
+
+```python
+import qiskit.qasm3
+qiskit.qasm3.loads(program-string)
+```
+
 
 In this example, we define a quantum program using OpenQASM 3, and use `loads()` to directly convert it into a QuantumCircuit:
 
