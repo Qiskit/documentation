@@ -1,8 +1,16 @@
+---
+title: gates_per_clifford
+description: API reference for qiskit.ignis.verification.gates_per_clifford
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.gates_per_clifford
+---
+
 # qiskit.ignis.verification.gates\_per\_clifford
 
+<span id="qiskit.ignis.verification.gates_per_clifford" />
 
-
-`gates_per_clifford(transpiled_circuits_list, clifford_lengths, basis, qubits)`
+`gates_per_clifford(transpiled_circuits_list, clifford_lengths, basis, qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py "view source code")
 
 Take a list of transpiled `QuantumCircuit` and use these to calculate the number of gates per Clifford. Each `QuantumCircuit` should be transpiled into given `basis` set. The result can be used to convert a value of error per Clifford into error per basis gate under appropriate assumption.
 
@@ -70,3 +78,4 @@ Nested dictionary of gate counts per Clifford.
 **Raises**
 
 **QiskitError** – when input object is not a list of QuantumCircuit.
+

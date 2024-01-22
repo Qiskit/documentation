@@ -1,8 +1,16 @@
+---
+title: BaseCoherenceFitter
+description: API reference for qiskit.ignis.characterization.BaseCoherenceFitter
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.ignis.characterization.BaseCoherenceFitter
+---
+
 # BaseCoherenceFitter
 
+<span id="qiskit.ignis.characterization.BaseCoherenceFitter" />
 
-
-`BaseCoherenceFitter(description, backend_result, xdata, qubits, fit_fun, fit_p0, fit_bounds, circuit_names, series=None, expected_state='0', time_index=0, time_unit='micro-seconds')`
+`BaseCoherenceFitter(description, backend_result, xdata, qubits, fit_fun, fit_p0, fit_bounds, circuit_names, series=None, expected_state='0', time_index=0, time_unit='micro-seconds')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/fitters.py "view source code")
 
 Bases: `qiskit.ignis.characterization.fitters.BaseFitter`
 
@@ -25,17 +33,109 @@ Base class for fitters of characteristic times
 
 ## Methods
 
-|                                                                                                                                                                                                  |                                                                        |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------- |
-| [`add_data`](qiskit.ignis.characterization.BaseCoherenceFitter.add_data#qiskit.ignis.characterization.BaseCoherenceFitter.add_data "qiskit.ignis.characterization.BaseCoherenceFitter.add_data") | Add new execution results to previous execution results                |
-| [`fit_data`](qiskit.ignis.characterization.BaseCoherenceFitter.fit_data#qiskit.ignis.characterization.BaseCoherenceFitter.fit_data "qiskit.ignis.characterization.BaseCoherenceFitter.fit_data") | Fit the curve.                                                         |
-| [`plot`](qiskit.ignis.characterization.BaseCoherenceFitter.plot#qiskit.ignis.characterization.BaseCoherenceFitter.plot "qiskit.ignis.characterization.BaseCoherenceFitter.plot")                 | Plot coherence data.                                                   |
-| [`time`](qiskit.ignis.characterization.BaseCoherenceFitter.time#qiskit.ignis.characterization.BaseCoherenceFitter.time "qiskit.ignis.characterization.BaseCoherenceFitter.time")                 | Return the characteristic time for the given qubit and series          |
-| [`time_err`](qiskit.ignis.characterization.BaseCoherenceFitter.time_err#qiskit.ignis.characterization.BaseCoherenceFitter.time_err "qiskit.ignis.characterization.BaseCoherenceFitter.time_err") | Return the error of characteristic time for the given qubit and series |
+### add\_data
+
+<span id="qiskit.ignis.characterization.BaseCoherenceFitter.add_data" />
+
+`BaseCoherenceFitter.add_data(results, recalc=True, refit=True)`
+
+Add new execution results to previous execution results
+
+**Parameters**
+
+*   **results** (`Union`\[`Result`, `List`\[`Result`]]) – new execution results
+*   **recalc** (`bool`) – whether tp recalculate the data
+*   **refit** (`bool`) – whether to refit the data
+
+### fit\_data
+
+<span id="qiskit.ignis.characterization.BaseCoherenceFitter.fit_data" />
+
+`BaseCoherenceFitter.fit_data(qid=- 1, p0=None, bounds=None, series=None)`
+
+Fit the curve.
+
+Compute self.\_params and self.\_params\_err
+
+**Parameters**
+
+*   **qid** (`int`) – qubit for fitting. If -1 fit for all the qubits
+*   **p0** (`Optional`\[`List`\[`float`]]) – initial guess, equivalent to p0 in scipy.optimize
+*   **bounds** (`Optional`\[`Tuple`\[`List`\[`float`], `List`\[`float`]]]) – bounds, equivalent to bounds in scipy.optimize
+*   **series** (`Optional`\[`str`]) – series to fit (if None fit all)
+
+### plot
+
+<span id="qiskit.ignis.characterization.BaseCoherenceFitter.plot" />
+
+`BaseCoherenceFitter.plot(qind, series, ax=None, show_plot=True)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/fitters.py "view source code")
+
+Plot coherence data.
+
+**Parameters**
+
+*   **qind** (`int`) – qubit index to plot
+*   **series** (`str`) – which series to plot (if list then plot multiple)
+*   **ax** (`Optional`\[`Any`]) – plot axes
+*   **show\_plot** (`bool`) – whether to call plt.show()
+
+**Returns**
+
+The axes object
+
+**Return type**
+
+Axes
+
+**Raises**
+
+**ImportError** – if matplotlib is not installed
+
+### time
+
+<span id="qiskit.ignis.characterization.BaseCoherenceFitter.time" />
+
+`BaseCoherenceFitter.time(qid=- 1, series='0')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/fitters.py "view source code")
+
+Return the characteristic time for the given qubit and series
+
+**Parameters**
+
+*   **qid** (`int`) – the qubit index (or all qubits if -1)
+*   **series** (`str`) – the series to get
+
+**Return type**
+
+`Union`\[`float`, `List`\[`float`]]
+
+**Returns**
+
+The characteristic time of the qubit, or all qubits
+
+### time\_err
+
+<span id="qiskit.ignis.characterization.BaseCoherenceFitter.time_err" />
+
+`BaseCoherenceFitter.time_err(qid=- 1, series='0')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/fitters.py "view source code")
+
+Return the error of characteristic time for the given qubit and series
+
+**Parameters**
+
+*   **qid** (`int`) – the qubit index (or all qubits if -1)
+*   **series** (`str`) – the series to get
+
+**Return type**
+
+`Union`\[`float`, `List`\[`float`]]
+
+**Returns**
+
+The error of the characteristic time of the qubit, or all qubits
 
 ## Attributes
 
-
+<span id="qiskit.ignis.characterization.BaseCoherenceFitter.backend_result" />
 
 ### backend\_result
 
@@ -45,7 +145,7 @@ Return the execution results
 
 `Union`\[`Result`, `List`\[`Result`]]
 
-
+<span id="qiskit.ignis.characterization.BaseCoherenceFitter.description" />
 
 ### description
 
@@ -55,7 +155,7 @@ Return the fitter’s purpose, e.g. ‘T1’
 
 `str`
 
-
+<span id="qiskit.ignis.characterization.BaseCoherenceFitter.fit_fun" />
 
 ### fit\_fun
 
@@ -65,7 +165,7 @@ Return the function used in the fit, e.g. BaseFitter.\_exp\_fit\_fun
 
 `Callable`
 
-
+<span id="qiskit.ignis.characterization.BaseCoherenceFitter.measured_qubits" />
 
 ### measured\_qubits
 
@@ -75,7 +175,7 @@ Return the indices of the qubits to be characterized
 
 `List`\[`int`]
 
-
+<span id="qiskit.ignis.characterization.BaseCoherenceFitter.params" />
 
 ### params
 
@@ -85,7 +185,7 @@ Return the fit function parameters that were calculated by curve\_fit
 
 `List`\[`float`]
 
-
+<span id="qiskit.ignis.characterization.BaseCoherenceFitter.params_err" />
 
 ### params\_err
 
@@ -95,7 +195,7 @@ Return the error of the fit function parameters
 
 `List`\[`float`]
 
-
+<span id="qiskit.ignis.characterization.BaseCoherenceFitter.series" />
 
 ### series
 
@@ -105,7 +205,7 @@ Return the list of series for the data
 
 `Optional`\[`List`\[`str`]]
 
-
+<span id="qiskit.ignis.characterization.BaseCoherenceFitter.xdata" />
 
 ### xdata
 
@@ -115,7 +215,7 @@ Return the data points on the x-axis, the independenet parameter which is fit ag
 
 `Union`\[`List`\[`float`], `array`]
 
-
+<span id="qiskit.ignis.characterization.BaseCoherenceFitter.ydata" />
 
 ### ydata
 
@@ -134,3 +234,4 @@ The data points are returning in the form of a list of dictionaries:
 **Return type**
 
 `List`\[`Dict`]
+

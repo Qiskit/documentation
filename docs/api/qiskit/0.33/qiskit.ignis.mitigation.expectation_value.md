@@ -1,8 +1,16 @@
+---
+title: expectation_value
+description: API reference for qiskit.ignis.mitigation.expectation_value
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.mitigation.expectation_value
+---
+
 # qiskit.ignis.mitigation.expectation\_value
 
+<span id="qiskit.ignis.mitigation.expectation_value" />
 
-
-`expectation_value(counts, diagonal=None, qubits=None, clbits=None, meas_mitigator=None)`
+`expectation_value(counts, diagonal=None, qubits=None, clbits=None, meas_mitigator=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/expval/utils.py "view source code")
 
 Compute the expectation value of a diagonal operator from counts.
 
@@ -30,4 +38,5 @@ The diagonal observable $O$ is input using the `diagonal` kwarg as a list or Num
 
 The `clbits` kwarg is used to marginalize the input counts dictionary over the specified bit-values, and the `qubits` kwarg is used to specify which physical qubits these bit-values correspond to as `circuit.measure(qubits, clbits)`.
 
-For calibrating a expval measurement error mitigator for the `meas_mitigator` kwarg see [`qiskit.ignis.mitigation.expval_meas_mitigator_circuits()`](qiskit.ignis.mitigation.expval_meas_mitigator_circuits#qiskit.ignis.mitigation.expval_meas_mitigator_circuits "qiskit.ignis.mitigation.expval_meas_mitigator_circuits") and [`qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter`](qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter#qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter").
+For calibrating a expval measurement error mitigator for the `meas_mitigator` kwarg see [`qiskit.ignis.mitigation.expval_meas_mitigator_circuits()`](qiskit.ignis.mitigation.expval_meas_mitigator_circuits "qiskit.ignis.mitigation.expval_meas_mitigator_circuits") and [`qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter`](qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter "qiskit.ignis.mitigation.ExpvalMeasMitigatorFitter").
+
