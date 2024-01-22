@@ -6,11 +6,11 @@ python_api_type: function
 python_api_name: qiskit.circuit.library.rzx_zz3
 ---
 
-# qiskit.circuit.library.rzx\_zz3[¶](#qiskit-circuit-library-rzx-zz3 "Permalink to this headline")
+# qiskit.circuit.library.rzx\_zz3
 
 <span id="qiskit.circuit.library.rzx_zz3" />
 
-`rzx_zz3(theta=None)`
+`rzx_zz3(theta=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/templates/rzx/rzx_zz3.py "view source code")
 
 Template for CX - RZGate - CX.
 

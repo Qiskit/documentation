@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.RCCXGate
 ---
 
-# RCCXGate[¶](#rccxgate "Permalink to this headline")
+# RCCXGate
 
 <span id="qiskit.circuit.library.RCCXGate" />
 
-`RCCXGate(label=None)`
+`RCCXGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 

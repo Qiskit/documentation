@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.transpiler.passes.BarrierBeforeFinalMeasurements
 ---
 
-# BarrierBeforeFinalMeasurements[¶](#barrierbeforefinalmeasurements "Permalink to this headline")
+# BarrierBeforeFinalMeasurements
 
 <span id="qiskit.transpiler.passes.BarrierBeforeFinalMeasurements" />
 
-`BarrierBeforeFinalMeasurements(*args, **kwargs)`
+`BarrierBeforeFinalMeasurements(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/utils/barrier_before_final_measurements.py "view source code")
 
 Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -32,7 +32,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.BarrierBeforeFinalMeasurements.run" />
 
-`BarrierBeforeFinalMeasurements.run(dag)`
+`BarrierBeforeFinalMeasurements.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/transpiler/passes/utils/barrier_before_final_measurements.py "view source code")
 
 Run the BarrierBeforeFinalMeasurements pass on dag.
 

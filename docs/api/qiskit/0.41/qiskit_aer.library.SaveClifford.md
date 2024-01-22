@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit_aer.library.SaveClifford
 ---
 
-# SaveClifford[¶](#saveclifford "Permalink to this headline")
+# SaveClifford
 
 <span id="qiskit_aer.library.SaveClifford" />
 
-`SaveClifford(num_qubits, label='clifford', pershot=False)`
+`SaveClifford(num_qubits, label='clifford', pershot=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.11/qiskit_aer/library/save_instructions/save_clifford.py "view source code")
 
 Bases: `qiskit_aer.library.save_instructions.save_data.SaveSingleData`
 

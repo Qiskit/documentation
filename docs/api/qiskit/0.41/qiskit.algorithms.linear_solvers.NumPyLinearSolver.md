@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.algorithms.linear_solvers.NumPyLinearSolver
 ---
 
-# NumPyLinearSolver[¶](#numpylinearsolver "Permalink to this headline")
+# NumPyLinearSolver
 
 <span id="qiskit.algorithms.linear_solvers.NumPyLinearSolver" />
 
-`NumPyLinearSolver`
+`NumPyLinearSolver`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/linear_solvers/numpy_linear_solver.py "view source code")
 
 Bases: [`qiskit.algorithms.linear_solvers.linear_solver.LinearSolver`](qiskit.algorithms.linear_solvers.LinearSolver "qiskit.algorithms.linear_solvers.linear_solver.LinearSolver")
 
@@ -47,7 +47,7 @@ result = solution.observable
 
 <span id="qiskit.algorithms.linear_solvers.NumPyLinearSolver.solve" />
 
-`NumPyLinearSolver.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`
+`NumPyLinearSolver.solve(matrix, vector, observable=None, observable_circuit=None, post_processing=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/algorithms/linear_solvers/numpy_linear_solver.py "view source code")
 
 Solve classically the linear system and compute the observable(s)
 

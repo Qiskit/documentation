@@ -18,7 +18,7 @@ python_api_name: qiskit.providers.ibmq.runtime
 
 <span id="module-qiskit.providers.ibmq.runtime" />
 
-`qiskit.providers.ibmq.runtime¶`
+`qiskit.providers.ibmq.runtime`
 
 Modules related to Qiskit Runtime Service.
 
@@ -51,10 +51,6 @@ The Qiskit Runtime Service allows authorized users to upload their Qiskit quantu
 
 ## Listing runtime programs
 
-<span id="module-qiskit.providers.ibmq.runtime" />
-
-`¶`
-
 To list all available runtime programs:
 
 ```python
@@ -75,10 +71,6 @@ print(program)
 In the example above, `provider.runtime` points to the runtime service class [`IBMRuntimeService`](qiskit.providers.ibmq.runtime.IBMRuntimeService "qiskit.providers.ibmq.runtime.IBMRuntimeService"), which is the main entry point for using this service. The example prints the program metadata of all available runtime programs and of just the `circuit-runner` program. A program metadata consists of the program’s ID, name, description, input parameters, return values, interim results, and other information that helps you to know more about the program.
 
 ## Invoking a runtime program
-
-<span id="module-qiskit.providers.ibmq.runtime" />
-
-`¶`
 
 You can use the [`IBMRuntimeService.run()`](qiskit.providers.ibmq.runtime.IBMRuntimeService#run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run") method to invoke a runtime program. For example:
 
@@ -117,17 +109,9 @@ The example above invokes the `circuit-runner` program, which compiles, executes
 
 ## Runtime Jobs
 
-<span id="module-qiskit.providers.ibmq.runtime" />
-
-`¶`
-
 When you use the [`IBMRuntimeService.run()`](qiskit.providers.ibmq.runtime.IBMRuntimeService#run "qiskit.providers.ibmq.runtime.IBMRuntimeService.run") method to invoke a runtime program, a [`RuntimeJob`](qiskit.providers.ibmq.runtime.RuntimeJob "qiskit.providers.ibmq.runtime.RuntimeJob") instance is returned. This class has all the basic job methods, such as [`RuntimeJob.status()`](qiskit.providers.ibmq.runtime.RuntimeJob#status "qiskit.providers.ibmq.runtime.RuntimeJob.status"), [`RuntimeJob.result()`](qiskit.providers.ibmq.runtime.RuntimeJob#result "qiskit.providers.ibmq.runtime.RuntimeJob.result"), and [`RuntimeJob.cancel()`](qiskit.providers.ibmq.runtime.RuntimeJob#cancel "qiskit.providers.ibmq.runtime.RuntimeJob.cancel"). Note that it does not have the same methods as regular circuit jobs, which are instances of [`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.IBMQJob").
 
 ## Interim results
-
-<span id="module-qiskit.providers.ibmq.runtime" />
-
-`¶`
 
 Some runtime programs provide interim results that inform you about program progress. You can choose to stream the interim results when you run the program by passing in the `callback` parameter, or at a later time using the [`RuntimeJob.stream_results()`](qiskit.providers.ibmq.runtime.RuntimeJob#stream_results "qiskit.providers.ibmq.runtime.RuntimeJob.stream_results") method. For example:
 
@@ -148,10 +132,6 @@ job = provider.runtime.run(program_id="circuit-runner",
 ```
 
 ## Uploading a program
-
-<span id="module-qiskit.providers.ibmq.runtime" />
-
-`¶`
 
 <Admonition title="Note" type="note">
   Only authorized accounts can upload programs. Having access to the runtime service doesn’t imply access to upload programs.
@@ -181,7 +161,7 @@ Method [`IBMRuntimeService.delete_program()`](qiskit.providers.ibmq.runtime.IBMR
 
 Files related to writing a runtime program are in the `qiskit/providers/ibmq/runtime/program` directory.
 
-### Classes[¶](#classes "Permalink to this headline")
+### Classes
 
 |                                                                                                                                                      |                                                           |
 | ---------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |

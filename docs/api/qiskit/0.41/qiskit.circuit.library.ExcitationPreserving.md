@@ -6,11 +6,11 @@ python_api_type: class
 python_api_name: qiskit.circuit.library.ExcitationPreserving
 ---
 
-# ExcitationPreserving[¶](#excitationpreserving "Permalink to this headline")
+# ExcitationPreserving
 
 <span id="qiskit.circuit.library.ExcitationPreserving" />
 
-`ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='ExcitationPreserving')`
+`ExcitationPreserving(num_qubits=None, mode='iswap', entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='ExcitationPreserving')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.23/qiskit/circuit/library/n_local/excitation_preserving.py "view source code")
 
 Bases: [`qiskit.circuit.library.n_local.two_local.TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
 
