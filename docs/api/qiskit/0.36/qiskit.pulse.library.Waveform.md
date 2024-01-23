@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.library.Waveform
 
 <span id="qiskit.pulse.library.Waveform" />
 
-`Waveform(samples, name=None, epsilon=1e-07, limit_amplitude=None)`
+`Waveform(samples, name=None, epsilon=1e-07, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/waveform.py "view source code")
 
 Bases: `qiskit.pulse.library.pulse.Pulse`
 
@@ -39,7 +39,7 @@ Plot the interpolated envelope of pulse.
 
 *   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
 
-*   **backend** (*Optional\[BaseBackend]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
+*   **backend** (*Optional\[*[*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")*]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
 *   **time\_range** (`Optional`\[`Tuple`\[`int`, `int`]]) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
 
@@ -69,7 +69,7 @@ Visualization output data. The returned data type depends on the `plotter`. If m
 
 <span id="qiskit.pulse.library.Waveform.is_parameterized" />
 
-`Waveform.is_parameterized()`
+`Waveform.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/waveform.py "view source code")
 
 Return True iff the instruction is parameterized.
 
@@ -78,14 +78,6 @@ Return True iff the instruction is parameterized.
 `bool`
 
 ## Attributes
-
-<span id="qiskit.pulse.library.Waveform.duration" />
-
-### duration
-
-<span id="qiskit.pulse.library.Waveform.name" />
-
-### name
 
 <span id="qiskit.pulse.library.Waveform.id" />
 

@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.DAGFixedPoint
 
 <span id="qiskit.transpiler.passes.DAGFixedPoint" />
 
-`DAGFixedPoint(*args, **kwargs)`
+`DAGFixedPoint(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/dag_fixed_point.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
 Check if the DAG has reached a fixed point.
 
@@ -32,7 +32,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.DAGFixedPoint.run" />
 
-`DAGFixedPoint.run(dag)`
+`DAGFixedPoint.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/dag_fixed_point.py "view source code")
 
 Run the DAGFixedPoint pass on dag.
 

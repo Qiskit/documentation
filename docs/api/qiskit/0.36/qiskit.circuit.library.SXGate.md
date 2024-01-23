@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.SXGate
 
 <span id="qiskit.circuit.library.SXGate" />
 
-`SXGate(label=None)`
+`SXGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/sx.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 The single-qubit Sqrt(X) gate ($\sqrt{X}$).
 
@@ -53,7 +53,7 @@ Create new SX gate.
 
 <span id="qiskit.circuit.library.SXGate.control" />
 
-`SXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`SXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/sx.py "view source code")
 
 Return a (multi-)controlled-SX gate.
 
@@ -77,7 +77,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.SXGate.inverse" />
 
-`SXGate.inverse()`
+`SXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/sx.py "view source code")
 
 Return inverse SX gate (i.e. SXdg).
 
@@ -91,7 +91,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.SXGate.decompositions" />
 

@@ -10,18 +10,11 @@ python_api_name: qiskit.transpiler.passes.Unroll3qOrMore
 
 <span id="qiskit.transpiler.passes.Unroll3qOrMore" />
 
-`Unroll3qOrMore(*args, **kwargs)`
+`Unroll3qOrMore(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/basis/unroll_3q_or_more.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
 Recursively expands 3q+ gates until the circuit only contains 2q or 1q gates.
-
-Initialize the Unroll3qOrMore pass
-
-**Parameters**
-
-*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The target object reprsenting the compilation target. If specified any multiqubit instructions in the circuit when the pass is run that are supported by the target device will be left in place. If both this and `basis_gates` are specified only the target will be checked.
-*   **basis\_gates** (*list*) – A list of basis gate names that the target device supports. If specified any gate names in the circuit which are present in this list will not be unrolled. If both this and `target` are specified only the target will be used for checking which gates are supported.
 
 ## Methods
 
@@ -37,7 +30,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Unroll3qOrMore.run" />
 
-`Unroll3qOrMore.run(dag)`
+`Unroll3qOrMore.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/basis/unroll_3q_or_more.py "view source code")
 
 Run the Unroll3qOrMore pass on dag.
 

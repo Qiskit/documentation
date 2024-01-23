@@ -10,9 +10,9 @@ python_api_name: qiskit.providers.BackendV1
 
 <span id="qiskit.providers.BackendV1" />
 
-`BackendV1(configuration, provider=None, **fields)`
+`BackendV1(configuration, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
-Bases: [`qiskit.providers.backend.Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), `abc.ABC`
+Bases: `qiskit.providers.backend.Backend`, `abc.ABC`
 
 Abstract class for Backends
 
@@ -60,7 +60,7 @@ default values set
 
 <span id="qiskit.providers.BackendV1.configuration" />
 
-`BackendV1.configuration()`
+`BackendV1.configuration()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
 Return the backend configuration.
 
@@ -76,7 +76,7 @@ the configuration for the backend.
 
 <span id="qiskit.providers.BackendV1.name" />
 
-`BackendV1.name()`
+`BackendV1.name()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
 Return the backend name.
 
@@ -92,7 +92,7 @@ str
 
 <span id="qiskit.providers.BackendV1.properties" />
 
-`BackendV1.properties()`
+`BackendV1.properties()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
 Return the backend properties.
 
@@ -108,7 +108,7 @@ the configuration for the backend. If the backend does not support properties, i
 
 <span id="qiskit.providers.BackendV1.provider" />
 
-`BackendV1.provider()`
+`BackendV1.provider()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
 Return the backend Provider.
 
@@ -124,11 +124,11 @@ the Provider responsible for the backend.
 
 <span id="qiskit.providers.BackendV1.run" />
 
-`abstract BackendV1.run(run_input, **options)`
+`abstract BackendV1.run(run_input, **options)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
 Run on the backend.
 
-This method returns a [`Job`](qiskit.providers.Job "qiskit.providers.Job") object that runs circuits. Depending on the backend this may be either an async or sync call. It is at the discretion of the provider to decide whether running should block until the execution is finished or not: the Job class can handle either situation.
+This method that will return a [`Job`](qiskit.providers.Job "qiskit.providers.Job") object that run circuits. Depending on the backend this may be either an async or sync call. It is the discretion of the provider to decide whether running should block until the execution is finished or not. The Job class can handle either situation.
 
 **Parameters**
 
@@ -147,7 +147,7 @@ The job object for the run
 
 <span id="qiskit.providers.BackendV1.set_options" />
 
-`BackendV1.set_options(**fields)`
+`BackendV1.set_options(**fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
 Set the options fields for the backend
 
@@ -165,7 +165,7 @@ This method is used to update the options of a backend. If you need to change an
 
 <span id="qiskit.providers.BackendV1.status" />
 
-`BackendV1.status()`
+`BackendV1.status()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
 Return the backend status.
 

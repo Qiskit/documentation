@@ -20,10 +20,10 @@ Modules representing IBM Quantum Experience jobs.
 
 ## Classes
 
-|                                                                                                                                |                                                                             |
-| ------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------- |
-| [`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.IBMQJob")(backend, api\_client, job\_id, ...\[, ...]) | Representation of a job that executes on an IBM Quantum Experience backend. |
-| [`QueueInfo`](qiskit.providers.ibmq.job.QueueInfo "qiskit.providers.ibmq.job.QueueInfo")(\[position, status, ...])             | Queue information for a job.                                                |
+|                                                                                                                            |                                                                             |
+| -------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------- |
+| [`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.IBMQJob")(backend, api\_client, job\_id, …\[, …]) | Representation of a job that executes on an IBM Quantum Experience backend. |
+| [`QueueInfo`](qiskit.providers.ibmq.job.QueueInfo "qiskit.providers.ibmq.job.QueueInfo")(\[position, status, …])           | Queue information for a job.                                                |
 
 ## Functions
 

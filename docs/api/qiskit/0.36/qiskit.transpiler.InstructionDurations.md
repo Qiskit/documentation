@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.InstructionDurations
 
 <span id="qiskit.transpiler.InstructionDurations" />
 
-`InstructionDurations(instruction_durations=None, dt=None)`
+`InstructionDurations(instruction_durations=None, dt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/instruction_durations.py "view source code")
 
 Bases: `object`
 
@@ -24,13 +24,13 @@ It stores durations (gate lengths) and dt to be used at the scheduling stage of 
 
 <span id="qiskit.transpiler.InstructionDurations.from_backend" />
 
-`classmethod InstructionDurations.from_backend(backend)`
+`classmethod InstructionDurations.from_backend(backend)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/instruction_durations.py "view source code")
 
 Construct an [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations") object from the backend.
 
 **Parameters**
 
-**backend** ([`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")) – backend from which durations (gate lengths) and dt are extracted.
+**backend** (`BaseBackend`) – backend from which durations (gate lengths) and dt are extracted.
 
 **Returns**
 
@@ -48,7 +48,7 @@ The InstructionDurations constructed from backend.
 
 <span id="qiskit.transpiler.InstructionDurations.get" />
 
-`InstructionDurations.get(inst, qubits, unit='dt', parameters=None)`
+`InstructionDurations.get(inst, qubits, unit='dt', parameters=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/instruction_durations.py "view source code")
 
 Get the duration of the instruction with the name, qubits, and parameters.
 
@@ -56,8 +56,8 @@ Some instructions may have a parameter dependent duration.
 
 **Parameters**
 
-*   **inst** (`Union`\[`str`, [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]) – An instruction or its name to be queried.
-*   **qubits** (`Union`\[`int`, `List`\[`int`], [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]]) – Qubits or its indices that the instruction acts on.
+*   **inst** (`Union`\[`str`, `Instruction`]) – An instruction or its name to be queried.
+*   **qubits** (`Union`\[`int`, `List`\[`int`], `Qubit`, `List`\[`Qubit`]]) – Qubits or its indices that the instruction acts on.
 *   **unit** (`str`) – The unit of duration to be returned. It must be ‘s’ or ‘dt’.
 *   **parameters** (`Optional`\[`List`\[`float`]]) – The value of the parameters of the desired instruction.
 
@@ -77,7 +77,7 @@ float|int
 
 <span id="qiskit.transpiler.InstructionDurations.units_used" />
 
-`InstructionDurations.units_used()`
+`InstructionDurations.units_used()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/instruction_durations.py "view source code")
 
 Get the set of all units used in this instruction durations.
 
@@ -93,13 +93,13 @@ Set of units used in this instruction durations.
 
 <span id="qiskit.transpiler.InstructionDurations.update" />
 
-`InstructionDurations.update(inst_durations, dt=None)`
+`InstructionDurations.update(inst_durations, dt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/instruction_durations.py "view source code")
 
 Update self with inst\_durations (inst\_durations overwrite self).
 
 **Parameters**
 
-*   **inst\_durations** (`Optional`\[`Union`\[`List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]], `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]]]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`]], [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.instruction_durations.InstructionDurations")]]) – Instruction durations to be merged into self (overwriting self).
+*   **inst\_durations** (`Optional`\[`Union`\[`List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]], `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]]]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`]], `InstructionDurations`]]) – Instruction durations to be merged into self (overwriting self).
 *   **dt** (`Optional`\[`float`]) – Sampling duration in seconds of the target backend.
 
 **Returns**

@@ -10,9 +10,9 @@ python_api_name: qiskit.algorithms.optimizers.L_BFGS_B
 
 <span id="qiskit.algorithms.optimizers.L_BFGS_B" />
 
-`L_BFGS_B(maxfun=1000, maxiter=15000, ftol=2.220446049250313e-15, factr=None, iprint=- 1, epsilon=1e-08, eps=1e-08, options=None, max_evals_grouped=1, **kwargs)`
+`L_BFGS_B(maxfun=1000, maxiter=15000, ftol=2.220446049250313e-15, factr=None, iprint=- 1, epsilon=1e-08, eps=1e-08, options=None, max_evals_grouped=1, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/l_bfgs_b.py "view source code")
 
-Bases: [`qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer`](qiskit.algorithms.optimizers.SciPyOptimizer "qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer")
+Bases: `qiskit.algorithms.optimizers.scipy_optimizer.SciPyOptimizer`
 
 Limited-memory BFGS Bound optimizer.
 
@@ -87,11 +87,37 @@ Minimize the scalar function.
 
 **Return type**
 
-[`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
+`OptimizerResult`
 
 **Returns**
 
 The result of the optimization, containing e.g. the result as attribute `x`.
+
+### optimize
+
+<span id="qiskit.algorithms.optimizers.L_BFGS_B.optimize" />
+
+`L_BFGS_B.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
+
+Perform optimization.
+
+**Parameters**
+
+*   **num\_vars** (*int*) – Number of parameters to be optimized.
+*   **objective\_function** (*callable*) – A function that computes the objective function.
+*   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
+*   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
+*   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
+
+**Returns**
+
+**point, value, nfev**
+
+point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
+
+**Raises**
+
+**ValueError** – invalid input
 
 ### print\_options
 

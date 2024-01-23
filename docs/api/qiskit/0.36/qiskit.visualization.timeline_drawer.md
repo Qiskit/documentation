@@ -16,13 +16,13 @@ Generate visualization data for scheduled circuit programs.
 
 **Parameters**
 
-*   **program** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – Program to visualize. This program should be a QuantumCircuit which is transpiled with a scheduling\_method, thus containing gate time information.
+*   **program** (`QuantumCircuit`) – Program to visualize. This program should be a QuantumCircuit which is transpiled with a scheduling\_method, thus containing gate time information.
 
 *   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets. See also the stylesheet section for details of configuration keys.
 
 *   **time\_range** (`Optional`\[`Tuple`\[`int`, `int`]]) – Set horizontal axis limit.
 
-*   **disable\_bits** (`Optional`\[`List`\[`NewType()`(`Bits`, `Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")])]]) – List of qubits of classical bits not shown in the output image.
+*   **disable\_bits** (`Optional`\[`List`\[`NewType()`(`Bits`, `Union`\[`Qubit`, `Clbit`])]]) – List of qubits of classical bits not shown in the output image.
 
 *   **show\_clbits** (`Optional`\[`bool`]) – A control property to show classical bits. Set True to show classical bits.
 
@@ -256,7 +256,7 @@ Drawing with the default stylesheet.
 ```python
 from qiskit import QuantumCircuit, transpile, schedule
 from qiskit.visualization.timeline import draw
-from qiskit.providers.fake_provider import FakeAlmaden
+from qiskit.test.mock import FakeAlmaden
 
 qc = QuantumCircuit(2)
 qc.h(0)
@@ -273,7 +273,7 @@ Drawing with the simple stylesheet.
 ```python
 from qiskit import QuantumCircuit, transpile, schedule
 from qiskit.visualization.timeline import draw, IQXSimple
-from qiskit.providers.fake_provider import FakeAlmaden
+from qiskit.test.mock import FakeAlmaden
 
 qc = QuantumCircuit(2)
 qc.h(0)
@@ -290,7 +290,7 @@ Drawing with the stylesheet suited for program debugging.
 ```python
 from qiskit import QuantumCircuit, transpile, schedule
 from qiskit.visualization.timeline import draw, IQXDebugging
-from qiskit.providers.fake_provider import FakeAlmaden
+from qiskit.test.mock import FakeAlmaden
 
 qc = QuantumCircuit(2)
 qc.h(0)

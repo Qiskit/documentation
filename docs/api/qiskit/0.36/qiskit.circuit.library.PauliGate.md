@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.PauliGate
 
 <span id="qiskit.circuit.library.PauliGate" />
 
-`PauliGate(label)`
+`PauliGate(label)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/generalized_gates/pauli.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 A multi-qubit Pauli gate.
 
@@ -35,7 +35,7 @@ Create a new gate.
 
 <span id="qiskit.circuit.library.PauliGate.inverse" />
 
-`PauliGate.inverse()`
+`PauliGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/generalized_gates/pauli.py "view source code")
 
 Return inverted pauli gate (itself).
 
@@ -43,7 +43,7 @@ Return inverted pauli gate (itself).
 
 <span id="qiskit.circuit.library.PauliGate.validate_parameter" />
 
-`PauliGate.validate_parameter(parameter)`
+`PauliGate.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/generalized_gates/pauli.py "view source code")
 
 Gate parameters should be int, float, or ParameterExpression
 
@@ -57,7 +57,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.PauliGate.decompositions" />
 

@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.RemoveBarriers
 
 <span id="qiskit.transpiler.passes.RemoveBarriers" />
 
-`RemoveBarriers(*args, **kwargs)`
+`RemoveBarriers(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/remove_barriers.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
 Return a circuit with any barrier removed.
 
@@ -53,13 +53,13 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.RemoveBarriers.run" />
 
-`RemoveBarriers.run(dag)`
+`RemoveBarriers.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/remove_barriers.py "view source code")
 
 Run the RemoveBarriers pass on dag.
 
 **Return type**
 
-[`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
+`DAGCircuit`
 
 ## Attributes
 

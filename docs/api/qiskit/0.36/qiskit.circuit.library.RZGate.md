@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.RZGate
 
 <span id="qiskit.circuit.library.RZGate" />
 
-`RZGate(phi, label=None)`
+`RZGate(phi, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rz.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 Single-qubit rotation about the Z axis.
 
@@ -29,7 +29,7 @@ q_0: ┤ Rz(λ) ├
 **Matrix Representation:**
 
 $$
-\begin{split}RZ(\lambda) = \exp\left(-i\frac{\lambda}{2}Z\right) =
+\begin{split}RZ(\lambda) = exp(-i\frac{\lambda}{2}Z) =
     \begin{pmatrix}
         e^{-i\frac{\lambda}{2}} & 0 \\
         0 & e^{i\frac{\lambda}{2}}
@@ -54,7 +54,7 @@ Create new RZ gate.
 
 <span id="qiskit.circuit.library.RZGate.control" />
 
-`RZGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`RZGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rz.py "view source code")
 
 Return a (multi-)controlled-RZ gate.
 
@@ -76,7 +76,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.RZGate.inverse" />
 
-`RZGate.inverse()`
+`RZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rz.py "view source code")
 
 Return inverted RZ gate
 
@@ -92,7 +92,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.RZGate.decompositions" />
 

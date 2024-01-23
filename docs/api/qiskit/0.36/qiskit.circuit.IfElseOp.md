@@ -10,17 +10,17 @@ python_api_name: qiskit.circuit.IfElseOp
 
 <span id="qiskit.circuit.IfElseOp" />
 
-`IfElseOp(condition, true_body, false_body=None, label=None)`
+`IfElseOp(condition, true_body, false_body=None, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/controlflow/if_else.py "view source code")
 
-Bases: [`qiskit.circuit.controlflow.control_flow.ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
+Bases: `qiskit.circuit.controlflow.control_flow.ControlFlowOp`
 
 A circuit operation which executes a program (`true_body`) if a provided condition (`condition`) evaluates to true, and optionally evaluates another program (`false_body`) otherwise.
 
 **Parameters**
 
-*   **condition** (`Tuple`\[`Union`\[[`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.classicalregister.ClassicalRegister"), [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")], `int`]) – A condition to be evaluated at circuit runtime which, if true, will trigger the evaluation of `true_body`. Can be specified as either a tuple of a `ClassicalRegister` to be tested for equality with a given `int`, or as a tuple of a `Clbit` to be compared to either a `bool` or an `int`.
-*   **true\_body** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – A program to be executed if `condition` evaluates to true.
-*   **false\_body** (`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – A optional program to be executed if `condition` evaluates to false.
+*   **condition** (`Tuple`\[`Union`\[`ClassicalRegister`, `Clbit`], `int`]) – A condition to be evaluated at circuit runtime which, if true, will trigger the evaluation of `true_body`. Can be specified as either a tuple of a `ClassicalRegister` to be tested for equality with a given `int`, or as a tuple of a `Clbit` to be compared to either a `bool` or an `int`.
+*   **true\_body** (`QuantumCircuit`) – A program to be executed if `condition` evaluates to true.
+*   **false\_body** (`Optional`\[`QuantumCircuit`]) – A optional program to be executed if `condition` evaluates to false.
 *   **label** (`Optional`\[`str`]) – An optional label for identifying the instruction.
 
 If provided, `false_body` must be of the same `num_qubits` and `num_clbits` as `true_body`.
@@ -48,15 +48,14 @@ Create a new instruction.
 *   **name** (*str*) – instruction name
 *   **num\_qubits** (*int*) – instruction’s qubit width
 *   **num\_clbits** (*int*) – instruction’s clbit width
-*   **params** (*list\[int|float|complex|str|ndarray|list|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – list of parameters
+*   **params** (*list\[int|float|complex|str|ndarray|list|ParameterExpression]*) – list of parameters
 *   **duration** (*int or float*) – instruction’s duration. it must be integer if `unit` is ‘dt’
 *   **unit** (*str*) – time unit of duration
 *   **label** (*str or None*) – An optional label for identifying the instruction.
 
 **Raises**
 
-*   **CircuitError** – when the register is not in the correct format.
-*   **TypeError** – when the optional label is provided, but it is not a string.
+**CircuitError** – when the register is not in the correct format.
 
 ## Methods
 
@@ -101,7 +100,7 @@ Validation of the arguments.
 
 <span id="qiskit.circuit.IfElseOp.c_if" />
 
-`IfElseOp.c_if(classical, val)`
+`IfElseOp.c_if(classical, val)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/controlflow/if_else.py "view source code")
 
 Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
@@ -197,26 +196,6 @@ Containing the definition.
 
 **CircuitError** – If n \< 1.
 
-### replace\_blocks
-
-<span id="qiskit.circuit.IfElseOp.replace_blocks" />
-
-`IfElseOp.replace_blocks(blocks)`
-
-Replace blocks and return new instruction.
-
-**Parameters**
-
-**blocks** (`Iterable`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – Iterable of circuits for “if” and “else” condition. If there is no “else” circuit it may be set to None or ommited.
-
-**Return type**
-
-[`IfElseOp`](qiskit.circuit.IfElseOp "qiskit.circuit.controlflow.if_else.IfElseOp")
-
-**Returns**
-
-New IfElseOp with replaced blocks.
-
 ### reverse\_ops
 
 <span id="qiskit.circuit.IfElseOp.reverse_ops" />
@@ -279,7 +258,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.IfElseOp.decompositions" />
 

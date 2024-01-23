@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.ZFeatureMap
 
 <span id="qiskit.circuit.library.ZFeatureMap" />
 
-`ZFeatureMap(feature_dimension, reps=2, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZFeatureMap')`
+`ZFeatureMap(feature_dimension, reps=2, data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZFeatureMap')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/data_preparation/z_feature_map.py "view source code")
 
-Bases: [`qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap`](qiskit.circuit.library.PauliFeatureMap "qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap")
+Bases: `qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap`
 
 The first order Pauli Z-evolution circuit.
 
@@ -103,7 +103,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+`List`\[`AncillaQubit`]
 
 <span id="qiskit.circuit.library.ZFeatureMap.calibrations" />
 
@@ -127,7 +127,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.ZFeatureMap.data" />
 
@@ -179,7 +179,7 @@ Return the global phase of the circuit in radians.
 
 **Return type**
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+`Union`\[`ParameterExpression`, `float`]
 
 <span id="qiskit.circuit.library.ZFeatureMap.header" />
 
@@ -219,7 +219,7 @@ True, if barriers are inserted in between the layers, False if not.
 
 ### instances
 
-`= 87`
+`= 9`
 
 <span id="qiskit.circuit.library.ZFeatureMap.metadata" />
 
@@ -295,26 +295,6 @@ Returns the number of qubits in this circuit.
 
 The number of qubits.
 
-<span id="qiskit.circuit.library.ZFeatureMap.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-**AttributeError** – When circuit is not scheduled.
-
 <span id="qiskit.circuit.library.ZFeatureMap.ordered_parameters" />
 
 ### ordered\_parameters
@@ -339,7 +319,7 @@ q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
 
 **Return type**
 
-`List`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
+`List`\[`Parameter`]
 
 **Returns**
 
@@ -415,7 +395,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+`List`\[`Qubit`]
 
 <span id="qiskit.circuit.library.ZFeatureMap.reps" />
 
@@ -439,7 +419,7 @@ The blocks in the rotation layers.
 
 **Return type**
 
-`List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
+`List`\[`Instruction`]
 
 **Returns**
 

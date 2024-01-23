@@ -10,9 +10,9 @@ python_api_name: qiskit.providers.ibmq.job.IBMQJob
 
 <span id="qiskit.providers.ibmq.job.IBMQJob" />
 
-`IBMQJob(backend, api_client, job_id, creation_date, status, kind=None, name=None, time_per_step=None, result=None, qobj=None, error=None, tags=None, run_mode=None, share_level=None, client_info=None, experiment_id=None, **kwargs)`
+`IBMQJob(backend, api_client, job_id, creation_date, status, kind=None, name=None, time_per_step=None, result=None, qobj=None, error=None, tags=None, run_mode=None, share_level=None, client_info=None, experiment_id=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
-Bases: [`qiskit.providers.job.JobV1`](qiskit.providers.JobV1 "qiskit.providers.job.JobV1")
+Bases: `qiskit.providers.job.JobV1`
 
 Representation of a job that executes on an IBM Quantum Experience backend.
 
@@ -55,7 +55,7 @@ IBMQJob constructor.
 
 **Parameters**
 
-*   **backend** ([`IBMQBackend`](qiskit.providers.ibmq.IBMQBackend "qiskit.providers.ibmq.ibmqbackend.IBMQBackend")) – The backend instance used to run this job.
+*   **backend** (`IBMQBackend`) – The backend instance used to run this job.
 *   **api\_client** (`AccountClient`) – Object for connecting to the server.
 *   **job\_id** (`str`) – Job ID.
 *   **creation\_date** (`str`) – Job creation date.
@@ -64,7 +64,7 @@ IBMQJob constructor.
 *   **name** (`Optional`\[`str`]) – Job name.
 *   **time\_per\_step** (`Optional`\[`dict`]) – Time spent for each processing step.
 *   **result** (`Optional`\[`dict`]) – Job result.
-*   **qobj** (`Union`\[`dict`, [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj"), [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj"), `None`]) – Qobj for this job.
+*   **qobj** (`Union`\[`dict`, `QasmQobj`, `PulseQobj`, `None`]) – Qobj for this job.
 *   **error** (`Optional`\[`dict`]) – Job error.
 *   **tags** (`Optional`\[`List`\[`str`]]) – Job tags.
 *   **run\_mode** (`Optional`\[`str`]) – Scheduling mode the job runs in.
@@ -85,13 +85,13 @@ Return the backend where this job was executed.
 
 **Return type**
 
-[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")
+`Backend`
 
 ### backend\_options
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.backend_options" />
 
-`IBMQJob.backend_options()`
+`IBMQJob.backend_options()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Return the backend configuration options used for this job.
 
@@ -109,7 +109,7 @@ Backend options used for this job. An empty dictionary is returned if the option
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.cancel" />
 
-`IBMQJob.cancel()`
+`IBMQJob.cancel()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Attempt to cancel the job.
 
@@ -145,13 +145,13 @@ Return whether the job has been cancelled.
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.circuits" />
 
-`IBMQJob.circuits()`
+`IBMQJob.circuits()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Return the circuits or pulse schedules for this job.
 
 **Return type**
 
-`List`\[`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]]
+`List`\[`Union`\[`QuantumCircuit`, `Schedule`]]
 
 **Returns**
 
@@ -161,7 +161,7 @@ The circuits or pulse schedules for this job. An empty list is returned if the c
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.creation_date" />
 
-`IBMQJob.creation_date()`
+`IBMQJob.creation_date()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Return job creation date, in local time.
 
@@ -189,7 +189,7 @@ Return whether the job has successfully run.
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.error_message" />
 
-`IBMQJob.error_message()`
+`IBMQJob.error_message()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Provide details about the reason of failure.
 
@@ -205,7 +205,7 @@ An error report if the job failed or `None` otherwise.
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.header" />
 
-`IBMQJob.header()`
+`IBMQJob.header()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Return the user header specified for this job.
 
@@ -233,7 +233,7 @@ Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.job_id" />
 
-`IBMQJob.job_id()`
+`IBMQJob.job_id()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Return the job ID assigned by the server.
 
@@ -249,7 +249,7 @@ Job ID.
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.name" />
 
-`IBMQJob.name()`
+`IBMQJob.name()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Return the name assigned to this job.
 
@@ -265,13 +265,13 @@ Job name or `None` if no name was assigned to this job.
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.properties" />
 
-`IBMQJob.properties()`
+`IBMQJob.properties()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Return the backend properties for this job.
 
 **Return type**
 
-`Optional`\[[`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.backendproperties.BackendProperties")]
+`Optional`\[`BackendProperties`]
 
 **Returns**
 
@@ -285,13 +285,13 @@ The backend properties used for this job, or `None` if properties are not availa
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.qobj" />
 
-`IBMQJob.qobj()`
+`IBMQJob.qobj()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Return the Qobj for this job.
 
 **Return type**
 
-`Union`\[[`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj"), [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj"), `None`]
+`Union`\[`QasmQobj`, `PulseQobj`, `None`]
 
 **Returns**
 
@@ -305,7 +305,7 @@ The Qobj for this job, or `None` if the job does not have a Qobj.
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.queue_info" />
 
-`IBMQJob.queue_info()`
+`IBMQJob.queue_info()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Return queue information for this job.
 
@@ -317,7 +317,7 @@ The queue information may include queue position, estimated start and end time, 
 
 **Return type**
 
-`Optional`\[[`QueueInfo`](qiskit.providers.ibmq.job.QueueInfo "qiskit.providers.ibmq.job.queueinfo.QueueInfo")]
+`Optional`\[`QueueInfo`]
 
 **Returns**
 
@@ -327,7 +327,7 @@ A [`QueueInfo`](qiskit.providers.ibmq.job.QueueInfo "qiskit.providers.ibmq.job.Q
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.queue_position" />
 
-`IBMQJob.queue_position(refresh=False)`
+`IBMQJob.queue_position(refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Return the position of the job in the server queue.
 
@@ -351,7 +351,7 @@ Position in the queue or `None` if position is unknown or not applicable.
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.refresh" />
 
-`IBMQJob.refresh()`
+`IBMQJob.refresh()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Obtain the latest job information from the server.
 
@@ -369,7 +369,7 @@ This method may add additional attributes to this job instance, if new informati
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.result" />
 
-`IBMQJob.result(timeout=None, wait=5, partial=False, refresh=False)`
+`IBMQJob.result(timeout=None, wait=5, partial=False, refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Return the result of the job.
 
@@ -403,7 +403,7 @@ If the job failed, you can use [`error_message()`](qiskit.providers.ibmq.job.IBM
 
 **Return type**
 
-[`Result`](qiskit.result.Result "qiskit.result.result.Result")
+`Result`
 
 **Returns**
 
@@ -431,7 +431,7 @@ Return whether the job is actively running.
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.scheduling_mode" />
 
-`IBMQJob.scheduling_mode()`
+`IBMQJob.scheduling_mode()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Return the scheduling mode the job is in.
 
@@ -451,7 +451,7 @@ The scheduling mode the job is in or `None` if the information is not available.
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.share_level" />
 
-`IBMQJob.share_level()`
+`IBMQJob.share_level()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Return the share level of the job.
 
@@ -469,7 +469,7 @@ The share level of the job.
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.status" />
 
-`IBMQJob.status()`
+`IBMQJob.status()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Query the server for the latest job status.
 
@@ -483,7 +483,7 @@ Query the server for the latest job status.
 
 **Return type**
 
-[`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus")
+`JobStatus`
 
 **Returns**
 
@@ -497,7 +497,7 @@ The status of the job.
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.submit" />
 
-`IBMQJob.submit()`
+`IBMQJob.submit()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Unsupported method.
 
@@ -517,7 +517,7 @@ Unsupported method.
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.tags" />
 
-`IBMQJob.tags()`
+`IBMQJob.tags()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Return the tags assigned to this job.
 
@@ -533,7 +533,7 @@ Tags assigned to this job.
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.time_per_step" />
 
-`IBMQJob.time_per_step()`
+`IBMQJob.time_per_step()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Return the date and time information on each step of the job processing.
 
@@ -557,7 +557,7 @@ Date and time information on job processing steps, in local time, or `None` if t
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.update_name" />
 
-`IBMQJob.update_name(name)`
+`IBMQJob.update_name(name)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Update the name associated with this job.
 
@@ -582,7 +582,7 @@ The new name associated with this job.
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.update_tags" />
 
-`IBMQJob.update_tags(replacement_tags=None, additional_tags=None, removal_tags=None)`
+`IBMQJob.update_tags(replacement_tags=None, additional_tags=None, removal_tags=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Update the tags associated with this job.
 
@@ -622,7 +622,7 @@ The new tags associated with this job.
 
 <span id="qiskit.providers.ibmq.job.IBMQJob.wait_for_final_state" />
 
-`IBMQJob.wait_for_final_state(timeout=None, wait=None, callback=None)`
+`IBMQJob.wait_for_final_state(timeout=None, wait=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/ibmqjob.py "view source code")
 
 Wait until the job progresses to a final state such as `DONE` or `ERROR`.
 

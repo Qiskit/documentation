@@ -10,9 +10,9 @@ python_api_name: qiskit.pulse.instructions.Snapshot
 
 <span id="qiskit.pulse.instructions.Snapshot" />
 
-`Snapshot(label, snapshot_type='statevector', name=None)`
+`Snapshot(label, snapshot_type='statevector', name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/snapshot.py "view source code")
 
-Bases: [`qiskit.pulse.instructions.instruction.Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
+Bases: `qiskit.pulse.instructions.instruction.Instruction`
 
 An instruction targeted for simulators, to capture a moment in the simulation.
 
@@ -156,7 +156,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Snapshot.is_parameterized" />
 
-`Snapshot.is_parameterized()`
+`Snapshot.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/snapshot.py "view source code")
 
 Return True iff the instruction is parameterized.
 
@@ -235,7 +235,7 @@ Iterable for getting instructions from Schedule tree.
 
 **Return type**
 
-`Tuple`\[`Tuple`\[`int`, [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")]]
+`Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
 <span id="qiskit.pulse.instructions.Snapshot.label" />
 

@@ -10,9 +10,9 @@ python_api_name: qiskit.pulse.instructions.Acquire
 
 <span id="qiskit.pulse.instructions.Acquire" />
 
-`Acquire(duration, channel, mem_slot=None, reg_slot=None, kernel=None, discriminator=None, name=None)`
+`Acquire(duration, channel, mem_slot=None, reg_slot=None, kernel=None, discriminator=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/acquire.py "view source code")
 
-Bases: [`qiskit.pulse.instructions.instruction.Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
+Bases: `qiskit.pulse.instructions.instruction.Instruction`
 
 The Acquire instruction is used to trigger the ADC associated with a particular qubit; e.g. instantiated with AcquireChannel(0), the Acquire command will trigger data collection for the channel associated with qubit 0 readout. This instruction also provides acquisition metadata:
 
@@ -26,7 +26,7 @@ Create a new Acquire instruction.
 
 **Parameters**
 
-*   **duration** (`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – Length of time to acquire data in terms of dt.
+*   **duration** (`Union`\[`int`, `ParameterExpression`]) – Length of time to acquire data in terms of dt.
 *   **channel** ([`AcquireChannel`](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")) – The channel that will acquire data.
 *   **mem\_slot** (`Optional`\[[`MemorySlot`](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot")]) – The classical memory slot in which to store the classified readout result.
 *   **reg\_slot** (`Optional`\[[`RegisterSlot`](qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")]) – The fast-access register slot in which to store the classified readout result for fast feedback.
@@ -166,7 +166,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Acquire.is_parameterized" />
 
-`Acquire.is_parameterized()`
+`Acquire.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/acquire.py "view source code")
 
 Return True iff the instruction is parameterized.
 
@@ -245,7 +245,7 @@ Duration of this instruction.
 
 **Return type**
 
-`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+`Union`\[`int`, `ParameterExpression`]
 
 <span id="qiskit.pulse.instructions.Acquire.id" />
 
@@ -265,7 +265,7 @@ Iterable for getting instructions from Schedule tree.
 
 **Return type**
 
-`Tuple`\[`Tuple`\[`int`, [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")]]
+`Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
 <span id="qiskit.pulse.instructions.Acquire.kernel" />
 

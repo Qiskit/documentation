@@ -10,17 +10,17 @@ python_api_name: qiskit.pulse.transforms.block_to_schedule
 
 <span id="qiskit.pulse.transforms.block_to_schedule" />
 
-`block_to_schedule(block)`
+`block_to_schedule(block)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Convert `ScheduleBlock` to `Schedule`.
 
 **Parameters**
 
-**block** ([`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")) – A `ScheduleBlock` to convert.
+**block** (`ScheduleBlock`) – A `ScheduleBlock` to convert.
 
 **Return type**
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+`Schedule`
 
 **Returns**
 

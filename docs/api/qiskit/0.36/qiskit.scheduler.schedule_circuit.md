@@ -6,6 +6,6 @@ QuantumCircuit to Pulse scheduler.
 
 ## Functions
 
-|                                                       |                                                                              |
-| ----------------------------------------------------- | ---------------------------------------------------------------------------- |
-| `schedule_circuit`(circuit, schedule\_config\[, ...]) | Basic scheduling pass from a circuit to a pulse Schedule, using the backend. |
+|                                                     |                                                                              |
+| --------------------------------------------------- | ---------------------------------------------------------------------------- |
+| `schedule_circuit`(circuit, schedule\_config\[, …]) | Basic scheduling pass from a circuit to a pulse Schedule, using the backend. |

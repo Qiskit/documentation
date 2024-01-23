@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.PhaseEstimationResult
 
 <span id="qiskit.algorithms.PhaseEstimationResult" />
 
-`PhaseEstimationResult(num_evaluation_qubits, circuit_result, phases)`
+`PhaseEstimationResult(num_evaluation_qubits, circuit_result, phases)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/phase_estimation_result.py "view source code")
 
 Bases: `qiskit.algorithms.phase_estimators.phase_estimator.PhaseEstimatorResult`
 
@@ -23,7 +23,7 @@ The canonical phase satisfying the `PhaseEstimator` interface, returned by the a
 **Parameters**
 
 *   **num\_evaluation\_qubits** (`int`) – number of qubits in phase-readout register.
-*   **circuit\_result** ([`Result`](qiskit.result.Result "qiskit.result.result.Result")) – result object returned by method running circuit.
+*   **circuit\_result** (`Result`) – result object returned by method running circuit.
 *   **phases** (`Union`\[`ndarray`, `Dict`\[`str`, `float`]]) – ndarray or dict of phases and frequencies determined by QPE.
 
 ## Methods
@@ -48,7 +48,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 <span id="qiskit.algorithms.PhaseEstimationResult.filter_phases" />
 
-`PhaseEstimationResult.filter_phases(cutoff=0.0, as_float=True)`
+`PhaseEstimationResult.filter_phases(cutoff=0.0, as_float=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/phase_estimation_result.py "view source code")
 
 Return a filtered dict of phases (keys) and frequencies (values).
 
@@ -79,7 +79,7 @@ This is useful for inspecting and troubleshooting the QPE algorithm.
 
 **Return type**
 
-[`Result`](qiskit.result.Result "qiskit.result.result.Result")
+`Result`
 
 <span id="qiskit.algorithms.PhaseEstimationResult.most_likely_phase" />
 

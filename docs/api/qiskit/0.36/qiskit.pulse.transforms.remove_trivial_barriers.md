@@ -10,13 +10,13 @@ python_api_name: qiskit.pulse.transforms.remove_trivial_barriers
 
 <span id="qiskit.pulse.transforms.remove_trivial_barriers" />
 
-`remove_trivial_barriers(schedule)`
+`remove_trivial_barriers(schedule)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Remove trivial barriers with 0 or 1 channels.
 
 **Parameters**
 
-**schedule** ([`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – A schedule to remove trivial barriers.
+**schedule** (`Schedule`) – A schedule to remove trivial barriers.
 
 **Returns**
 

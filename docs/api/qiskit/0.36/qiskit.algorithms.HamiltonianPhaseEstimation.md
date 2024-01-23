@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimation
 
 <span id="qiskit.algorithms.HamiltonianPhaseEstimation" />
 
-`HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None)`
+`HamiltonianPhaseEstimation(num_evaluation_qubits, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation.py "view source code")
 
 Bases: `object`
 
@@ -49,7 +49,7 @@ T.E. O’Brien, B. Tarasinski, B.M. Terhal [arXiv:1809.09697](https://arxiv.org/
 **Parameters**
 
 *   **num\_evaluation\_qubits** (`int`) – The number of qubits used in estimating the phase. The phase will be estimated as a binary string with this many bits.
-*   **quantum\_instance** (`Union`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance"), `None`]) – The quantum instance on which the circuit will be run.
+*   **quantum\_instance** (`Union`\[`QuantumInstance`, `BaseBackend`, `None`]) – The quantum instance on which the circuit will be run.
 
 ## Methods
 
@@ -57,20 +57,20 @@ T.E. O’Brien, B. Tarasinski, B.M. Terhal [arXiv:1809.09697](https://arxiv.org/
 
 <span id="qiskit.algorithms.HamiltonianPhaseEstimation.estimate" />
 
-`HamiltonianPhaseEstimation.estimate(hamiltonian, state_preparation=None, evolution=None, bound=None)`
+`HamiltonianPhaseEstimation.estimate(hamiltonian, state_preparation=None, evolution=None, bound=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation.py "view source code")
 
 Run the Hamiltonian phase estimation algorithm.
 
 **Parameters**
 
-*   **hamiltonian** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – A Hermitian operator.
-*   **state\_preparation** (`Optional`\[[`StateFn`](qiskit.opflow.state_fns.StateFn "qiskit.opflow.state_fns.state_fn.StateFn")]) – The `StateFn` to be prepared, whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
-*   **evolution** (`Optional`\[[`EvolutionBase`](qiskit.opflow.evolutions.EvolutionBase "qiskit.opflow.evolutions.evolution_base.EvolutionBase")]) – An evolution converter that generates a unitary from `hamiltonian`. If `None`, then the default `PauliTrotterEvolution` is used.
+*   **hamiltonian** (`OperatorBase`) – A Hermitian operator.
+*   **state\_preparation** (`Optional`\[`StateFn`]) – The `StateFn` to be prepared, whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
+*   **evolution** (`Optional`\[`EvolutionBase`]) – An evolution converter that generates a unitary from `hamiltonian`. If `None`, then the default `PauliTrotterEvolution` is used.
 *   **bound** (`Optional`\[`float`]) – An upper bound on the absolute value of the eigenvalues of `hamiltonian`. If omitted, then `hamiltonian` must be a Pauli sum, or a `PauliOp`, in which case a bound will be computed. If `hamiltonian` is a `MatrixOp`, then `bound` may not be `None`. The tighter the bound, the higher the resolution of computed phases.
 
 **Return type**
 
-[`HamiltonianPhaseEstimationResult`](qiskit.algorithms.HamiltonianPhaseEstimationResult "qiskit.algorithms.phase_estimators.hamiltonian_phase_estimation_result.HamiltonianPhaseEstimationResult")
+`HamiltonianPhaseEstimationResult`
 
 **Returns**
 

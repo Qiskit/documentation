@@ -47,7 +47,7 @@ It’s worth pointing out that Terra’s version support policy doesn’t mean p
 | -------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------ |
 | [`Backend`](qiskit.providers.Backend "qiskit.providers.Backend")()                                             | Base common type for all versioned Backend abstract classes. |
 | [`BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.BackendV1")(configuration\[, provider])             | Abstract class for Backends                                  |
-| [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")(\[provider, name, description, ...])    | Abstract class for Backends                                  |
+| [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2")(\[provider, name, description, …])      | Abstract class for Backends                                  |
 | [`QubitProperties`](qiskit.providers.QubitProperties "qiskit.providers.QubitProperties")(\[t1, t2, frequency]) | A representation of the properties of a qubit on a backend.  |
 
 ### Options
@@ -62,21 +62,6 @@ It’s worth pointing out that Terra’s version support policy doesn’t mean p
 | ---------------------------------------------------------------------------------------- | -------------------------------------------------------- |
 | [`Job`](qiskit.providers.Job "qiskit.providers.Job")()                                   | Base common type for all versioned Job abstract classes. |
 | [`JobV1`](qiskit.providers.JobV1 "qiskit.providers.JobV1")(backend, job\_id, \*\*kwargs) | Class to handle jobs                                     |
-
-### Job Status
-
-|                                                                               |                                       |
-| ----------------------------------------------------------------------------- | ------------------------------------- |
-| [`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.JobStatus")(value) | Class for job status enumerated type. |
-
-### Exceptions
-
-|                                                                                                                                      |                                                                    |
-| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
-| [`QiskitBackendNotFoundError`](qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError")(\*message) | Base class for errors raised while looking for a backend.          |
-| [`BackendPropertyError`](qiskit.providers.BackendPropertyError "qiskit.providers.BackendPropertyError")(\*message)                   | Base class for errors raised while looking for a backend property. |
-| [`JobError`](qiskit.providers.JobError "qiskit.providers.JobError")(\*message)                                                       | Base class for errors raised by Jobs.                              |
-| [`JobTimeoutError`](qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError")(\*message)                                  | Base class for timeout errors raised by jobs.                      |
 
 # Writing a New Provider
 
@@ -415,6 +400,37 @@ Below is a table of example access patterns in [`BackendV1`](qiskit.providers.Ba
 | `backend.properties().t1(0)`                                           | `backend.qubit_properties(0).t1`                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `backend.properties().t2(0)`                                           | `backend.qubit_properties(0).t2`                                       |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
 | `backend.properties().frequency(0)`                                    | `backend.qubit_properties(0).frequency`                                |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                     |
-| `backend.properties().readout_error(0)`                                | `backend.target["measure"][(0,)].error`                                | In [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") the error rate for the `Measure` operation on a given qubit is used to model the readout error. However a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") can implement multiple measurement types and list them separately in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target").                                                                                                  |
-| `backend.properties().readout_length(0)`                               | `backend.target["measure"][(0,)].duration`                             | In [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") the duration for the `Measure` operation on a given qubit is used to model the readout length. However, a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") can implement multiple measurement types and list them separately in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target").                                                                                                  |
+| `backend.properties().readout_error(0)`                                | `backend.target["measure"][(0,)].error`                                | In [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") the error rate for the [`Measure`](qiskit.circuit.Measure "qiskit.circuit.Measure") operation on a given qubit is used to model the readout error. However a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") can implement multiple measurement types and list them separately in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target").                                               |
+| `backend.properties().readout_length(0)`                               | `backend.target["measure"][(0,)].duration`                             | In [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") the duration for the [`Measure`](qiskit.circuit.Measure "qiskit.circuit.Measure") operation on a given qubit is used to model the readout length. However, a [`BackendV2`](qiskit.providers.BackendV2 "qiskit.providers.BackendV2") can implement multiple measurement types and list them separately in a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target").                                               |
+
+# Legacy Provider Interface Base Objects
+
+<span id="module-qiskit.providers" />
+
+`qiskit.providers`
+
+These abstract interfaces are deprecated and will be removed in a future release. The documentation here is left for reference purposes while they’re still supported, but if you’re creating or maintaining a provider you should be using the versioned interface.
+
+## Base Objects
+
+|                                                                                                          |                                                     |
+| -------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
+| [`BaseProvider`](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")(\*args, \*\*kwargs)      | Base class for a Backend Provider.                  |
+| [`BaseBackend`](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")(configuration\[, provider]) | Legacy Base class for backends.                     |
+| [`BaseJob`](qiskit.providers.BaseJob "qiskit.providers.BaseJob")(backend, job\_id)                       | DEPRECATED Legacy Class to handle asynchronous jobs |
+
+## Job Status
+
+|                                                                               |                                       |
+| ----------------------------------------------------------------------------- | ------------------------------------- |
+| [`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.JobStatus")(value) | Class for job status enumerated type. |
+
+## Exceptions
+
+|                                                                                                                                      |                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------ |
+| [`QiskitBackendNotFoundError`](qiskit.providers.QiskitBackendNotFoundError "qiskit.providers.QiskitBackendNotFoundError")(\*message) | Base class for errors raised while looking for a backend.          |
+| [`BackendPropertyError`](qiskit.providers.BackendPropertyError "qiskit.providers.BackendPropertyError")(\*message)                   | Base class for errors raised while looking for a backend property. |
+| [`JobError`](qiskit.providers.JobError "qiskit.providers.JobError")(\*message)                                                       | Base class for errors raised by Jobs.                              |
+| [`JobTimeoutError`](qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError")(\*message)                                  | Base class for timeout errors raised by jobs.                      |
 

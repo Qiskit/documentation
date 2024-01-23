@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.HamiltonianPhaseEstimationResult
 
 <span id="qiskit.algorithms.HamiltonianPhaseEstimationResult" />
 
-`HamiltonianPhaseEstimationResult(phase_estimation_result, phase_estimation_scale, id_coefficient)`
+`HamiltonianPhaseEstimationResult(phase_estimation_result, phase_estimation_scale, id_coefficient)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation_result.py "view source code")
 
 Bases: `qiskit.algorithms.algorithm_result.AlgorithmResult`
 
@@ -22,8 +22,8 @@ This class is meant to be instantiated via HamiltonianPhaseEstimation.estimate.
 
 **Parameters**
 
-*   **phase\_estimation\_result** ([`PhaseEstimationResult`](qiskit.algorithms.PhaseEstimationResult "qiskit.algorithms.phase_estimators.phase_estimation_result.PhaseEstimationResult")) – The result object returned by PhaseEstimation.estimate.
-*   **phase\_estimation\_scale** ([`PhaseEstimationScale`](qiskit.algorithms.PhaseEstimationScale "qiskit.algorithms.phase_estimators.phase_estimation_scale.PhaseEstimationScale")) – object used to scale phases to obtain eigenvalues.
+*   **phase\_estimation\_result** (`PhaseEstimationResult`) – The result object returned by PhaseEstimation.estimate.
+*   **phase\_estimation\_scale** (`PhaseEstimationScale`) – object used to scale phases to obtain eigenvalues.
 *   **id\_coefficient** (`float`) – The coefficient of the identity term in the Hamiltonian. Eigenvalues are computed without this term so that the coefficient must added to give correct eigenvalues. This is done automatically when retrieving eigenvalues.
 
 ## Methods
@@ -48,7 +48,7 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 <span id="qiskit.algorithms.HamiltonianPhaseEstimationResult.filter_phases" />
 
-`HamiltonianPhaseEstimationResult.filter_phases(cutoff=0.0, scaled=True, as_float=True)`
+`HamiltonianPhaseEstimationResult.filter_phases(cutoff=0.0, scaled=True, as_float=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/hamiltonian_phase_estimation_result.py "view source code")
 
 Filter phases as does PhaseEstimatorResult.filter\_phases, with the addition that phi is shifted and translated to return eigenvalues of the Hamiltonian.
 

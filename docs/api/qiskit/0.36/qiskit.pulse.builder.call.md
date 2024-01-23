@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.call
 
 <span id="qiskit.pulse.builder.call" />
 
-`call(target, name=None, value_dict=None, **kw_params)`
+`call(target, name=None, value_dict=None, **kw_params)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Call the `target` within the currently active builder context with arbitrary parameters which will be assigned to the target program.
 
@@ -22,7 +22,7 @@ Examples:
 
 ```python
 from qiskit import circuit, pulse, schedule, transpile
-from qiskit.providers.fake_provider import FakeOpenPulse2Q
+from qiskit.test.mock import FakeOpenPulse2Q
 
 backend = FakeOpenPulse2Q()
 
@@ -69,12 +69,12 @@ with pulse.build() as main_prog:
 
 **Parameters**
 
-*   **target** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]) – Target circuit or pulse schedule to call.
+*   **target** (`Union`\[`QuantumCircuit`, `Schedule`, `ScheduleBlock`]) – Target circuit or pulse schedule to call.
 *   **name** (`Optional`\[`str`]) – Name of subroutine if defined.
-*   **value\_dict** (`Optional`\[`Dict`\[`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`], `Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]]]) – Parameter object and assigned value mapping. This is more precise way to identify a parameter since mapping is managed with unique object id rather than name. Especially there is any name collision in a parameter table.
-*   **kw\_params** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – Parameter values to bind to the target subroutine with string parameter names. If there are parameter name overlapping, these parameters are updated with the same assigned value.
+*   **value\_dict** (`Optional`\[`Dict`\[`Union`\[`ParameterExpression`, `float`], `Union`\[`ParameterExpression`, `float`]]]) – Parameter object and assigned value mapping. This is more precise way to identify a parameter since mapping is managed with unique object id rather than name. Especially there is any name collision in a parameter table.
+*   **kw\_params** (`Union`\[`ParameterExpression`, `float`]) – Parameter values to bind to the target subroutine with string parameter names. If there are parameter name overlapping, these parameters are updated with the same assigned value.
 
 **Raises**
 
-[**exceptions.PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.exceptions.PulseError") – If the input `target` type is not supported.
+**exceptions.PulseError** – If the input `target` type is not supported.
 

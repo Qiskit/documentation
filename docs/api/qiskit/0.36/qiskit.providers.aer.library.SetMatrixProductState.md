@@ -10,9 +10,9 @@ python_api_name: qiskit.providers.aer.library.SetMatrixProductState
 
 <span id="qiskit.providers.aer.library.SetMatrixProductState" />
 
-`SetMatrixProductState(state)`
+`SetMatrixProductState(state)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/library/set_instructions/set_matrix_product_state.py "view source code")
 
-Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+Bases: `qiskit.circuit.instruction.Instruction`
 
 Set the matrix product state of the simulator
 
@@ -223,7 +223,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.providers.aer.library.SetMatrixProductState.decompositions" />
 

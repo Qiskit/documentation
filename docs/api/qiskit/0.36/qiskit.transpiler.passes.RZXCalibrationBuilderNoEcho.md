@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho
 
 <span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho" />
 
-`RZXCalibrationBuilderNoEcho(instruction_schedule_map=None, qubit_channel_mapping=None)`
+`RZXCalibrationBuilderNoEcho(backend=None, instruction_schedule_map=None, qubit_channel_mapping=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/calibration/builders.py "view source code")
 
-Bases: [`qiskit.transpiler.passes.calibration.builders.RZXCalibrationBuilder`](qiskit.transpiler.passes.RZXCalibrationBuilder "qiskit.transpiler.passes.calibration.builders.RZXCalibrationBuilder")
+Bases: `qiskit.transpiler.passes.calibration.builders.RZXCalibrationBuilder`
 
 Creates calibrations for RZXGate(theta) by stretching and compressing Gaussian square pulses in the CX gate.
 
@@ -22,7 +22,8 @@ Initializes a RZXGate calibration builder.
 
 **Parameters**
 
-*   **instruction\_schedule\_map** (`Optional`\[[`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap")]) – The `InstructionScheduleMap` object representing the default pulse calibrations for the target backend
+*   **backend** (`Union`\[`BaseBackend`, `BackendV1`, `None`]) – DEPRECATED a backend object to build the calibrations for. Use of this argument is deprecated in favor of directly specifying `instruction_schedule_map` and `qubit_channel_map`.
+*   **instruction\_schedule\_map** (`Optional`\[`InstructionScheduleMap`]) – The `InstructionScheduleMap` object representing the default pulse calibrations for the target backend
 *   **qubit\_channel\_mapping** (`Optional`\[`List`\[`List`\[`str`]]]) – The list mapping qubit indices to the list of channel names that apply on that qubit.
 
 **Raises**
@@ -35,13 +36,13 @@ Initializes a RZXGate calibration builder.
 
 <span id="qiskit.transpiler.passes.RZXCalibrationBuilderNoEcho.get_calibration" />
 
-`RZXCalibrationBuilderNoEcho.get_calibration(node_op, qubits)`
+`RZXCalibrationBuilderNoEcho.get_calibration(node_op, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/calibration/builders.py "view source code")
 
 Builds the calibration schedule for the RZXGate(theta) without echos.
 
 **Parameters**
 
-*   **node\_op** ([`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Instruction of the RZXGate(theta). I.e. params\[0] is theta.
+*   **node\_op** (`Instruction`) – Instruction of the RZXGate(theta). I.e. params\[0] is theta.
 *   **qubits** (`List`) – List of qubits for which to get the schedules. The first qubit is the control and the second is the target.
 
 **Returns**
@@ -72,7 +73,7 @@ Return the name of the pass.
 
 **Parameters**
 
-*   **instruction** ([`Play`](qiskit.pulse.instructions.Play "qiskit.pulse.instructions.play.Play")) – The instruction from which to create a new shortened or lengthened pulse.
+*   **instruction** (`Play`) – The instruction from which to create a new shortened or lengthened pulse.
 *   **theta** (`float`) – desired angle, pi/2 is assumed to be the angle that the pulse in the given play instruction implements.
 *   **sample\_mult** (`int`) – All pulses must be a multiple of sample\_mult.
 
@@ -88,8 +89,7 @@ qiskit.pulse.Play
 
 **Raises**
 
-*   **QiskitError** – if the pulses are not GaussianSquare.
-*   **QiskitError** – if rotation angle is not assigned.
+**QiskitError** – if the pulses are not GaussianSquare.
 
 ### run
 
@@ -101,11 +101,11 @@ Run the calibration adder pass on dag.
 
 **Parameters**
 
-**dag** ([`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG to schedule.
+**dag** (`DAGCircuit`) – DAG to schedule.
 
 **Return type**
 
-[`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
+`DAGCircuit`
 
 **Returns**
 
@@ -121,7 +121,7 @@ Determine if a given node supports the calibration.
 
 **Parameters**
 
-*   **node\_op** ([`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Target instruction object.
+*   **node\_op** (`Instruction`) – Target instruction object.
 *   **qubits** (`List`) – Integer qubit indices to check.
 
 **Return type**

@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.InverseCancellation
 
 <span id="qiskit.transpiler.passes.InverseCancellation" />
 
-`InverseCancellation(gates_to_cancel)`
+`InverseCancellation(gates_to_cancel)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/inverse_cancellation.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
 Cancel specific Gates which are inverses of each other when they occur back-to- back.
 
@@ -20,7 +20,7 @@ Initialize InverseCancellation pass.
 
 **Parameters**
 
-**gates\_to\_cancel** (`List`\[`Union`\[[`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate"), `Tuple`\[[`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate"), [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")]]]) – list of gates to cancel
+**gates\_to\_cancel** (`List`\[`Union`\[`Gate`, `Tuple`\[`Gate`, `Gate`]]]) – list of gates to cancel
 
 **Raises**
 
@@ -40,13 +40,13 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.InverseCancellation.run" />
 
-`InverseCancellation.run(dag)`
+`InverseCancellation.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/inverse_cancellation.py "view source code")
 
 Run the InverseCancellation pass on dag.
 
 **Parameters**
 
-**dag** ([`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – the directed acyclic graph to run on.
+**dag** (`DAGCircuit`) – the directed acyclic graph to run on.
 
 **Returns**
 

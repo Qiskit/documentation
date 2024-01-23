@@ -10,9 +10,9 @@ python_api_name: qiskit.opflow.gradients.NaturalGradient
 
 <span id="qiskit.opflow.gradients.NaturalGradient" />
 
-`NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`
+`NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/gradients/natural_gradient.py "view source code")
 
-Bases: [`qiskit.opflow.gradients.gradient_base.GradientBase`](qiskit.opflow.gradients.GradientBase "qiskit.opflow.gradients.gradient_base.GradientBase")
+Bases: `qiskit.opflow.gradients.gradient_base.GradientBase`
 
 Convert an operator expression to the first-order gradient.
 
@@ -28,8 +28,8 @@ where R(x) represents the penalization term.
 
 **Parameters**
 
-*   **grad\_method** (`Union`\[`str`, [`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")]) – The method used to compute the state gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`.
-*   **qfi\_method** (`Union`\[`str`, [`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI")]) – The method used to compute the QFI. Can be either `'lin_comb_full'` or `'overlap_block_diag'` or `'overlap_diag'`.
+*   **grad\_method** (`Union`\[`str`, `CircuitGradient`]) – The method used to compute the state gradient. Can be either `'param_shift'` or `'lin_comb'` or `'fin_diff'`.
+*   **qfi\_method** (`Union`\[`str`, `CircuitQFI`]) – The method used to compute the QFI. Can be either `'lin_comb_full'` or `'overlap_block_diag'` or `'overlap_diag'`.
 *   **regularization** (`Optional`\[`str`]) – Use the following regularization with a least square method to solve the underlying system of linear equations Can be either None or `'ridge'` or `'lasso'` or `'perturb_diag'` `'ridge'` and `'lasso'` use an automatic optimal parameter search If regularization is None but the metric is ill-conditioned or singular then a least square solver is used without regularization
 *   **kwargs** (*dict*) – Optional parameters for a CircuitGradient
 
@@ -39,16 +39,16 @@ where R(x) represents the penalization term.
 
 <span id="qiskit.opflow.gradients.NaturalGradient.convert" />
 
-`NaturalGradient.convert(operator, params=None)`
+`NaturalGradient.convert(operator, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/gradients/natural_gradient.py "view source code")
 
 **Parameters**
 
-*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator we are taking the gradient of.
-*   **params** (`Union`\[[`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.parametervector.ParameterVector"), [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `List`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")], `None`]) – The parameters we are taking the gradient with respect to. If not explicitly passed, they are inferred from the operator and sorted by name.
+*   **operator** (`OperatorBase`) – The operator we are taking the gradient of.
+*   **params** (`Union`\[`ParameterVector`, `ParameterExpression`, `List`\[`ParameterExpression`], `None`]) – The parameters we are taking the gradient with respect to. If not explicitly passed, they are inferred from the operator and sorted by name.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 
@@ -64,7 +64,7 @@ An operator whose evaluation yields the NaturalGradient.
 
 <span id="qiskit.opflow.gradients.NaturalGradient.nat_grad_combo_fn" />
 
-`static NaturalGradient.nat_grad_combo_fn(x, regularization=None)`
+`static NaturalGradient.nat_grad_combo_fn(x, regularization=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/gradients/natural_gradient.py "view source code")
 
 Natural Gradient Function Implementation.
 
@@ -95,7 +95,7 @@ Returns `CircuitGradient`.
 
 **Return type**
 
-[`CircuitGradient`](qiskit.opflow.gradients.CircuitGradient "qiskit.opflow.gradients.circuit_gradients.circuit_gradient.CircuitGradient")
+`CircuitGradient`
 
 **Returns**
 
@@ -111,7 +111,7 @@ Returns: `CircuitQFI`.
 
 **Return type**
 
-[`CircuitQFI`](qiskit.opflow.gradients.CircuitQFI "qiskit.opflow.gradients.circuit_qfis.circuit_qfi.CircuitQFI")
+`CircuitQFI`
 
 <span id="qiskit.opflow.gradients.NaturalGradient.regularization" />
 

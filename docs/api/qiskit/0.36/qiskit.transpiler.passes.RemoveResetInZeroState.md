@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.RemoveResetInZeroState
 
 <span id="qiskit.transpiler.passes.RemoveResetInZeroState" />
 
-`RemoveResetInZeroState(*args, **kwargs)`
+`RemoveResetInZeroState(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/remove_reset_in_zero_state.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
 Remove reset gate when the qubit is in zero state.
 
@@ -30,7 +30,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.RemoveResetInZeroState.run" />
 
-`RemoveResetInZeroState.run(dag)`
+`RemoveResetInZeroState.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/remove_reset_in_zero_state.py "view source code")
 
 Run the RemoveResetInZeroState pass on dag.
 

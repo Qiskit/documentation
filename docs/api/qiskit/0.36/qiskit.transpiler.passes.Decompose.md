@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.Decompose
 
 <span id="qiskit.transpiler.passes.Decompose" />
 
-`Decompose(gate=None, gates_to_decompose=None)`
+`Decompose(gate=None, gates_to_decompose=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/basis/decompose.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
 Expand a gate in a circuit using its decomposition rules.
 
@@ -20,8 +20,8 @@ Decompose initializer.
 
 **Parameters**
 
-*   **gate** (`Optional`\[`Type`\[[`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")]]) – DEPRECATED gate to decompose.
-*   **gates\_to\_decompose** (`Union`\[`Type`\[[`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")], `List`\[`Type`\[[`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")]], `List`\[`str`], `str`, `None`]) – optional subset of gates to be decomposed, identified by gate label, name or type. Defaults to all gates.
+*   **gate** (`Optional`\[`Type`\[`Gate`]]) – DEPRECATED gate to decompose.
+*   **gates\_to\_decompose** (`Union`\[`Type`\[`Gate`], `List`\[`Type`\[`Gate`]], `List`\[`str`], `str`, `None`]) – optional subset of gates to be decomposed, identified by gate label, name or type. Defaults to all gates.
 
 ## Methods
 
@@ -37,17 +37,17 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Decompose.run" />
 
-`Decompose.run(dag)`
+`Decompose.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/basis/decompose.py "view source code")
 
 Run the Decompose pass on dag.
 
 **Parameters**
 
-**dag** ([`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – input dag.
+**dag** (`DAGCircuit`) – input dag.
 
 **Return type**
 
-[`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
+`DAGCircuit`
 
 **Returns**
 
@@ -63,7 +63,7 @@ Returns the gate
 
 **Return type**
 
-[`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+`Gate`
 
 <span id="qiskit.transpiler.passes.Decompose.is_analysis_pass" />
 

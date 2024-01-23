@@ -10,16 +10,16 @@ python_api_name: qiskit.opflow.list_ops.ComposedOp
 
 <span id="qiskit.opflow.list_ops.ComposedOp" />
 
-`ComposedOp(oplist, coeff=1.0, abelian=False)`
+`ComposedOp(oplist, coeff=1.0, abelian=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/list_ops/composed_op.py "view source code")
 
-Bases: [`qiskit.opflow.list_ops.list_op.ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+Bases: `qiskit.opflow.list_ops.list_op.ListOp`
 
 A class for lazily representing compositions of Operators. Often Operators cannot be efficiently composed with one another, but may be manipulated further so that they can be composed later. This class holds logic to indicate that the Operators in `oplist` are meant to be composed, and therefore if they reach a point in which they can be, such as after conversion to QuantumCircuits or matrices, they can be reduced by composition.
 
 **Parameters**
 
-*   **oplist** (`List`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]) – The Operators being composed.
-*   **coeff** (`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – A coefficient multiplying the operator
+*   **oplist** (`List`\[`OperatorBase`]) – The Operators being composed.
+*   **coeff** (`Union`\[`complex`, `ParameterExpression`]) – A coefficient multiplying the operator
 *   **abelian** (`bool`) – Indicates whether the Operators in `oplist` are known to mutually commute.
 
 ## Methods Defined Here
@@ -28,13 +28,13 @@ A class for lazily representing compositions of Operators. Often Operators canno
 
 <span id="qiskit.opflow.list_ops.ComposedOp.adjoint" />
 
-`ComposedOp.adjoint()`
+`ComposedOp.adjoint()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/list_ops/composed_op.py "view source code")
 
 Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
 **Return type**
 
-[`ComposedOp`](qiskit.opflow.list_ops.ComposedOp "qiskit.opflow.list_ops.composed_op.ComposedOp")
+`ComposedOp`
 
 **Returns**
 
@@ -44,7 +44,7 @@ An `OperatorBase` equivalent to the adjoint of self.
 
 <span id="qiskit.opflow.list_ops.ComposedOp.compose" />
 
-`ComposedOp.compose(other, permutation=None, front=False)`
+`ComposedOp.compose(other, permutation=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/list_ops/composed_op.py "view source code")
 
 Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
 
@@ -56,13 +56,13 @@ Because Terra prints circuits with the initial state at the left side of the cir
 
 **Parameters**
 
-*   **other** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` with which to compose self.
+*   **other** (`OperatorBase`) – The `OperatorBase` with which to compose self.
 *   **permutation** (`Optional`\[`List`\[`int`]]) – `List[int]` which defines permutation on other operator.
 *   **front** (`bool`) – If front==True, return `other.compose(self)`.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 
@@ -72,7 +72,7 @@ An `OperatorBase` equivalent to the function composition of self and other.
 
 <span id="qiskit.opflow.list_ops.ComposedOp.eval" />
 
-`ComposedOp.eval(front=None)`
+`ComposedOp.eval(front=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/list_ops/composed_op.py "view source code")
 
 Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
@@ -80,11 +80,11 @@ ListOp’s eval recursively evaluates each Operator in `oplist`, and combines th
 
 **Parameters**
 
-**front** (`Union`\[`str`, `dict`, `ndarray`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase"), [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector"), `None`]) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function.
+**front** (`Union`\[`str`, `dict`, `ndarray`, `OperatorBase`, `Statevector`, `None`]) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function.
 
 **Return type**
 
-`Union`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase"), `complex`]
+`Union`\[`OperatorBase`, `complex`]
 
 **Returns**
 
@@ -100,13 +100,13 @@ The output of the `oplist` Operators’ evaluation function, combined with the `
 
 <span id="qiskit.opflow.list_ops.ComposedOp.non_distributive_reduce" />
 
-`ComposedOp.non_distributive_reduce()`
+`ComposedOp.non_distributive_reduce()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/list_ops/composed_op.py "view source code")
 
 Reduce without attempting to expand all distributive compositions.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 
@@ -116,13 +116,13 @@ The reduced Operator.
 
 <span id="qiskit.opflow.list_ops.ComposedOp.reduce" />
 
-`ComposedOp.reduce()`
+`ComposedOp.reduce()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/list_ops/composed_op.py "view source code")
 
 Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 
@@ -132,13 +132,13 @@ The reduced `OperatorBase`.
 
 <span id="qiskit.opflow.list_ops.ComposedOp.to_circuit" />
 
-`ComposedOp.to_circuit()`
+`ComposedOp.to_circuit()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/list_ops/composed_op.py "view source code")
 
 Returns the quantum circuit, representing the composed operator.
 
 **Return type**
 
-[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+`QuantumCircuit`
 
 **Returns**
 
@@ -154,7 +154,7 @@ The circuit representation of the composed operator.
 
 ### INDENTATION
 
-`= '  '`
+`= ' '`
 
 <span id="qiskit.opflow.list_ops.ComposedOp.abelian" />
 
@@ -178,7 +178,7 @@ The scalar coefficient multiplying the Operator.
 
 **Return type**
 
-`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+`Union`\[`complex`, `ParameterExpression`]
 
 **Returns**
 
@@ -192,7 +192,7 @@ Return a list of the coefficients of the operators listed. Raises exception for 
 
 **Return type**
 
-`List`\[`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]]
+`List`\[`Union`\[`complex`, `ParameterExpression`]]
 
 <span id="qiskit.opflow.list_ops.ComposedOp.combo_fn" />
 
@@ -252,7 +252,7 @@ The list of `OperatorBases` defining the underlying function of this Operator.
 
 **Return type**
 
-`List`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]
+`List`\[`OperatorBase`]
 
 **Returns**
 

@@ -6,26 +6,28 @@ python_api_type: class
 python_api_name: qiskit.pulse.library.Drag
 ---
 
-# Drag[¶](#drag "Permalink to this headline")
+# Drag
 
 <span id="qiskit.pulse.library.Drag" />
 
-`Drag(duration, amp, sigma, beta, name=None, limit_amplitude=None)`
+`Drag(duration, amp, sigma, beta, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
 
-Bases: [`qiskit.pulse.library.symbolic_pulses.SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pulse.library.symbolic_pulses.SymbolicPulse")
+Bases: `qiskit.pulse.library.parametric_pulses.ParametricPulse`
 
 The Derivative Removal by Adiabatic Gate (DRAG) pulse is a standard Gaussian pulse with an additional Gaussian derivative component and lifting applied.
 
-It can be calibrated either to reduce the phase error due to virtual population of the $|2\rangle$ state during the pulse or to reduce the frequency spectrum of a standard Gaussian pulse near the $|1\rangle\leftrightarrow|2\rangle$ transition, reducing the chance of leakage to the $|2\rangle$ state.
+It is designed to reduce the frequency spectrum of a normal gaussian pulse near the $|1\rangle\leftrightarrow|2\rangle$ transition, reducing the chance of leakage to the $|2\rangle$ state.
 
 $$
 \begin{split}g(x) &= \exp\Bigl(-\frac12 \frac{(x - \text{duration}/2)^2}{\text{sigma}^2}\Bigr)\\
-g'(x) &= \text{amp}\times\frac{g(x)-g(-1)}{1-g(-1)}\\
-f(x) &=  g'(x) \times \Bigl(1 + 1j \times \text{beta} \times            \Bigl(-\frac{x - \text{duration}/2}{\text{sigma}^2}\Bigr)  \Bigr),
-    \quad 0 \le x < \text{duration}\end{split}
+f'(x) &= g(x) + 1j \times \text{beta} \times \frac{\mathrm d}{\mathrm{d}x} g(x)\\
+      &= g(x) + 1j \times \text{beta} \times                    \Bigl(-\frac{x - \text{duration}/2}{\text{sigma}^2}\Bigr)g(x)\\
+f(x) &= \text{amp}\times\frac{f'(x)-f'(-1)}{1-f'(-1)}, \quad 0 \le x < \text{duration}\end{split}
 $$
 
-where $g(x)$ is a standard unlifted Gaussian waveform and $g'(x)$ is the lifted [`Gaussian`](qiskit.pulse.library.Gaussian "qiskit.pulse.library.Gaussian") waveform.
+where $g(x)$ is a standard unlifted gaussian waveform and $f'(x)$ is the DRAG waveform without lifting or amplitude scaling.
+
+This pulse would be more accurately named as `LiftedDrag`, however, for historical and practical DSP reasons it has the name `Drag`.
 
 ## References
 
@@ -33,14 +35,14 @@ where $g(x)$ is a standard unlifted Gaussian waveform and $g'(x)$ is the lifted 
 
 2.  [*F. Motzoi, J. M. Gambetta, P. Rebentrost, and F. K. Wilhelm Phys. Rev. Lett. 103, 110501 – Published 8 September 2009.*](https://link.aps.org/doi/10.1103/PhysRevLett.103.110501)
 
-Create new pulse instance.
+Initialize the drag pulse.
 
 **Parameters**
 
-*   **duration** (`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – Pulse length in terms of the sampling period dt.
-*   **amp** (`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – The amplitude of the Drag envelope.
-*   **sigma** (`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
-*   **beta** (`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – The correction amplitude.
+*   **duration** (`Union`\[`int`, `ParameterExpression`]) – Pulse length in terms of the the sampling period dt.
+*   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the Drag envelope.
+*   **sigma** (`Union`\[`float`, `ParameterExpression`]) – A measure of how wide or narrow the Gaussian peak is; described mathematically in the class docstring.
+*   **beta** (`Union`\[`float`, `ParameterExpression`]) – The correction amplitude.
 *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
 *   **limit\_amplitude** (`Optional`\[`bool`]) – If `True`, then limit the amplitude of the waveform to 1. The default is `True` and the amplitude is constrained to 1.
 
@@ -58,7 +60,7 @@ Plot the interpolated envelope of pulse.
 
 *   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
 
-*   **backend** (*Optional\[BaseBackend]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
+*   **backend** (*Optional\[*[*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")*]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
 *   **time\_range** (`Optional`\[`Tuple`\[`int`, `int`]]) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
 
@@ -88,28 +90,13 @@ Visualization output data. The returned data type depends on the `plotter`. If m
 
 <span id="qiskit.pulse.library.Drag.get_waveform" />
 
-`Drag.get_waveform()`
+`Drag.get_waveform()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 Return a Waveform with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
-Since the returned array is a discretized time series of the continuous function, this method uses a midpoint sampler. For `duration`, return:
-
-$$
-\{f(t+0.5) \in \mathbb{C} | t \in \mathbb{Z} \wedge  0<=t<\texttt{duration}\}
-$$
-
 **Return type**
 
-[`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
-
-**Returns**
-
-A waveform representation of this pulse.
-
-**Raises**
-
-*   [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When parameters are not assigned.
-*   [**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When expression for pulse envelope is not assigned.
+`Waveform`
 
 ### is\_parameterized
 
@@ -127,7 +114,7 @@ Return True iff the instruction is parameterized.
 
 <span id="qiskit.pulse.library.Drag.validate_parameters" />
 
-`Drag.validate_parameters()`
+`Drag.validate_parameters()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 Validate parameters.
 
@@ -141,29 +128,25 @@ Validate parameters.
 
 ## Attributes
 
-<span id="qiskit.pulse.library.Drag.constraints" />
+<span id="qiskit.pulse.library.Drag.amp" />
 
-### constraints
+### amp
 
-Return symbolic expression for the pulse parameter constraints.
-
-**Return type**
-
-`Expr`
-
-<span id="qiskit.pulse.library.Drag.duration" />
-
-### duration
-
-<span id="qiskit.pulse.library.Drag.envelope" />
-
-### envelope
-
-Return symbolic expression for the pulse envelope.
+The Gaussian amplitude.
 
 **Return type**
 
-`Expr`
+`Union`\[`complex`, `ParameterExpression`]
+
+<span id="qiskit.pulse.library.Drag.beta" />
+
+### beta
+
+The weighing factor for the Gaussian derivative component of the waveform.
+
+**Return type**
+
+`Union`\[`float`, `ParameterExpression`]
 
 <span id="qiskit.pulse.library.Drag.id" />
 
@@ -181,10 +164,6 @@ Unique identifier for this pulse.
 
 `= True`
 
-<span id="qiskit.pulse.library.Drag.name" />
-
-### name
-
 <span id="qiskit.pulse.library.Drag.parameters" />
 
 ### parameters
@@ -193,23 +172,13 @@ Unique identifier for this pulse.
 
 `Dict`\[`str`, `Any`]
 
-<span id="qiskit.pulse.library.Drag.pulse_type" />
+<span id="qiskit.pulse.library.Drag.sigma" />
 
-### pulse\_type
+### sigma
 
-Return display name of the pulse shape.
-
-**Return type**
-
-`str`
-
-<span id="qiskit.pulse.library.Drag.valid_amp_conditions" />
-
-### valid\_amp\_conditions
-
-Return symbolic expression for the pulse amplitude constraints.
+The Gaussian standard deviation of the pulse width.
 
 **Return type**
 
-`Expr`
+`Union`\[`float`, `ParameterExpression`]
 

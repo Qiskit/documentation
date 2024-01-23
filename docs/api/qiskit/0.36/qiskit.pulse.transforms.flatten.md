@@ -10,17 +10,17 @@ python_api_name: qiskit.pulse.transforms.flatten
 
 <span id="qiskit.pulse.transforms.flatten" />
 
-`flatten(program)`
+`flatten(program)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Flatten (inline) any called nodes into a Schedule tree with no nested children.
 
 **Parameters**
 
-**program** ([`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Pulse program to remove nested structure.
+**program** (`Schedule`) – Pulse program to remove nested structure.
 
 **Return type**
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+`Schedule`
 
 **Returns**
 

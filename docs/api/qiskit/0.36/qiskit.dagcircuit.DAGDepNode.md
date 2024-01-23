@@ -10,7 +10,7 @@ python_api_name: qiskit.dagcircuit.DAGDepNode
 
 <span id="qiskit.dagcircuit.DAGDepNode" />
 
-`DAGDepNode(type=None, op=None, name=None, qargs=(), cargs=(), condition=None, successors=None, predecessors=None, reachable=None, matchedwith=None, successorstovisit=None, isblocked=None, qindices=None, cindices=None, nid=- 1)`
+`DAGDepNode(type=None, op=None, name=None, qargs=None, cargs=None, condition=None, successors=None, predecessors=None, reachable=None, matchedwith=None, successorstovisit=None, isblocked=None, qindices=None, cindices=None, nid=- 1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/dagcircuit/dagdepnode.py "view source code")
 
 Bases: `object`
 
@@ -24,7 +24,7 @@ It is used as the return value from \*\_nodes() functions and can be supplied to
 
 <span id="qiskit.dagcircuit.DAGDepNode.copy" />
 
-`DAGDepNode.copy()`
+`DAGDepNode.copy()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/dagcircuit/dagdepnode.py "view source code")
 
 Function to copy a DAGDepNode object. :returns: a copy of a DAGDepNode object. :rtype: DAGDepNode
 
@@ -32,7 +32,7 @@ Function to copy a DAGDepNode object. :returns: a copy of a DAGDepNode object. :
 
 <span id="qiskit.dagcircuit.DAGDepNode.semantic_eq" />
 
-`static DAGDepNode.semantic_eq(node1, node2)`
+`static DAGDepNode.semantic_eq(node1, node2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/dagcircuit/dagdepnode.py "view source code")
 
 Check if DAG nodes are considered equivalent, e.g., as a node\_match for nx.is\_isomorphic.
 
@@ -51,53 +51,9 @@ Bool
 
 ## Attributes
 
-<span id="qiskit.dagcircuit.DAGDepNode.type" />
-
-### type
-
-<span id="qiskit.dagcircuit.DAGDepNode.name" />
-
-### name
-
 <span id="qiskit.dagcircuit.DAGDepNode.cargs" />
 
 ### cargs
-
-<span id="qiskit.dagcircuit.DAGDepNode.sort_key" />
-
-### sort\_key
-
-<span id="qiskit.dagcircuit.DAGDepNode.node_id" />
-
-### node\_id
-
-<span id="qiskit.dagcircuit.DAGDepNode.successors" />
-
-### successors
-
-<span id="qiskit.dagcircuit.DAGDepNode.predecessors" />
-
-### predecessors
-
-<span id="qiskit.dagcircuit.DAGDepNode.reachable" />
-
-### reachable
-
-<span id="qiskit.dagcircuit.DAGDepNode.matchedwith" />
-
-### matchedwith
-
-<span id="qiskit.dagcircuit.DAGDepNode.isblocked" />
-
-### isblocked
-
-<span id="qiskit.dagcircuit.DAGDepNode.successorstovisit" />
-
-### successorstovisit
-
-<span id="qiskit.dagcircuit.DAGDepNode.qindices" />
-
-### qindices
 
 <span id="qiskit.dagcircuit.DAGDepNode.cindices" />
 
@@ -109,15 +65,59 @@ Bool
 
 Returns the condition of the node.op
 
+<span id="qiskit.dagcircuit.DAGDepNode.isblocked" />
+
+### isblocked
+
+<span id="qiskit.dagcircuit.DAGDepNode.matchedwith" />
+
+### matchedwith
+
+<span id="qiskit.dagcircuit.DAGDepNode.name" />
+
+### name
+
+<span id="qiskit.dagcircuit.DAGDepNode.node_id" />
+
+### node\_id
+
 <span id="qiskit.dagcircuit.DAGDepNode.op" />
 
 ### op
 
 Returns the Instruction object corresponding to the op for the node, else None
 
+<span id="qiskit.dagcircuit.DAGDepNode.predecessors" />
+
+### predecessors
+
 <span id="qiskit.dagcircuit.DAGDepNode.qargs" />
 
 ### qargs
 
 Returns list of Qubit, else an empty list.
+
+<span id="qiskit.dagcircuit.DAGDepNode.qindices" />
+
+### qindices
+
+<span id="qiskit.dagcircuit.DAGDepNode.reachable" />
+
+### reachable
+
+<span id="qiskit.dagcircuit.DAGDepNode.sort_key" />
+
+### sort\_key
+
+<span id="qiskit.dagcircuit.DAGDepNode.successors" />
+
+### successors
+
+<span id="qiskit.dagcircuit.DAGDepNode.successorstovisit" />
+
+### successorstovisit
+
+<span id="qiskit.dagcircuit.DAGDepNode.type" />
+
+### type
 

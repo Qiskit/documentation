@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.synthesis.aqc.ApproximateCircuit
 
 <span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit" />
 
-`ApproximateCircuit(num_qubits, name=None)`
+`ApproximateCircuit(num_qubits, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
 
-Bases: [`qiskit.circuit.quantumcircuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `abc.ABC`
+Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`, `abc.ABC`
 
 A base class that represents an approximate circuit.
 
@@ -27,7 +27,7 @@ A base class that represents an approximate circuit.
 
 <span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.build" />
 
-`abstract ApproximateCircuit.build(thetas)`
+`abstract ApproximateCircuit.build(thetas)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/synthesis/aqc/approximate.py "view source code")
 
 #### Constructs this circuit out of the parameters(thetas). Parameter values must be set before
 
@@ -51,7 +51,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+`List`\[`AncillaQubit`]
 
 <span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.calibrations" />
 
@@ -75,7 +75,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.data" />
 
@@ -85,7 +85,9 @@ Return the circuit data (instructions and context).
 
 **Returns**
 
-a list-like object containing the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s for each instruction.
+a list-like object containing the tuples for the circuit’s data.
+
+Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is an Instruction (or subclass) object, qargs is a list of Qubit objects, and cargs is a list of Clbit objects.
 
 **Return type**
 
@@ -105,7 +107,7 @@ Return the global phase of the circuit in radians.
 
 **Return type**
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+`Union`\[`ParameterExpression`, `float`]
 
 <span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.header" />
 
@@ -117,7 +119,7 @@ Return the global phase of the circuit in radians.
 
 ### instances
 
-`= 87`
+`= 9`
 
 <span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.metadata" />
 
@@ -171,26 +173,6 @@ Return number of qubits.
 
 `int`
 
-<span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-**AttributeError** – When circuit is not scheduled.
-
 <span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.parameters" />
 
 ### parameters
@@ -215,7 +197,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+`List`\[`Qubit`]
 
 <span id="qiskit.transpiler.synthesis.aqc.ApproximateCircuit.thetas" />
 

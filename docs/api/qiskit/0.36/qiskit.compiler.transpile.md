@@ -10,7 +10,7 @@ python_api_name: qiskit.compiler.transpile
 
 <span id="qiskit.compiler.transpile" />
 
-`transpile(circuits, backend=None, basis_gates=None, inst_map=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=None, timing_constraints=None, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None)`
+`transpile(circuits, backend=None, basis_gates=None, inst_map=None, coupling_map=None, backend_properties=None, initial_layout=None, layout_method=None, routing_method=None, translation_method=None, scheduling_method=None, instruction_durations=None, dt=None, approximation_degree=None, timing_constraints=None, seed_transpiler=None, optimization_level=None, callback=None, output_name=None, unitary_synthesis_method='default', unitary_synthesis_plugin_config=None, target=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/compiler/transpiler.py "view source code")
 
 Transpile one or more circuits, according to some desired transpilation targets.
 
@@ -20,9 +20,9 @@ Transpilation is done in parallel using multiprocessing.
 
 **Parameters**
 
-*   **circuits** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]) – Circuit(s) to transpile
+*   **circuits** (`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]]) – Circuit(s) to transpile
 
-*   **backend** (`Optional`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")]) –
+*   **backend** (`Union`\[`Backend`, `BaseBackend`, `None`]) –
 
     If set, transpiler options are automatically grabbed from `backend.configuration()` and `backend.properties()`. If any other option is explicitly set (e.g., `coupling_map`), it will override the backend’s.
 
@@ -32,20 +32,18 @@ Transpilation is done in parallel using multiprocessing.
 
 *   **basis\_gates** (`Optional`\[`List`\[`str`]]) – List of basis gate names to unroll to (e.g: `['u1', 'u2', 'u3', 'cx']`). If `None`, do not unroll.
 
-*   **inst\_map** (`Optional`\[`List`\[[`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap")]]) – Mapping of unrolled gates to pulse schedules. If this is not provided, transpiler tries to get from the backend. If any user defined calibration is found in the map and this is used in a circuit, transpiler attaches the custom gate definition to the circuit. This enables one to flexibly override the low-level instruction implementation. This feature is available iff the backend supports the pulse gate experiment.
+*   **inst\_map** (`Optional`\[`List`\[`InstructionScheduleMap`]]) – Mapping of unrolled gates to pulse schedules. If this is not provided, transpiler tries to get from the backend. If any user defined calibration is found in the map and this is used in a circuit, transpiler attaches the custom gate definition to the circuit. This enables one to flexibly override the low-level instruction implementation. This feature is available iff the backend supports the pulse gate experiment.
 
-*   **coupling\_map** (`Union`\[[`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.coupling.CouplingMap"), `List`\[`List`\[`int`]], `None`]) –
+*   **coupling\_map** (`Union`\[`CouplingMap`, `List`\[`List`\[`int`]], `None`]) –
 
-    Directed coupling map (perhaps custom) to target in mapping. If the coupling map is symmetric, both directions need to be specified.
-
-    Multiple formats are supported:
+    Coupling map (perhaps custom) to target in mapping. Multiple formats are supported:
 
     1.  `CouplingMap` instance
-    2.  List, must be given as an adjacency matrix, where each entry specifies all directed two-qubit interactions supported by backend, e.g: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`
+    2.  List, must be given as an adjacency matrix, where each entry specifies all two-qubit interactions supported by backend, e.g: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`
 
-*   **backend\_properties** (`Optional`\[[`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.backendproperties.BackendProperties")]) – properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc. Find a backend that provides this information with: `backend.properties()`
+*   **backend\_properties** (`Optional`\[`BackendProperties`]) – properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc. Find a backend that provides this information with: `backend.properties()`
 
-*   **initial\_layout** (`Union`\[[`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.layout.Layout"), `Dict`, `List`, `None`]) –
+*   **initial\_layout** (`Union`\[`Layout`, `Dict`, `List`, `None`]) –
 
     Initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the coupling\_map constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler may permute qubits through swaps or other means. Multiple formats are supported:
 
@@ -83,13 +81,13 @@ Transpilation is done in parallel using multiprocessing.
 
 *   **layout\_method** (`Optional`\[`str`]) – Name of layout selection pass (‘trivial’, ‘dense’, ‘noise\_adaptive’, ‘sabre’)
 
-*   **routing\_method** (`Optional`\[`str`]) – Name of routing pass (‘basic’, ‘lookahead’, ‘stochastic’, ‘sabre’, ‘toqm’, ‘none’). Note that to use method ‘toqm’, package ‘qiskit-toqm’ must be installed.
+*   **routing\_method** (`Optional`\[`str`]) – Name of routing pass (‘basic’, ‘lookahead’, ‘stochastic’, ‘sabre’, ‘none’)
 
 *   **translation\_method** (`Optional`\[`str`]) – Name of translation pass (‘unroller’, ‘translator’, ‘synthesis’)
 
 *   **scheduling\_method** (`Optional`\[`str`]) – Name of scheduling pass. \* `'as_soon_as_possible'`: Schedule instructions greedily, as early as possible on a qubit resource. (alias: `'asap'`) \* `'as_late_as_possible'`: Schedule instructions late, i.e. keeping qubits in the ground state when possible. (alias: `'alap'`) If `None`, no scheduling will be done.
 
-*   **instruction\_durations** (`Union`\[`List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]], `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]]]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`]], [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.instruction_durations.InstructionDurations"), `None`]) – Durations of instructions. Applicable only if scheduling\_method is specified. The gate lengths defined in `backend.properties` are used as default. They are overwritten if this `instruction_durations` is specified. The format of `instruction_durations` must be as follows. The instruction\_durations must be given as a list of tuples \[(instruction\_name, qubits, duration, unit), …]. | \[(‘cx’, \[0, 1], 12.3, ‘ns’), (‘u3’, \[0], 4.56, ‘ns’)] | \[(‘cx’, \[0, 1], 1000), (‘u3’, \[0], 300)] If unit is omitted, the default is ‘dt’, which is a sample time depending on backend. If the time unit is ‘dt’, the duration must be an integer.
+*   **instruction\_durations** (`Union`\[`List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]], `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `Optional`\[`Iterable`\[`float`]]]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`, `str`]], `List`\[`Tuple`\[`str`, `Optional`\[`Iterable`\[`int`]], `float`]], `InstructionDurations`, `None`]) – Durations of instructions. Applicable only if scheduling\_method is specified. The gate lengths defined in `backend.properties` are used as default. They are overwritten if this `instruction_durations` is specified. The format of `instruction_durations` must be as follows. The instruction\_durations must be given as a list of tuples \[(instruction\_name, qubits, duration, unit), …]. | \[(‘cx’, \[0, 1], 12.3, ‘ns’), (‘u3’, \[0], 4.56, ‘ns’)] | \[(‘cx’, \[0, 1], 1000), (‘u3’, \[0], 300)] If unit is omitted, the default is ‘dt’, which is a sample time depending on backend. If the time unit is ‘dt’, the duration must be an integer.
 
 *   **dt** (`Optional`\[`float`]) – Backend sample time (resolution) in seconds. If `None` (default), `backend.configuration().dt` is used.
 
@@ -110,7 +108,7 @@ Transpilation is done in parallel using multiprocessing.
 
 *   **optimization\_level** (`Optional`\[`int`]) – How much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer transpilation time. \* 0: no optimization \* 1: light optimization \* 2: heavy optimization \* 3: even heavier optimization If `None`, level 1 will be chosen as default.
 
-*   **callback** (`Optional`\[`Callable`\[\[`BasePass`, [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit"), `float`, [`PropertySet`](qiskit.transpiler.PropertySet "qiskit.transpiler.propertyset.PropertySet"), `int`], `Any`]]) –
+*   **callback** (`Optional`\[`Callable`\[\[`BasePass`, `DAGCircuit`, `float`, `PropertySet`, `int`], `Any`]]) –
 
     A callback function that will be called after each pass execution. The function will be called with 5 keyword arguments, | `pass_`: the pass being run. | `dag`: the dag output of the pass. | `time`: the time to execute the pass. | `property_set`: the property set. | `count`: the index for the pass execution. The exact arguments passed expose the internals of the pass manager, and are subject to change as the pass manager internals change. If you intend to reuse a callback function over multiple releases, be sure to check that the arguments being passed are the same. To use the callback feature, define a function that will take in kwargs dict and access the variables. For example:
 
@@ -131,11 +129,11 @@ Transpilation is done in parallel using multiprocessing.
 
 *   **unitary\_synthesis\_plugin\_config** (`Optional`\[`dict`]) – An optional configuration dictionary that will be passed directly to the unitary synthesis plugin. By default this setting will have no effect as the default unitary synthesis method does not take custom configuration. This should only be necessary when a unitary synthesis plugin is specified with the `unitary_synthesis` argument. As this is custom for each unitary synthesis plugin refer to the plugin documentation for how to use this option.
 
-*   **target** (`Optional`\[[`Target`](qiskit.transpiler.Target "qiskit.transpiler.target.Target")]) – A backend transpiler target. Normally this is specified as part of the `backend` argument, but if you have manually constructed a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object you can specify it manually here. This will override the target from `backend`.
+*   **target** (`Optional`\[`Target`]) – A backend transpiler target. Normally this is specified as part of the `backend` argument, but if you have manually constructed a [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") object you can specify it manually here. This will override the target from `backend`.
 
 **Return type**
 
-`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]
+`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]]
 
 **Returns**
 

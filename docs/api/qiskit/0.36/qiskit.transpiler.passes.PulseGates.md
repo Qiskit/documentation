@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.PulseGates
 
 <span id="qiskit.transpiler.passes.PulseGates" />
 
-`PulseGates(inst_map)`
+`PulseGates(inst_map)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/calibration/builders.py "view source code")
 
 Bases: `qiskit.transpiler.passes.calibration.builders.CalibrationBuilder`
 
@@ -32,7 +32,7 @@ Create new pass.
 
 **Parameters**
 
-**inst\_map** ([`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.instruction_schedule_map.InstructionScheduleMap")) – Instruction schedule map that user may override.
+**inst\_map** (`InstructionScheduleMap`) – Instruction schedule map that user may override.
 
 ## Methods
 
@@ -40,18 +40,18 @@ Create new pass.
 
 <span id="qiskit.transpiler.passes.PulseGates.get_calibration" />
 
-`PulseGates.get_calibration(node_op, qubits)`
+`PulseGates.get_calibration(node_op, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/calibration/builders.py "view source code")
 
 Gets the calibrated schedule for the given instruction and qubits.
 
 **Parameters**
 
-*   **node\_op** ([`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Target instruction object.
+*   **node\_op** (`Instruction`) – Target instruction object.
 *   **qubits** (`List`) – Integer qubit indices to check.
 
 **Return type**
 
-`Union`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
+`Union`\[`Schedule`, `ScheduleBlock`]
 
 **Returns**
 
@@ -75,11 +75,11 @@ Run the calibration adder pass on dag.
 
 **Parameters**
 
-**dag** ([`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG to schedule.
+**dag** (`DAGCircuit`) – DAG to schedule.
 
 **Return type**
 
-[`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
+`DAGCircuit`
 
 **Returns**
 
@@ -89,13 +89,13 @@ A DAG with calibrations added to it.
 
 <span id="qiskit.transpiler.passes.PulseGates.supported" />
 
-`PulseGates.supported(node_op, qubits)`
+`PulseGates.supported(node_op, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/calibration/builders.py "view source code")
 
 Determine if a given node supports the calibration.
 
 **Parameters**
 
-*   **node\_op** ([`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")) – Target instruction object.
+*   **node\_op** (`Instruction`) – Target instruction object.
 *   **qubits** (`List`) – Integer qubit indices to check.
 
 **Return type**

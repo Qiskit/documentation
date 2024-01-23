@@ -10,9 +10,9 @@ python_api_name: qiskit.providers.aer.extensions.SnapshotStabilizer
 
 <span id="qiskit.providers.aer.extensions.SnapshotStabilizer" />
 
-`SnapshotStabilizer(label, num_qubits=0)`
+`SnapshotStabilizer(label, num_qubits=0)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/extensions/snapshot_stabilizer.py "view source code")
 
-Bases: [`qiskit.providers.aer.extensions.snapshot.Snapshot`](qiskit.providers.aer.extensions.Snapshot "qiskit.providers.aer.extensions.snapshot.Snapshot")
+Bases: `qiskit.providers.aer.extensions.snapshot.Snapshot`
 
 Snapshot instruction for stabilizer method of Qasm simulator.
 
@@ -224,7 +224,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.providers.aer.extensions.SnapshotStabilizer.decompositions" />
 

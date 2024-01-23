@@ -10,9 +10,9 @@ python_api_name: qiskit.pulse.instructions.Delay
 
 <span id="qiskit.pulse.instructions.Delay" />
 
-`Delay(duration, channel, name=None)`
+`Delay(duration, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/delay.py "view source code")
 
-Bases: [`qiskit.pulse.instructions.instruction.Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
+Bases: `qiskit.pulse.instructions.instruction.Instruction`
 
 A blocking instruction with no other effect. The delay is used for aligning and scheduling other instructions.
 
@@ -34,7 +34,7 @@ No other instruction may be scheduled within a `Delay`.
 
 **Parameters**
 
-*   **duration** (`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – Length of time of the delay in terms of dt.
+*   **duration** (`Union`\[`int`, `ParameterExpression`]) – Length of time of the delay in terms of dt.
 *   **channel** ([`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")) – The channel that will have the delay.
 *   **name** (`Optional`\[`str`]) – Name of the delay for display purposes.
 
@@ -166,7 +166,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Delay.is_parameterized" />
 
-`Delay.is_parameterized()`
+`Delay.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/delay.py "view source code")
 
 Return `True` iff the instruction is parameterized.
 
@@ -225,7 +225,7 @@ Duration of this instruction.
 
 **Return type**
 
-`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+`Union`\[`int`, `ParameterExpression`]
 
 <span id="qiskit.pulse.instructions.Delay.id" />
 
@@ -245,7 +245,7 @@ Iterable for getting instructions from Schedule tree.
 
 **Return type**
 
-`Tuple`\[`Tuple`\[`int`, [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")]]
+`Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
 <span id="qiskit.pulse.instructions.Delay.name" />
 
