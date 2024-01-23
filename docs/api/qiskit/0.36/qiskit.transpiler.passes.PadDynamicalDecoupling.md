@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
 
 <span id="qiskit.transpiler.passes.PadDynamicalDecoupling" />
 
-`PadDynamicalDecoupling(durations, dd_sequence, qubits=None, spacing=None, skip_reset_qubits=True, pulse_alignment=1, extra_slack_distribution='middle')`
+`PadDynamicalDecoupling(durations, dd_sequence, qubits=None, spacing=None, skip_reset_qubits=True, pulse_alignment=1, extra_slack_distribution='middle')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/padding/dynamical_decoupling.py "view source code")
 
 Bases: `qiskit.transpiler.passes.scheduling.padding.base_padding.BasePadding`
 
@@ -27,7 +27,7 @@ import numpy as np
 from qiskit.circuit import QuantumCircuit
 from qiskit.circuit.library import XGate
 from qiskit.transpiler import PassManager, InstructionDurations
-from qiskit.transpiler.passes import ALAPScheduleAnalysis, PadDynamicalDecoupling
+from qiskit.transpiler.passes import ALAPSchedule, DynamicalDecoupling
 from qiskit.visualization import timeline_drawer
 circ = QuantumCircuit(4)
 circ.h(0)
@@ -45,8 +45,8 @@ durations = InstructionDurations(
 ```python
 # balanced X-X sequence on all qubits
 dd_sequence = [XGate(), XGate()]
-pm = PassManager([ALAPScheduleAnalysis(durations),
-                  PadDynamicalDecoupling(durations, dd_sequence)])
+pm = PassManager([ALAPSchedule(durations),
+                  DynamicalDecoupling(durations, dd_sequence)])
 circ_dd = pm.run(circ)
 timeline_drawer(circ_dd)
 ```
@@ -65,8 +65,8 @@ for k in range(n):
 spacing.append(1 - sum(spacing))
 pm = PassManager(
     [
-        ALAPScheduleAnalysis(durations),
-        PadDynamicalDecoupling(durations, dd_sequence, qubits=[0], spacing=spacing),
+        ALAPSchedule(durations),
+        DynamicalDecoupling(durations, dd_sequence, qubits=[0], spacing=spacing),
     ]
 )
 circ_dd = pm.run(circ)
@@ -83,9 +83,9 @@ Dynamical decoupling initializer.
 
 **Parameters**
 
-*   **durations** ([`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.instruction_durations.InstructionDurations")) – Durations of instructions to be used in scheduling.
+*   **durations** (`InstructionDurations`) – Durations of instructions to be used in scheduling.
 
-*   **dd\_sequence** (`List`\[[`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")]) – Sequence of gates to apply in idle spots.
+*   **dd\_sequence** (`List`\[`Gate`]) – Sequence of gates to apply in idle spots.
 
 *   **qubits** (`Optional`\[`List`\[`int`]]) – Physical qubits on which to apply DD. If None, all qubits will undergo DD (when possible).
 
@@ -127,7 +127,7 @@ Run the padding pass on `dag`.
 
 **Parameters**
 
-**dag** ([`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG to be checked.
+**dag** (`DAGCircuit`) – DAG to be checked.
 
 **Returns**
 

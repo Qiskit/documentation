@@ -10,7 +10,7 @@ python_api_name: qiskit.qobj.QasmQobj
 
 <span id="qiskit.qobj.QasmQobj" />
 
-`QasmQobj(qobj_id=None, config=None, experiments=None, header=None)`
+`QasmQobj(qobj_id=None, config=None, experiments=None, header=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
 
 Bases: `object`
 
@@ -33,7 +33,7 @@ Each QASM Qobj object is used to represent a single payload that will be passed 
 
 <span id="qiskit.qobj.QasmQobj.from_dict" />
 
-`classmethod QasmQobj.from_dict(data)`
+`classmethod QasmQobj.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
 
 Create a new QASMQobj object from a dictionary.
 
@@ -53,7 +53,7 @@ The QasmQobj from the input dictionary.
 
 <span id="qiskit.qobj.QasmQobj.to_dict" />
 
-`QasmQobj.to_dict()`
+`QasmQobj.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
 
 Return a dictionary format representation of the QASM Qobj.
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.drive_channel
 
 <span id="qiskit.pulse.builder.drive_channel" />
 
-`drive_channel(qubit)`
+`drive_channel(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Return `DriveChannel` for `qubit` on the active builder backend.
 
@@ -18,7 +18,7 @@ Examples:
 
 ```python
 from qiskit import pulse
-from qiskit.providers.fake_provider import FakeOpenPulse2Q
+from qiskit.test.mock import FakeOpenPulse2Q
 
 backend = FakeOpenPulse2Q()
 

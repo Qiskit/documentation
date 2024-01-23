@@ -10,9 +10,9 @@ python_api_name: qiskit.pulse.instructions.Play
 
 <span id="qiskit.pulse.instructions.Play" />
 
-`Play(pulse, channel, name=None)`
+`Play(pulse, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/play.py "view source code")
 
-Bases: [`qiskit.pulse.instructions.instruction.Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
+Bases: `qiskit.pulse.instructions.instruction.Instruction`
 
 This instruction is responsible for applying a pulse on a channel.
 
@@ -158,7 +158,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Play.is_parameterized" />
 
-`Play.is_parameterized()`
+`Play.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/play.py "view source code")
 
 Return True iff the instruction is parameterized.
 
@@ -217,7 +217,7 @@ Duration of this instruction.
 
 **Return type**
 
-`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+`Union`\[`int`, `ParameterExpression`]
 
 <span id="qiskit.pulse.instructions.Play.id" />
 
@@ -237,7 +237,7 @@ Iterable for getting instructions from Schedule tree.
 
 **Return type**
 
-`Tuple`\[`Tuple`\[`int`, [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")]]
+`Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
 <span id="qiskit.pulse.instructions.Play.name" />
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.DIRECT_L
 
 <span id="qiskit.algorithms.optimizers.DIRECT_L" />
 
-`DIRECT_L(max_evals=1000)`
+`DIRECT_L(max_evals=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/nlopts/direct_l.py "view source code")
 
 Bases: `qiskit.algorithms.optimizers.nlopts.nloptimizer.NLoptOptimizer`
 
@@ -34,7 +34,7 @@ NLopt global optimizer, derivative-free. For further detail, please refer to [ht
 
 <span id="qiskit.algorithms.optimizers.DIRECT_L.get_nlopt_optimizer" />
 
-`DIRECT_L.get_nlopt_optimizer()`
+`DIRECT_L.get_nlopt_optimizer()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/nlopts/direct_l.py "view source code")
 
 Return NLopt optimizer type
 
@@ -90,11 +90,37 @@ Minimize the scalar function.
 
 **Return type**
 
-[`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
+`OptimizerResult`
 
 **Returns**
 
 The result of the optimization, containing e.g. the result as attribute `x`.
+
+### optimize
+
+<span id="qiskit.algorithms.optimizers.DIRECT_L.optimize" />
+
+`DIRECT_L.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`
+
+Perform optimization.
+
+**Parameters**
+
+*   **num\_vars** (*int*) – Number of parameters to be optimized.
+*   **objective\_function** (*callable*) – A function that computes the objective function.
+*   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
+*   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
+*   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
+
+**Returns**
+
+**point, value, nfev**
+
+point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
+
+**Raises**
+
+**ValueError** – invalid input
 
 ### print\_options
 

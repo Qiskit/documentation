@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.synthesis.aqc.AQC
 
 <span id="qiskit.transpiler.synthesis.aqc.AQC" />
 
-`AQC(optimizer=None, seed=None)`
+`AQC(optimizer=None, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/synthesis/aqc/aqc.py "view source code")
 
 Bases: `object`
 
@@ -22,7 +22,7 @@ A generic implementation of Approximate Quantum Compiler. This implementation is
 
 **Parameters**
 
-*   **optimizer** (`Optional`\[[`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")]) – an optimizer to be used in the optimization procedure of the search for the best approximate circuit. By default [`L_BFGS_B`](qiskit.algorithms.optimizers.L_BFGS_B "qiskit.algorithms.optimizers.L_BFGS_B") is used with max iterations is set to 1000.
+*   **optimizer** (`Optional`\[`Optimizer`]) – an optimizer to be used in the optimization procedure of the search for the best approximate circuit. By default [`L_BFGS_B`](qiskit.algorithms.optimizers.L_BFGS_B "qiskit.algorithms.optimizers.L_BFGS_B") is used with max iterations is set to 1000.
 *   **seed** (`Optional`\[`int`]) – a seed value to be user by a random number generator.
 
 ## Methods Defined Here
@@ -31,15 +31,15 @@ A generic implementation of Approximate Quantum Compiler. This implementation is
 
 <span id="qiskit.transpiler.synthesis.aqc.AQC.compile_unitary" />
 
-`AQC.compile_unitary(target_matrix, approximate_circuit, approximating_objective, initial_point=None)`
+`AQC.compile_unitary(target_matrix, approximate_circuit, approximating_objective, initial_point=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/synthesis/aqc/aqc.py "view source code")
 
 Approximately compiles a circuit represented as a unitary matrix by solving an optimization problem defined by `approximating_objective` and using `approximate_circuit` as a template for the approximate circuit.
 
 **Parameters**
 
 *   **target\_matrix** (`ndarray`) – a unitary matrix to approximate.
-*   **approximate\_circuit** ([`ApproximateCircuit`](qiskit.transpiler.synthesis.aqc.ApproximateCircuit "qiskit.transpiler.synthesis.aqc.approximate.ApproximateCircuit")) – a template circuit that will be filled with the parameter values obtained in the optimization procedure.
-*   **approximating\_objective** ([`ApproximatingObjective`](qiskit.transpiler.synthesis.aqc.ApproximatingObjective "qiskit.transpiler.synthesis.aqc.approximate.ApproximatingObjective")) – a definition of the optimization problem.
+*   **approximate\_circuit** (`ApproximateCircuit`) – a template circuit that will be filled with the parameter values obtained in the optimization procedure.
+*   **approximating\_objective** (`ApproximatingObjective`) – a definition of the optimization problem.
 *   **initial\_point** (`Optional`\[`ndarray`]) – initial values of angles/parameters to start optimization from.
 
 **Return type**

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.PadDelay
 
 <span id="qiskit.transpiler.passes.PadDelay" />
 
-`PadDelay(fill_very_end=True)`
+`PadDelay(fill_very_end=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/padding/pad_delay.py "view source code")
 
 Bases: `qiskit.transpiler.passes.scheduling.padding.base_padding.BasePadding`
 
@@ -58,7 +58,7 @@ Run the padding pass on `dag`.
 
 **Parameters**
 
-**dag** ([`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG to be checked.
+**dag** (`DAGCircuit`) – DAG to be checked.
 
 **Returns**
 

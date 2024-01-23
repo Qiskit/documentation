@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.delay_qubits
 
 <span id="qiskit.pulse.builder.delay_qubits" />
 
-`delay_qubits(duration, *qubits)`
+`delay_qubits(duration, *qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Insert delays on all of the `channels.Channel`s that correspond to the input `qubits` at the same time.
 
@@ -18,7 +18,7 @@ Examples:
 
 ```python
 from qiskit import pulse
-from qiskit.providers.fake_provider import FakeOpenPulse3Q
+from qiskit.test.mock import FakeOpenPulse3Q
 
 backend = FakeOpenPulse3Q()
 

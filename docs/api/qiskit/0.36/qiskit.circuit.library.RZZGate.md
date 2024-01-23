@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.RZZGate
 
 <span id="qiskit.circuit.library.RZZGate" />
 
-`RZZGate(theta, label=None)`
+`RZZGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rzz.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 A parametric 2-qubit $Z \otimes Z$ interaction (rotation about ZZ).
 
@@ -29,7 +29,7 @@ q_1: ───■────
 **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZZ}(\theta) = \exp\left(-i \th Z{\otimes}Z\right) =
+ \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZZ}(\theta) = exp(-i \th Z{\otimes}Z) =
     \begin{pmatrix}
         e^{-i \th} & 0 & 0 & 0 \\
         0 & e^{i \th} & 0 & 0 \\
@@ -63,7 +63,7 @@ $$
 > $$
 >
 > $$
-> \begin{split}R_{ZZ}\left(\theta = \frac{\pi}{2}\right) = \frac{1}{\sqrt{2}}
+> \begin{split}R_{ZZ}(\theta = \frac{\pi}{2}) = \frac{1}{\sqrt{2}}
 >                         \begin{pmatrix}
 >                             1-i & 0 & 0 & 0 \\
 >                             0 & 1+i & 0 & 0 \\
@@ -80,7 +80,7 @@ Create new RZZ gate.
 
 <span id="qiskit.circuit.library.RZZGate.inverse" />
 
-`RZZGate.inverse()`
+`RZZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rzz.py "view source code")
 
 Return inverse RZZ gate (i.e. with the negative rotation angle).
 
@@ -94,7 +94,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.RZZGate.decompositions" />
 

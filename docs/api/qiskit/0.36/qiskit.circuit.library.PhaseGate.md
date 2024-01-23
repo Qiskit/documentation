@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.PhaseGate
 
 <span id="qiskit.circuit.library.PhaseGate" />
 
-`PhaseGate(theta, label=None)`
+`PhaseGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/p.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 Single-qubit rotation about the Z axis.
 
@@ -68,7 +68,7 @@ Create new Phase gate.
 
 <span id="qiskit.circuit.library.PhaseGate.control" />
 
-`PhaseGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`PhaseGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/p.py "view source code")
 
 Return a (multi-)controlled-Phase gate.
 
@@ -90,7 +90,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.PhaseGate.inverse" />
 
-`PhaseGate.inverse()`
+`PhaseGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/p.py "view source code")
 
 Return inverted Phase gate ($Phase(\lambda){\dagger} = Phase(-\lambda)$)
 
@@ -104,7 +104,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.PhaseGate.decompositions" />
 

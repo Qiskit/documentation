@@ -10,9 +10,9 @@ python_api_name: qiskit.extensions.SingleQubitUnitary
 
 <span id="qiskit.extensions.SingleQubitUnitary" />
 
-`SingleQubitUnitary(unitary_matrix, mode='ZYZ', up_to_diagonal=False)`
+`SingleQubitUnitary(unitary_matrix, mode='ZYZ', up_to_diagonal=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/extensions/quantum_initializer/squ.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 u = 2\*2 unitary (given as a (complex) numpy.ndarray)
 
@@ -161,7 +161,7 @@ updated if it was provided
 
 <span id="qiskit.extensions.SingleQubitUnitary.inverse" />
 
-`SingleQubitUnitary.inverse()`
+`SingleQubitUnitary.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/extensions/quantum_initializer/squ.py "view source code")
 
 Return the inverse.
 
@@ -297,7 +297,7 @@ np.ndarray
 
 <span id="qiskit.extensions.SingleQubitUnitary.validate_parameter" />
 
-`SingleQubitUnitary.validate_parameter(parameter)`
+`SingleQubitUnitary.validate_parameter(parameter)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/extensions/quantum_initializer/squ.py "view source code")
 
 Single-qubit unitary gate parameter has to be an ndarray.
 
@@ -311,7 +311,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.extensions.SingleQubitUnitary.decompositions" />
 

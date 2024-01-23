@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.Size
 
 <span id="qiskit.transpiler.passes.Size" />
 
-`Size(*args, **kwargs)`
+`Size(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/analysis/size.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
 Calculate the size of a DAG circuit.
 
@@ -32,7 +32,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.Size.run" />
 
-`Size.run(dag)`
+`Size.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/analysis/size.py "view source code")
 
 Run the Size pass on dag.
 

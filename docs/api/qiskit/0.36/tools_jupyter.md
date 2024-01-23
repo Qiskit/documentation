@@ -72,22 +72,23 @@ import qiskit.tools.jupyter
 
 | Qiskit Software              | Version                       |
 | ---------------------------- | ----------------------------- |
-| `qiskit-terra`               | 0.21.0                        |
+| `qiskit-terra`               | 0.20.0                        |
 | `qiskit-aer`                 | 0.10.4                        |
-| `qiskit-ibmq-provider`       | 0.19.2                        |
-| `qiskit`                     | 0.37.0                        |
-| `qiskit-nature`              | 0.4.1                         |
-| `qiskit-finance`             | 0.3.3                         |
-| `qiskit-optimization`        | 0.4.0                         |
-| `qiskit-machine-learning`    | 0.4.0                         |
+| `qiskit-ignis`               | 0.7.0                         |
+| `qiskit-ibmq-provider`       | 0.19.0                        |
+| `qiskit`                     | 0.36.0                        |
+| `qiskit-nature`              | 0.3.2                         |
+| `qiskit-finance`             | 0.3.1                         |
+| `qiskit-optimization`        | 0.3.2                         |
+| `qiskit-machine-learning`    | 0.3.1                         |
 | System information           |                               |
-| Python version               | 3.8.13                        |
-| Python compiler              | GCC 9.4.0                     |
-| Python build                 | default, Jun 20 2022 14:28:56 |
+| Python version               | 3.8.12                        |
+| Python compiler              | GCC 9.3.0                     |
+| Python build                 | default, Oct 18 2021 14:07:50 |
 | OS                           | Linux                         |
 | CPUs                         | 2                             |
-| Memory (Gb)                  | 6.783607482910156             |
-| Thu Jun 30 18:16:58 2022 UTC |                               |
+| Memory (Gb)                  | 6.783611297607422             |
+| Wed Apr 06 21:17:05 2022 UTC |                               |
 
 ## Qiskit copyright
 

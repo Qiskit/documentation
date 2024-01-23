@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.RVGate
 
 <span id="qiskit.circuit.library.RVGate" />
 
-`RVGate(v_x, v_y, v_z, basis='U')`
+`RVGate(v_x, v_y, v_z, basis='U')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/generalized_gates/rv.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 Rotation around arbitrary rotation axis $v$ where $|v|$ is angle of rotation in radians.
 
@@ -43,7 +43,7 @@ Create new rv single-qubit gate.
 *   **v\_x** (*float*) – x-component
 *   **v\_y** (*float*) – y-component
 *   **v\_z** (*float*) – z-component
-*   **basis** (*str, optional*) – basis (see [`OneQubitEulerDecomposer`](qiskit.quantum_info.OneQubitEulerDecomposer "qiskit.quantum_info.synthesis.one_qubit_decompose.OneQubitEulerDecomposer"))
+*   **basis** (*str, optional*) – basis (see `OneQubitEulerDecomposer`)
 
 ## Methods Defined Here
 
@@ -51,7 +51,7 @@ Create new rv single-qubit gate.
 
 <span id="qiskit.circuit.library.RVGate.inverse" />
 
-`RVGate.inverse()`
+`RVGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/generalized_gates/rv.py "view source code")
 
 Invert this gate.
 
@@ -59,7 +59,7 @@ Invert this gate.
 
 <span id="qiskit.circuit.library.RVGate.to_matrix" />
 
-`RVGate.to_matrix()`
+`RVGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/generalized_gates/rv.py "view source code")
 
 Return a numpy.array for the R(v) gate.
 
@@ -73,7 +73,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.RVGate.decompositions" />
 

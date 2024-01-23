@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.ECRGate
 
 <span id="qiskit.circuit.library.ECRGate" />
 
-`ECRGate`
+`ECRGate`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/ecr.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 An echoed RZX(pi/2) gate implemented using RZX(pi/4) and RZX(-pi/4).
 
@@ -70,7 +70,7 @@ Create new ECR gate.
 
 <span id="qiskit.circuit.library.ECRGate.to_matrix" />
 
-`ECRGate.to_matrix()`
+`ECRGate.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/ecr.py "view source code")
 
 Return a numpy.array for the ECR gate.
 
@@ -84,7 +84,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.ECRGate.decompositions" />
 

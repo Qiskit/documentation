@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.CRXGate
 
 <span id="qiskit.circuit.library.CRXGate" />
 
-`CRXGate(theta, label=None, ctrl_state=None)`
+`CRXGate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rx.py "view source code")
 
-Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
 Controlled-RX gate.
 
@@ -28,7 +28,7 @@ q_1: ┤ Rx(ϴ) ├
 **Matrix representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRX(\theta)\ q_0, q_1 =
+ \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRX(\lambda)\ q_0, q_1 =
     I \otimes |0\rangle\langle 0| + RX(\theta) \otimes |1\rangle\langle 1| =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
@@ -68,7 +68,7 @@ Create new CRX gate.
 
 <span id="qiskit.circuit.library.CRXGate.inverse" />
 
-`CRXGate.inverse()`
+`CRXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rx.py "view source code")
 
 Return inverse CRX gate (i.e. with the negative rotation angle).
 
@@ -82,7 +82,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.CRXGate.ctrl_state" />
 

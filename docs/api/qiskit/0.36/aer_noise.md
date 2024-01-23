@@ -107,38 +107,38 @@ plot_histogram(counts)
 
 The following are the classes used to represented noise and error terms.
 
-|                                                                                                                                             |                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [`NoiseModel`](qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel")(\[basis\_gates])                              | Noise model class for Qiskit Aer simulators.    |
-| [`QuantumError`](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")(noise\_ops\[, number\_of\_qubits, ...]) | Quantum error class for Qiskit Aer noise model  |
-| [`ReadoutError`](qiskit.providers.aer.noise.ReadoutError "qiskit.providers.aer.noise.ReadoutError")(probabilities\[, atol])                 | Readout error class for Qiskit Aer noise model. |
+|                                                                                                                                           |                                                 |
+| ----------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
+| [`NoiseModel`](qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel")(\[basis\_gates])                            | Noise model class for Qiskit Aer simulators.    |
+| [`QuantumError`](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")(noise\_ops\[, number\_of\_qubits, …]) | Quantum error class for Qiskit Aer noise model  |
+| [`ReadoutError`](qiskit.providers.aer.noise.ReadoutError "qiskit.providers.aer.noise.ReadoutError")(probabilities\[, atol])               | Readout error class for Qiskit Aer noise model. |
 
 ## Quantum Error Functions
 
 The following functions can be used to generate many common types of [`QuantumError`](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError") objects for inclusion in a [`NoiseModel`](qiskit.providers.aer.noise.NoiseModel "qiskit.providers.aer.noise.NoiseModel").
 
-|                                                                                                                                                                         |                                                                                   |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
-| [`pauli_error`](qiskit.providers.aer.noise.pauli_error "qiskit.providers.aer.noise.pauli_error")(noise\_ops\[, standard\_gates])                                        | Return a mixed Pauli quantum error channel.                                       |
-| [`depolarizing_error`](qiskit.providers.aer.noise.depolarizing_error "qiskit.providers.aer.noise.depolarizing_error")(param, num\_qubits\[, ...])                       | Return a depolarizing quantum error channel.                                      |
-| [`pauli_error`](qiskit.providers.aer.noise.pauli_error "qiskit.providers.aer.noise.pauli_error")(noise\_ops\[, standard\_gates])                                        | Return a mixed Pauli quantum error channel.                                       |
-| [`mixed_unitary_error`](qiskit.providers.aer.noise.mixed_unitary_error "qiskit.providers.aer.noise.mixed_unitary_error")(noise\_ops\[, standard\_gates])                | Return a mixed unitary quantum error channel.                                     |
-| [`coherent_unitary_error`](qiskit.providers.aer.noise.coherent_unitary_error "qiskit.providers.aer.noise.coherent_unitary_error")(unitary)                              | Return a coherent unitary quantum error channel.                                  |
-| [`reset_error`](qiskit.providers.aer.noise.reset_error "qiskit.providers.aer.noise.reset_error")(prob0\[, prob1])                                                       | Return a single qubit reset quantum error channel.                                |
-| [`amplitude_damping_error`](qiskit.providers.aer.noise.amplitude_damping_error "qiskit.providers.aer.noise.amplitude_damping_error")(param\_amp\[, ...])                | Return a single-qubit generalized amplitude damping quantum error channel.        |
-| [`phase_damping_error`](qiskit.providers.aer.noise.phase_damping_error "qiskit.providers.aer.noise.phase_damping_error")(param\_phase\[, ...])                          | Return a single-qubit generalized phase damping quantum error channel.            |
-| [`phase_amplitude_damping_error`](qiskit.providers.aer.noise.phase_amplitude_damping_error "qiskit.providers.aer.noise.phase_amplitude_damping_error")(param\_amp, ...) | Return a single-qubit combined phase and amplitude damping quantum error channel. |
-| [`thermal_relaxation_error`](qiskit.providers.aer.noise.thermal_relaxation_error "qiskit.providers.aer.noise.thermal_relaxation_error")(t1, t2, time\[, ...])           | Return a single-qubit thermal relaxation quantum error channel.                   |
-| [`kraus_error`](qiskit.providers.aer.noise.kraus_error "qiskit.providers.aer.noise.kraus_error")(noise\_ops\[, standard\_gates, ...])                                   | Return a Kraus quantum error channel.                                             |
+|                                                                                                                                                                       |                                                                                   |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------- |
+| [`pauli_error`](qiskit.providers.aer.noise.pauli_error "qiskit.providers.aer.noise.pauli_error")(noise\_ops\[, standard\_gates])                                      | Return a mixed Pauli quantum error channel.                                       |
+| [`depolarizing_error`](qiskit.providers.aer.noise.depolarizing_error "qiskit.providers.aer.noise.depolarizing_error")(param, num\_qubits\[, …])                       | Return a depolarizing quantum error channel.                                      |
+| [`pauli_error`](qiskit.providers.aer.noise.pauli_error "qiskit.providers.aer.noise.pauli_error")(noise\_ops\[, standard\_gates])                                      | Return a mixed Pauli quantum error channel.                                       |
+| [`mixed_unitary_error`](qiskit.providers.aer.noise.mixed_unitary_error "qiskit.providers.aer.noise.mixed_unitary_error")(noise\_ops\[, standard\_gates])              | Return a mixed unitary quantum error channel.                                     |
+| [`coherent_unitary_error`](qiskit.providers.aer.noise.coherent_unitary_error "qiskit.providers.aer.noise.coherent_unitary_error")(unitary)                            | Return a coherent unitary quantum error channel.                                  |
+| [`reset_error`](qiskit.providers.aer.noise.reset_error "qiskit.providers.aer.noise.reset_error")(prob0\[, prob1])                                                     | Return a single qubit reset quantum error channel.                                |
+| [`amplitude_damping_error`](qiskit.providers.aer.noise.amplitude_damping_error "qiskit.providers.aer.noise.amplitude_damping_error")(param\_amp\[, …])                | Return a single-qubit generalized amplitude damping quantum error channel.        |
+| [`phase_damping_error`](qiskit.providers.aer.noise.phase_damping_error "qiskit.providers.aer.noise.phase_damping_error")(param\_phase\[, …])                          | Return a single-qubit generalized phase damping quantum error channel.            |
+| [`phase_amplitude_damping_error`](qiskit.providers.aer.noise.phase_amplitude_damping_error "qiskit.providers.aer.noise.phase_amplitude_damping_error")(param\_amp, …) | Return a single-qubit combined phase and amplitude damping quantum error channel. |
+| [`thermal_relaxation_error`](qiskit.providers.aer.noise.thermal_relaxation_error "qiskit.providers.aer.noise.thermal_relaxation_error")(t1, t2, time\[, …])           | Return a single-qubit thermal relaxation quantum error channel.                   |
+| [`kraus_error`](qiskit.providers.aer.noise.kraus_error "qiskit.providers.aer.noise.kraus_error")(noise\_ops\[, standard\_gates, …])                                   | Return a Kraus quantum error channel.                                             |
 
 ## Noise Transpiler Passes
 
 These transpiler passes can be used to build noise models that can be applied to circuits via transpilation.
 
-|                                                                                                                                                |                                                                     |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
-| [`LocalNoisePass`](qiskit.providers.aer.noise.LocalNoisePass "qiskit.providers.aer.noise.LocalNoisePass")(func\[, op\_types, method])          | Transpiler pass to insert noise into a circuit.                     |
-| [`RelaxationNoisePass`](qiskit.providers.aer.noise.RelaxationNoisePass "qiskit.providers.aer.noise.RelaxationNoisePass")(t1s, t2s\[, dt, ...]) | Add duration dependent thermal relaxation noise after instructions. |
+|                                                                                                                                              |                                                                     |
+| -------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------- |
+| [`LocalNoisePass`](qiskit.providers.aer.noise.LocalNoisePass "qiskit.providers.aer.noise.LocalNoisePass")(func\[, op\_types, method])        | Transpiler pass to insert noise into a circuit.                     |
+| [`RelaxationNoisePass`](qiskit.providers.aer.noise.RelaxationNoisePass "qiskit.providers.aer.noise.RelaxationNoisePass")(t1s, t2s\[, dt, …]) | Add duration dependent thermal relaxation noise after instructions. |
 
 ## Device Noise Parameters
 

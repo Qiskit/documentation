@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.runtime.RuntimeJob
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob" />
 
-`RuntimeJob(backend, api_client, credentials, job_id, program_id, params=None, creation_date=None, user_callback=None, result_decoder=<class 'qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder'>, image='')`
+`RuntimeJob(backend, api_client, credentials, job_id, program_id, params=None, creation_date=None, user_callback=None, result_decoder=<class 'qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder'>, image='')`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
 
 Bases: `object`
 
@@ -38,15 +38,15 @@ RuntimeJob constructor.
 
 **Parameters**
 
-*   **backend** ([`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")) – The backend instance used to run this job.
+*   **backend** (`Backend`) – The backend instance used to run this job.
 *   **api\_client** (`RuntimeClient`) – Object for connecting to the server.
-*   **credentials** ([`Credentials`](qiskit.providers.ibmq.credentials.Credentials "qiskit.providers.ibmq.credentials.credentials.Credentials")) – Account credentials.
+*   **credentials** (`Credentials`) – Account credentials.
 *   **job\_id** (`str`) – Job ID.
 *   **program\_id** (`str`) – ID of the program this job is for.
 *   **params** (`Optional`\[`Dict`]) – Job parameters.
 *   **creation\_date** (`Optional`\[`str`]) – Job creation date, in UTC.
 *   **user\_callback** (`Optional`\[`Callable`]) – User callback function.
-*   **result\_decoder** (`Type`\[[`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder")]) – A [`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.ResultDecoder") subclass used to decode job results.
+*   **result\_decoder** (`Type`\[`ResultDecoder`]) – A [`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.ResultDecoder") subclass used to decode job results.
 *   **image** (`Optional`\[`str`]) – Runtime image used for this job: image\_name:tag.
 
 ## Methods
@@ -55,13 +55,13 @@ RuntimeJob constructor.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.backend" />
 
-`RuntimeJob.backend()`
+`RuntimeJob.backend()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
 
 Return the backend where this job was executed.
 
 **Return type**
 
-[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend")
+`Backend`
 
 **Returns**
 
@@ -71,7 +71,7 @@ Backend used for the job.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.cancel" />
 
-`RuntimeJob.cancel()`
+`RuntimeJob.cancel()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
 
 Cancel the job.
 
@@ -88,7 +88,7 @@ Cancel the job.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.cancel_result_streaming" />
 
-`RuntimeJob.cancel_result_streaming()`
+`RuntimeJob.cancel_result_streaming()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
 
 Cancel result streaming.
 
@@ -100,7 +100,7 @@ Cancel result streaming.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.error_message" />
 
-`RuntimeJob.error_message()`
+`RuntimeJob.error_message()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
 
 Returns the reason if the job failed.
 
@@ -116,7 +116,7 @@ Error message string or `None`.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.job_id" />
 
-`RuntimeJob.job_id()`
+`RuntimeJob.job_id()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
 
 Return a unique ID identifying the job.
 
@@ -132,7 +132,7 @@ Job ID.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.logs" />
 
-`RuntimeJob.logs()`
+`RuntimeJob.logs()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
 
 Return job logs.
 
@@ -156,7 +156,7 @@ Job logs, including standard output and error.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.result" />
 
-`RuntimeJob.result(timeout=None, wait=5, decoder=None)`
+`RuntimeJob.result(timeout=None, wait=5, decoder=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
 
 Return the results of the job.
 
@@ -164,7 +164,7 @@ Return the results of the job.
 
 *   **timeout** (`Optional`\[`float`]) – Number of seconds to wait for job.
 *   **wait** (`float`) – Seconds between queries.
-*   **decoder** (`Optional`\[`Type`\[[`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder")]]) – A [`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.ResultDecoder") subclass used to decode job results.
+*   **decoder** (`Optional`\[`Type`\[`ResultDecoder`]]) – A [`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.ResultDecoder") subclass used to decode job results.
 
 **Return type**
 
@@ -182,13 +182,13 @@ Runtime job result.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.status" />
 
-`RuntimeJob.status()`
+`RuntimeJob.status()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
 
 Return the status of the job.
 
 **Return type**
 
-[`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus")
+`JobStatus`
 
 **Returns**
 
@@ -198,7 +198,7 @@ Status of this job.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.stream_results" />
 
-`RuntimeJob.stream_results(callback, decoder=None)`
+`RuntimeJob.stream_results(callback, decoder=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
 
 Start streaming job results.
 
@@ -211,7 +211,7 @@ Start streaming job results.
     > 1.  Job ID
     > 2.  Job interim result.
 
-*   **decoder** (`Optional`\[`Type`\[[`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.program.result_decoder.ResultDecoder")]]) – A [`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.ResultDecoder") subclass used to decode job results.
+*   **decoder** (`Optional`\[`Type`\[`ResultDecoder`]]) – A [`ResultDecoder`](qiskit.providers.ibmq.runtime.ResultDecoder "qiskit.providers.ibmq.runtime.ResultDecoder") subclass used to decode job results.
 
 **Raises**
 
@@ -225,7 +225,7 @@ Start streaming job results.
 
 <span id="qiskit.providers.ibmq.runtime.RuntimeJob.wait_for_final_state" />
 
-`RuntimeJob.wait_for_final_state(timeout=None, wait=5)`
+`RuntimeJob.wait_for_final_state(timeout=None, wait=5)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/runtime_job.py "view source code")
 
 Poll the job status until it progresses to a final state such as `DONE` or `ERROR`.
 

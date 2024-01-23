@@ -42,14 +42,14 @@ logging.getLogger('qiskit.providers.ibmq').setLevel(logging.WARNING)
 
 ## Classes
 
-|                                                                                                                                       |                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| [`AccountProvider`](qiskit.providers.ibmq.AccountProvider "qiskit.providers.ibmq.AccountProvider")(credentials, factory)              | Provider for a single IBM Quantum Experience account.             |
-| [`BackendJobLimit`](qiskit.providers.ibmq.BackendJobLimit "qiskit.providers.ibmq.BackendJobLimit")(maximum\_jobs, running\_jobs, ...) | Job limit for a backend.                                          |
-| [`IBMQBackend`](qiskit.providers.ibmq.IBMQBackend "qiskit.providers.ibmq.IBMQBackend")(configuration, provider, ...)                  | Backend class interfacing with an IBM Quantum Experience device.  |
-| [`IBMQBackendService`](qiskit.providers.ibmq.IBMQBackendService "qiskit.providers.ibmq.IBMQBackendService")(provider)                 | Backend namespace for an IBM Quantum Experience account provider. |
-| [`IBMQFactory`](qiskit.providers.ibmq.IBMQFactory "qiskit.providers.ibmq.IBMQFactory")()                                              | Factory and account manager for IBM Quantum Experience.           |
-| [`RunnerResult`](qiskit.providers.ibmq.RunnerResult "qiskit.providers.ibmq.RunnerResult")(backend\_name, backend\_version, ...)       | Result class for Qiskit Runtime program circuit-runner.           |
+|                                                                                                                                     |                                                                   |
+| ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
+| [`AccountProvider`](qiskit.providers.ibmq.AccountProvider "qiskit.providers.ibmq.AccountProvider")(credentials, factory)            | Provider for a single IBM Quantum Experience account.             |
+| [`BackendJobLimit`](qiskit.providers.ibmq.BackendJobLimit "qiskit.providers.ibmq.BackendJobLimit")(maximum\_jobs, running\_jobs, …) | Job limit for a backend.                                          |
+| [`IBMQBackend`](qiskit.providers.ibmq.IBMQBackend "qiskit.providers.ibmq.IBMQBackend")(configuration, provider, …)                  | Backend class interfacing with an IBM Quantum Experience device.  |
+| [`IBMQBackendService`](qiskit.providers.ibmq.IBMQBackendService "qiskit.providers.ibmq.IBMQBackendService")(provider)               | Backend namespace for an IBM Quantum Experience account provider. |
+| [`IBMQFactory`](qiskit.providers.ibmq.IBMQFactory "qiskit.providers.ibmq.IBMQFactory")()                                            | Factory and account manager for IBM Quantum Experience.           |
+| [`RunnerResult`](qiskit.providers.ibmq.RunnerResult "qiskit.providers.ibmq.RunnerResult")(backend\_name, backend\_version, …)       | Result class for Qiskit Runtime program circuit-runner.           |
 
 ## Exceptions
 

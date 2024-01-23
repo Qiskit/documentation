@@ -68,22 +68,22 @@ The `operator_globals` is a set of immutable Operator instances that are conveni
 
 The Operators submodules include the PrimitiveOp, ListOp, and StateFn class groups which represent the primary Operator modules.
 
-|                                                                                                                 |                                                     |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------- |
-| [`primitive_ops`](qiskit.opflow.primitive_ops#module-qiskit.opflow.primitive_ops "qiskit.opflow.primitive_ops") | Primitive Operators (qiskit.opflow\.primitive\_ops) |
-| [`list_ops`](qiskit.opflow.list_ops#module-qiskit.opflow.list_ops "qiskit.opflow.list_ops")                     | List Operators (qiskit.opflow\.list\_ops)           |
-| [`state_fns`](qiskit.opflow.state_fns#module-qiskit.opflow.state_fns "qiskit.opflow.state_fns")                 | State Functions (qiskit.opflow\.state\_fns)         |
+|                                                                                                                 |                                                                                                                                                     |
+| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`primitive_ops`](qiskit.opflow.primitive_ops#module-qiskit.opflow.primitive_ops "qiskit.opflow.primitive_ops") | Primitive Operators ([`qiskit.opflow.primitive_ops`](qiskit.opflow.primitive_ops#module-qiskit.opflow.primitive_ops "qiskit.opflow.primitive_ops")) |
+| [`list_ops`](qiskit.opflow.list_ops#module-qiskit.opflow.list_ops "qiskit.opflow.list_ops")                     | List Operators ([`qiskit.opflow.list_ops`](qiskit.opflow.list_ops#module-qiskit.opflow.list_ops "qiskit.opflow.list_ops"))                          |
+| [`state_fns`](qiskit.opflow.state_fns#module-qiskit.opflow.state_fns "qiskit.opflow.state_fns")                 | State Functions ([`qiskit.opflow.state_fns`](qiskit.opflow.state_fns#module-qiskit.opflow.state_fns "qiskit.opflow.state_fns"))                     |
 
 ### Converters
 
 The Converter submodules include objects which manipulate Operators, usually recursing over an Operator structure and changing certain Operators’ representation. For example, the [`PauliExpectation`](qiskit.opflow.expectations.PauliExpectation "qiskit.opflow.expectations.PauliExpectation") traverses an Operator structure, and replaces all of the [`OperatorStateFn`](qiskit.opflow.state_fns.OperatorStateFn "qiskit.opflow.state_fns.OperatorStateFn") measurements containing non-diagonal Pauli terms into diagonalizing circuits following by [`OperatorStateFn`](qiskit.opflow.state_fns.OperatorStateFn "qiskit.opflow.state_fns.OperatorStateFn") measurement containing only diagonal Paulis.
 
-|                                                                                                             |                                                 |
-| ----------------------------------------------------------------------------------------------------------- | ----------------------------------------------- |
-| [`converters`](qiskit.opflow.converters#module-qiskit.opflow.converters "qiskit.opflow.converters")         | Converters (qiskit.opflow\.converters)          |
-| [`evolutions`](qiskit.opflow.evolutions#module-qiskit.opflow.evolutions "qiskit.opflow.evolutions")         | Operator Evolutions (qiskit.opflow\.evolutions) |
-| [`expectations`](qiskit.opflow.expectations#module-qiskit.opflow.expectations "qiskit.opflow.expectations") | Expectations (qiskit.opflow\.expectations)      |
-| [`gradients`](qiskit.opflow.gradients#module-qiskit.opflow.gradients "qiskit.opflow.gradients")             | Gradients (qiskit.opflow\.gradients)            |
+|                                                                                                             |                                                                                                                                          |
+| ----------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| [`converters`](qiskit.opflow.converters#module-qiskit.opflow.converters "qiskit.opflow.converters")         | Converters ([`qiskit.opflow.converters`](qiskit.opflow.converters#module-qiskit.opflow.converters "qiskit.opflow.converters"))           |
+| [`evolutions`](qiskit.opflow.evolutions#module-qiskit.opflow.evolutions "qiskit.opflow.evolutions")         | Operator Evolutions ([`qiskit.opflow.evolutions`](qiskit.opflow.evolutions#module-qiskit.opflow.evolutions "qiskit.opflow.evolutions"))  |
+| [`expectations`](qiskit.opflow.expectations#module-qiskit.opflow.expectations "qiskit.opflow.expectations") | Expectations ([`qiskit.opflow.expectations`](qiskit.opflow.expectations#module-qiskit.opflow.expectations "qiskit.opflow.expectations")) |
+| [`gradients`](qiskit.opflow.gradients#module-qiskit.opflow.gradients "qiskit.opflow.gradients")             | Gradients ([`qiskit.opflow.gradients`](qiskit.opflow.gradients#module-qiskit.opflow.gradients "qiskit.opflow.gradients"))                |
 
 ## Utility functions
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.PassManager
 
 <span id="qiskit.transpiler.PassManager" />
 
-`PassManager(passes=None, max_iteration=1000)`
+`PassManager(passes=None, max_iteration=1000)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passmanager.py "view source code")
 
 Bases: `object`
 
@@ -29,13 +29,13 @@ Initialize an empty PassManager object (with no passes scheduled).
 
 <span id="qiskit.transpiler.PassManager.append" />
 
-`PassManager.append(passes, max_iteration=None, **flow_controller_conditions)`
+`PassManager.append(passes, max_iteration=None, **flow_controller_conditions)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passmanager.py "view source code")
 
 Append a Pass Set to the schedule of passes.
 
 **Parameters**
 
-*   **passes** (`Union`\[`BasePass`, `List`\[`BasePass`]]) – A set of passes (a pass set) to be added to schedule. A pass set is a list of passes that are controlled by the same flow controller. If a single pass is provided, the pass set will only have that pass a single element. It is also possible to append a [`FlowController`](qiskit.transpiler.FlowController "qiskit.transpiler.runningpassmanager.FlowController") instance and the rest of the parameter will be ignored.
+*   **passes** (`Union`\[`BasePass`, `List`\[`BasePass`]]) – A set of passes (a pass set) to be added to schedule. A pass set is a list of passes that are controlled by the same flow controller. If a single pass is provided, the pass set will only have that pass a single element. It is also possible to append a `FlowController` instance and the rest of the parameter will be ignored.
 *   **max\_iteration** (`Optional`\[`int`]) – max number of iterations of passes.
 *   **flow\_controller\_conditions** (`Any`) – control flow plugins.
 
@@ -55,7 +55,7 @@ Append a Pass Set to the schedule of passes.
 
 <span id="qiskit.transpiler.PassManager.draw" />
 
-`PassManager.draw(filename=None, style=None, raw=False)`
+`PassManager.draw(filename=None, style=None, raw=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passmanager.py "view source code")
 
 Draw the pass manager.
 
@@ -83,7 +83,7 @@ Optional\[[PassManager](qiskit.transpiler.PassManager "qiskit.transpiler.PassMan
 
 <span id="qiskit.transpiler.PassManager.passes" />
 
-`PassManager.passes()`
+`PassManager.passes()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passmanager.py "view source code")
 
 Return a list structure of the appended passes and its options.
 
@@ -99,7 +99,7 @@ A list of pass sets, as defined in `append()`.
 
 <span id="qiskit.transpiler.PassManager.remove" />
 
-`PassManager.remove(index)`
+`PassManager.remove(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passmanager.py "view source code")
 
 Removes a particular pass in the scheduler.
 
@@ -119,7 +119,7 @@ Removes a particular pass in the scheduler.
 
 <span id="qiskit.transpiler.PassManager.replace" />
 
-`PassManager.replace(index, passes, max_iteration=None, **flow_controller_conditions)`
+`PassManager.replace(index, passes, max_iteration=None, **flow_controller_conditions)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passmanager.py "view source code")
 
 Replace a particular pass in the scheduler.
 
@@ -146,13 +146,13 @@ Replace a particular pass in the scheduler.
 
 <span id="qiskit.transpiler.PassManager.run" />
 
-`PassManager.run(circuits, output_name=None, callback=None)`
+`PassManager.run(circuits, output_name=None, callback=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passmanager.py "view source code")
 
 Run all the passes on the specified `circuits`.
 
 **Parameters**
 
-*   **circuits** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]) – Circuit(s) to transform via all the registered passes.
+*   **circuits** (`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]]) – Circuit(s) to transform via all the registered passes.
 
 *   **output\_name** (`Optional`\[`str`]) – The output circuit name. If `None`, it will be set to the same as the input circuit name.
 
@@ -184,7 +184,7 @@ Run all the passes on the specified `circuits`.
 
 **Return type**
 
-`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]
+`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]]
 
 **Returns**
 

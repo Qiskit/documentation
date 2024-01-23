@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.TrivialLayout
 
 <span id="qiskit.transpiler.passes.TrivialLayout" />
 
-`TrivialLayout(*args, **kwargs)`
+`TrivialLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/trivial_layout.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
 Choose a Layout by assigning `n` circuit qubits to device qubits `0, .., n-1`.
 
@@ -46,7 +46,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.TrivialLayout.run" />
 
-`TrivialLayout.run(dag)`
+`TrivialLayout.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/trivial_layout.py "view source code")
 
 Run the TrivialLayout pass on dag.
 

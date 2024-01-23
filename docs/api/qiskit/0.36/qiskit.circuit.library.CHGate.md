@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.CHGate
 
 <span id="qiskit.circuit.library.CHGate" />
 
-`CHGate(label=None, ctrl_state=None)`
+`CHGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/h.py "view source code")
 
-Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
 Controlled-Hadamard gate.
 
@@ -70,7 +70,7 @@ Create new CH gate.
 
 <span id="qiskit.circuit.library.CHGate.inverse" />
 
-`CHGate.inverse()`
+`CHGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/h.py "view source code")
 
 Return inverted CH gate (itself).
 
@@ -84,7 +84,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.CHGate.ctrl_state" />
 

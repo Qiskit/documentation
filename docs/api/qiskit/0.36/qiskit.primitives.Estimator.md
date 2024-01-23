@@ -10,9 +10,9 @@ python_api_name: qiskit.primitives.Estimator
 
 <span id="qiskit.primitives.Estimator" />
 
-`Estimator(circuits: Iterable[QuantumCircuit] | QuantumCircuit, observables: Iterable[SparsePauliOp] | SparsePauliOp, *args, parameters: Iterable[Iterable[Parameter]] | None = None, **kwargs)`
+`Estimator(circuits, observables, parameters=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/primitives/estimator.py "view source code")
 
-Bases: [`qiskit.primitives.base_estimator.BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.base_estimator.BaseEstimator")
+Bases: `qiskit.primitives.base_estimator.BaseEstimator`
 
 Estimator class
 
@@ -20,13 +20,14 @@ Creating an instance of an Estimator, or using one in a `with` context opens a s
 
 **Parameters**
 
-*   **circuits** – Quantum circuits that represent quantum states.
-*   **observables** – Observables.
-*   **parameters** – Parameters of quantum circuits, specifying the order in which values will be bound. Defaults to `[circ.parameters for circ in circuits]` The indexing is such that `parameters[i, j]` is the j-th formal parameter of `circuits[i]`.
+*   **circuits** – quantum circuits that represent quantum states
+*   **observables** – observables
+*   **parameters** – parameters of quantum circuits, specifying the order in which values
+*   **be bound.** (*will*) – Defaults to `[circ.parameters for circ in circuits]` The indexing is such that `parameters[i, j]` is the j-th formal parameter of `circuits[i]`.
 
 **Raises**
 
-**QiskitError** – For mismatch of circuits and parameters list.
+**QiskitError** – for mismatch of circuits and parameters list.
 
 ## Methods
 
@@ -34,7 +35,7 @@ Creating an instance of an Estimator, or using one in a `with` context opens a s
 
 <span id="qiskit.primitives.Estimator.close" />
 
-`Estimator.close()`
+`Estimator.close()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/primitives/estimator.py "view source code")
 
 Close the session and free resources
 
@@ -48,25 +49,25 @@ Quantum circuits that represents quantum states.
 
 **Returns**
 
-The quantum circuits.
+quantum circuits
 
 <span id="qiskit.primitives.Estimator.observables" />
 
 ### observables
 
-Observables to be estimated.
+Observables to be estimated
 
 **Returns**
 
-The observables.
+observables
 
 <span id="qiskit.primitives.Estimator.parameters" />
 
 ### parameters
 
-Parameters of the quantum circuits.
+Parameters of quantum circuits
 
 **Returns**
 
-Parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
+parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
 

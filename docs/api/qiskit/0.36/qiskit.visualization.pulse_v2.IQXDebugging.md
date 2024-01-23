@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.pulse_v2.IQXDebugging
 
 <span id="qiskit.visualization.pulse_v2.IQXDebugging" />
 
-`IQXDebugging(**kwargs)`
+`IQXDebugging(**kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/pulse_v2/stylesheet.py "view source code")
 
 Bases: `dict`
 
@@ -33,7 +33,7 @@ Pulse stylesheet for pulse programmers. Show details of instructions.
 
 <span id="qiskit.visualization.pulse_v2.IQXDebugging.clear" />
 
-`IQXDebugging.clear() → None.  Remove all items from D.`
+`IQXDebugging.clear() → None. Remove all items from D.`
 
 ### copy
 
@@ -61,13 +61,13 @@ Return the value for key if key is in the dictionary, else default.
 
 <span id="qiskit.visualization.pulse_v2.IQXDebugging.items" />
 
-`IQXDebugging.items() → a set-like object providing a view on D's items`
+`IQXDebugging.items() → a set-like object providing a view on D’s items`
 
 ### keys
 
 <span id="qiskit.visualization.pulse_v2.IQXDebugging.keys" />
 
-`IQXDebugging.keys() → a set-like object providing a view on D's keys`
+`IQXDebugging.keys() → a set-like object providing a view on D’s keys`
 
 ### pop
 
@@ -101,7 +101,7 @@ Return the value for key if key is in the dictionary, else default.
 
 <span id="qiskit.visualization.pulse_v2.IQXDebugging.update" />
 
-`IQXDebugging.update([E, ]**F) → None.  Update D from dict/iterable E and F.`
+`IQXDebugging.update([E, ]**F) → None. Update D from dict/iterable E and F.`
 
 If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
 
@@ -109,5 +109,5 @@ If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] I
 
 <span id="qiskit.visualization.pulse_v2.IQXDebugging.values" />
 
-`IQXDebugging.values() → an object providing a view on D's values`
+`IQXDebugging.values() → an object providing a view on D’s values`
 

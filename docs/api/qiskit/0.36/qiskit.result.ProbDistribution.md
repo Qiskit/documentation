@@ -10,7 +10,7 @@ python_api_name: qiskit.result.ProbDistribution
 
 <span id="qiskit.result.ProbDistribution" />
 
-`ProbDistribution(data, shots=None)`
+`ProbDistribution(data, shots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/distributions/probability.py "view source code")
 
 Bases: `dict`
 
@@ -41,7 +41,7 @@ Builds a probability distribution object.
 
 <span id="qiskit.result.ProbDistribution.binary_probabilities" />
 
-`ProbDistribution.binary_probabilities(num_bits=None)`
+`ProbDistribution.binary_probabilities(num_bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/distributions/probability.py "view source code")
 
 Build a probabilities dictionary with binary string keys
 
@@ -63,7 +63,7 @@ dict
 
 <span id="qiskit.result.ProbDistribution.clear" />
 
-`ProbDistribution.clear() → None.  Remove all items from D.`
+`ProbDistribution.clear() → None. Remove all items from D.`
 
 ### copy
 
@@ -91,7 +91,7 @@ Return the value for key if key is in the dictionary, else default.
 
 <span id="qiskit.result.ProbDistribution.hex_probabilities" />
 
-`ProbDistribution.hex_probabilities()`
+`ProbDistribution.hex_probabilities()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/result/distributions/probability.py "view source code")
 
 Build a probabilities dictionary with hexadecimal string keys
 
@@ -109,13 +109,13 @@ dict
 
 <span id="qiskit.result.ProbDistribution.items" />
 
-`ProbDistribution.items() → a set-like object providing a view on D's items`
+`ProbDistribution.items() → a set-like object providing a view on D’s items`
 
 ### keys
 
 <span id="qiskit.result.ProbDistribution.keys" />
 
-`ProbDistribution.keys() → a set-like object providing a view on D's keys`
+`ProbDistribution.keys() → a set-like object providing a view on D’s keys`
 
 ### pop
 
@@ -149,7 +149,7 @@ Return the value for key if key is in the dictionary, else default.
 
 <span id="qiskit.result.ProbDistribution.update" />
 
-`ProbDistribution.update([E, ]**F) → None.  Update D from dict/iterable E and F.`
+`ProbDistribution.update([E, ]**F) → None. Update D from dict/iterable E and F.`
 
 If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
 
@@ -157,5 +157,5 @@ If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] I
 
 <span id="qiskit.result.ProbDistribution.values" />
 
-`ProbDistribution.values() → an object providing a view on D's values`
+`ProbDistribution.values() → an object providing a view on D’s values`
 

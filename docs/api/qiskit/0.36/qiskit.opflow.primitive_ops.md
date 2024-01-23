@@ -17,10 +17,10 @@ PrimitiveOps are the classes for representing basic Operators, backed by computa
 |                                                                                                                                                 |                                                                                     |
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
 | [`PrimitiveOp`](qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.PrimitiveOp")(primitive\[, coeff])                         | A class for representing basic Operators, backed by Operator primitives from Terra. |
-| [`CircuitOp`](qiskit.opflow.primitive_ops.CircuitOp "qiskit.opflow.primitive_ops.CircuitOp")(primitive\[, coeff])                               | Class for Operators backed by Terra's `QuantumCircuit` module.                      |
-| [`MatrixOp`](qiskit.opflow.primitive_ops.MatrixOp "qiskit.opflow.primitive_ops.MatrixOp")(primitive\[, coeff])                                  | Class for Operators represented by matrices, backed by Terra's `Operator` module.   |
-| [`PauliOp`](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.PauliOp")(primitive\[, coeff])                                     | Class for Operators backed by Terra's `Pauli` module.                               |
-| [`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")(primitive\[, coeff, grouping\_type])            | Class for Operators backed by Terra's `SparsePauliOp` class.                        |
+| [`CircuitOp`](qiskit.opflow.primitive_ops.CircuitOp "qiskit.opflow.primitive_ops.CircuitOp")(primitive\[, coeff])                               | Class for Operators backed by Terra’s `QuantumCircuit` module.                      |
+| [`MatrixOp`](qiskit.opflow.primitive_ops.MatrixOp "qiskit.opflow.primitive_ops.MatrixOp")(primitive\[, coeff])                                  | Class for Operators represented by matrices, backed by Terra’s `Operator` module.   |
+| [`PauliOp`](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.PauliOp")(primitive\[, coeff])                                     | Class for Operators backed by Terra’s `Pauli` module.                               |
+| [`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")(primitive\[, coeff, grouping\_type])            | Class for Operators backed by Terra’s `SparsePauliOp` class.                        |
 | [`TaperedPauliSumOp`](qiskit.opflow.primitive_ops.TaperedPauliSumOp "qiskit.opflow.primitive_ops.TaperedPauliSumOp")(primitive, z2\_symmetries) | Class for PauliSumOp after tapering                                                 |
 
 ### Symmetries

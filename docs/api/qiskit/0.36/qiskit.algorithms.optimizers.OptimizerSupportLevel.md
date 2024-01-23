@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.optimizers.OptimizerSupportLevel
 
 <span id="qiskit.algorithms.optimizers.OptimizerSupportLevel" />
 
-`OptimizerSupportLevel(value)`
+`OptimizerSupportLevel(value)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/optimizer.py "view source code")
 
 Bases: `enum.IntEnum`
 
@@ -18,27 +18,27 @@ Support Level enum for features such as bounds, gradient and initial point
 
 ## Attributes
 
-<span id="qiskit.algorithms.optimizers.OptimizerSupportLevel.not_supported" />
-
-### not\_supported
-
-`= 0`
-
 <span id="qiskit.algorithms.optimizers.OptimizerSupportLevel.ignored" />
 
 ### ignored
 
 `= 1`
 
-<span id="qiskit.algorithms.optimizers.OptimizerSupportLevel.supported" />
+<span id="qiskit.algorithms.optimizers.OptimizerSupportLevel.not_supported" />
 
-### supported
+### not\_supported
 
-`= 2`
+`= 0`
 
 <span id="qiskit.algorithms.optimizers.OptimizerSupportLevel.required" />
 
 ### required
 
 `= 3`
+
+<span id="qiskit.algorithms.optimizers.OptimizerSupportLevel.supported" />
+
+### supported
+
+`= 2`
 

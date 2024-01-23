@@ -10,9 +10,9 @@ python_api_name: qiskit.algorithms.NumPyMinimumEigensolver
 
 <span id="qiskit.algorithms.NumPyMinimumEigensolver" />
 
-`NumPyMinimumEigensolver(filter_criterion=None)`
+`NumPyMinimumEigensolver(filter_criterion=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/minimum_eigen_solvers/numpy_minimum_eigen_solver.py "view source code")
 
-Bases: [`qiskit.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver`](qiskit.algorithms.MinimumEigensolver "qiskit.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver")
+Bases: `qiskit.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolver`
 
 The Numpy Minimum Eigensolver algorithm.
 
@@ -26,18 +26,18 @@ The Numpy Minimum Eigensolver algorithm.
 
 <span id="qiskit.algorithms.NumPyMinimumEigensolver.compute_minimum_eigenvalue" />
 
-`NumPyMinimumEigensolver.compute_minimum_eigenvalue(operator, aux_operators=None)`
+`NumPyMinimumEigensolver.compute_minimum_eigenvalue(operator, aux_operators=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/minimum_eigen_solvers/numpy_minimum_eigen_solver.py "view source code")
 
 Computes minimum eigenvalue. Operator and aux\_operators can be supplied here and if not None will override any already set into algorithm so it can be reused with different operators. While an operator is required by algorithms, aux\_operators are optional. To ‘remove’ a previous aux\_operators array use an empty list here.
 
 **Parameters**
 
-*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – Qubit operator of the Observable
-*   **aux\_operators** (`Union`\[`List`\[`Optional`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]], `Dict`\[`str`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")], `None`]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
+*   **operator** (`OperatorBase`) – Qubit operator of the Observable
+*   **aux\_operators** (`Union`\[`List`\[`Optional`\[`OperatorBase`]], `Dict`\[`str`, `OperatorBase`], `None`]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
 
 **Return type**
 
-[`MinimumEigensolverResult`](qiskit.algorithms.MinimumEigensolverResult "qiskit.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolverResult")
+`MinimumEigensolverResult`
 
 **Returns**
 
@@ -47,7 +47,7 @@ MinimumEigensolverResult
 
 <span id="qiskit.algorithms.NumPyMinimumEigensolver.supports_aux_operators" />
 
-`classmethod NumPyMinimumEigensolver.supports_aux_operators()`
+`classmethod NumPyMinimumEigensolver.supports_aux_operators()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/minimum_eigen_solvers/numpy_minimum_eigen_solver.py "view source code")
 
 Whether computing the expectation value of auxiliary operators is supported.
 

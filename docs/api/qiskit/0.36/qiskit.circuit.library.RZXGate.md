@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.RZXGate
 
 <span id="qiskit.circuit.library.RZXGate" />
 
-`RZXGate(theta, label=None)`
+`RZXGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rzx.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 A parametric 2-qubit $Z \otimes X$ interaction (rotation about ZX).
 
@@ -33,12 +33,12 @@ q_1: ┤1        ├
 **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZX}(\theta)\ q_0, q_1 = \exp\left(-i \frac{\theta}{2} X{\otimes}Z\right) =
+ \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{ZX}(\theta)\ q_0, q_1 = exp(-i \frac{\theta}{2} X{\otimes}Z) =
     \begin{pmatrix}
-        \cos\left(\th\right)   & 0          & -i\sin\left(\th\right)  & 0          \\
-        0           & \cos\left(\th\right)  & 0            & i\sin\left(\th\right) \\
-        -i\sin\left(\th\right) & 0          & \cos\left(\th\right)    & 0          \\
-        0           & i\sin\left(\th\right) & 0            & \cos\left(\th\right)
+        \cos(\th)   & 0          & -i\sin(\th)  & 0          \\
+        0           & \cos(\th)  & 0            & i\sin(\th) \\
+        -i\sin(\th) & 0          & \cos(\th)    & 0          \\
+        0           & i\sin(\th) & 0            & \cos(\th)
     \end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
@@ -106,7 +106,7 @@ Create new RZX gate.
 
 <span id="qiskit.circuit.library.RZXGate.inverse" />
 
-`RZXGate.inverse()`
+`RZXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rzx.py "view source code")
 
 Return inverse RZX gate (i.e. with the negative rotation angle).
 
@@ -120,7 +120,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.RZXGate.decompositions" />
 

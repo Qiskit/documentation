@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.BreakLoopOp
 
 <span id="qiskit.circuit.BreakLoopOp" />
 
-`BreakLoopOp(num_qubits, num_clbits, label=None)`
+`BreakLoopOp(num_qubits, num_clbits, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/controlflow/break_loop.py "view source code")
 
-Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+Bases: `qiskit.circuit.instruction.Instruction`
 
 A circuit operation which, when encountered, jumps to the end of the nearest enclosing loop.
 
@@ -37,15 +37,14 @@ Create a new instruction.
 *   **name** (*str*) – instruction name
 *   **num\_qubits** (*int*) – instruction’s qubit width
 *   **num\_clbits** (*int*) – instruction’s clbit width
-*   **params** (*list\[int|float|complex|str|ndarray|list|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – list of parameters
+*   **params** (*list\[int|float|complex|str|ndarray|list|ParameterExpression]*) – list of parameters
 *   **duration** (*int or float*) – instruction’s duration. it must be integer if `unit` is ‘dt’
 *   **unit** (*str*) – time unit of duration
 *   **label** (*str or None*) – An optional label for identifying the instruction.
 
 **Raises**
 
-*   **CircuitError** – when the register is not in the correct format.
-*   **TypeError** – when the optional label is provided, but it is not a string.
+**CircuitError** – when the register is not in the correct format.
 
 ## Methods
 
@@ -244,7 +243,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.BreakLoopOp.decompositions" />
 

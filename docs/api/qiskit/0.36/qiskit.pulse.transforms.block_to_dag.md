@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.transforms.block_to_dag
 
 <span id="qiskit.pulse.transforms.block_to_dag" />
 
-`block_to_dag(block)`
+`block_to_dag(block)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/dag.py "view source code")
 
 Convert schedule block instruction into DAG.
 
@@ -46,7 +46,7 @@ In above program two `shift_phase` instructions can be cancelled out because the
 
 **Parameters**
 
-**block** ([`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")) – A schedule block to be converted.
+**block** (`ScheduleBlock`) – A schedule block to be converted.
 
 **Return type**
 
@@ -55,8 +55,4 @@ In above program two `shift_phase` instructions can be cancelled out because the
 **Returns**
 
 Instructions in DAG representation.
-
-**Raises**
-
-[**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When the context is invalid subclass.
 

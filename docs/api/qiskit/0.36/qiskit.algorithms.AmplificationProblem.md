@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.AmplificationProblem
 
 <span id="qiskit.algorithms.AmplificationProblem" />
 
-`AmplificationProblem(oracle, state_preparation=None, grover_operator=None, post_processing=None, objective_qubits=None, is_good_state=None)`
+`AmplificationProblem(oracle, state_preparation=None, grover_operator=None, post_processing=None, objective_qubits=None, is_good_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/amplitude_amplifiers/amplification_problem.py "view source code")
 
 Bases: `object`
 
@@ -20,12 +20,12 @@ This class contains all problem-specific information required to run an amplitud
 
 **Parameters**
 
-*   **oracle** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector")]) – The oracle reflecting about the bad states.
-*   **state\_preparation** (`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – A circuit preparing the input state, referred to as $\mathcal{A}$. If None, a layer of Hadamard gates is used.
-*   **grover\_operator** (`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit. If None, this operator is constructed from the `oracle` and `state_preparation`.
+*   **oracle** (`Union`\[`QuantumCircuit`, `Statevector`]) – The oracle reflecting about the bad states.
+*   **state\_preparation** (`Optional`\[`QuantumCircuit`]) – A circuit preparing the input state, referred to as $\mathcal{A}$. If None, a layer of Hadamard gates is used.
+*   **grover\_operator** (`Optional`\[`QuantumCircuit`]) – The Grover operator $\mathcal{Q}$ used as unitary in the phase estimation circuit. If None, this operator is constructed from the `oracle` and `state_preparation`.
 *   **post\_processing** (`Optional`\[`Callable`\[\[`str`], `Any`]]) – A mapping applied to the most likely bitstring.
 *   **objective\_qubits** (`Union`\[`int`, `List`\[`int`], `None`]) – If set, specifies the indices of the qubits that should be measured. If None, all qubits will be measured. The `is_good_state` function will be applied on the measurement outcome of these qubits.
-*   **is\_good\_state** (`Union`\[`Callable`\[\[`str`], `bool`], `List`\[`int`], `List`\[`str`], [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector"), `None`]) – A function to check whether a string represents a good state. By default if the `oracle` argument has an `evaluate_bitstring` method (currently only provided by the [`PhaseOracle`](qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle") class) this will be used, otherwise this kwarg is required and **must** be specified.
+*   **is\_good\_state** (`Union`\[`Callable`\[\[`str`], `bool`], `List`\[`int`], `List`\[`str`], `Statevector`, `None`]) – A function to check whether a string represents a good state. By default if the `oracle` argument has an `evaluate_bitstring` method (currently only provided by the [`PhaseOracle`](qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle") class) this will be used, otherwise this kwarg is required and **must** be specified.
 
 ## Attributes
 
@@ -39,7 +39,7 @@ If the Grover operator is not set, we try to build it from the $\mathcal{A}$ ope
 
 **Return type**
 
-`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]
+`Optional`\[`QuantumCircuit`]
 
 **Returns**
 
@@ -81,7 +81,7 @@ Return the oracle.
 
 **Return type**
 
-`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector")]
+`Union`\[`QuantumCircuit`, `Statevector`]
 
 **Returns**
 
@@ -109,7 +109,7 @@ Get the state preparation operator $\mathcal{A}$.
 
 **Return type**
 
-[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+`QuantumCircuit`
 
 **Returns**
 

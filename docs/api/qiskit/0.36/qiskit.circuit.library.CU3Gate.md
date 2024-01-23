@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.CU3Gate
 
 <span id="qiskit.circuit.library.CU3Gate" />
 
-`CU3Gate(theta, phi, lam, label=None, ctrl_state=None)`
+`CU3Gate(theta, phi, lam, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/u3.py "view source code")
 
-Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
 Controlled-U3 gate (3-parameter two-qubit gate).
 
@@ -72,7 +72,7 @@ Create new CU3 gate.
 
 <span id="qiskit.circuit.library.CU3Gate.inverse" />
 
-`CU3Gate.inverse()`
+`CU3Gate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/u3.py "view source code")
 
 Return inverted CU3 gate.
 
@@ -88,7 +88,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.CU3Gate.ctrl_state" />
 

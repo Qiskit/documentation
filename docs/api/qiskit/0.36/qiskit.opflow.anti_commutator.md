@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.anti_commutator
 
 <span id="qiskit.opflow.anti_commutator" />
 
-`anti_commutator(op_a, op_b)`
+`anti_commutator(op_a, op_b)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/utils.py "view source code")
 
 Compute anti-commutator of op\_a and op\_b.
 
@@ -20,8 +20,8 @@ $$
 
 **Parameters**
 
-*   **op\_a** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – Operator A
-*   **op\_b** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – Operator B
+*   **op\_a** (`OperatorBase`) – Operator A
+*   **op\_b** (`OperatorBase`) – Operator B
 
 **Returns**
 

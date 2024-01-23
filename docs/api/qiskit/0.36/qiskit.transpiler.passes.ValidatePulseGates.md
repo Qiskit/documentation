@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.ValidatePulseGates
 
 <span id="qiskit.transpiler.passes.ValidatePulseGates" />
 
-`ValidatePulseGates(granularity=1, min_length=1)`
+`ValidatePulseGates(granularity=1, min_length=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/alignments/pulse_gate_validation.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
 Check custom gate length.
 
@@ -45,13 +45,13 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.ValidatePulseGates.run" />
 
-`ValidatePulseGates.run(dag)`
+`ValidatePulseGates.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/alignments/pulse_gate_validation.py "view source code")
 
 Run the pulse gate validation attached to `dag`.
 
 **Parameters**
 
-**dag** ([`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG to be validated.
+**dag** (`DAGCircuit`) – DAG to be validated.
 
 **Returns**
 

@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.EfficientSU2
 
 <span id="qiskit.circuit.library.EfficientSU2" />
 
-`EfficientSU2(num_qubits=None, su2_gates=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='EfficientSU2')`
+`EfficientSU2(num_qubits=None, su2_gates=None, entanglement='full', reps=3, skip_unentangled_qubits=False, skip_final_rotation_layer=False, parameter_prefix='θ', insert_barriers=False, initial_state=None, name='EfficientSU2')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/n_local/efficient_su2.py "view source code")
 
-Bases: [`qiskit.circuit.library.n_local.two_local.TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.n_local.two_local.TwoLocal")
+Bases: `qiskit.circuit.library.n_local.two_local.TwoLocal`
 
 The hardware efficient SU(2) 2-local circuit.
 
@@ -70,7 +70,7 @@ Create a new EfficientSU2 2-local circuit.
 
 *   **num\_qubits** (`Optional`\[`int`]) – The number of qubits of the EfficientSU2 circuit.
 *   **reps** (`int`) – Specifies how often the structure of a rotation layer followed by an entanglement layer is repeated.
-*   **su2\_gates** (`Union`\[`str`, `type`, [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[`Union`\[`str`, `type`, [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]], `None`]) – The SU(2) single qubit gates to apply in single qubit gate layers. If only one gate is provided, the same gate is applied to each qubit. If a list of gates is provided, all gates are applied to each qubit in the provided order.
+*   **su2\_gates** (`Union`\[`str`, `type`, `Instruction`, `QuantumCircuit`, `List`\[`Union`\[`str`, `type`, `Instruction`, `QuantumCircuit`]], `None`]) – The SU(2) single qubit gates to apply in single qubit gate layers. If only one gate is provided, the same gate is applied to each qubit. If a list of gates is provided, all gates are applied to each qubit in the provided order.
 *   **entanglement** (`Union`\[`str`, `List`\[`List`\[`int`]], `Callable`\[\[`int`], `List`\[`int`]]]) – Specifies the entanglement structure. Can be a string (‘full’, ‘linear’ , ‘circular’ or ‘sca’), a list of integer-pairs specifying the indices of qubits entangled with one another, or a callable returning such a list provided with the index of the entanglement layer. See the Examples section of [`TwoLocal`](qiskit.circuit.library.TwoLocal "qiskit.circuit.library.TwoLocal") for more detail.
 *   **initial\_state** (`Optional`\[`Any`]) – A QuantumCircuit object to prepend to the circuit.
 *   **skip\_unentangled\_qubits** (`bool`) – If True, the single qubit gates are only applied to qubits that are entangled with another qubit. If False, the single qubit gates are applied to each qubit in the Ansatz. Defaults to False.
@@ -88,7 +88,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+`List`\[`AncillaQubit`]
 
 <span id="qiskit.circuit.library.EfficientSU2.calibrations" />
 
@@ -112,7 +112,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.EfficientSU2.data" />
 
@@ -140,7 +140,7 @@ The blocks in the entanglement layers.
 
 **Return type**
 
-`List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
+`List`\[`Instruction`]
 
 **Returns**
 
@@ -160,7 +160,7 @@ Return the global phase of the circuit in radians.
 
 **Return type**
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+`Union`\[`ParameterExpression`, `float`]
 
 <span id="qiskit.circuit.library.EfficientSU2.header" />
 
@@ -200,7 +200,7 @@ True, if barriers are inserted in between the layers, False if not.
 
 ### instances
 
-`= 87`
+`= 9`
 
 <span id="qiskit.circuit.library.EfficientSU2.metadata" />
 
@@ -290,26 +290,6 @@ Returns the number of qubits in this circuit.
 
 The number of qubits.
 
-<span id="qiskit.circuit.library.EfficientSU2.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-**AttributeError** – When circuit is not scheduled.
-
 <span id="qiskit.circuit.library.EfficientSU2.ordered_parameters" />
 
 ### ordered\_parameters
@@ -334,7 +314,7 @@ q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
 
 **Return type**
 
-`List`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")]
+`List`\[`Parameter`]
 
 **Returns**
 
@@ -396,7 +376,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+`List`\[`Qubit`]
 
 <span id="qiskit.circuit.library.EfficientSU2.reps" />
 
@@ -420,7 +400,7 @@ The blocks in the rotation layers.
 
 **Return type**
 
-`List`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")]
+`List`\[`Instruction`]
 
 **Returns**
 
