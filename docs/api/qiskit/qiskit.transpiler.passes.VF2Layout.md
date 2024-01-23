@@ -10,11 +10,11 @@ python_api_name: qiskit.transpiler.passes.VF2Layout
 
 <span id="qiskit.transpiler.passes.VF2Layout" />
 
-`qiskit.transpiler.passes.VF2Layout(*args, **kwargs)`
+`qiskit.transpiler.passes.VF2Layout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/layout/vf2_layout.py "view source code")
 
 Bases: [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
 
-A pass for choosing a Layout of a circuit onto a Coupling graph, as a a subgraph isomorphism problem, solved by VF2++.
+A pass for choosing a Layout of a circuit onto a Coupling graph, as a subgraph isomorphism problem, solved by VF2++.
 
 If a solution is found that means there is a “perfect layout” and that no further swap mapping or routing is needed. If a solution is found the layout will be set in the property set as `property_set['layout']`. However, if no solution is found, no `property_set['layout']` is set. The stopping reason is set in `property_set['VF2Layout_stop_reason']` in all the cases and will be one of the values enumerated in `VF2LayoutStopReason` which has the following values:
 
@@ -22,7 +22,7 @@ If a solution is found that means there is a “perfect layout” and that no fu
 > *   `"nonexistent solution"`: If no perfect layout was found.
 > *   `">2q gates in basis"`: If VF2Layout can’t work with basis
 
-By default this pass will construct a heuristic scoring map based on the the error rates in the provided `target` (or `properties` if `target` is not provided). However, analysis passes can be run prior to this pass and set `vf2_avg_error_map` in the property set with a `ErrorMap` instance. If a value is `NaN` that is treated as an ideal edge For example if an error map is created as:
+By default, this pass will construct a heuristic scoring map based on the error rates in the provided `target` (or `properties` if `target` is not provided). However, analysis passes can be run prior to this pass and set `vf2_avg_error_map` in the property set with a `ErrorMap` instance. If a value is `NaN` that is treated as an ideal edge For example if an error map is created as:
 
 ```python
 from qiskit.transpiler.passes.layout.vf2_utils import ErrorMap

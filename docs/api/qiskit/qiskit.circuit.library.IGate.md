@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.IGate
 
 <span id="qiskit.circuit.library.IGate" />
 
-`qiskit.circuit.library.IGate(*args, _force_mutable=False, **kwargs)`
+`qiskit.circuit.library.IGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/i.py "view source code")
 
 Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
@@ -23,10 +23,10 @@ Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.cir
 **Matrix Representation:**
 
 $$
-\begin{split}I = \begin{pmatrix}
+I = \begin{pmatrix}
         1 & 0 \\
         0 & 1
-    \end{pmatrix}\end{split}
+    \end{pmatrix}
 $$
 
 **Circuit symbol:**

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.basicaer.StatevectorSimulatorPy
 
 <span id="qiskit.providers.basicaer.StatevectorSimulatorPy" />
 
-`qiskit.providers.basicaer.StatevectorSimulatorPy(configuration=None, provider=None, **fields)`
+`qiskit.providers.basicaer.StatevectorSimulatorPy(configuration=None, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/basicaer/statevector_simulator.py "view source code")
 
 Bases: [`QasmSimulatorPy`](qiskit.providers.basicaer.QasmSimulatorPy "qiskit.providers.basicaer.qasm_simulator.QasmSimulatorPy")
 
@@ -68,7 +68,7 @@ default values set
 
 ### MAX\_QUBITS\_MEMORY
 
-`= 28`
+`= 29`
 
 <span id="qiskit.providers.basicaer.StatevectorSimulatorPy.SHOW_FINAL_STATE" />
 

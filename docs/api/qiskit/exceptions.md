@@ -22,7 +22,7 @@ All Qiskit-related errors raised by Qiskit are subclasses of the base:
 
 <span id="qiskit.exceptions.QiskitError" />
 
-`qiskit.exceptions.QiskitError(*message)`
+`qiskit.exceptions.QiskitError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/exceptions.py "view source code")
 
 Base class for errors raised by Qiskit.
 
@@ -38,7 +38,7 @@ Qiskit has several optional features that depend on other packages that are not 
 
 <span id="qiskit.exceptions.MissingOptionalLibraryError" />
 
-`qiskit.exceptions.MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)`
+`qiskit.exceptions.MissingOptionalLibraryError(libname, name, pip_install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/exceptions.py "view source code")
 
 Raised when an optional library is missing.
 
@@ -48,7 +48,7 @@ Two more uncommon errors relate to failures in reading user-configuration files,
 
 <span id="qiskit.exceptions.QiskitUserConfigError" />
 
-`qiskit.exceptions.QiskitUserConfigError(*message)`
+`qiskit.exceptions.QiskitUserConfigError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/exceptions.py "view source code")
 
 Raised when an error is encountered reading a user config file.
 
@@ -56,7 +56,7 @@ Set the error message.
 
 <span id="qiskit.exceptions.InvalidFileError" />
 
-`qiskit.exceptions.InvalidFileError(*message)`
+`qiskit.exceptions.InvalidFileError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/exceptions.py "view source code")
 
 Raised when the file provided is not valid for the specific task.
 
