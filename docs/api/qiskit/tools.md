@@ -60,7 +60,7 @@ result
 
 terra.parallel.start: The collection of parallel tasks are about to start. terra.parallel.update: One of the parallel task has finished. terra.parallel.finish: All the parallel tasks have finished.
 
-## Examples
+**Examples**
 
 ```python
 import time
@@ -91,7 +91,7 @@ Monitor the status of a IBMQJob instance.
 *   **line\_discipline** (*string*) – character emitted at start of a line of job monitor output,
 *   **r.** (*This defaults to*) –
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import BasicAer, transpile
@@ -132,7 +132,7 @@ Examples: .. code-block:: python
 
 Gives overview information on all the IBMQ backends that are available.
 
-## Examples
+**Examples**
 
 ```python
 from qiskit.providers.ibmq import IBMQ
@@ -159,7 +159,7 @@ A simple text-based progress bar.
 
 is sys.stdout, another option is sys.stderr
 
-## Examples
+**Examples**
 
 The progress bar can be used to track the progress of a parallel\_map.
 

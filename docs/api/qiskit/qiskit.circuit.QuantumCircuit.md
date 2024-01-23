@@ -51,7 +51,7 @@ A circuit is a list of instructions bound to some registers.
 
 [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the circuit name, if given, is not valid.
 
-## Examples
+**Examples**
 
 Construct a simple Bell state circuit.
 
@@ -227,7 +227,7 @@ The parameters defined in the circuit.
 
 This attribute returns the [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the circuit sorted alphabetically. Note that parameters instantiated with a [`ParameterVector`](qiskit.circuit.ParameterVector "qiskit.circuit.ParameterVector") are still sorted numerically.
 
-## Examples
+**Examples**
 
 The snippet below shows that insertion order of parameters does not matter.
 
@@ -395,7 +395,7 @@ The values can be assigned to the current circuit object or to a copy of it.
 
 A copy of the circuit with bound parameters if `inplace` is False, otherwise None.
 
-## Examples
+**Examples**
 
 Create a parameterized circuit and assign the parameters in-place.
 
@@ -721,7 +721,7 @@ the composed circuit (returns None if inplace==True).
 *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if trying to emit a new circuit while `self` has a partially built control-flow context active, such as the context-manager forms of [`if_test()`](#qiskit.circuit.QuantumCircuit.if_test "qiskit.circuit.QuantumCircuit.if_test"), [`for_loop()`](#qiskit.circuit.QuantumCircuit.for_loop "qiskit.circuit.QuantumCircuit.for_loop") and [`while_loop()`](#qiskit.circuit.QuantumCircuit.while_loop "qiskit.circuit.QuantumCircuit.while_loop").
 *   [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if trying to compose to the front of a circuit when a control-flow builder block is active; there is no clear meaning to this action.
 
-## Examples
+**Examples**
 
 ```python
 >>> lhs.compose(rhs, qubits=[3, 2], inplace=True)
@@ -1355,7 +1355,7 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 *   [**VisualizationError**](visualization#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – when an invalid output method is selected
 *   [**ImportError**](https://docs.python.org/3/library/exceptions.html#ImportError "(in Python v3.12)") – when the output methods requires non-installed libraries.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -1874,7 +1874,7 @@ Qubit initialization is done by first resetting the qubits to $|0\rangle$ follow
 
 A handle to the instructions created.
 
-## Examples
+**Examples**
 
 Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
@@ -1959,7 +1959,7 @@ the inverted circuit
 
 [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if the circuit cannot be inverted.
 
-## Examples
+**Examples**
 
 input:
 
@@ -2265,7 +2265,7 @@ handle to the added instructions.
 
 [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – if arguments have bad format.
 
-## Examples
+**Examples**
 
 In this example, a qubit is measured and the result of that measurement is stored in the classical bit (usually expressed in diagrams as a double line):
 
@@ -2561,7 +2561,7 @@ a handle to the instruction that was just initialized
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-## Examples
+**Examples**
 
 Prepare a qubit in the state $(|0\rangle - |1\rangle) / \sqrt{2}$.
 
@@ -2907,7 +2907,7 @@ the circuit with reversed bit order.
 
 [QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 input:
 
@@ -2959,7 +2959,7 @@ the reversed circuit.
 
 [QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Examples
+**Examples**
 
 input:
 
@@ -3498,7 +3498,7 @@ q_0: ┤ bottom ├ ⊗ q_0: ┤ top ├  = q_0: ─┤ top ├──
 
 [*QuantumCircuit*](#qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit") | None
 
-## Examples
+**Examples**
 
 ```python
 from qiskit import QuantumCircuit
@@ -3770,7 +3770,7 @@ The quantum circuit.
 
 [QuantumCircuit](#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Example
+**Example**
 
 Apply a gate specified by a unitary matrix to a quantum circuit
 

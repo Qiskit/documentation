@@ -593,7 +593,7 @@ The double commutator
 
 *OperatorTypeT*
 
-## References
+**References**
 
 **\[1]: R. McWeeny.**
 
@@ -827,7 +827,7 @@ Distance
 
 [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
-## References
+**References**
 
 [Hellinger Distance @ wikipedia](https://en.wikipedia.org/wiki/Hellinger_distance)
 
@@ -854,7 +854,7 @@ Fidelity
 
 [float](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumCircuit, execute, BasicAer
@@ -875,7 +875,7 @@ res2 = execute(qc, sim).result()
 hellinger_fidelity(res1.get_counts(), res2.get_counts())
 ```
 
-## References
+**References**
 
 [Quantum Fidelity @ wikipedia](https://en.wikipedia.org/wiki/Fidelity_of_quantum_states) [Hellinger Distance @ wikipedia](https://en.wikipedia.org/wiki/Hellinger_distance)
 
@@ -925,7 +925,7 @@ a circuit implementation of the Clifford.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## References
+**References**
 
 1.  S. Bravyi, D. Maslov, *Hadamard-free circuits expose the structure of the Clifford group*, [arXiv:2003.09412 \[quant-ph\]](https://arxiv.org/abs/2003.09412)
 2.  S. Aaronson, D. Gottesman, *Improved Simulation of Stabilizer Circuits*, Phys. Rev. A 70, 052328 (2004). [arXiv:quant-ph/0406196](https://arxiv.org/abs/quant-ph/0406196)

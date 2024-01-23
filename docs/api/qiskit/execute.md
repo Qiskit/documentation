@@ -158,7 +158,7 @@ returns job instance derived from Job
 
 [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the execution cannot be interpreted as either circuits or schedules
 
-## Example
+**Example**
 
 Construct a 5-qubit GHZ circuit and execute 4321 shots on a backend.
 

@@ -225,7 +225,7 @@ where $g(x) = x/T + \phi/\pi$.
 
 [*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
 
-## Example
+**Example**
 
 ```python
 import matplotlib.pyplot as plt
@@ -272,7 +272,7 @@ This a non-sinusoidal wave with linear ramping.
 
 [*Waveform*](qiskit.pulse.library.Waveform "qiskit.pulse.library.waveform.Waveform")
 
-## Example
+**Example**
 
 ```python
 import matplotlib.pyplot as plt
@@ -546,7 +546,7 @@ If `zero_ends == True`, the samples from $g(x)$ are remapped as in [`gaussian()`
   The function `qiskit.pulse.library.discrete.drag()` is pending deprecation as of qiskit 0.25.0. It will be marked deprecated in a future release, and then removed no earlier than 3 months after the release date. The discrete pulses library, including drag() is pending deprecation. Instead, use the SymbolicPulse library to create the waveform with pulse.Drag(…).get\_waveform(). Note that complex value support for the amp parameter is pending deprecation in the SymbolicPulse library. It is therefore recommended to use two float values for (amp, angle) instead of complex amp
 </Admonition>
 
-## References
+**References**
 
 1.  [*Gambetta, J. M., Motzoi, F., Merkel, S. T. & Wilhelm, F. K. “Analytic control methods for high-fidelity unitary operations in a weakly nonlinear oscillator.” Phys. Rev. A 83, 012308 (2011).*](http://dx.doi.org/10.1103/PhysRevA.83.012308)
 
@@ -1527,7 +1527,7 @@ Call the subroutine within the currently active builder context with arbitrary p
   If the `target` program is a [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"), then a [`Reference`](qiskit.pulse.instructions.Reference "qiskit.pulse.instructions.Reference") instruction will be created and appended to the current context. The `target` program will be immediately assigned to the current scope as a subroutine. If the `target` program is [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule"), it will be wrapped by the [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction and appended to the current context to avoid a mixed representation of [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") and [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule"). If the `target` program is a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") it will be scheduled and the new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") will be added as a [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction.
 </Admonition>
 
-## Examples
+**Examples**
 
 1.  Calling a schedule block (recommended)
 

@@ -43,7 +43,7 @@ the DAG representing the input circuit.
 
 [**ValueError**](https://docs.python.org/3/library/exceptions.html#ValueError "(in Python v3.12)") – if the `qubit_order` or `clbit_order` parameters do not match the bits in the circuit.
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -79,7 +79,7 @@ the circuit representing the input dag.
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -129,7 +129,7 @@ an instruction equivalent to the action of the input circuit. Upon decomposition
 
 [qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
-## Example
+**Example**
 
 ```python
 from qiskit import QuantumRegister, ClassicalRegister, QuantumCircuit
@@ -194,7 +194,7 @@ the DAG representing an OpenQASM’s AST
 
 [**QiskitError**](exceptions#qiskit.exceptions.QiskitError "qiskit.exceptions.QiskitError") – if the AST is malformed.
 
-## Example
+**Example**
 
 ```python
 from qiskit.converters import ast_to_dag

@@ -159,7 +159,7 @@ One can take advantage of accelerated version of objective function. It implemen
 
 The rest of the code in the above example does not change.
 
-## References
+**References**
 
 **\[1]: Liam Madden, Andrea Simonetto, Best Approximate Quantum Compiling Problems.**
 

@@ -255,7 +255,7 @@ Lift the given Python `value` to a [`Value`](#qiskit.circuit.classical.expr.Valu
 
 If an explicit `type` is given, the typing in the output will reflect that.
 
-## Examples
+**Examples**
 
 Lifting simple circuit objects to be [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var") instances:
 
@@ -291,7 +291,7 @@ You can manually specify casts in cases where the cast is allowed in explicit fo
 
 Create an explicit cast from the given value to the given type.
 
-## Examples
+**Examples**
 
 Add an explicit cast node that explicitly casts a higher precision type to a lower precision one:
 
@@ -314,7 +314,7 @@ There are helper constructor functions for each of the unary operations.
 
 Create a bitwise ‘not’ expression node from the given value, resolving any implicit casts and lifting the value into a [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") node if required.
 
-## Examples
+**Examples**
 
 Bitwise negation of a [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"):
 
@@ -335,7 +335,7 @@ Unary(Unary.Op.BIT_NOT, Var(ClassicalRegister(3, 'c'), Uint(3)), Uint(3))
 
 Create a logical ‘not’ expression node from the given value, resolving any implicit casts and lifting the value into a [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") node if required.
 
-## Examples
+**Examples**
 
 Logical negation of a [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister"):
 
@@ -358,7 +358,7 @@ Similarly, the binary operations and relations have helper functions defined.
 
 Create a bitwise ‘and’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
-## Examples
+**Examples**
 
 Bitwise ‘and’ of a classical register and an integer literal:
 
@@ -379,7 +379,7 @@ Binary(Binary.Op.BIT_AND, Var(ClassicalRegister(3, 'c'), Uint(3)), Value(7, Uint
 
 Create a bitwise ‘or’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
-## Examples
+**Examples**
 
 Bitwise ‘or’ of a classical register and an integer literal:
 
@@ -400,7 +400,7 @@ Binary(Binary.Op.BIT_OR, Var(ClassicalRegister(3, 'c'), Uint(3)), Value(5, Uint(
 
 Create a bitwise ‘exclusive or’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
-## Examples
+**Examples**
 
 Bitwise ‘exclusive or’ of a classical register and an integer literal:
 
@@ -421,7 +421,7 @@ Binary(Binary.Op.BIT_XOR, Var(ClassicalRegister(3, 'c'), Uint(3)), Value(5, Uint
 
 Create a logical ‘and’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
-## Examples
+**Examples**
 
 Logical ‘and’ of two classical bits:
 
@@ -442,7 +442,7 @@ Binary(Binary.Op.LOGIC_AND, Var(<clbit 0>, Bool()), Var(<clbit 1>, Bool()), Bool
 
 Create a logical ‘or’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
-## Examples
+**Examples**
 
 Logical ‘or’ of two classical bits
 
@@ -463,7 +463,7 @@ Binary(Binary.Op.LOGIC_OR, Var(<clbit 0>, Bool()), Var(<clbit 1>, Bool()), Bool(
 
 Create an ‘equal’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
-## Examples
+**Examples**
 
 Equality between a classical register and an integer:
 
@@ -484,7 +484,7 @@ Binary(Binary.Op.EQUAL, Var(ClassicalRegister(3, "c"), Uint(3)), Value(7, Uint(3
 
 Create a ‘not equal’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
-## Examples
+**Examples**
 
 Inequality between a classical register and an integer:
 
@@ -505,7 +505,7 @@ Binary(Binary.Op.NOT_EQUAL, Var(ClassicalRegister(3, "c"), Uint(3)), Value(7, Ui
 
 Create a ‘less than’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
-## Examples
+**Examples**
 
 Query if a classical register is less than an integer:
 
@@ -526,7 +526,7 @@ Binary(Binary.Op.LESS, Var(ClassicalRegister(3, "c"), Uint(3)), Value(5, Uint(3)
 
 Create a ‘less than or equal to’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
-## Examples
+**Examples**
 
 Query if a classical register is less than or equal to another:
 
@@ -547,7 +547,7 @@ Binary(Binary.Op.LESS_EQUAL, Var(ClassicalRegister(3, "a"), Uint(3)), Var(Classi
 
 Create a ‘greater than’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
-## Examples
+**Examples**
 
 Query if a classical register is greater than an integer:
 
@@ -568,7 +568,7 @@ Binary(Binary.Op.GREATER, Var(ClassicalRegister(3, "c"), Uint(3)), Value(5, Uint
 
 Create a ‘greater than or equal to’ expression node from the given value, resolving any implicit casts and lifting the values into [`Value`](#qiskit.circuit.classical.expr.Value "qiskit.circuit.classical.expr.Value") nodes if required.
 
-## Examples
+**Examples**
 
 Query if a classical register is greater than or equal to another:
 
@@ -591,7 +591,7 @@ Qiskit’s legacy method for specifying equality conditions for use in condition
 
 Lift a legacy two-tuple equality condition into a new-style [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr").
 
-## Examples
+**Examples**
 
 Taking an old-style conditional instruction and getting an [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.Expr") from its condition:
 
@@ -690,7 +690,7 @@ For the convenience of simple visitors that only need to inspect the variables i
 
 Get an iterator over the [`Var`](#qiskit.circuit.classical.expr.Var "qiskit.circuit.classical.expr.expr.Var") nodes referenced at any level in the given [`Expr`](#qiskit.circuit.classical.expr.Expr "qiskit.circuit.classical.expr.expr.Expr").
 
-## Examples
+**Examples**
 
 Print out the name of each [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") encountered:
 
@@ -733,7 +733,7 @@ There’s no requirements on the key functions, except that their outputs should
 
 [bool](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")
 
-## Examples
+**Examples**
 
 Comparing two expressions for structural equivalence, with no remapping of the variables. These are different because the different [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") instances compare differently:
 
@@ -809,7 +809,7 @@ The low-level interface to querying the subtyping relationship is the [`order()`
 
 Get the ordering relationship between the two types as an enumeration value.
 
-## Examples
+**Examples**
 
 Compare two [`Uint`](#qiskit.circuit.classical.types.Uint "qiskit.circuit.classical.types.Uint") types of different widths:
 
@@ -848,7 +848,7 @@ Some helper methods are then defined in terms of this low-level [`order()`](#qis
 
 Does the relation $\text{left} \le \text{right}$ hold? If there is no ordering relation between the two types, then this returns `False`. If `strict`, then the equality is also forbidden.
 
-## Examples
+**Examples**
 
 Check if one type is a subclass of another:
 
@@ -877,7 +877,7 @@ False
 
 Does the relation $\text{left} \ge \text{right}$ hold? If there is no ordering relation between the two types, then this returns `False`. If `strict`, then the equality is also forbidden.
 
-## Examples
+**Examples**
 
 Check if one type is a superclass of another:
 
@@ -918,7 +918,7 @@ The greater of the two types.
 
 [*Type*](#qiskit.circuit.classical.types.Type "qiskit.circuit.classical.types.types.Type")
 
-## Examples
+**Examples**
 
 Find the greater of two [`Uint`](#qiskit.circuit.classical.types.Uint "qiskit.circuit.classical.types.Uint") types:
 
