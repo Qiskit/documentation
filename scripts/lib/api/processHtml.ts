@@ -194,12 +194,21 @@ export function convertRubricsToHeaders(
   $: CheerioAPI,
   $main: Cheerio<any>,
 ): void {
-  // Rubrics correspond to method and attribute headers.
-  // TODO(#479): ensure our understanding of what .rubric corresponds to is correct and figure out
-  //  if always using <h2> makes sense.
+  // A rubric is "a paragraph heading that is not used to create a table
+  // of contents node". Depending on the heading, this should be either <h2> or
+  // <strong>
+  function appropriateHtmlTag(html: string | null) {
+    html = String(html);
+    if (html.match(/^Examples?$/) || html.match(/^References$/)) {
+      return "strong";
+    }
+    return "h2";
+  }
+
   $main.find(".rubric").each((_, el) => {
     const $el = $(el);
-    $el.replaceWith(`<h2>${$el.html()}</h2>`);
+    const tag = appropriateHtmlTag($el.html());
+    $el.replaceWith(`<${tag}>${$el.html()}</${tag}>`);
   });
 }
 
