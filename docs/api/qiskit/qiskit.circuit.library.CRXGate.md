@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CRXGate
 
 <span id="qiskit.circuit.library.CRXGate" />
 
-`qiskit.circuit.library.CRXGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/rx.py "view source code")
+`qiskit.circuit.library.CRXGate(theta, label=None, ctrl_state=None, *, duration=None, unit='dt', _base_label=None)`
 
 Bases: [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
 
@@ -30,16 +30,14 @@ q_1: ┤ Rx(ϴ) ├
 **Matrix representation:**
 
 $$
-\newcommand{\rotationangle}{\frac{\theta}{2}}
-
-CRX(\theta)\ q_0, q_1 =
+ \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRX(\theta)\ q_0, q_1 =
     I \otimes |0\rangle\langle 0| + RX(\theta) \otimes |1\rangle\langle 1| =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
-        0 & \cos\left(\rotationangle\right) & 0 & -i\sin\left(\rotationangle\right) \\
+        0 & \cos\left(\th\right) & 0 & -i\sin\left(\th\right) \\
         0 & 0 & 1 & 0 \\
-        0 & -i\sin\left(\rotationangle\right) & 0 & \cos\left(\rotationangle\right)
-    \end{pmatrix}
+        0 & -i\sin\left(\th\right) & 0 & \cos\left(\th\right)
+    \end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
 <Admonition title="Note" type="note">
@@ -53,16 +51,14 @@ $$
   ```
 
   $$
-  \newcommand{\rotationangle}{\frac{\theta}{2}}
-
-  CRX(\theta)\ q_1, q_0 =
+   \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}CRX(\theta)\ q_1, q_0 =
   |0\rangle\langle0| \otimes I + |1\rangle\langle1| \otimes RX(\theta) =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\
-          0 & 0 & \cos\left(\rotationangle\right)   & -i\sin\left(\rotationangle\right) \\
-          0 & 0 & -i\sin\left(\rotationangle\right) & \cos\left(\rotationangle\right)
-      \end{pmatrix}
+          0 & 0 & \cos\left(\th\right)   & -i\sin\left(\th\right) \\
+          0 & 0 & -i\sin\left(\th\right) & \cos\left(\th\right)
+      \end{pmatrix}\end{split}\end{aligned}\end{align} 
   $$
 </Admonition>
 

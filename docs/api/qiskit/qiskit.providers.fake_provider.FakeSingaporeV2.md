@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeSingaporeV2
 
 <span id="qiskit.providers.fake_provider.FakeSingaporeV2" />
 
-`qiskit.providers.fake_provider.FakeSingaporeV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/backends/singapore/fake_singapore.py "view source code")
+`qiskit.providers.fake_provider.FakeSingaporeV2`
 
 Bases: [`FakeBackendV2`](providers_fake_provider#qiskit.providers.fake_provider.fake_backend.FakeBackendV2 "qiskit.providers.fake_provider.fake_backend.FakeBackendV2")
 
@@ -58,7 +58,7 @@ Return the [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.Coup
 
 ### dirname
 
-`= '/home/runner/work/qiskit/qiskit/qiskit/providers/fake_provider/backends/singapore'`
+`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends/singapore'`
 
 <span id="qiskit.providers.fake_provider.FakeSingaporeV2.dt" />
 

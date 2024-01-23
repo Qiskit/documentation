@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.ApplyLayout
 
 <span id="qiskit.transpiler.passes.ApplyLayout" />
 
-`qiskit.transpiler.passes.ApplyLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/layout/apply_layout.py "view source code")
+`qiskit.transpiler.passes.ApplyLayout(*args, **kwargs)`
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -80,7 +80,7 @@ Name of the pass.
 
 `run(dag)`
 
-Run the ApplyLayout pass on `dag`.
+Run the ApplyLayout pass on dag.
 
 **Parameters**
 
@@ -96,7 +96,7 @@ A mapped DAG (with physical qubits).
 
 **Raises**
 
-[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if no layout is found in `property_set` or no full physical qubits.
+[**TranspilerError**](transpiler#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if no layout is found in property\_set or no full physical qubits.
 
 ### update\_status
 
