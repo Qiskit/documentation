@@ -362,7 +362,15 @@ export function processMembersAndSetMeta(
 
         if (apiType === "function") {
           findByText($, $main, "em.property", "function").remove();
-          return `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
+          const funcDescription = `<span class="target" id="${id}"/><p><code>${$child.html()}</code>${github}</p>`;
+
+          const pageHeading = $dl.siblings("h1").text();
+          const funcName = id.split(".").slice(-1)[0];
+          if (id.endsWith(pageHeading) && pageHeading != "") {
+            // Page is already dedicated to function; no heading needed
+            return funcDescription;
+          }
+          return `<h3>${funcName}</h3>` + funcDescription;
         }
 
         if (apiType === "exception") {
