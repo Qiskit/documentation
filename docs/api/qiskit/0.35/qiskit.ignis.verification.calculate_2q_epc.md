@@ -1,8 +1,16 @@
+---
+title: calculate_2q_epc
+description: API reference for qiskit.ignis.verification.calculate_2q_epc
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.calculate_2q_epc
+---
+
 # qiskit.ignis.verification.calculate\_2q\_epc
 
+<span id="qiskit.ignis.verification.calculate_2q_epc" />
 
-
-`calculate_2q_epc(gate_per_cliff, epg_2q, qubit_pair, list_epgs_1q, two_qubit_name='cx')`
+`calculate_2q_epc(gate_per_cliff, epg_2q, qubit_pair, list_epgs_1q, two_qubit_name='cx')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py "view source code")
 
 Convert error per gate (EPG) into error per Clifford (EPC) of two qubit `cx` gates.
 
@@ -57,7 +65,7 @@ As you can see two qubit gate contribution is dominant in this RB sequence.
 
 **Parameters**
 
-*   **gate\_per\_cliff** (`Dict`\[`int`, `Dict`\[`str`, `float`]]) – dictionary of gate per Clifford. see [`gates_per_clifford()`](qiskit.ignis.verification.gates_per_clifford#qiskit.ignis.verification.gates_per_clifford "qiskit.ignis.verification.gates_per_clifford").
+*   **gate\_per\_cliff** (`Dict`\[`int`, `Dict`\[`str`, `float`]]) – dictionary of gate per Clifford. see [`gates_per_clifford()`](qiskit.ignis.verification.gates_per_clifford "qiskit.ignis.verification.gates_per_clifford").
 *   **epg\_2q** (`float`) – EPG estimated by error model.
 *   **qubit\_pair** (`List`\[`int`]) – index of two qubits to calculate EPC.
 *   **list\_epgs\_1q** (`List`\[`Dict`\[`str`, `float`]]) – list of single qubit EPGs of qubit listed in `qubit_pair`.
@@ -74,3 +82,4 @@ EPG of 2Q gate.
 **Raises**
 
 **QiskitError** – when `cx` is not found, specified `qubit_pair` is not included in the gate count dictionary, or length of `qubit_pair` is not 2.
+

@@ -1,8 +1,16 @@
+---
+title: rabi_schedules
+description: API reference for qiskit.ignis.characterization.rabi_schedules
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.characterization.rabi_schedules
+---
+
 # qiskit.ignis.characterization.rabi\_schedules
 
+<span id="qiskit.ignis.characterization.rabi_schedules" />
 
-
-`rabi_schedules(amp_list, qubits, pulse_width, pulse_sigma=None, width_sigma_ratio=4, drives=None, inst_map=None, meas_map=None)`
+`rabi_schedules(amp_list, qubits, pulse_width, pulse_sigma=None, width_sigma_ratio=4, drives=None, inst_map=None, meas_map=None)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/calibrations/pulse_schedules.py "view source code")
 
 Generates schedules for a rabi experiment using a Gaussian pulse
 
@@ -14,7 +22,7 @@ Generates schedules for a rabi experiment using a Gaussian pulse
 *   **pulse\_sigma** (*float*) – sigma of gaussian
 *   **width\_sigma\_ratio** (*int*) – set sigma to a certain ratio of the width (use if pulse\_sigma is None)
 *   **drives** (*list*) – list of `DriveChannel` objects
-*   **inst\_map** ([*qiskit.pulse.InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap#qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – InstructionScheduleMap object to use
+*   **inst\_map** ([*qiskit.pulse.InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – InstructionScheduleMap object to use
 *   **meas\_map** (*list*) – meas\_map to use
 
 **Returns**
@@ -24,3 +32,4 @@ A list of QuantumSchedules xdata: a list of amps
 **Raises**
 
 **QiskitError** – when necessary variables are not supplied.
+

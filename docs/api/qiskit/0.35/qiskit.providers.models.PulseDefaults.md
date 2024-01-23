@@ -1,8 +1,16 @@
+---
+title: PulseDefaults
+description: API reference for qiskit.providers.models.PulseDefaults
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.models.PulseDefaults
+---
+
 # PulseDefaults
 
+<span id="qiskit.providers.models.PulseDefaults" />
 
-
-`PulseDefaults(qubit_freq_est, meas_freq_est, buffer, pulse_library, cmd_def, meas_kernel=None, discriminator=None, **kwargs)`
+`PulseDefaults(qubit_freq_est, meas_freq_est, buffer, pulse_library, cmd_def, meas_kernel=None, discriminator=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/pulsedefaults.py "view source code")
 
 Bases: `object`
 
@@ -12,7 +20,31 @@ Validate and reformat transport layer inputs to initialize. :type qubit\_freq\_e
 
 ## Methods
 
-|                                                                                                                                                                  |                                                                 |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------- |
-| [`from_dict`](qiskit.providers.models.PulseDefaults.from_dict#qiskit.providers.models.PulseDefaults.from_dict "qiskit.providers.models.PulseDefaults.from_dict") | Create a new PulseDefaults object from a dictionary.            |
-| [`to_dict`](qiskit.providers.models.PulseDefaults.to_dict#qiskit.providers.models.PulseDefaults.to_dict "qiskit.providers.models.PulseDefaults.to_dict")         | Return a dictionary format representation of the PulseDefaults. |
+### from\_dict
+
+<span id="qiskit.providers.models.PulseDefaults.from_dict" />
+
+`classmethod PulseDefaults.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/pulsedefaults.py "view source code")
+
+Create a new PulseDefaults object from a dictionary.
+
+**Parameters**
+
+**data** (*dict*) – A dictionary representing the PulseDefaults to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.PulseDefaults#to_dict "qiskit.providers.models.PulseDefaults.to_dict").
+
+**Returns**
+
+The PulseDefaults from the input dictionary.
+
+**Return type**
+
+[PulseDefaults](qiskit.providers.models.PulseDefaults "qiskit.providers.models.PulseDefaults")
+
+### to\_dict
+
+<span id="qiskit.providers.models.PulseDefaults.to_dict" />
+
+`PulseDefaults.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/pulsedefaults.py "view source code")
+
+Return a dictionary format representation of the PulseDefaults. :returns: The dictionary form of the PulseDefaults. :rtype: dict
+

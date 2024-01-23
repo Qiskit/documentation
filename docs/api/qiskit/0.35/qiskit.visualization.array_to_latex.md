@@ -1,8 +1,16 @@
+---
+title: array_to_latex
+description: API reference for qiskit.visualization.array_to_latex
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.array_to_latex
+---
+
 # qiskit.visualization.array\_to\_latex
 
+<span id="qiskit.visualization.array_to_latex" />
 
-
-`array_to_latex(array, precision=5, prefix='', source=False, max_size=8)`
+`array_to_latex(array, precision=5, prefix='', source=False, max_size=8)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/array.py "view source code")
 
 Latex representation of a complex numpy array (with dimension 1 or 2)
 
@@ -38,3 +46,4 @@ str or IPython.display.Latex
 *   **TypeError** – If array can not be interpreted as a numerical numpy array.
 *   **ValueError** – If the dimension of array is not 1 or 2.
 *   **MissingOptionalLibraryError** – If `source` is `False` and `IPython.display.Latex` cannot be imported.
+

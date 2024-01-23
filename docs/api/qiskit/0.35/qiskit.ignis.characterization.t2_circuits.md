@@ -1,8 +1,16 @@
+---
+title: t2_circuits
+description: API reference for qiskit.ignis.characterization.t2_circuits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.characterization.t2_circuits
+---
+
 # qiskit.ignis.characterization.t2\_circuits
 
+<span id="qiskit.ignis.characterization.t2_circuits" />
 
-
-`t2_circuits(num_of_gates, gate_time, qubits, n_echos=1, phase_alt_echo=False)`
+`t2_circuits(num_of_gates, gate_time, qubits, n_echos=1, phase_alt_echo=False)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/coherence/circuits.py "view source code")
 
 Generate circuits for T2 (echo) measurement, by a CPMG sequence.
 
@@ -34,3 +42,4 @@ Standard T2\* echo is $n_echos=1$
 **Raises**
 
 **ValueError** – If n\_echos is less than 1
+

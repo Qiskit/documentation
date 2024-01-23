@@ -1,8 +1,16 @@
+---
+title: get_ghz_simple
+description: API reference for qiskit.ignis.verification.get_ghz_simple
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.get_ghz_simple
+---
+
 # qiskit.ignis.verification.get\_ghz\_simple
 
+<span id="qiskit.ignis.verification.get_ghz_simple" />
 
-
-`get_ghz_simple(n, measure=True, full_measurement=True)`
+`get_ghz_simple(n, measure=True, full_measurement=True)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/entanglement/linear.py "view source code")
 
 Creates a linear GHZ state with the option of measurement
 
@@ -19,3 +27,4 @@ Creates a linear GHZ state with the option of measurement
 **Returns**
 
 A linear GHZ Circuit
+

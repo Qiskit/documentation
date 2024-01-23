@@ -1,8 +1,16 @@
+---
+title: TdgGate
+description: API reference for qiskit.circuit.library.TdgGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.TdgGate
+---
+
 # TdgGate
 
+<span id="qiskit.circuit.library.TdgGate" />
 
-
-`TdgGate(label=None)`
+`TdgGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/t.py "view source code")
 
 Bases: `qiskit.circuit.gate.Gate`
 
@@ -35,13 +43,17 @@ Create new Tdg gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                     |                               |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| [`inverse`](qiskit.circuit.library.TdgGate.inverse#qiskit.circuit.library.TdgGate.inverse "qiskit.circuit.library.TdgGate.inverse") | Return inverse Tdg gate (i.e. |
+### inverse
+
+<span id="qiskit.circuit.library.TdgGate.inverse" />
+
+`TdgGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/t.py "view source code")
+
+Return inverse Tdg gate (i.e. T).
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.TdgGate.condition_bits" />
 
 ### condition\_bits
 
@@ -51,25 +63,25 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.TdgGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-
+<span id="qiskit.circuit.library.TdgGate.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
+<span id="qiskit.circuit.library.TdgGate.duration" />
 
 ### duration
 
 Get the duration.
 
-
+<span id="qiskit.circuit.library.TdgGate.label" />
 
 ### label
 
@@ -79,32 +91,33 @@ Return instruction label
 
 `str`
 
-
+<span id="qiskit.circuit.library.TdgGate.name" />
 
 ### name
 
 Return the name.
 
-
+<span id="qiskit.circuit.library.TdgGate.num_clbits" />
 
 ### num\_clbits
 
 Return the number of clbits.
 
-
+<span id="qiskit.circuit.library.TdgGate.num_qubits" />
 
 ### num\_qubits
 
 Return the number of qubits.
 
-
+<span id="qiskit.circuit.library.TdgGate.params" />
 
 ### params
 
 return instruction params.
 
-
+<span id="qiskit.circuit.library.TdgGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

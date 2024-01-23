@@ -1,8 +1,16 @@
+---
+title: random_circuit
+description: API reference for qiskit.circuit.random.random_circuit
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.circuit.random.random_circuit
+---
+
 # qiskit.circuit.random.random\_circuit
 
+<span id="qiskit.circuit.random.random_circuit" />
 
-
-`random_circuit(num_qubits, depth, max_operands=3, measure=False, conditional=False, reset=False, seed=None)`
+`random_circuit(num_qubits, depth, max_operands=3, measure=False, conditional=False, reset=False, seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/random/utils.py "view source code")
 
 Generate random circuit of arbitrary size and form.
 
@@ -33,8 +41,9 @@ constructed circuit
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 **Raises**
 
 **CircuitError** – when invalid options given
+

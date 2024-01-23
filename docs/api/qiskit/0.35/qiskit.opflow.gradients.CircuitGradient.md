@@ -1,8 +1,16 @@
+---
+title: CircuitGradient
+description: API reference for qiskit.opflow.gradients.CircuitGradient
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.gradients.CircuitGradient
+---
+
 # CircuitGradient
 
+<span id="qiskit.opflow.gradients.CircuitGradient" />
 
-
-`CircuitGradient`
+`CircuitGradient`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/gradients/circuit_gradients/circuit_gradient.py "view source code")
 
 Bases: `qiskit.opflow.converters.converter_base.ConverterBase`
 
@@ -16,6 +24,26 @@ CircuitGradient - uses quantum techniques to get derivatives of circuits Derivat
 
 ## Methods Defined Here
 
-|                                                                                                                                                                |                                 |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [`convert`](qiskit.opflow.gradients.CircuitGradient.convert#qiskit.opflow.gradients.CircuitGradient.convert "qiskit.opflow.gradients.CircuitGradient.convert") | **type operator**`OperatorBase` |
+### convert
+
+<span id="qiskit.opflow.gradients.CircuitGradient.convert" />
+
+`abstract CircuitGradient.convert(operator, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/gradients/circuit_gradients/circuit_gradient.py "view source code")
+
+**Parameters**
+
+*   **operator** (`OperatorBase`) – The operator we are taking the gradient of
+*   **params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`], `Tuple`\[`ParameterExpression`, `ParameterExpression`], `List`\[`Tuple`\[`ParameterExpression`, `ParameterExpression`]], `None`]) – The parameters we are taking the gradient wrt: ω If a ParameterExpression, ParameterVector or List\[ParameterExpression] is given, then the 1st order derivative of the operator is calculated. If a Tuple\[ParameterExpression, ParameterExpression] or List\[Tuple\[ParameterExpression, ParameterExpression]] is given, then the 2nd order derivative of the operator is calculated.
+
+**Return type**
+
+`OperatorBase`
+
+**Returns**
+
+An operator whose evaluation yields the Gradient.
+
+**Raises**
+
+**ValueError** – If `params` contains a parameter not present in `operator`.
+

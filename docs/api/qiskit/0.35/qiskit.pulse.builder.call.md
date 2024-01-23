@@ -1,13 +1,21 @@
+---
+title: call
+description: API reference for qiskit.pulse.builder.call
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.call
+---
+
 # qiskit.pulse.builder.call
 
+<span id="qiskit.pulse.builder.call" />
 
-
-`call(target, name=None, value_dict=None, **kw_params)`
+`call(target, name=None, value_dict=None, **kw_params)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Call the `target` within the currently active builder context with arbitrary parameters which will be assigned to the target program.
 
 <Admonition title="Note" type="note">
-  The `target` program is inserted as a `Call` instruction. This instruction defines a subroutine. See [`Call`](qiskit.pulse.instructions.Call#qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") for more details.
+  The `target` program is inserted as a `Call` instruction. This instruction defines a subroutine. See [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") for more details.
 </Admonition>
 
 Examples:
@@ -69,3 +77,4 @@ with pulse.build() as main_prog:
 **Raises**
 
 **exceptions.PulseError** – If the input `target` type is not supported.
+

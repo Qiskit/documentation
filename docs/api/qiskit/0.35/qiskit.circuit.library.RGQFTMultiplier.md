@@ -1,8 +1,16 @@
+---
+title: RGQFTMultiplier
+description: API reference for qiskit.circuit.library.RGQFTMultiplier
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.RGQFTMultiplier
+---
+
 # RGQFTMultiplier
 
+<span id="qiskit.circuit.library.RGQFTMultiplier" />
 
-
-`RGQFTMultiplier(num_state_qubits, num_result_qubits=None, name='RGQFTMultiplier')`
+`RGQFTMultiplier(num_state_qubits, num_result_qubits=None, name='RGQFTMultiplier')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/arithmetic/multipliers/rg_qft_multiplier.py "view source code")
 
 Bases: `qiskit.circuit.library.arithmetic.multipliers.multiplier.Multiplier`
 
@@ -37,7 +45,7 @@ out_1: ┤1     ├─────────■──────────�
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.ancillas" />
 
 ### ancillas
 
@@ -47,7 +55,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 `List`\[`AncillaQubit`]
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.calibrations" />
 
 ### calibrations
 
@@ -61,7 +69,7 @@ Return calibration dictionary.
 
 `dict`
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.clbits" />
 
 ### clbits
 
@@ -71,7 +79,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.data" />
 
 ### data
 
@@ -87,13 +95,13 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.global_phase" />
 
 ### global\_phase
 
@@ -103,19 +111,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.header" />
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.instances" />
 
 ### instances
 
 `= 9`
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.metadata" />
 
 ### metadata
 
@@ -127,7 +135,7 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.num_ancillas" />
 
 ### num\_ancillas
 
@@ -137,7 +145,7 @@ Return the number of ancilla qubits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.num_clbits" />
 
 ### num\_clbits
 
@@ -147,7 +155,7 @@ Return number of classical bits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.num_parameters" />
 
 ### num\_parameters
 
@@ -157,7 +165,7 @@ Convenience function to get the number of parameter objects in the circuit.
 
 `int`
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.num_qubits" />
 
 ### num\_qubits
 
@@ -167,7 +175,7 @@ Return number of qubits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.num_result_qubits" />
 
 ### num\_result\_qubits
 
@@ -181,7 +189,7 @@ The number of result qubits to limit the output to.
 
 The number of result qubits.
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.num_state_qubits" />
 
 ### num\_state\_qubits
 
@@ -195,7 +203,7 @@ The number of state qubits, i.e. the number of bits in each input register.
 
 The number of state qubits.
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.parameters" />
 
 ### parameters
 
@@ -205,13 +213,13 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.prefix" />
 
 ### prefix
 
 `= 'circuit'`
 
-
+<span id="qiskit.circuit.library.RGQFTMultiplier.qubits" />
 
 ### qubits
 
@@ -220,3 +228,4 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
+

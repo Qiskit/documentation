@@ -1,8 +1,16 @@
+---
+title: MatrixFunctional
+description: API reference for qiskit.algorithms.linear_solvers.MatrixFunctional
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.linear_solvers.MatrixFunctional
+---
+
 # MatrixFunctional
 
+<span id="qiskit.algorithms.linear_solvers.MatrixFunctional" />
 
-
-`MatrixFunctional(main_diag, off_diag)`
+`MatrixFunctional(main_diag, off_diag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
 
 Bases: `qiskit.algorithms.linear_solvers.observables.linear_system_observable.LinearSystemObservable`
 
@@ -57,9 +65,89 @@ exact = observable.evaluate_classically(init_state)
 
 ## Methods
 
-|                                                                                                                                                                                                                                                  |                                                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------- |
-| [`evaluate_classically`](qiskit.algorithms.linear_solvers.MatrixFunctional.evaluate_classically#qiskit.algorithms.linear_solvers.MatrixFunctional.evaluate_classically "qiskit.algorithms.linear_solvers.MatrixFunctional.evaluate_classically") | Evaluates the given observable on the solution to the linear system.  |
-| [`observable`](qiskit.algorithms.linear_solvers.MatrixFunctional.observable#qiskit.algorithms.linear_solvers.MatrixFunctional.observable "qiskit.algorithms.linear_solvers.MatrixFunctional.observable")                                         | The observable operators.                                             |
-| [`observable_circuit`](qiskit.algorithms.linear_solvers.MatrixFunctional.observable_circuit#qiskit.algorithms.linear_solvers.MatrixFunctional.observable_circuit "qiskit.algorithms.linear_solvers.MatrixFunctional.observable_circuit")         | The circuits to implement the matrix functional observable.           |
-| [`post_processing`](qiskit.algorithms.linear_solvers.MatrixFunctional.post_processing#qiskit.algorithms.linear_solvers.MatrixFunctional.post_processing "qiskit.algorithms.linear_solvers.MatrixFunctional.post_processing")                     | Evaluates the matrix functional on the solution to the linear system. |
+### evaluate\_classically
+
+<span id="qiskit.algorithms.linear_solvers.MatrixFunctional.evaluate_classically" />
+
+`MatrixFunctional.evaluate_classically(solution)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
+
+Evaluates the given observable on the solution to the linear system.
+
+**Parameters**
+
+**solution** (`Union`\[`array`, `QuantumCircuit`]) – The solution to the system as a numpy array or the circuit that prepares it.
+
+**Return type**
+
+`float`
+
+**Returns**
+
+The value of the observable.
+
+### observable
+
+<span id="qiskit.algorithms.linear_solvers.MatrixFunctional.observable" />
+
+`MatrixFunctional.observable(num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
+
+The observable operators.
+
+**Parameters**
+
+**num\_qubits** (`int`) – The number of qubits on which the observable will be applied.
+
+**Return type**
+
+`Union`\[`TensoredOp`, `List`\[`TensoredOp`]]
+
+**Returns**
+
+The observable as a list of sums of Pauli strings.
+
+### observable\_circuit
+
+<span id="qiskit.algorithms.linear_solvers.MatrixFunctional.observable_circuit" />
+
+`MatrixFunctional.observable_circuit(num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
+
+The circuits to implement the matrix functional observable.
+
+**Parameters**
+
+**num\_qubits** (`int`) – The number of qubits on which the observable will be applied.
+
+**Return type**
+
+`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]]
+
+**Returns**
+
+The observable as a list of QuantumCircuits.
+
+### post\_processing
+
+<span id="qiskit.algorithms.linear_solvers.MatrixFunctional.post_processing" />
+
+`MatrixFunctional.post_processing(solution, num_qubits, scaling=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
+
+Evaluates the matrix functional on the solution to the linear system.
+
+**Parameters**
+
+*   **solution** (`Union`\[`float`, `List`\[`float`]]) – The list of probabilities calculated from the circuit and the observable.
+*   **num\_qubits** (`int`) – The number of qubits where the observable was applied.
+*   **scaling** (`float`) – Scaling of the solution.
+
+**Return type**
+
+`float`
+
+**Returns**
+
+The value of the absolute average.
+
+**Raises**
+
+**ValueError** – If the input is not in the correct format.
+

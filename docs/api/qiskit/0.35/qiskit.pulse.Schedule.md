@@ -1,8 +1,16 @@
+---
+title: Schedule
+description: API reference for qiskit.pulse.Schedule
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.Schedule
+---
+
 # Schedule
 
+<span id="qiskit.pulse.Schedule" />
 
-
-`Schedule(*schedules, name=None, metadata=None)`
+`Schedule(*schedules, name=None, metadata=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
 
 Bases: `object`
 
@@ -41,7 +49,7 @@ The `Schedule` program supports some syntax sugar for easier programming.
 
 A [`PulseError`](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") is immediately raised when the overlap constraint is violated.
 
-In the schedule representation, we cannot parametrize the duration of instructions. Thus we need to create a new schedule object for each duration. To parametrize an instruction’s duration, the [`ScheduleBlock`](qiskit.pulse.ScheduleBlock#qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") representation may be used instead.
+In the schedule representation, we cannot parametrize the duration of instructions. Thus we need to create a new schedule object for each duration. To parametrize an instruction’s duration, the [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock") representation may be used instead.
 
 ## References
 
@@ -61,26 +69,352 @@ Create an empty schedule.
 
 ## Methods
 
-|                                                                                                                                                  |                                                                                                                                                                                                                                                                                                                                                                                                                                                                 |
-| ------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`append`](qiskit.pulse.Schedule.append#qiskit.pulse.Schedule.append "qiskit.pulse.Schedule.append")                                             | Return a new schedule with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.                                                                                                                                                                                                                                                                                                                                      |
-| [`assign_parameters`](qiskit.pulse.Schedule.assign_parameters#qiskit.pulse.Schedule.assign_parameters "qiskit.pulse.Schedule.assign_parameters") | Assign the parameters in this schedule according to the input.                                                                                                                                                                                                                                                                                                                                                                                                  |
-| [`ch_duration`](qiskit.pulse.Schedule.ch_duration#qiskit.pulse.Schedule.ch_duration "qiskit.pulse.Schedule.ch_duration")                         | Return the time of the end of the last instruction over the supplied channels.                                                                                                                                                                                                                                                                                                                                                                                  |
-| [`ch_start_time`](qiskit.pulse.Schedule.ch_start_time#qiskit.pulse.Schedule.ch_start_time "qiskit.pulse.Schedule.ch_start_time")                 | Return the time of the start of the first instruction over the supplied channels.                                                                                                                                                                                                                                                                                                                                                                               |
-| [`ch_stop_time`](qiskit.pulse.Schedule.ch_stop_time#qiskit.pulse.Schedule.ch_stop_time "qiskit.pulse.Schedule.ch_stop_time")                     | Return maximum start time over supplied channels.                                                                                                                                                                                                                                                                                                                                                                                                               |
-| [`draw`](qiskit.pulse.Schedule.draw#qiskit.pulse.Schedule.draw "qiskit.pulse.Schedule.draw")                                                     | Plot the schedule.                                                                                                                                                                                                                                                                                                                                                                                                                                              |
-| [`exclude`](qiskit.pulse.Schedule.exclude#qiskit.pulse.Schedule.exclude "qiskit.pulse.Schedule.exclude")                                         | Return a `Schedule` with only the instructions from this Schedule *failing* at least one of the provided filters. This method is the complement of py:meth:\~self.filter, so that::.                                                                                                                                                                                                                                                                            |
-| [`filter`](qiskit.pulse.Schedule.filter#qiskit.pulse.Schedule.filter "qiskit.pulse.Schedule.filter")                                             | Return a new `Schedule` with only the instructions from this `Schedule` which pass though the provided filters; i.e. an instruction will be retained iff every function in `filter_funcs` returns `True`, the instruction occurs on a channel type contained in `channels`, the instruction type is contained in `instruction_types`, and the period over which the instruction operates is *fully* contained in one specified in `time_ranges` or `intervals`. |
-| [`get_parameters`](qiskit.pulse.Schedule.get_parameters#qiskit.pulse.Schedule.get_parameters "qiskit.pulse.Schedule.get_parameters")             | Get parameter object bound to this schedule by string name.                                                                                                                                                                                                                                                                                                                                                                                                     |
-| [`initialize_from`](qiskit.pulse.Schedule.initialize_from#qiskit.pulse.Schedule.initialize_from "qiskit.pulse.Schedule.initialize_from")         | Create new schedule object with metadata of another schedule object.                                                                                                                                                                                                                                                                                                                                                                                            |
-| [`insert`](qiskit.pulse.Schedule.insert#qiskit.pulse.Schedule.insert "qiskit.pulse.Schedule.insert")                                             | Return a new schedule with `schedule` inserted into `self` at `start_time`.                                                                                                                                                                                                                                                                                                                                                                                     |
-| [`is_parameterized`](qiskit.pulse.Schedule.is_parameterized#qiskit.pulse.Schedule.is_parameterized "qiskit.pulse.Schedule.is_parameterized")     | Return True iff the instruction is parameterized.                                                                                                                                                                                                                                                                                                                                                                                                               |
-| [`replace`](qiskit.pulse.Schedule.replace#qiskit.pulse.Schedule.replace "qiskit.pulse.Schedule.replace")                                         | Return a `Schedule` with the `old` instruction replaced with a `new` instruction.                                                                                                                                                                                                                                                                                                                                                                               |
-| [`shift`](qiskit.pulse.Schedule.shift#qiskit.pulse.Schedule.shift "qiskit.pulse.Schedule.shift")                                                 | Return a schedule shifted forward by `time`.                                                                                                                                                                                                                                                                                                                                                                                                                    |
+### append
+
+<span id="qiskit.pulse.Schedule.append" />
+
+`Schedule.append(schedule, name=None, inplace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+
+Return a new schedule with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
+
+$$
+t = \textrm{max}(\texttt{x.stop_time} |\texttt{x} \in
+    \texttt{self.channels} \cap \texttt{schedule.channels})
+$$
+
+**Parameters**
+
+*   **schedule** (`Union`\[`Schedule`, `Instruction`]) – Schedule to be appended.
+*   **name** (`Optional`\[`str`]) – Name of the new `Schedule`. Defaults to name of `self`.
+*   **inplace** (`bool`) – Perform operation inplace on this schedule. Otherwise return a new `Schedule`.
+
+**Return type**
+
+`Schedule`
+
+### assign\_parameters
+
+<span id="qiskit.pulse.Schedule.assign_parameters" />
+
+`Schedule.assign_parameters(value_dict, inplace=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+
+Assign the parameters in this schedule according to the input.
+
+**Parameters**
+
+*   **value\_dict** (`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]) – A mapping from Parameters to either numeric values or another Parameter expression.
+*   **inplace** (`bool`) – Set `True` to override this instance with new parameter.
+
+**Return type**
+
+`Schedule`
+
+**Returns**
+
+Schedule with updated parameters.
+
+### ch\_duration
+
+<span id="qiskit.pulse.Schedule.ch_duration" />
+
+`Schedule.ch_duration(*channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+
+Return the time of the end of the last instruction over the supplied channels.
+
+**Parameters**
+
+**\*channels** – Channels within `self` to include.
+
+**Return type**
+
+`int`
+
+### ch\_start\_time
+
+<span id="qiskit.pulse.Schedule.ch_start_time" />
+
+`Schedule.ch_start_time(*channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+
+Return the time of the start of the first instruction over the supplied channels.
+
+**Parameters**
+
+**\*channels** – Channels within `self` to include.
+
+**Return type**
+
+`int`
+
+### ch\_stop\_time
+
+<span id="qiskit.pulse.Schedule.ch_stop_time" />
+
+`Schedule.ch_stop_time(*channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+
+Return maximum start time over supplied channels.
+
+**Parameters**
+
+**\*channels** – Channels within `self` to include.
+
+**Return type**
+
+`int`
+
+### draw
+
+<span id="qiskit.pulse.Schedule.draw" />
+
+`Schedule.draw(style=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)`
+
+Plot the schedule.
+
+**Parameters**
+
+*   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
+
+*   **backend** (*Optional\[*[*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")*]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
+
+*   **time\_range** (`Optional`\[`Tuple`\[`int`, `int`]]) – Set horizontal axis limit. Tuple (tmin, tmax).
+
+*   **time\_unit** (`str`) – The unit of specified time range either dt or ns. The unit of ns is available only when backend object is provided.
+
+*   **disable\_channels** (`Optional`\[`List`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – A control property to show specific pulse channel. Pulse channel instances provided as a list are not shown in the output image.
+
+*   **show\_snapshot** (`bool`) – Show snapshot instructions.
+
+*   **show\_framechange** (`bool`) – Show frame change instructions. The frame change represents instructions that modulate phase or frequency of pulse channels.
+
+*   **show\_waveform\_info** (`bool`) – Show additional information about waveforms such as their name.
+
+*   **show\_barrier** (`bool`) – Show barrier lines.
+
+*   **plotter** (`str`) –
+
+    Name of plotter API to generate an output image. One of following APIs should be specified:
+
+    ```python
+    mpl2d: Matplotlib API for 2D image generation.
+        Matplotlib API to generate 2D image. Charts are placed along y axis with
+        vertical offset. This API takes matplotlib.axes.Axes as ``axis`` input.
+    ```
+
+    `axis` and `style` kwargs may depend on the plotter.
+
+*   **axis** (`Optional`\[`Any`]) – Arbitrary object passed to the plotter. If this object is provided, the plotters use a given `axis` instead of internally initializing a figure object. This object format depends on the plotter. See plotter argument for details.
+
+**Returns**
+
+Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
+
+### exclude
+
+<span id="qiskit.pulse.Schedule.exclude" />
+
+`Schedule.exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+
+Return a `Schedule` with only the instructions from this Schedule *failing* at least one of the provided filters. This method is the complement of py:meth:\~self.filter, so that:
+
+```python
+self.filter(args) | self.exclude(args) == self
+```
+
+**Parameters**
+
+*   **filter\_funcs** (`Callable`) – A list of Callables which take a (int, Union\[‘Schedule’, Instruction]) tuple and return a bool.
+*   **channels** (`Optional`\[`Iterable`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – For example, `[DriveChannel(0), AcquireChannel(0)]`.
+*   **instruction\_types** (`Union`\[`Iterable`\[`ABCMeta`], `ABCMeta`, `None`]) – For example, `[PulseInstruction, AcquireInstruction]`.
+*   **time\_ranges** (`Optional`\[`Iterable`\[`Tuple`\[`int`, `int`]]]) – For example, `[(0, 5), (6, 10)]`.
+*   **intervals** (`Optional`\[`Iterable`\[`Tuple`\[`int`, `int`]]]) – For example, `[(0, 5), (6, 10)]`.
+*   **check\_subroutine** (`bool`) – Set True to individually filter instructions inside of a subroutine defined by the [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction.
+
+**Return type**
+
+`Schedule`
+
+### filter
+
+<span id="qiskit.pulse.Schedule.filter" />
+
+`Schedule.filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+
+Return a new `Schedule` with only the instructions from this `Schedule` which pass though the provided filters; i.e. an instruction will be retained iff every function in `filter_funcs` returns `True`, the instruction occurs on a channel type contained in `channels`, the instruction type is contained in `instruction_types`, and the period over which the instruction operates is *fully* contained in one specified in `time_ranges` or `intervals`.
+
+If no arguments are provided, `self` is returned.
+
+**Parameters**
+
+*   **filter\_funcs** (`Callable`) – A list of Callables which take a (int, Union\[‘Schedule’, Instruction]) tuple and return a bool.
+*   **channels** (`Optional`\[`Iterable`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – For example, `[DriveChannel(0), AcquireChannel(0)]`.
+*   **instruction\_types** (`Union`\[`Iterable`\[`ABCMeta`], `ABCMeta`, `None`]) – For example, `[PulseInstruction, AcquireInstruction]`.
+*   **time\_ranges** (`Optional`\[`Iterable`\[`Tuple`\[`int`, `int`]]]) – For example, `[(0, 5), (6, 10)]`.
+*   **intervals** (`Optional`\[`Iterable`\[`Tuple`\[`int`, `int`]]]) – For example, `[(0, 5), (6, 10)]`.
+*   **check\_subroutine** (`bool`) – Set True to individually filter instructions inside of a subroutine defined by the [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction.
+
+**Return type**
+
+`Schedule`
+
+### get\_parameters
+
+<span id="qiskit.pulse.Schedule.get_parameters" />
+
+`Schedule.get_parameters(parameter_name)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+
+Get parameter object bound to this schedule by string name.
+
+Because different `Parameter` objects can have the same name, this method returns a list of `Parameter` s for the provided name.
+
+**Parameters**
+
+**parameter\_name** (`str`) – Name of parameter.
+
+**Return type**
+
+`List`\[`Parameter`]
+
+**Returns**
+
+Parameter objects that have corresponding name.
+
+### initialize\_from
+
+<span id="qiskit.pulse.Schedule.initialize_from" />
+
+`classmethod Schedule.initialize_from(other_program, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+
+Create new schedule object with metadata of another schedule object.
+
+**Parameters**
+
+*   **other\_program** (`Any`) – Qiskit program that provides metadata to new object.
+*   **name** (`Optional`\[`str`]) – Name of new schedule. Name of `schedule` is used by default.
+
+**Return type**
+
+`Schedule`
+
+**Returns**
+
+New schedule object with name and metadata.
+
+**Raises**
+
+[**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When other\_program does not provide necessary information.
+
+### insert
+
+<span id="qiskit.pulse.Schedule.insert" />
+
+`Schedule.insert(start_time, schedule, name=None, inplace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+
+Return a new schedule with `schedule` inserted into `self` at `start_time`.
+
+**Parameters**
+
+*   **start\_time** (`int`) – Time to insert the schedule.
+*   **schedule** (`Union`\[`Schedule`, `Instruction`]) – Schedule to insert.
+*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to the name of self.
+*   **inplace** (`bool`) – Perform operation inplace on this schedule. Otherwise return a new `Schedule`.
+
+**Return type**
+
+`Schedule`
+
+### is\_parameterized
+
+<span id="qiskit.pulse.Schedule.is_parameterized" />
+
+`Schedule.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+
+Return True iff the instruction is parameterized.
+
+**Return type**
+
+`bool`
+
+### replace
+
+<span id="qiskit.pulse.Schedule.replace" />
+
+`Schedule.replace(old, new, inplace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+
+Return a `Schedule` with the `old` instruction replaced with a `new` instruction.
+
+The replacement matching is based on an instruction equality check.
+
+```python
+from qiskit import pulse
+
+d0 = pulse.DriveChannel(0)
+
+sched = pulse.Schedule()
+
+old = pulse.Play(pulse.Constant(100, 1.0), d0)
+new = pulse.Play(pulse.Constant(100, 0.1), d0)
+
+sched += old
+
+sched = sched.replace(old, new)
+
+assert sched == pulse.Schedule(new)
+```
+
+Only matches at the top-level of the schedule tree. If you wish to perform this replacement over all instructions in the schedule tree. Flatten the schedule prior to running:
+
+```python
+.. jupyter-execute::
+```
+
+> sched = pulse.Schedule()
+>
+> sched += pulse.Schedule(old)
+>
+> sched = sched.flatten()
+>
+> sched = sched.replace(old, new)
+>
+> assert sched == pulse.Schedule(new)
+
+**Parameters**
+
+*   **old** (`Union`\[`Schedule`, `Instruction`]) – Instruction to replace.
+*   **new** (`Union`\[`Schedule`, `Instruction`]) – Instruction to replace with.
+*   **inplace** (`bool`) – Replace instruction by mutably modifying this `Schedule`.
+
+**Return type**
+
+`Schedule`
+
+**Returns**
+
+The modified schedule with `old` replaced by `new`.
+
+**Raises**
+
+[**PulseError**](pulse#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the `Schedule` after replacements will has a timing overlap.
+
+### shift
+
+<span id="qiskit.pulse.Schedule.shift" />
+
+`Schedule.shift(time, name=None, inplace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/schedule.py "view source code")
+
+Return a schedule shifted forward by `time`.
+
+**Parameters**
+
+*   **time** (`int`) – Time to shift by.
+*   **name** (`Optional`\[`str`]) – Name of the new schedule. Defaults to the name of self.
+*   **inplace** (`bool`) – Perform operation inplace on this schedule. Otherwise return a new `Schedule`.
+
+**Return type**
+
+`Schedule`
 
 ## Attributes
 
-
+<span id="qiskit.pulse.Schedule.channels" />
 
 ### channels
 
@@ -90,7 +424,7 @@ Returns channels that this schedule uses.
 
 `Tuple`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
 
-
+<span id="qiskit.pulse.Schedule.children" />
 
 ### children
 
@@ -108,7 +442,7 @@ Nested schedules are returned as-is. If you want to collect only instructions, u
 
 A tuple, where each element is a two-tuple containing the initial scheduled time of each `NamedValue` and the component itself.
 
-
+<span id="qiskit.pulse.Schedule.duration" />
 
 ### duration
 
@@ -118,13 +452,13 @@ Duration of this schedule.
 
 `int`
 
-
+<span id="qiskit.pulse.Schedule.instances_counter" />
 
 ### instances\_counter
 
 `= count(0)`
 
-
+<span id="qiskit.pulse.Schedule.instructions" />
 
 ### instructions
 
@@ -134,7 +468,7 @@ Get the time-ordered instructions from self.
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
-
+<span id="qiskit.pulse.Schedule.metadata" />
 
 ### metadata
 
@@ -146,7 +480,7 @@ User provided `dict` of metadata for the schedule. The metadata contents do not 
 
 `Dict`\[`str`, `Any`]
 
-
+<span id="qiskit.pulse.Schedule.name" />
 
 ### name
 
@@ -156,7 +490,7 @@ Name of this Schedule
 
 `str`
 
-
+<span id="qiskit.pulse.Schedule.parameters" />
 
 ### parameters
 
@@ -166,13 +500,13 @@ Parameters which determine the schedule behavior.
 
 `Set`
 
-
+<span id="qiskit.pulse.Schedule.prefix" />
 
 ### prefix
 
 `= 'sched'`
 
-
+<span id="qiskit.pulse.Schedule.start_time" />
 
 ### start\_time
 
@@ -182,7 +516,7 @@ Starting time of this schedule.
 
 `int`
 
-
+<span id="qiskit.pulse.Schedule.stop_time" />
 
 ### stop\_time
 
@@ -192,7 +526,7 @@ Stopping time of this schedule.
 
 `int`
 
-
+<span id="qiskit.pulse.Schedule.timeslots" />
 
 ### timeslots
 
@@ -201,3 +535,4 @@ Time keeping attribute.
 **Return type**
 
 `Dict`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel"), `List`\[`Tuple`\[`int`, `int`]]]
+

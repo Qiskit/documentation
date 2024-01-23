@@ -1,8 +1,16 @@
+---
+title: C4XGate
+description: API reference for qiskit.circuit.library.C4XGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.C4XGate
+---
+
 # C4XGate
 
+<span id="qiskit.circuit.library.C4XGate" />
 
-
-`C4XGate(label=None, ctrl_state=None)`
+`C4XGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
@@ -18,14 +26,39 @@ Create a new 4-qubit controlled X gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                     |                                  |
-| ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| [`control`](qiskit.circuit.library.C4XGate.control#qiskit.circuit.library.C4XGate.control "qiskit.circuit.library.C4XGate.control") | Controlled version of this gate. |
-| [`inverse`](qiskit.circuit.library.C4XGate.inverse#qiskit.circuit.library.C4XGate.inverse "qiskit.circuit.library.C4XGate.inverse") | Invert this gate.                |
+### control
+
+<span id="qiskit.circuit.library.C4XGate.control" />
+
+`C4XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/x.py "view source code")
+
+Controlled version of this gate.
+
+**Parameters**
+
+*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+*   **label** (*str or None*) – An optional label for the gate \[Default: None]
+*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+
+**Returns**
+
+controlled version of this gate.
+
+**Return type**
+
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+
+### inverse
+
+<span id="qiskit.circuit.library.C4XGate.inverse" />
+
+`C4XGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/x.py "view source code")
+
+Invert this gate. The C4X is its own inverse.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.C4XGate.condition_bits" />
 
 ### condition\_bits
 
@@ -35,7 +68,7 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.C4XGate.ctrl_state" />
 
 ### ctrl\_state
 
@@ -45,13 +78,13 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
-
+<span id="qiskit.circuit.library.C4XGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-
+<span id="qiskit.circuit.library.C4XGate.definition" />
 
 ### definition
 
@@ -61,13 +94,13 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
-
+<span id="qiskit.circuit.library.C4XGate.duration" />
 
 ### duration
 
 Get the duration.
 
-
+<span id="qiskit.circuit.library.C4XGate.label" />
 
 ### label
 
@@ -77,7 +110,7 @@ Return instruction label
 
 `str`
 
-
+<span id="qiskit.circuit.library.C4XGate.name" />
 
 ### name
 
@@ -91,13 +124,13 @@ where \<original\_name> is the gate name for the default case of closed control 
 
 `str`
 
-
+<span id="qiskit.circuit.library.C4XGate.num_clbits" />
 
 ### num\_clbits
 
 Return the number of clbits.
 
-
+<span id="qiskit.circuit.library.C4XGate.num_ctrl_qubits" />
 
 ### num\_ctrl\_qubits
 
@@ -111,13 +144,13 @@ The number of control qubits for the gate.
 
 int
 
-
+<span id="qiskit.circuit.library.C4XGate.num_qubits" />
 
 ### num\_qubits
 
 Return the number of qubits.
 
-
+<span id="qiskit.circuit.library.C4XGate.params" />
 
 ### params
 
@@ -135,8 +168,9 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
-
+<span id="qiskit.circuit.library.C4XGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

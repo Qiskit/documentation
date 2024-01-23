@@ -1,8 +1,16 @@
+---
+title: dump
+description: API reference for qiskit.qpy.dump
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.qpy.dump
+---
+
 # qiskit.qpy.dump
 
+<span id="qiskit.qpy.dump" />
 
-
-`dump(circuits, file_obj, metadata_serializer=None)`
+`dump(circuits, file_obj, metadata_serializer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qpy/interface.py "view source code")
 
 Write QPY binary data to a file
 
@@ -40,6 +48,7 @@ Which will save the qpy serialized circuit to the provided file.
 
 **Parameters**
 
-*   **circuits** (*list or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit object(s) to store in the specified file like object. This can either be a single QuantumCircuit object or a list of QuantumCircuits.
+*   **circuits** (*list or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit object(s) to store in the specified file like object. This can either be a single QuantumCircuit object or a list of QuantumCircuits.
 *   **file\_obj** (*file*) – The file like object to write the QPY data too
-*   **metadata\_serializer** (*JSONEncoder*) – An optional JSONEncoder class that will be passed the [`QuantumCircuit.metadata`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit.metadata "qiskit.circuit.QuantumCircuit.metadata") dictionary for each circuit in `circuits` and will be used as the `cls` kwarg on the `json.dump()` call to JSON serialize that dictionary.
+*   **metadata\_serializer** (*JSONEncoder*) – An optional JSONEncoder class that will be passed the [`QuantumCircuit.metadata`](qiskit.circuit.QuantumCircuit#metadata "qiskit.circuit.QuantumCircuit.metadata") dictionary for each circuit in `circuits` and will be used as the `cls` kwarg on the `json.dump()` call to JSON serialize that dictionary.
+

@@ -1,8 +1,16 @@
+---
+title: BaseEstimator
+description: API reference for qiskit.primitives.BaseEstimator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.primitives.BaseEstimator
+---
+
 # BaseEstimator
 
+<span id="qiskit.primitives.BaseEstimator" />
 
-
-`BaseEstimator(circuits, observables, parameters=None)`
+`BaseEstimator(circuits, observables, parameters=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/primitives/base_estimator.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -25,13 +33,17 @@ Creating an instance of an Estimator, or using one in a `with` context opens a s
 
 ## Methods
 
-|                                                                                                                                |                                      |
-| ------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------ |
-| [`close`](qiskit.primitives.BaseEstimator.close#qiskit.primitives.BaseEstimator.close "qiskit.primitives.BaseEstimator.close") | Close the session and free resources |
+### close
+
+<span id="qiskit.primitives.BaseEstimator.close" />
+
+`abstract BaseEstimator.close()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/primitives/base_estimator.py "view source code")
+
+Close the session and free resources
 
 ## Attributes
 
-
+<span id="qiskit.primitives.BaseEstimator.circuits" />
 
 ### circuits
 
@@ -41,7 +53,7 @@ Quantum circuits that represents quantum states.
 
 quantum circuits
 
-
+<span id="qiskit.primitives.BaseEstimator.observables" />
 
 ### observables
 
@@ -51,7 +63,7 @@ Observables to be estimated
 
 observables
 
-
+<span id="qiskit.primitives.BaseEstimator.parameters" />
 
 ### parameters
 
@@ -60,3 +72,4 @@ Parameters of quantum circuits
 **Returns**
 
 parameters, where `parameters[i][j]` is the j-th parameter of the i-th circuit.
+

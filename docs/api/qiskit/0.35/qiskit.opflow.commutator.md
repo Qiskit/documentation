@@ -1,8 +1,16 @@
+---
+title: commutator
+description: API reference for qiskit.opflow.commutator
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.opflow.commutator
+---
+
 # qiskit.opflow\.commutator
 
+<span id="qiskit.opflow.commutator" />
 
-
-`commutator(op_a, op_b)`
+`commutator(op_a, op_b)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/utils.py "view source code")
 
 Compute commutator of op\_a and op\_b.
 
@@ -21,4 +29,5 @@ the commutator
 
 **Return type**
 
-[OperatorBase](qiskit.opflow.OperatorBase#qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")
+[OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")
+

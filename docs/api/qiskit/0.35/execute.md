@@ -16,38 +16,38 @@ python_api_name: qiskit.execute_function
 
 `qiskit.execute_function`
 
+<span id="qiskit.execute_function.execute" />
 
+`execute(experiments, backend, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, seed_transpiler=None, optimization_level=None, pass_manager=None, qobj_id=None, qobj_header=None, shots=None, memory=None, max_credits=None, seed_simulator=None, default_qubit_los=None, default_meas_los=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=None, meas_return=None, memory_slots=None, memory_slot_size=None, rep_time=None, rep_delay=None, parameter_binds=None, schedule_circuit=False, inst_map=None, meas_map=None, scheduling_method=None, init_qubits=None, **run_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/execute_function.py "view source code")
 
-`execute(experiments, backend, basis_gates=None, coupling_map=None, backend_properties=None, initial_layout=None, seed_transpiler=None, optimization_level=None, pass_manager=None, qobj_id=None, qobj_header=None, shots=None, memory=None, max_credits=None, seed_simulator=None, default_qubit_los=None, default_meas_los=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=None, meas_return=None, memory_slots=None, memory_slot_size=None, rep_time=None, rep_delay=None, parameter_binds=None, schedule_circuit=False, inst_map=None, meas_map=None, scheduling_method=None, init_qubits=None, **run_config)`
-
-Execute a list of [`qiskit.circuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`qiskit.pulse.Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") on a backend.
+Execute a list of [`qiskit.circuit.QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`qiskit.pulse.Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") on a backend.
 
 The execution is asynchronous, and a handle to a job instance is returned.
 
 **Parameters**
 
-*   **experiments** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or list\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] or* [*Schedule*](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or list\[*[*Schedule*](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")*]*) – Circuit(s) or pulse schedule(s) to execute
+*   **experiments** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") *or list\[*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")*] or* [*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule") *or list\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")*]*) – Circuit(s) or pulse schedule(s) to execute
 
-*   **backend** ([*BaseBackend*](qiskit.providers.BaseBackend#qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")  *or*[*Backend*](qiskit.providers.Backend#qiskit.providers.Backend "qiskit.providers.Backend")) – Backend to execute circuits on. Transpiler options are automatically grabbed from backend.configuration() and backend.properties(). If any other option is explicitly set (e.g. coupling\_map), it will override the backend’s.
+*   **backend** ([*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")  *or*[*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Backend to execute circuits on. Transpiler options are automatically grabbed from backend.configuration() and backend.properties(). If any other option is explicitly set (e.g. coupling\_map), it will override the backend’s.
 
 *   **basis\_gates** (*list\[str]*) – List of basis gate names to unroll to. e.g: `['u1', 'u2', 'u3', 'cx']` If `None`, do not unroll.
 
-*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap#qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") *or list*) –
+*   **coupling\_map** ([*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") *or list*) –
 
     Coupling map (perhaps custom) to target in mapping. Multiple formats are supported:
 
     1.  CouplingMap instance
     2.  list Must be given as an adjacency matrix, where each entry specifies all two-qubit interactions supported by backend e.g: `[[0, 1], [0, 3], [1, 2], [1, 5], [2, 5], [4, 1], [5, 3]]`
 
-*   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc. Find a backend that provides this information with: `backend.properties()`
+*   **backend\_properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – Properties returned by a backend, including information on gate errors, readout errors, qubit coherence times, etc. Find a backend that provides this information with: `backend.properties()`
 
-*   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout#qiskit.transpiler.Layout "qiskit.transpiler.Layout") *or dict or list*) –
+*   **initial\_layout** ([*Layout*](qiskit.transpiler.Layout "qiskit.transpiler.Layout") *or dict or list*) –
 
     Initial position of virtual qubits on physical qubits. If this layout makes the circuit compatible with the coupling\_map constraints, it will be used. The final layout is not guaranteed to be the same, as the transpiler may permute qubits through swaps or other means.
 
     Multiple formats are supported:
 
-    1.  [`qiskit.transpiler.Layout`](qiskit.transpiler.Layout#qiskit.transpiler.Layout "qiskit.transpiler.Layout") instance
+    1.  [`qiskit.transpiler.Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") instance
 
     2.  `dict`: virtual to physical:
 
@@ -79,11 +79,11 @@ The execution is asynchronous, and a handle to a job instance is returned.
 
 *   **optimization\_level** (*int*) – How much optimization to perform on the circuits. Higher levels generate more optimized circuits, at the expense of longer transpilation time. #. No optimization #. Light optimization #. Heavy optimization #. Highest optimization If None, level 1 will be chosen as default.
 
-*   **pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager#qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")) – The pass manager to use during transpilation. If this arg is present, auto-selection of pass manager based on the transpile options will be turned off and this pass manager will be used directly.
+*   **pass\_manager** ([*PassManager*](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")) – The pass manager to use during transpilation. If this arg is present, auto-selection of pass manager based on the transpile options will be turned off and this pass manager will be used directly.
 
 *   **qobj\_id** (*str*) – String identifier to annotate the Qobj
 
-*   **qobj\_header** ([*QobjHeader*](qiskit.qobj.QobjHeader#qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader") *or dict*) – User input that will be inserted in Qobj header, and will also be copied to the corresponding [`qiskit.result.Result`](qiskit.result.Result#qiskit.result.Result "qiskit.result.Result") header. Headers do not affect the run.
+*   **qobj\_header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader") *or dict*) – User input that will be inserted in Qobj header, and will also be copied to the corresponding [`qiskit.result.Result`](qiskit.result.Result "qiskit.result.Result") header. Headers do not affect the run.
 
 *   **shots** (*int*) – Number of repetitions of each circuit, for sampling. Default: 1024
 
@@ -131,9 +131,9 @@ The execution is asynchronous, and a handle to a job instance is returned.
 
 *   **parameter\_binds** (*list\[dict]*) – List of Parameter bindings over which the set of experiments will be executed. Each list element (bind) should be of the form `{Parameter1: value1, Parameter2: value2, ...}`. All binds will be executed across all experiments, e.g. if parameter\_binds is a length-n list, and there are m experiments, a total of $m x n$ experiments will be run (one for each experiment/bind pair).
 
-*   **schedule\_circuit** (*bool*) – If `True`, `experiments` will be converted to [`qiskit.pulse.Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects prior to execution.
+*   **schedule\_circuit** (*bool*) – If `True`, `experiments` will be converted to [`qiskit.pulse.Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects prior to execution.
 
-*   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap#qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – Mapping of circuit operations to pulse schedules. If None, defaults to the `instruction_schedule_map` of `backend`.
+*   **inst\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – Mapping of circuit operations to pulse schedules. If None, defaults to the `instruction_schedule_map` of `backend`.
 
 *   **meas\_map** (*list(list(int))*) – List of sets of qubits that must be measured together. If None, defaults to the `meas_map` of `backend`.
 
@@ -149,7 +149,7 @@ returns job instance derived from BaseJob
 
 **Return type**
 
-[BaseJob](qiskit.providers.BaseJob#qiskit.providers.BaseJob "qiskit.providers.BaseJob")
+[BaseJob](qiskit.providers.BaseJob "qiskit.providers.BaseJob")
 
 **Raises**
 

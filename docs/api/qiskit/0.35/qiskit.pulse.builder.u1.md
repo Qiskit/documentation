@@ -1,8 +1,16 @@
+---
+title: u1
+description: API reference for qiskit.pulse.builder.u1
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.u1
+---
+
 # qiskit.pulse.builder.u1
 
+<span id="qiskit.pulse.builder.u1" />
 
-
-`u1(theta, qubit)`
+`u1(theta, qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Call a `U1Gate` on the input physical qubit.
 
@@ -23,3 +31,4 @@ backend = FakeOpenPulse2Q()
 with pulse.build(backend) as pulse_prog:
     pulse.u1(math.pi, 1)
 ```
+

@@ -1,8 +1,16 @@
+---
+title: reset_error
+description: API reference for qiskit.providers.aer.noise.reset_error
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.noise.reset_error
+---
+
 # qiskit.providers.aer.noise.reset\_error
 
+<span id="qiskit.providers.aer.noise.reset_error" />
 
-
-`reset_error(prob0, prob1=0)`
+`reset_error(prob0, prob1=0)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/errors/standard_errors.py "view source code")
 
 Return a single qubit reset quantum error channel.
 
@@ -27,8 +35,9 @@ the quantum error object.
 
 **Return type**
 
-[QuantumError](qiskit.providers.aer.noise.QuantumError#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+[QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
 
 **Raises**
 
 **NoiseError** – If noise parameters are invalid.
+

@@ -1,8 +1,16 @@
+---
+title: combine_counts
+description: API reference for qiskit.ignis.verification.combine_counts
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.combine_counts
+---
+
 # qiskit.ignis.verification.combine\_counts
 
+<span id="qiskit.ignis.verification.combine_counts" />
 
-
-`combine_counts(counts1, counts2)`
+`combine_counts(counts1, counts2)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/tomography/data.py "view source code")
 
 Combine two counts dictionaries. :type counts1: `Dict`\[`str`, `int`] :param counts1: One of the count dictionaries to combine. :type counts2: `Dict`\[`str`, `int`] :param counts2: One of the count dictionaries to combine.
 
@@ -22,3 +30,4 @@ A dict containing the **sum** of entries in counts1 and counts2 where a nonexist
 >>> combine_counts(counts1, counts2)
 {'00': 7, '01': 5, '10': 7}
 ```
+

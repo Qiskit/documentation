@@ -1,8 +1,16 @@
+---
+title: MCXRecursive
+description: API reference for qiskit.circuit.library.MCXRecursive
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.MCXRecursive
+---
+
 # MCXRecursive
 
+<span id="qiskit.circuit.library.MCXRecursive" />
 
-
-`MCXRecursive(num_ctrl_qubits, label=None, ctrl_state=None)`
+`MCXRecursive(num_ctrl_qubits, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: `qiskit.circuit.library.standard_gates.x.MCXGate`
 
@@ -14,14 +22,25 @@ Create new MCX gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                                                                                                |                                            |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| [`get_num_ancilla_qubits`](qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits#qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits "qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits") | Get the number of required ancilla qubits. |
-| [`inverse`](qiskit.circuit.library.MCXRecursive.inverse#qiskit.circuit.library.MCXRecursive.inverse "qiskit.circuit.library.MCXRecursive.inverse")                                                             | Invert this gate.                          |
+### get\_num\_ancilla\_qubits
+
+<span id="qiskit.circuit.library.MCXRecursive.get_num_ancilla_qubits" />
+
+`static MCXRecursive.get_num_ancilla_qubits(num_ctrl_qubits, mode='recursion')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/x.py "view source code")
+
+Get the number of required ancilla qubits.
+
+### inverse
+
+<span id="qiskit.circuit.library.MCXRecursive.inverse" />
+
+`MCXRecursive.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/x.py "view source code")
+
+Invert this gate. The MCX is its own inverse.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.MCXRecursive.condition_bits" />
 
 ### condition\_bits
 
@@ -31,7 +50,7 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.MCXRecursive.ctrl_state" />
 
 ### ctrl\_state
 
@@ -41,13 +60,13 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
-
+<span id="qiskit.circuit.library.MCXRecursive.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-
+<span id="qiskit.circuit.library.MCXRecursive.definition" />
 
 ### definition
 
@@ -57,13 +76,13 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
-
+<span id="qiskit.circuit.library.MCXRecursive.duration" />
 
 ### duration
 
 Get the duration.
 
-
+<span id="qiskit.circuit.library.MCXRecursive.label" />
 
 ### label
 
@@ -73,7 +92,7 @@ Return instruction label
 
 `str`
 
-
+<span id="qiskit.circuit.library.MCXRecursive.name" />
 
 ### name
 
@@ -87,19 +106,19 @@ where \<original\_name> is the gate name for the default case of closed control 
 
 `str`
 
-
+<span id="qiskit.circuit.library.MCXRecursive.num_ancilla_qubits" />
 
 ### num\_ancilla\_qubits
 
 The number of ancilla qubits.
 
-
+<span id="qiskit.circuit.library.MCXRecursive.num_clbits" />
 
 ### num\_clbits
 
 Return the number of clbits.
 
-
+<span id="qiskit.circuit.library.MCXRecursive.num_ctrl_qubits" />
 
 ### num\_ctrl\_qubits
 
@@ -113,13 +132,13 @@ The number of control qubits for the gate.
 
 int
 
-
+<span id="qiskit.circuit.library.MCXRecursive.num_qubits" />
 
 ### num\_qubits
 
 Return the number of qubits.
 
-
+<span id="qiskit.circuit.library.MCXRecursive.params" />
 
 ### params
 
@@ -137,8 +156,9 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
-
+<span id="qiskit.circuit.library.MCXRecursive.unit" />
 
 ### unit
 
 Get the time unit of duration.
+
