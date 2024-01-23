@@ -10,9 +10,9 @@ python_api_name: qiskit.algorithms.optimizers.SNOBFIT
 
 <span id="qiskit.algorithms.optimizers.SNOBFIT" />
 
-`SNOBFIT(maxiter=1000, maxfail=10, maxmp=None, verbose=False)`
+`SNOBFIT(maxiter=1000, maxfail=10, maxmp=None, verbose=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/snobfit.py "view source code")
 
-Bases: [`qiskit.algorithms.optimizers.optimizer.Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
+Bases: `qiskit.algorithms.optimizers.optimizer.Optimizer`
 
 Stable Noisy Optimization by Branch and FIT algorithm.
 
@@ -37,7 +37,7 @@ Uses skquant.opt installed with pip install scikit-quant. For further detail, pl
 
 <span id="qiskit.algorithms.optimizers.SNOBFIT.get_support_level" />
 
-`SNOBFIT.get_support_level()`
+`SNOBFIT.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/snobfit.py "view source code")
 
 Returns support level dictionary.
 
@@ -68,7 +68,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.SNOBFIT.minimize" />
 
-`SNOBFIT.minimize(fun, x0, jac=None, bounds=None)`
+`SNOBFIT.minimize(fun, x0, jac=None, bounds=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/snobfit.py "view source code")
 
 Minimize the scalar function.
 
@@ -81,11 +81,19 @@ Minimize the scalar function.
 
 **Return type**
 
-[`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
+`OptimizerResult`
 
 **Returns**
 
 The result of the optimization, containing e.g. the result as attribute `x`.
+
+### optimize
+
+<span id="qiskit.algorithms.optimizers.SNOBFIT.optimize" />
+
+`SNOBFIT.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/snobfit.py "view source code")
+
+Runs the optimization.
 
 ### print\_options
 

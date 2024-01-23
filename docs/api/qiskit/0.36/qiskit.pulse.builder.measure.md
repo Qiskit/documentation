@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.measure
 
 <span id="qiskit.pulse.builder.measure" />
 
-`measure(qubits, registers=None)`
+`measure(qubits, registers=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Measure a qubit within the currently active builder context.
 
@@ -20,7 +20,7 @@ To use the measurement it is as simple as specifying the qubit you wish to measu
 
 ```python
 from qiskit import pulse
-from qiskit.providers.fake_provider import FakeOpenPulse2Q
+from qiskit.test.mock import FakeOpenPulse2Q
 
 backend = FakeOpenPulse2Q()
 

@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.SabreLayout
 
 <span id="qiskit.transpiler.passes.SabreLayout" />
 
-`SabreLayout(*args, **kwargs)`
+`SabreLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/sabre_layout.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
 Choose a Layout via iterative bidirectional routing of the input circuit.
 
@@ -47,7 +47,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.SabreLayout.run" />
 
-`SabreLayout.run(dag)`
+`SabreLayout.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/sabre_layout.py "view source code")
 
 Run the SabreLayout pass on dag.
 

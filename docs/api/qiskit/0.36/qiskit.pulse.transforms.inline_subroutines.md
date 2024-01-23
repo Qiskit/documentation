@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.transforms.inline_subroutines
 
 <span id="qiskit.pulse.transforms.inline_subroutines" />
 
-`inline_subroutines(program)`
+`inline_subroutines(program)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Recursively remove call instructions and inline the respective subroutine instructions.
 
@@ -18,11 +18,11 @@ Assigned parameter values, which are stored in the parameter table, are also app
 
 **Parameters**
 
-**program** (`Union`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]) – A program which may contain the subroutine, i.e. `Call` instruction.
+**program** (`Union`\[`Schedule`, `ScheduleBlock`]) – A program which may contain the subroutine, i.e. `Call` instruction.
 
 **Return type**
 
-`Union`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]
+`Union`\[`Schedule`, `ScheduleBlock`]
 
 **Returns**
 

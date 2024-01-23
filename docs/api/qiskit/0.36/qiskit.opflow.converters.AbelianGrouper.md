@@ -10,9 +10,9 @@ python_api_name: qiskit.opflow.converters.AbelianGrouper
 
 <span id="qiskit.opflow.converters.AbelianGrouper" />
 
-`AbelianGrouper(traverse=True)`
+`AbelianGrouper(traverse=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/converters/abelian_grouper.py "view source code")
 
-Bases: [`qiskit.opflow.converters.converter_base.ConverterBase`](qiskit.opflow.converters.ConverterBase "qiskit.opflow.converters.converter_base.ConverterBase")
+Bases: `qiskit.opflow.converters.converter_base.ConverterBase`
 
 The AbelianGrouper converts SummedOps into a sum of Abelian sums.
 
@@ -28,17 +28,17 @@ Meaning, it will traverse the Operator, and when it finds a SummedOp, it will ev
 
 <span id="qiskit.opflow.converters.AbelianGrouper.convert" />
 
-`AbelianGrouper.convert(operator)`
+`AbelianGrouper.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/converters/abelian_grouper.py "view source code")
 
 Check if operator is a SummedOp, in which case covert it into a sum of mutually commuting sums, or if the Operator contains sub-Operators and `traverse` is True, attempt to convert any sub-Operators.
 
 **Parameters**
 
-**operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The Operator to attempt to convert.
+**operator** (`OperatorBase`) – The Operator to attempt to convert.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 
@@ -48,17 +48,17 @@ The converted Operator.
 
 <span id="qiskit.opflow.converters.AbelianGrouper.group_subops" />
 
-`classmethod AbelianGrouper.group_subops(list_op)`
+`classmethod AbelianGrouper.group_subops(list_op)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/converters/abelian_grouper.py "view source code")
 
 Given a ListOp, attempt to group into Abelian ListOps of the same type.
 
 **Parameters**
 
-**list\_op** (`Union`\[[`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp"), [`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.pauli_sum_op.PauliSumOp")]) – The Operator to group into Abelian groups
+**list\_op** (`Union`\[`ListOp`, `PauliSumOp`]) – The Operator to group into Abelian groups
 
 **Return type**
 
-[`ListOp`](qiskit.opflow.list_ops.ListOp "qiskit.opflow.list_ops.list_op.ListOp")
+`ListOp`
 
 **Returns**
 

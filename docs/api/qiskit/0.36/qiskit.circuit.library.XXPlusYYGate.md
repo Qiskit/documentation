@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.XXPlusYYGate
 
 <span id="qiskit.circuit.library.XXPlusYYGate" />
 
-`XXPlusYYGate(theta, beta=0, label='{XX+YY}')`
+`XXPlusYYGate(theta, beta=0, label='{XX+YY}')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/xx_plus_yy.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 XX+YY interaction gate.
 
@@ -32,17 +32,17 @@ q_1: ┤1              ├
 
 $$
  \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{XX+YY}(\theta, \beta)\ q_0, q_1 =
-  RZ_0(-\beta) \cdot \exp\left(-i \frac{\theta}{2} \frac{XX+YY}{2}\right) \cdot RZ_0(\beta) =
+  RZ_1(\beta) \cdot exp(-i \frac{\theta}{2} \frac{XX+YY}{2}) \cdot RZ_1(-\beta) =
     \begin{pmatrix}
         1 & 0                     & 0                    & 0  \\
-        0 & \cos\left(\th\right)             & -i\sin\left(\th\right)e^{-i\beta} & 0  \\
-        0 & -i\sin\left(\th\right)e^{i\beta} & \cos\left(\th\right)            & 0  \\
+        0 & \cos(\th)             & i\sin(\th)e^{i\beta} & 0  \\
+        0 & i\sin(\th)e^{-i\beta} & \cos(\th)            & 0  \\
         0 & 0                     & 0                    & 1
     \end{pmatrix}\end{split}\end{aligned}\end{align} 
 $$
 
 <Admonition title="Note" type="note">
-  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In the above example we apply the gate on (q\_0, q\_1) which results in adding the (optional) phase defined by $beta$ on q\_0. Instead, if we apply it on (q\_1, q\_0), the phase is added on q\_1. If $beta$ is set to its default value of $0$, the gate is equivalent in big and little endian.
+  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In the above example we apply the gate on (q\_0, q\_1) which results in adding the (optional) phase defined by $beta$ on q\_1. Instead, if we apply it on (q\_1, q\_0), the phase is added on q\_0. If $beta$ is set to its default value of $0$, the gate is equivalent in big and little endian.
 
   ```python
        ┌───────────────┐
@@ -51,25 +51,25 @@ $$
   q_1: ┤0              ├
        └───────────────┘
   ```
-</Admonition>
 
-$$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{XX+YY}(\theta, \beta)\ q_0, q_1 =
-  RZ_1(-\beta) \cdot \exp\left(-i \frac{\theta}{2} \frac{XX+YY}{2}\right) \cdot RZ_1(\beta) =
-    \begin{pmatrix}
-        1 & 0                     & 0                    & 0  \\
-        0 & \cos\left(\th\right)             & -i\sin\left(\th\right)e^{i\beta} & 0  \\
-        0 & -i\sin\left(\th\right)e^{-i\beta} & \cos\left(\th\right)            & 0  \\
-        0 & 0                     & 0                    & 1
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
-$$
+  $$
+   \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{XX+YY}(\theta, \beta)\ q_1, q_0 =
+  RZ_0(\beta) \cdot exp(-i \frac{\theta}{2} \frac{XX+YY}{2}) \cdot RZ_0(-\beta) =
+      \begin{pmatrix}
+          1 & 0                     & 0                     & 0  \\
+          0 & \cos(\th)             & i\sin(\th)e^{-i\beta} & 0  \\
+          0 & i\sin(\th)e^{i\beta}  & \cos(\th)             & 0  \\
+          0 & 0                     & 0                     & 1
+      \end{pmatrix}\end{split}\end{aligned}\end{align} 
+  $$
+</Admonition>
 
 Create new XX+YY gate.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The rotation angle.
-*   **beta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The phase angle.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The rotation angle.
+*   **beta** (`Union`\[`ParameterExpression`, `float`]) – The phase angle.
 *   **label** (`Optional`\[`str`]) – The label of the gate.
 
 ## Methods Defined Here
@@ -78,7 +78,7 @@ Create new XX+YY gate.
 
 <span id="qiskit.circuit.library.XXPlusYYGate.inverse" />
 
-`XXPlusYYGate.inverse()`
+`XXPlusYYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/xx_plus_yy.py "view source code")
 
 Return inverse XX+YY gate (i.e. with the negative rotation angle and same phase angle).
 
@@ -92,7 +92,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.XXPlusYYGate.decompositions" />
 

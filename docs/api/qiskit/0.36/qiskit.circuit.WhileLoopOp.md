@@ -10,16 +10,16 @@ python_api_name: qiskit.circuit.WhileLoopOp
 
 <span id="qiskit.circuit.WhileLoopOp" />
 
-`WhileLoopOp(condition, body, label=None)`
+`WhileLoopOp(condition, body, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/controlflow/while_loop.py "view source code")
 
-Bases: [`qiskit.circuit.controlflow.control_flow.ControlFlowOp`](qiskit.circuit.ControlFlowOp "qiskit.circuit.controlflow.control_flow.ControlFlowOp")
+Bases: `qiskit.circuit.controlflow.control_flow.ControlFlowOp`
 
 A circuit operation which repeatedly executes a subcircuit (`body`) until a condition (`condition`) evaluates as False.
 
 **Parameters**
 
-*   **condition** (`Union`\[`Tuple`\[[`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.classicalregister.ClassicalRegister"), `int`], `Tuple`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit"), `int`], `Tuple`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit"), `bool`]]) – A condition to be checked prior to executing `body`. Can be specified as either a tuple of a `ClassicalRegister` to be tested for equality with a given `int`, or as a tuple of a `Clbit` to be compared to either a `bool` or an `int`.
-*   **body** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The loop body to be repeatedly executed.
+*   **condition** (`Union`\[`Tuple`\[`ClassicalRegister`, `int`], `Tuple`\[`Clbit`, `int`], `Tuple`\[`Clbit`, `bool`]]) – A condition to be checked prior to executing `body`. Can be specified as either a tuple of a `ClassicalRegister` to be tested for equality with a given `int`, or as a tuple of a `Clbit` to be compared to either a `bool` or an `int`.
+*   **body** (`QuantumCircuit`) – The loop body to be repeatedly executed.
 *   **label** (`Optional`\[`str`]) – An optional label for identifying the instruction.
 
 The classical bits used in `condition` must be a subset of those attached to `body`.
@@ -45,15 +45,14 @@ Create a new instruction.
 *   **name** (*str*) – instruction name
 *   **num\_qubits** (*int*) – instruction’s qubit width
 *   **num\_clbits** (*int*) – instruction’s clbit width
-*   **params** (*list\[int|float|complex|str|ndarray|list|*[*ParameterExpression*](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression")*]*) – list of parameters
+*   **params** (*list\[int|float|complex|str|ndarray|list|ParameterExpression]*) – list of parameters
 *   **duration** (*int or float*) – instruction’s duration. it must be integer if `unit` is ‘dt’
 *   **unit** (*str*) – time unit of duration
 *   **label** (*str or None*) – An optional label for identifying the instruction.
 
 **Raises**
 
-*   **CircuitError** – when the register is not in the correct format.
-*   **TypeError** – when the optional label is provided, but it is not a string.
+**CircuitError** – when the register is not in the correct format.
 
 ## Methods
 
@@ -98,7 +97,7 @@ Validation of the arguments.
 
 <span id="qiskit.circuit.WhileLoopOp.c_if" />
 
-`WhileLoopOp.c_if(classical, val)`
+`WhileLoopOp.c_if(classical, val)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/controlflow/while_loop.py "view source code")
 
 Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
 
@@ -194,18 +193,6 @@ Containing the definition.
 
 **CircuitError** – If n \< 1.
 
-### replace\_blocks
-
-<span id="qiskit.circuit.WhileLoopOp.replace_blocks" />
-
-`WhileLoopOp.replace_blocks(blocks)`
-
-Replace blocks and return new instruction. :param blocks: Tuple of QuantumCircuits to replace in instruction.
-
-**Returns**
-
-New ControlFlowOp with replaced blocks.
-
 ### reverse\_ops
 
 <span id="qiskit.circuit.WhileLoopOp.reverse_ops" />
@@ -268,7 +255,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.WhileLoopOp.decompositions" />
 

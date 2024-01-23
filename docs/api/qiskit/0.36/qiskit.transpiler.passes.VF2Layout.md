@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.VF2Layout
 
 <span id="qiskit.transpiler.passes.VF2Layout" />
 
-`VF2Layout(*args, **kwargs)`
+`VF2Layout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/vf2_layout.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
 A pass for choosing a Layout of a circuit onto a Coupling graph, as a a subgraph isomorphism problem, solved by VF2++.
 
@@ -32,7 +32,7 @@ Initialize a `VF2Layout` pass instance
 *   **call\_limit** (*int*) – The number of state visits to attempt in each execution of VF2.
 *   **time\_limit** (*float*) – The total time limit in seconds to run `VF2Layout`
 *   **properties** ([*BackendProperties*](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")) – The backend properties for the backend. If [`readout_error()`](qiskit.providers.models.BackendProperties#readout_error "qiskit.providers.models.BackendProperties.readout_error") is available it is used to score the layout.
-*   **max\_trials** (*int*) – The maximum number of trials to run VF2 to find a layout. If this is not specified the number of trials will be limited based on the number of edges in the interaction graph or the coupling graph (whichever is larger) if no other limits are set. If set to a value \<= 0 no limit on the number of trials will be set.
+*   **max\_trials** (*int*) – The maximum number of trials to run VF2 to find a layout. If this is not specified the number of trials will be limited based on the number of edges in the interaction graph or the coupling graph (whichever is larger). If set to a value \<= 0 no limit on the number of trials will be set.
 *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – A target representing the backend device to run `VF2Layout` on. If specified it will supersede a set value for `properties` and `coupling_map`.
 
 **Raises**
@@ -53,7 +53,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.VF2Layout.run" />
 
-`VF2Layout.run(dag)`
+`VF2Layout.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/vf2_layout.py "view source code")
 
 run the layout method
 

@@ -10,20 +10,20 @@ python_api_name: qiskit.pulse.transforms.pad
 
 <span id="qiskit.pulse.transforms.pad" />
 
-`pad(schedule, channels=None, until=None, inplace=False)`
+`pad(schedule, channels=None, until=None, inplace=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Pad the input Schedule with `Delay``s on all unoccupied timeslots until ``schedule.duration` or `until` if not `None`.
 
 **Parameters**
 
-*   **schedule** ([`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to pad.
+*   **schedule** (`Schedule`) – Schedule to pad.
 *   **channels** (`Optional`\[`Iterable`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]]) – Channels to pad. Defaults to all channels in `schedule` if not provided. If the supplied channel is not a member of `schedule` it will be added.
 *   **until** (`Optional`\[`int`]) – Time to pad until. Defaults to `schedule.duration` if not provided.
 *   **inplace** (`bool`) – Pad this schedule by mutating rather than returning a new schedule.
 
 **Return type**
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+`Schedule`
 
 **Returns**
 

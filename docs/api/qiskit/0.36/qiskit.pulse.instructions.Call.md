@@ -10,9 +10,9 @@ python_api_name: qiskit.pulse.instructions.Call
 
 <span id="qiskit.pulse.instructions.Call" />
 
-`Call(subroutine, value_dict=None, name=None)`
+`Call(subroutine, value_dict=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/call.py "view source code")
 
-Bases: [`qiskit.pulse.instructions.instruction.Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
+Bases: `qiskit.pulse.instructions.instruction.Instruction`
 
 Pulse `Call` instruction.
 
@@ -27,7 +27,7 @@ Define new subroutine.
 **Parameters**
 
 *   **subroutine** (*Union\[*[*Schedule*](qiskit.pulse.Schedule "qiskit.pulse.Schedule")*,* [*ScheduleBlock*](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock")*]*) – A program subroutine to be referred to.
-*   **value\_dict** (`Optional`\[`Dict`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]]]) – Mapping of parameter object to assigned value.
+*   **value\_dict** (`Optional`\[`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]]) – Mapping of parameter object to assigned value.
 *   **name** (`Optional`\[`str`]) – Unique ID of this subroutine. If not provided, this is generated based on the subroutine name.
 
 **Raises**
@@ -61,7 +61,7 @@ A new schedule with `schedule` a this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Call.assigned_subroutine" />
 
-`Call.assigned_subroutine()`
+`Call.assigned_subroutine()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/call.py "view source code")
 
 Returns this subroutine with the parameters assigned.
 
@@ -182,7 +182,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.Call.is_parameterized" />
 
-`Call.is_parameterized()`
+`Call.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/call.py "view source code")
 
 Return True iff the instruction is parameterized.
 
@@ -221,7 +221,7 @@ Parameters dictionary to be assigned to subroutine.
 
 **Return type**
 
-`Dict`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]]
+`Dict`\[`ParameterExpression`, `Union`\[`ParameterExpression`, `float`]]
 
 <span id="qiskit.pulse.instructions.Call.channels" />
 
@@ -241,7 +241,7 @@ Duration of this instruction.
 
 **Return type**
 
-`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+`Union`\[`int`, `ParameterExpression`]
 
 <span id="qiskit.pulse.instructions.Call.id" />
 
@@ -261,7 +261,7 @@ Iterable for getting instructions from Schedule tree.
 
 **Return type**
 
-`Tuple`\[`Tuple`\[`int`, [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")]]
+`Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
 <span id="qiskit.pulse.instructions.Call.name" />
 

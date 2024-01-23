@@ -10,7 +10,7 @@ python_api_name: qiskit.visualization.qcstyle.DefaultStyle
 
 <span id="qiskit.visualization.qcstyle.DefaultStyle" />
 
-`DefaultStyle`
+`DefaultStyle`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/qcstyle.py "view source code")
 
 Bases: `object`
 
@@ -22,7 +22,7 @@ The style dict contains numerous options that define the style of the output cir
 
 **name (str): the name of the style. The name can be set to `iqx`,**
 
-`iqx-dark`, `textbook`, `bw`, `default`, or the name of a user-created json file. This overrides the setting in the user config file (usually `~/.qiskit/settings.conf`).
+`bw`, `default`, or the name of a user-created json file. This overrides the setting in the user config file (usually `~/.qiskit/settings.conf`).
 
 **textcolor (str): the color code to use for all text not inside a gate.**
 

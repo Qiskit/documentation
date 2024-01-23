@@ -10,13 +10,13 @@ python_api_name: qiskit.utils.apply_prefix
 
 <span id="qiskit.utils.apply_prefix" />
 
-`apply_prefix(value, unit)`
+`apply_prefix(value, unit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/utils/units.py "view source code")
 
 Given a SI unit prefix and value, apply the prefix to convert to standard SI unit.
 
 **Parameters**
 
-*   **value** (`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – The number to apply prefix to.
+*   **value** (`Union`\[`float`, `ParameterExpression`]) – The number to apply prefix to.
 *   **unit** (`str`) – String prefix.
 
 **Return type**

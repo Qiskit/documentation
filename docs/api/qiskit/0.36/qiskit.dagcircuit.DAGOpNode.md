@@ -10,9 +10,9 @@ python_api_name: qiskit.dagcircuit.DAGOpNode
 
 <span id="qiskit.dagcircuit.DAGOpNode" />
 
-`DAGOpNode(op, qargs=(), cargs=())`
+`DAGOpNode(op, qargs=None, cargs=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/dagcircuit/dagnode.py "view source code")
 
-Bases: [`qiskit.dagcircuit.dagnode.DAGNode`](qiskit.dagcircuit.DAGNode "qiskit.dagcircuit.dagnode.DAGNode")
+Bases: `qiskit.dagcircuit.dagnode.DAGNode`
 
 Object to represent an Instruction at a node in the DAGCircuit.
 
@@ -45,6 +45,22 @@ Bool
 
 ## Attributes
 
+<span id="qiskit.dagcircuit.DAGOpNode.cargs" />
+
+### cargs
+
+<span id="qiskit.dagcircuit.DAGOpNode.condition" />
+
+### condition
+
+Returns the condition of the node.op
+
+<span id="qiskit.dagcircuit.DAGOpNode.name" />
+
+### name
+
+Returns the Instruction name corresponding to the op for this node
+
 <span id="qiskit.dagcircuit.DAGOpNode.op" />
 
 ### op
@@ -53,17 +69,19 @@ Bool
 
 ### qargs
 
-<span id="qiskit.dagcircuit.DAGOpNode.cargs" />
-
-### cargs
-
 <span id="qiskit.dagcircuit.DAGOpNode.sort_key" />
 
 ### sort\_key
 
-<span id="qiskit.dagcircuit.DAGOpNode.name" />
+<span id="qiskit.dagcircuit.DAGOpNode.type" />
 
-### name
+### type
 
-Returns the Instruction name corresponding to the op for this node
+Returns the type object
+
+<span id="qiskit.dagcircuit.DAGOpNode.wire" />
+
+### wire
+
+Returns the Bit object, else None.
 

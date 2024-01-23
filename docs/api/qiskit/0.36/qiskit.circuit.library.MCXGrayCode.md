@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.MCXGrayCode
 
 <span id="qiskit.circuit.library.MCXGrayCode" />
 
-`MCXGrayCode(num_ctrl_qubits, label=None, ctrl_state=None)`
+`MCXGrayCode(num_ctrl_qubits, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/x.py "view source code")
 
-Bases: [`qiskit.circuit.library.standard_gates.x.MCXGate`](qiskit.circuit.library.MCXGate "qiskit.circuit.library.standard_gates.x.MCXGate")
+Bases: `qiskit.circuit.library.standard_gates.x.MCXGate`
 
 Implement the multi-controlled X gate using the Gray code.
 
@@ -26,7 +26,7 @@ Create new MCX gate.
 
 <span id="qiskit.circuit.library.MCXGrayCode.inverse" />
 
-`MCXGrayCode.inverse()`
+`MCXGrayCode.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Invert this gate. The MCX is its own inverse.
 
@@ -40,7 +40,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.MCXGrayCode.ctrl_state" />
 

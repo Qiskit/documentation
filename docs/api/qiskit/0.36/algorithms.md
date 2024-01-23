@@ -32,7 +32,7 @@ It contains a variety of quantum algorithms and these have been grouped by logic
 | --------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------ |
 | [`AmplificationProblem`](qiskit.algorithms.AmplificationProblem "qiskit.algorithms.AmplificationProblem") | The amplification problem is the input to amplitude amplification algorithms, like Grover. |
 | [`AmplitudeAmplifier`](qiskit.algorithms.AmplitudeAmplifier "qiskit.algorithms.AmplitudeAmplifier")       | The interface for amplification algorithms.                                                |
-| [`Grover`](qiskit.algorithms.Grover "qiskit.algorithms.Grover")                                           | Grover's Search algorithm.                                                                 |
+| [`Grover`](qiskit.algorithms.Grover "qiskit.algorithms.Grover")                                           | Grover’s Search algorithm.                                                                 |
 | [`GroverResult`](qiskit.algorithms.GroverResult "qiskit.algorithms.GroverResult")                         | Grover Result.                                                                             |
 
 ### Amplitude Estimators
@@ -60,22 +60,9 @@ Algorithms to find eigenvalues of an operator. For chemistry these can be used t
 | [`Eigensolver`](qiskit.algorithms.Eigensolver "qiskit.algorithms.Eigensolver")                   | The Eigensolver Interface. |
 | [`EigensolverResult`](qiskit.algorithms.EigensolverResult "qiskit.algorithms.EigensolverResult") | Eigensolver Result.        |
 
-|                                                                                               |                                              |
-| --------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [`NumPyEigensolver`](qiskit.algorithms.NumPyEigensolver "qiskit.algorithms.NumPyEigensolver") | The NumPy Eigensolver algorithm.             |
-| [`VQD`](qiskit.algorithms.VQD "qiskit.algorithms.VQD")                                        | The Variational Quantum Deflation algorithm. |
-
-### Evolvers
-
-Algorithms to evolve quantum states in time. Both real and imaginary time evolution is possible with algorithms that support them. For machine learning, Quantum Imaginary Time Evolution might be used to train Quantum Boltzmann Machine Neural Networks for example.
-
-|                                                                                               |                                                   |
-| --------------------------------------------------------------------------------------------- | ------------------------------------------------- |
-| [`RealEvolver`](qiskit.algorithms.RealEvolver "qiskit.algorithms.RealEvolver")                | Interface for Quantum Real Time Evolution.        |
-| [`ImaginaryEvolver`](qiskit.algorithms.ImaginaryEvolver "qiskit.algorithms.ImaginaryEvolver") | Interface for Quantum Imaginary Time Evolution.   |
-| [`TrotterQRTE`](qiskit.algorithms.TrotterQRTE "qiskit.algorithms.TrotterQRTE")                | Quantum Real Time Evolution using Trotterization. |
-| [`EvolutionResult`](qiskit.algorithms.EvolutionResult "qiskit.algorithms.EvolutionResult")    | Class for holding evolution result.               |
-| [`EvolutionProblem`](qiskit.algorithms.EvolutionProblem "qiskit.algorithms.EvolutionProblem") | Evolution problem class.                          |
+|                                                                                               |                                  |
+| --------------------------------------------------------------------------------------------- | -------------------------------- |
+| [`NumPyEigensolver`](qiskit.algorithms.NumPyEigensolver "qiskit.algorithms.NumPyEigensolver") | The NumPy Eigensolver algorithm. |
 
 ### Factorizers
 
@@ -83,16 +70,16 @@ Algorithms to find factors of a number.
 
 |                                                                             |                             |
 | --------------------------------------------------------------------------- | --------------------------- |
-| [`Shor`](qiskit.algorithms.Shor "qiskit.algorithms.Shor")                   | Shor's factoring algorithm. |
+| [`Shor`](qiskit.algorithms.Shor "qiskit.algorithms.Shor")                   | Shor’s factoring algorithm. |
 | [`ShorResult`](qiskit.algorithms.ShorResult "qiskit.algorithms.ShorResult") | Shor Result.                |
 
 ### Linear Solvers
 
 Algorithms to solve linear systems of equations.
 
-|                                                                                                                                 |                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| ------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`linear_solvers`](qiskit.algorithms.linear_solvers#module-qiskit.algorithms.linear_solvers "qiskit.algorithms.linear_solvers") | Linear solvers (qiskit.algorithms.linear\_solvers) It contains classical and quantum algorithms to solve systems of linear equations such as HHL. Although the quantum algorithm accepts a general Hermitian matrix as input, Qiskit's default Hamiltonian evolution is exponential in such cases and therefore the quantum linear solver will not achieve an exponential speedup. Furthermore, the quantum algorithm can find a solution exponentially faster in the size of the system than their classical counterparts (i.e. logarithmic complexity instead of polynomial), meaning that reading the full solution vector would kill such speedup (since this would take linear time in the size of the system). Therefore, to achieve an exponential speedup we can only compute functions from the solution vector (the so called observables) to learn information about the solution. Known efficient implementations of Hamiltonian evolutions or observables are contained in the following subfolders: |
+|                                                                                                                                 |                                                                                                                                                                    |
+| ------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`linear_solvers`](qiskit.algorithms.linear_solvers#module-qiskit.algorithms.linear_solvers "qiskit.algorithms.linear_solvers") | Linear solvers ([`qiskit.algorithms.linear_solvers`](qiskit.algorithms.linear_solvers#module-qiskit.algorithms.linear_solvers "qiskit.algorithms.linear_solvers")) |
 
 ### Minimum Eigensolvers
 
@@ -113,9 +100,9 @@ Algorithms that can find the minimum eigenvalue of an operator.
 
 Classical optimizers for use by quantum variational algorithms.
 
-|                                                                                                                 |                                                                                                                                                                                                                 |
-| --------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`optimizers`](qiskit.algorithms.optimizers#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers") | Optimizers (qiskit.algorithms.optimizers) It contains a variety of classical optimizers for use by quantum variational algorithms, such as VQE. Logically, these optimizers can be divided into two categories: |
+|                                                                                                                 |                                                                                                                                                |
+| --------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`optimizers`](qiskit.algorithms.optimizers#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers") | Optimizers ([`qiskit.algorithms.optimizers`](qiskit.algorithms.optimizers#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers")) |
 
 ### Phase Estimators
 
@@ -140,7 +127,7 @@ Algorithms that estimate the phases of eigenstates of a unitary.
 
 Utility methods used by algorithms.
 
-|                                                                                                                               |                                                                                                                      |
-| ----------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
-| [`eval_observables`](qiskit.algorithms.eval_observables "qiskit.algorithms.eval_observables")(quantum\_instance, ...\[, ...]) | Accepts a list or a dictionary of operators and calculates their expectation values - means and standard deviations. |
+|                                                                                                                           |                                                                                                                      |
+| ------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------- |
+| [`eval_observables`](qiskit.algorithms.eval_observables "qiskit.algorithms.eval_observables")(quantum\_instance, …\[, …]) | Accepts a list or a dictionary of operators and calculates their expectation values - means and standard deviations. |
 

@@ -10,13 +10,13 @@ python_api_name: qiskit.providers.ibmq.job.job_monitor
 
 <span id="qiskit.providers.ibmq.job.job_monitor" />
 
-`job_monitor(job, interval=None, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>)`
+`job_monitor(job, interval=None, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/job/job_monitor.py "view source code")
 
 Monitor the status of an `IBMQJob` instance.
 
 **Parameters**
 
-*   **job** ([`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.ibmqjob.IBMQJob")) – Job to monitor.
+*   **job** (`IBMQJob`) – Job to monitor.
 *   **interval** (`Optional`\[`float`]) – Time interval between status queries.
 *   **output** (`TextIO`) – The file like object to write status messages to. By default this is sys.stdout.
 

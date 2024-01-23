@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.UnitarySynthesis
 
 <span id="qiskit.transpiler.passes.UnitarySynthesis" />
 
-`UnitarySynthesis(basis_gates=None, approximation_degree=1, coupling_map=None, backend_props=None, pulse_optimize=None, natural_direction=None, synth_gates=None, method='default', min_qubits=None, plugin_config=None, target=None)`
+`UnitarySynthesis(basis_gates=None, approximation_degree=1, coupling_map=None, backend_props=None, pulse_optimize=None, natural_direction=None, synth_gates=None, method='default', min_qubits=None, plugin_config=None, target=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/synthesis/unitary_synthesis.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
 Synthesize gates according to their basis gates.
 
@@ -32,7 +32,7 @@ This pass can approximate 2-qubit unitaries given some approximation closeness m
 *   **method** (*str*) – The unitary synthesis method plugin to use.
 *   **min\_qubits** (`Optional`\[`int`]) – The minimum number of qubits in the unitary to synthesize. If this is set and the unitary is less than the specified number of qubits it will not be synthesized.
 *   **plugin\_config** (`Optional`\[`dict`]) – Optional extra configuration arguments (as a dict) which are passed directly to the specified unitary synthesis plugin. By default this will have no effect as the default plugin has no extra arguments. Refer to the documentation of your unitary synthesis plugin on how to use this.
-*   **target** (`Optional`\[[`Target`](qiskit.transpiler.Target "qiskit.transpiler.target.Target")]) – The optional [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") for the target device the pass is compiling for. If specified this will supersede the values set for `basis_gates`, `coupling_map`, and `backend_props`.
+*   **target** (`Optional`\[`Target`]) – The optional [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") for the target device the pass is compiling for. If specified this will supersede the values set for `basis_gates`, `coupling_map`, and `backend_props`.
 
 ## Methods
 
@@ -48,17 +48,17 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.UnitarySynthesis.run" />
 
-`UnitarySynthesis.run(dag)`
+`UnitarySynthesis.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/synthesis/unitary_synthesis.py "view source code")
 
 Run the UnitarySynthesis pass on dag.
 
 **Parameters**
 
-**dag** ([`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – input dag.
+**dag** (`DAGCircuit`) – input dag.
 
 **Return type**
 
-[`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
+`DAGCircuit`
 
 **Returns**
 

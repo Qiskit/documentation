@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.ScalarOp
 
 <span id="qiskit.quantum_info.ScalarOp" />
 
-`ScalarOp(dims=None, coeff=1)`
+`ScalarOp(dims=None, coeff=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/scalar_op.py "view source code")
 
 Bases: `qiskit.quantum_info.operators.linear_op.LinearOp`
 
@@ -43,7 +43,7 @@ Return the adjoint of the Operator.
 
 <span id="qiskit.quantum_info.ScalarOp.compose" />
 
-`ScalarOp.compose(other, qargs=None, front=False)`
+`ScalarOp.compose(other, qargs=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/scalar_op.py "view source code")
 
 Return the operator composition with another ScalarOp.
 
@@ -66,7 +66,7 @@ The composed ScalarOp.
 **QiskitError** – if other cannot be converted to an operator, or has incompatible dimensions for specified subsystems.
 
 <Admonition title="Note" type="note">
-  Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while `@` (equivalent to [`dot()`](qiskit.quantum_info.ScalarOp#dot "qiskit.quantum_info.ScalarOp.dot")) is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B @ A == B.dot(A)` when `A` and `B` are of the same type.
+  Composition (`&`) by default is defined as left matrix multiplication for matrix operators, while [`dot()`](qiskit.quantum_info.ScalarOp#dot "qiskit.quantum_info.ScalarOp.dot") is defined as right matrix multiplication. That is that `A & B == A.compose(B)` is equivalent to `B.dot(A)` when `A` and `B` are of the same type.
 
   Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](qiskit.quantum_info.ScalarOp#dot "qiskit.quantum_info.ScalarOp.dot") method `A.dot(B) == A.compose(B, front=True)`.
 </Admonition>
@@ -75,7 +75,7 @@ The composed ScalarOp.
 
 <span id="qiskit.quantum_info.ScalarOp.conjugate" />
 
-`ScalarOp.conjugate()`
+`ScalarOp.conjugate()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/scalar_op.py "view source code")
 
 Return the conjugate of the ScalarOp.
 
@@ -108,15 +108,11 @@ The right matrix multiplied Operator.
 
 [Operator](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")
 
-<Admonition title="Note" type="note">
-  The dot product can be obtained using the `@` binary operator. Hence `a.dot(b)` is equivalent to `a @ b`.
-</Admonition>
-
 ### expand
 
 <span id="qiskit.quantum_info.ScalarOp.expand" />
 
-`ScalarOp.expand(other)`
+`ScalarOp.expand(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/scalar_op.py "view source code")
 
 Return the reverse-order tensor product with another ScalarOp.
 
@@ -146,7 +142,7 @@ Return tuple of input dimension for specified subsystems.
 
 <span id="qiskit.quantum_info.ScalarOp.is_unitary" />
 
-`ScalarOp.is_unitary(atol=None, rtol=None)`
+`ScalarOp.is_unitary(atol=None, rtol=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/scalar_op.py "view source code")
 
 Return True if operator is a unitary matrix.
 
@@ -162,7 +158,7 @@ Return tuple of output dimension for specified subsystems.
 
 <span id="qiskit.quantum_info.ScalarOp.power" />
 
-`ScalarOp.power(n)`
+`ScalarOp.power(n)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/scalar_op.py "view source code")
 
 Return the power of the ScalarOp.
 
@@ -208,7 +204,7 @@ BaseOperator
 
 <span id="qiskit.quantum_info.ScalarOp.tensor" />
 
-`ScalarOp.tensor(other)`
+`ScalarOp.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/scalar_op.py "view source code")
 
 Return the tensor product with another ScalarOp.
 
@@ -234,7 +230,7 @@ is the current ScalarOp, and $b$ is the other ScalarOp.
 
 <span id="qiskit.quantum_info.ScalarOp.to_matrix" />
 
-`ScalarOp.to_matrix()`
+`ScalarOp.to_matrix()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/scalar_op.py "view source code")
 
 Convert to a Numpy matrix.
 
@@ -242,7 +238,7 @@ Convert to a Numpy matrix.
 
 <span id="qiskit.quantum_info.ScalarOp.to_operator" />
 
-`ScalarOp.to_operator()`
+`ScalarOp.to_operator()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/scalar_op.py "view source code")
 
 Convert to an Operator object.
 
@@ -250,7 +246,7 @@ Convert to an Operator object.
 
 <span id="qiskit.quantum_info.ScalarOp.transpose" />
 
-`ScalarOp.transpose()`
+`ScalarOp.transpose()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/scalar_op.py "view source code")
 
 Return the transpose of the ScalarOp.
 

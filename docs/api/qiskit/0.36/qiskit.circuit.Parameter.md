@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.Parameter
 
 <span id="qiskit.circuit.Parameter" />
 
-`Parameter(name)`
+`Parameter(name)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/parameter.py "view source code")
 
-Bases: [`qiskit.circuit.parameterexpression.ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
+Bases: `qiskit.circuit.parameterexpression.ParameterExpression`
 
 Parameter Class for variable parameters.
 
@@ -90,11 +90,11 @@ Assign one parameter to a value, which can either be numeric or another paramete
 **Parameters**
 
 *   **parameter** ([*Parameter*](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) – A parameter in this expression whose value will be updated.
-*   **value** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The new value to bind to.
+*   **value** (`Union`\[`ParameterExpression`, `float`]) – The new value to bind to.
 
 **Return type**
 
-[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
+`ParameterExpression`
 
 **Returns**
 
@@ -124,7 +124,7 @@ Binds the provided set of parameters to their corresponding values.
 
 **Return type**
 
-[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
+`ParameterExpression`
 
 **Returns**
 
@@ -140,7 +140,7 @@ Return the conjugate.
 
 **Return type**
 
-[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")
+`ParameterExpression`
 
 ### cos
 
@@ -172,7 +172,7 @@ Get the derivative of a parameter expression w\.r.t. a specified parameter expre
 
 **Return type**
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `complex`]
+`Union`\[`ParameterExpression`, `complex`]
 
 **Returns**
 
@@ -206,7 +206,7 @@ Sine of a ParameterExpression
 
 <span id="qiskit.circuit.Parameter.subs" />
 
-`Parameter.subs(parameter_map)`
+`Parameter.subs(parameter_map)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/parameter.py "view source code")
 
 Substitute self with the corresponding parameter in `parameter_map`.
 

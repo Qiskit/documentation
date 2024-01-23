@@ -10,7 +10,7 @@ python_api_name: qiskit.opflow.evolutions.EvolutionFactory
 
 <span id="qiskit.opflow.evolutions.EvolutionFactory" />
 
-`EvolutionFactory`
+`EvolutionFactory`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/evolutions/evolution_factory.py "view source code")
 
 Bases: `object`
 
@@ -22,13 +22,13 @@ A factory class for convenient automatic selection of an Evolution algorithm bas
 
 <span id="qiskit.opflow.evolutions.EvolutionFactory.build" />
 
-`static EvolutionFactory.build(operator=None)`
+`static EvolutionFactory.build(operator=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/evolutions/evolution_factory.py "view source code")
 
 A factory method for convenient automatic selection of an Evolution algorithm based on the Operator to be converted.
 
 **Parameters**
 
-**operator** (`Optional`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]) – the Operator being evolved
+**operator** (`Optional`\[`OperatorBase`]) – the Operator being evolved
 
 **Returns**
 

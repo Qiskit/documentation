@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.active_transpiler_settings
 
 <span id="qiskit.pulse.builder.active_transpiler_settings" />
 
-`active_transpiler_settings()`
+`active_transpiler_settings()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Return the current active builder context’s transpiler settings.
 
@@ -18,7 +18,7 @@ Examples:
 
 ```python
 from qiskit import pulse
-from qiskit.providers.fake_provider import FakeOpenPulse2Q
+from qiskit.test.mock import FakeOpenPulse2Q
 
 backend = FakeOpenPulse2Q()
 

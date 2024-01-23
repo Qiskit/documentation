@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.InstructionDurationCheck
 
 <span id="qiskit.transpiler.passes.InstructionDurationCheck" />
 
-`InstructionDurationCheck(acquire_alignment=1, pulse_alignment=1)`
+`InstructionDurationCheck(acquire_alignment=1, pulse_alignment=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/alignments/check_durations.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
 Duration validation pass for reschedule.
 
@@ -43,13 +43,13 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.InstructionDurationCheck.run" />
 
-`InstructionDurationCheck.run(dag)`
+`InstructionDurationCheck.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/alignments/check_durations.py "view source code")
 
 Run duration validation passes.
 
 **Parameters**
 
-**dag** ([`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")) – DAG circuit to check instruction durations.
+**dag** (`DAGCircuit`) – DAG circuit to check instruction durations.
 
 ## Attributes
 

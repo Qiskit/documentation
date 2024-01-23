@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.builder.measure_all
 
 <span id="qiskit.pulse.builder.measure_all" />
 
-`measure_all()`
+`measure_all()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Measure all qubits within the currently active builder context.
 
@@ -20,7 +20,7 @@ Examples:
 
 ```python
 from qiskit import pulse
-from qiskit.providers.fake_provider import FakeOpenPulse2Q
+from qiskit.test.mock import FakeOpenPulse2Q
 
 backend = FakeOpenPulse2Q()
 

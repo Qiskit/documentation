@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.managed.IBMQJobManager
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManager" />
 
-`IBMQJobManager`
+`IBMQJobManager`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/ibmqjobmanager.py "view source code")
 
 Bases: `object`
 
@@ -63,7 +63,7 @@ IBMQJobManager constructor.
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManager.job_sets" />
 
-`IBMQJobManager.job_sets(name=None)`
+`IBMQJobManager.job_sets(name=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/ibmqjobmanager.py "view source code")
 
 Return job sets being managed in this session, subject to optional filtering.
 
@@ -73,7 +73,7 @@ Return job sets being managed in this session, subject to optional filtering.
 
 **Return type**
 
-`List`\[[`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.managedjobset.ManagedJobSet")]
+`List`\[`ManagedJobSet`]
 
 **Returns**
 
@@ -83,7 +83,7 @@ A list of managed job sets that match the filter.
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManager.report" />
 
-`IBMQJobManager.report(detailed=True)`
+`IBMQJobManager.report(detailed=True)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/ibmqjobmanager.py "view source code")
 
 Return a report on the statuses of all jobs managed by this Job Manager.
 
@@ -103,19 +103,19 @@ A report on job statuses.
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManager.retrieve_job_set" />
 
-`IBMQJobManager.retrieve_job_set(job_set_id, provider, refresh=False)`
+`IBMQJobManager.retrieve_job_set(job_set_id, provider, refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/ibmqjobmanager.py "view source code")
 
 Retrieve a previously submitted job set.
 
 **Parameters**
 
 *   **job\_set\_id** (`str`) – Job set ID.
-*   **provider** ([`AccountProvider`](qiskit.providers.ibmq.AccountProvider "qiskit.providers.ibmq.accountprovider.AccountProvider")) – Provider used for this job set.
+*   **provider** (`AccountProvider`) – Provider used for this job set.
 *   **refresh** (`bool`) – If `True`, re-query the server for the job set information. Otherwise return the cached value.
 
 **Return type**
 
-[`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.managedjobset.ManagedJobSet")
+`ManagedJobSet`
 
 **Returns**
 
@@ -130,7 +130,7 @@ Retrieved job set.
 
 <span id="qiskit.providers.ibmq.managed.IBMQJobManager.run" />
 
-`IBMQJobManager.run(experiments, backend, name=None, max_experiments_per_job=None, job_share_level=None, job_tags=None, **run_config)`
+`IBMQJobManager.run(experiments, backend, name=None, max_experiments_per_job=None, job_share_level=None, job_tags=None, **run_config)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/ibmqjobmanager.py "view source code")
 
 Execute a set of circuits or pulse schedules on a backend.
 
@@ -138,9 +138,9 @@ The circuits or schedules will be split into multiple jobs. Circuits or schedule
 
 **Parameters**
 
-*   **experiments** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")], `List`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]]) – Circuit(s) or pulse schedule(s) to execute.
+*   **experiments** (`Union`\[`QuantumCircuit`, `Schedule`, `List`\[`QuantumCircuit`], `List`\[`Schedule`]]) – Circuit(s) or pulse schedule(s) to execute.
 
-*   **backend** ([`IBMQBackend`](qiskit.providers.ibmq.IBMQBackend "qiskit.providers.ibmq.ibmqbackend.IBMQBackend")) – Backend to execute the experiments on.
+*   **backend** (`IBMQBackend`) – Backend to execute the experiments on.
 
 *   **name** (`Optional`\[`str`]) – Name for this set of jobs. Each job within the set will have a job name that consists of the set name followed by a suffix. If not specified, the current date and time is used.
 
@@ -158,7 +158,7 @@ The circuits or schedules will be split into multiple jobs. Circuits or schedule
 
 **Return type**
 
-[`ManagedJobSet`](qiskit.providers.ibmq.managed.ManagedJobSet "qiskit.providers.ibmq.managed.managedjobset.ManagedJobSet")
+`ManagedJobSet`
 
 **Returns**
 

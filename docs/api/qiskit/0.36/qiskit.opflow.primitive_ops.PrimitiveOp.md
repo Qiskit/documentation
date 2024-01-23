@@ -10,9 +10,9 @@ python_api_name: qiskit.opflow.primitive_ops.PrimitiveOp
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp" />
 
-`PrimitiveOp(primitive, coeff=1.0)`
+`PrimitiveOp(primitive, coeff=1.0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
-Bases: [`qiskit.opflow.operator_base.OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+Bases: `qiskit.opflow.operator_base.OperatorBase`
 
 A class for representing basic Operators, backed by Operator primitives from Terra. This class (and inheritors) primarily serves to allow the underlying primitives to “flow” - i.e. interoperability and adherence to the Operator formalism - while the core computational logic mostly remains in the underlying primitives. For example, we would not produce an interface in Terra in which `QuantumCircuit1 + QuantumCircuit2` equaled the Operator sum of the circuit unitaries, rather than simply appending the circuits. However, within the Operator flow summing the unitaries is the expected behavior.
 
@@ -20,8 +20,8 @@ Note that all mathematical methods are not in-place, meaning that they return a 
 
 **Parameters**
 
-*   **primitive** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.operators.operator.Operator"), [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli"), [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp"), [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]) – The operator primitive being wrapped.
-*   **coeff** (`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – A coefficient multiplying the primitive.
+*   **primitive** (`Union`\[`QuantumCircuit`, `Operator`, `Pauli`, `SparsePauliOp`, `OperatorBase`]) – The operator primitive being wrapped.
+*   **coeff** (`Union`\[`complex`, `ParameterExpression`]) – A coefficient multiplying the primitive.
 
 ## Methods Defined Here
 
@@ -29,17 +29,17 @@ Note that all mathematical methods are not in-place, meaning that they return a 
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.add" />
 
-`PrimitiveOp.add(other)`
+`PrimitiveOp.add(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Return Operator addition of self and other, overloaded by `+`.
 
 **Parameters**
 
-**other** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
+**other** (`OperatorBase`) – An `OperatorBase` with the same number of qubits as self, and in the same ‘Operator’, ‘State function’, or ‘Measurement’ category as self (i.e. the same type of underlying function).
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 
@@ -49,13 +49,13 @@ An `OperatorBase` equivalent to the sum of self and other.
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.adjoint" />
 
-`PrimitiveOp.adjoint()`
+`PrimitiveOp.adjoint()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Return a new Operator equal to the Operator’s adjoint (conjugate transpose), overloaded by `~`. For StateFns, this also turns the StateFn into a measurement.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 
@@ -65,7 +65,7 @@ An `OperatorBase` equivalent to the adjoint of self.
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.assign_parameters" />
 
-`PrimitiveOp.assign_parameters(param_dict)`
+`PrimitiveOp.assign_parameters(param_dict)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Binds scalar values to any Terra `Parameters` in the coefficients or primitives of the Operator, or substitutes one `Parameter` for another. This method differs from Terra’s `assign_parameters` in that it also supports lists of values to assign for a give `Parameter`, in which case self will be copied for each parameterization in the binding list(s), and all the copies will be returned in an `OpList`. If lists of parameterizations are used, every `Parameter` in the param\_dict must have the same length list of parameterizations.
 
@@ -75,7 +75,7 @@ Binds scalar values to any Terra `Parameters` in the coefficients or primitives 
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 
@@ -85,7 +85,7 @@ The `OperatorBase` with the `Parameters` in self replaced by the values or `Para
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.compose" />
 
-`PrimitiveOp.compose(other, permutation=None, front=False)`
+`PrimitiveOp.compose(other, permutation=None, front=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Return Operator Composition between self and other (linear algebra-style: A\@B(x) = A(B(x))), overloaded by `@`.
 
@@ -97,13 +97,13 @@ Because Terra prints circuits with the initial state at the left side of the cir
 
 **Parameters**
 
-*   **other** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` with which to compose self.
+*   **other** (`OperatorBase`) – The `OperatorBase` with which to compose self.
 *   **permutation** (`Optional`\[`List`\[`int`]]) – `List[int]` which defines permutation on other operator.
 *   **front** (`bool`) – If front==True, return `other.compose(self)`.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 
@@ -113,13 +113,13 @@ An `OperatorBase` equivalent to the function composition of self and other.
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.equals" />
 
-`PrimitiveOp.equals(other)`
+`PrimitiveOp.equals(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Evaluate Equality between Operators, overloaded by `==`. Only returns True if self and other are of the same representation (e.g. a DictStateFn and CircuitStateFn will never be equal, even if their vector representations are equal), their underlying primitives are equal (this means for ListOps, OperatorStateFns, or EvolvedOps the equality is evaluated recursively downwards), and their coefficients are equal.
 
 **Parameters**
 
-**other** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to compare to self.
+**other** (`OperatorBase`) – The `OperatorBase` to compare to self.
 
 **Return type**
 
@@ -133,7 +133,7 @@ A bool equal to the equality of self and other.
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.eval" />
 
-`PrimitiveOp.eval(front=None)`
+`PrimitiveOp.eval(front=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Evaluate the Operator’s underlying function, either on a binary string or another Operator. A square binary Operator can be defined as a function taking a binary function to another binary function. This method returns the value of that function for a given StateFn or binary string. For example, `op.eval('0110').eval('1110')` can be seen as querying the Operator’s matrix representation by row 6 and column 14, and will return the complex value at those “indices.” Similarly for a StateFn, `op.eval('1011')` will return the complex value at row 11 of the vector representation of the StateFn, as all StateFns are defined to be evaluated from Zero implicitly (i.e. it is as if `.eval('0000')` is already called implicitly to always “indexing” from column 0).
 
@@ -141,11 +141,11 @@ If `front` is None, the matrix-representation of the operator is returned.
 
 **Parameters**
 
-**front** (`Union`\[`str`, `Dict`\[`str`, `complex`], `ndarray`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase"), [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.states.statevector.Statevector"), `None`]) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function, or None.
+**front** (`Union`\[`str`, `Dict`\[`str`, `complex`], `ndarray`, `OperatorBase`, `Statevector`, `None`]) – The bitstring, dict of bitstrings (with values being coefficients), or StateFn to evaluated by the Operator’s underlying function, or None.
 
 **Return type**
 
-`Union`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase"), `complex`]
+`Union`\[`OperatorBase`, `complex`]
 
 **Returns**
 
@@ -155,41 +155,41 @@ The output of the Operator’s evaluation function. If self is a `StateFn`, the 
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.exp_i" />
 
-`PrimitiveOp.exp_i()`
+`PrimitiveOp.exp_i()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Return Operator exponentiation, equaling e^(-i \* op)
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 ### log\_i
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.log_i" />
 
-`PrimitiveOp.log_i(massive=False)`
+`PrimitiveOp.log_i(massive=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Return a `MatrixOp` equivalent to log(H)/-i for this operator H. This function is the effective inverse of exp\_i, equivalent to finding the Hermitian Operator which produces self when exponentiated.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 ### mul
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.mul" />
 
-`PrimitiveOp.mul(scalar)`
+`PrimitiveOp.mul(scalar)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Returns the scalar multiplication of the Operator, overloaded by `*`, including support for Terra’s `Parameters`, which can be bound to values later (via `bind_parameters`).
 
 **Parameters**
 
-**scalar** (`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – The real or complex scalar by which to multiply the Operator, or the `ParameterExpression` to serve as a placeholder for a scalar factor.
+**scalar** (`Union`\[`complex`, `ParameterExpression`]) – The real or complex scalar by which to multiply the Operator, or the `ParameterExpression` to serve as a placeholder for a scalar factor.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 
@@ -199,7 +199,7 @@ An `OperatorBase` equivalent to product of self and scalar.
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.permute" />
 
-`PrimitiveOp.permute(permutation)`
+`PrimitiveOp.permute(permutation)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Permutes the qubits of the operator.
 
@@ -209,7 +209,7 @@ Permutes the qubits of the operator.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 
@@ -223,7 +223,7 @@ A new OperatorBase containing the permuted operator.
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.primitive_strings" />
 
-`PrimitiveOp.primitive_strings()`
+`PrimitiveOp.primitive_strings()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Return a set of strings describing the primitives contained in the Operator. For example, `{'QuantumCircuit', 'Pauli'}`. For hierarchical Operators, such as `ListOps`, this can help illuminate the primitives represented in the various recursive levels, and therefore which conversions can be applied.
 
@@ -239,13 +239,13 @@ A set of strings describing the primitives contained within the Operator.
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.reduce" />
 
-`PrimitiveOp.reduce()`
+`PrimitiveOp.reduce()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Try collapsing the Operator structure, usually after some type of conversion, e.g. trying to add Operators in a SummedOp or delete needless IGates in a CircuitOp. If no reduction is available, just returns self.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 
@@ -255,7 +255,7 @@ The reduced `OperatorBase`.
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.tensor" />
 
-`PrimitiveOp.tensor(other)`
+`PrimitiveOp.tensor(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Return tensor product between self and other, overloaded by `^`. Note: You must be conscious of Qiskit’s big-endian bit printing convention. Meaning, X.tensor(Y) produces an X on qubit 0 and an Y on qubit 1, or X⨂Y, but would produce a QuantumCircuit which looks like
 
@@ -265,11 +265,11 @@ Because Terra prints circuits and results with qubit 0 at the end of the string 
 
 **Parameters**
 
-**other** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The `OperatorBase` to tensor product with self.
+**other** (`OperatorBase`) – The `OperatorBase` to tensor product with self.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 
@@ -279,7 +279,7 @@ An `OperatorBase` equivalent to the tensor product of self and other.
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.tensorpower" />
 
-`PrimitiveOp.tensorpower(other)`
+`PrimitiveOp.tensorpower(other)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Return tensor product with self multiple times, overloaded by `^`.
 
@@ -289,7 +289,7 @@ Return tensor product with self multiple times, overloaded by `^`.
 
 **Return type**
 
-`Union`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase"), `int`]
+`Union`\[`OperatorBase`, `int`]
 
 **Returns**
 
@@ -299,43 +299,43 @@ An `OperatorBase` equivalent to the tensorpower of self by other.
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.to_circuit" />
 
-`PrimitiveOp.to_circuit()`
+`PrimitiveOp.to_circuit()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Returns a `QuantumCircuit` equivalent to this Operator.
 
 **Return type**
 
-[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+`QuantumCircuit`
 
 ### to\_circuit\_op
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.to_circuit_op" />
 
-`PrimitiveOp.to_circuit_op()`
+`PrimitiveOp.to_circuit_op()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Returns a `CircuitOp` equivalent to this Operator.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 ### to\_instruction
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.to_instruction" />
 
-`PrimitiveOp.to_instruction()`
+`PrimitiveOp.to_instruction()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Returns an `Instruction` equivalent to this Operator.
 
 **Return type**
 
-[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+`Instruction`
 
 ### to\_matrix
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.to_matrix" />
 
-`PrimitiveOp.to_matrix(massive=False)`
+`PrimitiveOp.to_matrix(massive=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Return NumPy representation of the Operator. Represents the evaluation of the Operator’s underlying function on every combination of basis binary strings. Warn if more than 16 qubits to force having to set `massive=True` if such a large vector is desired.
 
@@ -351,25 +351,25 @@ The NumPy `ndarray` equivalent to this Operator.
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.to_matrix_op" />
 
-`PrimitiveOp.to_matrix_op(massive=False)`
+`PrimitiveOp.to_matrix_op(massive=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Returns a `MatrixOp` equivalent to this Operator.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 ### to\_pauli\_op
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.to_pauli_op" />
 
-`PrimitiveOp.to_pauli_op(massive=False)`
+`PrimitiveOp.to_pauli_op(massive=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/primitive_ops/primitive_op.py "view source code")
 
 Returns a sum of `PauliOp` s equivalent to this Operator.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 ## Attributes
 
@@ -377,7 +377,7 @@ Returns a sum of `PauliOp` s equivalent to this Operator.
 
 ### INDENTATION
 
-`= '  '`
+`= ' '`
 
 <span id="qiskit.opflow.primitive_ops.PrimitiveOp.coeff" />
 
@@ -387,7 +387,7 @@ The scalar coefficient multiplying the Operator.
 
 **Return type**
 
-`Union`\[`complex`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+`Union`\[`complex`, `ParameterExpression`]
 
 **Returns**
 
@@ -423,7 +423,7 @@ The primitive defining the underlying function of the Operator.
 
 **Return type**
 
-`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.operators.operator.Operator"), [`Pauli`](qiskit.quantum_info.Pauli "qiskit.quantum_info.operators.symplectic.pauli.Pauli"), [`SparsePauliOp`](qiskit.quantum_info.SparsePauliOp "qiskit.quantum_info.operators.symplectic.sparse_pauli_op.SparsePauliOp"), [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]
+`Union`\[`QuantumCircuit`, `Operator`, `Pauli`, `SparsePauliOp`, `OperatorBase`]
 
 **Returns**
 

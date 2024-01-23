@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.state_fidelity
 
 <span id="qiskit.quantum_info.state_fidelity" />
 
-`state_fidelity(state1, state2, validate=True)`
+`state_fidelity(state1, state2, validate=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/states/measures.py "view source code")
 
 Return the state fidelity between two quantum states.
 
