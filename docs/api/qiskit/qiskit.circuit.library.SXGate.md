@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.SXGate
 
 <span id="qiskit.circuit.library.SXGate" />
 
-`qiskit.circuit.library.SXGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/sx.py "view source code")
+`qiskit.circuit.library.SXGate(*args, _force_mutable=False, **kwargs)`
 
 Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
@@ -21,10 +21,10 @@ Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.cir
 **Matrix Representation:**
 
 $$
-\sqrt{X} = \frac{1}{2} \begin{pmatrix}
+\begin{split}\sqrt{X} = \frac{1}{2} \begin{pmatrix}
         1 + i & 1 - i \\
         1 - i & 1 + i
-    \end{pmatrix}
+    \end{pmatrix}\end{split}
 $$
 
 **Circuit symbol:**
@@ -39,11 +39,11 @@ q_0: ┤ √X ├
   A global phase difference exists between the definitions of $RX(\pi/2)$ and $\sqrt{X}$.
 
   $$
-  RX(\pi/2) = \frac{1}{\sqrt{2}} \begin{pmatrix}
+  \begin{split}RX(\pi/2) = \frac{1}{\sqrt{2}} \begin{pmatrix}
               1 & -i \\
               -i & 1
             \end{pmatrix}
-          = e^{-i \pi/4} \sqrt{X}
+          = e^{-i \pi/4} \sqrt{X}\end{split}
   $$
 </Admonition>
 

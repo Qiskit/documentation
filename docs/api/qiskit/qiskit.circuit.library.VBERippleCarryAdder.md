@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.VBERippleCarryAdder
 
 <span id="qiskit.circuit.library.VBERippleCarryAdder" />
 
-`qiskit.circuit.library.VBERippleCarryAdder(num_state_qubits, kind='full', name='VBERippleCarryAdder')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/arithmetic/adders/vbe_ripple_carry_adder.py "view source code")
+`qiskit.circuit.library.VBERippleCarryAdder(num_state_qubits, kind='full', name='VBERippleCarryAdder')`
 
 Bases: `Adder`
 
@@ -110,7 +110,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 159`
+`= 293`
 
 <span id="qiskit.circuit.library.VBERippleCarryAdder.layout" />
 

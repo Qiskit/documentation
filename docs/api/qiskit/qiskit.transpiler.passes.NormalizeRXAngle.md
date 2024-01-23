@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.NormalizeRXAngle
 
 <span id="qiskit.transpiler.passes.NormalizeRXAngle" />
 
-`qiskit.transpiler.passes.NormalizeRXAngle(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/normalize_rx_angle.py "view source code")
+`qiskit.transpiler.passes.NormalizeRXAngle(*args, **kwargs)`
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -36,7 +36,7 @@ NormalizeRXAngle initializer.
 **Parameters**
 
 *   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend. If the target contains SX and X calibrations, this pass will replace the corresponding RX gates with SX and X gates.
-*   **resolution\_in\_radian** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Resolution for RX rotation angle quantization. If set to zero, this pass won’t modify the rotation angles in the given DAG. (=Provides arbitrary-angle RX)
+*   **resolution\_in\_radian** ([*float*](https://docs.python.org/3/library/functions.html#float "(in Python v3.12)")) – Resolution for RX rotation angle quantization. If set to zero, this pass won’t modify the rotation angles in the given DAG. (=Provides aribitary-angle RX)
 
 ## Attributes
 

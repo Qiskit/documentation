@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CHGate
 
 <span id="qiskit.circuit.library.CHGate" />
 
-`qiskit.circuit.library.CHGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/h.py "view source code")
+`qiskit.circuit.library.CHGate(*args, _force_mutable=False, **kwargs)`
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
@@ -32,14 +32,14 @@ q_1: ┤ H ├
 **Matrix Representation:**
 
 $$
-CH\ q_0, q_1 =
+\begin{split}CH\ q_0, q_1 =
     I \otimes |0\rangle\langle 0| + H \otimes |1\rangle\langle 1| =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & \frac{1}{\sqrt{2}} & 0 & \frac{1}{\sqrt{2}} \\
         0 & 0 & 1 & 0 \\
         0 & \frac{1}{\sqrt{2}} & 0 & -\frac{1}{\sqrt{2}}
-    \end{pmatrix}
+    \end{pmatrix}\end{split}
 $$
 
 <Admonition title="Note" type="note">
@@ -53,14 +53,14 @@ $$
   ```
 
   $$
-  CH\ q_1, q_0 =
+  \begin{split}CH\ q_1, q_0 =
       |0\rangle\langle 0| \otimes I + |1\rangle\langle 1| \otimes H =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\
           0 & 0 & \frac{1}{\sqrt{2}} & \frac{1}{\sqrt{2}} \\
           0 & 0 & \frac{1}{\sqrt{2}} & -\frac{1}{\sqrt{2}}
-      \end{pmatrix}
+      \end{pmatrix}\end{split}
   $$
 </Admonition>
 

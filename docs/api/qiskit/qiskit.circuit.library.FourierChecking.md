@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.FourierChecking
 
 <span id="qiskit.circuit.library.FourierChecking" />
 
-`qiskit.circuit.library.FourierChecking(f, g)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/fourier_checking.py "view source code")
+`qiskit.circuit.library.FourierChecking(f, g)`
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -103,7 +103,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 175`
+`= 167`
 
 <span id="qiskit.circuit.library.FourierChecking.layout" />
 

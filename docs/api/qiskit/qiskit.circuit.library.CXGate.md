@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CXGate
 
 <span id="qiskit.circuit.library.CXGate" />
 
-`qiskit.circuit.library.CXGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/x.py "view source code")
+`qiskit.circuit.library.CXGate(*args, _force_mutable=False, **kwargs)`
 
 Bases: [`SingletonControlledGate`](circuit_singleton#qiskit.circuit.singleton.SingletonControlledGate "qiskit.circuit.singleton.SingletonControlledGate")
 
@@ -30,14 +30,14 @@ q_1: ┤ X ├
 **Matrix representation:**
 
 $$
-CX\ q_0, q_1 =
+\begin{split}CX\ q_0, q_1 =
     I \otimes |0\rangle\langle0| + X \otimes |1\rangle\langle1| =
     \begin{pmatrix}
         1 & 0 & 0 & 0 \\
         0 & 0 & 0 & 1 \\
         0 & 0 & 1 & 0 \\
         0 & 1 & 0 & 0
-    \end{pmatrix}
+    \end{pmatrix}\end{split}
 $$
 
 <Admonition title="Note" type="note">
@@ -51,14 +51,14 @@ $$
   ```
 
   $$
-  CX\ q_1, q_0 =
+  \begin{split}CX\ q_1, q_0 =
       |0 \rangle\langle 0| \otimes I + |1 \rangle\langle 1| \otimes X =
       \begin{pmatrix}
           1 & 0 & 0 & 0 \\
           0 & 1 & 0 & 0 \\
           0 & 0 & 0 & 1 \\
           0 & 0 & 1 & 0
-      \end{pmatrix}
+      \end{pmatrix}\end{split}
   $$
 </Admonition>
 
@@ -66,8 +66,6 @@ In the computational basis, this gate flips the target qubit if the control qubi
 
 $$
 `|a, b\rangle \rightarrow |a, a \oplus b\rangle`
-
-
 $$
 
 Create new CX gate.

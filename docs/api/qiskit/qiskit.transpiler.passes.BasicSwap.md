@@ -10,11 +10,11 @@ python_api_name: qiskit.transpiler.passes.BasicSwap
 
 <span id="qiskit.transpiler.passes.BasicSwap" />
 
-`qiskit.transpiler.passes.BasicSwap(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/routing/basic_swap.py "view source code")
+`qiskit.transpiler.passes.BasicSwap(*args, **kwargs)`
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-Map (with minimum effort) a DAGCircuit onto a `coupling_map` adding swap gates.
+Map (with minimum effort) a DAGCircuit onto a coupling\_map adding swap gates.
 
 The basic mapper is a minimum effort to insert swap gates to map the DAG onto a coupling map. When a cx is not in the coupling map possibilities, it inserts one or more swaps in front to make it compatible.
 
@@ -23,7 +23,7 @@ BasicSwap initializer.
 **Parameters**
 
 *   **coupling\_map** (*Union\[*[*CouplingMap*](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")*,* [*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) – Directed graph represented a coupling map.
-*   **fake\_run** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if true, it will only pretend to do routing, i.e., no swap is effectively added.
+*   **fake\_run** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if true, it only pretend to do routing, i.e., no swap is effectively added.
 
 ## Attributes
 

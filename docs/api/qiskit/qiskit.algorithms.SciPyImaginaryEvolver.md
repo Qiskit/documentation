@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.SciPyImaginaryEvolver
 
 <span id="qiskit.algorithms.SciPyImaginaryEvolver" />
 
-`qiskit.algorithms.SciPyImaginaryEvolver(num_timesteps)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/algorithms/time_evolvers/classical_methods/scipy_imaginary_evolver.py "view source code")
+`qiskit.algorithms.SciPyImaginaryEvolver(num_timesteps)`
 
 Bases: [`ImaginaryTimeEvolver`](qiskit.algorithms.ImaginaryTimeEvolver "qiskit.algorithms.time_evolvers.imaginary_time_evolver.ImaginaryTimeEvolver")
 

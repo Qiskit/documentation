@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.UnrollCustomDefinitions
 
 <span id="qiskit.transpiler.passes.UnrollCustomDefinitions" />
 
-`qiskit.transpiler.passes.UnrollCustomDefinitions(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/basis/unroll_custom_definitions.py "view source code")
+`qiskit.transpiler.passes.UnrollCustomDefinitions(*args, **kwargs)`
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -22,7 +22,7 @@ Unrolls instructions with custom definitions.
 
 *   **equivalence\_library** ([*EquivalenceLibrary*](qiskit.circuit.EquivalenceLibrary "qiskit.circuit.EquivalenceLibrary")) – The equivalence library which will be used by the BasisTranslator pass. (Instructions in this library will not be unrolled by this pass.)
 
-*   **basis\_gates** (*Optional\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]]*) – Target basis names to unroll to, e.g. `['u3', 'cx']`. Ignored if `target` is also specified.
+*   **basis\_gates** (*Optional\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]]*) – Target basis names to unroll to, e.g. \[‘u3’, ‘cx’]. Ignored if `target` is also specified.
 
 *   **target** (*Optional\[*[*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")*]*) –
 

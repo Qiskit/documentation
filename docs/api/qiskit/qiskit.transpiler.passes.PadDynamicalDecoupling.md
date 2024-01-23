@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.PadDynamicalDecoupling
 
 <span id="qiskit.transpiler.passes.PadDynamicalDecoupling" />
 
-`qiskit.transpiler.passes.PadDynamicalDecoupling(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/scheduling/padding/dynamical_decoupling.py "view source code")
+`qiskit.transpiler.passes.PadDynamicalDecoupling(*args, **kwargs)`
 
 Bases: `BasePadding`
 
@@ -18,7 +18,7 @@ Dynamical decoupling insertion pass.
 
 This pass works on a scheduled, physical circuit. It scans the circuit for idle periods of time (i.e. those containing delay instructions) and inserts a DD sequence of gates in those spots. These gates amount to the identity, so do not alter the logical action of the circuit, but have the effect of mitigating decoherence in those idle periods.
 
-As a special case, the pass allows a length-1 sequence (e.g. `[XGate()]`). In this case the DD insertion happens only when the gate inverse can be absorbed into a neighboring gate in the circuit (so we would still be replacing Delay with something that is equivalent to the identity). This can be used, for instance, as a Hahn echo.
+As a special case, the pass allows a length-1 sequence (e.g. \[XGate()]). In this case the DD insertion happens only when the gate inverse can be absorbed into a neighboring gate in the circuit (so we would still be replacing Delay with something that is equivalent to the identity). This can be used, for instance, as a Hahn echo.
 
 This pass ensures that the inserted sequence preserves the circuit exactly (including global phase).
 
