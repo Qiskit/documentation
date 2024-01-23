@@ -20,6 +20,8 @@ python_api_name: qiskit.tools
 
 A helper function for calling a custom function with python `ProcessPoolExecutor`. Tasks can be executed in parallel using this function. It has a built-in event publisher to show the progress of the parallel tasks.
 
+### parallel\_map
+
 <span id="qiskit.tools.parallel_map" />
 
 `qiskit.tools.parallel_map(task, values, task_args=(), task_kwargs={}, num_processes=2)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/parallel.py "view source code")
@@ -75,6 +77,8 @@ parallel_map(func, list(range(10)));
 
 A helper module to get IBM backend information and submitted job status.
 
+### job\_monitor
+
 <span id="qiskit.tools.job_monitor" />
 
 `qiskit.tools.job_monitor(job, interval=None, quiet=False, output=<_io.TextIOWrapper name='<stdout>' mode='w' encoding='utf-8'>, line_discipline='\r')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/monitor/job_monitor.py "view source code")
@@ -107,6 +111,8 @@ job_sim = sim_backend.run(tqc)
 job_monitor(job_sim)
 ```
 
+### backend\_monitor
+
 <span id="qiskit.tools.backend_monitor" />
 
 `qiskit.tools.backend_monitor(backend)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/tools/monitor/overview.py "view source code")
@@ -125,6 +131,8 @@ Monitor a single IBMQ backend.
 Examples: .. code-block:: python
 
 > from qiskit.providers.ibmq import IBMQ from qiskit.tools.monitor import backend\_monitor provider = IBMQ.get\_provider(hub=’ibm-q’) backend\_monitor(provider.backends.ibmq\_lima)
+
+### backend\_overview
 
 <span id="qiskit.tools.backend_overview" />
 

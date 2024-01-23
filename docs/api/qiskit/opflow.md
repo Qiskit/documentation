@@ -95,6 +95,8 @@ The Converter submodules include objects which manipulate Operators, usually rec
 
 ## Utility functions
 
+### commutator
+
 <span id="qiskit.opflow.commutator" />
 
 `qiskit.opflow.commutator(op_a, op_b)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/utils.py "view source code")
@@ -122,6 +124,8 @@ the commutator
 
 [OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")
 
+### anti\_commutator
+
 <span id="qiskit.opflow.anti_commutator" />
 
 `qiskit.opflow.anti_commutator(op_a, op_b)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/utils.py "view source code")
@@ -148,6 +152,8 @@ the anti-commutator
 **Return type**
 
 [OperatorBase](qiskit.opflow.OperatorBase "qiskit.opflow.OperatorBase")
+
+### double\_commutator
 
 <span id="qiskit.opflow.double_commutator" />
 
