@@ -333,7 +333,13 @@ function determineHistoricalQiskitGithubUrl(
   } else if (fileName.includes("qiskit/ignis")) {
     slug = "qiskit-community/qiskit-ignis";
     version = getOrThrow(QISKIT_METAPACKAGE_TO_IGNIS);
-  } else if (fileName.includes("qiskit/aqua")) {
+  } else if (
+    fileName.includes("qiskit/aqua") ||
+    fileName.includes("qiskit/chemistry") ||
+    fileName.includes("qiskit/finance") ||
+    fileName.includes("qiskit/ml") ||
+    fileName.includes("qiskit/optimization")
+  ) {
     slug = "qiskit-community/qiskit-aqua";
     version = getOrThrow(QISKIT_METAPACKAGE_TO_AQUA);
   } else if (fileName.includes("qiskit/providers/ibmq")) {
