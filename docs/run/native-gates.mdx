@@ -6,9 +6,8 @@ description: Summary of the native gates and operations supported by IBM Quantum
 
 # Native gates and operations
 
-## Explanation
 
-Each processor family has a particular set of native gates. 
+Each processor family has a specific set of native gates and operations. 
 
 
 ## Find the native gateset for a system
@@ -37,25 +36,46 @@ for backend in service.backends():
 
 ## List of gates
 
-ECR - 2Q
-CZ - 2Q
-CX - 2Q
-SXdg? (- 1Q)
-RZ - 1Q
-SX - 1Q
-X - 1Q
-ID no-op
-Reset - 1Q (special; not unitary)
-qubit_init flag?
+- [ECR](/api/qiskit/qiskit.circuit.library.ECRGate) - 2Q
+    Eagle
 
+- [CX](/api/qiskit/qiskit.circuit.library.CXGate) - 2Q
+    Falcon
+
+- [CZ](/api/qiskit/qiskit.circuit.library.CZGate) - 2Q
+    Heron
+
+- [RZ](/api/qiskit/qiskit.circuit.library.RZGate) - 1Q
+    Eagle, Falcon, Heron
+
+- [SX](/api/qiskit/qiskit.circuit.library.SXGate) - 1Q
+    Eagle, Heron
+
+- [X](/api/qiskit/qiskit.circuit.library.XGate) - 1Q
+    Eagle, Heron
+
+- [ID](/api/qiskit/qiskit.circuit.library.IGate) no-op
+    Eagle, Falcon, Heron
+
+- [Reset](/api/qiskit/qiskit.circuit.library.Reset) - 1Q (special; not unitary)
+    Eagle, Falcon, Heron
+
+- [if_else](/api/qiskit/qiskit.circuit.IfElseOp)
+    Eagle, Falcon, Heron
+- [for_loop](/api/qiskit/qiskit.circuit.ForLoopOp)
+    Eagle, Falcon, Heron
+- [switch_case](/api/qiskit/qiskit.circuit.SwitchCaseOp)
+    Eagle, Falcon, Heron
+- [measure](/api/qiskit/qiskit.circuit.library.Measure)
+    Eagle, Falcon, Heron
+- [delay](/api/qiskit/qiskit.circuit.Delay)
+    Eagle, Falcon, Heron
+
+qubit_init flag?
 
 describing for 2Q, then 1Q, what each is, what the unitaries are, etc. Then explanation of reset
 
 service.backends.... code to loop through all the backends
-
-Basis gate is more abstract...
-Native gate is concrete...
-point to Representing quantum computers in transpile
 
 
 NOTES FOR DRAFTING:
