@@ -1,8 +1,16 @@
+---
+title: CircuitQFI
+description: API reference for qiskit.aqua.operators.gradients.CircuitQFI
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.gradients.CircuitQFI
+---
+
 # CircuitQFI
 
+<span id="qiskit.aqua.operators.gradients.CircuitQFI" />
 
-
-`CircuitQFI`
+`CircuitQFI`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/circuit_qfis/circuit_qfi.py "view source code")
 
 Bases: `qiskit.aqua.operators.converters.converter_base.ConverterBase`
 
@@ -16,6 +24,26 @@ CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase -
 
 ## Methods
 
-|                                                                                                                                                                         |                                 |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [`convert`](qiskit.aqua.operators.gradients.CircuitQFI.convert#qiskit.aqua.operators.gradients.CircuitQFI.convert "qiskit.aqua.operators.gradients.CircuitQFI.convert") | **type operator**`OperatorBase` |
+### convert
+
+<span id="qiskit.aqua.operators.gradients.CircuitQFI.convert" />
+
+`abstract CircuitQFI.convert(operator, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/gradients/circuit_qfis/circuit_qfi.py "view source code")
+
+**Parameters**
+
+*   **operator** (`OperatorBase`) – The operator corresponding to the quantum state $|\psi(\omega)\rangle$ for which we compute the QFI.
+*   **params** (`Union`\[`ParameterVector`, `ParameterExpression`, `List`\[`ParameterExpression`], `None`]) – The parameters $\omega$ with respect to which we are computing the QFI.
+
+**Return type**
+
+`OperatorBase`
+
+**Returns**
+
+An operator whose evaluation yields the QFI metric tensor.
+
+**Raises**
+
+**ValueError** – If `params` contains a parameter not present in `operator`.
+
