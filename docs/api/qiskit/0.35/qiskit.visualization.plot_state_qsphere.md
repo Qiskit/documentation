@@ -1,14 +1,22 @@
+---
+title: plot_state_qsphere
+description: API reference for qiskit.visualization.plot_state_qsphere
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_state_qsphere
+---
+
 # qiskit.visualization.plot\_state\_qsphere
 
+<span id="qiskit.visualization.plot_state_qsphere" />
 
-
-`plot_state_qsphere(state, figsize=None, ax=None, show_state_labels=True, show_state_phases=False, use_degrees=False, *, rho=None, filename=None)`
+`plot_state_qsphere(state, figsize=None, ax=None, show_state_labels=True, show_state_phases=False, use_degrees=False, *, rho=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/state_visualization.py "view source code")
 
 Plot the qsphere representation of a quantum state. Here, the size of the points is proportional to the probability of the corresponding term in the state and the color represents the phase.
 
 **Parameters**
 
-*   **state** ([*Statevector*](qiskit.quantum_info.Statevector#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix#qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
+*   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
 *   **figsize** (*tuple*) – Figure size in inches.
 *   **ax** (*matplotlib.axes.Axes*) – An optional Axes object to be used for the visualization output. If none is specified a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
 *   **show\_state\_labels** (*bool*) – An optional boolean indicating whether to show labels for each basis state.
@@ -26,7 +34,7 @@ Figure
 **Raises**
 
 *   **MissingOptionalLibraryError** – Requires matplotlib.
-*   [**VisualizationError**](qiskit.visualization.VisualizationError#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
+*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 *   **QiskitError** – Input statevector does not have valid dimensions.
 
 ## Example
@@ -46,3 +54,4 @@ plot_state_qsphere(state)
 ```
 
 ![../\_images/qiskit.visualization.plot\_state\_qsphere\_0\_0.png](/images/api/qiskit/0.35/qiskit.visualization.plot_state_qsphere_0_0.png)
+

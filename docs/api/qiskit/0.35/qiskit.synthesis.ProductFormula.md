@@ -1,14 +1,22 @@
+---
+title: ProductFormula
+description: API reference for qiskit.synthesis.ProductFormula
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.synthesis.ProductFormula
+---
+
 # ProductFormula
 
+<span id="qiskit.synthesis.ProductFormula" />
 
-
-`ProductFormula(order, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`
+`ProductFormula(order, reps=1, insert_barriers=False, cx_structure='chain', atomic_evolution=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/synthesis/evolution/product_formula.py "view source code")
 
 Bases: `qiskit.synthesis.evolution.evolution_synthesis.EvolutionSynthesis`
 
 Product formula base class for the decomposition of non-commuting operator exponentials.
 
-[`LieTrotter`](qiskit.synthesis.LieTrotter#qiskit.synthesis.LieTrotter "qiskit.synthesis.LieTrotter") and [`SuzukiTrotter`](qiskit.synthesis.SuzukiTrotter#qiskit.synthesis.SuzukiTrotter "qiskit.synthesis.SuzukiTrotter") inherit from this class.
+[`LieTrotter`](qiskit.synthesis.LieTrotter "qiskit.synthesis.LieTrotter") and [`SuzukiTrotter`](qiskit.synthesis.SuzukiTrotter "qiskit.synthesis.SuzukiTrotter") inherit from this class.
 
 **Parameters**
 
@@ -20,13 +28,29 @@ Product formula base class for the decomposition of non-commuting operator expon
 
 ## Methods
 
-|                                                                                                                                                    |                                                            |
-| -------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| [`synthesize`](qiskit.synthesis.ProductFormula.synthesize#qiskit.synthesis.ProductFormula.synthesize "qiskit.synthesis.ProductFormula.synthesize") | Synthesize an `qiskit.circuit.library.PauliEvolutionGate`. |
+### synthesize
+
+<span id="qiskit.synthesis.ProductFormula.synthesize" />
+
+`abstract ProductFormula.synthesize(evolution)`
+
+Synthesize an `qiskit.circuit.library.PauliEvolutionGate`.
+
+**Parameters**
+
+**evolution** ([*PauliEvolutionGate*](qiskit.circuit.library.PauliEvolutionGate "qiskit.circuit.library.PauliEvolutionGate")) – The evolution gate to synthesize.
+
+**Returns**
+
+A circuit implementing the evolution.
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
 ## Attributes
 
-
+<span id="qiskit.synthesis.ProductFormula.settings" />
 
 ### settings
 
@@ -43,3 +67,4 @@ A dictionary containing the settings of this product formula.
 **Raises**
 
 **NotImplementedError** – If a custom atomic evolution is set, which cannot be serialized.
+

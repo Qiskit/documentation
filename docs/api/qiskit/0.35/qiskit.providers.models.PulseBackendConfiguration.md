@@ -1,8 +1,16 @@
+---
+title: PulseBackendConfiguration
+description: API reference for qiskit.providers.models.PulseBackendConfiguration
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.models.PulseBackendConfiguration
+---
+
 # PulseBackendConfiguration
 
+<span id="qiskit.providers.models.PulseBackendConfiguration" />
 
-
-`PulseBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, n_uchannels, u_channel_lo, meas_levels, qubit_lo_range, meas_lo_range, dt, dtm, rep_times, meas_kernels, discriminators, hamiltonian=None, channel_bandwidth=None, acquisition_latency=None, conditional_latency=None, meas_map=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, channels=None, **kwargs)`
+`PulseBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, n_uchannels, u_channel_lo, meas_levels, qubit_lo_range, meas_lo_range, dt, dtm, rep_times, meas_kernels, discriminators, hamiltonian=None, channel_bandwidth=None, acquisition_latency=None, conditional_latency=None, meas_map=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, channels=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendconfiguration.py "view source code")
 
 Bases: `qiskit.providers.models.backendconfiguration.QasmBackendConfiguration`
 
@@ -54,21 +62,208 @@ Initialize a backend configuration that contains all the extra configuration tha
 
 ## Methods
 
-|                                                                                                                                                                                                                                          |                                                                                                                                                                                                                         |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`acquire`](qiskit.providers.models.PulseBackendConfiguration.acquire#qiskit.providers.models.PulseBackendConfiguration.acquire "qiskit.providers.models.PulseBackendConfiguration.acquire")                                             | Return the acquisition channel for the given qubit.                                                                                                                                                                     |
-| [`control`](qiskit.providers.models.PulseBackendConfiguration.control#qiskit.providers.models.PulseBackendConfiguration.control "qiskit.providers.models.PulseBackendConfiguration.control")                                             | Return the secondary drive channel for the given qubit – typically utilized for controlling multiqubit interactions.                                                                                                    |
-| [`describe`](qiskit.providers.models.PulseBackendConfiguration.describe#qiskit.providers.models.PulseBackendConfiguration.describe "qiskit.providers.models.PulseBackendConfiguration.describe")                                         | Return a basic description of the channel dependency. Derived channels are given weights which describe how their frames are linked to other frames. For instance, the backend could be configured with this setting::. |
-| [`drive`](qiskit.providers.models.PulseBackendConfiguration.drive#qiskit.providers.models.PulseBackendConfiguration.drive "qiskit.providers.models.PulseBackendConfiguration.drive")                                                     | Return the drive channel for the given qubit.                                                                                                                                                                           |
-| [`from_dict`](qiskit.providers.models.PulseBackendConfiguration.from_dict#qiskit.providers.models.PulseBackendConfiguration.from_dict "qiskit.providers.models.PulseBackendConfiguration.from_dict")                                     | Create a new GateConfig object from a dictionary.                                                                                                                                                                       |
-| [`get_channel_qubits`](qiskit.providers.models.PulseBackendConfiguration.get_channel_qubits#qiskit.providers.models.PulseBackendConfiguration.get_channel_qubits "qiskit.providers.models.PulseBackendConfiguration.get_channel_qubits") | Return a list of indices for qubits which are operated on directly by the given `channel`.                                                                                                                              |
-| [`get_qubit_channels`](qiskit.providers.models.PulseBackendConfiguration.get_qubit_channels#qiskit.providers.models.PulseBackendConfiguration.get_qubit_channels "qiskit.providers.models.PulseBackendConfiguration.get_qubit_channels") | Return a list of channels which operate on the given `qubit`.                                                                                                                                                           |
-| [`measure`](qiskit.providers.models.PulseBackendConfiguration.measure#qiskit.providers.models.PulseBackendConfiguration.measure "qiskit.providers.models.PulseBackendConfiguration.measure")                                             | Return the measure stimulus channel for the given qubit.                                                                                                                                                                |
-| [`to_dict`](qiskit.providers.models.PulseBackendConfiguration.to_dict#qiskit.providers.models.PulseBackendConfiguration.to_dict "qiskit.providers.models.PulseBackendConfiguration.to_dict")                                             | Return a dictionary format representation of the GateConfig.                                                                                                                                                            |
+### acquire
+
+<span id="qiskit.providers.models.PulseBackendConfiguration.acquire" />
+
+`PulseBackendConfiguration.acquire(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendconfiguration.py "view source code")
+
+Return the acquisition channel for the given qubit.
+
+**Raises**
+
+**BackendConfigurationError** – If the qubit is not a part of the system.
+
+**Return type**
+
+[`AcquireChannel`](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")
+
+**Returns**
+
+Qubit measurement acquisition line.
+
+### control
+
+<span id="qiskit.providers.models.PulseBackendConfiguration.control" />
+
+`PulseBackendConfiguration.control(qubits=None, channel=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendconfiguration.py "view source code")
+
+Return the secondary drive channel for the given qubit – typically utilized for controlling multiqubit interactions. This channel is derived from other channels.
+
+**Parameters**
+
+*   **qubits** (`Optional`\[`Iterable`\[`int`]]) – Tuple or list of qubits of the form (control\_qubit, target\_qubit).
+*   **channel** (`Optional`\[`int`]) – Deprecated.
+
+**Raises**
+
+**BackendConfigurationError** – If the `qubits` is not a part of the system or if the backend does not provide channels information in its configuration.
+
+**Return type**
+
+`List`\[[`ControlChannel`](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")]
+
+**Returns**
+
+List of control channels.
+
+### describe
+
+<span id="qiskit.providers.models.PulseBackendConfiguration.describe" />
+
+`PulseBackendConfiguration.describe(channel)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendconfiguration.py "view source code")
+
+Return a basic description of the channel dependency. Derived channels are given weights which describe how their frames are linked to other frames. For instance, the backend could be configured with this setting:
+
+```python
+u_channel_lo = [
+    [UchannelLO(q=0, scale=1. + 0.j)],
+    [UchannelLO(q=0, scale=-1. + 0.j), UchannelLO(q=1, scale=1. + 0.j)]
+]
+```
+
+Then, this method can be used as follows:
+
+```python
+backend.configuration().describe(ControlChannel(1))
+>>> {DriveChannel(0): -1, DriveChannel(1): 1}
+```
+
+**Parameters**
+
+**channel** ([`ControlChannel`](qiskit.pulse.channels.ControlChannel "qiskit.pulse.channels.ControlChannel")) – The derived channel to describe.
+
+**Raises**
+
+**BackendConfigurationError** – If channel is not a ControlChannel.
+
+**Return type**
+
+`Dict`\[[`DriveChannel`](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel"), `complex`]
+
+**Returns**
+
+Control channel derivations.
+
+### drive
+
+<span id="qiskit.providers.models.PulseBackendConfiguration.drive" />
+
+`PulseBackendConfiguration.drive(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendconfiguration.py "view source code")
+
+Return the drive channel for the given qubit.
+
+**Raises**
+
+**BackendConfigurationError** – If the qubit is not a part of the system.
+
+**Return type**
+
+[`DriveChannel`](qiskit.pulse.channels.DriveChannel "qiskit.pulse.channels.DriveChannel")
+
+**Returns**
+
+Qubit drive channel.
+
+### from\_dict
+
+<span id="qiskit.providers.models.PulseBackendConfiguration.from_dict" />
+
+`classmethod PulseBackendConfiguration.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendconfiguration.py "view source code")
+
+Create a new GateConfig object from a dictionary.
+
+**Parameters**
+
+**data** (*dict*) – A dictionary representing the GateConfig to create. It will be in the same format as output by [`to_dict()`](qiskit.providers.models.PulseBackendConfiguration#to_dict "qiskit.providers.models.PulseBackendConfiguration.to_dict").
+
+**Returns**
+
+The GateConfig from the input dictionary.
+
+**Return type**
+
+[GateConfig](qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
+
+### get\_channel\_qubits
+
+<span id="qiskit.providers.models.PulseBackendConfiguration.get_channel_qubits" />
+
+`PulseBackendConfiguration.get_channel_qubits(channel)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendconfiguration.py "view source code")
+
+Return a list of indices for qubits which are operated on directly by the given `channel`.
+
+**Raises**
+
+**BackendConfigurationError** – If `channel` is not a found or if the backend does not provide channels information in its configuration.
+
+**Return type**
+
+`List`\[`int`]
+
+**Returns**
+
+List of qubits operated on my the given `channel`.
+
+### get\_qubit\_channels
+
+<span id="qiskit.providers.models.PulseBackendConfiguration.get_qubit_channels" />
+
+`PulseBackendConfiguration.get_qubit_channels(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendconfiguration.py "view source code")
+
+Return a list of channels which operate on the given `qubit`.
+
+**Raises**
+
+**BackendConfigurationError** – If `qubit` is not a found or if the backend does not provide channels information in its configuration.
+
+**Return type**
+
+`List`\[[`Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
+
+**Returns**
+
+List of `Channel`s operated on my the given `qubit`.
+
+### measure
+
+<span id="qiskit.providers.models.PulseBackendConfiguration.measure" />
+
+`PulseBackendConfiguration.measure(qubit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendconfiguration.py "view source code")
+
+Return the measure stimulus channel for the given qubit.
+
+**Raises**
+
+**BackendConfigurationError** – If the qubit is not a part of the system.
+
+**Return type**
+
+[`MeasureChannel`](qiskit.pulse.channels.MeasureChannel "qiskit.pulse.channels.MeasureChannel")
+
+**Returns**
+
+Qubit measurement stimulus line.
+
+### to\_dict
+
+<span id="qiskit.providers.models.PulseBackendConfiguration.to_dict" />
+
+`PulseBackendConfiguration.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/models/backendconfiguration.py "view source code")
+
+Return a dictionary format representation of the GateConfig.
+
+**Returns**
+
+The dictionary form of the GateConfig.
+
+**Return type**
+
+dict
 
 ## Attributes
 
-
+<span id="qiskit.providers.models.PulseBackendConfiguration.control_channels" />
 
 ### control\_channels
 
@@ -78,7 +273,7 @@ Return the control channels
 
 `Dict`\[`Tuple`\[`int`, …], `List`]
 
-
+<span id="qiskit.providers.models.PulseBackendConfiguration.num_qubits" />
 
 ### num\_qubits
 
@@ -86,7 +281,7 @@ Returns the number of qubits.
 
 In future, n\_qubits should be replaced in favor of num\_qubits for consistent use throughout Qiskit. Until this is properly refactored, this property serves as intermediate solution.
 
-
+<span id="qiskit.providers.models.PulseBackendConfiguration.sample_rate" />
 
 ### sample\_rate
 
@@ -95,3 +290,4 @@ Sample rate of the signal channels in Hz (1/dt).
 **Return type**
 
 `float`
+

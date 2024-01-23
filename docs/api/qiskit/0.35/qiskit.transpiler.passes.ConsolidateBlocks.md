@@ -1,8 +1,16 @@
+---
+title: ConsolidateBlocks
+description: API reference for qiskit.transpiler.passes.ConsolidateBlocks
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.ConsolidateBlocks
+---
+
 # ConsolidateBlocks
 
+<span id="qiskit.transpiler.passes.ConsolidateBlocks" />
 
-
-`ConsolidateBlocks(*args, **kwargs)`
+`ConsolidateBlocks(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/consolidate_blocks.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
@@ -18,21 +26,34 @@ ConsolidateBlocks initializer.
 
 **Parameters**
 
-*   **kak\_basis\_gate** ([*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")) – Basis gate for KAK decomposition.
+*   **kak\_basis\_gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – Basis gate for KAK decomposition.
 *   **force\_consolidate** (*bool*) – Force block consolidation
 *   **basis\_gates** (*List(str)*) – Basis gates from which to choose a KAK gate.
-*   **target** ([*Target*](qiskit.transpiler.Target#qiskit.transpiler.Target "qiskit.transpiler.Target")) – The target object for the compilation target backend
+*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The target object for the compilation target backend
 
 ## Methods
 
-|                                                                                                                                                             |                                        |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------- |
-| [`name`](qiskit.transpiler.passes.ConsolidateBlocks.name#qiskit.transpiler.passes.ConsolidateBlocks.name "qiskit.transpiler.passes.ConsolidateBlocks.name") | Return the name of the pass.           |
-| [`run`](qiskit.transpiler.passes.ConsolidateBlocks.run#qiskit.transpiler.passes.ConsolidateBlocks.run "qiskit.transpiler.passes.ConsolidateBlocks.run")     | Run the ConsolidateBlocks pass on dag. |
+### name
+
+<span id="qiskit.transpiler.passes.ConsolidateBlocks.name" />
+
+`ConsolidateBlocks.name()`
+
+Return the name of the pass.
+
+### run
+
+<span id="qiskit.transpiler.passes.ConsolidateBlocks.run" />
+
+`ConsolidateBlocks.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/consolidate_blocks.py "view source code")
+
+Run the ConsolidateBlocks pass on dag.
+
+Iterate over each block and replace it with an equivalent Unitary on the same wires.
 
 ## Attributes
 
-
+<span id="qiskit.transpiler.passes.ConsolidateBlocks.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -40,10 +61,11 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-
+<span id="qiskit.transpiler.passes.ConsolidateBlocks.is_transformation_pass" />
 
 ### is\_transformation\_pass
 
 Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+

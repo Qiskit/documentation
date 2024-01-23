@@ -1,8 +1,16 @@
+---
+title: sequence
+description: API reference for qiskit.compiler.sequence
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.compiler.sequence
+---
+
 # qiskit.compiler.sequence
 
+<span id="qiskit.compiler.sequence" />
 
-
-`sequence(scheduled_circuits, backend=None, inst_map=None, meas_map=None, dt=None)`
+`sequence(scheduled_circuits, backend=None, inst_map=None, meas_map=None, dt=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/compiler/sequencer.py "view source code")
 
 Schedule a scheduled circuit to a pulse `Schedule`, using the backend.
 
@@ -25,3 +33,4 @@ A pulse `Schedule` that implements the input circuit
 **Raises**
 
 **QiskitError** – If `inst_map` and `meas_map` are not passed and `backend` is not passed
+

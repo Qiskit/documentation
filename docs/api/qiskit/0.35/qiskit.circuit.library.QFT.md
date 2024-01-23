@@ -1,8 +1,16 @@
+---
+title: QFT
+description: API reference for qiskit.circuit.library.QFT
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.QFT
+---
+
 # QFT
 
+<span id="qiskit.circuit.library.QFT" />
 
-
-`QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)`
+`QFT(num_qubits=None, approximation_degree=0, do_swaps=True, inverse=False, insert_barriers=False, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/basis_change/qft.py "view source code")
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
 
@@ -37,14 +45,41 @@ Construct a new QFT circuit.
 
 ## Methods Defined Here
 
-|                                                                                                                                     |                                                       |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| [`inverse`](qiskit.circuit.library.QFT.inverse#qiskit.circuit.library.QFT.inverse "qiskit.circuit.library.QFT.inverse")             | Invert this circuit.                                  |
-| [`is_inverse`](qiskit.circuit.library.QFT.is_inverse#qiskit.circuit.library.QFT.is_inverse "qiskit.circuit.library.QFT.is_inverse") | Whether the inverse Fourier transform is implemented. |
+### inverse
+
+<span id="qiskit.circuit.library.QFT.inverse" />
+
+`QFT.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/basis_change/qft.py "view source code")
+
+Invert this circuit.
+
+**Return type**
+
+`QFT`
+
+**Returns**
+
+The inverted circuit.
+
+### is\_inverse
+
+<span id="qiskit.circuit.library.QFT.is_inverse" />
+
+`QFT.is_inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/basis_change/qft.py "view source code")
+
+Whether the inverse Fourier transform is implemented.
+
+**Return type**
+
+`bool`
+
+**Returns**
+
+True, if the inverse Fourier transform is implemented, False otherwise.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.QFT.ancillas" />
 
 ### ancillas
 
@@ -54,7 +89,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 `List`\[`AncillaQubit`]
 
-
+<span id="qiskit.circuit.library.QFT.approximation_degree" />
 
 ### approximation\_degree
 
@@ -68,7 +103,7 @@ The approximation degree of the QFT.
 
 The currently set approximation degree.
 
-
+<span id="qiskit.circuit.library.QFT.calibrations" />
 
 ### calibrations
 
@@ -82,7 +117,7 @@ Return calibration dictionary.
 
 `dict`
 
-
+<span id="qiskit.circuit.library.QFT.clbits" />
 
 ### clbits
 
@@ -92,11 +127,11 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.QFT.data" />
 
 ### data
 
-
+<span id="qiskit.circuit.library.QFT.do_swaps" />
 
 ### do\_swaps
 
@@ -110,13 +145,13 @@ Whether the final swaps of the QFT are applied or not.
 
 True, if the final swaps are applied, False if not.
 
-
+<span id="qiskit.circuit.library.QFT.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-
+<span id="qiskit.circuit.library.QFT.global_phase" />
 
 ### global\_phase
 
@@ -126,13 +161,13 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-
+<span id="qiskit.circuit.library.QFT.header" />
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
+<span id="qiskit.circuit.library.QFT.insert_barriers" />
 
 ### insert\_barriers
 
@@ -146,13 +181,13 @@ Whether barriers are inserted for better visualization or not.
 
 True, if barriers are inserted, False if not.
 
-
+<span id="qiskit.circuit.library.QFT.instances" />
 
 ### instances
 
 `= 9`
 
-
+<span id="qiskit.circuit.library.QFT.metadata" />
 
 ### metadata
 
@@ -164,7 +199,7 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-
+<span id="qiskit.circuit.library.QFT.num_ancillas" />
 
 ### num\_ancillas
 
@@ -174,7 +209,7 @@ Return the number of ancilla qubits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.QFT.num_clbits" />
 
 ### num\_clbits
 
@@ -184,7 +219,7 @@ Return number of classical bits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.QFT.num_parameters" />
 
 ### num\_parameters
 
@@ -192,7 +227,7 @@ Return number of classical bits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.QFT.num_qubits" />
 
 ### num\_qubits
 
@@ -206,7 +241,7 @@ The number of qubits in the QFT circuit.
 
 The number of qubits in the circuit.
 
-
+<span id="qiskit.circuit.library.QFT.parameters" />
 
 ### parameters
 
@@ -214,19 +249,19 @@ The number of qubits in the circuit.
 
 `ParameterView`
 
-
+<span id="qiskit.circuit.library.QFT.prefix" />
 
 ### prefix
 
 `= 'circuit'`
 
-
+<span id="qiskit.circuit.library.QFT.qregs" />
 
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-
+<span id="qiskit.circuit.library.QFT.qubits" />
 
 ### qubits
 
@@ -235,3 +270,4 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
+

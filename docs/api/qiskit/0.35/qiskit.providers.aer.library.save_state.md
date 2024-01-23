@@ -1,8 +1,16 @@
+---
+title: save_state
+description: API reference for qiskit.providers.aer.library.save_state
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.library.save_state
+---
+
 # qiskit.providers.aer.library.save\_state
 
+<span id="qiskit.providers.aer.library.save_state" />
 
-
-`save_state(self, label=None, pershot=False, conditional=False)`
+`save_state(self, label=None, pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/library/save_instructions/save_state.py "view source code")
 
 Save the current simulator quantum state.
 
@@ -18,4 +26,5 @@ with attached instruction.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+

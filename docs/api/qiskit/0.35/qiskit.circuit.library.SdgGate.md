@@ -1,8 +1,16 @@
+---
+title: SdgGate
+description: API reference for qiskit.circuit.library.SdgGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.SdgGate
+---
+
 # SdgGate
 
+<span id="qiskit.circuit.library.SdgGate" />
 
-
-`SdgGate(label=None)`
+`SdgGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/s.py "view source code")
 
 Bases: `qiskit.circuit.gate.Gate`
 
@@ -35,13 +43,17 @@ Create new Sdg gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                     |                                |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| [`inverse`](qiskit.circuit.library.SdgGate.inverse#qiskit.circuit.library.SdgGate.inverse "qiskit.circuit.library.SdgGate.inverse") | Return inverse of Sdg (SGate). |
+### inverse
+
+<span id="qiskit.circuit.library.SdgGate.inverse" />
+
+`SdgGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/s.py "view source code")
+
+Return inverse of Sdg (SGate).
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.SdgGate.condition_bits" />
 
 ### condition\_bits
 
@@ -51,25 +63,25 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.SdgGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-
+<span id="qiskit.circuit.library.SdgGate.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
+<span id="qiskit.circuit.library.SdgGate.duration" />
 
 ### duration
 
 Get the duration.
 
-
+<span id="qiskit.circuit.library.SdgGate.label" />
 
 ### label
 
@@ -79,32 +91,33 @@ Return instruction label
 
 `str`
 
-
+<span id="qiskit.circuit.library.SdgGate.name" />
 
 ### name
 
 Return the name.
 
-
+<span id="qiskit.circuit.library.SdgGate.num_clbits" />
 
 ### num\_clbits
 
 Return the number of clbits.
 
-
+<span id="qiskit.circuit.library.SdgGate.num_qubits" />
 
 ### num\_qubits
 
 Return the number of qubits.
 
-
+<span id="qiskit.circuit.library.SdgGate.params" />
 
 ### params
 
 return instruction params.
 
-
+<span id="qiskit.circuit.library.SdgGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

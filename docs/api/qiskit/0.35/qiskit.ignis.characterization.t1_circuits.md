@@ -1,8 +1,16 @@
+---
+title: t1_circuits
+description: API reference for qiskit.ignis.characterization.t1_circuits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.characterization.t1_circuits
+---
+
 # qiskit.ignis.characterization.t1\_circuits
 
+<span id="qiskit.ignis.characterization.t1_circuits" />
 
-
-`t1_circuits(num_of_gates, gate_time, qubits)`
+`t1_circuits(num_of_gates, gate_time, qubits)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/characterization/coherence/circuits.py "view source code")
 
 Generate circuits for T1 measurement.
 
@@ -22,3 +30,4 @@ Each circuit consists of an X gate, followed by a sequence of identity gates.
 
 *   Generated circuits
 *   Delay times, i.e., gate\_time multiplied by the numbers in num\_of\_gates
+

@@ -1,8 +1,16 @@
+---
+title: thermal_relaxation_error
+description: API reference for qiskit.providers.aer.noise.thermal_relaxation_error
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.noise.thermal_relaxation_error
+---
+
 # qiskit.providers.aer.noise.thermal\_relaxation\_error
 
+<span id="qiskit.providers.aer.noise.thermal_relaxation_error" />
 
-
-`thermal_relaxation_error(t1, t2, time, excited_state_population=0)`
+`thermal_relaxation_error(t1, t2, time, excited_state_population=0)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/errors/standard_errors.py "view source code")
 
 Return a single-qubit thermal relaxation quantum error channel.
 
@@ -19,7 +27,7 @@ a quantum error object for a noise model.
 
 **Return type**
 
-[QuantumError](qiskit.providers.aer.noise.QuantumError#qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
+[QuantumError](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.QuantumError")
 
 **Raises**
 
@@ -30,3 +38,4 @@ a quantum error object for a noise model.
 *   For parameters to be valid $T_1$ and $T_2$ must satisfy $T_2 \le 2 T_1$.
 *   If $T_2 \le T_1$ the error can be expressed as a mixed reset and unitary error channel.
 *   If $T_1 < T_2 \le 2 T_1$ the error must be expressed as a general non-unitary Kraus error channel.
+

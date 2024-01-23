@@ -73,11 +73,11 @@ import qiskit.tools.jupyter
 | Qiskit Software              | Version                       |
 | ---------------------------- | ----------------------------- |
 | `qiskit-terra`               | 0.20.0                        |
-| `qiskit-aer`                 | 0.10.4                        |
+| `qiskit-aer`                 | 0.10.3                        |
 | `qiskit-ignis`               | 0.7.0                         |
-| `qiskit-ibmq-provider`       | 0.19.0                        |
-| `qiskit`                     | 0.36.0                        |
-| `qiskit-nature`              | 0.3.2                         |
+| `qiskit-ibmq-provider`       | 0.18.3                        |
+| `qiskit`                     | 0.35.0                        |
+| `qiskit-nature`              | 0.3.1                         |
 | `qiskit-finance`             | 0.3.1                         |
 | `qiskit-optimization`        | 0.3.2                         |
 | `qiskit-machine-learning`    | 0.3.1                         |
@@ -87,8 +87,8 @@ import qiskit.tools.jupyter
 | Python build                 | default, Oct 18 2021 14:07:50 |
 | OS                           | Linux                         |
 | CPUs                         | 2                             |
-| Memory (Gb)                  | 6.783611297607422             |
-| Wed Apr 06 21:17:05 2022 UTC |                               |
+| Memory (Gb)                  | 6.7836151123046875            |
+| Thu Mar 31 22:30:19 2022 UTC |                               |
 
 ## Qiskit copyright
 

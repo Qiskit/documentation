@@ -1,8 +1,16 @@
+---
+title: PhaseEstimationScale
+description: API reference for qiskit.algorithms.PhaseEstimationScale
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.PhaseEstimationScale
+---
+
 # PhaseEstimationScale
 
+<span id="qiskit.algorithms.PhaseEstimationScale" />
 
-
-`PhaseEstimationScale(bound)`
+`PhaseEstimationScale(bound)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/phase_estimation_scale.py "view source code")
 
 Bases: `object`
 
@@ -20,15 +28,81 @@ Increasing `bound` decreases the part of the interval $[0, 1)$ that is used to m
 
 ## Methods
 
-|                                                                                                                                                                                         |                                                                                      |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------ |
-| [`from_pauli_sum`](qiskit.algorithms.PhaseEstimationScale.from_pauli_sum#qiskit.algorithms.PhaseEstimationScale.from_pauli_sum "qiskit.algorithms.PhaseEstimationScale.from_pauli_sum") | Create a PhaseEstimationScale from a SummedOp representing a sum of Pauli Operators. |
-| [`scale_phase`](qiskit.algorithms.PhaseEstimationScale.scale_phase#qiskit.algorithms.PhaseEstimationScale.scale_phase "qiskit.algorithms.PhaseEstimationScale.scale_phase")             | Convert a phase into an eigenvalue.                                                  |
-| [`scale_phases`](qiskit.algorithms.PhaseEstimationScale.scale_phases#qiskit.algorithms.PhaseEstimationScale.scale_phases "qiskit.algorithms.PhaseEstimationScale.scale_phases")         | Convert a list or dict of phases to eigenvalues.                                     |
+### from\_pauli\_sum
+
+<span id="qiskit.algorithms.PhaseEstimationScale.from_pauli_sum" />
+
+`classmethod PhaseEstimationScale.from_pauli_sum(pauli_sum)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/phase_estimation_scale.py "view source code")
+
+Create a PhaseEstimationScale from a SummedOp representing a sum of Pauli Operators.
+
+It is assumed that the `pauli_sum` is the sum of `PauliOp` objects. The bound on the absolute value of the eigenvalues of the sum is obtained as the sum of the absolute values of the coefficients of the terms. This is the best bound available in the generic case. A `PhaseEstimationScale` object is instantiated using this bound.
+
+**Parameters**
+
+**pauli\_sum** (`SummedOp`) – A `SummedOp` whose terms are `PauliOp` objects.
+
+**Raises**
+
+**ValueError** – if `pauli_sum` is not a sum of Pauli operators.
+
+**Return type**
+
+`PhaseEstimationScale`
+
+**Returns**
+
+A `PhaseEstimationScale` object
+
+### scale\_phase
+
+<span id="qiskit.algorithms.PhaseEstimationScale.scale_phase" />
+
+`PhaseEstimationScale.scale_phase(phi, id_coefficient=0.0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/phase_estimation_scale.py "view source code")
+
+Convert a phase into an eigenvalue.
+
+The input phase `phi` corresponds to the eigenvalue of a unitary obtained by exponentiating a scaled Hermitian operator. Recall that the phase is obtained from `phi` as $2\pi\phi$. Furthermore, the Hermitian operator was scaled so that `phi` is restricted to $[-1/2, 1/2]$, corresponding to phases in $[-\pi, \pi]$. But the values of phi read from the phase-readout register are in $[0, 1)$. Any value of `phi` greater than $1/2$ corresponds to a raw phase of minus the complement with respect to 1. After this possible shift, the phase is scaled by the inverse of the factor by which the Hermitian operator was scaled to recover the eigenvalue of the Hermitian operator.
+
+**Parameters**
+
+*   **phi** (`float`) – Normalized phase in $[0, 1)$ to be converted to an eigenvalue.
+*   **id\_coefficient** (`float`) – All eigenvalues are shifted by this value.
+
+**Return type**
+
+`float`
+
+**Returns**
+
+An eigenvalue computed from the input phase.
+
+### scale\_phases
+
+<span id="qiskit.algorithms.PhaseEstimationScale.scale_phases" />
+
+`PhaseEstimationScale.scale_phases(phases, id_coefficient=0.0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/phase_estimation_scale.py "view source code")
+
+Convert a list or dict of phases to eigenvalues.
+
+The values in the list, or keys in the dict, are values of ```phi` and are converted as described in the description of ``scale_phase```. In case `phases` is a dict, the values of the dict are passed unchanged.
+
+**Parameters**
+
+*   **phases** (`Union`\[`List`, `Dict`]) – a list or dict of values of `phi`.
+*   **id\_coefficient** (`float`) – All eigenvalues are shifted by this value.
+
+**Return type**
+
+`Union`\[`Dict`, `List`]
+
+**Returns**
+
+Eigenvalues computed from phases.
 
 ## Attributes
 
-
+<span id="qiskit.algorithms.PhaseEstimationScale.scale" />
 
 ### scale
 
@@ -43,3 +117,4 @@ Return the scale factor by which a Hermitian operator must be multiplied so that
 **Returns**
 
 The scale factor.
+

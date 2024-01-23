@@ -1,8 +1,16 @@
+---
+title: active_circuit_scheduler_settings
+description: API reference for qiskit.pulse.builder.active_circuit_scheduler_settings
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.active_circuit_scheduler_settings
+---
+
 # qiskit.pulse.builder.active\_circuit\_scheduler\_settings
 
+<span id="qiskit.pulse.builder.active_circuit_scheduler_settings" />
 
-
-`active_circuit_scheduler_settings()`
+`active_circuit_scheduler_settings()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Return the current active builder context’s circuit scheduler settings.
 
@@ -29,3 +37,4 @@ with pulse.build(
 **Return type**
 
 `Dict`\[`str`, `Any`]
+

@@ -1,18 +1,26 @@
+---
+title: disassemble
+description: API reference for qiskit.assembler.disassemble
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.assembler.disassemble
+---
+
 # qiskit.assembler.disassemble
 
+<span id="qiskit.assembler.disassemble" />
 
-
-`disassemble(qobj)`
+`disassemble(qobj)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/assembler/disassemble.py "view source code")
 
 Disassemble a qobj and return the circuits or pulse schedules, run\_config, and user header.
 
 <Admonition title="Note" type="note">
-  `disassemble(assemble(qc))` is not guaranteed to produce an exactly equal circuit to the input, due to limitations in the [`QasmQobj`](qiskit.qobj.QasmQobj#qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") format that need to be maintained for backend system compatibility. This is most likely to be the case when using newer features of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). In most cases, the output should be equivalent, if not quite equal.
+  `disassemble(assemble(qc))` is not guaranteed to produce an exactly equal circuit to the input, due to limitations in the [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") format that need to be maintained for backend system compatibility. This is most likely to be the case when using newer features of [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"). In most cases, the output should be equivalent, if not quite equal.
 </Admonition>
 
 **Parameters**
 
-**qobj** ([*Qobj*](qiskit.qobj.Qobj#qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – The input qobj object to disassemble
+**qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – The input qobj object to disassemble
 
 **Returns**
 
@@ -25,3 +33,4 @@ The disassembled program which consists of:
 **Return type**
 
 Union\[CircuitModule, PulseModule]
+

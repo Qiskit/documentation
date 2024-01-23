@@ -1,8 +1,16 @@
+---
+title: PadDelay
+description: API reference for qiskit.transpiler.passes.PadDelay
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.PadDelay
+---
+
 # PadDelay
 
+<span id="qiskit.transpiler.passes.PadDelay" />
 
-
-`PadDelay(fill_very_end=True)`
+`PadDelay(fill_very_end=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/scheduling/padding/pad_delay.py "view source code")
 
 Bases: `qiskit.transpiler.passes.scheduling.padding.base_padding.BasePadding`
 
@@ -32,14 +40,41 @@ Create new padding delay pass.
 
 ## Methods
 
-|                                                                                                                                  |                                |
-| -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
-| [`name`](qiskit.transpiler.passes.PadDelay.name#qiskit.transpiler.passes.PadDelay.name "qiskit.transpiler.passes.PadDelay.name") | Return the name of the pass.   |
-| [`run`](qiskit.transpiler.passes.PadDelay.run#qiskit.transpiler.passes.PadDelay.run "qiskit.transpiler.passes.PadDelay.run")     | Run the padding pass on `dag`. |
+### name
+
+<span id="qiskit.transpiler.passes.PadDelay.name" />
+
+`PadDelay.name()`
+
+Return the name of the pass.
+
+### run
+
+<span id="qiskit.transpiler.passes.PadDelay.run" />
+
+`PadDelay.run(dag)`
+
+Run the padding pass on `dag`.
+
+**Parameters**
+
+**dag** (`DAGCircuit`) – DAG to be checked.
+
+**Returns**
+
+DAG with idle time filled with instructions.
+
+**Return type**
+
+[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+
+**Raises**
+
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – When a particular node is not scheduled, likely some transform pass is inserted before this node is called.
 
 ## Attributes
 
-
+<span id="qiskit.transpiler.passes.PadDelay.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -47,10 +82,11 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-
+<span id="qiskit.transpiler.passes.PadDelay.is_transformation_pass" />
 
 ### is\_transformation\_pass
 
 Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+

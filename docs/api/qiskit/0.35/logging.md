@@ -16,19 +16,17 @@ python_api_name: qiskit.ignis.logging
 
 `qiskit.ignis.logging`
 
-|                                                                                                                                                 |                                                           |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| [`IgnisLogger`](qiskit.ignis.logging.IgnisLogger#qiskit.ignis.logging.IgnisLogger "qiskit.ignis.logging.IgnisLogger")(name\[, level])           | A logger class for Ignis                                  |
-| [`IgnisLogging`](qiskit.ignis.logging.IgnisLogging#qiskit.ignis.logging.IgnisLogging "qiskit.ignis.logging.IgnisLogging")(\[log\_config\_path]) | Singleton class to configure file logging via IgnisLogger |
-| [`IgnisLogReader`](qiskit.ignis.logging.IgnisLogReader#qiskit.ignis.logging.IgnisLogReader "qiskit.ignis.logging.IgnisLogReader")()             | Class to read from Ignis log files                        |
+|                                                                                                               |                                                           |
+| ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [`IgnisLogger`](qiskit.ignis.logging.IgnisLogger "qiskit.ignis.logging.IgnisLogger")(name\[, level])          | A logger class for Ignis                                  |
+| [`IgnisLogging`](qiskit.ignis.logging.IgnisLogging "qiskit.ignis.logging.IgnisLogging")(\[log\_config\_path]) | Singleton class to configure file logging via IgnisLogger |
+| [`IgnisLogReader`](qiskit.ignis.logging.IgnisLogReader "qiskit.ignis.logging.IgnisLogReader")()               | Class to read from Ignis log files                        |
 
-
-
-`IgnisLogger(name, level=0)`
+`IgnisLogger(name, level=0)`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/logging/ignis_logging.py "view source code")
 
 A logger class for Ignis
 
-IgnisLogger is a like any other `logging.Logger` object except it has an additional method, [`log_to_file()`](qiskit.ignis.logging.IgnisLogger.log_to_file#qiskit.ignis.logging.IgnisLogger.log_to_file "qiskit.ignis.logging.IgnisLogger.log_to_file"), used to log data in the form of key:value pairs to a log file. Logging configuration is performed via a configuration file and is handled by IgnisLogging.
+IgnisLogger is a like any other `logging.Logger` object except it has an additional method, [`log_to_file()`](qiskit.ignis.logging.IgnisLogger#log_to_file "qiskit.ignis.logging.IgnisLogger.log_to_file"), used to log data in the form of key:value pairs to a log file. Logging configuration is performed via a configuration file and is handled by IgnisLogging.
 
 Refer to Python’s logging documentation for more details on how to use logging in Python
 

@@ -1,8 +1,16 @@
+---
+title: PhaseOracle
+description: API reference for qiskit.circuit.library.PhaseOracle
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.PhaseOracle
+---
+
 # PhaseOracle
 
+<span id="qiskit.circuit.library.PhaseOracle" />
 
-
-`PhaseOracle(expression, synthesizer=None)`
+`PhaseOracle(expression, synthesizer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/phase_oracle.py "view source code")
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
@@ -23,14 +31,67 @@ Creates a PhaseOracle object
 
 ## Methods Defined Here
 
-|                                                                                                                                                                                             |                                                            |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| [`evaluate_bitstring`](qiskit.circuit.library.PhaseOracle.evaluate_bitstring#qiskit.circuit.library.PhaseOracle.evaluate_bitstring "qiskit.circuit.library.PhaseOracle.evaluate_bitstring") | Evaluate the oracle on a bitstring.                        |
-| [`from_dimacs_file`](qiskit.circuit.library.PhaseOracle.from_dimacs_file#qiskit.circuit.library.PhaseOracle.from_dimacs_file "qiskit.circuit.library.PhaseOracle.from_dimacs_file")         | Create a PhaseOracle from the string in the DIMACS format. |
+### evaluate\_bitstring
+
+<span id="qiskit.circuit.library.PhaseOracle.evaluate_bitstring" />
+
+`PhaseOracle.evaluate_bitstring(bitstring)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/phase_oracle.py "view source code")
+
+Evaluate the oracle on a bitstring. This evaluation is done classically without any quantum circuit.
+
+**Parameters**
+
+**bitstring** (`str`) – The bitstring for which to evaluate. The input bitstring is expected to be in little-endian order.
+
+**Return type**
+
+`bool`
+
+**Returns**
+
+True if the bitstring is a good state, False otherwise.
+
+### from\_dimacs\_file
+
+<span id="qiskit.circuit.library.PhaseOracle.from_dimacs_file" />
+
+`classmethod PhaseOracle.from_dimacs_file(filename)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/phase_oracle.py "view source code")
+
+Create a PhaseOracle from the string in the DIMACS format.
+
+It is possible to build a PhaseOracle from a file in [DIMACS CNF format](http://www.satcompetition.org/2009/format-benchmarks2009.html), which is the standard format for specifying SATisfiability (SAT) problem instances in [Conjunctive Normal Form (CNF)](https://en.wikipedia.org/wiki/Conjunctive_normal_form), which is a conjunction of one or more clauses, where a clause is a disjunction of one or more literals.
+
+The following is an example of a CNF expressed in the DIMACS format:
+
+```python
+c DIMACS CNF file with 3 satisfying assignments: 1 -2 3, -1 -2 -3, 1 2 -3.
+p cnf 3 5
+-1 -2 -3 0
+1 -2 3 0
+1 2 -3 0
+1 -2 -3 0
+-1 2 3 0
+```
+
+The first line, following the c character, is a comment. The second line specifies that the CNF is over three boolean variables — let us call them $x_1, x_2, x_3$, and contains five clauses. The five clauses, listed afterwards, are implicitly joined by the logical AND operator, $\land$, while the variables in each clause, represented by their indices, are implicitly disjoined by the logical OR operator, $lor$. The $-$ symbol preceding a boolean variable index corresponds to the logical NOT operator, $lnot$. Character 0 (zero) marks the end of each clause. Essentially, the code above corresponds to the following CNF:
+
+$(\lnot x_1 \lor \lnot x_2 \lor \lnot x_3) \land (x_1 \lor \lnot x_2 \lor x_3) \land (x_1 \lor x_2 \lor \lnot x_3) \land (x_1 \lor \lnot x_2 \lor \lnot x_3) \land (\lnot x_1 \lor x_2 \lor x_3)$.
+
+**Parameters**
+
+**filename** (`str`) – A file in DIMACS format.
+
+**Returns**
+
+A quantum circuit with a phase oracle.
+
+**Return type**
+
+[PhaseOracle](qiskit.circuit.library.PhaseOracle "qiskit.circuit.library.PhaseOracle")
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.PhaseOracle.ancillas" />
 
 ### ancillas
 
@@ -40,7 +101,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 `List`\[`AncillaQubit`]
 
-
+<span id="qiskit.circuit.library.PhaseOracle.calibrations" />
 
 ### calibrations
 
@@ -54,7 +115,7 @@ Return calibration dictionary.
 
 `dict`
 
-
+<span id="qiskit.circuit.library.PhaseOracle.clbits" />
 
 ### clbits
 
@@ -64,7 +125,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.PhaseOracle.data" />
 
 ### data
 
@@ -80,13 +141,13 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-
+<span id="qiskit.circuit.library.PhaseOracle.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-
+<span id="qiskit.circuit.library.PhaseOracle.global_phase" />
 
 ### global\_phase
 
@@ -96,19 +157,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-
+<span id="qiskit.circuit.library.PhaseOracle.header" />
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
+<span id="qiskit.circuit.library.PhaseOracle.instances" />
 
 ### instances
 
 `= 9`
 
-
+<span id="qiskit.circuit.library.PhaseOracle.metadata" />
 
 ### metadata
 
@@ -120,7 +181,7 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-
+<span id="qiskit.circuit.library.PhaseOracle.num_ancillas" />
 
 ### num\_ancillas
 
@@ -130,7 +191,7 @@ Return the number of ancilla qubits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.PhaseOracle.num_clbits" />
 
 ### num\_clbits
 
@@ -140,7 +201,7 @@ Return number of classical bits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.PhaseOracle.num_parameters" />
 
 ### num\_parameters
 
@@ -150,7 +211,7 @@ Convenience function to get the number of parameter objects in the circuit.
 
 `int`
 
-
+<span id="qiskit.circuit.library.PhaseOracle.num_qubits" />
 
 ### num\_qubits
 
@@ -160,7 +221,7 @@ Return number of qubits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.PhaseOracle.parameters" />
 
 ### parameters
 
@@ -170,13 +231,13 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
-
+<span id="qiskit.circuit.library.PhaseOracle.prefix" />
 
 ### prefix
 
 `= 'circuit'`
 
-
+<span id="qiskit.circuit.library.PhaseOracle.qubits" />
 
 ### qubits
 
@@ -185,3 +246,4 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
+

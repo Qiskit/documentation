@@ -1,8 +1,16 @@
+---
+title: complete_meas_cal
+description: API reference for qiskit.ignis.mitigation.complete_meas_cal
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.mitigation.complete_meas_cal
+---
+
 # qiskit.ignis.mitigation.complete\_meas\_cal
 
+<span id="qiskit.ignis.mitigation.complete_meas_cal" />
 
-
-`complete_meas_cal(qubit_list=None, qr=None, cr=None, circlabel='')`
+`complete_meas_cal(qubit_list=None, qr=None, cr=None, circlabel='')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/mitigation/measurement/circuits.py "view source code")
 
 Return a list of measurement calibration circuits for the full Hilbert space.
 
@@ -38,3 +46,4 @@ Pass the results of these circuits to the CompleteMeasurementFitter constructor.
 **Raises**
 
 **QiskitError** – if both qubit\_list and qr are None.
+
