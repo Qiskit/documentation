@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.XGate
 
 <span id="qiskit.circuit.library.XGate" />
 
-`qiskit.circuit.library.XGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/x.py "view source code")
+`qiskit.circuit.library.XGate(*args, _force_mutable=False, **kwargs)`
 
 Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
@@ -21,10 +21,10 @@ Can be applied to a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.cir
 **Matrix Representation:**
 
 $$
-X = \begin{pmatrix}
+\begin{split}X = \begin{pmatrix}
         0 & 1 \\
         1 & 0
-    \end{pmatrix}
+    \end{pmatrix}\end{split}
 $$
 
 **Circuit symbol:**
@@ -41,19 +41,19 @@ Equivalent to a $\pi$ radian rotation about the X axis.
   A global phase difference exists between the definitions of $RX(\pi)$ and $X$.
 
   $$
-  RX(\pi) = \begin{pmatrix}
+  \begin{split}RX(\pi) = \begin{pmatrix}
               0 & -i \\
               -i & 0
             \end{pmatrix}
-          = -i X
+          = -i X\end{split}
   $$
 </Admonition>
 
 The gate is equivalent to a classical bit flip.
 
 $$
-|0\rangle \rightarrow |1\rangle \\
-|1\rangle \rightarrow |0\rangle
+\begin{split}|0\rangle \rightarrow |1\rangle \\
+|1\rangle \rightarrow |0\rangle\end{split}
 $$
 
 Create new X gate.

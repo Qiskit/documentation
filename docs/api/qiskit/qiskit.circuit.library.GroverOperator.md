@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GroverOperator
 
 <span id="qiskit.circuit.library.GroverOperator" />
 
-`qiskit.circuit.library.GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/grover_operator.py "view source code")
+`qiskit.circuit.library.GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')`
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -20,8 +20,6 @@ Grover’s search algorithm \[1, 2] consists of repeated applications of the so-
 
 $$
 \mathcal{Q} = \mathcal{A} \mathcal{S}_0 \mathcal{A}^\dagger \mathcal{S}_f
-
-
 $$
 
 In the standard Grover search we have $\mathcal{A} = H^{\otimes n}$:
@@ -29,8 +27,6 @@ In the standard Grover search we have $\mathcal{A} = H^{\otimes n}$:
 $$
 \mathcal{Q} = H^{\otimes n} \mathcal{S}_0 H^{\otimes n} \mathcal{S}_f
             = D \mathcal{S_f}
-
-
 $$
 
 The operation $D = H^{\otimes n} \mathcal{S}_0 H^{\otimes n}$ is also referred to as diffusion operator. In this formulation we can see that Grover’s operator consists of two steps: first, the phase oracle multiplies the good states by -1 (with $\mathcal{S}_f$) and then the whole state is reflected around the mean (with $D$).
@@ -41,8 +37,6 @@ The action of the phase oracle $\mathcal{S}_f$ is defined as
 
 $$
 \mathcal{S}_f: |x\rangle \mapsto (-1)^{f(x)}|x\rangle
-
-
 $$
 
 where $f(x) = 1$ if $x$ is a good state and 0 otherwise. To highlight the fact that this oracle flips the phase of the good states and does not flip the state of a result qubit, we call $\mathcal{S}_f$ a phase oracle.
@@ -63,8 +57,6 @@ The zero reflection $\mathcal{S}_0$ is usually defined as
 
 $$
 \mathcal{S}_0 = 2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n
-
-
 $$
 
 where $\mathbb{I}_n$ is the identity on $n$ qubits. By default, this class implements the negative version $2 |0\rangle^{\otimes n} \langle 0|^{\otimes n} - \mathbb{I}_n$, since this can simply be implemented with a multi-controlled Z sandwiched by X gates on the target qubit and the introduced global phase does not matter for Grover’s algorithm.
@@ -221,7 +213,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 205`
+`= 197`
 
 <span id="qiskit.circuit.library.GroverOperator.layout" />
 

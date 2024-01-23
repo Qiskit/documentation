@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.Diagonal
 
 <span id="qiskit.circuit.library.Diagonal" />
 
-`qiskit.circuit.library.Diagonal(diag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/diagonal.py "view source code")
+`qiskit.circuit.library.Diagonal(diag)`
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -31,15 +31,13 @@ q_2: ┤2          ├
 Matrix form:
 
 $$
-\text{DiagonalGate}\ q_0, q_1, .., q_{n-1} =
+\begin{split}\text{DiagonalGate}\ q_0, q_1, .., q_{n-1} =
     \begin{pmatrix}
         D[0]    & 0         & \dots     & 0 \\
         0       & D[1]      & \dots     & 0 \\
         \vdots  & \vdots    & \ddots    & 0 \\
         0       & 0         & \dots     & D[n-1]
-    \end{pmatrix}
-
-
+    \end{pmatrix}\end{split}
 $$
 
 Diagonal gates are useful as representations of Boolean functions, as they can map from $\{0,1\}^{2^n}$ to $\{0,1\}^{2^n}$ space. For example a phase oracle can be seen as a diagonal gate with $\{1, -1\}$ on the diagonals. Such an oracle will induce a $+1$ or :math\`-1\` phase on the amplitude of any corresponding basis state.
@@ -120,7 +118,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 167`
+`= 159`
 
 <span id="qiskit.circuit.library.Diagonal.layout" />
 

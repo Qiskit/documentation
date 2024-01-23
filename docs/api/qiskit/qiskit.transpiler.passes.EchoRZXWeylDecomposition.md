@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.EchoRZXWeylDecomposition
 
 <span id="qiskit.transpiler.passes.EchoRZXWeylDecomposition" />
 
-`qiskit.transpiler.passes.EchoRZXWeylDecomposition(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/echo_rzx_weyl_decomposition.py "view source code")
+`qiskit.transpiler.passes.EchoRZXWeylDecomposition(*args, **kwargs)`
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -23,7 +23,7 @@ EchoRZXWeylDecomposition pass.
 **Parameters**
 
 *   **instruction\_schedule\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – the mapping from circuit [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and arguments to [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule")s.
-*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `instruction_schedule_map` and `target` are specified then this argument will take precedence and `instruction_schedule_map` will be ignored.
+*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `instruction_schedule_map` and this are specified then this argument will take precedence and `instruction_schedule_map` will be ignored.
 
 ## Attributes
 

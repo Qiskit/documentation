@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.PadDelay
 
 <span id="qiskit.transpiler.passes.PadDelay" />
 
-`qiskit.transpiler.passes.PadDelay(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/scheduling/padding/pad_delay.py "view source code")
+`qiskit.transpiler.passes.PadDelay(*args, **kwargs)`
 
 Bases: `BasePadding`
 
@@ -46,7 +46,7 @@ Create new padding delay pass.
 **Parameters**
 
 *   **fill\_very\_end** – Set `True` to fill the end of circuit with delay.
-*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend. If it is supplied and does not support delay instruction on a qubit, padding passes do not pad any idle time of the qubit.
+*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend. If it supplied and it does not support delay instruction on a qubit, padding passes do not pad any idle time of the qubit.
 
 ## Attributes
 

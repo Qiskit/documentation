@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.DraperQFTAdder
 
 <span id="qiskit.circuit.library.DraperQFTAdder" />
 
-`qiskit.circuit.library.DraperQFTAdder(num_state_qubits, kind='fixed', name='DraperQFTAdder')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/arithmetic/adders/draper_qft_adder.py "view source code")
+`qiskit.circuit.library.DraperQFTAdder(num_state_qubits, kind='fixed', name='DraperQFTAdder')`
 
 Bases: `Adder`
 
@@ -109,7 +109,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 167`
+`= 159`
 
 <span id="qiskit.circuit.library.DraperQFTAdder.layout" />
 
