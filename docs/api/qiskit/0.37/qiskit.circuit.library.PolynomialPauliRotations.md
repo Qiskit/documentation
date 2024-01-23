@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.PolynomialPauliRotations
 
 <span id="qiskit.circuit.library.PolynomialPauliRotations" />
 
-`PolynomialPauliRotations(num_state_qubits=None, coeffs=None, basis='Y', name='poly')`
+`PolynomialPauliRotations(num_state_qubits=None, coeffs=None, basis='Y', name='poly')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/circuit/library/arithmetic/polynomial_pauli_rotations.py "view source code")
 
 Bases: [`qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations`](qiskit.circuit.library.FunctionalPauliRotations "qiskit.circuit.library.arithmetic.functional_pauli_rotations.FunctionalPauliRotations")
 
