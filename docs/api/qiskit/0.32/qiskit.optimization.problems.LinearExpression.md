@@ -1,8 +1,16 @@
+---
+title: LinearExpression
+description: API reference for qiskit.optimization.problems.LinearExpression
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.problems.LinearExpression
+---
+
 # LinearExpression
 
+<span id="qiskit.optimization.problems.LinearExpression" />
 
-
-`LinearExpression(quadratic_program, coefficients)`
+`LinearExpression(quadratic_program, coefficients)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/optimization/problems/linear_expression.py "view source code")
 
 Bases: `qiskit.optimization.problems.quadratic_program_element.QuadraticProgramElement`
 
@@ -19,16 +27,85 @@ The linear expression can be defined via an array, a list, a sparse matrix, or a
 
 ## Methods
 
-|                                                                                                                                                                                                                          |                                                                                                                  |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------------------------------------------------------------------------- |
-| [`evaluate`](qiskit.optimization.problems.LinearExpression.evaluate#qiskit.optimization.problems.LinearExpression.evaluate "qiskit.optimization.problems.LinearExpression.evaluate")                                     | Evaluate the linear expression for given variables.                                                              |
-| [`evaluate_gradient`](qiskit.optimization.problems.LinearExpression.evaluate_gradient#qiskit.optimization.problems.LinearExpression.evaluate_gradient "qiskit.optimization.problems.LinearExpression.evaluate_gradient") | Evaluate the gradient of the linear expression for given variables.                                              |
-| [`to_array`](qiskit.optimization.problems.LinearExpression.to_array#qiskit.optimization.problems.LinearExpression.to_array "qiskit.optimization.problems.LinearExpression.to_array")                                     | Returns the coefficients of the linear expression as array.                                                      |
-| [`to_dict`](qiskit.optimization.problems.LinearExpression.to_dict#qiskit.optimization.problems.LinearExpression.to_dict "qiskit.optimization.problems.LinearExpression.to_dict")                                         | Returns the coefficients of the linear expression as dictionary, either using variable names or indices as keys. |
+### evaluate
+
+<span id="qiskit.optimization.problems.LinearExpression.evaluate" />
+
+`LinearExpression.evaluate(x)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/optimization/problems/linear_expression.py "view source code")
+
+Evaluate the linear expression for given variables.
+
+**Parameters**
+
+**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
+
+**Return type**
+
+`float`
+
+**Returns**
+
+The value of the linear expression given the variable values.
+
+### evaluate\_gradient
+
+<span id="qiskit.optimization.problems.LinearExpression.evaluate_gradient" />
+
+`LinearExpression.evaluate_gradient(x)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/optimization/problems/linear_expression.py "view source code")
+
+Evaluate the gradient of the linear expression for given variables.
+
+**Parameters**
+
+**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
+
+**Return type**
+
+`ndarray`
+
+**Returns**
+
+The value of the gradient of the linear expression given the variable values.
+
+### to\_array
+
+<span id="qiskit.optimization.problems.LinearExpression.to_array" />
+
+`LinearExpression.to_array()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/optimization/problems/linear_expression.py "view source code")
+
+Returns the coefficients of the linear expression as array.
+
+**Return type**
+
+`ndarray`
+
+**Returns**
+
+An array with the coefficients corresponding to the linear expression.
+
+### to\_dict
+
+<span id="qiskit.optimization.problems.LinearExpression.to_dict" />
+
+`LinearExpression.to_dict(use_name=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/optimization/problems/linear_expression.py "view source code")
+
+Returns the coefficients of the linear expression as dictionary, either using variable names or indices as keys.
+
+**Parameters**
+
+**use\_name** (`bool`) – Determines whether to use index or names to refer to variables.
+
+**Return type**
+
+`Dict`\[`Union`\[`int`, `str`], `float`]
+
+**Returns**
+
+An dictionary with the coefficients corresponding to the linear expression.
 
 ## Attributes
 
-
+<span id="qiskit.optimization.problems.LinearExpression.coefficients" />
 
 ### coefficients
 
@@ -42,7 +119,7 @@ Returns the coefficients of the linear expression.
 
 The coefficients of the linear expression.
 
-
+<span id="qiskit.optimization.problems.LinearExpression.quadratic_program" />
 
 ### quadratic\_program
 
@@ -55,3 +132,4 @@ Returns the parent QuadraticProgram.
 **Returns**
 
 The parent QuadraticProgram.
+

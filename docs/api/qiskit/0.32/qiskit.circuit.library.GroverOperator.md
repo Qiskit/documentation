@@ -1,8 +1,16 @@
+---
+title: GroverOperator
+description: API reference for qiskit.circuit.library.GroverOperator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.GroverOperator
+---
+
 # GroverOperator
 
+<span id="qiskit.circuit.library.GroverOperator" />
 
-
-`GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')`
+`GroverOperator(oracle, state_preparation=None, zero_reflection=None, reflection_qubits=None, insert_barriers=False, mcx_mode='noancilla', name='Q')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/grover_operator.py "view source code")
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
@@ -149,13 +157,13 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.GroverOperator.ancillas" />
 
 ### ancillas
 
 Returns a list of ancilla bits in the order that the registers were added.
 
-
+<span id="qiskit.circuit.library.GroverOperator.calibrations" />
 
 ### calibrations
 
@@ -165,13 +173,13 @@ Return calibration dictionary.
 
 \{‘gate\_name’: \{(qubits, params): schedule}}
 
-
+<span id="qiskit.circuit.library.GroverOperator.clbits" />
 
 ### clbits
 
 Returns a list of classical bits in the order that the registers were added.
 
-
+<span id="qiskit.circuit.library.GroverOperator.data" />
 
 ### data
 
@@ -187,31 +195,31 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-
+<span id="qiskit.circuit.library.GroverOperator.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-
+<span id="qiskit.circuit.library.GroverOperator.global_phase" />
 
 ### global\_phase
 
 Return the global phase of the circuit in radians.
 
-
+<span id="qiskit.circuit.library.GroverOperator.header" />
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
+<span id="qiskit.circuit.library.GroverOperator.instances" />
 
 ### instances
 
 `= 16`
 
-
+<span id="qiskit.circuit.library.GroverOperator.metadata" />
 
 ### metadata
 
@@ -219,61 +227,61 @@ The user provided metadata associated with the circuit
 
 The metadata for the circuit is a user provided `dict` of metadata for the circuit. It will not be used to influence the execution or operation of the circuit, but it is expected to be passed between all transforms of the circuit (ie transpilation) and that providers will associate any circuit metadata with the results it returns from execution of that circuit.
 
-
+<span id="qiskit.circuit.library.GroverOperator.num_ancillas" />
 
 ### num\_ancillas
 
 Return the number of ancilla qubits.
 
-
+<span id="qiskit.circuit.library.GroverOperator.num_clbits" />
 
 ### num\_clbits
 
 Return number of classical bits.
 
-
+<span id="qiskit.circuit.library.GroverOperator.num_parameters" />
 
 ### num\_parameters
 
 Convenience function to get the number of parameter objects in the circuit.
 
-
+<span id="qiskit.circuit.library.GroverOperator.num_qubits" />
 
 ### num\_qubits
 
 Return number of qubits.
 
-
+<span id="qiskit.circuit.library.GroverOperator.oracle" />
 
 ### oracle
 
 The oracle implementing a reflection about the bad state.
 
-
+<span id="qiskit.circuit.library.GroverOperator.parameters" />
 
 ### parameters
 
 Convenience function to get the parameters defined in the parameter table.
 
-
+<span id="qiskit.circuit.library.GroverOperator.prefix" />
 
 ### prefix
 
 `= 'circuit'`
 
-
+<span id="qiskit.circuit.library.GroverOperator.qubits" />
 
 ### qubits
 
 Returns a list of quantum bits in the order that the registers were added.
 
-
+<span id="qiskit.circuit.library.GroverOperator.reflection_qubits" />
 
 ### reflection\_qubits
 
 Reflection qubits, on which S0 is applied (if S0 is not user-specified).
 
-
+<span id="qiskit.circuit.library.GroverOperator.state_preparation" />
 
 ### state\_preparation
 
@@ -283,7 +291,7 @@ The subcircuit implementing the A operator or Hadamards.
 
 `QuantumCircuit`
 
-
+<span id="qiskit.circuit.library.GroverOperator.zero_reflection" />
 
 ### zero\_reflection
 
@@ -292,3 +300,4 @@ The subcircuit implementing the reflection about 0.
 **Return type**
 
 `QuantumCircuit`
+

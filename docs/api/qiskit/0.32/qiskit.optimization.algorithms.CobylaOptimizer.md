@@ -1,12 +1,20 @@
+---
+title: CobylaOptimizer
+description: API reference for qiskit.optimization.algorithms.CobylaOptimizer
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.algorithms.CobylaOptimizer
+---
+
 # CobylaOptimizer
 
+<span id="qiskit.optimization.algorithms.CobylaOptimizer" />
 
-
-`CobylaOptimizer(rhobeg=1.0, rhoend=0.0001, maxfun=1000, disp=None, catol=0.0002, trials=1, clip=100.0)`
+`CobylaOptimizer(rhobeg=1.0, rhoend=0.0001, maxfun=1000, disp=None, catol=0.0002, trials=1, clip=100.0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/optimization/algorithms/cobyla_optimizer.py "view source code")
 
 Bases: `qiskit.optimization.algorithms.multistart_optimizer.MultiStartOptimizer`
 
-The SciPy COBYLA optimizer wrapped as an Qiskit [`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm#qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.OptimizationAlgorithm").
+The SciPy COBYLA optimizer wrapped as an Qiskit [`OptimizationAlgorithm`](qiskit.optimization.algorithms.OptimizationAlgorithm "qiskit.optimization.algorithms.OptimizationAlgorithm").
 
 This class provides a wrapper for `scipy.optimize.fmin_cobyla` ([https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.optimize.fmin\_cobyla.html](https://docs.scipy.org/doc/scipy-0.14.0/reference/generated/scipy.optimize.fmin_cobyla.html)) to be used within the optimization module. The arguments for `fmin_cobyla` are passed via the constructor.
 
@@ -23,7 +31,7 @@ This class provides a wrapper for `scipy.optimize.fmin_cobyla` ([https://docs.sc
 
 Initializes the CobylaOptimizer.
 
-This initializer takes the algorithmic parameters of COBYLA and stores them for later use of `fmin_cobyla` when [`solve()`](qiskit.optimization.algorithms.CobylaOptimizer.solve#qiskit.optimization.algorithms.CobylaOptimizer.solve "qiskit.optimization.algorithms.CobylaOptimizer.solve") is invoked. This optimizer can be applied to find a (local) optimum for problems consisting of only continuous variables.
+This initializer takes the algorithmic parameters of COBYLA and stores them for later use of `fmin_cobyla` when [`solve()`](qiskit.optimization.algorithms.CobylaOptimizer#solve "qiskit.optimization.algorithms.CobylaOptimizer.solve") is invoked. This optimizer can be applied to find a (local) optimum for problems consisting of only continuous variables.
 
 **Parameters**
 
@@ -37,16 +45,98 @@ This initializer takes the algorithmic parameters of COBYLA and stores them for 
 
 ## Methods
 
-|                                                                                                                                                                                                                                             |                                                                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| [`get_compatibility_msg`](qiskit.optimization.algorithms.CobylaOptimizer.get_compatibility_msg#qiskit.optimization.algorithms.CobylaOptimizer.get_compatibility_msg "qiskit.optimization.algorithms.CobylaOptimizer.get_compatibility_msg") | Checks whether a given problem can be solved with this optimizer.                         |
-| [`is_compatible`](qiskit.optimization.algorithms.CobylaOptimizer.is_compatible#qiskit.optimization.algorithms.CobylaOptimizer.is_compatible "qiskit.optimization.algorithms.CobylaOptimizer.is_compatible")                                 | Checks whether a given problem can be solved with the optimizer implementing this method. |
-| [`multi_start_solve`](qiskit.optimization.algorithms.CobylaOptimizer.multi_start_solve#qiskit.optimization.algorithms.CobylaOptimizer.multi_start_solve "qiskit.optimization.algorithms.CobylaOptimizer.multi_start_solve")                 | Applies a multi start method given a local optimizer.                                     |
-| [`solve`](qiskit.optimization.algorithms.CobylaOptimizer.solve#qiskit.optimization.algorithms.CobylaOptimizer.solve "qiskit.optimization.algorithms.CobylaOptimizer.solve")                                                                 | Tries to solves the given problem using the optimizer.                                    |
+### get\_compatibility\_msg
+
+<span id="qiskit.optimization.algorithms.CobylaOptimizer.get_compatibility_msg" />
+
+`CobylaOptimizer.get_compatibility_msg(problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/optimization/algorithms/cobyla_optimizer.py "view source code")
+
+Checks whether a given problem can be solved with this optimizer.
+
+Checks whether the given problem is compatible, i.e., whether the problem contains only continuous variables, and otherwise, returns a message explaining the incompatibility.
+
+**Parameters**
+
+**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+
+**Return type**
+
+`str`
+
+**Returns**
+
+Returns a string describing the incompatibility.
+
+### is\_compatible
+
+<span id="qiskit.optimization.algorithms.CobylaOptimizer.is_compatible" />
+
+`CobylaOptimizer.is_compatible(problem)`
+
+Checks whether a given problem can be solved with the optimizer implementing this method.
+
+**Parameters**
+
+**problem** (`QuadraticProgram`) – The optimization problem to check compatibility.
+
+**Return type**
+
+`bool`
+
+**Returns**
+
+Returns True if the problem is compatible, False otherwise.
+
+### multi\_start\_solve
+
+<span id="qiskit.optimization.algorithms.CobylaOptimizer.multi_start_solve" />
+
+`CobylaOptimizer.multi_start_solve(minimize, problem)`
+
+Applies a multi start method given a local optimizer.
+
+**Parameters**
+
+*   **minimize** (`Callable`\[\[`ndarray`], `Tuple`\[`ndarray`, `Any`]]) – A callable object that minimizes the problem specified
+*   **problem** (`QuadraticProgram`) – A problem to solve
+
+**Return type**
+
+`OptimizationResult`
+
+**Returns**
+
+The result of the multi start algorithm applied to the problem.
+
+### solve
+
+<span id="qiskit.optimization.algorithms.CobylaOptimizer.solve" />
+
+`CobylaOptimizer.solve(problem)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/optimization/algorithms/cobyla_optimizer.py "view source code")
+
+Tries to solves the given problem using the optimizer.
+
+Runs the optimizer to try to solve the optimization problem.
+
+**Parameters**
+
+**problem** (`QuadraticProgram`) – The problem to be solved.
+
+**Return type**
+
+`OptimizationResult`
+
+**Returns**
+
+The result of the optimizer applied to the problem.
+
+**Raises**
+
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the problem is incompatible with the optimizer.
 
 ## Attributes
 
-
+<span id="qiskit.optimization.algorithms.CobylaOptimizer.clip" />
 
 ### clip
 
@@ -60,7 +150,7 @@ Returns the clip value for this optimizer.
 
 The clip value.
 
-
+<span id="qiskit.optimization.algorithms.CobylaOptimizer.trials" />
 
 ### trials
 
@@ -73,3 +163,4 @@ Returns the number of trials for this optimizer.
 **Returns**
 
 The number of trials.
+

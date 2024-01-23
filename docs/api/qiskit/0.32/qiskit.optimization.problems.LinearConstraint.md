@@ -1,8 +1,16 @@
+---
+title: LinearConstraint
+description: API reference for qiskit.optimization.problems.LinearConstraint
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.problems.LinearConstraint
+---
+
 # LinearConstraint
 
+<span id="qiskit.optimization.problems.LinearConstraint" />
 
-
-`LinearConstraint(quadratic_program, name, linear, sense, rhs)`
+`LinearConstraint(quadratic_program, name, linear, sense, rhs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/optimization/problems/linear_constraint.py "view source code")
 
 Bases: `qiskit.optimization.problems.constraint.Constraint`
 
@@ -18,13 +26,29 @@ Representation of a linear constraint.
 
 ## Methods
 
-|                                                                                                                                                                                      |                                                |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ---------------------------------------------- |
-| [`evaluate`](qiskit.optimization.problems.LinearConstraint.evaluate#qiskit.optimization.problems.LinearConstraint.evaluate "qiskit.optimization.problems.LinearConstraint.evaluate") | Evaluate the left-hand-side of the constraint. |
+### evaluate
+
+<span id="qiskit.optimization.problems.LinearConstraint.evaluate" />
+
+`LinearConstraint.evaluate(x)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/optimization/problems/linear_constraint.py "view source code")
+
+Evaluate the left-hand-side of the constraint.
+
+**Parameters**
+
+**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values of the variables to be evaluated.
+
+**Return type**
+
+`float`
+
+**Returns**
+
+The left-hand-side of the constraint given the variable values.
 
 ## Attributes
 
-
+<span id="qiskit.optimization.problems.LinearConstraint.linear" />
 
 ### linear
 
@@ -38,7 +62,7 @@ Returns the linear expression corresponding to the left-hand-side of the constra
 
 The left-hand-side linear expression.
 
-
+<span id="qiskit.optimization.problems.LinearConstraint.name" />
 
 ### name
 
@@ -52,7 +76,7 @@ Returns the name of the constraint.
 
 The name of the constraint.
 
-
+<span id="qiskit.optimization.problems.LinearConstraint.quadratic_program" />
 
 ### quadratic\_program
 
@@ -66,7 +90,7 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-
+<span id="qiskit.optimization.problems.LinearConstraint.rhs" />
 
 ### rhs
 
@@ -80,7 +104,7 @@ Returns the right-hand-side of the constraint.
 
 The right-hand-side of the constraint.
 
-
+<span id="qiskit.optimization.problems.LinearConstraint.sense" />
 
 ### sense
 
@@ -93,3 +117,4 @@ Returns the sense of the constraint.
 **Returns**
 
 The sense of the constraint.
+

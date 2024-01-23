@@ -1,8 +1,16 @@
+---
+title: Constraint
+description: API reference for qiskit.optimization.problems.Constraint
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.problems.Constraint
+---
+
 # Constraint
 
+<span id="qiskit.optimization.problems.Constraint" />
 
-
-`Constraint(quadratic_program, name, sense, rhs)`
+`Constraint(quadratic_program, name, sense, rhs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/optimization/problems/constraint.py "view source code")
 
 Bases: `qiskit.optimization.problems.quadratic_program_element.QuadraticProgramElement`
 
@@ -19,13 +27,29 @@ Initializes the constraint.
 
 ## Methods
 
-|                                                                                                                                                                    |                                                                      |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------- |
-| [`evaluate`](qiskit.optimization.problems.Constraint.evaluate#qiskit.optimization.problems.Constraint.evaluate "qiskit.optimization.problems.Constraint.evaluate") | Evaluate left-hand-side of constraint for given values of variables. |
+### evaluate
+
+<span id="qiskit.optimization.problems.Constraint.evaluate" />
+
+`abstract Constraint.evaluate(x)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/optimization/problems/constraint.py "view source code")
+
+Evaluate left-hand-side of constraint for given values of variables.
+
+**Parameters**
+
+**x** (`Union`\[`ndarray`, `List`, `Dict`\[`Union`\[`int`, `str`], `float`]]) – The values to be used for the variables.
+
+**Return type**
+
+`float`
+
+**Returns**
+
+The left-hand-side of the constraint.
 
 ## Attributes
 
-
+<span id="qiskit.optimization.problems.Constraint.name" />
 
 ### name
 
@@ -39,7 +63,7 @@ Returns the name of the constraint.
 
 The name of the constraint.
 
-
+<span id="qiskit.optimization.problems.Constraint.quadratic_program" />
 
 ### quadratic\_program
 
@@ -53,7 +77,7 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
-
+<span id="qiskit.optimization.problems.Constraint.rhs" />
 
 ### rhs
 
@@ -67,7 +91,7 @@ Returns the right-hand-side of the constraint.
 
 The right-hand-side of the constraint.
 
-
+<span id="qiskit.optimization.problems.Constraint.sense" />
 
 ### sense
 
@@ -80,3 +104,4 @@ Returns the sense of the constraint.
 **Returns**
 
 The sense of the constraint.
+
