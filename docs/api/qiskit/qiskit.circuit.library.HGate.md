@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.HGate
 
 <span id="qiskit.circuit.library.HGate" />
 
-`qiskit.circuit.library.HGate(*args, _force_mutable=False, **kwargs)`
+`qiskit.circuit.library.HGate(*args, _force_mutable=False, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/h.py "view source code")
 
 Bases: [`SingletonGate`](circuit_singleton#qiskit.circuit.singleton.SingletonGate "qiskit.circuit.singleton.SingletonGate")
 
@@ -31,11 +31,11 @@ q_0: ┤ H ├
 **Matrix Representation:**
 
 $$
-\begin{split}H = \frac{1}{\sqrt{2}}
+H = \frac{1}{\sqrt{2}}
     \begin{pmatrix}
         1 & 1 \\
         1 & -1
-    \end{pmatrix}\end{split}
+    \end{pmatrix}
 $$
 
 Create new H gate.

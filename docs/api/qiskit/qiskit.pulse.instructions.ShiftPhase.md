@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.ShiftPhase
 
 <span id="qiskit.pulse.instructions.ShiftPhase" />
 
-`qiskit.pulse.instructions.ShiftPhase(phase, channel, name=None)`
+`qiskit.pulse.instructions.ShiftPhase(phase, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/instructions/phase.py "view source code")
 
 Bases: [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
 
@@ -20,6 +20,8 @@ In particular, a PulseChannel creates pulses of the form
 
 $$
 Re[\exp(i 2\pi f jdt + \phi) d_j].
+
+
 $$
 
 The `ShiftPhase` instruction causes $\phi$ to be increased by the instruction’s `phase` operand. This will affect all pulses following on the same channel.

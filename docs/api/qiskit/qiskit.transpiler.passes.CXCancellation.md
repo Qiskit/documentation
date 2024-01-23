@@ -10,11 +10,11 @@ python_api_name: qiskit.transpiler.passes.CXCancellation
 
 <span id="qiskit.transpiler.passes.CXCancellation" />
 
-`qiskit.transpiler.passes.CXCancellation(*args, **kwargs)`
+`qiskit.transpiler.passes.CXCancellation(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/cx_cancellation.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-Cancel back-to-back cx gates in dag.
+Cancel back-to-back `cx` gates in dag.
 
 ## Attributes
 

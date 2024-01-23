@@ -97,7 +97,7 @@ The Converter submodules include objects which manipulate Operators, usually rec
 
 <span id="qiskit.opflow.commutator" />
 
-`qiskit.opflow.commutator(op_a, op_b)`
+`qiskit.opflow.commutator(op_a, op_b)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/utils.py "view source code")
 
 Deprecated: Compute commutator of op\_a and op\_b.
 
@@ -124,7 +124,7 @@ the commutator
 
 <span id="qiskit.opflow.anti_commutator" />
 
-`qiskit.opflow.anti_commutator(op_a, op_b)`
+`qiskit.opflow.anti_commutator(op_a, op_b)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/utils.py "view source code")
 
 Deprecated: Compute anti-commutator of op\_a and op\_b.
 
@@ -151,7 +151,7 @@ the anti-commutator
 
 <span id="qiskit.opflow.double_commutator" />
 
-`qiskit.opflow.double_commutator(op_a, op_b, op_c, sign=False)`
+`qiskit.opflow.double_commutator(op_a, op_b, op_c, sign=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/utils.py "view source code")
 
 Deprecated: Compute symmetric double commutator of op\_a, op\_b and op\_c. See McWeeny chapter 13.6 Equation of motion methods (page 479)
 
@@ -167,6 +167,8 @@ If sign is True, it returns
 $$
 \lbrace[A, B], C\rbrace/2 + \lbrace A, [B, C]\rbrace/2
 = (2ABC - 2CBA - BAC + CAB - ACB + BCA)/2.
+
+
 $$
 
 <Admonition title="Deprecated since version 0.24.0" type="danger">
@@ -192,7 +194,7 @@ the double commutator
 
 <span id="qiskit.opflow.OpflowError" />
 
-`qiskit.opflow.OpflowError(*message)`
+`qiskit.opflow.OpflowError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/opflow/exceptions.py "view source code")
 
 Deprecated: For Opflow specific errors.
 

@@ -56,28 +56,35 @@ pass_manager = generate_preset_pass_manager(3, backend)
 which will generate a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") object for optimization level 3 targeting the [`FakeLagosV2`](qiskit.providers.fake_provider.FakeLagosV2 "qiskit.providers.fake_provider.FakeLagosV2") backend (equivalent to what is used internally by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") with `backend=FakeLagosV2()` and `optimization_level=3`). You can use this just like you would any other [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager"). However, because it is a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") it also makes it easy to compose and/or replace stages of the pipeline. For example, if you wanted to run a custom scheduling stage using dynamical decoupling (via the [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") pass) and also add initial logical optimization prior to routing, you would do something like (building off the previous example):
 
 ```python
-from qiskit.circuit.library import XGate, HGate, RXGate, PhaseGate, TGate, TdgGate
+import numpy as np
+from qiskit.circuit.library import HGate, PhaseGate, RXGate, TdgGate, TGate, XGate
 from qiskit.transpiler import PassManager
-from qiskit.transpiler.passes import ALAPScheduleAnalysis, PadDynamicalDecoupling
-from qiskit.transpiler.passes import CXCancellation, InverseCancellation
+from qiskit.transpiler.passes import (
+    ALAPScheduleAnalysis,
+    CXCancellation,
+    InverseCancellation,
+    PadDynamicalDecoupling,
+)
 
-backend_durations = backend.target.durations()
 dd_sequence = [XGate(), XGate()]
-scheduling_pm = PassManager([
-    ALAPScheduleAnalysis(backend_durations),
-    PadDynamicalDecoupling(backend_durations, dd_sequence),
-])
+scheduling_pm = PassManager(
+    [
+        ALAPScheduleAnalysis(target=backend.target),
+        PadDynamicalDecoupling(target=backend.target, dd_sequence=dd_sequence),
+    ]
+)
 inverse_gate_list = [
     HGate(),
     (RXGate(np.pi / 4), RXGate(-np.pi / 4)),
     (PhaseGate(np.pi / 4), PhaseGate(-np.pi / 4)),
     (TGate(), TdgGate()),
-
-])
-logical_opt = PassManager([
-    CXCancellation(),
-    InverseCancellation([HGate(), (RXGate(np.pi / 4), RXGate(-np.pi / 4))
-])
+]
+logical_opt = PassManager(
+    [
+        CXCancellation(),
+        InverseCancellation(inverse_gate_list),
+    ]
+)
 
 
 # Add pre-layout stage to run extra logical optimization
@@ -86,11 +93,11 @@ pass_manager.pre_layout = logical_opt
 pass_manager.scheduling = scheduling_pm
 ```
 
-Then when [`run()`](qiskit.transpiler.StagedPassManager#run "qiskit.transpiler.StagedPassManager.run") is called on `pass_manager` the `logical_opt` [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") will be called prior to the `layout` stage and for the `scheduling` stage our custom [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") `scheduling_pm` will be used.
+Now, when the staged pass manager is run via the [`run()`](qiskit.transpiler.StagedPassManager#run "qiskit.transpiler.StagedPassManager.run") method, the `logical_opt` pass manager will be called before the `layout` stage, and the `scheduling_pm` pass manager will be used for the `scheduling` stage instead of the default.
 
 ## Custom Pass Managers
 
-In addition to modifying preset pass managers, it is also possible to construct a pass manager to build an entirely custom pipeline for transforming input circuits. You can leverage the [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") class directly to do this. You can define arbitrary stage names and populate them with a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") instance. For example:
+In addition to modifying preset pass managers, it is also possible to construct a pass manager to build an entirely custom pipeline for transforming input circuits. You can use the [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") class directly to do this. You can define arbitrary stage names and populate them with a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") instance. For example, the following code creates a new [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") that has 2 stages, `init` and `translation`.:
 
 ```python
 from qiskit.transpiler.passes import (
@@ -98,6 +105,7 @@ from qiskit.transpiler.passes import (
     Collect2qBlocks,
     ConsolidateBlocks,
     UnitarySynthesis,
+    Unroll3qOrMore,
 )
 from qiskit.transpiler import PassManager, StagedPassManager
 
@@ -116,9 +124,9 @@ staged_pm = StagedPassManager(
 )
 ```
 
-will create a new [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") that has 2 stages `init` and `translation`. There is no limit on the number of stages you can put in a custom [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") instance.
+There is no limit on the number of stages you can put in a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager").
 
-The [Stage Generator Functions](transpiler_preset#stage-generators) functions may be useful for the construction of custom pass managers. They generate stages which provide common functionality used in many pass managers. For example, [`generate_embed_passmanager()`](transpiler_preset#qiskit.transpiler.preset_passmanagers.common.generate_embed_passmanager "qiskit.transpiler.preset_passmanagers.common.generate_embed_passmanager") can be used to generate a stage to “embed” a selected initial [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") from a layout pass to the specified target device.
+The [Stage Generator Functions](transpiler_preset#stage-generators) may be useful for the construction of custom `generate_embed_passmanager` generates a [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") to “embed” a selected initial [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout") from a layout pass to the specified target device.
 
 ## Representing Quantum Computers
 
@@ -889,30 +897,30 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 |                                                                                                                                       |                                                                                                                                                                                                                    |
 | ------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target")(\[description, num\_qubits, dt, ...])                                 | The intent of the `Target` object is to inform Qiskit's compiler about the constraints of a particular backend so the compiler can compile an input circuit to something that works and is optimized for a device. |
-| [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties")(\[duration, error, ...]) | A representation of the properties of a gate implementation.                                                                                                                                                       |
+| [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target")(\[description, num\_qubits, dt, ...])                                 | The intent of the `Target` object is to inform Qiskit's compiler about the constraints of a particular backend so the compiler can compile an input circuit to something that works and is optimized for a device. |
+| [`InstructionProperties`](qiskit.transpiler.InstructionProperties "qiskit.transpiler.InstructionProperties")(\[duration, error, ...]) | A representation of the properties of a gate implementation.                                                                                                                                                       |
 
 ### Pass Manager Construction
 
 |                                                                                                                           |                                                                        |
 | ------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------- |
-| [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager")(\[stages])               | A Pass manager pipeline built up of individual stages                  |
-| [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")(\[passes, max\_iteration])                 | Manager for a set of Passes and their scheduling during transpilation. |
-| [`PassManagerConfig`](qiskit.transpiler.PassManagerConfig "qiskit.transpiler.PassManagerConfig")(\[initial\_layout, ...]) | Pass Manager Configuration.                                            |
+| [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager")(\[stages])               | A pass manager pipeline built from individual stages.                  |
+| [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager")(\[passes, max\_iteration])                 | Manager for a set of Passes and their scheduling during transpilation. |
+| [`PassManagerConfig`](qiskit.transpiler.PassManagerConfig "qiskit.transpiler.PassManagerConfig")(\[initial\_layout, ...]) | Pass Manager Configuration.                                            |
 
 ### Layout and Topology
 
 |                                                                                                                          |                                                        |
 | ------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------ |
 | [`Layout`](qiskit.transpiler.Layout "qiskit.transpiler.Layout")(\[input\_dict])                                          | Two-ways dict to represent a Layout.                   |
-| [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")(\[couplinglist, description])             | Directed graph specifying fixed coupling.              |
-| [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout")(initial\_layout, ...\[, ...]) | Layout attributes from output circuit from transpiler. |
+| [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap")(\[couplinglist, description])             | Directed graph specifying fixed coupling.              |
+| [`TranspileLayout`](qiskit.transpiler.TranspileLayout "qiskit.transpiler.TranspileLayout")(initial\_layout, ...\[, ...]) | Layout attributes from output circuit from transpiler. |
 
 ### Scheduling
 
 |                                                                                                                                          |                                                                   |
 | ---------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------- |
-| [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")(\[instruction\_durations, dt]) | Helper class to provide durations of instructions for scheduling. |
+| [`InstructionDurations`](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")(\[instruction\_durations, dt]) | Helper class to provide durations of instructions for scheduling. |
 
 ### Fenced Objects
 
@@ -925,14 +933,14 @@ See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for mor
 
 |                                                                                                                         |                                                      |
 | ----------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.TransformationPass")(\*args, \*\*kwargs) | A transformation pass: change DAG, not property set. |
-| [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.AnalysisPass")(\*args, \*\*kwargs)                   | An analysis pass: change property set, not DAG.      |
+| [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.TransformationPass")(\*args, \*\*kwargs) | A transformation pass: change DAG, not property set. |
+| [`AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.AnalysisPass")(\*args, \*\*kwargs)                   | An analysis pass: change property set, not DAG.      |
 
 ### Exceptions
 
 <span id="qiskit.transpiler.TranspilerError" />
 
-`qiskit.transpiler.TranspilerError(*message)`
+`qiskit.transpiler.TranspilerError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/exceptions.py "view source code")
 
 Exceptions raised during transpilation.
 
@@ -940,7 +948,7 @@ Set the error message.
 
 <span id="qiskit.transpiler.TranspilerAccessError" />
 
-`qiskit.transpiler.TranspilerAccessError(*message)`
+`qiskit.transpiler.TranspilerAccessError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/exceptions.py "view source code")
 
 DEPRECATED: Exception of access error in the transpiler passes.
 
@@ -948,7 +956,7 @@ Set the error message.
 
 <span id="qiskit.transpiler.CouplingError" />
 
-`qiskit.transpiler.CouplingError(*msg)`
+`qiskit.transpiler.CouplingError(*msg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/exceptions.py "view source code")
 
 Base class for errors raised by the coupling graph object.
 
@@ -956,7 +964,7 @@ Set the error message.
 
 <span id="qiskit.transpiler.LayoutError" />
 
-`qiskit.transpiler.LayoutError(*msg)`
+`qiskit.transpiler.LayoutError(*msg)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/exceptions.py "view source code")
 
 Errors raised by the layout object.
 

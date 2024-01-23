@@ -10,13 +10,13 @@ python_api_name: qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation
 
 <span id="qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation" />
 
-`qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation(*args, **kwargs)`
+`qiskit.transpiler.passes.Optimize1qGatesSimpleCommutation(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/optimize_1q_commutation.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
-Optimizes 1Q gate strings interrupted by 2Q gates by commuting the components and re- synthesizing the results. The commutation rules are stored in commutation\_table.
+Optimizes 1Q gate strings interrupted by 2Q gates by commuting the components and resynthesizing the results. The commutation rules are stored in `commutation_table`.
 
-**NOTE: In addition to those mentioned in commutation\_table, this pass has some limitations:**
+**NOTE: In addition to those mentioned in `commutation_table`, this pass has some limitations:**
 
 *   Does not handle multiple commutations in a row without intermediate progress.
 *   Can only commute into positions where there are pre-existing runs.
