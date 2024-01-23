@@ -9,6 +9,10 @@ description: Summary of the native gates and operations supported by IBM Quantum
 
 Each processor family has a specific set of native gates and operations. 
 
+Mention qubit_init flag. What about rep_delay?
+
+Note that RESET is not the same as the initialization done at the start of your circuit to prepare the all 0's state.
+
 
 ## Find the native gateset for a system
 
@@ -71,16 +75,11 @@ for backend in service.backends():
 - [delay](/api/qiskit/qiskit.circuit.Delay)
     Eagle, Falcon, Heron
 
-qubit_init flag?
 
-describing for 2Q, then 1Q, what each is, what the unitaries are, etc. Then explanation of reset
-
-service.backends.... code to loop through all the backends
 
 
 NOTES FOR DRAFTING:
 
-IBM Quantum systems support the `reset` instruction in Qiskit. This allows users to reset qubits into the ground state (`|0>`) with high fidelity. These instructions are comprised of a not-gate conditioned on the measurement outcome of the qubit, and demonstrate the real-time compute power of the IBM Quantum systems. They can be explored for the reuse of qubits in a circuit, to yield an increase in system throughput, and provide fidelity improvements over standard cavity-cooling methods. 
 
 IBM Quantum systems support the `reset` instruction in Qiskit. This allows users to reset qubits into the ground state (`|0>`) with high fidelity. These instructions are comprised of a not-gate conditioned on the measurement outcome of the qubit, and demonstrate the real-time compute power of the IBM Quantum systems. They can be explored for the reuse of qubits in a circuit, to yield an increase in system throughput, and provide fidelity improvements over standard cavity-cooling methods. 
 
