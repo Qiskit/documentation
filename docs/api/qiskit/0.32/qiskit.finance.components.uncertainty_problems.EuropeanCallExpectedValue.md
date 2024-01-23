@@ -1,8 +1,16 @@
+---
+title: EuropeanCallExpectedValue
+description: API reference for qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue
+---
+
 # EuropeanCallExpectedValue
 
+<span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue" />
 
-
-`EuropeanCallExpectedValue(uncertainty_model, strike_price, c_approx, i_state=None, i_compare=None, i_objective=None)`
+`EuropeanCallExpectedValue(uncertainty_model, strike_price, c_approx, i_state=None, i_compare=None, i_objective=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/components/uncertainty_problems/european_call_expected_value.py "view source code")
 
 Bases: `qiskit.aqua.components.uncertainty_problems.uncertainty_problem.UncertaintyProblem`
 
@@ -23,26 +31,144 @@ Constructor.
 
 ## Methods
 
-|                                                                                                                                                                                                                                                                                                                                                               |                                                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [`build`](qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build#qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build "qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build")                                                                                                     | Adds corresponding sub-circuit to given circuit                       |
-| [`build_controlled`](qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_controlled#qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_controlled "qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_controlled")                                                         | Adds corresponding controlled sub-circuit to given circuit            |
-| [`build_controlled_inverse`](qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_controlled_inverse#qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_controlled_inverse "qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_controlled_inverse")                         | Adds controlled inverse of corresponding sub-circuit to given circuit |
-| [`build_controlled_inverse_power`](qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_controlled_inverse_power#qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_controlled_inverse_power "qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_controlled_inverse_power") | Adds controlled, inverse, power of corresponding circuit.             |
-| [`build_controlled_power`](qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_controlled_power#qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_controlled_power "qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_controlled_power")                                 | Adds controlled power of corresponding circuit.                       |
-| [`build_inverse`](qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_inverse#qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_inverse "qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_inverse")                                                                     | Adds inverse of corresponding sub-circuit to given circuit            |
-| [`build_inverse_power`](qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_inverse_power#qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_inverse_power "qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_inverse_power")                                             | Adds inverse power of corresponding circuit.                          |
-| [`build_power`](qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_power#qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_power "qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_power")                                                                             | Adds power of corresponding circuit.                                  |
-| [`get_num_qubits`](qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.get_num_qubits#qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.get_num_qubits "qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.get_num_qubits")                                                                 | returns number of qubits                                              |
-| [`get_num_qubits_controlled`](qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.get_num_qubits_controlled#qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.get_num_qubits_controlled "qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.get_num_qubits_controlled")                     | returns number of qubits controlled                                   |
-| [`required_ancillas`](qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.required_ancillas#qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.required_ancillas "qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.required_ancillas")                                                     | returns required ancillas                                             |
-| [`required_ancillas_controlled`](qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.required_ancillas_controlled#qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.required_ancillas_controlled "qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.required_ancillas_controlled")         | returns required ancillas controlled                                  |
-| [`value_to_estimation`](qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.value_to_estimation#qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.value_to_estimation "qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.value_to_estimation")                                             | value to estimate                                                     |
+### build
+
+<span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build" />
+
+`EuropeanCallExpectedValue.build(qc, q, q_ancillas=None, params=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/components/uncertainty_problems/european_call_expected_value.py "view source code")
+
+Adds corresponding sub-circuit to given circuit
+
+**Parameters**
+
+*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+*   **params** (*list*) – parameters for circuit
+
+### build\_controlled
+
+<span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_controlled" />
+
+`EuropeanCallExpectedValue.build_controlled(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+
+Adds corresponding controlled sub-circuit to given circuit
+
+**Parameters**
+
+*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+
+### build\_controlled\_inverse
+
+<span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_controlled_inverse" />
+
+`EuropeanCallExpectedValue.build_controlled_inverse(qc, q, q_control, q_ancillas=None, use_basis_gates=True)`
+
+Adds controlled inverse of corresponding sub-circuit to given circuit
+
+**Parameters**
+
+*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+*   **q\_control** ([*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – control qubit
+*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+*   **use\_basis\_gates** (*bool*) – use basis gates for expansion of controlled circuit
+
+### build\_controlled\_inverse\_power
+
+<span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_controlled_inverse_power" />
+
+`EuropeanCallExpectedValue.build_controlled_inverse_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+
+Adds controlled, inverse, power of corresponding circuit. May be overridden if a more efficient implementation is possible
+
+### build\_controlled\_power
+
+<span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_controlled_power" />
+
+`EuropeanCallExpectedValue.build_controlled_power(qc, q, q_control, power, q_ancillas=None, use_basis_gates=True)`
+
+Adds controlled power of corresponding circuit. May be overridden if a more efficient implementation is possible
+
+### build\_inverse
+
+<span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_inverse" />
+
+`EuropeanCallExpectedValue.build_inverse(qc, q, q_ancillas=None)`
+
+Adds inverse of corresponding sub-circuit to given circuit
+
+**Parameters**
+
+*   **qc** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – quantum circuit
+*   **q** (*list*) – list of qubits (has to be same length as self.\_num\_qubits)
+*   **q\_ancillas** (*list*) – list of ancilla qubits (or None if none needed)
+
+### build\_inverse\_power
+
+<span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_inverse_power" />
+
+`EuropeanCallExpectedValue.build_inverse_power(qc, q, power, q_ancillas=None)`
+
+Adds inverse power of corresponding circuit. May be overridden if a more efficient implementation is possible
+
+### build\_power
+
+<span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.build_power" />
+
+`EuropeanCallExpectedValue.build_power(qc, q, power, q_ancillas=None)`
+
+Adds power of corresponding circuit. May be overridden if a more efficient implementation is possible
+
+### get\_num\_qubits
+
+<span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.get_num_qubits" />
+
+`EuropeanCallExpectedValue.get_num_qubits()`
+
+returns number of qubits
+
+### get\_num\_qubits\_controlled
+
+<span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.get_num_qubits_controlled" />
+
+`EuropeanCallExpectedValue.get_num_qubits_controlled()`
+
+returns number of qubits controlled
+
+### required\_ancillas
+
+<span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.required_ancillas" />
+
+`EuropeanCallExpectedValue.required_ancillas()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/components/uncertainty_problems/european_call_expected_value.py "view source code")
+
+returns required ancillas
+
+### required\_ancillas\_controlled
+
+<span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.required_ancillas_controlled" />
+
+`EuropeanCallExpectedValue.required_ancillas_controlled()`
+
+returns required ancillas controlled
+
+### value\_to\_estimation
+
+<span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.value_to_estimation" />
+
+`EuropeanCallExpectedValue.value_to_estimation(value)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/finance/components/uncertainty_problems/european_call_expected_value.py "view source code")
+
+value to estimate
 
 ## Attributes
 
-
+<span id="qiskit.finance.components.uncertainty_problems.EuropeanCallExpectedValue.num_target_qubits" />
 
 ### num\_target\_qubits
 
 Returns the number of target qubits
+
