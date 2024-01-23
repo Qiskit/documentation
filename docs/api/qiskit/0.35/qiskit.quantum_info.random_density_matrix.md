@@ -1,8 +1,16 @@
+---
+title: random_density_matrix
+description: API reference for qiskit.quantum_info.random_density_matrix
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.quantum_info.random_density_matrix
+---
+
 # qiskit.quantum\_info.random\_density\_matrix
 
+<span id="qiskit.quantum_info.random_density_matrix" />
 
-
-`random_density_matrix(dims, rank=None, method='Hilbert-Schmidt', seed=None)`
+`random_density_matrix(dims, rank=None, method='Hilbert-Schmidt', seed=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/states/random.py "view source code")
 
 Generator a random DensityMatrix.
 
@@ -19,8 +27,9 @@ the random density matrix.
 
 **Return type**
 
-[DensityMatrix](qiskit.quantum_info.DensityMatrix#qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")
+[DensityMatrix](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")
 
 **Raises**
 
 **QiskitError** – if the method is not valid.
+

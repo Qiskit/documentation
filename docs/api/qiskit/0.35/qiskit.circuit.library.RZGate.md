@@ -1,8 +1,16 @@
+---
+title: RZGate
+description: API reference for qiskit.circuit.library.RZGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.RZGate
+---
+
 # RZGate
 
+<span id="qiskit.circuit.library.RZGate" />
 
-
-`RZGate(phi, label=None)`
+`RZGate(phi, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rz.py "view source code")
 
 Bases: `qiskit.circuit.gate.Gate`
 
@@ -42,14 +50,41 @@ Create new RZ gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                  |                                      |
-| -------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------ |
-| [`control`](qiskit.circuit.library.RZGate.control#qiskit.circuit.library.RZGate.control "qiskit.circuit.library.RZGate.control") | Return a (multi-)controlled-RZ gate. |
-| [`inverse`](qiskit.circuit.library.RZGate.inverse#qiskit.circuit.library.RZGate.inverse "qiskit.circuit.library.RZGate.inverse") | Return inverted RZ gate              |
+### control
+
+<span id="qiskit.circuit.library.RZGate.control" />
+
+`RZGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rz.py "view source code")
+
+Return a (multi-)controlled-RZ gate.
+
+**Parameters**
+
+*   **num\_ctrl\_qubits** (*int*) – number of control qubits.
+*   **label** (*str or None*) – An optional label for the gate \[Default: None]
+*   **ctrl\_state** (*int or str or None*) – control state expressed as integer, string (e.g. ‘110’), or None. If None, use all 1s.
+
+**Returns**
+
+controlled version of this gate.
+
+**Return type**
+
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+
+### inverse
+
+<span id="qiskit.circuit.library.RZGate.inverse" />
+
+`RZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rz.py "view source code")
+
+Return inverted RZ gate
+
+$RZ(\lambda){\dagger} = RZ(-\lambda)$
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.RZGate.condition_bits" />
 
 ### condition\_bits
 
@@ -59,25 +94,25 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.RZGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-
+<span id="qiskit.circuit.library.RZGate.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
+<span id="qiskit.circuit.library.RZGate.duration" />
 
 ### duration
 
 Get the duration.
 
-
+<span id="qiskit.circuit.library.RZGate.label" />
 
 ### label
 
@@ -87,32 +122,33 @@ Return instruction label
 
 `str`
 
-
+<span id="qiskit.circuit.library.RZGate.name" />
 
 ### name
 
 Return the name.
 
-
+<span id="qiskit.circuit.library.RZGate.num_clbits" />
 
 ### num\_clbits
 
 Return the number of clbits.
 
-
+<span id="qiskit.circuit.library.RZGate.num_qubits" />
 
 ### num\_qubits
 
 Return the number of qubits.
 
-
+<span id="qiskit.circuit.library.RZGate.params" />
 
 ### params
 
 return instruction params.
 
-
+<span id="qiskit.circuit.library.RZGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

@@ -1,14 +1,22 @@
+---
+title: calculate_2q_epg
+description: API reference for qiskit.ignis.verification.calculate_2q_epg
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.ignis.verification.calculate_2q_epg
+---
+
 # qiskit.ignis.verification.calculate\_2q\_epg
 
+<span id="qiskit.ignis.verification.calculate_2q_epg" />
 
-
-`calculate_2q_epg(gate_per_cliff, epc_2q, qubit_pair, list_epgs_1q=None, two_qubit_name='cx')`
+`calculate_2q_epg(gate_per_cliff, epc_2q, qubit_pair, list_epgs_1q=None, two_qubit_name='cx')`[GitHub](https://github.com/qiskit-community/qiskit-ignis/tree/stable/0.7/qiskit/ignis/verification/randomized_benchmarking/rb_utils.py "view source code")
 
 Convert error per Clifford (EPC) into error per gate (EPG) of two qubit `cx` gates.
 
 Given that a standard 2Q RB sequences consist of `u1`, `u2`, `u3`, and `cx` gates, the EPG of `cx` gate can be roughly approximated by $EPG_{CX} = EPC/N_{CX}$, where $N_{CX}$ is number of `cx` gates per Clifford which is designed to be 1.5. Because an error from two qubit gates are usually dominant and the contribution of single qubit gates in 2Q RB experiments is thus able to be ignored. If `list_epgs_1q` is not provided, the function returns the EPG calculated based upon this assumption.
 
-When we know the EPG of every single qubit gates used in the 2Q RB experiment, we can isolate the EPC of the two qubit gate, ie $EPG_{CX} = EPC_{CX}/N_{CX}$ \[1]. This will give you more accurate estimation of EPG, especially when the `cx` gate fidelity is close to that of single qubit gate. To evaluate EPGs of single qubit gates, you first need to run standard 1Q RB experiments separately and feed the fit result and gate counts to [`calculate_1q_epg()`](qiskit.ignis.verification.calculate_1q_epg#qiskit.ignis.verification.calculate_1q_epg "qiskit.ignis.verification.calculate_1q_epg").
+When we know the EPG of every single qubit gates used in the 2Q RB experiment, we can isolate the EPC of the two qubit gate, ie $EPG_{CX} = EPC_{CX}/N_{CX}$ \[1]. This will give you more accurate estimation of EPG, especially when the `cx` gate fidelity is close to that of single qubit gate. To evaluate EPGs of single qubit gates, you first need to run standard 1Q RB experiments separately and feed the fit result and gate counts to [`calculate_1q_epg()`](qiskit.ignis.verification.calculate_1q_epg "qiskit.ignis.verification.calculate_1q_epg").
 
 ```python
 import qiskit.ignis.verification.randomized_benchmarking as rb
@@ -57,7 +65,7 @@ EPG without `list_epgs_1q`: 0.016107, with `list_epgs_1q`: 0.013622
 
 **Parameters**
 
-*   **gate\_per\_cliff** (`Dict`\[`int`, `Dict`\[`str`, `float`]]) – dictionary of gate per Clifford. see [`gates_per_clifford()`](qiskit.ignis.verification.gates_per_clifford#qiskit.ignis.verification.gates_per_clifford "qiskit.ignis.verification.gates_per_clifford").
+*   **gate\_per\_cliff** (`Dict`\[`int`, `Dict`\[`str`, `float`]]) – dictionary of gate per Clifford. see [`gates_per_clifford()`](qiskit.ignis.verification.gates_per_clifford "qiskit.ignis.verification.gates_per_clifford").
 *   **epc\_2q** (`float`) – EPC fit from 2Q RB experiment data.
 *   **qubit\_pair** (`List`\[`int`]) – index of two qubits to calculate EPG.
 *   **list\_epgs\_1q** (`Optional`\[`List`\[`Dict`\[`str`, `float`]]]) – list of single qubit EPGs of qubit listed in `qubit_pair`.
@@ -74,3 +82,4 @@ EPG of 2Q gate.
 **Raises**
 
 **QiskitError** – when `cx` is not found, specified `qubit_pair` is not included in the gate count dictionary, or length of `qubit_pair` is not 2.
+

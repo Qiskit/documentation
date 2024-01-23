@@ -1,8 +1,16 @@
+---
+title: plot_state_city
+description: API reference for qiskit.visualization.plot_state_city
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.visualization.plot_state_city
+---
+
 # qiskit.visualization.plot\_state\_city
 
+<span id="qiskit.visualization.plot_state_city" />
 
-
-`plot_state_city(state, title='', figsize=None, color=None, alpha=1, ax_real=None, ax_imag=None, *, rho=None, filename=None)`
+`plot_state_city(state, title='', figsize=None, color=None, alpha=1, ax_real=None, ax_imag=None, *, rho=None, filename=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/state_visualization.py "view source code")
 
 Plot the cityscape of quantum state.
 
@@ -10,7 +18,7 @@ Plot two 3d bar graphs (two dimensional) of the real and imaginary part of the d
 
 **Parameters**
 
-*   **state** ([*Statevector*](qiskit.quantum_info.Statevector#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix#qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
+*   **state** ([*Statevector*](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")  *or*[*DensityMatrix*](qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix") *or ndarray*) – an N-qubit quantum state.
 *   **title** (*str*) – a string that represents the plot title
 *   **figsize** (*tuple*) – Figure size in inches.
 *   **color** (*list*) – A list of len=2 giving colors for real and imaginary components of matrix elements.
@@ -30,7 +38,7 @@ matplotlib.Figure
 
 *   **MissingOptionalLibraryError** – Requires matplotlib.
 *   **ValueError** – When ‘color’ is not a list of len=2.
-*   [**VisualizationError**](qiskit.visualization.VisualizationError#qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
+*   [**VisualizationError**](qiskit.visualization.VisualizationError "qiskit.visualization.VisualizationError") – if input is not a valid N-qubit state.
 
 ## Example
 
@@ -50,3 +58,4 @@ plot_state_city(state, color=['midnightblue', 'midnightblue'],
 ```
 
 ![../\_images/qiskit.visualization.plot\_state\_city\_0\_0.png](/images/api/qiskit/0.35/qiskit.visualization.plot_state_city_0_0.png)
+

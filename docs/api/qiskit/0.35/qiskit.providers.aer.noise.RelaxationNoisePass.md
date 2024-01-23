@@ -1,8 +1,16 @@
+---
+title: RelaxationNoisePass
+description: API reference for qiskit.providers.aer.noise.RelaxationNoisePass
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.noise.RelaxationNoisePass
+---
+
 # RelaxationNoisePass
 
+<span id="qiskit.providers.aer.noise.RelaxationNoisePass" />
 
-
-`RelaxationNoisePass(t1s, t2s, dt=None, op_types=None, excited_state_populations=None)`
+`RelaxationNoisePass(t1s, t2s, dt=None, op_types=None, excited_state_populations=None)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/passes/relaxation_noise_pass.py "view source code")
 
 Bases: `qiskit.providers.aer.noise.passes.local_noise_pass.LocalNoisePass`
 
@@ -20,14 +28,37 @@ Initialize RelaxationNoisePass.
 
 ## Methods
 
-|                                                                                                                                                                         |                                     |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| [`name`](qiskit.providers.aer.noise.RelaxationNoisePass.name#qiskit.providers.aer.noise.RelaxationNoisePass.name "qiskit.providers.aer.noise.RelaxationNoisePass.name") | Return the name of the pass.        |
-| [`run`](qiskit.providers.aer.noise.RelaxationNoisePass.run#qiskit.providers.aer.noise.RelaxationNoisePass.run "qiskit.providers.aer.noise.RelaxationNoisePass.run")     | Run the LocalNoisePass pass on dag. |
+### name
+
+<span id="qiskit.providers.aer.noise.RelaxationNoisePass.name" />
+
+`RelaxationNoisePass.name()`
+
+Return the name of the pass.
+
+### run
+
+<span id="qiskit.providers.aer.noise.RelaxationNoisePass.run" />
+
+`RelaxationNoisePass.run(dag)`
+
+Run the LocalNoisePass pass on dag. :type dag: `DAGCircuit` :param dag: DAG to be changed.
+
+**Return type**
+
+`DAGCircuit`
+
+**Returns**
+
+A changed DAG.
+
+**Raises**
+
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if generated operation is not valid.
 
 ## Attributes
 
-
+<span id="qiskit.providers.aer.noise.RelaxationNoisePass.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -35,10 +66,11 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-
+<span id="qiskit.providers.aer.noise.RelaxationNoisePass.is_transformation_pass" />
 
 ### is\_transformation\_pass
 
 Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+

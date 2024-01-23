@@ -1,8 +1,16 @@
+---
+title: IfElseOp
+description: API reference for qiskit.circuit.IfElseOp
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.IfElseOp
+---
+
 # IfElseOp
 
+<span id="qiskit.circuit.IfElseOp" />
 
-
-`IfElseOp(condition, true_body, false_body=None, label=None)`
+`IfElseOp(condition, true_body, false_body=None, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/controlflow/if_else.py "view source code")
 
 Bases: `qiskit.circuit.controlflow.control_flow.ControlFlowOp`
 
@@ -51,28 +59,198 @@ Create a new instruction.
 
 ## Methods
 
-|                                                                                                                                                                |                                                                                                                  |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------------------------------------------- |
-| [`add_decomposition`](qiskit.circuit.IfElseOp.add_decomposition#qiskit.circuit.IfElseOp.add_decomposition "qiskit.circuit.IfElseOp.add_decomposition")         | Add a decomposition of the instruction to the SessionEquivalenceLibrary.                                         |
-| [`assemble`](qiskit.circuit.IfElseOp.assemble#qiskit.circuit.IfElseOp.assemble "qiskit.circuit.IfElseOp.assemble")                                             | Assemble a QasmQobjInstruction                                                                                   |
-| [`broadcast_arguments`](qiskit.circuit.IfElseOp.broadcast_arguments#qiskit.circuit.IfElseOp.broadcast_arguments "qiskit.circuit.IfElseOp.broadcast_arguments") | Validation of the arguments.                                                                                     |
-| [`c_if`](qiskit.circuit.IfElseOp.c_if#qiskit.circuit.IfElseOp.c_if "qiskit.circuit.IfElseOp.c_if")                                                             | Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`. |
-| [`copy`](qiskit.circuit.IfElseOp.copy#qiskit.circuit.IfElseOp.copy "qiskit.circuit.IfElseOp.copy")                                                             | Copy of the instruction.                                                                                         |
-| [`inverse`](qiskit.circuit.IfElseOp.inverse#qiskit.circuit.IfElseOp.inverse "qiskit.circuit.IfElseOp.inverse")                                                 | Invert this instruction.                                                                                         |
-| [`is_parameterized`](qiskit.circuit.IfElseOp.is_parameterized#qiskit.circuit.IfElseOp.is_parameterized "qiskit.circuit.IfElseOp.is_parameterized")             | Return True .IFF.                                                                                                |
-| [`qasm`](qiskit.circuit.IfElseOp.qasm#qiskit.circuit.IfElseOp.qasm "qiskit.circuit.IfElseOp.qasm")                                                             | Return a default OpenQASM string for the instruction.                                                            |
-| [`repeat`](qiskit.circuit.IfElseOp.repeat#qiskit.circuit.IfElseOp.repeat "qiskit.circuit.IfElseOp.repeat")                                                     | Creates an instruction with gate repeated n amount of times.                                                     |
-| [`reverse_ops`](qiskit.circuit.IfElseOp.reverse_ops#qiskit.circuit.IfElseOp.reverse_ops "qiskit.circuit.IfElseOp.reverse_ops")                                 | For a composite instruction, reverse the order of sub-instructions.                                              |
-| [`soft_compare`](qiskit.circuit.IfElseOp.soft_compare#qiskit.circuit.IfElseOp.soft_compare "qiskit.circuit.IfElseOp.soft_compare")                             | Soft comparison between gates.                                                                                   |
-| [`validate_parameter`](qiskit.circuit.IfElseOp.validate_parameter#qiskit.circuit.IfElseOp.validate_parameter "qiskit.circuit.IfElseOp.validate_parameter")     | Instruction parameters has no validation or normalization.                                                       |
+### add\_decomposition
+
+<span id="qiskit.circuit.IfElseOp.add_decomposition" />
+
+`IfElseOp.add_decomposition(decomposition)`
+
+Add a decomposition of the instruction to the SessionEquivalenceLibrary.
+
+### assemble
+
+<span id="qiskit.circuit.IfElseOp.assemble" />
+
+`IfElseOp.assemble()`
+
+Assemble a QasmQobjInstruction
+
+### broadcast\_arguments
+
+<span id="qiskit.circuit.IfElseOp.broadcast_arguments" />
+
+`IfElseOp.broadcast_arguments(qargs, cargs)`
+
+Validation of the arguments.
+
+**Parameters**
+
+*   **qargs** (*List*) – List of quantum bit arguments.
+*   **cargs** (*List*) – List of classical bit arguments.
+
+**Yields**
+
+*Tuple(List, List)* – A tuple with single arguments.
+
+**Raises**
+
+**CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+
+### c\_if
+
+<span id="qiskit.circuit.IfElseOp.c_if" />
+
+`IfElseOp.c_if(classical, val)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/controlflow/if_else.py "view source code")
+
+Set a classical equality condition on this instruction between the register or cbit `classical` and value `val`.
+
+<Admonition title="Note" type="note">
+  This is a setter method, not an additive one. Calling this multiple times will silently override any previously set condition; it does not stack.
+</Admonition>
+
+### copy
+
+<span id="qiskit.circuit.IfElseOp.copy" />
+
+`IfElseOp.copy(name=None)`
+
+Copy of the instruction.
+
+**Parameters**
+
+**name** (*str*) – name to be given to the copied circuit, if None then the name stays the same.
+
+**Returns**
+
+**a copy of the current instruction, with the name**
+
+updated if it was provided
+
+**Return type**
+
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+
+### inverse
+
+<span id="qiskit.circuit.IfElseOp.inverse" />
+
+`IfElseOp.inverse()`
+
+Invert this instruction.
+
+If the instruction is composite (i.e. has a definition), then its definition will be recursively inverted.
+
+Special instructions inheriting from Instruction can implement their own inverse (e.g. T and Tdg, Barrier, etc.)
+
+**Returns**
+
+a fresh instruction for the inverse
+
+**Return type**
+
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+
+**Raises**
+
+**CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
+
+### is\_parameterized
+
+<span id="qiskit.circuit.IfElseOp.is_parameterized" />
+
+`IfElseOp.is_parameterized()`
+
+Return True .IFF. instruction is parameterized else False
+
+### qasm
+
+<span id="qiskit.circuit.IfElseOp.qasm" />
+
+`IfElseOp.qasm()`
+
+Return a default OpenQASM string for the instruction.
+
+Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
+
+### repeat
+
+<span id="qiskit.circuit.IfElseOp.repeat" />
+
+`IfElseOp.repeat(n)`
+
+Creates an instruction with gate repeated n amount of times.
+
+**Parameters**
+
+**n** (*int*) – Number of times to repeat the instruction
+
+**Returns**
+
+Containing the definition.
+
+**Return type**
+
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+
+**Raises**
+
+**CircuitError** – If n \< 1.
+
+### reverse\_ops
+
+<span id="qiskit.circuit.IfElseOp.reverse_ops" />
+
+`IfElseOp.reverse_ops()`
+
+For a composite instruction, reverse the order of sub-instructions.
+
+This is done by recursively reversing all sub-instructions. It does not invert any gate.
+
+**Returns**
+
+**a new instruction with**
+
+sub-instructions reversed.
+
+**Return type**
+
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+
+### soft\_compare
+
+<span id="qiskit.circuit.IfElseOp.soft_compare" />
+
+`IfElseOp.soft_compare(other)`
+
+Soft comparison between gates. Their names, number of qubits, and classical bit numbers must match. The number of parameters must match. Each parameter is compared. If one is a ParameterExpression then it is not taken into account.
+
+**Parameters**
+
+**other** (*instruction*) – other instruction.
+
+**Returns**
+
+are self and other equal up to parameter expressions.
+
+**Return type**
+
+bool
+
+### validate\_parameter
+
+<span id="qiskit.circuit.IfElseOp.validate_parameter" />
+
+`IfElseOp.validate_parameter(parameter)`
+
+Instruction parameters has no validation or normalization.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.IfElseOp.blocks" />
 
 ### blocks
 
-
+<span id="qiskit.circuit.IfElseOp.condition_bits" />
 
 ### condition\_bits
 
@@ -82,25 +260,25 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.IfElseOp.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-
+<span id="qiskit.circuit.IfElseOp.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
+<span id="qiskit.circuit.IfElseOp.duration" />
 
 ### duration
 
 Get the duration.
 
-
+<span id="qiskit.circuit.IfElseOp.label" />
 
 ### label
 
@@ -110,30 +288,31 @@ Return instruction label
 
 `str`
 
-
+<span id="qiskit.circuit.IfElseOp.name" />
 
 ### name
 
 Return the name.
 
-
+<span id="qiskit.circuit.IfElseOp.num_clbits" />
 
 ### num\_clbits
 
 Return the number of clbits.
 
-
+<span id="qiskit.circuit.IfElseOp.num_qubits" />
 
 ### num\_qubits
 
 Return the number of qubits.
 
-
+<span id="qiskit.circuit.IfElseOp.params" />
 
 ### params
 
-
+<span id="qiskit.circuit.IfElseOp.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

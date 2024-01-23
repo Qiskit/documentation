@@ -1,8 +1,16 @@
+---
+title: ZZFeatureMap
+description: API reference for qiskit.circuit.library.ZZFeatureMap
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.ZZFeatureMap
+---
+
 # ZZFeatureMap
 
+<span id="qiskit.circuit.library.ZZFeatureMap" />
 
-
-`ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZZFeatureMap')`
+`ZZFeatureMap(feature_dimension, reps=2, entanglement='full', data_map_func=None, parameter_prefix='x', insert_barriers=False, name='ZZFeatureMap')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/data_preparation/zz_feature_map.py "view source code")
 
 Bases: `qiskit.circuit.library.data_preparation.pauli_feature_map.PauliFeatureMap`
 
@@ -53,7 +61,7 @@ Create a new second-order Pauli-Z expansion.
 
 *   **feature\_dimension** (`int`) – Number of features.
 *   **reps** (`int`) – The number of repeated circuits, has a min. value of 1.
-*   **entanglement** (`Union`\[`str`, `List`\[`List`\[`int`]], `Callable`\[\[`int`], `List`\[`int`]]]) – Specifies the entanglement structure. Refer to [`NLocal`](qiskit.circuit.library.NLocal#qiskit.circuit.library.NLocal "qiskit.circuit.library.NLocal") for detail.
+*   **entanglement** (`Union`\[`str`, `List`\[`List`\[`int`]], `Callable`\[\[`int`], `List`\[`int`]]]) – Specifies the entanglement structure. Refer to [`NLocal`](qiskit.circuit.library.NLocal "qiskit.circuit.library.NLocal") for detail.
 *   **data\_map\_func** (`Optional`\[`Callable`\[\[`ndarray`], `float`]]) – A mapping function for data x.
 *   **parameter\_prefix** (`str`) – The prefix used if default parameters are generated.
 *   **insert\_barriers** (`bool`) – If True, barriers are inserted in between the evolution instructions and hadamard layers.
@@ -64,7 +72,7 @@ Create a new second-order Pauli-Z expansion.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.alpha" />
 
 ### alpha
 
@@ -78,7 +86,7 @@ The Pauli rotation factor (alpha).
 
 The Pauli rotation factor.
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.ancillas" />
 
 ### ancillas
 
@@ -88,7 +96,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 `List`\[`AncillaQubit`]
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.calibrations" />
 
 ### calibrations
 
@@ -102,7 +110,7 @@ Return calibration dictionary.
 
 `dict`
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.clbits" />
 
 ### clbits
 
@@ -112,11 +120,11 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.data" />
 
 ### data
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.entanglement" />
 
 ### entanglement
 
@@ -130,17 +138,17 @@ Get the entanglement strategy.
 
 The entanglement strategy, see `get_entangler_map()` for more detail on how the format is interpreted.
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.entanglement_blocks" />
 
 ### entanglement\_blocks
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.feature_dimension" />
 
 ### feature\_dimension
 
@@ -154,7 +162,7 @@ Returns the feature dimension (which is equal to the number of qubits).
 
 The feature dimension of this feature map.
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.global_phase" />
 
 ### global\_phase
 
@@ -164,13 +172,13 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.header" />
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.initial_state" />
 
 ### initial\_state
 
@@ -184,7 +192,7 @@ Return the initial state that is added in front of the n-local circuit.
 
 The initial state.
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.insert_barriers" />
 
 ### insert\_barriers
 
@@ -198,13 +206,13 @@ If barriers are inserted in between the layers or not.
 
 True, if barriers are inserted in between the layers, False if not.
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.instances" />
 
 ### instances
 
 `= 9`
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.metadata" />
 
 ### metadata
 
@@ -216,7 +224,7 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.num_ancillas" />
 
 ### num\_ancillas
 
@@ -226,7 +234,7 @@ Return the number of ancilla qubits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.num_clbits" />
 
 ### num\_clbits
 
@@ -236,7 +244,7 @@ Return number of classical bits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.num_layers" />
 
 ### num\_layers
 
@@ -250,7 +258,7 @@ Return the number of layers in the n-local circuit.
 
 The number of layers in the circuit.
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.num_parameters" />
 
 ### num\_parameters
 
@@ -258,13 +266,13 @@ The number of layers in the circuit.
 
 `int`
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.num_parameters_settable" />
 
 ### num\_parameters\_settable
 
 The number of distinct parameters.
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.num_qubits" />
 
 ### num\_qubits
 
@@ -278,7 +286,7 @@ Returns the number of qubits in this circuit.
 
 The number of qubits.
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.ordered_parameters" />
 
 ### ordered\_parameters
 
@@ -308,7 +316,7 @@ q_0: ┤ Ry(1) ├┤ Ry(θ[1]) ├┤ Ry(θ[1]) ├┤ Ry(θ[3]) ├
 
 The parameters objects used in the circuit.
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.parameter_bounds" />
 
 ### parameter\_bounds
 
@@ -322,7 +330,7 @@ The parameter bounds for the unbound parameters in the circuit.
 
 A list of pairs indicating the bounds, as (lower, upper). None indicates an unbounded parameter in the corresponding direction. If None is returned, problem is fully unbounded.
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.parameters" />
 
 ### parameters
 
@@ -330,7 +338,7 @@ A list of pairs indicating the bounds, as (lower, upper). None indicates an unbo
 
 `ParameterView`
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.paulis" />
 
 ### paulis
 
@@ -344,7 +352,7 @@ The Pauli strings used in the entanglement of the qubits.
 
 The Pauli strings as list.
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.preferred_init_points" />
 
 ### preferred\_init\_points
 
@@ -358,19 +366,19 @@ The initial points for the parameters. Can be stored as initial guess in optimiz
 
 The initial values for the parameters, or None, if none have been set.
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.prefix" />
 
 ### prefix
 
 `= 'circuit'`
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.qregs" />
 
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.qubits" />
 
 ### qubits
 
@@ -380,7 +388,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 `List`\[`Qubit`]
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.reps" />
 
 ### reps
 
@@ -394,7 +402,7 @@ The number of times rotation and entanglement block are repeated.
 
 The number of repetitions.
 
-
+<span id="qiskit.circuit.library.ZZFeatureMap.rotation_blocks" />
 
 ### rotation\_blocks
 
@@ -407,3 +415,4 @@ The blocks in the rotation layers.
 **Returns**
 
 The blocks in the rotation layers.
+

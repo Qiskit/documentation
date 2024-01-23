@@ -1,8 +1,16 @@
+---
+title: GRZ
+description: API reference for qiskit.circuit.library.GRZ
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.GRZ
+---
+
 # GRZ
 
+<span id="qiskit.circuit.library.GRZ" />
 
-
-`GRZ(num_qubits, phi)`
+`GRZ(num_qubits, phi)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/generalized_gates/gr.py "view source code")
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
@@ -39,7 +47,7 @@ Create a new Global RZ (GRZ) gate.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.GRZ.ancillas" />
 
 ### ancillas
 
@@ -49,7 +57,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 `List`\[`AncillaQubit`]
 
-
+<span id="qiskit.circuit.library.GRZ.calibrations" />
 
 ### calibrations
 
@@ -63,7 +71,7 @@ Return calibration dictionary.
 
 `dict`
 
-
+<span id="qiskit.circuit.library.GRZ.clbits" />
 
 ### clbits
 
@@ -73,7 +81,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.GRZ.data" />
 
 ### data
 
@@ -89,13 +97,13 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-
+<span id="qiskit.circuit.library.GRZ.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-
+<span id="qiskit.circuit.library.GRZ.global_phase" />
 
 ### global\_phase
 
@@ -105,19 +113,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-
+<span id="qiskit.circuit.library.GRZ.header" />
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
+<span id="qiskit.circuit.library.GRZ.instances" />
 
 ### instances
 
 `= 9`
 
-
+<span id="qiskit.circuit.library.GRZ.metadata" />
 
 ### metadata
 
@@ -129,7 +137,7 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-
+<span id="qiskit.circuit.library.GRZ.num_ancillas" />
 
 ### num\_ancillas
 
@@ -139,7 +147,7 @@ Return the number of ancilla qubits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.GRZ.num_clbits" />
 
 ### num\_clbits
 
@@ -149,7 +157,7 @@ Return number of classical bits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.GRZ.num_parameters" />
 
 ### num\_parameters
 
@@ -159,7 +167,7 @@ Convenience function to get the number of parameter objects in the circuit.
 
 `int`
 
-
+<span id="qiskit.circuit.library.GRZ.num_qubits" />
 
 ### num\_qubits
 
@@ -169,7 +177,7 @@ Return number of qubits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.GRZ.parameters" />
 
 ### parameters
 
@@ -179,13 +187,13 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
-
+<span id="qiskit.circuit.library.GRZ.prefix" />
 
 ### prefix
 
 `= 'circuit'`
 
-
+<span id="qiskit.circuit.library.GRZ.qubits" />
 
 ### qubits
 
@@ -194,3 +202,4 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
+

@@ -1,8 +1,16 @@
+---
+title: QasmQobjInstruction
+description: API reference for qiskit.qobj.QasmQobjInstruction
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.qobj.QasmQobjInstruction
+---
+
 # QasmQobjInstruction
 
+<span id="qiskit.qobj.QasmQobjInstruction" />
 
-
-`QasmQobjInstruction(name, params=None, qubits=None, register=None, memory=None, condition=None, conditional=None, label=None, mask=None, relation=None, val=None, snapshot_type=None)`
+`QasmQobjInstruction(name, params=None, qubits=None, register=None, memory=None, condition=None, conditional=None, label=None, mask=None, relation=None, val=None, snapshot_type=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
 
 Bases: `object`
 
@@ -27,7 +35,39 @@ Instantiate a new QasmQobjInstruction object.
 
 ## Methods
 
-|                                                                                                                                                |                                                               |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------- |
-| [`from_dict`](qiskit.qobj.QasmQobjInstruction.from_dict#qiskit.qobj.QasmQobjInstruction.from_dict "qiskit.qobj.QasmQobjInstruction.from_dict") | Create a new QasmQobjInstruction object from a dictionary.    |
-| [`to_dict`](qiskit.qobj.QasmQobjInstruction.to_dict#qiskit.qobj.QasmQobjInstruction.to_dict "qiskit.qobj.QasmQobjInstruction.to_dict")         | Return a dictionary format representation of the Instruction. |
+### from\_dict
+
+<span id="qiskit.qobj.QasmQobjInstruction.from_dict" />
+
+`classmethod QasmQobjInstruction.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
+
+Create a new QasmQobjInstruction object from a dictionary.
+
+**Parameters**
+
+**data** (*dict*) – A dictionary for the experiment config
+
+**Returns**
+
+The object from the input dictionary.
+
+**Return type**
+
+[QasmQobjInstruction](qiskit.qobj.QasmQobjInstruction "qiskit.qobj.QasmQobjInstruction")
+
+### to\_dict
+
+<span id="qiskit.qobj.QasmQobjInstruction.to_dict" />
+
+`QasmQobjInstruction.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qobj/qasm_qobj.py "view source code")
+
+Return a dictionary format representation of the Instruction.
+
+**Returns**
+
+The dictionary form of the QasmQobjInstruction.
+
+**Return type**
+
+dict
+

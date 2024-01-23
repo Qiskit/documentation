@@ -1,8 +1,16 @@
+---
+title: diamond_norm
+description: API reference for qiskit.quantum_info.diamond_norm
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.quantum_info.diamond_norm
+---
+
 # qiskit.quantum\_info.diamond\_norm
 
+<span id="qiskit.quantum_info.diamond_norm" />
 
-
-`diamond_norm(choi, **kwargs)`
+`diamond_norm(choi, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/operators/measures.py "view source code")
 
 Return the diamond norm of the input quantum channel object.
 
@@ -10,7 +18,7 @@ This function computes the completely-bounded trace-norm (often referred to as t
 
 **Parameters**
 
-*   **choi** ([*Choi*](qiskit.quantum_info.Choi#qiskit.quantum_info.Choi "qiskit.quantum_info.Choi") *or QuantumChannel*) – a quantum channel object or Choi-matrix array.
+*   **choi** ([*Choi*](qiskit.quantum_info.Choi "qiskit.quantum_info.Choi") *or QuantumChannel*) – a quantum channel object or Choi-matrix array.
 *   **kwargs** – optional arguments to pass to CVXPY solver.
 
 **Returns**
@@ -38,3 +46,4 @@ J. Watrous. “Simpler semidefinite programs for completely bounded norms”, ar
 <Admonition title="Note" type="note">
   This function requires the optional CVXPY package to be installed. Any additional kwargs will be passed to the `cvxpy.solve` function. See the CVXPY documentation for information on available SDP solvers.
 </Admonition>
+

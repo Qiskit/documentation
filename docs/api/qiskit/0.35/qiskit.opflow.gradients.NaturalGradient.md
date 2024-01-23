@@ -1,8 +1,16 @@
+---
+title: NaturalGradient
+description: API reference for qiskit.opflow.gradients.NaturalGradient
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.gradients.NaturalGradient
+---
+
 # NaturalGradient
 
+<span id="qiskit.opflow.gradients.NaturalGradient" />
 
-
-`NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`
+`NaturalGradient(grad_method='lin_comb', qfi_method='lin_comb_full', regularization=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/gradients/natural_gradient.py "view source code")
 
 Bases: `qiskit.opflow.gradients.gradient_base.GradientBase`
 
@@ -27,14 +35,59 @@ where R(x) represents the penalization term.
 
 ## Methods Defined Here
 
-|                                                                                                                                                                                                        |                                           |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------- |
-| [`convert`](qiskit.opflow.gradients.NaturalGradient.convert#qiskit.opflow.gradients.NaturalGradient.convert "qiskit.opflow.gradients.NaturalGradient.convert")                                         | **type operator**`OperatorBase`           |
-| [`nat_grad_combo_fn`](qiskit.opflow.gradients.NaturalGradient.nat_grad_combo_fn#qiskit.opflow.gradients.NaturalGradient.nat_grad_combo_fn "qiskit.opflow.gradients.NaturalGradient.nat_grad_combo_fn") | Natural Gradient Function Implementation. |
+### convert
+
+<span id="qiskit.opflow.gradients.NaturalGradient.convert" />
+
+`NaturalGradient.convert(operator, params=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/gradients/natural_gradient.py "view source code")
+
+**Parameters**
+
+*   **operator** (`OperatorBase`) – The operator we are taking the gradient of.
+*   **params** (`Union`\[`ParameterVector`, `ParameterExpression`, `List`\[`ParameterExpression`], `None`]) – The parameters we are taking the gradient with respect to. If not explicitly passed, they are inferred from the operator and sorted by name.
+
+**Return type**
+
+`OperatorBase`
+
+**Returns**
+
+An operator whose evaluation yields the NaturalGradient.
+
+**Raises**
+
+*   **TypeError** – If `operator` does not represent an expectation value or the quantum state is not `CircuitStateFn`.
+*   **ValueError** – If `params` contains a parameter not present in `operator`.
+*   **ValueError** – If `operator` is not parameterized.
+
+### nat\_grad\_combo\_fn
+
+<span id="qiskit.opflow.gradients.NaturalGradient.nat_grad_combo_fn" />
+
+`static NaturalGradient.nat_grad_combo_fn(x, regularization=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/gradients/natural_gradient.py "view source code")
+
+Natural Gradient Function Implementation.
+
+**Parameters**
+
+*   **x** (`tuple`) – Iterable consisting of Gradient, Quantum Fisher Information.
+*   **regularization** (`Optional`\[`str`]) – Regularization method.
+
+**Return type**
+
+`ndarray`
+
+**Returns**
+
+Natural Gradient.
+
+**Raises**
+
+**ValueError** – If the gradient has imaginary components that are non-negligible.
 
 ## Attributes
 
-
+<span id="qiskit.opflow.gradients.NaturalGradient.grad_method" />
 
 ### grad\_method
 
@@ -48,7 +101,7 @@ Returns `CircuitGradient`.
 
 `CircuitGradient`.
 
-
+<span id="qiskit.opflow.gradients.NaturalGradient.qfi_method" />
 
 ### qfi\_method
 
@@ -60,7 +113,7 @@ Returns: `CircuitQFI`.
 
 `CircuitQFI`
 
-
+<span id="qiskit.opflow.gradients.NaturalGradient.regularization" />
 
 ### regularization
 
@@ -71,3 +124,4 @@ Returns: the regularization option.
 **Return type**
 
 `Optional`\[`str`]
+

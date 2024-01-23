@@ -1,8 +1,16 @@
+---
+title: XXMinusYYGate
+description: API reference for qiskit.circuit.library.XXMinusYYGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.XXMinusYYGate
+---
+
 # XXMinusYYGate
 
+<span id="qiskit.circuit.library.XXMinusYYGate" />
 
-
-`XXMinusYYGate(theta, beta=0, label='{XX-YY}')`
+`XXMinusYYGate(theta, beta=0, label='{XX-YY}')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/xx_minus_yy.py "view source code")
 
 Bases: `qiskit.circuit.gate.Gate`
 
@@ -66,13 +74,17 @@ Create new XX-YY gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                                       |               |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| [`inverse`](qiskit.circuit.library.XXMinusYYGate.inverse#qiskit.circuit.library.XXMinusYYGate.inverse "qiskit.circuit.library.XXMinusYYGate.inverse") | Inverse gate. |
+### inverse
+
+<span id="qiskit.circuit.library.XXMinusYYGate.inverse" />
+
+`XXMinusYYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/xx_minus_yy.py "view source code")
+
+Inverse gate.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.XXMinusYYGate.condition_bits" />
 
 ### condition\_bits
 
@@ -82,25 +94,25 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.XXMinusYYGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-
+<span id="qiskit.circuit.library.XXMinusYYGate.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
+<span id="qiskit.circuit.library.XXMinusYYGate.duration" />
 
 ### duration
 
 Get the duration.
 
-
+<span id="qiskit.circuit.library.XXMinusYYGate.label" />
 
 ### label
 
@@ -110,32 +122,33 @@ Return instruction label
 
 `str`
 
-
+<span id="qiskit.circuit.library.XXMinusYYGate.name" />
 
 ### name
 
 Return the name.
 
-
+<span id="qiskit.circuit.library.XXMinusYYGate.num_clbits" />
 
 ### num\_clbits
 
 Return the number of clbits.
 
-
+<span id="qiskit.circuit.library.XXMinusYYGate.num_qubits" />
 
 ### num\_qubits
 
 Return the number of qubits.
 
-
+<span id="qiskit.circuit.library.XXMinusYYGate.params" />
 
 ### params
 
 return instruction params.
 
-
+<span id="qiskit.circuit.library.XXMinusYYGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+
