@@ -10,26 +10,26 @@ python_api_name: qiskit.transpiler.passes.TimeUnitConversion
 
 <span id="qiskit.transpiler.passes.TimeUnitConversion" />
 
-`qiskit.transpiler.passes.TimeUnitConversion(*args, **kwargs)`
+`qiskit.transpiler.passes.TimeUnitConversion(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/scheduling/time_unit_conversion.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
 Choose a time unit to be used in the following time-aware passes, and make all circuit time units consistent with that.
 
-This pass will add a .duration metadata to each op whose duration is known, which will be used by subsequent scheduling passes for scheduling.
+This pass will add a [`Instruction.duration`](qiskit.circuit.Instruction#duration "qiskit.circuit.Instruction.duration") metadata to each op whose duration is known which will be used by subsequent scheduling passes for scheduling.
 
-If dt (dt in seconds) is known to transpiler, the unit ‘dt’ is chosen. Otherwise, the unit to be selected depends on what units are used in delays and instruction durations:
+If `dt` (in seconds) is known to transpiler, the unit `'dt'` is chosen. Otherwise, the unit to be selected depends on what units are used in delays and instruction durations:
 
-*   ‘s’: if they are all in SI units.
-*   ‘dt’: if they are all in the unit ‘dt’.
-*   raise error: if they are a mix of SI units and ‘dt’.
+*   `'s'`: if they are all in SI units.
+*   `'dt'`: if they are all in the unit `'dt'`.
+*   raise error: if they are a mix of SI units and `'dt'`.
 
 TimeUnitAnalysis initializer.
 
 **Parameters**
 
 *   **inst\_durations** ([*InstructionDurations*](qiskit.transpiler.InstructionDurations "qiskit.transpiler.InstructionDurations")) – A dictionary of durations of instructions.
-*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `inst_durations` and this are specified then this argument will take precedence and `inst_durations` will be ignored.
+*   **target** – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `inst_durations` and `target` are specified then this argument will take precedence and `inst_durations` will be ignored.
 
 ## Attributes
 

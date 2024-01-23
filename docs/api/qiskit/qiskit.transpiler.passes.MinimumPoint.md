@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.MinimumPoint
 
 <span id="qiskit.transpiler.passes.MinimumPoint" />
 
-`qiskit.transpiler.passes.MinimumPoint(*args, **kwargs)`
+`qiskit.transpiler.passes.MinimumPoint(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/utils/minimum_point.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -22,7 +22,7 @@ This pass will track the state of fields in the property set over its past execu
 
 Fields used by this pass in the property set are (all relative to the `prefix` argument):
 
-*   `{prefix}_minimum_point_state` - Used to track the state of the minimpoint search
+*   `{prefix}_minimum_point_state` - Used to track the state of the minimum point search
 
 *   **`{prefix}_minimum_point` - This value gets set to `True` when either a fixed point**
 

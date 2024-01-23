@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.fake_provider.FakeVigo
 
 <span id="qiskit.providers.fake_provider.FakeVigo" />
 
-`qiskit.providers.fake_provider.FakeVigo`
+`qiskit.providers.fake_provider.FakeVigo`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/backends/vigo/fake_vigo.py "view source code")
 
 Bases: [`FakeQasmBackend`](providers_fake_provider#qiskit.providers.fake_provider.FakeQasmBackend "qiskit.providers.fake_provider.fake_qasm_backend.FakeQasmBackend")
 
@@ -47,7 +47,7 @@ FakeBackend initializer.
 
 ### dirname
 
-`= '/home/runner/work/qiskit/qiskit/.tox/docs/lib/python3.9/site-packages/qiskit/providers/fake_provider/backends/vigo'`
+`= '/home/runner/work/qiskit/qiskit/qiskit/providers/fake_provider/backends/vigo'`
 
 <span id="qiskit.providers.fake_provider.FakeVigo.options" />
 

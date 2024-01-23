@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Pauli
 
 <span id="qiskit.quantum_info.Pauli" />
 
-`qiskit.quantum_info.Pauli(data=None)`
+`qiskit.quantum_info.Pauli(data=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/operators/symplectic/pauli.py "view source code")
 
 Bases: `BasePauli`
 
@@ -25,10 +25,10 @@ $$
 where $q\in \mathbb{Z}_4$ and $P_i \in \{I, X, Y, Z\}$ are single-qubit Pauli matrices:
 
 $$
-\begin{split}I = \begin{pmatrix} 1 & 0  \\ 0 & 1  \end{pmatrix},
+I = \begin{pmatrix} 1 & 0  \\ 0 & 1  \end{pmatrix},
 X = \begin{pmatrix} 0 & 1  \\ 1 & 0  \end{pmatrix},
 Y = \begin{pmatrix} 0 & -i \\ i & 0  \end{pmatrix},
-Z = \begin{pmatrix} 1 & 0  \\ 0 & -1 \end{pmatrix}.\end{split}
+Z = \begin{pmatrix} 1 & 0  \\ 0 & -1 \end{pmatrix}.
 $$
 
 **Initialization**
@@ -51,7 +51,7 @@ A Pauli object can be initialized in several ways:
 
 An $n$-qubit Pauli may be represented by a string consisting of $n$ characters from `['I', 'X', 'Y', 'Z']`, and optionally phase coefficient in $['', '-i', '-', 'i']$. For example: `XYZ` or `'-iZIZ'`.
 
-In the string representation qubit-0 corresponds to the right-most Pauli character, and qubit-$(n-1)$ to the left-most Pauli character. For example `'XYZ'` represents $X\otimes Y \otimes Z$ with `'Z'` on qubit-0, `'Y'` on qubit-1, and `'X'` on qubit-3.
+In the string representation qubit-0 corresponds to the right-most Pauli character, and qubit-$(n-1)$ to the left-most Pauli character. For example `'XYZ'` represents $X\otimes Y \otimes Z$ with `'Z'` on qubit-0, `'Y'` on qubit-1, and `'X'` on qubit-2.
 
 The string representation can be converted to a `Pauli` using the class initialization (`Pauli('-iXYZ')`). A `Pauli` object can be converted back to the string representation using the [`to_label()`](#qiskit.quantum_info.Pauli.to_label "qiskit.quantum_info.Pauli.to_label") method or `str(pauli)`.
 
@@ -67,11 +67,13 @@ $$
 P = (-i)^{q + z\cdot x} Z^z \cdot X^x.
 $$
 
-The $k`th qubit corresponds to the :math:`k`th entry in the :math:`z$ and $x$ arrays
+The $k$-th qubit corresponds to the $k$-th entry in the $z$ and $x$ arrays
 
 $$
-\begin{split}P &= P_{n-1} \otimes ... \otimes P_{0} \\
-P_k &= (-i)^{z[k] * x[k]} Z^{z[k]}\cdot X^{x[k]}\end{split}
+\begin{aligned}
+P &= P_{n-1} \otimes ... \otimes P_{0} \\
+P_k &= (-i)^{z[k] * x[k]} Z^{z[k]}\cdot X^{x[k]}
+\end{aligned}
 $$
 
 where `z[k] = P.z[k]`, `x[k] = P.x[k]` respectively.
