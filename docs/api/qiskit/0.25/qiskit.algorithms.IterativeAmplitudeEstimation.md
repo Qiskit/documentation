@@ -1,8 +1,16 @@
+---
+title: IterativeAmplitudeEstimation
+description: API reference for qiskit.algorithms.IterativeAmplitudeEstimation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.IterativeAmplitudeEstimation
+---
+
 # qiskit.algorithms.IterativeAmplitudeEstimation
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimation" />
 
-
-`IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None)`
+`IterativeAmplitudeEstimation(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/algorithms/amplitude_estimators/iae.py "view source code")
 
 The Iterative Amplitude Estimation algorithm.
 
@@ -32,12 +40,14 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 **Raises**
 
-*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – if the method to compute the confidence intervals is not supported
+*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – if the method to compute the confidence intervals is not supported
 *   **ValueError** – If the target epsilon is not in (0, 0.5]
 *   **ValueError** – If alpha is not in (0, 1)
 *   **ValueError** – If confint\_method is not supported
 
+### \_\_init\_\_
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimation.__init__" />
 
 `__init__(epsilon_target, alpha, confint_method='beta', min_ratio=2, quantum_instance=None)`
 
@@ -53,7 +63,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 
 **Raises**
 
-*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError#qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – if the method to compute the confidence intervals is not supported
+*   [**AlgorithmError**](qiskit.algorithms.AlgorithmError "qiskit.algorithms.AlgorithmError") – if the method to compute the confidence intervals is not supported
 *   **ValueError** – If the target epsilon is not in (0, 0.5]
 *   **ValueError** – If alpha is not in (0, 1)
 *   **ValueError** – If confint\_method is not supported
@@ -63,7 +73,7 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 |                                                                                                                                                                                           |                                                                                                                                   |             |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------- | ----------- |
 | [`__init__`](#qiskit.algorithms.IterativeAmplitudeEstimation.__init__ "qiskit.algorithms.IterativeAmplitudeEstimation.__init__")(epsilon\_target, alpha\[, …])                            | The output of the algorithm is an estimate for the amplitude a, that with at least probability 1 - alpha has an error of epsilon. |             |
-| [`construct_circuit`](#qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit "qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit")(estimation\_problem\[, k, …]) | Construct the circuit $\mathcal{Q}^k \mathcal{A} \vert0\rangle$. |
+| [`construct_circuit`](#qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit "qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit")(estimation\_problem\[, k, …]) | Construct the circuit $\mathcal{Q}^k \mathcal{A} \vert 0\rangle$. |
 | [`estimate`](#qiskit.algorithms.IterativeAmplitudeEstimation.estimate "qiskit.algorithms.IterativeAmplitudeEstimation.estimate")(estimation\_problem)                                     | Run the amplitude estimation algorithm.                                                                                           |             |
 
 ## Attributes
@@ -73,11 +83,13 @@ The output of the algorithm is an estimate for the amplitude a, that with at lea
 | [`epsilon_target`](#qiskit.algorithms.IterativeAmplitudeEstimation.epsilon_target "qiskit.algorithms.IterativeAmplitudeEstimation.epsilon_target")       | Returns the target precision `epsilon_target` of the algorithm. |
 | [`quantum_instance`](#qiskit.algorithms.IterativeAmplitudeEstimation.quantum_instance "qiskit.algorithms.IterativeAmplitudeEstimation.quantum_instance") | Get the quantum instance.                                       |
 
+### construct\_circuit
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimation.construct_circuit" />
 
 `construct_circuit(estimation_problem, k=0, measurement=False)`
 
-Construct the circuit $\mathcal{Q}^k \mathcal{A} |0\rangle$.
+Construct the circuit $\mathcal{Q}^k \mathcal{A} \vert0\rangle$.
 
 The A operator is the unitary specifying the QAE problem and Q the associated Grover operator.
 
@@ -93,9 +105,11 @@ The A operator is the unitary specifying the QAE problem and Q the associated Gr
 
 **Returns**
 
-The circuit implementing $\mathcal{Q}^k \mathcal{A} |0\rangle$.
+The circuit implementing $\mathcal{Q}^k \mathcal{A} \vert0\rangle$.
 
+### epsilon\_target
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimation.epsilon_target" />
 
 `property epsilon_target`
 
@@ -109,7 +123,9 @@ Returns the target precision `epsilon_target` of the algorithm.
 
 The target precision (which is half the width of the confidence interval).
 
+### estimate
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimation.estimate" />
 
 `estimate(estimation_problem)`
 
@@ -123,7 +139,9 @@ Run the amplitude estimation algorithm.
 
 `IterativeAmplitudeEstimationResult`
 
+### quantum\_instance
 
+<span id="qiskit.algorithms.IterativeAmplitudeEstimation.quantum_instance" />
 
 `property quantum_instance`
 
@@ -136,3 +154,4 @@ Get the quantum instance.
 **Returns**
 
 The quantum instance used to run this algorithm.
+

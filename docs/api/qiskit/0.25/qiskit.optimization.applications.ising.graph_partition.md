@@ -1,3 +1,11 @@
+---
+title: get_graph_solution
+description: API reference for qiskit.optimization.applications.ising.graph_partition.get_graph_solution
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.optimization.applications.ising.graph_partition.get_graph_solution
+---
+
 <span id="qiskit-optimization-applications-ising-graph-partition" />
 
 # qiskit.optimization.applications.ising.graph\_partition
@@ -12,9 +20,9 @@ Convert graph partitioning instances into Pauli list Deal with Gset format. See 
 | [`get_operator`](#qiskit.optimization.applications.ising.graph_partition.get_operator "qiskit.optimization.applications.ising.graph_partition.get_operator")(weight\_matrix)      | Generate Hamiltonian for the graph partitioning |
 | [`objective_value`](#qiskit.optimization.applications.ising.graph_partition.objective_value "qiskit.optimization.applications.ising.graph_partition.objective_value")(x, w)       | Compute the value of a cut.                     |
 
+<span id="qiskit.optimization.applications.ising.graph_partition.get_graph_solution" />
 
-
-`get_graph_solution(x)`
+`get_graph_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/graph_partition.py "view source code")
 
 Get graph solution from binary string.
 
@@ -30,9 +38,9 @@ graph solution as binary numpy array.
 
 numpy.ndarray
 
+<span id="qiskit.optimization.applications.ising.graph_partition.get_operator" />
 
-
-`get_operator(weight_matrix)`
+`get_operator(weight_matrix)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/graph_partition.py "view source code")
 
 Generate Hamiltonian for the graph partitioning
 
@@ -56,11 +64,11 @@ operator for the Hamiltonian float: a constant shift for the obj function.
 
 **Return type**
 
-[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
+<span id="qiskit.optimization.applications.ising.graph_partition.objective_value" />
 
-
-`objective_value(x, w)`
+`objective_value(x, w)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/applications/ising/graph_partition.py "view source code")
 
 Compute the value of a cut.
 
@@ -76,3 +84,4 @@ value of the cut.
 **Return type**
 
 float
+

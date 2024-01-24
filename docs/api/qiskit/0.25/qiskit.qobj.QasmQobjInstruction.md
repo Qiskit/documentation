@@ -1,8 +1,16 @@
+---
+title: QasmQobjInstruction
+description: API reference for qiskit.qobj.QasmQobjInstruction
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.qobj.QasmQobjInstruction
+---
+
 # qiskit.qobj.QasmQobjInstruction
 
+<span id="qiskit.qobj.QasmQobjInstruction" />
 
-
-`QasmQobjInstruction(name, params=None, qubits=None, register=None, memory=None, condition=None, conditional=None, label=None, mask=None, relation=None, val=None, snapshot_type=None)`
+`QasmQobjInstruction(name, params=None, qubits=None, register=None, memory=None, condition=None, conditional=None, label=None, mask=None, relation=None, val=None, snapshot_type=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/qobj/qasm_qobj.py "view source code")
 
 A class representing a single instruction in an QasmQobj Experiment.
 
@@ -23,7 +31,9 @@ Instantiate a new QasmQobjInstruction object.
 *   **val** (*int*) – Value to which to compare the masked register. In other words, the output of the function is `(register AND mask)`
 *   **snapshot\_type** (*str*) – For snapshot instructions the type of snapshot to use
 
+### \_\_init\_\_
 
+<span id="qiskit.qobj.QasmQobjInstruction.__init__" />
 
 `__init__(name, params=None, qubits=None, register=None, memory=None, condition=None, conditional=None, label=None, mask=None, relation=None, val=None, snapshot_type=None)`
 
@@ -52,7 +62,9 @@ Instantiate a new QasmQobjInstruction object.
 | [`from_dict`](#qiskit.qobj.QasmQobjInstruction.from_dict "qiskit.qobj.QasmQobjInstruction.from_dict")(data)                              | Create a new QasmQobjInstruction object from a dictionary.    |
 | [`to_dict`](#qiskit.qobj.QasmQobjInstruction.to_dict "qiskit.qobj.QasmQobjInstruction.to_dict")()                                        | Return a dictionary format representation of the Instruction. |
 
+### from\_dict
 
+<span id="qiskit.qobj.QasmQobjInstruction.from_dict" />
 
 `classmethod from_dict(data)`
 
@@ -70,7 +82,9 @@ The object from the input dictionary.
 
 [QasmQobjInstruction](#qiskit.qobj.QasmQobjInstruction "qiskit.qobj.QasmQobjInstruction")
 
+### to\_dict
 
+<span id="qiskit.qobj.QasmQobjInstruction.to_dict" />
 
 `to_dict()`
 
@@ -83,3 +97,4 @@ The dictionary form of the QasmQobjInstruction.
 **Return type**
 
 dict
+

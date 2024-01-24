@@ -1,12 +1,22 @@
+---
+title: MatrixEvolution
+description: API reference for qiskit.opflow.evolutions.MatrixEvolution
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.evolutions.MatrixEvolution
+---
+
 # qiskit.opflow\.evolutions.MatrixEvolution
 
+<span id="qiskit.opflow.evolutions.MatrixEvolution" />
 
-
-`MatrixEvolution`
+`MatrixEvolution`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/opflow/evolutions/matrix_evolution.py "view source code")
 
 Performs Evolution by classical matrix exponentiation, constructing a circuit with `UnitaryGates` or `HamiltonianGates` containing the exponentiation of the Operator.
 
+### \_\_init\_\_
 
+<span id="qiskit.opflow.evolutions.MatrixEvolution.__init__" />
 
 `__init__()`
 
@@ -19,7 +29,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`__init__`](#qiskit.opflow.evolutions.MatrixEvolution.__init__ "qiskit.opflow.evolutions.MatrixEvolution.__init__")()      | Initialize self.                                                                                                                                                                                           |
 | [`convert`](#qiskit.opflow.evolutions.MatrixEvolution.convert "qiskit.opflow.evolutions.MatrixEvolution.convert")(operator) | Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing `UnitaryGates` or `HamiltonianGates` (if self.coeff is a `ParameterExpression`) equalling the exponentiation of -i \* operator. |
 
+### convert
 
+<span id="qiskit.opflow.evolutions.MatrixEvolution.convert" />
 
 `convert(operator)`
 
@@ -36,3 +48,4 @@ Traverse the operator, replacing `EvolvedOps` with `CircuitOps` containing `Unit
 **Returns**
 
 The converted operator.
+
