@@ -1,12 +1,22 @@
+---
+title: NoiseTransformer
+description: API reference for qiskit.providers.aer.utils.NoiseTransformer
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.utils.NoiseTransformer
+---
+
 # qiskit.providers.aer.utils.NoiseTransformer
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer" />
 
-
-`NoiseTransformer`
+`NoiseTransformer`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/utils/noise_transformation.py "view source code")
 
 Transforms one quantum channel to another based on a specified criteria.
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.__init__" />
 
 `__init__()`
 
@@ -35,7 +45,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`transform_by_given_channel`](#qiskit.providers.aer.utils.NoiseTransformer.transform_by_given_channel "qiskit.providers.aer.utils.NoiseTransformer.transform_by_given_channel")(channel\_matrices, …)                                             | Transform by by quantum channels.                                                                                                                                                                                                                                               |
 | [`transform_by_operator_list`](#qiskit.providers.aer.utils.NoiseTransformer.transform_by_operator_list "qiskit.providers.aer.utils.NoiseTransformer.transform_by_operator_list")(…)                                                                | Transform input Kraus operators.                                                                                                                                                                                                                                                |
 
+### channel\_matrix\_representation
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.channel_matrix_representation" />
 
 `channel_matrix_representation(operators)`
 
@@ -53,7 +65,9 @@ The matrx representation of the operators
 
 sympy.Matrix
 
+### compute\_P
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.compute_P" />
 
 `compute_P(As)`
 
@@ -67,7 +81,9 @@ The matrix P for the description of the quadaric program
 
 matrix
 
+### compute\_channel\_operation
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.compute_channel_operation" />
 
 `static compute_channel_operation(rho, operators)`
 
@@ -86,7 +102,9 @@ The result of applying the list of operators
 
 number
 
+### compute\_q
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.compute_q" />
 
 `compute_q(As, C)`
 
@@ -100,13 +118,17 @@ The vector q for the description of the quadaric program
 
 list
 
+### fidelity
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.fidelity" />
 
 `static fidelity(channel)`
 
 Calculates channel fidelity
 
+### flatten\_matrix
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.flatten_matrix" />
 
 `static flatten_matrix(m)`
 
@@ -122,7 +144,9 @@ A row vector repesenting the flattened matrix
 
 list
 
+### generate\_channel\_matrices
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.generate_channel_matrices" />
 
 `generate_channel_matrices(transform_channel_operators_list)`
 
@@ -162,7 +186,9 @@ A list of 4x4 complex matrices `([D1, D2, ..., Dn], E)` such that the matrix $x_
 
 list
 
+### generate\_channel\_quadratic\_programming\_matrices
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.generate_channel_quadratic_programming_matrices" />
 
 `generate_channel_quadratic_programming_matrices(channel, symbols)`
 
@@ -181,7 +207,9 @@ A list of 4x4 complex matrices (\[D1, D2, …, Dn], E) such that: channel == x1\
 
 list
 
+### get\_const\_matrix\_from\_channel
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.get_const_matrix_from_channel" />
 
 `static get_const_matrix_from_channel(channel, symbols)`
 
@@ -204,7 +232,9 @@ matrix
 
 Each entry of the 4x4 symbolic input channel matrix is assumed to be a polynomial of the form a1x1 + … + anxn + c. The corresponding entry in the output numeric matrix is c.
 
+### get\_matrix\_from\_channel
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.get_matrix_from_channel" />
 
 `static get_matrix_from_channel(channel, symbol)`
 
@@ -227,7 +257,9 @@ matrix
 
 Each entry of the 4x4 symbolic input channel matrix is assumed to be a polynomial of the form a1x1 + … + anxn + c. The corresponding entry in the output numeric matrix is ai.
 
+### operator\_circuit
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.operator_circuit" />
 
 `operator_circuit(operator)`
 
@@ -245,7 +277,9 @@ The operator, converted to noise circuit representation.
 
 List
 
+### operator\_matrix
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.operator_matrix" />
 
 `operator_matrix(operator)`
 
@@ -261,9 +295,11 @@ the operator, converted to Kraus representation.
 
 **Return type**
 
-[Kraus](qiskit.quantum_info.Kraus#qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")
+[Kraus](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")
 
+### prepare\_channel\_operator\_list
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.prepare_channel_operator_list" />
 
 `static prepare_channel_operator_list(ops_list)`
 
@@ -281,7 +317,9 @@ The channel operator list
 
 List
 
+### prepare\_honesty\_constraint
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.prepare_honesty_constraint" />
 
 `prepare_honesty_constraint(transform_channel_operators_list)`
 
@@ -290,9 +328,11 @@ Prepares the honesty constraint.
 **Parameters**
 
 *   **transform\_channel\_operators\_list** (*list*) – A list of tuples of matrices which represent
-*   **operators.** ([*Kraus*](qiskit.quantum_info.Kraus#qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")) –
+*   **operators.** ([*Kraus*](qiskit.quantum_info.Kraus "qiskit.quantum_info.Kraus")) –
 
+### solve\_quadratic\_program
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.solve_quadratic_program" />
 
 `solve_quadratic_program(P, q)`
 
@@ -314,7 +354,9 @@ list
 
 This method is the only place in the code where we rely on the cvxpy library should we consider another library, only this method needs to change.
 
+### transform\_by\_given\_channel
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.transform_by_given_channel" />
 
 `transform_by_given_channel(channel_matrices, const_channel_matrix)`
 
@@ -337,7 +379,9 @@ a list of the optimal probabilities for the channel matrices, determined by the 
 
 list
 
+### transform\_by\_operator\_list
 
+<span id="qiskit.providers.aer.utils.NoiseTransformer.transform_by_operator_list" />
 
 `transform_by_operator_list(transform_channel_operators, noise_kraus_operators)`
 
@@ -369,3 +413,4 @@ A list of amplitudes that define the output channel.
 **Return type**
 
 List
+

@@ -1,8 +1,16 @@
+---
+title: Constant
+description: API reference for qiskit.pulse.Constant
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.Constant
+---
+
 # qiskit.pulse.Constant
 
+<span id="qiskit.pulse.Constant" />
 
-
-`Constant(duration, amp, name=None)`
+`Constant(duration, amp, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/library/parametric_pulses.py "view source code")
 
 A simple constant pulse, with an amplitude value and a duration:
 
@@ -19,7 +27,9 @@ Initialize the constant-valued pulse.
 *   **amp** (`Union`\[`complex`, `ParameterExpression`]) – The amplitude of the constant square pulse.
 *   **name** (`Optional`\[`str`]) – Display name for this pulse envelope.
 
+### \_\_init\_\_
 
+<span id="qiskit.pulse.Constant.__init__" />
 
 `__init__(duration, amp, name=None)`
 
@@ -52,7 +62,9 @@ Initialize the constant-valued pulse.
 | `limit_amplitude`                                                                    |                                                        |
 | [`parameters`](#qiskit.pulse.Constant.parameters "qiskit.pulse.Constant.parameters") | Return a dictionary containing the pulse’s parameters. |
 
+### amp
 
+<span id="qiskit.pulse.Constant.amp" />
 
 `property amp`
 
@@ -62,7 +74,9 @@ The constant value amplitude.
 
 `Union`\[`complex`, `ParameterExpression`]
 
+### assign
 
+<span id="qiskit.pulse.Constant.assign" />
 
 `assign(parameter, value)`
 
@@ -72,7 +86,9 @@ Assign one parameter to a value, which can either be numeric or another paramete
 
 `ParametricPulse`
 
+### assign\_parameters
 
+<span id="qiskit.pulse.Constant.assign_parameters" />
 
 `assign_parameters(value_dict)`
 
@@ -90,7 +106,9 @@ Return a new ParametricPulse with parameters assigned.
 
 New pulse with updated parameters.
 
+### draw
 
+<span id="qiskit.pulse.Constant.draw" />
 
 `draw(dt=None, style=None, filename=None, interp_method=None, scale=None, interactive=None, draw_title=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)`
 
@@ -100,7 +118,7 @@ Plot the interpolated envelope of pulse.
 
 *   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See :py:class:\~\`qiskit.visualization.pulse\_v2.stylesheets.IQXStandard\`, :py:class:\~\`qiskit.visualization.pulse\_v2.stylesheets.IQXSimple\`, and :py:class:\~\`qiskit.visualization.pulse\_v2.stylesheets.IQXDebugging\` for details of preset stylesheets.
 
-*   **backend** (*Optional\[*[*BaseBackend*](qiskit.providers.BaseBackend#qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")*]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
+*   **backend** (*Optional\[*[*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")*]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
 *   **time\_range** (`Optional`\[`Tuple`\[`int`, `int`]]) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
 
@@ -138,7 +156,9 @@ Plot the interpolated envelope of pulse.
 
 Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
 
+### get\_waveform
 
+<span id="qiskit.pulse.Constant.get_waveform" />
 
 `get_waveform()`
 
@@ -148,7 +168,9 @@ Return a Waveform with samples filled according to the formula that the pulse re
 
 `Waveform`
 
+### id
 
+<span id="qiskit.pulse.Constant.id" />
 
 `property id`
 
@@ -158,7 +180,9 @@ Unique identifier for this pulse.
 
 `int`
 
+### is\_parameterized
 
+<span id="qiskit.pulse.Constant.is_parameterized" />
 
 `is_parameterized()`
 
@@ -168,7 +192,9 @@ Return True iff the instruction is parameterized.
 
 `bool`
 
+### parameters
 
+<span id="qiskit.pulse.Constant.parameters" />
 
 `property parameters`
 
@@ -178,7 +204,9 @@ Return a dictionary containing the pulse’s parameters.
 
 `Dict`\[`str`, `Any`]
 
+### validate\_parameters
 
+<span id="qiskit.pulse.Constant.validate_parameters" />
 
 `validate_parameters()`
 
@@ -186,8 +214,9 @@ Validate parameters.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If the parameters passed are not valid.
 
 **Return type**
 
 `None`
+

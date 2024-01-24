@@ -1,8 +1,16 @@
+---
+title: SXGate
+description: API reference for qiskit.circuit.library.SXGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.SXGate
+---
+
 # qiskit.circuit.library.SXGate
 
+<span id="qiskit.circuit.library.SXGate" />
 
-
-`SXGate(label=None)`
+`SXGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/library/standard_gates/sx.py "view source code")
 
 The single-qubit Sqrt(X) gate ($\sqrt{X}$).
 
@@ -37,7 +45,9 @@ q_0: ┤ √X ├
 
 Create new SX gate.
 
+### \_\_init\_\_
 
+<span id="qiskit.circuit.library.SXGate.__init__" />
 
 `__init__(label=None)`
 
@@ -76,19 +86,25 @@ Create new SX gate.
 | [`params`](#qiskit.circuit.library.SXGate.params "qiskit.circuit.library.SXGate.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.circuit.library.SXGate.unit "qiskit.circuit.library.SXGate.unit")                               | Get the time unit of duration.                                                |
 
+### add\_decomposition
 
+<span id="qiskit.circuit.library.SXGate.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
+### assemble
 
+<span id="qiskit.circuit.library.SXGate.assemble" />
 
 `assemble()`
 
 Assemble a QasmQobjInstruction
 
+### broadcast\_arguments
 
+<span id="qiskit.circuit.library.SXGate.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -141,13 +157,17 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
+### c\_if
 
+<span id="qiskit.circuit.library.SXGate.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register or cbit classical and value val.
 
+### control
 
+<span id="qiskit.circuit.library.SXGate.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
@@ -167,9 +187,11 @@ controlled version of this gate.
 
 **Return type**
 
-[ControlledGate](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
+### copy
 
+<span id="qiskit.circuit.library.SXGate.copy" />
 
 `copy(name=None)`
 
@@ -187,39 +209,51 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### decompositions
 
+<span id="qiskit.circuit.library.SXGate.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
+### definition
 
+<span id="qiskit.circuit.library.SXGate.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
+### duration
 
+<span id="qiskit.circuit.library.SXGate.duration" />
 
 `property duration`
 
 Get the duration.
 
+### inverse
 
+<span id="qiskit.circuit.library.SXGate.inverse" />
 
 `inverse()`
 
 Return inverse SX gate (i.e. SXdg).
 
+### is\_parameterized
 
+<span id="qiskit.circuit.library.SXGate.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
+### label
 
+<span id="qiskit.circuit.library.SXGate.label" />
 
 `property label`
 
@@ -229,7 +263,9 @@ Return instruction label
 
 `str`
 
+### mirror
 
+<span id="qiskit.circuit.library.SXGate.mirror" />
 
 `mirror()`
 
@@ -243,15 +279,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### params
 
+<span id="qiskit.circuit.library.SXGate.params" />
 
 `property params`
 
 return instruction params.
 
+### power
 
+<span id="qiskit.circuit.library.SXGate.power" />
 
 `power(exponent)`
 
@@ -267,13 +307,15 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **Return type**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate#qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
 **Raises**
 
 **CircuitError** – If Gate is not unitary
 
+### qasm
 
+<span id="qiskit.circuit.library.SXGate.qasm" />
 
 `qasm()`
 
@@ -281,7 +323,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
+### repeat
 
+<span id="qiskit.circuit.library.SXGate.repeat" />
 
 `repeat(n)`
 
@@ -297,13 +341,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
+### reverse\_ops
 
+<span id="qiskit.circuit.library.SXGate.reverse_ops" />
 
 `reverse_ops()`
 
@@ -319,9 +365,11 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### soft\_compare
 
+<span id="qiskit.circuit.library.SXGate.soft_compare" />
 
 `soft_compare(other)`
 
@@ -339,7 +387,9 @@ are self and other equal up to parameter expressions.
 
 bool
 
+### to\_matrix
 
+<span id="qiskit.circuit.library.SXGate.to_matrix" />
 
 `to_matrix()`
 
@@ -357,14 +407,19 @@ np.ndarray
 
 **CircuitError** – If a Gate subclass does not implement this method an exception will be raised when this base class method is called.
 
+### unit
 
+<span id="qiskit.circuit.library.SXGate.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
+### validate\_parameter
 
+<span id="qiskit.circuit.library.SXGate.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
+
