@@ -1,8 +1,16 @@
+---
+title: GaussianDriver
+description: API reference for qiskit.chemistry.drivers.GaussianDriver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.drivers.GaussianDriver
+---
+
 # qiskit.chemistry.drivers.GaussianDriver
 
+<span id="qiskit.chemistry.drivers.GaussianDriver" />
 
-
-`GaussianDriver(config='# rhf/sto-3g scf(conventional)\\n\\nh2 molecule\\n\\n0 1\\nH 0.0 0.0 0.0\\nH 0.0 0.0 0.735\\n\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)`
+`GaussianDriver(config='# rhf/sto-3g scf(conventional)\\n\\nh2 molecule\\n\\n0 1\\nH 0.0 0.0 0.0\\nH 0.0 0.0 0.735\\n\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/gaussiand/gaussiandriver.py "view source code")
 
 Qiskit chemistry driver using the Gaussian™ 16 program.
 
@@ -19,9 +27,11 @@ This driver uses the Gaussian open-source Gaussian 16 interfacing code in order 
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.drivers.GaussianDriver.__init__" />
 
 `__init__(config='# rhf/sto-3g scf(conventional)\\n\\nh2 molecule\\n\\n0 1\\nH 0.0 0.0 0.0\\nH 0.0 0.0 0.735\\n\\n', molecule=None, basis='sto-3g', hf_method=<HFMethodType.RHF: 'rhf'>)`
 
@@ -34,7 +44,7 @@ This driver uses the Gaussian open-source Gaussian 16 interfacing code in order 
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – Invalid Input
 
 ## Methods
 
@@ -52,7 +62,9 @@ This driver uses the Gaussian open-source Gaussian 16 interfacing code in order 
 | [`molecule`](#qiskit.chemistry.drivers.GaussianDriver.molecule "qiskit.chemistry.drivers.GaussianDriver.molecule")                            | return molecule                                 |
 | [`supports_molecule`](#qiskit.chemistry.drivers.GaussianDriver.supports_molecule "qiskit.chemistry.drivers.GaussianDriver.supports_molecule") | True for derived classes that support Molecule. |
 
+### basis
 
+<span id="qiskit.chemistry.drivers.GaussianDriver.basis" />
 
 `property basis`
 
@@ -62,7 +74,9 @@ return basis
 
 `str`
 
+### hf\_method
 
+<span id="qiskit.chemistry.drivers.GaussianDriver.hf_method" />
 
 `property hf_method`
 
@@ -72,7 +86,9 @@ return Hartree-Fock method
 
 `str`
 
+### molecule
 
+<span id="qiskit.chemistry.drivers.GaussianDriver.molecule" />
 
 `property molecule`
 
@@ -82,7 +98,9 @@ return molecule
 
 `Optional`\[`Molecule`]
 
+### run
 
+<span id="qiskit.chemistry.drivers.GaussianDriver.run" />
 
 `run()`
 
@@ -96,7 +114,9 @@ Runs driver to produce a QMolecule output.
 
 A QMolecule containing the molecular data.
 
+### supports\_molecule
 
+<span id="qiskit.chemistry.drivers.GaussianDriver.supports_molecule" />
 
 `property supports_molecule`
 
@@ -109,3 +129,4 @@ True for derived classes that support Molecule.
 **Returns**
 
 True if Molecule is supported.
+

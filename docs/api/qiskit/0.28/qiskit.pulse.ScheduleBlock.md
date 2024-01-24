@@ -1,8 +1,16 @@
+---
+title: ScheduleBlock
+description: API reference for qiskit.pulse.ScheduleBlock
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.ScheduleBlock
+---
+
 # qiskit.pulse.ScheduleBlock
 
+<span id="qiskit.pulse.ScheduleBlock" />
 
-
-`ScheduleBlock(name=None, metadata=None, alignment_context=None)`
+`ScheduleBlock(name=None, metadata=None, alignment_context=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/schedule.py "view source code")
 
 A `ScheduleBlock` is a time-ordered sequence of instructions and transform macro to manage their relative timing. The relative position of the instructions is managed by the `context_alignment`. This allows `ScheduleBlock` to support instructions with a parametric duration and allows the lazy scheduling of instructions, i.e. allocating the instruction time just before execution.
 
@@ -16,7 +24,7 @@ A `ScheduleBlock` is a time-ordered sequence of instructions and transform macro
 
 The `ScheduleBlock` defaults to the `AlignLeft` alignment. The timing overlap constraint of instructions is not immediately evaluated, and thus we can assign a parameter object to the instruction duration. Instructions are implicitly scheduled at optimum time when the program is executed.
 
-Note that `ScheduleBlock` can contain [`Instruction`](qiskit.pulse.instructions.Instruction#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.Instruction") and other `ScheduleBlock` to build an experimental program, but `Schedule` is not supported. This should be added as a [`Call`](qiskit.pulse.instructions.Call#qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction. This conversion is automatically performed with the pulse builder.
+Note that `ScheduleBlock` can contain [`Instruction`](qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.Instruction") and other `ScheduleBlock` to build an experimental program, but `Schedule` is not supported. This should be added as a [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction. This conversion is automatically performed with the pulse builder.
 
 By using `ScheduleBlock` representation we can fully parametrize pulse waveforms. For example, Rabi schedule generator can be defined as
 
@@ -47,7 +55,9 @@ Create an empty schedule block.
 
 **TypeError** – if metadata is not a dict.
 
+### \_\_init\_\_
 
+<span id="qiskit.pulse.ScheduleBlock.__init__" />
 
 `__init__(name=None, metadata=None, alignment_context=None)`
 
@@ -102,13 +112,17 @@ Create an empty schedule block.
 | [`stop_time`](#qiskit.pulse.ScheduleBlock.stop_time "qiskit.pulse.ScheduleBlock.stop_time")                         | Stopping time of this schedule block.                                          |
 | [`timeslots`](#qiskit.pulse.ScheduleBlock.timeslots "qiskit.pulse.ScheduleBlock.timeslots")                         | Time keeping attribute.                                                        |
 
+### alignment\_context
 
+<span id="qiskit.pulse.ScheduleBlock.alignment_context" />
 
 `property alignment_context`
 
 Return alignment instance that allocates block component to generate schedule.
 
+### append
 
+<span id="qiskit.pulse.ScheduleBlock.append" />
 
 `append(block, name=None, inplace=True)`
 
@@ -130,9 +144,11 @@ Schedule block with appended schedule.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When invalid schedule type is specified.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When invalid schedule type is specified.
 
+### assign\_parameters
 
+<span id="qiskit.pulse.ScheduleBlock.assign_parameters" />
 
 `assign_parameters(value_dict, inplace=True)`
 
@@ -151,7 +167,9 @@ Assign the parameters in this schedule according to the input.
 
 Schedule with updated parameters.
 
+### blocks
 
+<span id="qiskit.pulse.ScheduleBlock.blocks" />
 
 `property blocks`
 
@@ -161,7 +179,9 @@ Get the time-ordered instructions from self.
 
 `Tuple`\[`Union`\[`ScheduleBlock`, `Instruction`]]
 
+### ch\_duration
 
+<span id="qiskit.pulse.ScheduleBlock.ch_duration" />
 
 `ch_duration(*channels)`
 
@@ -175,7 +195,9 @@ Return the time of the end of the last instruction over the supplied channels.
 
 `int`
 
+### ch\_start\_time
 
+<span id="qiskit.pulse.ScheduleBlock.ch_start_time" />
 
 `ch_start_time(*channels)`
 
@@ -189,7 +211,9 @@ Return the time of the start of the first instruction over the supplied channels
 
 `int`
 
+### ch\_stop\_time
 
+<span id="qiskit.pulse.ScheduleBlock.ch_stop_time" />
 
 `ch_stop_time(*channels)`
 
@@ -203,7 +227,9 @@ Return maximum start time over supplied channels.
 
 `int`
 
+### channels
 
+<span id="qiskit.pulse.ScheduleBlock.channels" />
 
 `property channels`
 
@@ -213,7 +239,9 @@ Returns channels that this schedule clock uses.
 
 `Tuple`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")]
 
+### draw
 
+<span id="qiskit.pulse.ScheduleBlock.draw" />
 
 `draw(dt=None, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, plot_all=None, plot_range=None, interactive=None, table=None, label=None, framechange=None, channels=None, show_framechange_channels=None, draw_title=None, backend=None, time_range=None, time_unit='dt', disable_channels=None, show_snapshot=True, show_framechange=True, show_waveform_info=True, show_barrier=True, plotter='mpl2d', axis=None)`
 
@@ -223,7 +251,7 @@ Plot the schedule.
 
 *   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See `IQXStandard`, `IQXSimple`, and `IQXDebugging` for details of preset stylesheets.
 
-*   **backend** (*Optional\[*[*BaseBackend*](qiskit.providers.BaseBackend#qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")*]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
+*   **backend** (*Optional\[*[*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")*]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
 *   **time\_range** (`Optional`\[`Tuple`\[`int`, `int`]]) – Set horizontal axis limit. Tuple (tmin, tmax).
 
@@ -285,7 +313,9 @@ Plot the schedule.
 
 Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
 
+### duration
 
+<span id="qiskit.pulse.ScheduleBlock.duration" />
 
 `property duration`
 
@@ -295,7 +325,9 @@ Duration of this schedule block.
 
 `int`
 
+### exclude
 
+<span id="qiskit.pulse.ScheduleBlock.exclude" />
 
 `exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`
 
@@ -316,7 +348,7 @@ self.filter(args) | self.exclude(args) == self
 *   **instruction\_types** (`Union`\[`Iterable`\[`ABCMeta`], `ABCMeta`, `None`]) – For example, `[PulseInstruction, AcquireInstruction]`.
 *   **time\_ranges** (`Optional`\[`Iterable`\[`Tuple`\[`int`, `int`]]]) – For example, `[(0, 5), (6, 10)]`.
 *   **intervals** (`Optional`\[`Iterable`\[`Tuple`\[`int`, `int`]]]) – For example, `[(0, 5), (6, 10)]`.
-*   **check\_subroutine** (`bool`) – Set True to individually filter instructions inside of a subroutine defined by the [`Call`](qiskit.pulse.instructions.Call#qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction.
+*   **check\_subroutine** (`bool`) – Set True to individually filter instructions inside of a subroutine defined by the [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction.
 
 **Returns**
 
@@ -324,9 +356,11 @@ self.filter(args) | self.exclude(args) == self
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When this method is called. This method will be supported soon.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When this method is called. This method will be supported soon.
 
+### filter
 
+<span id="qiskit.pulse.ScheduleBlock.filter" />
 
 `filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None, check_subroutine=True)`
 
@@ -345,7 +379,7 @@ If no arguments are provided, `self` is returned.
 *   **instruction\_types** (`Union`\[`Iterable`\[`ABCMeta`], `ABCMeta`, `None`]) – For example, `[PulseInstruction, AcquireInstruction]`.
 *   **time\_ranges** (`Optional`\[`Iterable`\[`Tuple`\[`int`, `int`]]]) – For example, `[(0, 5), (6, 10)]`.
 *   **intervals** (`Optional`\[`Iterable`\[`Tuple`\[`int`, `int`]]]) – For example, `[(0, 5), (6, 10)]`.
-*   **check\_subroutine** (`bool`) – Set True to individually filter instructions inside of a subroutine defined by the [`Call`](qiskit.pulse.instructions.Call#qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction.
+*   **check\_subroutine** (`bool`) – Set True to individually filter instructions inside of a subroutine defined by the [`Call`](qiskit.pulse.instructions.Call "qiskit.pulse.instructions.Call") instruction.
 
 **Returns**
 
@@ -353,9 +387,11 @@ If no arguments are provided, `self` is returned.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When this method is called. This method will be supported soon.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When this method is called. This method will be supported soon.
 
+### get\_parameters
 
+<span id="qiskit.pulse.ScheduleBlock.get_parameters" />
 
 `get_parameters(parameter_name)`
 
@@ -375,7 +411,9 @@ Because different `Parameter` objects can have the same name, this method return
 
 Parameter objects that have corresponding name.
 
+### initialize\_from
 
+<span id="qiskit.pulse.ScheduleBlock.initialize_from" />
 
 `classmethod initialize_from(other_program, name=None)`
 
@@ -396,9 +434,11 @@ New block object with name and metadata.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When other\_program does not provide necessary information.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When other\_program does not provide necessary information.
 
+### insert
 
+<span id="qiskit.pulse.ScheduleBlock.insert" />
 
 `insert(start_time, block, name=None, inplace=True)`
 
@@ -417,9 +457,11 @@ This method will be removed. Temporarily added for backward compatibility.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When this method is called. This method is not supported.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When this method is called. This method is not supported.
 
+### instructions
 
+<span id="qiskit.pulse.ScheduleBlock.instructions" />
 
 `property instructions`
 
@@ -429,7 +471,9 @@ Get the time-ordered instructions from self.
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
+### is\_parameterized
 
+<span id="qiskit.pulse.ScheduleBlock.is_parameterized" />
 
 `is_parameterized()`
 
@@ -439,7 +483,9 @@ Return True iff the instruction is parameterized.
 
 `bool`
 
+### is\_schedulable
 
+<span id="qiskit.pulse.ScheduleBlock.is_schedulable" />
 
 `is_schedulable()`
 
@@ -449,7 +495,9 @@ Return `True` if all durations are assigned.
 
 `bool`
 
+### metadata
 
+<span id="qiskit.pulse.ScheduleBlock.metadata" />
 
 `property metadata`
 
@@ -461,7 +509,9 @@ User provided `dict` of metadata for the schedule. The metadata contents do not 
 
 `Dict`\[`str`, `Any`]
 
+### name
 
+<span id="qiskit.pulse.ScheduleBlock.name" />
 
 `property name`
 
@@ -471,7 +521,9 @@ Name of this Schedule
 
 `str`
 
+### parameters
 
+<span id="qiskit.pulse.ScheduleBlock.parameters" />
 
 `property parameters`
 
@@ -481,7 +533,9 @@ Parameters which determine the schedule behavior.
 
 `Set`
 
+### replace
 
+<span id="qiskit.pulse.ScheduleBlock.replace" />
 
 `replace(old, new, inplace=True)`
 
@@ -501,7 +555,9 @@ Return a `ScheduleBlock` with the `old` component replaced with a `new` componen
 
 The modified schedule block with `old` replaced by `new`.
 
+### shift
 
+<span id="qiskit.pulse.ScheduleBlock.shift" />
 
 `shift(time, name=None, inplace=True)`
 
@@ -519,9 +575,11 @@ This method will be removed. Temporarily added for backward compatibility.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When this method is called. This method is not supported.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – When this method is called. This method is not supported.
 
+### start\_time
 
+<span id="qiskit.pulse.ScheduleBlock.start_time" />
 
 `property start_time`
 
@@ -531,7 +589,9 @@ Starting time of this schedule block.
 
 `int`
 
+### stop\_time
 
+<span id="qiskit.pulse.ScheduleBlock.stop_time" />
 
 `property stop_time`
 
@@ -541,7 +601,9 @@ Stopping time of this schedule block.
 
 `int`
 
+### timeslots
 
+<span id="qiskit.pulse.ScheduleBlock.timeslots" />
 
 `property timeslots`
 
@@ -550,3 +612,4 @@ Time keeping attribute.
 **Return type**
 
 `Dict`\[[`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel"), `List`\[`Tuple`\[`int`, `int`]]]
+
