@@ -199,10 +199,9 @@ export function convertRubricsToHeaders(
   // <strong>
   function appropriateHtmlTag(html: string | null) {
     html = String(html);
-    if (html.match(/^Examples?$/) || html.match(/^References$/)) {
-      return "strong";
-    }
-    return "h2";
+    return html.match(/^Examples?$/) || html.match(/^References$/)
+      ? "strong"
+      : "h2";
   }
 
   $main.find(".rubric").each((_, el) => {
