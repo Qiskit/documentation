@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.CommutativeCancellation
 
 <span id="qiskit.transpiler.passes.CommutativeCancellation" />
 
-`qiskit.transpiler.passes.CommutativeCancellation(*args, **kwargs)`
+`qiskit.transpiler.passes.CommutativeCancellation(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/optimization/commutative_cancellation.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -27,7 +27,7 @@ CommutativeCancellation initializer.
 **Parameters**
 
 *   **basis\_gates** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*str*](https://docs.python.org/3/library/stdtypes.html#str "(in Python v3.12)")*]*) – Basis gates to consider, e.g. `['u3', 'cx']`. For the effects of this pass, the basis is the set intersection between the `basis_gates` parameter and the gates in the dag.
-*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `basis_gates` and this are specified then this argument will take precedence and `basis_gates` will be ignored.
+*   **target** ([*Target*](qiskit.transpiler.Target "qiskit.transpiler.Target")) – The [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target") representing the target backend, if both `basis_gates` and `target` are specified then this argument will take precedence and `basis_gates` will be ignored.
 
 ## Attributes
 

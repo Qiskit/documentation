@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.TwoQubitBasisDecomposer
 
 <span id="qiskit.quantum_info.TwoQubitBasisDecomposer" />
 
-`qiskit.quantum_info.TwoQubitBasisDecomposer(gate, basis_fidelity=1.0, euler_basis='U', pulse_optimize=None)`
+`qiskit.quantum_info.TwoQubitBasisDecomposer(gate, basis_fidelity=1.0, euler_basis='U', pulse_optimize=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/synthesis/two_qubit_decompose.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 

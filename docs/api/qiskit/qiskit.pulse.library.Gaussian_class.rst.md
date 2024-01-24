@@ -10,15 +10,17 @@ python_api_name: qiskit.pulse.library.Gaussian
 
 <span id="qiskit.pulse.library.Gaussian" />
 
-`qiskit.pulse.library.Gaussian(duration, amp, sigma, angle=None, name=None, limit_amplitude=None)`
+`qiskit.pulse.library.Gaussian(duration, amp, sigma, angle=None, name=None, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/pulse/library/symbolic_pulses.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
 A lifted and truncated pulse envelope shaped according to the Gaussian function whose mean is centered at the center of the pulse (duration / 2):
 
 $$
-\begin{split}f'(x) &= \exp\Bigl( -\frac12 \frac{{(x - \text{duration}/2)}^2}{\text{sigma}^2} \Bigr)\\
-f(x) &= \text{A} \times  \frac{f'(x) - f'(-1)}{1-f'(-1)}, \quad 0 \le x < \text{duration}\end{split}
+\begin{aligned}
+f'(x) &= \exp\Bigl( -\frac12 \frac{{(x - \text{duration}/2)}^2}{\text{sigma}^2} \Bigr)\\
+f(x) &= \text{A} \times  \frac{f'(x) - f'(-1)}{1-f'(-1)}, \quad 0 \le x < \text{duration}
+\end{aligned}
 $$
 
 where $f'(x)$ is the gaussian waveform without lifting or amplitude scaling, and $\text{A} = \text{amp} \times \exp\left(i\times\text{angle}\right)$.
