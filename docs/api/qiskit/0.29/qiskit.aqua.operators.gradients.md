@@ -99,26 +99,26 @@ The derivative classes come with a gradient\_wrapper() function which returns th
 
 # Base Classes
 
-|                                                                                                                                                                    |                                                  |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------ |
-| [`DerivativeBase`](qiskit.aqua.operators.gradients.DerivativeBase#qiskit.aqua.operators.gradients.DerivativeBase "qiskit.aqua.operators.gradients.DerivativeBase") | Base class for differentiating opflow objects.   |
-| [`GradientBase`](qiskit.aqua.operators.gradients.GradientBase#qiskit.aqua.operators.gradients.GradientBase "qiskit.aqua.operators.gradients.GradientBase")         | Base class for first-order operator gradient.    |
-| [`HessianBase`](qiskit.aqua.operators.gradients.HessianBase#qiskit.aqua.operators.gradients.HessianBase "qiskit.aqua.operators.gradients.HessianBase")             | Base class for the Hessian of an expected value. |
-| [`QFIBase`](qiskit.aqua.operators.gradients.QFIBase#qiskit.aqua.operators.gradients.QFIBase "qiskit.aqua.operators.gradients.QFIBase")                             | Base class for Quantum Fisher Information (QFI). |
+|                                                                                                                     |                                                  |
+| ------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------ |
+| [`DerivativeBase`](qiskit.aqua.operators.gradients.DerivativeBase "qiskit.aqua.operators.gradients.DerivativeBase") | Base class for differentiating opflow objects.   |
+| [`GradientBase`](qiskit.aqua.operators.gradients.GradientBase "qiskit.aqua.operators.gradients.GradientBase")       | Base class for first-order operator gradient.    |
+| [`HessianBase`](qiskit.aqua.operators.gradients.HessianBase "qiskit.aqua.operators.gradients.HessianBase")          | Base class for the Hessian of an expected value. |
+| [`QFIBase`](qiskit.aqua.operators.gradients.QFIBase "qiskit.aqua.operators.gradients.QFIBase")                      | Base class for Quantum Fisher Information (QFI). |
 
 # Converters
 
-|                                                                                                                                                                        |                                                           |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| [`CircuitGradient`](qiskit.aqua.operators.gradients.CircuitGradient#qiskit.aqua.operators.gradients.CircuitGradient "qiskit.aqua.operators.gradients.CircuitGradient") | Circuit to gradient operator converter.                   |
-| [`CircuitQFI`](qiskit.aqua.operators.gradients.CircuitQFI#qiskit.aqua.operators.gradients.CircuitQFI "qiskit.aqua.operators.gradients.CircuitQFI")                     | Circuit to Quantum Fisher Information operator converter. |
+|                                                                                                                        |                                                           |
+| ---------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
+| [`CircuitGradient`](qiskit.aqua.operators.gradients.CircuitGradient "qiskit.aqua.operators.gradients.CircuitGradient") | Circuit to gradient operator converter.                   |
+| [`CircuitQFI`](qiskit.aqua.operators.gradients.CircuitQFI "qiskit.aqua.operators.gradients.CircuitQFI")                | Circuit to Quantum Fisher Information operator converter. |
 
 # Derivatives
 
-|                                                                                                                                                                        |                                                             |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
-| [`Gradient`](qiskit.aqua.operators.gradients.Gradient#qiskit.aqua.operators.gradients.Gradient "qiskit.aqua.operators.gradients.Gradient")                             | Convert an operator expression to the first-order gradient. |
-| [`Hessian`](qiskit.aqua.operators.gradients.Hessian#qiskit.aqua.operators.gradients.Hessian "qiskit.aqua.operators.gradients.Hessian")                                 | Compute the Hessian of an expected value.                   |
-| [`NaturalGradient`](qiskit.aqua.operators.gradients.NaturalGradient#qiskit.aqua.operators.gradients.NaturalGradient "qiskit.aqua.operators.gradients.NaturalGradient") | Convert an operator expression to the first-order gradient. |
-| [`QFI`](qiskit.aqua.operators.gradients.QFI#qiskit.aqua.operators.gradients.QFI "qiskit.aqua.operators.gradients.QFI")                                                 | Compute the Quantum Fisher Information (QFI).               |
+|                                                                                                                        |                                                             |
+| ---------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------- |
+| [`Gradient`](qiskit.aqua.operators.gradients.Gradient "qiskit.aqua.operators.gradients.Gradient")                      | Convert an operator expression to the first-order gradient. |
+| [`Hessian`](qiskit.aqua.operators.gradients.Hessian "qiskit.aqua.operators.gradients.Hessian")                         | Compute the Hessian of an expected value.                   |
+| [`NaturalGradient`](qiskit.aqua.operators.gradients.NaturalGradient "qiskit.aqua.operators.gradients.NaturalGradient") | Convert an operator expression to the first-order gradient. |
+| [`QFI`](qiskit.aqua.operators.gradients.QFI "qiskit.aqua.operators.gradients.QFI")                                     | Compute the Quantum Fisher Information (QFI).               |
 
