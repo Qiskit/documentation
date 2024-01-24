@@ -1,8 +1,16 @@
+---
+title: VQEUCCSDFactory
+description: API reference for qiskit.chemistry.algorithms.VQEUCCSDFactory
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.VQEUCCSDFactory
+---
+
 # VQEUCCSDFactory
 
+<span id="qiskit.chemistry.algorithms.VQEUCCSDFactory" />
 
-
-`VQEUCCSDFactory(quantum_instance, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True)`
+`VQEUCCSDFactory(quantum_instance, optimizer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, method_singles='both', method_doubles='ucc', excitation_type='sd', same_spin_doubles=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/minimum_eigensolver_factories/vqe_uccsd_factory.py "view source code")
 
 Bases: `qiskit.chemistry.algorithms.ground_state_solvers.minimum_eigensolver_factories.minimum_eigensolver_factory.MinimumEigensolverFactory`
 
@@ -14,7 +22,7 @@ A factory to construct a VQE minimum eigensolver with UCCSD ansatz wavefunction.
 *   **optimizer** (`Optional`\[`Optimizer`]) – A classical optimizer.
 *   **initial\_point** (`Optional`\[`ndarray`]) – An optional initial point (i.e. initial parameter values) for the optimizer. If `None` then VQE will look to the variational form for a preferred point and if not will simply compute a random one.
 *   **gradient** (`Union`\[`GradientBase`, `Callable`, `None`]) – An optional gradient function or operator for optimizer.
-*   **expectation** (`Optional`\[`ExpectationBase`]) – The Expectation converter for taking the average value of the Observable over the var\_form state function. When `None` (the default) an [`ExpectationFactory`](qiskit.aqua.operators.expectations.ExpectationFactory#qiskit.aqua.operators.expectations.ExpectationFactory "qiskit.aqua.operators.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to `True` (defaults to `False`).
+*   **expectation** (`Optional`\[`ExpectationBase`]) – The Expectation converter for taking the average value of the Observable over the var\_form state function. When `None` (the default) an [`ExpectationFactory`](qiskit.aqua.operators.expectations.ExpectationFactory "qiskit.aqua.operators.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to `True` (defaults to `False`).
 *   **include\_custom** (`bool`) – When expectation parameter here is None setting this to `True` will allow the factory to include the custom Aer pauli expectation.
 *   **method\_singles** (`str`) – specify the single excitation considered. ‘alpha’, ‘beta’, ‘both’ only alpha or beta spin-orbital single excitations or both (all of them).
 *   **method\_doubles** (`str`) – specify the single excitation considered. ‘ucc’ (conventional ucc), succ (singlet ucc), succ\_full (singlet ucc full), pucc (pair ucc).
@@ -23,14 +31,41 @@ A factory to construct a VQE minimum eigensolver with UCCSD ansatz wavefunction.
 
 ## Methods
 
-|                                                                                                                                                                                                                                        |                                                                                         |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------- |
-| [`get_solver`](qiskit.chemistry.algorithms.VQEUCCSDFactory.get_solver#qiskit.chemistry.algorithms.VQEUCCSDFactory.get_solver "qiskit.chemistry.algorithms.VQEUCCSDFactory.get_solver")                                                 | Returns a VQE with a UCCSD wavefunction ansatz, based on `transformation`.              |
-| [`supports_aux_operators`](qiskit.chemistry.algorithms.VQEUCCSDFactory.supports_aux_operators#qiskit.chemistry.algorithms.VQEUCCSDFactory.supports_aux_operators "qiskit.chemistry.algorithms.VQEUCCSDFactory.supports_aux_operators") | Returns whether the eigensolver generated by this factory supports auxiliary operators. |
+### get\_solver
+
+<span id="qiskit.chemistry.algorithms.VQEUCCSDFactory.get_solver" />
+
+`VQEUCCSDFactory.get_solver(transformation)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/minimum_eigensolver_factories/vqe_uccsd_factory.py "view source code")
+
+Returns a VQE with a UCCSD wavefunction ansatz, based on `transformation`. This works only with a `FermionicTransformation`.
+
+**Parameters**
+
+**transformation** (`Transformation`) – a fermionic qubit operator transformation.
+
+**Return type**
+
+`MinimumEigensolver`
+
+**Returns**
+
+A VQE suitable to compute the ground state of the molecule transformed by `transformation`.
+
+**Raises**
+
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – in case a Transformation of wrong type is given.
+
+### supports\_aux\_operators
+
+<span id="qiskit.chemistry.algorithms.VQEUCCSDFactory.supports_aux_operators" />
+
+`VQEUCCSDFactory.supports_aux_operators()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/minimum_eigensolver_factories/vqe_uccsd_factory.py "view source code")
+
+Returns whether the eigensolver generated by this factory supports auxiliary operators.
 
 ## Attributes
 
-
+<span id="qiskit.chemistry.algorithms.VQEUCCSDFactory.excitation_type" />
 
 ### excitation\_type
 
@@ -40,7 +75,7 @@ Getter of the `excitation_type` setting for the `excitation_type` setting.
 
 `str`
 
-
+<span id="qiskit.chemistry.algorithms.VQEUCCSDFactory.expectation" />
 
 ### expectation
 
@@ -50,7 +85,7 @@ Getter of the expectation.
 
 `ExpectationBase`
 
-
+<span id="qiskit.chemistry.algorithms.VQEUCCSDFactory.gradient" />
 
 ### gradient
 
@@ -60,7 +95,7 @@ Getter of the gradient function
 
 `Union`\[`GradientBase`, `Callable`, `None`]
 
-
+<span id="qiskit.chemistry.algorithms.VQEUCCSDFactory.include_custom" />
 
 ### include\_custom
 
@@ -70,7 +105,7 @@ Getter of the `include_custom` setting for the `expectation` setting.
 
 `bool`
 
-
+<span id="qiskit.chemistry.algorithms.VQEUCCSDFactory.initial_point" />
 
 ### initial\_point
 
@@ -80,7 +115,7 @@ Getter of the initial point.
 
 `ndarray`
 
-
+<span id="qiskit.chemistry.algorithms.VQEUCCSDFactory.method_doubles" />
 
 ### method\_doubles
 
@@ -90,7 +125,7 @@ Getter of the `method_doubles` setting for the `method_doubles` setting.
 
 `str`
 
-
+<span id="qiskit.chemistry.algorithms.VQEUCCSDFactory.method_singles" />
 
 ### method\_singles
 
@@ -100,7 +135,7 @@ Getter of the `method_singles` setting for the `method_singles` setting.
 
 `str`
 
-
+<span id="qiskit.chemistry.algorithms.VQEUCCSDFactory.optimizer" />
 
 ### optimizer
 
@@ -110,7 +145,7 @@ Getter of the optimizer.
 
 `Optimizer`
 
-
+<span id="qiskit.chemistry.algorithms.VQEUCCSDFactory.quantum_instance" />
 
 ### quantum\_instance
 
@@ -120,7 +155,7 @@ Getter of the quantum instance.
 
 `QuantumInstance`
 
-
+<span id="qiskit.chemistry.algorithms.VQEUCCSDFactory.same_spin_doubles" />
 
 ### same\_spin\_doubles
 
@@ -129,3 +164,4 @@ Getter of the `same_spin_doubles` setting for the `same_spin_doubles` setting.
 **Return type**
 
 `bool`
+
