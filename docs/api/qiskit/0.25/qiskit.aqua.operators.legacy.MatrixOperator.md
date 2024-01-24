@@ -1,8 +1,16 @@
+---
+title: MatrixOperator
+description: API reference for qiskit.aqua.operators.legacy.MatrixOperator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.operators.legacy.MatrixOperator
+---
+
 # qiskit.aqua.operators.legacy.MatrixOperator
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator" />
 
-
-`MatrixOperator(matrix, basis=None, z2_symmetries=None, atol=1e-12, name=None)`
+`MatrixOperator(matrix, basis=None, z2_symmetries=None, atol=1e-12, name=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/operators/legacy/matrix_operator.py "view source code")
 
 Operators relevant for quantum applications
 
@@ -14,11 +22,13 @@ Operators relevant for quantum applications
 
 *   **matrix** (*numpy.ndarray or scipy.sparse.csr\_matrix*) – a 2-D sparse matrix represents operator (using CSR format internally)
 *   **basis** (*list\[tuple(object, \[int])], optional*) – the grouping basis, each element is a tuple composed of the basis and the indices to paulis which are belonged to that group. e.g., if tpb basis is used, the object will be a pauli. by default, the group is equal to non-grouping, each pauli is its own basis.
-*   **z2\_symmetries** ([*Z2Symmetries*](qiskit.aqua.operators.legacy.Z2Symmetries#qiskit.aqua.operators.legacy.Z2Symmetries "qiskit.aqua.operators.legacy.Z2Symmetries")) – represent the Z2 symmetries
+*   **z2\_symmetries** ([*Z2Symmetries*](qiskit.aqua.operators.legacy.Z2Symmetries "qiskit.aqua.operators.legacy.Z2Symmetries")) – represent the Z2 symmetries
 *   **atol** (*float*) – atol
 *   **name** (*str*) – name
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.__init__" />
 
 `__init__(matrix, basis=None, z2_symmetries=None, atol=1e-12, name=None)`
 
@@ -26,7 +36,7 @@ Operators relevant for quantum applications
 
 *   **matrix** (*numpy.ndarray or scipy.sparse.csr\_matrix*) – a 2-D sparse matrix represents operator (using CSR format internally)
 *   **basis** (*list\[tuple(object, \[int])], optional*) – the grouping basis, each element is a tuple composed of the basis and the indices to paulis which are belonged to that group. e.g., if tpb basis is used, the object will be a pauli. by default, the group is equal to non-grouping, each pauli is its own basis.
-*   **z2\_symmetries** ([*Z2Symmetries*](qiskit.aqua.operators.legacy.Z2Symmetries#qiskit.aqua.operators.legacy.Z2Symmetries "qiskit.aqua.operators.legacy.Z2Symmetries")) – represent the Z2 symmetries
+*   **z2\_symmetries** ([*Z2Symmetries*](qiskit.aqua.operators.legacy.Z2Symmetries "qiskit.aqua.operators.legacy.Z2Symmetries")) – represent the Z2 symmetries
 *   **atol** (*float*) – atol
 *   **name** (*str*) – name
 
@@ -60,23 +70,31 @@ Operators relevant for quantum applications
 | [`num_qubits`](#qiskit.aqua.operators.legacy.MatrixOperator.num_qubits "qiskit.aqua.operators.legacy.MatrixOperator.num_qubits")          | number of qubits required for the operator. |
 | [`z2_symmetries`](#qiskit.aqua.operators.legacy.MatrixOperator.z2_symmetries "qiskit.aqua.operators.legacy.MatrixOperator.z2_symmetries") | returns z2 symmetries                       |
 
+### add
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.add" />
 
 `add(other, copy=False)`
 
+### atol
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.atol" />
 
 `property atol`
 
 return atol
 
+### basis
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.basis" />
 
 `property basis`
 
 returns basis
 
+### chop
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.chop" />
 
 `chop(threshold=None, copy=False)`
 
@@ -95,7 +113,9 @@ self or copy
 
 [MatrixOperator](#qiskit.aqua.operators.legacy.MatrixOperator "qiskit.aqua.operators.legacy.MatrixOperator")
 
+### construct\_evaluation\_circuit
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.construct_evaluation_circuit" />
 
 `construct_evaluation_circuit(wave_function, statevector_mode=True, use_simulator_snapshot_mode=None, circuit_name_prefix='')`
 
@@ -103,7 +123,7 @@ Construct the circuits for evaluation.
 
 **Parameters**
 
-*   **wave\_function** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the quantum circuit.
+*   **wave\_function** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – the quantum circuit.
 *   **statevector\_mode** (*bool*) – mode
 *   **use\_simulator\_snapshot\_mode** (*bool*) – uses simulator operator mode
 *   **circuit\_name\_prefix** (*str, optional*) – a prefix of circuit name
@@ -116,27 +136,35 @@ the wavefunction evaluation.
 
 **Return type**
 
-list\[[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
+list\[[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")]
 
+### copy
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.copy" />
 
 `copy()`
 
 Get a copy of self.
 
+### dense\_matrix
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.dense_matrix" />
 
 `property dense_matrix`
 
 Getter of matrix in dense matrix form.
 
+### dia\_matrix
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.dia_matrix" />
 
 `property dia_matrix`
 
 diagonal matrix
 
+### evaluate\_with\_result
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.evaluate_with_result" />
 
 `evaluate_with_result(result, statevector_mode=True, use_simulator_snapshot_mode=None, circuit_name_prefix='')`
 
@@ -159,9 +187,11 @@ float
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
 
+### evaluate\_with\_statevector
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.evaluate_with_statevector" />
 
 `evaluate_with_statevector(quantum_state)`
 
@@ -179,9 +209,11 @@ float
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
 
+### evolve
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.evolve" />
 
 `evolve(state_in, evo_time=0, num_time_slices=0, expansion_mode='trotter', expansion_order=1)`
 
@@ -206,9 +238,11 @@ numpy.array
 **Raises**
 
 *   **ValueError** – Invalid arguments
-*   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
+*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if Operator is empty
 
+### is\_empty
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.is_empty" />
 
 `is_empty()`
 
@@ -222,19 +256,25 @@ is empty?
 
 bool
 
+### matrix
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.matrix" />
 
 `property matrix`
 
 Getter of matrix.
 
+### name
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.name" />
 
 `property name`
 
 returns name
 
+### num\_qubits
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.num_qubits" />
 
 `property num_qubits`
 
@@ -248,7 +288,9 @@ number of qubits
 
 int
 
+### print\_details
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.print_details" />
 
 `print_details()`
 
@@ -260,18 +302,25 @@ a formatted operator.
 
 str
 
+### sub
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.sub" />
 
 `sub(other, copy=False)`
 
+### to\_opflow
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.to_opflow" />
 
 `to_opflow()`
 
 to op flow
 
+### z2\_symmetries
 
+<span id="qiskit.aqua.operators.legacy.MatrixOperator.z2_symmetries" />
 
 `property z2_symmetries`
 
 returns z2 symmetries
+

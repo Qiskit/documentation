@@ -1,8 +1,16 @@
+---
+title: DensityMatrix
+description: API reference for qiskit.quantum_info.DensityMatrix
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.quantum_info.DensityMatrix
+---
+
 # qiskit.quantum\_info.DensityMatrix
 
+<span id="qiskit.quantum_info.DensityMatrix" />
 
-
-`DensityMatrix(data, dims=None)`
+`DensityMatrix(data, dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/states/densitymatrix.py "view source code")
 
 DensityMatrix class
 
@@ -24,7 +32,9 @@ The `dims` kwarg can be None, an integer, or an iterable of integers.
 *   `Iterable` – the subsystem dimensions are the values in the list with the total number of subsystems given by the length of the list.
 *   `Int` or `None` – the leading dimension of the input matrix specifies the total dimension of the density matrix. If it is a power of two the state will be initialized as an N-qubit state. If it is not a power of two the state will have a single d-dimensional subsystem.
 
+### \_\_init\_\_
 
+<span id="qiskit.quantum_info.DensityMatrix.__init__" />
 
 `__init__(data, dims=None)`
 
@@ -87,43 +97,57 @@ The `dims` kwarg can be None, an integer, or an iterable of integers.
 | [`num_qubits`](#qiskit.quantum_info.DensityMatrix.num_qubits "qiskit.quantum_info.DensityMatrix.num_qubits") | Return the number of qubits if a N-qubit state or None otherwise. |
 | [`rtol`](#qiskit.quantum_info.DensityMatrix.rtol "qiskit.quantum_info.DensityMatrix.rtol")                   | Default relative tolerance parameter for float comparisons.       |
 
+### atol
 
+<span id="qiskit.quantum_info.DensityMatrix.atol" />
 
 `property atol`
 
 Default absolute tolerance parameter for float comparisons.
 
+### conjugate
 
+<span id="qiskit.quantum_info.DensityMatrix.conjugate" />
 
 `conjugate()`
 
 Return the conjugate of the density matrix.
 
+### copy
 
+<span id="qiskit.quantum_info.DensityMatrix.copy" />
 
 `copy()`
 
 Make a copy of current operator.
 
+### data
 
+<span id="qiskit.quantum_info.DensityMatrix.data" />
 
 `property data`
 
 Return data.
 
+### dim
 
+<span id="qiskit.quantum_info.DensityMatrix.dim" />
 
 `property dim`
 
 Return total state dimension.
 
+### dims
 
+<span id="qiskit.quantum_info.DensityMatrix.dims" />
 
 `dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
 
+### draw
 
+<span id="qiskit.quantum_info.DensityMatrix.draw" />
 
 `draw(output=None, **drawer_args)`
 
@@ -156,7 +180,9 @@ Return a visualization of the Statevector.
 
 **ValueError** – when an invalid output method is selected.
 
+### evolve
 
+<span id="qiskit.quantum_info.DensityMatrix.evolve" />
 
 `evolve(other, qargs=None)`
 
@@ -179,7 +205,9 @@ QuantumState
 
 **QiskitError** – if the operator dimension does not match the specified QuantumState subsystem dimensions.
 
+### expand
 
+<span id="qiskit.quantum_info.DensityMatrix.expand" />
 
 `expand(other)`
 
@@ -201,7 +229,9 @@ the tensor product state other ⊗ self.
 
 **QiskitError** – if other is not a quantum state.
 
+### expectation\_value
 
+<span id="qiskit.quantum_info.DensityMatrix.expectation_value" />
 
 `expectation_value(oper, qargs=None)`
 
@@ -209,7 +239,7 @@ Compute the expectation value of an operator.
 
 **Parameters**
 
-*   **oper** ([*Operator*](qiskit.quantum_info.Operator#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator to evaluate expval.
+*   **oper** ([*Operator*](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator")) – an operator to evaluate expval.
 *   **qargs** (*None or list*) – subsystems to apply the operator on.
 
 **Returns**
@@ -220,7 +250,9 @@ the expectation value.
 
 complex
 
+### from\_instruction
 
+<span id="qiskit.quantum_info.DensityMatrix.from_instruction" />
 
 `classmethod from_instruction(instruction)`
 
@@ -230,7 +262,7 @@ The statevector is initialized in the state $|{0,\ldots,0}\rangle$ of the same n
 
 **Parameters**
 
-**instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – instruction or circuit
+**instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – instruction or circuit
 
 **Returns**
 
@@ -244,7 +276,9 @@ the final density matrix.
 
 **QiskitError** – if the instruction contains invalid instructions for density matrix simulation.
 
+### from\_int
 
+<span id="qiskit.quantum_info.DensityMatrix.from_int" />
 
 `static from_int(i, dims)`
 
@@ -270,7 +304,9 @@ The `dims` kwarg can be an integer or an iterable of integers.
 *   `Iterable` – the subsystem dimensions are the values in the list with the total number of subsystems given by the length of the list.
 *   `Int` – the integer specifies the total dimension of the state. If it is a power of two the state will be initialized as an N-qubit state. If it is not a power of two the state will have a single d-dimensional subsystem.
 
+### from\_label
 
+<span id="qiskit.quantum_info.DensityMatrix.from_label" />
 
 `classmethod from_label(label)`
 
@@ -295,19 +331,23 @@ The N-qubit basis state density matrix.
 
 **Return type**
 
-[Statevector](qiskit.quantum_info.Statevector#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
+[Statevector](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
 
 **Raises**
 
 **QiskitError** – if the label contains invalid characters, or the length of the label is larger than an explicitly specified num\_qubits.
 
+### is\_valid
 
+<span id="qiskit.quantum_info.DensityMatrix.is_valid" />
 
 `is_valid(atol=None, rtol=None)`
 
 Return True if trace 1 and positive semidefinite.
 
+### measure
 
+<span id="qiskit.quantum_info.DensityMatrix.measure" />
 
 `measure(qargs=None)`
 
@@ -329,13 +369,17 @@ measurement outcome string label, and `state` is the collapsed post-measurement 
 
 tuple
 
+### num\_qubits
 
+<span id="qiskit.quantum_info.DensityMatrix.num_qubits" />
 
 `property num_qubits`
 
 Return the number of qubits if a N-qubit state or None otherwise.
 
+### probabilities
 
+<span id="qiskit.quantum_info.DensityMatrix.probabilities" />
 
 `probabilities(qargs=None, decimals=None)`
 
@@ -406,7 +450,9 @@ probs: [0.5 0.  0.5 0. ]
 Swapped probs: [0.5 0.5 0.  0. ]
 ```
 
+### probabilities\_dict
 
+<span id="qiskit.quantum_info.DensityMatrix.probabilities_dict" />
 
 `probabilities_dict(qargs=None, decimals=None)`
 
@@ -429,13 +475,17 @@ The measurement probabilities in dict (ket) form.
 
 dict
 
+### purity
 
+<span id="qiskit.quantum_info.DensityMatrix.purity" />
 
 `purity()`
 
 Return the purity of the quantum state.
 
+### reset
 
+<span id="qiskit.quantum_info.DensityMatrix.reset" />
 
 `reset(qargs=None)`
 
@@ -455,9 +505,11 @@ the reset state.
 
 **Additional Information:**
 
-If all subsystems are reset this will return the ground state on all subsystems. If only a some subsystems are reset this function will perform evolution by the reset [`SuperOp`](qiskit.quantum_info.SuperOp#qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") of the reset subsystems.
+If all subsystems are reset this will return the ground state on all subsystems. If only a some subsystems are reset this function will perform evolution by the reset [`SuperOp`](qiskit.quantum_info.SuperOp "qiskit.quantum_info.SuperOp") of the reset subsystems.
 
+### reverse\_qargs
 
+<span id="qiskit.quantum_info.DensityMatrix.reverse_qargs" />
 
 `reverse_qargs()`
 
@@ -473,13 +525,17 @@ the state with reversed subsystem order.
 
 [DensityMatrix](#qiskit.quantum_info.DensityMatrix "qiskit.quantum_info.DensityMatrix")
 
+### rtol
 
+<span id="qiskit.quantum_info.DensityMatrix.rtol" />
 
 `property rtol`
 
 Default relative tolerance parameter for float comparisons.
 
+### sample\_counts
 
+<span id="qiskit.quantum_info.DensityMatrix.sample_counts" />
 
 `sample_counts(shots, qargs=None)`
 
@@ -496,7 +552,7 @@ sampled counts dictionary.
 
 **Return type**
 
-[Counts](qiskit.result.Counts#qiskit.result.Counts "qiskit.result.Counts")
+[Counts](qiskit.result.Counts "qiskit.result.Counts")
 
 Additional Information:
 
@@ -504,7 +560,9 @@ Additional Information:
 >
 > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.DensityMatrix.seed "qiskit.quantum_info.DensityMatrix.seed") method.
 
+### sample\_memory
 
+<span id="qiskit.quantum_info.DensityMatrix.sample_memory" />
 
 `sample_memory(shots, qargs=None)`
 
@@ -529,13 +587,17 @@ Additional Information:
 >
 > The seed for random number generator used for sampling can be set to a fixed value by using the stats [`seed()`](#qiskit.quantum_info.DensityMatrix.seed "qiskit.quantum_info.DensityMatrix.seed") method.
 
+### seed
 
+<span id="qiskit.quantum_info.DensityMatrix.seed" />
 
 `seed(value=None)`
 
 Set the seed for the quantum state RNG.
 
+### tensor
 
+<span id="qiskit.quantum_info.DensityMatrix.tensor" />
 
 `tensor(other)`
 
@@ -557,7 +619,9 @@ the tensor product operator self ⊗ other.
 
 **QiskitError** – if other is not a quantum state.
 
+### to\_dict
 
+<span id="qiskit.quantum_info.DensityMatrix.to_dict" />
 
 `to_dict(decimals=None)`
 
@@ -628,13 +692,17 @@ print(rho.to_dict())
 {'00|00': (0.5+0j), '91|91': (0.5+0j)}
 ```
 
+### to\_operator
 
+<span id="qiskit.quantum_info.DensityMatrix.to_operator" />
 
 `to_operator()`
 
 Convert to Operator
 
+### to\_statevector
 
+<span id="qiskit.quantum_info.DensityMatrix.to_statevector" />
 
 `to_statevector(atol=None, rtol=None)`
 
@@ -653,14 +721,17 @@ Corresponds to the eigenvector of the only non-zero eigenvalue.
 
 **Return type**
 
-[Statevector](qiskit.quantum_info.Statevector#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
+[Statevector](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector")
 
 **Raises**
 
 **QiskitError** – if the state is not pure.
 
+### trace
 
+<span id="qiskit.quantum_info.DensityMatrix.trace" />
 
 `trace()`
 
 Return the trace of the density matrix.
+

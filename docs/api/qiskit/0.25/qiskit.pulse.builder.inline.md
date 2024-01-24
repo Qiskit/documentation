@@ -1,8 +1,16 @@
+---
+title: inline
+description: API reference for qiskit.pulse.builder.inline
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.inline
+---
+
 # qiskit.pulse.builder.inline
 
+<span id="qiskit.pulse.builder.inline" />
 
-
-`inline()`
+`inline()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/builder.py "view source code")
 
 Inline all instructions within this context into the parent context, inheriting the scheduling policy of the parent context.
 
@@ -38,3 +46,4 @@ assert (pulse_prog.ch_start_time(d0) ==
 **Return type**
 
 `AbstractContextManager`\[`None`]
+
