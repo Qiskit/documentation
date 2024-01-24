@@ -1,8 +1,16 @@
+---
+title: ClassicalRegister
+description: API reference for qiskit.circuit.ClassicalRegister
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.ClassicalRegister
+---
+
 # ClassicalRegister
 
+<span id="qiskit.circuit.ClassicalRegister" />
 
-
-`ClassicalRegister(size=None, name=None, bits=None)`
+`ClassicalRegister(size=None, name=None, bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/classicalregister.py "view source code")
 
 Bases: `qiskit.circuit.register.Register`
 
@@ -28,39 +36,51 @@ Either the `size` or the `bits` argument must be provided. If `size` is not None
 
 ## Methods
 
-|                                                                                                                                   |                                                          |
-| --------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------- |
-| [`index`](qiskit.circuit.ClassicalRegister.index#qiskit.circuit.ClassicalRegister.index "qiskit.circuit.ClassicalRegister.index") | Find the index of the provided bit within this register. |
-| [`qasm`](qiskit.circuit.ClassicalRegister.qasm#qiskit.circuit.ClassicalRegister.qasm "qiskit.circuit.ClassicalRegister.qasm")     | Return OPENQASM string for this register.                |
+### index
+
+<span id="qiskit.circuit.ClassicalRegister.index" />
+
+`ClassicalRegister.index(bit)`
+
+Find the index of the provided bit within this register.
+
+### qasm
+
+<span id="qiskit.circuit.ClassicalRegister.qasm" />
+
+`ClassicalRegister.qasm()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/classicalregister.py "view source code")
+
+Return OPENQASM string for this register.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.ClassicalRegister.instances_counter" />
 
 ### instances\_counter
 
 `= count(0)`
 
-
+<span id="qiskit.circuit.ClassicalRegister.name" />
 
 ### name
 
 Get the register name.
 
-
+<span id="qiskit.circuit.ClassicalRegister.name_format" />
 
 ### name\_format
 
 `= re.compile('[a-z][a-zA-Z0-9_]*')`
 
-
+<span id="qiskit.circuit.ClassicalRegister.prefix" />
 
 ### prefix
 
 `= 'c'`
 
-
+<span id="qiskit.circuit.ClassicalRegister.size" />
 
 ### size
 
 Get the register size.
+

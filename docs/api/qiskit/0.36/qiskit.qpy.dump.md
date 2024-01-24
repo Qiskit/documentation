@@ -10,7 +10,7 @@ python_api_name: qiskit.qpy.dump
 
 <span id="qiskit.qpy.dump" />
 
-`dump(programs, file_obj, metadata_serializer=None)`
+`dump(circuits, file_obj, metadata_serializer=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/qpy/interface.py "view source code")
 
 Write QPY binary data to a file
 
@@ -20,7 +20,7 @@ For example:
 
 ```python
 from qiskit.circuit import QuantumCircuit
-from qiskit import qpy
+from qiskit.circuit import qpy_serialization
 
 qc = QuantumCircuit(2, name='Bell', metadata={'test': True})
 qc.h(0)
@@ -32,7 +32,7 @@ from this you can write the qpy data to a file:
 
 ```python
 with open('bell.qpy', 'wb') as fd:
-    qpy.dump(qc, fd)
+    qpy_serialization.dump(qc, fd)
 ```
 
 or a gzip compressed file:
@@ -41,19 +41,14 @@ or a gzip compressed file:
 import gzip
 
 with gzip.open('bell.qpy.gz', 'wb') as fd:
-    qpy.dump(qc, fd)
+    qpy_serialization.dump(qc, fd)
 ```
 
 Which will save the qpy serialized circuit to the provided file.
 
 **Parameters**
 
-*   **programs** (`Union`\[`List`\[`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]], [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.schedule.ScheduleBlock")]) – QPY supported object(s) to store in the specified file like object. QPY supports [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`ScheduleBlock`](qiskit.pulse.ScheduleBlock "qiskit.pulse.ScheduleBlock"). Different data types must be separately serialized.
-*   **file\_obj** (`BinaryIO`) – The file like object to write the QPY data too
-*   **metadata\_serializer** (`Optional`\[`Type`\[`JSONEncoder`]]) – An optional JSONEncoder class that will be passed the `.metadata` attribute for each program in `programs` and will be used as the `cls` kwarg on the json.dump()\` call to JSON serialize that dictionary.
-
-**Raises**
-
-*   **QpyError** – When multiple data format is mixed in the output.
-*   **TypeError** – When invalid data type is input.
+*   **circuits** (*list or* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The quantum circuit object(s) to store in the specified file like object. This can either be a single QuantumCircuit object or a list of QuantumCircuits.
+*   **file\_obj** (*file*) – The file like object to write the QPY data too
+*   **metadata\_serializer** (*JSONEncoder*) – An optional JSONEncoder class that will be passed the [`QuantumCircuit.metadata`](qiskit.circuit.QuantumCircuit#metadata "qiskit.circuit.QuantumCircuit.metadata") dictionary for each circuit in `circuits` and will be used as the `cls` kwarg on the `json.dump()` call to JSON serialize that dictionary.
 

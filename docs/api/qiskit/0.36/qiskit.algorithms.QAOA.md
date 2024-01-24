@@ -10,9 +10,9 @@ python_api_name: qiskit.algorithms.QAOA
 
 <span id="qiskit.algorithms.QAOA" />
 
-`QAOA(optimizer=None, reps=1, initial_state=None, mixer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)`
+`QAOA(optimizer=None, reps=1, initial_state=None, mixer=None, initial_point=None, gradient=None, expectation=None, include_custom=False, max_evals_grouped=1, callback=None, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/minimum_eigen_solvers/qaoa.py "view source code")
 
-Bases: [`qiskit.algorithms.minimum_eigen_solvers.vqe.VQE`](qiskit.algorithms.VQE "qiskit.algorithms.minimum_eigen_solvers.vqe.VQE")
+Bases: `qiskit.algorithms.minimum_eigen_solvers.vqe.VQE`
 
 The Quantum Approximate Optimization Algorithm.
 
@@ -26,17 +26,17 @@ An operator or a parameterized quantum circuit may optionally also be provided a
 
 **Parameters**
 
-*   **optimizer** (`Union`\[[`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer"), `Minimizer`, `None`]) – A classical optimizer, see also [`VQE`](qiskit.algorithms.VQE "qiskit.algorithms.VQE") for more details on the possible types.
+*   **optimizer** (`Union`\[`Optimizer`, `Callable`\[\[`Callable`\[\[`ndarray`], `float`], `ndarray`, `Optional`\[`Callable`\[\[`ndarray`], `ndarray`]], `Optional`\[`List`\[`Tuple`\[`float`, `float`]]]], `Union`\[`OptimizeResult`, `OptimizerResult`]], `None`]) – A classical optimizer, see also [`VQE`](qiskit.algorithms.VQE "qiskit.algorithms.VQE") for more details on the possible types.
 *   **reps** (`int`) – the integer parameter $p$ as specified in [https://arxiv.org/abs/1411.4028](https://arxiv.org/abs/1411.4028), Has a minimum valid value of 1.
-*   **initial\_state** (`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – An optional initial state to prepend the QAOA circuit with
-*   **mixer** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase"), `None`]) – the mixer Hamiltonian to evolve with or a custom quantum circuit. Allows support of optimizations in constrained subspaces as per [https://arxiv.org/abs/1709.03489](https://arxiv.org/abs/1709.03489) as well as warm-starting the optimization as introduced in [http://arxiv.org/abs/2009.10095](http://arxiv.org/abs/2009.10095).
+*   **initial\_state** (`Optional`\[`QuantumCircuit`]) – An optional initial state to prepend the QAOA circuit with
+*   **mixer** (`Union`\[`QuantumCircuit`, `OperatorBase`, `None`]) – the mixer Hamiltonian to evolve with or a custom quantum circuit. Allows support of optimizations in constrained subspaces as per [https://arxiv.org/abs/1709.03489](https://arxiv.org/abs/1709.03489) as well as warm-starting the optimization as introduced in [http://arxiv.org/abs/2009.10095](http://arxiv.org/abs/2009.10095).
 *   **initial\_point** (`Optional`\[`ndarray`]) – An optional initial point (i.e. initial parameter values) for the optimizer. If `None` then it will simply compute a random one.
-*   **gradient** (`Union`\[[`GradientBase`](qiskit.opflow.gradients.GradientBase "qiskit.opflow.gradients.gradient_base.GradientBase"), `Callable`\[\[`Union`\[`ndarray`, `List`]], `List`], `None`]) – An optional gradient operator respectively a gradient function used for optimization.
-*   **expectation** (`Optional`\[[`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")]) – The Expectation converter for taking the average value of the Observable over the ansatz state function. When None (the default) an [`ExpectationFactory`](qiskit.opflow.expectations.ExpectationFactory "qiskit.opflow.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to True (defaults to False).
+*   **gradient** (`Union`\[`GradientBase`, `Callable`\[\[`Union`\[`ndarray`, `List`]], `List`], `None`]) – An optional gradient operator respectively a gradient function used for optimization.
+*   **expectation** (`Optional`\[`ExpectationBase`]) – The Expectation converter for taking the average value of the Observable over the ansatz state function. When None (the default) an [`ExpectationFactory`](qiskit.opflow.expectations.ExpectationFactory "qiskit.opflow.expectations.ExpectationFactory") is used to select an appropriate expectation based on the operator and backend. When using Aer qasm\_simulator backend, with paulis, it is however much faster to leverage custom Aer function for the computation but, although VQE performs much faster with it, the outcome is ideal, with no shot noise, like using a state vector simulator. If you are just looking for the quickest performance when choosing Aer qasm\_simulator and the lack of shot noise is not an issue then set include\_custom parameter here to True (defaults to False).
 *   **include\_custom** (`bool`) – When expectation parameter here is None setting this to True will allow the factory to include the custom Aer pauli expectation.
 *   **max\_evals\_grouped** (`int`) – Max number of evaluations performed simultaneously. Signals the given optimizer that more than one set of parameters can be supplied so that potentially the expectation values can be computed in parallel. Typically this is possible when a finite difference gradient is used by the optimizer such that multiple points to compute the gradient can be passed and if computed in parallel improve overall execution time. Ignored if a gradient operator or function is given.
 *   **callback** (`Optional`\[`Callable`\[\[`int`, `ndarray`, `float`, `float`], `None`]]) – a callback that can access the intermediate data during the optimization. Four parameter values are passed to the callback as follows during each evaluation by the optimizer for its current set of parameters as it works towards the minimum. These are: the evaluation count, the optimizer parameters for the ansatz, the evaluated mean and the evaluated standard deviation.
-*   **quantum\_instance** (`Union`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance"), `None`]) – Quantum Instance or Backend
+*   **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – Quantum Instance or Backend
 
 ## Methods
 
@@ -50,12 +50,12 @@ Computes minimum eigenvalue. Operator and aux\_operators can be supplied here an
 
 **Parameters**
 
-*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – Qubit operator of the Observable
-*   **aux\_operators** (`Union`\[`List`\[`Optional`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]], `Dict`\[`str`, [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")], `None`]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
+*   **operator** (`OperatorBase`) – Qubit operator of the Observable
+*   **aux\_operators** (`Union`\[`List`\[`Optional`\[`OperatorBase`]], `Dict`\[`str`, `OperatorBase`], `None`]) – Optional list of auxiliary operators to be evaluated with the eigenstate of the minimum eigenvalue main result and their expectation values returned. For instance in chemistry these can be dipole operators, total particle count operators so we can get values for these at the ground state.
 
 **Return type**
 
-[`MinimumEigensolverResult`](qiskit.algorithms.MinimumEigensolverResult "qiskit.algorithms.minimum_eigen_solvers.minimum_eigen_solver.MinimumEigensolverResult")
+`MinimumEigensolverResult`
 
 **Returns**
 
@@ -71,12 +71,12 @@ Return the circuits used to compute the expectation value.
 
 **Parameters**
 
-*   **parameter** (`Union`\[`List`\[`float`], `List`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")], `ndarray`]) – Parameters for the ansatz circuit.
-*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – Qubit operator of the Observable
+*   **parameter** (`Union`\[`List`\[`float`], `List`\[`Parameter`], `ndarray`]) – Parameters for the ansatz circuit.
+*   **operator** (`OperatorBase`) – Qubit operator of the Observable
 
 **Return type**
 
-`List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]
+`List`\[`QuantumCircuit`]
 
 **Returns**
 
@@ -92,13 +92,13 @@ Generate the ansatz circuit and expectation value measurement, and return their 
 
 **Parameters**
 
-*   **parameter** (`Union`\[`List`\[`float`], `List`\[[`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.parameter.Parameter")], `ndarray`]) – Parameters for the ansatz circuit.
-*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – Qubit operator of the Observable
+*   **parameter** (`Union`\[`List`\[`float`], `List`\[`Parameter`], `ndarray`]) – Parameters for the ansatz circuit.
+*   **operator** (`OperatorBase`) – Qubit operator of the Observable
 *   **return\_expectation** (`bool`) – If True, return the `ExpectationBase` expectation converter used in the construction of the expectation value. Useful e.g. to compute the standard deviation of the expectation value.
 
 **Return type**
 
-`Union`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase"), `Tuple`\[[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase"), [`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")]]
+`Union`\[`OperatorBase`, `Tuple`\[`OperatorBase`, `ExpectationBase`]]
 
 **Returns**
 
@@ -121,7 +121,7 @@ This is the objective function to be passed to the optimizer that is used for ev
 
 **Parameters**
 
-*   **operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator whose energy to evaluate.
+*   **operator** (`OperatorBase`) – The operator whose energy to evaluate.
 *   **return\_expectation** (`bool`) – If True, return the `ExpectationBase` expectation converter used in the construction of the expectation value. Useful e.g. to evaluate other operators with the same expectation value converter.
 
 **Return type**
@@ -180,7 +180,7 @@ Returns the ansatz.
 
 **Return type**
 
-[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+`QuantumCircuit`
 
 <span id="qiskit.algorithms.QAOA.callback" />
 
@@ -200,7 +200,7 @@ The expectation value algorithm used to construct the expectation measurement fr
 
 **Return type**
 
-`Optional`\[[`ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")]
+`Optional`\[`ExpectationBase`]
 
 <span id="qiskit.algorithms.QAOA.gradient" />
 
@@ -210,7 +210,7 @@ Returns the gradient.
 
 **Return type**
 
-`Union`\[[`GradientBase`](qiskit.opflow.gradients.GradientBase "qiskit.opflow.gradients.gradient_base.GradientBase"), `Callable`, `None`]
+`Union`\[`GradientBase`, `Callable`, `None`]
 
 <span id="qiskit.algorithms.QAOA.include_custom" />
 
@@ -240,7 +240,7 @@ Returns: Returns the initial state.
 
 **Return type**
 
-`Optional`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]
+`Optional`\[`QuantumCircuit`]
 
 <span id="qiskit.algorithms.QAOA.max_evals_grouped" />
 
@@ -260,7 +260,7 @@ Returns: Returns the mixer.
 
 **Return type**
 
-`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")]
+`Union`\[`QuantumCircuit`, `OperatorBase`]
 
 <span id="qiskit.algorithms.QAOA.optimizer" />
 
@@ -270,7 +270,7 @@ Returns optimizer
 
 **Return type**
 
-[`Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
+`Optimizer`
 
 <span id="qiskit.algorithms.QAOA.quantum_instance" />
 
@@ -280,7 +280,7 @@ Returns quantum instance.
 
 **Return type**
 
-`Optional`\[[`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance")]
+`Optional`\[`QuantumInstance`]
 
 <span id="qiskit.algorithms.QAOA.setting" />
 

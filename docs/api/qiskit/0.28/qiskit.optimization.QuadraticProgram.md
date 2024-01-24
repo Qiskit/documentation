@@ -1,8 +1,16 @@
+---
+title: QuadraticProgram
+description: API reference for qiskit.optimization.QuadraticProgram
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.QuadraticProgram
+---
+
 # qiskit.optimization.QuadraticProgram
 
+<span id="qiskit.optimization.QuadraticProgram" />
 
-
-`QuadraticProgram(name='')`
+`QuadraticProgram(name='')`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/quadratic_program.py "view source code")
 
 Quadratically Constrained Quadratic Program representation.
 
@@ -12,7 +20,9 @@ This representation supports inequality and equality constraints, as well as con
 
 **name** (`str`) – The name of the quadratic program.
 
+### \_\_init\_\_
 
+<span id="qiskit.optimization.QuadraticProgram.__init__" />
 
 `__init__(name='')`
 
@@ -77,13 +87,15 @@ This representation supports inequality and equality constraints, as well as con
 | [`variables`](#qiskit.optimization.QuadraticProgram.variables "qiskit.optimization.QuadraticProgram.variables")                                                       | Returns the list of variables of the quadratic program.                           |
 | [`variables_index`](#qiskit.optimization.QuadraticProgram.variables_index "qiskit.optimization.QuadraticProgram.variables_index")                                     | Returns the dictionary that maps the name of a variable to its index.             |
 
-
+<span id="qiskit.optimization.QuadraticProgram.Status" />
 
 ### Status
 
 alias of `QuadraticProgramStatus`
 
+### binary\_var
 
+<span id="qiskit.optimization.QuadraticProgram.binary_var" />
 
 `binary_var(name=None)`
 
@@ -103,9 +115,11 @@ The added variable.
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already occupied.
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already occupied.
 
+### binary\_var\_dict
 
+<span id="qiskit.optimization.QuadraticProgram.binary_var_dict" />
 
 `binary_var_dict(keys, name=None, key_format='{}')`
 
@@ -127,11 +141,13 @@ A dictionary mapping the variable names to variable instances.
 
 **Raises**
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
 
+### binary\_var\_list
 
+<span id="qiskit.optimization.QuadraticProgram.binary_var_list" />
 
 `binary_var_list(keys, name=None, key_format='{}')`
 
@@ -153,11 +169,13 @@ A list of variable instances.
 
 **Raises**
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
 
+### clear
 
+<span id="qiskit.optimization.QuadraticProgram.clear" />
 
 `clear()`
 
@@ -167,7 +185,9 @@ Clears the quadratic program, i.e., deletes all variables, constraints, the obje
 
 `None`
 
+### continuous\_var
 
+<span id="qiskit.optimization.QuadraticProgram.continuous_var" />
 
 `continuous_var(lowerbound=0, upperbound=1e+20, name=None)`
 
@@ -189,9 +209,11 @@ The added variable.
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already occupied.
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already occupied.
 
+### continuous\_var\_dict
 
+<span id="qiskit.optimization.QuadraticProgram.continuous_var_dict" />
 
 `continuous_var_dict(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')`
 
@@ -215,11 +237,13 @@ A dictionary mapping the variable names to variable instances.
 
 **Raises**
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
 
+### continuous\_var\_list
 
+<span id="qiskit.optimization.QuadraticProgram.continuous_var_list" />
 
 `continuous_var_list(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')`
 
@@ -243,11 +267,13 @@ A list of variable instances.
 
 **Raises**
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
 
+### export\_as\_lp\_string
 
+<span id="qiskit.optimization.QuadraticProgram.export_as_lp_string" />
 
 `export_as_lp_string()`
 
@@ -261,7 +287,9 @@ Returns the quadratic program as a string of LP format.
 
 A string representing the quadratic program.
 
+### from\_docplex
 
+<span id="qiskit.optimization.QuadraticProgram.from_docplex" />
 
 `from_docplex(model)`
 
@@ -275,13 +303,15 @@ Note that this supports only basic functions of docplex as follows: - quadratic 
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the model contains unsupported elements.
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the model contains unsupported elements.
 
 **Return type**
 
 `None`
 
+### from\_ising
 
+<span id="qiskit.optimization.QuadraticProgram.from_ising" />
 
 `from_ising(qubit_op, offset=0.0, linear=False)`
 
@@ -295,15 +325,17 @@ Create a quadratic program from a qubit operator and a shift value.
 
 **Raises**
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If there are Pauli Xs in any Pauli term
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If there are more than 2 Pauli Zs in any Pauli term
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If there are Pauli Xs in any Pauli term
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If there are more than 2 Pauli Zs in any Pauli term
 *   **NotImplementedError** – If the input operator is a ListOp
 
 **Return type**
 
 `None`
 
+### get\_feasibility\_info
 
+<span id="qiskit.optimization.QuadraticProgram.get_feasibility_info" />
 
 `get_feasibility_info(x)`
 
@@ -319,9 +351,11 @@ feasible
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the input x is not same len as total vars
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If the input x is not same len as total vars
 
+### get\_linear\_constraint
 
+<span id="qiskit.optimization.QuadraticProgram.get_linear_constraint" />
 
 `get_linear_constraint(i)`
 
@@ -344,7 +378,9 @@ The corresponding constraint.
 *   **IndexError** – if the index is out of the list size
 *   **KeyError** – if the name does not exist
 
+### get\_num\_binary\_vars
 
+<span id="qiskit.optimization.QuadraticProgram.get_num_binary_vars" />
 
 `get_num_binary_vars()`
 
@@ -358,7 +394,9 @@ Returns the total number of binary variables.
 
 The total number of binary variables.
 
+### get\_num\_continuous\_vars
 
+<span id="qiskit.optimization.QuadraticProgram.get_num_continuous_vars" />
 
 `get_num_continuous_vars()`
 
@@ -372,7 +410,9 @@ Returns the total number of continuous variables.
 
 The total number of continuous variables.
 
+### get\_num\_integer\_vars
 
+<span id="qiskit.optimization.QuadraticProgram.get_num_integer_vars" />
 
 `get_num_integer_vars()`
 
@@ -386,7 +426,9 @@ Returns the total number of integer variables.
 
 The total number of integer variables.
 
+### get\_num\_linear\_constraints
 
+<span id="qiskit.optimization.QuadraticProgram.get_num_linear_constraints" />
 
 `get_num_linear_constraints()`
 
@@ -400,7 +442,9 @@ Returns the number of linear constraints.
 
 The number of linear constraints.
 
+### get\_num\_quadratic\_constraints
 
+<span id="qiskit.optimization.QuadraticProgram.get_num_quadratic_constraints" />
 
 `get_num_quadratic_constraints()`
 
@@ -414,7 +458,9 @@ Returns the number of quadratic constraints.
 
 The number of quadratic constraints.
 
+### get\_num\_vars
 
+<span id="qiskit.optimization.QuadraticProgram.get_num_vars" />
 
 `get_num_vars(vartype=None)`
 
@@ -432,7 +478,9 @@ Returns the total number of variables or the number of variables of the specifie
 
 The total number of variables.
 
+### get\_quadratic\_constraint
 
+<span id="qiskit.optimization.QuadraticProgram.get_quadratic_constraint" />
 
 `get_quadratic_constraint(i)`
 
@@ -455,7 +503,9 @@ The corresponding constraint.
 *   **IndexError** – if the index is out of the list size
 *   **KeyError** – if the name does not exist
 
+### get\_variable
 
+<span id="qiskit.optimization.QuadraticProgram.get_variable" />
 
 `get_variable(i)`
 
@@ -473,7 +523,9 @@ Returns a variable for a given name or index.
 
 The corresponding variable.
 
+### integer\_var
 
+<span id="qiskit.optimization.QuadraticProgram.integer_var" />
 
 `integer_var(lowerbound=0, upperbound=1e+20, name=None)`
 
@@ -495,9 +547,11 @@ The added variable.
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already occupied.
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already occupied.
 
+### integer\_var\_dict
 
+<span id="qiskit.optimization.QuadraticProgram.integer_var_dict" />
 
 `integer_var_dict(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')`
 
@@ -521,11 +575,13 @@ A dictionary mapping the variable names to variable instances.
 
 **Raises**
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
 
+### integer\_var\_list
 
+<span id="qiskit.optimization.QuadraticProgram.integer_var_list" />
 
 `integer_var_list(keys, lowerbound=0, upperbound=1e+20, name=None, key_format='{}')`
 
@@ -549,11 +605,13 @@ A list of variable instances.
 
 **Raises**
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the variable name is already taken.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if less than one variable instantiation is attempted.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if key\_format has more than one substitution or a nested substitution.
 
+### is\_feasible
 
+<span id="qiskit.optimization.QuadraticProgram.is_feasible" />
 
 `is_feasible(x)`
 
@@ -571,7 +629,9 @@ Returns whether a solution is feasible or not.
 
 `True` if the solution provided is feasible otherwise `False`.
 
+### linear\_constraint
 
+<span id="qiskit.optimization.QuadraticProgram.linear_constraint" />
 
 `linear_constraint(linear=None, sense='<=', rhs=0.0, name=None)`
 
@@ -596,9 +656,11 @@ The added constraint.
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the constraint name already exists or the sense is not valid.
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the constraint name already exists or the sense is not valid.
 
+### linear\_constraints
 
+<span id="qiskit.optimization.QuadraticProgram.linear_constraints" />
 
 `property linear_constraints`
 
@@ -612,7 +674,9 @@ Returns the list of linear constraints of the quadratic program.
 
 List of linear constraints.
 
+### linear\_constraints\_index
 
+<span id="qiskit.optimization.QuadraticProgram.linear_constraints_index" />
 
 `property linear_constraints_index`
 
@@ -626,7 +690,9 @@ Returns the dictionary that maps the name of a linear constraint to its index.
 
 The linear constraint index dictionary.
 
+### maximize
 
+<span id="qiskit.optimization.QuadraticProgram.maximize" />
 
 `maximize(constant=0.0, linear=None, quadratic=None)`
 
@@ -646,7 +712,9 @@ Sets a quadratic objective to be maximized.
 
 The created quadratic objective.
 
+### minimize
 
+<span id="qiskit.optimization.QuadraticProgram.minimize" />
 
 `minimize(constant=0.0, linear=None, quadratic=None)`
 
@@ -666,7 +734,9 @@ Sets a quadratic objective to be minimized.
 
 The created quadratic objective.
 
+### name
 
+<span id="qiskit.optimization.QuadraticProgram.name" />
 
 `property name`
 
@@ -680,7 +750,9 @@ Returns the name of the quadratic program.
 
 The name of the quadratic program.
 
+### objective
 
+<span id="qiskit.optimization.QuadraticProgram.objective" />
 
 `property objective`
 
@@ -694,13 +766,17 @@ Returns the quadratic objective.
 
 The quadratic objective.
 
+### pprint\_as\_string
 
+<span id="qiskit.optimization.QuadraticProgram.pprint_as_string" />
 
 `pprint_as_string()`
 
 DEPRECATED Returns the quadratic program as a string in Docplex’s pretty print format. :rtype: `str` :returns: A string representing the quadratic program.
 
+### prettyprint
 
+<span id="qiskit.optimization.QuadraticProgram.prettyprint" />
 
 `prettyprint(out=None)`
 
@@ -714,7 +790,9 @@ DEPRECATED Pretty prints the quadratic program to a given output stream (None = 
 
 `None`
 
+### quadratic\_constraint
 
+<span id="qiskit.optimization.QuadraticProgram.quadratic_constraint" />
 
 `quadratic_constraint(linear=None, quadratic=None, sense='<=', rhs=0.0, name=None)`
 
@@ -740,9 +818,11 @@ The added constraint.
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the constraint name already exists.
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the constraint name already exists.
 
+### quadratic\_constraints
 
+<span id="qiskit.optimization.QuadraticProgram.quadratic_constraints" />
 
 `property quadratic_constraints`
 
@@ -756,7 +836,9 @@ Returns the list of quadratic constraints of the quadratic program.
 
 List of quadratic constraints.
 
+### quadratic\_constraints\_index
 
+<span id="qiskit.optimization.QuadraticProgram.quadratic_constraints_index" />
 
 `property quadratic_constraints_index`
 
@@ -770,7 +852,9 @@ Returns the dictionary that maps the name of a quadratic constraint to its index
 
 The quadratic constraint index dictionary.
 
+### read\_from\_lp\_file
 
+<span id="qiskit.optimization.QuadraticProgram.read_from_lp_file" />
 
 `read_from_lp_file(filename)`
 
@@ -783,7 +867,7 @@ Loads the quadratic program from a LP file.
 **Raises**
 
 *   **FileNotFoundError** – If the file does not exist.
-*   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError#qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If CPLEX is not installed.
+*   [**MissingOptionalLibraryError**](qiskit.aqua.MissingOptionalLibraryError "qiskit.aqua.MissingOptionalLibraryError") – If CPLEX is not installed.
 
 <Admonition title="Note" type="note">
   This method requires CPLEX to be installed and present in `PYTHONPATH`.
@@ -793,7 +877,9 @@ Loads the quadratic program from a LP file.
 
 `None`
 
+### remove\_linear\_constraint
 
+<span id="qiskit.optimization.QuadraticProgram.remove_linear_constraint" />
 
 `remove_linear_constraint(i)`
 
@@ -812,7 +898,9 @@ Remove a linear constraint
 
 `None`
 
+### remove\_quadratic\_constraint
 
+<span id="qiskit.optimization.QuadraticProgram.remove_quadratic_constraint" />
 
 `remove_quadratic_constraint(i)`
 
@@ -831,7 +919,9 @@ Remove a quadratic constraint
 
 `None`
 
+### status
 
+<span id="qiskit.optimization.QuadraticProgram.status" />
 
 `property status`
 
@@ -845,7 +935,9 @@ Status of the quadratic program. It can be infeasible due to variable substituti
 
 The status of the quadratic program
 
+### substitute\_variables
 
+<span id="qiskit.optimization.QuadraticProgram.substitute_variables" />
 
 `substitute_variables(constants=None, variables=None)`
 
@@ -866,9 +958,11 @@ An optimization problem by substituting variables with constants or other variab
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the substitution is invalid as follows. - Same variable is substituted multiple times. - Coefficient of variable substitution is zero.
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if the substitution is invalid as follows. - Same variable is substituted multiple times. - Coefficient of variable substitution is zero.
 
+### to\_docplex
 
+<span id="qiskit.optimization.QuadraticProgram.to_docplex" />
 
 `to_docplex()`
 
@@ -884,9 +978,11 @@ The docplex model corresponding to this quadratic program.
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if non-supported elements (should never happen).
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if non-supported elements (should never happen).
 
+### to\_ising
 
+<span id="qiskit.optimization.QuadraticProgram.to_ising" />
 
 `to_ising()`
 
@@ -902,10 +998,12 @@ qubit\_op
 
 **Raises**
 
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If a variable type is not binary.
-*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If constraints exist in the problem.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If a variable type is not binary.
+*   [**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – If constraints exist in the problem.
 
+### variables
 
+<span id="qiskit.optimization.QuadraticProgram.variables" />
 
 `property variables`
 
@@ -919,7 +1017,9 @@ Returns the list of variables of the quadratic program.
 
 List of variables.
 
+### variables\_index
 
+<span id="qiskit.optimization.QuadraticProgram.variables_index" />
 
 `property variables_index`
 
@@ -933,7 +1033,9 @@ Returns the dictionary that maps the name of a variable to its index.
 
 The variable index dictionary.
 
+### write\_to\_lp\_file
 
+<span id="qiskit.optimization.QuadraticProgram.write_to_lp_file" />
 
 `write_to_lp_file(filename)`
 
@@ -951,3 +1053,4 @@ Writes the quadratic program to an LP file.
 **Return type**
 
 `None`
+

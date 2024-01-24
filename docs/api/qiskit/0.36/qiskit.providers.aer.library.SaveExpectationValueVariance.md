@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.aer.library.SaveExpectationValueVariance
 
 <span id="qiskit.providers.aer.library.SaveExpectationValueVariance" />
 
-`SaveExpectationValueVariance(operator, label='expectation_value_variance', unnormalized=False, pershot=False, conditional=False)`
+`SaveExpectationValueVariance(operator, label='expectation_value_variance', unnormalized=False, pershot=False, conditional=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/library/save_instructions/save_expectation_value.py "view source code")
 
 Bases: `qiskit.providers.aer.library.save_instructions.save_data.SaveAverageData`
 
@@ -217,7 +217,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.providers.aer.library.SaveExpectationValueVariance.decompositions" />
 

@@ -1,10 +1,18 @@
+---
+title: Zero
+description: API reference for qiskit.aqua.components.initial_states.Zero
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.initial_states.Zero
+---
+
 <span id="qiskit-aqua-components-initial-states-zero" />
 
 # qiskit.aqua.components.initial\_states.Zero
 
+<span id="qiskit.aqua.components.initial_states.Zero" />
 
-
-`Zero(num_qubits)`
+`Zero(num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/components/initial_states/zero.py "view source code")
 
 The zero (null/vacuum) state.
 
@@ -14,7 +22,9 @@ This is suitable for those situations in which the all-zeros state is the desire
 
 **num\_qubits** (`int`) – Number of qubits, has a minimum value of 1.
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.components.initial_states.Zero.__init__" />
 
 `__init__(num_qubits)`
 
@@ -35,11 +45,15 @@ This is suitable for those situations in which the all-zeros state is the desire
 | ------------------------------------------------------------------------------------------------------------------ | - |
 | [`bitstr`](#qiskit.aqua.components.initial_states.Zero.bitstr "qiskit.aqua.components.initial_states.Zero.bitstr") |   |
 
+### bitstr
 
+<span id="qiskit.aqua.components.initial_states.Zero.bitstr" />
 
 `property bitstr`
 
+### construct\_circuit
 
+<span id="qiskit.aqua.components.initial_states.Zero.construct_circuit" />
 
 `construct_circuit(mode='circuit', register=None)`
 
@@ -56,8 +70,9 @@ statevector.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or numpy.ndarray
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – when mode is not ‘vector’ or ‘circuit’.
+

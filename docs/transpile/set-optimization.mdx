@@ -92,7 +92,7 @@ qc.append(rand_U, range(2))
 qc.swap(0, 1)
 qc.draw('mpl')
 ```
-![Original abstract circuit](/images/transpile/defaults-and-configuration-options/abstract-circ.png)
+![Original abstract circuit](/images/transpile/defaults-and-configuration-options/abstract-circ.png "Original abstract circuit")
 
 We use `FakeTokyo` as the system and transpile using `optimization_level=1` (the default). To avoid considering the effect of idle qubits, We override the system's coupling map so that the transpiled circuit returns to a two-qubit circuit.
 
@@ -101,7 +101,7 @@ backend = FakeTokyo()
 qc_t1_exact = transpile(qc, backend, optimization_level=1, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
 qc_t1_exact.draw('mpl', style='iqp')
 ```
-![Circuit transpiled with optimization level 1](/images/transpile/defaults-and-configuration-options/circ-opt-level-1.png)
+![Circuit transpiled with optimization level 1](/images/transpile/defaults-and-configuration-options/circ-opt-level-1.png "Circuit transpiled with optimization level 1")
 
 
 The transpiled circuit has six CX gates and several `U3` gates, which have much lower error than CX's, so we don't need to count them. 
@@ -112,7 +112,7 @@ Repeat for optimization level 2:
 qc_t2_exact = transpile(qc, backend, optimization_level=2, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
 qc_t2_exact.draw('mpl', style='iqp')
 ```
-![Circuit transpiled with optimization level 2](/images/transpile/defaults-and-configuration-options/circ-opt-level-2.png)
+![Circuit transpiled with optimization level 2](/images/transpile/defaults-and-configuration-options/circ-opt-level-2.png "Circuit transpiled with optimization level 2")
 
 This yields the same results as optimization level 1. Note that increasing the level of optimization does not always make a difference. 
 
@@ -122,7 +122,7 @@ Repeat again, with optimization level 3:
 qc_t3_exact = transpile(qc, backend, optimization_level=3, coupling_map=[[0, 1], [1, 0]], seed_transpiler=12345)
 qc_t3_exact.draw('mpl', style='iqp')
 ```
-![Circuit transpiled with optimization level 3](/images/transpile/defaults-and-configuration-options/circ-opt-level-3.png)
+![Circuit transpiled with optimization level 3](/images/transpile/defaults-and-configuration-options/circ-opt-level-3.png "Circuit transpiled with optimization level 3") 
 
 Now there are only three CX gates. This is because with optimization level 3, Qiskit tries to re-synthesize two-qubit blocks of gates. Since any two-qubit gate requires at most three CX gates, we get the above result. We can get even fewer CX gates if we sacrifice the fidelity of this synthese by setting `approximation_degree` to a value less than 1:
 

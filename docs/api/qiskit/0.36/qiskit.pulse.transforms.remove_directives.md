@@ -10,17 +10,17 @@ python_api_name: qiskit.pulse.transforms.remove_directives
 
 <span id="qiskit.pulse.transforms.remove_directives" />
 
-`remove_directives(schedule)`
+`remove_directives(schedule)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/canonicalization.py "view source code")
 
 Remove directives.
 
 **Parameters**
 
-**schedule** ([`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – A schedule to remove compiler directives.
+**schedule** (`Schedule`) – A schedule to remove compiler directives.
 
 **Return type**
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+`Schedule`
 
 **Returns**
 

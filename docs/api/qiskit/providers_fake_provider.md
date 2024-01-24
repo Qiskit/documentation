@@ -203,7 +203,7 @@ Special fake backends are fake backends that were created for special testing pu
 | [`FakeBackendV2`](qiskit.providers.fake_provider.FakeBackendV2 "qiskit.providers.fake_provider.FakeBackendV2")()                                                      | A mock backend that doesn't implement run() to test compatibility with Terra internals. |
 | [`FakeBackend5QV2`](qiskit.providers.fake_provider.FakeBackend5QV2 "qiskit.providers.fake_provider.FakeBackend5QV2")(\[bidirectional])                                | A mock backend that doesn't implement run() to test compatibility with Terra internals. |
 | [`FakeMumbaiFractionalCX`](qiskit.providers.fake_provider.FakeMumbaiFractionalCX "qiskit.providers.fake_provider.FakeMumbaiFractionalCX")()                           | A fake mumbai backend.                                                                  |
-| [`ConfigurableFakeBackend`](qiskit.providers.fake_provider.ConfigurableFakeBackend "qiskit.providers.fake_provider.ConfigurableFakeBackend")(name, n\_qubits\[, ...]) | Configurable backend.                                                                   |
+| [`ConfigurableFakeBackend`](qiskit.providers.fake_provider.ConfigurableFakeBackend "qiskit.providers.fake_provider.ConfigurableFakeBackend")(name, n\_qubits\[, ...]) | Configurable backend.                                                                   |
 
 ## Fake Backend Base Classes
 
@@ -211,7 +211,7 @@ The fake backends based on IBM hardware are based on a set of base classes:
 
 <span id="qiskit.providers.fake_provider.fake_backend.FakeBackendV2" />
 
-`qiskit.providers.fake_provider.fake_backend.FakeBackendV2`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/fake_backend.py "view source code")
+`qiskit.providers.fake_provider.fake_backend.FakeBackendV2`
 
 A fake backend class for testing and noisy simulation using real backend snapshots.
 
@@ -221,7 +221,7 @@ FakeBackendV2 initializer.
 
 <span id="qiskit.providers.fake_provider.FakeBackend" />
 
-`qiskit.providers.fake_provider.FakeBackend(configuration, time_alive=10)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/fake_backend.py "view source code")
+`qiskit.providers.fake_provider.FakeBackend(configuration, time_alive=10)`
 
 This is a dummy backend just for testing purposes.
 
@@ -234,7 +234,7 @@ FakeBackend initializer.
 
 <span id="qiskit.providers.fake_provider.FakeQasmBackend" />
 
-`qiskit.providers.fake_provider.FakeQasmBackend`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/fake_qasm_backend.py "view source code")
+`qiskit.providers.fake_provider.FakeQasmBackend`
 
 A fake OpenQASM backend.
 
@@ -247,7 +247,7 @@ FakeBackend initializer.
 
 <span id="qiskit.providers.fake_provider.FakePulseBackend" />
 
-`qiskit.providers.fake_provider.FakePulseBackend`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/providers/fake_provider/fake_pulse_backend.py "view source code")
+`qiskit.providers.fake_provider.FakePulseBackend`
 
 A fake pulse backend.
 

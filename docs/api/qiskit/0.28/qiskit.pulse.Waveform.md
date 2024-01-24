@@ -1,8 +1,16 @@
+---
+title: Waveform
+description: API reference for qiskit.pulse.Waveform
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.Waveform
+---
+
 # qiskit.pulse.Waveform
 
+<span id="qiskit.pulse.Waveform" />
 
-
-`Waveform(samples, name=None, epsilon=1e-07, limit_amplitude=None)`
+`Waveform(samples, name=None, epsilon=1e-07, limit_amplitude=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/pulse/library/waveform.py "view source code")
 
 A pulse specified completely by complex-valued samples; each sample is played for the duration of the backend cycle-time, dt.
 
@@ -15,7 +23,9 @@ Create new sample pulse command.
 *   **epsilon** (`float`) – Pulse sample norm tolerance for clipping. If any sample’s norm exceeds unity by less than or equal to epsilon it will be clipped to unit norm. If the sample norm is greater than 1+epsilon an error will be raised.
 *   **limit\_amplitude** (`Optional`\[`bool`]) – Passed to parent Pulse
 
+### \_\_init\_\_
 
+<span id="qiskit.pulse.Waveform.__init__" />
 
 `__init__(samples, name=None, epsilon=1e-07, limit_amplitude=None)`
 
@@ -46,7 +56,9 @@ Create new sample pulse command.
 | [`parameters`](#qiskit.pulse.Waveform.parameters "qiskit.pulse.Waveform.parameters") | Return a dictionary containing the pulse’s parameters. |
 | [`samples`](#qiskit.pulse.Waveform.samples "qiskit.pulse.Waveform.samples")          | Return sample values.                                  |
 
+### assign\_parameters
 
+<span id="qiskit.pulse.Waveform.assign_parameters" />
 
 `assign_parameters(value_dict)`
 
@@ -64,7 +76,9 @@ Return a new pulse with parameters assigned.
 
 New pulse with updated parameters.
 
+### draw
 
+<span id="qiskit.pulse.Waveform.draw" />
 
 `draw(dt=None, style=None, filename=None, interp_method=None, scale=None, interactive=None, draw_title=None, backend=None, time_range=None, time_unit='dt', show_waveform_info=True, plotter='mpl2d', axis=None)`
 
@@ -74,7 +88,7 @@ Plot the interpolated envelope of pulse.
 
 *   **style** (`Optional`\[`Dict`\[`str`, `Any`]]) – Stylesheet options. This can be dictionary or preset stylesheet classes. See :py:class:\~\`qiskit.visualization.pulse\_v2.stylesheets.IQXStandard\`, :py:class:\~\`qiskit.visualization.pulse\_v2.stylesheets.IQXSimple\`, and :py:class:\~\`qiskit.visualization.pulse\_v2.stylesheets.IQXDebugging\` for details of preset stylesheets.
 
-*   **backend** (*Optional\[*[*BaseBackend*](qiskit.providers.BaseBackend#qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")*]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
+*   **backend** (*Optional\[*[*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")*]*) – Backend object to play the input pulse program. If provided, the plotter may use to make the visualization hardware aware.
 
 *   **time\_range** (`Optional`\[`Tuple`\[`int`, `int`]]) – Set horizontal axis limit. Tuple `(tmin, tmax)`.
 
@@ -112,7 +126,9 @@ Plot the interpolated envelope of pulse.
 
 Visualization output data. The returned data type depends on the `plotter`. If matplotlib family is specified, this will be a `matplotlib.pyplot.Figure` data.
 
+### id
 
+<span id="qiskit.pulse.Waveform.id" />
 
 `property id`
 
@@ -122,7 +138,9 @@ Unique identifier for this pulse.
 
 `int`
 
+### is\_parameterized
 
+<span id="qiskit.pulse.Waveform.is_parameterized" />
 
 `is_parameterized()`
 
@@ -132,7 +150,9 @@ Return True iff the instruction is parameterized.
 
 `bool`
 
+### parameters
 
+<span id="qiskit.pulse.Waveform.parameters" />
 
 `property parameters`
 
@@ -142,7 +162,9 @@ Return a dictionary containing the pulse’s parameters.
 
 `Dict`\[`str`, `Any`]
 
+### samples
 
+<span id="qiskit.pulse.Waveform.samples" />
 
 `property samples`
 
@@ -151,3 +173,4 @@ Return sample values.
 **Return type**
 
 `ndarray`
+

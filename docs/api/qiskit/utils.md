@@ -22,7 +22,7 @@ python_api_name: qiskit.utils
 
 <span id="qiskit.utils.add_deprecation_to_docstring" />
 
-`qiskit.utils.add_deprecation_to_docstring(func, msg, *, since, pending)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.add_deprecation_to_docstring(func, msg, *, since, pending)`
 
 Dynamically insert the deprecation message into `func`’s docstring.
 
@@ -37,7 +37,7 @@ Dynamically insert the deprecation message into `func`’s docstring.
 
 <span id="qiskit.utils.deprecate_arg" />
 
-`qiskit.utils.deprecate_arg(name, *, since, additional_msg=None, deprecation_description=None, pending=False, package_name='qiskit', new_alias=None, predicate=None, removal_timeline='no earlier than 3 months after the release date')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.deprecate_arg(name, *, since, additional_msg=None, deprecation_description=None, pending=False, package_name='qiskit', new_alias=None, predicate=None, removal_timeline='no earlier than 3 months after the release date')`
 
 Decorator to indicate an argument has been deprecated in some way.
 
@@ -67,7 +67,7 @@ Callable
 
 <span id="qiskit.utils.deprecate_arguments" />
 
-`qiskit.utils.deprecate_arguments(kwarg_map, category=<class 'DeprecationWarning'>, *, since=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.deprecate_arguments(kwarg_map, category=<class 'DeprecationWarning'>, *, since=None)`
 
 Deprecated. Instead, use @deprecate\_arg.
 
@@ -89,7 +89,7 @@ Callable
 
 <span id="qiskit.utils.deprecate_func" />
 
-`qiskit.utils.deprecate_func(*, since, additional_msg=None, pending=False, package_name='qiskit', removal_timeline='no earlier than 3 months after the release date', is_property=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.deprecate_func(*, since, additional_msg=None, pending=False, package_name='qiskit', removal_timeline='no earlier than 3 months after the release date', is_property=False)`
 
 Decorator to indicate a function has been deprecated.
 
@@ -118,7 +118,7 @@ Callable
 
 <span id="qiskit.utils.deprecate_function" />
 
-`qiskit.utils.deprecate_function(msg, stacklevel=2, category=<class 'DeprecationWarning'>, *, since=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/deprecation.py "view source code")
+`qiskit.utils.deprecate_function(msg, stacklevel=2, category=<class 'DeprecationWarning'>, *, since=None)`
 
 Deprecated. Instead, use @deprecate\_func.
 
@@ -141,7 +141,7 @@ Callable
 
 <span id="qiskit.utils.local_hardware_info" />
 
-`qiskit.utils.local_hardware_info()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/multiprocessing.py "view source code")
+`qiskit.utils.local_hardware_info()`
 
 Basic hardware information about the local machine.
 
@@ -159,7 +159,7 @@ The hardware information.
 
 <span id="qiskit.utils.is_main_process" />
 
-`qiskit.utils.is_main_process()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/multiprocessing.py "view source code")
+`qiskit.utils.is_main_process()`
 
 Checks whether the current process is the main one
 
@@ -167,7 +167,7 @@ Checks whether the current process is the main one
 
 <span id="qiskit.utils.apply_prefix" />
 
-`qiskit.utils.apply_prefix(value, unit)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/units.py "view source code")
+`qiskit.utils.apply_prefix(value, unit)`
 
 Given a SI unit prefix and value, apply the prefix to convert to standard SI unit.
 
@@ -200,7 +200,7 @@ Converted value.
 
 <span id="qiskit.utils.detach_prefix" />
 
-`qiskit.utils.detach_prefix(value, decimal=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/units.py "view source code")
+`qiskit.utils.detach_prefix(value, decimal=None)`
 
 Given a SI unit value, find the most suitable prefix to scale the value.
 
@@ -244,7 +244,7 @@ A tuple of scaled value and prefix.
 
 <span id="qiskit.utils.wrap_method" />
 
-`qiskit.utils.wrap_method(cls, name, *, before=None, after=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/classtools.py "view source code")
+`qiskit.utils.wrap_method(cls, name, *, before=None, after=None)`
 
 Wrap the functionality the instance- or class method `cls.name` with additional behaviour `before` and `after`.
 
@@ -269,7 +269,7 @@ If either `before` or `after` are given, they should be callables with a compati
 
 <span id="qiskit.utils.summarize_circuits" />
 
-`qiskit.utils.summarize_circuits(circuits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/circuit_utils.py "view source code")
+`qiskit.utils.summarize_circuits(circuits)`
 
 **Summarize circuits based on QuantumCircuit, and five metrics are summarized.**
 
@@ -297,7 +297,7 @@ a formatted string records the summary
 
 <span id="qiskit.utils.get_entangler_map" />
 
-`qiskit.utils.get_entangler_map(map_type, num_qubits, offset=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/entangler_map.py "view source code")
+`qiskit.utils.get_entangler_map(map_type, num_qubits, offset=0)`
 
 Utility method to get an entangler map among qubits.
 
@@ -323,7 +323,7 @@ A map of qubit index to an array of indexes to which this should be entangled
 
 <span id="qiskit.utils.validate_entangler_map" />
 
-`qiskit.utils.validate_entangler_map(entangler_map, num_qubits, allow_double_entanglement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/entangler_map.py "view source code")
+`qiskit.utils.validate_entangler_map(entangler_map, num_qubits, allow_double_entanglement=False)`
 
 Validate a user supplied entangler map and converts entries to ints.
 
@@ -351,7 +351,7 @@ Validated/converted map
 
 <span id="qiskit.utils.has_ibmq" />
 
-`qiskit.utils.has_ibmq()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/backend_utils.py "view source code")
+`qiskit.utils.has_ibmq()`
 
 Check if IBMQ is installed.
 
@@ -363,7 +363,7 @@ Check if IBMQ is installed.
 
 <span id="qiskit.utils.has_aer" />
 
-`qiskit.utils.has_aer()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/backend_utils.py "view source code")
+`qiskit.utils.has_aer()`
 
 Check if Aer is installed.
 
@@ -375,7 +375,7 @@ Check if Aer is installed.
 
 <span id="qiskit.utils.name_args" />
 
-`qiskit.utils.name_args(mapping, skip=0)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/name_unnamed_args.py "view source code")
+`qiskit.utils.name_args(mapping, skip=0)`
 
 Decorator to convert unnamed arguments to named ones.
 
@@ -448,7 +448,7 @@ Qiskit has several features that are enabled only if certain *optional* dependen
 | **qiskit.utils.optionals.HAS\_JAX**           | Some methods of gradient calculation within [`opflow.gradients`](qiskit.opflow.gradients#module-qiskit.opflow.gradients "qiskit.opflow.gradients") require [JAX](https://github.com/google/jax) for autodifferentiation.                                                                                                                                                                                                                       |
 | **qiskit.utils.optionals.HAS\_JUPYTER**       | Some of the tests require a complete [Jupyter](https://jupyter.org/) installation to test interactivity features.                                                                                                                                                                                                                                                                                                                              |
 | **qiskit.utils.optionals.HAS\_MATPLOTLIB**    | Qiskit provides several visualisation tools in the [`visualization`](visualization#module-qiskit.visualization "qiskit.visualization") module. Almost all of these are built using [Matplotlib](https://matplotlib.org/), which must be installed in order to use them.                                                                                                                                                                        |
-| **qiskit.utils.optionals.HAS\_NETWORKX**      | No longer used by Qiskit. Internally, Qiskit now uses the high-performance [rustworkx](https://github.com/Qiskit/rustworkx) library as a core dependency, and during the change-over period, it was sometimes convenient to convert things into the Python-only [NetworkX](https://networkx.org/) format. Some tests of application modules, such as [Qiskit Nature](https://qiskit.org/ecosystem/nature/) still use NetworkX.                 |
+| **qiskit.utils.optionals.HAS\_NETWORKX**      | No longer used by Qiskit. Internally, Qiskit now uses the high-performance [rustworkx](https://github.com/Qiskit/rustworkx) library as a core dependency, and during the change-over period, it was sometimes convenient to convert things into the Python-only [NetworkX](https://networkx.org/) format. Some tests of application modules, such as [Qiskit Nature](https://qiskit.org/documentation/nature/) still use NetworkX.             |
 | **qiskit.utils.optionals.HAS\_NLOPT**         | [NLopt](https://nlopt.readthedocs.io/en/latest/) is a nonlinear optimization library, used by the global optimizers in the [`algorithms.optimizers`](qiskit.algorithms.optimizers#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers") module.                                                                                                                                                                                  |
 | **qiskit.utils.optionals.HAS\_PIL**           | PIL is a Python image-manipulation library. Qiskit actually uses the [pillow](https://pillow.readthedocs.io/en/stable/) fork of PIL if it is available when generating certain visualizations, for example of both [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") in certain modes.                                         |
 | **qiskit.utils.optionals.HAS\_PYDOT**         | For some graph visualisations, Qiskit uses [pydot](https://github.com/pydot/pydot) as an interface to GraphViz (see [`HAS_GRAPHVIZ`](#qiskit.utils.optionals.HAS_GRAPHVIZ "qiskit.utils.optionals.HAS_GRAPHVIZ")).                                                                                                                                                                                                                             |
@@ -482,7 +482,7 @@ from qiskit.utils import LazyImportTester
 
 <span id="qiskit.utils.LazyDependencyManager" />
 
-`qiskit.utils.LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/lazy_tester.py "view source code")
+`qiskit.utils.LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)`
 
 A mananger for some optional features that are expensive to import, or to verify the existence of.
 
@@ -611,7 +611,7 @@ Eagerly attempt to import the dependencies in this object, and raise an exceptio
 
 <span id="qiskit.utils.LazyImportTester" />
 
-`qiskit.utils.LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/lazy_tester.py "view source code")
+`qiskit.utils.LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)`
 
 A lazy dependency tester for importable Python modules. Any required objects will only be imported at the point that this object is tested for its Boolean value.
 
@@ -625,7 +625,7 @@ A lazy dependency tester for importable Python modules. Any required objects wil
 
 <span id="qiskit.utils.LazySubprocessTester" />
 
-`qiskit.utils.LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/utils/lazy_tester.py "view source code")
+`qiskit.utils.LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)`
 
 A lazy checker that a command-line tool is available. The command will only be run once, at the point that this object is checked for its Boolean value.
 

@@ -1,8 +1,16 @@
+---
+title: SnapshotProbabilities
+description: API reference for qiskit.providers.aer.extensions.SnapshotProbabilities
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.extensions.SnapshotProbabilities
+---
+
 # qiskit.providers.aer.extensions.SnapshotProbabilities
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities" />
 
-
-`SnapshotProbabilities(label, num_qubits, variance=False)`
+`SnapshotProbabilities(label, num_qubits, variance=False)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/extensions/snapshot_probabilities.py "view source code")
 
 Snapshot instruction for all methods of Qasm simulator.
 
@@ -19,10 +27,12 @@ Create a probability snapshot instruction.
 **ExtensionError** – if snapshot is invalid.
 
 <Admonition title="Note" type="note">
-  This instruction will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.SaveProbabilities`](qiskit.providers.aer.library.SaveProbabilities#qiskit.providers.aer.library.SaveProbabilities "qiskit.providers.aer.library.SaveProbabilities") and [`qiskit.providers.aer.library.SaveProbabilitiesDict`](qiskit.providers.aer.library.SaveProbabilitiesDict#qiskit.providers.aer.library.SaveProbabilitiesDict "qiskit.providers.aer.library.SaveProbabilitiesDict") instructions.
+  This instruction will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.SaveProbabilities`](qiskit.providers.aer.library.SaveProbabilities "qiskit.providers.aer.library.SaveProbabilities") and [`qiskit.providers.aer.library.SaveProbabilitiesDict`](qiskit.providers.aer.library.SaveProbabilitiesDict "qiskit.providers.aer.library.SaveProbabilitiesDict") instructions.
 </Admonition>
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.__init__" />
 
 `__init__(label, num_qubits, variance=False)`
 
@@ -39,7 +49,7 @@ Create a probability snapshot instruction.
 **ExtensionError** – if snapshot is invalid.
 
 <Admonition title="Note" type="note">
-  This instruction will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.SaveProbabilities`](qiskit.providers.aer.library.SaveProbabilities#qiskit.providers.aer.library.SaveProbabilities "qiskit.providers.aer.library.SaveProbabilities") and [`qiskit.providers.aer.library.SaveProbabilitiesDict`](qiskit.providers.aer.library.SaveProbabilitiesDict#qiskit.providers.aer.library.SaveProbabilitiesDict "qiskit.providers.aer.library.SaveProbabilitiesDict") instructions.
+  This instruction will be deprecated after the qiskit-aer 0.8 release. It has been superseded by the [`qiskit.providers.aer.library.SaveProbabilities`](qiskit.providers.aer.library.SaveProbabilities "qiskit.providers.aer.library.SaveProbabilities") and [`qiskit.providers.aer.library.SaveProbabilitiesDict`](qiskit.providers.aer.library.SaveProbabilitiesDict "qiskit.providers.aer.library.SaveProbabilitiesDict") instructions.
 </Admonition>
 
 ## Methods
@@ -74,19 +84,25 @@ Create a probability snapshot instruction.
 | [`snapshot_type`](#qiskit.providers.aer.extensions.SnapshotProbabilities.snapshot_type "qiskit.providers.aer.extensions.SnapshotProbabilities.snapshot_type")    | Return snapshot type                                                          |
 | [`unit`](#qiskit.providers.aer.extensions.SnapshotProbabilities.unit "qiskit.providers.aer.extensions.SnapshotProbabilities.unit")                               | Get the time unit of duration.                                                |
 
+### add\_decomposition
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
+### assemble
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.assemble" />
 
 `assemble()`
 
 Assemble a QasmQobjInstruction
 
+### broadcast\_arguments
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -105,13 +121,17 @@ Validation of the arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
+### c\_if
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register or cbit classical and value val.
 
+### copy
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.copy" />
 
 `copy(name=None)`
 
@@ -129,51 +149,67 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### decompositions
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
+### define\_snapshot\_register
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.define_snapshot_register" />
 
 `static define_snapshot_register(circuit, label=None, qubits=None)`
 
 Defines qubits to snapshot for all snapshot methods
 
+### definition
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
+### duration
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.duration" />
 
 `property duration`
 
 Get the duration.
 
+### inverse
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.inverse" />
 
 `inverse()`
 
 Special case. Return self.
 
+### is\_parameterized
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
+### label
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.label" />
 
 `property label`
 
 Return snapshot label
 
+### mirror
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.mirror" />
 
 `mirror()`
 
@@ -187,15 +223,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### params
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.params" />
 
 `property params`
 
 return instruction params.
 
+### qasm
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.qasm" />
 
 `qasm()`
 
@@ -203,7 +243,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
+### repeat
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.repeat" />
 
 `repeat(n)`
 
@@ -219,13 +261,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
+### reverse\_ops
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.reverse_ops" />
 
 `reverse_ops()`
 
@@ -241,15 +285,19 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### snapshot\_type
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.snapshot_type" />
 
 `property snapshot_type`
 
 Return snapshot type
 
+### soft\_compare
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.soft_compare" />
 
 `soft_compare(other)`
 
@@ -267,14 +315,19 @@ are self and other equal up to parameter expressions.
 
 bool
 
+### unit
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
+### validate\_parameter
 
+<span id="qiskit.providers.aer.extensions.SnapshotProbabilities.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Instruction parameters has no validation or normalization.
+

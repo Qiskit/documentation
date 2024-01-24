@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.GraphState
 
 <span id="qiskit.circuit.library.GraphState" />
 
-`qiskit.circuit.library.GraphState(adjacency_matrix)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/graph_state.py "view source code")
+`qiskit.circuit.library.GraphState(adjacency_matrix)`
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -110,7 +110,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 203`
+`= 195`
 
 <span id="qiskit.circuit.library.GraphState.layout" />
 

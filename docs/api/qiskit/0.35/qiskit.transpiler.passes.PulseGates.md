@@ -1,8 +1,16 @@
+---
+title: PulseGates
+description: API reference for qiskit.transpiler.passes.PulseGates
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.PulseGates
+---
+
 # PulseGates
 
+<span id="qiskit.transpiler.passes.PulseGates" />
 
-
-`PulseGates(inst_map)`
+`PulseGates(inst_map)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/calibration/builders.py "view source code")
 
 Bases: `qiskit.transpiler.passes.calibration.builders.CalibrationBuilder`
 
@@ -28,16 +36,79 @@ Create new pass.
 
 ## Methods
 
-|                                                                                                                                                                                    |                                                                    |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------ |
-| [`get_calibration`](qiskit.transpiler.passes.PulseGates.get_calibration#qiskit.transpiler.passes.PulseGates.get_calibration "qiskit.transpiler.passes.PulseGates.get_calibration") | Gets the calibrated schedule for the given instruction and qubits. |
-| [`name`](qiskit.transpiler.passes.PulseGates.name#qiskit.transpiler.passes.PulseGates.name "qiskit.transpiler.passes.PulseGates.name")                                             | Return the name of the pass.                                       |
-| [`run`](qiskit.transpiler.passes.PulseGates.run#qiskit.transpiler.passes.PulseGates.run "qiskit.transpiler.passes.PulseGates.run")                                                 | Run the calibration adder pass on dag.                             |
-| [`supported`](qiskit.transpiler.passes.PulseGates.supported#qiskit.transpiler.passes.PulseGates.supported "qiskit.transpiler.passes.PulseGates.supported")                         | Determine if a given node supports the calibration.                |
+### get\_calibration
+
+<span id="qiskit.transpiler.passes.PulseGates.get_calibration" />
+
+`PulseGates.get_calibration(node_op, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/calibration/builders.py "view source code")
+
+Gets the calibrated schedule for the given instruction and qubits.
+
+**Parameters**
+
+*   **node\_op** (`Instruction`) – Target instruction object.
+*   **qubits** (`List`) – Integer qubit indices to check.
+
+**Return type**
+
+`Union`\[`Schedule`, `ScheduleBlock`]
+
+**Returns**
+
+Return Schedule of target gate instruction.
+
+### name
+
+<span id="qiskit.transpiler.passes.PulseGates.name" />
+
+`PulseGates.name()`
+
+Return the name of the pass.
+
+### run
+
+<span id="qiskit.transpiler.passes.PulseGates.run" />
+
+`PulseGates.run(dag)`
+
+Run the calibration adder pass on dag.
+
+**Parameters**
+
+**dag** (`DAGCircuit`) – DAG to schedule.
+
+**Return type**
+
+`DAGCircuit`
+
+**Returns**
+
+A DAG with calibrations added to it.
+
+### supported
+
+<span id="qiskit.transpiler.passes.PulseGates.supported" />
+
+`PulseGates.supported(node_op, qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/calibration/builders.py "view source code")
+
+Determine if a given node supports the calibration.
+
+**Parameters**
+
+*   **node\_op** (`Instruction`) – Target instruction object.
+*   **qubits** (`List`) – Integer qubit indices to check.
+
+**Return type**
+
+`bool`
+
+**Returns**
+
+Return `True` is calibration can be provided.
 
 ## Attributes
 
-
+<span id="qiskit.transpiler.passes.PulseGates.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -45,10 +116,11 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-
+<span id="qiskit.transpiler.passes.PulseGates.is_transformation_pass" />
 
 ### is\_transformation\_pass
 
 Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+

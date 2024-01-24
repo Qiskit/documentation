@@ -1,8 +1,16 @@
+---
+title: SetSuperOp
+description: API reference for qiskit.providers.aer.library.SetSuperOp
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.aer.library.SetSuperOp
+---
+
 # qiskit.providers.aer.library.SetSuperOp
 
+<span id="qiskit.providers.aer.library.SetSuperOp" />
 
-
-`SetSuperOp(state)`
+`SetSuperOp(state)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.8/qiskit/providers/aer/library/set_instructions/set_superop.py "view source code")
 
 Set superop state of the simulator
 
@@ -20,7 +28,9 @@ Create new instruction to set the superop simulator state.
   This set instruction must always be performed on the full width of qubits in a circuit, otherwise an exception will be raised during simulation.
 </Admonition>
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.aer.library.SetSuperOp.__init__" />
 
 `__init__(state)`
 
@@ -67,19 +77,25 @@ Create new instruction to set the superop simulator state.
 | [`params`](#qiskit.providers.aer.library.SetSuperOp.params "qiskit.providers.aer.library.SetSuperOp.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.providers.aer.library.SetSuperOp.unit "qiskit.providers.aer.library.SetSuperOp.unit")                               | Get the time unit of duration.                                                |
 
+### add\_decomposition
 
+<span id="qiskit.providers.aer.library.SetSuperOp.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
+### assemble
 
+<span id="qiskit.providers.aer.library.SetSuperOp.assemble" />
 
 `assemble()`
 
 Assemble a QasmQobjInstruction
 
+### broadcast\_arguments
 
+<span id="qiskit.providers.aer.library.SetSuperOp.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -98,13 +114,17 @@ Validation of the arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
+### c\_if
 
+<span id="qiskit.providers.aer.library.SetSuperOp.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
+### copy
 
+<span id="qiskit.providers.aer.library.SetSuperOp.copy" />
 
 `copy(name=None)`
 
@@ -122,27 +142,35 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### decompositions
 
+<span id="qiskit.providers.aer.library.SetSuperOp.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
+### definition
 
+<span id="qiskit.providers.aer.library.SetSuperOp.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
+### duration
 
+<span id="qiskit.providers.aer.library.SetSuperOp.duration" />
 
 `property duration`
 
 Get the duration.
 
+### inverse
 
+<span id="qiskit.providers.aer.library.SetSuperOp.inverse" />
 
 `inverse()`
 
@@ -158,19 +186,23 @@ a fresh instruction for the inverse
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
 
+### is\_parameterized
 
+<span id="qiskit.providers.aer.library.SetSuperOp.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
+### mirror
 
+<span id="qiskit.providers.aer.library.SetSuperOp.mirror" />
 
 `mirror()`
 
@@ -184,15 +216,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### params
 
+<span id="qiskit.providers.aer.library.SetSuperOp.params" />
 
 `property params`
 
 return instruction params.
 
+### qasm
 
+<span id="qiskit.providers.aer.library.SetSuperOp.qasm" />
 
 `qasm()`
 
@@ -200,7 +236,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
+### repeat
 
+<span id="qiskit.providers.aer.library.SetSuperOp.repeat" />
 
 `repeat(n)`
 
@@ -216,13 +254,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
+### reverse\_ops
 
+<span id="qiskit.providers.aer.library.SetSuperOp.reverse_ops" />
 
 `reverse_ops()`
 
@@ -238,9 +278,11 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### soft\_compare
 
+<span id="qiskit.providers.aer.library.SetSuperOp.soft_compare" />
 
 `soft_compare(other)`
 
@@ -258,14 +300,19 @@ are self and other equal up to parameter expressions.
 
 bool
 
+### unit
 
+<span id="qiskit.providers.aer.library.SetSuperOp.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
+### validate\_parameter
 
+<span id="qiskit.providers.aer.library.SetSuperOp.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Instruction parameters has no validation or normalization.
+

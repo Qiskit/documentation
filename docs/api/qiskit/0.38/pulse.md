@@ -66,7 +66,7 @@ These are all instances of the same base class:
 
 <span id="qiskit.pulse.instructions.Instruction" />
 
-`Instruction(operands, name=None)`
+`Instruction(operands, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/instructions/instruction.py "view source code")
 
 The smallest schedulable unit: a single instruction. It has a fixed duration and specified channels.
 
@@ -128,18 +128,18 @@ In contrast, the [`SymbolicPulse`](qiskit.pulse.library.SymbolicPulse "qiskit.pu
 | [`sech`](qiskit.pulse.library.sech "qiskit.pulse.library.sech")(duration, amp, sigma\[, name, zero\_ends])                                           | Generates unnormalized sech [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").                                                   |
 | [`sech_deriv`](qiskit.pulse.library.sech_deriv "qiskit.pulse.library.sech_deriv")(duration, amp, sigma\[, name])                                     | Generates unnormalized sech derivative [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").                                        |
 | [`gaussian_square`](qiskit.pulse.library.gaussian_square "qiskit.pulse.library.gaussian_square")(duration, amp, sigma\[, ...])                       | Generates gaussian square [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").                                                     |
-| [`drag`](qiskit.pulse.library.drag "qiskit.pulse.library.drag")(duration, amp, sigma, beta\[, name, ...])                                            | Generates Y-only correction DRAG [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform") for standard nonlinear oscillator (SNO) \[1]. |
+| [`drag`](qiskit.pulse.library.drag#qiskit.pulse.library.drag "qiskit.pulse.library.drag")(duration, amp, sigma, beta\[, name, ...])                  | Generates Y-only correction DRAG [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform") for standard nonlinear oscillator (SNO) \[1]. |
 
 <span id="symbolic-pulses" />
 
 ### Parametric Pulse Representation
 
-|                                                                                                                                     |                                                                                                                                                          |
-| ----------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`Constant`](qiskit.pulse.library.Constant "qiskit.pulse.library.Constant")(duration, amp\[, name, limit\_amplitude])               | A simple constant pulse, with an amplitude value and a duration:                                                                                         |
-| [`Drag`](qiskit.pulse.library.Drag#qiskit.pulse.library.Drag "qiskit.pulse.library.Drag")(duration, amp, sigma, beta\[, name, ...]) | The Derivative Removal by Adiabatic Gate (DRAG) pulse is a standard Gaussian pulse with an additional Gaussian derivative component and lifting applied. |
-| [`Gaussian`](qiskit.pulse.library.Gaussian "qiskit.pulse.library.Gaussian")(duration, amp, sigma\[, name, ...])                     | A lifted and truncated pulse envelope shaped according to the Gaussian function whose mean is centered at the center of the pulse (duration / 2):        |
-| [`GaussianSquare`](qiskit.pulse.library.GaussianSquare "qiskit.pulse.library.GaussianSquare")(duration, amp, sigma\[, ...])         | A square pulse with a Gaussian shaped risefall on both sides lifted such that its first sample is zero.                                                  |
+|                                                                                                                             |                                                                                                                                                          |
+| --------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`Constant`](qiskit.pulse.library.Constant "qiskit.pulse.library.Constant")(duration, amp\[, name, limit\_amplitude])       | A simple constant pulse, with an amplitude value and a duration:                                                                                         |
+| [`Drag`](qiskit.pulse.library.Drag "qiskit.pulse.library.Drag")(duration, amp, sigma, beta\[, name, ...])                   | The Derivative Removal by Adiabatic Gate (DRAG) pulse is a standard Gaussian pulse with an additional Gaussian derivative component and lifting applied. |
+| [`Gaussian`](qiskit.pulse.library.Gaussian "qiskit.pulse.library.Gaussian")(duration, amp, sigma\[, name, ...])             | A lifted and truncated pulse envelope shaped according to the Gaussian function whose mean is centered at the center of the pulse (duration / 2):        |
+| [`GaussianSquare`](qiskit.pulse.library.GaussianSquare "qiskit.pulse.library.GaussianSquare")(duration, amp, sigma\[, ...]) | A square pulse with a Gaussian shaped risefall on both sides lifted such that its first sample is zero.                                                  |
 
 <span id="module-qiskit.pulse.channels" />
 
@@ -175,7 +175,7 @@ All channels are children of the same abstract base class:
 
 <span id="qiskit.pulse.channels.Channel" />
 
-`Channel(index)`
+`Channel(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/channels.py "view source code")
 
 Base class of channels. Channels provide a Qiskit-side label for typical quantum control hardware signal channels. The final label -> physical channel mapping is the responsibility of the hardware backend. For instance, `DriveChannel(0)` holds instructions which the backend should map to the signal line driving gate operations on the qubit labeled (indexed) 0.
 
@@ -226,7 +226,7 @@ These are all subtypes of the abstract base class [`AlignmentKind`](#qiskit.puls
 
 <span id="qiskit.pulse.transforms.AlignmentKind" />
 
-`AlignmentKind(context_params)`
+`AlignmentKind(context_params)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/transforms/alignments.py "view source code")
 
 An abstract class for schedule alignment.
 
@@ -668,7 +668,7 @@ There are 1e-06 seconds in 4500 samples.
 
 <span id="qiskit.pulse.PulseError" />
 
-`PulseError(*message)`
+`PulseError(*message)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.21/qiskit/pulse/exceptions.py "view source code")
 
 Errors raised by the pulse module.
 

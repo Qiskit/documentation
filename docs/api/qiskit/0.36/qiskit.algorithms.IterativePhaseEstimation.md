@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.IterativePhaseEstimation
 
 <span id="qiskit.algorithms.IterativePhaseEstimation" />
 
-`IterativePhaseEstimation(num_iterations, quantum_instance=None)`
+`IterativePhaseEstimation(num_iterations, quantum_instance=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/ipe.py "view source code")
 
 Bases: `qiskit.algorithms.phase_estimators.phase_estimator.PhaseEstimator`
 
@@ -25,7 +25,7 @@ qubit benchmark, [arxiv/quant-ph/0610214](https://arxiv.org/abs/quant-ph/0610214
 **Parameters**
 
 *   **num\_iterations** (`int`) – The number of iterations (rounds) of the phase estimation to run.
-*   **quantum\_instance** (`Union`\[[`Backend`](qiskit.providers.Backend "qiskit.providers.backend.Backend"), [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.quantum_instance.QuantumInstance"), `None`]) – The quantum instance on which the circuit will be run.
+*   **quantum\_instance** (`Union`\[`Backend`, `BaseBackend`, `QuantumInstance`, `None`]) – The quantum instance on which the circuit will be run.
 
 **Raises**
 
@@ -37,7 +37,7 @@ qubit benchmark, [arxiv/quant-ph/0610214](https://arxiv.org/abs/quant-ph/0610214
 
 <span id="qiskit.algorithms.IterativePhaseEstimation.construct_circuit" />
 
-`IterativePhaseEstimation.construct_circuit(unitary, state_preparation, k, omega=0, measurement=False)`
+`IterativePhaseEstimation.construct_circuit(unitary, state_preparation, k, omega=0, measurement=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/ipe.py "view source code")
 
 Construct the kth iteration Quantum Phase Estimation circuit.
 
@@ -45,8 +45,8 @@ For details of parameters, see Fig. 2 in [https://arxiv.org/pdf/quant-ph/0610214
 
 **Parameters**
 
-*   **unitary** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit representing the unitary operator whose eigenvalue (via phase) will be measured.
-*   **state\_preparation** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit that prepares the state whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
+*   **unitary** (`QuantumCircuit`) – The circuit representing the unitary operator whose eigenvalue (via phase) will be measured.
+*   **state\_preparation** (`QuantumCircuit`) – The circuit that prepares the state whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
 *   **k** (`int`) – the iteration idx.
 *   **omega** (`float`) – the feedback angle.
 *   **measurement** (`bool`) – Boolean flag to indicate if measurement should be included in the circuit.
@@ -63,14 +63,14 @@ the quantum circuit per iteration
 
 <span id="qiskit.algorithms.IterativePhaseEstimation.estimate" />
 
-`IterativePhaseEstimation.estimate(unitary, state_preparation)`
+`IterativePhaseEstimation.estimate(unitary, state_preparation)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/phase_estimators/ipe.py "view source code")
 
 Estimate the eigenphase of the input unitary and initial-state pair.
 
 **Parameters**
 
-*   **unitary** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit representing the unitary operator whose eigenvalue (via phase) will be measured.
-*   **state\_preparation** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit that prepares the state whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
+*   **unitary** (`QuantumCircuit`) – The circuit representing the unitary operator whose eigenvalue (via phase) will be measured.
+*   **state\_preparation** (`QuantumCircuit`) – The circuit that prepares the state whose eigenphase will be measured. If this parameter is omitted, no preparation circuit will be run and input state will be the all-zero state in the computational basis.
 
 **Return type**
 

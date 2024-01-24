@@ -10,9 +10,9 @@ python_api_name: qiskit.algorithms.linear_solvers.MatrixFunctional
 
 <span id="qiskit.algorithms.linear_solvers.MatrixFunctional" />
 
-`MatrixFunctional(main_diag, off_diag)`
+`MatrixFunctional(main_diag, off_diag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
 
-Bases: [`qiskit.algorithms.linear_solvers.observables.linear_system_observable.LinearSystemObservable`](qiskit.algorithms.linear_solvers.LinearSystemObservable "qiskit.algorithms.linear_solvers.observables.linear_system_observable.LinearSystemObservable")
+Bases: `qiskit.algorithms.linear_solvers.observables.linear_system_observable.LinearSystemObservable`
 
 A class for the matrix functional of the vector solution to the linear systems.
 
@@ -69,13 +69,13 @@ exact = observable.evaluate_classically(init_state)
 
 <span id="qiskit.algorithms.linear_solvers.MatrixFunctional.evaluate_classically" />
 
-`MatrixFunctional.evaluate_classically(solution)`
+`MatrixFunctional.evaluate_classically(solution)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
 
 Evaluates the given observable on the solution to the linear system.
 
 **Parameters**
 
-**solution** (`Union`\[`array`, [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]) – The solution to the system as a numpy array or the circuit that prepares it.
+**solution** (`Union`\[`array`, `QuantumCircuit`]) – The solution to the system as a numpy array or the circuit that prepares it.
 
 **Return type**
 
@@ -89,7 +89,7 @@ The value of the observable.
 
 <span id="qiskit.algorithms.linear_solvers.MatrixFunctional.observable" />
 
-`MatrixFunctional.observable(num_qubits)`
+`MatrixFunctional.observable(num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
 
 The observable operators.
 
@@ -99,7 +99,7 @@ The observable operators.
 
 **Return type**
 
-`Union`\[[`TensoredOp`](qiskit.opflow.list_ops.TensoredOp "qiskit.opflow.list_ops.tensored_op.TensoredOp"), `List`\[[`TensoredOp`](qiskit.opflow.list_ops.TensoredOp "qiskit.opflow.list_ops.tensored_op.TensoredOp")]]
+`Union`\[`TensoredOp`, `List`\[`TensoredOp`]]
 
 **Returns**
 
@@ -109,7 +109,7 @@ The observable as a list of sums of Pauli strings.
 
 <span id="qiskit.algorithms.linear_solvers.MatrixFunctional.observable_circuit" />
 
-`MatrixFunctional.observable_circuit(num_qubits)`
+`MatrixFunctional.observable_circuit(num_qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
 
 The circuits to implement the matrix functional observable.
 
@@ -119,7 +119,7 @@ The circuits to implement the matrix functional observable.
 
 **Return type**
 
-`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), `List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]
+`Union`\[`QuantumCircuit`, `List`\[`QuantumCircuit`]]
 
 **Returns**
 
@@ -129,7 +129,7 @@ The observable as a list of QuantumCircuits.
 
 <span id="qiskit.algorithms.linear_solvers.MatrixFunctional.post_processing" />
 
-`MatrixFunctional.post_processing(solution, num_qubits, scaling=1)`
+`MatrixFunctional.post_processing(solution, num_qubits, scaling=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/observables/matrix_functional.py "view source code")
 
 Evaluates the matrix functional on the solution to the linear system.
 

@@ -1,8 +1,16 @@
+---
+title: level_2_pass_manager
+description: API reference for qiskit.transpiler.preset_passmanagers.level_2_pass_manager
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.transpiler.preset_passmanagers.level_2_pass_manager
+---
+
 # qiskit.transpiler.preset\_passmanagers.level\_2\_pass\_manager
 
+<span id="qiskit.transpiler.preset_passmanagers.level_2_pass_manager" />
 
-
-`level_2_pass_manager(pass_manager_config)`
+`level_2_pass_manager(pass_manager_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/preset_passmanagers/level2.py "view source code")
 
 Level 2 pass manager: medium optimization by initial layout selection and gate cancellation using commutativity rules.
 
@@ -28,4 +36,5 @@ a level 2 pass manager.
 
 **Raises**
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the passmanager config is invalid.
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if the passmanager config is invalid.
+

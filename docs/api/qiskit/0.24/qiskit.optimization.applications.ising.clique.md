@@ -24,9 +24,9 @@ Deal with Gset format. See [https://web.stanford.edu/\~yyye/yyye/Gset/](https://
 | [`get_operator`](#qiskit.optimization.applications.ising.clique.get_operator "qiskit.optimization.applications.ising.clique.get_operator")(weight\_matrix, K)   | Generate Hamiltonian for the clique.   |
 | [`satisfy_or_not`](#qiskit.optimization.applications.ising.clique.satisfy_or_not "qiskit.optimization.applications.ising.clique.satisfy_or_not")(x, w, K)       | Compute the value of a cut.            |
 
+<span id="qiskit.optimization.applications.ising.clique.get_graph_solution" />
 
-
-`get_graph_solution(x)`
+`get_graph_solution(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/clique.py "view source code")
 
 Get graph solution from binary string.
 
@@ -42,9 +42,9 @@ graph solution as binary numpy array.
 
 numpy.ndarray
 
+<span id="qiskit.optimization.applications.ising.clique.get_operator" />
 
-
-`get_operator(weight_matrix, K)`
+`get_operator(weight_matrix, K)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/clique.py "view source code")
 
 Generate Hamiltonian for the clique.
 
@@ -81,11 +81,11 @@ The operator for the Hamiltonian and a constant shift for the obj function.
 
 **Return type**
 
-tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
+tuple([WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator"), float)
 
+<span id="qiskit.optimization.applications.ising.clique.satisfy_or_not" />
 
-
-`satisfy_or_not(x, w, K)`
+`satisfy_or_not(x, w, K)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/applications/ising/clique.py "view source code")
 
 Compute the value of a cut.
 

@@ -10,9 +10,9 @@ python_api_name: qiskit.pulse.instructions.SetFrequency
 
 <span id="qiskit.pulse.instructions.SetFrequency" />
 
-`SetFrequency(frequency, channel, name=None)`
+`SetFrequency(frequency, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/frequency.py "view source code")
 
-Bases: [`qiskit.pulse.instructions.instruction.Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")
+Bases: `qiskit.pulse.instructions.instruction.Instruction`
 
 Set the channel frequency. This instruction operates on `PulseChannel` s. A `PulseChannel` creates pulses of the form
 
@@ -28,7 +28,7 @@ Creates a new set channel frequency instruction.
 
 **Parameters**
 
-*   **frequency** (`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – New frequency of the channel in Hz.
+*   **frequency** (`Union`\[`float`, `ParameterExpression`]) – New frequency of the channel in Hz.
 *   **channel** (`PulseChannel`) – The channel this instruction operates on.
 *   **name** (`Optional`\[`str`]) – Name of this set channel frequency instruction.
 
@@ -160,7 +160,7 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 <span id="qiskit.pulse.instructions.SetFrequency.is_parameterized" />
 
-`SetFrequency.is_parameterized()`
+`SetFrequency.is_parameterized()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/instructions/frequency.py "view source code")
 
 Return True iff the instruction is parameterized.
 
@@ -229,7 +229,7 @@ New frequency.
 
 **Return type**
 
-`Union`\[`float`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]
+`Union`\[`float`, `ParameterExpression`]
 
 <span id="qiskit.pulse.instructions.SetFrequency.id" />
 
@@ -249,7 +249,7 @@ Iterable for getting instructions from Schedule tree.
 
 **Return type**
 
-`Tuple`\[`Tuple`\[`int`, [`Instruction`](pulse#qiskit.pulse.instructions.Instruction "qiskit.pulse.instructions.instruction.Instruction")]]
+`Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
 <span id="qiskit.pulse.instructions.SetFrequency.name" />
 

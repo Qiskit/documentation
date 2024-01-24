@@ -1,8 +1,16 @@
+---
+title: ExactReciprocal
+description: API reference for qiskit.circuit.library.ExactReciprocal
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.ExactReciprocal
+---
+
 # ExactReciprocal
 
+<span id="qiskit.circuit.library.ExactReciprocal" />
 
-
-`ExactReciprocal(num_state_qubits, scaling, neg_vals=False, name='1/x')`
+`ExactReciprocal(num_state_qubits, scaling, neg_vals=False, name='1/x')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/arithmetic/exact_reciprocal.py "view source code")
 
 Bases: `qiskit.circuit.quantumcircuit.QuantumCircuit`
 
@@ -25,7 +33,7 @@ $$
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.ExactReciprocal.ancillas" />
 
 ### ancillas
 
@@ -35,7 +43,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 `List`\[`AncillaQubit`]
 
-
+<span id="qiskit.circuit.library.ExactReciprocal.calibrations" />
 
 ### calibrations
 
@@ -49,7 +57,7 @@ Return calibration dictionary.
 
 `dict`
 
-
+<span id="qiskit.circuit.library.ExactReciprocal.clbits" />
 
 ### clbits
 
@@ -59,7 +67,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.ExactReciprocal.data" />
 
 ### data
 
@@ -75,13 +83,13 @@ Each tuple is in the format `(instruction, qargs, cargs)`, where instruction is 
 
 QuantumCircuitData
 
-
+<span id="qiskit.circuit.library.ExactReciprocal.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-
+<span id="qiskit.circuit.library.ExactReciprocal.global_phase" />
 
 ### global\_phase
 
@@ -91,19 +99,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-
+<span id="qiskit.circuit.library.ExactReciprocal.header" />
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
+<span id="qiskit.circuit.library.ExactReciprocal.instances" />
 
 ### instances
 
 `= 9`
 
-
+<span id="qiskit.circuit.library.ExactReciprocal.metadata" />
 
 ### metadata
 
@@ -115,7 +123,7 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-
+<span id="qiskit.circuit.library.ExactReciprocal.num_ancillas" />
 
 ### num\_ancillas
 
@@ -125,7 +133,7 @@ Return the number of ancilla qubits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.ExactReciprocal.num_clbits" />
 
 ### num\_clbits
 
@@ -135,7 +143,7 @@ Return number of classical bits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.ExactReciprocal.num_parameters" />
 
 ### num\_parameters
 
@@ -145,7 +153,7 @@ Convenience function to get the number of parameter objects in the circuit.
 
 `int`
 
-
+<span id="qiskit.circuit.library.ExactReciprocal.num_qubits" />
 
 ### num\_qubits
 
@@ -155,7 +163,7 @@ Return number of qubits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.ExactReciprocal.parameters" />
 
 ### parameters
 
@@ -165,13 +173,13 @@ Convenience function to get the parameters defined in the parameter table.
 
 `ParameterView`
 
-
+<span id="qiskit.circuit.library.ExactReciprocal.prefix" />
 
 ### prefix
 
 `= 'circuit'`
 
-
+<span id="qiskit.circuit.library.ExactReciprocal.qubits" />
 
 ### qubits
 
@@ -180,3 +188,4 @@ Returns a list of quantum bits in the order that the registers were added.
 **Return type**
 
 `List`\[`Qubit`]
+

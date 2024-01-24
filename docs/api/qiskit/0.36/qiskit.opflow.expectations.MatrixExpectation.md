@@ -10,9 +10,9 @@ python_api_name: qiskit.opflow.expectations.MatrixExpectation
 
 <span id="qiskit.opflow.expectations.MatrixExpectation" />
 
-`MatrixExpectation`
+`MatrixExpectation`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/expectations/matrix_expectation.py "view source code")
 
-Bases: [`qiskit.opflow.expectations.expectation_base.ExpectationBase`](qiskit.opflow.expectations.ExpectationBase "qiskit.opflow.expectations.expectation_base.ExpectationBase")
+Bases: `qiskit.opflow.expectations.expectation_base.ExpectationBase`
 
 An Expectation converter which converts Operator measurements to be matrix-based so they can be evaluated by matrix multiplication.
 
@@ -22,13 +22,13 @@ An Expectation converter which converts Operator measurements to be matrix-based
 
 <span id="qiskit.opflow.expectations.MatrixExpectation.compute_variance" />
 
-`MatrixExpectation.compute_variance(exp_op)`
+`MatrixExpectation.compute_variance(exp_op)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/expectations/matrix_expectation.py "view source code")
 
 Compute the variance of the expectation estimator. Because this expectation works by matrix multiplication, the estimation is exact and the variance is always 0, but we need to return those values in a way which matches the Operator’s structure.
 
 **Parameters**
 
-**exp\_op** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The full expectation value Operator.
+**exp\_op** (`OperatorBase`) – The full expectation value Operator.
 
 **Return type**
 
@@ -42,17 +42,17 @@ The variances or lists thereof (if exp\_op contains ListOps) of the expectation 
 
 <span id="qiskit.opflow.expectations.MatrixExpectation.convert" />
 
-`MatrixExpectation.convert(operator)`
+`MatrixExpectation.convert(operator)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/expectations/matrix_expectation.py "view source code")
 
 Accept an Operator and return a new Operator with the Pauli measurements replaced by Matrix based measurements.
 
 **Parameters**
 
-**operator** ([`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")) – The operator to convert.
+**operator** (`OperatorBase`) – The operator to convert.
 
 **Return type**
 
-[`OperatorBase`](qiskit.opflow.OperatorBase "qiskit.opflow.operator_base.OperatorBase")
+`OperatorBase`
 
 **Returns**
 

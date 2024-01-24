@@ -1,10 +1,18 @@
+---
+title: GaussianLogResult
+description: API reference for qiskit.chemistry.drivers.GaussianLogResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.drivers.GaussianLogResult
+---
+
 <span id="qiskit-chemistry-drivers-gaussianlogresult" />
 
 # qiskit.chemistry.drivers.GaussianLogResult
 
+<span id="qiskit.chemistry.drivers.GaussianLogResult" />
 
-
-`GaussianLogResult(log)`
+`GaussianLogResult(log)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/gaussiand/gaussian_log_result.py "view source code")
 
 Result for Gaussian™ 16 log driver.
 
@@ -18,7 +26,9 @@ This result allows access to selected data from the log file that is not availab
 
 **ValueError** – Invalid Input
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.drivers.GaussianLogResult.__init__" />
 
 `__init__(log)`
 
@@ -47,7 +57,9 @@ This result allows access to selected data from the log file that is not availab
 | [`quadratic_force_constants`](#qiskit.chemistry.drivers.GaussianLogResult.quadratic_force_constants "qiskit.chemistry.drivers.GaussianLogResult.quadratic_force_constants") | Quadratic force constants.                                  |
 | [`quartic_force_constants`](#qiskit.chemistry.drivers.GaussianLogResult.quartic_force_constants "qiskit.chemistry.drivers.GaussianLogResult.quartic_force_constants")       | Quartic force constants.                                    |
 
+### a\_to\_h\_numbering
 
+<span id="qiskit.chemistry.drivers.GaussianLogResult.a_to_h_numbering" />
 
 `property a_to_h_numbering`
 
@@ -61,7 +73,9 @@ A to H numbering mapping.
 
 Dictionary mapping string A numbering such as ‘1’, ‘3a’ etc from forces modes to H integer numbering
 
+### cubic\_force\_constants
 
+<span id="qiskit.chemistry.drivers.GaussianLogResult.cubic_force_constants" />
 
 `property cubic_force_constants`
 
@@ -75,7 +89,9 @@ Cubic force constants. (3 indices, 3 values)
 
 A list of tuples each with 3 index values and 3 constant values. An empty list is returned if no such data is present in the log.
 
+### get\_watson\_hamiltonian
 
+<span id="qiskit.chemistry.drivers.GaussianLogResult.get_watson_hamiltonian" />
 
 `get_watson_hamiltonian(normalize=True)`
 
@@ -93,7 +109,9 @@ Get the force constants as a WatsonHamiltonian
 
 A WatsonHamiltonian
 
+### log
 
+<span id="qiskit.chemistry.drivers.GaussianLogResult.log" />
 
 `property log`
 
@@ -103,7 +121,9 @@ The complete Gaussian log in the form of a list of strings.
 
 `List`\[`str`]
 
+### quadratic\_force\_constants
 
+<span id="qiskit.chemistry.drivers.GaussianLogResult.quadratic_force_constants" />
 
 `property quadratic_force_constants`
 
@@ -117,7 +137,9 @@ Quadratic force constants. (2 indices, 3 values)
 
 A list of tuples each with 2 index values and 3 constant values. An empty list is returned if no such data is present in the log.
 
+### quartic\_force\_constants
 
+<span id="qiskit.chemistry.drivers.GaussianLogResult.quartic_force_constants" />
 
 `property quartic_force_constants`
 
@@ -130,3 +152,4 @@ Quartic force constants. (4 indices, 3 values)
 **Returns**
 
 A list of tuples each with 4 index values and 3 constant values. An empty list is returned if no such data is present in the log.
+

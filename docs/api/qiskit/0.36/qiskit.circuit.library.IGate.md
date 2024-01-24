@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.IGate
 
 <span id="qiskit.circuit.library.IGate" />
 
-`IGate(label=None)`
+`IGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/i.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 Identity gate.
 
@@ -43,7 +43,7 @@ Create new Identity gate.
 
 <span id="qiskit.circuit.library.IGate.inverse" />
 
-`IGate.inverse()`
+`IGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/i.py "view source code")
 
 Invert this gate.
 
@@ -57,7 +57,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.IGate.decompositions" />
 

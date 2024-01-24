@@ -1,8 +1,16 @@
+---
+title: LinearConstraint
+description: API reference for qiskit.optimization.problems.LinearConstraint
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.problems.LinearConstraint
+---
+
 # qiskit.optimization.problems.LinearConstraint
 
+<span id="qiskit.optimization.problems.LinearConstraint" />
 
-
-`LinearConstraint(quadratic_program, name, linear, sense, rhs)`
+`LinearConstraint(quadratic_program, name, linear, sense, rhs)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/optimization/problems/linear_constraint.py "view source code")
 
 Representation of a linear constraint.
 
@@ -14,7 +22,9 @@ Representation of a linear constraint.
 *   **sense** (`ConstraintSense`) – The sense of the constraint.
 *   **rhs** (`float`) – The right-hand-side of the constraint.
 
+### \_\_init\_\_
 
+<span id="qiskit.optimization.problems.LinearConstraint.__init__" />
 
 `__init__(quadratic_program, name, linear, sense, rhs)`
 
@@ -43,13 +53,15 @@ Representation of a linear constraint.
 | [`rhs`](#qiskit.optimization.problems.LinearConstraint.rhs "qiskit.optimization.problems.LinearConstraint.rhs")                                           | Returns the right-hand-side of the constraint.                                       |
 | [`sense`](#qiskit.optimization.problems.LinearConstraint.sense "qiskit.optimization.problems.LinearConstraint.sense")                                     | Returns the sense of the constraint.                                                 |
 
-
+<span id="qiskit.optimization.problems.LinearConstraint.Sense" />
 
 ### Sense
 
 alias of `qiskit.optimization.problems.constraint.ConstraintSense`
 
+### evaluate
 
+<span id="qiskit.optimization.problems.LinearConstraint.evaluate" />
 
 `evaluate(x)`
 
@@ -67,7 +79,9 @@ Evaluate the left-hand-side of the constraint.
 
 The left-hand-side of the constraint given the variable values.
 
+### linear
 
+<span id="qiskit.optimization.problems.LinearConstraint.linear" />
 
 `property linear`
 
@@ -81,7 +95,9 @@ Returns the linear expression corresponding to the left-hand-side of the constra
 
 The left-hand-side linear expression.
 
+### name
 
+<span id="qiskit.optimization.problems.LinearConstraint.name" />
 
 `property name`
 
@@ -95,7 +111,9 @@ Returns the name of the constraint.
 
 The name of the constraint.
 
+### quadratic\_program
 
+<span id="qiskit.optimization.problems.LinearConstraint.quadratic_program" />
 
 `property quadratic_program`
 
@@ -109,7 +127,9 @@ Returns the parent QuadraticProgram.
 
 The parent QuadraticProgram.
 
+### rhs
 
+<span id="qiskit.optimization.problems.LinearConstraint.rhs" />
 
 `property rhs`
 
@@ -123,7 +143,9 @@ Returns the right-hand-side of the constraint.
 
 The right-hand-side of the constraint.
 
+### sense
 
+<span id="qiskit.optimization.problems.LinearConstraint.sense" />
 
 `property sense`
 
@@ -136,3 +158,4 @@ Returns the sense of the constraint.
 **Returns**
 
 The sense of the constraint.
+

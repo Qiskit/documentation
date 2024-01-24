@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.HiddenLinearFunction
 
 <span id="qiskit.circuit.library.HiddenLinearFunction" />
 
-`qiskit.circuit.library.HiddenLinearFunction(adjacency_matrix)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/hidden_linear_function.py "view source code")
+`qiskit.circuit.library.HiddenLinearFunction(adjacency_matrix)`
 
 Bases: [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
 
@@ -112,7 +112,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 161`
+`= 199`
 
 <span id="qiskit.circuit.library.HiddenLinearFunction.layout" />
 

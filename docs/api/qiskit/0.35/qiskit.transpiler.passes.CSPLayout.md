@@ -1,8 +1,16 @@
+---
+title: CSPLayout
+description: API reference for qiskit.transpiler.passes.CSPLayout
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.CSPLayout
+---
+
 # CSPLayout
 
+<span id="qiskit.transpiler.passes.CSPLayout" />
 
-
-`CSPLayout(*args, **kwargs)`
+`CSPLayout(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/csp_layout.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
@@ -27,14 +35,25 @@ If not possible, does not set the layout property. In all the cases, the propert
 
 ## Methods
 
-|                                                                                                                                     |                              |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ---------------------------- |
-| [`name`](qiskit.transpiler.passes.CSPLayout.name#qiskit.transpiler.passes.CSPLayout.name "qiskit.transpiler.passes.CSPLayout.name") | Return the name of the pass. |
-| [`run`](qiskit.transpiler.passes.CSPLayout.run#qiskit.transpiler.passes.CSPLayout.run "qiskit.transpiler.passes.CSPLayout.run")     | run the layout method        |
+### name
+
+<span id="qiskit.transpiler.passes.CSPLayout.name" />
+
+`CSPLayout.name()`
+
+Return the name of the pass.
+
+### run
+
+<span id="qiskit.transpiler.passes.CSPLayout.run" />
+
+`CSPLayout.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/layout/csp_layout.py "view source code")
+
+run the layout method
 
 ## Attributes
 
-
+<span id="qiskit.transpiler.passes.CSPLayout.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -42,10 +61,11 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-
+<span id="qiskit.transpiler.passes.CSPLayout.is_transformation_pass" />
 
 ### is\_transformation\_pass
 
 Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+

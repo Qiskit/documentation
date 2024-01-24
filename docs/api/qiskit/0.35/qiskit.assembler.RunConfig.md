@@ -1,14 +1,22 @@
+---
+title: RunConfig
+description: API reference for qiskit.assembler.RunConfig
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.assembler.RunConfig
+---
+
 # RunConfig
 
+<span id="qiskit.assembler.RunConfig" />
 
-
-`RunConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, **kwargs)`
+`RunConfig(shots=None, max_credits=None, seed_simulator=None, memory=None, parameter_binds=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/assembler/run_config.py "view source code")
 
 Bases: `types.SimpleNamespace`
 
 Class for Run Configuration.
 
-
+<span id="qiskit.assembler.RunConfig.shots" />
 
 ### shots
 
@@ -18,7 +26,7 @@ the number of shots
 
 int
 
-
+<span id="qiskit.assembler.RunConfig.max_credits" />
 
 ### max\_credits
 
@@ -28,7 +36,7 @@ DEPRECATED This parameter is deprecated as of Qiskit Terra 0.20.0, and will be r
 
 int
 
-
+<span id="qiskit.assembler.RunConfig.seed_simulator" />
 
 ### seed\_simulator
 
@@ -38,7 +46,7 @@ the seed to use in the simulator
 
 int
 
-
+<span id="qiskit.assembler.RunConfig.memory" />
 
 ### memory
 
@@ -48,7 +56,7 @@ whether to request memory from backend (per-shot readouts)
 
 bool
 
-
+<span id="qiskit.assembler.RunConfig.parameter_binds" />
 
 ### parameter\_binds
 
@@ -71,7 +79,39 @@ Initialize a RunConfig object
 
 ## Methods
 
-|                                                                                                                                 |                                                            |
-| ------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------- |
-| [`from_dict`](qiskit.assembler.RunConfig.from_dict#qiskit.assembler.RunConfig.from_dict "qiskit.assembler.RunConfig.from_dict") | Create a new RunConfig object from a dictionary.           |
-| [`to_dict`](qiskit.assembler.RunConfig.to_dict#qiskit.assembler.RunConfig.to_dict "qiskit.assembler.RunConfig.to_dict")         | Return a dictionary format representation of the RunConfig |
+### from\_dict
+
+<span id="qiskit.assembler.RunConfig.from_dict" />
+
+`classmethod RunConfig.from_dict(data)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/assembler/run_config.py "view source code")
+
+Create a new RunConfig object from a dictionary.
+
+**Parameters**
+
+**data** (*dict*) – A dictionary representing the RunConfig to create. It will be in the same format as output by [`to_dict()`](qiskit.assembler.RunConfig#to_dict "qiskit.assembler.RunConfig.to_dict").
+
+**Returns**
+
+The RunConfig from the input dictionary.
+
+**Return type**
+
+[RunConfig](qiskit.assembler.RunConfig "qiskit.assembler.RunConfig")
+
+### to\_dict
+
+<span id="qiskit.assembler.RunConfig.to_dict" />
+
+`RunConfig.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/assembler/run_config.py "view source code")
+
+Return a dictionary format representation of the RunConfig
+
+**Returns**
+
+The dictionary form of the RunConfig.
+
+**Return type**
+
+dict
+

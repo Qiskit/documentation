@@ -62,11 +62,11 @@ They can be divided into two categories: Variational Quantum \_Real\_ Time Evolu
 
 |                                                                                                                                                                                                         |                                                           |
 | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------- |
-| [`VariationalPrinciple`](qiskit.algorithms.time_evolvers.variational.VariationalPrinciple "qiskit.algorithms.time_evolvers.variational.VariationalPrinciple")(qgt, gradient)                            | A Variational Principle class.                            |
-| [`RealVariationalPrinciple`](qiskit.algorithms.time_evolvers.variational.RealVariationalPrinciple "qiskit.algorithms.time_evolvers.variational.RealVariationalPrinciple")(qgt, gradient)                | Class for a Real Variational Principle.                   |
-| [`ImaginaryVariationalPrinciple`](qiskit.algorithms.time_evolvers.variational.ImaginaryVariationalPrinciple "qiskit.algorithms.time_evolvers.variational.ImaginaryVariationalPrinciple")(qgt, gradient) | Abstract class for an Imaginary Variational Principle.    |
-| [`RealMcLachlanPrinciple`](qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple "qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple")(\[qgt, gradient])                   | Class for a Real McLachlan's Variational Principle.       |
-| [`ImaginaryMcLachlanPrinciple`](qiskit.algorithms.time_evolvers.variational.ImaginaryMcLachlanPrinciple "qiskit.algorithms.time_evolvers.variational.ImaginaryMcLachlanPrinciple")(\[qgt, gradient])    | Class for an Imaginary McLachlan's Variational Principle. |
+| [`VariationalPrinciple`](qiskit.algorithms.time_evolvers.variational.VariationalPrinciple "qiskit.algorithms.time_evolvers.variational.VariationalPrinciple")(qgt, gradient)                            | A Variational Principle class.                            |
+| [`RealVariationalPrinciple`](qiskit.algorithms.time_evolvers.variational.RealVariationalPrinciple "qiskit.algorithms.time_evolvers.variational.RealVariationalPrinciple")(qgt, gradient)                | Class for a Real Variational Principle.                   |
+| [`ImaginaryVariationalPrinciple`](qiskit.algorithms.time_evolvers.variational.ImaginaryVariationalPrinciple "qiskit.algorithms.time_evolvers.variational.ImaginaryVariationalPrinciple")(qgt, gradient) | Abstract class for an Imaginary Variational Principle.    |
+| [`RealMcLachlanPrinciple`](qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple "qiskit.algorithms.time_evolvers.variational.RealMcLachlanPrinciple")(\[qgt, gradient])                   | Class for a Real McLachlan's Variational Principle.       |
+| [`ImaginaryMcLachlanPrinciple`](qiskit.algorithms.time_evolvers.variational.ImaginaryMcLachlanPrinciple "qiskit.algorithms.time_evolvers.variational.ImaginaryMcLachlanPrinciple")(\[qgt, gradient])    | Class for an Imaginary McLachlan's Variational Principle. |
 
 ### ODE solvers
 
@@ -74,5 +74,5 @@ ODE solvers that implement the SciPy ODE Solver interface. The Forward Euler Sol
 
 |                                                                                                                                                                                     |                           |
 | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------- |
-| [`ForwardEulerSolver`](qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver "qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver")(function, t0, y0, t\_bound) | Forward Euler ODE solver. |
+| [`ForwardEulerSolver`](qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver "qiskit.algorithms.time_evolvers.variational.ForwardEulerSolver")(function, t0, y0, t\_bound) | Forward Euler ODE solver. |
 

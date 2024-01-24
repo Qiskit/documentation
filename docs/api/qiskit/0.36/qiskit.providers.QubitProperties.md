@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.QubitProperties
 
 <span id="qiskit.providers.QubitProperties" />
 
-`QubitProperties(t1=None, t2=None, frequency=None)`
+`QubitProperties(t1=None, t2=None, frequency=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/providers/backend.py "view source code")
 
 Bases: `object`
 
@@ -28,6 +28,10 @@ Create a new `QubitProperties` object
 
 ## Attributes
 
+<span id="qiskit.providers.QubitProperties.frequency" />
+
+### frequency
+
 <span id="qiskit.providers.QubitProperties.t1" />
 
 ### t1
@@ -35,8 +39,4 @@ Create a new `QubitProperties` object
 <span id="qiskit.providers.QubitProperties.t2" />
 
 ### t2
-
-<span id="qiskit.providers.QubitProperties.frequency" />
-
-### frequency
 

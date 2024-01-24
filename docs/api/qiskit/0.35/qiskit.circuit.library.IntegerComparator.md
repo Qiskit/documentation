@@ -1,8 +1,16 @@
+---
+title: IntegerComparator
+description: API reference for qiskit.circuit.library.IntegerComparator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.IntegerComparator
+---
+
 # IntegerComparator
 
+<span id="qiskit.circuit.library.IntegerComparator" />
 
-
-`IntegerComparator(num_state_qubits=None, value=None, geq=True, name='cmp')`
+`IntegerComparator(num_state_qubits=None, value=None, geq=True, name='cmp')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/arithmetic/integer_comparator.py "view source code")
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`
 
@@ -27,7 +35,7 @@ Create a new fixed value comparator circuit.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.IntegerComparator.ancillas" />
 
 ### ancillas
 
@@ -37,7 +45,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 `List`\[`AncillaQubit`]
 
-
+<span id="qiskit.circuit.library.IntegerComparator.calibrations" />
 
 ### calibrations
 
@@ -51,7 +59,7 @@ Return calibration dictionary.
 
 `dict`
 
-
+<span id="qiskit.circuit.library.IntegerComparator.clbits" />
 
 ### clbits
 
@@ -61,17 +69,17 @@ Returns a list of classical bits in the order that the registers were added.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.IntegerComparator.data" />
 
 ### data
 
-
+<span id="qiskit.circuit.library.IntegerComparator.extension_lib" />
 
 ### extension\_lib
 
 `= 'include "qelib1.inc";'`
 
-
+<span id="qiskit.circuit.library.IntegerComparator.geq" />
 
 ### geq
 
@@ -85,7 +93,7 @@ Return whether the comparator compares greater or less equal.
 
 True, if the comparator compares `>=`, False if `<`.
 
-
+<span id="qiskit.circuit.library.IntegerComparator.global_phase" />
 
 ### global\_phase
 
@@ -95,19 +103,19 @@ Return the global phase of the circuit in radians.
 
 `Union`\[`ParameterExpression`, `float`]
 
-
+<span id="qiskit.circuit.library.IntegerComparator.header" />
 
 ### header
 
 `= 'OPENQASM 2.0;'`
 
-
+<span id="qiskit.circuit.library.IntegerComparator.instances" />
 
 ### instances
 
 `= 9`
 
-
+<span id="qiskit.circuit.library.IntegerComparator.metadata" />
 
 ### metadata
 
@@ -119,13 +127,13 @@ The metadata for the circuit is a user provided `dict` of metadata for the circu
 
 `dict`
 
-
+<span id="qiskit.circuit.library.IntegerComparator.num_ancilla_qubits" />
 
 ### num\_ancilla\_qubits
 
 Deprecated. Use num\_ancillas instead.
 
-
+<span id="qiskit.circuit.library.IntegerComparator.num_ancillas" />
 
 ### num\_ancillas
 
@@ -135,7 +143,7 @@ Return the number of ancilla qubits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.IntegerComparator.num_clbits" />
 
 ### num\_clbits
 
@@ -145,7 +153,7 @@ Return number of classical bits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.IntegerComparator.num_parameters" />
 
 ### num\_parameters
 
@@ -153,7 +161,7 @@ Return number of classical bits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.IntegerComparator.num_qubits" />
 
 ### num\_qubits
 
@@ -163,7 +171,7 @@ Return number of qubits.
 
 `int`
 
-
+<span id="qiskit.circuit.library.IntegerComparator.num_state_qubits" />
 
 ### num\_state\_qubits
 
@@ -177,7 +185,7 @@ The number of qubits encoding the state for the comparison.
 
 The number of state qubits.
 
-
+<span id="qiskit.circuit.library.IntegerComparator.parameters" />
 
 ### parameters
 
@@ -185,19 +193,19 @@ The number of state qubits.
 
 `ParameterView`
 
-
+<span id="qiskit.circuit.library.IntegerComparator.prefix" />
 
 ### prefix
 
 `= 'circuit'`
 
-
+<span id="qiskit.circuit.library.IntegerComparator.qregs" />
 
 ### qregs
 
 A list of the quantum registers associated with the circuit.
 
-
+<span id="qiskit.circuit.library.IntegerComparator.qubits" />
 
 ### qubits
 
@@ -207,7 +215,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 `List`\[`Qubit`]
 
-
+<span id="qiskit.circuit.library.IntegerComparator.value" />
 
 ### value
 
@@ -220,3 +228,4 @@ The value to compare the qubit register to.
 **Returns**
 
 The value against which the value of the qubit register is compared.
+

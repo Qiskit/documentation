@@ -10,13 +10,13 @@ python_api_name: qiskit.transpiler.passes.UnrollForLoops
 
 <span id="qiskit.transpiler.passes.UnrollForLoops" />
 
-`qiskit.transpiler.passes.UnrollForLoops(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/utils/unroll_forloops.py "view source code")
+`qiskit.transpiler.passes.UnrollForLoops(*args, **kwargs)`
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
 `UnrollForLoops` transpilation pass unrolls for-loops when possible.
 
-Things like `for x in {0, 3, 4} {rx(x) qr[1];}` will turn into `rx(0) qr[1]; rx(3) qr[1]; rx(4) qr[1];`.
+Things like for x in \{0, 3, 4} \{rx(x) qr\[1];} will turn into rx(0) qr\[1]; rx(3) qr\[1]; rx(4) qr\[1];.
 
 <Admonition title="Note" type="note">
   The `UnrollForLoops` unrolls only one level of block depth. No inner loop will be considered by `max_target_depth`.
@@ -86,7 +86,7 @@ Name of the pass.
 
 `run(dag)`
 
-Run the UnrollForLoops pass on `dag`.
+Run the UnrollForLoops pass on dag.
 
 **Parameters**
 

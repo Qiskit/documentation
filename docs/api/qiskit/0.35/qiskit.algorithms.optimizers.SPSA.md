@@ -1,8 +1,16 @@
+---
+title: SPSA
+description: API reference for qiskit.algorithms.optimizers.SPSA
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.algorithms.optimizers.SPSA
+---
+
 # SPSA
 
+<span id="qiskit.algorithms.optimizers.SPSA" />
 
-
-`SPSA(maxiter=100, blocking=False, allowed_increase=None, trust_region=False, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, second_order=False, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)`
+`SPSA(maxiter=100, blocking=False, allowed_increase=None, trust_region=False, learning_rate=None, perturbation=None, last_avg=1, resamplings=1, perturbation_dims=None, second_order=False, regularization=None, hessian_delay=0, lse_solver=None, initial_hessian=None, callback=None, termination_checker=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/spsa.py "view source code")
 
 Bases: `qiskit.algorithms.optimizers.optimizer.Optimizer`
 
@@ -92,103 +100,270 @@ result = two_spsa.optimize(ansatz.num_parameters, loss, initial_point=initial_po
 
 ## Methods
 
-|                                                                                                                                                                                                      |                                                                                                           |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------- |
-| [`calibrate`](qiskit.algorithms.optimizers.SPSA.calibrate#qiskit.algorithms.optimizers.SPSA.calibrate "qiskit.algorithms.optimizers.SPSA.calibrate")                                                 | Calibrate SPSA parameters with a powerseries as learning rate and perturbation coeffs.                    |
-| [`estimate_stddev`](qiskit.algorithms.optimizers.SPSA.estimate_stddev#qiskit.algorithms.optimizers.SPSA.estimate_stddev "qiskit.algorithms.optimizers.SPSA.estimate_stddev")                         | Estimate the standard deviation of the loss function.                                                     |
-| [`get_support_level`](qiskit.algorithms.optimizers.SPSA.get_support_level#qiskit.algorithms.optimizers.SPSA.get_support_level "qiskit.algorithms.optimizers.SPSA.get_support_level")                 | Get the support level dictionary.                                                                         |
-| [`gradient_num_diff`](qiskit.algorithms.optimizers.SPSA.gradient_num_diff#qiskit.algorithms.optimizers.SPSA.gradient_num_diff "qiskit.algorithms.optimizers.SPSA.gradient_num_diff")                 | We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center. |
-| [`minimize`](qiskit.algorithms.optimizers.SPSA.minimize#qiskit.algorithms.optimizers.SPSA.minimize "qiskit.algorithms.optimizers.SPSA.minimize")                                                     | Minimize the scalar function.                                                                             |
-| [`optimize`](qiskit.algorithms.optimizers.SPSA.optimize#qiskit.algorithms.optimizers.SPSA.optimize "qiskit.algorithms.optimizers.SPSA.optimize")                                                     | Perform optimization.                                                                                     |
-| [`print_options`](qiskit.algorithms.optimizers.SPSA.print_options#qiskit.algorithms.optimizers.SPSA.print_options "qiskit.algorithms.optimizers.SPSA.print_options")                                 | Print algorithm-specific options.                                                                         |
-| [`set_max_evals_grouped`](qiskit.algorithms.optimizers.SPSA.set_max_evals_grouped#qiskit.algorithms.optimizers.SPSA.set_max_evals_grouped "qiskit.algorithms.optimizers.SPSA.set_max_evals_grouped") | Set max evals grouped                                                                                     |
-| [`set_options`](qiskit.algorithms.optimizers.SPSA.set_options#qiskit.algorithms.optimizers.SPSA.set_options "qiskit.algorithms.optimizers.SPSA.set_options")                                         | Sets or updates values in the options dictionary.                                                         |
-| [`wrap_function`](qiskit.algorithms.optimizers.SPSA.wrap_function#qiskit.algorithms.optimizers.SPSA.wrap_function "qiskit.algorithms.optimizers.SPSA.wrap_function")                                 | Wrap the function to implicitly inject the args at the call of the function.                              |
+### calibrate
+
+<span id="qiskit.algorithms.optimizers.SPSA.calibrate" />
+
+`static SPSA.calibrate(loss, initial_point, c=0.2, stability_constant=0, target_magnitude=None, alpha=0.602, gamma=0.101, modelspace=False, max_evals_grouped=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/spsa.py "view source code")
+
+Calibrate SPSA parameters with a powerseries as learning rate and perturbation coeffs.
+
+The powerseries are:
+
+$$
+a_k = \frac{a}{(A + k + 1)^\alpha}, c_k = \frac{c}{(k + 1)^\gamma}
+$$
+
+**Parameters**
+
+*   **loss** (`Callable`\[\[`ndarray`], `float`]) – The loss function.
+*   **initial\_point** (`ndarray`) – The initial guess of the iteration.
+*   **c** (`float`) – The initial perturbation magnitude.
+*   **stability\_constant** (`float`) – The value of A.
+*   **target\_magnitude** (`Optional`\[`float`]) – The target magnitude for the first update step, defaults to $2\pi / 10$.
+*   **alpha** (`float`) – The exponent of the learning rate powerseries.
+*   **gamma** (`float`) – The exponent of the perturbation powerseries.
+*   **modelspace** (`bool`) – Whether the target magnitude is the difference of parameter values or function values (= model space).
+*   **max\_evals\_grouped** (`int`) – The number of grouped evaluations supported by the loss function. Defaults to 1, i.e. no grouping.
+
+**Returns**
+
+**A tuple of powerseries generators, the first one for the**
+
+learning rate and the second one for the perturbation.
+
+**Return type**
+
+tuple(generator, generator)
+
+### estimate\_stddev
+
+<span id="qiskit.algorithms.optimizers.SPSA.estimate_stddev" />
+
+`static SPSA.estimate_stddev(loss, initial_point, avg=25, max_evals_grouped=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/spsa.py "view source code")
+
+Estimate the standard deviation of the loss function.
+
+**Return type**
+
+`float`
+
+### get\_support\_level
+
+<span id="qiskit.algorithms.optimizers.SPSA.get_support_level" />
+
+`SPSA.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/spsa.py "view source code")
+
+Get the support level dictionary.
+
+### gradient\_num\_diff
+
+<span id="qiskit.algorithms.optimizers.SPSA.gradient_num_diff" />
+
+`static SPSA.gradient_num_diff(x_center, f, epsilon, max_evals_grouped=1)`
+
+We compute the gradient with the numeric differentiation in the parallel way, around the point x\_center.
+
+**Parameters**
+
+*   **x\_center** (*ndarray*) – point around which we compute the gradient
+*   **f** (*func*) – the function of which the gradient is to be computed.
+*   **epsilon** (*float*) – the epsilon used in the numeric differentiation.
+*   **max\_evals\_grouped** (*int*) – max evals grouped
+
+**Returns**
+
+the gradient computed
+
+**Return type**
+
+grad
+
+### minimize
+
+<span id="qiskit.algorithms.optimizers.SPSA.minimize" />
+
+`SPSA.minimize(fun, x0, jac=None, bounds=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/spsa.py "view source code")
+
+Minimize the scalar function.
+
+**Parameters**
+
+*   **fun** (`Callable`\[\[`Union`\[`float`, `ndarray`]], `float`]) – The scalar function to minimize.
+*   **x0** (`Union`\[`float`, `ndarray`]) – The initial point for the minimization.
+*   **jac** (`Optional`\[`Callable`\[\[`Union`\[`float`, `ndarray`]], `Union`\[`float`, `ndarray`]]]) – The gradient of the scalar function `fun`.
+*   **bounds** (`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]) – Bounds for the variables of `fun`. This argument might be ignored if the optimizer does not support bounds.
+
+**Return type**
+
+`OptimizerResult`
+
+**Returns**
+
+The result of the optimization, containing e.g. the result as attribute `x`.
+
+### optimize
+
+<span id="qiskit.algorithms.optimizers.SPSA.optimize" />
+
+`SPSA.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/spsa.py "view source code")
+
+Perform optimization.
+
+**Parameters**
+
+*   **num\_vars** (*int*) – Number of parameters to be optimized.
+*   **objective\_function** (*callable*) – A function that computes the objective function.
+*   **gradient\_function** (*callable*) – A function that computes the gradient of the objective function, or None if not available.
+*   **variable\_bounds** (*list\[(float, float)]*) – List of variable bounds, given as pairs (lower, upper). None means unbounded.
+*   **initial\_point** (*numpy.ndarray\[float]*) – Initial point.
+
+**Returns**
+
+**point, value, nfev**
+
+point: is a 1D numpy.ndarray\[float] containing the solution value: is a float with the objective function value nfev: number of objective function calls made if available or None
+
+**Raises**
+
+**ValueError** – invalid input
+
+### print\_options
+
+<span id="qiskit.algorithms.optimizers.SPSA.print_options" />
+
+`SPSA.print_options()`
+
+Print algorithm-specific options.
+
+### set\_max\_evals\_grouped
+
+<span id="qiskit.algorithms.optimizers.SPSA.set_max_evals_grouped" />
+
+`SPSA.set_max_evals_grouped(limit)`
+
+Set max evals grouped
+
+### set\_options
+
+<span id="qiskit.algorithms.optimizers.SPSA.set_options" />
+
+`SPSA.set_options(**kwargs)`
+
+Sets or updates values in the options dictionary.
+
+The options dictionary may be used internally by a given optimizer to pass additional optional values for the underlying optimizer/optimization function used. The options dictionary may be initially populated with a set of key/values when the given optimizer is constructed.
+
+**Parameters**
+
+**kwargs** (*dict*) – options, given as name=value.
+
+### wrap\_function
+
+<span id="qiskit.algorithms.optimizers.SPSA.wrap_function" />
+
+`static SPSA.wrap_function(function, args)`
+
+Wrap the function to implicitly inject the args at the call of the function.
+
+**Parameters**
+
+*   **function** (*func*) – the target function
+*   **args** (*tuple*) – the args to be injected
+
+**Returns**
+
+wrapper
+
+**Return type**
+
+function\_wrapper
 
 ## Attributes
 
-
+<span id="qiskit.algorithms.optimizers.SPSA.bounds_support_level" />
 
 ### bounds\_support\_level
 
 Returns bounds support level
 
-
+<span id="qiskit.algorithms.optimizers.SPSA.gradient_support_level" />
 
 ### gradient\_support\_level
 
 Returns gradient support level
 
-
+<span id="qiskit.algorithms.optimizers.SPSA.initial_point_support_level" />
 
 ### initial\_point\_support\_level
 
 Returns initial point support level
 
-
+<span id="qiskit.algorithms.optimizers.SPSA.is_bounds_ignored" />
 
 ### is\_bounds\_ignored
 
 Returns is bounds ignored
 
-
+<span id="qiskit.algorithms.optimizers.SPSA.is_bounds_required" />
 
 ### is\_bounds\_required
 
 Returns is bounds required
 
-
+<span id="qiskit.algorithms.optimizers.SPSA.is_bounds_supported" />
 
 ### is\_bounds\_supported
 
 Returns is bounds supported
 
-
+<span id="qiskit.algorithms.optimizers.SPSA.is_gradient_ignored" />
 
 ### is\_gradient\_ignored
 
 Returns is gradient ignored
 
-
+<span id="qiskit.algorithms.optimizers.SPSA.is_gradient_required" />
 
 ### is\_gradient\_required
 
 Returns is gradient required
 
-
+<span id="qiskit.algorithms.optimizers.SPSA.is_gradient_supported" />
 
 ### is\_gradient\_supported
 
 Returns is gradient supported
 
-
+<span id="qiskit.algorithms.optimizers.SPSA.is_initial_point_ignored" />
 
 ### is\_initial\_point\_ignored
 
 Returns is initial point ignored
 
-
+<span id="qiskit.algorithms.optimizers.SPSA.is_initial_point_required" />
 
 ### is\_initial\_point\_required
 
 Returns is initial point required
 
-
+<span id="qiskit.algorithms.optimizers.SPSA.is_initial_point_supported" />
 
 ### is\_initial\_point\_supported
 
 Returns is initial point supported
 
-
+<span id="qiskit.algorithms.optimizers.SPSA.setting" />
 
 ### setting
 
 Return setting
 
-
+<span id="qiskit.algorithms.optimizers.SPSA.settings" />
 
 ### settings
 
 **Return type**
 
 `Dict`\[`str`, `Any`]
+

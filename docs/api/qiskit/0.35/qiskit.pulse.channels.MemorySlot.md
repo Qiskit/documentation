@@ -1,8 +1,16 @@
+---
+title: MemorySlot
+description: API reference for qiskit.pulse.channels.MemorySlot
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.channels.MemorySlot
+---
+
 # MemorySlot
 
+<span id="qiskit.pulse.channels.MemorySlot" />
 
-
-`MemorySlot(index)`
+`MemorySlot(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/channels.py "view source code")
 
 Bases: [`qiskit.pulse.channels.Channel`](pulse#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel")
 
@@ -16,13 +24,21 @@ Channel class.
 
 ## Methods
 
-|                                                                                                                                                                               |                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| [`is_parameterized`](qiskit.pulse.channels.MemorySlot.is_parameterized#qiskit.pulse.channels.MemorySlot.is_parameterized "qiskit.pulse.channels.MemorySlot.is_parameterized") | Return True iff the channel is parameterized. |
+### is\_parameterized
+
+<span id="qiskit.pulse.channels.MemorySlot.is_parameterized" />
+
+`MemorySlot.is_parameterized()`
+
+Return True iff the channel is parameterized.
+
+**Return type**
+
+`bool`
 
 ## Attributes
 
-
+<span id="qiskit.pulse.channels.MemorySlot.index" />
 
 ### index
 
@@ -32,7 +48,7 @@ Return the index of this channel. The index is a label for a control signal line
 
 `Union`\[`int`, `ParameterExpression`]
 
-
+<span id="qiskit.pulse.channels.MemorySlot.name" />
 
 ### name
 
@@ -42,7 +58,7 @@ Return the shorthand alias for this channel, which is based on its type and inde
 
 `str`
 
-
+<span id="qiskit.pulse.channels.MemorySlot.parameters" />
 
 ### parameters
 
@@ -52,8 +68,9 @@ Parameters which determine the channel index.
 
 `Set`
 
-
+<span id="qiskit.pulse.channels.MemorySlot.prefix" />
 
 ### prefix
 
 `= 'm'`
+

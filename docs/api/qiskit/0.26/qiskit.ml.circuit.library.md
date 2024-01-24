@@ -20,7 +20,7 @@ A library of quantum circuits used for machine learning applications and as buil
 
 # Feature Maps
 
-|                                                                                                                                                          |                                 |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [`RawFeatureVector`](qiskit.ml.circuit.library.RawFeatureVector#qiskit.ml.circuit.library.RawFeatureVector "qiskit.ml.circuit.library.RawFeatureVector") | The raw feature vector circuit. |
+|                                                                                                               |                                 |
+| ------------------------------------------------------------------------------------------------------------- | ------------------------------- |
+| [`RawFeatureVector`](qiskit.ml.circuit.library.RawFeatureVector "qiskit.ml.circuit.library.RawFeatureVector") | The raw feature vector circuit. |
 

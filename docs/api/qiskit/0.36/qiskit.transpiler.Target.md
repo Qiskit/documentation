@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.Target
 
 <span id="qiskit.transpiler.Target" />
 
-`Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, aquire_alignment=1, qubit_properties=None)`
+`Target(description=None, num_qubits=0, dt=None, granularity=1, min_length=1, pulse_alignment=1, aquire_alignment=1, qubit_properties=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Bases: `collections.abc.Mapping`
 
@@ -95,7 +95,7 @@ Create a new Target object
 
 <span id="qiskit.transpiler.Target.add_instruction" />
 
-`Target.add_instruction(instruction, properties=None, name=None)`
+`Target.add_instruction(instruction, properties=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Add a new instruction to the [`Target`](qiskit.transpiler.Target "qiskit.transpiler.Target")
 
@@ -135,7 +135,7 @@ Will add a [`CXGate`](qiskit.circuit.library.CXGate "qiskit.circuit.library.CXGa
 
 <span id="qiskit.transpiler.Target.build_coupling_map" />
 
-`Target.build_coupling_map(two_q_gate=None)`
+`Target.build_coupling_map(two_q_gate=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Get a [`CouplingMap`](qiskit.transpiler.CouplingMap "qiskit.transpiler.CouplingMap") from this target.
 
@@ -162,7 +162,7 @@ for this target.
 
 <span id="qiskit.transpiler.Target.durations" />
 
-`Target.durations()`
+`Target.durations()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Get an InstructionDurations object from the target
 
@@ -180,13 +180,13 @@ target
 
 <span id="qiskit.transpiler.Target.get" />
 
-`Target.get(k[, d]) → D[k] if k in D, else d.  d defaults to None.`
+`Target.get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
 
 ### get\_non\_global\_operation\_names
 
 <span id="qiskit.transpiler.Target.get_non_global_operation_names" />
 
-`Target.get_non_global_operation_names(strict_direction=False)`
+`Target.get_non_global_operation_names(strict_direction=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Return the non-global operation names for the target
 
@@ -208,7 +208,7 @@ List\[str]
 
 <span id="qiskit.transpiler.Target.instruction_properties" />
 
-`Target.instruction_properties(index)`
+`Target.instruction_properties(index)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Get the instruction properties for a specific instruction tuple
 
@@ -248,7 +248,7 @@ The instruction properties for the specified instruction tuple
 
 <span id="qiskit.transpiler.Target.instruction_schedule_map" />
 
-`Target.instruction_schedule_map()`
+`Target.instruction_schedule_map()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Return an [`InstructionScheduleMap`](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap") for the instructions in the target with a pulse schedule defined.
 
@@ -264,34 +264,14 @@ The instruction schedule map for the instructions in this target with a pulse sc
 
 <span id="qiskit.transpiler.Target.instruction_supported" />
 
-`Target.instruction_supported(operation_name=None, qargs=None, operation_class=None, parameters=None)`
+`Target.instruction_supported(operation_name, qargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Return whether the instruction (operation + qubits) is supported by the target
 
 **Parameters**
 
-*   **operation\_name** (*str*) – The name of the operation for the instruction. Either this or `operation_class` must be specified, if both are specified `operation_class` will take priority and this argument will be ignored.
-
-*   **qargs** (*tuple*) – The tuple of qubit indices for the instruction. If this is not specified then this method will return `True` if the specified operation is supported on any qubits. The typical application will always have this set (otherwise it’s the same as just checking if the target contains the operation). Normally you would not set this argument if you wanted to check more generally that the target supports an operation with the `parameters` on any qubits.
-
-*   **operation\_class** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – The operation class to check whether the target supports a particular operation by class rather than by name. This lookup is more expensive as it needs to iterate over all operations in the target instead of just a single lookup. If this is specified it will supersede the `operation_name` argument. The typical use case for this operation is to check whether a specific variant of an operation is supported on the backend. For example, if you wanted to check whether a [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate") was supported on a specific qubit with a fixed angle. That fixed angle variant will typically have a name different than the object’s [`name`](qiskit.circuit.Instruction#name "qiskit.circuit.Instruction.name") attribute (`"rx"`) in the target. This can be used to check if any instances of the class are available in such a case.
-
-*   **parameters** (*list*) –
-
-    A list of parameters to check if the target supports them on the specified qubits. If the instruction supports the parameter values specified in the list on the operation and qargs specified this will return `True` but if the parameters are not supported on the specified instruction it will return `False`. If this argument is not specified this method will return `True` if the instruction is supported independent of the instruction parameters. If specified with any [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") objects in the list, that entry will be treated as supporting any value, however parameter names will not be checked (for example if an operation in the target is listed as parameterized with `"theta"` and `"phi"` is passed into this function that will return `True`). For example, if called with:
-
-    ```python
-    parameters = [Parameter("theta")]
-    target.instruction_supported("rx", (0,), parameters=parameters)
-    ```
-
-    will return `True` if an [`RXGate`](qiskit.circuit.library.RXGate "qiskit.circuit.library.RXGate") is suporrted on qubit 0 that will accept any parameter. If you need to check for a fixed numeric value parameter this argument is typically paired with the `operation_class` argument. For example:
-
-    ```python
-    target.instruction_supported("rx", (0,), RXGate, parameters=[pi / 4])
-    ```
-
-    will return `True` if an RXGate(pi/4) exists on qubit 0.
+*   **operation\_name** (*str*) – The name of the operation for the instruction
+*   **qargs** (*tuple*) – The tuple of qubit indices for the instruction
 
 **Returns**
 
@@ -305,19 +285,19 @@ bool
 
 <span id="qiskit.transpiler.Target.items" />
 
-`Target.items() → a set-like object providing a view on D's items`
+`Target.items() → a set-like object providing a view on D’s items`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 ### keys
 
 <span id="qiskit.transpiler.Target.keys" />
 
-`Target.keys() → a set-like object providing a view on D's keys`
+`Target.keys() → a set-like object providing a view on D’s keys`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 ### operation\_from\_name
 
 <span id="qiskit.transpiler.Target.operation_from_name" />
 
-`Target.operation_from_name(instruction)`
+`Target.operation_from_name(instruction)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Get the operation class object for a given name
 
@@ -337,7 +317,7 @@ The Instruction instance corresponding to the name
 
 <span id="qiskit.transpiler.Target.operation_names_for_qargs" />
 
-`Target.operation_names_for_qargs(qargs)`
+`Target.operation_names_for_qargs(qargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Get the operation names for a specified qargs tuple
 
@@ -361,7 +341,7 @@ set
 
 <span id="qiskit.transpiler.Target.operations_for_qargs" />
 
-`Target.operations_for_qargs(qargs)`
+`Target.operations_for_qargs(qargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Get the operation class object for a specified qargs tuple
 
@@ -385,7 +365,7 @@ list
 
 <span id="qiskit.transpiler.Target.qargs_for_operation_name" />
 
-`Target.qargs_for_operation_name(operation)`
+`Target.qargs_for_operation_name(operation)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Get the qargs for a given operation name
 
@@ -405,7 +385,7 @@ set
 
 <span id="qiskit.transpiler.Target.timing_constraints" />
 
-`Target.timing_constraints()`
+`Target.timing_constraints()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Get an `TimingConstraints` object from the target
 
@@ -421,7 +401,7 @@ TimingConstraints
 
 <span id="qiskit.transpiler.Target.update_from_instruction_schedule_map" />
 
-`Target.update_from_instruction_schedule_map(inst_map, inst_name_map=None, error_dict=None)`
+`Target.update_from_instruction_schedule_map(inst_map, inst_name_map=None, error_dict=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Update the target from an instruction schedule map.
 
@@ -443,13 +423,13 @@ If the input instruction schedule map contains new instructions not in the targe
 
 *   **example::** (*for*) – \{‘rx’: \{(0, ): 1.4e-4, (1, ): 1.2e-4}}
 
-*   **defined** (*For each entry in the inst\_map if error\_dict is*) –
+*   **each entry in the inst\_map if error\_dict is defined** (*For*) –
 
-*   **from** (*a when updating the Target the error value will be pulled*) –
+*   **when updating the Target the error value will be pulled from** (*a*) –
 
-*   **then** (*this dictionary. If one is not found in error\_dict*) –
+*   **dictionary. If one is not found in error\_dict then** (*this*) –
 
-*   **used.** (*None will be*) –
+*   **will be used.** (*None*) –
 
 **Raises**
 
@@ -460,7 +440,7 @@ If the input instruction schedule map contains new instructions not in the targe
 
 <span id="qiskit.transpiler.Target.update_instruction_properties" />
 
-`Target.update_instruction_properties(instruction, qargs, properties)`
+`Target.update_instruction_properties(instruction, qargs, properties)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 Update the property object for an instruction qarg pair already in the Target
 
@@ -478,13 +458,13 @@ Update the property object for an instruction qarg pair already in the Target
 
 <span id="qiskit.transpiler.Target.values" />
 
-`Target.values() → an object providing a view on D's values`
+`Target.values() → an object providing a view on D’s values`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/target.py "view source code")
 
 ## Attributes
 
-<span id="qiskit.transpiler.Target.num_qubits" />
+<span id="qiskit.transpiler.Target.aquire_alignment" />
 
-### num\_qubits
+### aquire\_alignment
 
 <span id="qiskit.transpiler.Target.description" />
 
@@ -498,27 +478,19 @@ Update the property object for an instruction qarg pair already in the Target
 
 ### granularity
 
-<span id="qiskit.transpiler.Target.min_length" />
-
-### min\_length
-
-<span id="qiskit.transpiler.Target.pulse_alignment" />
-
-### pulse\_alignment
-
-<span id="qiskit.transpiler.Target.aquire_alignment" />
-
-### aquire\_alignment
-
-<span id="qiskit.transpiler.Target.qubit_properties" />
-
-### qubit\_properties
-
 <span id="qiskit.transpiler.Target.instructions" />
 
 ### instructions
 
 Get the list of tuples ``(:class:`~qiskit.circuit.Instruction`, (qargs))`` for the target
+
+<span id="qiskit.transpiler.Target.min_length" />
+
+### min\_length
+
+<span id="qiskit.transpiler.Target.num_qubits" />
+
+### num\_qubits
 
 <span id="qiskit.transpiler.Target.operation_names" />
 
@@ -538,9 +510,17 @@ Get the operation class objects in the target.
 
 Returns a sorted list of physical\_qubits
 
+<span id="qiskit.transpiler.Target.pulse_alignment" />
+
+### pulse\_alignment
+
 <span id="qiskit.transpiler.Target.qargs" />
 
 ### qargs
 
 The set of qargs in the target.
+
+<span id="qiskit.transpiler.Target.qubit_properties" />
+
+### qubit\_properties
 

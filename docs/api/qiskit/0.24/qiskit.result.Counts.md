@@ -1,10 +1,18 @@
+---
+title: Counts
+description: API reference for qiskit.result.Counts
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.result.Counts
+---
+
 <span id="qiskit-result-counts" />
 
 # qiskit.result.Counts
 
+<span id="qiskit.result.Counts" />
 
-
-`Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)`
+`Counts(data, time_taken=None, creg_sizes=None, memory_slots=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/result/counts.py "view source code")
 
 A class to store a counts result from a circuit execution.
 
@@ -32,7 +40,9 @@ Build a counts object
 *   **TypeError** – If the input key type is not an int or string
 *   **QiskitError** – If a dit string key is input with creg\_sizes and/or memory\_slots
 
+### \_\_init\_\_
 
+<span id="qiskit.result.Counts.__init__" />
 
 `__init__(data, time_taken=None, creg_sizes=None, memory_slots=None)`
 
@@ -80,27 +90,37 @@ Build a counts object
 | [`update`](#qiskit.result.Counts.update "qiskit.result.Counts.update")(\[E, ]\*\*F)                                | If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k] |
 | [`values`](#qiskit.result.Counts.values "qiskit.result.Counts.values")()                                           |                                                                                                                                                                                                                               |
 
+### clear
 
+<span id="qiskit.result.Counts.clear" />
 
 `clear() → None. Remove all items from D.`
 
+### copy
 
+<span id="qiskit.result.Counts.copy" />
 
 `copy() → a shallow copy of D`
 
+### fromkeys
 
+<span id="qiskit.result.Counts.fromkeys" />
 
 `fromkeys(value=None, /)`
 
 Create a new dictionary with keys from iterable and values set to value.
 
+### get
 
+<span id="qiskit.result.Counts.get" />
 
 `get(key, default=None, /)`
 
 Return the value for key if key is in the dictionary, else default.
 
+### hex\_outcomes
 
+<span id="qiskit.result.Counts.hex_outcomes" />
 
 `hex_outcomes()`
 
@@ -120,7 +140,9 @@ dict
 
 **QiskitError** – If the Counts object contains counts for dit strings
 
+### int\_outcomes
 
+<span id="qiskit.result.Counts.int_outcomes" />
 
 `int_outcomes()`
 
@@ -138,15 +160,21 @@ dict
 
 **QiskitError** – If the Counts object contains counts for dit strings
 
+### items
 
+<span id="qiskit.result.Counts.items" />
 
 `items() → a set-like object providing a view on D’s items`
 
+### keys
 
+<span id="qiskit.result.Counts.keys" />
 
 `keys() → a set-like object providing a view on D’s keys`
 
+### most\_frequent
 
+<span id="qiskit.result.Counts.most_frequent" />
 
 `most_frequent()`
 
@@ -164,19 +192,25 @@ str
 
 **QiskitError** – when there is >1 count with the same max counts, or an empty object.
 
+### pop
 
+<span id="qiskit.result.Counts.pop" />
 
 `pop(k[, d]) → v, remove specified key and return the corresponding value.`
 
 If key is not found, d is returned if given, otherwise KeyError is raised
 
+### popitem
 
+<span id="qiskit.result.Counts.popitem" />
 
 `popitem() → (k, v), remove and return some (key, value) pair as a`
 
 2-tuple; but raise KeyError if D is empty.
 
+### setdefault
 
+<span id="qiskit.result.Counts.setdefault" />
 
 `setdefault(key, default=None, /)`
 
@@ -184,12 +218,17 @@ Insert key with a value of default if key is not in the dictionary.
 
 Return the value for key if key is in the dictionary, else default.
 
+### update
 
+<span id="qiskit.result.Counts.update" />
 
 `update([E, ]**F) → None. Update D from dict/iterable E and F.`
 
 If E is present and has a .keys() method, then does: for k in E: D\[k] = E\[k] If E is present and lacks a .keys() method, then does: for k, v in E: D\[k] = v In either case, this is followed by: for k in F: D\[k] = F\[k]
 
+### values
 
+<span id="qiskit.result.Counts.values" />
 
 `values() → an object providing a view on D’s values`
+

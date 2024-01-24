@@ -1,8 +1,16 @@
+---
+title: align_equispaced
+description: API reference for qiskit.pulse.builder.align_equispaced
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.align_equispaced
+---
+
 # qiskit.pulse.builder.align\_equispaced
 
+<span id="qiskit.pulse.builder.align_equispaced" />
 
-
-`align_equispaced(duration)`
+`align_equispaced(duration)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Equispaced alignment pulse scheduling context.
 
@@ -45,3 +53,4 @@ The scheduling is performed for sub-schedules within the context rather than cha
 **Return type**
 
 `AlignmentKind`
+

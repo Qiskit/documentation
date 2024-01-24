@@ -20,8 +20,8 @@ This module contains classes and functions to manage Aer jobs.
 
 The following are the classes used to manage job submissions.
 
-|                                                                                                                                                                 |                                                                                                                                                              |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------ |
-| [`AerJob`](qiskit.providers.aer.jobs.AerJob#qiskit.providers.aer.jobs.AerJob "qiskit.providers.aer.jobs.AerJob")(backend, job\_id, fn, qobj\[, executor])       | AerJob class for Qiskit Aer Simulators.                                                                                                                      |
-| [`AerJobSet`](qiskit.providers.aer.jobs.AerJobSet#qiskit.providers.aer.jobs.AerJobSet "qiskit.providers.aer.jobs.AerJobSet")(backend, job\_id, fn, experiments) | A set of [`AerJob`](qiskit.providers.aer.jobs.AerJob#qiskit.providers.aer.jobs.AerJob "qiskit.providers.aer.jobs.AerJob") classes for Qiskit Aer simulators. |
+|                                                                                                                             |                                                                                                                             |
+| --------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------- |
+| [`AerJob`](qiskit.providers.aer.jobs.AerJob "qiskit.providers.aer.jobs.AerJob")(backend, job\_id, fn, qobj\[, executor])    | AerJob class for Qiskit Aer Simulators.                                                                                     |
+| [`AerJobSet`](qiskit.providers.aer.jobs.AerJobSet "qiskit.providers.aer.jobs.AerJobSet")(backend, job\_id, fn, experiments) | A set of [`AerJob`](qiskit.providers.aer.jobs.AerJob "qiskit.providers.aer.jobs.AerJob") classes for Qiskit Aer simulators. |
 

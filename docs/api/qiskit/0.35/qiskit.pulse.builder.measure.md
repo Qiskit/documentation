@@ -1,12 +1,20 @@
+---
+title: measure
+description: API reference for qiskit.pulse.builder.measure
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.measure
+---
+
 # qiskit.pulse.builder.measure
 
+<span id="qiskit.pulse.builder.measure" />
 
-
-`measure(qubits, registers=None)`
+`measure(qubits, registers=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Measure a qubit within the currently active builder context.
 
-At the pulse level a measurement is composed of both a stimulus pulse and an acquisition instruction which tells the systems measurement unit to acquire data and process it. We provide this measurement macro to automate the process for you, but if desired full control is still available with [`acquire()`](qiskit.pulse.builder.acquire#qiskit.pulse.builder.acquire "qiskit.pulse.builder.acquire") and [`play()`](qiskit.pulse.builder.play#qiskit.pulse.builder.play "qiskit.pulse.builder.play").
+At the pulse level a measurement is composed of both a stimulus pulse and an acquisition instruction which tells the systems measurement unit to acquire data and process it. We provide this measurement macro to automate the process for you, but if desired full control is still available with [`acquire()`](qiskit.pulse.builder.acquire "qiskit.pulse.builder.acquire") and [`play()`](qiskit.pulse.builder.play "qiskit.pulse.builder.play").
 
 To use the measurement it is as simple as specifying the qubit you wish to measure:
 
@@ -45,12 +53,13 @@ assert reg == mem0
 **Parameters**
 
 *   **qubits** (`Union`\[`List`\[`int`], `int`]) – Physical qubit to measure.
-*   **registers** (`Union`\[`List`\[`NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels.MemorySlot#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")])], `NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels.MemorySlot#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")]), `None`]) – Register to store result in. If not selected the current behavior is to return the `MemorySlot` with the same index as `qubit`. This register will be returned.
+*   **registers** (`Union`\[`List`\[`NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")])], `NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")]), `None`]) – Register to store result in. If not selected the current behavior is to return the `MemorySlot` with the same index as `qubit`. This register will be returned.
 
 **Return type**
 
-`Union`\[`List`\[`NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels.MemorySlot#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")])], `NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels.MemorySlot#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")])]
+`Union`\[`List`\[`NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")])], `NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")])]
 
 **Returns**
 
 The `register` the qubit measurement result will be stored in.
+

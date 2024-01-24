@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.concurrence
 
 <span id="qiskit.quantum_info.concurrence" />
 
-`concurrence(state)`
+`concurrence(state)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/quantum_info/states/measures.py "view source code")
 
 Calculate the concurrence of a quantum state.
 

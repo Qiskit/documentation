@@ -1,8 +1,16 @@
+---
+title: EchoRZXWeylDecomposition
+description: API reference for qiskit.transpiler.passes.EchoRZXWeylDecomposition
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.EchoRZXWeylDecomposition
+---
+
 # EchoRZXWeylDecomposition
 
+<span id="qiskit.transpiler.passes.EchoRZXWeylDecomposition" />
 
-
-`EchoRZXWeylDecomposition(*args, **kwargs)`
+`EchoRZXWeylDecomposition(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/echo_rzx_weyl_decomposition.py "view source code")
 
 Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
@@ -14,18 +22,47 @@ EchoRZXWeylDecomposition pass.
 
 **Parameters**
 
-**instruction\_schedule\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap#qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – the mapping from circuit [`Instruction`](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and arguments to [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")s.
+**instruction\_schedule\_map** ([*InstructionScheduleMap*](qiskit.pulse.InstructionScheduleMap "qiskit.pulse.InstructionScheduleMap")) – the mapping from circuit [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") names and arguments to [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule")s.
 
 ## Methods
 
-|                                                                                                                                                                                  |                                               |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
-| [`name`](qiskit.transpiler.passes.EchoRZXWeylDecomposition.name#qiskit.transpiler.passes.EchoRZXWeylDecomposition.name "qiskit.transpiler.passes.EchoRZXWeylDecomposition.name") | Return the name of the pass.                  |
-| [`run`](qiskit.transpiler.passes.EchoRZXWeylDecomposition.run#qiskit.transpiler.passes.EchoRZXWeylDecomposition.run "qiskit.transpiler.passes.EchoRZXWeylDecomposition.run")     | Run the EchoRZXWeylDecomposition pass on dag. |
+### name
+
+<span id="qiskit.transpiler.passes.EchoRZXWeylDecomposition.name" />
+
+`EchoRZXWeylDecomposition.name()`
+
+Return the name of the pass.
+
+### run
+
+<span id="qiskit.transpiler.passes.EchoRZXWeylDecomposition.run" />
+
+`EchoRZXWeylDecomposition.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/echo_rzx_weyl_decomposition.py "view source code")
+
+Run the EchoRZXWeylDecomposition pass on dag.
+
+Rewrites two-qubit gates in an arbitrary circuit in terms of echoed cross-resonance gates by computing the Weyl decomposition of the corresponding unitary. Modifies the input dag.
+
+**Parameters**
+
+**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – DAG to rewrite.
+
+**Returns**
+
+The modified dag.
+
+**Return type**
+
+[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+
+**Raises**
+
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – If the circuit cannot be rewritten.
 
 ## Attributes
 
-
+<span id="qiskit.transpiler.passes.EchoRZXWeylDecomposition.is_analysis_pass" />
 
 ### is\_analysis\_pass
 
@@ -33,10 +70,11 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
-
+<span id="qiskit.transpiler.passes.EchoRZXWeylDecomposition.is_transformation_pass" />
 
 ### is\_transformation\_pass
 
 Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
+

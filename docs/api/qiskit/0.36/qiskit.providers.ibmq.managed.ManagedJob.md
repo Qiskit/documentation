@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.managed.ManagedJob
 
 <span id="qiskit.providers.ibmq.managed.ManagedJob" />
 
-`ManagedJob(start_index, experiments_count, job=None)`
+`ManagedJob(start_index, experiments_count, job=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjob.py "view source code")
 
 Bases: `object`
 
@@ -22,7 +22,7 @@ ManagedJob constructor.
 
 *   **start\_index** (`int`) – Starting index of the experiment set.
 *   **experiments\_count** (`int`) – Number of experiments.
-*   **job** (`Optional`\[[`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.ibmqjob.IBMQJob")]) – Job to be managed, or `None` if not already known.
+*   **job** (`Optional`\[`IBMQJob`]) – Job to be managed, or `None` if not already known.
 
 ## Methods
 
@@ -30,7 +30,7 @@ ManagedJob constructor.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJob.cancel" />
 
-`ManagedJob.cancel()`
+`ManagedJob.cancel()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjob.py "view source code")
 
 Attempt to cancel the job.
 
@@ -42,7 +42,7 @@ Attempt to cancel the job.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJob.error_message" />
 
-`ManagedJob.error_message()`
+`ManagedJob.error_message()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjob.py "view source code")
 
 Provide details about the reason of failure.
 
@@ -58,13 +58,13 @@ An error report if the job failed or `None` otherwise.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJob.qobj" />
 
-`ManagedJob.qobj()`
+`ManagedJob.qobj()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjob.py "view source code")
 
 Return the Qobj for this job.
 
 **Return type**
 
-`Union`\[[`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj"), [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj"), `None`]
+`Union`\[`QasmQobj`, `PulseQobj`, `None`]
 
 **Returns**
 
@@ -74,7 +74,7 @@ The Qobj for this job or `None` if the Qobj could not be retrieved.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJob.result" />
 
-`ManagedJob.result(timeout=None, partial=False, refresh=False)`
+`ManagedJob.result(timeout=None, partial=False, refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjob.py "view source code")
 
 Return the result of the job.
 
@@ -86,7 +86,7 @@ Return the result of the job.
 
 **Return type**
 
-`Optional`\[[`Result`](qiskit.result.Result "qiskit.result.result.Result")]
+`Optional`\[`Result`]
 
 **Returns**
 
@@ -100,13 +100,13 @@ Job result or `None` if result could not be retrieved.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJob.status" />
 
-`ManagedJob.status()`
+`ManagedJob.status()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjob.py "view source code")
 
 Query the server for job status.
 
 **Return type**
 
-`Optional`\[[`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus")]
+`Optional`\[`JobStatus`]
 
 **Returns**
 
@@ -116,15 +116,15 @@ Current job status, or `None` if an error occurred.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJob.submit" />
 
-`ManagedJob.submit(circuits, job_name, backend, executor, submit_lock, job_share_level=None, job_tags=None, **run_config)`
+`ManagedJob.submit(circuits, job_name, backend, executor, submit_lock, job_share_level=None, job_tags=None, **run_config)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjob.py "view source code")
 
 Submit the job.
 
 **Parameters**
 
-*   **circuits** (`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `List`\[`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]]]) – Circuits to run.
+*   **circuits** (`Union`\[`QuantumCircuit`, `Schedule`, `List`\[`Union`\[`QuantumCircuit`, `Schedule`]]]) – Circuits to run.
 *   **job\_name** (`str`) – Name of the job.
-*   **backend** ([`IBMQBackend`](qiskit.providers.ibmq.IBMQBackend "qiskit.providers.ibmq.ibmqbackend.IBMQBackend")) – Backend to execute the experiments on.
+*   **backend** (`IBMQBackend`) – Backend to execute the experiments on.
 *   **executor** (`ThreadPoolExecutor`) – The thread pool used to submit the job.
 *   **submit\_lock** (`allocate_lock`) – Lock used to synchronize job submission.
 *   **job\_share\_level** (`Optional`\[`ApiJobShareLevel`]) – Job share level.

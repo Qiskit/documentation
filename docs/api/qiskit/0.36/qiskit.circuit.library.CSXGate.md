@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.CSXGate
 
 <span id="qiskit.circuit.library.CSXGate" />
 
-`CSXGate(label=None, ctrl_state=None)`
+`CSXGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/sx.py "view source code")
 
-Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
 Controlled-√X gate.
 
@@ -72,7 +72,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.CSXGate.ctrl_state" />
 

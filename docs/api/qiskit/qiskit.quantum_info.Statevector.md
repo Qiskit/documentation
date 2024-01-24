@@ -10,7 +10,7 @@ python_api_name: qiskit.quantum_info.Statevector
 
 <span id="qiskit.quantum_info.Statevector" />
 
-`qiskit.quantum_info.Statevector(data, dims=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/quantum_info/states/statevector.py "view source code")
+`qiskit.quantum_info.Statevector(data, dims=None)`
 
 Bases: `QuantumState`, `TolerancesMixin`
 

@@ -1,10 +1,18 @@
+---
+title: StatevectorSimulatorPy
+description: API reference for qiskit.providers.basicaer.StatevectorSimulatorPy
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.basicaer.StatevectorSimulatorPy
+---
+
 <span id="qiskit-providers-basicaer-statevectorsimulatorpy" />
 
 # qiskit.providers.basicaer.StatevectorSimulatorPy
 
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy" />
 
-
-`StatevectorSimulatorPy(configuration=None, provider=None)`
+`StatevectorSimulatorPy(configuration=None, provider=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/basicaer/statevector_simulator.py "view source code")
 
 Python statevector simulator.
 
@@ -14,14 +22,16 @@ This method should initialize the module and its configuration, and raise an exc
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
 
 **Raises**
 
 **QiskitError** – if an error occurred when instantiating the backend.
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.__init__" />
 
 `__init__(configuration=None, provider=None)`
 
@@ -31,8 +41,8 @@ This method should initialize the module and its configuration, and raise an exc
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
 
 **Raises**
 
@@ -61,7 +71,9 @@ This method should initialize the module and its configuration, and raise an exc
 | `MAX_QUBITS_MEMORY`     |   |
 | `SHOW_FINAL_STATE`      |   |
 
+### configuration
 
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.configuration" />
 
 `configuration()`
 
@@ -73,9 +85,11 @@ the configuration for the backend.
 
 **Return type**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
 
+### name
 
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.name" />
 
 `name()`
 
@@ -89,7 +103,9 @@ the name of the backend.
 
 str
 
+### properties
 
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.properties" />
 
 `properties()`
 
@@ -101,9 +117,11 @@ the configuration for the backend. If the backend does not support properties, i
 
 **Return type**
 
-[BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
+### provider
 
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.provider" />
 
 `provider()`
 
@@ -115,9 +133,11 @@ the Provider responsible for the backend.
 
 **Return type**
 
-[BaseProvider](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
+[BaseProvider](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
 
+### run
 
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.run" />
 
 `run(qobj, backend_options=None)`
 
@@ -125,7 +145,7 @@ Run qobj asynchronously.
 
 **Parameters**
 
-*   **qobj** ([*Qobj*](qiskit.qobj.Qobj#qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
+*   **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
 *   **backend\_options** (*dict*) – backend options
 
 **Returns**
@@ -134,7 +154,7 @@ derived from BaseJob
 
 **Return type**
 
-[BasicAerJob](qiskit.providers.basicaer.BasicAerJob#qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
+[BasicAerJob](qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
 
 Additional Information:
 
@@ -160,7 +180,9 @@ Example::
     }
 ```
 
+### run\_experiment
 
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.run_experiment" />
 
 `run_experiment(experiment)`
 
@@ -196,9 +218,11 @@ dict
 
 **Raises**
 
-[**BasicAerError**](qiskit.providers.basicaer.BasicAerError#qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if an error occurred.
+[**BasicAerError**](qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if an error occurred.
 
+### status
 
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.status" />
 
 `status()`
 
@@ -210,9 +234,11 @@ the status of the backend.
 
 **Return type**
 
-[BackendStatus](qiskit.providers.models.BackendStatus#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
 
+### version
 
+<span id="qiskit.providers.basicaer.StatevectorSimulatorPy.version" />
 
 `version()`
 
@@ -225,3 +251,4 @@ the X.X.X version of the backend.
 **Return type**
 
 str
+

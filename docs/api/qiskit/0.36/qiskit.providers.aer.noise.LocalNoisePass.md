@@ -10,9 +10,9 @@ python_api_name: qiskit.providers.aer.noise.LocalNoisePass
 
 <span id="qiskit.providers.aer.noise.LocalNoisePass" />
 
-`LocalNoisePass(func, op_types=None, method='append')`
+`LocalNoisePass(func, op_types=None, method='append')`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/passes/local_noise_pass.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
 Transpiler pass to insert noise into a circuit.
 
@@ -41,7 +41,7 @@ Initialize noise pass.
 
 **Parameters**
 
-*   **func** (`Callable`\[\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), `Sequence`\[`int`]], `Union`\[[`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction"), [`QuantumError`](qiskit.providers.aer.noise.QuantumError "qiskit.providers.aer.noise.errors.quantum_error.QuantumError"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]]) – noise function func(inst, qubits) -> InstructionLike.
+*   **func** (`Callable`\[\[`Instruction`, `Sequence`\[`int`]], `Union`\[`Instruction`, `QuantumError`, `QuantumCircuit`]]) – noise function func(inst, qubits) -> InstructionLike.
 *   **op\_types** (`Union`\[`type`, `Iterable`\[`type`], `None`]) – Optional, single or list of instruction types to apply the noise function to. If None the noise function will be applied to all instructions in the circuit.
 *   **method** (`str`) – method for inserting noise. Allow methods are ‘append’, ‘prepend’, ‘replace’.
 
@@ -63,13 +63,13 @@ Return the name of the pass.
 
 <span id="qiskit.providers.aer.noise.LocalNoisePass.run" />
 
-`LocalNoisePass.run(dag)`
+`LocalNoisePass.run(dag)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/noise/passes/local_noise_pass.py "view source code")
 
-Run the LocalNoisePass pass on dag. :type dag: [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit") :param dag: DAG to be changed.
+Run the LocalNoisePass pass on dag. :type dag: `DAGCircuit` :param dag: DAG to be changed.
 
 **Return type**
 
-[`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.dagcircuit.DAGCircuit")
+`DAGCircuit`
 
 **Returns**
 

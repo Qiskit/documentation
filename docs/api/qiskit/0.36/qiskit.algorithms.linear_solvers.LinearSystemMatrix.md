@@ -10,7 +10,7 @@ python_api_name: qiskit.algorithms.linear_solvers.LinearSystemMatrix
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix" />
 
-`LinearSystemMatrix(num_state_qubits, tolerance, evolution_time, name='ls_matrix')`
+`LinearSystemMatrix(num_state_qubits, tolerance, evolution_time, name='ls_matrix')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
 
 Bases: `qiskit.circuit.library.blueprintcircuit.BlueprintCircuit`, `abc.ABC`
 
@@ -78,29 +78,26 @@ Add registers.
 
 `LinearSystemMatrix.append(instruction, qargs=None, cargs=None)`
 
-Append one or more instructions to the end of the circuit, modifying the circuit in place.
-
-The `qargs` and `cargs` will be expanded and broadcast according to the rules of the given [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction"), and any non-`Bit` specifiers (such as integer indices) will be resolved into the relevant instances.
-
-If a [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") is given, it will be unwrapped, verified in the context of this circuit, and a new object will be appended to the circuit. In this case, you may not pass `qargs` or `cargs` separately.
+Append one or more instructions to the end of the circuit, modifying the circuit in place. Expands qargs and cargs.
 
 **Parameters**
 
-*   **instruction** – [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.Instruction") instance to append, or a [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction") with all its context.
-*   **qargs** – specifiers of the [`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.Qubit")s to attach instruction to.
-*   **cargs** – specifiers of the [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit")s to attach instruction to.
+*   **instruction** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")) – Instruction instance to append
+*   **qargs** (*list(argument)*) – qubits to attach instruction to
+*   **cargs** (*list(argument)*) – clbits to attach instruction to
 
 **Returns**
 
-a handle to the [`CircuitInstruction`](qiskit.circuit.CircuitInstruction "qiskit.circuit.CircuitInstruction")s that were actually added to the circuit.
+a handle to the instruction that was just added
 
 **Return type**
 
-[qiskit.circuit.InstructionSet](qiskit.circuit.InstructionSet "qiskit.circuit.InstructionSet")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
-**CircuitError** – if the operation passed is not an instance of `Instruction`.
+*   **CircuitError** – if object passed is a subclass of Instruction
+*   **CircuitError** – if object passed is neither subclass nor an instance of Instruction
 
 ### assign\_parameters
 
@@ -208,7 +205,7 @@ q_1: ────────────┤ Rx(P[1]) ├
 
 `LinearSystemMatrix.barrier(*qargs)`
 
-Apply `Barrier`. If qargs is empty, applies to all qubits in the circuit.
+Apply [`Barrier`](qiskit.circuit.Barrier "qiskit.circuit.Barrier"). If qargs is empty, applies to all qubits in the circuit.
 
 **Returns**
 
@@ -259,7 +256,7 @@ Apply `BreakLoopOp`.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -279,7 +276,7 @@ Best effort to cast value to type. Otherwise, returns the value.
 
 **Return type**
 
-`Union`\[`TypeVar`(`S`), `TypeVar`(`T`)]
+`Union`\[\~S, \~T]
 
 ### cbit\_argument\_conversion
 
@@ -313,14 +310,14 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **control\_qubit1** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the first control.
-*   **control\_qubit2** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the second control.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **control\_qubit1** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the first control.
+*   **control\_qubit2** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the second control.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -338,32 +335,18 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **control\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the control.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **control\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the control.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
 A handle to the instructions created.
-
-### clear
-
-<span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.clear" />
-
-`LinearSystemMatrix.clear()`
-
-Clear all instructions in self.
-
-Clearing the circuits will keep the metadata and calibrations.
-
-**Return type**
-
-`None`
 
 ### cls\_instances
 
@@ -401,14 +384,14 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **control\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the control.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **control\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the control.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -459,8 +442,8 @@ Compose circuit with `other` circuit or instruction, optionally permuting wires.
 **Parameters**
 
 *   **other** ([*qiskit.circuit.Instruction*](qiskit.circuit.Instruction "qiskit.circuit.Instruction")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – (sub)circuit or instruction to compose onto self. If not a [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit"), this can be anything that [`append`](qiskit.algorithms.linear_solvers.LinearSystemMatrix#append "qiskit.algorithms.linear_solvers.LinearSystemMatrix.append") will accept.
-*   **qubits** (*list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*|int]*) – qubits of self to compose onto.
-*   **clbits** (*list\[*[*Clbit*](qiskit.circuit.Clbit "qiskit.circuit.Clbit")*|int]*) – clbits of self to compose onto.
+*   **qubits** (*list\[Qubit|int]*) – qubits of self to compose onto.
+*   **clbits** (*list\[Clbit|int]*) – clbits of self to compose onto.
 *   **front** (*bool*) – If True, front composition will be performed (not implemented yet).
 *   **inplace** (*bool*) – If True, modify the object. Otherwise return composed circuit.
 *   **wrap** (*bool*) – If True, wraps the other circuit into a gate (or instruction, depending on whether it contains only unitary instructions) before composing it onto self.
@@ -505,7 +488,7 @@ lhs.compose(rhs, qubits=[3, 2], inplace=True)
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.condition_bounds" />
 
-`abstract LinearSystemMatrix.condition_bounds()`
+`abstract LinearSystemMatrix.condition_bounds()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
 
 Return lower and upper bounds on the condition number of the matrix.
 
@@ -527,7 +510,7 @@ Apply `ContinueLoopOp`.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -583,32 +566,6 @@ a deepcopy of the current circuit, with the specified name
 
 [QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
-### copy\_empty\_like
-
-<span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.copy_empty_like" />
-
-`LinearSystemMatrix.copy_empty_like(name=None)`
-
-Return a copy of self with the same structure but empty.
-
-#### That structure includes:
-
-*   name, calibrations and other metadata
-*   global phase
-*   all the qubits and clbits, including the registers
-
-**Parameters**
-
-**name** (*str*) – Name for the copied circuit. If None, then the name stays the same.
-
-**Returns**
-
-An empty copy of self.
-
-**Return type**
-
-[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
-
 ### count\_ops
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.count_ops" />
@@ -637,15 +594,15 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The angle of the rotation.
-*   **control\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the control.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The angle of the rotation.
+*   **control\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the control.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -663,15 +620,15 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The angle of the rotation.
-*   **control\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the control.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The angle of the rotation.
+*   **control\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the control.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -689,15 +646,15 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The angle of the rotation.
-*   **control\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the control.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The angle of the rotation.
+*   **control\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the control.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -715,15 +672,15 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The angle of the rotation.
-*   **control\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the control.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The angle of the rotation.
+*   **control\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the control.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -741,15 +698,15 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **control\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the control.
-*   **target\_qubit1** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
-*   **target\_qubit2** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **control\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the control.
+*   **target\_qubit1** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
+*   **target\_qubit2** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -767,14 +724,14 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **control\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the control.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **control\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the control.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -792,18 +749,18 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\theta$ rotation angle of the gate.
-*   **phi** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\phi$ rotation angle of the gate.
-*   **lam** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\lambda$ rotation angle of the gate.
-*   **gamma** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The global phase applied of the U gate, if applied.
-*   **control\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the control.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The $\theta$ rotation angle of the gate.
+*   **phi** (`Union`\[`ParameterExpression`, `float`]) – The $\phi$ rotation angle of the gate.
+*   **lam** (`Union`\[`ParameterExpression`, `float`]) – The $\lambda$ rotation angle of the gate.
+*   **gamma** (`Union`\[`ParameterExpression`, `float`]) – The global phase applied of the U gate, if applied.
+*   **control\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the control.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -821,15 +778,15 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\theta$ rotation angle of the gate.
-*   **control\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the control.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The $\theta$ rotation angle of the gate.
+*   **control\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the control.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -847,17 +804,17 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\theta$ rotation angle of the gate.
-*   **phi** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\phi$ rotation angle of the gate.
-*   **lam** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\lambda$ rotation angle of the gate.
-*   **control\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the control.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The $\theta$ rotation angle of the gate.
+*   **phi** (`Union`\[`ParameterExpression`, `float`]) – The $\phi$ rotation angle of the gate.
+*   **lam** (`Union`\[`ParameterExpression`, `float`]) – The $\lambda$ rotation angle of the gate.
+*   **control\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the control.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -875,14 +832,14 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **control\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the control.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **control\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the control.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -900,14 +857,14 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **control\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the controls.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **control\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the controls.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -925,14 +882,14 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **control\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the controls.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **control\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the controls.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 *   **ctrl\_state** (`Union`\[`int`, `str`, `None`]) – The control state in decimal, or as a bitstring (e.g. ‘1’). Defaults to controlling on the ‘1’ state.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -950,12 +907,12 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **qubit1** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
-*   **qubit2** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+*   **qubit1** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
+*   **qubit2** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -965,14 +922,13 @@ A handle to the instructions created.
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.decompose" />
 
-`LinearSystemMatrix.decompose(gates_to_decompose=None, reps=1)`
+`LinearSystemMatrix.decompose(gates_to_decompose=None)`
 
 Call a decomposition pass on this circuit, to decompose one level (shallow decompose).
 
 **Parameters**
 
-*   **gates\_to\_decompose** (*str or list(str)*) – optional subset of gates to decompose. Defaults to all gates in circuit.
-*   **reps** (*int*) – Optional number of times the circuit should be decomposed. For instance, `reps=2` equals calling `circuit.decompose().decompose()`. can decompose specific gates specific time
+**gates\_to\_decompose** (*str or list(str)*) – optional subset of gates to decompose. Defaults to all gates in circuit.
 
 **Returns**
 
@@ -1045,7 +1001,7 @@ The decomposition is based on Theorem 7 given in “Synthesis of Quantum Logic C
 **Parameters**
 
 *   **diag** (*list*) – list of the 2^k diagonal entries (for a diagonal gate on k qubits). Must contain at least two entries
-*   **qubit** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list*) – list of k qubits the diagonal is acting on (the order of the qubits specifies the computational basis in which the diagonal gate is provided: the first element in diag acts on the state where all the qubits in q are in the state 0, the second entry acts on the state where all the qubits q\[1],…,q\[k-1] are in the state zero and q\[0] is in the state 1, and so on)
+*   **qubit** (*QuantumRegister|list*) – list of k qubits the diagonal is acting on (the order of the qubits specifies the computational basis in which the diagonal gate is provided: the first element in diag acts on the state where all the qubits in q are in the state 0, the second entry acts on the state where all the qubits q\[1],…,q\[k-1] are in the state zero and q\[0] is in the state 1, and so on)
 
 **Returns**
 
@@ -1069,7 +1025,7 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 
 **text**: ASCII art TextDrawing that can be printed in the console.
 
-**mpl**: images with color rendered purely in Python using matplotlib.
+**matplotlib**: images with color rendered purely in Python.
 
 **latex**: high-quality images compiled via latex.
 
@@ -1145,12 +1101,12 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **qubit1** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubits to apply the gate to.
-*   **qubit2** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubits to apply the gate to.
+*   **qubit1** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubits to apply the gate to.
+*   **qubit2** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubits to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -1160,7 +1116,7 @@ A handle to the instructions created.
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.eigs_bounds" />
 
-`abstract LinearSystemMatrix.eigs_bounds()`
+`abstract LinearSystemMatrix.eigs_bounds()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
 
 Return lower and upper bounds on the eigenvalues of the matrix.
 
@@ -1292,13 +1248,13 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **control\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the control.
-*   **target\_qubit1** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
-*   **target\_qubit2** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **control\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the control.
+*   **target\_qubit1** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
+*   **target\_qubit2** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -1380,11 +1336,11 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+**qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -1397,14 +1353,6 @@ A handle to the instructions created.
 `LinearSystemMatrix.hamiltonian(operator, time, qubits, label=None)`
 
 Apply hamiltonian evolution to qubits.
-
-### has\_calibration\_for
-
-<span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.has_calibration_for" />
-
-`LinearSystemMatrix.has_calibration_for(instr_context)`
-
-Return True if the circuit has a calibration defined for the instruction context. In this case, the operation does not need to be translated to the device basis.
 
 ### has\_register
 
@@ -1438,11 +1386,11 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+**qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -1460,11 +1408,11 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+**qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -1501,11 +1449,11 @@ Apply `IfElseOp`.
 
 **Parameters**
 
-*   **condition** (`Union`\[`Tuple`\[[`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.classicalregister.ClassicalRegister"), `int`], `Tuple`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit"), `int`], `Tuple`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit"), `bool`]]) – A condition to be evaluated at circuit runtime which, if true, will trigger the evaluation of `true_body`. Can be specified as either a tuple of a `ClassicalRegister` to be tested for equality with a given `int`, or as a tuple of a `Clbit` to be compared to either a `bool` or an `int`.
-*   **true\_body** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit body to be run if `condition` is true.
-*   **false\_body** ([`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")) – The circuit to be run if `condition` is false.
-*   **qubits** (`Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]]) – The circuit qubits over which the if/else should be run.
-*   **clbits** (`Sequence`\[`Union`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit"), [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.classicalregister.ClassicalRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit"), `int`]]]]) – The circuit clbits over which the if/else should be run.
+*   **condition** (`Union`\[`Tuple`\[`ClassicalRegister`, `int`], `Tuple`\[`Clbit`, `int`], `Tuple`\[`Clbit`, `bool`]]) – A condition to be evaluated at circuit runtime which, if true, will trigger the evaluation of `true_body`. Can be specified as either a tuple of a `ClassicalRegister` to be tested for equality with a given `int`, or as a tuple of a `Clbit` to be compared to either a `bool` or an `int`.
+*   **true\_body** (`QuantumCircuit`) – The circuit body to be run if `condition` is true.
+*   **false\_body** (`QuantumCircuit`) – The circuit to be run if `condition` is false.
+*   **qubits** (`Sequence`\[`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]]) – The circuit qubits over which the if/else should be run.
+*   **clbits** (`Sequence`\[`Union`\[`Clbit`, `ClassicalRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Clbit`, `int`]]]]) – The circuit clbits over which the if/else should be run.
 *   **label** (`Optional`\[`str`]) – The string label of the instruction in the circuit.
 
 **Raises**
@@ -1514,7 +1462,7 @@ Apply `IfElseOp`.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -1740,10 +1688,10 @@ Attach an arbitrary isometry from m to n qubits to a circuit. In particular, thi
 **Parameters**
 
 *   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
-*   **q\_input** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
-*   **q\_ancillas\_for\_output** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
-*   **q\_ancillas\_zero** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
-*   **q\_ancillas\_dirty** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
+*   **q\_input** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
+*   **q\_ancillas\_for\_output** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
+*   **q\_ancillas\_zero** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
+*   **q\_ancillas\_dirty** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
 *   **epsilon** (*float*) – error tolerance of calculations. Default is epsilon = \_EPS.
 
 **Returns**
@@ -1769,10 +1717,10 @@ Attach an arbitrary isometry from m to n qubits to a circuit. In particular, thi
 **Parameters**
 
 *   **isometry** (*ndarray*) – an isometry from m to n qubits, i.e., a (complex) ndarray of dimension 2^n×2^m with orthonormal columns (given in the computational basis specified by the order of the ancillas and the input qubits, where the ancillas are considered to be more significant than the input qubits.).
-*   **q\_input** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
-*   **q\_ancillas\_for\_output** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
-*   **q\_ancillas\_zero** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
-*   **q\_ancillas\_dirty** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
+*   **q\_input** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of m qubits where the input to the isometry is fed in (empty list for state preparation).
+*   **q\_ancillas\_for\_output** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of n-m ancilla qubits that are used for the output of the isometry and which are assumed to start in the zero state. The qubits are listed with increasing significance.
+*   **q\_ancillas\_zero** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which are assumed to start in the zero state. Default is q\_ancillas\_zero = None.
+*   **q\_ancillas\_dirty** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of ancilla qubits which can start in an arbitrary state. Default is q\_ancillas\_dirty = None.
 *   **epsilon** (*float*) – error tolerance of calculations. Default is epsilon = \_EPS.
 
 **Returns**
@@ -1799,12 +1747,12 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **qubit1** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubits to apply the gate to.
-*   **qubit2** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubits to apply the gate to.
+*   **qubit1** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubits to apply the gate to.
+*   **qubit2** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubits to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -1822,13 +1770,13 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **lam** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The angle of the rotation.
-*   **control\_qubits** (`Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]]) – The qubits used as the controls.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **lam** (`Union`\[`ParameterExpression`, `float`]) – The angle of the rotation.
+*   **control\_qubits** (`Sequence`\[`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]]) – The qubits used as the controls.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -1915,14 +1863,14 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **control\_qubits** (`Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]]) – The qubits used as the controls.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
-*   **ancilla\_qubits** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]], `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]], `None`]) – The qubits used as the ancillae, if the mode requires them.
+*   **control\_qubits** (`Sequence`\[`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]]) – The qubits used as the controls.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
+*   **ancilla\_qubits** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]], `Sequence`\[`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]], `None`]) – The qubits used as the ancillae, if the mode requires them.
 *   **mode** (`str`) – The choice of mode, explained further above.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -1949,13 +1897,13 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **lam** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\lambda$ rotation angle of the gate.
-*   **control\_qubits** (`Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]]) – The qubits used as the controls.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **lam** (`Union`\[`ParameterExpression`, `float`]) – The $\lambda$ rotation angle of the gate.
+*   **control\_qubits** (`Sequence`\[`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]]) – The qubits used as the controls.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -1980,14 +1928,14 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **control\_qubits** (`Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]]) – The qubits used as the controls.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
-*   **ancilla\_qubits** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]], `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]], `None`]) – The qubits used as the ancillae, if the mode requires them.
+*   **control\_qubits** (`Sequence`\[`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]]) – The qubits used as the controls.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
+*   **ancilla\_qubits** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]], `Sequence`\[`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]], `None`]) – The qubits used as the ancillae, if the mode requires them.
 *   **mode** (`str`) – The choice of mode, explained further above.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -2008,8 +1956,8 @@ Measure quantum bit into classical bit (tuples).
 
 **Parameters**
 
-*   **qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – qubit to measure.
-*   **cbit** (`Union`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit"), [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.classicalregister.ClassicalRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit"), `int`]]]) – classical bit to place the measurement in.
+*   **qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – qubit to measure.
+*   **cbit** (`Union`\[`Clbit`, `ClassicalRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Clbit`, `int`]]]) – classical bit to place the measurement in.
 
 **Returns**
 
@@ -2080,18 +2028,18 @@ Returns circuit with measurements when `inplace=False`.
 
 `LinearSystemMatrix.ms(theta, qubits)`
 
-Apply [`MSGate`](qiskit.circuit.library.MSGate "qiskit.circuit.library.generalized_gates.gms.MSGate").
+Apply `MSGate`.
 
 For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The angle of the rotation.
-*   **qubits** (`Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]]) – The qubits to apply the gate to.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The angle of the rotation.
+*   **qubits** (`Sequence`\[`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]]) – The qubits to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -2167,12 +2115,12 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – THe angle of the rotation.
-*   **qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – THe angle of the rotation.
+*   **qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -2189,11 +2137,11 @@ Apply [`PauliGate`](qiskit.circuit.library.PauliGate "qiskit.circuit.library.Pau
 **Parameters**
 
 *   **pauli\_string** (`str`) – A string representing the Pauli operator to apply, e.g. ‘XX’.
-*   **qubits** (`Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]]) – The qubits to apply this gate to.
+*   **qubits** (`Sequence`\[`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]]) – The qubits to apply this gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -2203,7 +2151,7 @@ A handle to the instructions created.
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.power" />
 
-`abstract LinearSystemMatrix.power(power, matrix_power=False)`
+`abstract LinearSystemMatrix.power(power, matrix_power=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/linear_solvers/matrices/linear_system_matrix.py "view source code")
 
 Build powers of the circuit.
 
@@ -2214,7 +2162,7 @@ Build powers of the circuit.
 
 **Return type**
 
-[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")
+`QuantumCircuit`
 
 **Returns**
 
@@ -2412,7 +2360,7 @@ Return 0 if there are no instructions over qubits
 **Parameters**
 
 *   **\*qubits** – Qubits within `self` to include. Integers are allowed for qubits, indicating
-*   **self.qubits.** (*indices of*) –
+*   **of self.qubits.** (*indices*) –
 
 **Return type**
 
@@ -2439,7 +2387,7 @@ Return 0 if there are no instructions over qubits
 **Parameters**
 
 *   **\*qubits** – Qubits within `self` to include. Integers are allowed for qubits, indicating
-*   **self.qubits.** (*indices of*) –
+*   **of self.qubits.** (*indices*) –
 
 **Return type**
 
@@ -2465,13 +2413,13 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The angle of the rotation.
-*   **phi** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The angle of the axis of rotation in the x-y plane.
-*   **qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The angle of the rotation.
+*   **phi** (`Union`\[`ParameterExpression`, `float`]) – The angle of the axis of rotation in the x-y plane.
+*   **qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -2489,14 +2437,14 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **control\_qubit1** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the first control.
-*   **control\_qubit2** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the second control.
-*   **control\_qubit3** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the third control.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **control\_qubit1** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the first control.
+*   **control\_qubit2** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the second control.
+*   **control\_qubit3** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the third control.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -2514,13 +2462,13 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **control\_qubit1** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the first control.
-*   **control\_qubit2** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the second control.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **control\_qubit1** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the first control.
+*   **control\_qubit2** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the second control.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -2578,7 +2526,7 @@ Reset the quantum bit(s) to their default state.
 
 **Parameters**
 
-**qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – qubit(s) to reset.
+**qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – qubit(s) to reset.
 
 **Returns**
 
@@ -2614,31 +2562,19 @@ input:
 
 ```python
      ┌───┐
-a_0: ┤ H ├──■─────────────────
-     └───┘┌─┴─┐
-a_1: ─────┤ X ├──■────────────
-          └───┘┌─┴─┐
-a_2: ──────────┤ X ├──■───────
-               └───┘┌─┴─┐
-b_0: ───────────────┤ X ├──■──
-                    └───┘┌─┴─┐
-b_1: ────────────────────┤ X ├
-                         └───┘
+q_0: ┤ H ├─────■──────
+     └───┘┌────┴─────┐
+q_1: ─────┤ RX(1.57) ├
+          └──────────┘
 ```
 
 output:
 
 ```python
-                         ┌───┐
-b_0: ────────────────────┤ X ├
-                    ┌───┐└─┬─┘
-b_1: ───────────────┤ X ├──■──
-               ┌───┐└─┬─┘
-a_0: ──────────┤ X ├──■───────
-          ┌───┐└─┬─┘
-a_1: ─────┤ X ├──■────────────
-     ┌───┐└─┬─┘
-a_2: ┤ H ├──■─────────────────
+          ┌──────────┐
+q_0: ─────┤ RX(1.57) ├
+     ┌───┐└────┬─────┘
+q_1: ┤ H ├─────■──────
      └───┘
 ```
 
@@ -2696,14 +2632,14 @@ Rotation around an arbitrary rotation axis $v$, where $|v|$ is the angle of rota
 
 **Parameters**
 
-*   **vx** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – x-compenent of the rotation axis.
-*   **vy** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – y-compenent of the rotation axis.
-*   **vz** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – z-compenent of the rotation axis.
-*   **qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+*   **vx** (`Union`\[`ParameterExpression`, `float`]) – x-compenent of the rotation axis.
+*   **vy** (`Union`\[`ParameterExpression`, `float`]) – y-compenent of the rotation axis.
+*   **vz** (`Union`\[`ParameterExpression`, `float`]) – z-compenent of the rotation axis.
+*   **qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -2721,13 +2657,13 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The rotation angle of the gate.
-*   **qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The rotation angle of the gate.
+*   **qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -2745,13 +2681,13 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The angle of the rotation.
-*   **qubit1** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
-*   **qubit2** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The angle of the rotation.
+*   **qubit1** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
+*   **qubit2** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -2769,13 +2705,13 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The rotation angle of the gate.
-*   **qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The rotation angle of the gate.
+*   **qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -2793,13 +2729,13 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The rotation angle of the gate.
-*   **qubit1** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
-*   **qubit2** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The rotation angle of the gate.
+*   **qubit1** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
+*   **qubit2** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -2817,12 +2753,12 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **phi** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The rotation angle of the gate.
-*   **qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+*   **phi** (`Union`\[`ParameterExpression`, `float`]) – The rotation angle of the gate.
+*   **qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -2840,13 +2776,13 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The rotation angle of the gate.
-*   **qubit1** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
-*   **qubit2** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The rotation angle of the gate.
+*   **qubit1** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
+*   **qubit2** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -2864,13 +2800,13 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The rotation angle of the gate.
-*   **qubit1** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
-*   **qubit2** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The rotation angle of the gate.
+*   **qubit1** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
+*   **qubit2** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -2888,11 +2824,11 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+**qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -3300,11 +3236,11 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+**qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -3692,12 +3628,12 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **qubit1** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubits to apply the gate to.
-*   **qubit2** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubits to apply the gate to.
+*   **qubit1** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubits to apply the gate to.
+*   **qubit2** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubits to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -3715,11 +3651,11 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+**qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -3737,11 +3673,11 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+**qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -3759,11 +3695,11 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+**qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -3781,11 +3717,11 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+**qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -3898,13 +3834,13 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **control\_qubit1** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the first control.
-*   **control\_qubit2** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) used as the second control.
-*   **target\_qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) targeted by the gate.
+*   **control\_qubit1** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the first control.
+*   **control\_qubit2** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) used as the second control.
+*   **target\_qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) targeted by the gate.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -3926,14 +3862,14 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\theta$ rotation angle of the gate.
-*   **phi** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\phi$ rotation angle of the gate.
-*   **lam** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\lambda$ rotation angle of the gate.
-*   **qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The $\theta$ rotation angle of the gate.
+*   **phi** (`Union`\[`ParameterExpression`, `float`]) – The $\phi$ rotation angle of the gate.
+*   **lam** (`Union`\[`ParameterExpression`, `float`]) – The $\lambda$ rotation angle of the gate.
+*   **qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -3951,12 +3887,12 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\theta$ rotation angle of the gate.
-*   **qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The $\theta$ rotation angle of the gate.
+*   **qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -3974,13 +3910,13 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **phi** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\phi$ rotation angle of the gate.
-*   **lam** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\lambda$ rotation angle of the gate.
-*   **qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+*   **phi** (`Union`\[`ParameterExpression`, `float`]) – The $\phi$ rotation angle of the gate.
+*   **lam** (`Union`\[`ParameterExpression`, `float`]) – The $\lambda$ rotation angle of the gate.
+*   **qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -3998,14 +3934,14 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **theta** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\theta$ rotation angle of the gate.
-*   **phi** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\phi$ rotation angle of the gate.
-*   **lam** (`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]) – The $\lambda$ rotation angle of the gate.
-*   **qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+*   **theta** (`Union`\[`ParameterExpression`, `float`]) – The $\theta$ rotation angle of the gate.
+*   **phi** (`Union`\[`ParameterExpression`, `float`]) – The $\phi$ rotation angle of the gate.
+*   **lam** (`Union`\[`ParameterExpression`, `float`]) – The $\lambda$ rotation angle of the gate.
+*   **qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -4024,8 +3960,8 @@ The decomposition was introduced by Bergholm et al. in [https://arxiv.org/pdf/qu
 **Parameters**
 
 *   **gate\_list** (*list\[ndarray]*) – list of two qubit unitaries \[U\_0,…,U\_\{2^k-1}], where each single-qubit unitary U\_i is a given as a 2\*2 array
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)]*) – list of k control qubits. The qubits are ordered according to their significance in the computational basis. For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the unitary U\_0 is performed if q\[1] and q\[2] are in the state zero, U\_1 is performed if q\[2] is in the state zero and q\[1] is in the state one, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)*) – target qubit, where we act on with the single-qubit gates.
+*   **q\_controls** (*QuantumRegister|list\[(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)]*) – list of k control qubits. The qubits are ordered according to their significance in the computational basis. For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the unitary U\_0 is performed if q\[1] and q\[2] are in the state zero, U\_1 is performed if q\[2] is in the state zero and q\[1] is in the state one, and so on
+*   **q\_target** (*QuantumRegister|(*[*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*,int)*) – target qubit, where we act on with the single-qubit gates.
 *   **up\_to\_diagonal** (*bool*) – If set to True, the uniformly controlled gate is decomposed up to a diagonal gate, i.e. a unitary u’ is implemented such that there exists a diagonal gate d with u = d.dot(u’), where the unitary u describes the uniformly controlled gate
 
 **Returns**
@@ -4053,8 +3989,8 @@ The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https:
 **Parameters**
 
 *   **angle\_list** (*list*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Rx(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Rx(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
+*   **q\_controls** (*QuantumRegister|list*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Rx(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Rx(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
+*   **q\_target** (*QuantumRegister|Qubit*) – target qubit, where we act on with the single-qubit rotation gates
 
 **Returns**
 
@@ -4081,8 +4017,8 @@ The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https:
 **Parameters**
 
 *   **angle\_list** (*list\[numbers*) – list of (real) rotation angles $[a_0,...,a_{2^k-1}]$
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Ry(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Ry(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
+*   **q\_controls** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if `q_controls=[q[0],q[1]]` (with `q = QuantumRegister(2)`), the rotation `Ry(a_0)` is performed if `q[0]` and `q[1]` are in the state zero, the rotation `Ry(a_1)` is performed if `q[0]` is in the state one and `q[1]` is in the state zero, and so on
+*   **q\_target** (*QuantumRegister|Qubit*) – target qubit, where we act on with the single-qubit rotation gates
 
 **Returns**
 
@@ -4109,8 +4045,8 @@ The decomposition is base on [https://arxiv.org/pdf/quant-ph/0406176.pdf](https:
 **Parameters**
 
 *   **angle\_list** (*list\[numbers*) – list of (real) rotation angles \[a\_0,…,a\_\{2^k-1}]
-*   **q\_controls** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the rotation Rz(a\_0)is performed if q\[1] and q\[2] are in the state zero, the rotation Rz(a\_1) is performed if q\[1] is in the state one and q\[2] is in the state zero, and so on
-*   **q\_target** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")*|*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")) – target qubit, where we act on with the single-qubit rotation gates
+*   **q\_controls** (*QuantumRegister|list\[*[*Qubit*](qiskit.circuit.Qubit "qiskit.circuit.Qubit")*]*) – list of k control qubits (or empty list if no controls). The control qubits are ordered according to their significance in increasing order: For example if q\_controls=\[q\[1],q\[2]] (with q = QuantumRegister(2)), the rotation Rz(a\_0)is performed if q\[1] and q\[2] are in the state zero, the rotation Rz(a\_1) is performed if q\[1] is in the state one and q\[2] is in the state zero, and so on
+*   **q\_target** (*QuantumRegister|Qubit*) – target qubit, where we act on with the single-qubit rotation gates
 
 **Returns**
 
@@ -4130,11 +4066,7 @@ the uniformly controlled rotation gate is attached to the circuit.
 
 `LinearSystemMatrix.unitary(obj, qubits, label=None)`
 
-Apply unitary gate specified by `obj` to `qubits`.
-
-#### Example
-
-Apply a gate specified by a unitary matrix to a quantum circuit
+Apply unitary gate to q.
 
 ### while\_loop
 
@@ -4207,12 +4139,12 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-*   **qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+*   **qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 *   **label** (`Optional`\[`str`]) – The string label of the gate in the circuit.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -4230,11 +4162,11 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+**qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -4252,11 +4184,11 @@ For the full matrix form of this gate, see the underlying gate documentation.
 
 **Parameters**
 
-**qubit** (`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), [`QuantumRegister`](qiskit.circuit.QuantumRegister "qiskit.circuit.quantumregister.QuantumRegister"), `int`, `slice`, `Sequence`\[`Union`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit"), `int`]]]) – The qubit(s) to apply the gate to.
+**qubit** (`Union`\[`Qubit`, `QuantumRegister`, `int`, `slice`, `Sequence`\[`Union`\[`Qubit`, `int`]]]) – The qubit(s) to apply the gate to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -4272,7 +4204,7 @@ Returns a list of ancilla bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`AncillaQubit`](qiskit.circuit.AncillaQubit "qiskit.circuit.quantumregister.AncillaQubit")]
+`List`\[`AncillaQubit`]
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.calibrations" />
 
@@ -4296,7 +4228,7 @@ Returns a list of classical bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.data" />
 
@@ -4326,7 +4258,7 @@ Return the global phase of the circuit in radians.
 
 **Return type**
 
-`Union`\[[`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression"), `float`]
+`Union`\[`ParameterExpression`, `float`]
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.header" />
 
@@ -4338,7 +4270,7 @@ Return the global phase of the circuit in radians.
 
 ### instances
 
-`= 87`
+`= 9`
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.metadata" />
 
@@ -4404,26 +4336,6 @@ The number of state qubits representing the state $|x\rangle$.
 
 The number of state qubits.
 
-<span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.op_start_times" />
-
-### op\_start\_times
-
-Return a list of operation start times.
-
-This attribute is enabled once one of scheduling analysis passes runs on the quantum circuit.
-
-**Return type**
-
-`List`\[`int`]
-
-**Returns**
-
-List of integers representing instruction start times. The index corresponds to the index of instruction in `QuantumCircuit.data`.
-
-**Raises**
-
-**AttributeError** – When circuit is not scheduled.
-
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.parameters" />
 
 ### parameters
@@ -4452,7 +4364,7 @@ Returns a list of quantum bits in the order that the registers were added.
 
 **Return type**
 
-`List`\[[`Qubit`](qiskit.circuit.Qubit "qiskit.circuit.quantumregister.Qubit")]
+`List`\[`Qubit`]
 
 <span id="qiskit.algorithms.linear_solvers.LinearSystemMatrix.tolerance" />
 

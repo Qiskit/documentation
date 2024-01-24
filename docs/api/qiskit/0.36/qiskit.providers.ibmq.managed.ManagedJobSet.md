@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.managed.ManagedJobSet
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet" />
 
-`ManagedJobSet(name=None, short_id=None)`
+`ManagedJobSet(name=None, short_id=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Bases: `object`
 
@@ -31,7 +31,7 @@ ManagedJobSet constructor.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.cancel" />
 
-`ManagedJobSet.cancel()`
+`ManagedJobSet.cancel()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Cancel all jobs in this job set.
 
@@ -43,7 +43,7 @@ Cancel all jobs in this job set.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.error_messages" />
 
-`ManagedJobSet.error_messages()`
+`ManagedJobSet.error_messages()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Provide details about job failures.
 
@@ -61,7 +61,7 @@ An error report if one or more jobs failed or `None` otherwise.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.job" />
 
-`ManagedJobSet.job(experiment)`
+`ManagedJobSet.job(experiment)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Retrieve the job used to submit the specified experiment and its index.
 
@@ -69,7 +69,7 @@ For example, if [`IBMQJobManager`](qiskit.providers.ibmq.managed.IBMQJobManager 
 
 **Parameters**
 
-**experiment** (`Union`\[`str`, [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `int`]) –
+**experiment** (`Union`\[`str`, `QuantumCircuit`, `Schedule`, `int`]) –
 
 Retrieve the job used to submit this experiment. Several types are accepted for convenience:
 
@@ -80,7 +80,7 @@ Retrieve the job used to submit this experiment. Several types are accepted for 
 
 **Return type**
 
-`Tuple`\[`Optional`\[[`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.ibmqjob.IBMQJob")], `int`]
+`Tuple`\[`Optional`\[`IBMQJob`], `int`]
 
 **Returns**
 
@@ -94,7 +94,7 @@ A tuple of the job used to submit the experiment, or `None` if the job submit fa
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.job_set_id" />
 
-`ManagedJobSet.job_set_id()`
+`ManagedJobSet.job_set_id()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Return the ID of this job set.
 
@@ -110,13 +110,13 @@ ID of this job set.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.jobs" />
 
-`ManagedJobSet.jobs()`
+`ManagedJobSet.jobs()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Return jobs in this job set.
 
 **Return type**
 
-`List`\[`Optional`\[[`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.ibmqjob.IBMQJob")]]
+`List`\[`Optional`\[`IBMQJob`]]
 
 **Returns**
 
@@ -126,13 +126,13 @@ A list of [`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.j
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.managed_jobs" />
 
-`ManagedJobSet.managed_jobs()`
+`ManagedJobSet.managed_jobs()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Return the managed jobs in this set.
 
 **Return type**
 
-`List`\[[`ManagedJob`](qiskit.providers.ibmq.managed.ManagedJob "qiskit.providers.ibmq.managed.managedjob.ManagedJob")]
+`List`\[`ManagedJob`]
 
 **Returns**
 
@@ -142,7 +142,7 @@ A list of managed jobs.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.name" />
 
-`ManagedJobSet.name()`
+`ManagedJobSet.name()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Return the name of this job set.
 
@@ -158,13 +158,13 @@ Name of this job set.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.qobjs" />
 
-`ManagedJobSet.qobjs()`
+`ManagedJobSet.qobjs()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Return the Qobjs for the jobs in this set.
 
 **Return type**
 
-`List`\[`Union`\[[`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj"), [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj")]]
+`List`\[`Union`\[`QasmQobj`, `PulseQobj`]]
 
 **Returns**
 
@@ -174,7 +174,7 @@ A list of Qobjs for the jobs. An entry in the list is `None` if the Qobj could n
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.report" />
 
-`ManagedJobSet.report(detailed=True)`
+`ManagedJobSet.report(detailed=True)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Return a report on current job statuses.
 
@@ -194,7 +194,7 @@ A report on job statuses.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.results" />
 
-`ManagedJobSet.results(timeout=None, partial=False, refresh=False)`
+`ManagedJobSet.results(timeout=None, partial=False, refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Return the results of the jobs.
 
@@ -227,7 +227,7 @@ This call will block until all job results become available or the timeout is re
 
 **Return type**
 
-[`ManagedResults`](qiskit.providers.ibmq.managed.ManagedResults "qiskit.providers.ibmq.managed.managedresults.ManagedResults")
+`ManagedResults`
 
 **Returns**
 
@@ -241,13 +241,13 @@ A [`ManagedResults`](qiskit.providers.ibmq.managed.ManagedResults "qiskit.provid
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.retrieve_jobs" />
 
-`ManagedJobSet.retrieve_jobs(provider, refresh=False)`
+`ManagedJobSet.retrieve_jobs(provider, refresh=False)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Retrieve previously submitted jobs in this set.
 
 **Parameters**
 
-*   **provider** ([`AccountProvider`](qiskit.providers.ibmq.AccountProvider "qiskit.providers.ibmq.accountprovider.AccountProvider")) – Provider used for this job set.
+*   **provider** (`AccountProvider`) – Provider used for this job set.
 *   **refresh** (`bool`) – If `True`, re-query the server for the job set. Otherwise return the cached value.
 
 **Raises**
@@ -263,14 +263,14 @@ Retrieve previously submitted jobs in this set.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.run" />
 
-`ManagedJobSet.run(experiment_list, backend, executor, job_share_level=None, job_tags=None, **run_config)`
+`ManagedJobSet.run(experiment_list, backend, executor, job_share_level=None, job_tags=None, **run_config)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Execute a list of circuits or pulse schedules on a backend.
 
 **Parameters**
 
-*   **experiment\_list** (`Union`\[`List`\[`List`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit")]], `List`\[`List`\[[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]]]) – Circuit(s) or pulse schedule(s) to execute.
-*   **backend** ([`IBMQBackend`](qiskit.providers.ibmq.IBMQBackend "qiskit.providers.ibmq.ibmqbackend.IBMQBackend")) – Backend to execute the experiments on.
+*   **experiment\_list** (`Union`\[`List`\[`List`\[`QuantumCircuit`]], `List`\[`List`\[`Schedule`]]]) – Circuit(s) or pulse schedule(s) to execute.
+*   **backend** (`IBMQBackend`) – Backend to execute the experiments on.
 *   **executor** (`ThreadPoolExecutor`) – The thread pool used to submit jobs asynchronously.
 *   **job\_share\_level** (`Optional`\[`ApiJobShareLevel`]) – Job share level.
 *   **job\_tags** (`Optional`\[`List`\[`str`]]) – Tags to be assigned to the job.
@@ -288,13 +288,13 @@ Execute a list of circuits or pulse schedules on a backend.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.statuses" />
 
-`ManagedJobSet.statuses()`
+`ManagedJobSet.statuses()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Return the status of each job in this set.
 
 **Return type**
 
-`List`\[`Optional`\[[`JobStatus`](qiskit.providers.JobStatus "qiskit.providers.jobstatus.JobStatus")]]
+`List`\[`Optional`\[`JobStatus`]]
 
 **Returns**
 
@@ -304,7 +304,7 @@ A list of job statuses. An entry in the list is `None` if the job status could n
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.tags" />
 
-`ManagedJobSet.tags()`
+`ManagedJobSet.tags()`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Return the tags assigned to this job set.
 
@@ -320,7 +320,7 @@ Tags assigned to this job set.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.update_name" />
 
-`ManagedJobSet.update_name(name)`
+`ManagedJobSet.update_name(name)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Update the name of this job set.
 
@@ -340,7 +340,7 @@ The new name associated with this job set.
 
 <span id="qiskit.providers.ibmq.managed.ManagedJobSet.update_tags" />
 
-`ManagedJobSet.update_tags(replacement_tags=None, additional_tags=None, removal_tags=None)`
+`ManagedJobSet.update_tags(replacement_tags=None, additional_tags=None, removal_tags=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/managed/managedjobset.py "view source code")
 
 Update the tags assigned to this job set.
 

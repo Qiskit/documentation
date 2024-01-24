@@ -1,8 +1,16 @@
+---
+title: RuntimeEncoder
+description: API reference for qiskit.providers.ibmq.runtime.RuntimeEncoder
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.runtime.RuntimeEncoder
+---
+
 # RuntimeEncoder
 
+<span id="qiskit.providers.ibmq.runtime.RuntimeEncoder" />
 
-
-`RuntimeEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)`
+`RuntimeEncoder(*, skipkeys=False, ensure_ascii=True, check_circular=True, allow_nan=True, sort_keys=False, indent=None, separators=None, default=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/runtime/utils.py "view source code")
 
 Bases: `json.encoder.JSONEncoder`
 
@@ -28,24 +36,74 @@ If specified, default is a function that gets called for objects that can’t ot
 
 ## Methods
 
-|                                                                                                                                                                                           |                                                                                                                                                    |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`default`](qiskit.providers.ibmq.runtime.RuntimeEncoder.default#qiskit.providers.ibmq.runtime.RuntimeEncoder.default "qiskit.providers.ibmq.runtime.RuntimeEncoder.default")             | Implement this method in a subclass such that it returns a serializable object for `o`, or calls the base implementation (to raise a `TypeError`). |
-| [`encode`](qiskit.providers.ibmq.runtime.RuntimeEncoder.encode#qiskit.providers.ibmq.runtime.RuntimeEncoder.encode "qiskit.providers.ibmq.runtime.RuntimeEncoder.encode")                 | Return a JSON string representation of a Python data structure.                                                                                    |
-| [`iterencode`](qiskit.providers.ibmq.runtime.RuntimeEncoder.iterencode#qiskit.providers.ibmq.runtime.RuntimeEncoder.iterencode "qiskit.providers.ibmq.runtime.RuntimeEncoder.iterencode") | Encode the given object and yield each string representation as available.                                                                         |
+### default
+
+<span id="qiskit.providers.ibmq.runtime.RuntimeEncoder.default" />
+
+`RuntimeEncoder.default(obj)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.18/qiskit/providers/ibmq/runtime/utils.py "view source code")
+
+Implement this method in a subclass such that it returns a serializable object for `o`, or calls the base implementation (to raise a `TypeError`).
+
+For example, to support arbitrary iterators, you could implement default like this:
+
+```python
+def default(self, o):
+    try:
+        iterable = iter(o)
+    except TypeError:
+        pass
+    else:
+        return list(iterable)
+    # Let the base class default method raise the TypeError
+    return JSONEncoder.default(self, o)
+```
+
+**Return type**
+
+`Any`
+
+### encode
+
+<span id="qiskit.providers.ibmq.runtime.RuntimeEncoder.encode" />
+
+`RuntimeEncoder.encode(o)`
+
+Return a JSON string representation of a Python data structure.
+
+```python
+>>> from json.encoder import JSONEncoder
+>>> JSONEncoder().encode({"foo": ["bar", "baz"]})
+'{"foo": ["bar", "baz"]}'
+```
+
+### iterencode
+
+<span id="qiskit.providers.ibmq.runtime.RuntimeEncoder.iterencode" />
+
+`RuntimeEncoder.iterencode(o, _one_shot=False)`
+
+Encode the given object and yield each string representation as available.
+
+For example:
+
+```python
+for chunk in JSONEncoder().iterencode(bigobject):
+    mysocket.write(chunk)
+```
 
 ## Attributes
 
-
+<span id="qiskit.providers.ibmq.runtime.RuntimeEncoder.item_separator" />
 
 ### item\_separator
 
 `= ', '`
 
-
+<span id="qiskit.providers.ibmq.runtime.RuntimeEncoder.key_separator" />
 
 ### key\_separator = '
 
 `= ':`
 
 `= ': '`
+

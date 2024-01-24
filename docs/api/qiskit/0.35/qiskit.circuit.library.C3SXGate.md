@@ -1,8 +1,16 @@
+---
+title: C3SXGate
+description: API reference for qiskit.circuit.library.C3SXGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.C3SXGate
+---
+
 # C3SXGate
 
+<span id="qiskit.circuit.library.C3SXGate" />
 
-
-`C3SXGate(label=None, ctrl_state=None)`
+`C3SXGate(label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
@@ -23,7 +31,7 @@ Create a new 3-qubit controlled sqrt-X gate.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.C3SXGate.condition_bits" />
 
 ### condition\_bits
 
@@ -33,7 +41,7 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.C3SXGate.ctrl_state" />
 
 ### ctrl\_state
 
@@ -43,13 +51,13 @@ Return the control state of the gate as a decimal integer.
 
 `int`
 
-
+<span id="qiskit.circuit.library.C3SXGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-
+<span id="qiskit.circuit.library.C3SXGate.definition" />
 
 ### definition
 
@@ -59,13 +67,13 @@ Return definition in terms of other basic gates. If the gate has open controls, 
 
 `List`
 
-
+<span id="qiskit.circuit.library.C3SXGate.duration" />
 
 ### duration
 
 Get the duration.
 
-
+<span id="qiskit.circuit.library.C3SXGate.label" />
 
 ### label
 
@@ -75,7 +83,7 @@ Return instruction label
 
 `str`
 
-
+<span id="qiskit.circuit.library.C3SXGate.name" />
 
 ### name
 
@@ -89,13 +97,13 @@ where \<original\_name> is the gate name for the default case of closed control 
 
 `str`
 
-
+<span id="qiskit.circuit.library.C3SXGate.num_clbits" />
 
 ### num\_clbits
 
 Return the number of clbits.
 
-
+<span id="qiskit.circuit.library.C3SXGate.num_ctrl_qubits" />
 
 ### num\_ctrl\_qubits
 
@@ -109,13 +117,13 @@ The number of control qubits for the gate.
 
 int
 
-
+<span id="qiskit.circuit.library.C3SXGate.num_qubits" />
 
 ### num\_qubits
 
 Return the number of qubits.
 
-
+<span id="qiskit.circuit.library.C3SXGate.params" />
 
 ### params
 
@@ -133,8 +141,9 @@ list
 
 **CircuitError** – Controlled gate does not define a base gate
 
-
+<span id="qiskit.circuit.library.C3SXGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

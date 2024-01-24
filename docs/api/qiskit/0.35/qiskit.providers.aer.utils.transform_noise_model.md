@@ -1,8 +1,16 @@
+---
+title: transform_noise_model
+description: API reference for qiskit.providers.aer.utils.transform_noise_model
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.providers.aer.utils.transform_noise_model
+---
+
 # qiskit.providers.aer.utils.transform\_noise\_model
 
+<span id="qiskit.providers.aer.utils.transform_noise_model" />
 
-
-`transform_noise_model(noise_model, func)`
+`transform_noise_model(noise_model, func)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/utils/noise_transformation.py "view source code")
 
 Return a new noise model by applyign a function to all quantum errors.
 
@@ -24,3 +32,4 @@ The transpiled noise model.
 **Raises**
 
 **NoiseError** – if the transformation failed.
+

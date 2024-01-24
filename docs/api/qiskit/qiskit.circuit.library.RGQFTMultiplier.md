@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RGQFTMultiplier
 
 <span id="qiskit.circuit.library.RGQFTMultiplier" />
 
-`qiskit.circuit.library.RGQFTMultiplier(num_state_qubits, num_result_qubits=None, name='RGQFTMultiplier')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/arithmetic/multipliers/rg_qft_multiplier.py "view source code")
+`qiskit.circuit.library.RGQFTMultiplier(num_state_qubits, num_result_qubits=None, name='RGQFTMultiplier')`
 
 Bases: `Multiplier`
 
@@ -101,7 +101,7 @@ Return the global phase of the current circuit scope in radians.
 
 ### instances
 
-`= 474`
+`= 293`
 
 <span id="qiskit.circuit.library.RGQFTMultiplier.layout" />
 

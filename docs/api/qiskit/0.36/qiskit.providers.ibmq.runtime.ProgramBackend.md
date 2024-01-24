@@ -10,9 +10,9 @@ python_api_name: qiskit.providers.ibmq.runtime.ProgramBackend
 
 <span id="qiskit.providers.ibmq.runtime.ProgramBackend" />
 
-`ProgramBackend(configuration, provider=None, **fields)`
+`ProgramBackend(configuration, provider=None, **fields)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/program/program_backend.py "view source code")
 
-Bases: [`qiskit.providers.backend.BackendV1`](qiskit.providers.BackendV1 "qiskit.providers.backend.BackendV1"), `abc.ABC`
+Bases: `qiskit.providers.backend.BackendV1`, `abc.ABC`
 
 Base class for a program backend.
 
@@ -122,7 +122,7 @@ the Provider responsible for the backend.
 
 <span id="qiskit.providers.ibmq.runtime.ProgramBackend.run" />
 
-`abstract ProgramBackend.run(circuits, timeout=None, **run_config)`
+`abstract ProgramBackend.run(circuits, timeout=None, **run_config)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.19/qiskit/providers/ibmq/runtime/program/program_backend.py "view source code")
 
 Run on the backend.
 
@@ -130,13 +130,13 @@ Runtime circuit execution is synchronous, and control will not go back until the
 
 **Parameters**
 
-*   **circuits** (`Union`\[[`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.qasm_qobj.QasmQobj"), [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.pulse_qobj.PulseQobj"), [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule"), `List`\[`Union`\[[`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.quantumcircuit.QuantumCircuit"), [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")]]]) – An individual or a list of `QuantumCircuit` or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend. A [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") or a [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") object is also supported but is deprecated.
+*   **circuits** (`Union`\[`QasmQobj`, `PulseQobj`, `QuantumCircuit`, `Schedule`, `List`\[`Union`\[`QuantumCircuit`, `Schedule`]]]) – An individual or a list of `QuantumCircuit` or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend. A [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") or a [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") object is also supported but is deprecated.
 *   **timeout** (`Optional`\[`int`]) – Seconds to wait for circuit execution to finish.
 *   **\*\*run\_config** – Extra arguments used to configure the run.
 
 **Return type**
 
-[`JobV1`](qiskit.providers.JobV1 "qiskit.providers.job.JobV1")
+`JobV1`
 
 **Returns**
 

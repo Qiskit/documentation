@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.InstructionSet
 
 <span id="qiskit.circuit.InstructionSet" />
 
-`InstructionSet(circuit_cregs=None, *, resource_requester=None)`
+`InstructionSet(circuit_cregs=None, *, resource_requester=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/instructionset.py "view source code")
 
 Bases: `object`
 
@@ -48,7 +48,7 @@ The context (qargs and cargs that each instruction is attached to) is also store
 
 <span id="qiskit.circuit.InstructionSet.add" />
 
-`InstructionSet.add(instruction, qargs=None, cargs=None)`
+`InstructionSet.add(gate, qargs, cargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/instructionset.py "view source code")
 
 Add an instruction and its context (where it is attached).
 
@@ -56,7 +56,7 @@ Add an instruction and its context (where it is attached).
 
 <span id="qiskit.circuit.InstructionSet.c_if" />
 
-`InstructionSet.c_if(classical, val)`
+`InstructionSet.c_if(classical, val)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/instructionset.py "view source code")
 
 Set a classical equality condition on all the instructions in this set between the [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.ClassicalRegister") or [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") `classical` and value `val`.
 
@@ -66,12 +66,12 @@ Set a classical equality condition on all the instructions in this set between t
 
 **Parameters**
 
-*   **classical** (`Union`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit"), [`ClassicalRegister`](qiskit.circuit.ClassicalRegister "qiskit.circuit.classicalregister.ClassicalRegister"), `int`]) – the classical resource the equality condition should be on. If this is given as an integer, it will be resolved into a [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") using the same conventions as the circuit these instructions are attached to.
+*   **classical** (`Union`\[`Clbit`, `ClassicalRegister`, `int`]) – the classical resource the equality condition should be on. If this is given as an integer, it will be resolved into a [`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.Clbit") using the same conventions as the circuit these instructions are attached to.
 *   **val** (`int`) – the value the classical resource should be equal to.
 
 **Return type**
 
-[`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.circuit.instructionset.InstructionSet")
+`InstructionSet`
 
 **Returns**
 
@@ -85,7 +85,7 @@ This same instance of [`InstructionSet`](qiskit.circuit.InstructionSet "qiskit.c
 
 <span id="qiskit.circuit.InstructionSet.inverse" />
 
-`InstructionSet.inverse()`
+`InstructionSet.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/instructionset.py "view source code")
 
 Invert all instructions.
 
@@ -95,17 +95,11 @@ Invert all instructions.
 
 ### cargs
 
-Legacy getter for the cargs components of an instruction set. This does not support mutation.
-
 <span id="qiskit.circuit.InstructionSet.instructions" />
 
 ### instructions
 
-Legacy getter for the instruction components of an instruction set. This does not support mutation.
-
 <span id="qiskit.circuit.InstructionSet.qargs" />
 
 ### qargs
-
-Legacy getter for the qargs components of an instruction set. This does not support mutation.
 

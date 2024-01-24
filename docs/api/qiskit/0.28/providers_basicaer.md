@@ -26,27 +26,27 @@ backend = BasicAer.get_backend('qasm_simulator')
 
 ## Simulators
 
-|                                                                                                                                                                                                              |                                               |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | --------------------------------------------- |
-| [`QasmSimulatorPy`](qiskit.providers.basicaer.QasmSimulatorPy#qiskit.providers.basicaer.QasmSimulatorPy "qiskit.providers.basicaer.QasmSimulatorPy")(\[configuration, provider])                             | Python implementation of a qasm simulator.    |
-| [`StatevectorSimulatorPy`](qiskit.providers.basicaer.StatevectorSimulatorPy#qiskit.providers.basicaer.StatevectorSimulatorPy "qiskit.providers.basicaer.StatevectorSimulatorPy")(\[configuration, provider]) | Python statevector simulator.                 |
-| [`UnitarySimulatorPy`](qiskit.providers.basicaer.UnitarySimulatorPy#qiskit.providers.basicaer.UnitarySimulatorPy "qiskit.providers.basicaer.UnitarySimulatorPy")(\[configuration, provider])                 | Python implementation of a unitary simulator. |
+|                                                                                                                                                             |                                               |
+| ----------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------- |
+| [`QasmSimulatorPy`](qiskit.providers.basicaer.QasmSimulatorPy "qiskit.providers.basicaer.QasmSimulatorPy")(\[configuration, provider])                      | Python implementation of a qasm simulator.    |
+| [`StatevectorSimulatorPy`](qiskit.providers.basicaer.StatevectorSimulatorPy "qiskit.providers.basicaer.StatevectorSimulatorPy")(\[configuration, provider]) | Python statevector simulator.                 |
+| [`UnitarySimulatorPy`](qiskit.providers.basicaer.UnitarySimulatorPy "qiskit.providers.basicaer.UnitarySimulatorPy")(\[configuration, provider])             | Python implementation of a unitary simulator. |
 
 ## Provider
 
-|                                                                                                                                                            |                                  |
-| ---------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------- |
-| [`BasicAerProvider`](qiskit.providers.basicaer.BasicAerProvider#qiskit.providers.basicaer.BasicAerProvider "qiskit.providers.basicaer.BasicAerProvider")() | Provider for Basic Aer backends. |
+|                                                                                                                 |                                  |
+| --------------------------------------------------------------------------------------------------------------- | -------------------------------- |
+| [`BasicAerProvider`](qiskit.providers.basicaer.BasicAerProvider "qiskit.providers.basicaer.BasicAerProvider")() | Provider for Basic Aer backends. |
 
 ## Job Class
 
-|                                                                                                                                                                |                    |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------ |
-| [`BasicAerJob`](qiskit.providers.basicaer.BasicAerJob#qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")(backend, job\_id, result) | BasicAerJob class. |
+|                                                                                                                          |                    |
+| ------------------------------------------------------------------------------------------------------------------------ | ------------------ |
+| [`BasicAerJob`](qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")(backend, job\_id, result) | BasicAerJob class. |
 
 ## Exceptions
 
-|                                                                                                                                                         |                                            |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
-| [`BasicAerError`](qiskit.providers.basicaer.BasicAerError#qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError")(\*message) | Base class for errors raised by Basic Aer. |
+|                                                                                                                 |                                            |
+| --------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| [`BasicAerError`](qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError")(\*message) | Base class for errors raised by Basic Aer. |
 

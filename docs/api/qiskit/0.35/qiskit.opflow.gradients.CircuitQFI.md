@@ -1,8 +1,16 @@
+---
+title: CircuitQFI
+description: API reference for qiskit.opflow.gradients.CircuitQFI
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.opflow.gradients.CircuitQFI
+---
+
 # CircuitQFI
 
+<span id="qiskit.opflow.gradients.CircuitQFI" />
 
-
-`CircuitQFI`
+`CircuitQFI`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py "view source code")
 
 Bases: `qiskit.opflow.converters.converter_base.ConverterBase`
 
@@ -16,6 +24,26 @@ CircuitQFI - uses quantum techniques to get the QFI of circuits DerivativeBase -
 
 ## Methods Defined Here
 
-|                                                                                                                                                 |                                 |
-| ----------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [`convert`](qiskit.opflow.gradients.CircuitQFI.convert#qiskit.opflow.gradients.CircuitQFI.convert "qiskit.opflow.gradients.CircuitQFI.convert") | **type operator**`OperatorBase` |
+### convert
+
+<span id="qiskit.opflow.gradients.CircuitQFI.convert" />
+
+`abstract CircuitQFI.convert(operator, params)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/gradients/circuit_qfis/circuit_qfi.py "view source code")
+
+**Parameters**
+
+*   **operator** (`OperatorBase`) – The operator corresponding to the quantum state $|\psi(\omega)\rangle$ for which we compute the QFI.
+*   **params** (`Union`\[`ParameterExpression`, `ParameterVector`, `List`\[`ParameterExpression`]]) – The parameters $\omega$ with respect to which we are computing the QFI.
+
+**Return type**
+
+`OperatorBase`
+
+**Returns**
+
+An operator whose evaluation yields the QFI metric tensor.
+
+**Raises**
+
+**ValueError** – If `params` contains a parameter not present in `operator`.
+

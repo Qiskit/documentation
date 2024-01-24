@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.CheckCXDirection
 
 <span id="qiskit.transpiler.passes.CheckCXDirection" />
 
-`CheckCXDirection(*args, **kwargs)`
+`CheckCXDirection(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/utils/check_cx_direction.py "view source code")
 
-Bases: [`qiskit.transpiler.passes.utils.check_gate_direction.CheckGateDirection`](qiskit.transpiler.passes.CheckGateDirection "qiskit.transpiler.passes.utils.check_gate_direction.CheckGateDirection")
+Bases: `qiskit.transpiler.passes.utils.check_gate_direction.CheckGateDirection`
 
 Deprecated: use [`qiskit.transpiler.passes.CheckGateDirection`](qiskit.transpiler.passes.CheckGateDirection "qiskit.transpiler.passes.CheckGateDirection") pass instead.
 

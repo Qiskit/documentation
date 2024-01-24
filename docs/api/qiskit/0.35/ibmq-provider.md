@@ -5,5 +5,6 @@
 *   [Job Manager (`qiskit.providers.ibmq.managed`)](ibmq_managed)
 *   [Credentials (`qiskit.providers.ibmq.credentials`)](ibmq_credentials)
 *   [Utilities (`qiskit.providers.ibmq.utils`)](ibmq_utils)
+*   [Random Number Services (`qiskit.providers.ibmq.random`)](ibmq_random)
 *   [Experiment (`qiskit.providers.ibmq.experiment`)](ibmq_experiment)
 *   [Runtime (`qiskit.providers.ibmq.runtime`)](ibmq_runtime)

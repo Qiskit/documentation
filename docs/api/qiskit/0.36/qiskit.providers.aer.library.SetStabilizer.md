@@ -10,9 +10,9 @@ python_api_name: qiskit.providers.aer.library.SetStabilizer
 
 <span id="qiskit.providers.aer.library.SetStabilizer" />
 
-`SetStabilizer(state)`
+`SetStabilizer(state)`[GitHub](https://github.com/qiskit/qiskit-aer/tree/stable/0.10/qiskit/providers/aer/library/set_instructions/set_stabilizer.py "view source code")
 
-Bases: [`qiskit.circuit.instruction.Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
+Bases: `qiskit.circuit.instruction.Instruction`
 
 Set the Clifford stabilizer state of the simulator
 
@@ -223,7 +223,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.providers.aer.library.SetStabilizer.decompositions" />
 

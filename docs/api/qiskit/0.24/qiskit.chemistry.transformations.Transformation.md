@@ -1,14 +1,24 @@
+---
+title: Transformation
+description: API reference for qiskit.chemistry.transformations.Transformation
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.transformations.Transformation
+---
+
 <span id="qiskit-chemistry-transformations-transformation" />
 
 # qiskit.chemistry.transformations.Transformation
 
+<span id="qiskit.chemistry.transformations.Transformation" />
 
-
-`Transformation`
+`Transformation`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/transformations/transformation.py "view source code")
 
 Base class for transformation to qubit operators for chemistry problems
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.transformations.Transformation.__init__" />
 
 `__init__()`
 
@@ -30,7 +40,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | ---------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------ |
 | [`commutation_rule`](#qiskit.chemistry.transformations.Transformation.commutation_rule "qiskit.chemistry.transformations.Transformation.commutation_rule") | Getter of the commutation rule |
 
+### build\_hopping\_operators
 
+<span id="qiskit.chemistry.transformations.Transformation.build_hopping_operators" />
 
 `abstract build_hopping_operators(excitations='sd')`
 
@@ -46,7 +58,9 @@ Returns:
 
 `Tuple`\[`Dict`\[`str`, `WeightedPauliOperator`], `Dict`\[`str`, `List`\[`bool`]], `Dict`\[`str`, `List`\[`Any`]]]
 
+### commutation\_rule
 
+<span id="qiskit.chemistry.transformations.Transformation.commutation_rule" />
 
 `abstract property commutation_rule`
 
@@ -56,7 +70,9 @@ Getter of the commutation rule
 
 `bool`
 
+### get\_default\_filter\_criterion
 
+<span id="qiskit.chemistry.transformations.Transformation.get_default_filter_criterion" />
 
 `get_default_filter_criterion()`
 
@@ -66,7 +82,9 @@ Returns a default filter criterion method to filter the eigenvalues computed by 
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
 
+### interpret
 
+<span id="qiskit.chemistry.transformations.Transformation.interpret" />
 
 `abstract interpret(raw_result)`
 
@@ -84,7 +102,9 @@ Interprets an EigenstateResult in the context of this transformation.
 
 An “interpreted” eigenstate result.
 
+### transform
 
+<span id="qiskit.chemistry.transformations.Transformation.transform" />
 
 `abstract transform(driver, aux_operators=None)`
 
@@ -102,3 +122,4 @@ Transformation from the `driver` to a qubit operator.
 **Returns**
 
 A qubit operator and a dictionary of auxiliary operators.
+

@@ -42,7 +42,6 @@ Given an optimization problem, a **global optimizer** is a function that attempt
 | [`QNSPSA`](qiskit.algorithms.optimizers.QNSPSA "qiskit.algorithms.optimizers.QNSPSA")                            | The Quantum Natural SPSA (QN-SPSA) optimizer.                        |
 | [`TNC`](qiskit.algorithms.optimizers.TNC "qiskit.algorithms.optimizers.TNC")                                     | Truncated Newton (TNC) optimizer.                                    |
 | [`SciPyOptimizer`](qiskit.algorithms.optimizers.SciPyOptimizer "qiskit.algorithms.optimizers.SciPyOptimizer")    | A general Qiskit Optimizer wrapping scipy.optimize.minimize.         |
-| [`UMDA`](qiskit.algorithms.optimizers.UMDA "qiskit.algorithms.optimizers.UMDA")                                  | Continuous Univariate Marginal Distribution Algorithm (UMDA).        |
 
 Qiskit also provides the following optimizers, which are built-out using the optimizers from the scikit-quant package. The scikit-quant package is not installed by default but must be explicitly installed, if desired, by the user - the optimizers therein are provided under various licenses so it has been made an optional install for the end user to choose whether to do so or not. To install the scikit-quant dependent package you can use pip install scikit-quant.
 

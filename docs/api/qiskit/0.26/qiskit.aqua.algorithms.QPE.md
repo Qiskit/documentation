@@ -1,8 +1,16 @@
+---
+title: QPE
+description: API reference for qiskit.aqua.algorithms.QPE
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.QPE
+---
+
 # qiskit.aqua.algorithms.QPE
 
+<span id="qiskit.aqua.algorithms.QPE" />
 
-
-`QPE(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, shallow_circuit_concat=False, quantum_instance=None)`
+`QPE(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, shallow_circuit_concat=False, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/minimum_eigen_solvers/qpe.py "view source code")
 
 The Quantum Phase Estimation algorithm.
 
@@ -20,7 +28,9 @@ QPE (also sometimes abbreviated as PEA, for Phase Estimation Algorithm), has two
 *   **shallow\_circuit\_concat** (`bool`) – Set True to use shallow (cheap) mode for circuit concatenation of evolution slices. By default this is False. See `qiskit.aqua.operators.common.evolution_instruction()` for more information.
 *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – Quantum Instance or Backend
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.algorithms.QPE.__init__" />
 
 `__init__(operator=None, state_in=None, iqft=None, num_time_slices=1, num_ancillae=1, expansion_mode='trotter', expansion_order=1, shallow_circuit_concat=False, quantum_instance=None)`
 
@@ -57,7 +67,9 @@ QPE (also sometimes abbreviated as PEA, for Phase Estimation Algorithm), has two
 | [`quantum_instance`](#qiskit.aqua.algorithms.QPE.quantum_instance "qiskit.aqua.algorithms.QPE.quantum_instance") | Returns quantum instance. |
 | [`random`](#qiskit.aqua.algorithms.QPE.random "qiskit.aqua.algorithms.QPE.random")                               | Return a numpy random.    |
 
+### aux\_operators
 
+<span id="qiskit.aqua.algorithms.QPE.aux_operators" />
 
 `property aux_operators`
 
@@ -67,7 +79,9 @@ Returns aux operators
 
 `Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`]]]
 
+### backend
 
+<span id="qiskit.aqua.algorithms.QPE.backend" />
 
 `property backend`
 
@@ -77,7 +91,9 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
+### compute\_minimum\_eigenvalue
 
+<span id="qiskit.aqua.algorithms.QPE.compute_minimum_eigenvalue" />
 
 `compute_minimum_eigenvalue(operator=None, aux_operators=None)`
 
@@ -96,7 +112,9 @@ Computes minimum eigenvalue. Operator and aux\_operators can be supplied here an
 
 MinimumEigensolverResult
 
+### construct\_circuit
 
+<span id="qiskit.aqua.algorithms.QPE.construct_circuit" />
 
 `construct_circuit(measurement=False)`
 
@@ -112,9 +130,11 @@ quantum circuit.
 
 **Return type**
 
-[QuantumCircuit](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
 
+### operator
 
+<span id="qiskit.aqua.algorithms.QPE.operator" />
 
 `property operator`
 
@@ -124,7 +144,9 @@ Returns operator
 
 `Optional`\[`LegacyBaseOperator`]
 
+### quantum\_instance
 
+<span id="qiskit.aqua.algorithms.QPE.quantum_instance" />
 
 `property quantum_instance`
 
@@ -134,13 +156,17 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
+### random
 
+<span id="qiskit.aqua.algorithms.QPE.random" />
 
 `property random`
 
 Return a numpy random.
 
+### run
 
+<span id="qiskit.aqua.algorithms.QPE.run" />
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -161,9 +187,11 @@ dict
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
+### set\_backend
 
+<span id="qiskit.aqua.algorithms.QPE.set_backend" />
 
 `set_backend(backend, **kwargs)`
 
@@ -173,7 +201,9 @@ Sets backend with configuration.
 
 `None`
 
+### supports\_aux\_operators
 
+<span id="qiskit.aqua.algorithms.QPE.supports_aux_operators" />
 
 `classmethod supports_aux_operators()`
 
@@ -188,3 +218,4 @@ If the minimum eigensolver computes an eigenstate of the main operator then it c
 **Returns**
 
 True if aux\_operator expectations can be evaluated, False otherwise
+

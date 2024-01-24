@@ -10,14 +10,14 @@ python_api_name: qiskit.visualization.plot_circuit_layout
 
 <span id="qiskit.visualization.plot_circuit_layout" />
 
-`plot_circuit_layout(circuit, backend, view='virtual', qubit_coordinates=None)`
+`plot_circuit_layout(circuit, backend, view='virtual', qubit_coordinates=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/visualization/gate_map.py "view source code")
 
 Plot the layout of a circuit transpiled for a given target backend.
 
 **Parameters**
 
 *   **circuit** ([*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – Input quantum circuit.
-*   **backend** ([*Backend*](qiskit.providers.Backend "qiskit.providers.Backend")) – Target backend.
+*   **backend** ([*BaseBackend*](qiskit.providers.BaseBackend "qiskit.providers.BaseBackend")) – Target backend.
 *   **view** (*str*) – Layout view: either ‘virtual’ or ‘physical’.
 *   **qubit\_coordinates** (*Sequence*) – An optional sequence input (list or array being the most common) of 2d coordinates for each qubit. The length of the sequence much mast the number of qubits on the backend. The sequence should be the planar coordinates in a 0-based square grid where each qubit is located.
 

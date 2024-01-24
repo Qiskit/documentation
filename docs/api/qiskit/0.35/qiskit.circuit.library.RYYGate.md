@@ -1,8 +1,16 @@
+---
+title: RYYGate
+description: API reference for qiskit.circuit.library.RYYGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.RYYGate
+---
+
 # RYYGate
 
+<span id="qiskit.circuit.library.RYYGate" />
 
-
-`RYYGate(theta, label=None)`
+`RYYGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/ryy.py "view source code")
 
 Bases: `qiskit.circuit.gate.Gate`
 
@@ -56,13 +64,17 @@ Create new RYY gate.
 
 ## Methods Defined Here
 
-|                                                                                                                                     |                               |
-| ----------------------------------------------------------------------------------------------------------------------------------- | ----------------------------- |
-| [`inverse`](qiskit.circuit.library.RYYGate.inverse#qiskit.circuit.library.RYYGate.inverse "qiskit.circuit.library.RYYGate.inverse") | Return inverse RYY gate (i.e. |
+### inverse
+
+<span id="qiskit.circuit.library.RYYGate.inverse" />
+
+`RYYGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/ryy.py "view source code")
+
+Return inverse RYY gate (i.e. with the negative rotation angle).
 
 ## Attributes
 
-
+<span id="qiskit.circuit.library.RYYGate.condition_bits" />
 
 ### condition\_bits
 
@@ -72,25 +84,25 @@ Get Clbits in condition.
 
 `List`\[`Clbit`]
 
-
+<span id="qiskit.circuit.library.RYYGate.decompositions" />
 
 ### decompositions
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
-
+<span id="qiskit.circuit.library.RYYGate.definition" />
 
 ### definition
 
 Return definition in terms of other basic gates.
 
-
+<span id="qiskit.circuit.library.RYYGate.duration" />
 
 ### duration
 
 Get the duration.
 
-
+<span id="qiskit.circuit.library.RYYGate.label" />
 
 ### label
 
@@ -100,32 +112,33 @@ Return instruction label
 
 `str`
 
-
+<span id="qiskit.circuit.library.RYYGate.name" />
 
 ### name
 
 Return the name.
 
-
+<span id="qiskit.circuit.library.RYYGate.num_clbits" />
 
 ### num\_clbits
 
 Return the number of clbits.
 
-
+<span id="qiskit.circuit.library.RYYGate.num_qubits" />
 
 ### num\_qubits
 
 Return the number of qubits.
 
-
+<span id="qiskit.circuit.library.RYYGate.params" />
 
 ### params
 
 return instruction params.
 
-
+<span id="qiskit.circuit.library.RYYGate.unit" />
 
 ### unit
 
 Get the time unit of duration.
+

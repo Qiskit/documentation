@@ -1,8 +1,16 @@
+---
+title: align_right
+description: API reference for qiskit.pulse.builder.align_right
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.align_right
+---
+
 # qiskit.pulse.builder.align\_right
 
+<span id="qiskit.pulse.builder.align_right" />
 
-
-`align_right()`
+`align_right()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Right alignment pulse scheduling context.
 
@@ -34,3 +42,4 @@ None
 **Return type**
 
 `AlignmentKind`
+

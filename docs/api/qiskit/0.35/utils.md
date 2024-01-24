@@ -16,31 +16,31 @@ python_api_name: qiskit.utils
 
 `qiskit.utils`
 
-|                                                                                                                                               |                                                                                                                 |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
-| [`deprecate_arguments`](qiskit.utils.deprecate_arguments#qiskit.utils.deprecate_arguments "qiskit.utils.deprecate_arguments")(kwarg\_map)     | Decorator to automatically alias deprecated argument names and warn upon use.                                   |
-| [`deprecate_function`](qiskit.utils.deprecate_function#qiskit.utils.deprecate_function "qiskit.utils.deprecate_function")(msg\[, stacklevel]) | Emit a warning prior to calling decorated function.                                                             |
-| [`local_hardware_info`](qiskit.utils.local_hardware_info#qiskit.utils.local_hardware_info "qiskit.utils.local_hardware_info")()               | Basic hardware information about the local machine.                                                             |
-| [`is_main_process`](qiskit.utils.is_main_process#qiskit.utils.is_main_process "qiskit.utils.is_main_process")()                               | Checks whether the current process is the main one                                                              |
-| [`apply_prefix`](qiskit.utils.apply_prefix#qiskit.utils.apply_prefix "qiskit.utils.apply_prefix")(value, unit)                                | Given a SI unit prefix and value, apply the prefix to convert to standard SI unit.                              |
-| [`detach_prefix`](qiskit.utils.detach_prefix#qiskit.utils.detach_prefix "qiskit.utils.detach_prefix")(value\[, decimal])                      | Given a SI unit value, find the most suitable prefix to scale the value.                                        |
-| [`wrap_method`](qiskit.utils.wrap_method#qiskit.utils.wrap_method "qiskit.utils.wrap_method")(cls, name, \*\[, before, after])                | Wrap the functionality the instance- or class method `cls.name` with additional behaviour `before` and `after`. |
+|                                                                                                               |                                                                                                                 |
+| ------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------- |
+| [`deprecate_arguments`](qiskit.utils.deprecate_arguments "qiskit.utils.deprecate_arguments")(kwarg\_map)      | Decorator to automatically alias deprecated argument names and warn upon use.                                   |
+| [`deprecate_function`](qiskit.utils.deprecate_function "qiskit.utils.deprecate_function")(msg\[, stacklevel]) | Emit a warning prior to calling decorated function.                                                             |
+| [`local_hardware_info`](qiskit.utils.local_hardware_info "qiskit.utils.local_hardware_info")()                | Basic hardware information about the local machine.                                                             |
+| [`is_main_process`](qiskit.utils.is_main_process "qiskit.utils.is_main_process")()                            | Checks whether the current process is the main one                                                              |
+| [`apply_prefix`](qiskit.utils.apply_prefix "qiskit.utils.apply_prefix")(value, unit)                          | Given a SI unit prefix and value, apply the prefix to convert to standard SI unit.                              |
+| [`detach_prefix`](qiskit.utils.detach_prefix "qiskit.utils.detach_prefix")(value\[, decimal])                 | Given a SI unit value, find the most suitable prefix to scale the value.                                        |
+| [`wrap_method`](qiskit.utils.wrap_method "qiskit.utils.wrap_method")(cls, name, \*\[, before, after])         | Wrap the functionality the instance- or class method `cls.name` with additional behaviour `before` and `after`. |
 
 ## Algorithm Utilities
 
-|                                                                                                                                           |                                                                              |
-| ----------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
-| [`summarize_circuits`](qiskit.utils.summarize_circuits#qiskit.utils.summarize_circuits "qiskit.utils.summarize_circuits")                 | Summarize circuits based on QuantumCircuit, and five metrics are summarized. |
-| [`get_entangler_map`](qiskit.utils.get_entangler_map#qiskit.utils.get_entangler_map "qiskit.utils.get_entangler_map")                     | Utility method to get an entangler map among qubits.                         |
-| [`validate_entangler_map`](qiskit.utils.validate_entangler_map#qiskit.utils.validate_entangler_map "qiskit.utils.validate_entangler_map") | Validate a user supplied entangler map and converts entries to ints.         |
-| [`has_ibmq`](qiskit.utils.has_ibmq#qiskit.utils.has_ibmq "qiskit.utils.has_ibmq")                                                         | Check if IBMQ is installed                                                   |
-| [`has_aer`](qiskit.utils.has_aer#qiskit.utils.has_aer "qiskit.utils.has_aer")                                                             | check if Aer is installed                                                    |
-| [`name_args`](qiskit.utils.name_args#qiskit.utils.name_args "qiskit.utils.name_args")                                                     | Decorator to convert unnamed arguments to named ones.                        |
-| [`algorithm_globals`](qiskit.utils.algorithm_globals#qiskit.utils.algorithm_globals "qiskit.utils.algorithm_globals")                     | Class for global properties.                                                 |
+|                                                                                                                       |                                                                              |
+| --------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------------------------------- |
+| [`summarize_circuits`](qiskit.utils.summarize_circuits "qiskit.utils.summarize_circuits")                             | Summarize circuits based on QuantumCircuit, and five metrics are summarized. |
+| [`get_entangler_map`](qiskit.utils.get_entangler_map "qiskit.utils.get_entangler_map")                                | Utility method to get an entangler map among qubits.                         |
+| [`validate_entangler_map`](qiskit.utils.validate_entangler_map "qiskit.utils.validate_entangler_map")                 | Validate a user supplied entangler map and converts entries to ints.         |
+| [`has_ibmq`](qiskit.utils.has_ibmq "qiskit.utils.has_ibmq")                                                           | Check if IBMQ is installed                                                   |
+| [`has_aer`](qiskit.utils.has_aer "qiskit.utils.has_aer")                                                              | check if Aer is installed                                                    |
+| [`name_args`](qiskit.utils.name_args "qiskit.utils.name_args")                                                        | Decorator to convert unnamed arguments to named ones.                        |
+| [`algorithm_globals`](qiskit.utils.algorithm_globals#qiskit.utils.algorithm_globals "qiskit.utils.algorithm_globals") | Class for global properties.                                                 |
 
-|                                                                                                               |                                              |
-| ------------------------------------------------------------------------------------------------------------- | -------------------------------------------- |
-| [`QuantumInstance`](qiskit.utils.QuantumInstance#qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance") | Quantum Backend including execution setting. |
+|                                                                                  |                                              |
+| -------------------------------------------------------------------------------- | -------------------------------------------- |
+| [`QuantumInstance`](qiskit.utils.QuantumInstance "qiskit.utils.QuantumInstance") | Quantum Backend including execution setting. |
 
 A QuantumInstance holds the Qiskit backend as well as a number of compile and runtime parameters controlling circuit compilation and execution. Quantum [`algorithms`](algorithms#module-qiskit.algorithms "qiskit.algorithms") are run on a device or simulator by passing a QuantumInstance setup with the desired backend etc.
 
@@ -66,28 +66,28 @@ Qiskit Terra, and many of the other Qiskit components, have several features tha
 
 #### External Python Libraries
 
-|                      |                                                                                                                                                                                                                                                                                                                                                                                                                                                                   |
-| -------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| **`HAS_CPLEX`**      | The [IBM CPLEX Optimizer](https://www.ibm.com/analytics/cplex-optimizer) is a high-performance mathematical programming solver for linear, mixed-integer and quadratic programming. It is required by the [`BIPMapping`](qiskit.transpiler.passes.BIPMapping#qiskit.transpiler.passes.BIPMapping "qiskit.transpiler.passes.BIPMapping") transpiler pass.                                                                                                          |
-| **`HAS_CVXPY`**      | [CVXPY](https://www.cvxpy.org/) is a Python package for solving convex optimization problems. It is required for calculating diamond norms with [`quantum_info.diamond_norm()`](qiskit.quantum_info.diamond_norm#qiskit.quantum_info.diamond_norm "qiskit.quantum_info.diamond_norm").                                                                                                                                                                            |
-| **`HAS_DOCPLEX`**    | [IBM Decision Optimization CPLEX Modelling](http://ibmdecisionoptimization.github.io/docplex-doc/) is a library for prescriptive analysis. Like CPLEX, it is required for the [`BIPMapping`](qiskit.transpiler.passes.BIPMapping#qiskit.transpiler.passes.BIPMapping "qiskit.transpiler.passes.BIPMapping") transpiler pass.                                                                                                                                      |
-| **`HAS_FIXTURES`**   | The test suite has additional features that are available if the optional [fixtures](https://launchpad.net/python-fixtures) module is installed. This generally also needs [`HAS_TESTTOOLS`](#qiskit.utils.optionals.HAS_TESTTOOLS "qiskit.utils.optionals.HAS_TESTTOOLS") as well. This is generally only needed for Qiskit developers.                                                                                                                          |
-| **`HAS_IPYTHON`**    | If [the IPython kernel](https://ipython.org/) is available, certain additional visualisations and line magics are made available.                                                                                                                                                                                                                                                                                                                                 |
-| **`HAS_IPYWIDGETS`** | Monitoring widgets for jobs running on external backends can be provided if [ipywidgets](https://ipywidgets.readthedocs.io/en/latest/) is available.                                                                                                                                                                                                                                                                                                              |
-| **`HAS_JAX`**        | Some methods of gradient calculation within [`opflow.gradients`](qiskit.opflow.gradients#module-qiskit.opflow.gradients "qiskit.opflow.gradients") require [JAX](https://github.com/google/jax) for autodifferentiation.                                                                                                                                                                                                                                          |
-| **`HAS_MATPLOTLIB`** | Qiskit Terra provides several visualisation tools in the [`visualization`](visualization#module-qiskit.visualization "qiskit.visualization") module. Almost all of these are built using [Matplotlib](https://matplotlib.org/), which must be installed in order to use them.                                                                                                                                                                                     |
-| **`HAS_NETWORKX`**   | Internally, Qiskit uses the high-performance [retworkx](https://github.com/Qiskit/retworkx) library as a core dependency, but sometimes it can be convenient to convert things into the Python-only [NetworkX](https://networkx.org/) format. There are converter methods on [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") if NetworkX is present.                                                     |
-| **`HAS_NLOPT`**      | [NLOpt](https://nlopt.readthedocs.io/en/latest/) is a nonlinear optimisation library, used by the global optimizers in [`algorithms.optimizers`](qiskit.algorithms.optimizers#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers"). See installation details in [Installing NLopt](qiskit.algorithms.optimizers.nlopts#installing-nlopt).                                                                                                          |
-| **`HAS_PIL`**        | PIL is a Python image-manipulation library. Qiskit actually uses the [pillow](https://pillow.readthedocs.io/en/stable/) fork of PIL if it is available when generating certain visualizations, for example of both [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") in certain modes. |
-| **`HAS_PYDOT`**      | For some graph visualisations, Qiskit uses [pydot](https://github.com/pydot/pydot) as an interface to GraphViz (see [`HAS_GRAPHVIZ`](#qiskit.utils.optionals.HAS_GRAPHVIZ "qiskit.utils.optionals.HAS_GRAPHVIZ")).                                                                                                                                                                                                                                                |
-| **`HAS_PYLATEX`**    | Various LaTeX-based visualizations, especially the circuit drawers, need access to the [pylatexenc](https://github.com/phfaist/pylatexenc) project to work correctly.                                                                                                                                                                                                                                                                                             |
-| **`HAS_SEABORN`**    | Qiskit Terra provides several visualisation tools in the [`visualization`](visualization#module-qiskit.visualization "qiskit.visualization") module. Some of these are built using [Seaborn](https://seaborn.pydata.org/), which must be installed in order to use them.                                                                                                                                                                                          |
-| **`HAS_SKLEARN`**    | Some of the gradient functions in [`opflow.gradients`](qiskit.opflow.gradients#module-qiskit.opflow.gradients "qiskit.opflow.gradients") use regularisation methods from [Scikit Learn](https://scikit-learn.org/stable/).                                                                                                                                                                                                                                        |
-| **`HAS_SKQUANT`**    | Some of the optimisers in [`algorithms.optimizers`](qiskit.algorithms.optimizers#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers") are based on those found in [Scikit Quant](https://github.com/scikit-quant/scikit-quant), which must be installed to use them.                                                                                                                                                                               |
-| **`HAS_SQSNOBFIT`**  | [SQSnobFit](https://pypi.org/project/SQSnobFit/) is a library for the “stable noisy optimization by branch and fit” algorithm. It is used by the [`SNOBFIT`](qiskit.algorithms.optimizers.SNOBFIT#qiskit.algorithms.optimizers.SNOBFIT "qiskit.algorithms.optimizers.SNOBFIT") optimizer.                                                                                                                                                                         |
-| **`HAS_SYMENGINE`**  | [Symengine](https://github.com/symengine/symengine) is a fast C++ backend for the symbolic-manipulation library [Sympy](https://www.sympy.org/en/index.html). Qiskit uses special methods from Symengine to accelerate its handling of [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter")s if available.                                                                                                                 |
-| **`HAS_TESTTOOLS`**  | Qiskit Terra’s test suite has more advanced functionality available if the optional [testtools](https://pypi.org/project/testtools/) library is installed. This is generally only needed for Qiskit developers.                                                                                                                                                                                                                                                   |
-| **`HAS_Z3`**         | [Z3](https://github.com/Z3Prover/z3) is a theorem prover, used in the [`CrosstalkAdaptiveSchedule`](qiskit.transpiler.passes.CrosstalkAdaptiveSchedule#qiskit.transpiler.passes.CrosstalkAdaptiveSchedule "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule") and [`HoareOptimizer`](qiskit.transpiler.passes.HoareOptimizer#qiskit.transpiler.passes.HoareOptimizer "qiskit.transpiler.passes.HoareOptimizer") transpiler passes.                              |
+|                      |                                                                                                                                                                                                                                                                                                                                                                                                        |
+| -------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| **`HAS_CPLEX`**      | The [IBM CPLEX Optimizer](https://www.ibm.com/analytics/cplex-optimizer) is a high-performance mathematical programming solver for linear, mixed-integer and quadratic programming. It is required by the [`BIPMapping`](qiskit.transpiler.passes.BIPMapping "qiskit.transpiler.passes.BIPMapping") transpiler pass.                                                                                   |
+| **`HAS_CVXPY`**      | [CVXPY](https://www.cvxpy.org/) is a Python package for solving convex optimization problems. It is required for calculating diamond norms with [`quantum_info.diamond_norm()`](qiskit.quantum_info.diamond_norm "qiskit.quantum_info.diamond_norm").                                                                                                                                                  |
+| **`HAS_DOCPLEX`**    | [IBM Decision Optimization CPLEX Modelling](http://ibmdecisionoptimization.github.io/docplex-doc/) is a library for prescriptive analysis. Like CPLEX, it is required for the [`BIPMapping`](qiskit.transpiler.passes.BIPMapping "qiskit.transpiler.passes.BIPMapping") transpiler pass.                                                                                                               |
+| **`HAS_FIXTURES`**   | The test suite has additional features that are available if the optional [fixtures](https://launchpad.net/python-fixtures) module is installed. This generally also needs [`HAS_TESTTOOLS`](#qiskit.utils.optionals.HAS_TESTTOOLS "qiskit.utils.optionals.HAS_TESTTOOLS") as well. This is generally only needed for Qiskit developers.                                                               |
+| **`HAS_IPYTHON`**    | If [the IPython kernel](https://ipython.org/) is available, certain additional visualisations and line magics are made available.                                                                                                                                                                                                                                                                      |
+| **`HAS_IPYWIDGETS`** | Monitoring widgets for jobs running on external backends can be provided if [ipywidgets](https://ipywidgets.readthedocs.io/en/latest/) is available.                                                                                                                                                                                                                                                   |
+| **`HAS_JAX`**        | Some methods of gradient calculation within [`opflow.gradients`](qiskit.opflow.gradients#module-qiskit.opflow.gradients "qiskit.opflow.gradients") require [JAX](https://github.com/google/jax) for autodifferentiation.                                                                                                                                                                               |
+| **`HAS_MATPLOTLIB`** | Qiskit Terra provides several visualisation tools in the [`visualization`](visualization#module-qiskit.visualization "qiskit.visualization") module. Almost all of these are built using [Matplotlib](https://matplotlib.org/), which must be installed in order to use them.                                                                                                                          |
+| **`HAS_NETWORKX`**   | Internally, Qiskit uses the high-performance [retworkx](https://github.com/Qiskit/retworkx) library as a core dependency, but sometimes it can be convenient to convert things into the Python-only [NetworkX](https://networkx.org/) format. There are converter methods on [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") if NetworkX is present.                       |
+| **`HAS_NLOPT`**      | [NLOpt](https://nlopt.readthedocs.io/en/latest/) is a nonlinear optimisation library, used by the global optimizers in [`algorithms.optimizers`](qiskit.algorithms.optimizers#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers"). See installation details in [Installing NLopt](qiskit.algorithms.optimizers.nlopts#installing-nlopt).                                               |
+| **`HAS_PIL`**        | PIL is a Python image-manipulation library. Qiskit actually uses the [pillow](https://pillow.readthedocs.io/en/stable/) fork of PIL if it is available when generating certain visualizations, for example of both [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") and [`DAGCircuit`](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit") in certain modes. |
+| **`HAS_PYDOT`**      | For some graph visualisations, Qiskit uses [pydot](https://github.com/pydot/pydot) as an interface to GraphViz (see [`HAS_GRAPHVIZ`](#qiskit.utils.optionals.HAS_GRAPHVIZ "qiskit.utils.optionals.HAS_GRAPHVIZ")).                                                                                                                                                                                     |
+| **`HAS_PYLATEX`**    | Various LaTeX-based visualizations, especially the circuit drawers, need access to the [pylatexenc](https://github.com/phfaist/pylatexenc) project to work correctly.                                                                                                                                                                                                                                  |
+| **`HAS_SEABORN`**    | Qiskit Terra provides several visualisation tools in the [`visualization`](visualization#module-qiskit.visualization "qiskit.visualization") module. Some of these are built using [Seaborn](https://seaborn.pydata.org/), which must be installed in order to use them.                                                                                                                               |
+| **`HAS_SKLEARN`**    | Some of the gradient functions in [`opflow.gradients`](qiskit.opflow.gradients#module-qiskit.opflow.gradients "qiskit.opflow.gradients") use regularisation methods from [Scikit Learn](https://scikit-learn.org/stable/).                                                                                                                                                                             |
+| **`HAS_SKQUANT`**    | Some of the optimisers in [`algorithms.optimizers`](qiskit.algorithms.optimizers#module-qiskit.algorithms.optimizers "qiskit.algorithms.optimizers") are based on those found in [Scikit Quant](https://github.com/scikit-quant/scikit-quant), which must be installed to use them.                                                                                                                    |
+| **`HAS_SQSNOBFIT`**  | [SQSnobFit](https://pypi.org/project/SQSnobFit/) is a library for the “stable noisy optimization by branch and fit” algorithm. It is used by the [`SNOBFIT`](qiskit.algorithms.optimizers.SNOBFIT "qiskit.algorithms.optimizers.SNOBFIT") optimizer.                                                                                                                                                   |
+| **`HAS_SYMENGINE`**  | [Symengine](https://github.com/symengine/symengine) is a fast C++ backend for the symbolic-manipulation library [Sympy](https://www.sympy.org/en/index.html). Qiskit uses special methods from Symengine to accelerate its handling of [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")s if available.                                                                               |
+| **`HAS_TESTTOOLS`**  | Qiskit Terra’s test suite has more advanced functionality available if the optional [testtools](https://pypi.org/project/testtools/) library is installed. This is generally only needed for Qiskit developers.                                                                                                                                                                                        |
+| **`HAS_Z3`**         | [Z3](https://github.com/Z3Prover/z3) is a theorem prover, used in the [`CrosstalkAdaptiveSchedule`](qiskit.transpiler.passes.CrosstalkAdaptiveSchedule "qiskit.transpiler.passes.CrosstalkAdaptiveSchedule") and [`HoareOptimizer`](qiskit.transpiler.passes.HoareOptimizer "qiskit.transpiler.passes.HoareOptimizer") transpiler passes.                                                              |
 
 #### External Command-Line Tools
 
@@ -105,9 +105,9 @@ Each of the lazy checkers is an instance of [`LazyDependencyManager`](#qiskit.ut
 from qiskit.utils import LazyImportTester
 ```
 
+<span id="qiskit.utils.LazyDependencyManager" />
 
-
-`LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)`
+`LazyDependencyManager(*, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/utils/lazy_tester.py "view source code")
 
 A mananger for some optional features that are expensive to import, or to verify the existence of.
 
@@ -146,7 +146,9 @@ This is the base class, which provides the Boolean context checking and error ma
 *   **install** – how to install this optional dependency. Passed to `MissingOptionalLibraryError` as the `pip_install` parameter.
 *   **msg** – an extra message to include in the error raised if this is required.
 
+### \_is\_available
 
+<span id="qiskit.utils.LazyDependencyManager._is_available" />
 
 `abstract _is_available()`
 
@@ -156,17 +158,23 @@ Subclasses of [`LazyDependencyManager`](#qiskit.utils.LazyDependencyManager "qis
 
 `bool`
 
+### disable\_locally
 
+<span id="qiskit.utils.LazyDependencyManager.disable_locally" />
 
 `disable_locally()`
 
 Create a context, during which the value of the dependency manager will be `False`. This means that within the context, any calls to this object will behave as if the dependency is not available, including raising errors. It is valid to call this method whether or not the dependency has already been evaluated. This is most useful in tests.
 
+### require\_in\_call
 
+### require\_in\_call
+
+<span id="qiskit.utils.LazyDependencyManager.require_in_call" />
 
 `require_in_call(feature_or_callable: Callable) → Callable`
 
-
+<span id="qiskit.utils.LazyDependencyManager.require_in_call" />
 
 `require_in_call(feature_or_callable: str) → Callable[[Callable], Callable]`
 
@@ -184,11 +192,15 @@ a decorator that will make its argument require this dependency before it is cal
 
 Callable
 
+### require\_in\_instance
 
+### require\_in\_instance
+
+<span id="qiskit.utils.LazyDependencyManager.require_in_instance" />
 
 `require_in_instance(feature_or_class: Type) → Type`
 
-
+<span id="qiskit.utils.LazyDependencyManager.require_in_instance" />
 
 `require_in_instance(feature_or_class: str) → Callable[[Type], Type]`
 
@@ -206,7 +218,9 @@ a class decorator that ensures that the wrapped feature is present if the class 
 
 Callable
 
+### require\_now
 
+<span id="qiskit.utils.LazyDependencyManager.require_now" />
 
 `require_now(feature)`
 
@@ -220,9 +234,9 @@ Eagerly attempt to import the dependencies in this object, and raise an exceptio
 
 **MissingOptionalLibraryError** – if the dependencies cannot be imported.
 
+<span id="qiskit.utils.LazyImportTester" />
 
-
-`LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)`
+`LazyImportTester(name_map_or_modules, *, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/utils/lazy_tester.py "view source code")
 
 A lazy dependency tester for importable Python modules. Any required objects will only be imported at the point that this object is tested for its Boolean value.
 
@@ -234,9 +248,9 @@ A lazy dependency tester for importable Python modules. Any required objects wil
 
 **ValueError** – if no modules are given.
 
+<span id="qiskit.utils.LazySubprocessTester" />
 
-
-`LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)`
+`LazySubprocessTester(command, *, name=None, callback=None, install=None, msg=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/utils/lazy_tester.py "view source code")
 
 A lazy checker that a command-line tool is available. The command will only be run once, at the point that this object is checked for its Boolean value.
 

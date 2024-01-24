@@ -10,9 +10,9 @@ python_api_name: qiskit.opflow.evolutions.Trotter
 
 <span id="qiskit.opflow.evolutions.Trotter" />
 
-`Trotter(reps=1)`
+`Trotter(reps=1)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/opflow/evolutions/trotterizations/trotter.py "view source code")
 
-Bases: [`qiskit.opflow.evolutions.trotterizations.suzuki.Suzuki`](qiskit.opflow.evolutions.Suzuki "qiskit.opflow.evolutions.trotterizations.suzuki.Suzuki")
+Bases: `qiskit.opflow.evolutions.trotterizations.suzuki.Suzuki`
 
 Simple Trotter expansion, composing the evolution circuits of each Operator in the sum together `reps` times and dividing the evolution time of each by `reps`.
 

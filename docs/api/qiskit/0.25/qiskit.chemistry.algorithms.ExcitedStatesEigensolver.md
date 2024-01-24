@@ -1,8 +1,16 @@
+---
+title: ExcitedStatesEigensolver
+description: API reference for qiskit.chemistry.algorithms.ExcitedStatesEigensolver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.ExcitedStatesEigensolver
+---
+
 # qiskit.chemistry.algorithms.ExcitedStatesEigensolver
 
+<span id="qiskit.chemistry.algorithms.ExcitedStatesEigensolver" />
 
-
-`ExcitedStatesEigensolver(transformation, solver)`
+`ExcitedStatesEigensolver(transformation, solver)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/excited_states_solvers/excited_states_eigensolver.py "view source code")
 
 The calculation of excited states via an Eigensolver algorithm
 
@@ -11,7 +19,9 @@ The calculation of excited states via an Eigensolver algorithm
 *   **transformation** (`Transformation`) – Qubit Operator Transformation
 *   **solver** (`Union`\[`Eigensolver`, `EigensolverFactory`]) – Minimum Eigensolver or MESFactory object.
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.algorithms.ExcitedStatesEigensolver.__init__" />
 
 `__init__(transformation, solver)`
 
@@ -34,7 +44,9 @@ The calculation of excited states via an Eigensolver algorithm
 | [`solver`](#qiskit.chemistry.algorithms.ExcitedStatesEigensolver.solver "qiskit.chemistry.algorithms.ExcitedStatesEigensolver.solver")                         | Returns the minimum eigensolver or factory.                                   |
 | [`transformation`](#qiskit.chemistry.algorithms.ExcitedStatesEigensolver.transformation "qiskit.chemistry.algorithms.ExcitedStatesEigensolver.transformation") | Returns the transformation used to obtain a qubit operator from the molecule. |
 
+### solve
 
+<span id="qiskit.chemistry.algorithms.ExcitedStatesEigensolver.solve" />
 
 `solve(driver, aux_operators=None)`
 
@@ -57,7 +69,9 @@ Compute Ground and Excited States properties.
 
 An eigenstate result. Depending on the transformation this can be an electronic structure or bosonic result.
 
+### solver
 
+<span id="qiskit.chemistry.algorithms.ExcitedStatesEigensolver.solver" />
 
 `property solver`
 
@@ -67,7 +81,9 @@ Returns the minimum eigensolver or factory.
 
 `Union`\[`Eigensolver`, `EigensolverFactory`]
 
+### transformation
 
+<span id="qiskit.chemistry.algorithms.ExcitedStatesEigensolver.transformation" />
 
 `property transformation`
 
@@ -76,3 +92,4 @@ Returns the transformation used to obtain a qubit operator from the molecule.
 **Return type**
 
 `Transformation`
+

@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.CUGate
 
 <span id="qiskit.circuit.library.CUGate" />
 
-`CUGate(theta, phi, lam, gamma, label=None, ctrl_state=None)`
+`CUGate(theta, phi, lam, gamma, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/u.py "view source code")
 
-Bases: [`qiskit.circuit.controlledgate.ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.controlledgate.ControlledGate")
+Bases: `qiskit.circuit.controlledgate.ControlledGate`
 
 Controlled-U gate (4-parameter two-qubit gate).
 
@@ -72,7 +72,7 @@ Create new CU gate.
 
 <span id="qiskit.circuit.library.CUGate.inverse" />
 
-`CUGate.inverse()`
+`CUGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/u.py "view source code")
 
 Return inverted CU gate.
 
@@ -88,7 +88,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.CUGate.ctrl_state" />
 

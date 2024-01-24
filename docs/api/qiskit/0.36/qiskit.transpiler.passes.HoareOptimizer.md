@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.HoareOptimizer
 
 <span id="qiskit.transpiler.passes.HoareOptimizer" />
 
-`HoareOptimizer(*args, **kwargs)`
+`HoareOptimizer(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/hoare_opt.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
+Bases: `qiskit.transpiler.basepasses.TransformationPass`
 
 This is a transpiler pass using Hoare logic circuit optimization. The inner workings of this are detailed in: [https://arxiv.org/abs/1810.00375](https://arxiv.org/abs/1810.00375)
 
@@ -38,7 +38,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.HoareOptimizer.run" />
 
-`HoareOptimizer.run(dag)`
+`HoareOptimizer.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/optimization/hoare_opt.py "view source code")
 
 **Parameters**
 

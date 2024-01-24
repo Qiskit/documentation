@@ -1,8 +1,16 @@
+---
+title: acquire
+description: API reference for qiskit.pulse.builder.acquire
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.acquire
+---
+
 # qiskit.pulse.builder.acquire
 
+<span id="qiskit.pulse.builder.acquire" />
 
-
-`acquire(duration, qubit_or_channel, register, **metadata)`
+`acquire(duration, qubit_or_channel, register, **metadata)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/builder.py "view source code")
 
 Acquire for a `duration` on a `channel` and store the result in a `register`.
 
@@ -29,10 +37,11 @@ with pulse.build() as pulse_prog:
 **Parameters**
 
 *   **duration** (`int`) – Duration to acquire data for
-*   **qubit\_or\_channel** (`Union`\[`int`, [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel#qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")]) – Either the qubit to acquire data for or the specific [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel#qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel") to acquire on.
-*   **register** (`NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels.MemorySlot#qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot#qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")])) – Location to store measured result.
-*   **metadata** (`Union`\[`Kernel`, `Discriminator`]) – Additional metadata for measurement. See [`Acquire`](qiskit.pulse.instructions.Acquire#qiskit.pulse.instructions.Acquire "qiskit.pulse.instructions.Acquire") for more information.
+*   **qubit\_or\_channel** (`Union`\[`int`, [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel")]) – Either the qubit to acquire data for or the specific [`AcquireChannel`](qiskit.pulse.channels.AcquireChannel "qiskit.pulse.channels.AcquireChannel") to acquire on.
+*   **register** (`NewType()`(`StorageLocation`, `Union`\[[`MemorySlot`](qiskit.pulse.channels.MemorySlot "qiskit.pulse.channels.MemorySlot"), [`RegisterSlot`](qiskit.pulse.channels.RegisterSlot "qiskit.pulse.channels.RegisterSlot")])) – Location to store measured result.
+*   **metadata** (`Union`\[`Kernel`, `Discriminator`]) – Additional metadata for measurement. See [`Acquire`](qiskit.pulse.instructions.Acquire "qiskit.pulse.instructions.Acquire") for more information.
 
 **Raises**
 
 **exceptions.PulseError** – If the register type is not supported.
+

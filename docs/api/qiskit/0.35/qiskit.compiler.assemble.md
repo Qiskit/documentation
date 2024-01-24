@@ -1,8 +1,16 @@
+---
+title: assemble
+description: API reference for qiskit.compiler.assemble
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.compiler.assemble
+---
+
 # qiskit.compiler.assemble
 
+<span id="qiskit.compiler.assemble" />
 
-
-`assemble(experiments, backend=None, qobj_id=None, qobj_header=None, shots=None, memory=False, max_credits=None, seed_simulator=None, qubit_lo_freq=None, meas_lo_freq=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=<MeasLevel.CLASSIFIED: 2>, meas_return=<MeasReturnType.AVERAGE: 'avg'>, meas_map=None, memory_slot_size=100, rep_time=None, rep_delay=None, parameter_binds=None, parametric_pulses=None, init_qubits=True, **run_config)`
+`assemble(experiments, backend=None, qobj_id=None, qobj_header=None, shots=None, memory=False, max_credits=None, seed_simulator=None, qubit_lo_freq=None, meas_lo_freq=None, qubit_lo_range=None, meas_lo_range=None, schedule_los=None, meas_level=<MeasLevel.CLASSIFIED: 2>, meas_return=<MeasReturnType.AVERAGE: 'avg'>, meas_map=None, memory_slot_size=100, rep_time=None, rep_delay=None, parameter_binds=None, parametric_pulses=None, init_qubits=True, **run_config)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/compiler/assembler.py "view source code")
 
 Assemble a list of circuits or pulse schedules into a `Qobj`.
 
@@ -73,7 +81,7 @@ NOTE: Backend.options is not used within assemble. The required values (previous
 
 **Return type**
 
-[`Qobj`](qiskit.qobj.Qobj#qiskit.qobj.Qobj "qiskit.qobj.Qobj")
+[`Qobj`](qiskit.qobj.Qobj "qiskit.qobj.Qobj")
 
 **Returns**
 
@@ -82,3 +90,4 @@ A `Qobj` that can be run on a backend. Depending on the type of input, this will
 **Raises**
 
 **QiskitError** – if the input cannot be interpreted as either circuits or schedules
+

@@ -10,9 +10,9 @@ python_api_name: qiskit.circuit.library.RXGate
 
 <span id="qiskit.circuit.library.RXGate" />
 
-`RXGate(theta, label=None)`
+`RXGate(theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rx.py "view source code")
 
-Bases: [`qiskit.circuit.gate.Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
+Bases: `qiskit.circuit.gate.Gate`
 
 Single-qubit rotation about the X axis.
 
@@ -27,7 +27,7 @@ q_0: ┤ Rx(ϴ) ├
 **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}RX(\theta) = \exp\left(-i \th X\right) =
+ \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}RX(\theta) = exp(-i \th X) =
     \begin{pmatrix}
         \cos{\th}   & -i\sin{\th} \\
         -i\sin{\th} & \cos{\th}
@@ -42,7 +42,7 @@ Create new RX gate.
 
 <span id="qiskit.circuit.library.RXGate.control" />
 
-`RXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`RXGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rx.py "view source code")
 
 Return a (multi-)controlled-RX gate.
 
@@ -64,7 +64,7 @@ controlled version of this gate.
 
 <span id="qiskit.circuit.library.RXGate.inverse" />
 
-`RXGate.inverse()`
+`RXGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/circuit/library/standard_gates/rx.py "view source code")
 
 Return inverted RX gate.
 
@@ -80,7 +80,7 @@ Get Clbits in condition.
 
 **Return type**
 
-`List`\[[`Clbit`](qiskit.circuit.Clbit "qiskit.circuit.classicalregister.Clbit")]
+`List`\[`Clbit`]
 
 <span id="qiskit.circuit.library.RXGate.decompositions" />
 

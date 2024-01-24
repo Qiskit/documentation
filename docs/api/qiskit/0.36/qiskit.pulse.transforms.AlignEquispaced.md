@@ -10,9 +10,9 @@ python_api_name: qiskit.pulse.transforms.AlignEquispaced
 
 <span id="qiskit.pulse.transforms.AlignEquispaced" />
 
-`AlignEquispaced(duration)`
+`AlignEquispaced(duration)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/alignments.py "view source code")
 
-Bases: [`qiskit.pulse.transforms.alignments.AlignmentKind`](pulse#qiskit.pulse.transforms.AlignmentKind "qiskit.pulse.transforms.alignments.AlignmentKind")
+Bases: `qiskit.pulse.transforms.alignments.AlignmentKind`
 
 Align instructions with equispaced interval within a specified duration.
 
@@ -22,7 +22,7 @@ Create new equispaced context.
 
 **Parameters**
 
-**duration** (`Union`\[`int`, [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.parameterexpression.ParameterExpression")]) – Duration of this context. This should be larger than the schedule duration. If the specified duration is shorter than the schedule duration, no alignment is performed and the input schedule is just returned. This duration can be parametrized.
+**duration** (`Union`\[`int`, `ParameterExpression`]) – Duration of this context. This should be larger than the schedule duration. If the specified duration is shorter than the schedule duration, no alignment is performed and the input schedule is just returned. This duration can be parametrized.
 
 ## Methods
 
@@ -30,7 +30,7 @@ Create new equispaced context.
 
 <span id="qiskit.pulse.transforms.AlignEquispaced.align" />
 
-`AlignEquispaced.align(schedule)`
+`AlignEquispaced.align(schedule)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/alignments.py "view source code")
 
 Reallocate instructions according to the policy.
 
@@ -38,11 +38,11 @@ Only top-level sub-schedules are aligned. If sub-schedules are nested, nested sc
 
 **Parameters**
 
-**schedule** ([`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")) – Schedule to align.
+**schedule** (`Schedule`) – Schedule to align.
 
 **Return type**
 
-[`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.schedule.Schedule")
+`Schedule`
 
 **Returns**
 
@@ -52,7 +52,7 @@ Schedule with reallocated instructions.
 
 <span id="qiskit.pulse.transforms.AlignEquispaced.to_dict" />
 
-`AlignEquispaced.to_dict()`
+`AlignEquispaced.to_dict()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/pulse/transforms/alignments.py "view source code")
 
 Returns dictionary to represent this alignment.
 
@@ -72,7 +72,5 @@ Return context duration.
 
 ### is\_sequential
 
-**Return type**
-
-`bool`
+`= True`
 

@@ -10,9 +10,9 @@ python_api_name: qiskit.algorithms.optimizers.ADAM
 
 <span id="qiskit.algorithms.optimizers.ADAM" />
 
-`ADAM(maxiter=10000, tol=1e-06, lr=0.001, beta_1=0.9, beta_2=0.99, noise_factor=1e-08, eps=1e-10, amsgrad=False, snapshot_dir=None)`
+`ADAM(maxiter=10000, tol=1e-06, lr=0.001, beta_1=0.9, beta_2=0.99, noise_factor=1e-08, eps=1e-10, amsgrad=False, snapshot_dir=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
 
-Bases: [`qiskit.algorithms.optimizers.optimizer.Optimizer`](qiskit.algorithms.optimizers.Optimizer "qiskit.algorithms.optimizers.optimizer.Optimizer")
+Bases: `qiskit.algorithms.optimizers.optimizer.Optimizer`
 
 Adam and AMSGRAD optimizers.
 
@@ -52,7 +52,7 @@ On the Convergence of Adam and Beyond. [arXiv:1904.09237](https://arxiv.org/abs/
 
 <span id="qiskit.algorithms.optimizers.ADAM.get_support_level" />
 
-`ADAM.get_support_level()`
+`ADAM.get_support_level()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
 
 Return support level dictionary
 
@@ -83,7 +83,7 @@ grad
 
 <span id="qiskit.algorithms.optimizers.ADAM.load_params" />
 
-`ADAM.load_params(load_dir)`
+`ADAM.load_params(load_dir)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
 
 Load iteration parameters for a file called `adam_params.csv`.
 
@@ -99,7 +99,7 @@ Load iteration parameters for a file called `adam_params.csv`.
 
 <span id="qiskit.algorithms.optimizers.ADAM.minimize" />
 
-`ADAM.minimize(fun, x0, jac=None, bounds=None, objective_function=None, initial_point=None, gradient_function=None)`
+`ADAM.minimize(fun, x0, jac=None, bounds=None, objective_function=None, initial_point=None, gradient_function=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
 
 Minimize the scalar function.
 
@@ -115,11 +115,41 @@ Minimize the scalar function.
 
 **Return type**
 
-[`OptimizerResult`](qiskit.algorithms.optimizers.OptimizerResult "qiskit.algorithms.optimizers.optimizer.OptimizerResult")
+`OptimizerResult`
 
 **Returns**
 
 The result of the optimization, containing e.g. the result as attribute `x`.
+
+### optimize
+
+<span id="qiskit.algorithms.optimizers.ADAM.optimize" />
+
+`ADAM.optimize(num_vars, objective_function, gradient_function=None, variable_bounds=None, initial_point=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
+
+Perform optimization.
+
+**Parameters**
+
+*   **num\_vars** (`int`) – Number of parameters to be optimized.
+*   **objective\_function** (`Callable`\[\[`ndarray`], `float`]) – Handle to a function that computes the objective function.
+*   **gradient\_function** (`Optional`\[`Callable`\[\[`ndarray`], `float`]]) – Handle to a function that computes the gradient of the objective function.
+*   **variable\_bounds** (`Optional`\[`List`\[`Tuple`\[`float`, `float`]]]) – deprecated
+*   **initial\_point** (`Optional`\[`ndarray`]) – The initial point for the optimization.
+
+**Return type**
+
+`Tuple`\[`ndarray`, `float`, `int`]
+
+**Returns**
+
+A tuple (point, value, nfev) where
+
+> point: is a 1D numpy.ndarray\[float] containing the solution
+>
+> value: is a float with the objective function value
+>
+> nfev: is the number of objective function calls
 
 ### print\_options
 
@@ -133,7 +163,7 @@ Print algorithm-specific options.
 
 <span id="qiskit.algorithms.optimizers.ADAM.save_params" />
 
-`ADAM.save_params(snapshot_dir)`
+`ADAM.save_params(snapshot_dir)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/algorithms/optimizers/adam_amsgrad.py "view source code")
 
 Save the current iteration parameters to a file called `adam_params.csv`.
 

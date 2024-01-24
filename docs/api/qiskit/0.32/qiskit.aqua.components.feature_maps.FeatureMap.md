@@ -1,8 +1,16 @@
+---
+title: FeatureMap
+description: API reference for qiskit.aqua.components.feature_maps.FeatureMap
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.components.feature_maps.FeatureMap
+---
+
 # FeatureMap
 
+<span id="qiskit.aqua.components.feature_maps.FeatureMap" />
 
-
-`FeatureMap`
+`FeatureMap`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/feature_maps/feature_map.py "view source code")
 
 Bases: `abc.ABC`
 
@@ -12,28 +20,61 @@ This method should initialize the module and use an exception if a component of 
 
 ## Methods
 
-|                                                                                                                                                                                                                                                 |                                                       |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------- |
-| [`construct_circuit`](qiskit.aqua.components.feature_maps.FeatureMap.construct_circuit#qiskit.aqua.components.feature_maps.FeatureMap.construct_circuit "qiskit.aqua.components.feature_maps.FeatureMap.construct_circuit")                     | Construct the variational form, given its parameters. |
-| [`get_entangler_map`](qiskit.aqua.components.feature_maps.FeatureMap.get_entangler_map#qiskit.aqua.components.feature_maps.FeatureMap.get_entangler_map "qiskit.aqua.components.feature_maps.FeatureMap.get_entangler_map")                     | get entangle map                                      |
-| [`validate_entangler_map`](qiskit.aqua.components.feature_maps.FeatureMap.validate_entangler_map#qiskit.aqua.components.feature_maps.FeatureMap.validate_entangler_map "qiskit.aqua.components.feature_maps.FeatureMap.validate_entangler_map") | validate entangler map                                |
+### construct\_circuit
+
+<span id="qiskit.aqua.components.feature_maps.FeatureMap.construct_circuit" />
+
+`abstract FeatureMap.construct_circuit(x, qr=None, inverse=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/feature_maps/feature_map.py "view source code")
+
+Construct the variational form, given its parameters.
+
+**Parameters**
+
+*   **x** (*numpy.ndarray\[float]*) – 1-D array, data
+*   **qr** ([*QuantumRegister*](qiskit.circuit.QuantumRegister "qiskit.circuit.QuantumRegister")) – the QuantumRegister object for the circuit, if None, generate new registers with name q.
+*   **inverse** (*bool*) – whether or not inverse the circuit
+
+**Returns**
+
+a quantum circuit.
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+### get\_entangler\_map
+
+<span id="qiskit.aqua.components.feature_maps.FeatureMap.get_entangler_map" />
+
+`static FeatureMap.get_entangler_map(map_type, num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/feature_maps/feature_map.py "view source code")
+
+get entangle map
+
+### validate\_entangler\_map
+
+<span id="qiskit.aqua.components.feature_maps.FeatureMap.validate_entangler_map" />
+
+`static FeatureMap.validate_entangler_map(entangler_map, num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/components/feature_maps/feature_map.py "view source code")
+
+validate entangler map
 
 ## Attributes
 
-
+<span id="qiskit.aqua.components.feature_maps.FeatureMap.feature_dimension" />
 
 ### feature\_dimension
 
 returns feature dimension
 
-
+<span id="qiskit.aqua.components.feature_maps.FeatureMap.num_qubits" />
 
 ### num\_qubits
 
 returns number of qubits
 
-
+<span id="qiskit.aqua.components.feature_maps.FeatureMap.support_parameterized_circuit" />
 
 ### support\_parameterized\_circuit
 
 returns whether or not the sub-class support parameterized circuit
+

@@ -1,8 +1,16 @@
+---
+title: FCIDumpDriver
+description: API reference for qiskit.chemistry.drivers.FCIDumpDriver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.drivers.FCIDumpDriver
+---
+
 # qiskit.chemistry.drivers.FCIDumpDriver
 
+<span id="qiskit.chemistry.drivers.FCIDumpDriver" />
 
-
-`FCIDumpDriver(fcidump_input, atoms=None)`
+`FCIDumpDriver(fcidump_input, atoms=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/fcidumpd/fcidumpdriver.py "view source code")
 
 Qiskit chemistry driver reading an FCIDump file.
 
@@ -21,9 +29,11 @@ A determinant based full configuration interaction program, Computer Physics Com
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If `fcidump_input` is not a string or if `atoms` is not a list of valid atomic symbols as specified in `QMolecule`.
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If `fcidump_input` is not a string or if `atoms` is not a list of valid atomic symbols as specified in `QMolecule`.
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.drivers.FCIDumpDriver.__init__" />
 
 `__init__(fcidump_input, atoms=None)`
 
@@ -34,7 +44,7 @@ A determinant based full configuration interaction program, Computer Physics Com
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If `fcidump_input` is not a string or if `atoms` is not a list of valid atomic symbols as specified in `QMolecule`.
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If `fcidump_input` is not a string or if `atoms` is not a list of valid atomic symbols as specified in `QMolecule`.
 
 ## Methods
 
@@ -53,7 +63,9 @@ A determinant based full configuration interaction program, Computer Physics Com
 | [`molecule`](#qiskit.chemistry.drivers.FCIDumpDriver.molecule "qiskit.chemistry.drivers.FCIDumpDriver.molecule")                            | return molecule                                 |
 | [`supports_molecule`](#qiskit.chemistry.drivers.FCIDumpDriver.supports_molecule "qiskit.chemistry.drivers.FCIDumpDriver.supports_molecule") | True for derived classes that support Molecule. |
 
+### basis
 
+<span id="qiskit.chemistry.drivers.FCIDumpDriver.basis" />
 
 `property basis`
 
@@ -63,7 +75,9 @@ return basis
 
 `str`
 
+### dump
 
+<span id="qiskit.chemistry.drivers.FCIDumpDriver.dump" />
 
 `static dump(q_mol, outpath, orbsym=None, isym=1)`
 
@@ -80,7 +94,9 @@ Convenience method to produce an FCIDump output file.
 
 `None`
 
+### hf\_method
 
+<span id="qiskit.chemistry.drivers.FCIDumpDriver.hf_method" />
 
 `property hf_method`
 
@@ -90,7 +106,9 @@ return Hartree-Fock method
 
 `str`
 
+### molecule
 
+<span id="qiskit.chemistry.drivers.FCIDumpDriver.molecule" />
 
 `property molecule`
 
@@ -100,7 +118,9 @@ return molecule
 
 `Optional`\[`Molecule`]
 
+### run
 
+<span id="qiskit.chemistry.drivers.FCIDumpDriver.run" />
 
 `run()`
 
@@ -114,7 +134,9 @@ Constructs a QMolecule instance out of a FCIDump file.
 
 A QMolecule instance populated with a minimal set of required data.
 
+### supports\_molecule
 
+<span id="qiskit.chemistry.drivers.FCIDumpDriver.supports_molecule" />
 
 `property supports_molecule`
 
@@ -127,3 +149,4 @@ True for derived classes that support Molecule.
 **Returns**
 
 True if Molecule is supported.
+

@@ -10,9 +10,9 @@ python_api_name: qiskit.transpiler.passes.DAGLongestPath
 
 <span id="qiskit.transpiler.passes.DAGLongestPath" />
 
-`DAGLongestPath(*args, **kwargs)`
+`DAGLongestPath(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/analysis/dag_longest_path.py "view source code")
 
-Bases: [`qiskit.transpiler.basepasses.AnalysisPass`](qiskit.transpiler.AnalysisPass "qiskit.transpiler.basepasses.AnalysisPass")
+Bases: `qiskit.transpiler.basepasses.AnalysisPass`
 
 Return the longest path in a DAGcircuit as a list of DAGOpNodes, DAGInNodes, and DAGOutNodes.
 
@@ -30,7 +30,7 @@ Return the name of the pass.
 
 <span id="qiskit.transpiler.passes.DAGLongestPath.run" />
 
-`DAGLongestPath.run(dag)`
+`DAGLongestPath.run(dag)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.20/qiskit/transpiler/passes/analysis/dag_longest_path.py "view source code")
 
 Run the DAGLongestPath pass on dag.
 
