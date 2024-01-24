@@ -10,7 +10,7 @@ python_api_name: qiskit.transpiler.passes.SabreSwap
 
 <span id="qiskit.transpiler.passes.SabreSwap" />
 
-`qiskit.transpiler.passes.SabreSwap(*args, **kwargs)`
+`qiskit.transpiler.passes.SabreSwap(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passes/routing/sabre_swap.py "view source code")
 
 Bases: [`TransformationPass`](qiskit.transpiler.TransformationPass "qiskit.transpiler.basepasses.TransformationPass")
 
@@ -70,10 +70,10 @@ Additional Information:
 > This is the same as ‘lookahead’, but the whole cost is multiplied by a decay factor. This increases the cost if the SWAP that generated the trial layout was recently used (i.e. it penalizes increase in depth).
 >
 > $$
-> \begin{split}H_{decay} = max(decay(SWAP.q_1), decay(SWAP.q_2)) {
+> H_{decay} = max(decay(SWAP.q_1), decay(SWAP.q_2)) {
 >     \frac{1}{\left|{F}\right|} \sum_{gate \in F} D[\pi(gate.q_1)][\pi(gate.q2)]\\
 >     + W *\frac{1}{\left|{E}\right|} \sum_{gate \in E} D[\pi(gate.q_1)][\pi(gate.q2)]
->     }\end{split}
+>     }
 > $$
 
 ## Attributes

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.RZGate
 
 <span id="qiskit.circuit.library.RZGate" />
 
-`qiskit.circuit.library.RZGate(phi, label=None, *, duration=None, unit='dt')`
+`qiskit.circuit.library.RZGate(phi, label=None, *, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/rz.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -31,11 +31,11 @@ q_0: ┤ Rz(λ) ├
 **Matrix Representation:**
 
 $$
-\begin{split}RZ(\lambda) = \exp\left(-i\frac{\lambda}{2}Z\right) =
+RZ(\lambda) = \exp\left(-i\frac{\lambda}{2}Z\right) =
     \begin{pmatrix}
         e^{-i\frac{\lambda}{2}} & 0 \\
         0 & e^{i\frac{\lambda}{2}}
-    \end{pmatrix}\end{split}
+    \end{pmatrix}
 $$
 
 <Admonition title="See also" type="note">

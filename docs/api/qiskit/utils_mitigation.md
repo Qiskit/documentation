@@ -32,6 +32,6 @@ The measurement calibration is used to mitigate measurement errors. The main ide
 
 |                                                                                                                                                 |                                                                       |
 | ----------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------- |
-| [`CompleteMeasFitter`](qiskit.utils.mitigation.CompleteMeasFitter "qiskit.utils.mitigation.CompleteMeasFitter")(results, state\_labels\[, ...]) | Deprecated: Measurement correction fitter for a full calibration      |
-| [`TensoredMeasFitter`](qiskit.utils.mitigation.TensoredMeasFitter "qiskit.utils.mitigation.TensoredMeasFitter")(results, mit\_pattern\[, ...])  | Deprecated: Measurement correction fitter for a tensored calibration. |
+| [`CompleteMeasFitter`](qiskit.utils.mitigation.CompleteMeasFitter "qiskit.utils.mitigation.CompleteMeasFitter")(results, state\_labels\[, ...]) | Deprecated: Measurement correction fitter for a full calibration      |
+| [`TensoredMeasFitter`](qiskit.utils.mitigation.TensoredMeasFitter "qiskit.utils.mitigation.TensoredMeasFitter")(results, mit\_pattern\[, ...])  | Deprecated: Measurement correction fitter for a tensored calibration. |
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.LinearFunction
 
 <span id="qiskit.circuit.library.LinearFunction" />
 
-`qiskit.circuit.library.LinearFunction(linear, validate_input=False)`
+`qiskit.circuit.library.LinearFunction(linear, validate_input=False)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/generalized_gates/linear_function.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -35,11 +35,11 @@ q_2: ─────
 is represented by a 3x3 linear matrix
 
 $$
-\begin{split}\begin{pmatrix}
+\begin{pmatrix}
     1 & 0 & 0 \\
     1 & 1 & 0 \\
     0 & 0 & 1
-\end{pmatrix}\end{split}
+\end{pmatrix}
 $$
 
 **References:**
@@ -50,8 +50,8 @@ Create a new linear function.
 
 **Parameters**
 
-*   **LinearFunction** (*linear (*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*] or ndarray\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*] or QuantumCircuit or*) – or PermutationGate or Clifford): data from which a linear function can be constructed. It can be either a nxn matrix (describing the linear transformation), a permutation (which is a special case of a linear function), another linear function, a clifford (when it corresponds to a linear function), or a quantum circuit composed of linear gates (CX and SWAP) and other objects described above, including nested subcircuits.
-*   **validate\_input** – if True, performs more expensive input validation checks, such as checking that a given n x n matrix is invertible.
+*   **linear** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*\[*[*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")*] | np.ndarray\[*[*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")*] |* [*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")  *|*[*LinearFunction*](#qiskit.circuit.library.LinearFunction "qiskit.circuit.library.LinearFunction")  *|*[*PermutationGate*](qiskit.circuit.library.PermutationGate "qiskit.circuit.library.PermutationGate")  *|*[*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")) – data from which a linear function can be constructed. It can be either a nxn matrix (describing the linear transformation), a permutation (which is a special case of a linear function), another linear function, a clifford (when it corresponds to a linear function), or a quantum circuit composed of linear gates (CX and SWAP) and other objects described above, including nested subcircuits.
+*   **validate\_input** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – if True, performs more expensive input validation checks, such as checking that a given n x n matrix is invertible.
 
 **Raises**
 
