@@ -1,8 +1,16 @@
+---
+title: Credentials
+description: API reference for qiskit.providers.ibmq.credentials.Credentials
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.credentials.Credentials
+---
+
 # qiskit.providers.ibmq.credentials.Credentials
 
+<span id="qiskit.providers.ibmq.credentials.Credentials" />
 
-
-`Credentials(token, url, websockets_url=None, hub=None, group=None, project=None, proxies=None, verify=True, services=None, access_token=None)`
+`Credentials(token, url, websockets_url=None, hub=None, group=None, project=None, proxies=None, verify=True, services=None, access_token=None)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.14/qiskit/providers/ibmq/credentials/credentials.py "view source code")
 
 IBM Quantum Experience account credentials.
 
@@ -25,7 +33,9 @@ Credentials constructor.
 *   **services** (`Optional`\[`Dict`]) – Additional services for this account.
 *   **access\_token** (`Optional`\[`str`]) – IBM Quantum access token.
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.ibmq.credentials.Credentials.__init__" />
 
 `__init__(token, url, websockets_url=None, hub=None, group=None, project=None, proxies=None, verify=True, services=None, access_token=None)`
 
@@ -53,7 +63,9 @@ Credentials constructor.
 | [`is_ibmq`](#qiskit.providers.ibmq.credentials.Credentials.is_ibmq "qiskit.providers.ibmq.credentials.Credentials.is_ibmq")()                                           | Return whether the credentials represent an IBM Quantum Experience account. |
 | [`unique_id`](#qiskit.providers.ibmq.credentials.Credentials.unique_id "qiskit.providers.ibmq.credentials.Credentials.unique_id")()                                     | Return a value that uniquely identifies these credentials.                  |
 
+### connection\_parameters
 
+<span id="qiskit.providers.ibmq.credentials.Credentials.connection_parameters" />
 
 `connection_parameters()`
 
@@ -67,7 +79,9 @@ Construct connection related parameters.
 
 A dictionary with connection-related parameters in the format expected by `requests`. The following keys can be present: `proxies`, `verify`, and `auth`.
 
+### is\_ibmq
 
+<span id="qiskit.providers.ibmq.credentials.Credentials.is_ibmq" />
 
 `is_ibmq()`
 
@@ -77,7 +91,9 @@ Return whether the credentials represent an IBM Quantum Experience account.
 
 `bool`
 
+### unique\_id
 
+<span id="qiskit.providers.ibmq.credentials.Credentials.unique_id" />
 
 `unique_id()`
 
@@ -92,3 +108,4 @@ By convention, two credentials that have the same hub, group, and project are co
 **Returns**
 
 A `HubGroupProject` instance.
+
