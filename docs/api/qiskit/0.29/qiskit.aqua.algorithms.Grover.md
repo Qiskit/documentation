@@ -1,8 +1,16 @@
+---
+title: Grover
+description: API reference for qiskit.aqua.algorithms.Grover
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.Grover
+---
+
 # Grover
 
+<span id="qiskit.aqua.algorithms.Grover" />
 
-
-`Grover(oracle, good_state=None, state_preparation=None, iterations=1, sample_from_iterations=False, post_processing=None, grover_operator=None, quantum_instance=None, init_state=None, incremental=False, num_iterations=None, lam=None, rotation_counts=None, mct_mode=None)`
+`Grover(oracle, good_state=None, state_preparation=None, iterations=1, sample_from_iterations=False, post_processing=None, grover_operator=None, quantum_instance=None, init_state=None, incremental=False, num_iterations=None, lam=None, rotation_counts=None, mct_mode=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
 
 Bases: `qiskit.aqua.algorithms.quantum_algorithm.QuantumAlgorithm`
 
@@ -22,7 +30,7 @@ $$
 
 i.e. it flips the phase of the state $|x\rangle$ if $x$ is a hit. The details of how $S_f$ works are unimportant to the algorithm; Grover’s search algorithm treats the oracle as a black box.
 
-This class supports oracles in form of `QuantumCircuit` or [`Oracle`](qiskit.aqua.components.oracles.Oracle#qiskit.aqua.components.oracles.Oracle "qiskit.aqua.components.oracles.Oracle"). For example the [`LogicalExpressionOracle`](qiskit.aqua.components.oracles.LogicalExpressionOracle#qiskit.aqua.components.oracles.LogicalExpressionOracle "qiskit.aqua.components.oracles.LogicalExpressionOracle") can take as input a SAT problem in [DIMACS CNF format](http://www.satcompetition.org/2009/format-benchmarks2009.html) and be used with Grover algorithm to find a satisfiable assignment.
+This class supports oracles in form of `QuantumCircuit` or [`Oracle`](qiskit.aqua.components.oracles.Oracle "qiskit.aqua.components.oracles.Oracle"). For example the [`LogicalExpressionOracle`](qiskit.aqua.components.oracles.LogicalExpressionOracle "qiskit.aqua.components.oracles.LogicalExpressionOracle") can take as input a SAT problem in [DIMACS CNF format](http://www.satcompetition.org/2009/format-benchmarks2009.html) and be used with Grover algorithm to find a satisfiable assignment.
 
 With oracle at hand, Grover’s Search constructs the Grover operator to amplify the amplitudes of the good states:
 
@@ -41,7 +49,7 @@ $$
 \mathcal{Q} = \mathcal{A} \mathcal{S}_0 \mathcal{A}^\dagger \mathcal{S}_f.
 $$
 
-For more information, see the [`GroverOperator`](qiskit.circuit.library.GroverOperator#qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator") in the circuit library.
+For more information, see the [`GroverOperator`](qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator") in the circuit library.
 
 ## References
 
@@ -60,12 +68,12 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 **Parameters**
 
 *   **oracle** (`Union`\[`Oracle`, `QuantumCircuit`, `Statevector`]) – The oracle to flip the phase of good states, $\mathcal{S}_f$.
-*   **good\_state** (`Union`\[`Callable`\[\[`str`], `bool`], `List`\[`int`], `List`\[`str`], `Statevector`, `None`]) – A callable to check if a given measurement corresponds to a good state. For convenience, a list of bitstrings, a list of integer or statevector can be passed instead of a function. If the input is a list of bitstrings, each bitstrings in the list represents a good state. If the input is a list of integer, each integer represent the index of the good state to be $|1\rangle$. If it is a [`Statevector`](qiskit.quantum_info.Statevector#qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector"), it represents a superposition of all good states.
+*   **good\_state** (`Union`\[`Callable`\[\[`str`], `bool`], `List`\[`int`], `List`\[`str`], `Statevector`, `None`]) – A callable to check if a given measurement corresponds to a good state. For convenience, a list of bitstrings, a list of integer or statevector can be passed instead of a function. If the input is a list of bitstrings, each bitstrings in the list represents a good state. If the input is a list of integer, each integer represent the index of the good state to be $|1\rangle$. If it is a [`Statevector`](qiskit.quantum_info.Statevector "qiskit.quantum_info.Statevector"), it represents a superposition of all good states.
 *   **state\_preparation** (`Optional`\[`QuantumCircuit`]) – The state preparation $\mathcal{A}$. If None then Grover’s Search by default uses uniform superposition.
 *   **iterations** (`Union`\[`int`, `List`\[`int`]]) – Specify the number of iterations/power of Grover’s operator to be checked. It the number of solutions is known, this should be an integer specifying the optimal number of iterations (see `optimal_num_iterations`). Alternatively, this can be a list of powers to check.
 *   **sample\_from\_iterations** (`bool`) – If True, instead of taking the values in `iterations` as powers of the Grover operator, a random integer sample between 0 and smaller value than the iteration is used as a power, see \[1], Section 4.
 *   **post\_processing** (`Optional`\[`Callable`\[\[`List`\[`int`]], `List`\[`int`]]]) – An optional post processing applied to the top measurement. Can be used e.g. to convert from the bit-representation of the measurement \[1, 0, 1] to a DIMACS CNF format \[1, -2, 3].
-*   **grover\_operator** (`Optional`\[`QuantumCircuit`]) – A circuit implementing the Grover operator $\mathcal{Q}$. If None, the operator is constructed automatically using the [`GroverOperator`](qiskit.circuit.library.GroverOperator#qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator") from the circuit library.
+*   **grover\_operator** (`Optional`\[`QuantumCircuit`]) – A circuit implementing the Grover operator $\mathcal{Q}$. If None, the operator is constructed automatically using the [`GroverOperator`](qiskit.circuit.library.GroverOperator "qiskit.circuit.library.GroverOperator") from the circuit library.
 *   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – A Quantum Instance or Backend to run the circuits.
 *   **init\_state** (`Optional`\[`InitialState`]) – DEPRECATED, use `state_preparation` instead. An optional initial quantum state. If None (default) then Grover’s Search by default uses uniform superposition to initialize its quantum state. However, an initial state may be supplied, if useful, for example, if the user has some prior knowledge regarding where the search target(s) might be located.
 *   **incremental** (`bool`) – DEPRECATED, use `iterations` instead. Whether to use incremental search mode (True) or not (False). Supplied *num\_iterations* is ignored when True and instead the search task will be carried out in successive rounds, using circuits built with incrementally higher number of iterations for the repetition of the amplitude amplification until a target is found or the maximal number $\log N$ ($N$ being the total number of elements in the set from the oracle used) of iterations is reached. The implementation follows Section 4 of \[2].
@@ -77,7 +85,7 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 **Raises**
 
 *   **TypeError** – If `init_state` is of unsupported type or is of type ```InitialState` but     the oracle is not of type ``Oracle```.
-*   [**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – evaluate\_classically() missing from the input oracle
+*   [**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – evaluate\_classically() missing from the input oracle
 *   **TypeError** – If `oracle` is of unsupported type.
 
 ## References
@@ -88,18 +96,128 @@ Quantum Amplitude Amplification and Estimation. [arXiv:quant-ph/0005055](http://
 
 ## Methods
 
-|                                                                                                                                                                                              |                                                                               |
-| -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`construct_circuit`](qiskit.aqua.algorithms.Grover.construct_circuit#qiskit.aqua.algorithms.Grover.construct_circuit "qiskit.aqua.algorithms.Grover.construct_circuit")                     | Construct the circuit for Grover’s algorithm with `power` Grover operators.   |
-| [`is_good_state`](qiskit.aqua.algorithms.Grover.is_good_state#qiskit.aqua.algorithms.Grover.is_good_state "qiskit.aqua.algorithms.Grover.is_good_state")                                     | Check whether a provided bitstring is a good state or not.                    |
-| [`optimal_num_iterations`](qiskit.aqua.algorithms.Grover.optimal_num_iterations#qiskit.aqua.algorithms.Grover.optimal_num_iterations "qiskit.aqua.algorithms.Grover.optimal_num_iterations") | Return the optimal number of iterations, if the number of solutions is known. |
-| [`post_processing`](qiskit.aqua.algorithms.Grover.post_processing#qiskit.aqua.algorithms.Grover.post_processing "qiskit.aqua.algorithms.Grover.post_processing")                             | Do the post-processing to the measurement result                              |
-| [`run`](qiskit.aqua.algorithms.Grover.run#qiskit.aqua.algorithms.Grover.run "qiskit.aqua.algorithms.Grover.run")                                                                             | Execute the algorithm with selected backend.                                  |
-| [`set_backend`](qiskit.aqua.algorithms.Grover.set_backend#qiskit.aqua.algorithms.Grover.set_backend "qiskit.aqua.algorithms.Grover.set_backend")                                             | Sets backend with configuration.                                              |
+### construct\_circuit
+
+<span id="qiskit.aqua.algorithms.Grover.construct_circuit" />
+
+`Grover.construct_circuit(power=None, measurement=False)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
+
+Construct the circuit for Grover’s algorithm with `power` Grover operators.
+
+**Parameters**
+
+*   **power** (`Optional`\[`int`]) – The number of times the Grover operator is repeated. If None, this argument is set to the first item in `iterations`.
+*   **measurement** (`bool`) – Boolean flag to indicate if measurement should be included in the circuit.
+
+**Returns**
+
+the QuantumCircuit object for the constructed circuit
+
+**Return type**
+
+[QuantumCircuit](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")
+
+### is\_good\_state
+
+<span id="qiskit.aqua.algorithms.Grover.is_good_state" />
+
+`Grover.is_good_state(bitstr)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
+
+Check whether a provided bitstring is a good state or not.
+
+**Parameters**
+
+**bitstr** (`str`) – The measurement as bitstring.
+
+**Return type**
+
+`bool`
+
+**Returns**
+
+True if the measurement is a good state, False otherwise.
+
+### optimal\_num\_iterations
+
+<span id="qiskit.aqua.algorithms.Grover.optimal_num_iterations" />
+
+`static Grover.optimal_num_iterations(num_solutions, num_qubits)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
+
+Return the optimal number of iterations, if the number of solutions is known.
+
+**Parameters**
+
+*   **num\_solutions** (`int`) – The number of solutions.
+*   **num\_qubits** (`int`) – The number of qubits used to encode the states.
+
+**Return type**
+
+`int`
+
+**Returns**
+
+The optimal number of iterations for Grover’s algorithm to succeed.
+
+### post\_processing
+
+<span id="qiskit.aqua.algorithms.Grover.post_processing" />
+
+`Grover.post_processing(measurement)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/aqua/algorithms/amplitude_amplifiers/grover.py "view source code")
+
+Do the post-processing to the measurement result
+
+**Parameters**
+
+**measurement** (`List`\[`int`]) – The measurement as list of int.
+
+**Return type**
+
+`List`\[`int`]
+
+**Returns**
+
+Do the post-processing based on the post\_processing argument. If the post\_processing argument is None and the Oracle class is used as its oracle, oracle.evaluate\_classically is used as the post\_processing. Otherwise, just return the input bitstr
+
+### run
+
+<span id="qiskit.aqua.algorithms.Grover.run" />
+
+`Grover.run(quantum_instance=None, **kwargs)`
+
+Execute the algorithm with selected backend.
+
+**Parameters**
+
+*   **quantum\_instance** (`Union`\[`QuantumInstance`, `Backend`, `BaseBackend`, `None`]) – the experimental setting.
+*   **kwargs** (*dict*) – kwargs
+
+**Returns**
+
+results of an algorithm.
+
+**Return type**
+
+dict
+
+**Raises**
+
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+
+### set\_backend
+
+<span id="qiskit.aqua.algorithms.Grover.set_backend" />
+
+`Grover.set_backend(backend, **kwargs)`
+
+Sets backend with configuration.
+
+**Return type**
+
+`None`
 
 ## Attributes
 
-
+<span id="qiskit.aqua.algorithms.Grover.backend" />
 
 ### backend
 
@@ -109,7 +227,7 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
-
+<span id="qiskit.aqua.algorithms.Grover.grover_operator" />
 
 ### grover\_operator
 
@@ -119,7 +237,7 @@ Returns grover\_operator.
 
 `QuantumCircuit`
 
-
+<span id="qiskit.aqua.algorithms.Grover.quantum_instance" />
 
 ### quantum\_instance
 
@@ -129,8 +247,9 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
-
+<span id="qiskit.aqua.algorithms.Grover.random" />
 
 ### random
 
 Return a numpy random.
+

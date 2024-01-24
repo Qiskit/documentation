@@ -1,8 +1,16 @@
+---
+title: QuantumRegister
+description: API reference for qiskit.circuit.QuantumRegister
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.QuantumRegister
+---
+
 # QuantumRegister
 
+<span id="qiskit.circuit.QuantumRegister" />
 
-
-`QuantumRegister(size=None, name=None, bits=None)`
+`QuantumRegister(size=None, name=None, bits=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/quantumregister.py "view source code")
 
 Bases: `qiskit.circuit.register.Register`
 
@@ -27,38 +35,43 @@ Either the `size` or the `bits` argument must be provided. If `size` is not None
 
 ## Methods
 
-|                                                                                                                         |                                           |
-| ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------- |
-| [`qasm`](qiskit.circuit.QuantumRegister.qasm#qiskit.circuit.QuantumRegister.qasm "qiskit.circuit.QuantumRegister.qasm") | Return OPENQASM string for this register. |
+### qasm
+
+<span id="qiskit.circuit.QuantumRegister.qasm" />
+
+`QuantumRegister.qasm()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.18/qiskit/circuit/quantumregister.py "view source code")
+
+Return OPENQASM string for this register.
 
 ## Attributes
 
-
+<span id="qiskit.circuit.QuantumRegister.instances_counter" />
 
 ### instances\_counter
 
 `= count(0)`
 
-
+<span id="qiskit.circuit.QuantumRegister.name" />
 
 ### name
 
 Get the register name.
 
-
+<span id="qiskit.circuit.QuantumRegister.name_format" />
 
 ### name\_format
 
 `= re.compile('[a-z][a-zA-Z0-9_]*')`
 
-
+<span id="qiskit.circuit.QuantumRegister.prefix" />
 
 ### prefix
 
 `= 'q'`
 
-
+<span id="qiskit.circuit.QuantumRegister.size" />
 
 ### size
 
 Get the register size.
+
