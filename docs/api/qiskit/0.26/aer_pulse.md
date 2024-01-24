@@ -20,15 +20,15 @@ This module contains classes and functions to build a pulse system model for sim
 
 ## Classes
 
-|                                                                                                                                                                                |                                            |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------ |
-| [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel#qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel")(\[hamiltonian, …]) | Physical model object for pulse simulator. |
+|                                                                                                                                    |                                            |
+| ---------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------ |
+| [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel")(\[hamiltonian, …]) | Physical model object for pulse simulator. |
 
 ## Functions
 
 These functions can be used to generate a pulse system model for certain types of systems.
 
-|                                                                                                                                                                                                  |                                                                                                                                                                                                                                              |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ | -------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`duffing_system_model`](qiskit.providers.aer.pulse.duffing_system_model#qiskit.providers.aer.pulse.duffing_system_model "qiskit.providers.aer.pulse.duffing_system_model")(dim\_oscillators, …) | Returns a [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel#qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel") representing a physical model for a collection of Duffing oscillators. |
+|                                                                                                                                                  |                                                                                                                                                                                                  |
+| ------------------------------------------------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------ |
+| [`duffing_system_model`](qiskit.providers.aer.pulse.duffing_system_model "qiskit.providers.aer.pulse.duffing_system_model")(dim\_oscillators, …) | Returns a [`PulseSystemModel`](qiskit.providers.aer.pulse.PulseSystemModel "qiskit.providers.aer.pulse.PulseSystemModel") representing a physical model for a collection of Duffing oscillators. |
 

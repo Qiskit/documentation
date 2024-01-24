@@ -1,8 +1,16 @@
+---
+title: GroundStateEigensolver
+description: API reference for qiskit.chemistry.algorithms.GroundStateEigensolver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.GroundStateEigensolver
+---
+
 # qiskit.chemistry.algorithms.GroundStateEigensolver
 
+<span id="qiskit.chemistry.algorithms.GroundStateEigensolver" />
 
-
-`GroundStateEigensolver(transformation, solver)`
+`GroundStateEigensolver(transformation, solver)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/ground_state_eigensolver.py "view source code")
 
 Ground state computation using a minimum eigensolver.
 
@@ -11,7 +19,9 @@ Ground state computation using a minimum eigensolver.
 *   **transformation** (`Transformation`) – Qubit Operator Transformation
 *   **solver** (`Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]) – Minimum Eigensolver or MESFactory object, e.g. the VQEUCCSDFactory.
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.algorithms.GroundStateEigensolver.__init__" />
 
 `__init__(transformation, solver)`
 
@@ -36,7 +46,9 @@ Ground state computation using a minimum eigensolver.
 | [`solver`](#qiskit.chemistry.algorithms.GroundStateEigensolver.solver "qiskit.chemistry.algorithms.GroundStateEigensolver.solver")                         | Returns the minimum eigensolver or factory.                                   |
 | [`transformation`](#qiskit.chemistry.algorithms.GroundStateEigensolver.transformation "qiskit.chemistry.algorithms.GroundStateEigensolver.transformation") | Returns the transformation used to obtain a qubit operator from the molecule. |
 
+### evaluate\_operators
 
+<span id="qiskit.chemistry.algorithms.GroundStateEigensolver.evaluate_operators" />
 
 `evaluate_operators(state, operators)`
 
@@ -55,7 +67,9 @@ Evaluates additional operators at the given state.
 
 The expectation value of the given operator(s). The return type will be identical to the format of the provided operators.
 
+### returns\_groundstate
 
+<span id="qiskit.chemistry.algorithms.GroundStateEigensolver.returns_groundstate" />
 
 `returns_groundstate()`
 
@@ -65,7 +79,9 @@ Whether the eigensolver returns the ground state or only ground state energy.
 
 `bool`
 
+### solve
 
+<span id="qiskit.chemistry.algorithms.GroundStateEigensolver.solve" />
 
 `solve(driver, aux_operators=None)`
 
@@ -88,7 +104,9 @@ Compute Ground State properties.
 
 An eigenstate result. Depending on the transformation this can be an electronic structure or bosonic result.
 
+### solver
 
+<span id="qiskit.chemistry.algorithms.GroundStateEigensolver.solver" />
 
 `property solver`
 
@@ -98,7 +116,9 @@ Returns the minimum eigensolver or factory.
 
 `Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
 
+### transformation
 
+<span id="qiskit.chemistry.algorithms.GroundStateEigensolver.transformation" />
 
 `property transformation`
 
@@ -107,3 +127,4 @@ Returns the transformation used to obtain a qubit operator from the molecule.
 **Return type**
 
 `Transformation`
+
