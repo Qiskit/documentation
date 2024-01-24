@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.neural_networks.DiscriminativeNetwork
 
 <span id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork" />
 
-`DiscriminativeNetwork`
+`DiscriminativeNetwork`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/discriminative_network.py "view source code")
 
 Base class for discriminative Quantum or Classical Neural Networks.
 
@@ -22,7 +22,7 @@ This method should initialize the module but raise an exception if a required co
 
 <span id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork.get_label" />
 
-`abstract DiscriminativeNetwork.get_label(x)`
+`abstract DiscriminativeNetwork.get_label(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/discriminative_network.py "view source code")
 
 Apply quantum/classical neural network to the given input sample and compute the respective data label
 
@@ -38,7 +38,7 @@ Apply quantum/classical neural network to the given input sample and compute the
 
 <span id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork.loss" />
 
-`abstract DiscriminativeNetwork.loss(x, y, weights=None)`
+`abstract DiscriminativeNetwork.loss(x, y, weights=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/discriminative_network.py "view source code")
 
 Loss function used for optimization
 
@@ -60,7 +60,7 @@ Loss w\.r.t to the generated data points.
 
 <span id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork.set_seed" />
 
-`abstract DiscriminativeNetwork.set_seed(seed)`
+`abstract DiscriminativeNetwork.set_seed(seed)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/discriminative_network.py "view source code")
 
 Set seed.
 
@@ -76,7 +76,7 @@ Set seed.
 
 <span id="qiskit.aqua.components.neural_networks.DiscriminativeNetwork.train" />
 
-`abstract DiscriminativeNetwork.train(data, weights, penalty=False, quantum_instance=None, shots=None)`
+`abstract DiscriminativeNetwork.train(data, weights, penalty=False, quantum_instance=None, shots=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/neural_networks/discriminative_network.py "view source code")
 
 Perform one training step w\.r.t to the discriminator’s parameters
 

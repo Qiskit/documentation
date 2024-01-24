@@ -10,7 +10,7 @@ python_api_name: qiskit.qasm.QasmTerminalStyle
 
 <span id="qiskit.qasm.QasmTerminalStyle" />
 
-`QasmTerminalStyle`
+`QasmTerminalStyle`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/qasm/pygments/lexer.py "view source code")
 
 A style for OpenQasm in a Terminal env (e.g. Jupyter print).
 
@@ -73,4 +73,7 @@ special line number font color
 Style definitions for individual token types.
 
 ## Methods
+
+|   |
+| - |
 

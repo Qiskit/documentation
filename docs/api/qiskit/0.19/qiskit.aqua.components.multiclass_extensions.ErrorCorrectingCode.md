@@ -10,7 +10,7 @@ python_api_name: qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCod
 
 <span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode" />
 
-`ErrorCorrectingCode(code_size=4)`
+`ErrorCorrectingCode(code_size=4)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/error_correcting_code.py "view source code")
 
 The Error Correcting Code multiclass extension.
 
@@ -36,7 +36,7 @@ The table above shows a 6-bit ECC for a 3-class problem. Each class is assigned 
 
 <span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.predict" />
 
-`ErrorCorrectingCode.predict(x)`
+`ErrorCorrectingCode.predict(x)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/error_correcting_code.py "view source code")
 
 Applying multiple estimators for prediction.
 
@@ -68,7 +68,7 @@ Called internally to set `Estimator` and parameters :type estimator\_cls: `Calla
 
 <span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.test" />
 
-`ErrorCorrectingCode.test(x, y)`
+`ErrorCorrectingCode.test(x, y)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/error_correcting_code.py "view source code")
 
 Testing multiple estimators each for distinguishing a pair of classes.
 
@@ -89,7 +89,7 @@ float
 
 <span id="qiskit.aqua.components.multiclass_extensions.ErrorCorrectingCode.train" />
 
-`ErrorCorrectingCode.train(x, y)`
+`ErrorCorrectingCode.train(x, y)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/aqua/components/multiclass_extensions/error_correcting_code.py "view source code")
 
 Training multiple estimators each for distinguishing a pair of classes.
 

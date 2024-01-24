@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.instructions.ShiftPhase
 
 <span id="qiskit.pulse.instructions.ShiftPhase" />
 
-`ShiftPhase(phase, channel=None, name=None)`
+`ShiftPhase(phase, channel=None, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/phase.py "view source code")
 
 The shift phase instruction updates the modulation phase of proceeding pulses played on the same [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qiskit.pulse.channels.Channel"). It is a relative increase in phase determined by the `phase` operand.
 
@@ -184,7 +184,7 @@ Occupied time slots by this instruction.
 
 <span id="qiskit.pulse.instructions.ShiftPhase.__call__" />
 
-`ShiftPhase.__call__(channel)`
+`ShiftPhase.__call__(channel)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/instructions/phase.py "view source code")
 
 Return a new ShiftPhase instruction supporting the deprecated syntax of FrameChange.
 
