@@ -43,7 +43,8 @@ export class Pkg {
   readonly historical: boolean;
   readonly releaseNoteEntries: ReleaseNoteEntry[];
 
-  static VALID_NAMES = ["qiskit", "qiskit-ibm-runtime", "qiskit-ibm-provider"];
+  static VALID_NAMES = [
+    "qiskit", "qiskit-ibm-runtime", "qiskit-ibm-provider", "qiskit-sphinx-theme-example-docs"];
 
   constructor(kwargs: {
     name: string;
@@ -114,6 +115,17 @@ export class Pkg {
         hasSeparateReleaseNotes: false,
         releaseNoteEntries: [],
       });
+    }
+
+    if (name === "qiskit-sphinx-theme-example-docs") {
+      return new Pkg({
+        ...args,
+        title: "Example Docs",
+        name: "qiskit-sphinx-theme-example-docs",
+        githubSlug: "qiskit/qiskit-sphinx-theme",
+        hasSeparateReleaseNotes: false,
+        releaseNoteEntries: []
+      })
     }
 
     throw new Error(`Unrecognized package: ${name}`);
