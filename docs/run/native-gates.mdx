@@ -6,16 +6,11 @@ description: Summary of the native gates and operations supported by IBM Quantum
 
 # Native gates and operations
 
-
-Each processor family has a specific set of native gates and operations. 
-
-Mention qubit_init flag. What about rep_delay?
-
-Note that RESET is not the same as the initialization done at the start of your circuit to prepare the all 0's state.
-
+Each processor family has a native gateset, and each system  supports running only those particular gates and operations. Transpilation translates an arbitrary circuit to the native gateset supported by a specified system.  You can view the native gates and operations for a system either [with Qiskit](#native-gates-with-qiskit) or on the IBM Quantum Platform [Compute resources page](#native-gates-on-platform).
 
 ## Find the native gateset for a system
 
+<span id="native-gates-with-qiskit"></span>
 ### With Qiskit
 
 ```python
@@ -36,73 +31,34 @@ for backend in service.backends():
     print()
 ```
 
+<span id="native-gates-on-platform"></span>
 ### On IBM Quantum Platform
 
-## List of gates
+Select any system on the [Compute resources](https://quantum.ibm.com/services/resources) tab. The default gates for that system are listed under Details. Note that the non-unitary operations are not listed here; use the method in Qiskit described above to see all native gates and operations for a system.
 
-- [ECR](/api/qiskit/qiskit.circuit.library.ECRGate) - 2Q
-    Eagle
-
-- [CX](/api/qiskit/qiskit.circuit.library.CXGate) - 2Q
-    Falcon
-
-- [CZ](/api/qiskit/qiskit.circuit.library.CZGate) - 2Q
-    Heron
-
-- [RZ](/api/qiskit/qiskit.circuit.library.RZGate) - 1Q
-    Eagle, Falcon, Heron
-
-- [SX](/api/qiskit/qiskit.circuit.library.SXGate) - 1Q
-    Eagle, Heron
-
-- [X](/api/qiskit/qiskit.circuit.library.XGate) - 1Q
-    Eagle, Heron
-
-- [ID](/api/qiskit/qiskit.circuit.library.IGate) no-op
-    Eagle, Falcon, Heron
-
-- [Reset](/api/qiskit/qiskit.circuit.library.Reset) - 1Q (special; not unitary)
-    Eagle, Falcon, Heron
-
-- [if_else](/api/qiskit/qiskit.circuit.IfElseOp)
-    Eagle, Falcon, Heron
-- [for_loop](/api/qiskit/qiskit.circuit.ForLoopOp)
-    Eagle, Falcon, Heron
-- [switch_case](/api/qiskit/qiskit.circuit.SwitchCaseOp)
-    Eagle, Falcon, Heron
-- [measure](/api/qiskit/qiskit.circuit.library.Measure)
-    Eagle, Falcon, Heron
-- [delay](/api/qiskit/qiskit.circuit.Delay)
-    Eagle, Falcon, Heron
+## Table of gates and operations
 
 
+| Name | Processor family | Notes |
+| :--- | :--- | :--- |
+| [ECR](/api/qiskit/qiskit.circuit.library.ECRGate) | Eagle | two-qubit gate |
+| [CX](/api/qiskit/qiskit.circuit.library.CXGate) | Falcon | two-qubit gate |
+| [CZ](/api/qiskit/qiskit.circuit.library.CZGate) | Heron | two-qubit gate |
+| [RZ](/api/qiskit/qiskit.circuit.library.RZGate) | Eagle, Falcon, Heron | single-qubit gate |
+| [SX](/api/qiskit/qiskit.circuit.library.SXGate) (1Q) | Eagle, Heron | single-qubit gate |
+| [X](/api/qiskit/qiskit.circuit.library.XGate) (1Q) | Eagle, Heron | single-qubit gate |
+| [ID](/api/qiskit/qiskit.circuit.library.IGate) | Eagle, Falcon, Heron | single-qubit gate wait cycle |
+| [reset](/api/qiskit/qiskit.circuit.library.Reset) |  Eagle, Falcon, Heron | single-qubit gate, non-unitary; not the same as the initialization done at the start of a circuit to prepare the all 0's state |
+| [if_else](/api/qiskit/qiskit.circuit.IfElseOp) | Eagle, Falcon, Heron | operation |
+| [for_loop](/api/qiskit/qiskit.circuit.ForLoopOp) | Eagle, Falcon, Heron | operation |
+| [switch_case](/api/qiskit/qiskit.circuit.SwitchCaseOp) | Eagle, Falcon, Heron | operation |
+| [measure](/api/qiskit/qiskit.circuit.library.Measure) | Eagle, Falcon, Heron | operation |
+| [delay](/api/qiskit/qiskit.circuit.Delay) | Eagle, Falcon, Heron | operation |
 
+<Admonition type="tip" title="The init_qubits flag">
 
-NOTES FOR DRAFTING:
-
-
-IBM Quantum systems support the `reset` instruction in Qiskit. This allows users to reset qubits into the ground state (`|0>`) with high fidelity. These instructions are comprised of a not-gate conditioned on the measurement outcome of the qubit, and demonstrate the real-time compute power of the IBM Quantum systems. They can be explored for the reuse of qubits in a circuit, to yield an increase in system throughput, and provide fidelity improvements over standard cavity-cooling methods. 
-
-The repetition delay defines the delay time between circuit executions. For instance, if you run a job with 5 circuits, the repetition delay (`rep_delay` for short) defines how long the backend is idle for between the conclusion of one circuit and start of the next. This parameter provides finer grained control over the execution of your quantum circuits on IBM Quantum systems.
-
-Shortening `rep_delay` can reduce execution time, and therefore reduce the sensitivity of your experiment to long term drifts in hardware parameter variations. However, setting too short a time may yield poorly initialized qubits.
-
-With the smaller `rep_delay`, users may prefer to initialize circuits themselves via the `reset` instruction introduced above. For this reason, we have added a flag `init_qubits` which determines whether the default backend initialization sequence will be inserted. This allows users to work with "dirty qubits" and perform experiments with non-initialized states.
-
-<div class="alert alert-block alert-info">
-
-    
-**Note:** If `init_qubits` is set to false and you want qubits to start in the ground state, you must insert resets at the start of your circuit. Otherwise, qubits will begin with their state from the previous shot (after undergoing some thermalization process for the interval between shots as set by `rep_delay`). Note that the first shot of the first circuit may still be in the thermal ground state due to a longer delay existing during the loading of your job to hardware.
-</div>
-
-In order to use `rep_delay`, we must check if the backend supports it. This is controlled by a flag in the backend configuration `dynamic_reprate_enabled`.
-
-`rep_delay` can be specified in `execute()` or `assemble()`. We choose `assemble()` so that we can print and verify our `rep_delay` in the `qobj.config`. Also note that `init_qubits=False`.
-
-Like `rep_delay`, `init_qubits` can be set in `execute()` or `assemble()`.
-
-
-(from API docs: A new kwarg for init_qubits has been added to assemble() and execute(). For backends that support this feature init_qubits can be used to control whether the backend executing the circuits inserts any initialization sequences at the start of each shot. By default this is set to True meaning that all qubits can assumed to be in the ground state at the start of each shot. However, when init_qubits is set to False qubits will be uninitialized at the start of each experiment and between shots. Note, that the backend running the circuits has to support this feature for this flag to have any effect.)
+By default, the `init_qubits` flag is set to True. If the `init_qubits` flag is set to False, you must insert [resets](/api/qiskit/qiskit.circuit.library.Reset) at the start of your circuit to start your qubits in the ground state. Otherwise, qubits will begin in their state from the previous shot.
+</Admonition>
 
 ## Next steps
 
