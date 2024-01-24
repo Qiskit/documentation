@@ -53,9 +53,10 @@ backend = FakeLagosV2()
 pass_manager = generate_preset_pass_manager(3, backend)
 ```
 
-which will generate a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") object for optimization level 3 targeting the [`FakeLagosV2`](qiskit.providers.fake_provider.FakeLagosV2 "qiskit.providers.fake_provider.FakeLagosV2") backend (equivalent to what is used internally by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") with `backend=FakeLagosV2()` and `optimization_level=3`). You can use this just like you would any other [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager"). However, because it is a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") it also makes it easy to compose and/or replace stages of the pipeline. For example, if you wanted to run a custom scheduling stage using dynamical decoupling (via the [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") pass) and also add initial logical optimization prior to routing, you would do something like (building off the previous example):
+which will generate a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") object for optimization level 3 targeting the [`FakeLagosV2`](qiskit.providers.fake_provider.FakeLagosV2 "qiskit.providers.fake_provider.FakeLagosV2") backend (equivalent to what is used internally by [`transpile()`](compiler#qiskit.compiler.transpile "qiskit.compiler.transpile") with `backend=FakeLagosV2()` and `optimization_level=3`). You can use this just like you would any other [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager"). However, because it is a [`StagedPassManager`](qiskit.transpiler.StagedPassManager "qiskit.transpiler.StagedPassManager") it also makes it easy to compose and/or replace stages of the pipeline. For example, if you wanted to run a custom scheduling stage using [`dynamical decoupling`](qiskit.transpiler.passes.DynamicalDecoupling) (via the [`PadDynamicalDecoupling`](qiskit.transpiler.passes.PadDynamicalDecoupling "qiskit.transpiler.passes.PadDynamicalDecoupling") pass) and also add initial logical optimization prior to routing, you would do something like (building off the previous example):
 
 ```python
+import numpy as np
 from qiskit.circuit.library import XGate, HGate, RXGate, PhaseGate, TGate, TdgGate
 from qiskit.transpiler import PassManager
 from qiskit.transpiler.passes import ALAPScheduleAnalysis, PadDynamicalDecoupling
@@ -73,10 +74,10 @@ inverse_gate_list = [
     (PhaseGate(np.pi / 4), PhaseGate(-np.pi / 4)),
     (TGate(), TdgGate()),
 
-])
+]
 logical_opt = PassManager([
     CXCancellation(),
-    InverseCancellation([HGate(), (RXGate(np.pi / 4), RXGate(-np.pi / 4))
+    InverseCancellation(inverse_gate_list)
 ])
 
 
@@ -98,6 +99,7 @@ from qiskit.transpiler.passes import (
     Collect2qBlocks,
     ConsolidateBlocks,
     UnitarySynthesis,
+    Unroll3qOrMore
 )
 from qiskit.transpiler import PassManager, StagedPassManager
 
@@ -881,7 +883,7 @@ Q ░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
 C ░░▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒▒░
 ```
 
-See [https://arxiv.org/abs/2102.01682](https://arxiv.org/abs/2102.01682) for more details.
+See [Exploiting dynamic quantum circuits in a quantum algorithm with superconducting qubits](https://arxiv.org/abs/2102.01682) for more details.
 
 ## Transpiler API
 
