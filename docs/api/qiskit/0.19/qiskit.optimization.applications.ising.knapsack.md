@@ -26,7 +26,7 @@ If we have the weights w\[i], the values v\[i] and the maximum weight W\_max. We
 
 <span id="qiskit.optimization.applications.ising.knapsack.get_operator" />
 
-`get_operator(values, weights, max_weight)`
+`get_operator(values, weights, max_weight)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/knapsack.py "view source code")
 
 Generate Hamiltonian for the knapsack problem.
 
@@ -63,7 +63,7 @@ operator for the Hamiltonian float: a constant shift for the obj function.
 
 <span id="qiskit.optimization.applications.ising.knapsack.get_solution" />
 
-`get_solution(x, values)`
+`get_solution(x, values)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/knapsack.py "view source code")
 
 Get the solution to the knapsack problem from the bitstring that represents to the ground state of the Hamiltonian
 
@@ -84,7 +84,7 @@ numpy.ndarray
 
 <span id="qiskit.optimization.applications.ising.knapsack.knapsack_value_weight" />
 
-`knapsack_value_weight(solution, values, weights)`
+`knapsack_value_weight(solution, values, weights)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.7/qiskit/optimization/applications/ising/knapsack.py "view source code")
 
 Get the total wight and value of the items taken in the knapsack.
 

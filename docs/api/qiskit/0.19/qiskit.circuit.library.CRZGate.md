@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.CRZGate
 
 <span id="qiskit.circuit.library.CRZGate" />
 
-`CRZGate(theta, label=None, ctrl_state=None)`
+`CRZGate(theta, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rz.py "view source code")
 
 Controlled-RZ gate.
 
@@ -249,7 +249,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.CRZGate.inverse" />
 
-`CRZGate.inverse()`
+`CRZGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/rz.py "view source code")
 
 Return inverse RZ gate (i.e. with the negative rotation angle).
 

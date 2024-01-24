@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.C3XGate
 
 <span id="qiskit.circuit.library.C3XGate" />
 
-`C3XGate(angle=0.7853981633974483, label=None, ctrl_state=None)`
+`C3XGate(angle=0.7853981633974483, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 The 3-qubit controlled X gate.
 
@@ -163,7 +163,7 @@ Add classical condition on register classical and value val.
 
 <span id="qiskit.circuit.library.C3XGate.control" />
 
-`C3XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
+`C3XGate.control(num_ctrl_qubits=1, label=None, ctrl_state=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Controlled version of this gate.
 
@@ -207,7 +207,7 @@ updated if it was provided
 
 <span id="qiskit.circuit.library.C3XGate.inverse" />
 
-`C3XGate.inverse()`
+`C3XGate.inverse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/circuit/library/standard_gates/x.py "view source code")
 
 Invert this gate. The C3X is its own inverse.
 
