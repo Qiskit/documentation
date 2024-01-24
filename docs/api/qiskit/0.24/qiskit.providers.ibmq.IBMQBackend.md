@@ -1,14 +1,22 @@
+---
+title: IBMQBackend
+description: API reference for qiskit.providers.ibmq.IBMQBackend
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.IBMQBackend
+---
+
 <span id="qiskit-providers-ibmq-ibmqbackend" />
 
 # qiskit.providers.ibmq.IBMQBackend
 
+<span id="qiskit.providers.ibmq.IBMQBackend" />
 
-
-`IBMQBackend(configuration, provider, credentials, api_client)`
+`IBMQBackend(configuration, provider, credentials, api_client)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/ibmqbackend.py "view source code")
 
 Backend class interfacing with an IBM Quantum Experience device.
 
-You can run experiments on a backend using the [`run()`](#qiskit.providers.ibmq.IBMQBackend.run "qiskit.providers.ibmq.IBMQBackend.run") method. The [`run()`](#qiskit.providers.ibmq.IBMQBackend.run "qiskit.providers.ibmq.IBMQBackend.run") method takes one or more [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") and returns an [`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob#qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.IBMQJob") instance that represents the submitted job. Each job has a unique job ID, which can later be used to retrieve the job. An example of this flow:
+You can run experiments on a backend using the [`run()`](#qiskit.providers.ibmq.IBMQBackend.run "qiskit.providers.ibmq.IBMQBackend.run") method. The [`run()`](#qiskit.providers.ibmq.IBMQBackend.run "qiskit.providers.ibmq.IBMQBackend.run") method takes one or more [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") and returns an [`IBMQJob`](qiskit.providers.ibmq.job.IBMQJob "qiskit.providers.ibmq.job.IBMQJob") instance that represents the submitted job. Each job has a unique job ID, which can later be used to retrieve the job. An example of this flow:
 
 ```python
 from qiskit import IBMQ, assemble, transpile
@@ -24,10 +32,10 @@ retrieved_job = backend.retrieve_job(job.job_id())
 
 <Admonition title="Note" type="note">
   *   Unlike [`qiskit.execute()`](execute#module-qiskit.execute "qiskit.execute"), the [`run()`](#qiskit.providers.ibmq.IBMQBackend.run "qiskit.providers.ibmq.IBMQBackend.run") method does not transpile the circuits/schedules for you, so be sure to do so before submitting them.
-  *   You should not instantiate the `IBMQBackend` class directly. Instead, use the methods provided by an [`AccountProvider`](qiskit.providers.ibmq.AccountProvider#qiskit.providers.ibmq.AccountProvider "qiskit.providers.ibmq.AccountProvider") instance to retrieve and handle backends.
+  *   You should not instantiate the `IBMQBackend` class directly. Instead, use the methods provided by an [`AccountProvider`](qiskit.providers.ibmq.AccountProvider "qiskit.providers.ibmq.AccountProvider") instance to retrieve and handle backends.
 </Admonition>
 
-Other methods return information about the backend. For example, the [`status()`](#qiskit.providers.ibmq.IBMQBackend.status "qiskit.providers.ibmq.IBMQBackend.status") method returns a [`BackendStatus`](qiskit.providers.models.BackendStatus#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus") instance. The instance contains the `operational` and `pending_jobs` attributes, which state whether the backend is operational and also the number of jobs in the server queue for the backend, respectively:
+Other methods return information about the backend. For example, the [`status()`](#qiskit.providers.ibmq.IBMQBackend.status "qiskit.providers.ibmq.IBMQBackend.status") method returns a [`BackendStatus`](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus") instance. The instance contains the `operational` and `pending_jobs` attributes, which state whether the backend is operational and also the number of jobs in the server queue for the backend, respectively:
 
 ```python
 status = backend.status()
@@ -35,7 +43,7 @@ is_operational = status.operational
 jobs_in_queue = status.pending_jobs
 ```
 
-It is also possible to see the number of remaining jobs you are able to submit to the backend with the [`job_limit()`](#qiskit.providers.ibmq.IBMQBackend.job_limit "qiskit.providers.ibmq.IBMQBackend.job_limit") method, which returns a [`BackendJobLimit`](qiskit.providers.ibmq.BackendJobLimit#qiskit.providers.ibmq.BackendJobLimit "qiskit.providers.ibmq.BackendJobLimit") instance:
+It is also possible to see the number of remaining jobs you are able to submit to the backend with the [`job_limit()`](#qiskit.providers.ibmq.IBMQBackend.job_limit "qiskit.providers.ibmq.IBMQBackend.job_limit") method, which returns a [`BackendJobLimit`](qiskit.providers.ibmq.BackendJobLimit "qiskit.providers.ibmq.BackendJobLimit") instance:
 
 ```python
 job_limit = backend.job_limit()
@@ -50,7 +58,9 @@ IBMQBackend constructor.
 *   **credentials** (`Credentials`) – IBM Quantum Experience credentials.
 *   **api\_client** (`AccountClient`) – IBM Quantum Experience client used to communicate with the server.
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.ibmq.IBMQBackend.__init__" />
 
 `__init__(configuration, provider, credentials, api_client)`
 
@@ -90,7 +100,9 @@ IBMQBackend constructor.
 | [`options`](#qiskit.providers.ibmq.IBMQBackend.options "qiskit.providers.ibmq.IBMQBackend.options") | Return the options for the backend |
 | `version`                                                                                           |                                    |
 
+### active\_jobs
 
+<span id="qiskit.providers.ibmq.IBMQBackend.active_jobs" />
 
 `active_jobs(limit=10)`
 
@@ -110,7 +122,9 @@ Return the jobs submitted to this backend, with this provider, that are currentl
 
 A list of the unfinished jobs for this backend on this provider.
 
+### configuration
 
+<span id="qiskit.providers.ibmq.IBMQBackend.configuration" />
 
 `configuration()`
 
@@ -128,7 +142,9 @@ The schema for backend configuration can be found in [Qiskit/ibm-quantum-schemas
 
 The configuration for the backend.
 
+### defaults
 
+<span id="qiskit.providers.ibmq.IBMQBackend.defaults" />
 
 `defaults(refresh=False)`
 
@@ -148,7 +164,9 @@ The schema for default pulse configuration can be found in [Qiskit/ibm-quantum-s
 
 The backend pulse defaults or `None` if the backend does not support pulse.
 
+### job\_limit
 
+<span id="qiskit.providers.ibmq.IBMQBackend.job_limit" />
 
 `job_limit()`
 
@@ -160,7 +178,7 @@ The job limit information includes the current number of active jobs you have on
   Job limit information for a backend is provider specific. For example, if you have access to the same backend via different providers, the job limit information might be different for each provider.
 </Admonition>
 
-If the method call was successful, you can inspect the job limit for the backend by accessing the `maximum_jobs` and `active_jobs` attributes of the [`BackendJobLimit`](qiskit.providers.ibmq.BackendJobLimit#qiskit.providers.ibmq.BackendJobLimit "qiskit.providers.ibmq.BackendJobLimit") instance returned. For example:
+If the method call was successful, you can inspect the job limit for the backend by accessing the `maximum_jobs` and `active_jobs` attributes of the [`BackendJobLimit`](qiskit.providers.ibmq.BackendJobLimit "qiskit.providers.ibmq.BackendJobLimit") instance returned. For example:
 
 ```python
 backend_job_limit = backend.job_limit()
@@ -180,9 +198,11 @@ The job limit for the backend, with this provider.
 
 **Raises**
 
-[**IBMQBackendApiProtocolError**](qiskit.providers.ibmq.IBMQBackendApiProtocolError#qiskit.providers.ibmq.IBMQBackendApiProtocolError "qiskit.providers.ibmq.IBMQBackendApiProtocolError") – If an unexpected value is received from the server.
+[**IBMQBackendApiProtocolError**](qiskit.providers.ibmq.IBMQBackendApiProtocolError "qiskit.providers.ibmq.IBMQBackendApiProtocolError") – If an unexpected value is received from the server.
 
+### jobs
 
+<span id="qiskit.providers.ibmq.IBMQBackend.jobs" />
 
 `jobs(limit=10, skip=0, status=None, job_name=None, start_datetime=None, end_datetime=None, job_tags=None, job_tags_operator='OR', experiment_id=None, descending=True, db_filter=None)`
 
@@ -244,9 +264,11 @@ A list of jobs that match the criteria.
 
 **Raises**
 
-[**IBMQBackendValueError**](qiskit.providers.ibmq.IBMQBackendValueError#qiskit.providers.ibmq.IBMQBackendValueError "qiskit.providers.ibmq.IBMQBackendValueError") – If a keyword value is not recognized.
+[**IBMQBackendValueError**](qiskit.providers.ibmq.IBMQBackendValueError "qiskit.providers.ibmq.IBMQBackendValueError") – If a keyword value is not recognized.
 
+### name
 
+<span id="qiskit.providers.ibmq.IBMQBackend.name" />
 
 `name()`
 
@@ -260,7 +282,9 @@ the name of the backend.
 
 str
 
+### options
 
+<span id="qiskit.providers.ibmq.IBMQBackend.options" />
 
 `property options`
 
@@ -268,7 +292,9 @@ Return the options for the backend
 
 The options of a backend are the dynamic parameters defining how the backend is used. These are used to control the [`run()`](#qiskit.providers.ibmq.IBMQBackend.run "qiskit.providers.ibmq.IBMQBackend.run") method.
 
+### properties
 
+<span id="qiskit.providers.ibmq.IBMQBackend.properties" />
 
 `properties(refresh=False, datetime=None)`
 
@@ -281,7 +307,7 @@ The schema for backend properties can be found in [Qiskit/ibm-quantum-schemas](h
 **Parameters**
 
 *   **refresh** (`bool`) – If `True`, re-query the server for the backend properties. Otherwise, return a cached version.
-*   **datetime** (`Optional`\[`datetime`]) – By specifying datetime, this function returns an instance of the [`BackendProperties`](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") whose timestamp is closest to, but older than, the specified datetime.
+*   **datetime** (`Optional`\[`datetime`]) – By specifying datetime, this function returns an instance of the [`BackendProperties`](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties") whose timestamp is closest to, but older than, the specified datetime.
 
 **Return type**
 
@@ -295,7 +321,9 @@ The backend properties or `None` if the backend properties are not currently ava
 
 **TypeError** – If an input argument is not of the correct type.
 
+### provider
 
+<span id="qiskit.providers.ibmq.IBMQBackend.provider" />
 
 `provider()`
 
@@ -307,16 +335,18 @@ the Provider responsible for the backend.
 
 **Return type**
 
-[Provider](qiskit.providers.Provider#qiskit.providers.Provider "qiskit.providers.Provider")
+[Provider](qiskit.providers.Provider "qiskit.providers.Provider")
 
+### remaining\_jobs\_count
 
+<span id="qiskit.providers.ibmq.IBMQBackend.remaining_jobs_count" />
 
 `remaining_jobs_count()`
 
 Return the number of remaining jobs that could be submitted to the backend.
 
 <Admonition title="Note" type="note">
-  The number of remaining jobs for a backend is provider specific. For example, if you have access to the same backend via different providers, the number of remaining jobs might be different for each. See [`BackendJobLimit`](qiskit.providers.ibmq.BackendJobLimit#qiskit.providers.ibmq.BackendJobLimit "qiskit.providers.ibmq.BackendJobLimit") for the job limit information of a backend.
+  The number of remaining jobs for a backend is provider specific. For example, if you have access to the same backend via different providers, the number of remaining jobs might be different for each. See [`BackendJobLimit`](qiskit.providers.ibmq.BackendJobLimit "qiskit.providers.ibmq.BackendJobLimit") for the job limit information of a backend.
 </Admonition>
 
 If `None` is returned, there are no limits to the maximum number of active jobs you could have on the backend.
@@ -331,9 +361,11 @@ The remaining number of jobs a user could submit to the backend, with this provi
 
 **Raises**
 
-[**IBMQBackendApiProtocolError**](qiskit.providers.ibmq.IBMQBackendApiProtocolError#qiskit.providers.ibmq.IBMQBackendApiProtocolError "qiskit.providers.ibmq.IBMQBackendApiProtocolError") – If an unexpected value is received from the server.
+[**IBMQBackendApiProtocolError**](qiskit.providers.ibmq.IBMQBackendApiProtocolError "qiskit.providers.ibmq.IBMQBackendApiProtocolError") – If an unexpected value is received from the server.
 
+### reservations
 
+<span id="qiskit.providers.ibmq.IBMQBackend.reservations" />
 
 `reservations(start_datetime=None, end_datetime=None)`
 
@@ -356,7 +388,9 @@ Some of the reservation information is only available if you are the owner of th
 
 A list of reservations that match the criteria.
 
+### retrieve\_job
 
+<span id="qiskit.providers.ibmq.IBMQBackend.retrieve_job" />
 
 `retrieve_job(job_id)`
 
@@ -376,9 +410,11 @@ The job with the given ID.
 
 **Raises**
 
-[**IBMQBackendError**](qiskit.providers.ibmq.IBMQBackendError#qiskit.providers.ibmq.IBMQBackendError "qiskit.providers.ibmq.IBMQBackendError") – If job retrieval failed.
+[**IBMQBackendError**](qiskit.providers.ibmq.IBMQBackendError "qiskit.providers.ibmq.IBMQBackendError") – If job retrieval failed.
 
+### run
 
+<span id="qiskit.providers.ibmq.IBMQBackend.run" />
 
 `run(circuits, job_name=None, job_share_level=None, job_tags=None, experiment_id=None, validate_qobj=None, header=None, shots=None, memory=None, qubit_lo_freq=None, meas_lo_freq=None, schedule_los=None, meas_level=None, meas_return=None, memory_slots=None, memory_slot_size=None, rep_time=None, rep_delay=None, init_qubits=None, parameter_binds=None, **run_config)`
 
@@ -388,7 +424,7 @@ If a keyword specified here is also present in the `options` attribute/object, t
 
 **Parameters**
 
-*   **circuits** (`Union`\[`QasmQobj`, `PulseQobj`, `QuantumCircuit`, `Schedule`, `List`\[`Union`\[`QuantumCircuit`, `Schedule`]]]) – An individual or a list of `QuantumCircuit` or [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend. A [`QasmQobj`](qiskit.qobj.QasmQobj#qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") or a [`PulseQobj`](qiskit.qobj.PulseQobj#qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") object is also supported but is deprecated.
+*   **circuits** (`Union`\[`QasmQobj`, `PulseQobj`, `QuantumCircuit`, `Schedule`, `List`\[`Union`\[`QuantumCircuit`, `Schedule`]]]) – An individual or a list of `QuantumCircuit` or [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") objects to run on the backend. A [`QasmQobj`](qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj") or a [`PulseQobj`](qiskit.qobj.PulseQobj "qiskit.qobj.PulseQobj") object is also supported but is deprecated.
 
 *   **job\_name** (`Optional`\[`str`]) – Custom name to be assigned to the job. This job name can subsequently be used as a filter in the [`jobs()`](#qiskit.providers.ibmq.IBMQBackend.jobs "qiskit.providers.ibmq.IBMQBackend.jobs") method. Job names do not need to be unique.
 
@@ -422,7 +458,7 @@ If a keyword specified here is also present in the `options` attribute/object, t
 
 *   **meas\_lo\_freq** (`Optional`\[`List`\[`int`]]) – List of default measurement LO frequencies in Hz. Will be overridden by `schedule_los` if set.
 
-*   **schedule\_los** (`Union`\[`List`\[`Union`\[`Dict`\[[`PulseChannel`](qiskit.pulse.channels#PulseChannel "qiskit.pulse.channels.PulseChannel"), `float`], `LoConfig`]], `Dict`\[[`PulseChannel`](qiskit.pulse.channels#PulseChannel "qiskit.pulse.channels.PulseChannel"), `float`], `LoConfig`, `None`]) – Experiment LO configurations, frequencies are given in Hz.
+*   **schedule\_los** (`Union`\[`List`\[`Union`\[`Dict`\[[`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel"), `float`], `LoConfig`]], `Dict`\[[`PulseChannel`](qiskit.pulse.channels#pulsechannel "qiskit.pulse.channels.PulseChannel"), `float`], `LoConfig`, `None`]) – Experiment LO configurations, frequencies are given in Hz.
 
 *   **meas\_level** (`Union`\[`int`, `MeasLevel`, `None`]) – Set the appropriate level of the measurement output for pulse experiments.
 
@@ -459,11 +495,13 @@ The job to be executed.
 
 **Raises**
 
-*   [**IBMQBackendApiError**](qiskit.providers.ibmq.IBMQBackendApiError#qiskit.providers.ibmq.IBMQBackendApiError "qiskit.providers.ibmq.IBMQBackendApiError") – If an unexpected error occurred while submitting the job.
-*   [**IBMQBackendApiProtocolError**](qiskit.providers.ibmq.IBMQBackendApiProtocolError#qiskit.providers.ibmq.IBMQBackendApiProtocolError "qiskit.providers.ibmq.IBMQBackendApiProtocolError") – If an unexpected value received from the server.
-*   [**IBMQBackendValueError**](qiskit.providers.ibmq.IBMQBackendValueError#qiskit.providers.ibmq.IBMQBackendValueError "qiskit.providers.ibmq.IBMQBackendValueError") – If an input parameter value is not valid.
+*   [**IBMQBackendApiError**](qiskit.providers.ibmq.IBMQBackendApiError "qiskit.providers.ibmq.IBMQBackendApiError") – If an unexpected error occurred while submitting the job.
+*   [**IBMQBackendApiProtocolError**](qiskit.providers.ibmq.IBMQBackendApiProtocolError "qiskit.providers.ibmq.IBMQBackendApiProtocolError") – If an unexpected value received from the server.
+*   [**IBMQBackendValueError**](qiskit.providers.ibmq.IBMQBackendValueError "qiskit.providers.ibmq.IBMQBackendValueError") – If an input parameter value is not valid.
 
+### set\_options
 
+<span id="qiskit.providers.ibmq.IBMQBackend.set_options" />
 
 `set_options(**fields)`
 
@@ -479,14 +517,16 @@ This method is used to update the options of a backend. If you need to change an
 
 **AttributeError** – If the field passed in is not part of the options
 
+### status
 
+<span id="qiskit.providers.ibmq.IBMQBackend.status" />
 
 `status()`
 
 Return the backend status.
 
 <Admonition title="Note" type="note">
-  If the returned [`BackendStatus`](qiskit.providers.models.BackendStatus#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus") instance has `operational=True` but `status_msg="internal"`, then the backend is accepting jobs but not processing them.
+  If the returned [`BackendStatus`](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus") instance has `operational=True` but `status_msg="internal"`, then the backend is accepting jobs but not processing them.
 </Admonition>
 
 **Return type**
@@ -499,4 +539,5 @@ The status of the backend.
 
 **Raises**
 
-[**IBMQBackendApiProtocolError**](qiskit.providers.ibmq.IBMQBackendApiProtocolError#qiskit.providers.ibmq.IBMQBackendApiProtocolError "qiskit.providers.ibmq.IBMQBackendApiProtocolError") – If the status for the backend cannot be formatted properly.
+[**IBMQBackendApiProtocolError**](qiskit.providers.ibmq.IBMQBackendApiProtocolError "qiskit.providers.ibmq.IBMQBackendApiProtocolError") – If the status for the backend cannot be formatted properly.
+

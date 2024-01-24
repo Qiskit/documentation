@@ -1,10 +1,18 @@
+---
+title: MSGate
+description: API reference for qiskit.circuit.library.MSGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.MSGate
+---
+
 <span id="qiskit-circuit-library-msgate" />
 
 # qiskit.circuit.library.MSGate
 
+<span id="qiskit.circuit.library.MSGate" />
 
-
-`MSGate(num_qubits, theta, label=None)`
+`MSGate(num_qubits, theta, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/ms.py "view source code")
 
 MSGate has been deprecated. Please use `GMS` in `qiskit.circuit.generalized_gates` instead.
 
@@ -16,7 +24,9 @@ In the two-qubit case, this is equivalent to an XX(theta) interaction, and is th
 
 Create new MS gate.
 
+### \_\_init\_\_
 
+<span id="qiskit.circuit.library.MSGate.__init__" />
 
 `__init__(num_qubits, theta, label=None)`
 
@@ -54,13 +64,17 @@ Create new MS gate.
 | [`params`](#qiskit.circuit.library.MSGate.params "qiskit.circuit.library.MSGate.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.circuit.library.MSGate.unit "qiskit.circuit.library.MSGate.unit")                               | Get the time unit of duration.                                                |
 
+### add\_decomposition
 
+<span id="qiskit.circuit.library.MSGate.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
+### assemble
 
+<span id="qiskit.circuit.library.MSGate.assemble" />
 
 `assemble()`
 
@@ -70,7 +84,9 @@ Assemble a QasmQobjInstruction
 
 `Instruction`
 
+### broadcast\_arguments
 
+<span id="qiskit.circuit.library.MSGate.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -123,17 +139,21 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
+### c\_if
 
+<span id="qiskit.circuit.library.MSGate.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
+### control
 
+<span id="qiskit.circuit.library.MSGate.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
-Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
+Return controlled version of gate. See [`ControlledGate`](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate") for usage.
 
 **Parameters**
 
@@ -147,13 +167,15 @@ Controlled version of gate. This default algorithm uses num\_ctrl\_qubits-1 anci
 
 **Return type**
 
-[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[qiskit.circuit.ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
 **Raises**
 
 **QiskitError** – unrecognized mode or invalid ctrl\_state
 
+### copy
 
+<span id="qiskit.circuit.library.MSGate.copy" />
 
 `copy(name=None)`
 
@@ -171,27 +193,35 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### decompositions
 
+<span id="qiskit.circuit.library.MSGate.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
+### definition
 
+<span id="qiskit.circuit.library.MSGate.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
+### duration
 
+<span id="qiskit.circuit.library.MSGate.duration" />
 
 `property duration`
 
 Get the duration.
 
+### inverse
 
+<span id="qiskit.circuit.library.MSGate.inverse" />
 
 `inverse()`
 
@@ -207,19 +237,23 @@ a fresh instruction for the inverse
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – if the instruction is not composite and an inverse has not been implemented for it.
 
+### is\_parameterized
 
+<span id="qiskit.circuit.library.MSGate.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
+### label
 
+<span id="qiskit.circuit.library.MSGate.label" />
 
 `property label`
 
@@ -229,7 +263,9 @@ Return gate label
 
 `str`
 
+### mirror
 
+<span id="qiskit.circuit.library.MSGate.mirror" />
 
 `mirror()`
 
@@ -243,15 +279,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### params
 
+<span id="qiskit.circuit.library.MSGate.params" />
 
 `property params`
 
 return instruction params.
 
+### power
 
+<span id="qiskit.circuit.library.MSGate.power" />
 
 `power(exponent)`
 
@@ -267,13 +307,15 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **Return type**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate#qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
 **Raises**
 
 **CircuitError** – If Gate is not unitary
 
+### qasm
 
+<span id="qiskit.circuit.library.MSGate.qasm" />
 
 `qasm()`
 
@@ -281,7 +323,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
+### repeat
 
+<span id="qiskit.circuit.library.MSGate.repeat" />
 
 `repeat(n)`
 
@@ -297,13 +341,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
+### reverse\_ops
 
+<span id="qiskit.circuit.library.MSGate.reverse_ops" />
 
 `reverse_ops()`
 
@@ -319,9 +365,11 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### to\_matrix
 
+<span id="qiskit.circuit.library.MSGate.to_matrix" />
 
 `to_matrix()`
 
@@ -335,14 +383,19 @@ Return a Numpy.array for the gate unitary matrix.
 
 `ndarray`
 
+### unit
 
+<span id="qiskit.circuit.library.MSGate.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
+### validate\_parameter
 
+<span id="qiskit.circuit.library.MSGate.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
+

@@ -1,10 +1,18 @@
+---
+title: delay_qubits
+description: API reference for qiskit.pulse.builder.delay_qubits
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.delay_qubits
+---
+
 <span id="qiskit-pulse-builder-delay-qubits" />
 
 # qiskit.pulse.builder.delay\_qubits
 
+<span id="qiskit.pulse.builder.delay_qubits" />
 
-
-`delay_qubits(duration, *qubits)`
+`delay_qubits(duration, *qubits)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
 
 Insert delays on all of the `channels.Channel`s that correspond to the input `qubits` at the same time.
 
@@ -29,3 +37,4 @@ with pulse.build(backend) as pulse_prog:
 
 *   **duration** (`int`) – Duration to delay for.
 *   **qubits** (`Union`\[`int`, `Iterable`\[`int`]]) – Physical qubits to delay on. Delays will be inserted based on the channels returned by `pulse.qubit_channels()`.
+

@@ -1,10 +1,18 @@
+---
+title: YGate
+description: API reference for qiskit.circuit.library.YGate
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.circuit.library.YGate
+---
+
 <span id="qiskit-circuit-library-ygate" />
 
 # qiskit.circuit.library.YGate
 
+<span id="qiskit.circuit.library.YGate" />
 
-
-`YGate(label=None)`
+`YGate(label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/circuit/library/standard_gates/y.py "view source code")
 
 The single-qubit Pauli-Y gate ($\sigma_y$).
 
@@ -48,7 +56,9 @@ $$
 
 Create new Y gate.
 
+### \_\_init\_\_
 
+<span id="qiskit.circuit.library.YGate.__init__" />
 
 `__init__(label=None)`
 
@@ -86,13 +96,17 @@ Create new Y gate.
 | [`params`](#qiskit.circuit.library.YGate.params "qiskit.circuit.library.YGate.params")                         | return instruction params.                                                    |
 | [`unit`](#qiskit.circuit.library.YGate.unit "qiskit.circuit.library.YGate.unit")                               | Get the time unit of duration.                                                |
 
+### add\_decomposition
 
+<span id="qiskit.circuit.library.YGate.add_decomposition" />
 
 `add_decomposition(decomposition)`
 
 Add a decomposition of the instruction to the SessionEquivalenceLibrary.
 
+### assemble
 
+<span id="qiskit.circuit.library.YGate.assemble" />
 
 `assemble()`
 
@@ -102,7 +116,9 @@ Assemble a QasmQobjInstruction
 
 `Instruction`
 
+### broadcast\_arguments
 
+<span id="qiskit.circuit.library.YGate.broadcast_arguments" />
 
 `broadcast_arguments(qargs, cargs)`
 
@@ -155,13 +171,17 @@ A tuple with single arguments.
 
 **CircuitError** – If the input is not valid. For example, the number of arguments does not match the gate expectation.
 
+### c\_if
 
+<span id="qiskit.circuit.library.YGate.c_if" />
 
 `c_if(classical, val)`
 
 Add classical condition on register classical and value val.
 
+### control
 
+<span id="qiskit.circuit.library.YGate.control" />
 
 `control(num_ctrl_qubits=1, label=None, ctrl_state=None)`
 
@@ -181,9 +201,11 @@ controlled version of this gate.
 
 **Return type**
 
-[ControlledGate](qiskit.circuit.ControlledGate#qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
+[ControlledGate](qiskit.circuit.ControlledGate "qiskit.circuit.ControlledGate")
 
+### copy
 
+<span id="qiskit.circuit.library.YGate.copy" />
 
 `copy(name=None)`
 
@@ -201,39 +223,51 @@ updated if it was provided
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### decompositions
 
+<span id="qiskit.circuit.library.YGate.decompositions" />
 
 `property decompositions`
 
 Get the decompositions of the instruction from the SessionEquivalenceLibrary.
 
+### definition
 
+<span id="qiskit.circuit.library.YGate.definition" />
 
 `property definition`
 
 Return definition in terms of other basic gates.
 
+### duration
 
+<span id="qiskit.circuit.library.YGate.duration" />
 
 `property duration`
 
 Get the duration.
 
+### inverse
 
+<span id="qiskit.circuit.library.YGate.inverse" />
 
 `inverse()`
 
 Return inverted Y gate ($Y{\dagger} = Y$)
 
+### is\_parameterized
 
+<span id="qiskit.circuit.library.YGate.is_parameterized" />
 
 `is_parameterized()`
 
 Return True .IFF. instruction is parameterized else False
 
+### label
 
+<span id="qiskit.circuit.library.YGate.label" />
 
 `property label`
 
@@ -243,7 +277,9 @@ Return gate label
 
 `str`
 
+### mirror
 
+<span id="qiskit.circuit.library.YGate.mirror" />
 
 `mirror()`
 
@@ -257,15 +293,19 @@ reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### params
 
+<span id="qiskit.circuit.library.YGate.params" />
 
 `property params`
 
 return instruction params.
 
+### power
 
+<span id="qiskit.circuit.library.YGate.power" />
 
 `power(exponent)`
 
@@ -281,13 +321,15 @@ To which to\_matrix is self.to\_matrix^exponent.
 
 **Return type**
 
-[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate#qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
+[qiskit.extensions.UnitaryGate](qiskit.extensions.UnitaryGate "qiskit.extensions.UnitaryGate")
 
 **Raises**
 
 **CircuitError** – If Gate is not unitary
 
+### qasm
 
+<span id="qiskit.circuit.library.YGate.qasm" />
 
 `qasm()`
 
@@ -295,7 +337,9 @@ Return a default OpenQASM string for the instruction.
 
 Derived instructions may override this to print in a different format (e.g. measure q\[0] -> c\[0];).
 
+### repeat
 
+<span id="qiskit.circuit.library.YGate.repeat" />
 
 `repeat(n)`
 
@@ -311,13 +355,15 @@ Containing the definition.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
 **Raises**
 
 **CircuitError** – If n \< 1.
 
+### reverse\_ops
 
+<span id="qiskit.circuit.library.YGate.reverse_ops" />
 
 `reverse_ops()`
 
@@ -333,22 +379,29 @@ sub-instructions reversed.
 
 **Return type**
 
-[qiskit.circuit.Instruction](qiskit.circuit.Instruction#qiskit.circuit.Instruction "qiskit.circuit.Instruction")
+[qiskit.circuit.Instruction](qiskit.circuit.Instruction "qiskit.circuit.Instruction")
 
+### to\_matrix
 
+<span id="qiskit.circuit.library.YGate.to_matrix" />
 
 `to_matrix()`
 
 Return a numpy.array for the Y gate.
 
+### unit
 
+<span id="qiskit.circuit.library.YGate.unit" />
 
 `property unit`
 
 Get the time unit of duration.
 
+### validate\_parameter
 
+<span id="qiskit.circuit.library.YGate.validate_parameter" />
 
 `validate_parameter(parameter)`
 
 Gate parameters should be int, float, or ParameterExpression
+

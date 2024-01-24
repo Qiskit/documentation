@@ -1,10 +1,18 @@
+---
+title: DifferentialExtrapolator
+description: API reference for qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator
+---
+
 <span id="qiskit-chemistry-algorithms-pes-samplers-differentialextrapolator" />
 
 # qiskit.chemistry.algorithms.pes\_samplers.DifferentialExtrapolator
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator" />
 
-
-`DifferentialExtrapolator(degree=1, model=None)`
+`DifferentialExtrapolator(degree=1, model=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
 
 An extrapolator based on treating each param set as a point in space, and fitting a Hamiltonian which evolves each point to the next. The user specifies the type of regression model to perform fitting, and a degree which adds derivatives to the values in the point vector; serving as features for the regression model. WARNING: Should only be used with window. Using no window includes points after the point being extrapolated in the data window.
 
@@ -15,7 +23,9 @@ Constructor.
 *   **model** (`Union`\[`LinearRegression`, `Ridge`, `RidgeCV`, `SGDRegressor`, `None`]) – Regression model (from sklearn) to be used for fitting variational parameters. Currently supports the following models: LinearRegression(), Ridge(), RidgeCV(), and SGDRegressor().
 *   **degree** (`int`) – Specifies (degree -1) derivatives to be added as ‘features’ in regression model.
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.__init__" />
 
 `__init__(degree=1, model=None)`
 
@@ -34,7 +44,9 @@ Constructor.
 | [`extrapolate`](#qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.extrapolate "qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.extrapolate")(points, param\_dict) | Extrapolate at specified point of interest given a set of variational parameters. |
 | [`factory`](#qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.factory "qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.factory")(mode, \*\*kwargs)                | Factory method for constructing extrapolators.                                    |
 
+### extrapolate
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.extrapolate" />
 
 `extrapolate(points, param_dict)`
 
@@ -54,7 +66,9 @@ Extrapolate at specified point of interest given a set of variational parameters
 
 Dictionary of variational parameters for extrapolated point(s).
 
+### factory
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.DifferentialExtrapolator.factory" />
 
 `static factory(mode, **kwargs)`
 
@@ -75,4 +89,5 @@ A newly created extrapolator instance.
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+

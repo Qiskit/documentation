@@ -1,10 +1,18 @@
+---
+title: ADMMOptimizationResult
+description: API reference for qiskit.optimization.algorithms.ADMMOptimizationResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.algorithms.ADMMOptimizationResult
+---
+
 <span id="qiskit-optimization-algorithms-admmoptimizationresult" />
 
 # qiskit.optimization.algorithms.ADMMOptimizationResult
 
+<span id="qiskit.optimization.algorithms.ADMMOptimizationResult" />
 
-
-`ADMMOptimizationResult(x, fval, variables, state, status)`
+`ADMMOptimizationResult(x, fval, variables, state, status)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/admm_optimizer.py "view source code")
 
 ADMMOptimization Result.
 
@@ -16,7 +24,9 @@ ADMMOptimization Result.
 *   **state** (`ADMMState`) – the internal computation state of ADMM.
 *   **status** (`OptimizationResultStatus`) – Termination status of an optimization algorithm
 
+### \_\_init\_\_
 
+<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.__init__" />
 
 `__init__(x, fval, variables, state, status)`
 
@@ -47,7 +57,9 @@ ADMMOptimization Result.
 | [`variables_dict`](#qiskit.optimization.algorithms.ADMMOptimizationResult.variables_dict "qiskit.optimization.algorithms.ADMMOptimizationResult.variables_dict") | Returns the optimal value as a dictionary of the variable name and corresponding value. |
 | [`x`](#qiskit.optimization.algorithms.ADMMOptimizationResult.x "qiskit.optimization.algorithms.ADMMOptimizationResult.x")                                        | Returns the optimal value found in the optimization or None in case of FAILURE.         |
 
+### fval
 
+<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.fval" />
 
 `property fval`
 
@@ -61,7 +73,9 @@ Returns the optimal function value.
 
 The function value corresponding to the optimal value found in the optimization.
 
+### raw\_results
 
+<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.raw_results" />
 
 `property raw_results`
 
@@ -77,7 +91,9 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
+### state
 
+<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.state" />
 
 `property state`
 
@@ -87,7 +103,9 @@ returns state
 
 `ADMMState`
 
+### status
 
+<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.status" />
 
 `property status`
 
@@ -101,7 +119,9 @@ Returns the termination status of the optimization algorithm.
 
 The termination status of the algorithm.
 
+### variable\_names
 
+<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.variable_names" />
 
 `property variable_names`
 
@@ -115,7 +135,9 @@ Returns the list of variable names of the optimization problem.
 
 The list of variable names of the optimization problem.
 
+### variables
 
+<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.variables" />
 
 `property variables`
 
@@ -129,7 +151,9 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
+### variables\_dict
 
+<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.variables_dict" />
 
 `property variables_dict`
 
@@ -143,7 +167,9 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 
 The optimal value as a dictionary of the variable name and corresponding value.
 
+### x
 
+<span id="qiskit.optimization.algorithms.ADMMOptimizationResult.x" />
 
 `property x`
 
@@ -156,3 +182,4 @@ Returns the optimal value found in the optimization or None in case of FAILURE.
 **Returns**
 
 The optimal value found in the optimization.
+

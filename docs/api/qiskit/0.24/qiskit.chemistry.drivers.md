@@ -20,7 +20,7 @@ python_api_name: qiskit.chemistry.drivers
 
 Qiskit’s chemistry module requires a computational chemistry program or library, accessed via a chemistry *driver*, to be installed on the system for the electronic-structure computation of a given molecule. A driver is created with a molecular configuration, passed in the format compatible with that particular driver. This allows custom configuration specific to each computational chemistry program or library to be passed.
 
-The chemistry module thus allows the user to configure a chemistry problem in a way that a chemist already using the underlying chemistry program or library will be familiar with. The driver is used to compute some intermediate data, which later will be used to form the input to an Aqua algorithm. Such intermediate data, is populated into a [`QMolecule`](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule") object and includes the following for example:
+The chemistry module thus allows the user to configure a chemistry problem in a way that a chemist already using the underlying chemistry program or library will be familiar with. The driver is used to compute some intermediate data, which later will be used to form the input to an Aqua algorithm. Such intermediate data, is populated into a [`QMolecule`](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule") object and includes the following for example:
 
 1.  One- and two-body integrals in Molecular Orbital (MO) basis
 2.  Dipole integrals
@@ -34,21 +34,21 @@ Qiskit’s chemistry module offers the option to serialize the Qmolecule data in
 
 # Driver Base Class
 
-|                                                                                                                                                   |                                                      |
-| ------------------------------------------------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
-| [`BaseDriver`](qiskit.chemistry.drivers.BaseDriver#qiskit.chemistry.drivers.BaseDriver "qiskit.chemistry.drivers.BaseDriver")                     | Base class for Qiskit’s chemistry drivers.           |
-| [`BosonicDriver`](qiskit.chemistry.drivers.BosonicDriver#qiskit.chemistry.drivers.BosonicDriver "qiskit.chemistry.drivers.BosonicDriver")         | Base class for Qiskit’s chemistry bosonic drivers.   |
-| [`FermionicDriver`](qiskit.chemistry.drivers.FermionicDriver#qiskit.chemistry.drivers.FermionicDriver "qiskit.chemistry.drivers.FermionicDriver") | Base class for Qiskit’s chemistry fermionic drivers. |
+|                                                                                                          |                                                      |
+| -------------------------------------------------------------------------------------------------------- | ---------------------------------------------------- |
+| [`BaseDriver`](qiskit.chemistry.drivers.BaseDriver "qiskit.chemistry.drivers.BaseDriver")                | Base class for Qiskit’s chemistry drivers.           |
+| [`BosonicDriver`](qiskit.chemistry.drivers.BosonicDriver "qiskit.chemistry.drivers.BosonicDriver")       | Base class for Qiskit’s chemistry bosonic drivers.   |
+| [`FermionicDriver`](qiskit.chemistry.drivers.FermionicDriver "qiskit.chemistry.drivers.FermionicDriver") | Base class for Qiskit’s chemistry fermionic drivers. |
 
 # Driver Common
 
-|                                                                                                                                       |                                         |
-| ------------------------------------------------------------------------------------------------------------------------------------- | --------------------------------------- |
-| [`Molecule`](qiskit.chemistry.drivers.Molecule#qiskit.chemistry.drivers.Molecule "qiskit.chemistry.drivers.Molecule")                 | Driver-independent Molecule definition. |
-| [`HFMethodType`](qiskit.chemistry.drivers.HFMethodType#qiskit.chemistry.drivers.HFMethodType "qiskit.chemistry.drivers.HFMethodType") | HFMethodType Enum                       |
-| [`UnitsType`](qiskit.chemistry.drivers.UnitsType#qiskit.chemistry.drivers.UnitsType "qiskit.chemistry.drivers.UnitsType")             | Units Type Enum                         |
-| [`BasisType`](qiskit.chemistry.drivers.BasisType#qiskit.chemistry.drivers.BasisType "qiskit.chemistry.drivers.BasisType")             | Basis Type                              |
-| [`InitialGuess`](qiskit.chemistry.drivers.InitialGuess#qiskit.chemistry.drivers.InitialGuess "qiskit.chemistry.drivers.InitialGuess") | Initial Guess Enum                      |
+|                                                                                                 |                                         |
+| ----------------------------------------------------------------------------------------------- | --------------------------------------- |
+| [`Molecule`](qiskit.chemistry.drivers.Molecule "qiskit.chemistry.drivers.Molecule")             | Driver-independent Molecule definition. |
+| [`HFMethodType`](qiskit.chemistry.drivers.HFMethodType "qiskit.chemistry.drivers.HFMethodType") | HFMethodType Enum                       |
+| [`UnitsType`](qiskit.chemistry.drivers.UnitsType "qiskit.chemistry.drivers.UnitsType")          | Units Type Enum                         |
+| [`BasisType`](qiskit.chemistry.drivers.BasisType "qiskit.chemistry.drivers.BasisType")          | Basis Type                              |
+| [`InitialGuess`](qiskit.chemistry.drivers.InitialGuess "qiskit.chemistry.drivers.InitialGuess") | Initial Guess Enum                      |
 
 # Drivers
 
@@ -59,33 +59,33 @@ The drivers in the chemistry module obtain their information from classical ab-i
 *   [PyQuante Installation](qiskit.chemistry.drivers.pyquanted)
 *   [PYSCF Installation](qiskit.chemistry.drivers.pyscfd)
 
-The [`HDF5Driver`](qiskit.chemistry.drivers.HDF5Driver#qiskit.chemistry.drivers.HDF5Driver "qiskit.chemistry.drivers.HDF5Driver") reads molecular data from a pre-existing HDF5 file, as saved from a [`QMolecule`](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule"), and is not dependent on any external chemistry program/library and needs no special install.
+The [`HDF5Driver`](qiskit.chemistry.drivers.HDF5Driver "qiskit.chemistry.drivers.HDF5Driver") reads molecular data from a pre-existing HDF5 file, as saved from a [`QMolecule`](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule"), and is not dependent on any external chemistry program/library and needs no special install.
 
-The [`FCIDumpDriver`](qiskit.chemistry.drivers.FCIDumpDriver#qiskit.chemistry.drivers.FCIDumpDriver "qiskit.chemistry.drivers.FCIDumpDriver") likewise reads from a pre-existing file in this case a standard FCIDump file and again needs no special install.
+The [`FCIDumpDriver`](qiskit.chemistry.drivers.FCIDumpDriver "qiskit.chemistry.drivers.FCIDumpDriver") likewise reads from a pre-existing file in this case a standard FCIDump file and again needs no special install.
 
 # Fermionic Drivers
 
-|                                                                                                                                               |                                                         |
-| --------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
-| [`GaussianDriver`](qiskit.chemistry.drivers.GaussianDriver#qiskit.chemistry.drivers.GaussianDriver "qiskit.chemistry.drivers.GaussianDriver") | Qiskit chemistry driver using the Gaussian™ 16 program. |
-| [`PSI4Driver`](qiskit.chemistry.drivers.PSI4Driver#qiskit.chemistry.drivers.PSI4Driver "qiskit.chemistry.drivers.PSI4Driver")                 | Qiskit chemistry driver using the PSI4 program.         |
-| [`PyQuanteDriver`](qiskit.chemistry.drivers.PyQuanteDriver#qiskit.chemistry.drivers.PyQuanteDriver "qiskit.chemistry.drivers.PyQuanteDriver") | Qiskit chemistry driver using the PyQuante2 library.    |
-| [`PySCFDriver`](qiskit.chemistry.drivers.PySCFDriver#qiskit.chemistry.drivers.PySCFDriver "qiskit.chemistry.drivers.PySCFDriver")             | Qiskit chemistry driver using the PySCF library.        |
-| [`HDF5Driver`](qiskit.chemistry.drivers.HDF5Driver#qiskit.chemistry.drivers.HDF5Driver "qiskit.chemistry.drivers.HDF5Driver")                 | Qiskit chemistry driver reading an HDF5 file.           |
-| [`FCIDumpDriver`](qiskit.chemistry.drivers.FCIDumpDriver#qiskit.chemistry.drivers.FCIDumpDriver "qiskit.chemistry.drivers.FCIDumpDriver")     | Qiskit chemistry driver reading an FCIDump file.        |
+|                                                                                                       |                                                         |
+| ----------------------------------------------------------------------------------------------------- | ------------------------------------------------------- |
+| [`GaussianDriver`](qiskit.chemistry.drivers.GaussianDriver "qiskit.chemistry.drivers.GaussianDriver") | Qiskit chemistry driver using the Gaussian™ 16 program. |
+| [`PSI4Driver`](qiskit.chemistry.drivers.PSI4Driver "qiskit.chemistry.drivers.PSI4Driver")             | Qiskit chemistry driver using the PSI4 program.         |
+| [`PyQuanteDriver`](qiskit.chemistry.drivers.PyQuanteDriver "qiskit.chemistry.drivers.PyQuanteDriver") | Qiskit chemistry driver using the PyQuante2 library.    |
+| [`PySCFDriver`](qiskit.chemistry.drivers.PySCFDriver "qiskit.chemistry.drivers.PySCFDriver")          | Qiskit chemistry driver using the PySCF library.        |
+| [`HDF5Driver`](qiskit.chemistry.drivers.HDF5Driver "qiskit.chemistry.drivers.HDF5Driver")             | Qiskit chemistry driver reading an HDF5 file.           |
+| [`FCIDumpDriver`](qiskit.chemistry.drivers.FCIDumpDriver "qiskit.chemistry.drivers.FCIDumpDriver")    | Qiskit chemistry driver reading an FCIDump file.        |
 
 # Bosonic Drivers
 
-|                                                                                                                                                                       |                             |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | --------------------------- |
-| [`GaussianForcesDriver`](qiskit.chemistry.drivers.GaussianForcesDriver#qiskit.chemistry.drivers.GaussianForcesDriver "qiskit.chemistry.drivers.GaussianForcesDriver") | Gaussian™ 16 forces driver. |
+|                                                                                                                         |                             |
+| ----------------------------------------------------------------------------------------------------------------------- | --------------------------- |
+| [`GaussianForcesDriver`](qiskit.chemistry.drivers.GaussianForcesDriver "qiskit.chemistry.drivers.GaussianForcesDriver") | Gaussian™ 16 forces driver. |
 
 # General Driver
 
-The [`GaussianLogDriver`](qiskit.chemistry.drivers.GaussianLogDriver#qiskit.chemistry.drivers.GaussianLogDriver "qiskit.chemistry.drivers.GaussianLogDriver") allows an arbitrary Gaussian Job Control File to be run and return a [`GaussianLogResult`](qiskit.chemistry.drivers.GaussianLogResult#qiskit.chemistry.drivers.GaussianLogResult "qiskit.chemistry.drivers.GaussianLogResult") containing the log as well as ready access certain data of interest that is parsed from the log.
+The [`GaussianLogDriver`](qiskit.chemistry.drivers.GaussianLogDriver "qiskit.chemistry.drivers.GaussianLogDriver") allows an arbitrary Gaussian Job Control File to be run and return a [`GaussianLogResult`](qiskit.chemistry.drivers.GaussianLogResult "qiskit.chemistry.drivers.GaussianLogResult") containing the log as well as ready access certain data of interest that is parsed from the log.
 
-|                                                                                                                                                           |                                     |
-| --------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
-| [`GaussianLogDriver`](qiskit.chemistry.drivers.GaussianLogDriver#qiskit.chemistry.drivers.GaussianLogDriver "qiskit.chemistry.drivers.GaussianLogDriver") | Gaussian™ 16 log driver.            |
-| [`GaussianLogResult`](qiskit.chemistry.drivers.GaussianLogResult#qiskit.chemistry.drivers.GaussianLogResult "qiskit.chemistry.drivers.GaussianLogResult") | Result for Gaussian™ 16 log driver. |
+|                                                                                                                |                                     |
+| -------------------------------------------------------------------------------------------------------------- | ----------------------------------- |
+| [`GaussianLogDriver`](qiskit.chemistry.drivers.GaussianLogDriver "qiskit.chemistry.drivers.GaussianLogDriver") | Gaussian™ 16 log driver.            |
+| [`GaussianLogResult`](qiskit.chemistry.drivers.GaussianLogResult "qiskit.chemistry.drivers.GaussianLogResult") | Result for Gaussian™ 16 log driver. |
 
