@@ -18,7 +18,7 @@ python_api_name: qiskit.circuit.qpy_serialization
 
 ## Using QPY
 
-Using QPY is defined to be straightforward and mirror the user API of the serializers in Python’s standard library, `pickle` and `json`. There are 2 user facing functions: [`qiskit.circuit.qpy_serialization.dump()`](qiskit.circuit.qpy_serialization.dump#qiskit.circuit.qpy_serialization.dump "qiskit.circuit.qpy_serialization.dump") and [`qiskit.circuit.qpy_serialization.load()`](qiskit.circuit.qpy_serialization.load#qiskit.circuit.qpy_serialization.load "qiskit.circuit.qpy_serialization.load") which are used to dump QPY data to a file object and load circuits from QPY data in a file object respectively. For example:
+Using QPY is defined to be straightforward and mirror the user API of the serializers in Python’s standard library, `pickle` and `json`. There are 2 user facing functions: [`qiskit.circuit.qpy_serialization.dump()`](qiskit.circuit.qpy_serialization.dump "qiskit.circuit.qpy_serialization.dump") and [`qiskit.circuit.qpy_serialization.load()`](qiskit.circuit.qpy_serialization.load "qiskit.circuit.qpy_serialization.load") which are used to dump QPY data to a file object and load circuits from QPY data in a file object respectively. For example:
 
 ```python
 from qiskit.circuit import QuantumCircuit
@@ -38,10 +38,10 @@ with open('bell.qpy', 'rb') as fd:
 
 ### API documentation
 
-|                                                                                                                                                    |                                 |
-| -------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------- |
-| [`load`](qiskit.circuit.qpy_serialization.load#qiskit.circuit.qpy_serialization.load "qiskit.circuit.qpy_serialization.load")(file\_obj)           | Load a QPY binary file          |
-| [`dump`](qiskit.circuit.qpy_serialization.dump#qiskit.circuit.qpy_serialization.dump "qiskit.circuit.qpy_serialization.dump")(circuits, file\_obj) | Write QPY binary data to a file |
+|                                                                                                              |                                 |
+| ------------------------------------------------------------------------------------------------------------ | ------------------------------- |
+| [`load`](qiskit.circuit.qpy_serialization.load "qiskit.circuit.qpy_serialization.load")(file\_obj)           | Load a QPY binary file          |
+| [`dump`](qiskit.circuit.qpy_serialization.dump "qiskit.circuit.qpy_serialization.dump")(circuits, file\_obj) | Write QPY binary data to a file |
 
 ### QPY Compatibility
 
@@ -51,7 +51,7 @@ For example, if you generated a QPY file using qiskit-terra 0.18.1 you could loa
 
 ## QPY Format
 
-The QPY serialization format is a portable cross-platform binary serialization format for [`QuantumCircuit`](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects in Qiskit. The basic file format is as follows:
+The QPY serialization format is a portable cross-platform binary serialization format for [`QuantumCircuit`](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit") objects in Qiskit. The basic file format is as follows:
 
 A QPY file (or memory object) always starts with the following 7 byte UTF8 string: `QISKIT` which is immediately followed by the overall file header. The contents of the file header as defined as a C struct are:
 
@@ -200,11 +200,11 @@ struct {
 }
 ```
 
-After each INSTRUCTION\_PARAM the next `size` bytes are the parameter’s data. The `type` field can be `'i'`, `'f'`, `'p'`, `'e'`, `'s'`, `'c'` or `'n'` which dictate the format. For `'i'` it’s an integer, `'f'` it’s a double, `'s'` if it’s a string (encoded as utf8), `'c'` is a complex and the data is represented by the struct format in the [PARAMETER\_EXPR](#param-expr) section. `'p'` defines a [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter") object which is represented by a PARAM struct (see below), `e` defines a [`ParameterExpression`](qiskit.circuit.ParameterExpression#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object (that’s not a [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter")) which is represented by a PARAM\_EXPR struct (see below), and `'n'` represents an object from numpy (either an `ndarray` or a numpy type) which means the data is .npy format [2](#f2) data.
+After each INSTRUCTION\_PARAM the next `size` bytes are the parameter’s data. The `type` field can be `'i'`, `'f'`, `'p'`, `'e'`, `'s'`, `'c'` or `'n'` which dictate the format. For `'i'` it’s an integer, `'f'` it’s a double, `'s'` if it’s a string (encoded as utf8), `'c'` is a complex and the data is represented by the struct format in the [PARAMETER\_EXPR](#param-expr) section. `'p'` defines a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") object which is represented by a PARAM struct (see below), `e` defines a [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object (that’s not a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter")) which is represented by a PARAM\_EXPR struct (see below), and `'n'` represents an object from numpy (either an `ndarray` or a numpy type) which means the data is .npy format [2](#f2) data.
 
 ### PARAMETER
 
-A PARAMETER represents a [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter") object the data for a INSTRUCTION\_PARAM. The contents of the PARAMETER are defined as:
+A PARAMETER represents a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") object the data for a INSTRUCTION\_PARAM. The contents of the PARAMETER are defined as:
 
 ```python
 struct {
@@ -219,7 +219,7 @@ which is immediately followed by `name_size` utf8 bytes representing the paramet
 
 ### PARAMETER\_EXPR
 
-A PARAMETER\_EXPR represents a [`ParameterExpression`](qiskit.circuit.ParameterExpression#qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object that the data for an INSTRUCTION\_PARAM. The contents of a PARAMETER\_EXPR are defined as:
+A PARAMETER\_EXPR represents a [`ParameterExpression`](qiskit.circuit.ParameterExpression "qiskit.circuit.ParameterExpression") object that the data for an INSTRUCTION\_PARAM. The contents of a PARAMETER\_EXPR are defined as:
 
 The PARAMETER\_EXPR data starts with a header:
 
@@ -239,7 +239,7 @@ struct {
 }
 ```
 
-Which is followed immediately by `PARAMETER` object (both the struct and utf8 name bytes) for the symbol map key. That is followed by `size` bytes for the data of the symbol. The data format is dependent on the value of `type`. If `type` is `p` then it represents a [`Parameter`](qiskit.circuit.Parameter#qiskit.circuit.Parameter "qiskit.circuit.Parameter") and size will be 0, the value will just be the same as the key. If `type` is `f` then it represents a double precision float. If `type` is `c` it represents a double precision complex, which is represented by:
+Which is followed immediately by `PARAMETER` object (both the struct and utf8 name bytes) for the symbol map key. That is followed by `size` bytes for the data of the symbol. The data format is dependent on the value of `type`. If `type` is `p` then it represents a [`Parameter`](qiskit.circuit.Parameter "qiskit.circuit.Parameter") and size will be 0, the value will just be the same as the key. If `type` is `f` then it represents a double precision float. If `type` is `c` it represents a double precision complex, which is represented by:
 
 ```python
 struct {
