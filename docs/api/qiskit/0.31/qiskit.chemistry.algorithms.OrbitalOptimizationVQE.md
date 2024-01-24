@@ -1,8 +1,16 @@
+---
+title: OrbitalOptimizationVQE
+description: API reference for qiskit.chemistry.algorithms.OrbitalOptimizationVQE
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.OrbitalOptimizationVQE
+---
+
 # OrbitalOptimizationVQE
 
+<span id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE" />
 
-
-`OrbitalOptimizationVQE(transformation, solver, initial_point=None, orbital_rotation=None, bounds=None, iterative_oo=True, iterative_oo_iterations=2)`
+`OrbitalOptimizationVQE(transformation, solver, initial_point=None, orbital_rotation=None, bounds=None, iterative_oo=True, iterative_oo_iterations=2)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/orbital_optimization_vqe.py "view source code")
 
 Bases: `qiskit.chemistry.algorithms.ground_state_solvers.ground_state_eigensolver.GroundStateEigensolver`
 
@@ -20,19 +28,71 @@ A ground state calculation employing the OOVQE algorithm. The Variational Quantu
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the number of orbital optimization iterations is less or equal to zero.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if the number of orbital optimization iterations is less or equal to zero.
 
 ## Methods
 
-|                                                                                                                                                                                                                                                 |                                                                               |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------- |
-| [`evaluate_operators`](qiskit.chemistry.algorithms.OrbitalOptimizationVQE.evaluate_operators#qiskit.chemistry.algorithms.OrbitalOptimizationVQE.evaluate_operators "qiskit.chemistry.algorithms.OrbitalOptimizationVQE.evaluate_operators")     | Evaluates additional operators at the given state.                            |
-| [`returns_groundstate`](qiskit.chemistry.algorithms.OrbitalOptimizationVQE.returns_groundstate#qiskit.chemistry.algorithms.OrbitalOptimizationVQE.returns_groundstate "qiskit.chemistry.algorithms.OrbitalOptimizationVQE.returns_groundstate") | Whether the eigensolver returns the ground state or only ground state energy. |
-| [`solve`](qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solve#qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solve "qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solve")                                                         | Compute Ground State properties.                                              |
+### evaluate\_operators
+
+<span id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.evaluate_operators" />
+
+`OrbitalOptimizationVQE.evaluate_operators(state, operators)`
+
+Evaluates additional operators at the given state.
+
+**Parameters**
+
+*   **state** (`Union`\[`str`, `dict`, `Result`, `list`, `ndarray`, `Statevector`, `QuantumCircuit`, `Instruction`, `OperatorBase`]) – any kind of input that can be used to specify a state. See also `StateFn` for more details.
+*   **operators** (`Union`\[`WeightedPauliOperator`, `OperatorBase`, `list`, `dict`]) – either a single, list or dictionary of `WeightedPauliOperator``s or any kind of operator implementing the ``OperatorBase`.
+
+**Return type**
+
+`Union`\[`float`, `None`, `List`\[`Optional`\[`float`]], `Dict`\[`str`, `List`\[`Optional`\[`float`]]]]
+
+**Returns**
+
+The expectation value of the given operator(s). The return type will be identical to the format of the provided operators.
+
+### returns\_groundstate
+
+<span id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.returns_groundstate" />
+
+`OrbitalOptimizationVQE.returns_groundstate()`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/orbital_optimization_vqe.py "view source code")
+
+Whether the eigensolver returns the ground state or only ground state energy.
+
+**Return type**
+
+`bool`
+
+### solve
+
+<span id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solve" />
+
+`OrbitalOptimizationVQE.solve(driver, aux_operators=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/ground_state_solvers/orbital_optimization_vqe.py "view source code")
+
+Compute Ground State properties.
+
+**Parameters**
+
+*   **driver** (`BaseDriver`) – a chemistry driver object which defines the chemical problem that is to be solved by this calculation.
+*   **aux\_operators** (`Union`\[`List`\[`FermionicOperator`], `List`\[`BosonicOperator`], `None`]) – Additional auxiliary operators to evaluate at the ground state. Depending on whether a fermionic or bosonic system is solved, the type of the operators must be `FermionicOperator` or `BosonicOperator`, respectively.
+
+**Raises**
+
+**NotImplementedError** – If an operator in `aux_operators` is not of type `FermionicOperator`.
+
+**Return type**
+
+`ElectronicStructureResult`
+
+**Returns**
+
+An eigenstate result. Depending on the transformation this can be an electronic structure or bosonic result.
 
 ## Attributes
 
-
+<span id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.solver" />
 
 ### solver
 
@@ -42,7 +102,7 @@ Returns the minimum eigensolver or factory.
 
 `Union`\[`MinimumEigensolver`, `MinimumEigensolverFactory`]
 
-
+<span id="qiskit.chemistry.algorithms.OrbitalOptimizationVQE.transformation" />
 
 ### transformation
 
@@ -51,3 +111,4 @@ Returns the transformation used to obtain a qubit operator from the molecule.
 **Return type**
 
 `Transformation`
+
