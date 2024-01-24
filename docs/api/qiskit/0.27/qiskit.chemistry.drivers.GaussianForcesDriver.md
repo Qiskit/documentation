@@ -1,8 +1,16 @@
+---
+title: GaussianForcesDriver
+description: API reference for qiskit.chemistry.drivers.GaussianForcesDriver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.drivers.GaussianForcesDriver
+---
+
 # qiskit.chemistry.drivers.GaussianForcesDriver
 
+<span id="qiskit.chemistry.drivers.GaussianForcesDriver" />
 
-
-`GaussianForcesDriver(jcf='\\n#p B3LYP/cc-pVTZ Freq=(Anharm) Int=Ultrafine SCF=VeryTight\\n\\nCO2 geometry optimization B3LYP/cc-pVTZ\\n\\n0 1\\nC -0.848629 2.067624 0.160992\\nO 0.098816 2.655801 -0.159738\\nO -1.796073 1.479446 0.481721\\n\\n', logfile=None, molecule=None, basis='sto-3g', normalize=True)`
+`GaussianForcesDriver(jcf='\\n#p B3LYP/cc-pVTZ Freq=(Anharm) Int=Ultrafine SCF=VeryTight\\n\\nCO2 geometry optimization B3LYP/cc-pVTZ\\n\\n0 1\\nC -0.848629 2.067624 0.160992\\nO 0.098816 2.655801 -0.159738\\nO -1.796073 1.479446 0.481721\\n\\n', logfile=None, molecule=None, basis='sto-3g', normalize=True)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/drivers/gaussiand/gaussian_forces_driver.py "view source code")
 
 Gaussian™ 16 forces driver.
 
@@ -16,9 +24,11 @@ Gaussian™ 16 forces driver.
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If jcf or molecule given and Gaussian™ 16 executable cannot be located.
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If jcf or molecule given and Gaussian™ 16 executable cannot be located.
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.drivers.GaussianForcesDriver.__init__" />
 
 `__init__(jcf='\\n#p B3LYP/cc-pVTZ Freq=(Anharm) Int=Ultrafine SCF=VeryTight\\n\\nCO2 geometry optimization B3LYP/cc-pVTZ\\n\\n0 1\\nC -0.848629 2.067624 0.160992\\nO 0.098816 2.655801 -0.159738\\nO -1.796073 1.479446 0.481721\\n\\n', logfile=None, molecule=None, basis='sto-3g', normalize=True)`
 
@@ -32,7 +42,7 @@ Gaussian™ 16 forces driver.
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If jcf or molecule given and Gaussian™ 16 executable cannot be located.
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – If jcf or molecule given and Gaussian™ 16 executable cannot be located.
 
 ## Methods
 
@@ -50,7 +60,9 @@ Gaussian™ 16 forces driver.
 | [`molecule`](#qiskit.chemistry.drivers.GaussianForcesDriver.molecule "qiskit.chemistry.drivers.GaussianForcesDriver.molecule")                            | return molecule                                 |
 | [`supports_molecule`](#qiskit.chemistry.drivers.GaussianForcesDriver.supports_molecule "qiskit.chemistry.drivers.GaussianForcesDriver.supports_molecule") | True for derived classes that support Molecule. |
 
+### basis
 
+<span id="qiskit.chemistry.drivers.GaussianForcesDriver.basis" />
 
 `property basis`
 
@@ -60,7 +72,9 @@ return basis
 
 `str`
 
+### hf\_method
 
+<span id="qiskit.chemistry.drivers.GaussianForcesDriver.hf_method" />
 
 `property hf_method`
 
@@ -70,7 +84,9 @@ return Hartree-Fock method
 
 `str`
 
+### molecule
 
+<span id="qiskit.chemistry.drivers.GaussianForcesDriver.molecule" />
 
 `property molecule`
 
@@ -80,7 +96,9 @@ return molecule
 
 `Optional`\[`Molecule`]
 
+### run
 
+<span id="qiskit.chemistry.drivers.GaussianForcesDriver.run" />
 
 `run()`
 
@@ -94,7 +112,9 @@ Runs driver to produce a WatsonHamiltonian output.
 
 A WatsonHamiltonian comprising the bosonic data.
 
+### supports\_molecule
 
+<span id="qiskit.chemistry.drivers.GaussianForcesDriver.supports_molecule" />
 
 `property supports_molecule`
 
@@ -107,3 +127,4 @@ True for derived classes that support Molecule.
 **Returns**
 
 True if Molecule is supported.
+

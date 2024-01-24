@@ -1,8 +1,16 @@
+---
+title: VQEAdapt
+description: API reference for qiskit.chemistry.algorithms.VQEAdapt
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.VQEAdapt
+---
+
 # qiskit.chemistry.algorithms.VQEAdapt
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt" />
 
-
-`VQEAdapt(operator, var_form_base, optimizer, initial_point=None, excitation_pool=None, threshold=1e-05, delta=1, max_iterations=None, max_evals_grouped=1, aux_operators=None, quantum_instance=None)`
+`VQEAdapt(operator, var_form_base, optimizer, initial_point=None, excitation_pool=None, threshold=1e-05, delta=1, max_iterations=None, max_evals_grouped=1, aux_operators=None, quantum_instance=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/minimum_eigen_solvers/vqe_adapt.py "view source code")
 
 DEPRECATED. The Adaptive VQE algorithm.
 
@@ -27,7 +35,9 @@ See [https://arxiv.org/abs/1812.11173](https://arxiv.org/abs/1812.11173)
 *   **ValueError** – if var\_form\_base is not an instance of UCCSD.
 *   **See also** – qiskit/chemistry/components/variational\_forms/uccsd\_adapt.py
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.__init__" />
 
 `__init__(operator, var_form_base, optimizer, initial_point=None, excitation_pool=None, threshold=1e-05, delta=1, max_iterations=None, max_evals_grouped=1, aux_operators=None, quantum_instance=None)`
 
@@ -77,7 +87,9 @@ See [https://arxiv.org/abs/1812.11173](https://arxiv.org/abs/1812.11173)
 | [`random`](#qiskit.chemistry.algorithms.VQEAdapt.random "qiskit.chemistry.algorithms.VQEAdapt.random")                               | Return a numpy random.     |
 | [`var_form`](#qiskit.chemistry.algorithms.VQEAdapt.var_form "qiskit.chemistry.algorithms.VQEAdapt.var_form")                         | Returns variational form   |
 
+### backend
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.backend" />
 
 `property backend`
 
@@ -87,13 +99,17 @@ Returns backend.
 
 `Union`\[`Backend`, `BaseBackend`]
 
+### cleanup\_parameterized\_circuits
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.cleanup_parameterized_circuits" />
 
 `cleanup_parameterized_circuits()`
 
 set parameterized circuits to None
 
+### find\_minimum
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.find_minimum" />
 
 `find_minimum(initial_point=None, var_form=None, cost_fn=None, optimizer=None, gradient_fn=None)`
 
@@ -119,37 +135,49 @@ dict
 
 **ValueError** – invalid input
 
+### get\_optimal\_circuit
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.get_optimal_circuit" />
 
 `get_optimal_circuit()`
 
 get optimal circuit
 
+### get\_optimal\_cost
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.get_optimal_cost" />
 
 `get_optimal_cost()`
 
 get optimal cost
 
+### get\_optimal\_vector
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.get_optimal_vector" />
 
 `get_optimal_vector()`
 
 get optimal vector
 
+### get\_prob\_vector\_for\_params
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.get_prob_vector_for_params" />
 
 `get_prob_vector_for_params(construct_circuit_fn, params_s, quantum_instance, construct_circuit_args=None)`
 
 Helper function to get probability vectors for a set of params
 
+### get\_probabilities\_for\_counts
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.get_probabilities_for_counts" />
 
 `get_probabilities_for_counts(counts)`
 
 get probabilities for counts
 
+### initial\_point
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.initial_point" />
 
 `property initial_point`
 
@@ -159,13 +187,17 @@ Returns initial point
 
 `Optional`\[`ndarray`]
 
+### optimal\_params
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.optimal_params" />
 
 `property optimal_params`
 
 returns optimal parameters
 
+### optimizer
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.optimizer" />
 
 `property optimizer`
 
@@ -175,7 +207,9 @@ Returns optimizer
 
 `Optional`\[`Optimizer`]
 
+### quantum\_instance
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.quantum_instance" />
 
 `property quantum_instance`
 
@@ -185,13 +219,17 @@ Returns quantum instance.
 
 `Optional`\[`QuantumInstance`]
 
+### random
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.random" />
 
 `property random`
 
 Return a numpy random.
 
+### run
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.run" />
 
 `run(quantum_instance=None, **kwargs)`
 
@@ -212,9 +250,11 @@ dict
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – If a quantum instance or backend has not been provided
 
+### set\_backend
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.set_backend" />
 
 `set_backend(backend, **kwargs)`
 
@@ -224,7 +264,9 @@ Sets backend with configuration.
 
 `None`
 
+### var\_form
 
+<span id="qiskit.chemistry.algorithms.VQEAdapt.var_form" />
 
 `property var_form`
 
@@ -233,3 +275,4 @@ Returns variational form
 **Return type**
 
 `Union`\[`QuantumCircuit`, `VariationalForm`, `None`]
+
