@@ -1,10 +1,18 @@
+---
+title: OptimizationResult
+description: API reference for qiskit.optimization.algorithms.OptimizationResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.optimization.algorithms.OptimizationResult
+---
+
 <span id="qiskit-optimization-algorithms-optimizationresult" />
 
 # qiskit.optimization.algorithms.OptimizationResult
 
+<span id="qiskit.optimization.algorithms.OptimizationResult" />
 
-
-`OptimizationResult(x, fval, variables, status, raw_results=None)`
+`OptimizationResult(x, fval, variables, status, raw_results=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/optimization/algorithms/optimization_algorithm.py "view source code")
 
 A base class for optimization results.
 
@@ -54,9 +62,11 @@ The optimization algorithms return an object of the type `OptimizationResult` wi
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if sizes of `x` and `variables` do not match.
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if sizes of `x` and `variables` do not match.
 
+### \_\_init\_\_
 
+<span id="qiskit.optimization.algorithms.OptimizationResult.__init__" />
 
 `__init__(x, fval, variables, status, raw_results=None)`
 
@@ -70,7 +80,7 @@ The optimization algorithms return an object of the type `OptimizationResult` wi
 
 **Raises**
 
-[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError#qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if sizes of `x` and `variables` do not match.
+[**QiskitOptimizationError**](qiskit.optimization.QiskitOptimizationError "qiskit.optimization.QiskitOptimizationError") – if sizes of `x` and `variables` do not match.
 
 ## Methods
 
@@ -90,7 +100,9 @@ The optimization algorithms return an object of the type `OptimizationResult` wi
 | [`variables_dict`](#qiskit.optimization.algorithms.OptimizationResult.variables_dict "qiskit.optimization.algorithms.OptimizationResult.variables_dict") | Returns the optimal value as a dictionary of the variable name and corresponding value. |
 | [`x`](#qiskit.optimization.algorithms.OptimizationResult.x "qiskit.optimization.algorithms.OptimizationResult.x")                                        | Returns the optimal value found in the optimization or None in case of FAILURE.         |
 
+### fval
 
+<span id="qiskit.optimization.algorithms.OptimizationResult.fval" />
 
 `property fval`
 
@@ -104,7 +116,9 @@ Returns the optimal function value.
 
 The function value corresponding to the optimal value found in the optimization.
 
+### raw\_results
 
+<span id="qiskit.optimization.algorithms.OptimizationResult.raw_results" />
 
 `property raw_results`
 
@@ -120,7 +134,9 @@ Currently a dump for any leftovers.
 
 Additional result information of the optimization algorithm.
 
+### status
 
+<span id="qiskit.optimization.algorithms.OptimizationResult.status" />
 
 `property status`
 
@@ -134,7 +150,9 @@ Returns the termination status of the optimization algorithm.
 
 The termination status of the algorithm.
 
+### variable\_names
 
+<span id="qiskit.optimization.algorithms.OptimizationResult.variable_names" />
 
 `property variable_names`
 
@@ -148,7 +166,9 @@ Returns the list of variable names of the optimization problem.
 
 The list of variable names of the optimization problem.
 
+### variables
 
+<span id="qiskit.optimization.algorithms.OptimizationResult.variables" />
 
 `property variables`
 
@@ -162,7 +182,9 @@ Returns the list of variables of the optimization problem.
 
 The list of variables.
 
+### variables\_dict
 
+<span id="qiskit.optimization.algorithms.OptimizationResult.variables_dict" />
 
 `property variables_dict`
 
@@ -176,7 +198,9 @@ Returns the optimal value as a dictionary of the variable name and corresponding
 
 The optimal value as a dictionary of the variable name and corresponding value.
 
+### x
 
+<span id="qiskit.optimization.algorithms.OptimizationResult.x" />
 
 `property x`
 
@@ -189,3 +213,4 @@ Returns the optimal value found in the optimization or None in case of FAILURE.
 **Returns**
 
 The optimal value found in the optimization.
+

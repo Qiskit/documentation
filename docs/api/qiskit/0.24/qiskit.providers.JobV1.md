@@ -1,10 +1,18 @@
+---
+title: JobV1
+description: API reference for qiskit.providers.JobV1
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.JobV1
+---
+
 <span id="qiskit-providers-jobv1" />
 
 # qiskit.providers.JobV1
 
+<span id="qiskit.providers.JobV1" />
 
-
-`JobV1(backend, job_id, **kwargs)`
+`JobV1(backend, job_id, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/job.py "view source code")
 
 Class to handle jobs
 
@@ -18,7 +26,9 @@ Initializes the asynchronous job.
 *   **job\_id** (`str`) – a unique id in the context of the backend used to run the job.
 *   **kwargs** – Any key value metadata to associate with this job.
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.JobV1.__init__" />
 
 `__init__(backend, job_id, **kwargs)`
 
@@ -53,7 +63,9 @@ Initializes the asynchronous job.
 | --------- | - |
 | `version` |   |
 
+### backend
 
+<span id="qiskit.providers.JobV1.backend" />
 
 `backend()`
 
@@ -63,13 +75,17 @@ Return the backend where this job was executed.
 
 `Backend`
 
+### cancel
 
+<span id="qiskit.providers.JobV1.cancel" />
 
 `cancel()`
 
 Attempt to cancel the job.
 
+### cancelled
 
+<span id="qiskit.providers.JobV1.cancelled" />
 
 `cancelled()`
 
@@ -79,7 +95,9 @@ Return whether the job has been cancelled.
 
 `bool`
 
+### done
 
+<span id="qiskit.providers.JobV1.done" />
 
 `done()`
 
@@ -89,7 +107,9 @@ Return whether the job has successfully run.
 
 `bool`
 
+### in\_final\_state
 
+<span id="qiskit.providers.JobV1.in_final_state" />
 
 `in_final_state()`
 
@@ -99,7 +119,9 @@ Return whether the job is in a final job state such as `DONE` or `ERROR`.
 
 `bool`
 
+### job\_id
 
+<span id="qiskit.providers.JobV1.job_id" />
 
 `job_id()`
 
@@ -109,13 +131,17 @@ Return a unique id identifying the job.
 
 `str`
 
+### result
 
+<span id="qiskit.providers.JobV1.result" />
 
 `abstract result()`
 
 Return the results of the job.
 
+### running
 
+<span id="qiskit.providers.JobV1.running" />
 
 `running()`
 
@@ -125,19 +151,25 @@ Return whether the job is actively running.
 
 `bool`
 
+### status
 
+<span id="qiskit.providers.JobV1.status" />
 
 `abstract status()`
 
 Return the status of the job, among the values of `JobStatus`.
 
+### submit
 
+<span id="qiskit.providers.JobV1.submit" />
 
 `abstract submit()`
 
 Submit the job to the backend for execution.
 
+### wait\_for\_final\_state
 
+<span id="qiskit.providers.JobV1.wait_for_final_state" />
 
 `wait_for_final_state(timeout=None, wait=5, callback=None)`
 
@@ -161,8 +193,9 @@ Poll the job status until it progresses to a final state such as `DONE` or `ERRO
 
 **Raises**
 
-[**JobTimeoutError**](qiskit.providers.JobTimeoutError#qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError") – If the job does not reach a final state before the specified timeout.
+[**JobTimeoutError**](qiskit.providers.JobTimeoutError "qiskit.providers.JobTimeoutError") – If the job does not reach a final state before the specified timeout.
 
 **Return type**
 
 `None`
+

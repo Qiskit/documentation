@@ -1,10 +1,18 @@
+---
+title: NumPyMinimumEigensolver
+description: API reference for qiskit.aqua.algorithms.NumPyMinimumEigensolver
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.NumPyMinimumEigensolver
+---
+
 <span id="qiskit-aqua-algorithms-numpyminimumeigensolver" />
 
 # qiskit.aqua.algorithms.NumPyMinimumEigensolver
 
+<span id="qiskit.aqua.algorithms.NumPyMinimumEigensolver" />
 
-
-`NumPyMinimumEigensolver(operator=None, aux_operators=None, filter_criterion=None)`
+`NumPyMinimumEigensolver(operator=None, aux_operators=None, filter_criterion=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/minimum_eigen_solvers/numpy_minimum_eigen_solver.py "view source code")
 
 The Numpy Minimum Eigensolver algorithm.
 
@@ -14,7 +22,9 @@ The Numpy Minimum Eigensolver algorithm.
 *   **aux\_operators** (`Optional`\[`List`\[`Union`\[`OperatorBase`, `LegacyBaseOperator`, `None`]]]) – Auxiliary operators to be evaluated at minimum eigenvalue
 *   **filter\_criterion** (`Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]) – callable that allows to filter eigenvalues/eigenstates. The minimum eigensolver is only searching over feasible states and returns an eigenstate that has the smallest eigenvalue among feasible states. The callable has the signature filter(eigenstate, eigenvalue, aux\_values) and must return a boolean to indicate whether to consider this value or not. If there is no feasible element, the result can even be empty.
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.algorithms.NumPyMinimumEigensolver.__init__" />
 
 `__init__(operator=None, aux_operators=None, filter_criterion=None)`
 
@@ -42,7 +52,9 @@ The Numpy Minimum Eigensolver algorithm.
 | [`operator`](#qiskit.aqua.algorithms.NumPyMinimumEigensolver.operator "qiskit.aqua.algorithms.NumPyMinimumEigensolver.operator")                         | Return the operator.                |
 | [`random`](#qiskit.aqua.algorithms.NumPyMinimumEigensolver.random "qiskit.aqua.algorithms.NumPyMinimumEigensolver.random")                               | Return a numpy random.              |
 
+### aux\_operators
 
+<span id="qiskit.aqua.algorithms.NumPyMinimumEigensolver.aux_operators" />
 
 `property aux_operators`
 
@@ -52,7 +64,9 @@ Returns the auxiliary operators.
 
 `Optional`\[`List`\[`Optional`\[`OperatorBase`]]]
 
+### compute\_minimum\_eigenvalue
 
+<span id="qiskit.aqua.algorithms.NumPyMinimumEigensolver.compute_minimum_eigenvalue" />
 
 `compute_minimum_eigenvalue(operator=None, aux_operators=None)`
 
@@ -71,7 +85,9 @@ Computes minimum eigenvalue. Operator and aux\_operators can be supplied here an
 
 MinimumEigensolverResult
 
+### filter\_criterion
 
+<span id="qiskit.aqua.algorithms.NumPyMinimumEigensolver.filter_criterion" />
 
 `property filter_criterion`
 
@@ -81,7 +97,9 @@ returns the filter criterion if set
 
 `Optional`\[`Callable`\[\[`Union`\[`List`, `ndarray`], `float`, `Optional`\[`List`\[`float`]]], `bool`]]
 
+### operator
 
+<span id="qiskit.aqua.algorithms.NumPyMinimumEigensolver.operator" />
 
 `property operator`
 
@@ -91,13 +109,17 @@ Return the operator.
 
 `Optional`\[`OperatorBase`]
 
+### random
 
+<span id="qiskit.aqua.algorithms.NumPyMinimumEigensolver.random" />
 
 `property random`
 
 Return a numpy random.
 
+### run
 
+<span id="qiskit.aqua.algorithms.NumPyMinimumEigensolver.run" />
 
 `run()`
 
@@ -111,7 +133,9 @@ results of an algorithm.
 
 dict
 
+### supports\_aux\_operators
 
+<span id="qiskit.aqua.algorithms.NumPyMinimumEigensolver.supports_aux_operators" />
 
 `classmethod supports_aux_operators()`
 
@@ -126,3 +150,4 @@ If the minimum eigensolver computes an eigenstate of the main operator then it c
 **Returns**
 
 True if aux\_operator expectations can be evaluated, False otherwise
+

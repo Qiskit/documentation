@@ -1,10 +1,18 @@
+---
+title: Optimize1qGates
+description: API reference for qiskit.transpiler.passes.Optimize1qGates
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.transpiler.passes.Optimize1qGates
+---
+
 <span id="qiskit-transpiler-passes-optimize1qgates" />
 
 # qiskit.transpiler.passes.Optimize1qGates
 
+<span id="qiskit.transpiler.passes.Optimize1qGates" />
 
-
-`Optimize1qGates(*args, **kwargs)`
+`Optimize1qGates(*args, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/transpiler/passes/optimization/optimize_1q_gates.py "view source code")
 
 Optimize chains of single-qubit u1, u2, u3 gates by combining them into a single gate.
 
@@ -15,7 +23,9 @@ Optimize1qGates initializer.
 *   **basis** (*list\[str]*) – Basis gates to consider, e.g. \[‘u3’, ‘cx’]. For the effects of this pass, the basis is the set intersection between the basis parameter and the set \{‘u1’,’u2’,’u3’, ‘u’, ‘p’}.
 *   **eps** (*float*) – EPS to check against
 
+### \_\_init\_\_
 
+<span id="qiskit.transpiler.passes.Optimize1qGates.__init__" />
 
 `__init__(basis=None, eps=1e-15)`
 
@@ -43,7 +53,9 @@ Optimize1qGates initializer.
 | [`is_analysis_pass`](#qiskit.transpiler.passes.Optimize1qGates.is_analysis_pass "qiskit.transpiler.passes.Optimize1qGates.is_analysis_pass")                   | Check if the pass is an analysis pass.      |
 | [`is_transformation_pass`](#qiskit.transpiler.passes.Optimize1qGates.is_transformation_pass "qiskit.transpiler.passes.Optimize1qGates.is_transformation_pass") | Check if the pass is a transformation pass. |
 
+### compose\_u3
 
+<span id="qiskit.transpiler.passes.Optimize1qGates.compose_u3" />
 
 `static compose_u3(theta1, phi1, lambda1, theta2, phi2, lambda2)`
 
@@ -55,7 +67,9 @@ Return a triple theta, phi, lambda for the product.
 
 Return theta, phi, lambda.
 
+### is\_analysis\_pass
 
+<span id="qiskit.transpiler.passes.Optimize1qGates.is_analysis_pass" />
 
 `property is_analysis_pass`
 
@@ -63,7 +77,9 @@ Check if the pass is an analysis pass.
 
 If the pass is an AnalysisPass, that means that the pass can analyze the DAG and write the results of that analysis in the property set. Modifications on the DAG are not allowed by this kind of pass.
 
+### is\_transformation\_pass
 
+<span id="qiskit.transpiler.passes.Optimize1qGates.is_transformation_pass" />
 
 `property is_transformation_pass`
 
@@ -71,13 +87,17 @@ Check if the pass is a transformation pass.
 
 If the pass is a TransformationPass, that means that the pass can manipulate the DAG, but cannot modify the property set (but it can be read).
 
+### name
 
+<span id="qiskit.transpiler.passes.Optimize1qGates.name" />
 
 `name()`
 
 Return the name of the pass.
 
+### run
 
+<span id="qiskit.transpiler.passes.Optimize1qGates.run" />
 
 `run(dag)`
 
@@ -85,7 +105,7 @@ Run the Optimize1qGates pass on dag.
 
 **Parameters**
 
-**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the DAG to be optimized.
+**dag** ([*DAGCircuit*](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")) – the DAG to be optimized.
 
 **Returns**
 
@@ -93,13 +113,15 @@ the optimized DAG.
 
 **Return type**
 
-[DAGCircuit](qiskit.dagcircuit.DAGCircuit#qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
+[DAGCircuit](qiskit.dagcircuit.DAGCircuit "qiskit.dagcircuit.DAGCircuit")
 
 **Raises**
 
-[**TranspilerError**](qiskit.transpiler.TranspilerError#qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if YZY and ZYZ angles do not give same rotation matrix.
+[**TranspilerError**](qiskit.transpiler.TranspilerError "qiskit.transpiler.TranspilerError") – if YZY and ZYZ angles do not give same rotation matrix.
 
+### yzy\_to\_zyz
 
+<span id="qiskit.transpiler.passes.Optimize1qGates.yzy_to_zyz" />
 
 `static yzy_to_zyz(xi, theta1, theta2, eps=1e-09)`
 
@@ -115,3 +137,4 @@ Ry(theta1).Rz(xi).Ry(theta2) = Rz(phi).Ry(theta).Rz(lambda)
 for theta, phi, and lambda.
 
 Return a solution theta, phi, and lambda.
+

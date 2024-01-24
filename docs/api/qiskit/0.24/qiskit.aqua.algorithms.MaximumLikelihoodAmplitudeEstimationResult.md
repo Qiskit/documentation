@@ -1,14 +1,24 @@
+---
+title: MaximumLikelihoodAmplitudeEstimationResult
+description: API reference for qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult
+---
+
 <span id="qiskit-aqua-algorithms-maximumlikelihoodamplitudeestimationresult" />
 
 # qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult" />
 
-
-`MaximumLikelihoodAmplitudeEstimationResult(a_dict=None)`
+`MaximumLikelihoodAmplitudeEstimationResult(a_dict=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/aqua/algorithms/amplitude_estimators/mlae.py "view source code")
 
 MaximumLikelihoodAmplitudeEstimation Result.
 
+### \_\_init\_\_
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.__init__" />
 
 `__init__(a_dict=None)`
 
@@ -45,7 +55,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`num_oracle_queries`](#qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.num_oracle_queries "qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.num_oracle_queries")    | return num\_oracle\_queries |
 | [`theta`](#qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.theta "qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.theta")                                           | returns theta               |
 
+### a\_estimation
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.a_estimation" />
 
 `property a_estimation`
 
@@ -55,7 +67,9 @@ return a\_estimation
 
 `float`
 
+### circuit\_results
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.circuit_results" />
 
 `property circuit_results`
 
@@ -65,7 +79,9 @@ return circuit results
 
 `Union`\[`List`\[`ndarray`], `List`\[`Dict`\[`str`, `int`]], `None`]
 
+### clear
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.clear" />
 
 `clear()`
 
@@ -73,7 +89,9 @@ return circuit results
 
 `None`
 
+### combine
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.combine" />
 
 `combine(result)`
 
@@ -87,7 +105,9 @@ Any property from the argument that exists in the receiver is updated. :type res
 
 `None`
 
+### confidence\_interval
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.confidence_interval" />
 
 `property confidence_interval`
 
@@ -97,7 +117,9 @@ return confidence\_interval
 
 `List`\[`float`]
 
+### estimation
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.estimation" />
 
 `property estimation`
 
@@ -107,7 +129,9 @@ return estimation
 
 `float`
 
+### fisher\_information
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.fisher_information" />
 
 `property fisher_information`
 
@@ -117,7 +141,9 @@ return fisher\_information
 
 `float`
 
+### from\_dict
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.from_dict" />
 
 `static from_dict(a_dict)`
 
@@ -127,19 +153,27 @@ create new object from a dictionary
 
 `MaximumLikelihoodAmplitudeEstimationResult`
 
+### get
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.get" />
 
 `get(k[, d]) → D[k] if k in D, else d. d defaults to None.`
 
+### items
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.items" />
 
 `items() → a set-like object providing a view on D’s items`
 
+### keys
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.keys" />
 
 `keys() → a set-like object providing a view on D’s keys`
 
+### num\_oracle\_queries
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.num_oracle_queries" />
 
 `property num_oracle_queries`
 
@@ -149,7 +183,9 @@ return num\_oracle\_queries
 
 `int`
 
+### pop
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.pop" />
 
 `pop(key, default=None)`
 
@@ -159,7 +195,9 @@ If key is not found, d is returned if given, otherwise KeyError is raised.
 
 `object`
 
+### popitem
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.popitem" />
 
 `popitem()`
 
@@ -169,11 +207,15 @@ as a 2-tuple; but raise KeyError if D is empty.
 
 `Tuple`\[`object`, `object`]
 
+### setdefault
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.setdefault" />
 
 `setdefault(k[, d]) → D.get(k,d), also set D[k]=d if k not in D`
 
+### theta
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.theta" />
 
 `property theta`
 
@@ -183,7 +225,9 @@ returns theta
 
 `float`
 
+### update
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.update" />
 
 `update(*args, **kwargs)`
 
@@ -193,6 +237,9 @@ If E present and has a .keys() method, does: for k in E: D\[k] = E\[k] If E pres
 
 `None`
 
+### values
 
+<span id="qiskit.aqua.algorithms.MaximumLikelihoodAmplitudeEstimationResult.values" />
 
 `values() → an object providing a view on D’s values`
+

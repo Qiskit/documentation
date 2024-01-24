@@ -1,10 +1,18 @@
+---
+title: QasmQobj
+description: API reference for qiskit.qobj.QasmQobj
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.qobj.QasmQobj
+---
+
 <span id="qiskit-qobj-qasmqobj" />
 
 # qiskit.qobj.QasmQobj
 
+<span id="qiskit.qobj.QasmQobj" />
 
-
-`QasmQobj(qobj_id=None, config=None, experiments=None, header=None)`
+`QasmQobj(qobj_id=None, config=None, experiments=None, header=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/qobj/qasm_qobj.py "view source code")
 
 A QASM Qobj.
 
@@ -16,10 +24,12 @@ Each QASM Qobj object is used to represent a single payload that will be passed 
 
 *   **qobj\_id** (*str*) – An identifier for the qobj
 *   **config** (*QasmQobjRunConfig*) – A config for the entire run
-*   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader#qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
-*   **experiments** (*list*) – A list of lists of [`QasmQobjExperiment`](qiskit.qobj.QasmQobjExperiment#qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment") objects representing an experiment
+*   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
+*   **experiments** (*list*) – A list of lists of [`QasmQobjExperiment`](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment") objects representing an experiment
 
+### \_\_init\_\_
 
+<span id="qiskit.qobj.QasmQobj.__init__" />
 
 `__init__(qobj_id=None, config=None, experiments=None, header=None)`
 
@@ -31,8 +41,8 @@ Each QASM Qobj object is used to represent a single payload that will be passed 
 
 *   **qobj\_id** (*str*) – An identifier for the qobj
 *   **config** (*QasmQobjRunConfig*) – A config for the entire run
-*   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader#qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
-*   **experiments** (*list*) – A list of lists of [`QasmQobjExperiment`](qiskit.qobj.QasmQobjExperiment#qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment") objects representing an experiment
+*   **header** ([*QobjHeader*](qiskit.qobj.QobjHeader "qiskit.qobj.QobjHeader")) – A header for the entire run
+*   **experiments** (*list*) – A list of lists of [`QasmQobjExperiment`](qiskit.qobj.QasmQobjExperiment "qiskit.qobj.QasmQobjExperiment") objects representing an experiment
 
 ## Methods
 
@@ -42,7 +52,9 @@ Each QASM Qobj object is used to represent a single payload that will be passed 
 | [`from_dict`](#qiskit.qobj.QasmQobj.from_dict "qiskit.qobj.QasmQobj.from_dict")(data)                                  | Create a new QASMQobj object from a dictionary.             |
 | [`to_dict`](#qiskit.qobj.QasmQobj.to_dict "qiskit.qobj.QasmQobj.to_dict")(\[validate])                                 | Return a dictionary format representation of the QASM Qobj. |
 
+### from\_dict
 
+<span id="qiskit.qobj.QasmQobj.from_dict" />
 
 `classmethod from_dict(data)`
 
@@ -60,7 +72,9 @@ The QasmQobj from the input dictionary.
 
 [QasmQobj](#qiskit.qobj.QasmQobj "qiskit.qobj.QasmQobj")
 
+### to\_dict
 
+<span id="qiskit.qobj.QasmQobj.to_dict" />
 
 `to_dict(validate=False)`
 
@@ -94,3 +108,4 @@ A dictionary representation of the QasmQobj object
 **Return type**
 
 dict
+
