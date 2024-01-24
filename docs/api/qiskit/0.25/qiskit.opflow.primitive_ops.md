@@ -26,18 +26,18 @@ PrimitiveOps are the classes for representing basic Operators, backed by computa
 
 # Primitive Operators
 
-|                                                                                                                                                                    |                                                                                     |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------ | ----------------------------------------------------------------------------------- |
-| [`PrimitiveOp`](qiskit.opflow.primitive_ops.PrimitiveOp#qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.PrimitiveOp")                         | A class for representing basic Operators, backed by Operator primitives from Terra. |
-| [`CircuitOp`](qiskit.opflow.primitive_ops.CircuitOp#qiskit.opflow.primitive_ops.CircuitOp "qiskit.opflow.primitive_ops.CircuitOp")                                 | Class for Operators backed by Terra’s `QuantumCircuit` module.                      |
-| [`MatrixOp`](qiskit.opflow.primitive_ops.MatrixOp#qiskit.opflow.primitive_ops.MatrixOp "qiskit.opflow.primitive_ops.MatrixOp")                                     | Class for Operators represented by matrices, backed by Terra’s `Operator` module.   |
-| [`PauliOp`](qiskit.opflow.primitive_ops.PauliOp#qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.PauliOp")                                         | Class for Operators backed by Terra’s `Pauli` module.                               |
-| [`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp#qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")                             | Class for Operators backend by Terra’s `SparsePauliOp` class.                       |
-| [`TaperedPauliSumOp`](qiskit.opflow.primitive_ops.TaperedPauliSumOp#qiskit.opflow.primitive_ops.TaperedPauliSumOp "qiskit.opflow.primitive_ops.TaperedPauliSumOp") | Class for PauliSumOp after tapering                                                 |
+|                                                                                                                      |                                                                                     |
+| -------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------- |
+| [`PrimitiveOp`](qiskit.opflow.primitive_ops.PrimitiveOp "qiskit.opflow.primitive_ops.PrimitiveOp")                   | A class for representing basic Operators, backed by Operator primitives from Terra. |
+| [`CircuitOp`](qiskit.opflow.primitive_ops.CircuitOp "qiskit.opflow.primitive_ops.CircuitOp")                         | Class for Operators backed by Terra’s `QuantumCircuit` module.                      |
+| [`MatrixOp`](qiskit.opflow.primitive_ops.MatrixOp "qiskit.opflow.primitive_ops.MatrixOp")                            | Class for Operators represented by matrices, backed by Terra’s `Operator` module.   |
+| [`PauliOp`](qiskit.opflow.primitive_ops.PauliOp "qiskit.opflow.primitive_ops.PauliOp")                               | Class for Operators backed by Terra’s `Pauli` module.                               |
+| [`PauliSumOp`](qiskit.opflow.primitive_ops.PauliSumOp "qiskit.opflow.primitive_ops.PauliSumOp")                      | Class for Operators backend by Terra’s `SparsePauliOp` class.                       |
+| [`TaperedPauliSumOp`](qiskit.opflow.primitive_ops.TaperedPauliSumOp "qiskit.opflow.primitive_ops.TaperedPauliSumOp") | Class for PauliSumOp after tapering                                                 |
 
 # Symmetries
 
-|                                                                                                                                                |               |
-| ---------------------------------------------------------------------------------------------------------------------------------------------- | ------------- |
-| [`Z2Symmetries`](qiskit.opflow.primitive_ops.Z2Symmetries#qiskit.opflow.primitive_ops.Z2Symmetries "qiskit.opflow.primitive_ops.Z2Symmetries") | Z2 Symmetries |
+|                                                                                                       |               |
+| ----------------------------------------------------------------------------------------------------- | ------------- |
+| [`Z2Symmetries`](qiskit.opflow.primitive_ops.Z2Symmetries "qiskit.opflow.primitive_ops.Z2Symmetries") | Z2 Symmetries |
 

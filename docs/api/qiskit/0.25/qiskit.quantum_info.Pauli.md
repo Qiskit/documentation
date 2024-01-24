@@ -1,8 +1,16 @@
+---
+title: Pauli
+description: API reference for qiskit.quantum_info.Pauli
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.quantum_info.Pauli
+---
+
 # qiskit.quantum\_info.Pauli
 
+<span id="qiskit.quantum_info.Pauli" />
 
-
-`Pauli(data=None, x=None, *, z=None, label=None)`
+`Pauli(data=None, x=None, *, z=None, label=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/quantum_info/operators/symplectic/pauli.py "view source code")
 
 N-qubit Pauli operator.
 
@@ -27,7 +35,7 @@ A Pauli object can be initialized in several ways:
 
 > **`Pauli(obj)`**
 >
-> where `obj` is a Pauli string, `Pauli` or [`ScalarOp`](qiskit.quantum_info.ScalarOp#qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp") operator, or a Pauli gate or `QuantumCircuit` containing only Pauli gates.
+> where `obj` is a Pauli string, `Pauli` or [`ScalarOp`](qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp") operator, or a Pauli gate or `QuantumCircuit` containing only Pauli gates.
 >
 > **`Pauli((z, x, phase))`**
 >
@@ -70,7 +78,7 @@ The $z$ and $x$ arrays can be accessed and updated using the [`z`](#qiskit.quant
 
 **Matrix Operator Representation**
 
-Pauli’s can be converted to $(2^n, 2^n)$ [`Operator`](qiskit.quantum_info.Operator#qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") using the `to_operator()` method, or to a dense or sparse complex matrix using the [`to_matrix()`](#qiskit.quantum_info.Pauli.to_matrix "qiskit.quantum_info.Pauli.to_matrix") method.
+Pauli’s can be converted to $(2^n, 2^n)$ [`Operator`](qiskit.quantum_info.Operator "qiskit.quantum_info.Operator") using the `to_operator()` method, or to a dense or sparse complex matrix using the [`to_matrix()`](#qiskit.quantum_info.Pauli.to_matrix "qiskit.quantum_info.Pauli.to_matrix") method.
 
 **Data Access**
 
@@ -84,7 +92,7 @@ When using the symplectic array input data both z and x arguments must be provid
 
 **Parameters**
 
-*   **data** (*str or tuple or* [*Pauli*](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*ScalarOp*](qiskit.quantum_info.ScalarOp#qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")) – input data for Pauli. If input is a tuple it must be of the form `(z, x)` or (z, x, phase)\`\` where `z` and `x` are boolean Numpy arrays, and phase is an integer from Z\_4.
+*   **data** (*str or tuple or* [*Pauli*](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*ScalarOp*](qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")) – input data for Pauli. If input is a tuple it must be of the form `(z, x)` or (z, x, phase)\`\` where `z` and `x` are boolean Numpy arrays, and phase is an integer from Z\_4.
 *   **x** (*np.ndarray*) – DEPRECATED, symplectic x vector.
 *   **z** (*np.ndarray*) – DEPRECATED, symplectic z vector.
 *   **label** (*str*) – DEPRECATED, string label.
@@ -93,7 +101,9 @@ When using the symplectic array input data both z and x arguments must be provid
 
 **QiskitError** – if input array is invalid shape.
 
+### \_\_init\_\_
 
+<span id="qiskit.quantum_info.Pauli.__init__" />
 
 `__init__(data=None, x=None, *, z=None, label=None)`
 
@@ -103,7 +113,7 @@ When using the symplectic array input data both z and x arguments must be provid
 
 **Parameters**
 
-*   **data** (*str or tuple or* [*Pauli*](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*ScalarOp*](qiskit.quantum_info.ScalarOp#qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")) – input data for Pauli. If input is a tuple it must be of the form `(z, x)` or (z, x, phase)\`\` where `z` and `x` are boolean Numpy arrays, and phase is an integer from Z\_4.
+*   **data** (*str or tuple or* [*Pauli*](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*ScalarOp*](qiskit.quantum_info.ScalarOp "qiskit.quantum_info.ScalarOp")) – input data for Pauli. If input is a tuple it must be of the form `(z, x)` or (z, x, phase)\`\` where `z` and `x` are boolean Numpy arrays, and phase is an integer from Z\_4.
 *   **x** (*np.ndarray*) – DEPRECATED, symplectic x vector.
 *   **z** (*np.ndarray*) – DEPRECATED, symplectic z vector.
 *   **label** (*str*) – DEPRECATED, string label.
@@ -163,13 +173,17 @@ When using the symplectic array input data both z and x arguments must be provid
 | [`x`](#qiskit.quantum_info.Pauli.x "qiskit.quantum_info.Pauli.x")                            | The x vector for the Pauli.                                          |
 | [`z`](#qiskit.quantum_info.Pauli.z "qiskit.quantum_info.Pauli.z")                            | The z vector for the Pauli.                                          |
 
+### adjoint
 
+<span id="qiskit.quantum_info.Pauli.adjoint" />
 
 `adjoint()`
 
 Return the adjoint of the Operator.
 
+### anticommutes
 
+<span id="qiskit.quantum_info.Pauli.anticommutes" />
 
 `anticommutes(other, qargs=None)`
 
@@ -188,7 +202,9 @@ True if Pauli’s anticommute, False if they commute.
 
 bool
 
+### append\_paulis
 
+<span id="qiskit.quantum_info.Pauli.append_paulis" />
 
 `append_paulis(paulis=None, pauli_labels=None)`
 
@@ -207,7 +223,9 @@ self
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
+### commutes
 
+<span id="qiskit.quantum_info.Pauli.commutes" />
 
 `commutes(other, qargs=None)`
 
@@ -226,7 +244,9 @@ True if Pauli’s commute, False if they anti-commute.
 
 bool
 
+### compose
 
+<span id="qiskit.quantum_info.Pauli.compose" />
 
 `compose(other, qargs=None, front=False, inplace=False)`
 
@@ -257,19 +277,25 @@ The composed Pauli.
   Setting the `front=True` kwarg changes this to right matrix multiplication and is equivalent to the [`dot()`](#qiskit.quantum_info.Pauli.dot "qiskit.quantum_info.Pauli.dot") method `A.dot(B) == A.compose(B, front=True)`.
 </Admonition>
 
+### conjugate
 
+<span id="qiskit.quantum_info.Pauli.conjugate" />
 
 `conjugate()`
 
 Return the conjugate of each Pauli in the list.
 
+### copy
 
+<span id="qiskit.quantum_info.Pauli.copy" />
 
 `copy()`
 
 Make a deep copy of current operator.
 
+### delete
 
+<span id="qiskit.quantum_info.Pauli.delete" />
 
 `delete(qubits)`
 
@@ -291,7 +317,9 @@ the resulting Pauli with the specified qubits removed.
 
 **QiskitError** – if ind is out of bounds for the array size or number of qubits.
 
+### delete\_qubits
 
+<span id="qiskit.quantum_info.Pauli.delete_qubits" />
 
 `delete_qubits(indices)`
 
@@ -311,13 +339,17 @@ self
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
+### dim
 
+<span id="qiskit.quantum_info.Pauli.dim" />
 
 `property dim`
 
 Return tuple (input\_shape, output\_shape).
 
+### dot
 
+<span id="qiskit.quantum_info.Pauli.dot" />
 
 `dot(other, qargs=None, inplace=False)`
 
@@ -337,7 +369,9 @@ The operator self \* other.
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
+### equiv
 
+<span id="qiskit.quantum_info.Pauli.equiv" />
 
 `equiv(other)`
 
@@ -355,7 +389,9 @@ True if the Pauli’s are equivalent up to group phase.
 
 bool
 
+### evolve
 
+<span id="qiskit.quantum_info.Pauli.evolve" />
 
 `evolve(other, qargs=None)`
 
@@ -365,7 +401,7 @@ This returns the Pauli $P^\prime = C^\dagger.P.C$.
 
 **Parameters**
 
-*   **other** ([*Pauli*](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*Clifford*](qiskit.quantum_info.Clifford#qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit#qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The Clifford operator to evolve by.
+*   **other** ([*Pauli*](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")  *or*[*Clifford*](qiskit.quantum_info.Clifford "qiskit.quantum_info.Clifford")  *or*[*QuantumCircuit*](qiskit.circuit.QuantumCircuit "qiskit.circuit.QuantumCircuit")) – The Clifford operator to evolve by.
 *   **qargs** (*list*) – a list of qubits to apply the Clifford to.
 
 **Returns**
@@ -380,7 +416,9 @@ the Pauli $C^\dagger.P.C$.
 
 **QiskitError** – if the Clifford number of qubits and qargs don’t match.
 
+### expand
 
+<span id="qiskit.quantum_info.Pauli.expand" />
 
 `expand(other)`
 
@@ -400,7 +438,9 @@ is the current Pauli, and $b$ is the other Pauli.
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
+### from\_label
 
+<span id="qiskit.quantum_info.Pauli.from_label" />
 
 `static from_label(*args, **kwargs)`
 
@@ -425,13 +465,17 @@ the constructed Pauli.
 *   **QiskitError** – If the input list is empty or contains invalid
 *   **Pauli strings.** –
 
+### input\_dims
 
+<span id="qiskit.quantum_info.Pauli.input_dims" />
 
 `input_dims(qargs=None)`
 
 Return tuple of input dimension for specified subsystems.
 
+### insert
 
+<span id="qiskit.quantum_info.Pauli.insert" />
 
 `insert(qubits, value)`
 
@@ -454,7 +498,9 @@ the resulting Pauli with the entries inserted.
 
 **QiskitError** – if the insertion qubits are invalid.
 
+### insert\_paulis
 
+<span id="qiskit.quantum_info.Pauli.insert_paulis" />
 
 `insert_paulis(indices=None, paulis=None, pauli_labels=None)`
 
@@ -486,13 +532,17 @@ self
 
 **QiskitError** – provide both paulis and pauli\_labels at the same time
 
+### inverse
 
+<span id="qiskit.quantum_info.Pauli.inverse" />
 
 `inverse()`
 
 Return the inverse of the Pauli.
 
+### kron
 
+<span id="qiskit.quantum_info.Pauli.kron" />
 
 `kron(other)`
 
@@ -514,19 +564,25 @@ self
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
+### num\_qubits
 
+<span id="qiskit.quantum_info.Pauli.num_qubits" />
 
 `property num_qubits`
 
 Return the number of qubits if a N-qubit operator or None otherwise.
 
+### output\_dims
 
+<span id="qiskit.quantum_info.Pauli.output_dims" />
 
 `output_dims(qargs=None)`
 
 Return tuple of output dimension for specified subsystems.
 
+### pauli\_single
 
+<span id="qiskit.quantum_info.Pauli.pauli_single" />
 
 `classmethod pauli_single(num_qubits, index, pauli_label)`
 
@@ -546,13 +602,17 @@ single qubit pauli
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
+### phase
 
+<span id="qiskit.quantum_info.Pauli.phase" />
 
 `property phase`
 
 Return the group phase exponent for the Pauli.
 
+### power
 
+<span id="qiskit.quantum_info.Pauli.power" />
 
 `power(n)`
 
@@ -574,19 +634,23 @@ the n-times composed operator.
 
 **QiskitError** – if the input and output dimensions of the operator are not equal, or the power is not a positive integer.
 
+### qargs
 
+<span id="qiskit.quantum_info.Pauli.qargs" />
 
 `property qargs`
 
 Return the qargs for the operator.
 
+### random
 
+<span id="qiskit.quantum_info.Pauli.random" />
 
 `classmethod random(num_qubits, seed=None)`
 
 DEPRECATED: Return a random Pauli on number of qubits.
 
-This function is deprecated use [`random_pauli()`](qiskit.quantum_info.random_pauli#qiskit.quantum_info.random_pauli "qiskit.quantum_info.random_pauli") instead.
+This function is deprecated use [`random_pauli()`](qiskit.quantum_info.random_pauli "qiskit.quantum_info.random_pauli") instead.
 
 **Parameters**
 
@@ -601,7 +665,9 @@ the random pauli
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
+### reshape
 
+<span id="qiskit.quantum_info.Pauli.reshape" />
 
 `reshape(input_dims=None, output_dims=None, num_qubits=None)`
 
@@ -625,7 +691,9 @@ BaseOperator
 
 **QiskitError** – if combined size of all subsystem input dimension or subsystem output dimensions is not constant.
 
+### set\_truncation
 
+<span id="qiskit.quantum_info.Pauli.set_truncation" />
 
 `classmethod set_truncation(val)`
 
@@ -639,7 +707,9 @@ Set the max number of Pauli characters to display before truncation/
   Truncation will be disabled if the truncation value is set to 0.
 </Admonition>
 
+### sgn\_prod
 
+<span id="qiskit.quantum_info.Pauli.sgn_prod" />
 
 `static sgn_prod(*args, **kwargs)`
 
@@ -662,7 +732,9 @@ the multiplied pauli (without phase) complex: the sign of the multiplication, 1,
 
 [Pauli](#qiskit.quantum_info.Pauli "qiskit.quantum_info.Pauli")
 
+### tensor
 
+<span id="qiskit.quantum_info.Pauli.tensor" />
 
 `tensor(other)`
 
@@ -686,13 +758,17 @@ is the current Pauli, and $b$ is the other Pauli.
   The tensor product can be obtained using the `^` binary operator. Hence `a.tensor(b)` is equivalent to `a ^ b`.
 </Admonition>
 
+### to\_instruction
 
+<span id="qiskit.quantum_info.Pauli.to_instruction" />
 
 `to_instruction()`
 
 Convert to Pauli circuit instruction.
 
+### to\_label
 
+<span id="qiskit.quantum_info.Pauli.to_label" />
 
 `to_label()`
 
@@ -710,7 +786,9 @@ the Pauli string label.
 
 str
 
+### to\_matrix
 
+<span id="qiskit.quantum_info.Pauli.to_matrix" />
 
 `to_matrix(sparse=False)`
 
@@ -728,7 +806,9 @@ The Pauli matrix.
 
 array
 
+### to\_spmatrix
 
+<span id="qiskit.quantum_info.Pauli.to_spmatrix" />
 
 `to_spmatrix()`
 
@@ -744,13 +824,17 @@ a sparse matrix with CSR format that represents the pauli.
 
 scipy.sparse.csr\_matrix
 
+### transpose
 
+<span id="qiskit.quantum_info.Pauli.transpose" />
 
 `transpose()`
 
 Return the transpose of each Pauli in the list.
 
+### update\_x
 
+<span id="qiskit.quantum_info.Pauli.update_x" />
 
 `update_x(x, indices=None)`
 
@@ -775,7 +859,9 @@ self
 
 **QiskitError** – when updating whole x, the number of qubits must be the same.
 
+### update\_z
 
+<span id="qiskit.quantum_info.Pauli.update_z" />
 
 `update_z(z, indices=None)`
 
@@ -800,14 +886,19 @@ self
 
 **QiskitError** – when updating whole z, the number of qubits must be the same.
 
+### x
 
+<span id="qiskit.quantum_info.Pauli.x" />
 
 `property x`
 
 The x vector for the Pauli.
 
+### z
 
+<span id="qiskit.quantum_info.Pauli.z" />
 
 `property z`
 
 The z vector for the Pauli.
+
