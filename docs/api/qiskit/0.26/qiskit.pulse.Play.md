@@ -1,8 +1,16 @@
+---
+title: Play
+description: API reference for qiskit.pulse.Play
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.pulse.Play
+---
+
 # qiskit.pulse.Play
 
+<span id="qiskit.pulse.Play" />
 
-
-`Play(pulse, channel, name=None)`
+`Play(pulse, channel, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/pulse/instructions/play.py "view source code")
 
 This instruction is responsible for applying a pulse on a channel.
 
@@ -12,15 +20,17 @@ Create a new pulse instruction.
 
 **Parameters**
 
-*   **pulse** (`Pulse`) – A pulse waveform description, such as [`Waveform`](qiskit.pulse.library.Waveform#qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
+*   **pulse** (`Pulse`) – A pulse waveform description, such as [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 *   **channel** ([`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")) – The channel to which the pulse is applied.
 *   **name** (`Optional`\[`str`]) – Name of the instruction for display purposes. Defaults to `pulse.name`.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If pulse is not a Pulse type.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If pulse is not a Pulse type.
 
+### \_\_init\_\_
 
+<span id="qiskit.pulse.Play.__init__" />
 
 `__init__(pulse, channel, name=None)`
 
@@ -28,29 +38,29 @@ Create a new pulse instruction.
 
 **Parameters**
 
-*   **pulse** (`Pulse`) – A pulse waveform description, such as [`Waveform`](qiskit.pulse.library.Waveform#qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
+*   **pulse** (`Pulse`) – A pulse waveform description, such as [`Waveform`](qiskit.pulse.library.Waveform "qiskit.pulse.library.Waveform").
 *   **channel** ([`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")) – The channel to which the pulse is applied.
 *   **name** (`Optional`\[`str`]) – Name of the instruction for display purposes. Defaults to `pulse.name`.
 
 **Raises**
 
-[**PulseError**](qiskit.pulse.PulseError#qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If pulse is not a Pulse type.
+[**PulseError**](qiskit.pulse.PulseError "qiskit.pulse.PulseError") – If pulse is not a Pulse type.
 
 ## Methods
 
-|                                                                                                                |                                                                                                                                                                                                     |
-| -------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`__init__`](#qiskit.pulse.Play.__init__ "qiskit.pulse.Play.__init__")(pulse, channel\[, name])                | Create a new pulse instruction.                                                                                                                                                                     |
-| [`append`](#qiskit.pulse.Play.append "qiskit.pulse.Play.append")(schedule\[, name])                            | Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`. |
-| [`assign_parameters`](#qiskit.pulse.Play.assign_parameters "qiskit.pulse.Play.assign_parameters")(value\_dict) | Modify and return self with parameters assigned according to the input.                                                                                                                             |
-| [`ch_duration`](#qiskit.pulse.Play.ch_duration "qiskit.pulse.Play.ch_duration")(\*channels)                    | Return duration of the supplied channels in this Instruction.                                                                                                                                       |
-| [`ch_start_time`](#qiskit.pulse.Play.ch_start_time "qiskit.pulse.Play.ch_start_time")(\*channels)              | Return minimum start time for supplied channels.                                                                                                                                                    |
-| [`ch_stop_time`](#qiskit.pulse.Play.ch_stop_time "qiskit.pulse.Play.ch_stop_time")(\*channels)                 | Return maximum start time for supplied channels.                                                                                                                                                    |
-| [`draw`](#qiskit.pulse.Play.draw "qiskit.pulse.Play.draw")(\[dt, style, filename, interp\_method, …])          | Plot the instruction.                                                                                                                                                                               |
-| [`flatten`](#qiskit.pulse.Play.flatten "qiskit.pulse.Play.flatten")()                                          | Return itself as already single instruction.                                                                                                                                                        |
-| [`insert`](#qiskit.pulse.Play.insert "qiskit.pulse.Play.insert")(start\_time, schedule\[, name])               | Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.                                              |
-| [`is_parameterized`](#qiskit.pulse.Play.is_parameterized "qiskit.pulse.Play.is_parameterized")()               | Return True iff the instruction is parameterized.                                                                                                                                                   |
-| [`shift`](#qiskit.pulse.Play.shift "qiskit.pulse.Play.shift")(time\[, name])                                   | Return a new schedule shifted forward by time.                                                                                                                                                      |
+|                                                                                                                |                                                                                                                                                                               |
+| -------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| [`__init__`](#qiskit.pulse.Play.__init__ "qiskit.pulse.Play.__init__")(pulse, channel\[, name])                | Create a new pulse instruction.                                                                                                                                               |
+| [`append`](#qiskit.pulse.Play.append "qiskit.pulse.Play.append")(schedule\[, name])                            | Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`. |
+| [`assign_parameters`](#qiskit.pulse.Play.assign_parameters "qiskit.pulse.Play.assign_parameters")(value\_dict) | Modify and return self with parameters assigned according to the input.                                                                                                       |
+| [`ch_duration`](#qiskit.pulse.Play.ch_duration "qiskit.pulse.Play.ch_duration")(\*channels)                    | Return duration of the supplied channels in this Instruction.                                                                                                                 |
+| [`ch_start_time`](#qiskit.pulse.Play.ch_start_time "qiskit.pulse.Play.ch_start_time")(\*channels)              | Return minimum start time for supplied channels.                                                                                                                              |
+| [`ch_stop_time`](#qiskit.pulse.Play.ch_stop_time "qiskit.pulse.Play.ch_stop_time")(\*channels)                 | Return maximum start time for supplied channels.                                                                                                                              |
+| [`draw`](#qiskit.pulse.Play.draw "qiskit.pulse.Play.draw")(\[dt, style, filename, interp\_method, …])          | Plot the instruction.                                                                                                                                                         |
+| [`flatten`](#qiskit.pulse.Play.flatten "qiskit.pulse.Play.flatten")()                                          | Return itself as already single instruction.                                                                                                                                  |
+| [`insert`](#qiskit.pulse.Play.insert "qiskit.pulse.Play.insert")(start\_time, schedule\[, name])               | Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.                                              |
+| [`is_parameterized`](#qiskit.pulse.Play.is_parameterized "qiskit.pulse.Play.is_parameterized")()               | Return True iff the instruction is parameterized.                                                                                                                             |
+| [`shift`](#qiskit.pulse.Play.shift "qiskit.pulse.Play.shift")(time\[, name])                                   | Return a new schedule shifted forward by time.                                                                                                                                |
 
 ## Attributes
 
@@ -68,11 +78,13 @@ Create a new pulse instruction.
 | [`start_time`](#qiskit.pulse.Play.start_time "qiskit.pulse.Play.start_time")       | Relative begin time of this instruction.                                                                                                           |
 | [`stop_time`](#qiskit.pulse.Play.stop_time "qiskit.pulse.Play.stop_time")          | Relative end time of this instruction.                                                                                                             |
 
+### append
 
+<span id="qiskit.pulse.Play.append" />
 
 `append(schedule, name=None)`
 
-Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
+Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
 **Parameters**
 
@@ -85,9 +97,11 @@ A new schedule with `schedule` a this instruction at t=0.
 
 **Return type**
 
-[Schedule](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
+### assign\_parameters
 
+<span id="qiskit.pulse.Play.assign_parameters" />
 
 `assign_parameters(value_dict)`
 
@@ -105,7 +119,9 @@ Modify and return self with parameters assigned according to the input.
 
 Self with updated parameters.
 
+### ch\_duration
 
+<span id="qiskit.pulse.Play.ch_duration" />
 
 `ch_duration(*channels)`
 
@@ -119,7 +135,9 @@ Return duration of the supplied channels in this Instruction.
 
 `int`
 
+### ch\_start\_time
 
+<span id="qiskit.pulse.Play.ch_start_time" />
 
 `ch_start_time(*channels)`
 
@@ -133,7 +151,9 @@ Return minimum start time for supplied channels.
 
 `int`
 
+### ch\_stop\_time
 
+<span id="qiskit.pulse.Play.ch_stop_time" />
 
 `ch_stop_time(*channels)`
 
@@ -147,7 +167,9 @@ Return maximum start time for supplied channels.
 
 `int`
 
+### channel
 
+<span id="qiskit.pulse.Play.channel" />
 
 `property channel`
 
@@ -157,7 +179,9 @@ Return the [`Channel`](qiskit.pulse.channels#qiskit.pulse.channels.Channel "qisk
 
 [`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")
 
+### channels
 
+<span id="qiskit.pulse.Play.channels" />
 
 `property channels`
 
@@ -167,7 +191,9 @@ Returns the channels that this schedule uses.
 
 `Tuple`\[[`PulseChannel`](qiskit.pulse.channels#qiskit.pulse.channels.PulseChannel "qiskit.pulse.channels.PulseChannel")]
 
+### draw
 
+<span id="qiskit.pulse.Play.draw" />
 
 `draw(dt=1, style=None, filename=None, interp_method=None, scale=1, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, channels=None)`
 
@@ -196,7 +222,9 @@ A matplotlib figure object of the pulse schedule
 
 matplotlib.figure
 
+### duration
 
+<span id="qiskit.pulse.Play.duration" />
 
 `property duration`
 
@@ -206,7 +234,9 @@ Duration of this instruction.
 
 `Union`\[`int`, `ParameterExpression`]
 
+### flatten
 
+<span id="qiskit.pulse.Play.flatten" />
 
 `flatten()`
 
@@ -216,7 +246,9 @@ Return itself as already single instruction.
 
 `Instruction`
 
+### id
 
+<span id="qiskit.pulse.Play.id" />
 
 `property id`
 
@@ -226,11 +258,13 @@ Unique identifier for this instruction.
 
 `int`
 
+### insert
 
+<span id="qiskit.pulse.Play.insert" />
 
 `insert(start_time, schedule, name=None)`
 
-Return a new [`Schedule`](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
+Return a new [`Schedule`](qiskit.pulse.Schedule "qiskit.pulse.Schedule") with `schedule` inserted within `self` at `start_time`.
 
 **Parameters**
 
@@ -244,9 +278,11 @@ A new schedule with `schedule` inserted with this instruction at t=0.
 
 **Return type**
 
-[Schedule](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
+### instructions
 
+<span id="qiskit.pulse.Play.instructions" />
 
 `property instructions`
 
@@ -256,7 +292,9 @@ Iterable for getting instructions from Schedule tree.
 
 `Tuple`\[`Tuple`\[`int`, `Instruction`]]
 
+### is\_parameterized
 
+<span id="qiskit.pulse.Play.is_parameterized" />
 
 `is_parameterized()`
 
@@ -266,7 +304,9 @@ Return True iff the instruction is parameterized.
 
 `bool`
 
+### name
 
+<span id="qiskit.pulse.Play.name" />
 
 `property name`
 
@@ -276,7 +316,9 @@ Name of this instruction.
 
 `str`
 
+### operands
 
+<span id="qiskit.pulse.Play.operands" />
 
 `property operands`
 
@@ -286,7 +328,9 @@ Return instruction operands.
 
 `Tuple`
 
+### parameters
 
+<span id="qiskit.pulse.Play.parameters" />
 
 `property parameters`
 
@@ -296,7 +340,9 @@ Parameters which determine the instruction behavior.
 
 `Set`
 
+### pulse
 
+<span id="qiskit.pulse.Play.pulse" />
 
 `property pulse`
 
@@ -306,7 +352,9 @@ A description of the samples that will be played.
 
 `Pulse`
 
+### shift
 
+<span id="qiskit.pulse.Play.shift" />
 
 `shift(time, name=None)`
 
@@ -323,9 +371,11 @@ The shifted schedule.
 
 **Return type**
 
-[Schedule](qiskit.pulse.Schedule#qiskit.pulse.Schedule "qiskit.pulse.Schedule")
+[Schedule](qiskit.pulse.Schedule "qiskit.pulse.Schedule")
 
+### start\_time
 
+<span id="qiskit.pulse.Play.start_time" />
 
 `property start_time`
 
@@ -335,7 +385,9 @@ Relative begin time of this instruction.
 
 `int`
 
+### stop\_time
 
+<span id="qiskit.pulse.Play.stop_time" />
 
 `property stop_time`
 
@@ -344,3 +396,4 @@ Relative end time of this instruction.
 **Return type**
 
 `int`
+

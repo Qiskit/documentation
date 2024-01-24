@@ -1,8 +1,16 @@
+---
+title: PulseBackendConfiguration
+description: API reference for qiskit.providers.models.PulseBackendConfiguration
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.models.PulseBackendConfiguration
+---
+
 # qiskit.providers.models.PulseBackendConfiguration
 
+<span id="qiskit.providers.models.PulseBackendConfiguration" />
 
-
-`PulseBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, n_uchannels, u_channel_lo, meas_levels, qubit_lo_range, meas_lo_range, dt, dtm, rep_times, meas_kernels, discriminators, hamiltonian=None, channel_bandwidth=None, acquisition_latency=None, conditional_latency=None, meas_map=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, channels=None, **kwargs)`
+`PulseBackendConfiguration(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, n_uchannels, u_channel_lo, meas_levels, qubit_lo_range, meas_lo_range, dt, dtm, rep_times, meas_kernels, discriminators, hamiltonian=None, channel_bandwidth=None, acquisition_latency=None, conditional_latency=None, meas_map=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, channels=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.17/qiskit/providers/models/backendconfiguration.py "view source code")
 
 Static configuration state for an OpenPulse enabled backend. This contains information about the set up of the device which can be useful for building Pulse programs.
 
@@ -50,7 +58,9 @@ Initialize a backend configuration that contains all the extra configuration tha
 *   **channels** (`Optional`\[`Dict`\[`str`, `Any`]]) – An optional dictionary containing information of each channel – their purpose, type, and qubits operated on.
 *   **\*\*kwargs** – Optional fields.
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.models.PulseBackendConfiguration.__init__" />
 
 `__init__(backend_name, backend_version, n_qubits, basis_gates, gates, local, simulator, conditional, open_pulse, memory, max_shots, coupling_map, n_uchannels, u_channel_lo, meas_levels, qubit_lo_range, meas_lo_range, dt, dtm, rep_times, meas_kernels, discriminators, hamiltonian=None, channel_bandwidth=None, acquisition_latency=None, conditional_latency=None, meas_map=None, max_experiments=None, sample_name=None, n_registers=None, register_map=None, configurable=None, credits_required=None, online_date=None, display_name=None, description=None, tags=None, channels=None, **kwargs)`
 
@@ -120,7 +130,9 @@ Initialize a backend configuration that contains all the extra configuration tha
 | [`num_qubits`](#qiskit.providers.models.PulseBackendConfiguration.num_qubits "qiskit.providers.models.PulseBackendConfiguration.num_qubits")    | Returns the number of qubits.                    |
 | [`sample_rate`](#qiskit.providers.models.PulseBackendConfiguration.sample_rate "qiskit.providers.models.PulseBackendConfiguration.sample_rate") | Sample rate of the signal channels in Hz (1/dt). |
 
+### acquire
 
+<span id="qiskit.providers.models.PulseBackendConfiguration.acquire" />
 
 `acquire(qubit)`
 
@@ -138,7 +150,9 @@ Return the acquisition channel for the given qubit.
 
 Qubit measurement acquisition line.
 
+### control
 
+<span id="qiskit.providers.models.PulseBackendConfiguration.control" />
 
 `control(qubits=None, channel=None)`
 
@@ -161,7 +175,9 @@ Return the secondary drive channel for the given qubit – typically utilized fo
 
 List of control channels.
 
+### describe
 
+<span id="qiskit.providers.models.PulseBackendConfiguration.describe" />
 
 `describe(channel)`
 
@@ -197,7 +213,9 @@ backend.configuration().describe(ControlChannel(1))
 
 Control channel derivations.
 
+### drive
 
+<span id="qiskit.providers.models.PulseBackendConfiguration.drive" />
 
 `drive(qubit)`
 
@@ -215,7 +233,9 @@ Return the drive channel for the given qubit.
 
 Qubit drive channel.
 
+### from\_dict
 
+<span id="qiskit.providers.models.PulseBackendConfiguration.from_dict" />
 
 `classmethod from_dict(data)`
 
@@ -231,9 +251,11 @@ The GateConfig from the input dictionary.
 
 **Return type**
 
-[GateConfig](qiskit.providers.models.GateConfig#qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
+[GateConfig](qiskit.providers.models.GateConfig "qiskit.providers.models.GateConfig")
 
+### get\_channel\_qubits
 
+<span id="qiskit.providers.models.PulseBackendConfiguration.get_channel_qubits" />
 
 `get_channel_qubits(channel)`
 
@@ -251,7 +273,9 @@ Return a list of indices for qubits which are operated on directly by the given 
 
 List of qubits operated on my the given `channel`.
 
+### get\_qubit\_channels
 
+<span id="qiskit.providers.models.PulseBackendConfiguration.get_qubit_channels" />
 
 `get_qubit_channels(qubit)`
 
@@ -269,7 +293,9 @@ Return a list of channels which operate on the given `qubit`.
 
 List of `Channel`s operated on my the given `qubit`.
 
+### measure
 
+<span id="qiskit.providers.models.PulseBackendConfiguration.measure" />
 
 `measure(qubit)`
 
@@ -287,7 +313,9 @@ Return the measure stimulus channel for the given qubit.
 
 Qubit measurement stimulus line.
 
+### num\_qubits
 
+<span id="qiskit.providers.models.PulseBackendConfiguration.num_qubits" />
 
 `property num_qubits`
 
@@ -295,7 +323,9 @@ Returns the number of qubits.
 
 In future, n\_qubits should be replaced in favor of num\_qubits for consistent use throughout Qiskit. Until this is properly refactored, this property serves as intermediate solution.
 
+### sample\_rate
 
+<span id="qiskit.providers.models.PulseBackendConfiguration.sample_rate" />
 
 `property sample_rate`
 
@@ -305,7 +335,9 @@ Sample rate of the signal channels in Hz (1/dt).
 
 `float`
 
+### to\_dict
 
+<span id="qiskit.providers.models.PulseBackendConfiguration.to_dict" />
 
 `to_dict()`
 
@@ -318,3 +350,4 @@ The dictionary form of the GateConfig.
 **Return type**
 
 dict
+
