@@ -321,6 +321,20 @@ function determineHistoricalQiskitGithubUrl(
     return result;
   };
 
+  /**
+   * Special case:
+   * The file `qiskit/optimization/converters/quadratic_program_to_negative_value_oracle` existed in qiskit-aqua
+   * patch 0.7.3, but was removed in patch 0.7.4. Thus, the branch stable/0.7 doesn't contain the file, and
+   * we can only access it through the tag 0.7.3
+   */
+  if (
+    metapackageVersion == "0.19" &&
+    fileName ==
+      "qiskit/optimization/converters/quadratic_program_to_negative_value_oracle"
+  ) {
+    return `https://github.com/qiskit-community/qiskit-aqua/tree/0.7.3/${fileName}.py`;
+  }
+
   let slug: string;
   let version: string;
   if (
@@ -349,6 +363,7 @@ function determineHistoricalQiskitGithubUrl(
     slug = "qiskit/qiskit";
     version = getOrThrow(QISKIT_METAPACKAGE_TO_TERRA);
   }
+
   return `https://github.com/${slug}/tree/stable/${version}/${fileName}.py`;
 }
 
