@@ -1,8 +1,16 @@
+---
+title: Extrapolator
+description: API reference for qiskit.chemistry.algorithms.pes_samplers.Extrapolator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.algorithms.pes_samplers.Extrapolator
+---
+
 # qiskit.chemistry.algorithms.pes\_samplers.Extrapolator
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.Extrapolator" />
 
-
-`Extrapolator`
+`Extrapolator`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.9/qiskit/chemistry/algorithms/pes_samplers/extrapolator.py "view source code")
 
 This class is based on performing extrapolation of parameters of a wavefunction for a variational algorithm defined in the variational forms as part of the Qiskit Aqua module. This concept is based on fitting a set of (point,parameter) data to some specified function and predicting the optimal variational parameters for the next point. This technique is aimed towards providing a better starting point for the variational algorithm, in addition to bootstrapping techniques, ultimately reducing the total number of function evaluations.
 
@@ -10,7 +18,9 @@ Each instance of an Extrapolator requires a dictionary where each item consist o
 
 There are two types of Extrapolators: external/wrapper and internal. The external/wrapper extrapolator specifies the number of previous points or data window within which to perform the extrapolation as well as the dimensionality/space to perform the extrapolation. For instance, one can utilize the PCA Extrapolator as an external extrapolator that sets the data window and transforms the variational parameters in PCA space before the actual extrapolation is executed. The internal extrapolator can then proceed via linear regression/spline fitting of variational parameters to predict a parameter set.
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.Extrapolator.__init__" />
 
 `__init__()`
 
@@ -24,7 +34,9 @@ Initialize self. See help(type(self)) for accurate signature.
 | [`extrapolate`](#qiskit.chemistry.algorithms.pes_samplers.Extrapolator.extrapolate "qiskit.chemistry.algorithms.pes_samplers.Extrapolator.extrapolate")(points, param\_dict) | Abstract method to extrapolate point(s) of interest. |
 | [`factory`](#qiskit.chemistry.algorithms.pes_samplers.Extrapolator.factory "qiskit.chemistry.algorithms.pes_samplers.Extrapolator.factory")(mode, \*\*kwargs)                | Factory method for constructing extrapolators.       |
 
+### extrapolate
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.Extrapolator.extrapolate" />
 
 `abstract extrapolate(points, param_dict)`
 
@@ -43,7 +55,9 @@ Abstract method to extrapolate point(s) of interest.
 
 Dictionary of variational parameters for extrapolated point(s).
 
+### factory
 
+<span id="qiskit.chemistry.algorithms.pes_samplers.Extrapolator.factory" />
 
 `static factory(mode, **kwargs)`
 
@@ -64,4 +78,5 @@ A newly created extrapolator instance.
 
 **Raises**
 
-[**AquaError**](qiskit.aqua.AquaError#qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+[**AquaError**](qiskit.aqua.AquaError "qiskit.aqua.AquaError") – if specified mode is unknown.
+
