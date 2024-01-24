@@ -24,7 +24,9 @@ import {
   removePermalinks,
   removeColonSpans,
   replaceViewcodeLinksWithGitHub,
+  convertRubricsToHeaders,
   prepareGitHubLink,
+  processMembersAndSetMeta,
 } from "./processHtml";
 import { Metadata } from "./Metadata";
 
@@ -247,6 +249,26 @@ test("replaceSourceLinksWithGitHub()", () => {
   );
 });
 
+test("convertRubricsToHeaders()", () => {
+  const doc = Doc.load(`<p class="rubric">Example</p>
+    <p class="rubric">Examples</p>
+    <p class="rubric">References</p>
+    <p class="rubric">Reference</p>
+    <p class="rubric">Attributes</p>
+    <p class="rubric">Methods</p>
+    <p class="rubric">Simple examples</p>
+    <p class="rubric">Example code</p>`);
+  convertRubricsToHeaders(doc.$, doc.$main);
+  doc.expectHtml(`<strong>Example</strong>
+    <strong>Examples</strong>
+    <strong>References</strong>
+    <h2>Reference</h2>
+    <h2>Attributes</h2>
+    <h2>Methods</h2>
+    <h2>Simple examples</h2>
+    <h2>Example code</h2>`);
+});
+
 describe("maybeSetModuleMetadata()", () => {
   test("not a module", () => {
     const html = `<h1>Hello</h1>`;
@@ -311,5 +333,90 @@ describe("prepareGitHubLink()", () => {
     doc.expectHtml(
       `<span class="pre">None</span><span class="sig-paren">)</span><a class="headerlink" href="#qiskit_ibm_runtime.IBMBackend" title="Link to this definition">#</a>`,
     );
+  });
+});
+
+describe("processMembersAndSetMeta()", () => {
+  test("function with added heading", () => {
+    const html = `<h1>Circuit Converters</h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="qiskit.converters.circuit_to_dag">
+<span class="sig-prename descclassname"><span class="pre">qiskit.converters.</span></span><span class="sig-name descname"><span class="pre">circuit_to_dag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy_operations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qubit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clbit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit.converters.circuit_to_dag" title="Permalink to this definition">¶</a></dt>
+<dd><p>Build a <a class="reference internal" href="../stubs/qiskit.dagcircuit.DAGCircuit.html#qiskit.dagcircuit.DAGCircuit" title="qiskit.dagcircuit.DAGCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">DAGCircuit</span></code></a> object from a <a class="reference internal" href="../stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="qiskit.circuit.QuantumCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumCircuit</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>circuit</strong> – the input circuit.</p></li>
+<li><p><strong>copy_operations</strong> – Deep copy the operation objects in the QuantumCircuit for the output DAGCircuit.</p></li>
+</ul>
+</dd>`;
+    const doc = Doc.load(html);
+    processMembersAndSetMeta(doc.$, doc.$main, {});
+    doc.expectHtml(`      <h1>Circuit Converters</h1>
+<div><h3>circuit_to_dag</h3><span class="target" id="qiskit.converters.circuit_to_dag"><p><code>
+<span class="sig-prename descclassname"><span class="pre">qiskit.converters.</span></span><span class="sig-name descname"><span class="pre">circuit_to_dag</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">circuit</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">copy_operations</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">True</span></span></em>, <em class="sig-param"><span class="o"><span class="pre">*</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">qubit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em>, <em class="sig-param"><span class="n"><span class="pre">clbit_order</span></span><span class="o"><span class="pre">=</span></span><span class="default_value"><span class="pre">None</span></span></em><span class="sig-paren">)</span><a class="headerlink" href="#qiskit.converters.circuit_to_dag" title="Permalink to this definition">¶</a></code><a href="../_modules/qiskit/converters/circuit_to_dag.html#circuit_to_dag" title="view source code">GitHub</a></p>
+<div><p>Build a <a class="reference internal" href="../stubs/qiskit.dagcircuit.DAGCircuit.html#qiskit.dagcircuit.DAGCircuit" title="qiskit.dagcircuit.DAGCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">DAGCircuit</span></code></a> object from a <a class="reference internal" href="../stubs/qiskit.circuit.QuantumCircuit.html#qiskit.circuit.QuantumCircuit" title="qiskit.circuit.QuantumCircuit"><code class="xref py py-class docutils literal notranslate"><span class="pre">QuantumCircuit</span></code></a>.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><ul class="simple">
+<li><p><strong>circuit</strong> – the input circuit.</p></li>
+<li><p><strong>copy_operations</strong> – Deep copy the operation objects in the QuantumCircuit for the output DAGCircuit.</p></li>
+</ul>
+</dd></dl></div></span></div>`);
+  });
+
+  test("function without added heading", () => {
+    const html = `<h1>least_busy</h1>
+<dl class="py function">
+<dt class="sig sig-object py" id="qiskit_ibm_provider.least_busy">
+<span class="sig-name descname"><span class="pre">least_busy</span></span><span class="sig-paren">(</span><em class="sig-param"><span class="n"><span class="pre">backends</span></span></em><span class="sig-paren">)</span><a class="reference internal" href="../_modules/qiskit_ibm_provider.html#least_busy"><span class="viewcode-link"><span class="pre">[source]</span></span></a><a class="headerlink" href="#qiskit_ibm_provider.least_busy" title="Link to this definition">¶</a></dt>
+<dd><p>Return the least busy backend from a list.</p>
+<p>Return the least busy available backend for those that
+have a <code class="docutils literal notranslate"><span class="pre">pending_jobs</span></code> in their <code class="docutils literal notranslate"><span class="pre">status</span></code>. Note that local
+backends may not have this attribute.</p>
+<dl class="field-list simple">
+<dt class="field-odd">Parameters<span class="colon">:</span></dt>
+<dd class="field-odd"><p><strong>backends</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">List</span></code>[<a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.providers.Backend.html#qiskit.providers.Backend" title="(in Qiskit v0.45)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Backend</span></code></a>]) – The backends to choose from.</p>
+</dd>
+<dt class="field-even">Return type<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference external" href="https://qiskit.org/documentation/stubs/qiskit.providers.Backend.html#qiskit.providers.Backend" title="(in Qiskit v0.45)"><code class="xref py py-class docutils literal notranslate"><span class="pre">Backend</span></code></a></p>
+</dd>
+<dt class="field-odd">Returns<span class="colon">:</span></dt>
+<dd class="field-odd"><p>The backend with the fewest number of pending jobs.</p>
+</dd>
+<dt class="field-even">Raises<span class="colon">:</span></dt>
+<dd class="field-even"><p><a class="reference internal" href="qiskit_ibm_provider.IBMError.html#qiskit_ibm_provider.IBMError" title="qiskit_ibm_provider.IBMError"><strong>IBMError</strong></a> – If the backends list is empty, or if none of the backends
+    is available, or if a backend in the list
+    does not have the <code class="docutils literal notranslate"><span class="pre">pending_jobs</span></code> attribute in its status.</p>
+</dd>
+</dl>
+</dd></dl>
+`;
+    const doc = Doc.load(html);
+    processMembersAndSetMeta(doc.$, doc.$main, {});
+    doc.expectHtml(`<h1>least_busy</h1>
+<div><span class=\"target\" id=\"qiskit_ibm_provider.least_busy\"><p><code>
+<span class=\"sig-name descname\"><span class=\"pre\">least_busy</span></span><span class=\"sig-paren\">(</span><em class=\"sig-param\"><span class=\"n\"><span class=\"pre\">backends</span></span></em><span class=\"sig-paren\">)</span><a class=\"headerlink\" href=\"#qiskit_ibm_provider.least_busy\" title=\"Link to this definition\">¶</a></code><a href=\"../_modules/qiskit_ibm_provider.html#least_busy\" title=\"view source code\">GitHub</a></p>
+<div><p>Return the least busy backend from a list.</p>
+<p>Return the least busy available backend for those that
+have a <code class=\"docutils literal notranslate\"><span class=\"pre\">pending_jobs</span></code> in their <code class=\"docutils literal notranslate\"><span class=\"pre\">status</span></code>. Note that local
+backends may not have this attribute.</p>
+<dl class=\"field-list simple\">
+<dt class=\"field-odd\">Parameters<span class=\"colon\">:</span></dt>
+<dd class=\"field-odd\"><p><strong>backends</strong> (<code class=\"xref py py-class docutils literal notranslate\"><span class=\"pre\">List</span></code>[<a class=\"reference external\" href=\"https://qiskit.org/documentation/stubs/qiskit.providers.Backend.html#qiskit.providers.Backend\" title=\"(in Qiskit v0.45)\"><code class=\"xref py py-class docutils literal notranslate\"><span class=\"pre\">Backend</span></code></a>]) – The backends to choose from.</p>
+</dd>
+<dt class=\"field-even\">Return type<span class=\"colon\">:</span></dt>
+<dd class=\"field-even\"><p><a class=\"reference external\" href=\"https://qiskit.org/documentation/stubs/qiskit.providers.Backend.html#qiskit.providers.Backend\" title=\"(in Qiskit v0.45)\"><code class=\"xref py py-class docutils literal notranslate\"><span class=\"pre\">Backend</span></code></a></p>
+</dd>
+<dt class=\"field-odd\">Returns<span class=\"colon\">:</span></dt>
+<dd class=\"field-odd\"><p>The backend with the fewest number of pending jobs.</p>
+</dd>
+<dt class=\"field-even\">Raises<span class=\"colon\">:</span></dt>
+<dd class=\"field-even\"><p><a class=\"reference internal\" href=\"qiskit_ibm_provider.IBMError.html#qiskit_ibm_provider.IBMError\" title=\"qiskit_ibm_provider.IBMError\"><strong>IBMError</strong></a> – If the backends list is empty, or if none of the backends
+    is available, or if a backend in the list
+    does not have the <code class=\"docutils literal notranslate\"><span class=\"pre\">pending_jobs</span></code> attribute in its status.</p>
+</dd>
+</dl>
+</div></span></div>`);
   });
 });
