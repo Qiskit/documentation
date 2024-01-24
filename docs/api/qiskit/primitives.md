@@ -125,22 +125,22 @@ print([q.binary_probabilities() for q in job_result.quasi_dists])
 
 |                                                                                                                         |                                                                                                                   |
 | ----------------------------------------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------------------------------- |
-| [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")(\*\[, options])                    | Estimator base class.                                                                                             |
-| [`Estimator`](qiskit.primitives.Estimator "qiskit.primitives.Estimator")(\*\[, options])                                | Reference implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator"). |
-| [`BackendEstimator`](qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator")(backend\[, options, ...]) | Evaluates expectation value using Pauli rotation gates.                                                           |
+| [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator")(\*\[, options])                    | Estimator base class.                                                                                             |
+| [`Estimator`](qiskit.primitives.Estimator "qiskit.primitives.Estimator")(\*\[, options])                                | Reference implementation of [`BaseEstimator`](qiskit.primitives.BaseEstimator "qiskit.primitives.BaseEstimator"). |
+| [`BackendEstimator`](qiskit.primitives.BackendEstimator "qiskit.primitives.BackendEstimator")(backend\[, options, ...]) | Evaluates expectation value using Pauli rotation gates.                                                           |
 
 ## Sampler
 
 |                                                                                                                   |                                                                                                                                                                                   |
 | ----------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
-| [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")(\*\[, options])                    | Sampler base class                                                                                                                                                                |
-| [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler")(\*\[, options])                                | Sampler class.                                                                                                                                                                    |
-| [`BackendSampler`](qiskit.primitives.BackendSampler "qiskit.primitives.BackendSampler")(backend\[, options, ...]) | A [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") implementation that provides an interface for leveraging the sampler interface from any backend. |
+| [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler")(\*\[, options])                    | Sampler base class                                                                                                                                                                |
+| [`Sampler`](qiskit.primitives.Sampler "qiskit.primitives.Sampler")(\*\[, options])                                | Sampler class.                                                                                                                                                                    |
+| [`BackendSampler`](qiskit.primitives.BackendSampler "qiskit.primitives.BackendSampler")(backend\[, options, ...]) | A [`BaseSampler`](qiskit.primitives.BaseSampler "qiskit.primitives.BaseSampler") implementation that provides an interface for leveraging the sampler interface from any backend. |
 
 ## Results
 
 |                                                                                                              |                      |
 | ------------------------------------------------------------------------------------------------------------ | -------------------- |
-| [`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.EstimatorResult")(values, metadata) | Result of Estimator. |
-| [`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.SamplerResult")(quasi\_dists, metadata) | Result of Sampler.   |
+| [`EstimatorResult`](qiskit.primitives.EstimatorResult "qiskit.primitives.EstimatorResult")(values, metadata) | Result of Estimator. |
+| [`SamplerResult`](qiskit.primitives.SamplerResult "qiskit.primitives.SamplerResult")(quasi\_dists, metadata) | Result of Sampler.   |
 

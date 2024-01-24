@@ -10,22 +10,22 @@ python_api_name: qiskit.transpiler.StagedPassManager
 
 <span id="qiskit.transpiler.StagedPassManager" />
 
-`qiskit.transpiler.StagedPassManager(stages=None, **kwargs)`
+`qiskit.transpiler.StagedPassManager(stages=None, **kwargs)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/transpiler/passmanager.py "view source code")
 
 Bases: [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.passmanager.PassManager")
 
-A Pass manager pipeline built up of individual stages
+A pass manager pipeline built from individual stages.
 
 This class enables building a compilation pipeline out of fixed stages. Each `StagedPassManager` defines a list of stages which are executed in a fixed order, and each stage is defined as a standalone [`PassManager`](qiskit.transpiler.PassManager "qiskit.transpiler.PassManager") instance. There are also `pre_` and `post_` stages for each defined stage. This enables easily composing and replacing different stages and also adding hook points to enable programmatic modifications to a pipeline. When using a staged pass manager you are not able to modify the individual passes and are only able to modify stages.
 
-By default instances of `StagedPassManager` define a typical full compilation pipeline from an abstract virtual circuit to one that is optimized and capable of running on the specified backend. The default pre-defined stages are:
+By default, instances of `StagedPassManager` define a typical full compilation pipeline from an abstract virtual circuit to one that is optimized and capable of running on the specified backend. The default pre-defined stages are:
 
-1.  `init` - any initial passes that are run before we start embedding the circuit to the backend
-2.  `layout` - This stage runs layout and maps the virtual qubits in the circuit to the physical qubits on a backend
-3.  `routing` - This stage runs after a layout has been run and will insert any necessary gates to move the qubit states around until it can be run on backend’s coupling map.
-4.  `translation` - Perform the basis gate translation, in other words translate the gates in the circuit to the target backend’s basis set
-5.  `optimization` - The main optimization loop, this will typically run in a loop trying to optimize the circuit until a condition (such as fixed depth) is reached.
-6.  `scheduling` - Any hardware aware scheduling passes
+1.  `init` - Initial passes to run before embedding the circuit to the backend.
+2.  `layout` - Maps the virtual qubits in the circuit to the physical qubits on the backend.
+3.  `routing` - Inserts gates as needed to move the qubit states around until the circuit can be run with the chosen layout on the backend’s coupling map.
+4.  `translation` - Translates the gates in the circuit to the target backend’s basis gate set.
+5.  `optimization` - Optimizes the circuit to reduce the cost of executing it. These passes will typically run in a loop until a convergence criteria is met. For example, the convergence criteria might be that the circuit depth does not decrease in successive iterations.
+6.  `scheduling` - Hardware-aware passes that schedule the operations in the circuit.
 
 <Admonition title="Note" type="note">
   For backwards compatibility the relative positioning of these default stages will remain stable moving forward. However, new stages may be added to the default stage list in between current stages. For example, in a future release a new phase, something like `logical_optimization`, could be added immediately after the existing `init` stage in the default stage list. This would preserve compatibility for pre-existing `StagedPassManager` users as the relative positions of the stage are preserved so the behavior will not change between releases.

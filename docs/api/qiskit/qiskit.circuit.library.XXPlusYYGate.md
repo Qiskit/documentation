@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.library.XXPlusYYGate
 
 <span id="qiskit.circuit.library.XXPlusYYGate" />
 
-`qiskit.circuit.library.XXPlusYYGate(theta, beta=0, label='(XX+YY)', *, duration=None, unit='dt')`
+`qiskit.circuit.library.XXPlusYYGate(theta, beta=0, label='(XX+YY)', *, duration=None, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/library/standard_gates/xx_plus_yy.py "view source code")
 
 Bases: [`Gate`](qiskit.circuit.Gate "qiskit.circuit.gate.Gate")
 
@@ -31,18 +31,20 @@ q_1: ┤1              ├
 **Matrix Representation:**
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{XX+YY}(\theta, \beta)\ q_0, q_1 =
+\newcommand{\rotationangle}{\frac{\theta}{2}}
+
+R_{XX+YY}(\theta, \beta)\ q_0, q_1 =
   RZ_0(-\beta) \cdot \exp\left(-i \frac{\theta}{2} \frac{XX+YY}{2}\right) \cdot RZ_0(\beta) =
     \begin{pmatrix}
-        1 & 0                     & 0                    & 0  \\
-        0 & \cos\left(\th\right)             & -i\sin\left(\th\right)e^{-i\beta} & 0  \\
-        0 & -i\sin\left(\th\right)e^{i\beta} & \cos\left(\th\right)            & 0  \\
-        0 & 0                     & 0                    & 1
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+        1 & 0 & 0 & 0  \\
+        0 & \cos\left(\rotationangle\right) & -i\sin\left(\rotationangle\right)e^{-i\beta} & 0 \\
+        0 & -i\sin\left(\rotationangle\right)e^{i\beta} & \cos\left(\rotationangle\right) & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix}
 $$
 
 <Admonition title="Note" type="note">
-  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In the above example we apply the gate on (q\_0, q\_1) which results in adding the (optional) phase defined by $beta$ on q\_0. Instead, if we apply it on (q\_1, q\_0), the phase is added on q\_1. If $beta$ is set to its default value of $0$, the gate is equivalent in big and little endian.
+  In Qiskit’s convention, higher qubit indices are more significant (little endian convention). In the above example we apply the gate on (q\_0, q\_1) which results in adding the (optional) phase defined by $\beta$ on q\_0. Instead, if we apply it on (q\_1, q\_0), the phase is added on q\_1. If $\beta$ is set to its default value of $0$, the gate is equivalent in big and little endian.
 
   ```python
        ┌───────────────┐
@@ -54,14 +56,16 @@ $$
 </Admonition>
 
 $$
- \begin{align}\begin{aligned}\newcommand{\th}{\frac{\theta}{2}}\\\begin{split}R_{XX+YY}(\theta, \beta)\ q_0, q_1 =
+\newcommand{\rotationangle}{\frac{\theta}{2}}
+
+R_{XX+YY}(\theta, \beta)\ q_0, q_1 =
   RZ_1(-\beta) \cdot \exp\left(-i \frac{\theta}{2} \frac{XX+YY}{2}\right) \cdot RZ_1(\beta) =
     \begin{pmatrix}
-        1 & 0                     & 0                    & 0  \\
-        0 & \cos\left(\th\right)             & -i\sin\left(\th\right)e^{i\beta} & 0  \\
-        0 & -i\sin\left(\th\right)e^{-i\beta} & \cos\left(\th\right)            & 0  \\
-        0 & 0                     & 0                    & 1
-    \end{pmatrix}\end{split}\end{aligned}\end{align} 
+        1 & 0 & 0 & 0  \\
+        0 & \cos\left(\rotationangle\right) & -i\sin\left(\rotationangle\right)e^{i\beta} & 0 \\
+        0 & -i\sin\left(\rotationangle\right)e^{-i\beta} & \cos\left(\rotationangle\right) & 0 \\
+        0 & 0 & 0 & 1
+    \end{pmatrix}
 $$
 
 Create new XX+YY gate.

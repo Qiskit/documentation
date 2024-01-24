@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.Delay
 
 <span id="qiskit.circuit.Delay" />
 
-`qiskit.circuit.Delay(duration, unit='dt')`
+`qiskit.circuit.Delay(duration, unit='dt')`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/delay.py "view source code")
 
 Bases: [`Instruction`](qiskit.circuit.Instruction "qiskit.circuit.instruction.Instruction")
 
@@ -139,20 +139,54 @@ Assemble a QasmQobjInstruction
 
 `broadcast_arguments(qargs, cargs)`
 
-Validation of the arguments.
+Validation and handling of the arguments and its relationship.
+
+For example, `cx([q[0],q[1]], q[2])` means `cx(q[0], q[2]); cx(q[1], q[2])`. This method yields the arguments in the right grouping. In the given example:
+
+```python
+in: [[q[0],q[1]], q[2]],[]
+outs: [q[0], q[2]], []
+      [q[1], q[2]], []
+```
+
+The general broadcasting rules are:
+
+> *   If len(qargs) == 1:
+>
+>     ```python
+>     [q[0], q[1]] -> [q[0]],[q[1]]
+>     ```
+>
+> *   If len(qargs) == 2:
+>
+>     ```python
+>     [[q[0], q[1]], [r[0], r[1]]] -> [q[0], r[0]], [q[1], r[1]]
+>     [[q[0]], [r[0], r[1]]]       -> [q[0], r[0]], [q[0], r[1]]
+>     [[q[0], q[1]], [r[0]]]       -> [q[0], r[0]], [q[1], r[0]]
+>     ```
+>
+> *   If len(qargs) >= 3:
+>
+>     ```python
+>     [q[0], q[1]], [r[0], r[1]],  ...] -> [q[0], r[0], ...], [q[1], r[1], ...]
+>     ```
 
 **Parameters**
 
-*   **qargs** (*List*) – List of quantum bit arguments.
-*   **cargs** (*List*) – List of classical bit arguments.
+*   **qargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of quantum bit arguments.
+*   **cargs** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – List of classical bit arguments.
 
-**Yields**
+**Returns**
 
-*Tuple(List, List)* – A tuple with single arguments.
+A tuple with single arguments.
 
 **Raises**
 
 [**CircuitError**](circuit#qiskit.circuit.CircuitError "qiskit.circuit.CircuitError") – If the input is not valid. For example, the number of arguments does not match the gate expectation.
+
+**Return type**
+
+[*Iterable*](https://docs.python.org/3/library/typing.html#typing.Iterable "(in Python v3.12)")\[[tuple](https://docs.python.org/3/library/stdtypes.html#tuple "(in Python v3.12)")\[[list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)"), [list](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")]]
 
 ### c\_if
 

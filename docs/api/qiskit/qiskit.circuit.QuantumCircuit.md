@@ -10,7 +10,7 @@ python_api_name: qiskit.circuit.QuantumCircuit
 
 <span id="qiskit.circuit.QuantumCircuit" />
 
-`qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None)`
+`qiskit.circuit.QuantumCircuit(*regs, name=None, global_phase=0, metadata=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.45/qiskit/circuit/quantumcircuit.py "view source code")
 
 Bases: [`object`](https://docs.python.org/3/library/functions.html#object "(in Python v3.12)")
 
@@ -1324,7 +1324,7 @@ Draw the quantum circuit. Use the output parameter to choose the drawing format:
 *   **idle\_wires** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – include idle wires (wires with no circuit elements) in output visualization. Default is True.
 *   **with\_layout** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – include layout information, with labels on the physical layout. Default is True.
 *   **fold** ([*int*](https://docs.python.org/3/library/functions.html#int "(in Python v3.12)")) – sets pagination. It can be disabled using -1. In text, sets the length of the lines. This is useful when the drawing does not fit in the console. If None (default), it will try to guess the console width using `shutil.get_terminal_size()`. However, if running in jupyter, the default line length is set to 80 characters. In mpl, it is the number of (visual) layers before folding. Default is 25.
-*   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.8.1)")) – Only used by the mpl backend. An optional Axes object to be used for the visualization output. If none is specified, a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
+*   **ax** ([*matplotlib.axes.Axes*](https://matplotlib.org/stable/api/_as_gen/matplotlib.axes.Axes.html#matplotlib.axes.Axes "(in Matplotlib v3.8.2)")) – Only used by the mpl backend. An optional Axes object to be used for the visualization output. If none is specified, a new matplotlib Figure will be created and used. Additionally, if specified there will be no returned Figure since it is redundant.
 *   **initial\_state** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optional. Adds `|0>` in the beginning of the wire. Default is False.
 *   **cregbundle** ([*bool*](https://docs.python.org/3/library/functions.html#bool "(in Python v3.12)")) – Optional. If set True, bundle classical registers. Default is True, except for when `output` is set to `"text"`.
 *   **wire\_order** ([*list*](https://docs.python.org/3/library/stdtypes.html#list "(in Python v3.12)")) – Optional. A list of integers used to reorder the display of the bits. The list must have an entry for every bit with the bits in the range 0 to (`num_qubits` + `num_clbits`).
@@ -3479,7 +3479,7 @@ A handle to the instructions created.
 
 Tensor `self` with `other`.
 
-Remember that in the little-endian convention the leftmost operation will be at the bottom of the circuit. See also [the docs](qiskit.org/documentation/tutorials/circuits/3_summary_of_quantum_operations) for more information.
+Remember that in the little-endian convention the leftmost operation will be at the bottom of the circuit. See also [the docs](https://docs.quantum-computing.ibm.com/build/circuit-construction) for more information.
 
 ```python
      ┌────────┐        ┌─────┐          ┌─────┐
