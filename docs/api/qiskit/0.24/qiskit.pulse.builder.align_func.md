@@ -1,10 +1,18 @@
+---
+title: align_func
+description: API reference for qiskit.pulse.builder.align_func
+in_page_toc_min_heading_level: 1
+python_api_type: function
+python_api_name: qiskit.pulse.builder.align_func
+---
+
 <span id="qiskit-pulse-builder-align-func" />
 
 # qiskit.pulse.builder.align\_func
 
+<span id="qiskit.pulse.builder.align_func" />
 
-
-`align_func(duration, func)`
+`align_func(duration, func)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/pulse/builder.py "view source code")
 
 Callback defined alignment pulse scheduling context.
 
@@ -49,3 +57,4 @@ The scheduling is performed for sub-schedules within the context rather than cha
 **Return type**
 
 `AbstractContextManager`\[`None`]
+

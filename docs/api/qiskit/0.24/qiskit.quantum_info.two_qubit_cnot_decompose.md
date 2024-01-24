@@ -8,6 +8,6 @@ A class for decomposing 2-qubit unitaries into minimal number of uses of a 2-qub
 
 **Parameters**
 
-*   **gate** ([*Gate*](qiskit.circuit.Gate#qiskit.circuit.Gate "qiskit.circuit.Gate")) – Two-qubit gate to be used in the KAK decomposition.
+*   **gate** ([*Gate*](qiskit.circuit.Gate "qiskit.circuit.Gate")) – Two-qubit gate to be used in the KAK decomposition.
 *   **basis\_fidelity** (*float*) – Fidelity to be assumed for applications of KAK Gate. Default 1.0.
 *   **euler\_basis** (*str*) – Basis string to be provided to OneQubitEulerDecomposer for 1Q synthesis. Valid options are \[‘ZYZ’, ‘ZXZ’, ‘XYX’, ‘U’, ‘U3’, ‘U1X’, ‘PSX’, ‘ZSX’, ‘RR’]. Default ‘U3’.

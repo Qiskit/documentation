@@ -1,10 +1,18 @@
+---
+title: UnitarySimulatorPy
+description: API reference for qiskit.providers.basicaer.UnitarySimulatorPy
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.basicaer.UnitarySimulatorPy
+---
+
 <span id="qiskit-providers-basicaer-unitarysimulatorpy" />
 
 # qiskit.providers.basicaer.UnitarySimulatorPy
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy" />
 
-
-`UnitarySimulatorPy(configuration=None, provider=None)`
+`UnitarySimulatorPy(configuration=None, provider=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.16/qiskit/providers/basicaer/unitary_simulator.py "view source code")
 
 Python implementation of a unitary simulator.
 
@@ -14,14 +22,16 @@ This method should initialize the module and its configuration, and raise an exc
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
 
 **Raises**
 
 **QiskitError** – if an error occurred when instantiating the backend.
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.__init__" />
 
 `__init__(configuration=None, provider=None)`
 
@@ -31,8 +41,8 @@ This method should initialize the module and its configuration, and raise an exc
 
 **Parameters**
 
-*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
-*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
+*   **configuration** ([*BackendConfiguration*](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")) – backend configuration
+*   **provider** ([*BaseProvider*](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")) – provider responsible for this backend
 
 **Raises**
 
@@ -60,7 +70,9 @@ This method should initialize the module and its configuration, and raise an exc
 | `DEFAULT_OPTIONS`       |   |
 | `MAX_QUBITS_MEMORY`     |   |
 
+### configuration
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.configuration" />
 
 `configuration()`
 
@@ -72,9 +84,11 @@ the configuration for the backend.
 
 **Return type**
 
-[BackendConfiguration](qiskit.providers.models.BackendConfiguration#qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
+[BackendConfiguration](qiskit.providers.models.BackendConfiguration "qiskit.providers.models.BackendConfiguration")
 
+### name
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.name" />
 
 `name()`
 
@@ -88,7 +102,9 @@ the name of the backend.
 
 str
 
+### properties
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.properties" />
 
 `properties()`
 
@@ -100,9 +116,11 @@ the configuration for the backend. If the backend does not support properties, i
 
 **Return type**
 
-[BackendProperties](qiskit.providers.models.BackendProperties#qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
+[BackendProperties](qiskit.providers.models.BackendProperties "qiskit.providers.models.BackendProperties")
 
+### provider
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.provider" />
 
 `provider()`
 
@@ -114,9 +132,11 @@ the Provider responsible for the backend.
 
 **Return type**
 
-[BaseProvider](qiskit.providers.BaseProvider#qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
+[BaseProvider](qiskit.providers.BaseProvider "qiskit.providers.BaseProvider")
 
+### run
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.run" />
 
 `run(qobj, backend_options=None)`
 
@@ -124,7 +144,7 @@ Run qobj asynchronously.
 
 **Parameters**
 
-*   **qobj** ([*Qobj*](qiskit.qobj.Qobj#qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
+*   **qobj** ([*Qobj*](qiskit.qobj.Qobj "qiskit.qobj.Qobj")) – payload of the experiment
 *   **backend\_options** (*dict*) – backend options
 
 **Returns**
@@ -133,7 +153,7 @@ derived from BaseJob
 
 **Return type**
 
-[BasicAerJob](qiskit.providers.basicaer.BasicAerJob#qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
+[BasicAerJob](qiskit.providers.basicaer.BasicAerJob "qiskit.providers.basicaer.BasicAerJob")
 
 Additional Information:
 
@@ -162,7 +182,9 @@ Example::
     }
 ```
 
+### run\_experiment
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.run_experiment" />
 
 `run_experiment(experiment)`
 
@@ -198,10 +220,12 @@ dict
 
 **Raises**
 
-*   [**BasicAerError**](qiskit.providers.basicaer.BasicAerError#qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if the number of qubits in the circuit is greater than 24.
+*   [**BasicAerError**](qiskit.providers.basicaer.BasicAerError "qiskit.providers.basicaer.BasicAerError") – if the number of qubits in the circuit is greater than 24.
 *   **Note that the practical qubit limit is much lower than 24.** –
 
+### status
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.status" />
 
 `status()`
 
@@ -213,9 +237,11 @@ the status of the backend.
 
 **Return type**
 
-[BackendStatus](qiskit.providers.models.BackendStatus#qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
+[BackendStatus](qiskit.providers.models.BackendStatus "qiskit.providers.models.BackendStatus")
 
+### version
 
+<span id="qiskit.providers.basicaer.UnitarySimulatorPy.version" />
 
 `version()`
 
@@ -228,3 +254,4 @@ the X.X.X version of the backend.
 **Return type**
 
 str
+

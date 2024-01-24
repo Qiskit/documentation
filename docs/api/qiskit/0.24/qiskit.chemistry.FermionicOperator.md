@@ -1,10 +1,18 @@
+---
+title: FermionicOperator
+description: API reference for qiskit.chemistry.FermionicOperator
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.FermionicOperator
+---
+
 <span id="qiskit-chemistry-fermionicoperator" />
 
 # qiskit.chemistry.FermionicOperator
 
+<span id="qiskit.chemistry.FermionicOperator" />
 
-
-`FermionicOperator(h1, h2=None, ph_trans_shift=None)`
+`FermionicOperator(h1, h2=None, ph_trans_shift=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/fermionic_operator.py "view source code")
 
 A set of functions to map fermionic Hamiltonians to qubit Hamiltonians.
 
@@ -28,7 +36,7 @@ There is another popular notation, the ‘*physicist*’ notation
 
 If you are using the ‘*physicist*’ notation, you need to convert it to the ‘*chemist*’ notation. E.g. h2=numpy.einsum(‘ikmj->ijkm’, h2)
 
-The [`QMolecule`](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule") class has [`one_body_integrals`](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule.one_body_integrals "qiskit.chemistry.QMolecule.one_body_integrals") and [`two_body_integrals`](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule.two_body_integrals "qiskit.chemistry.QMolecule.two_body_integrals") properties that can be directly supplied to the h1 and h2 parameters here respectively.
+The [`QMolecule`](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule") class has [`one_body_integrals`](qiskit.chemistry.QMolecule#one_body_integrals "qiskit.chemistry.QMolecule.one_body_integrals") and [`two_body_integrals`](qiskit.chemistry.QMolecule#two_body_integrals "qiskit.chemistry.QMolecule.two_body_integrals") properties that can be directly supplied to the h1 and h2 parameters here respectively.
 
 **Parameters**
 
@@ -36,7 +44,9 @@ The [`QMolecule`](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule "qiskit.
 *   **h2** (*numpy.ndarray*) – second-quantized fermionic two-body operator, a 4-D (NxNxNxN) tensor
 *   **ph\_trans\_shift** (*float*) – energy shift caused by particle hole transformation
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.FermionicOperator.__init__" />
 
 `__init__(h1, h2=None, ph_trans_shift=None)`
 
@@ -52,7 +62,7 @@ There is another popular notation, the ‘*physicist*’ notation
 
 If you are using the ‘*physicist*’ notation, you need to convert it to the ‘*chemist*’ notation. E.g. h2=numpy.einsum(‘ikmj->ijkm’, h2)
 
-The [`QMolecule`](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule") class has [`one_body_integrals`](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule.one_body_integrals "qiskit.chemistry.QMolecule.one_body_integrals") and [`two_body_integrals`](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule.two_body_integrals "qiskit.chemistry.QMolecule.two_body_integrals") properties that can be directly supplied to the h1 and h2 parameters here respectively.
+The [`QMolecule`](qiskit.chemistry.QMolecule "qiskit.chemistry.QMolecule") class has [`one_body_integrals`](qiskit.chemistry.QMolecule#one_body_integrals "qiskit.chemistry.QMolecule.one_body_integrals") and [`two_body_integrals`](qiskit.chemistry.QMolecule#two_body_integrals "qiskit.chemistry.QMolecule.two_body_integrals") properties that can be directly supplied to the h1 and h2 parameters here respectively.
 
 **Parameters**
 
@@ -82,7 +92,9 @@ The [`QMolecule`](qiskit.chemistry.QMolecule#qiskit.chemistry.QMolecule "qiskit.
 | [`h2`](#qiskit.chemistry.FermionicOperator.h2 "qiskit.chemistry.FermionicOperator.h2")          | Getter of two body integral tensor. |
 | [`modes`](#qiskit.chemistry.FermionicOperator.modes "qiskit.chemistry.FermionicOperator.modes") | Getter of modes.                    |
 
+### fermion\_mode\_elimination
 
+<span id="qiskit.chemistry.FermionicOperator.fermion_mode_elimination" />
 
 `fermion_mode_elimination(fermion_mode_array)`
 
@@ -102,7 +114,9 @@ Fermionic Hamiltonian
 
 [FermionicOperator](#qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
 
+### fermion\_mode\_freezing
 
+<span id="qiskit.chemistry.FermionicOperator.fermion_mode_freezing" />
 
 `fermion_mode_freezing(fermion_mode_array)`
 
@@ -122,19 +136,25 @@ Fermionic Hamiltonian and energy of frozen modes
 
 tuple([FermionicOperator](#qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator"), float)
 
+### h1
 
+<span id="qiskit.chemistry.FermionicOperator.h1" />
 
 `property h1`
 
 Getter of one body integral tensor.
 
+### h2
 
+<span id="qiskit.chemistry.FermionicOperator.h2" />
 
 `property h2`
 
 Getter of two body integral tensor.
 
+### mapping
 
+<span id="qiskit.chemistry.FermionicOperator.mapping" />
 
 `mapping(map_type, threshold=1e-08)`
 
@@ -153,19 +173,23 @@ create an Operator object in Paulis form.
 
 **Return type**
 
-[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator#qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
+[WeightedPauliOperator](qiskit.aqua.operators.legacy.WeightedPauliOperator "qiskit.aqua.operators.legacy.WeightedPauliOperator")
 
 **Raises**
 
-[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError#qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – if the map\_type can not be recognized.
+[**QiskitChemistryError**](qiskit.chemistry.QiskitChemistryError "qiskit.chemistry.QiskitChemistryError") – if the map\_type can not be recognized.
 
+### modes
 
+<span id="qiskit.chemistry.FermionicOperator.modes" />
 
 `property modes`
 
 Getter of modes.
 
+### particle\_hole\_transformation
 
+<span id="qiskit.chemistry.FermionicOperator.particle_hole_transformation" />
 
 `particle_hole_transformation(num_particles)`
 
@@ -183,7 +207,9 @@ new\_fer\_op, energy\_shift
 
 tuple
 
+### total\_angular\_momentum
 
+<span id="qiskit.chemistry.FermionicOperator.total_angular_momentum" />
 
 `total_angular_momentum()`
 
@@ -199,7 +225,9 @@ Fermionic Hamiltonian
 
 [FermionicOperator](#qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
 
+### total\_magnetization
 
+<span id="qiskit.chemistry.FermionicOperator.total_magnetization" />
 
 `total_magnetization()`
 
@@ -213,7 +241,9 @@ Fermionic Hamiltonian
 
 [FermionicOperator](#qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
 
+### total\_particle\_number
 
+<span id="qiskit.chemistry.FermionicOperator.total_particle_number" />
 
 `total_particle_number()`
 
@@ -227,8 +257,11 @@ Fermionic Hamiltonian
 
 [FermionicOperator](#qiskit.chemistry.FermionicOperator "qiskit.chemistry.FermionicOperator")
 
+### transform
 
+<span id="qiskit.chemistry.FermionicOperator.transform" />
 
 `transform(unitary_matrix)`
 
 Transform the one and two body term based on unitary\_matrix.
+

@@ -20,13 +20,13 @@ python_api_name: qiskit.validation
 
 ## JSON Schema
 
-|                                                                                                                                                                                                                                 |                                       |
-| ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
-| [`jsonschema.validate_json_against_schema`](qiskit.validation.jsonschema.validate_json_against_schema#qiskit.validation.jsonschema.validate_json_against_schema "qiskit.validation.jsonschema.validate_json_against_schema")(…) | Validates JSON dict against a schema. |
+|                                                                                                                                                                       |                                       |
+| --------------------------------------------------------------------------------------------------------------------------------------------------------------------- | ------------------------------------- |
+| [`jsonschema.validate_json_against_schema`](qiskit.validation.jsonschema.validate_json_against_schema "qiskit.validation.jsonschema.validate_json_against_schema")(…) | Validates JSON dict against a schema. |
 
 ## Exceptions
 
-|                                                                                                                                                                                                             |                                                    |
-| ----------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
-| [`jsonschema.SchemaValidationError`](qiskit.validation.jsonschema.SchemaValidationError#qiskit.validation.jsonschema.SchemaValidationError "qiskit.validation.jsonschema.SchemaValidationError")(\*message) | Represents an error during JSON Schema validation. |
+|                                                                                                                                                          |                                                    |
+| -------------------------------------------------------------------------------------------------------------------------------------------------------- | -------------------------------------------------- |
+| [`jsonschema.SchemaValidationError`](qiskit.validation.jsonschema.SchemaValidationError "qiskit.validation.jsonschema.SchemaValidationError")(\*message) | Represents an error during JSON Schema validation. |
 

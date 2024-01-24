@@ -1,10 +1,18 @@
+---
+title: Molecule
+description: API reference for qiskit.chemistry.drivers.Molecule
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.chemistry.drivers.Molecule
+---
+
 <span id="qiskit-chemistry-drivers-molecule" />
 
 # qiskit.chemistry.drivers.Molecule
 
+<span id="qiskit.chemistry.drivers.Molecule" />
 
-
-`Molecule(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)`
+`Molecule(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)`[GitHub](https://github.com/qiskit-community/qiskit-aqua/tree/stable/0.8/qiskit/chemistry/drivers/molecule.py "view source code")
 
 Driver-independent Molecule definition.
 
@@ -22,7 +30,9 @@ This module implements an interface for a driver-independent, i.e. generic molec
 
 **ValueError** – Length of masses must match length of geometries.
 
+### \_\_init\_\_
 
+<span id="qiskit.chemistry.drivers.Molecule.__init__" />
 
 `__init__(geometry, multiplicity=1, charge=0, degrees_of_freedom=None, masses=None)`
 
@@ -61,7 +71,9 @@ This module implements an interface for a driver-independent, i.e. generic molec
 | [`perturbations`](#qiskit.chemistry.drivers.Molecule.perturbations "qiskit.chemistry.drivers.Molecule.perturbations") | Get perturbations                             |
 | [`units`](#qiskit.chemistry.drivers.Molecule.units "qiskit.chemistry.drivers.Molecule.units")                         | The geometry coordinate units                 |
 
+### absolute\_angle
 
+<span id="qiskit.chemistry.drivers.Molecule.absolute_angle" />
 
 `classmethod absolute_angle(angle, geometry, atom_trio)`
 
@@ -79,7 +91,9 @@ This module implements an interface for a driver-independent, i.e. generic molec
 
 end geometry
 
+### absolute\_bending
 
+<span id="qiskit.chemistry.drivers.Molecule.absolute_bending" />
 
 `classmethod absolute_bending(bend, geometry, atom_trio)`
 
@@ -97,7 +111,9 @@ end geometry
 
 end geometry
 
+### absolute\_distance
 
+<span id="qiskit.chemistry.drivers.Molecule.absolute_distance" />
 
 `classmethod absolute_distance(distance, geometry, atom_pair)`
 
@@ -115,7 +131,9 @@ end geometry
 
 end geometry
 
+### absolute\_stretching
 
+<span id="qiskit.chemistry.drivers.Molecule.absolute_stretching" />
 
 `classmethod absolute_stretching(perturbation, geometry, atom_pair)`
 
@@ -133,7 +151,9 @@ end geometry
 
 end geometry
 
+### charge
 
+<span id="qiskit.chemistry.drivers.Molecule.charge" />
 
 `property charge`
 
@@ -143,7 +163,9 @@ Get charge
 
 `int`
 
+### geometry
 
+<span id="qiskit.chemistry.drivers.Molecule.geometry" />
 
 `property geometry`
 
@@ -153,7 +175,9 @@ Get geometry accounting for any perturbations
 
 `List`\[`Tuple`\[`str`, `List`\[`float`]]]
 
+### masses
 
+<span id="qiskit.chemistry.drivers.Molecule.masses" />
 
 `property masses`
 
@@ -163,7 +187,9 @@ Get masses
 
 `Optional`\[`List`\[`float`]]
 
+### multiplicity
 
+<span id="qiskit.chemistry.drivers.Molecule.multiplicity" />
 
 `property multiplicity`
 
@@ -173,7 +199,9 @@ Get multiplicity
 
 `int`
 
+### perturbations
 
+<span id="qiskit.chemistry.drivers.Molecule.perturbations" />
 
 `property perturbations`
 
@@ -183,7 +211,9 @@ Get perturbations
 
 `Optional`\[`List`\[`float`]]
 
+### relative\_bending
 
+<span id="qiskit.chemistry.drivers.Molecule.relative_bending" />
 
 `classmethod relative_bending(bend, geometry, atom_trio)`
 
@@ -201,7 +231,9 @@ Get perturbations
 
 end geometry
 
+### relative\_stretching
 
+<span id="qiskit.chemistry.drivers.Molecule.relative_stretching" />
 
 `classmethod relative_stretching(perturbation, geometry, atom_pair)`
 
@@ -219,8 +251,11 @@ end geometry
 
 end geometry
 
+### units
 
+<span id="qiskit.chemistry.drivers.Molecule.units" />
 
 `property units`
 
 The geometry coordinate units
+

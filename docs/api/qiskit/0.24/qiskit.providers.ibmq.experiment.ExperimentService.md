@@ -1,10 +1,18 @@
+---
+title: ExperimentService
+description: API reference for qiskit.providers.ibmq.experiment.ExperimentService
+in_page_toc_min_heading_level: 1
+python_api_type: class
+python_api_name: qiskit.providers.ibmq.experiment.ExperimentService
+---
+
 <span id="qiskit-providers-ibmq-experiment-experimentservice" />
 
 # qiskit.providers.ibmq.experiment.ExperimentService
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService" />
 
-
-`ExperimentService(provider, access_token)`
+`ExperimentService(provider, access_token)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.12/qiskit/providers/ibmq/experiment/experimentservice.py "view source code")
 
 Provides experiment related services.
 
@@ -41,7 +49,7 @@ provider.experiment.update_experiment(new_exp)
 provider.experiment.delete_experiment(EXPERIMENT_ID)
 ```
 
-Similar syntax applies to analysis results and experiment plots. Classes [`Experiment`](qiskit.providers.ibmq.experiment.Experiment#qiskit.providers.ibmq.experiment.Experiment "qiskit.providers.ibmq.experiment.Experiment") and [`AnalysisResult`](qiskit.providers.ibmq.experiment.AnalysisResult#qiskit.providers.ibmq.experiment.AnalysisResult "qiskit.providers.ibmq.experiment.AnalysisResult") encapsulate data of an experiment and an analysis result, respectively.
+Similar syntax applies to analysis results and experiment plots. Classes [`Experiment`](qiskit.providers.ibmq.experiment.Experiment "qiskit.providers.ibmq.experiment.Experiment") and [`AnalysisResult`](qiskit.providers.ibmq.experiment.AnalysisResult "qiskit.providers.ibmq.experiment.AnalysisResult") encapsulate data of an experiment and an analysis result, respectively.
 
 IBMQBackendService constructor.
 
@@ -50,7 +58,9 @@ IBMQBackendService constructor.
 *   **provider** (`AccountProvider`) – IBM Quantum Experience account provider.
 *   **access\_token** (`str`) – IBM Quantum Experience access token.
 
+### \_\_init\_\_
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.__init__" />
 
 `__init__(provider, access_token)`
 
@@ -83,7 +93,9 @@ IBMQBackendService constructor.
 | [`upload_experiment`](#qiskit.providers.ibmq.experiment.ExperimentService.upload_experiment "qiskit.providers.ibmq.experiment.ExperimentService.upload_experiment")(experiment)                      | Upload a new experiment.                                |
 | [`upload_plot`](#qiskit.providers.ibmq.experiment.ExperimentService.upload_plot "qiskit.providers.ibmq.experiment.ExperimentService.upload_plot")(experiment, plot\[, plot\_name])                   | Upload an experiment plot.                              |
 
+### analysis\_results
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.analysis_results" />
 
 `analysis_results(limit=10, backend_name=None, device_components=None, experiment_id=None, result_type=None, quality=None)`
 
@@ -110,7 +122,9 @@ A list of analysis results.
 
 **ValueError** – If an invalid parameter value is specified.
 
+### backends
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.backends" />
 
 `backends()`
 
@@ -124,7 +138,9 @@ Return a list of backends.
 
 A list of backends.
 
+### delete\_analysis\_result
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.delete_analysis_result" />
 
 `delete_analysis_result(result)`
 
@@ -146,7 +162,9 @@ Delete an analysis result.
 
 The deleted analysis result.
 
+### delete\_experiment
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.delete_experiment" />
 
 `delete_experiment(experiment)`
 
@@ -168,7 +186,9 @@ Delete an experiment.
 
 Deleted experiment.
 
+### delete\_plot
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.delete_plot" />
 
 `delete_plot(experiment, plot_name)`
 
@@ -187,7 +207,9 @@ Delete an experiment plot.
 
 `None`
 
+### device\_components
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.device_components" />
 
 `device_components(backend_name=None)`
 
@@ -205,7 +227,9 @@ Return the device components.
 
 A list of device components.
 
+### experiments
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.experiments" />
 
 `experiments(limit=10, backend_name=None, type=None, start_datetime=None, end_datetime=None, device_components=None, tags=None, tags_operator='OR', hub=None, group=None, project=None, exclude_public=False, public_only=False, exclude_mine=False, mine_only=False)`
 
@@ -262,7 +286,9 @@ A list of experiments.
 
 **ValueError** – If an invalid parameter value is specified.
 
+### retrieve\_analysis\_result
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.retrieve_analysis_result" />
 
 `retrieve_analysis_result(result_id)`
 
@@ -285,7 +311,9 @@ Retrieved analysis result.
 *   **AnalysisResultNotFoundError** – If the analysis result is not found.
 *   **RequestsApiError** – If an unexpected error occurred when retrieving analysis result from the server.
 
+### retrieve\_experiment
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.retrieve_experiment" />
 
 `retrieve_experiment(experiment_id)`
 
@@ -308,7 +336,9 @@ Retrieved experiment.
 *   **ExperimentNotFoundError** – If the experiment is not found.
 *   **RequestsApiError** – If an unexpected error occurred when retrieving experiment from the server.
 
+### retrieve\_plot
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.retrieve_plot" />
 
 `retrieve_plot(experiment, plot_name, file_name=None)`
 
@@ -333,7 +363,9 @@ The size of the plot if file\_name is specified. Otherwise the content of the pl
 *   **PlotNotFoundError** – If the plot is not found.
 *   **RequestsApiError** – If an unexpected error occurred when retrieving plot from the server.
 
+### update\_analysis\_result
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.update_analysis_result" />
 
 `update_analysis_result(result)`
 
@@ -347,7 +379,9 @@ Update an analysis result.
 
 `None`
 
+### update\_experiment
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.update_experiment" />
 
 `update_experiment(experiment)`
 
@@ -368,7 +402,9 @@ Update an experiment.
 
 `None`
 
+### update\_plot
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.update_plot" />
 
 `update_plot(experiment, plot, plot_name)`
 
@@ -388,7 +424,9 @@ Update an experiment plot.
 
 A dictionary with name and size of the uploaded plot.
 
+### upload\_analysis\_result
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.upload_analysis_result" />
 
 `upload_analysis_result(result)`
 
@@ -402,7 +440,9 @@ Upload an analysis result.
 
 `None`
 
+### upload\_experiment
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.upload_experiment" />
 
 `upload_experiment(experiment)`
 
@@ -416,7 +456,9 @@ Upload a new experiment.
 
 `None`
 
+### upload\_plot
 
+<span id="qiskit.providers.ibmq.experiment.ExperimentService.upload_plot" />
 
 `upload_plot(experiment, plot, plot_name=None)`
 
@@ -435,3 +477,4 @@ Upload an experiment plot.
 **Returns**
 
 A dictionary with name and size of the uploaded plot.
+
