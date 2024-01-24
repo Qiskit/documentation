@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.pulse_lib.Constant
 
 <span id="qiskit.pulse.pulse_lib.Constant" />
 
-`Constant(duration, amp, name=None)`
+`Constant(duration, amp, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
 
 A simple constant pulse, with an amplitude value and a duration:
 
@@ -105,7 +105,7 @@ matplotlib.figure
 
 <span id="qiskit.pulse.pulse_lib.Constant.get_sample_pulse" />
 
-`Constant.get_sample_pulse()`
+`Constant.get_sample_pulse()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
 
 Return a SamplePulse with samples filled according to the formula that the pulse represents and the parameter values it contains.
 
@@ -117,7 +117,7 @@ Return a SamplePulse with samples filled according to the formula that the pulse
 
 <span id="qiskit.pulse.pulse_lib.Constant.validate_parameters" />
 
-`Constant.validate_parameters()`
+`Constant.validate_parameters()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/pulse_lib/parametric_pulses.py "view source code")
 
 Validate parameters.
 

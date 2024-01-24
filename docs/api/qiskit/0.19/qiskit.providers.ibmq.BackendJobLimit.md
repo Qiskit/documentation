@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.ibmq.BackendJobLimit
 
 <span id="qiskit.providers.ibmq.BackendJobLimit" />
 
-`BackendJobLimit(maximum_jobs, running_jobs, **kwargs)`
+`BackendJobLimit(maximum_jobs, running_jobs, **kwargs)`[GitHub](https://github.com/qiskit/qiskit-ibmq-provider/tree/stable/0.7/qiskit/providers/ibmq/backendjoblimit.py "view source code")
 
 Job limit for a backend.
 
@@ -37,4 +37,7 @@ BackendJobLimit constructor.
 *   **kwargs** (`Any`) – Additional attributes that will be added as instance members.
 
 ## Methods
+
+|   |
+| - |
 

@@ -10,7 +10,7 @@ python_api_name: qiskit.providers.basicaer.QasmSimulatorPy
 
 <span id="qiskit.providers.basicaer.QasmSimulatorPy" />
 
-`QasmSimulatorPy(configuration=None, provider=None)`
+`QasmSimulatorPy(configuration=None, provider=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basicaer/qasm_simulator.py "view source code")
 
 Python implementation of a qasm simulator.
 
@@ -123,7 +123,7 @@ the Provider responsible for the backend.
 
 <span id="qiskit.providers.basicaer.QasmSimulatorPy.run" />
 
-`QasmSimulatorPy.run(qobj, backend_options=None)`
+`QasmSimulatorPy.run(qobj, backend_options=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basicaer/qasm_simulator.py "view source code")
 
 Run qobj asynchronously.
 
@@ -160,7 +160,7 @@ backend_options = {
 
 <span id="qiskit.providers.basicaer.QasmSimulatorPy.run_experiment" />
 
-`QasmSimulatorPy.run_experiment(experiment)`
+`QasmSimulatorPy.run_experiment(experiment)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/providers/basicaer/qasm_simulator.py "view source code")
 
 Run an experiment (circuit) and return a single experiment result.
 

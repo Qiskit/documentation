@@ -10,7 +10,7 @@ python_api_name: qiskit.pulse.Schedule
 
 <span id="qiskit.pulse.Schedule" />
 
-`Schedule(*schedules, name=None)`
+`Schedule(*schedules, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/schedule.py "view source code")
 
 A quantum program *schedule* with exact time constraints for its instructions, operating over all input signal *channels* and supporting special syntaxes for building.
 
@@ -121,7 +121,7 @@ Time keeping attribute.
 
 <span id="qiskit.pulse.Schedule.append" />
 
-`Schedule.append(schedule, name=None)`
+`Schedule.append(schedule, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/schedule.py "view source code")
 
 Return a new schedule with `schedule` inserted at the maximum time over all channels shared between `self` and `schedule`.
 
@@ -143,7 +143,7 @@ $$
 
 <span id="qiskit.pulse.Schedule.ch_duration" />
 
-`Schedule.ch_duration(*channels)`
+`Schedule.ch_duration(*channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/schedule.py "view source code")
 
 Return the time of the end of the last instruction over the supplied channels.
 
@@ -159,7 +159,7 @@ Return the time of the end of the last instruction over the supplied channels.
 
 <span id="qiskit.pulse.Schedule.ch_start_time" />
 
-`Schedule.ch_start_time(*channels)`
+`Schedule.ch_start_time(*channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/schedule.py "view source code")
 
 Return the time of the start of the first instruction over the supplied channels.
 
@@ -175,7 +175,7 @@ Return the time of the start of the first instruction over the supplied channels
 
 <span id="qiskit.pulse.Schedule.ch_stop_time" />
 
-`Schedule.ch_stop_time(*channels)`
+`Schedule.ch_stop_time(*channels)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/schedule.py "view source code")
 
 Return maximum start time over supplied channels.
 
@@ -191,7 +191,7 @@ Return maximum start time over supplied channels.
 
 <span id="qiskit.pulse.Schedule.draw" />
 
-`Schedule.draw(dt=1, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, channels_to_plot=None, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, scaling=None, channels=None, show_framechange_channels=True)`
+`Schedule.draw(dt=1, style=None, filename=None, interp_method=None, scale=None, channel_scales=None, channels_to_plot=None, plot_all=False, plot_range=None, interactive=False, table=True, label=False, framechange=True, scaling=None, channels=None, show_framechange_channels=True)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/schedule.py "view source code")
 
 Plot the schedule.
 
@@ -237,7 +237,7 @@ matplotlib.Figure
 
 <span id="qiskit.pulse.Schedule.exclude" />
 
-`Schedule.exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None)`
+`Schedule.exclude(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/schedule.py "view source code")
 
 Return a Schedule with only the instructions from this Schedule *failing* at least one of the provided filters. This method is the complement of `self.filter`, so that:
 
@@ -261,7 +261,7 @@ self.filter(args) | self.exclude(args) == self
 
 <span id="qiskit.pulse.Schedule.filter" />
 
-`Schedule.filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None)`
+`Schedule.filter(*filter_funcs, channels=None, instruction_types=None, time_ranges=None, intervals=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/schedule.py "view source code")
 
 Return a new `Schedule` with only the instructions from this `Schedule` which pass though the provided filters; i.e. an instruction will be retained iff every function in `filter_funcs` returns `True`, the instruction occurs on a channel type contained in `channels`, the instruction type is contained in `instruction_types`, and the period over which the instruction operates is *fully* contained in one specified in `time_ranges` or `intervals`.
 
@@ -283,7 +283,7 @@ If no arguments are provided, `self` is returned.
 
 <span id="qiskit.pulse.Schedule.flatten" />
 
-`Schedule.flatten()`
+`Schedule.flatten()`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/schedule.py "view source code")
 
 Return a new schedule which is the flattened schedule contained all `instructions`.
 
@@ -295,7 +295,7 @@ Return a new schedule which is the flattened schedule contained all `instruction
 
 <span id="qiskit.pulse.Schedule.insert" />
 
-`Schedule.insert(start_time, schedule, name=None)`
+`Schedule.insert(start_time, schedule, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/schedule.py "view source code")
 
 Return a new schedule with `schedule` inserted into `self` at `start_time`.
 
@@ -313,7 +313,7 @@ Return a new schedule with `schedule` inserted into `self` at `start_time`.
 
 <span id="qiskit.pulse.Schedule.shift" />
 
-`Schedule.shift(time, name=None)`
+`Schedule.shift(time, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/schedule.py "view source code")
 
 Return a new schedule shifted forward by `time`.
 
@@ -330,7 +330,7 @@ Return a new schedule shifted forward by `time`.
 
 <span id="qiskit.pulse.Schedule.union" />
 
-`Schedule.union(*schedules, name=None)`
+`Schedule.union(*schedules, name=None)`[GitHub](https://github.com/qiskit/qiskit/tree/stable/0.14/qiskit/pulse/schedule.py "view source code")
 
 Return a new schedule which is the union of both `self` and `schedules`.
 
